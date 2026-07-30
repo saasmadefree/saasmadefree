@@ -4,6 +4,16 @@ import { FEED_ORIGIN, GITHUB_ISSUE_URL, pickLang } from '../lib/config.mjs';
 const t = (key) => chrome.i18n.getMessage(key);
 const $ = (id) => document.getElementById(id);
 
+// La visibilité du statut est pilotée par l'attribut `hidden`, jamais par
+// `:empty` en CSS : tant que `_locales` n'existe pas (Tâche 12), et même
+// après, une clé de traduction manquante dans une seule langue ne doit pas
+// supprimer silencieusement tout retour utilisateur dans cette langue.
+function setStatus(text) {
+  const node = $('status');
+  node.textContent = text ?? '';
+  node.hidden = !node.textContent;
+}
+
 function applyStaticLabels() {
   for (const node of document.querySelectorAll('[data-i18n]')) {
     node.textContent = t(node.dataset.i18n);
@@ -91,6 +101,15 @@ async function main() {
     return option;
   }));
 
+  // Sélecteur vide : premier lancement avant le premier rafraîchissement du
+  // service worker (qui amorce `agents: []`), ou `agents.json` transitoirement
+  // rejeté. Un clic sur « Send » ne doit pas rester un no-op silencieux.
+  if (agents.length === 0) {
+    select.disabled = true;
+    $('send').disabled = true;
+    setStatus(t('noAgentsYet'));
+  }
+
   const ctx = {
     prompt: tool.prompt,
     prompt_url: `${FEED_ORIGIN}${tool.promptUrl}`,
@@ -121,7 +140,7 @@ async function main() {
       // Un modèle de l'agent mal formé (variable hors liste blanche) ne doit
       // jamais planter le panneau : l'utilisateur garde quand même le prompt.
       await copy(tool.prompt);
-      $('status').textContent = t('copiedPasteIt');
+      setStatus(t('copiedPasteIt'));
       return;
     }
 
@@ -133,9 +152,7 @@ async function main() {
 
     if (action.mode === 'clipboard') {
       await copy(tool.prompt);
-      $('status').textContent = action.reason === 'too-long'
-        ? t('copiedTooLong')
-        : t('copiedPasteIt');
+      setStatus(action.reason === 'too-long' ? t('copiedTooLong') : t('copiedPasteIt'));
       if (action.url) chrome.tabs.create({ url: action.url });
       return;
     }
@@ -148,21 +165,30 @@ async function main() {
       location.href = action.url;
       setTimeout(() => {
         window.removeEventListener('blur', onBlur);
-        $('status').textContent = launched ? t('sent') : t('agentNotInstalled');
+        setStatus(launched ? t('sent') : t('agentNotInstalled'));
       }, 1500);
       return;
     }
 
     chrome.tabs.create({ url: action.url });
-    $('status').textContent = t('sent');
+    setStatus(t('sent'));
   });
 
   $('myself').addEventListener('click', async () => {
     await copy(tool.prompt);
     const result = await chrome.runtime.sendMessage({ type: 'vote', slug: tool.slug });
-    $('status').textContent = result?.queued
-      ? t('copiedVoteQueued')
-      : t('copiedVoteCounted').replace('{count}', String(result?.count ?? ''));
+    // Distinguer explicitement les trois formes documentées de la réponse :
+    // une réponse hors contrat (le worker répond `null` quand son handler
+    // rejette) ne doit jamais s'afficher comme un vote compté — sur un site
+    // dont l'argument entier est l'honnêteté de ses chiffres, un vote raté ne
+    // doit jamais se lire comme un vote enregistré.
+    if (result?.queued) {
+      setStatus(t('copiedVoteQueued'));
+    } else if (typeof result?.count === 'number') {
+      setStatus(t('copiedVoteCounted').replace('{count}', String(result.count)));
+    } else {
+      setStatus(t('voteFailed'));
+    }
   });
 }
 

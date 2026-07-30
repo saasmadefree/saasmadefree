@@ -30,7 +30,10 @@ select, button { width: 100%; padding: 8px; margin-top: 6px; font: inherit;
   border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--fg); }
 button { cursor: pointer; }
 #myself { margin-top: 12px; background: var(--fg); color: var(--bg); border-color: var(--fg); }
-#status:empty { display: none; }
+/* La visibilité du statut est pilotée par l'attribut hidden depuis le JS, jamais
+   par :empty — sinon une clé de traduction manquante dans une seule langue
+   supprime tout retour utilisateur dans cette langue, sans erreur. */
+#status[hidden] { display: none; }
 #status { margin-top: 8px; font-size: 13px; color: var(--muted); }
 #full-page { display: inline-block; margin-top: 12px; font-size: 13px; color: var(--muted); }
 
