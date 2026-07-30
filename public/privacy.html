@@ -124,12 +124,13 @@
 <h2>How a vote is protected</h2>
 <p>
   A vote request necessarily arrives from your IP address, the way any network
-  request does. Our server hashes that IP address together with a component
-  that rotates every day, before anything is written to storage. The raw IP
-  address is never written to disk in clear form — only the resulting hash,
-  alongside the tool identifier and the day. This lets the server enforce "one
-  vote per tool per day" without keeping a record that can be traced back to
-  your IP address once the day's rotating component is gone.
+  request does. Before anything is written to storage, our server hashes that
+  IP address together with the day <em>and</em> a secret key that only the
+  server holds and that is never published. The raw IP address is never
+  written to disk in clear form — only the resulting hash, alongside the tool
+  identifier and the day. This lets the server enforce "one vote per tool per
+  day" while keeping the stored hash impossible to reverse back to your IP
+  address without that key.
 </p>
 
 <h2>What we don't do</h2>
