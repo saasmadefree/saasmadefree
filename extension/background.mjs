@@ -33,7 +33,12 @@ async function refreshFeed() {
     if (!indexRes.ok || !agentsRes.ok) return;
     const index = await indexRes.json();
     const agents = await agentsRes.json();
-    if (index && typeof index === 'object' && Array.isArray(agents)) {
+    // Un corps vide mais bien typé ({} ou []) passe un contrôle naïf et écrase
+    // un cache qui marchait, pour 24 h. Exiger du contenu, pas seulement un type.
+    const usable =
+      index && typeof index === 'object' && Object.keys(index).length > 0 &&
+      Array.isArray(agents) && agents.length > 0;
+    if (usable) {
       await chrome.storage.local.set({ index, agents, fetchedAt: Date.now() });
     }
   } catch {
@@ -73,11 +78,19 @@ async function sendVote(slug) {
   return { queued: true };
 }
 
+// Ne jamais vider la file avant d'avoir envoyé : un service worker MV3 est tué
+// à tout moment, et tout ce qui a été retiré du stockage sans être parti est
+// perdu sans trace. Chaque slug ne quitte la file qu'une fois son envoi réussi.
 async function flushPendingVotes() {
   const { pendingVotes = [] } = await chrome.storage.local.get('pendingVotes');
-  if (pendingVotes.length === 0) return;
-  await chrome.storage.local.set({ pendingVotes: [] });
-  for (const slug of pendingVotes) await sendVote(slug);
+  for (const slug of pendingVotes) {
+    const result = await sendVote(slug);
+    if (result?.queued) break; // toujours hors ligne, inutile d'insister
+    const { pendingVotes: current = [] } = await chrome.storage.local.get('pendingVotes');
+    await chrome.storage.local.set({
+      pendingVotes: current.filter((s) => s !== slug),
+    });
+  }
 }
 
 const handlers = {
