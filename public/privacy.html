@@ -58,11 +58,13 @@
 
 <div class="box">
   <strong>Short version:</strong> this extension reads the address (hostname) of the
-  page you are on, and nothing else. It never reads the content of a page, form
-  fields, or cookies. The only thing it ever sends over the network that you
-  initiated is a vote — a single tool name, no personal data attached. There are
-  no cookies, no trackers, and no analytics in the extension. Nothing is sold or
-  shared.
+  page you are on, and nothing else — it never reads a page's content, form
+  fields, or cookies. When it recognizes a page, it <strong>writes</strong> exactly
+  one thing to it: its own small panel, self-contained inside a closed Shadow DOM,
+  which cannot read or change anything already on the page. The only thing it ever
+  sends over the network that you initiated is a vote — a single tool name, no
+  personal data attached. There are no cookies, no trackers, and no analytics in
+  the extension. Nothing is sold or shared.
 </div>
 
 <h2>What this extension is</h2>
@@ -78,15 +80,24 @@
 <p>
   The extension reads exactly one piece of information from the page you have
   open: its <strong>hostname</strong> (for example <code>notion.so</code>). It
-  compares that hostname against a list of known tools. If there is no match,
-  the extension does nothing further on that page.
+  compares that hostname against a list of known tools.
 </p>
 <ul>
   <li>It does <strong>not</strong> read the text, images, or structure of the page.</li>
   <li>It does <strong>not</strong> read form fields, passwords, or anything you type.</li>
   <li>It does <strong>not</strong> read cookies, local storage, or session data belonging to the site you are on.</li>
-  <li>It does <strong>not</strong> inject anything into, or interact with, the page's content — it only decides, from the hostname alone, whether to show its own panel.</li>
 </ul>
+
+<h2>What the extension writes to pages you visit</h2>
+<p>
+  Reading the hostname is the only thing the extension does on every page. If —
+  and only if — that hostname matches a tool in the directory, it writes exactly
+  one thing to the page: its own small, dismissible panel. That panel is rendered
+  inside a <strong>closed Shadow DOM</strong>, a self-contained element isolated
+  from the rest of the page. It does not read or modify anything that was already
+  on the page, and the page's own scripts cannot see or reach inside it. If the
+  hostname does not match, nothing is written at all.
+</p>
 
 <h2>What leaves your device</h2>
 <p>The extension makes network requests in two situations, both described below in full. There is no third case.</p>
@@ -125,6 +136,7 @@
   <li>No account, sign-in, or persistent identifier tied to you.</li>
   <li>No selling, renting, or sharing of any data with third parties.</li>
   <li>No reading of page content, form fields, or cookies belonging to other sites.</li>
+  <li>No modification of anything already on a page — the only thing ever written is our own isolated panel, described above.</li>
 </ul>
 
 <h2>Local storage on your device</h2>
@@ -144,11 +156,13 @@
   every already-installed copy of the extension, the next time it refreshes its
   data — without you having to install an update. The extension's code that
   runs on a page you visit only ever compares the page's hostname against that
-  list; see "Auditability" below for how to verify this yourself.
+  list, and, only on a match, writes its own isolated panel described above; it
+  never reads or changes anything else on the page. See "Auditability" below
+  for how to verify this yourself.
 </p>
 <p>The specific browser permissions requested, and why:</p>
 <ul>
-  <li><code>host_permissions: &lt;all_urls&gt;</code> — needed to read a page's hostname on any site, so newly added tools work without a new extension release.</li>
+  <li><code>host_permissions: &lt;all_urls&gt;</code> — needed to run the content script described above (read the hostname, and on a match write the panel) on any site, so newly added tools work without a new extension release.</li>
   <li><code>clipboardWrite</code> — used only when you click a button to copy a prompt to your clipboard.</li>
   <li><code>storage</code> — used only for the local settings described above.</li>
   <li><code>alarms</code> — used only to schedule the once-a-day feed refresh described above.</li>
@@ -162,11 +176,13 @@
 </p>
 <p>
   <strong>Only one file in the extension ever runs on the pages you visit:
-  <code>extension/content.js</code></strong>. It reads
-  <code>location.hostname</code> and nothing else from the page — no DOM
-  access, no page content, no form data, no outgoing request of its own. This
-  is a short file and a ten-second read for anyone who wants to verify this
-  claim directly.
+  <code>extension/content.js</code></strong>. It <em>reads</em> only
+  <code>location.hostname</code> from the page — never its content, its forms,
+  or its cookies — and makes no network request of its own. The one thing it
+  <em>writes</em>, and only on a hostname match, is its own panel element,
+  self-contained inside a closed Shadow DOM: it does not read or modify
+  anything already on the page. This is a short file and a ten-second read for
+  anyone who wants to verify both claims directly.
 </p>
 
 <h2>Children's privacy</h2>
