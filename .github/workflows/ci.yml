@@ -17,6 +17,8 @@ jobs:
         run: npx vitest run
       - name: Construire le feed
         run: npm run build
+      - name: Vérifier que le build ne laisse rien de non commité
+        run: git diff --exit-code
       - name: Vérifier la reproductibilité de l'extension
         run: |
           npm run build:extension
