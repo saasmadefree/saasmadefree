@@ -52,10 +52,19 @@
   close.setAttribute('tabindex', '0');
   close.setAttribute('aria-label', chrome.i18n.getMessage('hideHere'));
 
-  const open = () => window.open(
-    chrome.runtime.getURL(`popup/popup.html?slug=${encodeURIComponent(entry.slug)}`),
-    '_blank', 'noopener'
-  );
+  // `window.open(chrome.runtime.getURL(...))` ne marche pas ici : appelé depuis
+  // un script de contenu, l'initiateur de la navigation est la page web, et
+  // Chrome bloque l'ouverture d'une URL chrome-extension:// non déclarée dans
+  // web_accessible_resources — qu'on ne déclare pas exprès (ça rendrait
+  // l'extension détectable par n'importe quel site). Le service worker ouvre
+  // l'onglet à notre place.
+  const open = () => {
+    chrome.runtime.sendMessage({ type: 'openPanel', slug: entry.slug }).catch(() => {
+      // Après une mise à jour de l'extension, un ancien script de contenu reste
+      // attaché à la page et sendMessage rejette : le clic ne fait rien, mais
+      // le panneau reste accessible depuis l'icône de la barre d'outils.
+    });
+  };
 
   pill.addEventListener('click', (event) => {
     if (event.target === close) return;

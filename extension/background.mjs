@@ -119,6 +119,19 @@ const handlers = {
     }
     return true;
   },
+  // La pastille injectée par content.js ne peut pas ouvrir elle-même une page
+  // chrome-extension:// : `window.open` depuis un script de contenu a la page
+  // web comme initiateur, et Chrome bloque la navigation vers une ressource
+  // d'extension non déclarée dans web_accessible_resources. On ne déclare
+  // délibérément pas popup/popup.html là-dedans (ça le rendrait sondable par
+  // n'importe quel site, une surface de fingerprinting). La seule ouverture
+  // fiable passe donc par le service worker, qui a le droit d'ouvrir un onglet.
+  async openPanel({ slug }) {
+    await chrome.tabs.create({
+      url: chrome.runtime.getURL(`popup/popup.html?slug=${encodeURIComponent(slug)}`),
+    });
+    return true;
+  },
 };
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
