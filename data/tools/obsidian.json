@@ -3,7 +3,7 @@
   "name": "Obsidian",
   "domains": ["obsidian.md"],
   "category": "docs-and-wiki",
-  "subcategory": "notes markdown locales avec synchronisation payante",
+  "subcategory": "local markdown notes + paid sync",
   "pricing": {
     "amount": 4,
     "currency": "USD",
@@ -20,7 +20,7 @@
   "requirements": ["none"],
   "priorArt": [
     { "name": "Syncthing", "url": "https://syncthing.net", "license": "MPL-2.0" },
-    { "name": "Self-hosted LiveSync", "url": "https://github.com/vrtmrz/obsidian-livesync", "license": "GPL-3.0" }
+    { "name": "Self-hosted LiveSync", "url": "https://github.com/vrtmrz/obsidian-livesync", "license": "MIT" }
   ],
   "relatedSlugs": ["notion", "calendly", "typeform"],
   "markets": ["en", "fr"],

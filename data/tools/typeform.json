@@ -3,7 +3,7 @@
   "name": "Typeform",
   "domains": ["typeform.com", "admin.typeform.com"],
   "category": "forms-and-surveys",
-  "subcategory": "formulaires conversationnels et sondages",
+  "subcategory": "conversational forms + surveys",
   "pricing": {
     "amount": 25,
     "currency": "USD",

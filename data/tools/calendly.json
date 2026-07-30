@@ -3,7 +3,7 @@
   "name": "Calendly",
   "domains": ["calendly.com"],
   "category": "scheduling",
-  "subcategory": "prise de rendez-vous et gestion de disponibilités",
+  "subcategory": "scheduling + booking pages",
   "pricing": {
     "amount": 12,
     "currency": "USD",
@@ -19,7 +19,7 @@
   "diyTimeEstimate": "weekend",
   "requirements": ["hosting", "oauth-app", "database"],
   "priorArt": [
-    { "name": "Cal.com", "url": "https://cal.com", "license": "AGPL-3.0" }
+    { "name": "Cal.diy", "url": "https://cal.diy", "license": "MIT" }
   ],
   "relatedSlugs": ["notion", "typeform", "obsidian"],
   "markets": ["en", "fr"],

@@ -3,7 +3,7 @@
   "name": "Notion",
   "domains": ["notion.so", "notion.com", "app.notion.so"],
   "category": "docs-and-wiki",
-  "subcategory": "workspace et base de données hybride",
+  "subcategory": "workspace + database hybrid",
   "pricing": {
     "amount": 10,
     "currency": "USD",
