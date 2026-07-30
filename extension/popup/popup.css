@@ -1,0 +1,40 @@
+:root {
+  --bg: #ffffff; --fg: #111111; --muted: #5b5b5b; --line: #e4e4e4;
+  --yes: #16a34a; --kinda: #d97706; --no: #dc2626;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #111111; --fg: #f4f4f4; --muted: #a1a1a1; --line: #2a2a2a; }
+}
+
+body {
+  width: 360px; margin: 0; padding: 16px; background: var(--bg); color: var(--fg);
+  font: 14px/1.5 ui-sans-serif, system-ui, sans-serif;
+}
+h1 { font-size: 17px; margin: 4px 0 0; }
+h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .04em;
+     color: var(--muted); margin: 16px 0 4px; }
+p { margin: 0 0 8px; }
+ul { margin: 0; padding-left: 18px; }
+section { border-top: 1px solid var(--line); padding-top: 8px; }
+
+#verdict-dot {
+  display: inline-block; padding: 2px 8px; border-radius: 999px;
+  font-size: 11px; font-weight: 600; color: #fff;
+}
+#verdict-dot.yes { background: var(--yes); }
+#verdict-dot.kinda { background: var(--kinda); }
+#verdict-dot.no { background: var(--no); }
+
+#price, #run-hint { color: var(--muted); font-size: 13px; }
+select, button { width: 100%; padding: 8px; margin-top: 6px; font: inherit;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--fg); }
+button { cursor: pointer; }
+#myself { margin-top: 12px; background: var(--fg); color: var(--bg); border-color: var(--fg); }
+#status:empty { display: none; }
+#status { margin-top: 8px; font-size: 13px; color: var(--muted); }
+#full-page { display: inline-block; margin-top: 12px; font-size: 13px; color: var(--muted); }
+
+@media (prefers-reduced-motion: no-preference) {
+  button { transition: opacity .15s ease; }
+  button:hover { opacity: .85; }
+}

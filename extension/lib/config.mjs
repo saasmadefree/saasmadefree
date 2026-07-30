@@ -5,6 +5,12 @@ export const REFRESH_ALARM = 'refresh-feed';
 export const REFRESH_PERIOD_MINUTES = 1440;
 export const LANGS = ['en', 'fr', 'es', 'de', 'it', 'pt', 'nl'];
 
+// TODO(owner): the repository has not been created yet and its GitHub owner/org
+// is not decided. This literal "OWNER" segment MUST be replaced with the real
+// account before the extension is published — a wrong owner here would send
+// users' "not-yet" agent-support issues into a stranger's repository.
+export const GITHUB_ISSUE_URL = 'https://github.com/OWNER/saasmadefree/issues/new';
+
 export function pickLang(uiLanguage) {
   const base = String(uiLanguage ?? 'en').toLowerCase().split('-')[0];
   return LANGS.includes(base) ? base : 'en';

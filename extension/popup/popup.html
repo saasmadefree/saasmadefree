@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+  <title>SaaS Made Free</title>
+</head>
+<body>
+  <main id="app" hidden>
+    <header>
+      <span id="verdict-dot"></span>
+      <h1 id="tool-name"></h1>
+      <p id="price"></p>
+    </header>
+    <p id="verdict-summary"></p>
+    <section>
+      <h2 data-i18n="whatYouLose"></h2>
+      <ul id="what-you-lose"></ul>
+    </section>
+    <section>
+      <h2 data-i18n="whyPeopleStillPay"></h2>
+      <p id="why-pay"></p>
+    </section>
+    <section>
+      <label for="agent" data-i18n="sendTo"></label>
+      <select id="agent"></select>
+      <p id="run-hint"></p>
+      <button id="send" type="button"></button>
+    </section>
+    <button id="myself" type="button" data-i18n="illDoItMyself"></button>
+    <p id="status" role="status" aria-live="polite"></p>
+    <a id="full-page" target="_blank" rel="noopener" data-i18n="readFullEntry"></a>
+  </main>
+  <p id="empty" data-i18n="noToolHere"></p>
+  <script type="module" src="popup.mjs"></script>
+</body>
+</html>
