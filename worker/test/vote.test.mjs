@@ -157,6 +157,41 @@ describe('gestion des erreurs D1', () => {
   });
 });
 
+describe('VOTE_SALT absent', () => {
+  // Un VOTE_SALT manquant ou vide ne doit jamais dégrader silencieusement le
+  // hachage (voir hash.mjs : un `undefined` s'interpole tel quel dans le
+  // template literal). Le worker doit refuser la requête au lieu de compter
+  // un vote dont le hash serait cassable par force brute.
+  it('renvoie 500 avec les en-têtes CORS et n\'enregistre aucun vote si VOTE_SALT est absent', async () => {
+    const original = env.VOTE_SALT;
+    delete env.VOTE_SALT;
+    let res;
+    try {
+      res = await post('notion', '203.0.113.70');
+    } finally {
+      env.VOTE_SALT = original;
+    }
+    expect(res.status).toBe(500);
+    expect(res.headers.get('access-control-allow-origin')).toBe('*');
+
+    const { results } = await env.DB.prepare('SELECT COUNT(*) AS c FROM votes').all();
+    expect(results[0].c).toBe(0);
+  });
+
+  it('renvoie 500 si VOTE_SALT est une chaîne vide', async () => {
+    const original = env.VOTE_SALT;
+    env.VOTE_SALT = '';
+    let res;
+    try {
+      res = await post('notion', '203.0.113.71');
+    } finally {
+      env.VOTE_SALT = original;
+    }
+    expect(res.status).toBe(500);
+    expect(res.headers.get('access-control-allow-origin')).toBe('*');
+  });
+});
+
 describe('préflight OPTIONS', () => {
   it('répond 204 sans corps, avec les en-têtes CORS', async () => {
     const request = new Request('https://votes.test/api/v1/vote', { method: 'OPTIONS' });

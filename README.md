@@ -37,7 +37,26 @@ npm run build
 - **`npx vitest run`** — runs the root test suite (domain matching, template rendering, the feed builder, the validation rules themselves). Always `run`, not the bare `vitest`, so it exits instead of watching.
 - **`npm run build`** — runs `scripts/build-feed.mjs`. It validates the data again, then writes the versioned public feed to `dist/feed/v1/`, the extension's offline snapshot to `extension/data/index.json`, the worker's slug allow-list to `worker/src/slugs.generated.mjs`, and copies `public/` (including the privacy policy) into `dist/`.
 
-The Cloudflare Worker that backs the vote counter lives in its own package: `cd worker && npm ci && npx vitest run`.
+The Cloudflare Worker that backs the vote counter lives in its own package. `worker/src/index.mjs` imports `worker/src/slugs.generated.mjs`, written by the root `npm run build` above and gitignored — on a fresh clone that file doesn't exist yet, and skipping this step doesn't fail loudly: the worker's test suite silently loads only the tests that don't touch that import. Run the root build first, then the worker's own tests:
+
+```
+npm ci
+npm run build
+cd worker && npm ci && npx vitest run
+```
+
+### Deploying the worker
+
+The worker refuses to start (returns `500` on every request) if `VOTE_SALT` isn't set — see `worker/src/index.mjs`. From `worker/`:
+
+```
+npx wrangler d1 create saasmadefree            # copy the printed database_id into wrangler.toml
+npx wrangler d1 migrations apply saasmadefree --remote
+npx wrangler secret put VOTE_SALT              # a random 32-byte value; never commit it
+npx wrangler deploy
+```
+
+`VOTE_SALT` is the server-held secret that keeps a stored `ip_hash` from being reversed back to an IP address — see [How a vote is protected](public/privacy.html). It must never be committed; the repository is public.
 
 ## What the extension sees on your pages
 

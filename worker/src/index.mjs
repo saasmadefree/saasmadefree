@@ -65,6 +65,17 @@ async function handle(request, env) {
 
   if (request.method === 'OPTIONS') return json({}, 204, env);
 
+  // Un VOTE_SALT absent ou vide s'interpole dans hashIp comme la chaîne
+  // littérale "undefined" (template literal) : rien ne lève, le worker
+  // continue à fonctionner, les votes continuent à être comptés — et chaque
+  // ip_hash stocké devient cassable par force brute sur tout l'espace IPv4 en
+  // s'appuyant sur `day`, déjà présent dans la même ligne. Personne n'est
+  // prévenu. On échoue bruyamment ici plutôt que de laisser cette régression
+  // silencieuse produire des lignes irréversiblement compromises.
+  if (!env.VOTE_SALT) {
+    return json({ error: 'misconfigured' }, 500, env);
+  }
+
   const isCountsRoute = url.pathname === '/api/v1/votes' || url.pathname === '/feed/v1/votes.json';
   if (isCountsRoute && request.method === 'GET') {
     const { results } = await env.DB.prepare(
