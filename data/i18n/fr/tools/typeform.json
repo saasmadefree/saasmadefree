@@ -1,0 +1,19 @@
+{
+  "tagline": "Une question à la fois, des formulaires qui ressemblent à une conversation.",
+  "verdictSummary": "Un formulaire conversationnel se construit en une session : affiche une question par écran, anime la transition, enchaîne vers la question suivante selon la réponse précédente, et stocke chaque réponse comme une ligne. Ce que tu n'as pas gratuitement, c'est le fini de Typeform — les thèmes prêts à l'emploi, le tableau de bord d'analyse livré clé en main, et des années de micro-animations testées en A/B qui augmentent discrètement le taux de complétion.",
+  "coreLoopDIY": "Un moteur de formulaire qui affiche une question à la fois avec une transition simple, applique une logique de saut selon la réponse précédente, et écrit chaque soumission dans une table en base de données.",
+  "whatYouLose": [
+    "le tableau de bord d'analyse intégré (taux de complétion, abandon par question)",
+    "une large bibliothèque de thèmes et de types de questions prêts à l'emploi (paiement, classement, upload de fichier)",
+    "des années de finition dans les animations de transition qui influencent mesurablement le taux de complétion"
+  ],
+  "whyPeopleStillPay": "Le rempart de Typeform n'est pas une fonctionnalité impossible à construire — c'est le fini et les réglages par défaut. Les gens paient pour que le formulaire ait l'air pro dès le premier jour et pour que le tableau de bord de complétion soit déjà là, pas parce que la logique « une question à la fois » est difficile à coder.",
+  "notes": "Un « oui » honnête et net : la partie difficile est ici réduite, donc l'essentiel de ce qu'on paie, c'est de la finition, pas de la fonction.",
+  "prompt": "Construis une application de formulaire conversationnel sur une seule page : une question affichée à la fois, centrée à l'écran, avec une transition fluide (glissement ou fondu) vers la question suivante et une barre de progression. Prends en charge au moins ces types de questions : texte court, texte long, choix unique, choix multiple, et une échelle de notation numérique. Implémente une logique de saut simple : chaque question peut définir une règle du type « si la réponse à Q2 est X, va à Q5 au lieu de Q3 ». Stocke chaque soumission comme une ligne (id de question, réponse, submitted_at) en base de données, rattachée à un id de réponse par formulaire pour que les soumissions partielles puissent être reprises via un lien sauvegardé. Ajoute une page de résultats minimale par formulaire affichant le nombre de réponses et, par question, la répartition des réponses. Laisse de côté les champs de paiement, l'upload de fichiers et tout A/B testing intégré — hors périmètre.",
+  "faq": [
+    { "q": "Puis-je ajouter de la logique conditionnelle entre les questions ?", "a": "Oui — le prompt inclut une règle de saut simple par question. Un branchement complexe sur de nombreuses conditions demande plus de travail de conception, mais le principe passe à l'échelle." },
+    { "q": "Est-ce que ce sera aussi soigné que Typeform dès le départ ?", "a": "Pas sans travail de design. La partie fonctionnelle — une question à la fois, transitions animées — se construit vraiment en une session ; obtenir un rendu aussi abouti que le thème par défaut de Typeform demande un effort de design séparé." },
+    { "q": "Un répondant peut-il reprendre un formulaire là où il l'a laissé ?", "a": "Oui — le prompt identifie chaque réponse par un id, donc un lien sauvegardé reprend une soumission partielle." },
+    { "q": "Ai-je des statistiques comme le taux de complétion par question ?", "a": "Une version basique, oui : la page de résultats affiche le nombre de réponses et la répartition des réponses par question. Les analyses d'entonnoir plus poussées de Typeform, comme l'abandon par question ou le temps de complétion, ne sont pas incluses." }
+  ]
+}

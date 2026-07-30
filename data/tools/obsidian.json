@@ -1,0 +1,29 @@
+{
+  "slug": "obsidian",
+  "name": "Obsidian",
+  "domains": ["obsidian.md"],
+  "category": "docs-and-wiki",
+  "subcategory": "notes markdown locales avec synchronisation payante",
+  "pricing": {
+    "amount": 4,
+    "currency": "USD",
+    "plan": "Sync",
+    "basis": "monthly per user",
+    "source": "https://obsidian.md/sync",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "convenience",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": ["none"],
+  "priorArt": [
+    { "name": "Syncthing", "url": "https://syncthing.net", "license": "MPL-2.0" },
+    { "name": "Self-hosted LiveSync", "url": "https://github.com/vrtmrz/obsidian-livesync", "license": "GPL-3.0" }
+  ],
+  "relatedSlugs": ["notion", "calendly", "typeform"],
+  "markets": ["en", "fr"],
+  "pagePriority": 6,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "Le workspace tout-en-un : docs, bases de données, wikis.",
+  "verdictSummary": "Un Notion mono-utilisateur se construit en un week-end : un éditeur par blocs au-dessus d'une base de données, avec une arborescence de pages et une recherche plein texte. Ce qu'on ne reconstruit pas en un week-end, c'est ce pour quoi la plupart des équipes paient réellement : l'édition collaborative en temps réel avec résolution des conflits.",
+  "coreLoopDIY": "Un éditeur par blocs qui stocke les pages en JSON, avec pages imbriquées et recherche.",
+  "whatYouLose": [
+    "l'édition collaborative en temps réel",
+    "les applications mobiles avec synchronisation hors ligne",
+    "l'écosystème de modèles et d'intégrations"
+  ],
+  "whyPeopleStillPay": "Les équipes paient Notion parce que tout le monde y est déjà. Le document n'est pas le produit — l'habitude partagée l'est. Un clone personnel règle le problème du stockage, pas celui de la coordination.",
+  "notes": "Le meilleur cas d'usage : un utilisateur seul qui ne partage jamais une page.",
+  "prompt": "Construis une application de workspace auto-hébergée, mono-utilisateur, qui reprend la boucle centrale de Notion : un éditeur de texte enrichi par blocs (titres, paragraphes, listes à puces/numérotées, cases à cocher, toggles, blocs de code, embeds) où chaque bloc est une ligne en base de données, pas un fichier plat. Ajoute une arborescence de pages à imbrication illimitée avec réordonnancement par glisser-déposer, un type de vue « base de données » simple (un tableau à colonnes typées — texte, nombre, sélection, date, case à cocher — qui peut aussi s'afficher en tableau kanban ou en liste), et une recherche plein texte sur tous les titres et contenus de pages. Prends en charge les liens [[wiki]] entre pages avec suivi des rétroliens. Utilise Next.js et PostgreSQL, ou la stack de ton choix, avec l'arbre de blocs persisté côté serveur pour que la recherche et les liens restent fiables. Écris un script d'import ponctuel qui lit le format d'export Markdown/CSV de Notion et recrée les pages et bases de données correspondantes. Ne construis pas d'édition collaborative en temps réel — c'est hors périmètre pour un outil mono-utilisateur.",
+  "faq": [
+    { "q": "Puis-je importer mes pages Notion existantes ?", "a": "Oui — Notion exporte en Markdown et CSV, et le prompt inclut un importeur pour ce format." },
+    { "q": "Est-ce que ça marchera sur mon téléphone ?", "a": "En tant qu'app web, oui. En tant qu'app native avec synchronisation hors ligne, non — c'est la principale chose que tu perds." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement plus base de données, généralement moins de cinq dollars par mois, plus l'usage de l'API si tu gardes les fonctions IA." },
+    { "q": "Deux personnes peuvent-elles éditer en même temps ?", "a": "Pas de façon sûre. L'édition simultanée demande une résolution de conflits, largement au-delà d'un week-end de développement." }
+  ]
+}

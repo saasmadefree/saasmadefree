@@ -1,0 +1,19 @@
+{
+  "tagline": "One question at a time, forms that feel like a conversation.",
+  "verdictSummary": "A conversational form is a one-sitting build: render one question per screen, animate the transition, branch to the next question based on the previous answer, and store each response as a row. What you don't get for free is Typeform's design polish — the templated themes, the drop-in analytics dashboard, and years of A/B-tested micro-animations that quietly raise completion rates.",
+  "coreLoopDIY": "A form renderer that shows one question at a time with a simple transition, applies skip logic based on the previous answer, and writes each submission to a database table.",
+  "whatYouLose": [
+    "the built-in analytics dashboard (completion rate, drop-off by question)",
+    "a large library of pre-built themes and question types (payment, ranking, file upload)",
+    "years of polish in the transition animations that measurably affect completion rates"
+  ],
+  "whyPeopleStillPay": "Typeform's moat isn't a feature you can't build — it's polish and defaults. People pay so the form looks professional on day one and so the completion-rate dashboard is already there, not because one-question-at-a-time logic is hard to code.",
+  "notes": "A genuinely honest yes: the hard part here is small, so most of what you pay for is finish, not function.",
+  "prompt": "Build a single-page conversational form app: one question rendered at a time, centered on screen, with a smooth slide or fade transition to the next question and a progress bar. Support at least these question types: short text, long text, single choice, multiple choice, and a numeric rating scale. Implement simple skip logic: each question can define a rule like 'if answer to Q2 is X, go to Q5 instead of Q3.' Store every submission as a row (question id, answer, submitted_at) in a database, keyed by a per-form response id so partial submissions can be resumed with a saved link. Add a minimal results page per form showing response count and, per question, an answer distribution. Skip payment collection fields, file uploads, and any built-in A/B testing — those are out of scope.",
+  "faq": [
+    { "q": "Can I add conditional logic between questions?", "a": "Yes — the prompt includes a simple skip-logic rule per question. Complex branching across many conditions takes more design work, but the pattern scales." },
+    { "q": "Will it look as polished as Typeform out of the box?", "a": "Not without design work. The functional part — one question at a time, animated transitions — is genuinely a one-sitting build; making it look as refined as Typeform's default theme takes separate design effort." },
+    { "q": "Can respondents pick up a form where they left off?", "a": "Yes — the prompt keys each response by an id so a saved link resumes a partial submission." },
+    { "q": "Do I get analytics like completion rate per question?", "a": "A basic version, yes: the results page shows response count and answer distribution per question. Typeform's deeper funnel analytics, like drop-off by question or time-to-complete, aren't included." }
+  ]
+}

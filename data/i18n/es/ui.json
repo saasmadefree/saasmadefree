@@ -1,0 +1,20 @@
+{
+  "requirements": {
+    "anthropic-api-key": "Clave de API de Anthropic",
+    "openai-api-key": "Clave de API de OpenAI",
+    "hosting": "Alojamiento (hosting)",
+    "domain": "Un nombre de dominio",
+    "database": "Una base de datos",
+    "oauth-app": "Una aplicación OAuth",
+    "email-provider": "Un proveedor de correo electrónico",
+    "none": "Nada"
+  },
+  "runHints": {
+    "claude-code-web": "Abre Claude Code con el prompt ya cargado.",
+    "cursor-deeplink": "Abre Cursor y coloca el prompt en el panel del agente.",
+    "web-chat": "Abre el chat con el prompt precargado.",
+    "cli-paste": "Prompt copiado. Ejecuta claude en tu terminal y pégalo.",
+    "clipboard": "Prompt copiado. Pégalo en tu agente.",
+    "not-yet": "Todavía no hay transferencia de prompt para este agente."
+  }
+}

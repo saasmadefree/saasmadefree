@@ -1,0 +1,62 @@
+[
+  {
+    "id": "claude-code-web",
+    "name": "Claude Code (web)",
+    "kind": "url",
+    "template": "https://claude.ai/code?prompt_url={prompt_url}",
+    "homepage": "https://claude.ai/code",
+    "maxLength": null,
+    "status": "verified",
+    "verifiedOn": "2026-07-30",
+    "runHint": "claude-code-web",
+    "docs": "https://code.claude.com/docs/en/web-quickstart"
+  },
+  {
+    "id": "cursor",
+    "name": "Cursor",
+    "kind": "deeplink",
+    "template": "cursor://anysphere.cursor-deeplink/prompt?text={prompt}",
+    "homepage": "https://cursor.com",
+    "maxLength": 8000,
+    "status": "verified",
+    "verifiedOn": "2026-07-30",
+    "runHint": "cursor-deeplink",
+    "docs": "https://cursor.com/docs/integrations/deeplinks"
+  },
+  {
+    "id": "chatgpt",
+    "name": "ChatGPT",
+    "kind": "url",
+    "template": "https://chatgpt.com/?q={prompt}",
+    "homepage": "https://chatgpt.com",
+    "maxLength": 6000,
+    "status": "untested",
+    "verifiedOn": null,
+    "runHint": "web-chat",
+    "docs": null
+  },
+  {
+    "id": "claude-code-cli",
+    "name": "Claude Code (terminal)",
+    "kind": "clipboard",
+    "template": null,
+    "homepage": "https://code.claude.com",
+    "maxLength": null,
+    "status": "verified",
+    "verifiedOn": "2026-07-30",
+    "runHint": "cli-paste",
+    "docs": "https://code.claude.com/docs"
+  },
+  {
+    "id": "windsurf",
+    "name": "Windsurf",
+    "kind": "clipboard",
+    "template": null,
+    "homepage": "https://windsurf.com",
+    "maxLength": null,
+    "status": "not-yet",
+    "verifiedOn": null,
+    "runHint": "not-yet",
+    "docs": null
+  }
+]

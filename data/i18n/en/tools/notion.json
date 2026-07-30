@@ -1,0 +1,19 @@
+{
+  "tagline": "All-in-one workspace: docs, databases, wikis.",
+  "verdictSummary": "A single-user Notion is a weekend build: a block editor over a database, with a page tree and full-text search. What you cannot rebuild in a weekend is the part most teams actually pay for — real-time multiplayer editing with conflict resolution.",
+  "coreLoopDIY": "A block-based editor storing pages as JSON, with nested pages and search.",
+  "whatYouLose": [
+    "real-time collaborative editing",
+    "mobile apps with offline sync",
+    "the template and integration ecosystem"
+  ],
+  "whyPeopleStillPay": "Teams pay for Notion because everyone is already in it. The document is not the product — the shared habit is. A personal clone solves the storage problem and none of the coordination problem.",
+  "notes": "Best case for solo users who never share a page.",
+  "prompt": "Build a self-hosted, single-user workspace app that copies Notion's core loop: a block-based rich text editor (headings, paragraphs, bulleted/numbered lists, checkboxes, toggles, code blocks, embeds) where every block is a row in a database, not a flat file. Add a page tree with unlimited nesting and drag-to-reorder, a simple 'database' view type (a table with typed columns — text, number, select, date, checkbox — that can also render as a board or list), and full-text search across all page titles and content. Support [[wiki-style]] links between pages with backlink tracking. Use Next.js and PostgreSQL, or your preferred stack, with the block tree persisted server-side so search and linking stay reliable. Write a one-off import script that reads Notion's Markdown/CSV export format and recreates the equivalent pages and databases. Do not build real-time multiplayer editing — that's out of scope for a single-user tool.",
+  "faq": [
+    { "q": "Can I import my existing Notion pages?", "a": "Yes — Notion exports Markdown and CSV, and the prompt includes an importer for that format." },
+    { "q": "Will it work on my phone?", "a": "As a web app, yes. As an offline-capable native app with sync, no — that is the main thing you give up." },
+    { "q": "What does it cost to run?", "a": "Hosting plus a database, typically under five dollars a month, plus API usage if you keep the AI features." },
+    { "q": "Can two people edit at once?", "a": "Not safely. Concurrent editing needs conflict resolution, which is well beyond a weekend build." }
+  ]
+}

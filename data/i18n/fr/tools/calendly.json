@@ -1,0 +1,19 @@
+{
+  "tagline": "Partage un lien, laisse les autres réserver un créneau dans ton agenda.",
+  "verdictSummary": "Une page de réservation à un seul calendrier se construit en un week-end : définis tes règles de disponibilité, connecte un Google Calendar via OAuth pour vérifier les créneaux libres/occupés, et crée des événements quand quelqu'un réserve, avec une conversion de fuseau horaire basique. Ce qu'on ne reconstruit pas en un week-end, c'est la surface d'intégrations : liens de visio générés automatiquement, synchronisation CRM, et répartition round-robin sur le calendrier d'une équipe.",
+  "coreLoopDIY": "Une page de réservation publique qui lit les disponibilités d'un calendrier connecté, propose des créneaux dans tes règles de disponibilité, et crée un événement calendrier via un token OAuth bidirectionnel quand quelqu'un réserve.",
+  "whatYouLose": [
+    "les liens de visio générés automatiquement (Zoom, Meet) à chaque réservation",
+    "le round-robin d'équipe et la disponibilité collective sur plusieurs calendriers",
+    "les intégrations natives avec les CRM et Slack, et les workflows de rappel automatisés"
+  ],
+  "whyPeopleStillPay": "Les gens continuent de payer Calendly parce qu'il parle déjà à tout ce que l'autre partie utilise — son calendrier, son outil de visio, son CRM. Une page de réservation maison règle ton propre problème de calendrier ; elle ne règle pas le réseau d'intégrations qui rend le lien sans friction pour la personne qui réserve.",
+  "notes": "Le meilleur cas d'usage : une personne seule qui réserve des appels en tête-à-tête depuis un seul calendrier.",
+  "prompt": "Construis une page de réservation auto-hébergée pour une seule personne : une page publique affichant des créneaux disponibles, calculés à partir de règles de disponibilité hebdomadaires fixes (ex. lun-ven, 9h-17h, créneaux de 30 minutes) moins les blocs occupés récupérés d'un calendrier connecté via OAuth (commence par l'API freebusy de Google Calendar). Quand quelqu'un choisit un créneau, récupère son nom et son email, crée un événement calendrier via la même connexion OAuth, et envoie un email de confirmation. Gère les fuseaux horaires en détectant celui du navigateur du visiteur et en y convertissant tous les créneaux affichés. Stocke les réservations dans une table (heure du créneau, invité, statut) pour pouvoir les lister et les annuler depuis une vue admin. Laisse de côté la génération automatique de liens de visio, le round-robin multi-hôtes et toute intégration CRM — hors périmètre.",
+  "faq": [
+    { "q": "Puis-je connecter plusieurs calendriers ?", "a": "Le prompt connecte un seul calendrier via OAuth. En ajouter un second veut dire fusionner deux appels freebusy avant de proposer des créneaux — faisable, mais c'est la première chose qui transforme un week-end en semaine complète." },
+    { "q": "Ça crée automatiquement un lien Zoom ou Meet ?", "a": "Non. Il faut une seconde intégration OAuth avec l'API du fournisseur de visio ; la version maison laisse le champ lien vide, à remplir toi-même." },
+    { "q": "Et les fuseaux horaires ?", "a": "La page détecte le fuseau du navigateur du visiteur et y convertit les créneaux, comme le fait Calendly pour un hôte unique." },
+    { "q": "Une équipe peut-elle partager une page de réservation avec attribution round-robin ?", "a": "Pas avec cette version. Le round-robin sur plusieurs calendriers, c'est de la vraie logique de planification, pas un petit ajout." }
+  ]
+}

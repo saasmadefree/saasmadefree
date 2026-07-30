@@ -1,0 +1,28 @@
+{
+  "slug": "calendly",
+  "name": "Calendly",
+  "domains": ["calendly.com"],
+  "category": "scheduling",
+  "subcategory": "prise de rendez-vous et gestion de disponibilités",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "monthly per user",
+    "source": "https://calendly.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "integrations",
+  "diyTimeEstimate": "weekend",
+  "requirements": ["hosting", "oauth-app", "database"],
+  "priorArt": [
+    { "name": "Cal.com", "url": "https://cal.com", "license": "AGPL-3.0" }
+  ],
+  "relatedSlugs": ["notion", "typeform", "obsidian"],
+  "markets": ["en", "fr"],
+  "pagePriority": 8,
+  "verifiedOneShot": false
+}

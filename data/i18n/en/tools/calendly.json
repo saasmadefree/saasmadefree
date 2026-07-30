@@ -1,0 +1,19 @@
+{
+  "tagline": "Share a link, let people book time on your calendar.",
+  "verdictSummary": "A single-calendar booking page is a weekend build: define your availability rules, connect one Google Calendar via OAuth to check free/busy, and create events when someone books, with basic timezone conversion. What you don't rebuild in a weekend is the integration surface — video links that auto-generate, CRM sync, and round-robin routing across a team calendar.",
+  "coreLoopDIY": "A public booking page that reads free/busy from one connected calendar, offers slots inside your availability rules, and creates a calendar event with a two-way OAuth token when someone books.",
+  "whatYouLose": [
+    "automatic video-call links (Zoom, Meet) generated per booking",
+    "team round-robin and collective availability across multiple calendars",
+    "native integrations with CRMs and Slack, and automated reminder workflows"
+  ],
+  "whyPeopleStillPay": "People keep paying for Calendly because it already talks to everything the other side uses — their calendar, their video tool, their CRM. A homemade booking page solves your own calendar problem; it doesn't solve the network of integrations that make the link frictionless for whoever's booking.",
+  "notes": "Best case for a single person booking 1:1 calls off one calendar.",
+  "prompt": "Build a self-hosted booking page for a single person: a public page showing available time slots, computed from fixed weekly availability rules (e.g. Mon-Fri, 9am-5pm, 30-minute slots) minus busy blocks pulled from one connected calendar via OAuth (start with Google Calendar's freebusy API). When someone picks a slot, collect their name and email, create a calendar event via the same OAuth connection, and send a confirmation email. Handle timezones by detecting the visitor's browser timezone and converting all slot times to it. Store bookings in a database table (slot time, invitee, status) so you can list and cancel them from an admin view. Skip video-conferencing auto-generation, multi-host round-robin, and any CRM integration — those are out of scope.",
+  "faq": [
+    { "q": "Can I connect more than one calendar?", "a": "The prompt wires up one OAuth calendar. Adding a second means merging two freebusy calls before offering slots — doable, but it's the first thing that turns a weekend into a week." },
+    { "q": "Does it create a Zoom or Meet link automatically?", "a": "No. That needs a second OAuth integration with the video provider's API; the DIY version leaves the link field blank for you to fill in manually." },
+    { "q": "What happens with timezones?", "a": "The page detects the visitor's browser timezone and converts slots to it, the same way Calendly does for a single host." },
+    { "q": "Can a team share one booking page with round-robin assignment?", "a": "Not with this build. Round-robin across several people's calendars is real scheduling logic, not a small add-on." }
+  ]
+}

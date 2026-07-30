@@ -1,0 +1,19 @@
+{
+  "tagline": "Local markdown notes — Sync is the only part you'd pay for.",
+  "verdictSummary": "Obsidian itself is already free — your notes are plain markdown files on disk, no rebuild needed. The $4/month you're evaluating here is only the Sync add-on, and replacing it is a one-sitting job: point a peer-to-peer file-sync tool at your vault folder on every device. What you don't get is Obsidian's own relay servers, end-to-end encryption configured with zero setup, and built-in conflict/version history — you're trading a polished, invisible sync for a slightly more hands-on one.",
+  "coreLoopDIY": "Install an open-source peer-to-peer sync tool, point it at your Obsidian vault folder on each device, and let it keep the folder in sync in the background — no server, no app changes needed, since Obsidian just reads files from disk.",
+  "whatYouLose": [
+    "Obsidian's own relay servers for syncing over the internet without exposing your devices to each other",
+    "built-in end-to-end encryption configured out of the box",
+    "automatic conflict resolution and version history in the app's Sync UI"
+  ],
+  "whyPeopleStillPay": "People keep paying for Obsidian Sync mostly for hands-off reliability on mobile, where running a background sync daemon is more fragile than on desktop. It's the one case in this list where the honest answer is: you can replace this for free today, and some people still pay a small amount just to not think about it.",
+  "notes": "The rare case where the paid feature is genuinely optional — the core product was never behind the paywall.",
+  "prompt": "Set up peer-to-peer sync for an Obsidian vault without the paid Sync subscription: install Syncthing (open source, MPL-2.0 licensed) on every device that has the vault, point one Syncthing 'folder' at the vault directory on each device, and share the folder ID between them so they sync directly, device to device, without a server. On mobile, use Syncthing's Android app — there is no official iOS Syncthing app that runs reliably in the background, so flag this limitation for the user and suggest a relay server or iCloud/Working Copy as a fallback for iOS. Exclude the .obsidian/workspace file from sync, since it's per-device UI state rather than vault content, to avoid needless conflicts. Do not attempt to rebuild any part of the Obsidian editor — it already runs locally and reads plain markdown files, so nothing else needs to change.",
+  "faq": [
+    { "q": "Do I have to pay Obsidian anything to use this?", "a": "No — the editor, the vault, and local search are free forever. Sync is the only paid feature this entry evaluates, and it's the one you're replacing." },
+    { "q": "Does this work on my phone?", "a": "On Android, yes, with Syncthing's official app running in the background. On iOS, background sync is unreliable without a workaround — that's the main real gap versus paying for Sync." },
+    { "q": "What happens if I edit the same note on two devices at once?", "a": "Syncthing creates a conflict copy of the file rather than merging changes — you resolve it by hand. Obsidian Sync's paid version handles this more gracefully." },
+    { "q": "Is my data encrypted in transit?", "a": "Syncthing encrypts traffic between your own devices by default. What you lose is Obsidian's zero-configuration end-to-end setup and its relay servers for syncing across networks without extra setup." }
+  ]
+}
