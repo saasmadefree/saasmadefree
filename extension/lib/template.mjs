@@ -11,7 +11,15 @@ export function renderTemplate(template, values) {
     .map((m) => m[1])
     .filter((name) => !ALLOWED_VARS.has(name));
   if (unknown.length > 0) {
-    throw new Error(`Variables non autorisées : ${[...new Set(unknown)].join(', ')}`);
+    // Le message reste en français : ce module tourne aussi sous Node pur (le
+    // validateur CI, `chrome.i18n` n'existe pas), donc il ne peut pas se
+    // traduire lui-même. `unknownVars` porte les données brutes pour que
+    // l'appelant qui a accès à `chrome.i18n` (options.mjs) phrase l'erreur
+    // dans la langue de l'utilisateur.
+    const uniqueUnknown = [...new Set(unknown)];
+    const error = new Error(`Variables non autorisées : ${uniqueUnknown.join(', ')}`);
+    error.unknownVars = uniqueUnknown;
+    throw error;
   }
   return String(template).replace(VAR_PATTERN, (_, name) =>
     encodeURIComponent(values?.[name] ?? '')

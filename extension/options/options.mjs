@@ -43,7 +43,14 @@ async function main() {
     try {
       renderTemplate(template, { prompt: 'test', prompt_url: 'https://x.test', lang: 'en', slug: 'x' });
     } catch (error) {
-      status.textContent = error.message;
+      // renderTemplate() jette toujours en français (voir template.mjs) : on
+      // reconstruit le message dans la langue de l'utilisateur à partir des
+      // variables brutes qu'il attache à l'erreur, avec repli sur le message
+      // français si la clé de traduction manque.
+      const localized = t('optionsBadTemplate');
+      status.textContent = localized
+        ? localized.replace('{vars}', (error.unknownVars ?? []).join(', '))
+        : error.message;
       return;
     }
     await chrome.storage.local.set({

@@ -53,7 +53,17 @@ async function main() {
   const slug = await currentSlug();
   if (!slug) return;
 
-  const lang = pickLang(chrome.i18n.getUILanguage());
+  // `lang` en storage (Task 12, page d'options) ne change jamais les libellés
+  // statiques de l'extension — chrome.i18n.getMessage() suit la langue du
+  // navigateur, aucun hook JS ne peut la rediriger. Ce que le réglage change
+  // vraiment, c'est la langue des FICHES récupérées depuis le feed (résumé,
+  // ce qu'on perd, prompt). 'auto' (ou une valeur absente) retombe sur la
+  // langue du navigateur ; pickLang('auto') renverrait sinon 'en' en silence,
+  // puisque 'auto' n'appartient pas à LANGS.
+  const { lang: storedLang } = await chrome.storage.local.get('lang');
+  const lang = pickLang(
+    storedLang && storedLang !== 'auto' ? storedLang : chrome.i18n.getUILanguage()
+  );
   const [tool, feedAgents, stored] = await Promise.all([
     chrome.runtime.sendMessage({ type: 'tool', slug, lang }),
     chrome.runtime.sendMessage({ type: 'agents' }),

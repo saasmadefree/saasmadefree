@@ -9,8 +9,8 @@
   <h1 data-i18n="optionsTitle"></h1>
 
   <section>
-    <h2 data-i18n="optionsLang"></h2>
-    <select id="lang">
+    <h2 id="lang-heading" data-i18n="optionsLang"></h2>
+    <select id="lang" aria-labelledby="lang-heading">
       <option value="auto">auto</option>
       <option value="en">English</option>
       <option value="fr">Français</option>
@@ -26,8 +26,10 @@
     <h2 data-i18n="optionsCustomAgent"></h2>
     <p data-i18n="optionsCustomAgentHelp"></p>
     <form id="custom-agent">
-      <input name="name" type="text" placeholder="My agent">
-      <input name="template" type="text" placeholder="https://my-agent.test/?q={prompt}" required>
+      <label for="agent-name" data-i18n="optionsAgentName"></label>
+      <input id="agent-name" name="name" type="text" placeholder="My agent">
+      <label for="agent-template" data-i18n="optionsAgentTemplate"></label>
+      <input id="agent-template" name="template" type="text" placeholder="https://my-agent.test/?q={prompt}" required>
       <button type="submit" data-i18n="optionsSave"></button>
     </form>
   </section>
