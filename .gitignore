@@ -5,3 +5,4 @@ dist/
 worker/src/slugs.generated.mjs
 .wrangler/
 .DS_Store
+docs/superpowers/
