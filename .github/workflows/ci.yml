@@ -1,0 +1,42 @@
+name: CI
+on:
+  push: { branches: [main] }
+  pull_request:
+
+jobs:
+  data-and-code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22', cache: npm }
+      - run: npm ci
+      - name: Valider les données
+        run: npm run validate
+      - name: Tests unitaires
+        run: npx vitest run
+      - name: Construire le feed
+        run: npm run build
+      - name: Vérifier la reproductibilité de l'extension
+        run: |
+          npm run build:extension
+          cp dist/extension.zip /tmp/first.zip
+          rm dist/extension.zip
+          npm run build:extension
+          cmp /tmp/first.zip dist/extension.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: extension
+          path: |
+            dist/extension.zip
+            dist/extension.zip.sha256
+
+  worker:
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: worker } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - run: npm ci
+      - run: npx vitest run
