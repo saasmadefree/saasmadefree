@@ -9,6 +9,10 @@ export function normalizeHost(host) {
 }
 
 export function matchHost(host, index) {
+  // Échouer fermé : au premier démarrage, ou si le feed n'a pas pu être lu,
+  // l'appelant peut passer un index absent. hasOwnProperty.call(null, …) lève,
+  // et cette fonction s'exécute à chaque chargement de page.
+  if (typeof index !== 'object' || index === null) return null;
   const h = normalizeHost(host);
   if (!h) return null;
   if (Object.prototype.hasOwnProperty.call(index, h)) return index[h];

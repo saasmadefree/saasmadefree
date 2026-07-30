@@ -48,4 +48,16 @@ describe('matchHost', () => {
   it('renvoie null sur une entrée vide', () => {
     expect(matchHost('', index)).toBeNull();
   });
+
+  it('renvoie null si index est null', () => {
+    expect(matchHost('notion.so', null)).toBeNull();
+  });
+
+  it('renvoie null si index est undefined', () => {
+    expect(matchHost('notion.so', undefined)).toBeNull();
+  });
+
+  it('renvoie null si index n\'est pas un objet', () => {
+    expect(matchHost('notion.so', 'not an object')).toBeNull();
+  });
 });
