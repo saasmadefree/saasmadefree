@@ -1,6 +1,10 @@
 export const ALLOWED_VARS = new Set(['prompt', 'prompt_url', 'lang', 'slug']);
 
-const VAR_PATTERN = /\{([a-z_]+)\}/g;
+// Capture TOUTE accolade, pas seulement les jetons bien formés. Avec
+// /\{([a-z_]+)\}/ une coquille comme {prompt-url} ou {Prompt} n'est ni rejetée
+// ni substituée : elle reste en clair dans l'URL et l'agent reçoit une
+// instruction vide, sans erreur ni signal. La liste blanche doit être fermée.
+const VAR_PATTERN = /\{([^}]*)\}/g;
 
 export function renderTemplate(template, values) {
   const unknown = [...String(template).matchAll(VAR_PATTERN)]
@@ -22,7 +26,7 @@ export function resolveAction(agent, ctx) {
     return { mode: 'clipboard', url: agent.homepage ?? null };
   }
   const url = renderTemplate(agent.template, ctx);
-  if (agent.maxLength && url.length > agent.maxLength) {
+  if (agent.maxLength != null && url.length > agent.maxLength) {
     return { mode: 'clipboard', url: agent.homepage ?? null, reason: 'too-long' };
   }
   return { mode: agent.kind === 'deeplink' ? 'deeplink' : 'url', url };

@@ -11,7 +11,7 @@ export function normalizeDomain(domain) {
 }
 
 export function extractVars(template) {
-  return [...String(template).matchAll(/\{([a-z_]+)\}/g)].map((m) => m[1]);
+  return [...String(template).matchAll(/\{([^}]*)\}/g)].map((m) => m[1]);
 }
 
 function daysBetween(fromIso, toIso) {

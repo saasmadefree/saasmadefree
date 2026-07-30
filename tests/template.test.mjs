@@ -30,6 +30,26 @@ describe('renderTemplate', () => {
   it('expose exactement quatre variables autorisées', () => {
     expect([...ALLOWED_VARS].sort()).toEqual(['lang', 'prompt', 'prompt_url', 'slug']);
   });
+
+  it('lève sur un jeton en majuscule', () => {
+    expect(() => renderTemplate('https://x.test/?q={Prompt}', ctx)).toThrow(/Prompt/);
+  });
+
+  it('lève sur un jeton avec chiffre', () => {
+    expect(() => renderTemplate('https://x.test/?q={prompt1}', ctx)).toThrow(/prompt1/);
+  });
+
+  it('lève sur un jeton avec tiret', () => {
+    expect(() => renderTemplate('https://x.test/?q={prompt-url}', ctx)).toThrow(/prompt-url/);
+  });
+
+  it('lève sur un jeton avec point', () => {
+    expect(() => renderTemplate('https://x.test/?q={prompt.url}', ctx)).toThrow(/prompt\.url/);
+  });
+
+  it('lève sur une accolade vide', () => {
+    expect(() => renderTemplate('https://x.test/?q={}', ctx)).toThrow();
+  });
 });
 
 describe('resolveAction', () => {
@@ -62,5 +82,11 @@ describe('resolveAction', () => {
     const web = { ...cursor, kind: 'url', maxLength: null,
       template: 'https://claude.ai/code?prompt_url={prompt_url}' };
     expect(resolveAction(web, ctx).mode).toBe('url');
+  });
+
+  it("renvoie le presse-papier pour kind='url' sans template", () => {
+    const noTemplate = { id: 'test', kind: 'url', status: 'verified', template: null,
+      maxLength: null, homepage: 'https://example.com' };
+    expect(resolveAction(noTemplate, ctx)).toMatchObject({ mode: 'clipboard', url: 'https://example.com' });
   });
 });
