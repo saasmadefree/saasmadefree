@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "vitest run",
-    "validate": "node scripts/validate.mjs"
+    "validate": "node scripts/validate.mjs",
+    "build": "node scripts/build-feed.mjs"
   },
   "keywords": [],
   "author": "",

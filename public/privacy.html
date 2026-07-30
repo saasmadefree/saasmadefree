@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — SaaS Made Free extension</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+    line-height: 1.55;
+    color: #1a1a1a;
+    background: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e6e6e6; background: #12141a; }
+    a { color: #8ab4ff; }
+    .box { background: #1c1f28; border-color: #333844; }
+    code { background: #23262f; }
+  }
+  h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+  h2 { font-size: 1.15rem; margin-top: 2.25rem; }
+  .updated { color: #666; font-size: 0.9rem; margin-top: 0; }
+  .box {
+    background: #f6f7f9;
+    border: 1px solid #e2e4e9;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+  }
+  code {
+    background: #f0f0f0;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.92em;
+  }
+  ul { padding-left: 1.25rem; }
+  li { margin-bottom: 0.4rem; }
+  .todo {
+    border: 1px dashed #c99;
+    background: #fff4f4;
+    padding: 0.6rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    .todo { background: #2a1c1c; border-color: #a55; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Privacy Policy — SaaS Made Free browser extension</h1>
+<p class="updated">Last updated: 2026-07-30</p>
+
+<div class="box">
+  <strong>Short version:</strong> this extension reads the address (hostname) of the
+  page you are on, and nothing else. It never reads the content of a page, form
+  fields, or cookies. The only thing it ever sends over the network that you
+  initiated is a vote — a single tool name, no personal data attached. There are
+  no cookies, no trackers, and no analytics in the extension. Nothing is sold or
+  shared.
+</div>
+
+<h2>What this extension is</h2>
+<p>
+  SaaS Made Free is a directory of SaaS subscriptions that can be replaced with a
+  self-hosted alternative built by a coding agent. The browser extension
+  recognizes when you land on the website of a tool that is in the directory and
+  shows you a small, dismissible panel with that tool's entry: whether it can be
+  replaced, roughly what it would cost you in time, and a ready-to-use prompt.
+</p>
+
+<h2>What the extension reads from pages you visit</h2>
+<p>
+  The extension reads exactly one piece of information from the page you have
+  open: its <strong>hostname</strong> (for example <code>notion.so</code>). It
+  compares that hostname against a list of known tools. If there is no match,
+  the extension does nothing further on that page.
+</p>
+<ul>
+  <li>It does <strong>not</strong> read the text, images, or structure of the page.</li>
+  <li>It does <strong>not</strong> read form fields, passwords, or anything you type.</li>
+  <li>It does <strong>not</strong> read cookies, local storage, or session data belonging to the site you are on.</li>
+  <li>It does <strong>not</strong> inject anything into, or interact with, the page's content — it only decides, from the hostname alone, whether to show its own panel.</li>
+</ul>
+
+<h2>What leaves your device</h2>
+<p>The extension makes network requests in two situations, both described below in full. There is no third case.</p>
+<ul>
+  <li>
+    <strong>Feed refresh (automatic, no personal data).</strong> Once a day, the
+    extension fetches a small public data file (the directory of tools, prices,
+    and prompts) from this website. This is a plain read of a public file — it
+    does not identify you, and it does not include the hostname of any page you
+    visited.
+  </li>
+  <li>
+    <strong>Voting (only when you click "I'll do it myself").</strong> If you
+    choose to record that you replaced a tool, the extension sends the tool's
+    identifier (for example <code>notion</code>) to our voting service. That
+    request carries no name, email, account identifier, or page content — only
+    the tool identifier.
+  </li>
+</ul>
+
+<h2>How a vote is protected</h2>
+<p>
+  A vote request necessarily arrives from your IP address, the way any network
+  request does. Our server hashes that IP address together with a component
+  that rotates every day, before anything is written to storage. The raw IP
+  address is never written to disk in clear form — only the resulting hash,
+  alongside the tool identifier and the day. This lets the server enforce "one
+  vote per tool per day" without keeping a record that can be traced back to
+  your IP address once the day's rotating component is gone.
+</p>
+
+<h2>What we don't do</h2>
+<ul>
+  <li>No cookies.</li>
+  <li>No trackers or analytics of any kind inside the extension.</li>
+  <li>No account, sign-in, or persistent identifier tied to you.</li>
+  <li>No selling, renting, or sharing of any data with third parties.</li>
+  <li>No reading of page content, form fields, or cookies belonging to other sites.</li>
+</ul>
+
+<h2>Local storage on your device</h2>
+<p>
+  The extension stores a few settings locally in your browser using Chrome's
+  standard extension storage: which tool panels you've dismissed, your language
+  preference, and, if you choose to add one, your own custom agent template.
+  None of this ever leaves your device — it is not transmitted anywhere, including
+  to us.
+</p>
+
+<h2>Why the extension asks for broad permission</h2>
+<p>
+  When you install this extension, Chrome shows a warning that it can "read and
+  change data on all websites you visit." This permission exists for one
+  reason: so that a new tool added to the public directory is recognized by
+  every already-installed copy of the extension, the next time it refreshes its
+  data — without you having to install an update. The extension's code that
+  runs on a page you visit only ever compares the page's hostname against that
+  list; see "Auditability" below for how to verify this yourself.
+</p>
+<p>The specific browser permissions requested, and why:</p>
+<ul>
+  <li><code>host_permissions: &lt;all_urls&gt;</code> — needed to read a page's hostname on any site, so newly added tools work without a new extension release.</li>
+  <li><code>clipboardWrite</code> — used only when you click a button to copy a prompt to your clipboard.</li>
+  <li><code>storage</code> — used only for the local settings described above.</li>
+  <li><code>alarms</code> — used only to schedule the once-a-day feed refresh described above.</li>
+</ul>
+
+<h2>Auditability</h2>
+<p>
+  This extension is open source. The source code, including the exact file
+  described above, is public and can be read, built, and compared against the
+  version published in the Chrome Web Store.
+</p>
+<p>
+  <strong>Only one file in the extension ever runs on the pages you visit:
+  <code>extension/content.js</code></strong>. It reads
+  <code>location.hostname</code> and nothing else from the page — no DOM
+  access, no page content, no form data, no outgoing request of its own. This
+  is a short file and a ten-second read for anyone who wants to verify this
+  claim directly.
+</p>
+
+<h2>Children's privacy</h2>
+<p>
+  This extension is not directed at children and does not knowingly collect
+  any data from anyone, of any age, beyond what is described above.
+</p>
+
+<h2>Changes to this policy</h2>
+<p>
+  If this policy changes, the "Last updated" date at the top of this page will
+  change accordingly. Because this page is part of a public, versioned
+  repository, past versions of this policy remain visible in its history.
+</p>
+
+<h2>Contact</h2>
+<p class="todo">
+  <!-- TODO(owner): add a real contact method (email or equivalent) here before
+       submitting the extension to the Chrome Web Store. Do not invent one. -->
+  TODO(owner): add a contact email address for privacy questions.
+</p>
+
+</body>
+</html>
