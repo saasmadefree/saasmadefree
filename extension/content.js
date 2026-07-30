@@ -47,6 +47,9 @@
   close.className = 'close';
   close.textContent = '×';
   close.setAttribute('role', 'button');
+  // tabindex indispensable : sans lui, un utilisateur au clavier ne peut pas
+  // retirer une pastille injectée dans une page qu'il n'a pas demandé à modifier.
+  close.setAttribute('tabindex', '0');
   close.setAttribute('aria-label', chrome.i18n.getMessage('hideHere'));
 
   const open = () => window.open(
@@ -61,10 +64,25 @@
   pill.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(); }
   });
-  close.addEventListener('click', async (event) => {
+  const dismiss = async (event) => {
     event.stopPropagation();
-    await chrome.runtime.sendMessage({ type: 'hide', slug: entry.slug });
+    // Après une mise à jour de l'extension, un ancien script de contenu reste
+    // attaché à la page et sendMessage rejette. Sans ce filet, le clic sur la
+    // croix ne ferait plus rien du tout : retirer la pastille prime.
+    try {
+      await chrome.runtime.sendMessage({ type: 'hide', slug: entry.slug });
+    } catch {
+      // le masquage durable est perdu, mais la pastille disparaît quand même
+    }
     mount.remove();
+  };
+
+  close.addEventListener('click', dismiss);
+  close.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      dismiss(event);
+    }
   });
 
   pill.append(dot, label, close);
