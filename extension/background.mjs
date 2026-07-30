@@ -60,17 +60,7 @@ async function fetchTool(slug, lang) {
   return null;
 }
 
-async function sendVote(slug) {
-  try {
-    const res = await fetch(VOTE_ENDPOINT, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ slug }),
-    });
-    if (res.ok) return res.json();
-  } catch {
-    // tombe dans la file ci-dessous
-  }
+async function queueVote(slug) {
   const { pendingVotes = [] } = await chrome.storage.local.get('pendingVotes');
   if (!pendingVotes.includes(slug)) {
     await chrome.storage.local.set({ pendingVotes: [...pendingVotes, slug] });
@@ -78,10 +68,51 @@ async function sendVote(slug) {
   return { queued: true };
 }
 
+async function dropQueuedVote(slug) {
+  const { pendingVotes = [] } = await chrome.storage.local.get('pendingVotes');
+  if (pendingVotes.includes(slug)) {
+    await chrome.storage.local.set({ pendingVotes: pendingVotes.filter((s) => s !== slug) });
+  }
+}
+
+// export : uniquement pour que tests/background-vote-queue.test.mjs puisse
+// exercer la logique de la file sans dupliquer chrome.runtime.* — n'affecte
+// pas le service worker chargé par Chrome (déclaré "type": "module").
+export async function sendVote(slug) {
+  let res;
+  try {
+    res = await fetch(VOTE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ slug }),
+    });
+  } catch {
+    return queueVote(slug); // hors ligne : le seul cas où on retente plus tard
+  }
+
+  if (res.ok) return res.json();
+
+  // 429 (limite de débit) et 5xx (panne côté serveur/D1) sont transitoires :
+  // remettre le slug en file pour réessayer plus tard a du sens. Tout autre
+  // 4xx (par exemple 400 unknown_slug, si l'outil a été retiré de data/) est
+  // définitif — le remettre en file bloquerait tous les votes suivants
+  // derrière lui pour toujours, puisque flushPendingVotes() s'arrête au
+  // premier résultat encore en file. On ne retente donc que du transitoire.
+  if (res.status === 429 || res.status >= 500) return queueVote(slug);
+
+  // Échec définitif : ce slug n'a aucune chance de réussir plus tard (le
+  // tool n'existe plus, ou la requête est mal formée). On le laisse tomber
+  // au lieu de le mettre en file, et on le retire de toute file existante
+  // s'il s'y trouvait déjà d'une tentative précédente.
+  await dropQueuedVote(slug);
+  return res.json().catch(() => ({ error: 'request_failed' }));
+}
+
 // Ne jamais vider la file avant d'avoir envoyé : un service worker MV3 est tué
 // à tout moment, et tout ce qui a été retiré du stockage sans être parti est
-// perdu sans trace. Chaque slug ne quitte la file qu'une fois son envoi réussi.
-async function flushPendingVotes() {
+// perdu sans trace. Chaque slug ne quitte la file qu'une fois son envoi
+// définitivement réussi ou définitivement raté (voir sendVote) — jamais avant.
+export async function flushPendingVotes() {
   const { pendingVotes = [] } = await chrome.storage.local.get('pendingVotes');
   for (const slug of pendingVotes) {
     const result = await sendVote(slug);
