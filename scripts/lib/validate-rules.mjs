@@ -50,7 +50,7 @@ export function validateAll(data, validators, today) {
     }
     for (const lang of tool.markets) {
       if (!i18n.has(`${lang}/${slug}`)) {
-        errors.push(`data/i18n/${lang}/${slug}.json manquant (déclaré dans markets)`);
+        errors.push(`data/i18n/${lang}/tools/${slug}.json manquant (déclaré dans markets)`);
       }
     }
     for (const req of tool.requirements) {
@@ -78,14 +78,15 @@ export function validateAll(data, validators, today) {
   }
 
   for (const [key, entry] of i18n) {
+    const [entryLang, entrySlug] = key.split('/');
+    const path = `data/i18n/${entryLang}/tools/${entrySlug}.json`;
     if (!validators.toolI18n(entry)) {
       for (const e of validators.toolI18n.errors) {
-        errors.push(`data/i18n/${key}.json ${e.instancePath || '/'} ${e.message}`);
+        errors.push(`${path} ${e.instancePath || '/'} ${e.message}`);
       }
     }
-    const slug = key.split('/')[1];
-    if (!tools.has(slug)) {
-      errors.push(`data/i18n/${key}.json : aucune fiche data/tools/${slug}.json`);
+    if (!tools.has(entrySlug)) {
+      errors.push(`${path} : aucune fiche data/tools/${entrySlug}.json`);
     }
   }
 

@@ -72,7 +72,7 @@ describe('validateAll', () => {
   it('signale une langue déclarée sans fichier i18n', () => {
     const data = makeData();
     data.tools.get('a').markets = ['en', 'fr'];
-    expect(validateAll(data, validators, TODAY).join(' ')).toContain('fr/a');
+    expect(validateAll(data, validators, TODAY).join(' ')).toContain('data/i18n/fr/tools/a.json');
   });
 
   it('signale un prix vérifié il y a plus de 180 jours', () => {
