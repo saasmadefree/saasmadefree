@@ -1,0 +1,51 @@
+{
+  "calendly.com": {
+    "slug": "calendly",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/calendly"
+  },
+  "notion.so": {
+    "slug": "notion",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/notion"
+  },
+  "notion.com": {
+    "slug": "notion",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/notion"
+  },
+  "app.notion.so": {
+    "slug": "notion",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/notion"
+  },
+  "obsidian.md": {
+    "slug": "obsidian",
+    "verdict": "yes",
+    "amount": 4,
+    "currency": "USD",
+    "url": "/en/tools/obsidian"
+  },
+  "typeform.com": {
+    "slug": "typeform",
+    "verdict": "yes",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/typeform"
+  },
+  "admin.typeform.com": {
+    "slug": "typeform",
+    "verdict": "yes",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/typeform"
+  }
+}

@@ -22,6 +22,7 @@ if (errors.length > 0) {
 const feedRoot = join(OUT, 'feed', FEED_VERSION);
 
 await writeJson(join(feedRoot, 'index.json'), buildIndex(data.tools));
+await writeJson(join('extension', 'data', 'index.json'), buildIndex(data.tools));
 await writeJson(join(feedRoot, 'agents.json'), data.agents);
 await writeJson(join(feedRoot, 'categories.json'), data.categories);
 
