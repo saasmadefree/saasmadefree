@@ -58,6 +58,7 @@ describe('POST /api/v1/vote', () => {
   it('refuse un slug inconnu', async () => {
     const res = await post('slug-qui-nexiste-pas');
     expect(res.status).toBe(400);
+    expect(res.headers.get('access-control-allow-origin')).toBe('*');
   });
 
   it('refuse un corps sans slug', async () => {
@@ -76,6 +77,7 @@ describe('POST /api/v1/vote', () => {
     let last;
     for (let i = 0; i < 32; i++) last = await post('notion', '192.0.2.99');
     expect(last.status).toBe(429);
+    expect(last.headers.get('access-control-allow-origin')).toBe('*');
   });
 
   it('expose les en-têtes CORS', async () => {
@@ -111,6 +113,7 @@ describe('méthodes non supportées', () => {
     const res = await worker.fetch(new Request('https://votes.test/api/v1/vote'), env, ctx);
     await waitOnExecutionContext(ctx);
     expect(res.status).toBe(405);
+    expect(res.headers.get('access-control-allow-origin')).toBe('*');
   });
 });
 
@@ -138,6 +141,19 @@ describe('purge de la table rate', () => {
     const res = await post('calendly', '203.0.113.51');
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual({ count: 1, counted: true });
+  });
+});
+
+describe('gestion des erreurs D1', () => {
+  it('renvoie 500 avec les en-têtes CORS si un appel D1 non protégé échoue', async () => {
+    // La table `rate` est écrite à chaque vote (upsert non protégé par un
+    // try/catch, contrairement à la purge). La supprimer force ce point
+    // précis à lever, sans passer par un mock : c'est une vraie erreur D1
+    // ("no such table"), pas une simulation applicative.
+    await env.DB.exec('DROP TABLE rate');
+    const res = await post('notion', '203.0.113.60');
+    expect(res.status).toBe(500);
+    expect(res.headers.get('access-control-allow-origin')).toBe('*');
   });
 });
 

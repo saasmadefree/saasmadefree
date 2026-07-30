@@ -60,50 +60,67 @@ async function countFor(env, slug) {
   return row?.c ?? 0;
 }
 
+async function handle(request, env) {
+  const url = new URL(request.url);
+
+  if (request.method === 'OPTIONS') return json({}, 204, env);
+
+  const isCountsRoute = url.pathname === '/api/v1/votes' || url.pathname === '/feed/v1/votes.json';
+  if (isCountsRoute && request.method === 'GET') {
+    const { results } = await env.DB.prepare(
+      'SELECT slug, COUNT(*) AS c FROM votes GROUP BY slug'
+    ).all();
+    const counts = {};
+    for (const row of results) counts[row.slug] = row.c;
+    return json(counts, 200, env, 'public, max-age=3600');
+  }
+
+  if (url.pathname !== '/api/v1/vote') return json({ error: 'not_found' }, 404, env);
+  if (request.method !== 'POST') return json({ error: 'method_not_allowed' }, 405, env);
+
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: 'invalid_json' }, 400, env);
+  }
+
+  const slug = body?.slug;
+  if (typeof slug !== 'string' || !SLUGS.has(slug)) {
+    return json({ error: 'unknown_slug' }, 400, env);
+  }
+
+  const now = new Date();
+  const day = dayKey(now);
+  const ip = request.headers.get('cf-connecting-ip') ?? '0.0.0.0';
+  const ipHash = await hashIp(ip, env.VOTE_SALT, day);
+
+  if (await overRateLimit(env, ipHash, now)) {
+    return json({ error: 'rate_limited', count: await countFor(env, slug), counted: false }, 429, env);
+  }
+
+  const inserted = await env.DB.prepare(
+    'INSERT OR IGNORE INTO votes (ip_hash, slug, day) VALUES (?, ?, ?) RETURNING slug'
+  ).bind(ipHash, slug, day).first();
+
+  return json({ count: await countFor(env, slug), counted: inserted !== null }, 200, env);
+}
+
 export default {
+  // Filet de sécurité : tout appel D1 non protégé plus haut (l'upsert de
+  // `rate`, l'insert de `votes`, les deux `COUNT(*)`) peut lever. Sans ce
+  // filet, l'exception traverserait `fetch()` et Cloudflare renverrait sa
+  // propre réponse d'erreur par défaut — qui ne passe pas par `json()` et
+  // n'a donc aucun en-tête CORS. Le navigateur bloquerait alors la réponse
+  // avant même que l'appelant ne voie le code de statut, et un vote valide
+  // disparaîtrait sans que personne ne soit prévenu. Le `await` est
+  // nécessaire : sans lui, une promesse rejetée serait renvoyée telle
+  // quelle au lieu d'être levée, et ce `catch` ne s'exécuterait jamais.
   async fetch(request, env) {
-    const url = new URL(request.url);
-
-    if (request.method === 'OPTIONS') return json({}, 204, env);
-
-    const isCountsRoute = url.pathname === '/api/v1/votes' || url.pathname === '/feed/v1/votes.json';
-    if (isCountsRoute && request.method === 'GET') {
-      const { results } = await env.DB.prepare(
-        'SELECT slug, COUNT(*) AS c FROM votes GROUP BY slug'
-      ).all();
-      const counts = {};
-      for (const row of results) counts[row.slug] = row.c;
-      return json(counts, 200, env, 'public, max-age=3600');
-    }
-
-    if (url.pathname !== '/api/v1/vote') return json({ error: 'not_found' }, 404, env);
-    if (request.method !== 'POST') return json({ error: 'method_not_allowed' }, 405, env);
-
-    let body;
     try {
-      body = await request.json();
+      return await handle(request, env);
     } catch {
-      return json({ error: 'invalid_json' }, 400, env);
+      return json({ error: 'internal_error' }, 500, env);
     }
-
-    const slug = body?.slug;
-    if (typeof slug !== 'string' || !SLUGS.has(slug)) {
-      return json({ error: 'unknown_slug' }, 400, env);
-    }
-
-    const now = new Date();
-    const day = dayKey(now);
-    const ip = request.headers.get('cf-connecting-ip') ?? '0.0.0.0';
-    const ipHash = await hashIp(ip, env.VOTE_SALT, day);
-
-    if (await overRateLimit(env, ipHash, now)) {
-      return json({ error: 'rate_limited', count: await countFor(env, slug), counted: false }, 429, env);
-    }
-
-    const inserted = await env.DB.prepare(
-      'INSERT OR IGNORE INTO votes (ip_hash, slug, day) VALUES (?, ?, ?) RETURNING slug'
-    ).bind(ipHash, slug, day).first();
-
-    return json({ count: await countFor(env, slug), counted: inserted !== null }, 200, env);
   },
 };
