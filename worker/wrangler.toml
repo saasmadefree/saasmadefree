@@ -5,7 +5,7 @@ compatibility_date = "2026-07-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "saasmadefree"
-database_id = "à remplir après `wrangler d1 create saasmadefree`"
+database_id = "04c15852-ddc2-4a16-86d4-8c9e5a11b138"
 
 [vars]
 ALLOWED_ORIGIN = "*"
