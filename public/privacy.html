@@ -114,7 +114,10 @@
     choose to record that you replaced a tool, the extension sends the tool's
     identifier (for example <code>notion</code>) to our voting service. That
     request carries no name, email, account identifier, or page content — only
-    the tool identifier.
+    the tool identifier. If you are offline at that moment, the identifier is
+    queued locally instead, and sent the same way the next time the extension
+    starts up or runs its daily refresh — see "Local storage on your device"
+    below.
   </li>
 </ul>
 
@@ -141,11 +144,21 @@
 
 <h2>Local storage on your device</h2>
 <p>
-  The extension stores a few settings locally in your browser using Chrome's
-  standard extension storage: which tool panels you've dismissed, your language
-  preference, and, if you choose to add one, your own custom agent template.
-  None of this ever leaves your device — it is not transmitted anywhere, including
-  to us.
+  The extension stores four things locally in your browser, using Chrome's
+  standard extension storage. Three of them are settings that never leave your
+  device: which tool panels you've dismissed, your language preference, and,
+  if you choose to add one, your own custom agent template. None of those
+  three are transmitted anywhere, including to us.
+</p>
+<p>
+  The fourth is different, on purpose: a small queue of votes cast while you
+  were offline. It holds the tool identifier (for example <code>notion</code>)
+  for each vote that couldn't reach our server right away. The extension
+  retries automatically — the next time it starts up, or at the next daily
+  refresh, whichever comes first — sending exactly those identifiers to our
+  voting service, the same request described above under "What leaves your
+  device," nothing more. Each identifier is removed from this local queue
+  once it has been sent successfully.
 </p>
 
 <h2>Why the extension asks for broad permission</h2>
@@ -164,7 +177,7 @@
 <ul>
   <li><code>host_permissions: &lt;all_urls&gt;</code> — needed to run the content script described above (read the hostname, and on a match write the panel) on any site, so newly added tools work without a new extension release.</li>
   <li><code>clipboardWrite</code> — used only when you click a button to copy a prompt to your clipboard.</li>
-  <li><code>storage</code> — used only for the local settings described above.</li>
+  <li><code>storage</code> — used only for what's described in "Local storage on your device" above.</li>
   <li><code>alarms</code> — used only to schedule the once-a-day feed refresh described above.</li>
 </ul>
 
