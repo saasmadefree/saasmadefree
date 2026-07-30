@@ -122,7 +122,12 @@ async function main() {
   function refreshHint() {
     const agent = selectedAgent();
     if (!agent) return;
-    $('run-hint').textContent = t(`runHint_${agent.runHint}`) || '';
+    // Chrome message names may only contain [A-Za-z0-9_@] — a hyphen anywhere
+    // in a _locales/*/messages.json key makes the whole bundle fail to load
+    // (extensions/common/message_bundle.cc::IsValidName). agent.runHint comes
+    // straight from data/agents.json, whose schema allows hyphens
+    // (^[a-z0-9-]+$), so it must be sanitized before it becomes a lookup key.
+    $('run-hint').textContent = t(`runHint_${agent.runHint.replace(/-/g, '_')}`) || '';
     $('send').textContent = agent.status === 'not-yet' ? t('requestSupport') : t('sendPrompt');
   }
 
