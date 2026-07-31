@@ -1,0 +1,19 @@
+{
+  "tagline": "Local meeting transcription and structured notes from your own recordings",
+  "verdictSummary": "Transcribing a recorded call locally and generating structured notes from it is a real, scoped build using an existing open speech-to-text model. What's missing without real engineering investment: reliable speaker identification without manual correction, automatic calendar-triggered recording, and CRM-grade integration that keeps sales teams' data in sync.",
+  "coreLoopDIY": "Transcribe an imported audio or video recording locally with an open speech model, let the user label speakers, and generate a structured summary — decisions, action items, questions — from the corrected transcript.",
+  "whatYouLose": [
+    "calendar-triggered auto-join and auto-record",
+    "reliable automatic speaker diarization",
+    "CRM integration and pipeline forecasting",
+    "team-wide search across everyone's calls"
+  ],
+  "whyPeopleStillPay": "Transcription itself got cheap; what's still expensive to build well is joining meetings automatically, telling voices apart without manual correction, and keeping a whole sales team's calls searchable in one place.",
+  "prompt": "Build a local meeting-transcription and note-generation tool for recordings the user already owns — no automatic meeting-bot joining. Use Python with FastAPI, whisper.cpp or faster-whisper for local transcription, and ffmpeg for handling WAV/MP3/M4A/MP4 input. Provide explicit import, not silent background capture: a user drags in a recording, the app transcribes it locally and shows a timestamped, editable transcript. Since automatic speaker diarization is unreliable without real engineering investment, let the user manually label speakers on a few early segments and propagate that labeling forward with a simple same-speaker-as-previous heuristic, rather than claiming full automatic diarization. From the corrected transcript, generate a structured summary — key decisions, action items with owners if named, and open questions — using an LLM API of the user's choice (read the key from the environment; if missing, fall back to a plain extractive summary using keyword/frequency heuristics instead of failing outright). Export the transcript and summary as Markdown and WebVTT, for use as captions elsewhere. Do not build automatic meeting-bot calendar joining, silent background recording, or team-wide shared search — those are out of scope; this tool only ever processes a recording the user explicitly imported. Needs hosting to run continuously, or it can run on a personal machine for occasional use; an LLM API key is optional and only improves the summary quality.",
+  "faq": [
+    { "q": "Will it automatically join my Zoom calls and record them?", "a": "No — that's deliberately excluded. This tool only processes a recording you've already made and explicitly imported, which also sidesteps a lot of the consent and reliability issues automatic bot-joining creates." },
+    { "q": "How accurate is the speaker labeling?", "a": "Less accurate than Avoma's automatic diarization out of the box — you'll correct the first few segments by hand, and the tool propagates that forward, which works reasonably well for two or three speakers but degrades with more." },
+    { "q": "Do I need an API key to use it?", "a": "No — without one, you still get a full transcript and a basic extractive summary. An LLM API key upgrades the summary to something closer to Avoma's structured decisions-and-action-items output." },
+    { "q": "Can my whole team search past calls in one place?", "a": "Not in this build — there's no shared team workspace or cross-call search. Each recording is processed independently." }
+  ]
+}

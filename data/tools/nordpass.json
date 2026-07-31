@@ -1,0 +1,41 @@
+{
+  "slug": "nordpass",
+  "name": "NordPass",
+  "domains": [
+    "nordpass.com"
+  ],
+  "category": "security",
+  "subcategory": "passwords, privacy and private networking",
+  "pricing": {
+    "amount": 4.99,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "flat-monthly",
+    "source": "https://nordpass.com/plans",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "security assurance, infrastructure, and trust",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Vaultwarden",
+      "url": "https://github.com/dani-garcia/vaultwarden"
+    }
+  ],
+  "relatedSlugs": [
+    "bitwarden",
+    "1password",
+    "dashlane"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

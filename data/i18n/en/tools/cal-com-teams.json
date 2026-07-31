@@ -1,0 +1,19 @@
+{
+  "tagline": "A single-user Google Calendar booking page with conflict-safe scheduling",
+  "verdictSummary": "Cal.com itself is open source, so the most honest DIY path for a lot of people is literally self-hosting the real project via its own Docker setup. This prompt is for building a smaller, purpose-built booking page from scratch instead — a real weekend project if you only need one calendar and simple availability rules. What a from-scratch build gives up either way at the personal-project level: multiple calendar providers, team round-robin routing, and payments.",
+  "coreLoopDIY": "Connect one Google Calendar via OAuth, compute available slots from working hours and existing events, and let a visitor book a conflict-free slot with an automatic confirmation email.",
+  "whatYouLose": [
+    "multiple calendar providers (Outlook, Apple)",
+    "team round-robin and collective routing",
+    "payment collection on booking",
+    "years of timezone edge-case fixes"
+  ],
+  "whyPeopleStillPay": "Booking software earns its keep on the day a timezone bug or a double-booked slot costs a client relationship — reliability under edge cases is worth more than the visible form.",
+  "prompt": "Build a single-user booking page: connect one Google Calendar via OAuth, publish available time slots computed from configurable working hours, a minimum-notice window, and a booking horizon, and let a visitor reserve a conflict-free slot without creating an account. Use Next.js/TypeScript with Google Calendar's OAuth and Calendar API, and Postgres to store the account's settings and booking records. Calculate availability by fetching busy blocks from the connected calendar, subtracting them from configured working hours, and rendering the result in the visitor's browser-detected timezone (compute everything server-side in UTC first). When a visitor books, create the event transactionally — check for conflicts and write the calendar event in one step to avoid a race that double-books the same slot under concurrent requests. Send a confirmation email with a signed cancel/reschedule link (no login required) via a transactional email provider. Support exactly one event type (a fixed duration and description) rather than Cal.com's multiple configurable event types. Do not build support for Outlook or Apple Calendar, team/round-robin routing, or payment collection — those are explicitly out of scope; self-hosting the real open-source Cal.com is the better answer if you need them. Needs a Google OAuth app (free to register), a domain to host the booking page, and a transactional email provider for confirmations.",
+  "faq": [
+    { "q": "Why not just self-host the real Cal.com?", "a": "For a team that needs its full feature set, that's honestly the better move — it's open source. This build is for a single-user booking page smaller and simpler than running the whole project." },
+    { "q": "Does it support Outlook or Apple Calendar?", "a": "No — only Google Calendar in this build. Supporting multiple providers is real, ongoing engineering work the prompt deliberately skips." },
+    { "q": "Can two people book the same slot at once?", "a": "The transactional booking step is specifically designed to prevent that — one request wins, the other sees the slot as taken, checked at write time rather than only in the UI." },
+    { "q": "What does it cost to run?", "a": "A domain, minimal hosting, and a transactional email provider's free tier covers typical personal booking volume — realistically a few dollars a month or less." }
+  ]
+}

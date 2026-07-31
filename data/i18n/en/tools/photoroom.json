@@ -1,0 +1,19 @@
+{
+  "tagline": "Remove backgrounds locally with an open segmentation model",
+  "verdictSummary": "Background removal itself is a solved, open problem — u2net-family models running locally do a genuinely good job in one sitting. What's harder to fake: PhotoRoom's batch template system for consistent product photography (the same background, shadow, and crop across hundreds of SKUs) and its mobile capture app.",
+  "coreLoopDIY": "Run an uploaded image through a local background-removal model, composite it onto a chosen flat color or preset background, and batch-export a folder of images the same way.",
+  "whatYouLose": [
+    "mobile capture app",
+    "large template library and brand kits",
+    "batch API for e-commerce catalogs at scale",
+    "AI-generated backgrounds beyond flat colors"
+  ],
+  "whyPeopleStillPay": "Sellers pay for consistency at volume — running the same crop, shadow, and background across a thousand product photos without touching each one by hand, plus a mobile app built for shooting on a shop floor.",
+  "prompt": "Build a local batch background-removal and compositing tool. Use Python with `rembg` (u2net) for segmentation, running entirely on the user's machine — no cloud API. Accept a folder of images, strip the background from each with rembg, and composite the result onto a user-chosen flat background color or a small set of preset gradients, with a consistent output canvas size and centered, padded crop across the whole batch. Provide a simple web UI (FastAPI plus a plain HTML page is enough) to drag in a folder, preview a few results before committing, adjust padding and background per batch, and then run the full folder. Export as PNG (transparent) or the composited JPEG, named to match the input files. Do not build a mobile app, a template marketplace, or AI-generated (rather than flat/gradient) backgrounds — those are out of scope. No API key or account needed; this runs entirely offline once rembg's model weights are downloaded once.",
+  "faq": [
+    { "q": "Is the background removal as good as PhotoRoom's?", "a": "Close, for most product shots on a plain background. It gets noticeably worse on fine detail like hair or fur, where PhotoRoom's tuned model still has an edge." },
+    { "q": "Can I batch-process hundreds of images at once?", "a": "Yes — that's the actual point of this build, unlike a lot of single-image background removers. Point it at a folder and it processes every file the same way." },
+    { "q": "Does it work on my phone?", "a": "No — this is a desktop/local tool, not a mobile app. PhotoRoom's mobile capture flow is one of the real things you lose." },
+    { "q": "What does it cost to run?", "a": "Nothing beyond your own electricity — rembg runs on CPU (slower) or GPU (faster) locally, with no per-image fee." }
+  ]
+}

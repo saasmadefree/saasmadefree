@@ -1,0 +1,19 @@
+{
+  "tagline": "Local-first Markdown notes with backlinks, in a folder you own",
+  "verdictSummary": "A backlink-aware Markdown note system — the actual substance of Craft's editor — is a solid weekend build on top of plain files, which is honestly the more durable choice than a proprietary format. What doesn't survive: Craft's native mobile apps, real-time multi-device sync, and the specific visual polish — block-based rich formatting, cover images, beautifully rendered nested pages — that's the whole reason people choose Craft over a plainer Markdown editor.",
+  "coreLoopDIY": "Store one Markdown file per note in a folder the user controls, index it locally for full-text search and backlink tracking, and provide a fast keyboard-first editor for browsing and linking between notes.",
+  "whatYouLose": [
+    "native mobile apps with sync",
+    "real-time multi-device sync",
+    "Craft's specific rich block-editor visual polish",
+    "one-click hosted publishing of a note as a public page"
+  ],
+  "whyPeopleStillPay": "A plain-files note system is genuinely durable and arguably safer long-term; what people pay Craft for is the specific visual experience of writing in it and having it appear, synced, on every device the moment they pick one up.",
+  "prompt": "Build a local-first Markdown note-taking app where every note is a real .md file in a folder the user chooses — never a proprietary database format. Use Tauri with a Rust or Node backend and a SQLite index that can be fully rebuilt from the Markdown files at any time (the files are the source of truth, not the index). Support [[wiki-links]] between notes with automatic backlink tracking shown at the bottom of each note, tags parsed from #hashtag syntax, and a daily-note shortcut. Build a command-palette-style quick switcher (Cmd+K) for jumping between notes by title or content match, backed by SQLite full-text search. Render Markdown with support for task lists, code blocks, tables, and local image embeds copied into an attachments folder next to the notes. Watch the folder for external changes — an edit made in another editor, or synced by Dropbox or iCloud — and re-index automatically. Do not build real-time multi-device sync, native mobile apps, or hosted publishing — those are out of scope; syncing the plain folder with an existing file-sync tool is the honest personal substitute for real-time sync, and it's fine if it's not instant. No account or API key needed — this is entirely local.",
+  "faq": [
+    { "q": "Can I sync notes between my laptop and another computer?", "a": "Not through this app directly — but since notes are plain Markdown files in a normal folder, pointing that folder at Dropbox, iCloud Drive, or Syncthing gets you sync, just not the instant, conflict-aware kind Craft ships natively." },
+    { "q": "Will it look as polished as Craft's editor?", "a": "No — Craft's specific visual style (block-based formatting, cover images, smooth animations) is real design work this build doesn't attempt to copy. This is a fast, plain Markdown editor, not a visual clone." },
+    { "q": "What happens if two devices edit the same note through file sync?", "a": "You could get a sync conflict — most file-sync tools create a duplicate file rather than losing data, but there's no smart merge here. That's a real risk worth knowing about upfront." },
+    { "q": "Can I export everything if I stop using it?", "a": "There's nothing to export — the notes were always just Markdown files in a folder you control. That's the whole point of this design." }
+  ]
+}

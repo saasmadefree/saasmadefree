@@ -1,0 +1,19 @@
+{
+  "tagline": "Self-hostable, Airtable-style database with grid, kanban, and form views",
+  "verdictSummary": "A single-user or small-team database workspace — typed tables, grid and kanban views, a public form — is a genuine weekend build. Baserow itself also ships as open source, so self-hosting the real project is often the more honest move than reimplementing it. Either way, what a from-scratch build doesn't get you without real work: real-time multi-user editing, the formula engine's depth, and the growing library of automations and integrations Baserow's paid tiers sell.",
+  "coreLoopDIY": "Model tables with typed fields, browse them as a grid, kanban board, or gallery, and publish a public form that writes new rows back into the same table.",
+  "whatYouLose": [
+    "real-time multiplayer editing",
+    "the full formula and automation engine",
+    "managed hosting, upgrades, and backups",
+    "the growing integration marketplace"
+  ],
+  "whyPeopleStillPay": "Once a workspace becomes the source of truth for a team — imports, formulas, permissions, years of accumulated views — the subscription buys someone else owning the uptime and schema migrations, not the table UI itself.",
+  "prompt": "Build a self-hosted, single-user (or small-team) database workspace that mirrors Baserow's actual core loop: every 'table' is a real PostgreSQL table you create through the UI, not a spreadsheet file. Support field types text, long text, number, boolean, single-select, date, and link-to-another-table (a real foreign key). Render each table as a grid view (inline-editable cells, sortable/filterable columns) and as a kanban view grouped by a single-select field. Let a user publish any table as a public form — a stable URL that writes a validated new row into that table, no login required, with the field set and validation rules configurable per form. Include CSV import (map columns to fields, create the table on the fly) and CSV export. Use Next.js and PostgreSQL (or your preferred equivalent) with the schema itself stored as metadata rows, not hardcoded — this is a real Airtable-shaped tool, not a wrapper around a spreadsheet file. Do not build real-time collaborative editing, a formula engine, or an automation/integration layer — those are explicitly out of scope. If you'd rather not rebuild any of this: Baserow's own core is open source and self-hostable via a single `docker run` — for a lot of people that is the actually-honest move, and this prompt is for the case where you want something smaller and fully yours instead. No API key required; everything runs against your own database.",
+  "faq": [
+    { "q": "Can I import an existing Baserow workspace?", "a": "Baserow can export any table as CSV, and the prompt's importer reads that format directly — you'll rebuild the schema by re-importing each table, not restore a full workspace in one step." },
+    { "q": "Why not just self-host Baserow itself?", "a": "That's a legitimate, arguably better answer for most people — Baserow's core is open source. This build is for when you want something smaller and easier to reason about than running the real project's stack." },
+    { "q": "Does it sync in real time between two people editing the same table?", "a": "No. Two people can both open the grid, but there's no conflict resolution — the last save wins. That's the real feature this build gives up." },
+    { "q": "What does it cost to run?", "a": "Just hosting and a Postgres database — typically a few dollars a month, since there's no external API this build depends on." }
+  ]
+}

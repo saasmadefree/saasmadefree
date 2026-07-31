@@ -1,0 +1,19 @@
+{
+  "tagline": "Turn an existing SQL database into an editable spreadsheet",
+  "verdictSummary": "NocoDB's actual trick — and the one worth copying — is that it doesn't own your data: it points at an existing MySQL, Postgres, or SQLite database and generates a spreadsheet UI on top of the tables that are already there. That's a genuinely buildable weekend project against a database you already have. What doesn't survive: the ecosystem NocoDB itself has grown into (extensions, automations, external sync) and the polish of years of edge cases in how it introspects unusual schemas.",
+  "coreLoopDIY": "Connect to an existing database, introspect its tables and columns automatically, and present each table as an editable grid with basic view and filter controls — without owning or migrating the underlying schema.",
+  "whatYouLose": [
+    "automations and third-party sync",
+    "the extension ecosystem",
+    "handling of unusual or legacy schema edge cases",
+    "managed hosting and backups"
+  ],
+  "whyPeopleStillPay": "The subscription is really paying for schema-introspection robustness across databases you didn't design for this — years of handling the SQL edge cases a hand-rolled introspector will hit on someone else's legacy database.",
+  "prompt": "Build a tool that does what NocoDB actually does: point it at an existing PostgreSQL or MySQL database via a connection string, and have it introspect the schema — tables, columns, types, foreign keys — and generate an editable grid view for each table automatically, with no manual schema definition. Inline-edit cells with type-appropriate inputs (text, number, a checkbox for booleans, a dropdown for foreign-key columns resolved to a readable label from the referenced row). Support column-level filtering and sorting, and a basic search box across text columns. Add one saved 'view' per table (a stored filter+sort+column-visibility combination) so a user can save a working configuration without editing the underlying schema. Use Next.js/TypeScript with a Postgres and MySQL driver (or your preferred stack) — this is explicitly a read/write layer over someone else's schema, not a schema designer. Do not build schema migration tools, a formula/automation engine, or multi-database sync — those are out of scope. This needs only the connection string of the database you already run; no external API key.",
+  "faq": [
+    { "q": "Does this create a new database, or use one I already have?", "a": "It uses one you already have. Point it at an existing Postgres or MySQL connection string — nothing gets migrated or copied." },
+    { "q": "What happens if my schema changes after I connect it?", "a": "Re-run the introspection step. There's no live schema-watcher in this build, unlike NocoDB's own automatic detection — that's one of the real gaps." },
+    { "q": "Can multiple people edit the same table safely?", "a": "Yes for non-conflicting edits, since every write goes straight to the real database — but there's no optimistic-lock warning if two people edit the same cell at once, unlike NocoDB." },
+    { "q": "Is my data safer or less safe than in NocoDB Cloud?", "a": "Safer in one sense — it never leaves your own database — but you lose NocoDB's managed backups, so back up that database the same way you would for any production data." }
+  ]
+}

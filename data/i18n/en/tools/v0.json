@@ -1,0 +1,19 @@
+{
+  "tagline": "A VS Code assistant that proposes reviewed multi-file patches from one model you supply",
+  "verdictSummary": "The mechanics of an AI coding assistant — index a repo, send context to a model, show a diff, let the user approve it — are genuinely buildable in a sitting if you bring your own model API key. What you can't replicate: v0's frontier coding model itself, trained and continuously improved by Vercel at a scale no individual matches, and its deep, purpose-built integration with Next.js and Vercel's own deployment platform.",
+  "coreLoopDIY": "Index the open repository, send the user's request plus relevant file context to a model API of the user's choosing, and present the model's proposed changes as a reviewable diff before writing anything to disk.",
+  "whatYouLose": [
+    "a frontier model tuned specifically on frontend/React code",
+    "one-click deploy tightly integrated with Vercel",
+    "large-scale, continuously updated code retrieval",
+    "a hosted, zero-setup experience"
+  ],
+  "whyPeopleStillPay": "The chat-and-diff interface is the easy part; the model quality and the seamless path from generated component to live deployment are what v0 is actually selling.",
+  "prompt": "Build a VS Code extension that turns a user-supplied model API key into a scoped coding assistant — not a general agent. Use TypeScript for the extension, and let the model be either Claude or GPT (read ANTHROPIC_API_KEY or OPENAI_API_KEY from the environment; if neither is set, show a clear setup message rather than failing silently). Index only the currently open workspace, respecting .gitignore. Provide a sidebar chat where a user describes a component or change; send the request plus the relevant open files' contents (not the whole repo) as context. Show the model's proposed changes as a unified diff per file, with accept/reject/partial-apply controls — never write to disk without explicit approval. Add a lightweight local preview for generated React components using a sandboxed iframe and a minimal Vite dev server, so a user can see a component render before accepting it. Log every request, response, and applied or rejected diff to a local file for auditability. Do not build one-click deployment, a hosted backend, or unattended multi-file refactors without per-file review — those are explicitly out of scope. Requires an Anthropic or OpenAI API key; without one, the extension still installs but the assistant panel stays disabled with instructions for adding a key.",
+  "faq": [
+    { "q": "Which model does it use?", "a": "Whichever you configure — Claude or GPT, via your own API key. There's no bundled or default model, unlike v0's own tuned system." },
+    { "q": "Will the components look as polished as what v0 generates?", "a": "Depends entirely on the underlying model's output — this build adds no design-specific fine-tuning on top, which is a real part of what v0's own model provides." },
+    { "q": "Can it deploy what it builds?", "a": "No — deployment is out of scope. You'd still push the generated code and deploy it yourself, wherever you normally do." },
+    { "q": "What does it cost to run beyond the API key?", "a": "Just your model provider's per-token usage — for typical component-generation sessions that's usually well under a v0 subscription's monthly cost, though heavy use can add up." }
+  ]
+}

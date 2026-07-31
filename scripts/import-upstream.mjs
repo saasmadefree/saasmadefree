@@ -57,6 +57,31 @@ const BASIS_MAP = new Map([
   ['monthly at 500 contacts', 'usage-based'],
   ['monthly at 1k subscribers', 'usage-based'],
   ['one-time', 'one-time'],
+  // --- added for the 608-entry upstream refresh (see docs/import-report.md) ---
+  ['annual-equivalent', 'annual-effective-monthly'],
+  ['annual-equivalent per seat', 'annual-effective-monthly'],
+  ['annual-equivalent per user', 'annual-effective-monthly'],
+  ['monthly approximate', 'flat-monthly'],
+  ['monthly base', 'flat-monthly'],
+  ['monthly equivalent', 'flat-monthly'],
+  ['monthly-equivalent', 'flat-monthly'],
+  ['monthly household', 'flat-monthly'],
+  ['monthly starting', 'flat-monthly'],
+  ['monthly minimum plus usage', 'usage-based'],
+  ['monthly per container', 'usage-based'],
+  ['monthly per dyno', 'usage-based'],
+  ['monthly per host', 'usage-based'],
+  ['monthly per project', 'usage-based'],
+  ['monthly per service', 'usage-based'],
+  ['monthly per agent', 'per-seat-monthly'],
+  ['monthly per computer', 'per-seat-monthly'],
+  ['monthly per creator', 'per-seat-monthly'],
+  ['monthly per employee', 'per-seat-monthly'],
+  ['monthly per employee starting', 'per-seat-monthly'],
+  ['monthly per license', 'per-seat-monthly'],
+  ['monthly per location', 'per-seat-monthly'],
+  ['monthly per maker', 'per-seat-monthly'],
+  ['monthly per organizer', 'per-seat-monthly'],
 ]);
 
 function mapBasis(basis, slug) {
@@ -81,6 +106,12 @@ const DIY_TIME_MAP = new Map([
   ['weekend', 'weekend'],
   ['multi-day', 'week'],
   ['not realistically solo', 'more'],
+  // the 608-entry refresh phrases the same two buckets as "closest consolation
+  // build: X" for entries where the DIY version is explicitly a lesser
+  // substitute rather than a full replacement — same terminal duration either
+  // way, so it collapses onto the same two codes.
+  ['closest consolation build: one sitting', 'one-sitting'],
+  ['closest consolation build: multi-day', 'week'],
 ]);
 
 const DIY_TIME_OVERRIDES = new Map([
@@ -175,6 +206,21 @@ function parseAmountFromNative(native, slug) {
   );
 }
 
+// A numeric amount can be derived either from priceMonthly, or from a
+// pricing.native string that starts with a digit. In the 608-entry refresh,
+// 47 entries have neither: pricing.native is itself a category word ("custom",
+// "usage-based", "transaction-based", "revenue share", "region-dependent",
+// "free-or-variable", "one-time-or-variable", "usage-or-custom", "user-selected
+// monthly") — upstream's own pricing.notes on every one of these says verbatim
+// "canonical monthly amount is null." plan and source are present, so the
+// existing null-plan/null-source eligibility check doesn't catch them; this
+// one does. See docs/import-report.md for the full list and reasoning.
+function hasDerivableAmount(entry) {
+  if (entry.priceMonthly != null) return true;
+  const native = entry.pricing?.native;
+  return typeof native === 'string' && /^\d+(?:\.\d+)?/.test(native);
+}
+
 // ---------------------------------------------------------------------------
 // domains[] — the bare upstream domain, plus a hand-verified application
 // subdomain where one is known to exist. Each addition below was confirmed
@@ -211,7 +257,34 @@ const DOMAIN_OVERRIDES = new Map([
   ['readwise.io', 'read.readwise.io'],
 ]);
 
+// domains[] — per-SLUG override, checked before DOMAIN_OVERRIDES. Needed when
+// two *different* upstream entries share the same bare domain (a real
+// within-608 collision, not a hostname-too-broad problem) and each needs its
+// own narrower, confirmed hostname. Every value below was confirmed by
+// fetching it — see docs/import-report.md, "domain collisions" section.
+const SLUG_DOMAIN_OVERRIDES = new Map([
+  ['adobe-acrobat-pro', 'acrobat.adobe.com'], // adobe.com also claimed by adobe-express (-> new.express.adobe.com) and adobe-lightroom
+  ['adobe-lightroom', 'lightroom.adobe.com'],
+  ['apple-music', 'music.apple.com'], // apple.com also claimed by icloud-plus
+  ['icloud-plus', 'icloud.com'], // iCloud's real product domain is not a subdomain of apple.com at all
+  ['microsoft-teams-essentials', 'teams.microsoft.com'], // microsoft.com also claimed by microsoft-365-personal (excluded, see MANUAL_EXCLUSIONS)
+  ['proton-drive-plus', 'drive.proton.me'], // proton.me also claimed by proton-pass-plus
+  ['proton-pass-plus', 'pass.proton.me'],
+  ['quicken-simplifi', 'simplifi.quicken.com'], // quicken.com also claimed by quicken-classic-deluxe; simplifi.com does not resolve to Quicken (verified)
+  ['v0', 'v0.app'], // Vercel rebranded v0.dev -> v0.app in January 2026 (confirmed: v0.dev is stale, v0.app is live); not a collision, just an upstream-stale domain
+]);
+
+// Manual exclusions beyond the automatic eligibility() checks — a real
+// upstream entry with complete pricing, but excluded for a reason the
+// mechanical checks can't express. See docs/import-report.md.
+const MANUAL_EXCLUSIONS = new Map([
+  ['google-ai-pro', 'same product as our existing "gemini" entry — "Google AI Pro" is the 2026 rebrand of Gemini Advanced, and gemini.json\'s pricing.plan is already literally "Google AI Pro" at the same $19.99. A second entry would be a duplicate page for one subscription, not two.'],
+  ['microsoft-365-personal', 'no confirmed product-specific hostname exists: the pricing page lives at a path on the huge microsoft.com corporate domain, and the web-app hostname (m365.cloud.microsoft) is shared across every Microsoft 365 tier, not this one. Excluded per the domain-safety rule rather than firing on unrelated Microsoft traffic.'],
+]);
+
 function buildDomains(entry) {
+  const slugOverride = SLUG_DOMAIN_OVERRIDES.get(entry.slug);
+  if (slugOverride) return [normalizeDomain(slugOverride)];
   const upstreamBare = normalizeDomain(entry.domain);
   const bare = DOMAIN_OVERRIDES.get(upstreamBare) ?? upstreamBare;
   return [bare, ...(EXTRA_DOMAINS.get(bare) ?? [])];
@@ -284,13 +357,17 @@ const SUBJECT_CLUSTERS = [
 // batch membership happens to preserve the one bad link. An upstream link is
 // only trusted if it's corroborated: same category, or already paired with
 // this slug in a curated SUBJECT_CLUSTERS entry.
-function upstreamLinkIsCoherent(entry, candidateSlug, pool) {
+function upstreamLinkIsCoherent(entry, candidateSlug, pool, entryCategory) {
   const candidate = pool.get(candidateSlug);
-  if (candidate && candidate.category === entry.category) return true;
+  if (candidate && candidate.category === entryCategory) return true;
   return SUBJECT_CLUSTERS.some((c) => c.includes(entry.slug) && c.includes(candidateSlug));
 }
 
 function computeRelatedSlugs(entry, pool) {
+  // entry is still the raw upstream object (raw category string); pool
+  // members carry our normalized category slugs (see main()). Map once here
+  // so every comparison below is apples-to-apples.
+  const entryCategory = mapCategory(entry.category, entry.slug);
   const chosen = [];
   const add = (slug) => {
     if (!slug || slug === entry.slug) return;
@@ -301,12 +378,12 @@ function computeRelatedSlugs(entry, pool) {
   };
 
   for (const s of entry.relatedSlugs ?? []) {
-    if (upstreamLinkIsCoherent(entry, s, pool)) add(s);
+    if (upstreamLinkIsCoherent(entry, s, pool, entryCategory)) add(s);
   }
 
   if (chosen.length < 3) {
     const sameCategory = [...pool.values()]
-      .filter((o) => o.category === entry.category && o.slug !== entry.slug)
+      .filter((o) => o.category === entryCategory && o.slug !== entry.slug)
       .sort((a, b) => (b.pagePriority - a.pagePriority) || a.slug.localeCompare(b.slug));
     for (const o of sameCategory) add(o.slug);
   }
@@ -358,18 +435,81 @@ function eligibility(entry, existing) {
   if (existing.tools.has(entry.slug)) {
     return { ok: false, reason: 'slug already present in data/tools (existing curated entry)' };
   }
+  if (MANUAL_EXCLUSIONS.has(entry.slug)) {
+    return { ok: false, reason: MANUAL_EXCLUSIONS.get(entry.slug) };
+  }
+  const slugOverride = SLUG_DOMAIN_OVERRIDES.get(entry.slug);
   const upstreamBare = normalizeDomain(entry.domain);
-  const bare = DOMAIN_OVERRIDES.get(upstreamBare) ?? upstreamBare;
+  const bare = slugOverride ? normalizeDomain(slugOverride) : (DOMAIN_OVERRIDES.get(upstreamBare) ?? upstreamBare);
   if (existing.domains.has(bare)) {
     return { ok: false, reason: `domain "${bare}" already claimed by an existing entry` };
   }
   if (!entry.pricing?.plan || !entry.pricing?.source) {
     return { ok: false, reason: 'incomplete upstream pricing (null plan and/or source — nothing to substantiate a price with)' };
   }
-  if (entry.priceMonthly == null && !entry.pricing?.native) {
-    return { ok: false, reason: 'no priceMonthly and no pricing.native to derive an amount from' };
+  if (!hasDerivableAmount(entry)) {
+    return { ok: false, reason: 'no numeric amount anywhere (pricing.native is a category word like "custom"/"usage-based"/"transaction-based" — upstream itself notes "canonical monthly amount is null")' };
   }
   return { ok: true };
+}
+
+// ---------------------------------------------------------------------------
+// category — the 608-entry upstream refresh uses 75 distinct raw category
+// values against our post-merge 33 (see docs/import-report.md, "Task 1").
+// Most collapse 1:1 onto an existing slug; several are the same duplicate/
+// near-duplicate pattern Task 1 already fixed once, applied to the new
+// upstream vocabulary rather than reproducing it. Only the raw values we've
+// actually decided how to place are listed — an unmapped value throws rather
+// than silently spawning a new single-tool category (the exact problem this
+// map exists to prevent). New verticals with no home yet in our 33 (crm,
+// customer-support, cloud-storage, documents, photo-editing, project
+// management, time tracking, video-conferencing, hr, legal, travel, home,
+// wellness, career, education, localization, monitoring, media/audio
+// streaming) are deliberately left unmapped — see docs/import-report.md for
+// the full plan for when a future batch picks one of them up.
+// ---------------------------------------------------------------------------
+const CATEGORY_MAP = new Map([
+  // direct — already our slug, upstream's own name matches
+  ['security', 'security'], ['seo-marketing', 'seo-marketing'], ['databases', 'databases'],
+  ['newsletter', 'newsletter'], ['no-code-apps', 'no-code-apps'], ['social-media', 'social-media'],
+  ['design', 'design'], ['website-builder', 'website-builder'], ['dev-tools', 'dev-tools'],
+  ['presentations', 'presentations'], ['email', 'email'], ['finance-accounting', 'finance-accounting'],
+  ['creator-commerce', 'creator-commerce'], ['automation', 'automation'], ['scheduling', 'scheduling'],
+  ['forms', 'forms'], ['tasks', 'tasks'], ['hosting', 'hosting'], ['personal-finance', 'personal-finance'],
+  ['community', 'community'], ['notes-knowledge', 'notes-knowledge'], ['screen-recording', 'screen-recording'],
+  ['productivity-utilities', 'productivity-utilities'], ['meeting-notes', 'meeting-notes'],
+  ['ai-writing', 'ai-writing'], ['analytics', 'analytics'], ['voice-dictation', 'voice-dictation'],
+  ['whiteboard', 'whiteboard'], ['read-it-later', 'read-it-later'], ['ai-audio', 'ai-audio'],
+  ['ai-image', 'ai-image'], ['audio-video', 'audio-video'], ['ai-assistant', 'ai-assistant'],
+  // consolidations — same pattern as Task 1's merge, applied to new upstream vocabulary
+  ['docs-and-wiki', 'notes-knowledge'], ['docs-databases', 'notes-knowledge'],
+  ['forms-and-surveys', 'forms'],
+  ['bookmarks', 'read-it-later'], ['rss-research', 'read-it-later'], ['reading', 'read-it-later'],
+  ['tasks-calendar', 'tasks'],
+  ['diagrams', 'whiteboard'],
+  ['ai-search', 'ai-assistant'],
+  ['publishing', 'newsletter'],
+  ['commerce', 'creator-commerce'],
+  ['ai-video', 'ai-audio'], ['voice-ai', 'ai-audio'],
+  ['generative-media', 'ai-image'],
+  ['podcasting', 'audio-video'],
+  ['writing-assistant', 'ai-writing'],
+  ['waitlists', 'forms'], ['testimonials', 'forms'],
+  ['link-in-bio', 'social-media'],
+  ['qr-codes', 'productivity-utilities'],
+  ['og-images', 'design'], ['screenshots', 'design'],
+]);
+
+function mapCategory(category, slug) {
+  const target = CATEGORY_MAP.get(category);
+  if (!target) {
+    throw new Error(
+      `"${slug}" : catégorie amont "${category}" non mappée — décider où elle va dans notre ` +
+      'taxonomie (catégorie existante, ou nouvelle catégorie créée dans data/categories.json ' +
+      'avec emoji + 7 langues) puis ajouter l\'entrée à CATEGORY_MAP. Voir docs/import-report.md.'
+    );
+  }
+  return target;
 }
 
 // ---------------------------------------------------------------------------
@@ -380,7 +520,7 @@ function buildToolFact(entry, pool) {
     slug: entry.slug,
     name: entry.name,
     domains: buildDomains(entry),
-    category: entry.category,
+    category: mapCategory(entry.category, entry.slug),
   };
   if (entry.subcategory) fact.subcategory = entry.subcategory;
   fact.pricing = {
@@ -507,8 +647,23 @@ async function main() {
   // exist in data/tools/ once this run finishes. Existing tools already have
   // {slug, category, pagePriority}; upstream entries use the same field
   // names, so no reshaping is needed.
+  // The pool feeds relatedSlugs' same-category matching (computeRelatedSlugs /
+  // upstreamLinkIsCoherent), which compares .category fields directly. Existing
+  // on-disk tools already carry our normalized category slugs; upstream
+  // entries in `selected` still carry raw upstream category strings. Without
+  // normalizing here, a merged category (e.g. upstream's "voice-ai" -> our
+  // "ai-audio") would silently fail to match its already-imported peers.
   const pool = new Map(existing.tools);
-  for (const e of selected) pool.set(e.slug, e);
+  for (const e of selected) {
+    // Entries that will later turn out ineligible (manual exclusion, bad
+    // pricing, a category not yet mapped) still need a pool entry so
+    // relatedSlugs computation for OTHER entries in the batch doesn't crash
+    // on a missing lookup — but they'll never be written, so an unmapped
+    // category here is harmless: it just won't match anything.
+    let category = e.category;
+    try { category = mapCategory(e.category, e.slug); } catch { /* left raw, see comment above */ }
+    pool.set(e.slug, { ...e, category });
+  }
   const domainsSeen = new Set(existing.domains);
 
   let wroteFacts = 0;
@@ -520,9 +675,17 @@ async function main() {
     const factPath = join(dataDir, 'tools', `${entry.slug}.json`);
     const i18nPath = join(dataDir, 'i18n', 'en', 'tools', `${entry.slug}.json`);
 
+    // The i18n draft must never be written for a slug that doesn't (or won't)
+    // have a fact file — validate-rules.mjs rejects an i18n entry with no
+    // matching data/tools/<slug>.json. factWillExist tracks whether a fact
+    // file exists after this iteration, either already on disk or just
+    // written; it's what gates the i18n draft below.
+    let factWillExist = false;
+
     if (existsSync(factPath)) {
       console.log(`= ${entry.slug} : data/tools déjà présent, inchangé.`);
       skippedFacts += 1;
+      factWillExist = true;
     } else {
       const check = eligibility(entry, existing);
       if (!check.ok) {
@@ -539,8 +702,14 @@ async function main() {
           await writeJson(factPath, fact, args.dryRun);
           console.log(`+ ${entry.slug} : data/tools/${entry.slug}.json (relatedSlugs: ${fact.relatedSlugs.join(', ')})`);
           wroteFacts += 1;
+          factWillExist = true;
         }
       }
+    }
+
+    if (!factWillExist) {
+      console.log(`  (${entry.slug} : brouillon i18n non écrit — pas de fiche data/tools correspondante.)`);
+      continue;
     }
 
     if (existsSync(i18nPath)) {

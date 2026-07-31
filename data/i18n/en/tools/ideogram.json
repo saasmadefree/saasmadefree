@@ -1,0 +1,19 @@
+{
+  "tagline": "Run open-weight diffusion models locally for AI image generation",
+  "verdictSummary": "Wiring a local Stable Diffusion or Flux workflow behind a simple prompt box is a real one-sitting build if you already have a GPU, or rent one by the hour. What you can't replicate: Ideogram's actual edge, which is legible text rendering inside generated images — open-weight models have gotten better at this but are still visibly behind on anything more than a few words — plus the compute and training investment that got Ideogram there.",
+  "coreLoopDIY": "Send a prompt to a locally-run (or rented) diffusion model, generate several variations, and keep a searchable local history of prompts, seeds, and outputs.",
+  "whatYouLose": [
+    "reliable in-image text rendering",
+    "the trained, curated proprietary model itself",
+    "instant generation without owning or renting a GPU",
+    "moderation and a public sharing feed"
+  ],
+  "whyPeopleStillPay": "The subscription is really renting access to a specific, expensively-trained model and the GPU fleet behind it — a prompt box is trivial; a model that reliably spells words correctly inside an image is not.",
+  "prompt": "Build a local front-end for AI image generation that assumes you already have (or will rent) GPU access running ComfyUI or Automatic1111 locally — this does not include training or hosting a model, only the client around one. Use a small React or SvelteKit app talking to your local ComfyUI HTTP API (default localhost:8188). Provide a prompt box, negative-prompt field, seed control with a 'reuse seed' toggle, and a dropdown to pick between whatever checkpoints you have installed locally (e.g. an SDXL or Flux checkpoint). Generate a grid of 2-4 variations per request and save every output alongside its exact prompt, seed, and model name in a local SQLite database, so any image can be reproduced later. Add a searchable gallery with filter-by-prompt-text and a one-click 'send back to prompt box' action. Do not attempt to match Ideogram's in-image text rendering quality — open checkpoints are meaningfully behind on that specific capability, and the README should say so rather than overpromise. Do not build model training, a public sharing feed, or content moderation. No API key needed if you're running models locally; if you'd rather rent GPU time instead of buying one, point the same client at a rented ComfyUI instance's URL instead of localhost — nothing else changes.",
+  "faq": [
+    { "q": "Will the text inside my generated images look as clean as Ideogram's?", "a": "Probably not. Reliable in-image text is genuinely one of the harder problems in image generation, and it's the specific thing Ideogram's proprietary model is best known for — open checkpoints lag here more than on general image quality." },
+    { "q": "Do I need my own GPU?", "a": "You need access to one, either locally or rented by the hour from a cloud GPU provider — the client itself is lightweight, but model inference is not." },
+    { "q": "Can I use this for commercial work?", "a": "That depends entirely on the license of whichever open checkpoint you run — check it per model, since licenses vary and this build doesn't track that for you." },
+    { "q": "How much does it actually cost to run?", "a": "Free if you already own a capable GPU. If you rent one by the hour, expect roughly a dollar or two per hour of active generation, and nothing when it's off." }
+  ]
+}

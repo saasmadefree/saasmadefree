@@ -1,0 +1,19 @@
+{
+  "tagline": "Send a compliant email newsletter through a transactional email API",
+  "verdictSummary": "Sending a compliant newsletter — opt-in, unsubscribe, an archive page, basic open/click tracking — is a genuine weekend build wired to a transactional email provider that already handles deliverability infrastructure for you. What doesn't survive: ActiveCampaign's deep lifecycle-automation engine, its built-in CRM, and years of sender-reputation management that keeps mail out of spam at scale.",
+  "coreLoopDIY": "Collect double-opt-in subscribers, compose and send a campaign through a transactional email API, publish a public archive, and report basic delivery, open, and click events from that provider's webhooks.",
+  "whatYouLose": [
+    "deep multi-step lifecycle automation",
+    "a built-in CRM and deal pipeline",
+    "commerce integrations",
+    "years of accumulated sender reputation at scale"
+  ],
+  "whyPeopleStillPay": "Sending one email is trivial; staying out of spam folders and having a working automation engine underneath everything you send is where the actual product — and cost — lives.",
+  "prompt": "Build a small newsletter sender wired to a transactional email API — Amazon SES, Resend, or Postmark, pick one — rather than trying to be your own mail server. Use Next.js/TypeScript with Postgres for subscriber and campaign data. Implement double opt-in (a confirmation email required before a subscriber is active), one-click unsubscribe honored immediately, and a suppression list checked before every send. Build a Markdown-based campaign editor with HTML and plain-text previews generated from the same source. Send through the provider's API in batches with rate limiting and resumable retries — a crashed send job should be safely restartable without duplicate sends, so track per-recipient send status. Process the provider's delivery, bounce, complaint, open, and click webhooks to update per-campaign stats, without logging message content itself. Publish a simple public archive page listing past issues, and a subscriber preference page for managing their own subscription. Include DNS setup guidance (SPF, DKIM, DMARC records) in the README — deliverability starts there, not in the app. Do not build multi-step lifecycle automation, a CRM/deal pipeline, or commerce integrations — those are out of scope; this sends newsletters, nothing more. Requires a domain (for DNS authentication) and a transactional email provider account; most have a free tier covering a few thousand emails a month.",
+  "faq": [
+    { "q": "Will my emails actually land in the inbox and not spam?", "a": "That depends heavily on following the DNS setup (SPF, DKIM, DMARC) in the README and sending consistently — the transactional provider handles the delivery infrastructure, but reputation is still something you build over time, same as with ActiveCampaign." },
+    { "q": "Can I build multi-step automations, like a welcome sequence?", "a": "Not with this build — it sends one campaign at a time. Multi-step lifecycle automation is genuinely complex state-machine engineering this prompt deliberately leaves out." },
+    { "q": "What if a send job crashes halfway through?", "a": "It's built to be resumable — per-recipient send status is tracked, so restarting the job continues from where it left off instead of resending everyone." },
+    { "q": "What does it cost to run?", "a": "A domain you likely already have, plus a transactional email provider's free or near-free tier for a few thousand sends a month — meaningfully cheaper than a per-contact ActiveCampaign plan at small list sizes." }
+  ]
+}

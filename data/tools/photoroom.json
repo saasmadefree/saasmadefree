@@ -1,0 +1,41 @@
+{
+  "slug": "photoroom",
+  "name": "PhotoRoom",
+  "domains": [
+    "photoroom.com"
+  ],
+  "category": "ai-image",
+  "subcategory": "AI image and video generation",
+  "pricing": {
+    "amount": 12.99,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://photoroom.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "frontier models, compute, and data",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "ComfyUI",
+      "url": "https://github.com/comfyanonymous/ComfyUI"
+    }
+  ],
+  "relatedSlugs": [
+    "ideogram",
+    "midjourney",
+    "notion"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "fastmail",
+  "name": "Fastmail",
+  "domains": [
+    "fastmail.com"
+  ],
+  "category": "email",
+  "subcategory": "email clients and hosted mail",
+  "pricing": {
+    "amount": 6,
+    "currency": "USD",
+    "plan": "Individual",
+    "basis": "flat-monthly",
+    "source": "https://fastmail.com/pricing/personal",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "mail infrastructure, integrations, and client polish",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "mailcow",
+      "url": "https://github.com/mailcow/mailcow-dockerized"
+    }
+  ],
+  "relatedSlugs": [
+    "superhuman",
+    "hey-email",
+    "notion"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "A self-hosted internal-tool builder for one trusted database",
+  "verdictSummary": "A schema-driven CRUD builder — generate list/detail/edit views and a couple of role-based permissions from a database schema — is a real weekend project for a small team's internal needs. What doesn't survive: Retool's hundreds of pre-built connectors, its visual drag-and-drop component library, and years of edge cases in permission and deployment management for larger teams.",
+  "coreLoopDIY": "Point at one trusted database, generate CRUD views — list, detail, create, edit — from its schema, and gate read/write access with a couple of fixed roles.",
+  "whatYouLose": [
+    "hundreds of pre-built connectors",
+    "a visual drag-and-drop UI builder",
+    "native mobile app builds",
+    "enterprise-grade permission granularity"
+  ],
+  "whyPeopleStillPay": "The generated CRUD screens are the easy part; staying reliable as connectors, permissions, and the underlying schema all drift over years is what a team is actually paying to not have to own.",
+  "prompt": "Build a self-hosted internal-tool generator scoped to one database connection, not a general low-code platform. Use Next.js/TypeScript with a Postgres driver (or your team's actual database). On startup, introspect the connected database's schema and auto-generate: a list view per table (paginated, sortable, filterable), a detail/edit view with type-appropriate inputs, and a create form. Implement exactly two roles — admin (full read/write) and member (read-only, or read/write on an explicit per-table allowlist) — enforced server-side, not just hidden in the UI. Add a simple activity log recording who changed which row and when. Support one REST API connector (a named external endpoint with an API key stored server-side) whose response can be mapped into a read-only table view, for the common case of pulling in one external data source. Do not build a drag-and-drop visual editor, a connector marketplace, or native mobile builds — the UI is the auto-generated CRUD screens described above, nothing more customizable. Requires hosting and access to the database you're pointing it at; no other external service needed unless you wire up the optional REST connector.",
+  "faq": [
+    { "q": "Can non-technical teammates customize the layout?", "a": "Not really — there's no drag-and-drop editor here. Layout comes from the auto-generated schema views, which is a real step down from Retool's visual builder." },
+    { "q": "How many data sources can it connect to?", "a": "The one database it's pointed at, plus optionally one REST API connector. Retool's hundreds of pre-built connectors are exactly what this build doesn't attempt to replicate." },
+    { "q": "Is this safe to expose to my whole team?", "a": "Only with real thought about the two-role model — it's intentionally simple. If you need per-table, per-field permission granularity, that's one of the things you're giving up." },
+    { "q": "What does it cost to run?", "a": "Hosting plus whatever the database itself costs — typically a few dollars a month for a small team's internal tool, with no per-seat fee." }
+  ]
+}

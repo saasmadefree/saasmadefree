@@ -1,0 +1,19 @@
+{
+  "tagline": "Local text-snippet expansion from a macOS menu-bar app",
+  "verdictSummary": "A local snippet expander — type a short abbreviation, get the full text — is a genuinely simple one-sitting build on macOS using the Accessibility API. What's harder to justify paying for once you've built it yourself: cross-platform sync, a team-shared snippet library, and the years of small OS-permission fixes TextExpander has already absorbed.",
+  "coreLoopDIY": "Watch keystrokes system-wide for a small set of user-defined abbreviations, and replace the abbreviation with its expansion the moment it's typed, including simple date and cursor-position variables.",
+  "whatYouLose": [
+    "Windows and mobile sync",
+    "shared team snippet libraries with usage analytics",
+    "form-fill variables and fill-in prompts beyond the basics",
+    "years of per-app compatibility fixes"
+  ],
+  "whyPeopleStillPay": "A snippet expander is easy to build; keeping it working invisibly across every app's text field, through every macOS security update, for years, is the unglamorous maintenance the subscription actually buys.",
+  "prompt": "Build a macOS menu-bar app that expands short typed abbreviations into longer text, system-wide. Use Swift and the macOS Accessibility API (CGEventTap) to watch keystrokes; request Accessibility permission on first launch with a clear explanation before opening System Settings. Store snippets as an abbreviation-to-expansion table (SQLite or a plain JSON file) editable from a simple menu-bar window: add, edit, delete, search. Support a small set of fill-in variables inside an expansion: the current date in a couple of formats, and a cursor-position marker that positions the text cursor after expansion. Detect the trigger abbreviation as the user finishes typing it (a word boundary or an explicit trigger key) and replace it in place using synthetic keyboard events. Add an app-exclusion list for cases where expansion should never fire (password fields, terminal apps). Include import/export of the snippet library as JSON. Do not build cross-device sync, a team-shared library, or a plugin system — those are out of scope; this is a single-machine, single-user tool. No account or API key needed.",
+  "faq": [
+    { "q": "Will it work in every app, including password fields?", "a": "Almost everywhere, since it hooks system-wide keystrokes — but the prompt includes an app-exclusion list specifically so you can turn it off in password managers and terminals, where interception is unwelcome or risky." },
+    { "q": "Can I sync my snippets to another Mac?", "a": "Not automatically — export the JSON library and import it manually on the other machine. Real-time sync across devices is the actual feature this build skips." },
+    { "q": "Will a macOS update break it?", "a": "Possibly — Accessibility API behavior has shifted across macOS versions before, and TextExpander's subscription partly pays for someone else tracking that so you don't have to." },
+    { "q": "Does it work on Windows?", "a": "No, this build is macOS-only, using a macOS-specific API. A Windows build would need an entirely different keystroke-hooking approach." }
+  ]
+}

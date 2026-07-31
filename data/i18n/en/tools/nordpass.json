@@ -1,0 +1,19 @@
+{
+  "tagline": "A local encrypted vault with real browser-extension autofill",
+  "verdictSummary": "A local encrypted vault with real browser-extension autofill is a genuine, if involved, weekend build — the encryption itself (XChaCha20, which is what NordPass actually uses instead of the more common AES-256) is a solved problem via existing libraries. What doesn't survive a personal build: an independently audited codebase, breach-monitoring data, and the account-recovery infrastructure a vault provider maintains so a lost master password doesn't mean lost data forever.",
+  "coreLoopDIY": "Store encrypted credentials in a local vault file, and autofill them into login forms directly from a browser extension using the vault's decrypted-in-memory contents.",
+  "whatYouLose": [
+    "independent third-party security audits",
+    "breach-monitoring and dark-web scanning",
+    "account recovery if you lose your master password",
+    "cross-platform mobile apps"
+  ],
+  "whyPeopleStillPay": "The vault format is copyable; what isn't is the credibility of an audited codebase and a company whose whole job is responding fast when something in the ecosystem breaks.",
+  "prompt": "Build a local encrypted password vault with real browser autofill, not just a CLI. Use a WebExtension (Manifest V3, works in Chrome and Firefox) for the autofill/autosave UI, backed by a native companion app (or a local native-messaging bridge) that holds the actual encrypted vault file and never exposes the master key to the browser process directly. Encrypt the vault with XChaCha20-Poly1305 via a maintained library like libsodium — do not hand-roll cryptographic primitives — and derive the encryption key from the user's master password with Argon2id. On a login form, detect username/password fields heuristically and offer to autofill or save new credentials, storing the site's origin alongside each entry to prevent cross-origin autofill. Implement vault lock-on-idle, a password generator, and CSV import from a competing password manager's export format. Write a plain-language threat model in the README, and put a visible in-app notice that this build has not been through an independent security audit — that gap is real and worth saying outright, not smoothing over. Do not build cross-device sync, mobile apps, or breach/dark-web monitoring — those are out of scope. No account or API key required; everything is local to the machine running the browser.",
+  "faq": [
+    { "q": "Is this as secure as NordPass?", "a": "The cryptography can be just as sound — XChaCha20 and Argon2id are the same well-reviewed primitives NordPass itself uses — but 'as secure' also depends on an independent audit of the actual code, which this build explicitly does not have." },
+    { "q": "Does autofill work the same way it does in the real extension?", "a": "Close — origin-matched autofill on login forms is the core feature this build implements. It won't catch every unusual login form NordPass's years of site-specific fixes handle." },
+    { "q": "What happens if I forget my master password?", "a": "Your data is gone. There is no recovery mechanism in this build, and building one safely is genuinely hard — that's one of the real things a paid vault provider gives you." },
+    { "q": "Can I import my existing NordPass vault?", "a": "Yes, if you export it to CSV first — NordPass supports that natively, and the prompt's importer reads that format." }
+  ]
+}

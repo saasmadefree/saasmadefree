@@ -1,0 +1,19 @@
+{
+  "tagline": "Build a fast, keyboard-first email client over a mailbox you already have",
+  "verdictSummary": "A fast, keyboard-driven IMAP client with local search and a snappy inbox is a real weekend build — the shortcuts, the split-second search, even a decent snooze are all reachable. What isn't: Superhuman's actual product, which is less the client and more the trained habit of AI-drafted replies, read-receipt tracking, and above all a white-glove onboarding experience the price is largely paying for.",
+  "coreLoopDIY": "Connect one existing IMAP/SMTP mailbox, index messages locally for instant search, and drive the whole inbox — read, archive, snooze, reply — from the keyboard.",
+  "whatYouLose": [
+    "AI-drafted replies tuned to your writing",
+    "read-receipt tracking",
+    "onboarding calls and white-glove support",
+    "instant cross-device sync"
+  ],
+  "whyPeopleStillPay": "People aren't really paying for keyboard shortcuts — those are copyable in a weekend. They're paying for someone else to have already solved IMAP's endless provider quirks, and for a support team that gets on a call when something breaks.",
+  "prompt": "Build a lightweight desktop email client focused on keyboard speed, connected to a mailbox you already own — this does not include hosting mail. Use Tauri or Electron with a local SQLite index. Connect via IMAP and SMTP with a username/password or app-specific password — no OAuth app registration needed. On first run, do a full header sync, then keep syncing incrementally with IMAP IDLE or short polling. Build a keyboard-first UI: j/k to move between messages, e to archive, r to reply, a global command palette (Cmd+K) for search and actions, and a snooze feature that re-surfaces a message at a chosen time by moving it to a local 'snoozed' state, not a server-side one. Index headers and bodies locally with SQLite full-text search so search works instantly and offline. Render HTML email in a locked-down sandbox and block remote images by default. Send multipart messages with attachments and keep a local copy of every draft. Do not build AI-drafted replies, read-receipt tracking, or multi-account support — those are out of scope; this is a single-account, keyboard-first client, nothing more. No external API key needed; only the mailbox credentials you already have.",
+  "faq": [
+    { "q": "Can this replace Gmail or Outlook entirely, or just the client?", "a": "Just the client — it connects to whatever mailbox you already have via IMAP/SMTP. You still need somewhere your mail actually lives." },
+    { "q": "Will I get AI-drafted replies like Superhuman's?", "a": "Not out of the box — that's explicitly out of scope here. You could wire in an LLM API for draft suggestions yourself, but the core build doesn't include it." },
+    { "q": "Does search work offline?", "a": "Yes, once the initial sync finishes — everything is indexed locally in SQLite, so search doesn't depend on your connection." },
+    { "q": "What's the real cost difference?", "a": "Superhuman's $40 a seat a month buys the AI features and white-glove onboarding on top of a mailbox you're likely already paying for elsewhere. This build costs nothing beyond that existing mailbox." }
+  ]
+}

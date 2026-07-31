@@ -1,0 +1,41 @@
+{
+  "slug": "superhuman",
+  "name": "Superhuman",
+  "domains": [
+    "superhuman.com"
+  ],
+  "category": "email",
+  "subcategory": "email clients and hosted mail",
+  "pricing": {
+    "amount": 40,
+    "currency": "USD",
+    "plan": "Business",
+    "basis": "per-seat-monthly",
+    "source": "https://superhuman.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "mail infrastructure, integrations, and client polish",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "mailcow",
+      "url": "https://github.com/mailcow/mailcow-dockerized"
+    }
+  ],
+  "relatedSlugs": [
+    "fastmail",
+    "hey-email",
+    "notion"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "cal-com-teams",
+  "name": "Cal.com Teams",
+  "domains": [
+    "cal.com"
+  ],
+  "category": "scheduling",
+  "subcategory": "booking links and calendar automation",
+  "pricing": {
+    "amount": 15,
+    "currency": "USD",
+    "plan": "Teams",
+    "basis": "per-seat-monthly",
+    "source": "https://cal.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "calendar integrations and reliability",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "domain",
+    "oauth-app",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Cal.com",
+      "url": "https://github.com/calcom/cal.com"
+    }
+  ],
+  "relatedSlugs": [
+    "fantastical",
+    "calendly",
+    "meetergo"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

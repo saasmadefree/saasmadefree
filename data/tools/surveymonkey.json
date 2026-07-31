@@ -1,0 +1,42 @@
+{
+  "slug": "surveymonkey",
+  "name": "SurveyMonkey",
+  "domains": [
+    "surveymonkey.com"
+  ],
+  "category": "forms",
+  "subcategory": "forms, surveys and lead capture",
+  "pricing": {
+    "amount": 39,
+    "currency": "USD",
+    "plan": "Advantage Annual",
+    "basis": "annual-effective-monthly",
+    "source": "https://surveymonkey.com/pricing/individual",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "integrations, deliverability, and workflow depth",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "domain",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Formbricks",
+      "url": "https://github.com/formbricks/formbricks"
+    }
+  ],
+  "relatedSlugs": [
+    "typeform",
+    "tally",
+    "jotform"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

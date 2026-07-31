@@ -1,0 +1,19 @@
+{
+  "tagline": "A local, transparent spreadsheet-shaped budgeting ledger",
+  "verdictSummary": "Tiller's actual product is less an app and more an automated feed into a spreadsheet you already control — that's a genuinely honest, buildable idea: import bank CSV or OFX exports into a real spreadsheet-shaped local ledger with deterministic categorization rules you can inspect. What doesn't survive: live, automatic bank-feed connections (no screen-scraping or aggregator here, on purpose) and the maintained template library Tiller sells.",
+  "coreLoopDIY": "Import CSV or OFX transaction exports into a local ledger, apply inspectable categorization rules, and export the result into spreadsheet-ready views for budget and net-worth tracking.",
+  "whatYouLose": [
+    "live automatic bank-feed connections",
+    "maintained spreadsheet template library",
+    "accountant and tax-season ecosystem",
+    "support when a bank feed breaks"
+  ],
+  "whyPeopleStillPay": "The spreadsheet-shaped ledger is easy to copy; keeping the bank connections themselves alive as institutions change their export formats without warning is the unglamorous, ongoing part.",
+  "prompt": "Build a local, spreadsheet-shaped budgeting ledger that imports bank transaction exports rather than connecting live to bank accounts — no screen-scraping or third-party aggregation, by design. Use a Next.js/TypeScript app with SQLite, or, if you'd rather stay closer to Tiller's actual model, a Google Sheets API integration that writes into a spreadsheet template you own — either is a legitimate approach. Support CSV and OFX import with a saved column-mapping per bank (so re-importing the same bank's export doesn't require re-mapping every time), and duplicate-transaction detection by date, amount, and description matching. Implement accounts, categories, payees, and split transactions (one transaction covering multiple categories). Add deterministic categorization rules — if description contains X, categorize as Y — that are visible and editable, not a black-box classifier, so every categorization can be traced back to the rule that produced it. Build budget, cash-flow, and net-worth views computed directly from the ledger. Keep an immutable import log so you can always see exactly what was imported and when. Do not build live bank-account connections, payment initiation, or tax/accounting compliance features — those are explicitly out of scope; this is an import-and-categorize ledger, not a bank aggregator. No API key needed for the CSV/OFX path; the Sheets API path needs a free Google Cloud project credential.",
+  "faq": [
+    { "q": "Does it connect directly to my bank the way Tiller does?", "a": "No — on purpose. This build only imports files you download from your bank yourself (CSV or OFX), which avoids the security and reliability risks of screen-scraped bank connections entirely." },
+    { "q": "How much manual work is importing each month?", "a": "A few minutes — download your bank's export, drop it in, and saved column mappings mean you're not re-configuring the import every time, though it's still a manual step Tiller's live feeds skip." },
+    { "q": "Can I keep using it inside a spreadsheet like Tiller does?", "a": "Yes, if you build the Google Sheets API variant described in the prompt — it writes into a real spreadsheet you own, matching Tiller's actual product shape rather than being a separate app." },
+    { "q": "Is this safe for tracking real bank data?", "a": "It's as safe as any local tool handling sensitive data — nothing is transmitted anywhere on its own, but you're responsible for backups and device security, since there's no vendor doing that for you here." }
+  ]
+}

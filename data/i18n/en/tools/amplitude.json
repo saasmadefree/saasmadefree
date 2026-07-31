@@ -1,0 +1,19 @@
+{
+  "tagline": "A bounded first-party product-analytics dashboard for one app",
+  "verdictSummary": "First-party event tracking with funnels, retention, and basic cohorts is a genuine weekend-to-week build on an open time-series-friendly database. What doesn't survive: identity stitching across devices and sessions at scale, session replay, and the query performance Amplitude has engineered for billions of events.",
+  "coreLoopDIY": "Collect custom events from one app's client SDK, store them durably, and compute funnels, retention curves, and basic cohort breakdowns from the raw event log.",
+  "whatYouLose": [
+    "cross-device identity stitching",
+    "session replay",
+    "warehouse and BI connectors",
+    "query performance at very high event volume"
+  ],
+  "whyPeopleStillPay": "A dashboard over your own events is buildable; making that dashboard stay fast and correct as event volume grows past what one database comfortably handles is where the engineering — and the subscription — actually goes.",
+  "prompt": "Build a bounded, single-product event-analytics tool — not a general analytics platform. Use a lightweight browser SDK (a small JS snippet) that sends named custom events with arbitrary properties to your own ingestion endpoint. Use ClickHouse (genuinely well-suited to this — columnar storage makes funnel and retention queries fast even at moderate volume) or Postgres if you'd rather keep one database, with Next.js/TypeScript for the ingestion API and dashboard. Ingest events idempotently (dedupe by a client-generated event ID) and filter obvious bot traffic by user-agent pattern; do not fingerprint devices beyond a first-party, cookie-based anonymous ID. Build three dashboard views from the raw event table: a funnel builder (pick an ordered sequence of event names, see conversion between each step), a retention chart (percentage of a cohort that returns on day N), and a simple event-property breakdown (e.g. count of purchase events grouped by a plan property). Add a raw-event export and a data-deletion endpoint for a given anonymous ID, to keep this genuinely privacy-respecting rather than just smaller-scale surveillance. Do not build cross-device identity graphs, session replay, or a general BI/warehouse layer — those are out of scope; this tracks one product's events for one team, nothing broader. Requires hosting and a database (ClickHouse or Postgres); no external API key needed.",
+  "faq": [
+    { "q": "Will it handle the event volume Amplitude does?", "a": "For a single small-to-mid product, yes, especially with ClickHouse. It won't hold up at Amplitude's actual scale — hundreds of millions of events a day — without real infrastructure work beyond this prompt's scope." },
+    { "q": "Does it track users across devices the way Amplitude's identity resolution does?", "a": "No — this build uses a simple first-party anonymous ID per browser or device, with no cross-device stitching. That's a real capability gap, and also a meaningful privacy trade-off in your favor." },
+    { "q": "Can I replay a user's session to see what they clicked?", "a": "No, session replay isn't included — this tool only aggregates named events, not full interaction recordings." },
+    { "q": "What does it cost to run?", "a": "Hosting plus a database — a small self-hosted ClickHouse instance handles a meaningful amount of traffic cheaply, likely well under what a paid analytics seat costs per month." }
+  ]
+}

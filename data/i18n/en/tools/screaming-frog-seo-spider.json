@@ -1,0 +1,19 @@
+{
+  "tagline": "A local site crawler for technical SEO signals on sites you own",
+  "verdictSummary": "A configurable local crawler that respects robots.txt, follows links, and surfaces technical SEO issues — broken links, missing metadata, duplicate titles — is a genuine one-sitting build, and it's explicitly for sites you own or have permission to crawl. What doesn't survive: years of crawl edge-case handling across the messy real web, JavaScript-rendering accuracy at scale, and desktop performance tuned for crawling hundreds of thousands of URLs.",
+  "coreLoopDIY": "Crawl a site the user owns or has explicit permission to check, respecting robots.txt and rate limits, extract on-page SEO signals from each page, and export a prioritized list of issues with the affected URLs.",
+  "whatYouLose": [
+    "years of crawl edge-case robustness",
+    "JavaScript-rendering accuracy at real scale",
+    "continuous scheduled monitoring",
+    "agency-grade client reporting"
+  ],
+  "whyPeopleStillPay": "A crawler is a solved problem; making it never crash, never mis-render a modern JS-heavy page, and stay fast at hundreds of thousands of URLs is the years of unglamorous engineering underneath the license fee.",
+  "prompt": "Build a local site crawler for technical SEO audits, scoped to sites you own or have explicit permission to crawl — require that acknowledgement before a crawl starts, and don't skip it. Use Python with FastAPI, Playwright for rendering (needed for accurate results on JavaScript-heavy sites), and SQLite for storing crawl results. Respect robots.txt and a configurable rate limit and URL cap before crawling starts. For each crawled page, extract: HTTP status, title, meta description, H1/H2 headings, canonical URL, robots meta directives, internal and external links, image alt text, and basic structured-data presence. From the crawl, compute and flag: duplicate titles or descriptions across pages, broken internal links, redirect chains longer than one hop, missing or conflicting canonical tags, and pages with no incoming internal links (orphans). Show every flagged issue with the specific affected URLs, the evidence (e.g. the actual duplicate title text), and a concrete one-line fix suggestion — vague warnings without evidence aren't useful. Export the full crawl data to CSV and a self-contained HTML report that doesn't need the app running to view. Do not build crawling of sites without permission, scheduled or continuous monitoring, or backlink/keyword datasets — those are out of scope; this is a one-shot local audit tool for your own site. No API key or account needed; everything runs locally.",
+  "faq": [
+    { "q": "Can I use it to crawl a competitor's site?", "a": "The prompt requires an explicit ownership/permission acknowledgement before crawling starts — pointing it at a site you don't have permission to crawl works technically but isn't what this build is meant for, and isn't advisable." },
+    { "q": "Does it handle JavaScript-heavy sites accurately?", "a": "Reasonably well, since it uses Playwright to render pages rather than just fetching raw HTML — but not with the years of rendering-edge-case handling the real Screaming Frog has accumulated." },
+    { "q": "Can it monitor my site continuously and alert me to new issues?", "a": "No — this is a one-shot crawl-and-report tool, not continuous monitoring. You'd re-run it manually whenever you want a fresh audit." },
+    { "q": "What does it cost to run?", "a": "Nothing beyond your own machine's compute — the whole point is that it runs locally with no per-crawl or per-URL fee, unlike a hosted crawling service." }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "A multi-step coding agent that plans and executes changes across a repository",
+  "verdictSummary": "A repo-aware assistant that can propose and run multi-step changes across several files — with your own model key footing the bill — is a real sitting-length build. What's missing without Windsurf's actual infrastructure: the large-scale codebase indexing and retrieval that keeps suggestions relevant in a big repo, and the sandboxed execution environment that lets it run commands more safely than a raw shell call.",
+  "coreLoopDIY": "Index the whole open repository, let the model plan a multi-step change across several files, execute each step — an edit or a shell command — only after explicit approval, and keep every action in an auditable log.",
+  "whatYouLose": [
+    "large-scale, continuously-updated codebase retrieval",
+    "a hardened sandbox for command execution",
+    "a purpose-built full IDE fork rather than an add-on",
+    "enterprise policy controls"
+  ],
+  "whyPeopleStillPay": "The step-by-step agent loop is copyable; what isn't is retrieval that stays useful on a codebase with tens of thousands of files, and execution safety good enough that 'run this command' doesn't need a nervous second look every time.",
+  "prompt": "Build a VS Code extension that runs a multi-step agentic coding loop — distinct from a single-shot 'generate this component' assistant. Use TypeScript, and read a model key from ANTHROPIC_API_KEY or OPENAI_API_KEY. Given a task description, have the model produce a numbered plan (e.g. edit file A, run npm test, edit file B based on test output), and execute the plan one step at a time — pausing before every file edit and every shell command for explicit user approval, never running commands unattended. Index the whole repository's file tree and let the model request specific files' contents as needed rather than dumping the whole repo into context every time. Represent file edits as diffs (accept/reject/undo) and shell command output as a readable log entry, both stored in a local session file so a full run can be replayed or audited later. Add a hard-coded command allowlist pattern (e.g. only npm/pnpm/git/test-runner commands by default) that the user can extend, and refuse anything outside it without an explicit one-time override. Do not build unattended or background execution, a custom IDE fork, or team policy controls — those are out of scope; this is a single-user, always-supervised extension. Requires an Anthropic or OpenAI API key — without one, the extension runs in a read-only 'plan preview' mode with no execution.",
+  "faq": [
+    { "q": "How is this different from the v0-style build in this catalogue?", "a": "Scope. v0's DIY substitute generates individual UI components; this one plans and executes multi-file, multi-step changes across a whole repository, including running commands." },
+    { "q": "Can it run commands without asking me first?", "a": "No, by design — every command and every file edit needs explicit approval in this build. Unattended execution is exactly the risk this prompt is built to avoid." },
+    { "q": "Will it understand a very large codebase as well as Windsurf does?", "a": "Not as well. Windsurf's retrieval is tuned to stay useful at scale; this build's simpler file-request approach will feel slower and less targeted on a codebase with tens of thousands of files." },
+    { "q": "What's the real cost to run this myself?", "a": "Just model API usage, billed per token by whichever provider you use — cheaper than a seat subscription for occasional use, but multi-step agent runs burn more tokens than a single chat message, so it adds up faster than casual use." }
+  ]
+}

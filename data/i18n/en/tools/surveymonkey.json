@@ -1,0 +1,19 @@
+{
+  "tagline": "A form and survey tool with correctly calculated NPS scoring",
+  "verdictSummary": "A form that stores responses reliably and computes basic summary statistics — averages, response-rate breakdowns, and a real NPS score — is a real weekend build. What doesn't survive: SurveyMonkey's benchmark data comparing your results against millions of other surveys, its large template library, and enterprise-grade branching logic.",
+  "coreLoopDIY": "Publish a form with a few question types including a rating/NPS scale, validate and store submissions, and compute basic summary statistics — including a real NPS score — from the response table.",
+  "whatYouLose": [
+    "industry benchmark comparisons",
+    "large template library",
+    "advanced skip-logic branching",
+    "enterprise governance and multi-brand workspaces"
+  ],
+  "whyPeopleStillPay": "A form is trivial; knowing whether your NPS of 42 is good requires someone else's aggregated data across millions of other surveys, which a personal build can never have.",
+  "prompt": "Build a form and survey tool that, beyond basic field types, correctly computes a Net Promoter Score and simple rating averages — the specific calculation, not just raw response storage. Use Next.js/TypeScript with SQLite and Drizzle ORM. Support short text, long text, single-select, multi-select, and a 0-10 NPS-style rating field type in the form builder. Publish each form at a stable slug with server-side validation, honeypot spam protection, and rate limiting. Store responses and, on the results page, compute: response counts, per-question averages for numeric/rating fields, and a correctly calculated NPS score — percentage of promoters (9-10) minus percentage of detractors (0-6) — for any NPS-type question. Get this calculation right, since a wrong NPS number is worse than no number. Add CSV export and a simple one-level conditional branch (if the answer to Q2 is X, show Q4, else skip to Q5). Send the form owner a notification on new submissions via a transactional email provider, without putting submitted values in application logs. Do not build a template marketplace, industry benchmark comparisons, or multi-level branching logic — those are out of scope; this is a single-owner form tool with correct scoring math, not a research platform. Needs a domain and a transactional email provider for notifications; no other external service required.",
+  "faq": [
+    { "q": "Is my NPS score comparable to SurveyMonkey's benchmark data?", "a": "The calculation itself is the same standard formula, but SurveyMonkey's benchmarks compare you against millions of other surveys — this build has no comparison data, just your own honest number." },
+    { "q": "How complex can the branching logic get?", "a": "Only one level — skip to a question based on one prior answer. Multi-level branching logic is real complexity this build intentionally doesn't take on." },
+    { "q": "Can I start from a template library like SurveyMonkey's?", "a": "No pre-built templates here — you're building each form's questions from scratch, which is slower for common survey types but avoids maintaining a template library." },
+    { "q": "What does it cost to run?", "a": "A domain plus a transactional email provider's free tier for notifications — typically nothing beyond what you already pay for the domain." }
+  ]
+}

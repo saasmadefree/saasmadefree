@@ -1,0 +1,19 @@
+{
+  "tagline": "A self-hosted, single-server platform for a handful of Docker apps",
+  "verdictSummary": "Deploying a handful of trusted containers to one server you control — with automatic TLS, health checks, and rolling restarts — is a real weekend build on top of tools that already exist. What you give up going this route: Railway's managed multi-region infrastructure, one-click database templates, and having someone else own the operational pager when a box goes down at 3am.",
+  "coreLoopDIY": "Accept a Git repo or container image, build and run it in Docker on one server, route a domain to it with automatic HTTPS, and keep basic logs and health checks.",
+  "whatYouLose": [
+    "managed multi-region infrastructure",
+    "one-click database provisioning",
+    "autoscaling under load",
+    "someone else on call for infrastructure incidents"
+  ],
+  "whyPeopleStillPay": "A deploy button is easy to fake; being the team that gets paged when a data center has a bad night is the actual product.",
+  "prompt": "Build a minimal single-server PaaS: point it at a Git repository or container image, and have it build (via a detected or provided Dockerfile), run, and expose the app through automatic HTTPS on your own domain. Use Docker Compose to orchestrate, and Caddy as the reverse proxy — Caddy's automatic Let's Encrypt certificate handling does most of the hard part for free. Build a small control-plane service (Go, Node, or your preferred language) that watches for new commits or manual redeploy triggers, builds the image, health-checks the new container before routing traffic to it (a simple blue-green swap), and keeps the last few container images for instant rollback. Store environment variables per app, encrypted at rest, injected at container start — never written to logs. Stream build and runtime logs to a bounded local file per app, viewable through a minimal web dashboard. Add a basic host-level disk/memory alert (even just an email when disk crosses 90%). Do not build multi-server orchestration, autoscaling, or managed database provisioning — this explicitly runs on one server, and that single-point-of-failure limitation belongs in the README, not hidden. Requires a server (a $5-6/month VPS is enough for a few small apps) and a domain pointed at it; no other external service is required.",
+  "faq": [
+    { "q": "Can this scale the way Railway does?", "a": "No — this is deliberately a single-server design. If one app needs to scale beyond what that one box can handle, this build's honest answer is to move it, not force it to fit here." },
+    { "q": "What happens if the server goes down?", "a": "Everything on it goes down with it, and there's no automatic failover — that's the real trade-off for skipping Railway's managed infrastructure." },
+    { "q": "Does it support databases like Postgres out of the box?", "a": "You can deploy a Postgres container the same way as any other app, but there's no one-click managed database with automatic backups — you're responsible for backing it up yourself." },
+    { "q": "How much does it cost to run?", "a": "Whatever your VPS and domain cost — often under $10 a month total for a handful of small apps, versus Railway's usage-based billing that scales with traffic and resource use." }
+  ]
+}

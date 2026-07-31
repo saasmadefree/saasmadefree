@@ -1,0 +1,41 @@
+{
+  "slug": "paste",
+  "name": "Paste",
+  "domains": [
+    "pasteapp.io"
+  ],
+  "category": "productivity-utilities",
+  "subcategory": "macOS automation and desktop utilities",
+  "pricing": {
+    "amount": 3.99,
+    "currency": "USD",
+    "plan": "Paste",
+    "basis": "flat-monthly",
+    "source": "https://pasteapp.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "OS integration polish and maintenance",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Espanso",
+      "url": "https://github.com/espanso/espanso"
+    }
+  ],
+  "relatedSlugs": [
+    "raycast-pro",
+    "textexpander",
+    "notion"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "A self-hosted small-team chat with channels, threads, and search",
+  "verdictSummary": "Real-time channel-based chat with threads and search is a genuine weekend-to-week build on a normal web stack — the mechanics aren't the hard part. What is: the trust of an existing team already living inside Slack, native mobile push notifications, and the moderation and abuse-handling infrastructure that matters the moment a community grows past people you know personally.",
+  "coreLoopDIY": "Host a private chat space with channels and threaded replies, deliver messages in real time over WebSockets, and keep full history searchable, for a team that already trusts hosting it themselves.",
+  "whatYouLose": [
+    "the network effect of a team already on Slack",
+    "native mobile apps with push notifications",
+    "voice and video calling",
+    "enterprise moderation, SSO, and compliance tooling"
+  ],
+  "whyPeopleStillPay": "Chat itself is a commodity; what a team is really paying for is not having to be the one who gets paged when real-time delivery breaks for two hundred people at once, or who has to handle abuse reports personally.",
+  "prompt": "Build a small, self-hosted team chat: channels, threaded replies, reactions, and search — scoped to a team you already trust, not a public community platform. Use Next.js/TypeScript with WebSockets for live delivery and Postgres as the durable store (every message is written to Postgres first; WebSocket delivery is a notification on top, not the source of truth). Support channels (public within the workspace, or invite-only), threaded replies attached to a parent message, emoji reactions, @mentions with a notification list, and file attachments stored on local disk or S3-compatible storage. Add full-text search across message history using Postgres's built-in search. Implement two roles — owner (can manage members and channels) and member — with an invite-link flow instead of open signup. Send an email digest of unread mentions for members who aren't actively online, so notifications don't depend on a native mobile app. Do not build voice or video calling, native mobile apps, or enterprise SSO/compliance features — those are out of scope; this is a web-only chat for a team small enough to invite by hand. Requires hosting, a domain, and a transactional email provider for the digest — no other external service needed.",
+  "faq": [
+    { "q": "Can I invite people the way I would to a Slack workspace?", "a": "Yes, via an invite link an owner generates — there's no open signup, and no directory of other workspaces to discover, since this isn't trying to be a public network." },
+    { "q": "Will I get push notifications on my phone?", "a": "Not as native push — the closest substitute here is the email digest for unread mentions. Real mobile push notifications need a native app this build doesn't include." },
+    { "q": "Does it support voice or video calls?", "a": "No, that's out of scope. Pair it with an existing scheduling link and any video-conferencing service for calls." },
+    { "q": "What does it cost to run?", "a": "Hosting, a domain, and a database — typically a few dollars a month for a small team, with no per-seat fee, versus Slack Pro's per-user monthly price." }
+  ]
+}

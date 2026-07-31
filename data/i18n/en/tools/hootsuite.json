@@ -1,0 +1,19 @@
+{
+  "tagline": "Schedule and publish to one social network through its official API",
+  "verdictSummary": "Scheduling and publishing to one social network through its own official API is a real weekend build. What doesn't survive: Hootsuite's dozens of maintained platform connectors, its unified social inbox, and an analytics/listening layer built on data most personal-scale API access can't retrieve.",
+  "coreLoopDIY": "Draft and schedule posts for one social network, validate them against that network's character and media limits before scheduling, and publish through its official API on a background job with retries.",
+  "whatYouLose": [
+    "connectors for many networks in one dashboard",
+    "a unified inbox and comment moderation",
+    "deep analytics beyond basic post performance",
+    "team approval workflows and shared asset libraries"
+  ],
+  "whyPeopleStillPay": "One connector is a weekend; staying authorized and working across a dozen networks as each one quietly changes its API terms, while also giving a team approval flows and a shared inbox, is the actual maintenance burden being paid for.",
+  "prompt": "Build a scheduler for exactly one social network's official API — not a multi-network dashboard. Pick one platform with a stable, documented posting API, such as Bluesky's AT Protocol API or Mastodon's REST API, both genuinely accessible without the business-verification process many other platforms require. Use Next.js/TypeScript with Postgres, and that network's OAuth flow for authorization. Build a draft editor with a live character count and media-limit validation matching the target network's actual constraints, a weekly calendar view of scheduled posts, and reusable snippet templates. Publish scheduled posts through a background job — a cron-triggered queue worker — with retries and clear failure surfacing; a failed post should be visibly flagged, not silently dropped. Store the platform's returned post ID after publishing and periodically refresh basic engagement stats (likes, reposts) through the same API, without scraping. Add local media storage for images attached to scheduled posts, and CSV export of your post history. Do not build multi-network support, a unified inbox, or social listening — those are out of scope; if you need to post to a second network, expect to write a second, separate integration, not a shared abstraction over both. Needs an OAuth app registration with your chosen network, typically free and fast to get approved for personal use.",
+  "faq": [
+    { "q": "Can I schedule to Instagram, X, and LinkedIn all from this build?", "a": "No — this build deliberately targets one network with an accessible API. Each additional network is a separate integration effort, which is exactly the maintenance burden Hootsuite's subscription is paying other people to absorb." },
+    { "q": "Why build for Bluesky or Mastodon instead of the biggest networks?", "a": "Because their APIs are open and don't require a lengthy business-verification process — a meaningfully more honest starting point for a personal weekend build than networks that gatekeep API access." },
+    { "q": "What happens if a scheduled post fails to publish?", "a": "It's flagged clearly rather than silently disappearing — the background job retries automatically, and a persistent failure stays visible until you address it." },
+    { "q": "Does it show engagement analytics?", "a": "Basic counts, like likes and reposts, pulled from the same API and refreshed periodically — nothing like Hootsuite's deeper analytics or social-listening layer." }
+  ]
+}

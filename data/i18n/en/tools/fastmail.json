@@ -1,0 +1,19 @@
+{
+  "tagline": "A clean, fast client for a mailbox you already host elsewhere",
+  "verdictSummary": "Running your own mail server — SPF, DKIM, DMARC, IP reputation, spam filtering — is one of the few things in this whole catalogue that is flatly not a weekend project, and Fastmail's actual product is hosting that well. What you can build in a weekend is the client: connect to any IMAP/SMTP mailbox, including one you still pay Fastmail (or another host) for, with fast local search and no bloat.",
+  "coreLoopDIY": "Connect one existing IMAP/SMTP mailbox, index messages locally for instant search, and provide a lightweight client — folders, search, compose — without hosting any mail infrastructure yourself.",
+  "whatYouLose": [
+    "actually hosting your own mail (still needed from someone)",
+    "spam filtering tuned over years",
+    "calendar and contacts sync",
+    "custom-domain mailbox management"
+  ],
+  "whyPeopleStillPay": "The email client is the easy 5%; the subscription is for the hard-won 95% — not ending up in spam, keeping a domain's sending reputation clean, and never losing mail.",
+  "prompt": "Build a lightweight desktop email client for a mailbox you already own — this does not replace hosting your own mail, which is explicitly out of scope (DNS/SPF/DKIM and spam-fighting is not a realistic solo project; keep paying someone, whether that's Fastmail or another IMAP host, for the actual mailbox). Use Tauri or Electron with a local SQLite index. Connect via IMAP and SMTP with a username/password or app-specific password — no OAuth app registration needed. On first run, do a full header sync, then keep syncing incrementally with IMAP IDLE or short polling. Support folders, a unified view of one connected account, full-text local search over subjects and bodies, and standard reply/reply-all/forward/compose with plain-text and simple HTML. Keep drafts locally until sent. Do not build multi-account support, calendar/contacts, or any server-side component — this is a single-account local client, nothing more. No external API key needed; only the mailbox credentials you already have.",
+  "faq": [
+    { "q": "Do I still need to pay for mail hosting?", "a": "Yes — this replaces the client, not the mailbox. Running your own reliable mail server is genuinely not a weekend project; keep paying Fastmail, or any IMAP host, for that part." },
+    { "q": "Why build a client at all if I'm still paying for hosting?", "a": "Because the client is the part with real day-to-day lock-in — search speed, keyboard flow, how fast it feels. The hosting underneath can stay boring and cheap." },
+    { "q": "Does it handle multiple accounts?", "a": "No, this build is scoped to one account on purpose. Multi-account support is real engineering work this prompt deliberately skips." },
+    { "q": "What about calendar and contacts?", "a": "Not included. Fastmail bundles those; this build is email only." }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "screaming-frog-seo-spider",
+  "name": "Screaming Frog SEO Spider",
+  "domains": [
+    "screamingfrog.co.uk"
+  ],
+  "category": "seo-marketing",
+  "subcategory": "technical audits and on-page optimization",
+  "pricing": {
+    "amount": 21.58,
+    "currency": "USD",
+    "plan": "SEO Spider licence",
+    "basis": "annual-effective-monthly",
+    "source": "https://screamingfrog.co.uk/seo-spider/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "crawl scale, rule depth, and operational polish",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "SEOnaut",
+      "url": "https://github.com/stjudewashere/seonaut"
+    }
+  ],
+  "relatedSlugs": [
+    "ahrefs",
+    "semrush",
+    "frase"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

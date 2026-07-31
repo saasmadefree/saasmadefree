@@ -1,0 +1,41 @@
+{
+  "slug": "fantastical",
+  "name": "Fantastical",
+  "domains": [
+    "flexibits.com"
+  ],
+  "category": "scheduling",
+  "subcategory": "booking links and calendar automation",
+  "pricing": {
+    "amount": 4.75,
+    "currency": "USD",
+    "plan": "Premium Individual",
+    "basis": "annual-effective-monthly",
+    "source": "https://flexibits.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "calendar integrations and reliability",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Cal.com",
+      "url": "https://github.com/calcom/cal.com"
+    }
+  ],
+  "relatedSlugs": [
+    "cal-com-teams",
+    "calendly",
+    "meetergo"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

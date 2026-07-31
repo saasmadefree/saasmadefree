@@ -1,0 +1,42 @@
+{
+  "slug": "railway",
+  "name": "Railway",
+  "domains": [
+    "railway.com"
+  ],
+  "category": "hosting",
+  "subcategory": "application hosting and backend platforms",
+  "pricing": {
+    "amount": 5,
+    "currency": "USD",
+    "plan": "Hobby",
+    "basis": "usage-based",
+    "source": "https://railway.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "infrastructure scale, operations, and reliability",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Coolify",
+      "url": "https://github.com/coollabsio/coolify"
+    }
+  ],
+  "relatedSlugs": [
+    "vercel",
+    "netlify",
+    "notion"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

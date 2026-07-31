@@ -1,0 +1,19 @@
+{
+  "tagline": "A two-service automation with durable retries, not a connector platform",
+  "verdictSummary": "One reliable automation between two specific services — trigger, transform, act, with retries and a visible run log — is a genuine weekend build once you're honest that it's two services, not a general platform. What doesn't survive: Pipedream's thousands of maintained connectors and pre-built OAuth apps, and the infrastructure that keeps thousands of other people's automations running at once.",
+  "coreLoopDIY": "Connect exactly two named services with their own credentials, run a fixed trigger-transform-action workflow when the trigger fires, and make every run retryable from its failed step without repeating already-completed side effects.",
+  "whatYouLose": [
+    "thousands of maintained connectors",
+    "pre-built, vendor-managed OAuth apps for each service",
+    "schema-drift handling as APIs change",
+    "high-scale durable execution with support"
+  ],
+  "whyPeopleStillPay": "Wiring two APIs together once is easy; keeping hundreds of connectors working as each vendor quietly changes their API, and making every run idempotent and retryable, is the unglamorous infrastructure the subscription buys.",
+  "prompt": "Build a durable automation between exactly two named services you choose — e.g. a form tool and a spreadsheet, or a webhook source and a messaging API — not a general integration platform. Use TypeScript/Node.js with Postgres and Redis (BullMQ for the job queue). Implement a fixed workflow shape: trigger (webhook or short-interval poll), transform (a small, explicit function, not a visual node graph), and action (call the second service's API). Store every run's input, transform output, and final status in Postgres, keyed with a per-run idempotency key so retrying a failed run doesn't repeat an already-successful action step. Add exponential-backoff retries, a dead-letter state for runs that exhaust retries, and a manual replay button in a minimal dashboard. Store both services' credentials encrypted at rest; use OAuth where the service supports it, or an API key where it doesn't. Do not build a visual workflow builder, a connector marketplace, or unreviewed user-submitted code execution — those are out of scope; this automates one specific pipeline between two services you named up front, and adding a third service means writing new code, not configuring an existing connector. Needs a domain to receive webhooks, and an OAuth app registration for whichever of the two services requires it.",
+  "faq": [
+    { "q": "Can I add a third service later without much work?", "a": "Not without writing more code — this build hardcodes a two-service pipeline rather than offering a general connector system. Adding a service means implementing its API calls yourself." },
+    { "q": "What happens if a run fails partway through?", "a": "It's marked failed and retried with backoff automatically; if retries are exhausted, it lands in a dead-letter state you can inspect and manually replay — nothing silently disappears." },
+    { "q": "Does it prevent duplicate actions if a webhook fires twice?", "a": "Yes — every run has an idempotency key, so a retried or duplicated trigger doesn't repeat an already-completed action step." },
+    { "q": "What does it cost to run?", "a": "Hosting plus a small Postgres and Redis instance — a few dollars a month for low-to-moderate volume, with no per-connector or per-task pricing the way Pipedream itself has." }
+  ]
+}

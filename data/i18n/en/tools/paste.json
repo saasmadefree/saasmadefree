@@ -1,0 +1,19 @@
+{
+  "tagline": "Local encrypted clipboard history for macOS",
+  "verdictSummary": "A clipboard history manager — keep the last N things you copied, searchable, pin the ones you reuse — is a small, well-scoped one-sitting build on macOS. What's genuinely harder to reproduce: iCloud sync across devices, rich previews for every content type, and years of edge-case handling for apps with unusual clipboard behavior.",
+  "coreLoopDIY": "Poll the system pasteboard for changes, store each new clipboard entry locally with a timestamp and source app, and surface a searchable, pinnable history through a global hotkey.",
+  "whatYouLose": [
+    "iCloud sync across Mac, iPhone, and iPad",
+    "rich previews for every file and color type",
+    "years of per-app pasteboard-quirk fixes",
+    "shared team pinboards"
+  ],
+  "whyPeopleStillPay": "The clipboard-history loop itself is simple; what's hard to fake is polish across every possible thing someone might copy, and having it just work identically on every Apple device.",
+  "prompt": "Build a macOS menu-bar clipboard-history manager. Poll NSPasteboard's change count (or use a lightweight polling loop) to detect new clipboard content, and store each entry — text, image, or file reference — locally in SQLite with a timestamp, source app name, and content type. Show history through a global hotkey (e.g. Cmd+Shift+V) as a searchable, keyboard-navigable list; pressing enter re-copies the selected entry to the pasteboard. Support pinning entries to a persistent pinboard that survives history expiration, and an expiration setting (e.g. auto-delete plain-text entries after N days, keep pinned ones forever). Encrypt the local SQLite database at rest using a key held in the macOS Keychain. Add a basic preview pane for text and images. Do not build iCloud sync, cross-device support, or a plugin system for third-party format handlers — those are out of scope. No account or API key needed; everything is local.",
+  "faq": [
+    { "q": "Is my clipboard history private?", "a": "It stays local and encrypted at rest with a key from the macOS Keychain — nothing is sent anywhere, since there's no sync feature in this build to send it through." },
+    { "q": "Will it capture passwords I copy from a password manager?", "a": "Yes, by default, since it watches the system pasteboard indiscriminately — add your password manager to an exclusion list, or manually clear sensitive entries, since automatic detection isn't built in here." },
+    { "q": "Does it sync between my Mac and iPhone?", "a": "No — that's the main thing this build gives up. Paste's iCloud sync across devices is real engineering this prompt doesn't attempt." },
+    { "q": "How far back does the history go?", "a": "As far as your configured retention setting and disk space allow — there's no hard cap beyond what you set, unlike some clipboard managers with fixed history limits." }
+  ]
+}

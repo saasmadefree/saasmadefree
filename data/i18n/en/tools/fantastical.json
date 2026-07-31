@@ -1,0 +1,19 @@
+{
+  "tagline": "A natural-language quick-entry tool for adding events to your calendar",
+  "verdictSummary": "Fantastical's actual signature feature — type 'Lunch with Sarah at 1pm tomorrow at Cafe Luna' and get a correctly parsed calendar event — is a genuinely fun, scoped weekend build using an existing natural-language date library. What doesn't survive: the native Mac/iOS app polish, widgets, and years of parsing edge cases across dozens of phrasings and languages.",
+  "coreLoopDIY": "Parse free-text event descriptions into structured calendar events — date, time, title, location — using a natural-language date/time library, and write them to a connected calendar via its API.",
+  "whatYouLose": [
+    "native Mac, iOS, and widget polish",
+    "parsing accuracy across edge-case phrasing and multiple languages",
+    "interactive scheduling proposals sent to other people",
+    "instant cross-device sync"
+  ],
+  "whyPeopleStillPay": "The parsing library does most of the work for free; the other part — the phrasing nobody thought to test, rendered instantly and correctly, on every device — is what years of a dedicated calendar app buys.",
+  "prompt": "Build a natural-language quick-entry calendar tool. Use a maintained NLP date-parsing library (e.g. chrono-node for JavaScript) rather than writing your own date parser — that's a genuinely hard problem not worth reinventing. Connect to Google Calendar via OAuth. Provide a single text input: the user types something like 'Dentist Tuesday 3pm' or 'Team sync every Monday 10am for 30 min', the parser extracts date, time, duration, recurrence, and title, and shows a confirmation preview (editable before saving) rather than silently guessing. Write confirmed events to the connected Google Calendar via its API. Add a simple today/this-week agenda view pulling from the same connected calendar. Keep a small library of example phrasings in the README so users learn what the parser handles well versus where it's likely to misfire — being upfront about parser limits is part of the honest build here, not a bug to hide. Do not build a native Mac/iOS app, multi-calendar-provider support, or interactive scheduling proposals sent to other people — this is a single-user, single-calendar quick-entry tool, nothing more. Needs a Google OAuth app (free to register) to read and write your calendar; no other external service required.",
+  "faq": [
+    { "q": "Will it understand every phrasing the way Fantastical does?", "a": "No — natural-language parsing libraries are good but not as tuned as Fantastical's years of refinement. The confirmation preview exists specifically so a misparse gets caught before it's saved, not after." },
+    { "q": "Does it work on iPhone?", "a": "Not as a native app — this build is a web tool. You could open it in mobile Safari, but you'd lose the native widgets and share-sheet integration Fantastical actually ships." },
+    { "q": "Can I send someone a scheduling link like Cal.com's?", "a": "No — that's a different feature this build doesn't include. This tool is for entering events into your own calendar quickly, not booking meetings with other people." },
+    { "q": "What does it cost to run?", "a": "Just hosting for a small web app — a few dollars a month at most, since the parsing library and Google Calendar API are both free to use at personal scale." }
+  ]
+}
