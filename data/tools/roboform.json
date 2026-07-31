@@ -1,0 +1,41 @@
+{
+  "slug": "roboform",
+  "name": "RoboForm",
+  "domains": [
+    "roboform.com"
+  ],
+  "category": "security",
+  "subcategory": "passwords, privacy and private networking",
+  "pricing": {
+    "amount": 2.49,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "annual-effective-monthly",
+    "source": "https://roboform.com/premium",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "security assurance, infrastructure, and trust",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Vaultwarden",
+      "url": "https://github.com/dani-garcia/vaultwarden"
+    }
+  ],
+  "relatedSlugs": [
+    "1password",
+    "keeper-password-manager",
+    "nordpass"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

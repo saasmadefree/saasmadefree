@@ -1,0 +1,44 @@
+{
+  "slug": "pumble",
+  "name": "Pumble",
+  "domains": [
+    "pumble.com"
+  ],
+  "category": "community",
+  "subcategory": "online communities and team communication",
+  "pricing": {
+    "amount": 2.99,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "per-seat-monthly",
+    "source": "https://pumble.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "network, moderation, and communication infrastructure",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Zulip",
+      "url": "https://github.com/zulip/zulip"
+    }
+  ],
+  "relatedSlugs": [
+    "slack-pro",
+    "mattermost-professional",
+    "circle"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

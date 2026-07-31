@@ -1,0 +1,44 @@
+{
+  "slug": "socialbee",
+  "name": "SocialBee",
+  "domains": [
+    "socialbee.com"
+  ],
+  "category": "social-media",
+  "subcategory": "social scheduling and content repurposing",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Accelerate",
+    "basis": "flat-monthly",
+    "source": "https://socialbee.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "API access, connector upkeep, and collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Postiz",
+      "url": "https://github.com/gitroomhq/postiz-app"
+    }
+  ],
+  "relatedSlugs": [
+    "publer",
+    "buffer",
+    "later"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

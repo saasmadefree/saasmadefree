@@ -1,0 +1,42 @@
+{
+  "slug": "smartsuite",
+  "name": "SmartSuite",
+  "domains": [
+    "smartsuite.com"
+  ],
+  "category": "databases",
+  "subcategory": "spreadsheet databases and operational data apps",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Team",
+    "basis": "per-seat-monthly",
+    "source": "https://smartsuite.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "data model flexibility, collaboration, and integrations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "NocoDB",
+      "url": "https://github.com/nocodb/nocodb"
+    }
+  ],
+  "relatedSlugs": [
+    "airtable",
+    "knack",
+    "quickbase"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

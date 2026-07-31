@@ -1,0 +1,43 @@
+{
+  "slug": "supernormal",
+  "name": "Supernormal",
+  "domains": [
+    "supernormal.com"
+  ],
+  "category": "meeting-notes",
+  "subcategory": "meeting transcription and AI notes",
+  "pricing": {
+    "amount": 18,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "per-seat-monthly",
+    "source": "https://supernormal.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "capture reliability, integrations, and collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "whisper.cpp",
+      "url": "https://github.com/ggerganov/whisper.cpp"
+    }
+  ],
+  "relatedSlugs": [
+    "sembly-ai",
+    "read-ai",
+    "fathom-ai"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

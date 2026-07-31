@@ -1,0 +1,43 @@
+{
+  "slug": "recall",
+  "name": "Recall",
+  "domains": [
+    "recall.wiki"
+  ],
+  "category": "read-it-later",
+  "subcategory": "read-later, bookmarks and RSS",
+  "pricing": {
+    "amount": 10,
+    "currency": "USD",
+    "plan": "Plus",
+    "basis": "flat-monthly",
+    "source": "https://recall.wiki/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "capture polish, sync, and content partnerships",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Logseq",
+      "url": "https://github.com/logseq/logseq"
+    }
+  ],
+  "relatedSlugs": [
+    "readwise-reader",
+    "matter",
+    "instapaper-premium"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

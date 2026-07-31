@@ -1,0 +1,41 @@
+{
+  "slug": "podcastle",
+  "name": "Podcastle",
+  "domains": [
+    "podcastle.ai"
+  ],
+  "category": "audio-video",
+  "subcategory": "podcast recording, cleanup and publishing",
+  "pricing": {
+    "amount": 14.99,
+    "currency": "USD",
+    "plan": "Storyteller",
+    "basis": "flat-monthly",
+    "source": "https://podcastle.ai/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "audio infrastructure, distribution, and production polish",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Audacity",
+      "url": "https://github.com/audacity/audacity"
+    }
+  ],
+  "relatedSlugs": [
+    "alitu",
+    "riverside",
+    "descript"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

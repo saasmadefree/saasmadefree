@@ -1,0 +1,42 @@
+{
+  "slug": "quickbase",
+  "name": "Quickbase",
+  "domains": [
+    "quickbase.com"
+  ],
+  "category": "databases",
+  "subcategory": "spreadsheet databases and operational data apps",
+  "pricing": {
+    "amount": 35,
+    "currency": "USD",
+    "plan": "Team",
+    "basis": "per-seat-monthly",
+    "source": "https://quickbase.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "data model flexibility, collaboration, and integrations",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Budibase",
+      "url": "https://github.com/Budibase/budibase"
+    }
+  ],
+  "relatedSlugs": [
+    "knack",
+    "caspio",
+    "smartsuite"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

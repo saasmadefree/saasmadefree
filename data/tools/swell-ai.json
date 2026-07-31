@@ -1,0 +1,41 @@
+{
+  "slug": "swell-ai",
+  "name": "Swell AI",
+  "domains": [
+    "swellai.com"
+  ],
+  "category": "audio-video",
+  "subcategory": "podcast recording, cleanup and publishing",
+  "pricing": {
+    "amount": 17,
+    "currency": "USD",
+    "plan": "Hobby",
+    "basis": "flat-monthly",
+    "source": "https://swellai.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "audio infrastructure, distribution, and production polish",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "whisper.cpp",
+      "url": "https://github.com/ggerganov/whisper.cpp"
+    }
+  ],
+  "relatedSlugs": [
+    "castmagic",
+    "podsqueeze",
+    "transistor-fm"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

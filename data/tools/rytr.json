@@ -1,0 +1,43 @@
+{
+  "slug": "rytr",
+  "name": "Rytr",
+  "domains": [
+    "rytr.me"
+  ],
+  "category": "ai-writing",
+  "subcategory": "AI drafting, research and content optimization",
+  "pricing": {
+    "amount": 9,
+    "currency": "USD",
+    "plan": "Unlimited",
+    "basis": "flat-monthly",
+    "source": "https://rytr.me/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "workflow, data, and model tuning",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "LibreChat",
+      "url": "https://github.com/danny-avila/LibreChat"
+    }
+  ],
+  "relatedSlugs": [
+    "copy-ai",
+    "writesonic",
+    "anyword"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

@@ -1539,6 +1539,13 @@
     "currency": "USD",
     "url": "/en/tools/plausible"
   },
+  "playground.com": {
+    "slug": "playground-ai",
+    "verdict": "no",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/playground-ai"
+  },
   "play.ht": {
     "slug": "playht",
     "verdict": "no",
@@ -1553,12 +1560,26 @@
     "currency": "USD",
     "url": "/en/tools/pocketsmith"
   },
+  "podcastle.ai": {
+    "slug": "podcastle",
+    "verdict": "kinda",
+    "amount": 14.99,
+    "currency": "USD",
+    "url": "/en/tools/podcastle"
+  },
   "podia.com": {
     "slug": "podia",
     "verdict": "kinda",
     "amount": 49,
     "currency": "USD",
     "url": "/en/tools/podia"
+  },
+  "podsqueeze.com": {
+    "slug": "podsqueeze",
+    "verdict": "kinda",
+    "amount": 18,
+    "currency": "USD",
+    "url": "/en/tools/podsqueeze"
   },
   "post-bridge.com": {
     "slug": "post-bridge",
@@ -1601,6 +1622,20 @@
     "amount": 12,
     "currency": "USD",
     "url": "/en/tools/publer"
+  },
+  "pumble.com": {
+    "slug": "pumble",
+    "verdict": "kinda",
+    "amount": 2.99,
+    "currency": "USD",
+    "url": "/en/tools/pumble"
+  },
+  "quickbase.com": {
+    "slug": "quickbase",
+    "verdict": "no",
+    "amount": 35,
+    "currency": "USD",
+    "url": "/en/tools/quickbase"
   },
   "quickbooks.intuit.com": {
     "slug": "quickbooks-online",
@@ -1672,6 +1707,13 @@
     "currency": "USD",
     "url": "/en/tools/readwise-reader"
   },
+  "recall.wiki": {
+    "slug": "recall",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/recall"
+  },
   "reclaim.ai": {
     "slug": "reclaim-ai",
     "verdict": "kinda",
@@ -1692,6 +1734,13 @@
     "amount": 1,
     "currency": "USD",
     "url": "/en/tools/reeder"
+  },
+  "reform.app": {
+    "slug": "reform",
+    "verdict": "yes",
+    "amount": 35,
+    "currency": "USD",
+    "url": "/en/tools/reform"
   },
   "relay.app": {
     "slug": "relay-app",
@@ -1728,6 +1777,13 @@
     "currency": "USD",
     "url": "/en/tools/riverside"
   },
+  "roboform.com": {
+    "slug": "roboform",
+    "verdict": "no",
+    "amount": 2.49,
+    "currency": "USD",
+    "url": "/en/tools/roboform"
+  },
   "routine.co": {
     "slug": "routine",
     "verdict": "kinda",
@@ -1749,12 +1805,26 @@
     "currency": "USD",
     "url": "/en/tools/runway"
   },
+  "rytr.me": {
+    "slug": "rytr",
+    "verdict": "kinda",
+    "amount": 9,
+    "currency": "USD",
+    "url": "/en/tools/rytr"
+  },
   "savvycal.com": {
     "slug": "savvycal",
     "verdict": "kinda",
     "amount": 12,
     "currency": "USD",
     "url": "/en/tools/savvycal"
+  },
+  "scalenut.com": {
+    "slug": "scalenut",
+    "verdict": "kinda",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/scalenut"
   },
   "screamingfrog.co.uk": {
     "slug": "screaming-frog-seo-spider",
@@ -1777,6 +1847,13 @@
     "currency": "USD",
     "url": "/en/tools/se-ranking"
   },
+  "cloud.seatable.io": {
+    "slug": "seatable-cloud",
+    "verdict": "kinda",
+    "amount": 8,
+    "currency": "USD",
+    "url": "/en/tools/seatable-cloud"
+  },
   "sellfy.com": {
     "slug": "sellfy",
     "verdict": "kinda",
@@ -1784,12 +1861,40 @@
     "currency": "USD",
     "url": "/en/tools/sellfy"
   },
+  "sembly.ai": {
+    "slug": "sembly-ai",
+    "verdict": "kinda",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/sembly-ai"
+  },
   "semrush.com": {
     "slug": "semrush",
     "verdict": "no",
     "amount": 139.95,
     "currency": "USD",
     "url": "/en/tools/semrush"
+  },
+  "sendspark.com": {
+    "slug": "sendspark",
+    "verdict": "kinda",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/sendspark"
+  },
+  "seobility.net": {
+    "slug": "seobility",
+    "verdict": "kinda",
+    "amount": 49.9,
+    "currency": "USD",
+    "url": "/en/tools/seobility"
+  },
+  "serpstat.com": {
+    "slug": "serpstat",
+    "verdict": "no",
+    "amount": 69,
+    "currency": "USD",
+    "url": "/en/tools/serpstat"
   },
   "setapp.com": {
     "slug": "setapp",
@@ -1847,6 +1952,27 @@
     "currency": "USD",
     "url": "/en/tools/slite"
   },
+  "smartsuite.com": {
+    "slug": "smartsuite",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/smartsuite"
+  },
+  "snappa.com": {
+    "slug": "snappa",
+    "verdict": "kinda",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/snappa"
+  },
+  "socialbee.com": {
+    "slug": "socialbee",
+    "verdict": "kinda",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/socialbee"
+  },
   "softr.io": {
     "slug": "softr",
     "verdict": "kinda",
@@ -1881,6 +2007,20 @@
     "amount": 25,
     "currency": "USD",
     "url": "/en/tools/squarespace"
+  },
+  "stackby.com": {
+    "slug": "stackby",
+    "verdict": "kinda",
+    "amount": 5,
+    "currency": "USD",
+    "url": "/en/tools/stackby"
+  },
+  "structured.app": {
+    "slug": "structured",
+    "verdict": "yes",
+    "amount": 2.99,
+    "currency": "USD",
+    "url": "/en/tools/structured"
   },
   "sudowrite.com": {
     "slug": "sudowrite",
@@ -1917,6 +2057,20 @@
     "currency": "USD",
     "url": "/en/tools/superhuman"
   },
+  "supernormal.com": {
+    "slug": "supernormal",
+    "verdict": "kinda",
+    "amount": 18,
+    "currency": "USD",
+    "url": "/en/tools/supernormal"
+  },
+  "supernotes.app": {
+    "slug": "supernotes",
+    "verdict": "yes",
+    "amount": 11,
+    "currency": "USD",
+    "url": "/en/tools/supernotes"
+  },
   "superscribe.io": {
     "slug": "superscribe",
     "verdict": "kinda",
@@ -1952,12 +2106,26 @@
     "currency": "USD",
     "url": "/en/tools/surveymonkey"
   },
+  "swellai.com": {
+    "slug": "swell-ai",
+    "verdict": "kinda",
+    "amount": 17,
+    "currency": "USD",
+    "url": "/en/tools/swell-ai"
+  },
   "synthesia.io": {
     "slug": "synthesia",
     "verdict": "no",
     "amount": 29,
     "currency": "USD",
     "url": "/en/tools/synthesia"
+  },
+  "tabnine.com": {
+    "slug": "tabnine",
+    "verdict": "no",
+    "amount": 9,
+    "currency": "USD",
+    "url": "/en/tools/tabnine"
   },
   "tactiq.io": {
     "slug": "tactiq",
@@ -1972,6 +2140,13 @@
     "amount": 29,
     "currency": "USD",
     "url": "/en/tools/tally"
+  },
+  "tango.us": {
+    "slug": "tango",
+    "verdict": "kinda",
+    "amount": 24,
+    "currency": "USD",
+    "url": "/en/tools/tango"
   },
   "taplio.com": {
     "slug": "taplio",

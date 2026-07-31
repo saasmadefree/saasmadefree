@@ -1,0 +1,42 @@
+{
+  "slug": "seatable-cloud",
+  "name": "SeaTable Cloud",
+  "domains": [
+    "cloud.seatable.io"
+  ],
+  "category": "databases",
+  "subcategory": "spreadsheet databases and operational data apps",
+  "pricing": {
+    "amount": 8,
+    "currency": "USD",
+    "plan": "Plus",
+    "basis": "per-seat-monthly",
+    "source": "https://seatable.io/en/prices/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "data model flexibility, collaboration, and integrations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "SeaTable",
+      "url": "https://github.com/seatable/seatable"
+    }
+  ],
+  "relatedSlugs": [
+    "baserow-cloud",
+    "nocodb-cloud",
+    "stackby"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

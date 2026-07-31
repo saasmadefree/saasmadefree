@@ -1,0 +1,41 @@
+{
+  "slug": "supernotes",
+  "name": "Supernotes",
+  "domains": [
+    "supernotes.app"
+  ],
+  "category": "notes-knowledge",
+  "subcategory": "notes, wikis and personal knowledge bases",
+  "pricing": {
+    "amount": 11,
+    "currency": "USD",
+    "plan": "Unlimited",
+    "basis": "flat-monthly",
+    "source": "https://supernotes.app/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "sync, collaboration, and capture polish",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Joplin",
+      "url": "https://github.com/laurent22/joplin"
+    }
+  ],
+  "relatedSlugs": [
+    "craft",
+    "bear-pro",
+    "capacities"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

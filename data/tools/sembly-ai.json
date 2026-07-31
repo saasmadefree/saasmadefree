@@ -1,0 +1,43 @@
+{
+  "slug": "sembly-ai",
+  "name": "Sembly AI",
+  "domains": [
+    "sembly.ai"
+  ],
+  "category": "meeting-notes",
+  "subcategory": "meeting transcription and AI notes",
+  "pricing": {
+    "amount": 15,
+    "currency": "USD",
+    "plan": "Professional",
+    "basis": "flat-monthly",
+    "source": "https://sembly.ai/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "capture reliability, integrations, and collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "whisper.cpp",
+      "url": "https://github.com/ggerganov/whisper.cpp"
+    }
+  ],
+  "relatedSlugs": [
+    "supernormal",
+    "meetgeek",
+    "avoma"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "structured",
+  "name": "Structured",
+  "domains": [
+    "structured.app"
+  ],
+  "category": "tasks",
+  "subcategory": "personal tasks, routines and daily planning",
+  "pricing": {
+    "amount": 2.99,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://structured.app/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "cross-device reliability and workflow polish",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Super Productivity",
+      "url": "https://github.com/johannesjo/super-productivity"
+    }
+  ],
+  "relatedSlugs": [
+    "sunsama",
+    "akiflow",
+    "routine"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

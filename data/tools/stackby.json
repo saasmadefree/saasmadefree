@@ -1,0 +1,42 @@
+{
+  "slug": "stackby",
+  "name": "Stackby",
+  "domains": [
+    "stackby.com"
+  ],
+  "category": "databases",
+  "subcategory": "spreadsheet databases and operational data apps",
+  "pricing": {
+    "amount": 5,
+    "currency": "USD",
+    "plan": "Personal",
+    "basis": "flat-monthly",
+    "source": "https://stackby.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "data model flexibility, collaboration, and integrations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Baserow",
+      "url": "https://github.com/bramw/baserow"
+    }
+  ],
+  "relatedSlugs": [
+    "airtable",
+    "seatable-cloud",
+    "rows"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

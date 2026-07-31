@@ -1,0 +1,41 @@
+{
+  "slug": "snappa",
+  "name": "Snappa",
+  "domains": [
+    "snappa.com"
+  ],
+  "category": "design",
+  "subcategory": "visual design and presentations",
+  "pricing": {
+    "amount": 15,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://snappa.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "editor polish, assets, collaboration, and distribution",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Penpot",
+      "url": "https://github.com/penpot/penpot"
+    }
+  ],
+  "relatedSlugs": [
+    "canva",
+    "adobe-express",
+    "kittl"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

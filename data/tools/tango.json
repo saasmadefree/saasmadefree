@@ -1,0 +1,35 @@
+{
+  "slug": "tango",
+  "name": "Tango",
+  "domains": [
+    "tango.us"
+  ],
+  "category": "screen-recording",
+  "subcategory": "screen recording, walkthroughs and product demos",
+  "pricing": {
+    "amount": 24,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://tango.us/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "capture polish, hosting, and collaboration",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "relatedSlugs": [
+    "scribe",
+    "guidde",
+    "arcade"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

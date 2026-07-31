@@ -1,0 +1,41 @@
+{
+  "slug": "podsqueeze",
+  "name": "Podsqueeze",
+  "domains": [
+    "podsqueeze.com"
+  ],
+  "category": "audio-video",
+  "subcategory": "podcast recording, cleanup and publishing",
+  "pricing": {
+    "amount": 18,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://podsqueeze.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "audio infrastructure, distribution, and production polish",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "whisper.cpp",
+      "url": "https://github.com/ggerganov/whisper.cpp"
+    }
+  ],
+  "relatedSlugs": [
+    "castmagic",
+    "swell-ai",
+    "buzzsprout"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

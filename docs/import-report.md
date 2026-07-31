@@ -2042,3 +2042,104 @@ Site écrit dans dist/ — 2 langue(s), 430 fiche(s), 66 page(s) de catégorie, 
 
 `git status` before staging: only the 25×2 new data files plus `extension/data/index.json`. No
 script change needed. 60 mapped-pool entries remain.
+
+## Batch 9 — 25 tools, ranks 77–101 of the remaining mapped pool (315 → 340)
+
+**Four verdict changes, all the same check, all away from `yes`:** `podsqueeze`, `rytr`,
+`snappa` and `swell-ai` all arrived as `yes` with `diyTimeEstimate: multi-day`. Against
+CONTRIBUTING's "in one sitting" definition that fails on its face, and none is the
+hosted-open-source exception. → `kinda`. That brings the running total of this kind of
+correction to twelve across batches 6–9 (`lex`, `tactiq`, `typedream`, `hyperwrite`, plus these
+four, plus batch 5's `buttondown` and `jenni-ai`). Every one moved *toward* `no`, and every one
+was found by applying the contract's own wording rather than by judging the entry afresh.
+
+`reform`, `structured` and `supernotes` were checked identically and correctly stayed at `yes`:
+each is a genuinely one-sitting local build with no third-party dependency in the loop.
+
+**Verdict mix: 3 yes / 17 kinda / 5 no.** Selected by rank.
+
+### Differentiation, where it was hardest this batch
+
+Four `databases` entries landed in one window, on top of seven already in the catalogue. Each
+got a distinct engineering problem rather than a reskinned grid:
+
+- `quickbase` — **field-level permissions enforced at the query layer**, with tests required for
+  all five leak paths (interface, API, export, search, audit log). The prompt is explicit that
+  filtering in the interface is how this feature always leaks.
+- `seatable-cloud` — **row scale**: an Airtable-shaped grid over a columnar store (DuckDB over
+  Parquet) with a required benchmark command reporting timings at one, ten and a hundred million
+  rows, published in the README.
+- `smartsuite` — **an enforced state machine per table**: declared transitions, required fields
+  per transition, and rejection in the API and the CSV import path as well as the interface,
+  with cycle-time metrics falling out of the transition history.
+- `stackby` — **API-backed columns at table scale**, which is a different problem from the
+  spreadsheet version this catalogue already covers (`rows`): shared token-bucket rate limiting
+  across a connection, per-cell staleness state, quota projection before a bulk refresh. The
+  prompt names the existing `rows` entry and says which is the better fit under a few hundred
+  rows.
+
+Other groups: two meeting-notes entries split into typed queryable records with a mandatory
+review gate and cross-meeting deduplication (`sembly-ai`) versus user-authored templates with a
+per-section extraction instruction and an explicit empty marker so a section never invents
+content (`supernormal`). Three podcast entries split into multi-track restoration for speakers
+recorded in different rooms (`podcastle`), embedding-based chapter *segmentation* with titling
+only after boundaries are computed mechanically (`podsqueeze`), and a structured transcript page
+with validated `PodcastEpisode` JSON-LD (`swell-ai`) — deliberately distinct from the existing
+`castmagic` repurposing entry. Two screen-recording entries: bulk personalised opening frames
+from a CSV (`sendspark`) versus a live overlay walkthrough with a layered locator strategy
+(`tango`), since the existing `scribe` entry already covers click-to-static-guide.
+
+### Two entries where the honest answer shaped the prompt
+
+- **`serpstat`** — competitor keyword research is the clearest case in the whole catalogue of a
+  product where the code is irrelevant. Rather than pretend, the prompt builds a merge-and-compare
+  workspace over exports the user *already has*, with provenance and staleness marked on every
+  set, and states plainly that the tool answers nothing about a domain you have no export for.
+- **`sendspark`** — bulk personalised video is one step from bulk unsolicited email. The prompt
+  generates links and never sends anything, holds no mailing list, imports no contacts, caps the
+  batch at 50 behind an explicit acknowledgement, and stores only an open count with no IP, user
+  agent or location. Those constraints are written into the build, not left as advice.
+
+### `priorArt`
+
+Fifteen corrected, three dropped. Notable corrections where upstream's citation described a
+different kind of software entirely: `podsqueeze` and `swell-ai` (Audacity, an audio editor, for
+two tools that do no audio editing → whisper.cpp), `pumble` (Discourse, a forum → Zulip),
+`recall` (FreshRSS → Logseq), `mailbird`-style repeats avoided by giving `quickbase` Budibase,
+`stackby` Baserow and `seatable-cloud` SeaTable's own community edition. `structured` moved from
+Vikunja (used by `anydo`) to Super Productivity, which actually does time-boxing. Dropped:
+`scalenut`, `serpstat` and `tango` — SerpBear, Open WebUI and Cap no longer match the rewritten
+prompts and no confident replacement exists.
+
+### `requirements[]` and `relatedSlugs`
+
+21 of 25 `requirements[]` lists corrected against the rewritten prompt. `tabnine` moved from
+`[anthropic-api-key, openai-api-key]` to `[hosting]` — the whole point of the rewrite is that
+the model runs locally, so an API key would contradict the build. `roboform` and `snappa` stayed
+at `[none]` deliberately.
+
+One validation catch worth recording: `pumble`'s hand-assigned `relatedSlugs` included `twist`,
+which is in batch 10 and not yet on disk. `npm run validate` rejected it before the build ran —
+exactly the check working as intended. Repointed to `circle`.
+
+### Verification
+
+```
+$ npm run validate
+340 fiche(s), 455 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  175 passed (175)
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run build
+Feed écrit dans dist/feed/v1/ — 340 outil(s).
+Site écrit dans dist/ — 2 langue(s), 455 fiche(s), 66 page(s) de catégorie, 527 URL(s) dans le sitemap.
+```
+
+`git status` before staging: the 25×2 new data files plus `extension/data/index.json`. No script
+change. 35 mapped-pool entries remain.

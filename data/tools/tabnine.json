@@ -1,0 +1,41 @@
+{
+  "slug": "tabnine",
+  "name": "Tabnine",
+  "domains": [
+    "tabnine.com"
+  ],
+  "category": "dev-tools",
+  "subcategory": "AI coding agents and developer workspaces",
+  "pricing": {
+    "amount": 9,
+    "currency": "USD",
+    "plan": "Dev",
+    "basis": "per-seat-monthly",
+    "source": "https://tabnine.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "frontier models, context infrastructure, and execution safety",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Continue",
+      "url": "https://github.com/continuedev/continue"
+    }
+  ],
+  "relatedSlugs": [
+    "github-copilot",
+    "cursor",
+    "windsurf"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}
