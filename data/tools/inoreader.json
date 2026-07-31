@@ -4,7 +4,7 @@
   "domains": [
     "inoreader.com"
   ],
-  "category": "rss-research",
+  "category": "read-it-later",
   "subcategory": "RSS reader + monitoring",
   "pricing": {
     "amount": 9.99,

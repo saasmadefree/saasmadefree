@@ -1,46 +1,398 @@
 {
-  "docs-and-wiki": { "emoji": "📄", "label": { "en": "Docs & wikis", "fr": "Docs et wikis" } },
-  "scheduling": { "emoji": "📅", "label": { "en": "Scheduling", "fr": "Planification" } },
-  "forms-and-surveys": { "emoji": "📝", "label": { "en": "Forms & surveys", "fr": "Formulaires et sondages" } },
-  "security": { "emoji": "🔐", "label": { "en": "Security & passwords", "fr": "Sécurité et mots de passe", "es": "Seguridad y contraseñas", "de": "Sicherheit & Passwörter", "it": "Sicurezza e password", "pt": "Segurança e senhas", "nl": "Beveiliging en wachtwoorden" } },
-  "seo-marketing": { "emoji": "📈", "label": { "en": "SEO & marketing", "fr": "SEO et marketing", "es": "SEO y marketing", "de": "SEO & Marketing", "it": "SEO e marketing", "pt": "SEO e marketing", "nl": "SEO en marketing" } },
-  "databases": { "emoji": "🗄️", "label": { "en": "Databases", "fr": "Bases de données", "es": "Bases de datos", "de": "Datenbanken", "it": "Database", "pt": "Bancos de dados", "nl": "Databases" } },
-  "newsletter": { "emoji": "✉️", "label": { "en": "Newsletters", "fr": "Newsletters", "es": "Boletines", "de": "Newsletter", "it": "Newsletter", "pt": "Newsletters", "nl": "Nieuwsbrieven" } },
-  "no-code-apps": { "emoji": "🧩", "label": { "en": "No-code apps", "fr": "Applications no-code", "es": "Aplicaciones sin código", "de": "No-Code-Apps", "it": "App no-code", "pt": "Aplicativos no-code", "nl": "No-code-apps" } },
-  "social-media": { "emoji": "📣", "label": { "en": "Social media", "fr": "Réseaux sociaux", "es": "Redes sociales", "de": "Soziale Medien", "it": "Social media", "pt": "Redes sociais", "nl": "Sociale media" } },
-  "design": { "emoji": "🎨", "label": { "en": "Design", "fr": "Design", "es": "Diseño", "de": "Design", "it": "Design", "pt": "Design", "nl": "Design" } },
-  "website-builder": { "emoji": "🧱", "label": { "en": "Website builders", "fr": "Créateurs de sites", "es": "Creadores de sitios web", "de": "Website-Baukästen", "it": "Creatori di siti web", "pt": "Criadores de sites", "nl": "Website-bouwers" } },
-  "ai-assistant": { "emoji": "🤖", "label": { "en": "AI assistants", "fr": "Assistants IA", "es": "Asistentes de IA", "de": "KI-Assistenten", "it": "Assistenti IA", "pt": "Assistentes de IA", "nl": "AI-assistenten" } },
-  "dev-tools": { "emoji": "🛠️", "label": { "en": "Developer tools", "fr": "Outils pour développeurs", "es": "Herramientas para desarrolladores", "de": "Entwickler-Tools", "it": "Strumenti per sviluppatori", "pt": "Ferramentas para desenvolvedores", "nl": "Ontwikkelaarstools" } },
-  "ai-audio": { "emoji": "🎙️", "label": { "en": "AI audio & voice", "fr": "Audio et voix IA", "es": "Audio y voz con IA", "de": "KI-Audio & Stimme", "it": "Audio e voce IA", "pt": "Áudio e voz com IA", "nl": "AI-audio en stem" } },
-  "rss-research": { "emoji": "📰", "label": { "en": "RSS & research", "fr": "RSS et veille", "es": "RSS e investigación", "de": "RSS & Recherche", "it": "RSS e ricerca", "pt": "RSS e pesquisa", "nl": "RSS en onderzoek" } },
-  "presentations": { "emoji": "📽️", "label": { "en": "Presentations", "fr": "Présentations", "es": "Presentaciones", "de": "Präsentationen", "it": "Presentazioni", "pt": "Apresentações", "nl": "Presentaties" } },
-  "publishing": { "emoji": "🖋️", "label": { "en": "Publishing", "fr": "Publication", "es": "Publicación", "de": "Publizieren", "it": "Pubblicazione", "pt": "Publicação", "nl": "Publiceren" } },
-  "ai-writing": { "emoji": "✍️", "label": { "en": "AI writing", "fr": "Écriture IA", "es": "Escritura con IA", "de": "KI-Schreiben", "it": "Scrittura IA", "pt": "Escrita com IA", "nl": "AI-schrijven" } },
-  "meeting-notes": { "emoji": "🗒️", "label": { "en": "Meeting notes", "fr": "Notes de réunion", "es": "Notas de reuniones", "de": "Meeting-Notizen", "it": "Note delle riunioni", "pt": "Notas de reunião", "nl": "Vergadernotities" } },
-  "email": { "emoji": "📧", "label": { "en": "Email", "fr": "Email", "es": "Correo electrónico", "de": "E-Mail", "it": "Email", "pt": "Email", "nl": "E-mail" } },
-  "finance-accounting": { "emoji": "🧾", "label": { "en": "Finance & accounting", "fr": "Finance et comptabilité", "es": "Finanzas y contabilidad", "de": "Finanzen & Buchhaltung", "it": "Finanza e contabilità", "pt": "Finanças e contabilidade", "nl": "Financiën en boekhouding" } },
-  "creator-commerce": { "emoji": "🎓", "label": { "en": "Creator commerce", "fr": "Commerce pour créateurs", "es": "Comercio para creadores", "de": "Creator-Commerce", "it": "Commercio per creator", "pt": "Comércio para criadores", "nl": "Creator-commerce" } },
-  "ai-image": { "emoji": "🖼️", "label": { "en": "AI image generation", "fr": "Génération d'images IA", "es": "Generación de imágenes con IA", "de": "KI-Bildgenerierung", "it": "Generazione di immagini IA", "pt": "Geração de imagens com IA", "nl": "AI-beeldgeneratie" } },
-  "automation": { "emoji": "⚙️", "label": { "en": "Automation", "fr": "Automatisation", "es": "Automatización", "de": "Automatisierung", "it": "Automazione", "pt": "Automação", "nl": "Automatisering" } },
-  "ai-search": { "emoji": "🔎", "label": { "en": "AI search", "fr": "Recherche IA", "es": "Búsqueda con IA", "de": "KI-Suche", "it": "Ricerca IA", "pt": "Busca com IA", "nl": "AI-zoeken" } },
-  "analytics": { "emoji": "📊", "label": { "en": "Analytics", "fr": "Analytique", "es": "Analítica", "de": "Analytics", "it": "Analitica", "pt": "Análise de dados", "nl": "Analytics" } },
-  "bookmarks": { "emoji": "🔖", "label": { "en": "Bookmarks & read-it-later", "fr": "Favoris et lecture différée", "es": "Marcadores y lectura diferida", "de": "Lesezeichen & Später lesen", "it": "Segnalibri e lettura differita", "pt": "Favoritos e leitura posterior", "nl": "Bladwijzers en later lezen" } },
-  "ai-video": { "emoji": "🎬", "label": { "en": "AI video generation", "fr": "Génération de vidéos IA", "es": "Generación de vídeo con IA", "de": "KI-Videogenerierung", "it": "Generazione video IA", "pt": "Geração de vídeo com IA", "nl": "AI-videogeneratie" } },
-  "commerce": { "emoji": "🛒", "label": { "en": "E-commerce", "fr": "E-commerce", "es": "Comercio electrónico", "de": "E-Commerce", "it": "E-commerce", "pt": "E-commerce", "nl": "E-commerce" } },
-  "voice-dictation": { "emoji": "🎤", "label": { "en": "Voice dictation", "fr": "Dictée vocale", "es": "Dictado por voz", "de": "Sprachdiktat", "it": "Dettatura vocale", "pt": "Ditado por voz", "nl": "Spraakdictaat" } },
-  "forms": { "emoji": "📋", "label": { "en": "Forms", "fr": "Formulaires", "es": "Formularios", "de": "Formulare", "it": "Moduli", "pt": "Formulários", "nl": "Formulieren" } },
-  "tasks": { "emoji": "✅", "label": { "en": "Tasks & to-dos", "fr": "Tâches", "es": "Tareas", "de": "Aufgaben", "it": "Attività", "pt": "Tarefas", "nl": "Taken" } },
-  "hosting": { "emoji": "☁️", "label": { "en": "Hosting & deployment", "fr": "Hébergement et déploiement", "es": "Alojamiento y despliegue", "de": "Hosting & Deployment", "it": "Hosting e deployment", "pt": "Hospedagem e implantação", "nl": "Hosting en deployment" } },
-  "personal-finance": { "emoji": "💰", "label": { "en": "Personal finance", "fr": "Finances personnelles", "es": "Finanzas personales", "de": "Persönliche Finanzen", "it": "Finanza personale", "pt": "Finanças pessoais", "nl": "Persoonlijke financiën" } },
-  "tasks-calendar": { "emoji": "🗓️", "label": { "en": "Tasks & calendar", "fr": "Tâches et agenda", "es": "Tareas y calendario", "de": "Aufgaben & Kalender", "it": "Attività e calendario", "pt": "Tarefas e agenda", "nl": "Taken en agenda" } },
-  "audio-video": { "emoji": "🎞️", "label": { "en": "Audio & video editing", "fr": "Montage audio et vidéo", "es": "Edición de audio y vídeo", "de": "Audio- & Videobearbeitung", "it": "Editing audio e video", "pt": "Edição de áudio e vídeo", "nl": "Audio- en videobewerking" } },
-  "community": { "emoji": "👥", "label": { "en": "Community platforms", "fr": "Plateformes communautaires", "es": "Plataformas de comunidad", "de": "Community-Plattformen", "it": "Piattaforme di community", "pt": "Plataformas de comunidade", "nl": "Communityplatforms" } },
-  "docs-databases": { "emoji": "📔", "label": { "en": "Docs & databases", "fr": "Docs et bases de données", "es": "Documentos y bases de datos", "de": "Docs & Datenbanken", "it": "Documenti e database", "pt": "Documentos e bancos de dados", "nl": "Documenten en databases" } },
-  "notes-knowledge": { "emoji": "🧠", "label": { "en": "Notes & knowledge management", "fr": "Notes et gestion des connaissances", "es": "Notas y gestión del conocimiento", "de": "Notizen & Wissensmanagement", "it": "Note e gestione della conoscenza", "pt": "Notas e gestão do conhecimento", "nl": "Notities en kennisbeheer" } },
-  "screen-recording": { "emoji": "🎥", "label": { "en": "Screen recording", "fr": "Enregistrement d'écran", "es": "Grabación de pantalla", "de": "Bildschirmaufnahme", "it": "Registrazione dello schermo", "pt": "Gravação de tela", "nl": "Schermopname" } },
-  "whiteboard": { "emoji": "📐", "label": { "en": "Whiteboards & diagrams", "fr": "Tableaux blancs et diagrammes", "es": "Pizarras y diagramas", "de": "Whiteboards & Diagramme", "it": "Lavagne e diagrammi", "pt": "Quadros brancos e diagramas", "nl": "Whiteboards en diagrammen" } },
-  "productivity-utilities": { "emoji": "🧰", "label": { "en": "Productivity utilities", "fr": "Utilitaires de productivité", "es": "Utilidades de productividad", "de": "Produktivitäts-Tools", "it": "Strumenti di produttività", "pt": "Utilitários de produtividade", "nl": "Productiviteitshulpmiddelen" } },
-  "read-it-later": { "emoji": "📖", "label": { "en": "Read it later", "fr": "Lecture différée", "es": "Leer más tarde", "de": "Später lesen", "it": "Leggi più tardi", "pt": "Ler mais tarde", "nl": "Later lezen" } },
-  "diagrams": { "emoji": "🔷", "label": { "en": "Diagrams & flowcharts", "fr": "Diagrammes et organigrammes", "es": "Diagramas y organigramas", "de": "Diagramme & Flussdiagramme", "it": "Diagrammi e flowchart", "pt": "Diagramas e fluxogramas", "nl": "Diagrammen en stroomschema's" } }
+  "scheduling": {
+    "emoji": "📅",
+    "label": {
+      "en": "Scheduling",
+      "fr": "Planification",
+      "es": "Programación de citas",
+      "de": "Terminplanung",
+      "it": "Pianificazione appuntamenti",
+      "pt": "Agendamento",
+      "nl": "Afsprakenplanning"
+    }
+  },
+  "security": {
+    "emoji": "🔐",
+    "label": {
+      "en": "Security & passwords",
+      "fr": "Sécurité et mots de passe",
+      "es": "Seguridad y contraseñas",
+      "de": "Sicherheit & Passwörter",
+      "it": "Sicurezza e password",
+      "pt": "Segurança e senhas",
+      "nl": "Beveiliging en wachtwoorden"
+    }
+  },
+  "seo-marketing": {
+    "emoji": "📈",
+    "label": {
+      "en": "SEO & marketing",
+      "fr": "SEO et marketing",
+      "es": "SEO y marketing",
+      "de": "SEO & Marketing",
+      "it": "SEO e marketing",
+      "pt": "SEO e marketing",
+      "nl": "SEO en marketing"
+    }
+  },
+  "databases": {
+    "emoji": "🗄️",
+    "label": {
+      "en": "Databases",
+      "fr": "Bases de données",
+      "es": "Bases de datos",
+      "de": "Datenbanken",
+      "it": "Database",
+      "pt": "Bancos de dados",
+      "nl": "Databases"
+    }
+  },
+  "newsletter": {
+    "emoji": "✉️",
+    "label": {
+      "en": "Newsletters & publishing",
+      "fr": "Newsletters et publication",
+      "es": "Boletines y publicación",
+      "de": "Newsletter & Publizieren",
+      "it": "Newsletter e pubblicazione",
+      "pt": "Newsletters e publicação",
+      "nl": "Nieuwsbrieven en publiceren"
+    }
+  },
+  "no-code-apps": {
+    "emoji": "🧩",
+    "label": {
+      "en": "No-code apps",
+      "fr": "Applications no-code",
+      "es": "Aplicaciones sin código",
+      "de": "No-Code-Apps",
+      "it": "App no-code",
+      "pt": "Aplicativos no-code",
+      "nl": "No-code-apps"
+    }
+  },
+  "social-media": {
+    "emoji": "📣",
+    "label": {
+      "en": "Social media",
+      "fr": "Réseaux sociaux",
+      "es": "Redes sociales",
+      "de": "Soziale Medien",
+      "it": "Social media",
+      "pt": "Redes sociais",
+      "nl": "Sociale media"
+    }
+  },
+  "design": {
+    "emoji": "🎨",
+    "label": {
+      "en": "Design",
+      "fr": "Design",
+      "es": "Diseño",
+      "de": "Design",
+      "it": "Design",
+      "pt": "Design",
+      "nl": "Design"
+    }
+  },
+  "website-builder": {
+    "emoji": "🧱",
+    "label": {
+      "en": "Website builders",
+      "fr": "Créateurs de sites",
+      "es": "Creadores de sitios web",
+      "de": "Website-Baukästen",
+      "it": "Creatori di siti web",
+      "pt": "Criadores de sites",
+      "nl": "Website-bouwers"
+    }
+  },
+  "ai-assistant": {
+    "emoji": "🤖",
+    "label": {
+      "en": "AI assistants",
+      "fr": "Assistants IA",
+      "es": "Asistentes de IA",
+      "de": "KI-Assistenten",
+      "it": "Assistenti IA",
+      "pt": "Assistentes de IA",
+      "nl": "AI-assistenten"
+    }
+  },
+  "dev-tools": {
+    "emoji": "🛠️",
+    "label": {
+      "en": "Developer tools",
+      "fr": "Outils pour développeurs",
+      "es": "Herramientas para desarrolladores",
+      "de": "Entwickler-Tools",
+      "it": "Strumenti per sviluppatori",
+      "pt": "Ferramentas para desenvolvedores",
+      "nl": "Ontwikkelaarstools"
+    }
+  },
+  "ai-audio": {
+    "emoji": "🎙️",
+    "label": {
+      "en": "AI audio & video generation",
+      "fr": "Audio et vidéo IA",
+      "es": "Audio y vídeo con IA",
+      "de": "KI-Audio & Video",
+      "it": "Audio e video IA",
+      "pt": "Áudio e vídeo com IA",
+      "nl": "AI-audio en video"
+    }
+  },
+  "presentations": {
+    "emoji": "📽️",
+    "label": {
+      "en": "Presentations",
+      "fr": "Présentations",
+      "es": "Presentaciones",
+      "de": "Präsentationen",
+      "it": "Presentazioni",
+      "pt": "Apresentações",
+      "nl": "Presentaties"
+    }
+  },
+  "ai-writing": {
+    "emoji": "✍️",
+    "label": {
+      "en": "AI writing",
+      "fr": "Écriture IA",
+      "es": "Escritura con IA",
+      "de": "KI-Schreiben",
+      "it": "Scrittura IA",
+      "pt": "Escrita com IA",
+      "nl": "AI-schrijven"
+    }
+  },
+  "meeting-notes": {
+    "emoji": "🗒️",
+    "label": {
+      "en": "Meeting notes",
+      "fr": "Notes de réunion",
+      "es": "Notas de reuniones",
+      "de": "Meeting-Notizen",
+      "it": "Note delle riunioni",
+      "pt": "Notas de reunião",
+      "nl": "Vergadernotities"
+    }
+  },
+  "email": {
+    "emoji": "📧",
+    "label": {
+      "en": "Email",
+      "fr": "Email",
+      "es": "Correo electrónico",
+      "de": "E-Mail",
+      "it": "Email",
+      "pt": "Email",
+      "nl": "E-mail"
+    }
+  },
+  "finance-accounting": {
+    "emoji": "🧾",
+    "label": {
+      "en": "Finance & accounting",
+      "fr": "Finance et comptabilité",
+      "es": "Finanzas y contabilidad",
+      "de": "Finanzen & Buchhaltung",
+      "it": "Finanza e contabilità",
+      "pt": "Finanças e contabilidade",
+      "nl": "Financiën en boekhouding"
+    }
+  },
+  "creator-commerce": {
+    "emoji": "🎓",
+    "label": {
+      "en": "Online stores & courses",
+      "fr": "Boutiques en ligne et formations",
+      "es": "Tiendas en línea y cursos",
+      "de": "Onlineshops & Kurse",
+      "it": "Negozi online e corsi",
+      "pt": "Lojas online e cursos",
+      "nl": "Online winkels en cursussen"
+    }
+  },
+  "ai-image": {
+    "emoji": "🖼️",
+    "label": {
+      "en": "AI image generation",
+      "fr": "Génération d'images IA",
+      "es": "Generación de imágenes con IA",
+      "de": "KI-Bildgenerierung",
+      "it": "Generazione di immagini IA",
+      "pt": "Geração de imagens com IA",
+      "nl": "AI-beeldgeneratie"
+    }
+  },
+  "automation": {
+    "emoji": "⚙️",
+    "label": {
+      "en": "Automation",
+      "fr": "Automatisation",
+      "es": "Automatización",
+      "de": "Automatisierung",
+      "it": "Automazione",
+      "pt": "Automação",
+      "nl": "Automatisering"
+    }
+  },
+  "analytics": {
+    "emoji": "📊",
+    "label": {
+      "en": "Analytics",
+      "fr": "Analytique",
+      "es": "Analítica",
+      "de": "Analytics",
+      "it": "Analitica",
+      "pt": "Análise de dados",
+      "nl": "Analytics"
+    }
+  },
+  "voice-dictation": {
+    "emoji": "🎤",
+    "label": {
+      "en": "Voice dictation",
+      "fr": "Dictée vocale",
+      "es": "Dictado por voz",
+      "de": "Sprachdiktat",
+      "it": "Dettatura vocale",
+      "pt": "Ditado por voz",
+      "nl": "Spraakdictaat"
+    }
+  },
+  "forms": {
+    "emoji": "📋",
+    "label": {
+      "en": "Forms & surveys",
+      "fr": "Formulaires et sondages",
+      "es": "Formularios y encuestas",
+      "de": "Formulare & Umfragen",
+      "it": "Moduli e sondaggi",
+      "pt": "Formulários e pesquisas",
+      "nl": "Formulieren en enquêtes"
+    }
+  },
+  "tasks": {
+    "emoji": "✅",
+    "label": {
+      "en": "Tasks & to-dos",
+      "fr": "Tâches",
+      "es": "Tareas",
+      "de": "Aufgaben",
+      "it": "Attività",
+      "pt": "Tarefas",
+      "nl": "Taken"
+    }
+  },
+  "hosting": {
+    "emoji": "☁️",
+    "label": {
+      "en": "Hosting & deployment",
+      "fr": "Hébergement et déploiement",
+      "es": "Alojamiento y despliegue",
+      "de": "Hosting & Deployment",
+      "it": "Hosting e deployment",
+      "pt": "Hospedagem e implantação",
+      "nl": "Hosting en deployment"
+    }
+  },
+  "personal-finance": {
+    "emoji": "💰",
+    "label": {
+      "en": "Personal finance",
+      "fr": "Finances personnelles",
+      "es": "Finanzas personales",
+      "de": "Persönliche Finanzen",
+      "it": "Finanza personale",
+      "pt": "Finanças pessoais",
+      "nl": "Persoonlijke financiën"
+    }
+  },
+  "audio-video": {
+    "emoji": "🎞️",
+    "label": {
+      "en": "Audio & video editing",
+      "fr": "Montage audio et vidéo",
+      "es": "Edición de audio y vídeo",
+      "de": "Audio- & Videobearbeitung",
+      "it": "Editing audio e video",
+      "pt": "Edição de áudio e vídeo",
+      "nl": "Audio- en videobewerking"
+    }
+  },
+  "community": {
+    "emoji": "👥",
+    "label": {
+      "en": "Community platforms",
+      "fr": "Plateformes communautaires",
+      "es": "Plataformas de comunidad",
+      "de": "Community-Plattformen",
+      "it": "Piattaforme di community",
+      "pt": "Plataformas de comunidade",
+      "nl": "Communityplatforms"
+    }
+  },
+  "notes-knowledge": {
+    "emoji": "🧠",
+    "label": {
+      "en": "Notes & knowledge management",
+      "fr": "Notes et gestion des connaissances",
+      "es": "Notas y gestión del conocimiento",
+      "de": "Notizen & Wissensmanagement",
+      "it": "Note e gestione della conoscenza",
+      "pt": "Notas e gestão do conhecimento",
+      "nl": "Notities en kennisbeheer"
+    }
+  },
+  "screen-recording": {
+    "emoji": "🎥",
+    "label": {
+      "en": "Screen recording",
+      "fr": "Enregistrement d'écran",
+      "es": "Grabación de pantalla",
+      "de": "Bildschirmaufnahme",
+      "it": "Registrazione dello schermo",
+      "pt": "Gravação de tela",
+      "nl": "Schermopname"
+    }
+  },
+  "whiteboard": {
+    "emoji": "📐",
+    "label": {
+      "en": "Whiteboards & diagrams",
+      "fr": "Tableaux blancs et diagrammes",
+      "es": "Pizarras y diagramas",
+      "de": "Whiteboards & Diagramme",
+      "it": "Lavagne e diagrammi",
+      "pt": "Quadros brancos e diagramas",
+      "nl": "Whiteboards en diagrammen"
+    }
+  },
+  "productivity-utilities": {
+    "emoji": "🧰",
+    "label": {
+      "en": "Productivity utilities",
+      "fr": "Utilitaires de productivité",
+      "es": "Utilidades de productividad",
+      "de": "Produktivitäts-Tools",
+      "it": "Strumenti di produttività",
+      "pt": "Utilitários de produtividade",
+      "nl": "Productiviteitshulpmiddelen"
+    }
+  },
+  "read-it-later": {
+    "emoji": "📖",
+    "label": {
+      "en": "Read it later & RSS",
+      "fr": "Lecture différée et RSS",
+      "es": "Leer más tarde y RSS",
+      "de": "Später lesen & RSS",
+      "it": "Leggi più tardi e RSS",
+      "pt": "Ler mais tarde e RSS",
+      "nl": "Later lezen en RSS"
+    }
+  }
 }

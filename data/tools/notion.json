@@ -1,8 +1,12 @@
 {
   "slug": "notion",
   "name": "Notion",
-  "domains": ["notion.so", "notion.com", "app.notion.so"],
-  "category": "docs-and-wiki",
+  "domains": [
+    "notion.so",
+    "notion.com",
+    "app.notion.so"
+  ],
+  "category": "notes-knowledge",
   "subcategory": "workspace + database hybrid",
   "pricing": {
     "amount": 10,
@@ -17,13 +21,32 @@
   "verdictConfidence": "medium",
   "moatType": "collaboration",
   "diyTimeEstimate": "weekend",
-  "requirements": ["anthropic-api-key", "hosting", "database"],
-  "priorArt": [
-    { "name": "AppFlowy", "url": "https://appflowy.io", "license": "AGPL-3.0" },
-    { "name": "Outline", "url": "https://www.getoutline.com", "license": "BSL-1.1" }
+  "requirements": [
+    "anthropic-api-key",
+    "hosting",
+    "database"
   ],
-  "relatedSlugs": ["coda", "obsidian", "calendly"],
-  "markets": ["en", "fr"],
+  "priorArt": [
+    {
+      "name": "AppFlowy",
+      "url": "https://appflowy.io",
+      "license": "AGPL-3.0"
+    },
+    {
+      "name": "Outline",
+      "url": "https://www.getoutline.com",
+      "license": "BSL-1.1"
+    }
+  ],
+  "relatedSlugs": [
+    "coda",
+    "obsidian",
+    "calendly"
+  ],
+  "markets": [
+    "en",
+    "fr"
+  ],
   "pagePriority": 9,
   "verifiedOneShot": false
 }

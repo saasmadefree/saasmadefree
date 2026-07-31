@@ -1,8 +1,11 @@
 {
   "slug": "typeform",
   "name": "Typeform",
-  "domains": ["typeform.com", "admin.typeform.com"],
-  "category": "forms-and-surveys",
+  "domains": [
+    "typeform.com",
+    "admin.typeform.com"
+  ],
+  "category": "forms",
   "subcategory": "conversational forms + surveys",
   "pricing": {
     "amount": 25,
@@ -17,12 +20,26 @@
   "verdictConfidence": "high",
   "moatType": "polish",
   "diyTimeEstimate": "one-sitting",
-  "requirements": ["hosting", "database"],
-  "priorArt": [
-    { "name": "Formbricks", "url": "https://formbricks.com", "license": "AGPL-3.0" }
+  "requirements": [
+    "hosting",
+    "database"
   ],
-  "relatedSlugs": ["tally", "jotform", "notion"],
-  "markets": ["en", "fr"],
+  "priorArt": [
+    {
+      "name": "Formbricks",
+      "url": "https://formbricks.com",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "tally",
+    "jotform",
+    "notion"
+  ],
+  "markets": [
+    "en",
+    "fr"
+  ],
   "pagePriority": 7,
   "verifiedOneShot": false
 }

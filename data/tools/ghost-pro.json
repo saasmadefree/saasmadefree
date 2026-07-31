@@ -4,7 +4,7 @@
   "domains": [
     "ghost.org"
   ],
-  "category": "publishing",
+  "category": "newsletter",
   "subcategory": "blog/newsletter/membership",
   "pricing": {
     "amount": 35,

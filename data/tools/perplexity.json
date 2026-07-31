@@ -4,7 +4,7 @@
   "domains": [
     "perplexity.ai"
   ],
-  "category": "ai-search",
+  "category": "ai-assistant",
   "subcategory": "answer engine",
   "pricing": {
     "amount": 20,

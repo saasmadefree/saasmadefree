@@ -1,8 +1,10 @@
 {
   "slug": "obsidian",
   "name": "Obsidian",
-  "domains": ["obsidian.md"],
-  "category": "docs-and-wiki",
+  "domains": [
+    "obsidian.md"
+  ],
+  "category": "notes-knowledge",
   "subcategory": "local markdown notes + paid sync",
   "pricing": {
     "amount": 4,
@@ -17,13 +19,30 @@
   "verdictConfidence": "high",
   "moatType": "convenience",
   "diyTimeEstimate": "one-sitting",
-  "requirements": ["none"],
-  "priorArt": [
-    { "name": "Syncthing", "url": "https://syncthing.net", "license": "MPL-2.0" },
-    { "name": "Self-hosted LiveSync", "url": "https://github.com/vrtmrz/obsidian-livesync", "license": "MIT" }
+  "requirements": [
+    "none"
   ],
-  "relatedSlugs": ["evernote", "coda", "notion"],
-  "markets": ["en", "fr"],
+  "priorArt": [
+    {
+      "name": "Syncthing",
+      "url": "https://syncthing.net",
+      "license": "MPL-2.0"
+    },
+    {
+      "name": "Self-hosted LiveSync",
+      "url": "https://github.com/vrtmrz/obsidian-livesync",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "evernote",
+    "coda",
+    "notion"
+  ],
+  "markets": [
+    "en",
+    "fr"
+  ],
   "pagePriority": 6,
   "verifiedOneShot": false
 }
