@@ -2260,13 +2260,6 @@
     "currency": "USD",
     "url": "/en/tools/twist"
   },
-  "typedream.com": {
-    "slug": "typedream",
-    "verdict": "kinda",
-    "amount": 15,
-    "currency": "USD",
-    "url": "/en/tools/typedream"
-  },
   "typeform.com": {
     "slug": "typeform",
     "verdict": "yes",
