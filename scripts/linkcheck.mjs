@@ -42,7 +42,52 @@ for (const agent of data.agents) {
 }
 
 const urls = [...citedBy.keys()];
-console.log(`${urls.length} URL distincte(s) à vérifier…\n`);
+
+// Ensemble des URL citées comme *preuve d'un prix*. Elles méritent plus qu'un
+// code 200 : voir checkPriceEvidence plus bas.
+const priceUrls = new Set();
+for (const tool of data.tools.values()) {
+  if (typeof tool.pricing?.source === 'string') priceUrls.add(tool.pricing.source);
+}
+
+const deep = process.argv.includes('--deep');
+console.log(`${urls.length} URL distincte(s) à vérifier${deep ? ' (mode --deep)' : ''}…\n`);
+
+// Un chiffre précédé ou suivi d'un symbole/code monétaire. Volontairement
+// large : on ne cherche pas à retrouver NOTRE prix — les pages localisent,
+// arrondissent et changent — seulement à savoir si la page parle d'argent.
+const PRICE_RE = /[$€£]\s?\d|\d\s?(?:USD|EUR|GBP|\$|€|£)/i;
+
+/**
+ * Un code 200 ne prouve pas qu'une citation est correcte.
+ *
+ * `whereby.com/pricing` répond 200 : Whereby transforme tout chemin inconnu en
+ * salle de réunion, si bien que cette URL ouvre une salle nommée « pricing »,
+ * sans un seul prix. Elle a longtemps figuré comme source de prix, et ce
+ * script la déclarait saine.
+ *
+ * En mode --deep, on télécharge donc les pages citées comme preuve d'un prix
+ * et on signale celles qui ne mentionnent aucun montant. C'est un *signal*,
+ * pas un verdict : beaucoup de grilles tarifaires sont rendues en JavaScript
+ * et sortiront d'ici sans montant alors qu'elles sont parfaitement valides.
+ * D'où le classement en avertissement, jamais en échec.
+ */
+async function checkPriceEvidence(url) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
+  try {
+    const res = await fetch(url, {
+      redirect: 'follow', signal: ctrl.signal, headers: { 'user-agent': UA },
+    });
+    if (!res.ok) return null;
+    const body = await res.text();
+    return PRICE_RE.test(body) ? null : 'aucun montant dans la page';
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 async function check(url) {
   const ctrl = new AbortController();
@@ -58,7 +103,11 @@ async function check(url) {
         method: 'GET', redirect: 'follow', signal: ctrl.signal, headers: { 'user-agent': UA },
       });
     }
-    return { url, status: res.status, finalUrl: res.url };
+    const out = { url, status: res.status, finalUrl: res.url };
+    if (deep && res.ok && priceUrls.has(url)) {
+      out.warning = await checkPriceEvidence(url);
+    }
+    return out;
   } catch (err) {
     return { url, status: 0, error: err.name === 'AbortError' ? 'timeout' : String(err.message) };
   } finally {
@@ -82,5 +131,15 @@ for (const r of broken.sort((a, b) => a.url.localeCompare(b.url))) {
   for (const where of citedBy.get(r.url)) console.error(`           ↳ ${where}`);
 }
 
-console.log(`\n${ok} OK, ${broken.length} en échec.`);
+const suspect = results.filter((r) => r.warning);
+if (suspect.length > 0) {
+  console.log('\nÀ relire — page atteignable mais sans montant visible :');
+  for (const r of suspect.sort((a, b) => a.url.localeCompare(b.url))) {
+    console.log(`  ${r.warning.padEnd(28)} ${r.url}`);
+    for (const where of citedBy.get(r.url)) console.log(`           ↳ ${where}`);
+  }
+  console.log('  (une grille tarifaire rendue en JavaScript sort d’ici sans montant : à vérifier à l’œil, pas à corriger en aveugle)');
+}
+
+console.log(`\n${ok} OK, ${broken.length} en échec${deep ? `, ${suspect.length} à relire` : ''}.`);
 if (broken.length > 0) process.exit(1);
