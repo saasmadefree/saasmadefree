@@ -1,0 +1,21 @@
+{
+  "tagline": "Tableaux de bord de KPI et rapports de conseil d'administration construits à partir d'exports comptables.",
+  "verdictSummary": "Un tableau de bord de KPI construit à partir d'exports comptables mensuels au format CSV — chiffre d'affaires, marge, ratios personnalisés, graphiques de tendance, un rapport PDF en une commande — c'est un vrai projet de week-end sans aucune clé API, puisque tes finances n'ont jamais à toucher un serveur. Ce qui ne vient pas avec, c'est la synchro comptable en direct, la consolidation multi-entités, et la prévision.",
+  "coreLoopDIY": "Importe des exports comptables mensuels au format CSV, calcule les KPI et des ratios personnalisés en local, et génère un tableau de bord plus un rapport PDF de conseil d'administration en une commande.",
+  "whatYouLose": [
+    "la synchro comptable en direct par API",
+    "la consolidation multi-entités",
+    "la prévision",
+    "un générateur de rapports abouti",
+    "les workflows tournés vers les conseillers"
+  ],
+  "whyPeopleStillPay": "Le reporting pour un conseil d'administration ou des conseillers doit être exact, comparable d'un mois à l'autre, et présentable sans travail de mise en forme supplémentaire — les gens paient pour cette fiabilité et cette finition, pas pour la capacité de tracer un chiffre sur un graphique.",
+  "notes": "Un cas intéressant côté finance-ops : tracer les chiffres est facile, avoir la bonne sémantique comptable est le vrai travail.",
+  "prompt": "Construis un tableau de bord de KPI pour petite entreprise qui tourne entièrement sur ta propre machine, tes finances ne touchant jamais un serveur : dépose des exports comptables mensuels au format CSV (compte de résultat, bilan) dans un dossier, et analyse-les en lignes mensuelles dans une base de données locale. Calcule les KPI standards par mois — chiffre d'affaires, marge brute, résultat net, trésorerie disponible — plus des ratios personnalisés que tu définis comme des formules sur des noms de comptes dans un fichier de config. Construis un tableau de bord de tuiles de KPI montrant l'évolution mois par mois, un graphique de tendance sur 12 mois par KPI, et un tableau de détail par compte. Laisse chaque KPI porter un objectif optionnel, affiché comme un indicateur clair au-dessus/en dessous. Ajoute un export en une commande qui rend le tableau de bord en rapport PDF pour le conseil d'administration.\n\nNe construis pas de synchro comptable en direct par API, de consolidation multi-entités, ni de prévision — CSV en entrée, tableau de bord et PDF en sortie, c'est le périmètre honnête et complet pour une version personnelle, et ça ne demande aucune clé API.",
+  "faq": [
+    { "q": "Puis-je importer ma configuration Fathom HQ existante ?", "a": "Pas directement — les définitions de KPI et les modèles de rapport de Fathom ne s'exportent pas. Tes données comptables sous-jacentes restent cependant le même export CSV mensuel depuis Xero ou QuickBooks dans les deux cas, donc les données source ne sont pas perdues." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Le tableau de bord s'affiche dans un navigateur mobile pour une consultation rapide, mais importer des CSV et configurer des formules de KPI reste en pratique une tâche de desktop." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien de plus que la machine que tu possèdes déjà — pas d'hébergement, pas de clé API, pas d'abonnement, puisque tout reste en local." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La consolidation multi-entités. Fathom peut regrouper plusieurs entreprises liées dans une vue comparable unique ; cette version gère une seule comptabilité à la fois, et en combiner plusieurs veut dire faire ce calcul toi-même." }
+  ]
+}

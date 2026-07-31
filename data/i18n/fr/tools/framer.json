@@ -1,0 +1,21 @@
+{
+  "tagline": "Créateur de sites web orienté design, avec CMS et animations.",
+  "verdictSummary": "Un générateur de landing page à base de sections — une bibliothèque de composants de mise en page réutilisables, un fichier de contenu par site, une sortie statique prête à déployer — c'est un vrai projet de week-end. Ce qui ne vient pas avec, c'est le vrai produit de Framer : un éditeur visuel en glisser-déposer, des animations déclenchées au scroll, un vrai CMS, et des modèles peaufinés par des designers professionnels.",
+  "coreLoopDIY": "Une bibliothèque de sections de page réutilisables (hero, grille de fonctionnalités, tableau de tarifs, FAQ) remplies depuis un fichier de contenu par site, générée en fichiers statiques sans serveur à l'exécution.",
+  "whatYouLose": [
+    "l'éditeur visuel en glisser-déposer",
+    "les animations au scroll et à l'interaction",
+    "un vrai CMS pour du contenu structuré",
+    "une bibliothèque de modèles professionnels",
+    "l'hébergement et les formulaires intégrés"
+  ],
+  "whyPeopleStillPay": "Des landing pages soignées doivent pouvoir sortir vite sans qu'un designer-développeur soit dans la boucle à chaque changement — les gens paient pour cette rapidité et cette finition, pas parce que la génération de sites statiques est difficile.",
+  "notes": "Une fiche moderne de créateur de site avec un cœur vraiment plausible en DIY, puisque la sortie, ce sont des fichiers statiques, pas une application qui tourne.",
+  "prompt": "Construis un générateur de landing page : une bibliothèque de composants de section réutilisables (hero, grille de fonctionnalités, témoignage, tableau de tarifs, FAQ, pied de page) remplis depuis un fichier de contenu par site — éditer ce fichier constitue tout le workflow de contenu, pas besoin de panneau d'admin. Génère vers de simples fichiers statiques, sans base de données ni serveur à l'exécution. Un seul fichier de thème partagé pour les polices, les couleurs et les espacements, pour que chaque page reste visuellement cohérente sans devoir redesigner chacune. Ajoute un script d'aide qui rédige un fichier de contenu de départ à partir d'une courte description de produit via une API LLM (clé depuis l'environnement) — c'est une aide de génération ponctuelle, pas quelque chose dont le site construit dépend à l'exécution. Livre un script de déploiement qui pousse la sortie construite vers n'importe quel hébergeur statique.\n\nNe construis pas d'éditeur visuel en glisser-déposer, d'animations au scroll ou à l'interaction, d'interface d'admin CMS, ni de gestion de formulaires — c'est du vrai travail produit continu. Éditer directement le fichier de contenu, dans un éditeur de texte, c'est l'interface ici ; la bibliothèque de sections est le vrai produit, pas un constructeur de pages.",
+  "faq": [
+    { "q": "Puis-je importer mon site Framer existant ?", "a": "Pas en tant que projet éditable — Framer n'exporte vers aucun format que cette version peut lire. Tu recréerais le contenu du site dans le nouveau fichier de contenu, en utilisant le site en ligne comme référence pour le texte et la structure." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Les sites construits sont pleinement responsives et fonctionnent bien sur téléphone en tant que visiteur. Éditer le contenu est une tâche de fichier texte, réalisée en pratique sur un ordinateur." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Juste un hébergement statique, souvent gratuit ou à quelques dollars par mois — il n'y a ni base de données ni processus serveur, donc les coûts d'hébergement restent minimes quel que soit le trafic." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "L'édition visuelle. Framer permet de glisser, redimensionner et animer des éléments directement sur le canvas ; ici, chaque changement de mise en page est une édition de fichier de composant, ce qui change vraiment qui peut faire des changements et à quelle vitesse." }
+  ]
+}

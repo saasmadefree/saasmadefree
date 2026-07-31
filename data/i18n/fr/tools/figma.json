@@ -1,0 +1,20 @@
+{
+  "tagline": "Outil de design et de prototypage collaboratif en temps réel.",
+  "verdictSummary": "Un canvas vectoriel mono-utilisateur — formes, texte, calques, persistance uniquement locale — c'est un vrai projet de week-end, et plusieurs alternatives open source vraiment bonnes existent déjà. Ce qu'on ne peut pas obtenir en un seul prompt, c'est la vraie barrière de Figma : l'édition multi-utilisateurs en temps réel sur un canvas très performant, plus le fait qu'une équipe entière travaille déjà dans le même fichier.",
+  "coreLoopDIY": "Un éditeur de canvas mono-utilisateur — formes, texte, cadres, calques — persisté localement dans le navigateur, sans aucun serveur.",
+  "whatYouLose": [
+    "l'édition multi-utilisateurs en temps réel",
+    "le reste de ton équipe, déjà sur Figma",
+    "l'écosystème de plugins",
+    "des années d'ingénierie de performance du canvas"
+  ],
+  "whyPeopleStillPay": "Des équipes produit et design entières se coordonnent à l'intérieur du même fichier — les gens paient parce que tout le monde y est déjà, pas parce que dessiner des rectangles est difficile.",
+  "notes": "La fiche qui teste la crédibilité du projet. La valeur de Figma, ce sont les CRDT multi-utilisateurs, dix ans d'ingénierie de canvas, et le fait que tout le monde d'autre y est déjà — on n'obtient pas un effet de réseau en un seul prompt. Si ce qu'il te faut vraiment aujourd'hui, c'est de l'édition vectorielle mono-utilisateur, utilise Penpot ou Excalidraw plutôt que d'attendre un prompt.",
+  "prompt": "Si ce qu'il te faut vraiment, c'est de l'édition vectorielle mono-utilisateur, ne construis pas ça — fais tourner Penpot (open source, auto-hébergeable) ou Excalidraw à la place ; l'un comme l'autre sera un outil meilleur et plus fini qu'un clone personnel dès le premier jour.\n\nSi tu veux quand même la version week-end : un éditeur de canvas avec rectangles, ellipses, texte et cadres ; poignées de sélection, déplacement et redimensionnement ; un panneau de droite pour le remplissage, le contour et le rayon d'angle ; une liste de calques réordonnable par glisser-déposer. Persiste les documents entièrement dans le navigateur (IndexedDB suffit) avec import/export JSON pour qu'un fichier puisse voyager entre machines. Exporte une sélection en SVG et en PNG. Garde ça en une seule page, en JS natif ou avec un framework léger, sans backend et sans aucun compte — c'est un outil local, pas un produit hébergé.\n\nN'essaie pas de construire l'édition multi-utilisateurs en temps réel, les commentaires, les composants réutilisables, ni un système de plugins. Le multi-utilisateur en particulier demande des types de données répliquées sans conflit et un serveur de synchro — c'est un vrai problème de systèmes distribués, difficile, pas une fonctionnalité manquante.",
+  "faq": [
+    { "q": "Puis-je importer mes fichiers Figma existants ?", "a": "Pas directement — le format de fichier de Figma n'est pas public, et il n'y a pas d'export officiel vers un format éditable que cette version peut lire. Tu reconstruirais les formes d'un design à la main, ou repartirais de zéro." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Pas vraiment. L'édition précise de formes demande une souris ou un stylet, et un écran tactile rend ce type de travail en canvas vraiment plus difficile — cette version n'a pas d'interface adaptée au téléphone." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien — c'est une app statique en une page avec stockage local dans le navigateur, sans serveur ni base de données nécessaires." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Le fait que tout le monde soit dans le fichier avec toi. L'édition multi-utilisateurs en temps réel est le vrai produit ; un outil local mono-utilisateur ne peut pas mettre ton équipe dans le même canvas, quelle que soit la qualité des outils de dessin." }
+  ]
+}

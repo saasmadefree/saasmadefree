@@ -1,0 +1,21 @@
+{
+  "tagline": "Présentations, documents et sites une page générés par IA.",
+  "verdictSummary": "Un pipeline plan-vers-diapos — demander une structure à un LLM, la rendre dans une présentation thématisée, exporter en PDF — c'est un vrai projet de week-end au-dessus d'un outil de diapos open source. Ce qui manque, c'est le modèle d'édition abouti de Gamma, ses mises en page en cartes responsives, et les liens de partage hébergés avec statistiques.",
+  "coreLoopDIY": "Demande un plan de diapos à un LLM, transforme le résultat en contenu de diapo structuré, et rends-le via un modèle thématisé en une présentation que tu peux prévisualiser et exporter.",
+  "whatYouLose": [
+    "l'éditeur visuel abouti",
+    "le modèle de mise en page en cartes responsives de Gamma",
+    "les liens de partage hébergés avec statistiques",
+    "les domaines personnalisés",
+    "l'étendue de leur bibliothèque de modèles"
+  ],
+  "whyPeopleStillPay": "Les gens paient parce que le résultat a l'air acceptable immédiatement, sans se battre avec un logiciel de diapos — l'étape de génération est la partie facile, la finition de mise en page et d'export ne l'est pas.",
+  "notes": "Un « en partie » moderne et solide : une catégorie vraiment virale avec de solides briques open source et d'API déjà disponibles.",
+  "prompt": "Construis un générateur de diapositives en ligne de commande au-dessus d'un outil de présentation open source (Slidev convient bien, puisqu'il rend du Markdown en diapositives). À partir d'un sujet, appelle une API LLM pour obtenir un plan, puis génère le contenu de chaque diapo sous forme de données structurées (titre, puces, notes de l'orateur, un nom de mise en page choisi dans un petit ensemble fixe — diapo de titre, liste à puces, deux colonnes, grande citation, image-et-texte). Rends ce contenu structuré dans le format de diapos de l'outil, et prends en charge à la fois un aperçu en direct et un export PDF. Garde un seul fichier de thème pour les polices et les couleurs, pour que les présentations restent visuellement cohérentes sans devoir redesigner chacune. Prends en charge la régénération d'une seule diapo par numéro sans toucher au reste de la présentation. Garde les présentations comme de simples fichiers sur le disque, pas une base de données, pour qu'elles soient faciles à éditer à la main après génération et à garder dans un contrôle de version. Si une clé API de génération d'image est présente, propose des images générées par diapo ; si elle est absente, saute les images proprement plutôt que d'échouer.\n\nNe construis pas d'éditeur visuel web, de liens partageables avec statistiques, ni de collaboration en temps réel — éditer directement le fichier de diapo généré, c'est l'éditeur ici, et c'est le compromis pour ne pas payer le produit hébergé.",
+  "faq": [
+    { "q": "Puis-je importer mes présentations Gamma existantes ?", "a": "Pas directement — Gamma exporte en PDF et PPTX, ce qui est utile pour consulter mais pas pour rééditer ici. Récupérer une présentation veut dire refaire son plan comme entrée du générateur, pas un import structurel." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Pour consulter un PDF exporté, oui. Générer ou éditer une présentation passe par la ligne de commande et un éditeur de texte, ce qui n'est pas vraiment faisable sur téléphone." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "L'usage de l'API LLM par présentation, typiquement quelques centimes pour générer un plan et le contenu des diapos ; pas besoin d'hébergement si tu n'exportes qu'en PDF en local." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La mise en page en cartes responsives que Gamma rend réellement — texte et images qui se redimensionnent automatiquement pour garder une diapo équilibrée quelle que soit la longueur du contenu. Cette version utilise un petit ensemble fixe de mises en page, pas ce moteur adaptatif." }
+  ]
+}

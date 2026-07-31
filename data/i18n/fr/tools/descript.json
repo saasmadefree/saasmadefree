@@ -1,0 +1,21 @@
+{
+  "tagline": "Éditeur audio et vidéo piloté par texte, avec transcription et outils IA.",
+  "verdictSummary": "Couper un clip en supprimant des mots de sa transcription — transcrire en local, faire correspondre les mots à des horodatages, supprimer du texte pour couper l'audio ou la vidéo — c'est un vrai projet de week-end avec des outils de transcription ouverts. Ce qui ne vient pas avec, c'est le vrai éditeur de Descript : une timeline non linéaire complète, le clonage de voix par IA et l'overdub, et la fiabilité d'un pipeline de rendu mature.",
+  "coreLoopDIY": "Transcris un fichier média en local, affiche la transcription en mots cliquables, supprime des mots ou des phrases pour construire une liste de coupes, puis rends le résultat avec ffmpeg.",
+  "whatYouLose": [
+    "un éditeur de timeline non linéaire abouti",
+    "les outils de voix IA et d'overdub",
+    "la suppression automatique des mots de remplissage",
+    "les modèles de projet",
+    "la collaboration dans le cloud"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour éviter de construire et de maintenir un éditeur média eux-mêmes, pas seulement pour la transcription — le pipeline de montage et de rendu est le vrai produit.",
+  "notes": "Un bon cas limite : un petit outil de découpe par transcription est facile à construire, la profondeur produit qui l'entoure devient évidente dès qu'on essaie d'aller plus loin.",
+  "prompt": "Construis un outil de découpe de clip piloté par texte : transcris un fichier audio ou vidéo déposé, en local, avec des horodatages au niveau du mot (ou via une API de transcription hébergée si une clé est configurée), puis affiche la transcription en mots cliquables. Sélectionner et supprimer des mots ou des phrases entières les ajoute à une liste de coupes, annulable avant le rendu. Effectue le rendu en construisant une seule commande ffmpeg qui retire les plages coupées du média d'origine, en ajoutant une petite marge à chaque coupe pour que les mots ne soient pas tronqués en plein milieu d'une syllabe. Enregistre chaque projet (transcription plus liste de coupes) comme un fichier à côté du média source, pour pouvoir rouvrir et affiner un montage plus tard.\n\nNe construis pas de timeline multipiste, de clonage de voix ou d'overdub par IA, de détection automatique de mots de remplissage, ni aucune fonctionnalité cloud — c'est un outil de découpe, pas un éditeur, et c'est le périmètre honnête et complet pour un outil personnel.",
+  "faq": [
+    { "q": "Puis-je importer mes projets Descript existants ?", "a": "Non — le format de projet de Descript est propriétaire. Tu partirais d'un fichier média exporté et le transcrirais à zéro ici, sans reporter le projet éditable." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Non — la transcription demande une vraie puissance de calcul, et la découpe pilotée par texte est un workflow de desktop. Cet outil n'est pas pensé pour tourner sur un téléphone." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien si tu transcris en local — pas d'hébergement, pas de clé API. Utiliser une API de transcription hébergée à la place coûte un peu par minute d'audio." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Le vrai éditeur. Cet outil supprime des mots pour couper un clip ; il n'a ni timeline, ni audio multipiste, ni outils de voix IA — pour tout ce qui dépasse la découpe par transcription, il faut revenir à un vrai éditeur vidéo." }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "tagline": "Assistant d'écriture IA pour la grammaire, la clarté et le ton, dans toutes tes applications.",
+  "verdictSummary": "La correction grammaticale en elle-même est un problème résolu, en open source, et la brancher à un LLM pour des réécritures de ton, c'est un vrai projet de week-end. Ce qui ne vient pas avec, c'est le vrai produit de Grammarly : des suggestions qui apparaissent en ligne, à l'intérieur de chaque application où tu écris déjà, pas une page séparée où tu colles du texte.",
+  "coreLoopDIY": "Fais passer le texte par un moteur de grammaire open source local, plus une passe de réécriture optionnelle par LLM, dans une page où tu colles ton texte.",
+  "whatYouLose": [
+    "les suggestions en ligne à l'intérieur de Gmail, Docs, Slack, et partout ailleurs où tu écris",
+    "les contrôles de ton et de marque réglés pour une organisation",
+    "des années passées à réduire les faux positifs dans les suggestions",
+    "les contrôles d'administration entreprise"
+  ],
+  "whyPeopleStillPay": "La valeur, ce sont des suggestions qui apparaissent à l'intérieur des applications où l'écriture se passe réellement — une destination où l'on colle son texte est une vraie régression par rapport à ça, même avec une correction grammaticale tout aussi bonne en dessous.",
+  "notes": "Un « en partie » important : la correction grammaticale en elle-même est open source ; l'expérience en ligne multi-applications est le vrai produit difficile.",
+  "prompt": "Construis un correcteur d'écriture personnel autour de LanguageTool, un moteur de grammaire et de style open source que tu peux faire tourner en local via son image Docker officielle — les vérifications grammaticales n'ont jamais besoin de quitter ta machine. Construis une petite page où tu colles du texte et vois les problèmes détectés par LanguageTool soulignés, avec des explications au survol et des suggestions applicables en un clic. Ajoute un panneau de réécriture propulsé par LLM avec quelques options fixes (resserrer, plus amical, plus formel) qui montre un diff par rapport à l'original avant d'appliquer quoi que ce soit — n'écrase jamais silencieusement le texte source. Prends en charge un fichier de dictionnaire personnel de noms et de jargon qui ne doit jamais être signalé, transmis à chaque vérification. Ajoute un mode en ligne de commande qui vérifie un fichier et sort avec un code non nul en cas de problème, pour pouvoir tourner comme hook pre-commit sur de la documentation.\n\nNe construis pas d'extension de navigateur ni de suggestions en ligne à l'intérieur de Gmail, Docs ou Slack — cette intégration multi-applications est du vrai travail de plateforme continu, et cette version est honnêtement une destination où l'on colle son texte, pas une couche par-dessus tout le reste.",
+  "faq": [
+    { "q": "Puis-je récupérer quoi que ce soit de mon compte Grammarly ?", "a": "Pas vraiment — Grammarly n'exporte ni ton dictionnaire personnel ni tes réglages de style d'écriture. Reconstruire ta liste d'exclusion de noms et de jargon est rapide, mais ça repart de zéro." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "En tant que page où l'on colle du texte, techniquement oui, mais il n'y a ni couche de suggestions en ligne ni intégration au clavier — sur mobile en particulier, cet écart est bien plus flagrant que sur desktop." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "L'hébergement pour LanguageTool, qui demande environ un gigaoctet de mémoire, plus l'usage optionnel d'API LLM pour la fonctionnalité de réécriture — quelques dollars par mois dans tous les cas." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Écrire là où tu écris déjà. Les suggestions de Grammarly apparaissent à l'intérieur de Gmail, Docs et Slack pendant que tu tapes ; cette version ne voit jamais que du texte que tu as d'abord copié ailleurs." }
+  ]
+}

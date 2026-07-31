@@ -1,0 +1,21 @@
+{
+  "tagline": "Statistiques web centrées sur la vie privée, avec tableaux de bord simples.",
+  "verdictSummary": "Un script de mesure d'audience respectueux de la vie privée — des balises de pages vues, sans cookies, un petit tableau de bord avec pages les plus vues et sources de trafic — c'est un vrai projet de week-end, sans rien de difficile sur le plan conceptuel. Ce qu'achète surtout l'abonnement, c'est une infrastructure gérée, une disponibilité assurée, et la posture de conformité vie privée de quelqu'un d'autre.",
+  "coreLoopDIY": "Un petit script de suivi qui envoie des balises de pages vues sans cookies vers ton propre serveur, agrégées dans un tableau de bord simple de visites, pages les plus vues et sources de trafic.",
+  "whatYouLose": [
+    "l'infrastructure gérée et la garantie de disponibilité",
+    "la posture de conformité et de vie privée de quelqu'un d'autre",
+    "les rapports email planifiés",
+    "le support",
+    "la simplicité de facturation"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour éviter de maintenir une infrastructure de mesure d'audience et de rédiger leur propre documentation vie privée — pas parce que compter des pages vues sans cookies est techniquement difficile.",
+  "notes": "Utile parce que plusieurs outils de mesure d'audience de ce catalogue sont réellement clonables aujourd'hui — la barrière est opérationnelle, pas technique.",
+  "prompt": "Construis un petit service de mesure d'audience auto-hébergé : un script de suivi de quelques kilo-octets qui envoie une balise de page vue (chemin, source de trafic, largeur d'écran) sans cookies ni identifiant persistant. Compte les visiteurs uniques sans stocker de données personnelles — hache l'adresse IP et le user-agent ensemble avec un sel qui tourne chaque jour, puis jette les valeurs brutes immédiatement. Filtre les bots évidents avec une simple liste noire de user-agents avant de compter. Construis un tableau de bord montrant pages vues, visiteurs uniques, pages les plus vues et sources de trafic principales sur plusieurs fenêtres temporelles, protégé par un simple jeton d'accès plutôt qu'un vrai système de comptes utilisateurs. Ne garde les événements bruts que sur une courte fenêtre de rétention, en les agrégeant en totaux quotidiens permanents selon un planning, et purge automatiquement les vieux événements bruts.\n\nNe construis pas de rapports email planifiés, de sièges d'équipe, ni de facturation — un site, ou une courte liste de sites dans un fichier de config, c'est le périmètre honnête. Sois clair dans le README que c'est une mesure d'audience polie et respectueuse de la vie privée, pas un produit formel de conformité légale.",
+  "faq": [
+    { "q": "Puis-je importer mes données Fathom Analytics existantes ?", "a": "Pas vraiment — Fathom n'offre pas d'export structuré des données brutes, seulement des rapports résumés. Les chiffres historiques restent dans Fathom ; cette version recommence à compter à zéro à partir du jour où tu ajoutes le script." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Le tableau de bord est une page web responsive, adaptée pour consulter les stats sur téléphone, mais il n'y a pas d'application mobile dédiée." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement, domaine et base de données, typiquement moins de dix dollars par mois — vraiment bon marché puisque les données de mesure d'audience sont petites et simples à stocker." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La posture de conformité de quelqu'un d'autre. Fathom entretient activement un positionnement et une documentation sur le droit de la vie privée que tu peux montrer si on te le demande ; un script auto-hébergé est fonctionnellement similaire mais ne porte aucun de ce cadrage juridique entretenu." }
+  ]
+}

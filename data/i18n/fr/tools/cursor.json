@@ -1,0 +1,20 @@
+{
+  "tagline": "Éditeur de code pensé pour l'IA, avec agents, composer et routage de modèles.",
+  "verdictSummary": "Les briques de Cursor existent déjà en pièces détachées open source : un éditeur compétent, une extension IA intégrée à l'éditeur, et un agent de code en ligne de commande. Les assembler et les configurer, c'est un vrai projet de week-end. Ce qui ne vient pas avec cet assemblage, c'est la finition propre à Cursor — un produit unique où l'agent, l'éditeur et le routage de modèles ont été conçus ensemble.",
+  "coreLoopDIY": "Assemble un éditeur, une extension IA intégrée à l'éditeur, et un agent de code en ligne de commande à partir de briques open source existantes, branchées sur des API de modèles que tu contrôles.",
+  "whatYouLose": [
+    "un produit unique et intégré, plutôt que trois briques assemblées",
+    "le routage de modèles et les crédits d'usage propres à Cursor",
+    "les agents en arrière-plan et dans le cloud",
+    "les complétions les plus rapides, réglées spécifiquement pour leur éditeur"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour la vitesse : l'agent est déjà à l'intérieur de l'éditeur avec des réglages par défaut qui fonctionnent, plutôt qu'un après-midi passé à brancher trois outils séparés.",
+  "notes": "Une fiche centrale pour le public même de ce site — la réponse ne devrait pas être un « oui » ou un « non » paresseux.",
+  "prompt": "Ne construis ni éditeur ni agent — assemble une configuration de code IA à partir de briques qui existent déjà. Installe VS Code (ou VSCodium) avec l'extension Continue pour le chat intégré à l'éditeur, l'édition en ligne et l'autocomplétion, et configure un agent de code en ligne de commande (Claude Code ou aider) pour les changements plus larges, sur plusieurs fichiers. Configure Continue pour que le chat et l'édition en ligne utilisent un modèle compétent via API (clé lue depuis une variable d'environnement, jamais codée en dur dans un fichier de config) et que l'autocomplétion utilise un modèle rapide et bon marché — un petit modèle local servi par Ollama garde les complétions gratuites et fonctionnelles hors ligne, au prix d'une certaine perte de qualité. Active l'indexation de la base de code par Continue et vérifie qu'une question du type « où est-ce défini » trouve vraiment le bon fichier. Configure des raccourcis clavier sensés pour que l'édition et le chat soient à une frappe de distance, pour retrouver les réflexes d'un agent natif à l'éditeur.\n\nN'essaie pas de construire des agents en arrière-plan ou dans le cloud, ni la propre interface composer de Cursor — cette vitesse d'itération au niveau produit, plus que n'importe quelle fonctionnalité isolée, est ce qu'achète réellement l'abonnement.",
+  "faq": [
+    { "q": "Puis-je récupérer mes réglages et règles Cursor ?", "a": "Pas directement — les règles de projet et réglages de Cursor ont leur propre format. Continue lit sa propre config YAML, donc tu recréerais tes préférences là-bas à la main, ce qui représente pour la plupart des gens une poignée de lignes." },
+    { "q": "Ça marche aussi bien sans connexion réseau ?", "a": "Le chat et l'édition en ligne ont toujours besoin d'internet dans les deux cas, pour atteindre l'API du modèle. Ce que tu gagnes ici, c'est une vraie option d'autocomplétion hors ligne grâce à un modèle local, que Cursor n'offre pas du tout." },
+    { "q": "Combien ça coûte vraiment à faire tourner ?", "a": "Seulement l'usage d'API — Continue et Ollama sont tous les deux gratuits. Compare le tarif par token de l'API à l'abonnement fixe après deux semaines d'usage réel ; pour un usage léger à modéré, c'est souvent moins cher, pour un usage intensif de l'agent, ce ne l'est généralement pas." },
+    { "q": "Quelle est la chose qui ne survit vraiment pas à la reconstruction ?", "a": "La vitesse d'itération d'un produit unique. L'équipe de Cursor livre éditeur, agent et routage de modèles ensemble, comme un seul bloc ; cette configuration, ce sont trois outils séparés que tu synchronises toi-même, et ils dérivent parfois l'un par rapport à l'autre." }
+  ]
+}

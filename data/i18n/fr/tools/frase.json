@@ -1,0 +1,20 @@
+{
+  "tagline": "Plateforme de contenu SEO/GEO pour la recherche, les briefs et l'écriture IA.",
+  "verdictSummary": "Un générateur de briefs de contenu — récupérer les pages les mieux classées pour un mot-clé, résumer leur structure, rédiger un brief, noter ton brouillon par rapport à ce brief — c'est un vrai projet d'une session, en enveloppant une API SERP et un LLM. Ce qui ne vient pas avec, c'est le vrai workflow de Frase : un éditeur abouti, un suivi de visibilité dans les recherches IA, et un reporting d'équipe construit autour de ce même brief.",
+  "coreLoopDIY": "Un outil en ligne de commande qui récupère les pages les mieux classées pour un mot-clé, résume leur structure en un brief, et note un brouillon par rapport à la couverture de ce brief.",
+  "whatYouLose": [
+    "une interface d'édition dédiée construite autour du brief",
+    "le suivi de visibilité dans les recherches IA",
+    "les workflows et le reporting d'équipe",
+    "la maintenance continue du pipeline de données SERP"
+  ],
+  "whyPeopleStillPay": "Les rédacteurs ont besoin d'un workflow reproductible de la recherche à l'édition, pas d'un dossier de pages scrapées — les gens paient pour que ce workflow soit maintenu et peaufiné, pas pour la capacité de récupérer des résultats de recherche.",
+  "notes": "Un exemple parfait du schéma des outils SEO ici : exactement le genre de SaaS constructible mais qui représente un vrai travail, que ce catalogue existe pour décortiquer.",
+  "prompt": "Construis un générateur de briefs de contenu : à partir d'un mot-clé, récupère les pages les mieux classées via une vraie API SERP (ne scrape jamais Google directement), extrais de chaque page son titre, son plan de titres, son nombre de mots, et les questions auxquelles elle répond. Envoie cet ensemble à une API LLM pour produire un brief — un titre et un angle suggérés, un plan cible, les questions à couvrir, les termes utilisés par les concurrents, et une fourchette de nombre de mots cible — écrit dans un simple fichier Markdown. Ajoute une seconde commande qui note un brouillon existant par rapport à un brief : quels termes et questions sont couverts ou manquants, sous forme de simple pourcentage. Mets en cache les pages récupérées en local pour que relancer sur le même mot-clé ne coûte rien de plus.\n\nNe construis pas d'interface d'édition, de suivi de positionnement, ni de workflows d'équipe — les briefs et brouillons sont des fichiers Markdown, écrits dans l'éditeur que tu utilises déjà, et c'est le compromis honnête face à l'environnement d'écriture dédié de Frase.",
+  "faq": [
+    { "q": "Puis-je importer mes briefs Frase existants ?", "a": "Pas automatiquement — Frase n'offre pas d'export structuré des briefs passés. La recherche passée reste dans Frase ; cette version commence à générer ses propres briefs à partir de maintenant." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Non — c'est un outil en ligne de commande pensé pour tourner sur un ordinateur, et écrire à partir de briefs générés reste en pratique un workflow de desktop." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Un appel d'API SERP plus un appel de LLM par brief, typiquement peu cher chacun — assez bon marché pour qu'un usage occasionnel coûte une fraction de l'abonnement." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Le suivi de visibilité dans les recherches IA. Frase suit comment le contenu apparaît dans les réponses générées par IA, pas seulement dans les résultats de recherche classiques — c'est un pipeline de données maintenu en continu, que cette version ne tente pas de reproduire." }
+  ]
+}

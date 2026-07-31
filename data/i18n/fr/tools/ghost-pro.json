@@ -1,0 +1,21 @@
+{
+  "tagline": "Hébergement géré pour la plateforme de publication open source Ghost.",
+  "verdictSummary": "Comme Ghost lui-même est open source, c'est un vrai « oui » : auto-héberge le vrai logiciel Ghost derrière HTTPS plutôt que d'en construire un clone. Ce que tu prends en charge en échange, c'est tout ce que Ghost(Pro) faisait discrètement en arrière-plan — mises à jour, sauvegardes, configuration de la délivrabilité email, et disponibilité.",
+  "coreLoopDIY": "Auto-héberge la plateforme Ghost open source derrière HTTPS, avec l'email de newsletter et les paiements branchés sur tes propres comptes.",
+  "whatYouLose": [
+    "l'hébergement géré et la garantie de disponibilité",
+    "les mises à jour automatiques",
+    "les sauvegardes prises en charge pour toi",
+    "la configuration clé en main de la délivrabilité email",
+    "le support en cas de panne"
+  ],
+  "whyPeopleStillPay": "Publier ne devrait pas se transformer en administration de serveur — les gens paient Ghost(Pro) spécifiquement pour garder la maintenance du logiciel hors de leur assiette.",
+  "notes": "Un « oui » solide, et important : l'open source hébergé est exactement la catégorie à laquelle appartiennent discrètement beaucoup d'abonnements de ce catalogue.",
+  "prompt": "Ne construis pas de plateforme de publication — déploie le vrai Ghost, open source. Fais-le tourner via Docker Compose sur un petit VPS : l'image officielle Ghost plus MySQL, toutes deux avec des volumes persistants pour le contenu et la base de données. Place un reverse proxy devant pour du HTTPS automatique sur ton domaine, avec Ghost lui-même lié à localhost pour que rien d'autre que le proxy ne soit exposé. Branche l'email de newsletter et transactionnel sur un vrai fournisseur (Mailgun, Postmark, ou équivalent) avec des identifiants depuis l'environnement, et écris les enregistrements DNS SPF/DKIM/DMARC à ajouter comme une check-list. Si les abonnements payants comptent, connecte Stripe en mode test d'abord, clés depuis l'environnement. Mets en place une tâche de sauvegarde nocturne — un dump de base de données plus une archive du volume de contenu — et écris, puis teste réellement, une procédure de restauration ; une sauvegarde jamais testée n'en est pas vraiment une. Écris un simple script de mise à jour qui récupère les nouvelles images et redémarre, avec une note pour lire les notes de version de Ghost avant tout saut de version majeure.\n\nNe construis pas de thème personnalisé depuis zéro — pars du thème par défaut de Ghost et ajuste-le. Sois clair dans le README que les mises à jour et la délivrabilité email sont désormais ta responsabilité ; c'est cette maintenance continue, pas le logiciel lui-même, que facturait réellement le plan hébergé.",
+  "faq": [
+    { "q": "Puis-je migrer mon site Ghost(Pro) existant ?", "a": "Oui — Ghost a un export/import intégré pour le contenu, et puisque ceci fait tourner le même logiciel open source, ton thème et tes intégrations se reportent largement sans changement." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Le site publié lui-même, oui, exactement comme avant. L'interface d'administration est utilisable dans un navigateur mobile en cas de besoin, mais elle est vraiment conçue pour un écran de desktop." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Un petit VPS plus un domaine, typiquement moins de dix dollars par mois, plus ce que facture le fournisseur d'emailing au-delà de son palier gratuit — bien en dessous du forfait Publisher évalué ici." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Le filet de sécurité opérationnel de quelqu'un d'autre. Si une mise à jour tourne mal ou que la délivrabilité email casse, il n'y a pas de ticket de support à ouvrir — diagnostiquer et réparer, c'est désormais entièrement sur toi." }
+  ]
+}
