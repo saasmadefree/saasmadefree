@@ -21,7 +21,9 @@
   "diyTimeEstimate": "week",
   "requirements": [
     "openai-api-key",
-    "oauth-app"
+    "oauth-app",
+    "hosting",
+    "database"
   ],
   "relatedSlugs": [
     "semrush",
