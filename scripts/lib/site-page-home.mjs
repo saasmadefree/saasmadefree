@@ -36,9 +36,7 @@ function renderFigures(figures, lang, h) {
   const items = [
     [n(figures.toolsPublished), h.figureToolsPublished],
     [n(figures.categories), h.figureCategories],
-    [n(figures.languages), h.figureLanguages],
     [formatMoney(figures.totalMonthlyUsd, 'USD', lang), h.figureTotalPrice],
-    [n(figures.prompts), h.figurePrompts],
   ];
   return items
     .map(

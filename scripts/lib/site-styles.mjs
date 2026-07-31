@@ -56,7 +56,8 @@ a:hover{text-decoration-thickness:.14em}
   border-bottom:1px solid var(--rule)}
 .brand{font-family:var(--sans);font-weight:800;letter-spacing:-.02em;
   text-decoration:none;font-size:1.2rem;color:var(--ink);flex:none}
-.header-groups{display:flex;align-items:center;gap:1.75rem 2.25rem;flex-wrap:wrap}
+.header-left{display:flex;align-items:baseline;gap:1.6rem;flex-wrap:wrap;min-width:0}
+.header-groups{display:flex;align-items:center;gap:1rem 1.25rem;flex-wrap:wrap}
 .nav-links{list-style:none;display:flex;gap:1.2rem;padding:0;margin:0;font-size:.85rem;flex-wrap:wrap}
 .nav-links a{text-decoration:none;color:var(--ink)}
 .nav-links a:hover{text-decoration:underline}
@@ -65,9 +66,7 @@ a:hover{text-decoration-thickness:.14em}
    comme un groupe à part (langue, thème, dépôt) et non comme une suite de
    liens supplémentaires. Le filet disparaît quand le groupe retombe seul sur
    sa ligne, en écran étroit, où il n'aurait plus rien à séparer. */
-.header-controls{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;
-  padding-left:1.5rem;border-left:1px solid var(--rule)}
-@media (max-width:34rem){.header-controls{padding-left:0;border-left:0}}
+.header-controls{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
 .github-btn{display:inline-flex;align-items:center;gap:.35em;font-size:.8rem;
   padding:.35em .8em;border:1px solid var(--rule);border-radius:.4em;
   text-decoration:none;color:var(--ink);font-weight:600}
@@ -163,7 +162,7 @@ input[type=search]::-webkit-search-cancel-button{display:none}
 
 /* ---------- pastilles de catégorie et de verdict ---------- */
 .chips-nav{margin:0 0 clamp(1.75rem,4vh,2.5rem);text-align:center}
-.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem;list-style:none;padding:0;margin:0}
+.chips{max-width:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem;list-style:none;padding:0;margin:0}
 .chips a,.chip{display:inline-flex;align-items:center;gap:.4em;text-decoration:none;
   font:inherit;font-size:.8rem;padding:.4em .8em;border:1px solid var(--rule);border-radius:999px;
   background:var(--card);color:var(--ink);white-space:nowrap;cursor:pointer}
@@ -188,7 +187,7 @@ input[type=search]::-webkit-search-cancel-button{display:none}
 .ticker-item{font-size:.82rem;color:var(--muted);padding:.3em 1rem;
   border-right:1px solid var(--rule);font-variant-numeric:tabular-nums}
 @media (prefers-reduced-motion:no-preference){
-  .ticker-track{animation:ticker-scroll 50s linear infinite}
+  .ticker-track{animation:ticker-scroll 240s linear infinite}
 }
 @keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .mrr-figure{max-width:62rem;margin:1.2rem auto 0;padding:0 clamp(1rem,5vw,2.5rem);
@@ -376,6 +375,7 @@ ul.plain{list-style:none;padding:0}
 .vote-section{border-top:1px solid var(--rule);padding-top:1.3rem;margin-top:2.4rem}
 .vote-count{color:var(--muted);margin:0 0 .8rem}
 
+.site-footer .credit{margin-left:auto}
 footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
   border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;
   font-size:.82rem;color:var(--muted)}

@@ -137,9 +137,11 @@ ${headLines}
 <a class="skip-link" href="#main">${escapeHtml(ui.site.skipToContent)}</a>
 <div class="page">
   <header class="site-header">
-    <a class="brand" href="${escapeHtml(homeHref)}">${escapeHtml(ui.site.brand)}</a>
-    <div class="header-groups">
+    <div class="header-left">
+      <a class="brand" href="${escapeHtml(homeHref)}">${escapeHtml(ui.site.brand)}</a>
       <ul class="nav-links">${navLinks}</ul>
+    </div>
+    <div class="header-groups">
       <div class="header-controls">${langSwitcher}
         <button type="button" id="theme-toggle" class="theme-toggle" hidden
                 aria-label="${themeToggleLabel}"
@@ -158,6 +160,7 @@ ${main}
     <a href="${GITHUB_REPO_URL}">${escapeHtml(ui.site.footer.source)}</a>
     <a href="/privacy">${escapeHtml(ui.site.footer.privacy)}</a>
     <a href="mailto:privacy@saasmadefree.com">privacy@saasmadefree.com</a>
+    <a class="credit" href="https://github.com/canivibecodeit/canivibecodeit" rel="noopener">${escapeHtml(ui.site.footer.credit ?? "")}</a>
   </footer>
 </div>
 <script src="/assets/site.js" defer></script>

@@ -42,7 +42,8 @@
     },
     "footer": {
       "source": "Source on GitHub",
-      "privacy": "Privacy"
+      "privacy": "Privacy",
+      "credit": "Catalogue based on canivibecodeit"
     },
     "verdicts": {
       "yes": {
@@ -50,7 +51,7 @@
         "desc": "Replace it today. Nothing important is lost."
       },
       "kinda": {
-        "label": "Partly",
+        "label": "Almost",
         "desc": "Rebuildable in a weekend, but you give up things like the mobile app, the sync, or the integrations. The entry says which."
       },
       "no": {
