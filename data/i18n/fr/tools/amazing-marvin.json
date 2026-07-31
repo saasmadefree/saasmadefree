@@ -1,0 +1,19 @@
+{
+  "tagline": "Un gestionnaire de tâches avec quelques stratégies de priorisation intégrées et interchangeables",
+  "verdictSummary": "Un gestionnaire de tâches avec quelques stratégies de priorisation interchangeables — trier par date d'échéance, par une règle simple façon « avale le crapaud », par score pondéré personnalisé — c'est un vrai projet d'une session. Ce qui ne survit pas : le système de personnalisation poussé d'Amazing Marvin qui permet aux utilisateurs de scripter des stratégies entièrement sur mesure, et sa très large surface de réglages construite au fil des années par les demandes d'utilisateurs avancés.",
+  "coreLoopDIY": "Gère des tâches avec dates d'échéance et priorité, et bascule entre un petit ensemble de stratégies de priorisation intégrées qui réordonnent différemment la liste de tâches visible.",
+  "whatYouLose": [
+    "un système de scripting pour des stratégies entièrement définies par l'utilisateur",
+    "une surface de réglages très large, portée par les utilisateurs avancés",
+    "la synchro entre appareils",
+    "l'intégration de suivi du temps"
+  ],
+  "whyPeopleStillPay": "Quelques stratégies de tri codées en dur, c'est simple ; un système assez flexible pour que les utilisateurs scriptent en toute sécurité leur propre logique de priorisation arbitraire, c'est un problème de conception bien plus vaste et ouvert.",
+  "prompt": "Construis un gestionnaire de tâches avec quelques stratégies de priorisation intégrées et interchangeables, plutôt que le système de stratégies entièrement scriptable d'Amazing Marvin. Utilise Tauri avec SQLite. Implémente les champs de tâche standards : titre, date d'échéance, temps estimé, projet, priorité. Construis trois stratégies intégrées comme des vues de tri ou de filtre différentes sur la même liste de tâches : « Échéance la plus proche », un simple tri par date ; « Avale le crapaud », qui fait remonter en premier la seule tâche de priorité la plus haute et cache le reste jusqu'à ce qu'elle soit faite ou explicitement passée ; et « Temps limité », qui n'affiche que les tâches dont le temps estimé rentre dans un budget « temps disponible aujourd'hui » défini par l'utilisateur, en le remplissant de façon gloutonne. Laisse l'utilisateur basculer entre les stratégies depuis une liste déroulante, appliquée en direct à la même liste de tâches sous-jacente — les stratégies ne sont que des filtres différents sur les mêmes données, pas des systèmes séparés. Ajoute des tâches récurrentes basiques et un écran de revue quotidienne simple. Ne construis pas de système de scripting pour des stratégies personnalisées définies par l'utilisateur, de synchro entre appareils, ni d'intégration de suivi du temps — c'est hors périmètre ; trois solides stratégies intégrées, c'est le vrai périmètre ici, pas un framework ouvert. Nécessite une base de données locale ; aucune clé API externe requise.",
+  "faq": [
+    { "q": "Puis-je créer ma propre stratégie de priorisation personnalisée ?", "a": "Pas dans cette version — elle livre trois solides stratégies intégrées plutôt que le système scriptable d'Amazing Marvin pour une logique entièrement définie par l'utilisateur, qui est une vraie ingénierie plus ouverte." },
+    { "q": "Comment fonctionne le mode « avale le crapaud » ?", "a": "Il ne fait remonter que ta seule tâche de priorité la plus haute et cache le reste de la liste jusqu'à ce que cette tâche soit faite ou explicitement passée — un mécanisme forçant à attaquer le plus dur en premier." },
+    { "q": "Ça synchronise entre appareils ?", "a": "Non — c'est un outil local, sur un seul appareil, sans backend pour synchroniser." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien — c'est une application locale sans abonnement, puisqu'elle ne dépend d'aucun backend." }
+  ]
+}
