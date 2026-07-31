@@ -73,7 +73,7 @@ ${priorArt
 ${relatedTools
   .map((r) => {
     const rv = s.verdicts[r.verdict];
-    return `        <li><a href="${r.path}"><span class="name">${escapeHtml(r.name)}</span><span class="verdict ${r.verdict}"><i aria-hidden="true"></i>${escapeHtml(rv.label)}</span></a></li>`;
+    return `        <li><a href="${r.path}"><span class="name">${escapeHtml(r.name)}</span><span class="badge ${r.verdict}">${escapeHtml(rv.label)}</span></a></li>`;
   })
   .join('\n')}
       </ul>
@@ -89,7 +89,7 @@ ${relatedTools
 
     <section aria-labelledby="verdict-heading">
       <h2 id="verdict-heading">${escapeHtml(t.verdictHeading)}</h2>
-      <p><span class="verdict ${tool.verdict}"><i aria-hidden="true"></i>${escapeHtml(verdict.label)}</span></p>
+      <p><span class="badge ${tool.verdict}">${escapeHtml(verdict.label)}</span></p>
       <p>${escapeHtml(i18nEntry.verdictSummary)}</p>
     </section>
 

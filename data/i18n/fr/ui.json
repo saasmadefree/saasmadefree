@@ -29,11 +29,23 @@
     "skipToContent": "Aller au contenu",
     "languageSwitcherLabel": "Langue",
     "directoryLabel": "Annuaire",
-    "footer": { "source": "Code source sur GitHub", "privacy": "Confidentialité" },
+    "footer": {
+      "source": "Code source sur GitHub",
+      "privacy": "Confidentialité"
+    },
     "verdicts": {
-      "yes": { "label": "Oui", "desc": "Remplace-le aujourd'hui. Tu ne perds rien d'important." },
-      "kinda": { "label": "En partie", "desc": "Reconstructible en un week-end, mais tu perds des choses comme l'appli mobile, la synchro ou les intégrations. La fiche précise lesquelles." },
-      "no": { "label": "Non", "desc": "Continue de payer. La valeur, c'est le réseau, les données ou la conformité — aucun prompt ne remplace ça." }
+      "yes": {
+        "label": "Oui",
+        "desc": "Remplace-le aujourd'hui. Tu ne perds rien d'important."
+      },
+      "kinda": {
+        "label": "En partie",
+        "desc": "Reconstructible en un week-end, mais tu perds des choses comme l'appli mobile, la synchro ou les intégrations. La fiche précise lesquelles."
+      },
+      "no": {
+        "label": "Non",
+        "desc": "Continue de payer. La valeur, c'est le réseau, les données ou la conformité — aucun prompt ne remplace ça."
+      }
     },
     "home": {
       "titleTag": "SaaS Made Free — quels abonnements ne tiennent qu'à un prompt ?",
@@ -55,7 +67,9 @@
       "colPrice": "Prix mensuel",
       "colVerdict": "Verdict",
       "colVotes": "Votes",
-      "noResults": "Aucun outil ne correspond à cette recherche."
+      "noResults": "Aucun outil ne correspond à cette recherche.",
+      "heroQuestion": "Un prompt peut-il remplacer {blank} ?",
+      "browseHeading": "Parcourir par catégorie"
     },
     "tool": {
       "titleTemplate": "Un agent IA peut-il remplacer {name} ? — SaaS Made Free",

@@ -31,11 +31,12 @@ export function renderToolTable(tools, { lang, ui, categories, voteCounts }) {
       const votesAttr = count === null ? '' : ` data-votes="${count}"`;
 
       return `          <tr data-slug="${tool.slug}" data-category="${tool.category}" data-priority="${tool.pagePriority}"${votesAttr} data-search="${escapeHtml(searchText)}">
+            <td class="rank" aria-hidden="true"></td>
             <th scope="row"><a href="${tool.path}">${escapeHtml(tool.name)}</a></th>
-            <td>${emoji ? `${emoji} ` : ''}${escapeHtml(catLabel)}</td>
-            <td>${escapeHtml(price)}</td>
-            <td><span class="verdict ${tool.verdict}"><i aria-hidden="true"></i>${escapeHtml(verdict.label)}</span></td>
-            <td data-vote-cell data-vote-slug="${tool.slug}">${voteCell}</td>
+            <td class="cat">${emoji ? `${emoji} ` : ''}${escapeHtml(catLabel)}</td>
+            <td class="price">${escapeHtml(price)}</td>
+            <td><span class="badge ${tool.verdict}">${escapeHtml(verdict.label)}</span></td>
+            <td class="votes" data-vote-cell data-vote-slug="${tool.slug}">${voteCell}</td>
           </tr>`;
     })
     .join('\n');
@@ -45,6 +46,7 @@ export function renderToolTable(tools, { lang, ui, categories, voteCounts }) {
           <caption>${escapeHtml(ui.site.home.listCaption)}</caption>
           <thead>
             <tr>
+              <td class="rank"><span class="visually-hidden">#</span></td>
               <th scope="col">${escapeHtml(ui.site.home.colName)}</th>
               <th scope="col">${escapeHtml(ui.site.home.colCategory)}</th>
               <th scope="col">${escapeHtml(ui.site.home.colPrice)}</th>

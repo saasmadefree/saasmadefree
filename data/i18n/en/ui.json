@@ -29,11 +29,23 @@
     "skipToContent": "Skip to content",
     "languageSwitcherLabel": "Language",
     "directoryLabel": "Directory",
-    "footer": { "source": "Source on GitHub", "privacy": "Privacy" },
+    "footer": {
+      "source": "Source on GitHub",
+      "privacy": "Privacy"
+    },
     "verdicts": {
-      "yes": { "label": "Yes", "desc": "Replace it today. Nothing important is lost." },
-      "kinda": { "label": "Partly", "desc": "Rebuildable in a weekend, but you give up things like the mobile app, the sync, or the integrations. The entry says which." },
-      "no": { "label": "No", "desc": "Keep paying. The value is the network, the data or the compliance — no prompt replaces that." }
+      "yes": {
+        "label": "Yes",
+        "desc": "Replace it today. Nothing important is lost."
+      },
+      "kinda": {
+        "label": "Partly",
+        "desc": "Rebuildable in a weekend, but you give up things like the mobile app, the sync, or the integrations. The entry says which."
+      },
+      "no": {
+        "label": "No",
+        "desc": "Keep paying. The value is the network, the data or the compliance — no prompt replaces that."
+      }
     },
     "home": {
       "titleTag": "SaaS Made Free — which subscriptions are one prompt away from free?",
@@ -55,7 +67,9 @@
       "colPrice": "Monthly price",
       "colVerdict": "Verdict",
       "colVotes": "Votes",
-      "noResults": "No tools match that search."
+      "noResults": "No tools match that search.",
+      "heroQuestion": "Can a prompt replace {blank}?",
+      "browseHeading": "Browse by category"
     },
     "tool": {
       "titleTemplate": "Can a coding agent replace {name}? — SaaS Made Free",

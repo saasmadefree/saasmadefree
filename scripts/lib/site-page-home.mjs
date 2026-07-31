@@ -9,24 +9,44 @@ export function renderHomePage({ lang, path, toolViews, categorySlugs, categorie
   const h = s.home;
 
   const verdictsList = ['yes', 'kinda', 'no']
-    .map((v) => `        <dt class="${v}"><i aria-hidden="true"></i>${escapeHtml(s.verdicts[v].label)}</dt>
+    .map((v) => `        <dt><span class="badge ${v}">${escapeHtml(s.verdicts[v].label)}</span></dt>
         <dd>${escapeHtml(s.verdicts[v].desc)}</dd>`)
     .join('\n');
 
   const tally = pluralize(toolViews.length, lang, h.tallyOne, h.tallyOther);
 
-  const categoryOptions = categorySlugs
+  // Les pastilles sont des liens vers les pages de catégorie, qui existent déjà.
+  // Elles fonctionnent donc sans JavaScript, et chaque catégorie reste une page
+  // indexable — ce qu'un filtre purement client ne donne pas.
+  const chips = categorySlugs
     .map((slug) => {
       const emoji = categoryEmoji(categories, slug);
       const label = categoryLabel(categories, slug, lang);
-      return `            <option value="${slug}">${emoji ? `${emoji} ` : ''}${escapeHtml(label)}</option>`;
+      return `        <li><a href="${path}categories/${slug}/">${emoji ? `<span aria-hidden="true">${emoji}</span> ` : ''}${escapeHtml(label)}</a></li>`;
     })
     .join('\n');
 
+  // {blank} marque l'emplacement du nom d'outil que le lecteur va taper.
+  const [qBefore, qAfter] = String(h.heroQuestion ?? '{blank}').split('{blank}');
+
   const table = renderToolTable(toolViews, { lang, ui, categories, voteCounts });
 
-  const main = `    <h1 class="r">${escapeHtml(h.heroLine1)}<br><em>${escapeHtml(h.heroLine2)}</em></h1>
-    <p class="lede r">${escapeHtml(h.lede)}</p>
+  const main = `    <h1 class="r">${escapeHtml(qBefore)}<span class="blank">&#95;&#95;&#95;</span>${escapeHtml(qAfter ?? '')}</h1>
+    <p class="lede r">${escapeHtml(h.heroLine1)} ${escapeHtml(h.heroLine2)}</p>
+
+    <search class="r" aria-label="${escapeHtml(h.searchLabel)}">
+      <div class="field">
+        <label for="q">${escapeHtml(h.searchLabel)}</label>
+        <div class="search-shell">
+          <input type="search" id="q" name="q" placeholder="${escapeHtml(h.searchPlaceholder)}" autocomplete="off">
+        </div>
+      </div>
+    </search>
+
+    <h2>${escapeHtml(h.browseHeading ?? h.categoryFilterLabel)}</h2>
+    <ul class="chips r">
+${chips}
+    </ul>
 
     <div class="r">
       <h2>${escapeHtml(h.verdictsHeading)}</h2>
@@ -35,20 +55,6 @@ ${verdictsList}
       </dl>
       <p class="tally">${escapeHtml(tally)}</p>
     </div>
-
-    <search aria-label="${escapeHtml(h.searchLabel)}">
-      <div class="field">
-        <label for="q">${escapeHtml(h.searchLabel)}</label>
-        <input type="search" id="q" name="q" placeholder="${escapeHtml(h.searchPlaceholder)}" autocomplete="off">
-      </div>
-      <div class="field">
-        <label for="category-filter">${escapeHtml(h.categoryFilterLabel)}</label>
-        <select id="category-filter">
-          <option value="all">${escapeHtml(h.categoryFilterAll)}</option>
-${categoryOptions}
-        </select>
-      </div>
-    </search>
 
     <h2 class="visually-hidden">${escapeHtml(h.listHeading)}</h2>
 ${table}
