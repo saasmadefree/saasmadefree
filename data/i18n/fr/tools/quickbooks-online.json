@@ -1,0 +1,21 @@
+{
+  "tagline": "Comptabilité pour petite entreprise : facturation, dépenses, paie et démarches fiscales.",
+  "verdictSummary": "Une tranche personnelle sûre — factures clients, suivi de dépenses depuis un CSV bancaire, un rapport de résultat basique — c'est un vrai projet contenu pour quelqu'un qui facture juste quelques clients. Ce qui ne devrait vraiment pas être reconstruit, c'est tout ce dont dépendent la vraie comptabilité ou les impôts : la réconciliation, la paie, et la piste d'audit dont un comptable a besoin pour faire confiance aux chiffres.",
+  "coreLoopDIY": "Facturation et suivi de dépenses en local : factures clients exportées en PDF, import de CSV bancaire avec catégorisation par règles, et un rapport de résultat basique en comptabilité de caisse.",
+  "whatYouLose": [
+    "les flux bancaires en direct",
+    "le workflow de réconciliation sur lequel s'appuie un comptable",
+    "la paie et les déclarations fiscales",
+    "une piste d'audit",
+    "tout l'écosystème de QuickBooks tourné vers les comptables"
+  ],
+  "whyPeopleStillPay": "Les erreurs comptables et les problèmes fiscaux coûtent bien plus cher que l'abonnement — les gens paient pour que les chiffres auxquels font confiance leur comptable et l'administration fiscale ne soient jamais quelque chose qu'ils ont fait eux-mêmes.",
+  "notes": "Un « non » honnête avec une vraie exception étroite : la facturation et le suivi de dépenses personnels pour quelqu'un avec des besoins simples, gardés clairement séparés de tout ce dont dépend la vraie comptabilité.",
+  "prompt": "Construis un petit outil personnel de facturation et de suivi de dépenses — explicitement pas un logiciel de comptabilité. Des fiches clients, des factures à lignes avec export PDF, et un moyen de marquer une facture payée à la main. Pour les dépenses : importe l'export CSV de ta banque, fais passer chaque transaction par une table de règles qui catégorise automatiquement les payés récurrents, et laisse le reste être catégorisé à la main. Génère un rapport de résultat basique en comptabilité de caisse et un résumé par trimestre, plus un export CSV de tout pour pouvoir le remettre à un vrai comptable. Garde tout en local, lié à ta propre machine — la comptabilité ne la quitte jamais, et il n'y a ni hébergement ni compte à configurer.\n\nNe construis pas de flux bancaires, de réconciliation, de paie, ni rien qui touche aux déclarations fiscales — ce sont exactement les parties où une erreur coûte cher, et cet outil devrait le dire clairement dans son propre README plutôt que de prétendre être un logiciel de comptabilité. C'est de la comptabilité légère pour quelqu'un avec une poignée de clients, pas un système de tenue de livres.",
+  "faq": [
+    { "q": "Puis-je importer mes données QuickBooks existantes ?", "a": "Pas directement — les formats d'export de QuickBooks ne correspondent pas proprement à un schéma bien plus simple comme celui-ci. Tes transactions bancaires s'importent bien en CSV, mais l'historique des clients et des factures devrait être ressaisi à la main." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Les pages admin s'affichent dans un navigateur mobile pour un coup d'œil rapide, mais c'est un outil desktop par conception — créer des factures et catégoriser des dépenses est plus facile avec un clavier." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien de plus que la machine que tu possèdes déjà — pas d'hébergement, pas de clé API, pas d'abonnement, puisque tout reste en local." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La confiance. Un comptable ou une administration fiscale fait confiance aux chiffres de QuickBooks à cause de la réconciliation, des pistes d'audit, et de la précision des flux bancaires ; un tableur personnel avec quelques étapes en plus ne porte pas cette même confiance, et ne devrait pas avoir à le faire." }
+  ]
+}

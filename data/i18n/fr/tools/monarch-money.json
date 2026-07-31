@@ -1,0 +1,21 @@
+{
+  "tagline": "Tableau de bord de finances personnelles pour le budget, les transactions, les objectifs et le patrimoine.",
+  "verdictSummary": "Un tableau de bord financier piloté par CSV — importer les exports bancaires, catégoriser avec des règles simples, suivre les budgets et le patrimoine — c'est un vrai projet de week-end, et ça garde les identifiants bancaires complètement hors du tableau. Ce qui ne vient pas avec, c'est la synchro bancaire et d'investissement en direct, qui demande un service d'agrégation de données que la plupart des projets personnels ne devraient pas essayer de construire eux-mêmes.",
+  "coreLoopDIY": "Importe les exports CSV de banque et de carte, catégorise les transactions avec des règles simples, suis les budgets et les soldes de compte, et trace le patrimoine dans le temps.",
+  "whatYouLose": [
+    "la synchro automatique bancaire et d'investissement",
+    "une catégorisation de transactions réglée par un service maintenu",
+    "la collaboration familiale et partagée",
+    "les applications mobiles",
+    "une posture de sécurité des données professionnelle"
+  ],
+  "whyPeopleStillPay": "Les apps de finances personnelles n'ont de la valeur que si les données arrivent automatiquement et en sécurité — les gens paient pour que relier un compte bancaire ne soit pas quelque chose qu'ils construisent et sécurisent eux-mêmes.",
+  "notes": "Un bon « en partie » : la moitié remplacement de tableur est un « oui » net, la synchro bancaire en direct est vraiment plus difficile.",
+  "prompt": "Construis un tableau de bord de finances personnelles piloté par CSV : importe les exports CSV de banque et de carte, avec un mapping de colonnes par banque enregistré après le premier import et des lignes dédupliquées via un hash date-montant-description pour que les réimports soient toujours sûrs. Catégorise avec des règles simples — une correspondance de sous-chaîne ou de motif sur la description définit la catégorie automatiquement — et donne un écran de révision rapide pour ce qui reste non catégorisé. Suis des objectifs de budget mensuels par catégorie avec des barres réel-contre-budget, et une table de comptes à saisie manuelle (pour les choses sans CSV, comme une retraite ou un bien immobilier) alimentant un graphique de patrimoine construit à partir de relevés de solde que tu saisis périodiquement. Ajoute un détecteur de charges récurrentes : le même marchand pour un montant similaire à une cadence à peu près mensuelle est signalé et listé avec son coût annualisé — cette vue d'audit d'abonnements justifie souvent le projet à elle seule.\n\nNe construis pas de synchro bancaire automatique, de comptes familiaux multi-utilisateurs, ni d'applications mobiles — aucun identifiant bancaire ne devrait jamais avoir à entrer dans ce système, et le rituel d'import CSV mensuel est le prix honnête pour garder ça ainsi.",
+  "faq": [
+    { "q": "Puis-je importer mes données Monarch Money existantes ?", "a": "Monarch permet d'exporter les transactions en CSV, ce qui correspond directement au flux d'import de cette version. Les positions d'investissement et l'historique de patrimoine ne s'exportent généralement pas proprement, puisqu'ils viennent de la propre agrégation de données de Monarch." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "En tant que page web responsive, oui, pour consulter et saisir rapidement. Il n'y a pas d'app dédiée ni de synchro bancaire automatique, donc consulter demande un effort plus délibéré qu'un coup d'œil de cinq secondes sur le téléphone." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données, typiquement quelques dollars par mois — vraiment bon marché puisque ça ne gère aucune connexion bancaire en direct." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La synchro automatique. Chaque chiffre ici arrive via un import CSV manuel, ce qui veut dire que le tableau de bord n'est jamais plus à jour que ton dernier import — un vrai changement d'habitude par rapport à des données qui se mettent à jour toutes seules." }
+  ]
+}

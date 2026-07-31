@@ -1,0 +1,20 @@
+{
+  "tagline": "Paraphrase, résumé et correction grammaticale par IA.",
+  "verdictSummary": "Un outil de paraphrase et de grammaire enveloppant un LLM plus un moteur de grammaire local, c'est un projet d'une session — la vraie valeur de QuillBot tient presque entièrement à la finition de surcouche (extensions navigateur et Word, historique enregistré, modes conçus sur mesure), pas à une capacité difficile à reproduire.",
+  "coreLoopDIY": "Une page avec un panneau d'entrée et de sortie : paraphrase et résumé via un LLM, correction grammaticale via un moteur open source local, avec chaque exécution enregistrée dans un historique cherchable.",
+  "whatYouLose": [
+    "les extensions navigateur et Word qui fonctionnent en ligne là où tu écris déjà",
+    "les workflows dédiés de détection de plagiat et de contenu IA",
+    "des années de finition UX sur les modes de réécriture",
+    "la synchro de compte entre appareils"
+  ],
+  "whyPeopleStillPay": "Les gens paient parce que c'est déjà installé là où ils écrivent, avec des boutons conçus sur mesure pour chaque mode — pas parce que paraphraser du texte est un problème difficile à résoudre.",
+  "notes": "Un « oui » solide : c'est chargé en surcouche exactement de la façon qui rend l'annulation facile une fois la version DIY en place.",
+  "prompt": "Construis un petit outil local avec une zone de texte en entrée, un panneau de sortie, et des boutons pour quelques modes fixes : paraphraser, résumer, et deux ou trois réécritures de ton (plus formel, plus court). Les modes paraphrase, résumé et ton appellent une API LLM avec une instruction fixe par mode et diffusent la réponse en streaming. La correction grammaticale passe par un moteur de grammaire open source local (LanguageTool, auto-hébergé) plutôt que par le LLM — la grammaire est un problème résolu et ne devrait pas coûter de tokens d'API. Affiche un diff au niveau du mot entre l'entrée et la sortie pour que les changements d'une réécriture soient visibles d'un coup d'œil. Enregistre chaque exécution (mode, entrée, sortie, horodatage) dans une base de données avec une vue historique dont tu peux recopier le contenu.\n\nNe construis pas d'extensions navigateur ou traitement de texte, ni de fonctionnalités de détection de plagiat/IA — ça demande un vrai travail d'intégration de plateforme et des modèles de détection séparés respectivement, et ni l'un ni l'autre n'est ce qui rend la boucle centrale de paraphrase et grammaire utile. Ça vit dans un seul onglet, et c'est le compromis honnête face à un outil installé partout où tu tapes.",
+  "faq": [
+    { "q": "Puis-je importer mon historique QuillBot ?", "a": "Non — QuillBot n'offre pas d'export de ton historique de réécritures enregistrées, donc le travail passé y reste. Tout ce qui vient de cette version à partir de maintenant est enregistré localement dans ta propre base de données." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "En tant que page avec une zone de texte, oui, techniquement — mais il n'y a ni extension navigateur ni intégration Word, donc sur mobile en particulier, tu copierais le texte à la main dans les deux sens, ce qui est une vraie régression." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement du petit serveur plus usage de l'API LLM par appel de paraphrase ou de résumé — la vérification grammaticale elle-même est gratuite, puisqu'elle tourne sur un moteur open source local sans coût d'API." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Être là où tu écris déjà. Les extensions de QuillBot fonctionnent en ligne dans ton navigateur ou Word ; cette version est un onglet séparé où tu copies le texte à chaque fois, dans les deux sens." }
+  ]
+}

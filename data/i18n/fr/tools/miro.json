@@ -1,0 +1,21 @@
+{
+  "tagline": "Tableau blanc collaboratif en ligne pour diagrammes et ateliers.",
+  "verdictSummary": "Un tableau blanc personnel construit sur un SDK de canvas open source existant — post-its, formes, connecteurs, sauvegarde automatique — c'est un vrai projet de week-end, pas un moteur de canvas depuis zéro. Ce qui ne vient pas avec, c'est le vrai produit de Miro : une performance fiable avec des dizaines d'éditeurs simultanés, une bibliothèque de modèles profonde, et des outils d'animation d'atelier.",
+  "coreLoopDIY": "Un tableau blanc personnel au-dessus d'un SDK de canvas open source existant, avec des tableaux nommés, une sauvegarde automatique, et un export PNG/SVG.",
+  "whatYouLose": [
+    "une performance fiable avec de nombreux éditeurs simultanés",
+    "une bibliothèque de modèles profonde",
+    "les intégrations tierces",
+    "les outils d'animation d'atelier comme les minuteurs et le vote",
+    "les contrôles de permissions entreprise"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour des ateliers où des dizaines de personnes peuvent rejoindre un tableau à la fois et où tout continue de tenir — pas pour la capacité de dessiner un post-it, que les outils de canvas open source résolvent déjà.",
+  "notes": "Un bon « en partie » : construire sur un SDK de canvas existant rend la démo rapide, mais la profondeur multi-utilisateur en production est du vrai travail d'ingénierie continu.",
+  "prompt": "N'écris pas un moteur de canvas depuis zéro — construis un tableau blanc personnel au-dessus d'un SDK de canvas open source existant (tldraw est un bon choix ; il gère déjà bien les formes, les post-its, les connecteurs et la sélection). Un sélecteur de tableaux nommés avec miniatures. Sauvegarde automatiquement l'état du canvas de chaque tableau dans une base de données quelques secondes après le dernier changement, en gardant un court historique des instantanés récents comme assurance annuler. Exporte le tableau actuel en PNG et SVG. Amorce une poignée de modèles de départ (une grille rétro, des colonnes de brainstorm, un planning hebdomadaire) depuis de simples fichiers de config plutôt qu'en construisant une place de marché de modèles. Tout fonctionne entièrement hors ligne et en local par défaut.\n\nNe construis pas d'outils d'animation d'atelier (minuteurs, vote), d'intégrations tierces, ni d'optimisation de performance pour des tableaux avec des dizaines d'éditeurs simultanés — c'est la vraie profondeur produit de Miro. Une synchro en temps réel entre exactement deux personnes est un objectif ambitieux raisonnable ; prendre en charge une équipe entière sur un tableau à la fois ne l'est pas.",
+  "faq": [
+    { "q": "Puis-je importer mes tableaux Miro existants ?", "a": "Miro exporte les tableaux en images ou en PDF, ce qui préserve le visuel mais pas les formes éditables. Il n'y a pas de moyen officiel de récupérer les tableaux comme des éléments vivants et éditables." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Consulter un tableau fonctionne dans un navigateur mobile, mais le placement précis de formes et le tracé de connecteurs sont vraiment plus difficiles sur un écran tactile — c'est en pratique un outil de desktop et de tablette." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données, typiquement quelques dollars par mois — pas de tarification par siège à gérer." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Une salle pleine de gens qui éditent le même tableau à la fois. Le multi-utilisateur en temps réel à l'échelle de Miro demande le même genre d'ingénierie de résolution de conflits que celle de Figma — cette version est honnêtement un canvas de réflexion personnel, pas un lieu d'atelier." }
+  ]
+}

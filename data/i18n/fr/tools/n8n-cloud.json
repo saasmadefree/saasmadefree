@@ -1,0 +1,20 @@
+{
+  "tagline": "Automatisation de workflows connectant apps et API.",
+  "verdictSummary": "Comme n8n est lui-même open source, c'est un vrai « oui » : auto-héberge le vrai logiciel plutôt qu'un clone. Ce que payait le forfait Cloud, c'était l'hébergement, les sauvegardes et la montée en charge — le moteur de workflow que tu ferais tourner est identique dans les deux cas.",
+  "coreLoopDIY": "Auto-héberge le moteur de workflow open source n8n derrière HTTPS, avec ta propre routine de sauvegarde et de mise à jour.",
+  "whatYouLose": [
+    "l'hébergement géré et la montée en charge",
+    "les sauvegardes prises en charge pour toi",
+    "le support par email",
+    "la charge opérationnelle quotidienne qui est le travail de quelqu'un d'autre"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour éviter de maintenir un serveur d'automatisation dont dépendent discrètement de vrais workflows métier — pas parce que n8n lui-même est difficile à faire tourner.",
+  "notes": "Un exemple net de « oui, mais l'hébergement et les opérations deviennent ton travail » — ça vaut la peine de le nommer comme son propre schéma, puisque plusieurs fiches de ce catalogue le partagent.",
+  "prompt": "Ne construis pas d'outil d'automatisation — déploie le vrai n8n, open source. Fais-le tourner via Docker Compose sur un petit VPS avec un volume persistant pour son répertoire de données ; le stockage SQLite convient à l'échelle personnelle, pas besoin d'un serveur de base de données séparé. Lie n8n à localhost et expose-le via ton reverse proxy existant sur un sous-domaine HTTPS, en t'appuyant sur la propre connexion de n8n pour le contrôle d'accès. Définis explicitement sa clé de chiffrement comme variable d'environnement et sauvegarde cette clé séparément de tout le reste — la perdre rend chaque identifiant stocké illisible pour toujours, ce qui vaut la peine d'être dit haut et fort dans le README. Définis la variable d'environnement d'URL de webhook vers ton sous-domaine public pour que les services externes puissent réellement déclencher tes workflows. Mets en place une sauvegarde nocturne qui exporte les workflows et identifiants via la propre CLI de n8n et copie le volume de données ailleurs, et un script de mise à jour qui épingle une version précise, sauvegarde d'abord, puis récupère et redémarre — ne mets jamais à jour aveuglément vers une version latest non taguée. Importe un ou deux workflows de démarrage comme test de fumée que tout le pipeline fonctionne de bout en bout.\n\nNe construis pas de fonctionnalités d'équipe multi-utilisateurs, ni de montée en charge haute disponibilité — c'est la boîte d'automatisation d'une personne, pas une plateforme. Les opérations sont ce qui est réellement pris en charge ici ; le README devrait le dire clairement.",
+  "faq": [
+    { "q": "Puis-je migrer mes workflows n8n Cloud existants ?", "a": "Oui — l'export/import de n8n fonctionne à l'identique, que le workflow ait été construit sur Cloud ou en auto-hébergé, puisque c'est le même logiciel sous-jacent dans les deux cas." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "L'éditeur lui-même, mal — construire ou éditer un workflow visuellement demande un écran plus grand. Les workflows déjà en cours continuent de tourner quel que soit l'appareil que tu utilises." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Un petit VPS plus un domaine, typiquement moins de dix dollars par mois — souvent moins que le forfait Cloud une fois que le nombre de workflows grandit, même si c'est désormais toi qui le maintiens en ligne." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La montée en charge sans y penser. n8n Cloud absorbe automatiquement les pics de trafic et la croissance de stockage ; un seul VPS a un plafond, et l'atteindre veut dire redimensionner le serveur toi-même à la main." }
+  ]
+}

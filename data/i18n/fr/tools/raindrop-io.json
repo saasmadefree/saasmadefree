@@ -1,0 +1,20 @@
+{
+  "tagline": "Gestionnaire de favoris visuel pour enregistrer, étiqueter et chercher des liens.",
+  "verdictSummary": "Un gestionnaire de favoris personnel — sauvegarder via un bookmarklet, étiqueter librement, recherche plein texte sur les pages sauvegardées — c'est un projet à l'échelle d'un week-end vraiment faisable, et l'une des fiches « oui » les plus nettes ici : la gestion de favoris est un problème bien compris, avec de mûrs antécédents open source déjà disponibles.",
+  "coreLoopDIY": "Un bookmarklet qui sauvegarde l'URL et les métadonnées d'une page, stocke le texte d'article lisible pour la recherche, et prend en charge un étiquetage libre avec recherche plein texte sur tout ce qui est sauvegardé.",
+  "whatYouLose": [
+    "une application mobile native",
+    "des années de finition d'extension navigateur",
+    "l'archivage permanent de page au-delà du texte",
+    "les collections d'équipe partagées"
+  ],
+  "whyPeopleStillPay": "Les favoris sont ennuyeux jusqu'à ce que la recherche, l'accès mobile et la fiabilité de l'extension comptent vraiment — les gens paient pour que ces trois choses fonctionnent simplement, sans maintenance.",
+  "notes": "Un « oui » solide avec de vrais antécédents matures — c'est un problème d'outillage personnel bien résolu.",
+  "prompt": "Construis un gestionnaire de favoris personnel : un bookmarklet (ou une simple action de navigateur) qui envoie l'URL de la page actuelle vers un endpoint de sauvegarde, qui récupère la page, extrait le titre, la description et l'image d'aperçu, et stocke le texte d'article lisible (avec une bibliothèque comme Readability de Mozilla) pour que la recherche trouve vraiment du contenu, pas juste des titres. Prends en charge des tags libres sur chaque favori avec autocomplétion depuis ce que tu as déjà utilisé, plus une note optionnelle. Construis une recherche plein texte sur le titre, la note, et le texte d'article archivé, filtrable par tag, du plus récent au plus ancien. Fais tourner une vérification périodique qui revisite les liens sauvegardés et signale ceux qui donnent maintenant une 404. Prends en charge l'import d'un export de favoris standard de navigateur dès le premier jour, et l'export de tout en retour (JSON ou CSV) pour que rien ne reste jamais coincé.\n\nNe construis pas d'application mobile ni d'archivage complet en instantané visuel de page — le texte d'article extrait est l'archive ici, pas une capture d'écran de la page, et c'est une simplification délibérée, pas un oubli. Pas de collections d'équipe partagées non plus ; c'est un outil personnel.",
+  "faq": [
+    { "q": "Puis-je importer mes favoris Raindrop.io existants ?", "a": "Oui — Raindrop exporte un fichier HTML de favoris standard, et importer ce format au premier lancement est exactement ce que cette version attend." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "La liste et la recherche sont utilisables depuis un navigateur mobile, mais il n'y a ni application mobile native ni intégration au menu de partage pour sauvegarder rapidement un lien depuis une autre app." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données, typiquement quelques dollars par mois — toute l'archive tient dans un seul fichier de base de données, donc les coûts de stockage restent faibles même avec des années de favoris." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Sauvegarder depuis n'importe où instantanément. Les applications mobiles abouties de Raindrop et son intégration au menu de partage font de la sauvegarde d'un lien un réflexe en un tap ; le bookmarklet de cette version fonctionne, mais c'est une action plus délibérée, pensée desktop d'abord." }
+  ]
+}

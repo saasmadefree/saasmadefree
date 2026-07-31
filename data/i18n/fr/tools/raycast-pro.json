@@ -1,0 +1,21 @@
+{
+  "tagline": "Lanceur Mac avec extensions, snippets, historique de presse-papiers et IA.",
+  "verdictSummary": "Une palette de commandes personnelle couvrant l'historique de presse-papiers, les snippets, et quelques raccourcis IA, c'est un vrai projet de week-end avec un framework d'application cross-plateforme. Ce qui ne vient pas avec, c'est le vrai produit de Raycast : un lanceur vraiment natif et à faible latence, un large écosystème d'extensions, et une synchro cloud — tout du vrai travail produit au niveau du système d'exploitation.",
+  "coreLoopDIY": "Une palette de commandes à raccourci global avec historique de presse-papiers, snippets d'expansion de texte, et deux ou trois raccourcis IA qui lisent depuis le presse-papiers et y réécrivent.",
+  "whatYouLose": [
+    "l'écosystème d'extensions et sa boutique",
+    "la vitesse native au niveau du système d'exploitation",
+    "la synchro cloud entre machines",
+    "les snippets d'équipe partagés",
+    "des années de finition d'interaction"
+  ],
+  "whyPeopleStillPay": "Un lanceur vit au niveau du système d'exploitation comme un outil d'usage quotidien — la latence et la finition native comptent énormément là, et c'est du vrai travail d'ingénierie continu, pas une liste de fonctionnalités à cocher.",
+  "notes": "Un excellent exemple d'un petit utilitaire qui devient vraiment difficile à cause de l'endroit où il se trouve — juste au niveau de la couche du système d'exploitation.",
+  "prompt": "Construis une palette de commandes personnelle couvrant les parties d'un lanceur payant que tu utilises réellement : un raccourci global ouvre une fenêtre de saisie centrée. Construis un historique de presse-papiers qui surveille le presse-papiers système et garde une liste cherchable des entrées récentes, en sélectionner une la colle. Construis des snippets d'expansion de texte : un mot-clé se développe en un modèle enregistré avec des espaces réservés comme la date actuelle ou le contenu du presse-papiers remplis. Ajoute un petit ensemble de commandes IA — corriger la grammaire, résumer, traduire — qui envoient le contenu actuel du presse-papiers à un LLM et réécrivent le résultat dans le presse-papiers avec une notification. Prends en charge des commandes personnalisées comme de simples scripts dans un dossier, apparaissant dans la palette par nom de fichier, avec leur sortie copiée ou affichée.\n\nNe construis pas de boutique d'extensions, de recherche de fichiers, ni de gestion de fenêtres, et ne cours pas après la vitesse native d'un lanceur — ça tourne comme une application cross-plateforme plutôt qu'un vrai utilitaire au niveau du système d'exploitation, et cet écart de latence est le compromis honnête pour le construire toi-même.",
+  "faq": [
+    { "q": "Puis-je récupérer mes extensions et snippets Raycast ?", "a": "Pas directement — les extensions de Raycast sont leur propre écosystème sans export. Les snippets sont généralement assez courts pour être recréés à la main dans le propre fichier de config de cette version." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Non — un lanceur à raccourci global est intrinsèquement un concept de desktop lié au système d'exploitation que tu utilises activement. Ce n'est pas pensé pour tourner sur un téléphone." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien de plus que la machine que tu possèdes déjà pour les fonctionnalités centrales ; les commandes IA optionnelles coûtent un peu d'usage d'API par utilisation." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La vitesse native. Raycast est conçu pour s'ouvrir et répondre en millisecondes en tant qu'outil au niveau du système d'exploitation ; cette version tourne comme une application cross-plateforme, et cette différence de latence est vraiment perceptible à chaque usage." }
+  ]
+}

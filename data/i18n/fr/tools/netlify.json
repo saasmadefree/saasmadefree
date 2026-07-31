@@ -1,0 +1,21 @@
+{
+  "tagline": "Plateforme d'hébergement web pour sites statiques, fonctions, formulaires et aperçus de déploiement.",
+  "verdictSummary": "Un pipeline de déploiement git-push vers ton propre serveur avec des aperçus de branche sur des sous-domaines, c'est un vrai projet de week-end. Ce qui ne vient pas avec, c'est le vrai produit de Netlify : un CDN mondial et des fonctions edge, et une plateforme hébergée dont la fiabilité n'est pas celle de la disponibilité de ton propre serveur.",
+  "coreLoopDIY": "Un service de déploiement qui construit et échange atomiquement un site statique en direct à chaque push sur une branche, avec des aperçus automatiques en sous-domaine pour les autres branches.",
+  "whatYouLose": [
+    "un CDN mondial et des fonctions edge",
+    "les formulaires hébergés",
+    "les règles de redirection et d'en-têtes intégrées",
+    "les workflows d'équipe",
+    "une disponibilité qui n'est pas liée à un seul serveur"
+  ],
+  "whyPeopleStillPay": "Même un site simple a quand même besoin d'un CI/CD fiable, de routage et d'aperçus — les gens paient pour que cette infrastructure ne soit pas quelque chose qu'ils font tourner eux-mêmes.",
+  "notes": "Une bonne comparaison avec la fiche Vercel de ce catalogue — ça vaut la peine de comparer la commodité de la plateforme face à l'auto-hébergement direct.",
+  "prompt": "Construis un pipeline de déploiement de site statique personnel sur ton propre serveur : un petit service qui reçoit un webhook au push, récupère le dépôt, lance la commande de build du projet, et échange atomiquement un lien symbolique en direct vers le nouveau build — un build échoué doit laisser le site actuellement en direct intact. Garde une poignée de builds récents par site pour que revenir en arrière soit une commande d'une ligne. Prends en charge les aperçus de branche : un push sur n'importe quelle branche autre que la principale se déploie automatiquement sur son propre sous-domaine, routé via une règle de reverse-proxy générique. Journalise la sortie de build par déploiement et expose une simple commande de statut listant les sites, la dernière heure de déploiement, et le succès/échec.\n\nNe construis pas de CDN mondial, de fonctions edge, de formulaires hébergés, ni de tableau de bord web — c'est un seul serveur, pas un réseau mondial, et une vue de statut en ligne de commande suffit pour un outil personnel.",
+  "faq": [
+    { "q": "Puis-je migrer mes sites Netlify existants ?", "a": "La commande de build et le répertoire de sortie, oui — ça correspond directement à la config par site de cette installation. Les fonctionnalités spécifiques à Netlify comme les formulaires hébergés et les fonctions edge demandent une réécriture, puisqu'il n'y a pas d'équivalent directement transposable ici." },
+    { "q": "Ça marche pour une équipe ?", "a": "Pour les déploiements, oui, si tout le monde a un accès push au dépôt. Ce qui ne vient pas avec, c'est le propre workflow de permissions d'équipe et de revue autour des déploiements de Netlify." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Un petit VPS et un domaine, typiquement moins de dix dollars par mois — souvent moins que les paliers payants de Netlify dès qu'un projet a besoin de plus que le quota gratuit." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Le CDN mondial. Netlify sert chaque site depuis des emplacements proches de chaque visiteur dans le monde ; un seul VPS sert depuis un seul emplacement, et égaler cette répartition est un vrai projet d'infrastructure en soi." }
+  ]
+}

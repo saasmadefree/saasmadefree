@@ -1,0 +1,21 @@
+{
+  "tagline": "Calendrier et planificateur de tâches IA qui planifie automatiquement ta journée de travail.",
+  "verdictSummary": "Un auto-planificateur glouton pour tes propres tâches — lire les disponibilités du calendrier, caser les tâches dans les créneaux libres par échéance et priorité, réécrire le plan comme des événements calendrier — c'est un vrai projet de week-end. Ce qui ne vient pas avec, c'est une gestion robuste des conflits sur plusieurs calendriers, la planification d'équipe, et des années de finition sur les cas particuliers derrière un « replanifie simplement quand quelque chose change ».",
+  "coreLoopDIY": "Un planificateur qui lit le temps libre/occupé de ton calendrier, case tes tâches dans les créneaux disponibles par échéance et priorité pendant les heures de travail, et réécrit le résultat comme des événements calendrier clairement étiquetés.",
+  "whatYouLose": [
+    "la synchro multi-calendriers",
+    "les règles de travail récurrent",
+    "les applications mobiles",
+    "la planification d'équipe",
+    "des années de finition derrière une replanification automatique fluide"
+  ],
+  "whyPeopleStillPay": "Les gens paient parce que le calendrier reste organisé sans glisser-déposer manuel — l'automatisation doit être assez fiable pour qu'on lui délègue, ce qui est surtout un problème de cas particuliers, pas un problème d'algorithme.",
+  "notes": "Un bon « en partie » : l'algorithme de planification central est faisable, la promesse d'automatisation continue est le vrai produit.",
+  "prompt": "Construis un auto-planificateur de tâches personnel : les tâches ont un titre, une estimation de durée, une échéance, et une priorité. Lis le temps libre/occupé de ton calendrier pour les deux prochaines semaines via son API, en respectant les heures de travail configurées et une pause déjeuner. Utilise un algorithme glouton simple — échéance la plus proche en premier, pondérée par priorité — pour caser les tâches dans les créneaux libres, en découpant tout ce qui est long en morceaux plus petits. Réécris le plan résultant comme des événements calendrier clairement marqués comme créés par machine (un préfixe dans le titre suffit), et fais en sorte que la replanification ne supprime et recrée que ces événements marqués — ne touche jamais à une vraie réunion. Fais remonter visiblement les tâches en retard ou impossibles à planifier plutôt que de les abandonner silencieusement. Fais tourner ça sur un planning chaque matin pour que le plan reste à jour.\n\nNe construis pas de planification d'équipe, d'applications mobiles, ni de gestion d'invitations de réunion — ça planifie ton propre travail solo autour d'un calendrier traité comme une vérité en lecture seule, et c'est le périmètre honnête et complet.",
+  "faq": [
+    { "q": "Puis-je importer mes tâches Motion existantes ?", "a": "Pas automatiquement — Motion n'offre pas d'export structuré de sa liste de tâches. Recréer une liste de tâches active à la main est réaliste, puisque la plupart des gens ne portent pas un gros arriéré d'éléments planifiés." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Le plan planifié apparaît comme des événements calendrier normaux, visibles sur n'importe quelle app de calendrier sur ton téléphone. Ajouter ou éditer des tâches, en revanche, demande la petite page web ou la CLI, pas un flux natif mobile." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données, typiquement quelques dollars par mois — l'API de calendrier elle-même est gratuite à des volumes d'usage personnels." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Une gestion élégante d'un calendrier chargé et changeant. La replanification de Motion a été réglée contre des années de vrais conflits et de cas particuliers ; un algorithme glouton ici fonctionne bien pour un calendrier plutôt calme et devient plus rugueux à mesure que ta semaine est réellement chargée." }
+  ]
+}
