@@ -1,0 +1,19 @@
+{
+  "tagline": "Remets automatiquement en file tes anciens posts qui ont le mieux performé",
+  "verdictSummary": "Remettre automatiquement en file tes propres anciens posts les plus performants sur un planning — la vraie fonctionnalité signature de Hypefury — c'est un vrai projet de week-end une fois que tu publies via l'API officielle d'un réseau, la même mécanique de base que la fiche Hootsuite de ce catalogue. Ce qui ne survit pas : la prise en charge multi-réseaux et les raffinements d'auto-DM et de planification de fils de Hypefury.",
+  "coreLoopDIY": "Suis l'engagement sur tes propres posts publiés, identifie automatiquement les plus performants par un simple seuil d'engagement, et remets-les en file pour republication après un intervalle configurable.",
+  "whatYouLose": [
+    "la publication multi-réseaux au même endroit",
+    "l'auto-DM et l'automatisation de suivi",
+    "les raffinements de planification de fils et de contenu evergreen",
+    "des analytics détaillées de croissance d'audience"
+  ],
+  "whyPeopleStillPay": "Remettre un post en file, c'est une requête de base de données ; construire les décisions autour de ça — combien de temps avant que le recyclage paraisse rassis, comment éviter d'agacer les followers répétés — c'est de la réflexion produit raffinée, pas juste du code.",
+  "prompt": "Construis un planificateur de recyclage de posts pour l'API officielle d'un réseau social — la vraie fonctionnalité signature de Hypefury, ajoutée par-dessus une planification basique. Utilise la même approche mono-réseau et API officielle que la fiche Hootsuite de ce catalogue, comme Bluesky ou Mastodon, toutes deux accessibles sans longue vérification d'entreprise. Utilise Next.js/TypeScript avec Postgres et le flux OAuth de ce réseau. Prends en charge la rédaction et la planification de posts comme base. Par-dessus ça, périodiquement, une tâche quotidienne en arrière-plan, récupère les stats d'engagement de chaque post publié via la même API, et si un post franchit un seuil d'engagement configurable, ajoute-le automatiquement de retour dans la file de planification après un intervalle minimum configurable, comme pas avant 30 jours, pour que ton meilleur contenu ressurgisse sans republication manuelle. Laisse l'utilisateur voir et retirer tout post recyclé auto-mis en file avant qu'il ne publie vraiment, pour que rien ne parte sans revue. Plafonne combien de posts recyclés peuvent se mettre en file par semaine pour éviter le spam de fil. Ne construis pas de prise en charge multi-réseaux, d'auto-DM ou d'automatisation de suivi, ni d'analytics de croissance détaillées — c'est hors périmètre ; ceci se concentre spécifiquement sur la mécanique de recyclage. Nécessite un enregistrement d'application OAuth auprès du réseau choisi.",
+  "faq": [
+    { "q": "Comment ça décide quels posts recycler ?", "a": "Basé sur un seuil d'engagement configurable que tu fixes — les posts qui le franchissent sont automatiquement mis en file pour republication après un intervalle minimum que tu contrôles aussi, pour que tu ne recycles pas des posts médiocres." },
+    { "q": "Est-ce que je vais accidentellement spammer mes followers avec du vieux contenu ?", "a": "Il y a un plafond hebdomadaire sur les posts recyclés et chaque post auto-mis en file est révisable avant publication, spécifiquement pour réduire ce risque — mais ça vaut quand même la peine de vérifier la file périodiquement." },
+    { "q": "Ça prend en charge les auto-DM aux nouveaux followers, comme Hypefury ?", "a": "Non — c'est une fonctionnalité d'automatisation séparée que cette construction n'inclut pas. Ceci se limite spécifiquement à la mécanique de recyclage." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement pour la tâche planifiée plus une petite base de données — quelques dollars par mois, sans frais par post." }
+  ]
+}

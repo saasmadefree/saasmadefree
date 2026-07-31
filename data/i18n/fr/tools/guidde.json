@@ -1,0 +1,19 @@
+{
+  "tagline": "Transforme une séquence de clics capturée en vidéo narrée avec un TTS local",
+  "verdictSummary": "Transformer une séquence de clics capturée en vidéo narrée — générer automatiquement un script décrivant chaque étape et le lire à voix haute avec un TTS local — c'est un vrai projet de week-end combinant la capture façon Scribe de ce catalogue avec l'approche TTS déjà décrite pour Murf. Ce qui ne survit pas : le poli de Guidde dans la formulation de la narration auto-générée et ses bibliothèques de vidéos partagées en équipe avec analytics.",
+  "coreLoopDIY": "Capture un workflow navigateur comme une séquence de captures d'écran par clic, génère un script de narration basique par étape depuis un template, convertis-le en voix avec un TTS local, et assemble captures d'écran et narration en une vidéo.",
+  "whatYouLose": [
+    "la formulation soignée de narration auto-générée",
+    "les bibliothèques de vidéos partagées en équipe avec analytics",
+    "l'hébergement vidéo et les lecteurs intégrables",
+    "la narration multilingue"
+  ],
+  "whyPeopleStillPay": "Combiner des captures d'écran avec une narration TTS, c'est faisable soi-même ; écrire une narration qui sonne vraiment naturelle, plus héberger et organiser une bibliothèque grandissante de ces vidéos pour une équipe, c'est le travail produit continu.",
+  "prompt": "Construis un outil qui transforme un workflow navigateur capturé en vidéo narrée — en combinant la capture de clic façon Scribe de ce catalogue avec la synthèse vocale locale, la même approche que la fiche Murf de ce catalogue. Utilise une extension Chrome (Manifest V3) pour capturer une capture d'écran et une description basique en template à chaque clic, le même mécanisme que la fiche Scribe de ce catalogue. Après la capture, laisse l'utilisateur relire et éditer le texte de description de chaque étape, puisque les descriptions auto-générées sont un brouillon approximatif, pas un texte final. Convertis la description finalisée de chaque étape en voix en utilisant un modèle TTS local (Coqui TTS ou Piper). Assemble les captures d'écran et la narration en une vidéo en utilisant ffmpeg : chaque capture montrée pour la durée de son clip de narration, avec un simple effet de zoom vers la zone cliquée sur l'élément cliqué. Exporte en MP4. Ne construis pas de bibliothèques de vidéos partagées en équipe avec analytics, de lecteurs intégrables hébergés, ni de narration multilingue — c'est hors périmètre ; ceci produit une vidéo narrée par capture, exportée comme fichier. Aucune clé API ni compte requis ; le TTS et l'assemblage vidéo tournent en local.",
+  "faq": [
+    { "q": "La narration sonne-t-elle naturelle ?", "a": "Raisonnablement, en utilisant un modèle TTS local ouvert — mais la formulation réelle vient d'une description basique en template par étape que tu es censé éditer avant de finaliser, pas un texte auto-généré soigné comme celui de Guidde." },
+    { "q": "Mon équipe peut-elle partager et suivre les vues de ces vidéos ?", "a": "Non — il n'y a pas de couche d'hébergement ou d'analytics. Chaque vidéo s'exporte comme un fichier MP4 autonome que tu partagerais manuellement." },
+    { "q": "Ça prend en charge plusieurs langues ?", "a": "Seulement ce que le modèle TTS local que tu choisis prend en charge — il n'y a pas de fonctionnalité dédiée de narration multilingue." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien au-delà de ta propre machine — le TTS et l'assemblage vidéo tournent en local sans frais par vidéo." }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "Un client propre et rapide pour une boîte mail que tu héberges déjà ailleurs",
+  "verdictSummary": "Faire tourner ton propre serveur mail — SPF, DKIM, DMARC, réputation IP, filtrage anti-spam — c'est l'une des rares choses dans tout ce catalogue qui n'est franchement pas un projet de week-end, et le vrai produit de Fastmail, c'est d'héberger ça bien. Ce que tu peux construire en un week-end, c'est le client : connecte-toi à n'importe quelle boîte IMAP/SMTP, y compris une que tu paies encore chez Fastmail (ou un autre hébergeur), avec une recherche locale rapide et sans surcharge.",
+  "coreLoopDIY": "Connecte une boîte IMAP/SMTP existante, indexe les messages en local pour une recherche instantanée, et fournis un client léger — dossiers, recherche, rédaction — sans héberger toi-même aucune infrastructure mail.",
+  "whatYouLose": [
+    "héberger vraiment ton propre mail (toujours nécessaire chez quelqu'un)",
+    "un filtrage anti-spam affiné sur des années",
+    "la synchro calendrier et contacts",
+    "la gestion de boîte mail sur domaine personnalisé"
+  ],
+  "whyPeopleStillPay": "Le client email, c'est les 5 % faciles ; l'abonnement, c'est pour les 95 % durement gagnés — ne pas finir en spam, garder propre la réputation d'envoi d'un domaine, et ne jamais perdre de courrier.",
+  "prompt": "Construis un client email desktop léger pour une boîte mail que tu possèdes déjà — ceci ne remplace pas l'hébergement de ton propre mail, ce qui est explicitement hors périmètre (DNS/SPF/DKIM et la lutte anti-spam ne sont pas un projet solo réaliste ; continue de payer quelqu'un, que ce soit Fastmail ou un autre hébergeur IMAP, pour la vraie boîte mail). Utilise Tauri ou Electron avec un index SQLite local. Connecte-toi via IMAP et SMTP avec un identifiant/mot de passe ou un mot de passe spécifique à l'application — aucun enregistrement d'application OAuth nécessaire. À la première exécution, fais une synchro complète des en-têtes, puis continue à synchroniser de façon incrémentale avec IMAP IDLE ou un polling court. Prends en charge les dossiers, une vue unifiée d'un compte connecté, la recherche plein texte locale sur les objets et corps, et le répondre/répondre à tous/transférer/composer standards avec du texte brut et du HTML simple. Garde les brouillons en local jusqu'à l'envoi. Ne construis pas de prise en charge multi-comptes, de calendrier/contacts, ni aucun composant côté serveur — c'est un client local mono-compte, rien de plus. Aucune clé API externe requise ; seulement les identifiants de boîte mail que tu as déjà.",
+  "faq": [
+    { "q": "Dois-je quand même payer pour l'hébergement mail ?", "a": "Oui — ceci remplace le client, pas la boîte mail. Faire tourner ton propre serveur mail fiable n'est vraiment pas un projet de week-end ; continue de payer Fastmail, ou n'importe quel hébergeur IMAP, pour cette partie." },
+    { "q": "Pourquoi construire un client si je paie encore pour l'hébergement ?", "a": "Parce que le client, c'est la partie avec le vrai verrouillage quotidien — la vitesse de recherche, le flux clavier, la sensation de rapidité. L'hébergement en dessous peut rester ennuyeux et bon marché." },
+    { "q": "Ça gère plusieurs comptes ?", "a": "Non, cette construction est délibérément bornée à un compte. La prise en charge multi-comptes est un vrai travail d'ingénierie que ce prompt laisse volontairement de côté." },
+    { "q": "Et le calendrier et les contacts ?", "a": "Pas inclus. Fastmail regroupe ça ; cette construction, c'est de l'email uniquement." }
+  ]
+}

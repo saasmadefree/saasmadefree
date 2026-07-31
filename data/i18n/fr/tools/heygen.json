@@ -1,0 +1,19 @@
+{
+  "tagline": "Génère une vidéo d'avatar IA parlant depuis un script en utilisant un modèle local",
+  "verdictSummary": "Les modèles open source de synchronisation labiale pour têtes parlantes peuvent générer une vidéo d'avatar raisonnablement convaincante depuis une photo et une piste audio en une construction d'une session avec un GPU. Ce qui ne survit pas : la qualité photoréaliste à l'échelle de HeyGen, sa bibliothèque d'avatars stock, et le doublage multilingue instantané avec resynchronisation labiale.",
+  "coreLoopDIY": "Génère la voix depuis un script avec un modèle TTS local, envoie-la avec une photo source dans un modèle local de synchronisation labiale, et rends une vidéo de tête parlante.",
+  "whatYouLose": [
+    "la qualité photoréaliste à l'échelle",
+    "une bibliothèque d'avatars stock prêts à l'emploi",
+    "le doublage multilingue instantané avec resynchronisation labiale",
+    "les contrôles de marque et de template entreprise"
+  ],
+  "whyPeopleStillPay": "Des modèles ouverts de synchronisation labiale existent, mais les rendre convaincants sur de nombreux visages et langues, de façon fiable et rapide, c'est un travail de modèle spécialisé que HeyGen a déjà fait.",
+  "prompt": "Construis un générateur local de vidéo d'avatar parlant depuis un script et une photo source — suppose un accès GPU local ou loué, la même chose que la fiche Ideogram de ce catalogue. Utilise un modèle ouvert de synchronisation labiale (par exemple SadTalker ou Wav2Lip, tous deux disponibles ouvertement) faisant tourner en local via un service Python. Génère d'abord la piste vocale avec un modèle TTS local (par exemple Coqui TTS ou Piper) depuis le texte du script de l'utilisateur, puis envoie l'audio et une seule photo source dans le modèle de synchronisation labiale pour rendre la vidéo de tête parlante. Fournis une interface web simple : colle un script, importe une photo, choisis une voix, génère, prévisualise, télécharge. Mets en cache l'audio généré séparément de la vidéo pour que re-rendre après un ajustement de script ne nécessite pas de relancer le TTS. Ajoute un réglage basique de résolution/qualité, puisque les modèles locaux de synchronisation labiale sont plus lents à résolution plus haute. Ne tente pas d'atteindre la barre de qualité photoréaliste de HeyGen, sa bibliothèque d'avatars stock, ni le doublage multilingue avec resynchronisation labiale — c'est hors périmètre ; sois transparent dans le README que les modèles ouverts de synchronisation labiale ont encore l'air visiblement synthétiques comparés au pipeline propriétaire de HeyGen. Aucune clé API requise si tu fais tourner les modèles en local ; le temps de GPU loué est le principal coût si tu n'en possèdes pas un.",
+  "faq": [
+    { "q": "Ça aura l'air aussi réaliste que les avatars de HeyGen ?", "a": "Non — les modèles ouverts de synchronisation labiale sont utilisables mais visiblement moins soignés que le pipeline propriétaire de HeyGen, particulièrement de profil et sur de la parole rapide. Cet écart est réel et vaut la peine d'être anticipé." },
+    { "q": "Puis-je utiliser un avatar stock au lieu de ma propre photo ?", "a": "Pas prêt à l'emploi — cette construction n'anime qu'une photo que tu fournis. La bibliothèque d'avatars stock sous licence de HeyGen est exactement le genre d'actif qu'un projet perso ne peut pas reproduire." },
+    { "q": "Ça prend en charge plusieurs langues ?", "a": "Seulement ce que le modèle TTS local que tu choisis prend en charge — il n'y a pas de fonctionnalité intégrée de doublage avec resynchronisation labiale comme celle de HeyGen." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Gratuit si tu possèdes un GPU capable ; un ou deux dollars de l'heure en louant, similaire aux autres constructions à modèle local de ce catalogue." }
+  ]
+}
