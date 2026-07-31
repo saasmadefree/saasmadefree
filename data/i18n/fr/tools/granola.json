@@ -1,0 +1,20 @@
+{
+  "tagline": "Bloc-notes de réunion IA qui transforme les transcriptions en notes structurées.",
+  "verdictSummary": "Enregistrer de l'audio, le transcrire en local avec Whisper, et demander à un LLM de structurer le résultat en un résumé et des actions à mener, c'est vraiment un projet d'une session — l'une des fiches « oui » les plus nettes du catalogue. Ce qu'ajoute surtout le produit payant par-dessus, c'est la synchro multi-appareils, une application mobile, et la connexion automatique au calendrier.",
+  "coreLoopDIY": "Enregistre l'audio d'une réunion, transcris-le avec Whisper (en local ou via API), envoie la transcription à un LLM pour un résumé structuré, et enregistre le résultat comme un fichier Markdown daté.",
+  "whatYouLose": [
+    "la synchro entre appareils",
+    "l'application mobile",
+    "la connexion automatique aux réunions via le calendrier",
+    "les serveurs et le support de quelqu'un d'autre"
+  ],
+  "whyPeopleStillPay": "Les gens paient parce que c'est toujours actif, relié à leur calendrier et à leurs appels professionnels sans aucune configuration, et assez fiable pour que l'historique des réunions ne se perde jamais.",
+  "notes": "L'exemple parfait de toute cette tendance : capture audio locale, transcription Whisper, et résumé par LLM dans un dossier Markdown, c'est vraiment un projet en un seul prompt.",
+  "prompt": "Construis un outil de notes de réunion local : un simple contrôle démarrer/arrêter qui capture ensemble l'audio système et celui du micro. À l'arrêt, transcris l'enregistrement avec whisper.cpp tournant en local (entièrement hors ligne, gratuit), ou optionnellement via une API Whisper hébergée si une clé est présente dans l'environnement pour un traitement plus rapide. Envoie la transcription à un LLM (Anthropic ou OpenAI, selon la clé configurée) avec un prompt qui retourne un court résumé, les décisions prises, et les actions à mener avec leurs responsables quand ils sont mentionnés. Enregistre le résultat dans un fichier Markdown daté — résumé en haut, transcription complète en dessous d'un séparateur — avec le fichier audio conservé à côté. Tout reste en local, sauf les appels d'API que tu choisis explicitement de faire ; avec whisper.cpp et un modèle local, toute la boucle peut tourner entièrement hors ligne.\n\nNe construis pas de synchro entre appareils, d'application mobile, ni d'intégration calendrier automatique pour rejoindre les réunions — ça demande une infrastructure et un accès de plateforme bien au-delà d'un outil d'enregistrement personnel.",
+  "faq": [
+    { "q": "Puis-je importer mes notes Granola existantes ?", "a": "Granola permet d'exporter les notes, et puisque cette version écrit aussi de simples fichiers Markdown, les déplacer dans la même structure de dossiers est une simple copie, pas une vraie migration." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Non — c'est un outil desktop lié à la capture de l'audio de ton propre ordinateur pendant un appel. Il n'y a ni version mobile ni synchro pour lire les notes ailleurs." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien si tu restes entièrement en local avec whisper.cpp et un modèle local. Utiliser une API Whisper hébergée ou un LLM cloud pour les résumés coûte un peu par réunion, typiquement bien en dessous d'un dollar." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Rejoindre les réunions automatiquement. Granola se relie à ton calendrier et capture les appels sans que tu aies à penser à appuyer sur enregistrer ; ici, oublier de démarrer l'enregistrement veut simplement dire que la réunion n'est pas capturée." }
+  ]
+}

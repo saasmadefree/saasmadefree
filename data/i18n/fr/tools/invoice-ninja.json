@@ -1,0 +1,21 @@
+{
+  "tagline": "Facturation, génération de PDF, paiements et facturation client.",
+  "verdictSummary": "Comme Invoice Ninja est lui-même open source, l'auto-héberger vraiment est la première option honnête ; un outil de facturation personnel plus léger avec clients, lignes de facture, export PDF et un lien de paiement est aussi un vrai projet de week-end si c'est tout ce dont tu as réellement besoin. Dans les deux cas, l'hébergement, les sauvegardes et la configuration des paiements deviennent ton travail.",
+  "coreLoopDIY": "Une petite app de facturation : clients, factures à lignes détaillées, PDF générés, envoi par email, et un lien de paiement optionnel, adossée à une base de données avec sauvegardes nocturnes.",
+  "whatYouLose": [
+    "l'hébergement géré et les mises à jour prises en charge pour toi",
+    "des sauvegardes gérées par quelqu'un d'autre",
+    "le support en cas de panne",
+    "un portail client",
+    "une réconciliation de paiement facile sur de nombreuses factures"
+  ],
+  "whyPeopleStillPay": "Un logiciel de facturation, c'est ennuyeux, et ça ne devrait jamais casser le jour où une facture est due — les gens paient pour que le risque opérationnel autour du fait d'être payé ne soit pas leur problème.",
+  "notes": "Un « oui » net d'open source hébergé, avec une réserve opérationnelle réaliste.",
+  "prompt": "Note dans le README qu'Invoice Ninja lui-même est open source et auto-hébergeable — c'est la première option à envisager. Si un outil personnel plus léger est réellement ce qu'il faut à la place, construis une petite app de facturation : des clients (nom, email, adresse, devise, tarif par défaut) et des factures avec des lignes (description, quantité, prix unitaire, taxe), numérotées automatiquement en séquence. Génère un PDF propre par facture depuis un modèle HTML, avec ton logo, tes conditions de paiement et tes coordonnées bancaires tirées d'un fichier de config. Envoie le PDF par email au client, suis le statut brouillon/envoyée/payée par facture, et affiche un tableau de bord des factures impayées triées par jours de retard. Ajoute un lien de paiement optionnel par facture via une API de paiement, inclus à la fois dans le PDF et dans l'email — marque les factures payées à la main une fois que l'argent arrive vraiment, sans réconciliation automatique. Mets en place une sauvegarde nocturne de la base de données vers un fichier daté, en gardant une fenêtre glissante de sauvegardes récentes.\n\nNe construis pas de devis, de suivi de dépenses, d'accès multi-utilisateurs, ni de portail client — c'est un vrai périmètre au-delà d'un outil de facturation personnel, et Invoice Ninja lui-même les couvre déjà si cette étendue s'avère nécessaire.",
+  "faq": [
+    { "q": "Puis-je importer mes données Invoice Ninja existantes ?", "a": "Oui — Invoice Ninja peut exporter clients et factures, et ces données correspondent proprement à un schéma plus simple comme celui-ci. Les devis, dépenses et réglages spécifiques au portail ne passent pas, puisque cette version n'a pas ces fonctionnalités." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Les pages admin s'affichent dans un navigateur mobile pour une vérification rapide ou une facture ponctuelle, mais cette version n'est pas conçue mobile d'abord comme le serait une application dédiée." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données, typiquement quelques dollars par mois, plus des frais de prestataire de paiement uniquement sur les factures effectivement payées via le lien optionnel — aucun frais du tout si tu factures par virement bancaire." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Un portail client. Il n'y a nulle part pour qu'un client se connecte et voie son propre historique de factures ici ; chaque facture est un PDF et un email ponctuels, très bien pour une facturation occasionnelle, et un vrai manque pour des clients récurrents." }
+  ]
+}

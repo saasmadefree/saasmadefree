@@ -1,0 +1,21 @@
+{
+  "tagline": "Plateforme IA pour du contenu marketing de marque et des workflows de campagne.",
+  "verdictSummary": "Une bibliothèque de prompts de marque — stocker ta voix et tes docs produit, les faire passer par un ensemble de modèles marketing réutilisables, générer plusieurs variantes à la fois — c'est un vrai projet de week-end enveloppant une API de modèle. Ce qui ne vient pas avec, c'est le vrai produit de Jasper : la gouvernance de marque, les workflows de validation, et la collaboration au sein d'une équipe marketing.",
+  "coreLoopDIY": "Un ensemble de modèles de prompts marketing réutilisables qui préfixent automatiquement ta voix de marque et tes docs produit, générant plusieurs variantes côte à côte et enregistrant chaque résultat par campagne.",
+  "whatYouLose": [
+    "la gouvernance de marque et les workflows de validation au sein d'une équipe",
+    "la collaboration au niveau des campagnes",
+    "la posture de conformité et de sécurité pour une organisation",
+    "les intégrations",
+    "une UX réglée spécifiquement pour les équipes marketing"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour faire grossir la production marketing tout en gardant la cohérence de marque et un workflow de validation à l'échelle de toute une équipe — pas parce que prompter un LLM avec du contexte de marque est difficile.",
+  "notes": "Un bon cas d'étude de surcouche payante : la boucle centrale est constructible, mais le workflow organisationnel est une vraie raison de continuer à payer.",
+  "prompt": "Construis un générateur de copie marketing personnel : un dossier de fichiers texte contenant ta voix de marque, ton audience et les détails de tes produits, préfixé automatiquement à chaque génération pour que le résultat reste cohérent sans te répéter. Construis une petite bibliothèque de modèles réutilisables (plan d'article de blog, hero de landing page, description de produit, cold email, post social) comme des prompts avec quelques variables à remplir. Appelle une API de modèle et génère toujours plusieurs variantes côte à côte, pour choisir entre des options plutôt que d'accepter le premier brouillon. Enregistre chaque résultat avec son modèle, ses entrées, la variante que tu as choisie, et une étiquette de campagne, consultable et cherchable plus tard. Ajoute un mode réécriture : colle n'importe quel brouillon et récupère-le ajusté pour correspondre à tes fichiers de voix de marque.\n\nNe construis pas de collaboration d'équipe, de workflows de validation, ni de gouvernance de marque multi-rédacteurs — c'est un outil pour une seule personne, et c'est le périmètre honnête face à ce qui rend vraiment Jasper rentable à l'échelle d'une équipe.",
+  "faq": [
+    { "q": "Puis-je importer ma voix de marque et mes modèles Jasper existants ?", "a": "Pas automatiquement — les réglages de marque de Jasper vivent dans son propre système sans export structuré. Réécrire tes consignes de voix en simples fichiers texte est rapide cependant, puisque c'est généralement un document court au départ." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "En tant que page web responsive, oui, pour lire les résultats passés, mais générer et affiner la copie reste en pratique une tâche de desktop." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement plus usage de l'API LLM par génération, typiquement quelques centimes par lot de variantes — pas de tarification par siège à gérer." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La gouvernance de marque d'équipe. Les workflows de validation de Jasper gardent plusieurs rédacteurs cohérents et fidèles à la marque à grande échelle ; cette version n'a qu'un fichier de voix de marque et une seule personne qui décide ce qui part." }
+  ]
+}

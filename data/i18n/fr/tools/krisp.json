@@ -1,0 +1,20 @@
+{
+  "tagline": "Suppression de bruit IA en temps réel et amélioration vocale pour les réunions.",
+  "verdictSummary": "Nettoyer un fichier audio enregistré après coup — supprimer le bruit de fond, normaliser les niveaux — c'est un vrai projet d'une session avec des outils audio open source, tournant entièrement hors ligne. Ce que ça ne peut pas faire, c'est le vrai produit de Krisp : une suppression de bruit en temps réel et à faible latence, tournant comme un micro virtuel pendant un appel en direct, ce qui demande du travail au niveau des pilotes audio du système, pas un script.",
+  "coreLoopDIY": "Un outil en ligne de commande qui fait passer un fichier audio enregistré par un filtre de suppression de bruit open source et une passe de normalisation du volume, en écrivant une copie nettoyée à côté de l'original.",
+  "whatYouLose": [
+    "la suppression en temps réel comme micro virtuel utilisable dans n'importe quelle app d'appel",
+    "la faible latence qui la rend invisible pendant une conversation en direct",
+    "les intégrations avec les apps de réunion",
+    "les contrôles d'administration pour une équipe"
+  ],
+  "whyPeopleStillPay": "Le nettoyage audio pendant un appel en direct doit être instantané et invisible — les gens paient pour un micro virtuel en temps réel, ce qui est une ingénierie vraiment différente et plus difficile que nettoyer un fichier après coup.",
+  "notes": "Intéressant parce que la disponibilité du modèle ne supprime pas la complexité liée au système d'exploitation et aux pilotes audio pour le faire fonctionner en direct.",
+  "prompt": "Construis un outil de nettoyage de bruit pour des enregistrements, pas pour des appels en direct — dis-le clairement dès le début, puisque c'est la vraie limite de périmètre ici. Une commande qui prend un fichier audio, le fait passer par un filtre de suppression de bruit open source (RNNoise est un choix solide et bien testé), puis normalise le volume pour que les niveaux de voix ressortent de façon cohérente, et écrit le résultat nettoyé à côté de l'original sans toucher au fichier source. Ajoute un mode dossier surveillé : les fichiers déposés dans un dossier d'entrée obtiennent automatiquement une version nettoyée écrite dans un dossier de sortie. Prends en charge le traitement par lot d'un dossier entier à la fois, en affichant une estimation approximative avant/après du bruit par fichier.\n\nN'essaie pas de traiter les appels en direct ni de construire un périphérique audio virtuel — ça demande un pilote audio au niveau du système et une latence à la milliseconde, ce qui est vraiment le produit de Krisp, pas une fonctionnalité manquante à ajouter à un script de nettoyage de fichiers. Indique dans le README l'isolation vocale intégrée du système d'exploitation comme alternative honnête pour les appels en direct.",
+  "faq": [
+    { "q": "Puis-je récupérer des enregistrements que j'ai nettoyés avec Krisp ?", "a": "Les fichiers audio nettoyés eux-mêmes, oui — ce ne sont que des fichiers. Il n'y a rien à migrer structurellement, puisque Krisp n'a pas de format de projet au-delà de l'audio qu'il traite." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Non — c'est un outil en ligne de commande pensé pour tourner sur un ordinateur avec une vraie puissance de calcul, et il est limité aux enregistrements, pas aux appels en direct, là où l'usage mobile compterait le plus de toute façon." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien — ça tourne entièrement hors ligne sur ta propre machine, sans clé API ni hébergement nécessaires." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La suppression de bruit en direct. Le vrai produit de Krisp nettoie ton micro en temps réel pendant un appel, invisible pour l'autre partie ; cet outil ne nettoie jamais qu'un fichier après coup, ce qui est un problème fondamentalement différent et plus facile." }
+  ]
+}

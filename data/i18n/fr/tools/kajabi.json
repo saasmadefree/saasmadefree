@@ -1,0 +1,21 @@
+{
+  "tagline": "Plateforme tout-en-un pour vendre et livrer des formations en ligne.",
+  "verdictSummary": "Vendre et livrer une formation — une landing page, un checkout hébergé, une connexion par lien magique, un dossier de leçons verrouillées — c'est un vrai projet de plusieurs jours. Ce qui ne vient pas avec, c'est la vraie étendue de Kajabi : toute une pile de site, communauté, automatisation email, tunnels de vente et statistiques, regroupés dans un seul abonnement.",
+  "coreLoopDIY": "Une landing page avec checkout hébergé, une connexion par lien magique pour les acheteurs, et un dossier de leçons en Markdown servies comme une formation ordonnée et verrouillée.",
+  "whatYouLose": [
+    "la pile tout-en-un, remplacée par plusieurs éléments maintenus séparément",
+    "les tunnels de vente",
+    "les séquences d'automatisation email",
+    "les fonctionnalités communautaires",
+    "le support client en cas de panne"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour éviter d'assembler et de maintenir une douzaine d'outils séparés pour une activité de créateur — la valeur, c'est d'avoir un seul système, pas une fonctionnalité isolée à l'intérieur.",
+  "notes": "Le prix élevé rend le DIY tentant ; c'est la vraie étendue de la plateforme qui rend un remplacement complet réellement difficile.",
+  "prompt": "Construis un site de vente et de livraison pour une seule formation — délibérément limité à un produit à un prix, pas une plateforme généraliste. Une landing page avec l'argumentaire de la formation et le programme, et un bouton d'achat qui va directement vers un checkout hébergé (Stripe Checkout est l'option la plus simple). Un webhook du prestataire de paiement marque l'acheteur comme inscrit et lui envoie par email un lien de connexion magique — pas de mots de passe, juste un lien qui le connecte. Le contenu de la formation vit comme un dossier de leçons en Markdown (avec vidéo intégrée, auto-hébergée ou via un lien non répertorié vers un hébergeur vidéo), rendu comme une liste de leçons ordonnée avec une case à cocher de complétion par élève sur chacune. Garde une table élèves enregistrant email, date d'achat, et leçons terminées. Ajoute une petite vue admin, non publique, montrant les inscriptions, un total de revenus, et un moyen d'accorder à un élève un accès gratuit à la main.\n\nNe construis pas d'automatisations d'email marketing, de fonctionnalités communautaires, de tunnels de vente, ni de catalogue multi-formations — c'est la vraie étendue que vend Kajabi, et tout assembler représente un vrai périmètre continu, bien au-delà d'un site de formation personnel.",
+  "faq": [
+    { "q": "Puis-je importer ma formation et mes élèves Kajabi existants ?", "a": "Le contenu des leçons, largement oui — copie tes vidéos et ton texte dans la structure de leçons Markdown. L'historique des élèves et des achats ne s'exporte généralement pas proprement, puisqu'il est lié aux propres registres de facturation de Kajabi." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "La landing page et le lecteur de leçons sont tous deux des pages web responsives, donc oui pour parcourir et regarder. Il n'y a ni application mobile dédiée ni téléchargement vidéo hors ligne." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données, typiquement quelques dollars par mois, plus des frais standards de traitement de paiement sur les ventes — aucun frais de plateforme mensuel au-delà de ça." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Le paquet groupé. La vraie valeur de Kajabi, c'est le site, la livraison de formation, l'email, la communauté et les statistiques qui fonctionnent tous ensemble comme un seul système ; cette version te donne une page de formation solide, pas les quatre autres choses." }
+  ]
+}

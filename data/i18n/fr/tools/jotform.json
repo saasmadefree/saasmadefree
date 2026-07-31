@@ -1,0 +1,21 @@
+{
+  "tagline": "Créateur de formulaires avec paiements, validations, applications et outils de workflow.",
+  "verdictSummary": "Un créateur de formulaires personnel — types de champs, pages de formulaire publiques, réponses stockées, export CSV, notifications email — c'est un vrai projet de week-end. Ce qui ne vient pas avec, c'est la vraie étendue de Jotform : un large catalogue de widgets, l'encaissement de paiements, les workflows de validation, la génération de PDF, et un créateur d'applications complet superposé aux formulaires.",
+  "coreLoopDIY": "Une interface admin pour construire des formulaires champ par champ, des pages de formulaire publiques qui valident et stockent les réponses, avec export CSV et notification email par soumission.",
+  "whatYouLose": [
+    "le large catalogue de widgets et de modèles",
+    "l'encaissement de paiements",
+    "les workflows de validation et la génération de PDF",
+    "un créateur d'applications complet",
+    "les certifications de conformité pour les secteurs réglementés"
+  ],
+  "whyPeopleStillPay": "Les formulaires se transforment en petits processus métier sans code sur mesure — les gens paient pour cette étendue, pas parce qu'un formulaire de base avec validation est difficile à construire.",
+  "notes": "Un bon « en partie » : les formulaires eux-mêmes sont faciles ; l'étendue de processus métier que Jotform couvre par-dessus ne l'est pas.",
+  "prompt": "Construis un créateur de formulaires personnel avec deux surfaces : une vue admin (gardée hors d'internet public, derrière une authentification simple) pour créer des formulaires champ par champ — texte, email, zone de texte, sélection, case à cocher, date, upload de fichier — et une page publique par formulaire pour quiconque a le lien. Valide les champs requis et le format email à la fois côté client et côté serveur, et ajoute des défenses anti-spam basiques : un champ honeypot et une limite de fréquence par IP. Stocke chaque soumission avec un horodatage et la version du formulaire au moment de la soumission, avec une vue en tableau admin par formulaire et un export CSV. Envoie-toi par email un résumé en texte brut de chaque nouvelle soumission.\n\nNe construis pas l'encaissement de paiements, la génération de PDF, les workflows de validation, ni un catalogue de widgets — les types de champs ci-dessus constituent toute la palette ici, et c'est une limite délibérée face à l'ensemble de fonctionnalités de processus métier bien plus large de Jotform.",
+  "faq": [
+    { "q": "Puis-je importer mes formulaires Jotform existants ?", "a": "Pas automatiquement — Jotform n'offre pas d'export structuré des définitions de formulaire. Les données de réponse s'exportent en CSV et restent sûres ; recréer les champs du formulaire lui-même prend généralement quelques minutes de clics pour la plupart des formulaires." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Oui pour remplir un formulaire — les pages publiques sont pleinement responsives. Le créateur admin est utilisable sur téléphone mais conçu en pensant à une mise en page desktop." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données, typiquement quelques dollars par mois — les uploads de fichiers sont ce qui fait le plus grossir les coûts de stockage avec le temps." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Les paiements et les validations. Jotform peut encaisser un paiement par carte ou faire passer un formulaire par une chaîne de validation directement, sans configuration ; cette version ne fait jamais que collecter et stocker une réponse — tout ce qui va au-delà est un outil séparé." }
+  ]
+}

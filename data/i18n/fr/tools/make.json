@@ -1,0 +1,20 @@
+{
+  "tagline": "Plateforme d'automatisation visuelle pour des workflows entre apps et API.",
+  "verdictSummary": "Une poignée d'automatisations personnelles — un déclencheur, quelques appels d'API, des relances, un historique d'exécution — c'est un vrai projet de week-end en code brut plutôt qu'en flux visuel. Ce qui ne vient pas avec, c'est le vrai produit de Make : un créateur visuel maintenu, un large catalogue de modules d'app préconstruits, et quelqu'un d'autre qui absorbe la maintenance continue à mesure que les API de ces apps changent.",
+  "coreLoopDIY": "Un petit exécuteur où chaque automatisation est un fichier de scénario avec un déclencheur et une liste ordonnée d'étapes, chaque exécution étant journalisée pour le débogage.",
+  "whatYouLose": [
+    "le créateur visuel en glisser-déposer",
+    "un large catalogue de modules d'app maintenus",
+    "la planification et l'observabilité intégrées sur de nombreux workflows",
+    "la gouvernance et le partage d'équipe"
+  ],
+  "whyPeopleStillPay": "Les workflows évoluent et leurs API sous-jacentes cassent selon leur propre calendrier — un créateur maintenu absorbe cet entretien continu sur un large catalogue de modules, ce qui est un vrai travail permanent.",
+  "notes": "Une comparaison utile à plus petite échelle avec Zapier ici : le même raisonnement sous-jacent, un style de créateur différent.",
+  "prompt": "Construis un exécuteur de workflows code-first pour une poignée d'automatisations personnelles, pas une plateforme d'intégration généraliste. Chaque automatisation est un petit fichier exportant un déclencheur (un planning cron ou une route webhook) et une liste ordonnée d'étapes, chaque étape étant une fonction qui reçoit la sortie de l'étape précédente. L'exécuteur exécute les étapes dans l'ordre, relance une étape échouée quelques fois avec un délai croissant, puis arrête l'exécution et enregistre précisément quelle étape a échoué et pourquoi. Enregistre chaque exécution — scénario, timing, entrée et sortie de chaque étape, statut final — dans une base de données ; cet historique est le vrai outil de débogage, alors rends-le vraiment utile, pas un ajout secondaire. Construis un tableau de bord minimal : une liste de scénarios avec le statut de dernière exécution, et une vue par exécution du contenu de chaque étape. Livre un ou deux scénarios d'exemple fonctionnels pour que le principe soit évident dès le premier jour.\n\nNe construis pas de créateur visuel en glisser-déposer, ni de catalogue de modules d'app préconstruits — les automatisations ici sont du code que tu écris toi-même, une intégration à la fois, et c'est le vrai compromis face au catalogue de modules maintenu de Make. Si maintenir ça cesse d'en valoir la peine, le repli honnête est d'auto-héberger un outil existant comme n8n plutôt que de continuer à développer celui-ci.",
+  "faq": [
+    { "q": "Puis-je importer mes scénarios Make existants ?", "a": "Non — les scénarios visuels de Make ne s'exportent pas en code. Chacun dont tu dépends réellement est réécrit comme un court script, ce qui pour la plupart des usages personnels représente une poignée d'automatisations, pas des dizaines." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Le tableau de bord pour consulter l'historique et le statut d'exécution fonctionne dans un navigateur mobile, mais les automatisations elles-mêmes tournent sans surveillance sur un serveur — il n'y a rien avec quoi interagir au quotidien sur mobile." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données, typiquement quelques dollars par mois, quel que soit le nombre ou la fréquence des automatisations — pas de paliers tarifaires par opération à suivre." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Le catalogue de modules et son entretien. Quand une app dont tu dépends change son API, l'équipe de Make corrige son module pour tout le monde ; ici, ton automatisation casse simplement jusqu'à ce que tu le remarques et la corriges toi-même." }
+  ]
+}

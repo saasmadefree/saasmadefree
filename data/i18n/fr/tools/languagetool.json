@@ -1,0 +1,20 @@
+{
+  "tagline": "Correcteur de grammaire et de style avec suggestions premium et extensions de navigateur.",
+  "verdictSummary": "Comme le moteur de vérification de LanguageTool est lui-même open source, c'est un vrai « oui » : fais tourner le vrai moteur en local plutôt que d'écrire un correcteur grammatical depuis zéro. Ce qu'achète l'abonnement Premium au-delà de ça, c'est un ensemble de règles propriétaires plus large, une commodité hébergée, et une configuration multi-appareils que tu ferais toi-même sinon.",
+  "coreLoopDIY": "Fais tourner le moteur open source de LanguageTool en local, avec une petite page pour vérifier du texte collé et une CLI pour vérifier des fichiers.",
+  "whatYouLose": [
+    "l'ensemble de règles premium plus large",
+    "la commodité hébergée sur plusieurs appareils",
+    "l'intégration en extension de navigateur",
+    "les contrôles d'équipe et d'administration"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour la commodité hébergée et l'ensemble de règles premium plus large, pas parce que le moteur de grammaire sous-jacent serait autrement indisponible — c'est le même moteur open source dans les deux cas.",
+  "notes": "Un « oui » net et rare, où l'antécédent open source est le propre cœur ouvert du produit.",
+  "prompt": "N'écris pas de correcteur de grammaire — fais tourner le vrai moteur open source de LanguageTool en local (il se livre comme un serveur autonome démarré en une commande). Construis une petite page locale : colle du texte, vois les problèmes soulignés avec une explication au survol, clique sur une suggestion pour l'appliquer. Ajoute un mode en ligne de commande qui vérifie un fichier et sort avec un code non nul en cas de problème, pour pouvoir tourner comme hook git pre-commit sur de la documentation. Prends en charge un fichier de dictionnaire personnel de noms et de jargon qui ne doit jamais être signalé. Ajoute un panneau de réécriture optionnel par LLM (clé depuis l'environnement) qui prend un paragraphe plus les propres résultats de LanguageTool et retourne une version réécrite affichée comme un diff par rapport à l'original — ignore cette fonctionnalité entièrement, proprement, quand aucune clé n'est configurée ; la vérification grammaticale centrale fonctionne sans aucune clé API ni connexion réseau.\n\nNe construis pas d'extension de navigateur, et n'essaie pas de reproduire l'ensemble de règles propriétaires plus large de LanguageTool Premium — l'ensemble de règles ouvert est ce qui est réellement disponible à auto-héberger, et c'est un vrai écart honnête face au palier payant, pas quelque chose à maquiller.",
+  "faq": [
+    { "q": "Puis-je récupérer quoi que ce soit de mon compte LanguageTool Premium ?", "a": "Pas vraiment — l'ensemble de règles supplémentaire de Premium et les préférences enregistrées ne s'exportent pas. Ton dictionnaire personnel de mots ignorés est rapide à reconstruire à la main." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "En tant que page où l'on colle du texte, oui si tu l'héberges accessible sur ton réseau — mais il n'y a ni extension de navigateur ni vérification en ligne à l'intérieur d'autres apps, donc c'est une destination, pas une couche par-dessus le clavier de ton téléphone." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien pour le correcteur central — il tourne sur ta propre machine sans frais d'hébergement. La fonctionnalité optionnelle de réécriture par LLM coûte un peu à chaque usage si tu l'actives." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "L'ensemble de règles premium. LanguageTool Premium détecte un ensemble de problèmes de style et de cohérence nettement plus large que le moteur ouvert — cet écart est réel, pas juste une question de commodité." }
+  ]
+}

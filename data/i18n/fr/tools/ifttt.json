@@ -1,0 +1,19 @@
+{
+  "tagline": "Applets d'automatisation grand public pour la maison connectée, les apps et les services.",
+  "verdictSummary": "Une poignée d'automatisations personnelles déclencheur-action — une vérification planifiée, un webhook, un appel d'API cible — c'est vraiment facile à construire sous forme de petits scripts. C'est un « oui » net pour exactement l'usage que la plupart des gens ont réellement : quelques petites automatisations personnelles, pas un catalogue d'intégrations pour la maison connectée.",
+  "coreLoopDIY": "Un petit ensemble d'« applets » scriptés — chacun un déclencheur (un planning ou un webhook) associé à une action — journalisés, relancés en cas d'échec, et t'alertant quand l'un d'eux casse.",
+  "whatYouLose": [
+    "le catalogue d'intégrations grand public couvrant des centaines d'apps et d'appareils connectés",
+    "une application mobile pour créer des applets",
+    "quelqu'un d'autre qui maintient chaque intégration à mesure que son API change"
+  ],
+  "whyPeopleStillPay": "Assembler un applet préconstruit en quelques clics est plus facile qu'écrire et maintenir soi-même le code d'intégration — les gens paient pour éviter cet entretien, pas parce que la logique déclencheur-action est difficile.",
+  "notes": "Un « oui » net et bon marché — un bon exemple de quand NE PAS sur-construire quelque chose d'aussi simple en réalité.",
+  "prompt": "Construis un petit exécuteur d'automatisations personnel : chaque « applet » est un court script définissant un déclencheur (un planning cron ou une route webhook) et une fonction d'action qui s'exécute quand il se déclenche. Livre deux ou trois applets d'exemple fonctionnels pour que le principe soit évident. Pour les déclencheurs par sondage, suis le dernier état vu pour qu'un redémarrage ne redéclenche jamais deux fois le même événement. Journalise chaque exécution — nom de l'applet, horodatage, succès ou échec, texte d'erreur — dans une base de données, avec une page simple listant les exécutions récentes. Relance une exécution échouée quelques fois avec un délai croissant, puis envoie-toi un email d'alerte après l'échec final. Garde toutes les clés API et tokens dans l'environnement, référencés par nom depuis chaque applet.\n\nNe construis pas de créateur d'applets visuel, ni d'intégrations d'appareils connectés — un nouvel applet est un nouveau fichier de script, et c'est réellement toute l'interface dont un outil d'automatisation personnel comme celui-ci a besoin.",
+  "faq": [
+    { "q": "Puis-je importer mes applets IFTTT existants ?", "a": "Non — les applets d'IFTTT ne s'exportent pas en code. Chacun que tu utilises réellement devient un court script, ce qui pour la plupart des usages personnels représente une poignée d'applets, pas des dizaines." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "La page de journal d'exécution fonctionne dans un navigateur mobile, mais les applets eux-mêmes tournent sans surveillance sur un serveur — il n'y a pas d'application mobile pour les créer ou les déclencher manuellement." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données, typiquement quelques dollars par mois, quel que soit le nombre d'applets qui tournent." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "L'étendue côté maison connectée et apps grand public. La vraie valeur d'IFTTT, c'est un catalogue couvrant des centaines d'appareils et d'apps déjà intégrés ; cette version ne couvre jamais que la poignée de services que tu branches toi-même." }
+  ]
+}

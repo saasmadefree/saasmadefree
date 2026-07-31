@@ -1,0 +1,21 @@
+{
+  "tagline": "Plateforme d'email marketing avec campagnes, automatisations et statistiques.",
+  "verdictSummary": "Un envoyeur de campagnes pour petite liste — contacts, segments, un éditeur Markdown-vers-HTML, une gestion de désabonnement conforme — c'est un vrai projet de week-end. Ce qui ne vient pas avec, c'est la vraie barrière de Mailchimp : une délivrabilité en boîte de réception gagnée sur des années de réputation d'envoi, qu'aucun travail d'ingénierie personnel ne peut raccourcir.",
+  "coreLoopDIY": "Une liste de contacts avec tags et segments, un éditeur de campagne en Markdown, et des envois via une API d'emailing transactionnel avec une gestion de désabonnement conforme intégrée.",
+  "whatYouLose": [
+    "la délivrabilité adossée à une réputation d'envoi établie",
+    "l'éditeur de modèles en glisser-déposer",
+    "les parcours d'automatisation visuels",
+    "les intégrations e-commerce",
+    "le support dédié"
+  ],
+  "whyPeopleStillPay": "L'email est critique pour l'activité, et les problèmes de délivrabilité coûtent cher à diagnostiquer et à corriger — les gens paient pour que l'arrivée en boîte de réception soit la responsabilité continue de quelqu'un d'autre.",
+  "notes": "Un exemple classique de barrière cachée : l'interface d'envoi est facile à reconstruire ; l'arrivée en boîte de réception ne se règle pas d'un geste de la main.",
+  "prompt": "Construis un outil de campagne email pour petite liste : des contacts avec tags et champs personnalisés, import et export CSV, et des segments définis comme des filtres enregistrés (a tel tag, inscrit après une date, a ouvert la dernière campagne). Écris les campagnes en Markdown, rendues en un email HTML propre en une colonne avec une alternative texte brut générée automatiquement. Envoie via une vraie API d'emailing transactionnel (Amazon SES ou équivalent) avec limitation de débit et un statut par destinataire ; branche les webhooks de bounce et de plainte pour supprimer automatiquement ces adresses à l'avenir. Intègre la conformité au lieu de la rajouter après coup : un lien de désabonnement et ton adresse postale dans chaque pied de page, un en-tête List-Unsubscribe, et un double opt-in sur le formulaire d'inscription public. Fais du suivi d'ouverture un interrupteur par campagne, désactivé par défaut. Affiche un rapport de campagne avec les comptages d'envois, de bounces et de désabonnements.\n\nNe construis pas d'éditeur de modèles en glisser-déposer, de parcours d'automatisation visuels, ni d'intégrations e-commerce — ce sont de vrais produits séparés. Sois direct dans le README : l'arrivée en boîte de réception se gagne par le comportement d'envoi dans le temps, pas en se configurant. Documente la mise en place de SPF, DKIM et DMARC, et fais chauffer progressivement le volume d'envoi sur un nouveau domaine.",
+  "faq": [
+    { "q": "Puis-je importer mon audience Mailchimp existante ?", "a": "Oui — Mailchimp exporte tes contacts, tags et champs personnalisés en CSV, qui s'importe directement ici. Les parcours d'automatisation et les modèles ne se transfèrent pas ; cette logique doit être reconstruite depuis zéro." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "La vue admin est une simple page web, utilisable sur téléphone pour une vérification rapide, mais l'éditeur n'est pas optimisé pour un petit écran et il n'y a pas d'app dédiée." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement, domaine et base de données, typiquement quelques dollars par mois, plus les coûts d'envoi par email sur l'API transactionnelle — souvent bien en dessous des paliers tarifaires de Mailchimp pour de petites listes." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La réputation d'envoi. Les IP partagées et dédiées de Mailchimp portent des années de confiance établie auprès des fournisseurs de boîtes mail ; un tout nouveau domaine d'envoi part de zéro et doit gagner cette confiance de la même façon lente, quelle que soit la qualité du code." }
+  ]
+}

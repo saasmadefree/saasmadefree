@@ -35,7 +35,8 @@
     "n8n-cloud"
   ],
   "markets": [
-    "en"
+    "en",
+    "fr"
   ],
   "pagePriority": 4,
   "verifiedOneShot": false
