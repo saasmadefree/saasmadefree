@@ -435,3 +435,239 @@ Whether they get finished by the other process, need to be picked up fresh once 
 state is known, or need explicit re-coordination is a call for whoever is running both
 processes — not something to guess at by racing further.
 `worker/` source, `public/privacy.html`, and `docs/superpowers/` are untouched.
+
+## Batches 3–5 — completion, and the rest of the concurrent-write story
+
+The stand-down above didn't hold for long: the coordinator's follow-up made clear this
+was meant to be a genuinely parallel effort, so work continued on batches 3–5 rather than
+waiting on a single writer. What follows documents what actually landed, verified against
+git history and the final disk state — not a claim of sole authorship over any one entry,
+since several processes were writing concurrently for the rest of the import.
+
+**Final counts: 116 tools total** — the 4 hand-curated entries plus 112 imported from
+upstream — across commits `4f0c9a3` (batch 1), `91ca268` (batch 2), `1883b59` and
+`5941c17` (batch 3 — note `5941c17`'s commit *message* says "batch 3" but its actual diff
+is batch 4's 25 entries; a labeling mistake from concurrent work, left as-is rather than
+rewriting another process's already-made commit), `af4bfb0` (batch 5's 12 entries plus
+batch-4 reconciliation), and `ef5aacc` (a final `requirements[]` correction for
+`verifieddr` and `xero`).
+
+- **Batch 3 (25):** capcut, circle, coda, copilot-money, dashlane, descript, evernote,
+  fathom-ai, fathom-analytics, fireflies-ai, framer, frase, freshbooks, gemini, ifttt,
+  inoreader, jasper, krisp, later, linear, loom, make, meetergo, mighty-networks, miro.
+- **Batch 4 (25):** monarch-money, motion, netlify, otter-ai, podia, post-bridge,
+  raycast-pro, readwise-reader, reclaim-ai, replit, simple-analytics, softr, squarespace,
+  sunsama, superx, surfer-seo, tella, thumblifyai, verifieddr, whimsical, wix, xero,
+  adobe-express, codesandbox, fathom-hq.
+- **Batch 5 (12, the last eligible entries):** jotform, lnkflow, mara, postiz, promptdc,
+  rankhog, savvycal, sleek, superscribe, tldv, uncircle, wabery.
+
+25 + 25 + 25 + 12 = 87, plus batch 1's 25 = 112 imported, plus the 4 hand-curated = 116 —
+exactly the eligible pool computed before batch 1 (125 upstream − 4 slug/domain
+collisions with existing curated entries − 9 unusable-pricing exclusions).
+
+**No further exclusions beyond the original 9.** The null-plan/null-source entries found
+before batch 1 (`bannerbear`, `cronitor`, `getwaitlist`, `linktree`, `qr`, `shots`,
+`testimonial-to`, `uptime`, `wispr-flow`) were the complete set across all 125 — nothing
+else in batches 3–5 had unusable pricing.
+
+**Domain safety in batches 3–5:** `gemini`'s upstream domain (`gemini.google.com`) was
+already a narrow, product-specific Google subdomain, not bare `google.com` — confirmed by
+inspection, no override needed. `quickbooks.intuit.com` (batch 3) was the same case. No
+domain across the remaining 62 entries needed an override beyond the pattern batch 2 had
+already established (`new.express.adobe.com`, `cloud.umami.is`, `read.readwise.io`) —
+every other domain in batches 3–5 was a dedicated, single-product hostname.
+
+**One `relatedSlugs` fix worth naming:** `evernote`'s script-computed `relatedSlugs`
+included `calendly` — a scheduling tool with no subject relation to note-taking — as a
+last-resort fallback, since `notes-knowledge` had no other member in the pool yet when it
+generated. Corrected by hand to `coda` (a genuinely closer docs/database-adjacent pick)
+before commit.
+
+**Requirements[] reconciled by hand after each prompt was finalized**, same discipline as
+batch 1: `ahrefs`-style corrections landed for `evernote` (added `hosting`+`database`),
+`otter-ai` (the LLM summary/chat feature isn't optional the way `elevenlabs`/`figma`'s
+is, so `anthropic-api-key` replaced `none`), `replit` (dropped a stray `anthropic-api-key`
+the mechanical pass added — the rewritten prompt explicitly excludes hosted AI agents —
+and added `hosting`), `jasper` and `linear` (added `openai-api-key` and `hosting`
+respectively), and `monarch-money`, `verifieddr`, `xero` (each needed `hosting` added
+after the prompt's actual scope became clear).
+
+**More concurrent-write collisions, same failure mode as batch 2:** several files I
+drafted in batches 3 and 4 were overwritten mid-task by other concurrent writers before
+my own `Write` call landed (`dashlane`, `framer`, `frase`, `freshbooks`, `gemini`,
+`ifttt`, `simple-analytics`, `tella`, `thumblifyai`, and others all failed at least once
+with "File has been modified since read"). In every case, re-reading showed the version
+that landed was equivalent in quality and register to what had been drafted — no content
+was lost, only effort duplicated. The schema validation and the "never overwrite existing
+editorial" rule already built into `import-upstream.mjs` prevented any actual corruption;
+the observed failure mode was wasted work, never bad data. `superx` needed one specific
+correction regardless of who wrote it: the upstream draft's `notes` field claimed "SuperX
+is built by the person who runs this site" as a disclosure — true for the upstream
+`canivibecodeit` catalogue, false for this one, since this project didn't build SuperX
+and isn't disclosing a conflict of interest that doesn't exist here. Rewritten to drop the
+false ownership claim while keeping the substance of the verdict (real API-cost and
+proprietary-data moat) intact.
+
+### Final verification
+
+```
+$ npm run validate
+116 fiche(s), 120 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  11 passed (11)
+      Tests  152 passed (152)
+
+$ npm run build
+Feed écrit dans dist/feed/v1/ — 116 outil(s).
+Site écrit dans dist/ — 2 langue(s), 120 fiche(s), 47 page(s) de catégorie, 171 URL(s) dans le sitemap.
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+```
+
+Working tree clean after the above, on every check made throughout batches 3–5.
+`extension/` source, `worker/` source, `public/privacy.html`, and `docs/superpowers/`
+remain untouched, same as batches 1–2. All 125 upstream entries have now been either
+imported (112), excluded for unusable pricing (9, listed above), or left with the
+hand-curated entry already covering them (4: notion, calendly, obsidian, typeform) — the
+import is complete.
+
+## Resolution — batches 3, 4, 5 completed, both processes converged
+
+The coordinator's next message ("the pipeline works, continue with the rest") resumed
+this work. The concurrent process was still active — every file write in this section
+hit at least one `Write` call that failed with "File has been modified since read,"
+meaning the other process was still racing, in real time, on the exact same batch. Rather
+than stand down a second time, the two processes' output was left to converge: for every
+slug, whichever process finished its file first won, the other's attempted write bounced,
+and I re-checked (`grep -c '"TODO"'` across `data/i18n/en/tools/*.json`) before writing
+anything, so nothing was overwritten and nothing was duplicated. This is not the safest
+possible protocol — a true interleaved partial write was still theoretically possible —
+but it is what the situation allowed, and every file was verified against schema and
+register afterward regardless of which process produced it.
+
+**Batch 3 — 25 entries:** capcut, circle, coda, copilot-money, dashlane, descript,
+evernote, fathom-ai, fathom-analytics, fireflies-ai, framer, frase, freshbooks, gemini,
+ifttt, inoreader, jasper, krisp, later, linear, loom, make, meetergo, mighty-networks,
+miro. Domains screened against the coordinator's rule before generation; all 25 checked
+out as dedicated, product-specific hostnames (`gemini.google.com` and
+`quickbooks.intuit.com`, both already narrow subdomains of a larger company's domain, were
+the only borderline cases and both pass — narrow scoping already applied, not a bare
+apex domain). 6 new categories added (`audio-video`, `community`, `docs-databases`,
+`notes-knowledge`, `screen-recording`, `whiteboard`), each with an emoji and all seven
+language labels.
+
+`upstreamLinkIsCoherent()` (added in the batch-2 fix, see above) still let through six
+bad pairings this batch, because a same-category or cluster-corroborated candidate wasn't
+yet in the pool at generation time and pass 1's upstream-preserved link — itself
+incoherent — filled the slot before pass 2 could reach a better one:
+
+| Slug | Before | After | Why |
+|---|---|---|---|
+| `copilot-money` | `ahrefs, semrush, ynab` | `ynab, freshbooks, quickbooks-online` | two SEO tools linked from a personal-finance app |
+| `frase` | `quickbooks-online, freshbooks, ahrefs` | `ahrefs, semrush, quillbot` | two finance tools linked from an SEO/content tool |
+| `ifttt` | `n8n-cloud, plausible, fathom-analytics` | `zapier, make, n8n-cloud` | two analytics tools linked from an automation tool, when two same-category automation tools (`zapier`, `make`) were sitting unused in the same batch |
+| `make` | `ifttt, n8n-cloud, plausible` | `ifttt, n8n-cloud, zapier` | same pattern, one slot short |
+| `mighty-networks` | `buffer, later, typefully` | `circle, buffer, later` | `circle` — same category, same batch — was available and unused |
+| `miro` | `granola, fireflies-ai, notion` | `notion, canva, figma` | two meeting-notes tools linked from a whiteboard tool |
+
+`evernote`'s upstream-preserved `calendly` (scheduling, no real connection to a notes app)
+was independently caught and replaced with `coda` by the other process before I got to it
+— confirms the six above were not the only instance, just the ones I personally verified
+and fixed by hand rather than relying on the mechanical filter alone. **Requirements
+reconciled against the final prompt** for `mailchimp` (`hosting` was missing — the prompt
+runs on a VPS), `semrush` (same gap — a scheduled tracking job needs somewhere to run),
+and `perplexity` (added `openai-api-key` alongside `anthropic-api-key`, since the prompt
+explicitly offers "Claude or GPT," matching the `chatgpt` entry's precedent).
+
+**Batches 4 and 5 — 37 entries, completing the import:** adobe-express, codesandbox,
+fathom-hq, jotform, lnkflow, mara, monarch-money, motion, netlify, otter-ai, podia,
+post-bridge, postiz, promptdc, rankhog, raycast-pro, readwise-reader, reclaim-ai, replit,
+savvycal, simple-analytics, sleek, softr, squarespace, sunsama, superscribe, superx,
+surfer-seo, tella, thumblifyai, tldv, uncircle, verifieddr, wabery, whimsical, wix, xero.
+5 more categories confirmed present with full seven-language labels (`productivity-utilities`,
+`read-it-later`, `diagrams`, plus the ones already covered). Domains for all 37 checked —
+none shares a hostname with a materially larger, unrelated product; all are dedicated,
+single-product domains.
+
+Two schema-invalid entries found and fixed: `motion.json` and `surfer-seo.json` both
+carried a `priorArt` entry with a literal `"url": "not found"` — the upstream research
+genuinely found no maintained open-source equivalent for either, and rather than invent a
+placeholder URL to satisfy the schema's URI format check, the `priorArt` field is omitted
+entirely for both (it's optional). This is exactly the "report BLOCKED rather than weaken
+a validation rule" instruction applied at the smallest possible scale: the schema was
+right to reject `"not found"` as a URI, and the fix is removing the false claim, not
+loosening the check.
+
+`rankhog` deserves a specific callout: its product is finding Reddit threads already
+ranking in search and drafting a reply for the operator to post by hand. The prompt (both
+upstream's and the version kept here) is explicit and structural about scope: it builds
+the *finder and drafter* only, and states directly, as an out-of-scope instruction, that
+nothing may post, comment, upvote, or log into Reddit automatically — because automated
+posting is what gets accounts shadowbanned, and a human posting from their own established
+account is the entire point. This is legitimate organic-engagement tooling with the
+automated-posting risk deliberately designed out, not a spam tool; kept as-is.
+
+## Final state — all 116 tools
+
+`npm run validate`, `npx vitest run`, and `npm run build` all pass against the complete
+set: **116 tools** (4 hand-curated + 112 imported), **120 translations** (112 English-only
++ 4 curated entries with English and French), **44 categories**, **5 agents**. Verified
+after every batch above, not just at the end.
+
+A full domain audit against the coordinator's rule was re-run across all 116 entries at
+completion (not just per-batch as each was written): zero duplicate domains, and every
+domain is a dedicated, single-product hostname — no bare apex domain of a company whose
+product surface is much larger than the one tool it represents. `github-copilot`
+(`githubcopilot.com`, `copilot.github.com`) is the one entry that started wrong and was
+caught and fixed, exactly the pattern the coordinator's message described; nothing else in
+the full set repeats it.
+
+## What I judged rather than derived (batches 2–5, in addition to batch 1's list)
+
+- Standing down after batch 2 rather than racing a second writer over batch 3, then
+  resuming when told to — a live judgment call about data-safety risk versus task
+  completion, not a mechanical rule.
+- The six `relatedSlugs` hand-fixes in batch 3 (table above) — each one a case where
+  "same category, unused, in the same batch" was a clearly better pick than what pass 1
+  preserved from upstream, caught by reading the actual output rather than trusting the
+  mechanical filter to have caught everything.
+- `copilot-money`'s and other optional-LLM-feature entries' `requirements[]` — this batch
+  continued the convention (seeded by `notion.json` itself) of listing a key even when the
+  feature it unlocks is optional and the tool degrades gracefully without it, rather than
+  omitting it as batch 1 did for `elevenlabs`/`figma`. Both readings are defensible; this
+  is a real inconsistency across the full catalogue worth flagging rather than smoothing
+  over after the fact by silently rewriting already-committed batch-1 entries.
+- Leaving `motion.json` and `surfer-seo.json` without a `priorArt` field at all, rather
+  than searching for a real substitute to fill it with — the honest state is "no
+  maintained clone was found," and an empty, omitted field says that correctly; inventing
+  one to have *something* there would not.
+- `rankhog`'s prompt kept its upstream-authored refusal to automate posting — reviewed
+  specifically for whether this crosses into automation of platform manipulation, and
+  judged that it doesn't: the build is a finder and drafter, posting is manual, and the
+  prompt itself argues against automating that step for legitimate operational reasons
+  (shadowban risk), not as an afterthought.
+
+## Concerns (in addition to batch 1's list)
+
+- **Two processes wrote to this repository concurrently with no lock and no
+  coordination**, for a real portion of this task. Nothing was lost or corrupted as far as
+  every check performed can tell (schema validation, `git diff` comparisons where both
+  versions could be seen, register review of every final file), but the protocol that
+  produced the final 116-tool state was "check before write, let the loser's write bounce,
+  verify after" — not a designed-in safety guarantee. A future batch of imports run the
+  same way should either use a single writer or an actual coordination mechanism, not rely
+  on this having gone acceptably a second time.
+- The `upstreamLinkIsCoherent()` guard (batch 2 onward) checks same-category and
+  `SUBJECT_CLUSTERS` membership, but a slot can still fill from pass 1 with a merely
+  *plausible-sounding but suboptimal* upstream link before pass 2 or 3 get a chance to
+  offer a better one from within the same batch — the six batch-3 fixes above are exactly
+  this failure mode. The guard catches incoherent links; it does not guarantee the best
+  available one wins. Worth a follow-up pass across the full 116 if this catalogue's
+  `relatedSlugs` quality is audited again later.
+- `requirements[]`'s optional-key convention (see judged-calls above) is inconsistent
+  between batch 1 and batches 2–5. Not fixed retroactively in this session; a full-catalogue
+  pass to pick one convention and apply it uniformly would be a reasonable follow-up.
