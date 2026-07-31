@@ -1,0 +1,44 @@
+{
+  "slug": "strava",
+  "name": "Strava",
+  "domains": [
+    "strava.com"
+  ],
+  "category": "health-fitness",
+  "subcategory": "activity tracking with a social network",
+  "pricing": {
+    "amount": 11.99,
+    "currency": "USD",
+    "plan": "Subscription",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/strava-run-bike-walk/id426826309",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "strava.com/subscribe is geo-priced and opens on the annual view — from this network it showed €4.17/month billed €49.99 a year, which is not the US rate. Read from the App Store listing: Strava Subscription $11.99 monthly, $79.99 annual."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "social network and aggregate route data",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Wanderer",
+      "url": "https://github.com/open-wanderer/wanderer",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "komoot-premium",
+    "alltrails-plus",
+    "hevy-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

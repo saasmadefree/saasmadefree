@@ -1,0 +1,32 @@
+{
+  "tagline": "Searches a year of award seat availability across many programmes at once.",
+  "verdictSummary": "Seats.aero is a cache. Its entire value is that somebody has already asked every programme about every route for the next twelve months and stored the answer, so your search returns instantly instead of taking a week. Building the cache is the product, it requires continuous access airlines actively prevent, and the alternative — asking as you search — is what makes the free approach unusable.",
+  "coreLoopDIY": "Watch a handful of specific routes and dates you actually care about, and record what you find each time you check manually.",
+  "whatYouLose": [
+    "a year of availability across every route, already fetched",
+    "coverage of dozens of programmes in one query",
+    "instant search rather than one lookup at a time",
+    "SMS and push alerts the moment a seat appears",
+    "the historical view showing when a route typically opens up"
+  ],
+  "whyPeopleStillPay": "Ten dollars a month for a question answered in a second that would otherwise take an evening per route, and the reason it is a second is an index nobody can build alone.",
+  "prompt": "Build an award-search notebook: a disciplined record of manual searches, which is the honest version of this product for one person.\n\nDefine watches: origin, destination, cabin, passenger count, a date range, and the programmes you can actually book through given your points. Keep the list to the trips you are really planning.\n\nThe tool does not search. It produces a checklist — for each watch, the programmes to check and a direct link to each one's award search prefilled as far as the URL allows — and records what you found. A finding is programme, date, cabin, seats available, points required, taxes. Timestamped, never overwritten.\n\nWith that history the tool answers the questions a single search cannot. Which programmes have ever shown availability on this route? What is the range of points quoted? On which day of the week did seats appear most often? That last one is genuinely actionable and comes free from a few weeks of disciplined checking.\n\nAdd a reminder scheduler: for each watch, a cadence, and a daily list of what to check today. The discipline is the product here; a manual search you forget to run is worth nothing.\n\nRecord the booking outcome too, including the cash fare at the time, so the points-per-cent maths from your own trips accumulates.\n\nDo not automate queries against airline award engines. They forbid it explicitly, they detect it, and the accounts they close are the ones holding your points.",
+  "faq": [
+    {
+      "q": "Can I export anything from Seats.aero?",
+      "a": "Nothing meaningful — the data is theirs and your searches are not stored as an asset. What you can carry over is the list of routes you were watching."
+    },
+    {
+      "q": "Is there any legitimate API for award availability?",
+      "a": "Not for individuals. A few programmes expose partner APIs under commercial agreement, which is how services like this operate, and those agreements are not available to a personal project."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. It is a checklist and a database, with no external calls at all — which is precisely why it cannot do what the subscription does."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Everything the index provides. This build is a filing cabinet for searches you still perform by hand, and calling it a replacement would be dishonest."
+    }
+  ]
+}

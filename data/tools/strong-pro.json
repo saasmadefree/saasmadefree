@@ -1,0 +1,43 @@
+{
+  "slug": "strong-pro",
+  "name": "Strong Pro",
+  "domains": [
+    "strong.app"
+  ],
+  "category": "health-fitness",
+  "subcategory": "routine-based strength logging",
+  "pricing": {
+    "amount": 4.99,
+    "currency": "USD",
+    "plan": "PRO",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/strong-workout-tracker-gym-log/id464254577",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "strong.app publishes no pricing page. Read from the App Store listing, whose description states \"Upgrade to a Strong PRO subscription ($4.99/month or $29.99/year)\"; a $99.99 lifetime SKU is also listed."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "app polish and watch support",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "wger",
+      "url": "https://github.com/wger-project/wger",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "hevy-pro",
+    "fitbod",
+    "macrofactor"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

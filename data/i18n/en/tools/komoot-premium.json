@@ -1,0 +1,32 @@
+{
+  "tagline": "Plans bike and hiking routes using surface data and rider-marked spots.",
+  "verdictSummary": "Surface-aware routing over OpenStreetMap is genuinely available — the open routing engines do it well, and a personal planner is a weekend. What that build cannot reproduce is Highlights: the millions of places marked by riders and walkers as worth the detour, with their photos and tips. Komoot plans routes through them, which is why its suggestions feel local. Strip that out and you have a routing engine, which is a different product.",
+  "coreLoopDIY": "Plan a route on an open routing engine tuned for your sport, adjust it by dragging, and export it to your device.",
+  "whatYouLose": [
+    "Highlights — community-marked places and the tips attached to them",
+    "route suggestions built around what other riders actually chose",
+    "the multi-day planner and the sport-specific maps Premium adds",
+    "live weather on route and the on-device navigation with voice",
+    "the mobile apps and offline regions"
+  ],
+  "whyPeopleStillPay": "A routing engine gives you the shortest legal path; Komoot gives you the one that goes past the viewpoint, and it knows about the viewpoint because ten thousand people told it.",
+  "prompt": "Build a route planner for cycling and hiking on a self-hosted open routing engine.\n\nRun GraphHopper over an OpenStreetMap extract for your region, with the bike and foot profiles enabled. Custom profiles are the part worth spending time on: weight surface tags so gravel is preferred or avoided by choice, penalise primary roads for cycling, and prefer designated paths for walking. Put those weights in a profile file you can edit — the difference between a usable and a useless route planner in this domain is entirely in the weighting.\n\nThe planner UI is a map where clicking adds a waypoint and dragging the line inserts one. Show distance, elevation gain, and the surface breakdown as a stacked bar — how many kilometres of asphalt, gravel and path — because that single chart answers the question most route planning is actually asking.\n\nAdd a round-trip mode: given a start, a target distance and a rough direction, generate a loop. GraphHopper supports this directly, and it is the feature people plan the most rides with.\n\nExport GPX with waypoints and, for devices that support it, turn-by-turn cue points.\n\nFor the Highlights gap, build the only honest substitute: your own places file. A point, a name, a note, a photo, imported from your own recorded tracks or added by hand, and routed through on request. It will be empty on day one and useful after a season, and the interface should not pretend otherwise.\n\nDo not scrape Highlights. They are user contributions to Komoot, they are not openly licensed, and a route planner built on borrowed data breaks the day they notice.",
+  "faq": [
+    {
+      "q": "Can I export my Komoot routes?",
+      "a": "Yes. Individual tours export as GPX and completed tours can be downloaded, so your planned and ridden routes come with you. Highlights you saved do not — those are references into their database."
+    },
+    {
+      "q": "How hard is running a routing engine?",
+      "a": "For one country, not very: GraphHopper imports an OpenStreetMap extract in minutes to an hour and then serves from memory. A continent-sized extract needs real RAM, so start with the region you actually ride."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A VPS with enough memory for your region — roughly ten to twenty dollars a month for a country-sized graph, or free on a machine at home. Map data is free."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Local knowledge. Komoot routes you past the good bit because someone who lives there marked it; an open graph knows the road is there and nothing about whether it is worth riding."
+    }
+  ]
+}

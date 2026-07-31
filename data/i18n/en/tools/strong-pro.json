@@ -1,0 +1,32 @@
+{
+  "tagline": "Strength training log built around saved routines.",
+  "verdictSummary": "Same shape as Hevy and the same answer: sets, reps and weight in a local database, with no key, no service and no dataset to reproduce. Strong's distinctive bit is that everything is organised around a routine you follow rather than a workout you assemble, and that is a schema decision you can make in the first ten minutes of your own build.",
+  "coreLoopDIY": "Start a saved routine, work down it set by set with last time's numbers in front of you, and finish with the session written to your own database.",
+  "whatYouLose": [
+    "the Apple Watch app, which is the fastest way to log a set",
+    "the plate calculator and warm-up set generator, small features you will miss daily",
+    "a maintained exercise library with muscle mappings",
+    "Health sync and the RPE and one-rep-max charts Pro adds",
+    "an install rather than a self-hosted URL"
+  ],
+  "whyPeopleStillPay": "Five dollars a month for something that already works on the watch on your wrist, with nothing to host and nothing to back up.",
+  "prompt": "Build a routine-first strength logger, where the routine is the primary object and a workout is an instance of one.\n\nA routine is an ordered list of exercises, each with target sets, a rep range and optional target weight. Starting a workout copies the routine into a session — copies, not references — so editing the routine next month does not rewrite what you actually did in March. Write a test for that; it is the schema mistake this design exists to avoid.\n\nThe session screen walks the routine in order, one exercise at a time, prefilled from your last performance of that exercise in any routine. Marking a set done starts the rest timer configured for that exercise.\n\nBuild the plate calculator, because it is small and it is the feature people miss most: given a target weight, a bar weight and the plate pairs available in your gym, print the plates per side and the achievable weight nearest the target. Put the available plates in config — the difference between a gym with 1.25 kg plates and one without changes every progression decision you make.\n\nAdd warm-up generation: given a working weight, produce a standard ramp as a percentage ladder you define in config, marked as warm-up sets so they are excluded from volume totals.\n\nCharts: best set per exercise over time, estimated one-rep max with the formula named on the chart, and total volume per week.\n\nOffline-first as a progressive web app with IndexedDB, same as any tool used in a basement.\n\nDo not implement automatic progression here. Strong deliberately does not, and the reason is good: a logger that changes your programme is two products, and the second one needs to be argued for separately.",
+  "faq": [
+    {
+      "q": "Can I import my Strong history?",
+      "a": "Yes. Strong exports a CSV with one row per set — date, workout name, exercise, set order, weight, reps, notes — which maps directly onto this schema. Years of history import in seconds."
+    },
+    {
+      "q": "Why keep routines and sessions separate?",
+      "a": "Because a routine changes and history must not. If a session points at the routine rather than copying it, raising your squat target in June silently rewrites what your February sessions claim you were told to do, and your own history stops being evidence."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing locally. A few dollars a month if you host it so your phone can reach it from the gym — which, honestly, is roughly the price of Pro."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The watch. Logging a set by tapping your wrist rather than fishing a phone out of a pocket is a small thing forty times a session, and no web app does it."
+    }
+  ]
+}

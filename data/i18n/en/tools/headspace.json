@@ -1,0 +1,32 @@
+{
+  "tagline": "Structured meditation courses with a single consistent teacher.",
+  "verdictSummary": "Where Calm sells a catalogue, Headspace sells a curriculum: numbered courses that assume what you learned on day four, taught in one voice, with clinical programmes built alongside researchers. Sequencing and instruction are the asset. The app around them is a player with a progress marker.",
+  "coreLoopDIY": "Work through a course you assemble yourself, one session a day, with a log that remembers where you are.",
+  "whatYouLose": [
+    "the courses themselves, sequenced so each session builds on the last",
+    "a single teacher across hundreds of hours, which is most of why it works",
+    "clinically informed programmes for anxiety, sleep and stress",
+    "Headspace Care and the human coaching that sits behind it",
+    "the mobile apps, offline downloads and Watch support"
+  ],
+  "whyPeopleStillPay": "A course tells you what today is. Left to choose, most people choose nothing, and a library without a path is a library you stop opening.",
+  "prompt": "Build a course runner for audio you have the right to use, designed so the next session is never a decision.\n\nA course is a directory: a manifest listing sessions in order, and one audio file per session. The runner shows exactly one thing — today's session — with the course name and the position, like \"Day 7 of 30\". No browsing, no library grid, no recommendations. The absence of choice is the design.\n\nRules: one session per day advances the course. Repeating a day is allowed and does not advance it. Missing days does not reset anything and does not produce a notification. Finishing a course prints what it was, how many days it took, and offers the next course in a list you wrote in advance.\n\nAfter each session, ask one question and store the answer: a number from one to five for how settled you feel, and an optional line of text. Nothing else. That single number, plotted over ninety days, is the only outcome measure this tool can honestly offer, and it is worth more than a streak.\n\nBuild a small authoring path too: given a folder of audio files and a text file of titles, generate the manifest. Sequencing your own course is where the thought goes, and the tool should make writing that order easy and then get out of the way.\n\nDo not add a library browser, a feed, or a \"recommended for you\" section. Every one of those reintroduces the choice the design exists to remove.",
+  "faq": [
+    {
+      "q": "Can I take my Headspace progress with me?",
+      "a": "No. There is no export of completed sessions or course progress, so your log starts empty. Write down which courses you finished before cancelling if that matters to you."
+    },
+    {
+      "q": "Where do I find sequenced audio courses?",
+      "a": "Medito publishes free courses under an open model, and several teaching centres release recorded course series under Creative Commons licences. Building your own sequence from individual recordings is possible and is genuinely the hard part."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. Local files, a local runner, and no account anywhere."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The teaching. Andy Puddicombe explaining the same idea for the fourth time in a slightly different way is the product, and a manifest that plays files in order is a filing system for something you still have to find."
+    }
+  ]
+}

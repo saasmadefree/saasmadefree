@@ -1,0 +1,44 @@
+{
+  "slug": "alltrails-plus",
+  "name": "AllTrails Plus",
+  "domains": [
+    "alltrails.com"
+  ],
+  "category": "travel",
+  "subcategory": "trail database and hiking navigation",
+  "pricing": {
+    "amount": 3,
+    "currency": "USD",
+    "plan": "Plus",
+    "basis": "annual-effective-monthly",
+    "source": "https://apps.apple.com/us/app/alltrails-hike-bike-run/id405075943",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "alltrails.com/plus returns 403 to curl and an empty document body in a real Chrome session from this network. Read from the App Store listing: AllTrails Plus $35.99 (annual, i.e. $3.00/month) and AllTrails Peak $79.99."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "trail database and community reviews",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Wanderer",
+      "url": "https://github.com/open-wanderer/wanderer",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "gaia-gps",
+    "komoot-premium",
+    "strava"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

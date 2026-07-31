@@ -1,0 +1,33 @@
+{
+  "tagline": "Adaptive bodyweight training plans with an AI coach.",
+  "verdictSummary": "The generation logic is comparable to Fitbod's and just as approachable. What is not is everything around it: named workouts designed as units, demonstration video for every movement, audio coaching recorded to run while you train, and a progression model built by coaches for people with no equipment and no supervision. That last part is where a home-made generator gets it wrong in ways you feel in your knees.",
+  "coreLoopDIY": "Follow a bodyweight programme you wrote down, log each session, and let a simple rule raise the volume when the previous week went well.",
+  "whatYouLose": [
+    "the workout catalogue, each session designed as a unit rather than assembled",
+    "video demonstrations for every exercise",
+    "audio coaching that runs hands-free while you train",
+    "progression designed by coaches for unsupervised training",
+    "the mobile app and the community challenges"
+  ],
+  "whyPeopleStillPay": "Training with no equipment and no gym means nobody is watching your form or your progression, and paying someone to have thought about both is the whole proposition.",
+  "notes": "Filed as `no` on content rather than on code: the generator is easy, the coaching is not, and unsupervised progression is where injuries come from.",
+  "prompt": "Build a bodyweight training log with a conservative, readable progression rule.\n\nDefine a small set of movement patterns — push, pull, squat, hinge, core, carry — and for each a ladder of progressions from easiest to hardest, written by you in a YAML file with a note on the prerequisite for each step. Keeping the ladder in a file rather than in code is the point: it is a training decision, not a programming one, and you should be able to read and argue with it.\n\nA session records movement, progression step, sets, reps and a difficulty rating from one to five. Progression is deliberately slow: move up a step only after three consecutive sessions completing all prescribed reps at a difficulty of three or lower. Never advance two steps at once, and never advance a movement you have not performed in the last ten days.\n\nAdd a decision log. Whenever the tool advances or holds a movement, write the reason to a file: the last three sessions, the ratings, and the rule that fired. Six weeks later that log is how you work out whether your ladder is sensible.\n\nGenerate a session as a fixed structure — one movement per pattern, sets and reps from the current step — and print it as text you can read from a phone lock screen. That is the whole interface it needs.\n\nAdd a plateau report: movements held at the same step for more than four weeks, with the ratings that kept them there.\n\nDo not have a model design your training programme. Programme design for unsupervised bodyweight training is where the injuries are, and a plausible-sounding plan is exactly the failure mode you cannot detect from inside it.",
+  "faq": [
+    {
+      "q": "Can I export my Freeletics history?",
+      "a": "Freeletics offers a data download under its privacy settings, which includes your completed workouts. It is a data-protection export rather than a designed one, so expect JSON that needs a script to flatten, but the session history is in there."
+    },
+    {
+      "q": "Do I need to know how to program training for this to be useful?",
+      "a": "Yes, more than for a gym logger. The ladder file is the programme, and the tool only enforces what you wrote. If you do not have a view on what should come after push-ups, that is a good sign the subscription is the better purchase."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. It is a text file, a small database and a printout, with no service involved."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Someone qualified deciding when you are ready for the next progression. Your rule waits three sessions; a coach watches the third rep of the second set and tells you no."
+    }
+  ]
+}

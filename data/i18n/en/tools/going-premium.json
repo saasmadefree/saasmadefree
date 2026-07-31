@@ -1,0 +1,32 @@
+{
+  "tagline": "Emails you unusually cheap flights from your home airports.",
+  "verdictSummary": "Going is a team of people watching fare data all day and deciding which anomalies are worth an email. Both halves are hard to replace: the fare data is licensed and expensive at the volume needed to see a mistake fare, and the judgement — this is a real error, that one is a fare with a catch — is human. A price alert on a route you already chose is a much smaller product.",
+  "coreLoopDIY": "Watch a fixed list of routes you would actually fly, record their prices over time, and alert yourself when one drops far below its own history.",
+  "whatYouLose": [
+    "broad fare monitoring across hundreds of origins, which is where mistake fares are found",
+    "human review deciding a fare is genuinely bookable before it goes out",
+    "deals on routes you never thought to search",
+    "speed — mistake fares last hours, and their alert goes out in minutes",
+    "the app and its curated deal feed"
+  ],
+  "whyPeopleStillPay": "Forty-nine dollars a year against one four-hundred-dollar transatlantic fare you would never have found, and finding it requires watching far more of the market than any individual can.",
+  "prompt": "Build a fare watcher for a small, fixed set of routes you would genuinely book.\n\nDefine watches in a config file: origin, destination, a date range or a flexible month, cabin, and the number of passengers. Keep the list short — this design is deliberately deep rather than broad, because breadth is the part that needs a commercial data licence.\n\nQuery a flight search API on a schedule. Free tiers are thin, so poll each route a few times a day at most and stagger them. Store every observation as a row with the price, the itinerary and the timestamp; never overwrite, because the history is what makes the alert meaningful.\n\nThe alert rule is statistical, not a fixed threshold. For each route compute the median and the interquartile range of the last ninety days of observations, and alert when a price falls below the median by more than a configured number of interquartile ranges. A fixed \"under $400\" rule fires constantly on cheap routes and never on expensive ones; a distributional rule adapts per route without any tuning from you.\n\nEvery alert email includes the price history chart for that route, so you can see whether it is genuinely unusual or merely the bottom of a normal weekly cycle. Rate-limit to at most one alert per route per week.\n\nAdd a suppression list for fares with characteristics you will not book — more than one stop, overnight layovers, basic economy fare classes — filtered before the alert rather than after.\n\nDo not scrape airline or aggregator websites. They forbid it, they block it, and a scraper that half works produces alerts for fares that do not exist, which is worse than silence.",
+  "faq": [
+    {
+      "q": "Can I export anything from Going?",
+      "a": "No, and there is not much to export — the product is a stream of emails rather than data you accumulate. Search your mailbox for their past alerts if you want a record of what they found."
+    },
+    {
+      "q": "Which flight search APIs can I use?",
+      "a": "Several major providers offer free or low-volume developer tiers adequate for a handful of routes. Read the terms on caching and display, which are usually stricter than the rate limits, and design your storage to comply."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A few dollars a month for a small always-on host, plus whatever the API charges beyond its free tier. Watching ten routes stays cheap; watching a thousand is a business, not a script."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The deal you would never have searched for. Your watcher only knows the routes you listed, and Going's value is precisely the trip you had not thought of at a price that changes your mind."
+    }
+  ]
+}

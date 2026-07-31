@@ -1,0 +1,36 @@
+{
+  "slug": "freeletics",
+  "name": "Freeletics",
+  "domains": [
+    "freeletics.com"
+  ],
+  "category": "health-fitness",
+  "subcategory": "adaptive bodyweight coaching",
+  "pricing": {
+    "amount": 8.32,
+    "currency": "EUR",
+    "plan": "Training Coach (12 months)",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.freeletics.com/en/training/coach/get/",
+    "checkedOn": "2026-07-31",
+    "confidence": "low",
+    "notes": "FLAGGED. The page prices per week, not per month, and opens on the Lifetime tab (Training Coach €299.99, struck through from €599.99). Switching to the 12-month tab shows Training Coach at €1.92/week, which is €99.84 a year, i.e. €8.32 a month — that arithmetic is ours, not the vendor's. Geo-priced in EUR. Our basis list has no weekly code."
+  },
+  "verdict": "no",
+  "verdictConfidence": "medium",
+  "moatType": "coaching content and progression design",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "relatedSlugs": [
+    "fitbod",
+    "hevy-pro",
+    "headspace"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

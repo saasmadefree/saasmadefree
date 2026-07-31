@@ -1,0 +1,38 @@
+{
+  "slug": "going-premium",
+  "name": "Going",
+  "domains": [
+    "going.com"
+  ],
+  "category": "travel",
+  "subcategory": "cheap flight and mistake fare alerts",
+  "pricing": {
+    "amount": 4.08,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "annual-effective-monthly",
+    "source": "https://apps.apple.com/us/app/going-find-flight-deals/id6443738607",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "going.com/membership 404s and going.com/premium renders no plan price. Read from the App Store listing: Premium $49.00 a year (i.e. $4.08/month, with a \"Premium - Annual $49\" SKU confirming the period) and Elite $199.00."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "fare data and human curation",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database",
+    "email-provider"
+  ],
+  "relatedSlugs": [
+    "seats-aero-pro",
+    "point-me",
+    "flighty-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

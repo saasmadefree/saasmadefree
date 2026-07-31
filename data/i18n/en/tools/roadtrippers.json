@@ -1,0 +1,32 @@
+{
+  "tagline": "Plans a driving route around quirky stops worth the detour.",
+  "verdictSummary": "Routing between waypoints is free and solved. What Roadtrippers sells is seven million curated points of interest — the diners, the roadside oddities, the campgrounds with reviews — assembled and moderated over a decade, plus booking partnerships. Route a car past an empty database and you have a map application.",
+  "coreLoopDIY": "Plan a multi-stop drive on an open routing engine, with a stops database you assemble from open sources and your own research.",
+  "whatYouLose": [
+    "the curated places database and its editorial descriptions",
+    "campground availability and in-app booking",
+    "RV-specific routing that avoids low bridges and weight limits",
+    "reviews and photographs from other travellers",
+    "the mobile app with offline maps and live traffic"
+  ],
+  "whyPeopleStillPay": "Sixty dollars a year to be told there is something worth stopping for in the next forty miles, which is exactly the thing you cannot look up if you do not know it exists.",
+  "prompt": "Build a multi-stop road trip planner over open data.\n\nRouting runs through a self-hosted open routing engine with a car profile. The trip is an ordered list of stops; the planner computes legs between them with distance and driving time, and totals the trip.\n\nThe feature that makes it a road trip planner rather than a route planner is the corridor search: given the computed route, find candidate stops within a chosen distance of it. Query OpenStreetMap through Overpass for the categories you care about — viewpoints, picnic sites, museums, campsites, fuel — filtered to a buffer around the route geometry. That buffer query is the core of the build and worth getting right, including handling very long routes by splitting them.\n\nAdd daily planning: set a maximum driving time per day, and the planner proposes overnight points along the route where the accumulated time crosses each threshold, listing candidate accommodation near each. This is the arithmetic people do badly in their heads and the single most useful thing the tool can compute.\n\nStops carry your own notes, a priority, and an opening-hours check against the OpenStreetMap opening-hours tag for the day you would arrive — arriving at a closed museum is the classic road trip failure and it is checkable in advance.\n\nExport the trip as GPX with waypoints, and as a printable day-by-day sheet, because phone signal is not a given.\n\nDo not scrape the curated database. It is their editorial work, and a road trip planner built on a scraper is one legal letter from being a text file.",
+  "faq": [
+    {
+      "q": "Can I export my Roadtrippers trips?",
+      "a": "Paid tiers allow exporting a trip, typically as GPX or a shareable link, which carries the waypoints across. The place descriptions and reviews attached to each stop do not — those are their content."
+    },
+    {
+      "q": "Does OpenStreetMap have enough points of interest?",
+      "a": "For practical stops — fuel, campsites, viewpoints, food — coverage is genuinely good in most of Europe and North America. For \"worth a detour\" it has no opinion at all, which is exactly the gap."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A VPS for the routing engine, ten to twenty dollars a month for a large region, or nothing on a machine at home. Overpass queries against the public instance are free within its usage policy."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The recommendation. A corridor search returns everything within ten miles; Roadtrippers returns the three that someone thought were worth stopping for, and that filter is the product."
+    }
+  ]
+}

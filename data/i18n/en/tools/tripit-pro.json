@@ -1,0 +1,32 @@
+{
+  "tagline": "Forward a booking confirmation and get a complete trip itinerary.",
+  "verdictSummary": "This verdict moves, and the reason is that the hard part stopped being hard. TripIt's core trick was parsing thousands of differently formatted confirmation emails into structured bookings, which used to mean a parser per airline and a team maintaining them; a language model now does it from the raw text with a schema. What remains genuinely theirs is the Pro layer — flight alerts, seat tracking, fare refund monitoring — all of which rest on live travel data feeds.",
+  "coreLoopDIY": "Forward confirmations to your own address, extract the bookings into a structured itinerary, and get one dated timeline per trip with calendar export.",
+  "whatYouLose": [
+    "real-time flight alerts and gate changes, which need a live data feed",
+    "fare refund monitoring, which needs continuous fare data",
+    "seat tracking and better-seat alerts",
+    "point tracking across dozens of loyalty programmes",
+    "the mobile app with offline itineraries and sharing"
+  ],
+  "whyPeopleStillPay": "Forty-nine dollars a year for a phone that tells you the gate changed while you are still in the lounge is a different product from a tidy itinerary, and that difference is a data bill.",
+  "prompt": "Build an itinerary assembler fed by forwarded confirmation emails.\n\nSet up a dedicated address that delivers into a mailbox you can read over IMAP. A poller reads unseen messages, extracts the text and any PDF attachment, and passes it to a language model with a strict JSON schema: booking type (flight, hotel, car, rail, event), confirmation number, provider, start and end datetimes with time zones, location, and a free-text detail field.\n\nTwo rules make this trustworthy rather than merely clever. First, every extracted booking is stored with the source email id and is marked unconfirmed until you approve it — a hallucinated flight number in an itinerary is worse than no itinerary. Second, time zones are non-negotiable: store every instant with its zone, derive the zone from the airport or city rather than trusting the email, and write a test with a red-eye crossing a date line. Nearly every bug in this class of tool is a time-zone bug.\n\nGroup bookings into trips by date proximity and location, and render one timeline per trip. Compute the gaps: the connection time between two flights, the hours between landing and hotel check-in, the drive from the airport. Flag connections shorter than the airport's published minimum, which is the check that actually saves a trip.\n\nExport the trip as `.ics` with one event per booking, sensible alarms, and the confirmation number in the description, so the itinerary lives in the calendar you already carry.\n\nDo not build flight status alerting here — see the Flighty entry for why that is a data subscription rather than a feature.",
+  "faq": [
+    {
+      "q": "Can I export my TripIt history?",
+      "a": "Yes. TripIt exports trips as `.ics` calendar files and offers a full account data download, so past itineraries come across. What does not come is the Pro alerting, which is a service rather than data."
+    },
+    {
+      "q": "How reliable is model-based extraction?",
+      "a": "Good on well-formed confirmations, weaker on marketing-heavy emails where the booking details are buried in a table image. The unconfirmed-until-approved rule exists for that reason, and after a few weeks you will know which providers need a manual pass."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A few dollars a month for hosting and a mailbox, plus roughly a cent per email parsed. A heavy travel year lands far below the subscription."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Knowing the gate moved. Your itinerary is accurate as of the day it was booked; TripIt Pro keeps checking, and that checking is what the price buys."
+    }
+  ]
+}

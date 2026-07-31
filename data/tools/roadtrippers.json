@@ -1,0 +1,37 @@
+{
+  "slug": "roadtrippers",
+  "name": "Roadtrippers",
+  "domains": [
+    "roadtrippers.com"
+  ],
+  "category": "travel",
+  "subcategory": "road trip planning with curated stops",
+  "pricing": {
+    "amount": 5,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "annual-effective-monthly",
+    "source": "https://roadtrippers.com/membership/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "roadtrippers.com/plus now redirects to /membership/. The plan table shows four tiers: Free, Basic $35.99/yr or $11.99/mo, Pro $49.99/yr or $16.99/mo, and Premium $59.99/yr or $19.99/mo. Premium at the annual rate is $5.00/month; the monthly rate is $19.99."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "curated points-of-interest database",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "relatedSlugs": [
+    "wanderlog-pro",
+    "gaia-gps",
+    "alltrails-plus"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

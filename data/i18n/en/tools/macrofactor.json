@@ -1,0 +1,32 @@
+{
+  "tagline": "Estimates your real energy expenditure from weight and intake data.",
+  "verdictSummary": "The idea underneath MacroFactor is statistical rather than proprietary: your true expenditure is inferable from the relationship between what you ate and how your weight moved, once both are smoothed properly. A competent implementation is a weekend, and it will be roughly right. Their version is better tuned, ships with a well-curated food database, and lives on a phone — which is where the paid product actually earns its money.",
+  "coreLoopDIY": "Log intake and weigh yourself daily, and let a filter over both series estimate what you actually burn and how far your intake target should move.",
+  "whatYouLose": [
+    "a curated, verified food database with reliable barcode coverage",
+    "the tuned filter, which handles water-weight noise better than a first implementation will",
+    "the mobile app, and logging a meal before you finish eating it",
+    "the coaching layer that turns the expenditure estimate into a weekly target",
+    "health-platform sync for weight from a smart scale"
+  ],
+  "whyPeopleStillPay": "The maths is the easy half. Twelve dollars buys a food database that finds what you ate and an app that makes logging it take fifteen seconds.",
+  "prompt": "Build an adaptive expenditure estimator over your own intake and weight data.\n\nInputs are two daily series: energy intake, and body weight. Both are noisy, and handling that noise correctly is the entire build.\n\nSmooth weight with an exponentially weighted moving average over a window of about ten days, and never show the raw daily figure as a trend. Then estimate expenditure over a rolling window: expenditure equals mean intake minus the energy equivalent of the trend change, using roughly 7,700 kcal per kilogram of body mass change. Recompute daily over the last two to three weeks, and display the estimate with an uncertainty band derived from the residual variance rather than as a single confident number.\n\nRefuse to produce an estimate at all until you have at least ten days of both series with no gap longer than two days. Print exactly what is missing instead. An estimate from four days of data is noise wearing a number, and showing it teaches people to distrust the tool at the moment they should trust it most.\n\nThe weekly output is one adjustment: given a target rate of weight change, the intake for the coming week, with the estimate it came from and the confidence band shown alongside. Cap adjustments so no single week moves the target more than a set percentage — the filter can overreact to a salty weekend, and a large swing is almost always noise.\n\nFood logging reuses a local nutrition database, as in the Cronometer entry. Weight entry is a single number.\n\nDo not model exercise as a separate energy input. The whole point of estimating expenditure from outcomes is that activity is already in the number, and adding it back double-counts.",
+  "faq": [
+    {
+      "q": "Can I import my MacroFactor data?",
+      "a": "Yes. MacroFactor exports nutrition, weight and expenditure history as CSV from its settings, and the weight and intake series are all the estimator needs. Feeding your existing history in means the model is calibrated from day one instead of after two weeks of silence."
+    },
+    {
+      "q": "Will my estimate match theirs?",
+      "a": "Close but not identical, and it will be noisier at first. The published approach is the same family of method; the difference is in smoothing parameters tuned against a lot of real users, which is exactly the sort of thing you cannot derive from first principles."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing beyond hosting. The database import is free, and the estimator is arithmetic over a few hundred rows."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Logging a meal in fifteen seconds. Every day you skip logging is a day of missing input, and the model degrades quietly — so the app's convenience is not a comfort feature, it is what makes the estimate work."
+    }
+  ]
+}

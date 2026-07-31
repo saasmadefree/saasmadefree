@@ -1,0 +1,43 @@
+{
+  "slug": "headspace",
+  "name": "Headspace",
+  "domains": [
+    "headspace.com"
+  ],
+  "category": "health-fitness",
+  "subcategory": "guided meditation courses",
+  "pricing": {
+    "amount": 12.99,
+    "currency": "USD",
+    "plan": "Headspace",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/headspace-sleep-meditation/id493145008",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "headspace.com/subscription 404s; /subscriptions resolves but renders its plan cards client-side. Read from the App Store listing, whose developer text states \"Subscription options: $12.99/month, $69.99/year. These prices are for United States\"."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "course content and clinical programmes",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Medito",
+      "url": "https://github.com/meditohq/medito-app",
+      "license": "GPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "calm",
+    "strava",
+    "freeletics"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

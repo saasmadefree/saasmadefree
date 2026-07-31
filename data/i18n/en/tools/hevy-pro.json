@@ -1,0 +1,32 @@
+{
+  "tagline": "Logs sets, reps and weight, and charts progress per exercise.",
+  "verdictSummary": "A set is four numbers and a timestamp. Storing them, showing the last session while you do the next one, and plotting a one-rep-max estimate over time is a small, well-understood build with no key, no service and no dataset behind it — which is the definition of `yes` in this catalogue. The gaps are real but they are ergonomics: a watch app, a phone that works in a basement, and the friends whose logs you follow.",
+  "coreLoopDIY": "Log sets during the session with last week's numbers on screen, and watch estimated strength per lift move over months.",
+  "whatYouLose": [
+    "the Apple Watch and Wear OS apps",
+    "the social feed, following friends and their comments on your session",
+    "a maintained exercise library with demonstrations",
+    "Health and Strava sync",
+    "an app store install rather than a URL you have to remember"
+  ],
+  "whyPeopleStillPay": "Three dollars a month is less than one protein shake, and the app is already on your phone, already offline, already showing the right screen when you unlock it between sets.",
+  "prompt": "Build an offline-first gym logger as a progressive web app, and design every screen for someone holding a phone in one hand.\n\nData model: exercise, workout, set. A set holds exercise id, order, reps, weight, an optional RPE and a done flag. A routine is a saved list of exercises with target sets and rep ranges.\n\nThe logging screen is the whole product. Show the current exercise, the sets you have logged today, and — directly beneath, always visible — the same exercise from your last session with the actual numbers. Prefill each new set with last time's values, so the common case is one tap. Targets must be at least 44 pixels and there must be no confirmation dialogs anywhere; both of those are correctness requirements, not polish, because the alternative is mistyping at set five.\n\nOffline first, genuinely: a service worker with the whole app cached, writes going to IndexedDB, and a sync to your server when a connection returns. Gyms have no signal. Write a test that loads the app, drops the network, logs a full workout, restores the network and asserts the sets arrive intact and unduplicated.\n\nAdd a rest timer that starts automatically when a set is marked done, configurable per exercise, that keeps running when the screen locks.\n\nCharts: estimated one-rep max per exercise over time using the Epley formula, and weekly volume per muscle group. Show the estimate's formula on the chart, because an unexplained strength number invites more trust than it deserves.\n\nDo not build a social feed. Following people you do not know is a feature of a product with users, and a self-hosted one has one.",
+  "faq": [
+    {
+      "q": "Can I import my Hevy history?",
+      "a": "Yes, and cleanly. Hevy exports the full workout history as CSV — date, exercise, set index, weight, reps — which is exactly this schema. A short import script gets years of training in with no loss."
+    },
+    {
+      "q": "Does a web app really work in a gym?",
+      "a": "An offline-first progressive web app installed to the home screen does, and this build treats that as a requirement rather than a nice-to-have. What it will not do is run on a watch, which is the one place the native app genuinely wins."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing if you keep it on your own machine and use it over the local network; about five dollars a month on a small VPS if you want it available anywhere. The Pro plan costs less than the VPS, and that is worth stating plainly."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Your friends. Hevy's feed is why a lot of people keep logging, and a private tracker is a spreadsheet with charts — better in every way except the one that gets you to the gym on a Thursday."
+    }
+  ]
+}

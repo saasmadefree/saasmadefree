@@ -1,0 +1,32 @@
+{
+  "tagline": "Tracks your flights and warns you about delays before the airline does.",
+  "verdictSummary": "Flighty's whole claim is that it knows about your delay before the gate agent announces it, and that comes from paying for multiple live aviation data feeds — airline schedules, airport operations, aircraft position — and correlating them. Those feeds are expensive, licensed, and restricted in what a licensee may redistribute. The app is a beautiful shell around a data subscription you cannot get on personal terms.",
+  "coreLoopDIY": "Keep your own flight itinerary, and pull status from whatever public source you can access, accepting that it will be later and thinner.",
+  "whatYouLose": [
+    "multiple commercial data feeds correlated in real time",
+    "delay prediction from inbound aircraft position, which is where the early warning comes from",
+    "push notifications that arrive before the airport screens update",
+    "the flight log with lifetime statistics and the map of everywhere you have flown",
+    "the iOS app, Live Activities and Watch complications"
+  ],
+  "whyPeopleStillPay": "Sixty dollars a year to find out about a cancellation while you are still at home is a good trade, and the reason it works is a bill Flighty pays and you cannot.",
+  "prompt": "Build a personal flight itinerary tracker, and be explicit about the ceiling on what it can know.\n\nStore flights: airline, number, date, origin, destination, scheduled times, booking reference, seat. Entry is manual or parsed from a confirmation email you forward — see the TripIt entry for the parsing approach.\n\nStatus polling goes through whichever aviation data API you have access to. Several offer free tiers with tight quotas, so design for scarcity rather than around it: poll only flights within a window around departure, back off when nothing changes, and cache aggressively. Print your remaining quota in the interface, because the failure mode here is a tool that silently stops updating on the day it matters.\n\nWhat this build can do well is the parts that need no live feed: the itinerary, the connection-risk check comparing scheduled connection time against the airport's published minimum, calendar export as `.ics` with sensible alarms, and a lifetime flight log.\n\nThe flight log is the underrated half. Store every flight you have taken, compute distance from airport coordinates, and produce a map and a summary — airports visited, aircraft types, longest and shortest legs. That is a real product on its own and needs no subscription at all.\n\nDo not claim delay prediction. Without inbound-aircraft data any prediction you produce is a guess, and a confident wrong guess about a departure is worse than no guess. State in the interface where each status came from and when it was fetched.",
+  "faq": [
+    {
+      "q": "Can I export my Flighty log?",
+      "a": "Yes — Flighty exports your past flights as CSV, which is the part worth keeping. The alerting has nothing to export; it is a subscription to data rather than a store of yours."
+    },
+    {
+      "q": "Which flight data can I actually get?",
+      "a": "Several providers offer free tiers of a few hundred calls a month, which is enough for one traveller's flights if you poll narrowly. Coverage of gate changes and inbound aircraft is generally reserved for paid tiers, and that is precisely the data that makes Flighty early."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A few dollars a month for hosting the poller, plus whatever the data API charges past its free tier. Real-time coverage for frequent travel gets expensive fast, which is the honest reason the subscription exists."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Being told first. Flighty exists to beat the airport screens by twenty minutes, and every free data source you can reach is downstream of the sources it pays for."
+    }
+  ]
+}
