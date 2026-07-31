@@ -1,0 +1,41 @@
+{
+  "slug": "livingwriter",
+  "name": "LivingWriter",
+  "domains": [
+    "livingwriter.com"
+  ],
+  "category": "ai-writing",
+  "subcategory": "grammar, editing and long-form writing",
+  "pricing": {
+    "amount": 14.99,
+    "currency": "USD",
+    "plan": "LivingWriter",
+    "basis": "flat-monthly",
+    "source": "https://livingwriter.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "polish, integrations, and proprietary language models",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "bibisco",
+      "url": "https://github.com/andreafeccomandi/bibisco"
+    }
+  ],
+  "relatedSlugs": [
+    "dabble",
+    "novelcrafter",
+    "sudowrite"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

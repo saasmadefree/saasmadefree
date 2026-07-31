@@ -1,0 +1,43 @@
+{
+  "slug": "pirsch",
+  "name": "Pirsch",
+  "domains": [
+    "pirsch.io"
+  ],
+  "category": "analytics",
+  "subcategory": "web and product analytics",
+  "pricing": {
+    "amount": 6,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "flat-monthly",
+    "source": "https://pirsch.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "data pipeline reliability and analytical depth",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "GoatCounter",
+      "url": "https://github.com/arp242/goatcounter"
+    }
+  ],
+  "relatedSlugs": [
+    "plausible",
+    "umami-cloud",
+    "simple-analytics"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

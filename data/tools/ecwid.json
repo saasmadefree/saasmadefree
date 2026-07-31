@@ -1,0 +1,44 @@
+{
+  "slug": "ecwid",
+  "name": "Ecwid",
+  "domains": [
+    "ecwid.com"
+  ],
+  "category": "creator-commerce",
+  "subcategory": "digital products, courses and memberships",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Venture",
+    "basis": "flat-monthly",
+    "source": "https://ecwid.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "payments, tax, distribution, and operations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Medusa",
+      "url": "https://github.com/medusajs/medusa"
+    }
+  ],
+  "relatedSlugs": [
+    "bigcommerce",
+    "shopify",
+    "payhip"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

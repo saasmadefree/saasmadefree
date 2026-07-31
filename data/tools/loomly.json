@@ -1,0 +1,44 @@
+{
+  "slug": "loomly",
+  "name": "Loomly",
+  "domains": [
+    "loomly.com"
+  ],
+  "category": "social-media",
+  "subcategory": "social scheduling and content repurposing",
+  "pricing": {
+    "amount": 42,
+    "currency": "USD",
+    "plan": "Base",
+    "basis": "flat-monthly",
+    "source": "https://loomly.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "API access, connector upkeep, and collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Mixpost",
+      "url": "https://github.com/inovector/mixpost"
+    }
+  ],
+  "relatedSlugs": [
+    "planable",
+    "publer",
+    "hootsuite"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

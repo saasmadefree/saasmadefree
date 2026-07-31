@@ -1,0 +1,44 @@
+{
+  "slug": "oncehub",
+  "name": "OnceHub",
+  "domains": [
+    "oncehub.com"
+  ],
+  "category": "scheduling",
+  "subcategory": "booking links and calendar automation",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Schedule",
+    "basis": "per-seat-monthly",
+    "source": "https://oncehub.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "calendar integrations and reliability",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Easy!Appointments",
+      "url": "https://github.com/alextselegidis/easyappointments"
+    }
+  ],
+  "relatedSlugs": [
+    "youcanbookme",
+    "calendly",
+    "savvycal"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

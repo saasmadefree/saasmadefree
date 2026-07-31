@@ -1,0 +1,41 @@
+{
+  "slug": "lovo",
+  "name": "LOVO",
+  "domains": [
+    "lovo.ai"
+  ],
+  "category": "ai-audio",
+  "subcategory": "synthetic voice, dubbing and AI avatars",
+  "pricing": {
+    "amount": 24,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "flat-monthly",
+    "source": "https://lovo.ai/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "models, compute, rights, and safety operations",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Coqui TTS",
+      "url": "https://github.com/coqui-ai/TTS"
+    }
+  ],
+  "relatedSlugs": [
+    "murf",
+    "elevenlabs",
+    "naturalreader"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

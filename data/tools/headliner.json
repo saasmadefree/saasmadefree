@@ -1,0 +1,41 @@
+{
+  "slug": "headliner",
+  "name": "Headliner",
+  "domains": [
+    "headliner.app"
+  ],
+  "category": "audio-video",
+  "subcategory": "podcast recording, cleanup and publishing",
+  "pricing": {
+    "amount": 19.99,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "flat-monthly",
+    "source": "https://headliner.app/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "audio infrastructure, distribution, and production polish",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "FFmpeg",
+      "url": "https://github.com/FFmpeg/FFmpeg"
+    }
+  ],
+  "relatedSlugs": [
+    "castmagic",
+    "alitu",
+    "capcut"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

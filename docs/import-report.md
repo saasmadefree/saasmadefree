@@ -1919,3 +1919,126 @@ Site écrit dans dist/ — 2 langue(s), 405 fiche(s), 66 page(s) de catégorie, 
 
 `git status` before staging showed only the 25×2 new data files plus `extension/data/index.json`.
 No script change was needed this batch. 85 mapped-pool entries remain.
+
+## Batch 8 — 25 tools, ranks 51–76 of the remaining mapped pool (290 → 315)
+
+Same rank order; `everydollar-premium` (rank 53) was already excluded during batch 6's up-front
+screening, so the window is ranks 51, 52 and 54–76.
+
+**One verdict change:** `hyperwrite`, upstream `yes` with `diyTimeEstimate: multi-day`. Same
+failure against CONTRIBUTING's "in one sitting" definition as `lex`, `tactiq` and `typedream`.
+→ `kinda`. `goodlinks` and `opinion-stage` were checked the same way and correctly stayed at
+`yes`: both are genuinely one-sitting builds with no third-party dependency anywhere in the loop
+(a local read-later app over SQLite; a self-hosted poll widget whose only external requirement is
+a server you already run).
+
+**Verdict mix: 2 yes / 17 kinda / 6 no.** Selected by rank.
+
+### Two upstream prompts that described the wrong product
+
+- **`kumospace`** arrived with the forum/community prompt (spaces, topics, replies, moderation
+  queues). Kumospace is a spatial video office. Rewritten around proximity audio, and scoped
+  deliberately to audio-only with a hard participant cap, because a full WebRTC mesh collapses
+  around six people and the prompt says so in the interface rather than discovering it live.
+- **`neuronwriter`** and **`pageoptimizer-pro`** both arrived with the site-*crawler* prompt
+  (robots.txt, redirect chains, orphan pages). Both are content-optimisation tools that compare a
+  draft against ranking pages. Rewritten accordingly.
+
+### Angles per crowded subcategory
+
+Upstream shipped one prompt across each of: the two email clients, the two product-photo
+generators, the two forms tools, the two content-optimisation tools, the three SEO entries, and
+the two synthetic-voice entries.
+
+- *SEO, three more on top of batch 6–7's five:* a transparent difficulty formula computed from
+  observable page signals only, with every component's weight editable and the arithmetic shown
+  (`keysearch`) vs. rank tracking whose primary axis is *location*, with the cost multiplication
+  (keywords × locations × runs) forced in front of the user before any schedule can be enabled
+  (`nightwatch`) vs. live in-editor term scoring against a fetched corpus, formula visible, with
+  over-use flagged as loudly as under-use (`neuronwriter`) vs. element-by-element comparison —
+  title, H1, each H2, alt text, slug — producing a concrete instruction per element rather than a
+  score (`pageoptimizer-pro`).
+- *Product photos, two more:* layout-controlled inpainting where the user's arrangement is the
+  input and the result is shown with that arrangement overlaid so drift is visible (`flair-ai`)
+  vs. theme-driven variant grids with no spatial control at all, plus lighting-matched contact
+  shadows (`pebblely`).
+- *Email clients, two more:* a correct multi-account unified inbox, where the hard parts are one
+  true sort order across servers that disagree and replying from the right identity
+  (`mailbird`) vs. read receipts implemented honestly — off by default, disclosed in the message
+  body, recording only a timestamp, and reporting "unknown, the recipient's client blocks images"
+  rather than "not opened" (`newton-mail`).
+- *Forms (2):* an embeddable poll/quiz widget in a shadow root under 20 KB with no persistent
+  identifier (`opinion-stage`) vs. a calculator builder with a hand-written expression parser
+  rather than any form of eval, and a lead gate that refuses to hide the whole result
+  (`outgrow`).
+- *Synthetic voice (2):* a multi-speaker script studio rendering line by line with per-line
+  re-render and per-speaker licence recorded in the project file (`lovo`) vs. read-aloud whose
+  distinguishing stage is local OCR — deskew, threshold, column detection — for scanned pages,
+  which is exactly the gap the existing `speechify` entry names as missing (`naturalreader`).
+- *Others:* an embed-first store rendered into someone else's page through a shadow root, with
+  server-side re-pricing of every line (`ecwid`); a SES sender whose distinguishing feature is
+  automated engagement-based list sunsetting, because that is what actually keeps a self-hosted
+  sender out of spam (`emailoctopus`); a read-later app whose differentiator is a scriptable CLI
+  over a documented SQLite schema (`goodlinks`); audiograms with caption line-breaking rules
+  spelled out (`headliner`); a versioned few-shot tool library where saving a corrected output as
+  the next example is the core loop (`hyperwrite`); automation as a readable declarative recipe
+  file with dead-letter replay (`integrately`); a vault whose addition is a credential health
+  audit using Have I Been Pwned's k-anonymity range API, which never transmits a password or a
+  full hash (`keeper-password-manager`); novel structure templates with beat-drift against
+  cumulative word count (`livingwriter`); a calendar seeded with a maintained event file so an
+  empty week arrives with prompts (`loomly`); a routing form with mandatory coverage analysis
+  before publish (`oncehub`); data-driven infographics where charts are generated from pasted CSV
+  and cannot disagree with their own numbers (`piktochart`); server-side analytics counted in
+  middleware with a daily-rotating salted session hash and no cookie (`pirsch`).
+
+### `priorArt`
+
+Fourteen corrected, two dropped. Corrections: `flair-ai` (ComfyUI → IOPaint, which is actually
+about inpainting), `goodlinks` (FreshRSS, a feed reader → Shiori), `headliner` (Audacity, an
+editor → FFmpeg, which is what does the work), `integrately` (Activepieces, already used by
+`albato` → Huginn), `keeper-password-manager` (Vaultwarden → KeePassXC, a local desktop vault),
+`kumospace` (Discourse, a forum → mediasoup, an SFU), `livingwriter` (LanguageTool → bibisco),
+`loomly` (Postiz, used by four other entries → Mixpost), `lovo` (Piper, used by `playht` → Coqui
+TTS), `mailbird` (mailcow, a mail *server* → Roundcube), `naturalreader` (Piper alone → Tesseract
+plus Piper, matching the OCR-then-speak pipeline), `newton-mail` (mailcow → Mailspring),
+`outgrow` (Formbricks → LimeSurvey, which actually has an expression engine), `piktochart`
+(Penpot, a design tool → Vega-Lite), `pirsch` (Umami → GoatCounter, which supports server-side
+counting). Dropped: `keysearch`, `neuronwriter` and `pageoptimizer-pro` — SerpBear and SEOnaut no
+longer match the rewritten prompts, and no open-source content-optimisation project could be
+named with confidence.
+
+### `requirements[]`
+
+Reconciled against every rewritten prompt; 19 of 25 changed, same recurring gap as batches 6–7.
+Notable: `livingwriter` dropped both LLM keys (no AI in the rewritten prompt, matching `ulysses`
+and `dabble` from batch 7); `keysearch`, `nightwatch` and `neuronwriter` gained `hosting` and/or
+`database` for scheduled collection and stored corpora; `kumospace` gained `domain` for the TURN
+configuration; the two email clients settled on `database`+`oauth-app`+`email-provider`.
+
+### `relatedSlugs`
+
+Seven duplicate or near-duplicate triples from the mechanical pass, all diversified by hand. The
+`seo-marketing` category now holds enough members that same-category resolution works without any
+cross-category fallback for the first time in this import.
+
+### Verification
+
+```
+$ npm run validate
+315 fiche(s), 430 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  175 passed (175)
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run build
+Feed écrit dans dist/feed/v1/ — 315 outil(s).
+Site écrit dans dist/ — 2 langue(s), 430 fiche(s), 66 page(s) de catégorie, 502 URL(s) dans le sitemap.
+```
+
+`git status` before staging: only the 25×2 new data files plus `extension/data/index.json`. No
+script change needed. 60 mapped-pool entries remain.

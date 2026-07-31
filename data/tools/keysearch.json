@@ -1,0 +1,36 @@
+{
+  "slug": "keysearch",
+  "name": "Keysearch",
+  "domains": [
+    "keysearch.co"
+  ],
+  "category": "seo-marketing",
+  "subcategory": "keyword research, backlinks and rank tracking",
+  "pricing": {
+    "amount": 24,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://keysearch.co/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "proprietary web index and data acquisition",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "relatedSlugs": [
+    "lowfruits",
+    "ubersuggest",
+    "mangools"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

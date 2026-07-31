@@ -1,0 +1,35 @@
+{
+  "slug": "neuronwriter",
+  "name": "NeuronWriter",
+  "domains": [
+    "neuronwriter.com"
+  ],
+  "category": "seo-marketing",
+  "subcategory": "technical audits and on-page optimization",
+  "pricing": {
+    "amount": 23,
+    "currency": "USD",
+    "plan": "Bronze",
+    "basis": "flat-monthly",
+    "source": "https://neuronwriter.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "crawl scale, rule depth, and operational polish",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "database"
+  ],
+  "relatedSlugs": [
+    "surfer-seo",
+    "clearscope",
+    "frase"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

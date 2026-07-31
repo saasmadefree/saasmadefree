@@ -1,0 +1,44 @@
+{
+  "slug": "integrately",
+  "name": "Integrately",
+  "domains": [
+    "integrately.com"
+  ],
+  "category": "automation",
+  "subcategory": "workflow automation and app integrations",
+  "pricing": {
+    "amount": 29.99,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://integrately.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "connector breadth and execution reliability",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Huginn",
+      "url": "https://github.com/huginn/huginn"
+    }
+  ],
+  "relatedSlugs": [
+    "pabbly-connect",
+    "ifttt",
+    "zapier"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

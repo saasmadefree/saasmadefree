@@ -1,0 +1,43 @@
+{
+  "slug": "outgrow",
+  "name": "Outgrow",
+  "domains": [
+    "outgrow.co"
+  ],
+  "category": "forms",
+  "subcategory": "forms, surveys and lead capture",
+  "pricing": {
+    "amount": 22,
+    "currency": "USD",
+    "plan": "Freelancer",
+    "basis": "flat-monthly",
+    "source": "https://outgrow.co/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "integrations, deliverability, and workflow depth",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "LimeSurvey",
+      "url": "https://github.com/LimeSurvey/LimeSurvey"
+    }
+  ],
+  "relatedSlugs": [
+    "involve-me",
+    "paperform",
+    "fillout"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

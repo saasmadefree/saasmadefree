@@ -1,0 +1,44 @@
+{
+  "slug": "emailoctopus",
+  "name": "EmailOctopus",
+  "domains": [
+    "emailoctopus.com"
+  ],
+  "category": "newsletter",
+  "subcategory": "email newsletters and creator publishing",
+  "pricing": {
+    "amount": 9,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://emailoctopus.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "deliverability, growth network, and integrations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Listmonk",
+      "url": "https://github.com/knadh/listmonk"
+    }
+  ],
+  "relatedSlugs": [
+    "mailerlite",
+    "buttondown",
+    "brevo"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

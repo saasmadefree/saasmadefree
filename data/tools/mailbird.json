@@ -1,0 +1,43 @@
+{
+  "slug": "mailbird",
+  "name": "Mailbird",
+  "domains": [
+    "mailbird.com"
+  ],
+  "category": "email",
+  "subcategory": "email clients and hosted mail",
+  "pricing": {
+    "amount": 4.99,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "flat-monthly",
+    "source": "https://mailbird.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "mail infrastructure, integrations, and client polish",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "database",
+    "oauth-app",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Roundcube",
+      "url": "https://github.com/roundcube/roundcubemail"
+    }
+  ],
+  "relatedSlugs": [
+    "airmail",
+    "spark-premium",
+    "canary-mail"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

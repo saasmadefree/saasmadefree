@@ -1,0 +1,41 @@
+{
+  "slug": "piktochart",
+  "name": "Piktochart",
+  "domains": [
+    "piktochart.com"
+  ],
+  "category": "design",
+  "subcategory": "visual design and presentations",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://piktochart.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "editor polish, assets, collaboration, and distribution",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Vega-Lite",
+      "url": "https://github.com/vega/vega-lite"
+    }
+  ],
+  "relatedSlugs": [
+    "canva",
+    "kittl",
+    "pitch"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

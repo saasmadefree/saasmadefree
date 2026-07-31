@@ -1,0 +1,43 @@
+{
+  "slug": "hyperwrite",
+  "name": "HyperWrite",
+  "domains": [
+    "hyperwriteai.com"
+  ],
+  "category": "ai-writing",
+  "subcategory": "AI drafting, research and content optimization",
+  "pricing": {
+    "amount": 19.99,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "flat-monthly",
+    "source": "https://hyperwriteai.com/plans",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "workflow, data, and model tuning",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Open WebUI",
+      "url": "https://github.com/open-webui/open-webui"
+    }
+  ],
+  "relatedSlugs": [
+    "anyword",
+    "copy-ai",
+    "writesonic"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}
