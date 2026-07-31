@@ -47,33 +47,54 @@ a:hover{text-decoration-thickness:.14em}
 
 /* ---------- chrome ---------- */
 /* Barre de navigation pleine largeur, sa propre ligne au-dessus de tout le
-   reste : le nom du site à gauche, à droite les liens, le sélecteur de
-   langue, la bascule de thème puis le bouton "GitHub ↗" encadré. */
-.site-header{display:flex;align-items:center;justify-content:space-between;gap:.8rem 1.5rem;
+   reste. Trois masses bien séparées, plutôt qu'une seule rangée au poids
+   uniforme : la marque (plus de présence) ; les liens de navigation, groupés
+   entre eux ; puis, mis à l'écart par un espace net, le bloc de contrôles
+   (langue, thème, GitHub) — voir docs/design-fixes-report.md. */
+.site-header{display:flex;align-items:center;justify-content:space-between;gap:.8rem 1.75rem;
   flex-wrap:wrap;padding-bottom:1rem;margin-bottom:clamp(2rem,6vh,3.5rem);
   border-bottom:1px solid var(--rule)}
-.brand{font-weight:700;letter-spacing:-.01em;text-decoration:none;font-size:1rem;flex:none}
-.header-tools{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap}
-.nav-links{list-style:none;display:flex;gap:1rem;padding:0;margin:0;font-size:.85rem;flex-wrap:wrap}
+.brand{font-family:var(--sans);font-weight:800;letter-spacing:-.02em;
+  text-decoration:none;font-size:1.2rem;color:var(--ink);flex:none}
+.header-groups{display:flex;align-items:center;gap:1.75rem 2.25rem;flex-wrap:wrap}
+.nav-links{list-style:none;display:flex;gap:1.2rem;padding:0;margin:0;font-size:.85rem;flex-wrap:wrap}
 .nav-links a{text-decoration:none;color:var(--ink)}
 .nav-links a:hover{text-decoration:underline}
+/* Le bloc de contrôles se détache des liens de navigation par un filet
+   vertical discret plutôt que par la seule marge, pour que l'œil le lise
+   comme un groupe à part (langue, thème, dépôt) et non comme une suite de
+   liens supplémentaires. Le filet disparaît quand le groupe retombe seul sur
+   sa ligne, en écran étroit, où il n'aurait plus rien à séparer. */
+.header-controls{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;
+  padding-left:1.5rem;border-left:1px solid var(--rule)}
+@media (max-width:34rem){.header-controls{padding-left:0;border-left:0}}
 .github-btn{display:inline-flex;align-items:center;gap:.35em;font-size:.8rem;
   padding:.35em .8em;border:1px solid var(--rule);border-radius:.4em;
   text-decoration:none;color:var(--ink);font-weight:600}
 .github-btn:hover{border-color:var(--ink)}
-.theme-toggle{display:inline-flex;align-items:center;gap:.45em;font-size:.8rem;
-  padding:.3em .75em;border-radius:999px;border:1px solid var(--rule);
-  background:var(--card);color:var(--muted);font-weight:400}
+/* Bascule de thème : icône seule, nom accessible porté par aria-label (voir
+   site-html.mjs / site.js) — un bouton rond compact plutôt qu'une pilule à
+   libellé, qui allonge la rangée sans rien dire qu'une icône ne dise déjà. */
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;
+  width:2.1rem;height:2.1rem;padding:0;border-radius:999px;border:1px solid var(--rule);
+  background:var(--card);color:var(--muted);font-size:1rem;flex:none}
 .theme-toggle:hover:not(:disabled){border-color:var(--ink);color:var(--ink);opacity:1}
-.theme-icon::before{content:"\\25D0"}
+.theme-icon::before{content:"\\25D0";line-height:1}
 :root[data-theme="dark"] .theme-icon::before{content:"\\25D1"}
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]) .theme-icon::before{content:"\\25D1"}
 }
-.lang-switch{display:flex;gap:.6rem;font-size:.8rem;color:var(--muted)}
-.lang-switch a{color:var(--muted);text-decoration:none;padding:.25em .6em;border-radius:999px}
-.lang-switch a:hover{background:color-mix(in srgb,var(--ink) 7%,transparent)}
-.lang-switch [aria-current]{background:var(--ink);color:var(--paper)}
+/* Sélecteur de langue : un contrôle compact à contour, pas une paire de
+   liens nus. L'état actif est un fond et un poids de trait discrets — jamais
+   le bloc plein qui se lisait comme une erreur entre "Source" et "Français". */
+.lang-switch{display:inline-flex;gap:.15rem;font-size:.78rem;color:var(--muted);
+  border:1px solid var(--rule);border-radius:999px;padding:.2rem;background:var(--card)}
+.lang-switch a,.lang-switch [aria-current]{padding:.28em .7em;border-radius:999px;
+  text-decoration:none;line-height:1.1}
+.lang-switch a{color:var(--muted)}
+.lang-switch a:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.lang-switch [aria-current]{background:color-mix(in srgb,var(--ink) 9%,transparent);
+  color:var(--ink);font-weight:700}
 
 .breadcrumb{font-size:.8rem;color:var(--muted);margin:0 0 1.6rem}
 .breadcrumb a{color:var(--muted)}
@@ -84,11 +105,15 @@ h1{font-family:var(--sans);font-weight:800;margin:0 0 .8rem;
   letter-spacing:-.035em;max-width:20ch;text-wrap:balance}
 h1 .blank{color:var(--accent);border-bottom:.12em solid var(--accent);padding:0 .12em}
 h1 em{font-style:normal;color:var(--muted)}
+/* 2rem est le rythme "de liaison" par défaut entre sections qui ne forment
+   pas un groupe explicite (voir plus bas .tool-intro / .tool-block-prompt
+   pour les intervalles volontairement plus grands qui marquent une vraie
+   frontière de groupe sur la fiche outil). */
 h2{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
-  font-weight:700;margin:2.4rem 0 .8rem}
+  font-weight:700;margin:2rem 0 .8rem}
 section:first-of-type > h2:first-child{margin-top:0}
 p{margin:0 0 .9rem;max-width:var(--wide)}
-.tagline{color:var(--muted);margin:0 0 clamp(1.75rem,4vh,2.5rem);max-width:var(--measure)}
+.tagline{color:var(--muted);margin:0 0 clamp(1rem,2.5vh,1.5rem);max-width:var(--measure)}
 .lede{max-width:var(--measure);color:var(--muted);margin:0 0 clamp(2rem,5vh,3rem)}
 
 /* ---------- accueil : en-tête centré ---------- */
@@ -207,6 +232,11 @@ thead th{font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:va
 tbody tr:hover{background:color-mix(in srgb,var(--ink) 3%,transparent)}
 tbody th{font-weight:600}
 tbody th a{text-decoration:none}
+/* Le favicon de chaque ligne : alt vide et aria-hidden implicite — c'est une
+   décoration, le nom de l'outil est juste à côté et porte déjà l'information. */
+tbody th a{display:inline-flex;align-items:center;gap:.55em}
+.row-favicon{width:20px;height:20px;border-radius:.25em;flex:none;object-fit:contain;
+  background:color-mix(in srgb,var(--ink) 6%,transparent)}
 tbody th a:hover{text-decoration:underline}
 tbody tr[hidden]{display:none}
 .rank{color:var(--muted);font-variant-numeric:tabular-nums;font-size:.8rem;width:1%;
@@ -224,11 +254,18 @@ tbody tr[hidden]{display:none}
 #no-results{color:var(--muted)}
 
 /* ---------- fiche ---------- */
-.tool-title-row{display:flex;align-items:center;gap:.85rem;margin:0 0 .4rem}
+/* Groupe 1 : titre, méta, résumé — une seule unité, resserrée. Le badge de
+   verdict est mis en relation avec le titre : la rangée épouse la largeur de
+   son contenu (favicon + h1 + badge) au lieu de s'étirer sur toute la
+   largeur de .page, ce qui évite l'écart qui se creusait entre un h1 replié
+   sur deux lignes et un badge plaqué au bord de la fenêtre. */
+.tool-intro{margin-bottom:clamp(2.5rem,6vh,3.75rem)}
+.tool-title-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5em .85em;
+  width:fit-content;max-width:100%;margin:0 0 .5rem}
 .tool-favicon{border-radius:.35em;flex:none;background:var(--card);border:1px solid var(--rule)}
-.tool-title-row h1{margin:0;flex:1 1 auto;min-width:0}
+.tool-title-row h1{margin:0;flex:0 1 auto;min-width:0}
 
-dl.meta-row{display:flex;flex-wrap:wrap;gap:1.2rem 2rem;margin:0 0 .6rem;
+dl.meta-row{display:flex;flex-wrap:wrap;gap:1.2rem 2rem;margin:0 0 1.4rem;
   padding:1rem 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
 .meta-item{display:flex;flex-direction:column;gap:.25rem;min-width:6rem}
 .meta-item dt{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
@@ -236,9 +273,21 @@ dl.meta-row{display:flex;flex-wrap:wrap;gap:1.2rem 2rem;margin:0 0 .6rem;
 .meta-item dd{margin:0;font-weight:600;font-size:.95rem}
 .meta-item dd a{text-decoration:none}
 .meta-item dd a:hover{text-decoration:underline}
-.price-source{margin:0 0 clamp(1.75rem,4vh,2.5rem)}
+/* La source du prix est une légende du prix, pas du résumé qui suit : elle
+   vit maintenant sous la valeur, dans la même case "Prix" du méta-tableau —
+   voir renderMetaRow dans site-page-tool.mjs. */
+.meta-item .price-source{display:block;margin-top:.35rem;font-size:.72rem;
+  font-weight:400;color:var(--muted)}
+.meta-item .price-source a{color:inherit}
 .verdict-summary{max-width:var(--measure)}
 
+/* Groupe 2 : le prompt est sa propre unité — un espace net avant et après le
+   distingue du groupe 1 au-dessus et de "pourquoi on paie encore" en
+   dessous, plutôt que le même intervalle uniforme partout. Les marges de
+   blocs adjacents se fusionnent au maximum (règle CSS standard), donc fixer
+   .tool-block-prompt sur les deux bords suffit à l'isoler sans avoir à
+   toucher les sections voisines. */
+.tool-block-prompt{margin:clamp(2.75rem,6vh,4rem) 0 clamp(2.75rem,6vh,4rem)}
 .prompt-block{position:relative;margin:0 0 .5rem}
 .prompt-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
   gap:.6rem 1rem;margin:0 0 .6rem}
@@ -267,11 +316,18 @@ button:hover:not(:disabled){opacity:.85}
 @media (max-width:44rem){.two-col{grid-template-columns:1fr}}
 .lose-mark{color:var(--no);font-weight:700;margin-right:.4em}
 .lose-list{list-style:none;padding:0}
-.priorart-cards{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.75rem}
-.priorart-card{border:1px solid var(--rule);border-radius:.5em;padding:.8em 1em;background:var(--card)}
+/* L'entrée n'a qu'un nom, une licence et un lien (le schéma ne porte pas de
+   description — voir data/tools/*.json) : une rangée dense et réglée plutôt
+   qu'une carte à padding généreux qui donnerait l'impression d'un contenu
+   manquant. Même famille visuelle que .breadcrumb / details : un filet, pas
+   un cadre. */
+.priorart-cards{list-style:none;padding:0;margin:0}
+.priorart-card{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
+  gap:.3em 1em;padding:.5em 0;border-bottom:1px solid var(--rule)}
+.priorart-card:first-child{border-top:1px solid var(--rule)}
 .priorart-card a{font-weight:600;text-decoration:none}
 .priorart-card a:hover{text-decoration:underline}
-.priorart-license{display:block;color:var(--muted);font-size:.8rem;margin-top:.3rem}
+.priorart-license{color:var(--muted);font-size:.78rem;white-space:nowrap}
 
 /* ---------- outils proches ---------- */
 .related-cards{list-style:none;padding:0;margin:0 0 1rem;

@@ -122,6 +122,11 @@ export function renderLayout({
     .filter((item) => item.label)
     .map((item) => `<li><a href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a></li>`)
     .join('');
+  // Nom accessible du bouton de thème résolu au build pour l'état initial
+  // (clair par défaut) ; scripts/assets/site.js le recalcule à chaque bascule.
+  // Le bouton reste `hidden` tant que le JS ne l'a pas activé (amélioration
+  // progressive), donc ce libellé initial n'est jamais lu sans thème actif.
+  const themeToggleLabel = escapeHtml(ui.site.themeToDark ?? 'Dark mode');
 
   return `<!doctype html>
 <html lang="${lang}">
@@ -133,14 +138,17 @@ ${headLines}
 <div class="page">
   <header class="site-header">
     <a class="brand" href="${escapeHtml(homeHref)}">${escapeHtml(ui.site.brand)}</a>
-    <div class="header-tools">
-      <ul class="nav-links">${navLinks}</ul>${langSwitcher}
-      <button type="button" id="theme-toggle" class="theme-toggle" hidden
-              data-label-dark="${escapeHtml(ui.site.themeToDark ?? 'Dark mode')}"
-              data-label-light="${escapeHtml(ui.site.themeToLight ?? 'Light mode')}">
-        <span aria-hidden="true" class="theme-icon"></span><span class="theme-text"></span>
-      </button>
-      <a class="github-btn" href="${GITHUB_REPO_URL}">${escapeHtml(nav.github ?? 'GitHub')} <span aria-hidden="true">↗</span></a>
+    <div class="header-groups">
+      <ul class="nav-links">${navLinks}</ul>
+      <div class="header-controls">${langSwitcher}
+        <button type="button" id="theme-toggle" class="theme-toggle" hidden
+                aria-label="${themeToggleLabel}"
+                data-label-dark="${escapeHtml(ui.site.themeToDark ?? 'Dark mode')}"
+                data-label-light="${escapeHtml(ui.site.themeToLight ?? 'Light mode')}">
+          <span aria-hidden="true" class="theme-icon"></span>
+        </button>
+        <a class="github-btn" href="${GITHUB_REPO_URL}">${escapeHtml(nav.github ?? 'GitHub')} <span aria-hidden="true">↗</span></a>
+      </div>
     </div>
   </header>
   <main id="main">

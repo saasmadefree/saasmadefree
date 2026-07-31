@@ -39,7 +39,7 @@ export function renderToolTable(tools, { lang, ui, categories, voteCounts, favic
 
       return `          <tr data-slug="${tool.slug}" data-category="${tool.category}" data-verdict="${tool.verdict}" data-priority="${tool.pagePriority}"${votesAttr} data-favicon="${escapeHtml(favicon)}" data-search="${escapeHtml(searchText)}">
             <td class="rank" aria-hidden="true"></td>
-            <th scope="row"><a href="${tool.path}">${escapeHtml(tool.name)}</a></th>
+            <th scope="row"><a href="${tool.path}"><img class="row-favicon" src="${escapeHtml(favicon)}" alt="" width="20" height="20" loading="lazy" decoding="async">${escapeHtml(tool.name)}</a></th>
             <td class="cat">${emoji ? `${emoji} ` : ''}${escapeHtml(catLabel)}</td>
             <td class="price">${escapeHtml(price)}</td>
             <td>${verdictBadge(tool.verdict, verdict.label)}</td>

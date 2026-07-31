@@ -309,7 +309,6 @@
     function render() {
       var next = current() === 'dark' ? 'light' : 'dark';
       var label = next === 'dark' ? btn.dataset.labelDark : btn.dataset.labelLight;
-      btn.querySelector('.theme-text').textContent = label;
       btn.setAttribute('aria-label', label);
     }
     btn.hidden = false;

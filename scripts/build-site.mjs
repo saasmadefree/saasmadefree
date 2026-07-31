@@ -7,7 +7,7 @@ import { join, dirname } from 'node:path';
 import { loadData } from './lib/load-data.mjs';
 import {
   SITE_ORIGIN, fetchVoteCounts, siteLanguages, toolsForLang, sortTools,
-  categoriesForLang, langsForCategory, catalogueFigures, mrrDestroyed,
+  categoriesForLang, topCategoriesByCount, langsForCategory, catalogueFigures, mrrDestroyed,
 } from './lib/site-data.mjs';
 import { fetchFavicons } from './lib/site-favicons.mjs';
 import { SITE_CSS } from './lib/site-styles.mjs';
@@ -19,6 +19,11 @@ import { renderToolPage } from './lib/site-page-tool.mjs';
 import { renderRootPage } from './lib/site-page-root.mjs';
 
 const OUT = 'dist';
+// L'accueil ne montre que les catégories les plus peuplées, avec un chip
+// "Toutes les catégories →" vers la liste complète (/{lang}/categories/) —
+// voir docs/design-fixes-report.md. Recalculé à chaque build (jamais une
+// liste figée), donc reste correct pendant que le catalogue change de forme.
+const HOME_TOP_CATEGORIES = 12;
 
 async function writeText(path, text) {
   await mkdir(dirname(path), { recursive: true });
@@ -112,13 +117,15 @@ async function main() {
 
     const toolViews = buildToolViews(tools, i18n, lang, voteCounts);
     const categorySlugs = categoriesForLang(tools, lang);
+    const topCategorySlugs = topCategoriesByCount(tools, lang, HOME_TOP_CATEGORIES);
     const homePath = `/${lang}/`;
 
-    // Accueil
+    // Accueil — seulement les catégories les plus peuplées (topCategorySlugs) ;
+    // categorySlugs (toutes) sert à la page /categories/ juste après.
     await writeText(
       join(OUT, lang, 'index.html'),
       renderHomePage({
-        lang, path: homePath, toolViews, categorySlugs, categories, voteCounts, favicons, figures, mrrTotal,
+        lang, path: homePath, toolViews, topCategorySlugs, categories, voteCounts, favicons, figures, mrrTotal,
         ui: langUi, alternates: homeAlt, xDefaultPath: homeXDefault,
       })
     );

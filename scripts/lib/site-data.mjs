@@ -60,6 +60,26 @@ export function categoriesForLang(tools, lang) {
   return [...present].sort();
 }
 
+/**
+ * Les `limit` catégories les plus peuplées pour une langue donnée, triées
+ * par nombre d'outils décroissant (slug en repli pour un ordre stable en cas
+ * d'égalité). Recalculé à chaque build à partir des données réelles — jamais
+ * une liste écrite en dur — pour que l'accueil reste correct pendant que le
+ * catalogue grossit ou que des catégories sont fusionnées. La liste complète
+ * reste disponible sur /{lang}/categories/, générée séparément à partir de
+ * `categoriesForLang`.
+ */
+export function topCategoriesByCount(tools, lang, limit = 12) {
+  const counts = new Map();
+  for (const tool of toolsForLang(tools, lang)) {
+    counts.set(tool.category, (counts.get(tool.category) ?? 0) + 1);
+  }
+  return [...counts.entries()]
+    .sort(([slugA, countA], [slugB, countB]) => countB - countA || slugA.localeCompare(slugB))
+    .slice(0, limit)
+    .map(([slug]) => slug);
+}
+
 export function categoryLabel(categories, slug, lang) {
   const meta = categories[slug];
   const label = meta?.label?.[lang] ?? meta?.label?.en;

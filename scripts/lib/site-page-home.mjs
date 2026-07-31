@@ -51,7 +51,7 @@ function renderFigures(figures, lang, h) {
 }
 
 export function renderHomePage({
-  lang, path, toolViews, categorySlugs, categories, voteCounts, favicons, figures, mrrTotal,
+  lang, path, toolViews, topCategorySlugs, categories, voteCounts, favicons, figures, mrrTotal,
   ui, alternates, xDefaultPath,
 }) {
   const s = ui.site;
@@ -61,10 +61,15 @@ export function renderHomePage({
   // {blank} marque l'emplacement du nom d'outil que le lecteur va taper.
   const [qBefore, qAfter] = String(h.heroQuestion ?? '{blank}').split('{blank}');
 
-  // Les pastilles sont des liens vers les pages de catégorie, qui existent déjà.
-  // Elles fonctionnent donc sans JavaScript, et chaque catégorie reste une page
-  // indexable — ce qu'un filtre purement client ne donne pas.
-  const categoryChips = categorySlugs
+  // Seulement les catégories les plus peuplées (topCategorySlugs, calculé au
+  // build par topCategoriesByCount — jamais une liste en dur) : la totalité
+  // vivait ici et poussait la liste des outils loin sous la ligne de
+  // flottaison. La page /categories/ garde la totalité, voir le dernier
+  // chip "Toutes les catégories →" ci-dessous. Les pastilles restent des
+  // liens vers les pages de catégorie, qui existent déjà — elles
+  // fonctionnent donc sans JavaScript, et chaque catégorie reste une page
+  // indexable, ce qu'un filtre purement client ne donne pas.
+  const categoryChips = topCategorySlugs
     .map((slug) => {
       const emoji = categoryEmoji(categories, slug);
       const label = categoryLabel(categories, slug, lang);

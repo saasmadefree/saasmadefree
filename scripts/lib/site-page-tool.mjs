@@ -54,7 +54,16 @@ function renderMetaRow(tool, lang, ui, categories, voteCount, categoryPath) {
   const catLabel = categoryLabel(categories, tool.category, lang);
   const items = [];
 
-  items.push([t.priceHeading, escapeHtml(formatMonthlyPrice(tool.pricing, lang))]);
+  // La source et la date de vérification sont une légende du prix, pas du
+  // paragraphe de résumé qui suit ailleurs sur la page : elles vivent donc
+  // dans la même case que la valeur qu'elles justifient, pas au-dessus d'un
+  // autre paragraphe où elles se liraient comme sa citation.
+  const checkedOn = formatDate(tool.pricing.checkedOn, lang);
+  const sourceLabel = sourceHost(tool.pricing.source);
+  const priceSourceCaption = `<span class="price-source">${escapeHtml(t.priceSourceLabel)}: `
+    + `<a href="${escapeHtml(tool.pricing.source)}">${escapeHtml(sourceLabel)}</a> &middot; `
+    + `${escapeHtml(t.priceCheckedLabel)} ${escapeHtml(checkedOn)}</span>`;
+  items.push([t.priceHeading, `${escapeHtml(formatMonthlyPrice(tool.pricing, lang))}${priceSourceCaption}`]);
 
   // "Ce qu'une année coûte" n'a de sens que pour un prix vraiment récurrent —
   // une fiche à paiement unique n'a pas de "coût annuel" à en déduire.
@@ -101,9 +110,6 @@ export function renderToolPage({
     { label: catLabel, href: categoryPath },
     { label: tool.name, href: path },
   ];
-
-  const checkedOn = formatDate(tool.pricing.checkedOn, lang);
-  const sourceLabel = sourceHost(tool.pricing.source);
 
   const metaRow = renderMetaRow(tool, lang, ui, categories, voteCount, categoryPath);
 
@@ -178,24 +184,25 @@ ${relatedTools
 
   const main = `    ${renderBreadcrumb(breadcrumbItems)}
 
-    <div class="tool-title-row">
-      <img class="tool-favicon" src="${escapeHtml(favicon)}" alt="" width="40" height="40">
-      <h1>${escapeHtml(h1)}</h1>
-      ${verdictBadge(tool.verdict, verdict.label, 'badge-lg')}
-    </div>
-    <p class="tagline">${catEmoji ? `${catEmoji} ` : ''}<a href="${categoryPath}">${escapeHtml(catLabel)}</a>${tool.subcategory ? ` — ${escapeHtml(tool.subcategory)}` : ''}</p>
+    <div class="tool-intro">
+      <div class="tool-title-row">
+        <img class="tool-favicon" src="${escapeHtml(favicon)}" alt="" width="40" height="40">
+        <h1>${escapeHtml(h1)}</h1>
+        ${verdictBadge(tool.verdict, verdict.label, 'badge-lg')}
+      </div>
+      <p class="tagline">${catEmoji ? `${catEmoji} ` : ''}<a href="${categoryPath}">${escapeHtml(catLabel)}</a>${tool.subcategory ? ` — ${escapeHtml(tool.subcategory)}` : ''}</p>
 
-    <dl class="meta-row">
+      <dl class="meta-row">
 ${metaRow}
-    </dl>
-    <p class="status price-source">${escapeHtml(t.priceSourceLabel)}: <a href="${escapeHtml(tool.pricing.source)}">${escapeHtml(sourceLabel)}</a> &middot; ${escapeHtml(t.priceCheckedLabel)} ${escapeHtml(checkedOn)}</p>
+      </dl>
 
-    <section aria-labelledby="verdict-heading">
-      <h2 id="verdict-heading" class="visually-hidden">${escapeHtml(t.verdictHeading)}</h2>
-      <p class="verdict-summary">${escapeHtml(i18nEntry.verdictSummary)}</p>
-    </section>
+      <section aria-labelledby="verdict-heading">
+        <h2 id="verdict-heading" class="visually-hidden">${escapeHtml(t.verdictHeading)}</h2>
+        <p class="verdict-summary">${escapeHtml(i18nEntry.verdictSummary)}</p>
+      </section>
+    </div>
 
-    <section aria-labelledby="prompt-heading">
+    <section aria-labelledby="prompt-heading" class="tool-block-prompt">
       <div class="prompt-block">
         <div class="prompt-header">
           <h2 id="prompt-heading" class="prompt-label">${escapeHtml(t.promptHeading)}</h2>
