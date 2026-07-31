@@ -8,18 +8,23 @@ Contributions — new tools, better prompts, new agents, translations — go thr
 
 Skeptical about a browser extension that asks for access to every site you visit? Jump straight to [What the extension sees on your pages](#what-the-extension-sees-on-your-pages).
 
-## The honest number
+## The honest verdict
 
 > **SaaS made free — when it can be.**
-> 109 subscriptions tested. 33 you can replace today. 63 with trade-offs. 13 you should keep paying for.
+> The name promises free. Most entries qualify the promise, and some contradict it outright.
 
-Of the 109 entries in the upstream dataset this project derives from (see [Attribution](#attribution)):
+Every tool gets one of three verdicts. The third one is why this is a directory and not an
+affiliate site:
 
-| Verdict | Count | Share | Meaning |
-|---|---|---|---|
-| `yes` | 33 | 30% | A competent coding agent produces a usable personal version in one sitting, self-hosted, with no hard third-party dependency. |
-| `kinda` | 63 | 58% | Buildable in a weekend, but with substantial gaps — mobile apps, real-time sync, third-party integrations, OAuth. |
-| `no` | 13 | 12% | The value is the network, the data, the infrastructure, or the compliance — not the code. |
+| Verdict | Meaning |
+|---|---|
+| `yes` | A competent coding agent produces a usable personal version in one sitting, self-hosted, with no hard third-party dependency. |
+| `kinda` | Buildable in a weekend, but with substantial gaps — mobile apps, real-time sync, third-party integrations, OAuth. The entry says which. |
+| `no` | Keep paying. The value is the network, the data, the infrastructure, or the compliance — not the code, and no prompt replaces it. |
+
+**4 tools are published so far.** The catalogue is being written; every entry is verified by
+hand before it lands. No aggregate figure is quoted here until the data behind it exists in
+this repository.
 
 The project's name says "made free." Only three entries in ten support that claim without qualification. Leading with the real distribution instead of a blanket promise is what keeps this from reading like an affiliate site, and it's why the project is worth sharing among developers who will check the claim against the code before they trust it.
 
