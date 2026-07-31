@@ -96,6 +96,14 @@ The first line matters: `extension/data/index.json` (the extension's offline sna
 Every version published to the Chrome Web Store is tagged in this repository (`vX.Y.Z`), so the exact commit behind any installed build can be checked out and compared against the ZIP you'd get from your own machine. The extension ships as plain, unminified, unbundled JavaScript — nothing here is built to be hard to read.
 
 
+## Attribution
+
+The catalogue of tools and the factual research behind it come from
+[canivibecodeit](https://github.com/canivibecodeit/canivibecodeit) (MIT License,
+© Rob Hallam). The prompts, the FAQ entries, the seven-language editorial, the data model
+and every line of code in this repository are our own work. The original copyright notice
+is reproduced in [`NOTICE`](NOTICE), as the licence requires.
+
 ## License
 
 MIT — see [`LICENSE`](LICENSE). The prompts are as free to reuse as everything else in this repository; nothing here is enclosed.
