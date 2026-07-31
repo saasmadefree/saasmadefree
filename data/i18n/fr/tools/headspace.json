@@ -1,0 +1,20 @@
+{
+  "tagline": "Cours de méditation structurés avec un seul professeur cohérent.",
+  "verdictSummary": "Là où Calm vend un catalogue, Headspace vend un cursus : des cours numérotés qui supposent ce que tu as appris au jour quatre, enseignés d’une seule voix, avec des programmes cliniques construits aux côtés de chercheurs. Le séquençage et l’enseignement sont l’actif. L’application autour est un lecteur avec un marqueur de progression.",
+  "coreLoopDIY": "Travaille un cours que tu assembles toi-même, une session par jour, avec un journal qui se souvient d’où tu en es.",
+  "whatYouLose": [
+    "les cours eux-mêmes, séquencés pour que chaque session construise sur la précédente",
+    "un seul professeur sur des centaines d’heures, ce qui est en grande partie pourquoi ça marche",
+    "des programmes cliniquement informés pour l’anxiété, le sommeil et le stress",
+    "Headspace Care et le coaching humain qui se cache derrière",
+    "les applications mobiles, téléchargements hors ligne et support Watch"
+  ],
+  "whyPeopleStillPay": "Un cours te dit ce qu’est aujourd’hui. Laissés à choisir, la plupart des gens ne choisissent rien, et une bibliothèque sans chemin est une bibliothèque qu’on arrête d’ouvrir.",
+  "prompt": "Construis un lecteur de cours pour de l’audio que tu as le droit d’utiliser, conçu pour que la prochaine session ne soit jamais une décision.\n\nUn cours est un dossier : un manifeste listant les sessions dans l’ordre, et un fichier audio par session. Le lecteur montre exactement une chose — la session du jour — avec le nom du cours et la position, comme « Jour 7 sur 30 ». Pas de navigation, pas de grille de bibliothèque, pas de recommandations. L’absence de choix est le design.\n\nRègles : une session par jour fait avancer le cours. Répéter un jour est autorisé et ne le fait pas avancer. Manquer des jours ne réinitialise rien et ne produit aucune notification. Finir un cours affiche ce qu’il était, combien de jours ça a pris, et propose le cours suivant dans une liste que tu as écrite à l’avance.\n\nAprès chaque session, pose une seule question et enregistre la réponse : un chiffre de un à cinq pour à quel point tu te sens apaisé, et une ligne de texte optionnelle. Rien d’autre. Ce seul chiffre, tracé sur quatre-vingt-dix jours, est la seule mesure de résultat que cet outil peut honnêtement offrir, et il vaut plus qu’une série.\n\nConstruis aussi un petit chemin d’auteur : à partir d’un dossier de fichiers audio et d’un fichier texte de titres, génère le manifeste. Séquencer ton propre cours, c’est là que va la réflexion, et l’outil devrait rendre l’écriture de cet ordre facile puis s’effacer.\n\nN’ajoute pas de navigateur de bibliothèque, de flux, ou de section « recommandé pour toi ». Chacun d’eux réintroduit le choix que le design existe pour supprimer.",
+  "faq": [
+    { "q": "Puis-je emporter ma progression Headspace avec moi ?", "a": "Non. Il n’y a aucun export des sessions terminées ou de la progression de cours, donc ton journal démarre vide. Note les cours que tu as finis avant de résilier si ça compte pour toi." },
+    { "q": "Où trouver des cours audio séquencés ?", "a": "Medito publie des cours gratuits sous un modèle ouvert, et plusieurs centres d’enseignement publient des séries de cours enregistrées sous licences Creative Commons. Construire ta propre séquence à partir d’enregistrements individuels est possible et c’est sincèrement la partie difficile." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien. Des fichiers locaux, un lecteur local, et aucun compte nulle part." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "L’enseignement. Andy Puddicombe qui explique la même idée pour la quatrième fois d’une façon légèrement différente, c’est le produit, et un manifeste qui joue des fichiers dans l’ordre est un système de classement pour quelque chose que tu dois encore trouver." }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "tagline": "Générateur de CV une page vendu en paiement unique, pas en abonnement.",
+  "verdictSummary": "Novorésumé est inhabituel à deux titres : il facture une fois plutôt que mensuellement, et son produit est une contrainte plutôt qu’une liste de fonctionnalités — tout est poussé vers une seule page dense et lisible. La contrainte est la partie intéressante à reconstruire, parce qu’un générateur qui refuse de produire une deuxième page force les décisions d’édition qu’un recruteur ferait sinon à ta place.",
+  "coreLoopDIY": "Écris ton CV comme une donnée, rends-le sur une seule page, et laisse le build échouer quand le contenu ne rentre plus, pour que tu doives couper quelque chose.",
+  "whatYouLose": [
+    "le catalogue de modèles et ses préréglages de couleur et de police",
+    "l’éditeur dans le navigateur avec aperçu en direct",
+    "des designs de lettre de motivation assortis",
+    "quelqu’un d’autre qui garde le fichier pour toi entre deux recherches d’emploi"
+  ],
+  "whyPeopleStillPay": "Vingt euros une fois, sans abonnement à se souvenir de résilier, c’est un prix honnête pour un document dont la plupart des gens ont besoin six semaines tous les quatre ans.",
+  "notes": "Ça vaut la peine d’être noté parce que ça casse le schéma de ce catalogue : il n’y a pas de charge récurrente à fuir ici, seulement un flux de travail à posséder.",
+  "prompt": "Construis un générateur de CV dont la règle qui le définit, c’est que la sortie fait exactement une page.\n\nLe contenu vit dans un seul fichier YAML ou JSON. Le rendu passe par un modèle HTML et une feuille de style d’impression vers un PDF d’une page via Chromium headless.\n\nLa règle est appliquée, pas suggérée. Après le rendu, compte les pages : plus d’une, c’est un échec de build, et le message d’erreur doit nommer la dernière entrée qui tenait et la première qui ne tenait pas, pour que la prochaine action soit évidente. Écris ce test en premier, avec un fixture délibérément trois puces trop long.\n\nDonne à l’auteur deux leviers avant de couper du contenu, tous deux explicites dans le fichier de données plutôt que cachés en CSS : une valeur `density` qui met à l’échelle l’interligne et les marges dans une plage bornée, et un plafond `bullets: N` par entrée qui ne garde que les N premières puces d’une entrée dans la sortie rendue tout en laissant le reste dans le fichier. Affiche un court rapport après chaque build — pourcentage de remplissage de la page, et combien de puces chaque plafond cache actuellement — pour que tu puisses voir à quel point tu es proche de la limite.\n\nAjoute un export texte brut produit depuis la même donnée, pas extrait du PDF, pour les formulaires de candidature qui te demandent de coller ton CV dans une zone de texte.\n\nNe construis pas d’éditeur en direct dans le navigateur, et n’ajoute pas d’échappatoire vers une deuxième page. Au moment où deux pages sont autorisées, la contrainte arrête de faire son travail.",
+  "faq": [
+    { "q": "Puis-je importer mon document Novorésumé ?", "a": "Il n’y a pas d’export structuré, donc tu retapes le contenu dans le fichier de données une fois. Ça prend vingt minutes et c’est la dernière migration dont ce document aura jamais besoin." },
+    { "q": "Une seule page est-elle vraiment adaptée à tout le monde ?", "a": "Non, et l’outil ne devrait pas prétendre le contraire — les CV académiques et les postes techniques seniors dans certains marchés en attendent plus. Ce projet est délibérément tranché pour le cas courant ; si ton domaine attend trois pages, augmente la limite de pages dans une seule constante et perds la contrainte qui le rendait intéressant." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien. Il n’y a ni serveur, ni clé, ni compte — c’est un script et un fichier sur ta machine." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Voir la mise en page réagir pendant que tu tapes. L’aperçu en direct de Novorésumé rend le problème de tenue visible en continu ; ta version t’en informe une fois, au moment du build, après coup." }
+  ]
+}

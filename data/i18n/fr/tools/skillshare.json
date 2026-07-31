@@ -1,0 +1,20 @@
+{
+  "tagline": "Bibliothèque par abonnement de cours créatifs enseignés par des praticiens.",
+  "verdictSummary": "Skillshare est une place de marché à deux versants : des milliers de professeurs publient parce que l’audience est là, et l’audience s’abonne parce que les cours le sont. Aucun des deux côtés n’existe sans l’autre, et un lecteur vidéo avec une barre de progression ne commence même pas à s’y substituer. C’est le « non » à effet de réseau le plus net de la catégorie.",
+  "coreLoopDIY": "Garde un plan d’étude sur du matériel de cours gratuit et acheté auquel tu as déjà accès, avec progression, notes et fichiers de projets terminés au même endroit.",
+  "whatYouLose": [
+    "le catalogue — des milliers de cours en design, illustration, cinéma et business",
+    "des professeurs qui publient là parce que c’est là que sont les étudiants",
+    "des projets de cours avec retour d’autres étudiants",
+    "les téléchargements hors ligne et les applications mobiles",
+    "la découverte : trouver un bon cours sur un sujet que tu ne peux pas encore nommer"
+  ],
+  "whyPeopleStillPay": "Un cours qui change ta façon de travailler paie l’année, et tu ne peux pas savoir à l’avance lequel ce sera — ce qui est exactement à quoi sert un abonnement à un catalogue.",
+  "prompt": "Construis un traqueur d’étude pour des cours vidéo et de lecture auxquels tu as déjà accès, visant le problème d’en commencer beaucoup et d’en finir aucun.\n\nUn enregistrement de cours contient un titre, une URL source ou un chemin local, une liste de leçons avec durées, et un projet que tu comptes produire. Les leçons sont marquées terminées avec une date. Importe les listes de leçons depuis une URL de playlist YouTube, un dossier local de fichiers vidéo, ou une liste collée.\n\nLe chiffre qui change le comportement, c’est le temps-jusqu’à-la-fin, donc calcule-le et affiche-le : à ton rythme réel sur les quatre dernières semaines, quand ce cours sera-t-il terminé ? Un cours dont la réponse est « mars 2029 » n’est pas un cours que tu suis, et voir ça écrit est tout l’intérêt de l’outil.\n\nImpose une règle : au maximum trois cours en cours. En commencer un quatrième demande d’en archiver explicitement un, avec une raison. Les cours archivés restent listés avec la raison visible, pour que le schéma de tes propres abandons soit lisible.\n\nLes notes sont du Markdown par leçon, avec un champ d’horodatage pour qu’une note puisse pointer vers un moment d’une vidéo. Le livrable du projet est un chemin de dossier et un indicateur terminé, parce qu’un cours sans artefact à la fin, c’est du divertissement.\n\nConstruis un rapport : heures regardées contre projets terminés, mensuellement. C’est un ratio inconfortable et c’est l’honnête.\n\nNe scrape pas et ne télécharge pas de vidéo par abonnement. Suis du matériel sur lequel tu as un droit, et laisse l’outil garder des liens plutôt que des fichiers pour tout ce qui est hébergé ailleurs.",
+  "faq": [
+    { "q": "Puis-je récupérer ma progression Skillshare ?", "a": "Non — il n’y a aucun export des cours regardés ou des listes sauvegardées, donc tu ressaisirais la poignée de cours où tu t’étais arrêté. Pour tout ce que tu n’as pas commencé, résilier ne te fait rien perdre que tu avais." },
+    { "q": "D’où vient le matériel de cours ?", "a": "Tout ce à quoi tu as déjà accès : des séries YouTube gratuites, des cours que tu as achetés directement, des cours ouverts universitaires, des PDF. Le traqueur garde des liens et de la progression, pas du contenu." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien. C’est SQLite et une petite application web sur ta propre machine." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La découverte. Skillshare fait remonter un cours sur une technique dont tu ne savais pas qu’elle avait un nom, et un traqueur sur du matériel que tu as déjà choisi ne peut jamais qu’organiser ce que tu savais déjà chercher." }
+  ]
+}
