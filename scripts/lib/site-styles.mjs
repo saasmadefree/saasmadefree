@@ -128,7 +128,12 @@ p{margin:0 0 .9rem;max-width:var(--wide)}
 
 /* ---------- recherche façon terminal + volet de suggestions ---------- */
 search{display:block;margin:0}
-.search-combo{position:relative;max-width:38rem;margin:0 auto clamp(1.75rem,4vh,2.5rem)}
+.search-combo{position:relative;z-index:40;max-width:38rem;margin:0 auto clamp(1.5rem,4vh,2.25rem)}
+/* z-index sur le conteneur, pas seulement sur le panneau : la classe
+   d'apparition .r laisse un transform résiduel, qui crée un contexte
+   d'empilement sur CHAQUE bloc. Le z-index du panneau restait donc
+   enfermé dans celui de la recherche, et les pastilles — plus loin dans
+   le DOM — passaient devant. */
 .field label{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
   color:var(--muted);font-weight:700;margin:0 0 .5rem}
 .search-shell{position:relative;display:flex;align-items:center;gap:.6rem;background:var(--card);
