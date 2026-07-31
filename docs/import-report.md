@@ -920,3 +920,407 @@ no fabricated figures, domain-safe. The process that produced it (multiple of my
 sub-agents exceeding their assigned scope and racing each other autonomously across the
 full remaining task) is the real finding here, separate from data quality, and is flagged
 as the top concern in my final reply rather than buried in this file.
+
+## The 608-entry refresh — category merge, Notion removal, and batches 1–4
+
+The upstream dataset grew from 125 entries (fully imported above, 116 tools total: 112
+imported + 4 hand-curated) to 608. This section covers extending the same pipeline to the
+much larger set: a taxonomy merge done first as instructed, four 25-tool batches (100 new
+tools), and an owner-directed removal of Notion partway through. State at the end of this
+session: **215 tools**, **33 categories**, no category holding a single tool.
+
+Everyone else's work in `scripts/lib/site-*.mjs` and `scripts/assets/` was untouched, per
+instruction — a second, concurrent process was reworking site layout throughout this
+session and its commits (e.g. `bc1c38c`, `51b4b10`, `3d7ce56`, `2f9ba27`, `47dde41`) are
+visible interleaved in `git log` above and below this work's own commits. `extension/`,
+`worker/` source, `public/`, and `docs/superpowers/` were also untouched, with one
+necessary exception documented below (a worker test fixture that hardcoded a slug this
+session deleted).
+
+### Task 1 — category merge, before any import (commit `e5a92db`)
+
+44 categories existed for 116 tools going in, 17 of them holding exactly one tool. Merged
+(survivor ← absorbed), each tool's `category` field repointed and each merge target's
+label extended to cover the absorbed concept in all 7 languages:
+
+| Survivor | Absorbed | Repointed tools |
+|---|---|---|
+| `notes-knowledge` | `docs-and-wiki`, `docs-databases` | notion, obsidian, coda |
+| `forms` | `forms-and-surveys` | typeform |
+| `read-it-later` | `bookmarks`, `rss-research` | raindrop-io, feedly, inoreader |
+| `tasks` | `tasks-calendar` | akiflow, motion, reclaim-ai, sunsama |
+| `whiteboard` | `diagrams` | whimsical |
+| `ai-assistant` | `ai-search` | perplexity |
+| `newsletter` | `publishing` | ghost-pro |
+| `creator-commerce` | `commerce` | shopify |
+| `ai-audio` | `ai-video` | runway |
+
+44 → 33 categories. `scheduling` was en/fr-only before this pass (a pre-existing gap, not
+something this merge introduced) — completed to all 7 languages while touching
+`categories.json` anyway. Four categories were still single-tool right after the merge
+(`databases`, `email`, `productivity-utilities`, `ai-image`) — deliberately left alone
+rather than force-merged into an unrelated bucket, since the brief's "no single-tool
+category" target is about the state once import work is done, not the exact moment
+between Task 1 and Task 2. Batch 1 was chosen specifically to resolve all four by bringing
+in a genuine same-category peer for each (see below) — verified: after batch 1, every one
+of the 33 categories has 2+ tools, and it stayed that way through batch 4.
+
+**Full-608 category plan, for whoever picks this up next.** 608 entries span 75 raw
+upstream category values against our 33. Most collapse 1:1 (a raw value already matches an
+existing slug, or clearly folds into one — full mapping lives in `CATEGORY_MAP` in
+`scripts/import-upstream.mjs`, which throws on an unmapped value rather than silently
+inventing a new single-tool category). This session deliberately worked only within
+categories `CATEGORY_MAP` already covers, so 33 categories serve 215 tools with a healthy
+2–11 tools each and zero singletons. At full 608, a genuinely new set of verticals shows
+up with no home in the 33 — `documents` (PDF/e-sign, 11), `photo-editing` (11),
+`customer-support` (11), `crm` + `sales-outreach` (22 combined), `cloud-storage` (11),
+`video-conferencing` (11), `time-tracking` + `project-management` (fold into `tasks`, 21),
+`hr` + `legal` (fold into one `business-admin`, 20), `travel` + `home` + `wellness` (fold
+into one `lifestyle`, 30), `career` + `education` (fold into one `career-education`, 20),
+`localization` (fold into `dev-tools`, 10), `monitoring` (absorbing `cron`/`uptime`, both
+already permanently excluded for bad pricing, 9), and the `audio` upstream category (11),
+which needs per-tool judgment: production tools like LANDR/Moises/Splice/Soundtrap belong
+in `ai-audio`, pure streaming subscriptions (Spotify, Apple Music, Audible, TIDAL, YouTube
+Music) need a new `media-streaming` category. Adding all of that reaches roughly 42
+categories at full 608 — above the 25–35 target — so a future batch touching one of these
+verticals should introduce it deliberately (categories.json entry + `CATEGORY_MAP` entry,
+atomically, in the same commit as the first tool that needs it) rather than all at once,
+and should expect to consolidate further from the list above, not add every item as its
+own category.
+
+### Owner decision — Notion removed from the catalogue (commits `7ab7af4`, `07b89df`)
+
+Mid-session, between batch 2 and batch 3, the coordinator relayed an explicit owner
+decision: delete `data/tools/notion.json` and its i18n files entirely.
+
+- **Deleted:** `data/tools/notion.json`, `data/i18n/en/tools/notion.json`,
+  `data/i18n/fr/tools/notion.json`.
+- **27 entries referenced `notion` in `relatedSlugs`.** Each repointed following the
+  coordinator's rule — same category first, then genuine subject adjacency, never just
+  whatever makes the schema pass:
+
+  | Tool | Old → New |
+  |---|---|
+  | anytype | notion → coda |
+  | baserow-cloud | notion → grist |
+  | bitly | notion → amplitude |
+  | calendly | notion → cal-com-teams |
+  | craft | notion → anytype |
+  | evernote | notion → obsidian |
+  | fastmail | notion → missive |
+  | ideogram | notion → leonardo-ai |
+  | jotform | notion → fillout |
+  | linear | notion → github-copilot |
+  | miro | notion → whimsical |
+  | monarch-money | notion → tiller-money |
+  | nocodb-cloud | notion → grist |
+  | obsidian | notion → anytype |
+  | paste | notion → scribe *(cross-category: no same-category slot left, both lightweight local productivity utilities)* |
+  | photoroom | notion → leonardo-ai |
+  | plausible | notion → amplitude |
+  | railway | notion → replit *(cross-category: `hosting` had no third same-category peer left; dev-tools/hosting adjacency)* |
+  | raindrop-io | notion → readwise-reader |
+  | scribe | notion → craft *(cross-category: `screen-recording` had no third peer left; documentation/notes-capture adjacency)* |
+  | shopify | notion → podia |
+  | slack-pro | notion → mattermost-professional |
+  | superhuman | notion → missive |
+  | superwhisper | notion → avoma *(cross-category: `voice-dictation` only has 2 members total; transcription/speech-to-text adjacency)* |
+  | textexpander | notion → scribe *(cross-category, same reasoning as paste)* |
+  | typeform | notion → fillout |
+  | ynab | notion → monarch-money |
+
+  21 of 27 resolved same-category; 5 needed cross-category adjacency because the category
+  itself was too thin to supply a third distinct peer at the time (documented per-row
+  above). Verified after: every fact file has exactly 3 distinct, non-self, existing
+  `relatedSlugs`.
+- **Prose fix:** `coda.json` (en + fr) had a `notes` field reading "a useful sibling to
+  Notion and Airtable in this catalogue" — true before, false after. Trimmed to reference
+  only Airtable. Left alone the plain, factual mentions of the real-world Notion product in
+  `fillout.json` and `tally.json` (Fillout genuinely embeds into Notion pages; Tally is
+  genuinely styled after Notion's editor) — those describe the actual product, not a link
+  into this catalogue.
+- **Script guard:** without `notion.json` on disk, the "slug already present" eligibility
+  check no longer blocks upstream's own `notion.json` from a future `--limit` run. Added an
+  explicit `MANUAL_EXCLUSIONS` entry with the reasoning spelled out and a "do not re-add
+  without a new owner decision" note; verified with `--dry-run` that the slug is rejected
+  with that reason.
+- **Mechanical fallout, fixed:** `worker/test/vote.test.mjs` hardcoded `'notion'` as its
+  example vote slug throughout. `worker/src/slugs.generated.mjs` (regenerated by
+  `scripts/build-feed.mjs` on every `npm run build`, gitignored, never committed) correctly
+  stopped recognizing it, and 8 worker tests started failing (expecting 200/500-with-a-real-
+  slug, getting 400-unknown-slug). This is `worker/` in name only — no site-layout code
+  changed, just a test fixture referencing data that no longer exists. Repointed every
+  occurrence to `obsidian` (an existing, unrelated slug), touching no test logic or
+  assertions. `npx vitest run` in `worker/` passes again (24/24).
+
+### Batches 1–4 — 100 tools, `data/tools` at 215
+
+Standard held every batch: the prompt is the product (concrete core loop, stack named only
+where it matters, explicit out-of-scope, explicit key/service requirement), 4 tool-specific
+FAQ entries written from scratch, `requirements[]` hand-reconciled against the *actual*
+final prompt text rather than trusted from the mechanical first pass.
+
+**A finding specific to this half of the dataset:** the 493 new upstream entries are
+noticeably more template-generated than the original 125. Confirmed directly — e.g.
+`baserow-cloud` and `nocodb-cloud`'s upstream drafts were near-identical prose with only
+nouns swapped ("The core loop is: model structured records for <tagline>, provide grid,
+form, kanban..."), and `v0` and `windsurf`'s upstream prompts were the same text almost
+word for word. Within crowded upstream subcategories (any category with several members in
+one batch — AI voice/video generation, email clients, macOS utilities, spreadsheet-plus-API
+tools, screen-recording, personal finance, meeting-notes AI, automation), every entry got a
+deliberately distinct, real, checkable product angle rather than a reskin of the same
+prompt — documented per-batch below. Beyond rewriting the mandatory prompt/FAQ, the
+carried-over `verdictSummary`/`coreLoopDIY` fields were also rewritten where the upstream
+draft had the same broken "X for Y" grammar (a literal artifact of the templating), not
+just lightly tightened — same substance, cleaner prose. `notes` fields containing upstream's
+own internal QA instructions ("Recheck price before merge.") were dropped rather than
+published, since they're pipeline notes to upstream's own editors, not reader-facing.
+
+**Script changes made before batch 1** (all in `scripts/import-upstream.mjs`):
+- `BASIS_MAP` extended from 21 to 51 upstream strings — the new dataset introduced ~30 new
+  `pricing.basis` phrasings (`monthly per agent`, `annual-equivalent per seat`, `monthly
+  minimum plus usage`, etc.), each mapped to one of the same 5 closed codes.
+- `DIY_TIME_MAP` gained two new recurring phrasings (`closest consolation build: one
+  sitting` / `: multi-day`), both collapsing onto the same two codes as their un-prefixed
+  equivalents.
+- **New eligibility check.** 47 upstream entries have `pricing.native` set to a category
+  word (`"custom"`, `"usage-based"`, `"transaction-based"`, `"revenue share"`,
+  `"region-dependent"`, `"free-or-variable"`, `"one-time-or-variable"`, `"usage-or-custom"`,
+  `"user-selected monthly"`) with no leading digit anywhere — `pricing.plan` and
+  `pricing.source` are both present, so the existing null-plan/null-source check doesn't
+  catch them, but there is still no number to cite. Every one of these 47 has upstream's
+  own `pricing.notes` saying verbatim "canonical monthly amount is null." Added
+  `hasDerivableAmount()` as a second, independent eligibility gate. Full list (excluded,
+  same standing as the original 9 excluded for the same underlying reason — nothing to cite
+  without inventing a figure): `alfred-powerpack, auphonic, bamboohr, bartender,
+  bettertouchtool, cleanshot-x, cleanvoice-ai, clerky, content-at-scale, contentking,
+  firebase-blaze, firstbase, fly-io, fullstory, geneva-app, genially, grafana-cloud,
+  gumroad, hazel, heap, hibob, imagen-ai, keyboard-maestro, lemon-squeezy, lumar,
+  marketmuse, mixpanel, new-relic, oncrawl, paddle, paprika-recipe-manager, pastepal,
+  personio, phrase-localization, posthog, rippling, rocket-money, screen-studio, smartcat,
+  stripe-atlas, substack, termsfeed, things-3, tidycal, tooljet-cloud, transmit, uservoice`.
+- `CATEGORY_MAP` added, throwing on any unmapped upstream category rather than silently
+  spawning a new category — see the full-608 plan above.
+- `SLUG_DOMAIN_OVERRIDES` added (per-slug, checked before the existing bare-domain-keyed
+  `DOMAIN_OVERRIDES`) for real within-608 domain collisions where two *different* upstream
+  entries share a bare domain and each needs its own confirmed narrower hostname — see the
+  domain-collisions table below.
+- `MANUAL_EXCLUSIONS` added for exclusions the mechanical checks can't express (duplicate
+  product, domain safety) — see below.
+- **Bug found and fixed:** the i18n draft write was unconditional on `existsSync`,
+  independent of whether the fact file was actually eligible. A `--dry-run` test with a
+  deliberately excluded slug (`alfred-powerpack`) confirmed it would have written an orphan
+  i18n draft with no matching fact file — which `validate-rules.mjs` rejects. Gated the
+  i18n write on the fact file actually existing (`factWillExist`), verified the same test
+  now correctly writes nothing.
+- **relatedSlugs pool bug found and fixed.** `computeRelatedSlugs()` and
+  `upstreamLinkIsCoherent()` compare `.category` fields to find same-category peers, but
+  the pool mixes already-normalized existing tools with raw-category entries from the
+  current batch. Without normalizing, a merged category (e.g. upstream's `voice-ai` → our
+  `ai-audio`) would silently fail to match its already-imported peers. Fixed by mapping
+  each batch entry's category through `CATEGORY_MAP` at the point it enters the pool.
+
+**Exclusions beyond the 47 + carried-over 10, found while selecting batches:**
+
+| Slug | Reason |
+|---|---|
+| `google-ai-pro` | Same subscription as the existing `gemini` entry — confirmed by checking `gemini.json`: its `pricing.plan` is already literally `"Google AI Pro"` at $19.99, and "Google AI Pro" is the 2026 rebrand of Gemini Advanced (verified via web search). A second entry would be a duplicate page for one subscription. |
+| `readwise` | Same subscription as the existing `readwise-reader` entry — upstream's own data has both slugs on the identical domain (`readwise.io`) with the identical `pricing.plan` (`"Readwise Full"`). Already blocked mechanically by the domain-collision check, listed here so the reason is legible rather than looking like an ordinary clash. |
+| `digitalocean-app-platform` | Domain safety. The App Platform dashboard lives at a path (`cloud.digitalocean.com/apps`) on the control panel shared by every DigitalOcean product (Droplets, Kubernetes, Spaces, ...); the bare `digitalocean.com` is the whole company's marketing site. No confirmed product-specific hostname exists — same failure mode as `microsoft-365-personal`. Replaced in batch 4 with `render` (a genuinely dedicated, single-product company domain). |
+| `microsoft-365-personal` | Domain safety, found during batch 1's domain audit. Pricing page lives at a path on `microsoft.com`; the web-app hostname (`m365.cloud.microsoft`) is shared across every Microsoft 365 tier, not this one specifically. |
+| `notion` | Owner decision (see above), not a pricing or domain issue — the entry itself was never bad data. |
+
+### Domain collisions resolved (real within-608 collisions, not hostname-too-broad cases)
+
+Six upstream bare-domain collisions found across candidates screened for batch 1–4, each
+resolved by giving one or both slugs a confirmed, narrower hostname (fetched directly, not
+guessed from naming convention) rather than letting one silently claim the shared apex:
+
+| Collision | Resolution |
+|---|---|
+| `adobe.com` (adobe-acrobat-pro, adobe-lightroom — plus the already-imported adobe-express, which already had its own override) | `adobe-acrobat-pro` → `acrobat.adobe.com` (confirmed: "Acrobat online sign in" page); `adobe-lightroom` → `lightroom.adobe.com` (confirmed: "Online photo editor" page) |
+| `apple.com` (apple-music, icloud-plus) | `apple-music` → `music.apple.com` (confirmed: Apple Music web player); `icloud-plus` → `icloud.com` (confirmed: iCloud's real product domain isn't an apple.com subdomain at all) |
+| `one.google.com` (google-ai-pro, google-one) | `google-ai-pro` excluded entirely (same product as `gemini`, see above) — resolves the collision by removing one side, not by finding a narrower hostname for a duplicate. `google-one` imported normally at `one.google.com`. |
+| `microsoft.com` (microsoft-365-personal, microsoft-teams-essentials) | `microsoft-365-personal` excluded (domain safety, see above); `microsoft-teams-essentials` → `teams.microsoft.com` (confirmed: the actual Teams web app, not a marketing page) |
+| `proton.me` (proton-drive-plus, proton-pass-plus) | `proton-drive-plus` → `drive.proton.me`; `proton-pass-plus` → `pass.proton.me` (both confirmed as the real per-product web apps) |
+| `quicken.com` (quicken-classic-deluxe, quicken-simplifi) | `quicken-classic-deluxe` stays at bare `quicken.com`; `quicken-simplifi` → `simplifi.quicken.com` (confirmed via web search — `simplifi.com` does not resolve to Quicken at all, a naming-convention guess that would have been wrong) |
+
+**Also found, not a collision but a stale domain:** `v0`'s upstream domain is `v0.dev`.
+Vercel rebranded to `v0.app` in January 2026 (confirmed via web search and a direct fetch —
+`v0.dev` now redirects). Overrode to `v0.app` via `SLUG_DOMAIN_OVERRIDES`; left
+`pricing.source` as upstream recorded it (`v0.dev/pricing`, which still resolves via
+redirect) since that's a citation, not a hostname-matching concern.
+
+**relatedSlugs quality fix beyond the mechanical pass:** `enpass`'s auto-computed
+`relatedSlugs` picked `deleteme` (a data-broker opt-out service) over closer password-vault
+peers, purely because same-category matching ranks by `pagePriority` and didn't distinguish
+"same category" from "same *kind of thing* within that category." Repointed by hand to
+`nordpass`.
+
+### Batch composition and register discipline
+
+- **Batch 1 (25, commit `ca8c330`):** baserow-cloud, nocodb-cloud, superhuman, fastmail,
+  ideogram, photoroom, textexpander, paste, nordpass, v0, windsurf, railway, retool,
+  cal-com-teams, fantastical, craft, slack-pro, avoma, tiller-money, amplitude,
+  activecampaign, pipedream, surveymonkey, hootsuite, screaming-frog-seo-spider. Chosen
+  specifically to resolve the four thin categories left after Task 1 (databases, email,
+  productivity-utilities, ai-image) and to spread across as many of the 33 categories as
+  possible in one batch. Verdict mix: 3 yes / 8 kinda / 14 no — skewed heavily toward "no"
+  because of category choice (seo-marketing, ai-generation, security/identity-monitoring
+  are genuinely mostly "no"), flagged as a self-correction to apply going forward, not
+  smoothed over.
+- **Batch 2 (25, commit `9733824`):** accuranker, moz-pro, spyfu, heygen, synthesia, murf,
+  writesonic, copy-ai, riverside, buzzsprout, grist, leonardo-ai, sudowrite, missive,
+  anytype, scribe, mattermost-professional, deleteme, duda, fillout, instapaper-premium,
+  hypefury, bardeen, flutterflow, ticktick. Verdict mix: 11 no / 8 kinda / 3 yes plus 3
+  covered above — still no-heavy.
+- **Batch 3 (25, commit `7bd7185`):** paperform, feathery, adalo, appsheet, bear-pro,
+  capacities, amie, clockwise, cleanmymac, amazing-marvin, morgen, arcade, guidde, equals,
+  rows, leadpages, tilda, gumloop, relay-app, gather-town, heartbeat-community, meetgeek,
+  read-ai, mimestream, shortwave. Deliberately drawn from categories that skew "kinda"/"yes"
+  (forms, no-code, notes, scheduling, productivity-utilities, tasks, screen-recording,
+  databases, website-builder) to correct batches 1–2's skew. Landed at 4 yes / 17 kinda /
+  4 no (16/68/16%), much closer to the project's own stated ~30/58/12 baseline, without
+  forcing any single verdict past what the entry's own `whatYouLose` list actually supports
+  — `gather-town` in particular is flagged in its own prompt and FAQ as more ambitious than
+  a weekend build (dynamic WebRTC connection management as avatars move is real
+  distributed-systems work), rather than smoothed over to fit the catalogue's usual scope.
+- **Batch 4 (25, commit `efd3dad`):** supabase-pro, render, neon, planetscale, caspio,
+  knack, lunch-money, pocketsmith, mem-ai, nuclino, formstack-forms, involve-me, supademo,
+  vidyard, weweb, thunkable, bolt-new, lovable, routine, taskade, activepieces-cloud,
+  pabbly-connect, unbounce, youcanbookme, enpass.
+
+**Differentiation discipline, worth naming specifically** — every crowded upstream
+subcategory got genuinely distinct, checkable technical angles rather than a reskinned
+duplicate prompt:
+- *Hosting* (railway, supabase-pro, render, neon, planetscale): general single-server PaaS
+  (railway/render, explicitly the same pattern for both, reused rather than artificially
+  differentiated); Supabase's actual open-source core (self-host PostgREST + GoTrue, the
+  real projects Supabase itself runs); Neon's copy-on-write branching approximated with
+  dump-and-restore since true storage-layer branching is out of reach for a personal
+  project; PlanetScale's non-locking migrations via gh-ost, the real open-source tool
+  PlanetScale itself is built on.
+- *Databases-as-app-builder* (baserow-cloud, nocodb-cloud, grist, equals, rows, caspio,
+  knack): from-scratch Airtable-shaped tables vs. a frontend over an *existing* SQL schema
+  vs. Python-formula cells (with an honest "self-host the real open-source Grist" fallback)
+  vs. SQL-query-into-a-cell-range vs. generic-API-fetch-into-a-cell-range vs.
+  embeddable-widgets-for-an-existing-site vs. a standalone customer-portal app with its own
+  login.
+- *AI voice/video generation* (heygen, synthesia, murf; earlier ideogram, photoroom,
+  leonardo-ai): talking-avatar lip-sync vs. slide-narration-with-small-avatar vs.
+  pure-TTS-no-avatar; in-image text rendering vs. background removal vs. LoRA fine-tuning.
+- *Email clients* (superhuman, fastmail, mimestream, shortwave; missive): generic IMAP
+  client (with an explicit "mail hosting is not a weekend project" caveat where relevant)
+  vs. a client built specifically on the Gmail API (native label semantics, not IMAP-folder
+  translation) vs. two specific AI features (thread summarization + NL search) layered on
+  the Gmail-API client vs. a shared team inbox with internal comments.
+- *AI coding agents* (v0, windsurf, bolt-new, lovable — alongside the existing cursor,
+  github-copilot, replit, codesandbox): single-component generation vs. multi-step
+  supervised agentic execution vs. WebContainers' real in-browser Node runtime (no server
+  execution at all) vs. full-stack scaffold generation (schema + API + auth wired
+  together, not just UI).
+- *Automation* (gumloop, relay-app, activepieces-cloud, pabbly-connect — alongside pipedream,
+  bardeen): AI-call-as-a-workflow-step vs. human-approval-gated workflow vs. self-hosting
+  the real open-source ActivePieces vs. the deliberately simplest possible two-service linear
+  automation, with no conditions or branching at all.
+- *Notes* (bear-pro, capacities, mem-ai, nuclino — alongside the existing craft, anytype,
+  obsidian, coda, evernote): nested-hashtag-only organization vs. typed-object notes vs.
+  embedding-similarity auto-linking vs. a visual board view of pages.
+- *Screen/demo recording* (supademo, vidyard — alongside arcade, guidde, scribe, loom,
+  tella): lead-gated interactive demos vs. personal tracked-link sales video.
+- *Personal finance* (lunch-money, pocketsmith — alongside tiller-money, ynab,
+  monarch-money, copilot-money): genuine multi-currency support vs. forward-looking balance
+  forecasting.
+
+### Verification, per batch
+
+Every batch: `npm run validate`, `npx vitest run` (root), `npx vitest run` (worker),
+`npm run build`, then a `git status --short` check to confirm only intended files were
+staged before committing (the concurrent site-layout process's in-flight changes to
+`data/i18n/*/ui.json` and `scripts/lib/site-*.mjs` were visible in the working tree at
+several points and deliberately excluded from every commit in this section).
+
+```
+$ npm run validate   (after batch 4)
+215 fiche(s), 330 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  172 passed (172)
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run build
+Feed écrit dans dist/feed/v1/ — 215 outil(s).
+Site écrit dans dist/ — 2 langue(s), 330 fiche(s), 66 page(s) de catégorie, 402 URL(s) dans le sitemap.
+```
+
+### Status and what's left
+
+**215 of 608 upstream-derived tools are in the catalogue** (116 starting + 100 imported
+this session − 1 removed). 33 categories, none single-tool. Arithmetic: 608 upstream −
+215 already-present-or-imported − 19 permanently excluded (9 original null-plan/source +
+47 no-derivable-amount, minus overlap... precisely: 9 + 47 = 56 total price-exclusions
+across the whole dataset, since none of the 47 overlap the original 9) − 1 domain-collision
+exclusion (obsidian-sync) − 4 slug-collisions with hand-curated entries (notion — now
+formally excluded rather than just already-present, calendly, typeform, obsidian) − 3
+duplicate-product exclusions (google-ai-pro, readwise, and effectively notion twice-over) −
+1 domain-safety exclusion (microsoft-365-personal) − 1 more domain-safety exclusion
+(digitalocean-app-platform) leaves roughly 328 further eligible upstream entries not yet
+imported, spread across the categories already in `CATEGORY_MAP` (most of the volume) and
+the ~16 new verticals described in the full-608 category plan above (documents,
+photo-editing, customer-support, crm/sales-outreach, cloud-storage, video-conferencing,
+time-tracking/project-management, hr/legal, travel/home/wellness, career/education,
+localization, monitoring, media-streaming).
+
+This session did not reach all 608 entries. Every commit made is complete and independently
+valid — `npm run validate`, `npx vitest run` (root + worker), and `npm run build` all pass
+at every commit in this section, not just at the end.
+
+### What I judged rather than derived, this session
+
+- The full-608 category consolidation plan (which of the ~16 new verticals fold into which
+  existing or new category) — a genuine editorial call about what a reader would plausibly
+  browse together, not something derivable from upstream's own category field.
+- Batch composition and ordering — which 25 to pick each time, including the deliberate
+  batch-3 correction toward "kinda"/"yes"-leaning categories after batches 1–2's skew.
+  Nothing about verdict mix was forced; the correction was in *which tools to select*, not
+  in how any individual entry was judged.
+- Every cross-category `relatedSlugs` pick in the Notion-removal repointing where the
+  category itself had no third same-category peer available at the time (paste, railway,
+  scribe, superwhisper, textexpander — 5 of 27).
+- The technical differentiation angle chosen for each tool within a crowded upstream
+  subcategory (see the discipline section above) — genuine product research judgment
+  (e.g. that Rows' real differentiator is generic API-fetch-into-cells vs. Equals'
+  SQL-into-cells, or that NocoDB's real trick is fronting an *existing* database rather than
+  owning its own schema) rather than something mechanically derivable from upstream's
+  telegraphic tagline.
+- Treating `digitalocean-app-platform` as a domain-safety exclusion rather than accepting
+  the bare apex domain — a judgment call extending the `github-copilot`/
+  `microsoft-365-personal` precedent to a case upstream itself didn't flag.
+- `v0`'s domain override (v0.dev → v0.app) — judged as "upstream is stale, not colliding,"
+  distinct from the six genuine collisions in the table above.
+
+### Concerns
+
+- **~328 upstream entries remain unimported.** This session completed the taxonomy work and
+  4 of the roughly 20 batches a full run would need. The category plan above and the
+  `CATEGORY_MAP`/`MANUAL_EXCLUSIONS`/`SLUG_DOMAIN_OVERRIDES` scaffolding in
+  `scripts/import-upstream.mjs` are built to make continuing this straightforward for a
+  future session, but the work itself is not done.
+- **Verdict mix across the 4 batches (18 yes / 33 kinda / 49 no ≈ 18%/33%/49%)** still skews
+  toward "no" relative to the project's own ~30/58/12 baseline, even after batch 3's
+  deliberate correction. This reflects real category selection (heavy in AI-generation,
+  security, and infra categories which are genuinely mostly "no") rather than any forced
+  verdict, but a future session continuing this import should keep deliberately favoring
+  "kinda"/"yes"-leaning categories (no-code, forms, notes, productivity utilities,
+  screen-recording, scheduling, tasks) to bring the overall catalogue mix closer to
+  baseline, the same correction batch 3 made for this session.
+- **Two processes wrote to this repository concurrently again**, same as the original
+  import (see "Concerns" earlier in this file). This session never touched
+  `scripts/lib/site-*.mjs`, `scripts/assets/`, or `data/i18n/*/ui.json` as instructed, and
+  checked `git status` before every commit specifically to avoid picking up the other
+  process's in-flight changes — but the underlying no-lock, no-coordination situation is
+  unchanged from before.
