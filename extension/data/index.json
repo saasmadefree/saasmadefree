@@ -762,10 +762,10 @@
     "currency": "USD",
     "url": "/en/tools/granola"
   },
-  "grist.org": {
+  "getgrist.com": {
     "slug": "grist",
     "verdict": "kinda",
-    "amount": 8,
+    "amount": 10,
     "currency": "USD",
     "url": "/en/tools/grist"
   },

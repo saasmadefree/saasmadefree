@@ -2,16 +2,16 @@
   "slug": "grist",
   "name": "Grist",
   "domains": [
-    "grist.org"
+    "getgrist.com"
   ],
   "category": "databases",
   "subcategory": "spreadsheet databases and operational data apps",
   "pricing": {
-    "amount": 8,
+    "amount": 10,
     "currency": "USD",
     "plan": "Pro",
     "basis": "per-seat-monthly",
-    "source": "https://grist.org/pricing",
+    "source": "https://www.getgrist.com/pricing/",
     "checkedOn": "2026-07-31",
     "confidence": "high"
   },

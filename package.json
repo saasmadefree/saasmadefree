@@ -10,6 +10,7 @@
     "test": "vitest run",
     "validate": "node scripts/validate.mjs",
     "stats": "node scripts/stats.mjs",
+    "linkcheck": "node scripts/linkcheck.mjs",
     "build": "node scripts/build-feed.mjs && node scripts/build-site.mjs",
     "build:extension": "node scripts/pack-extension.mjs"
   },
