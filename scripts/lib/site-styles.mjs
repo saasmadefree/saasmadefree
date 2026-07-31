@@ -51,7 +51,10 @@ h1{
 h1 em{font-style:normal;color:var(--muted)}
 h2{font-size:.8rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);
    font-weight:600;margin:2.6rem 0 .9rem}
-h2:first-of-type{margin-top:0}
+/* Ne viser que le tout premier titre de la page. Écrit h2:first-of-type, il
+   annulait la marge de TOUS les titres : chaque h2 étant seul dans sa section,
+   il y est premier de son type. */
+section:first-of-type > h2:first-child{margin-top:0}
 p{margin:0 0 1rem; max-width:var(--wide)}
 .tagline{color:var(--muted); margin:0 0 clamp(2rem,5vh,3rem); max-width:var(--measure)}
 .lede{max-width:var(--measure);color:var(--muted);margin:0 0 clamp(2.5rem,7vh,4rem)}
