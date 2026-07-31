@@ -1,0 +1,20 @@
+{
+  "tagline": "Écoute sans pub d’une musique majoritairement absente des autres services.",
+  "verdictSummary": "Le catalogue de SoundCloud est différent en nature des autres : remixes, sets DJ, démos et artistes non signés qui uploadent là et nulle part ailleurs. C’est un réseau à deux versants — les artistes postent parce que les auditeurs sont là — et c’est la raison pour laquelle beaucoup de musique sur SoundCloud n’a de foyer légal nulle part ailleurs. Rien de ce que tu construis ne l’atteint.",
+  "coreLoopDIY": "Suis les artistes qui t’intéressent vraiment à la source, achète leurs sorties directement, et garde le résultat dans une bibliothèque que tu possèdes.",
+  "whatYouLose": [
+    "le catalogue d’uploads non signés et indépendants",
+    "les sets DJ, remixes et bootlegs qui n’existent légalement nulle part ailleurs",
+    "la découverte par reposts, qui est comment la plateforme fonctionne vraiment",
+    "commenter la forme d’onde à un horodatage, une fonctionnalité sincèrement originale",
+    "l’écoute hors ligne dans l’application et le streaming haute qualité"
+  ],
+  "whyPeopleStillPay": "Quinze dollars par mois pour le mix qu’un producteur a uploadé à deux heures du matin et ne sortira jamais commercialement.",
+  "prompt": "Construis un système de suivi d’artistes qui contourne une plateforme plutôt que de la remplacer.\n\nMaintiens une liste d’artistes que tu suis, chacun avec les canaux sur lesquels ils publient : une page Bandcamp, une liste de diffusion, un flux RSS, une page de label. La plupart des artistes indépendants annoncent leurs sorties à plus d’un endroit et au moins un d’entre eux est lisible par machine.\n\nSonde ces canaux selon un calendrier et produis un seul résumé : nouvelles sorties, avec liens pour acheter. Bandcamp expose des flux pour les artistes et labels ; les sites de labels ont souvent du RSS ; les listes de diffusion peuvent être routées vers une adresse que tu analyses. Là où un artiste n’offre rien de lisible par machine, stocke une note et une cadence de vérification et mets-les dans une liste manuelle — un manque honnête plutôt que silencieux.\n\nLe côté achats est l’essentiel. Enregistre ce que tu as acheté, où, dans quel format, et où les fichiers ont atterri. Un dossier d’achats sans enregistrement devient ingérable en un an, et l’enregistrement est ce qui rend l’achat direct viable comme habitude plutôt que comme geste occasionnel.\n\nClasse les téléchargements achetés dans ton serveur de musique avec le pipeline d’ingestion décrit dans la fiche Apple Music, pour que la musique achetée soit indiscernable du reste de la bibliothèque.\n\nAjoute un rapport « soutenu cette année » : artistes, sorties et total dépensé. Un achat direct paie un artiste bien plus qu’un stream, et voir le chiffre, c’est l’argument pour toute l’approche.\n\nNe télécharge pas depuis des plateformes de streaming. Ça viole leurs conditions, ça ne paie rien à l’artiste, et tout l’intérêt de ce projet est l’inverse.",
+  "faq": [
+    { "q": "Puis-je exporter mes likes et abonnements SoundCloud ?", "a": "En partie — SoundCloud propose un téléchargement de données qui inclut tes likes, abonnements et playlists comme données structurées. Cette liste d’artistes est exactement l’entrée dont ce projet a besoin, donc demande-la avant de résilier." },
+    { "q": "Vais-je encore découvrir de la nouvelle musique ?", "a": "Pas de la même façon. Les reposts et le flux algorithmique sont comment fonctionne la découverte sur SoundCloud, et suivre des artistes connus à la source trouve leur nouveau travail et rien d’autre. C’est l’échange honnête." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Quelques dollars par mois pour un petit sondeur, plus ce que tu dépenses en achetant de la musique — ce qui est le but plutôt qu’un effet secondaire." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Le morceau inédit. Un remix uploadé sur SoundCloud et jamais vendu nulle part n’a aucune route d’achat, et suivre l’artiste te dit qu’il existe sans te permettre de le garder." }
+  ]
+}

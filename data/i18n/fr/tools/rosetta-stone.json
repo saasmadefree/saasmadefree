@@ -1,0 +1,20 @@
+{
+  "tagline": "Cours d’immersion image et audio avec notation de l’élocution.",
+  "verdictSummary": "Rosetta Stone enseigne sans traduction, ce qui veut dire que chaque concept a besoin d’une photographie assez univoque pour porter un sens à elle seule, dans chaque langue, plus de l’audio enregistré et un moteur vocal calibré pour accepter les accents d’apprenants. La photographie seule est une opération de licences. Le logiciel est un diaporama avec un micro.",
+  "coreLoopDIY": "Entraîne l’association image-mot depuis un jeu d’images que tu assembles, avec tes propres enregistrements pour la moitié audio.",
+  "whatYouLose": [
+    "une bibliothèque de photos sous licence choisie pour que chaque image signifie une seule chose",
+    "les vingt-cinq cours de langue et leur séquençage",
+    "la notation vocale TruAccent, calibrée sur la prononciation des apprenants",
+    "des sessions de tutorat en direct incluses dans l’abonnement",
+    "les applications mobiles et les leçons téléchargeables"
+  ],
+  "whyPeopleStillPay": "Apprendre sans étape de traduction fonctionne sincèrement pour certaines personnes, et ça ne marche que quand les images sont univoques — ce qui est la partie chère qu’ils ont déjà payée.",
+  "prompt": "Construis un exercice d’association image pour le vocabulaire, et traite la sélection d’images comme la partie difficile plutôt qu’un détail d’implémentation.\n\nUn item est une image, un mot ou une expression en langue cible, et de l’audio optionnel. Les sessions montrent quatre images et jouent ou affichent une expression ; tu choisis l’image correspondante. Inverse le sens sur les révisions ultérieures : une image, quatre expressions.\n\nLe problème de conception, c’est l’ambiguïté. Une image censée enseigner « courir » qui montre une personne sur une plage au coucher du soleil enseigne quatre choses à la fois. Construis donc une vérification d’auteur dans l’étape d’import : pour chaque item candidat, l’outil montre l’image avec les trois distracteurs avec lesquels il la pairerait et te demande de confirmer qu’une seule est correcte. Les items que tu ne peux pas confirmer vont dans une pile de révision plutôt que dans le paquet.\n\nSource les images depuis un jeu ouvertement sous licence — Openverse et Wikimedia Commons le permettent tous les deux — et stocke la licence et l’attribution avec chaque item. Affiche une page d’attributions à partir de cette donnée, parce qu’un paquet que tu as construit à partir des photographies d’autres personnes doit porter ses crédits.\n\nPlanifie avec FSRS sur les items.\n\nPour la moitié expression orale, enregistre-toi et rejoue à côté d’un enregistrement de référence si tu en as un. Ne le note pas. Accepter ou rejeter la prononciation d’un apprenant demande un modèle entraîné exactement pour ça, et un seuil fait maison sur un système de reconnaissance générique produit un chiffre qui ne veut rien dire — dis-le dans l’interface.",
+  "faq": [
+    { "q": "Puis-je importer quelque chose de Rosetta Stone ?", "a": "Non. Il n’y a aucun export de la progression ou du vocabulaire, et les images leur sont sous licence. Ton paquet est construit à partir d’images ouvertement sous licence et démarre vide." },
+    { "q": "Combien d’items faut-il pour que ce soit utile ?", "a": "Quelques centaines avant que ça ressemble à un cours plutôt qu’un quiz, et chacun a besoin d’une image que tu as vérifiée pour l’ambiguïté. Prévois une soirée par centaine d’items — c’est la mesure honnête de ce que l’abonnement remplace." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien. Les images sont téléchargées une fois, le planificateur est local, et aucune clé n’est impliquée." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Faire confiance à l’image. Les images de Rosetta Stone ont été choisies et photographiées pour qu’un débutant ne puisse pas les mal interpréter, et un paquet assemblé depuis des photos de banque est ambigu de façons que tu ne découvriras qu’après avoir appris le mauvais mot." }
+  ]
+}
