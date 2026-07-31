@@ -1,0 +1,20 @@
+{
+  "tagline": "Plateforme d'automatisation sans code connectant des milliers d'applications.",
+  "verdictSummary": "Une poignée d'automatisations personnelles — ce webhook déclenche cet appel d'API — c'est un vrai projet de week-end, tournant en code brut plutôt qu'en flux visuel. Ce qui ne vient pas avec, c'est le vrai produit de Zapier : un catalogue de milliers d'intégrations préconstruites et maintenues, dont la plupart demandent des flux OAuth que cette version n'essaie délibérément pas.",
+  "coreLoopDIY": "Un petit exécuteur d'automatisations : chaque pipeline est une tâche planifiée ou un gestionnaire de webhook qui appelle directement deux ou trois API, chaque exécution étant journalisée et relancée en cas d'échec.",
+  "whatYouLose": [
+    "le catalogue d'intégrations préconstruites pour des milliers d'applications",
+    "les connexions OAuth maintenues en ton nom",
+    "un créateur visuel sans code",
+    "l'historique d'exécution et les relances pris en charge pour toi"
+  ],
+  "whyPeopleStillPay": "Chaque nouvelle connexion d'application que propose Zapier est déjà construite, authentifiée, et maintenue fonctionnelle à mesure que l'API de cette app change — les gens paient pour éviter d'écrire et de maintenir ce code d'intégration eux-mêmes.",
+  "notes": "Un « en partie » structurel : n'importe quelle automatisation isolée est facile à construire, mais Zapier en tant que réseau d'intégrations ne l'est pas.",
+  "prompt": "Construis un exécuteur d'automatisations personnel pour la poignée de pipelines que tu utilises réellement — pas une plateforme d'intégration généraliste. Chaque pipeline est du code brut : un déclencheur (un planning cron ou un endpoint webhook avec un token secret par pipeline) et un gestionnaire qui appelle directement les API dont il a besoin. Journalise chaque exécution dans une base de données — nom du pipeline, contenu du déclencheur, statut, durée, erreur — et relance une exécution échouée quelques fois avec un délai croissant avant d'abandonner ; notifie-toi après l'échec final. Construis une petite page admin montrant les exécutions récentes avec leur statut et un moyen d'inspecter ou de relancer l'une d'elles. Ajouter un nouveau pipeline devrait vouloir dire écrire un court script, pas chercher un connecteur préconstruit.\n\nNe construis pas de flux OAuth pour des applications tierces, ni aucun type de catalogue d'intégrations ou de créateur visuel — limite les pipelines aux services avec de simples clés API par token, stockées dans l'environnement et jamais commitées. Un service qui n'offre qu'OAuth demande réellement plus de travail de configuration par intégration ; c'est cet entretien continu sur des milliers d'applications, pas une automatisation isolée, qu'achète l'abonnement.",
+  "faq": [
+    { "q": "Puis-je importer mes Zaps existants ?", "a": "Pas automatiquement — les flux visuels de Zapier ne s'exportent pas en code. Chaque Zap dont tu dépends réellement devient un court script que tu écris à la main, ce qui pour la plupart des automatisations personnelles représente une poignée de pipelines, pas des centaines." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "La page admin pour consulter l'historique d'exécution fonctionne dans un navigateur mobile, mais les pipelines eux-mêmes tournent sans surveillance sur un serveur — il n'y a rien avec quoi interagir sur mobile au quotidien, ce qui est à peu près comme Zapier fonctionne aussi." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données, typiquement quelques dollars par mois, quel que soit le nombre de pipelines qui tournent — pas de paliers tarifaires par tâche à gérer." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Les intégrations basées sur OAuth. Tout service qui demande de se connecter avec ton compte plutôt qu'une simple clé API est hors périmètre ici ; c'est la plupart des connexions d'applications les plus populaires de Zapier, et construire chacune à la main coûterait du vrai temps par application." }
+  ]
+}

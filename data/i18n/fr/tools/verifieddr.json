@@ -1,0 +1,20 @@
+{
+  "tagline": "Plateforme de recherche et de visibilité IA avec vérification et surveillance de backlinks.",
+  "verdictSummary": "Un suivi de visibilité personnel pour un site — récupérer les vraies données Search Console, poser un ensemble fixe de questions d'acheteur sur plusieurs API de modèles IA, crawler ton propre sitemap pour des problèmes techniques — c'est un vrai projet de week-end. Ce qui ne vient pas avec, c'est des données de backlinks vérifiées, un réseau de partenaires inter-sites, et la surveillance gérée et toujours active qui attrape une mention perdue avant que tu ne le remarques.",
+  "coreLoopDIY": "Suis les vraies performances Search Console d'un site et échantillonne un ensemble fixe de questions d'acheteur sur plusieurs API de modèles IA, en classant les pages et requêtes qui ont besoin d'attention.",
+  "whatYouLose": [
+    "les données vérifiées de backlinks et de notation de domaine",
+    "une visibilité exacte sur chaque surface de recherche IA",
+    "un réseau de partenaires et une place de marché inter-sites",
+    "la surveillance et les alertes gérées, toujours actives"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour des données vérifiées de backlinks et de trafic, des vérifications sur plusieurs modèles IA, et un réseau de partenaires — sans maintenir eux-mêmes les intégrations d'API et les tâches planifiées.",
+  "notes": "Un « en partie » solide : la boucle de surveillance solo est réellement atteignable, mais les données externes et le réseau de partenaires sont le vrai produit.",
+  "prompt": "Construis un suivi local de recherche et de visibilité IA pour un site que tu possèdes : connecte Google Search Console via OAuth et importe les clics, impressions, taux de clic, et position moyenne par requête et par page pour les dernières semaines. Stocke une liste fixe de questions pertinentes pour les acheteurs, et à la demande, pose chacune via plusieurs API de modèles différentes, en enregistrant les réponses, les citations éventuelles, et si ta marque ou ton domaine est mentionné. Affiche les changements récents de Search Console, un taux de mention par modèle, et une tendance historique pour chaque question suivie sur un tableau de bord simple. Crawl périodiquement ton propre sitemap, en enregistrant le statut de page, le titre, les balises canoniques, les indicateurs noindex, et les liens internes cassés. Construis une liste d'actions priorisée — mentions IA perdues en premier, pages Search Console en baisse en second, pages cassées ou noindex en troisième — avec chaque élément renvoyant à sa preuve.\n\nNe construis pas de collecte de données de backlinks, de réseau de partenaires, ni de suivi de concurrents — ces données ne peuvent pas être auto-collectées avec un effort raisonnable, et c'est la vraie barrière derrière l'abonnement.",
+  "faq": [
+    { "q": "Puis-je importer mes données VerifiedDR existantes ?", "a": "Pas vraiment — ses données de backlinks et de surveillance vivent dans sa propre plateforme sans export. Tes données Search Console, en revanche, sont les tiennes de toute façon et se connectent de la même façon ici." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Le tableau de bord est une petite page web locale, consultable sur téléphone si elle est exposée sur ton réseau, mais il n'y a ni app dédiée ni alerte push pour une mention perdue." },
+    { "q": "Combien ça coûte vraiment à faire tourner ?", "a": "L'accès à Search Console est gratuit ; les appels d'API sur plusieurs fournisseurs de modèles pour les vérifications de questions d'acheteur coûtent un peu par exécution, typiquement de quelques centimes à quelques dollars selon la fréquence." },
+    { "q": "Quelle est la chose qui ne survit vraiment pas à la reconstruction ?", "a": "Les données de backlinks vérifiées. Les chiffres de notation de domaine et de backlinks demandent de crawler le web à une échelle qu'aucun projet personnel ne peut égaler — cette visibilité n'existe que parce que la plateforme a déjà fait le crawl." }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "tagline": "Cloud frontend pour déployer des apps web depuis Git.",
+  "verdictSummary": "Un pipeline de déploiement git-push vers ton propre serveur — build au push, redémarrage sans interruption, rollback instantané — c'est un vrai projet de week-end, même s'il n'a rien de glamour. Ce qui ne vient pas avec, c'est le vrai produit de Vercel : un réseau edge mondial, des déploiements d'aperçu automatiques pour chaque branche, et des optimisations profondes spécifiques aux frameworks qu'un seul VPS ne peut pas reproduire.",
+  "coreLoopDIY": "Un pipeline de déploiement git-push vers ton propre serveur : build au push, échange atomique de version, et rollback en une commande.",
+  "whatYouLose": [
+    "un réseau edge et CDN mondial",
+    "les déploiements d'aperçu automatiques par branche",
+    "la montée en charge automatique face aux pics de trafic",
+    "l'observabilité intégrée",
+    "une intégration profonde spécifique aux frameworks"
+  ],
+  "whyPeopleStillPay": "Les déploiements et les aperçus sont une infrastructure ennuyeuse qui ne doit jamais casser — les gens paient pour que cette fiabilité soit le travail de quelqu'un d'autre, pas parce qu'un script de déploiement est difficile à écrire.",
+  "notes": "Une fiche d'infrastructure centrale : la version DIY est réelle et fonctionne, mais elle n'est pas « gratuite » une fois compté ton propre temps d'astreinte.",
+  "prompt": "Construis un pipeline de déploiement git-push pour ton propre serveur. Chaque app obtient un dépôt git nu avec un hook post-receive : au push, récupère le nouveau commit dans un répertoire de version horodaté, lance les commandes d'install et de build du projet, vérifie la santé du nouveau processus, puis échange atomiquement un lien symbolique « courant » vers lui et redémarre le service — un build ou un contrôle de santé échoué doit laisser la version en direct entièrement intacte. Ajoute une commande de rollback qui repointe le lien symbolique vers la version précédente et redémarre, bien en dessous du temps qu'un vrai incident permet. Ajoute une commande qui amorce le dépôt, la définition de service, et la config de reverse-proxy d'une nouvelle app en une étape, en branchant automatiquement le HTTPS sur son domaine. Garde une poignée des dernières versions sur disque pour que le rollback ait toujours où aller. Stocke les secrets de chaque app dans un fichier par app, lié symboliquement dans chaque version, jamais commité dans le dépôt.\n\nNe construis pas de déploiements d'aperçu par branche, de réseau edge mondial, de montée en charge automatique, ni de tableau de bord web — ça demande une infrastructure couvrant plusieurs régions et c'est du vrai travail d'ingénierie de plateforme continu, pas un script. Sois honnête dans le README que tu es désormais l'équipe plateforme : prévois du vrai temps pour le premier incident.",
+  "faq": [
+    { "q": "Puis-je migrer mes projets Vercel existants ?", "a": "Le code de l'application, oui — la plupart des frameworks se déploient sur un serveur normal avec seulement des changements mineurs. Ce qui ne passe pas, ce sont les fonctionnalités spécifiques à Vercel comme le middleware edge et l'optimisation d'image, qui demandent des remplacements séparés et imparfaits." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Il n'y a rien de spécifique au mobile ici — le déploiement, c'est un git push depuis ta machine de dev, exactement comme avant, et les sites qu'il déploie fonctionnent sur téléphone exactement comme sur Vercel." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Un VPS petit à moyen, typiquement dix à vingt dollars par mois selon le trafic, plus un domaine — pas de frais séparé par déploiement ou par aperçu." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Les déploiements d'aperçu. Que chaque pull request obtienne automatiquement sa propre URL en direct, c'est vraiment du travail au niveau plateforme ; cette version ne déploie que la branche principale, et tester une branche veut dire la déployer à la main ailleurs." }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "tagline": "Diagrammes de flux, wireframes, cartes mentales et documents collaboratifs rapides.",
+  "verdictSummary": "Un outil de diagramme de flux mono-utilisateur — formes, connecteurs qui restent attachés, alignement magnétique, annuler/refaire, export en PNG et SVG — c'est un vrai projet de week-end qui peut tourner entièrement dans le navigateur sans backend. Ce qui ne vient pas avec, c'est l'édition multi-utilisateurs en temps réel et les boîtes à outils de wireframe et de carte mentale qui vont au-delà des diagrammes de flux basiques.",
+  "coreLoopDIY": "Un canvas mono-utilisateur avec des formes connectables, des post-its, un alignement magnétique sur grille, et annuler/refaire, sauvegardé localement dans le navigateur avec export en PNG et SVG.",
+  "whatYouLose": [
+    "une bibliothèque de modèles",
+    "l'édition multi-utilisateurs en temps réel",
+    "l'intégration de documents",
+    "les kits de composants de wireframe",
+    "les commentaires et les permissions de partage"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour la vitesse et des diagrammes propres que des collègues peuvent éditer ensemble sans aucune configuration — la collaboration, pas les formes, c'est le produit.",
+  "notes": "Une bonne limite « oui »/« en partie » : la boucle centrale limitée ici est réellement atteignable en un week-end.",
+  "prompt": "Construis un outil de diagramme de flux mono-utilisateur qui tourne entièrement dans le navigateur sans backend : un canvas avec des formes basiques (rectangle, rectangle arrondi, losange, ellipse, post-it, étiquette de texte) qui peuvent être glissées, redimensionnées, et éditées en ligne. Les connecteurs s'attachent à des points d'ancrage de forme, restent attachés quand les formes bougent, et se routent proprement avec des pointes de flèche, portant optionnellement une étiquette de texte. Ajoute un alignement magnétique sur grille et des guides d'alignement pendant le glissement, plus une prise en charge clavier pour copier, coller, supprimer, ajuster avec les flèches, et annuler/refaire via une pile d'historique. Sauvegarde automatiquement les tableaux dans le stockage local du navigateur, avec import et export JSON, et exporte la sélection actuelle ou tout le tableau en PNG et SVG.\n\nNe construis pas de multi-utilisateur en temps réel, de commentaires, de kits de composants de wireframe, ni de mode carte mentale — les diagrammes de flux et les post-its sont le périmètre complet et honnête pour un outil personnel, réservé à un seul client.",
+  "faq": [
+    { "q": "Puis-je importer mes tableaux Whimsical existants ?", "a": "Whimsical peut exporter un tableau en image, ce qui est utile comme référence à recalquer, mais pas comme formes éditables — recréer les vraies formes et connecteurs d'un tableau ici est une reconstruction, pas une migration." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Consulter fonctionne, mais le placement précis de formes et le routage de connecteurs sont vraiment plus faciles avec une souris — c'est en pratique un outil desktop, comme la plupart des éditeurs basés canvas." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien — c'est une app statique, entièrement côté client, sans serveur ni base de données, hébergeable gratuitement à peu près n'importe où." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La collaboration en temps réel. La vraie valeur de Whimsical pour une équipe, c'est que tout le monde édite le même tableau ensemble en direct ; un outil local mono-utilisateur ne peut pas mettre deux personnes dans le même diagramme à la fois." }
+  ]
+}

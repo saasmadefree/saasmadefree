@@ -1,0 +1,21 @@
+{
+  "tagline": "App de budget base zéro avec synchro bancaire et coaching financier personnalisé.",
+  "verdictSummary": "Un budget base zéro — assigner chaque euro à une catégorie, suivre les dépenses par rapport à ça, reporter les soldes non dépensés — c'est un vrai projet de week-end au-dessus d'une petite base de données, et le projet open source Actual Budget prouve déjà que l'approche fonctionne. Ce qui ne vient pas avec un clone personnel, c'est la synchro bancaire automatique : les données financières doivent arriver par import CSV plutôt que par une connexion bancaire en direct.",
+  "coreLoopDIY": "Une grille de budget mensuel où chaque euro de revenu est assigné à une catégorie, les transactions sont saisies ou importées depuis un CSV bancaire, et les soldes non dépensés se reportent au mois suivant.",
+  "whatYouLose": [
+    "la synchronisation automatique des comptes bancaires",
+    "les applications mobiles",
+    "le propre cours de budgétisation et le support de YNAB",
+    "les budgets partagés et familiaux",
+    "des rapports de dépenses aboutis"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour l'habitude autant que pour le logiciel — la synchro bancaire automatique et une méthode intégrée rendent la discipline d'assigner chaque euro plus facile à tenir vraiment qu'un import CSV hebdomadaire ne le serait.",
+  "notes": "Une des fiches « oui » grand public les plus solides ici, aidée par le fait qu'Actual Budget prouve déjà que la version open source fonctionne.",
+  "prompt": "Construis une app de budget base zéro : des comptes et des catégories, groupés (par ex. « Factures », « Argent plaisir »), où chaque euro de revenu doit être assigné à une catégorie avant de compter comme budgété — affiche un total « à assigner » cumulé qui devient visiblement négatif en cas de sur-assignation. Une grille mensuelle par catégorie : assigné, dépensé, et disponible, avec les soldes non dépensés qui se reportent automatiquement au mois suivant. Les transactions sont saisies à la main ou importées depuis l'export CSV d'une banque, avec une mémoire bénéficiaire-vers-catégorie pour que les bénéficiaires récurrents se remplissent automatiquement la fois suivante. Ajoute un flux de réconciliation : saisis ton vrai solde bancaire, et l'app montre l'écart par rapport à tes transactions enregistrées pour que tu puisses trouver ce qui manque. Garde des rapports simples : dépenses par catégorie par mois, patrimoine dans le temps. Sauvegarde le fichier de base de données sur un planning, puisque c'est la seule copie de ton historique financier.\n\nNe construis pas de synchronisation bancaire automatique — ça demande un service payant d'agrégation de données et de gérer tes vrais identifiants bancaires, ce qui est une vraie infrastructure et un vrai enjeu de confiance, pas un projet personnel de week-end. Une habitude d'import CSV, faite chaque semaine, c'est le compromis honnête pour ne pas payer cette connexion.",
+  "faq": [
+    { "q": "Puis-je importer mes données YNAB existantes ?", "a": "YNAB peut exporter ton historique de budget et de transactions, et ça correspond raisonnablement bien à un schéma simple comptes/catégories/transactions comme celui-ci — prévois d'écrire un court script ponctuel pour convertir le format d'export, pas un import en un clic." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "En tant que page web responsive, oui, pour consulter les soldes ou saisir une transaction. Il n'y a pas d'application mobile dédiée avec la propre finition de YNAB — pour la plupart des gens, c'est un vrai manque dans l'usage quotidien." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données, typiquement quelques dollars par mois — le seul coût récurrent, puisqu'il n'y a pas de service de synchro bancaire à payer." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La synchro bancaire automatique. Chaque transaction doit être saisie à la main ou importée depuis un CSV ; dès que cette habitude s'interrompt, le budget devient obsolète, ce qu'une connexion bancaire en direct de YNAB ne ferait jamais." }
+  ]
+}

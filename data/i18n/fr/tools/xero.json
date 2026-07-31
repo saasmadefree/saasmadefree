@@ -1,0 +1,21 @@
+{
+  "tagline": "Comptabilité cloud, facturation, réconciliation bancaire et reporting.",
+  "verdictSummary": "Le vrai produit de Xero, ce n'est pas l'interface de grand livre — c'est les flux bancaires, la réconciliation, les intégrations de paie et de taxe, et une comptabilité qu'un comptable acceptera réellement. Un clone personnel de ça mise sur de vraies finances face à une surface de conformité qui n'arrête jamais de bouger, donc la réponse honnête ici, c'est de ne pas le faire. Ce qui est constructible, et qui vaut la peine de l'être, c'est un outil de comptabilité bien plus petit, de niveau freelance, pour rester organisé entre de vrais outils comptables, pas à la place d'eux.",
+  "coreLoopDIY": "Un simple grand livre de revenus et dépenses avec import CSV bancaire, catégorisation automatique par règles, factures séquentielles, et quelques rapports à remettre à un vrai comptable.",
+  "whatYouLose": [
+    "la réconciliation par flux bancaire",
+    "les workflows de collaboration avec un comptable",
+    "les intégrations de paie et de taxe",
+    "une piste d'audit",
+    "le support de conformité formel"
+  ],
+  "whyPeopleStillPay": "Les entreprises ont besoin d'une comptabilité en laquelle elles peuvent avoir confiance et qu'un comptable acceptera de signer, pas juste d'une interface de grand livre — cette confiance et cette surface de conformité sont le vrai produit, pas l'interface.",
+  "notes": "Encore un « non » structurel, porté par la profondeur réglementaire et d'intégration financière plutôt que par une fonctionnalité manquante.",
+  "prompt": "N'essaie pas de construire un vrai logiciel de comptabilité — si une vraie tenue de livres est nécessaire sans l'abonnement, auto-héberger une option open source existante et garder un vrai comptable est le geste honnête, pas un clone personnel.\n\nCe qui vaut la peine d'être construit à la place, c'est une comptabilité freelance légère pour rester organisé entre de vrais outils : des entrées de revenus et de dépenses avec une date, un montant, une catégorie, un client optionnel, et un reçu joint. Importe un export CSV bancaire et catégorise automatiquement les transactions récurrentes avec une simple table de règles motif-vers-catégorie. Génère des factures numérotées séquentiellement en PDF avec un indicateur payé/impayé, rien de plus. Produis quelques rapports honnêtes — revenus trimestriels, dépenses par catégorie, un résumé de trésorerie d'une page imprimable pour un comptable.\n\nNe construis pas de réconciliation par flux bancaire, de paie, de déclaration fiscale, ni de piste d'audit — et sois explicite qu'aucun de ces chiffres ne devrait être signé sans vérification. C'est un outil d'organisation personnel, pas un système de tenue de livres officiel.",
+  "faq": [
+    { "q": "Puis-je importer mes données Xero existantes ?", "a": "Xero exporte les factures et transactions en CSV, ce qui correspond raisonnablement bien au schéma plus simple de cette version. L'historique de réconciliation, les registres de paie, et les pistes d'audit ne se transfèrent pas, puisque cette version n'a pas d'équivalents." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Les pages admin s'affichent dans un navigateur mobile pour une vérification rapide, mais cette version n'est pas conçue mobile d'abord comme le serait une application comptable dédiée." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données, typiquement quelques dollars par mois — vraiment bon marché puisque c'est un petit grand livre personnel, pas un système comptable complet." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Des chiffres qu'un comptable signera sans vérification. La surface de conformité de Xero — pistes d'audit, réconciliation, règles de taxe sur la paie — existe parce que de vraies finances et de vraies réglementations sont en jeu ; cette version sert à rester organisé, pas à être le registre officiel." }
+  ]
+}

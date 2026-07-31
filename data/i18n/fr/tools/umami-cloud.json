@@ -1,0 +1,20 @@
+{
+  "tagline": "Statistiques de site web open source et respectueuses de la vie privée.",
+  "verdictSummary": "Comme Umami est lui-même open source, c'est un vrai « oui » : déploie le vrai logiciel plutôt que d'écrire du code d'analyse. Ce que payait l'abonnement cloud, c'était l'hébergement, les mises à jour, et ne jamais avoir à regarder un serveur — le logiciel que tu ferais tourner est identique dans les deux cas.",
+  "coreLoopDIY": "Auto-héberge la plateforme d'analyse open source Umami derrière HTTPS, avec le script de suivi ajouté à tes propres sites.",
+  "whatYouLose": [
+    "l'hébergement géré et la garantie de disponibilité",
+    "les mises à jour automatiques",
+    "les sauvegardes prises en charge pour toi",
+    "l'astreinte de quelqu'un d'autre si le collecteur tombe"
+  ],
+  "whyPeopleStillPay": "La mesure d'audience ne vaut pas la peine de se réveiller à 2h du matin pour la réparer — les gens paient pour que la disponibilité et les mises à jour soient la responsabilité de quelqu'un d'autre, pas parce qu'auto-héberger le logiciel est difficile.",
+  "notes": "Un « oui » net et un bon exemple de l'économie de l'open source hébergé : l'abonnement, c'est vraiment de l'infrastructure, pas le logiciel.",
+  "prompt": "N'écris pas de logiciel d'analyse — déploie le vrai Umami, open source. Fais-le tourner via Docker Compose sur un petit VPS : l'image officielle Umami plus Postgres, toutes deux avec des volumes persistants. Place un reverse proxy devant pour du HTTPS automatique sur un sous-domaine de ton choix, avec Umami lui-même lié à localhost. Ajoute la balise de script de suivi à tes sites et confirme que les pages vues arrivent ; crée un événement personnalisé pour prouver que le pipeline d'événements fonctionne de bout en bout. Mets en place une tâche de sauvegarde nocturne de la base de données avec une commande de restauration documentée à côté, et un petit script de mise à jour qui récupère la nouvelle image, redémarre, et affiche l'URL des notes de version pour vérifier les changements cassants avant de mettre à jour.\n\nNe modifie pas le propre code d'Umami ni ne construis un tableau de bord personnalisé par-dessus — déployer le logiciel existant, c'est tout le travail ici. Change le mot de passe admin immédiatement après la première connexion ; sois clair dans le README que la disponibilité et les mises à jour sont désormais ta responsabilité.",
+  "faq": [
+    { "q": "Puis-je migrer mes données Umami Cloud existantes ?", "a": "Oui — Umami prend en charge l'export et l'import de ses propres données, et puisque ceci fait tourner le logiciel open source identique, tes tableaux de bord et définitions d'événements se reportent sans changement." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Le tableau de bord lui-même, oui, exactement comme avant — c'est la même app web dans les deux cas. Il n'y a rien de spécifique au mobile à perdre ici." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Un petit VPS plus un domaine, typiquement moins de dix dollars par mois, plus un peu plus une fois que le volume de trafic fait grossir la base de données — souvent proche de ce que coûte déjà le forfait Cloud, donc l'argument ici, c'est le contrôle, pas forcément l'économie." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "L'astreinte de quelqu'un d'autre. Si le collecteur tombe ou qu'une mise à jour casse quelque chose, il n'y a pas de ticket de support — c'est toi qui le remarques et le répares." }
+  ]
+}

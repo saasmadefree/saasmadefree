@@ -1,0 +1,21 @@
+{
+  "tagline": "Créateur de site web avec modèles, outils IA, e-commerce, réservations et applications.",
+  "verdictSummary": "Le seul site web professionnel spécifique dont tu as besoin — un site statique avec un texte clair, un formulaire de contact fonctionnel, des bases SEO solides intégrées au moment du build — c'est un vrai projet de week-end. Ce qui ne vient pas avec, c'est Wix en tant que plateforme : un éditeur visuel en glisser-déposer, une place de marché d'applications, et des outils d'e-commerce et de réservation intégrés.",
+  "coreLoopDIY": "Un site statique avec du texte dans de simples fichiers de contenu, un formulaire de contact fonctionnel, et des fondamentaux SEO — un sitemap, des balises meta, des données structurées — générés automatiquement au moment du build.",
+  "whatYouLose": [
+    "un éditeur visuel en glisser-déposer",
+    "la place de marché d'applications",
+    "les outils d'e-commerce et de réservation intégrés",
+    "l'hébergement et les domaines gérés",
+    "les applications mobiles"
+  ],
+  "whyPeopleStillPay": "Un projet de site web a tendance à se transformer en dix demandes de maintenance continues — les gens paient pour que ça continue d'être géré sans embaucher personne.",
+  "notes": "Ça vaut la peine de comparer avec les fiches Webflow et Framer de ce catalogue — la distinction site-DIY-versus-créateur-de-site raconte la même histoire à chaque fois.",
+  "prompt": "Construis le seul site web professionnel réellement nécessaire — pas un créateur de site. Un site statique (accueil, services, à propos, contact) avec du texte dans de simples fichiers de contenu, pour que les modifications de texte ne touchent jamais le code de mise en page. Une seule feuille de style mobile d'abord utilisant des variables partagées pour les couleurs de marque et la typographie, sans framework ni abstraction de créateur de page. Un formulaire de contact qui poste vers un petit endpoint serveur, t'envoie le message par email, et le journalise en secours, avec un champ honeypot contre le spam. Génère les fondamentaux SEO automatiquement au moment du build : un sitemap, robots.txt, des balises meta par page, et un bloc de données structurées avec le nom, les horaires et l'adresse de l'entreprise. Si la réservation de rendez-vous compte, renvoie vers un outil de planification dédié plutôt que de construire un moteur de réservation ici.\n\nNe construis pas d'édition en glisser-déposer, de place de marché d'applications, ni d'e-commerce — si l'entreprise a réellement besoin d'une vraie boutique, c'est le travail d'un logiciel de commerce dédié, pas une extension de ce site.",
+  "faq": [
+    { "q": "Puis-je exporter mon site Wix existant ?", "a": "Pas vraiment — Wix n'offre pas d'export de contenu structuré. Copier le texte et les images à la main dans les nouveaux fichiers de contenu est réaliste pour un site typique de petite entreprise." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Le site publié est pleinement responsive. Éditer le contenu veut dire éditer des fichiers, ce qui est une tâche de desktop, pas de téléphone — c'est le compromis face au propre éditeur de Wix." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et domaine, typiquement quelques dollars par mois, plus l'envoi d'email pour le formulaire de contact — pas de frais de place de marché par application." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La place de marché d'applications. Wix laisse un propriétaire non technique ajouter des fonctionnalités de réservation, de chat ou de fidélité en quelques clics ; ici, chacune est un logiciel séparé à intégrer et à maintenir." }
+  ]
+}
