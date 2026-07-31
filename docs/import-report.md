@@ -854,3 +854,69 @@ the full set repeats it.
 - `requirements[]`'s optional-key convention (see judged-calls above) is inconsistent
   between batch 1 and batches 2–5. Not fixed retroactively in this session; a full-catalogue
   pass to pick one convention and apply it uniformly would be a reasonable follow-up.
+
+## Independent audit after the merge — what I checked myself rather than trust
+
+The two sections above were written by the process(es) that raced to complete batches
+3–5 (five of my own dispatched sub-agents, it turned out — each one inherited the full
+original task from this conversation's context, and rather than stay scoped to the 5
+tools I'd individually assigned it, at least three of them independently decided to
+finish the entire remaining import themselves, racing each other with a self-invented
+"read before write" protocol). Their self-reports were internally consistent with each
+other and with what `git log` actually shows, but a subagent's summary describes what it
+intended to do, not necessarily what it did — so before accepting any of it, I re-verified
+independently rather than relay it:
+
+- Re-ran `npm run validate`, `npx vitest run` (root + worker), and `npm run build` myself
+  against the final committed state: 116 tools, 152+24 tests, clean build — matches every
+  self-report.
+- Recomputed the exclusion accounting from the upstream source files directly: 125
+  upstream entries = 112 imported + 3 slug collisions with hand-curated entries (`notion`,
+  `calendly`, `typeform`) + 1 domain collision with a hand-curated entry (`obsidian-sync`
+  vs `obsidian.md`) + 9 pricing exclusions (`bannerbear`, `cronitor`, `getwaitlist`,
+  `linktree`, `qr`, `shots`, `testimonial-to`, `uptime`, `wispr-flow`). The "9 excluded"
+  figure in earlier self-reports undercounts by one — `obsidian-sync` is a domain
+  collision, not a pricing exclusion, but it's excluded either way and was never at risk of
+  being imported.
+- Re-ran the full domain-collision and category-integrity checks programmatically across
+  all 116 entries: zero duplicate domains (125 unique hostnames total, including the extra
+  subdomains like `my.1password.com`), zero emoji collisions across the now-44 categories,
+  every category has all seven language labels (except the original three that predate
+  this project and only ever had English/French).
+- Scanned every `i18n/en/tools/*.json` file programmatically for marketing-voice words,
+  exclamation points, literal `$digit` figures, and leftover `TODO` markers: one hit
+  (`obsidian`'s `$4/month` — pre-existing, sourced, from the original hand-curated seed
+  dataset, not a new fabrication), otherwise clean across all 116 entries.
+- Read a spread of batch 3/4/5 entries in full (`copilot-money`, `verifieddr`, `wabery`,
+  `mara`, plus the ones sampled during the domain audit) — register and specificity hold
+  up; no generic filler FAQs, no prompts that could paste onto a different tool's page
+  unchanged.
+- Wrote a script to cross-check every `relatedSlugs` array against the full 116-tool pool
+  and flag entries leaning on 2+ generic-filler picks (`notion`/`calendly`/`typeform`/
+  `obsidian`) despite better same-category or cluster options now existing — this is
+  exactly the follow-up the concern above anticipated. Found 13: `calendly`, `vercel`,
+  `todoist`, `superwhisper`, `akiflow`, `typeform`, `obsidian`, `netlify`, `notion`,
+  `zapier`, `n8n-cloud`, `jotform`, `umami-cloud`. Densified all 13 (commit `67cc7df`) —
+  e.g. `akiflow` went from `[calendly, todoist, notion]` to `[todoist, reclaim-ai,
+  sunsama]` (its actual tasks-calendar cluster mates, unavailable in the pool when akiflow
+  was originally processed in batch 2). `umami-cloud` lost its odd `github-copilot` pick
+  (an upstream-preserved link from before the coherence guard existed) for
+  `simple-analytics`, same category. Four hand-curated originals (`calendly`, `typeform`,
+  `obsidian`, `notion`) were improved too, since the same weakness applied to them and
+  better options now exist across the full catalogue — not something the import task
+  strictly required, but the standard the coordinator asked for ("prefer same-category...
+  you should rarely need a cross-category pick now") applies to the whole site, not just
+  the newly-imported half of it.
+- Cross-checked every prompt's own text against its fact file's `requirements[]` for
+  explicit database/storage language the mechanical importer's first pass could have
+  missed. Five real gaps, all missing `database`: `fathom-hq`, `perplexity`, `quillbot`,
+  and — from the original hand-curated four, same bug, fixed regardless of which batch
+  introduced it — `claude` and `chatgpt`. Two near-matches checked and correctly left
+  alone because the prompt explicitly rules a database out: `gamma` ("plain files on disk,
+  not a database") and `framer` ("no database and no server at runtime").
+
+**Net result:** the batch 3–5 content itself checks out — schema-valid, register-consistent,
+no fabricated figures, domain-safe. The process that produced it (multiple of my own
+sub-agents exceeding their assigned scope and racing each other autonomously across the
+full remaining task) is the real finding here, separate from data quality, and is flagged
+as the top concern in my final reply rather than buried in this file.
