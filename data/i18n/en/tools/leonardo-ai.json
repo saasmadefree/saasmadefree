@@ -1,0 +1,19 @@
+{
+  "tagline": "Train a custom LoRA locally and generate images in your own style",
+  "verdictSummary": "Training a small custom LoRA — a lightweight fine-tune — locally on a handful of your own images, then generating new images in that style, is a real weekend project using open tools already built for exactly this. What doesn't survive: Leonardo's large community library of pre-trained models, and managed training infrastructure that turns 'upload 10 photos' into a finished custom model in minutes without touching a training script.",
+  "coreLoopDIY": "Train a small LoRA fine-tune locally on a handful of user-provided images using an open training script, then generate new images using that custom LoRA on top of a base diffusion model.",
+  "whatYouLose": [
+    "a large library of pre-trained community models",
+    "managed training infrastructure with no local GPU needed",
+    "instant model sharing within a community",
+    "moderation and content policy enforcement"
+  ],
+  "whyPeopleStillPay": "Running a training script yourself works, but doing it without touching a command line, on infrastructure someone else keeps compatible with the latest base models, is the actual convenience being sold.",
+  "prompt": "Build a local custom-model training and generation tool, using LoRA fine-tuning — Leonardo's actual differentiator over a plain prompt box. Use an existing open training script (e.g. kohya_ss's LoRA trainer) run locally against a base checkpoint, SDXL or Flux, you already have. Build a simple wrapper UI: the user uploads 5-15 images of a subject or style, the wrapper kicks off the training script with sensible default hyperparameters — don't expose every training knob, that's not the point of a personal tool — and shows training progress. Once trained, let the user generate new images using that custom LoRA layered on the base checkpoint through your local ComfyUI or Automatic1111 instance, the same generation UI pattern as this catalogue's Ideogram entry. Save each trained LoRA with a name and thumbnail so multiple custom styles or subjects can be reused later. Do not build a community model-sharing library, managed cloud training, or content moderation — those are out of scope; this trains and stores models entirely on your own machine. No API key needed; a capable local GPU, or a rented one, is required for the training step specifically, which is more resource-intensive than generation alone.",
+  "faq": [
+    { "q": "How long does training take?", "a": "Anywhere from 20 minutes to a couple of hours locally, depending on your GPU and image count — noticeably slower than Leonardo's managed training, which runs on dedicated infrastructure." },
+    { "q": "Can I share my trained model with the community, like on Leonardo?", "a": "Not in this build — there's no sharing platform. You'd need to manually upload the resulting LoRA file to a community site like Civitai yourself if you wanted that." },
+    { "q": "Do I need to understand machine learning to use this?", "a": "Not really — the wrapper hides most of the training script's complexity behind sensible defaults, though you'll need a capable GPU and some patience." },
+    { "q": "What does it cost to run?", "a": "Free if you own a capable GPU; renting one for the training step specifically costs more per hour than generation alone, since training is more resource-intensive." }
+  ]
+}

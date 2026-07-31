@@ -1,0 +1,19 @@
+{
+  "tagline": "A spreadsheet-database with formulas written in real Python",
+  "verdictSummary": "Grist's real distinguishing feature — formulas written in actual Python, not a proprietary spreadsheet language — is genuinely a fun, buildable weekend project if you're comfortable running a sandboxed Python execution step per formula cell. Grist itself is also open source, so self-hosting the real project remains the more complete option. What a from-scratch build gives up either way: real-time collaboration and the safety hardening a maintained sandbox needs over years.",
+  "coreLoopDIY": "Model a spreadsheet-like table where any column can be a formula defined in real Python, evaluated safely in a sandboxed process against the row's other column values.",
+  "whatYouLose": [
+    "real-time multiplayer editing",
+    "a maintained, hardened formula sandbox",
+    "the growing integration and API surface",
+    "managed hosting and backups"
+  ],
+  "whyPeopleStillPay": "A Python formula engine sounds simple; safely sandboxing arbitrary user-written Python so it can't escape and touch the host system, for years, without a security incident, is the unglamorous hard part.",
+  "prompt": "Build a spreadsheet-database tool where formula columns are written in real Python, not a proprietary formula language — Grist's actual distinguishing idea. Use Next.js/TypeScript for the UI and a sandboxed Python execution step (run formula code in a restricted subprocess, or a WASM-based Python runtime like Pyodide for stronger isolation) for evaluating formula cells against the row's other column values. Support text, number, boolean, date, and formula column types in a table; a formula column's Python expression can reference other columns by name and recalculates when a dependency changes. Render the table as an editable grid. Add CSV import/export and basic dependency-cycle detection so a formula referencing itself fails clearly instead of hanging. Be explicit in the README about the sandbox's actual limits — resource limits on CPU, memory, and time, no network access from formula code, and that this hasn't had a security audit, since running arbitrary user-written Python safely is a genuinely hard, ongoing problem. Do not build real-time collaboration or a public sharing/API layer — those are out of scope. If you'd rather not build and maintain the sandbox yourself: Grist's own core is open source and self-hostable via Docker, which is the safer choice for anything beyond a personal, trusted-user project. Requires hosting; no external API key needed.",
+  "faq": [
+    { "q": "Is it safe to run arbitrary Python formulas?", "a": "Only within real limits this build sets — resource caps, no network access — and even then, sandboxing arbitrary code safely is genuinely hard. For anything beyond your own personal, trusted use, self-hosting the real Grist is the safer choice." },
+    { "q": "Why not just self-host Grist itself?", "a": "That's the better answer for most people, since it's open source and already has a maintained, hardened sandbox. This build is for understanding the idea, or wanting something smaller and fully yours." },
+    { "q": "Can formulas reference other tables, not just other columns in the same row?", "a": "Not in this build — cross-table formula references are meaningfully more complex and are out of scope here." },
+    { "q": "What does it cost to run?", "a": "Hosting only — typically a few dollars a month, since there's no external API this build depends on." }
+  ]
+}

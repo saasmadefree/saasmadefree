@@ -1,0 +1,41 @@
+{
+  "slug": "scribe",
+  "name": "Scribe",
+  "domains": [
+    "scribehow.com"
+  ],
+  "category": "screen-recording",
+  "subcategory": "screen recording, walkthroughs and product demos",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Pro Personal",
+    "basis": "flat-monthly",
+    "source": "https://scribehow.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "capture polish, hosting, and collaboration",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Cap",
+      "url": "https://github.com/CapSoftware/Cap"
+    }
+  ],
+  "relatedSlugs": [
+    "loom",
+    "tella",
+    "notion"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

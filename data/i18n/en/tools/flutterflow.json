@@ -1,0 +1,19 @@
+{
+  "tagline": "A generator for real, exportable Flutter code — or learn Flutter directly",
+  "verdictSummary": "FlutterFlow's real trick — a visual builder that generates actual, exportable Flutter/Dart code rather than locking you into a proprietary runtime — means the most honest DIY path for many people is simply learning enough Flutter to build the screens directly, since the code you'd export is the same code you'd hand-write anyway. A visual builder generating boilerplate for one common app shape, a list-detail CRUD app, is a real, if involved, week-long build. What doesn't survive: FlutterFlow's breadth of pre-built UI components and Firebase/API integrations wired through a visual canvas.",
+  "coreLoopDIY": "Generate a working Flutter app's boilerplate — screens, navigation, a data model — from a simple visual list-detail configuration, producing real Dart source code rather than a proprietary runtime format.",
+  "whatYouLose": [
+    "breadth of pre-built UI components and integrations wired visually",
+    "a large template and widget library",
+    "one-click builds and store deployment",
+    "years of Flutter-version compatibility maintenance"
+  ],
+  "whyPeopleStillPay": "Generating boilerplate for one app shape is a real but bounded project; covering the breadth of UI patterns and backend integrations most apps eventually need, visually, without writing code, is the much larger ongoing product.",
+  "prompt": "Be honest about the alternative before building this: FlutterFlow generates real, exportable Flutter/Dart code, so for many people, the actually-fastest honest path is learning enough Flutter to write the screens directly — the code isn't meaningfully different from what a generator produces for anything beyond a very standard shape. If you want the generator itself: build a CLI or small web tool that takes a simple JSON or YAML config describing a list-detail app, a data model with fields, and a list screen plus a detail screen for it, and generates real Flutter/Dart source files — a working project you can open in your own Flutter environment, edit freely, and build normally. Use Dart templates (string-templated .dart files) rather than a visual drag-and-drop canvas — that's real UI-builder engineering out of proportion for a personal tool. Generate: a data model class, a list screen with a ListView, a detail screen with the model's fields displayed, and basic local state management, with no backend wired in by default, leaving a clearly marked place to add your own API or Firebase calls. Do not build a visual canvas, a component library, or automated app-store deployment — those are out of scope; the output is a normal Flutter project you build and deploy the standard way. No API key needed; you'll need the Flutter SDK installed to build the generated project.",
+  "faq": [
+    { "q": "Wouldn't it be faster to just learn Flutter directly?", "a": "Honestly, often yes, for anything beyond a very standard list-detail shape — that's worth saying upfront rather than pretending a generator saves more time than it does once you go beyond the basic pattern." },
+    { "q": "Does the generated app connect to a backend automatically?", "a": "No — it generates the UI and data model with a clearly marked place to add your own API or Firebase integration. Wiring that up is left to you." },
+    { "q": "Can I keep editing the generated code afterward?", "a": "Yes — that's the whole point of generating real Dart source rather than a proprietary format. Once generated, it's a normal Flutter project you own completely." },
+    { "q": "What does it cost to run?", "a": "Nothing beyond the free Flutter SDK and your own time — there's no subscription, since the generator produces a project you build and deploy yourself, the normal way." }
+  ]
+}

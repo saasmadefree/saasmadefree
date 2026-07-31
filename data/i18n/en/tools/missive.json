@@ -1,0 +1,19 @@
+{
+  "tagline": "A shared team inbox with internal comments and assignment",
+  "verdictSummary": "A shared team inbox — multiple people seeing the same set of incoming emails, leaving internal comments, assigning who handles what — is a real weekend-to-week build on top of a connected mailbox. What doesn't survive: Missive's polish across many channels beyond email (SMS, social DMs), and years of team-workflow refinement around assignment and internal discussion.",
+  "coreLoopDIY": "Connect one shared mailbox via IMAP/SMTP, let multiple team members view the same inbox, leave internal comments on a message thread, and assign a message to a specific teammate.",
+  "whatYouLose": [
+    "a unified inbox across channels beyond email, like SMS or social",
+    "years of team-workflow refinement",
+    "shared contact and conversation history across the whole team",
+    "rules and automation for routing incoming messages"
+  ],
+  "whyPeopleStillPay": "A shared inbox view is buildable; making assignment, internal discussion, and cross-channel unification feel effortless for a whole team, every day, is the ongoing product work.",
+  "prompt": "Build a shared team email inbox: connect one shared mailbox, and let multiple logged-in team members view the same incoming messages, leave internal comments visible only to the team and never sent to the customer, and assign a message to a specific teammate as the owner. Use Next.js/TypeScript with Postgres, and IMAP/SMTP for the connected mailbox — an app-specific password is enough, no OAuth app needed for a single shared mailbox. Sync incoming mail into a shared thread view; each thread shows the message history plus an internal comment thread beneath it, visible only to logged-in team members. Implement assignment (one owner per thread at a time, reassignable) and a simple status per thread (open/done) so the team can see what's been handled. Replying to a customer sends a real email through the connected SMTP account, clearly visually distinct from an internal comment so nobody accidentally sends a private note externally. Add a simple activity log per thread — who commented, assigned, or replied, and when. Do not build support for channels beyond email, automated routing rules, or cross-team contact history — those are out of scope; this is a shared inbox for one mailbox and one small team. Requires hosting, a domain, and the mailbox credentials for the shared account you're connecting.",
+  "faq": [
+    { "q": "Can it unify email with SMS or social DMs like Missive?", "a": "No — this build is email only. Unifying multiple channels into one inbox is real, ongoing integration work each channel adds separately." },
+    { "q": "How does the team know who's handling which email?", "a": "Each thread has one assignable owner and an open/done status, visible to everyone — the same core mechanic Missive uses, just without its deeper workflow refinements." },
+    { "q": "Could I accidentally send an internal comment to the customer?", "a": "The prompt calls for making internal comments visually distinct from real replies specifically to reduce that risk, but it's still worth double-checking before sending anything — there's no hard technical barrier beyond the UI difference." },
+    { "q": "What does it cost to run?", "a": "Hosting, a domain, and the mailbox you're already paying for — no per-seat fee, unlike Missive's per-user pricing." }
+  ]
+}

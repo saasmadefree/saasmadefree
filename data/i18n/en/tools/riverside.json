@@ -1,0 +1,19 @@
+{
+  "tagline": "Record local high-quality remote audio and video, then sync it after the call",
+  "verdictSummary": "Riverside's actual trick — record each participant's audio and video locally in their own browser, then upload the uncompressed files after the call — is a real, buildable pattern using WebRTC for the live call and the MediaRecorder API for local capture. What doesn't survive: Riverside's cloud-based multi-track editing suite and its reliability across flaky connections and different browsers, tuned over years.",
+  "coreLoopDIY": "Run a browser-based video call, record each participant's audio and video locally on their own device using the MediaRecorder API, and upload the uncompressed local recordings after the call for the host to download and edit elsewhere.",
+  "whatYouLose": [
+    "a cloud-based multi-track editor",
+    "automatic transcription and clip generation",
+    "reliability across many browsers and flaky connections",
+    "one-click publish to podcast platforms"
+  ],
+  "whyPeopleStillPay": "The local-recording trick is a known pattern; making it work reliably across everyone's random browser, OS, and connection quality, without losing a recording, is the unglamorous engineering underneath.",
+  "prompt": "Build a video-call tool that separately records each participant locally for higher quality than the compressed call itself — Riverside's actual core trick. Use WebRTC (via a service like LiveKit, or a simple peer-to-peer setup) for the live call itself, and the browser's MediaRecorder API on each participant's device to simultaneously record their own local audio and video track at full quality, independent of the call's network conditions. After the call ends, have each participant's browser upload their local recording to your server as a background upload with resumable chunks, so a dropped connection doesn't lose the recording. Give the host a simple dashboard listing all participants' recordings per session, downloadable as separate files for editing elsewhere. Add a basic 'recording in progress' indicator visible to all participants, and a local-storage fallback if the upload fails entirely, so nothing is lost even if the network does. Do not build cloud multi-track editing, automatic transcription, or one-click podcast publishing — those are out of scope; this captures high-quality separate recordings, nothing more. Requires hosting for the call server and uploads, and a domain; no other external service is strictly required, though a WebRTC service's free tier simplifies the call infrastructure.",
+  "faq": [
+    { "q": "Why record locally instead of just recording the call itself?", "a": "Because a video call's audio and video is compressed for real-time transmission — recording locally on each device captures the original, uncompressed quality, which is exactly Riverside's actual differentiator." },
+    { "q": "What happens if someone's upload fails after the call?", "a": "Their recording stays in local browser storage as a fallback, so it isn't lost — but they'd need to retry the upload manually, unlike Riverside's more polished automatic retry handling." },
+    { "q": "Does it edit the recordings together automatically?", "a": "No — you get separate files per participant to edit yourself in whatever tool you prefer. Riverside's own cloud editor is real additional product work this skips." },
+    { "q": "What does it cost to run?", "a": "Hosting plus storage for uploaded recordings, and optionally a WebRTC service's free or low tier for call infrastructure — a few dollars a month for occasional personal use." }
+  ]
+}

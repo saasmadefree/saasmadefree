@@ -1,0 +1,19 @@
+{
+  "tagline": "Generate voiceover narration locally with an open TTS model",
+  "verdictSummary": "Text-to-speech narration with a natural-sounding voice is a genuine one-sitting build using an existing open TTS model — quality has improved enough that it's usable for a lot of real voiceover work. What doesn't survive: Murf's large curated voice library with fine-grained emotion and pace controls, and its collaborative team-editing workflow.",
+  "coreLoopDIY": "Generate narration audio from typed or pasted script text using a local TTS model, with basic pace and pause controls, and export a clean audio file.",
+  "whatYouLose": [
+    "a large curated voice library",
+    "fine-grained emotion and emphasis controls",
+    "team collaboration on scripts and voiceovers",
+    "stock music and sound-effect library"
+  ],
+  "whyPeopleStillPay": "Open TTS models sound good; a large library of distinct, licensed voices with fine emotional control and a workflow built for teams producing content daily is the harder, ongoing product work.",
+  "prompt": "Build a local text-to-speech voiceover tool. Use a local open TTS model (Coqui TTS, Piper, or a similar maintained project) run entirely on the user's machine — no cloud API. Provide a script editor where the user types or pastes text, with simple inline markup for pauses (e.g. a bracketed pause marker) and per-sentence pace adjustment. Support a handful of installed voices, whatever the chosen TTS model ships with or can be pointed at, with a preview button per sentence before committing to a full render. Render the full script to a single WAV or MP3 file, and also export per-sentence clips for cases where only one line needs re-recording after a script edit. Add a basic loudness-normalization pass so exported narration has consistent volume. Do not build a large licensed voice library, fine-grained emotion tagging beyond pace and pauses, or team collaboration features — those are out of scope; this is a single-user local narration tool. No API key or account needed.",
+  "faq": [
+    { "q": "Will the voices sound as natural as Murf's?", "a": "Reasonably close for many open TTS voices today, though Murf's curated library still generally edges out open models on naturalness and range of distinct voices." },
+    { "q": "Can I control emotion, like 'excited' or 'serious'?", "a": "Only indirectly, through pace and pause markup — there's no dedicated emotion control like Murf's, which is real, deliberate product work this build doesn't attempt." },
+    { "q": "Can multiple people work on the same script?", "a": "No — this is a single-user local tool with no shared project or collaboration feature." },
+    { "q": "What does it cost to run?", "a": "Nothing beyond your own computer — local TTS models run on CPU (slower) or GPU (faster) with no per-word or per-minute fee." }
+  ]
+}

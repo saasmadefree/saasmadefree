@@ -1,0 +1,42 @@
+{
+  "slug": "fillout",
+  "name": "Fillout",
+  "domains": [
+    "fillout.com"
+  ],
+  "category": "forms",
+  "subcategory": "forms, surveys and lead capture",
+  "pricing": {
+    "amount": 19,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://fillout.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "integrations, deliverability, and workflow depth",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "domain",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Formbricks",
+      "url": "https://github.com/formbricks/formbricks"
+    }
+  ],
+  "relatedSlugs": [
+    "surveymonkey",
+    "typeform",
+    "tally"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

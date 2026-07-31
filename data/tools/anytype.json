@@ -1,0 +1,41 @@
+{
+  "slug": "anytype",
+  "name": "Anytype",
+  "domains": [
+    "anytype.io"
+  ],
+  "category": "notes-knowledge",
+  "subcategory": "notes, wikis and personal knowledge bases",
+  "pricing": {
+    "amount": 8.25,
+    "currency": "USD",
+    "plan": "Builder",
+    "basis": "annual-effective-monthly",
+    "source": "https://anytype.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "sync, collaboration, and capture polish",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "AppFlowy",
+      "url": "https://github.com/AppFlowy-IO/AppFlowy"
+    }
+  ],
+  "relatedSlugs": [
+    "craft",
+    "notion",
+    "obsidian"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

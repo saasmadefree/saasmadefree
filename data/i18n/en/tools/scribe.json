@@ -1,0 +1,19 @@
+{
+  "tagline": "Automatically turn a recorded browser session into a step-by-step guide",
+  "verdictSummary": "Automatically capturing each click as a numbered step with a screenshot and an auto-generated instruction — Scribe's actual trick — is a real weekend build using a browser extension that listens for click events and captures a screenshot at each one. What doesn't survive: Scribe's polish in auto-generated instruction wording, and its desktop-app capture beyond just the browser.",
+  "coreLoopDIY": "Record a browser session by capturing a screenshot and a simple description at each click, and assemble the sequence into a numbered step-by-step guide automatically, editable afterward.",
+  "whatYouLose": [
+    "desktop-app capture beyond the browser",
+    "polished auto-generated instruction wording",
+    "team-shared guide libraries with usage analytics",
+    "one-click export to many document formats"
+  ],
+  "whyPeopleStillPay": "Capturing a screenshot per click is the easy part; writing a clear, correctly-worded instruction for what just happened, automatically and reliably across any website's UI, is the harder natural-language piece.",
+  "prompt": "Build a browser extension that turns a recorded workflow into a step-by-step guide automatically. Use a Chrome extension (Manifest V3) that, once recording is toggled on, listens for click events on the page and, for each click, captures a screenshot of the visible tab and a basic description of the clicked element — its visible text or aria-label, wrapped in a generic template like 'Click [element text]'. Assemble the captured steps into an ordered list with screenshots, editable afterward — the user can rewrite any auto-generated instruction, reorder, or delete steps. Draw a simple highlight box on each screenshot around the clicked element, with a setting for cropped or full-page capture. Export the finished guide as a self-contained HTML file or PDF with embedded images. Store guides locally in the browser's storage, with a simple library view. Do not build desktop-app capture beyond the browser, a hosted team library with sharing links, or auto-generated wording more sophisticated than the basic template described — polishing that language is genuinely hard natural-language work, and this build is upfront that it produces a rough draft, not a finished guide. No API key or account needed.",
+  "faq": [
+    { "q": "Do the instructions read as naturally as Scribe's?", "a": "No — this build generates a basic templated description per click, meant as an editable draft, not Scribe's more polished auto-generated wording, which is real natural-language work." },
+    { "q": "Can it capture outside the browser, like in a desktop app?", "a": "No — this is a browser extension only. Scribe's desktop-app capture is a separate, larger engineering surface this build doesn't cover." },
+    { "q": "Can I share a guide with my team through a link?", "a": "Not in this build — guides export as a self-contained file you'd share manually, rather than a hosted, always-up-to-date shared link." },
+    { "q": "What does it cost to run?", "a": "Nothing — it's a browser extension with no backend, so there's no hosting cost or subscription involved." }
+  ]
+}

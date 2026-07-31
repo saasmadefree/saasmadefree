@@ -1,0 +1,19 @@
+{
+  "tagline": "Self-host the real open-source Mattermost, not a reimplementation",
+  "verdictSummary": "Mattermost is already open source and built specifically to be self-hosted — for a team evaluating this entry, actually deploying the real project via its own Docker Compose setup is almost always the better move than a smaller reimplementation, and it's a genuine weekend project to get running reliably. What the subscription, not the software, buys is Mattermost's own managed hosting, support, and enterprise features layered on top of the same open core.",
+  "coreLoopDIY": "Deploy Mattermost's own open-source server via Docker Compose with a Postgres database, configure your workspace, and self-host the exact same product the paid tiers are built on top of.",
+  "whatYouLose": [
+    "managed hosting and guaranteed uptime SLAs",
+    "vendor support and incident response",
+    "enterprise SSO, compliance, and audit features",
+    "guaranteed timely security patches without tracking them yourself"
+  ],
+  "whyPeopleStillPay": "The software is free either way; what the subscription actually buys is someone else running it reliably, patching it promptly, and picking up the phone when it breaks — self-hosting means that's now your job.",
+  "prompt": "This is a case where the honest answer is: self-host the real open-source project rather than rebuild it. Deploy Mattermost's own Team Edition via its official Docker Compose setup, backed by PostgreSQL, on a VPS you control. Configure a domain with a reverse proxy (Nginx or Caddy) for automatic HTTPS. Set up the workspace: create your team, invite members via email or an invite link, and configure channels. Since this is the real, complete open-source product, not a reimplementation, the actual work is operational, not building features: schedule regular Postgres backups, subscribe to Mattermost's security release notes and apply updates promptly (this is the part a paid vendor would otherwise do for you), and configure an SMTP provider for email notifications. Document your backup and restore process and actually test a restore once, before you need it for real. Do not attempt to build a smaller custom chat app instead — Mattermost's open-source core already has years of polish a from-scratch weekend build won't match, and the honest move here is running the real thing. Requires hosting (a modest VPS is enough for a small team), a domain, and an SMTP provider for notification emails.",
+  "faq": [
+    { "q": "Why does this prompt say to install Mattermost itself instead of building something?", "a": "Because Mattermost is already open source and designed to be self-hosted — for this specific entry, rebuilding a worse version of the same thing would be dishonest when the real, complete product is free to run yourself." },
+    { "q": "What's actually hard about self-hosting it, then?", "a": "Not the initial setup — that's genuinely a weekend project. The ongoing part is patching promptly when security releases land, and having tested backups before you need them, which is exactly what the paid managed tiers take off your plate." },
+    { "q": "Do I get every paid feature by self-hosting the free edition?", "a": "No — enterprise SSO, some compliance features, and guaranteed support are gated to paid tiers even when self-hosting. Team Edition covers the core chat experience most small teams actually need." },
+    { "q": "What does it cost to run?", "a": "A VPS, a domain, and an SMTP provider — typically well under what Mattermost's paid per-user pricing would cost for a small team, since you're running the same open core yourself." }
+  ]
+}

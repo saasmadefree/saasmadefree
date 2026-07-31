@@ -1,0 +1,43 @@
+{
+  "slug": "mattermost-professional",
+  "name": "Mattermost Professional",
+  "domains": [
+    "mattermost.com"
+  ],
+  "category": "community",
+  "subcategory": "online communities and team communication",
+  "pricing": {
+    "amount": 10,
+    "currency": "USD",
+    "plan": "Professional",
+    "basis": "per-seat-monthly",
+    "source": "https://mattermost.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "network, moderation, and communication infrastructure",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Discourse",
+      "url": "https://github.com/discourse/discourse"
+    }
+  ],
+  "relatedSlugs": [
+    "slack-pro",
+    "circle",
+    "mighty-networks"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

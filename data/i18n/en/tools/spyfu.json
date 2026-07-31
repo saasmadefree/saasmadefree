@@ -1,0 +1,19 @@
+{
+  "tagline": "A keyword-gap tracker comparing you against one competitor",
+  "verdictSummary": "SpyFu's actual product is years of historical advertising and ranking data on other people's domains — that's not something a personal script can create retroactively, only from today forward, and even then not at SpyFu's depth. What's buildable is a keyword-gap tool: compare your rankings against one competitor's for a shared keyword list and flag where they rank and you don't.",
+  "coreLoopDIY": "Query a SERP API for a shared keyword list against both your domain and one competitor's, and flag keywords where the competitor ranks and you don't.",
+  "whatYouLose": [
+    "years of historical ad and ranking data",
+    "competitor PPC keyword and ad-copy history",
+    "SpyFu's own ranking database depth",
+    "multi-competitor comparison at scale"
+  ],
+  "whyPeopleStillPay": "Anyone can check today's rankings; only a company that's been recording snapshots for over a decade can show you what a competitor's ad strategy looked like two years ago.",
+  "prompt": "Build a keyword-gap tool comparing your domain against one competitor's, for a keyword list you provide — not a historical-ads database, which isn't realistically reproducible. Use the same SERP API approach as a personal rank tracker (query a pay-as-you-go SERP API, not direct scraping) but query it for two domains per keyword: yours and one named competitor's. Use Python or Node with SQLite. For each keyword, store both domains' ranking positions (or 'not ranking' if outside the top 100) and flag keywords where the competitor ranks and you don't, or ranks meaningfully higher. Build a simple sorted table of these gap keywords as the main output — that's the actionable result. Add a basic historical view showing position changes over the weeks you've been running it, but be upfront that this only starts from when you start running the tool, with no retroactive history. Do not build ad/PPC tracking, ad-copy history, or multi-competitor comparison — those are out of scope; this compares exactly your domain and one competitor's, going forward only. Needs hosting for a scheduled job, a small database, and a SERP API subscription with its own per-query cost.",
+  "faq": [
+    { "q": "Can it show me a competitor's Google Ads history?", "a": "No — that requires years of recorded snapshots SpyFu already has and a personal project can't create retroactively. This tool only compares organic keyword rankings, starting from today." },
+    { "q": "How far back does the history go?", "a": "Only as far back as you've been running the tool yourself — there's no backdated data, unlike SpyFu's multi-year archive." },
+    { "q": "Can I compare against multiple competitors at once?", "a": "Not in this build — it's scoped to exactly one competitor domain at a time, to keep the SERP API query volume, and cost, manageable." },
+    { "q": "What does it cost to run?", "a": "Hosting for the scheduled job plus SERP API usage, which scales with your keyword list size and check frequency — budget a few dollars a month for a modest personal list." }
+  ]
+}

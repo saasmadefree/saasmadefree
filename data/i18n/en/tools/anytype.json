@@ -1,0 +1,19 @@
+{
+  "tagline": "Notes that sync peer-to-peer between your own devices using CRDTs",
+  "verdictSummary": "Real-time, no-central-server sync between your own devices — using a CRDT library so edits from two offline devices merge automatically without a server resolving conflicts — is a genuine, if meaningfully harder than the rest of this catalogue's notes tools, weekend-to-week build using existing open libraries. What doesn't survive: Anytype's polished cross-platform apps and its structured-object and relation layer on top of the note graph.",
+  "coreLoopDIY": "Store notes as CRDT documents, using an existing library like Yjs or Automerge, that sync peer-to-peer between your own devices without a central server, merging offline edits automatically.",
+  "whatYouLose": [
+    "polished native apps on every platform",
+    "the structured-object and relation layer on top of notes",
+    "a public plugin and extension ecosystem",
+    "years of CRDT edge-case and performance tuning at scale"
+  ],
+  "whyPeopleStillPay": "A CRDT library handles the merge algorithm; making peer-to-peer discovery, large-document performance, and every platform's app feel reliable and fast is the years of engineering underneath.",
+  "prompt": "Build a local-first note app that syncs between your own devices without a central server, using a CRDT library — Yjs or Automerge, both mature; don't write your own merge algorithm. Use Tauri with the CRDT library embedded, storing each note as a CRDT document persisted locally. For peer-to-peer sync between devices, use a library like Yjs's y-webrtc provider (peer discovery via a small public signaling server, but the actual document data never touches that server) or a local network discovery approach for devices on the same Wi-Fi. Support the same core note-taking loop as this catalogue's other notes tools — wiki-links, backlinks, full-text search — implemented on top of the CRDT documents rather than plain files, since that's what makes offline-edit-then-merge actually work correctly. Test the specific case that matters: edit the same note on two devices while offline, then reconnect, and confirm both edits merge without data loss. Do not build a structured-object/relation layer, a plugin ecosystem, or polished apps for every platform — a working desktop build via Tauri is enough. No account needed; a lightweight public signaling server, many free options exist, is the only external dependency, and it never sees your actual note content.",
+  "faq": [
+    { "q": "Does my data pass through a server anywhere?", "a": "Only a signaling server for initial peer discovery, and it never sees your actual note content — the CRDT document data syncs directly between your devices, matching Anytype's own local-first design." },
+    { "q": "What happens if I edit the same note offline on two devices?", "a": "Both edits merge automatically when the devices reconnect, thanks to the CRDT library's conflict-free merge algorithm — that's the specific case this build is designed and tested around." },
+    { "q": "Does it have the structured databases Anytype has, on top of notes?", "a": "No — that relation and object layer is real additional product design this build doesn't attempt. This is notes with backlinks and CRDT sync, nothing more structured." },
+    { "q": "What does it cost to run?", "a": "Nothing beyond an optional free-tier signaling server for peer discovery — there's no subscription, since sync doesn't depend on a paid backend." }
+  ]
+}

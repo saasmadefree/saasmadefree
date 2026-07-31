@@ -13,6 +13,13 @@
     "currency": "USD",
     "url": "/en/tools/1password"
   },
+  "accuranker.com": {
+    "slug": "accuranker",
+    "verdict": "no",
+    "amount": 129,
+    "currency": "USD",
+    "url": "/en/tools/accuranker"
+  },
   "activecampaign.com": {
     "slug": "activecampaign",
     "verdict": "no",
@@ -55,12 +62,26 @@
     "currency": "USD",
     "url": "/en/tools/amplitude"
   },
+  "anytype.io": {
+    "slug": "anytype",
+    "verdict": "kinda",
+    "amount": 8.25,
+    "currency": "USD",
+    "url": "/en/tools/anytype"
+  },
   "avoma.com": {
     "slug": "avoma",
     "verdict": "no",
     "amount": 29,
     "currency": "USD",
     "url": "/en/tools/avoma"
+  },
+  "bardeen.ai": {
+    "slug": "bardeen",
+    "verdict": "no",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/bardeen"
   },
   "baserow.io": {
     "slug": "baserow-cloud",
@@ -117,6 +138,13 @@
     "amount": 6,
     "currency": "USD",
     "url": "/en/tools/buffer"
+  },
+  "buzzsprout.com": {
+    "slug": "buzzsprout",
+    "verdict": "no",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/buzzsprout"
   },
   "cal.com": {
     "slug": "cal-com-teams",
@@ -202,6 +230,13 @@
     "currency": "USD",
     "url": "/en/tools/copilot-money"
   },
+  "copy.ai": {
+    "slug": "copy-ai",
+    "verdict": "kinda",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/copy-ai"
+  },
   "craft.do": {
     "slug": "craft",
     "verdict": "kinda",
@@ -223,12 +258,26 @@
     "currency": "USD",
     "url": "/en/tools/dashlane"
   },
+  "joindeleteme.com": {
+    "slug": "deleteme",
+    "verdict": "no",
+    "amount": 10.75,
+    "currency": "USD",
+    "url": "/en/tools/deleteme"
+  },
   "descript.com": {
     "slug": "descript",
     "verdict": "kinda",
     "amount": 24,
     "currency": "USD",
     "url": "/en/tools/descript"
+  },
+  "duda.co": {
+    "slug": "duda",
+    "verdict": "kinda",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/duda"
   },
   "elevenlabs.io": {
     "slug": "elevenlabs",
@@ -293,12 +342,26 @@
     "currency": "USD",
     "url": "/en/tools/figma"
   },
+  "fillout.com": {
+    "slug": "fillout",
+    "verdict": "yes",
+    "amount": 19,
+    "currency": "USD",
+    "url": "/en/tools/fillout"
+  },
   "fireflies.ai": {
     "slug": "fireflies-ai",
     "verdict": "kinda",
     "amount": 18,
     "currency": "USD",
     "url": "/en/tools/fireflies-ai"
+  },
+  "flutterflow.io": {
+    "slug": "flutterflow",
+    "verdict": "kinda",
+    "amount": 30,
+    "currency": "USD",
+    "url": "/en/tools/flutterflow"
   },
   "framer.com": {
     "slug": "framer",
@@ -377,6 +440,13 @@
     "currency": "USD",
     "url": "/en/tools/granola"
   },
+  "grist.org": {
+    "slug": "grist",
+    "verdict": "kinda",
+    "amount": 8,
+    "currency": "USD",
+    "url": "/en/tools/grist"
+  },
   "hey.com": {
     "slug": "hey-email",
     "verdict": "no",
@@ -391,12 +461,26 @@
     "currency": "USD",
     "url": "/en/tools/hey-email"
   },
+  "heygen.com": {
+    "slug": "heygen",
+    "verdict": "no",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/heygen"
+  },
   "hootsuite.com": {
     "slug": "hootsuite",
     "verdict": "no",
     "amount": 99,
     "currency": "USD",
     "url": "/en/tools/hootsuite"
+  },
+  "hypefury.com": {
+    "slug": "hypefury",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/hypefury"
   },
   "ideogram.ai": {
     "slug": "ideogram",
@@ -418,6 +502,13 @@
     "amount": 9.99,
     "currency": "USD",
     "url": "/en/tools/inoreader"
+  },
+  "instapaper.com": {
+    "slug": "instapaper-premium",
+    "verdict": "yes",
+    "amount": 5.99,
+    "currency": "USD",
+    "url": "/en/tools/instapaper-premium"
   },
   "invoiceninja.com": {
     "slug": "invoice-ninja",
@@ -482,6 +573,13 @@
     "currency": "USD",
     "url": "/en/tools/later"
   },
+  "leonardo.ai": {
+    "slug": "leonardo-ai",
+    "verdict": "no",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/leonardo-ai"
+  },
   "linear.app": {
     "slug": "linear",
     "verdict": "kinda",
@@ -524,6 +622,13 @@
     "currency": "USD",
     "url": "/en/tools/mara"
   },
+  "mattermost.com": {
+    "slug": "mattermost-professional",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/mattermost-professional"
+  },
   "meetergo.com": {
     "slug": "meetergo",
     "verdict": "kinda",
@@ -552,6 +657,13 @@
     "currency": "USD",
     "url": "/en/tools/miro"
   },
+  "missiveapp.com": {
+    "slug": "missive",
+    "verdict": "no",
+    "amount": 18,
+    "currency": "USD",
+    "url": "/en/tools/missive"
+  },
   "monarch.com": {
     "slug": "monarch-money",
     "verdict": "kinda",
@@ -565,6 +677,20 @@
     "amount": 34,
     "currency": "USD",
     "url": "/en/tools/motion"
+  },
+  "moz.com": {
+    "slug": "moz-pro",
+    "verdict": "no",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/moz-pro"
+  },
+  "murf.ai": {
+    "slug": "murf",
+    "verdict": "no",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/murf"
   },
   "n8n.io": {
     "slug": "n8n-cloud",
@@ -762,6 +888,13 @@
     "currency": "USD",
     "url": "/en/tools/retool"
   },
+  "riverside.fm": {
+    "slug": "riverside",
+    "verdict": "no",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/riverside"
+  },
   "runwayml.com": {
     "slug": "runway",
     "verdict": "no",
@@ -782,6 +915,13 @@
     "amount": 21.58,
     "currency": "USD",
     "url": "/en/tools/screaming-frog-seo-spider"
+  },
+  "scribehow.com": {
+    "slug": "scribe",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/scribe"
   },
   "semrush.com": {
     "slug": "semrush",
@@ -825,12 +965,26 @@
     "currency": "USD",
     "url": "/en/tools/softr"
   },
+  "spyfu.com": {
+    "slug": "spyfu",
+    "verdict": "no",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/spyfu"
+  },
   "squarespace.com": {
     "slug": "squarespace",
     "verdict": "kinda",
     "amount": 25,
     "currency": "USD",
     "url": "/en/tools/squarespace"
+  },
+  "sudowrite.com": {
+    "slug": "sudowrite",
+    "verdict": "kinda",
+    "amount": 19,
+    "currency": "USD",
+    "url": "/en/tools/sudowrite"
   },
   "sunsama.com": {
     "slug": "sunsama",
@@ -881,6 +1035,13 @@
     "currency": "USD",
     "url": "/en/tools/surveymonkey"
   },
+  "synthesia.io": {
+    "slug": "synthesia",
+    "verdict": "no",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/synthesia"
+  },
   "tally.so": {
     "slug": "tally",
     "verdict": "yes",
@@ -915,6 +1076,13 @@
     "amount": 9.99,
     "currency": "USD",
     "url": "/en/tools/thumblifyai"
+  },
+  "ticktick.com": {
+    "slug": "ticktick",
+    "verdict": "yes",
+    "amount": 3,
+    "currency": "USD",
+    "url": "/en/tools/ticktick"
   },
   "tillerhq.com": {
     "slug": "tiller-money",
@@ -1027,6 +1195,13 @@
     "amount": 29,
     "currency": "USD",
     "url": "/en/tools/wix"
+  },
+  "writesonic.com": {
+    "slug": "writesonic",
+    "verdict": "kinda",
+    "amount": 20,
+    "currency": "USD",
+    "url": "/en/tools/writesonic"
   },
   "xero.com": {
     "slug": "xero",

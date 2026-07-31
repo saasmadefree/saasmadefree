@@ -1,0 +1,42 @@
+{
+  "slug": "sudowrite",
+  "name": "Sudowrite",
+  "domains": [
+    "sudowrite.com"
+  ],
+  "category": "ai-writing",
+  "subcategory": "grammar, editing and long-form writing",
+  "pricing": {
+    "amount": 19,
+    "currency": "USD",
+    "plan": "Hobby and Student",
+    "basis": "flat-monthly",
+    "source": "https://sudowrite.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "polish, integrations, and proprietary language models",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key"
+  ],
+  "priorArt": [
+    {
+      "name": "LanguageTool",
+      "url": "https://github.com/languagetool-org/languagetool"
+    }
+  ],
+  "relatedSlugs": [
+    "languagetool",
+    "grammarly",
+    "quillbot"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

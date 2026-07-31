@@ -1,0 +1,19 @@
+{
+  "tagline": "Host podcast episodes and publish a valid RSS feed",
+  "verdictSummary": "Hosting audio files and generating a spec-compliant podcast RSS feed is a genuine weekend build — the RSS format itself is well documented. What doesn't survive: Buzzsprout's one-click distribution to every podcast directory, its episode analytics, and years of quirks each podcast app expects that aren't in the official spec.",
+  "coreLoopDIY": "Upload an episode's audio file, fill in its metadata, and publish a spec-compliant podcast RSS feed that podcast apps can subscribe to directly.",
+  "whatYouLose": [
+    "one-click submission to every podcast directory",
+    "detailed episode-level analytics",
+    "years of podcast-app-specific RSS quirks handled for you",
+    "a hosted embeddable player and episode website"
+  ],
+  "whyPeopleStillPay": "Generating valid RSS is easy; staying compatible with every podcast app's particular interpretation of the spec, and getting listed cleanly across every directory, is the accumulated detail work.",
+  "prompt": "Build a podcast hosting tool: upload an episode's audio file, fill in title, description, and episode number, and generate a spec-compliant podcast RSS feed (following the standard RSS 2.0 plus iTunes namespace tags) that any podcast app can subscribe to. Use Next.js/TypeScript with local disk or S3-compatible storage for audio files, and generate the RSS XML dynamically from an episode database (SQLite). Serve each episode's audio with proper range-request support, needed for scrubbing and resuming playback in podcast apps, and correct MIME types. Add a simple public episode-list webpage with an embeddable HTML5 audio player. Validate the generated feed against a standard podcast RSS validator during development, and fix anything it flags — small spec deviations are exactly what breaks compatibility with some apps. Do not build one-click directory submission automation, detailed analytics, or a full podcast website builder — those are out of scope; you'd still manually submit your feed URL to Apple Podcasts, Spotify, and others once, which each accepts for free. Requires hosting, storage for audio files, and a domain for the feed's stable URL.",
+  "faq": [
+    { "q": "Will podcast apps actually accept this feed?", "a": "If it validates against a standard podcast RSS validator and serves audio with proper range-request support, yes — those are the two most common reasons a homemade feed gets rejected or plays badly." },
+    { "q": "Do I still need to submit to Apple Podcasts and Spotify myself?", "a": "Yes, once each — submitting a feed URL to each directory is free and manual, and this build doesn't automate that one-time step." },
+    { "q": "Does it show me episode download analytics?", "a": "Only basic server access-log counts if you set that up yourself — nothing like Buzzsprout's detailed per-episode, per-platform analytics." },
+    { "q": "What does it cost to run?", "a": "Hosting, audio storage, and a domain — for a small personal podcast, often a few dollars a month depending on audio file sizes and listener volume." }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "A single-site visual website builder, not an agency multi-site dashboard",
+  "verdictSummary": "A single-site visual website builder with a drag-and-drop editor and hosting is a real week-long build — that's the same ground this catalogue's other website-builder entries already cover. Duda's actual distinguishing feature is managing dozens of client sites from one agency dashboard, with shared templates pushed across many sites at once — that multi-site management layer is real additional engineering a solo, single-site build doesn't need and shouldn't try to replicate for personal use.",
+  "coreLoopDIY": "Build and host one website with a visual section-based editor and a handful of reusable templates — the single-site core, without the multi-client agency dashboard.",
+  "whatYouLose": [
+    "managing many client sites from one dashboard",
+    "pushing template updates across many sites at once",
+    "white-label client billing and hand-off",
+    "managed hosting at scale across a client portfolio"
+  ],
+  "whyPeopleStillPay": "One site is a weekend project; keeping fifty client sites on shared templates in sync, billed and handed off cleanly, is an agency operations problem this catalogue's single-site builders don't need to solve.",
+  "prompt": "Build a single-site visual website builder — this is the same buildable core as this catalogue's other website-builder entries, not Duda's actual differentiator, which is managing many client sites from one dashboard (out of scope for a personal project, and not worth attempting solo). Use Next.js/TypeScript with a section-based editor: predefined section types (hero, text plus image, gallery, contact form, pricing table) that a user drags to reorder and edits inline, stored as JSON describing the page structure. Render published pages server-side from that JSON for fast load times and good SEO. Support a small set of starter templates, pre-built section arrangements, to start from rather than a blank page. Add a contact-form section that emails submissions to the site owner via a transactional email provider. Publish to a subdomain by default, with support for connecting a custom domain via DNS instructions. Do not build multi-site or agency dashboard management, template-push-to-many-sites, or white-label client billing — those are explicitly out of scope; this builds and hosts one site well, nothing more. Requires hosting, and a domain if you want one beyond the default subdomain; a transactional email provider for the contact form.",
+  "faq": [
+    { "q": "Can I manage multiple client sites from one dashboard, like agencies do with Duda?", "a": "No — that multi-site management layer is Duda's actual core differentiator and genuinely complex agency-operations software this build doesn't attempt. This is a single-site builder." },
+    { "q": "How is this different from the other website builders in this catalogue?", "a": "Functionally, not much at the single-site level — most visual website builders share this same buildable core. Duda's real distinct value only shows up once you're managing many sites at once." },
+    { "q": "Does it work well for SEO?", "a": "Reasonably — pages render server-side from structured section data rather than client-side, which is the main thing that matters for a search crawler." },
+    { "q": "What does it cost to run?", "a": "Hosting, an optional domain, and a transactional email provider's free tier for the contact form — typically a few dollars a month or less." }
+  ]
+}

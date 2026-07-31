@@ -1,0 +1,19 @@
+{
+  "tagline": "Turn a slide deck and script into a narrated training video",
+  "verdictSummary": "Synthesia's most common real use case — turn a script or slide deck into a narrated training video with an avatar presenter — is buildable in a scoped local build: generate narration with local TTS, overlay it on your own slides, and add a small local avatar clip in the corner. What doesn't survive: Synthesia's licensed, photorealistic presenter library and instant multi-language redubbing of the same video.",
+  "coreLoopDIY": "Generate narration audio from a script with a local TTS model, sync it to a slide deck as a timed video, and overlay a small local talking-head clip of a chosen avatar in the corner.",
+  "whatYouLose": [
+    "a licensed library of photorealistic presenters",
+    "instant multi-language redubbing of existing videos",
+    "corporate brand and template management at scale",
+    "enterprise video hosting and analytics"
+  ],
+  "whyPeopleStillPay": "The video format is copyable; a library of consenting, licensed presenter likenesses and the ability to redub the same video in twenty languages overnight is not something one person can build or license alone.",
+  "prompt": "Build a slide-narration video generator, mirroring Synthesia's most common corporate-training use case rather than its full feature set. Use Python with a local TTS model (Coqui TTS or Piper) to generate narration audio from a per-slide script. Accept a slide deck as images (export from PowerPoint, Google Slides, or Keynote as PNGs) or Markdown slides rendered to images. Time each slide's on-screen duration to its narration's length, and render the sequence to an MP4 with ffmpeg. Optionally overlay a small talking-head clip, generated with a local lip-sync model using the same approach as this catalogue's HeyGen entry, in a corner of the video using one source photo, so it doesn't feel like a plain slideshow. Provide a simple web UI for uploading slides, writing per-slide narration text, previewing, and exporting. Do not build a library of licensed presenters, multi-language auto-redubbing, or enterprise video hosting and analytics — those are out of scope. No API key needed if running TTS and lip-sync models locally.",
+  "faq": [
+    { "q": "Can I pick from a library of AI presenters like Synthesia's?", "a": "No — this build only animates one photo you provide per video. A library of licensed, photorealistic presenters isn't something a personal project can reproduce or license." },
+    { "q": "Can I redub the same video into another language instantly?", "a": "Not automatically — you'd re-generate the narration in another language's TTS voice and re-render. Synthesia's one-click redub across a whole video library is real infrastructure this skips." },
+    { "q": "Does it need my own slides?", "a": "Yes — export your deck as images first. This tool times and narrates existing slides; it doesn't design them for you." },
+    { "q": "What does it cost to run?", "a": "Free if you run the TTS and lip-sync models locally on your own hardware; a modest GPU-rental cost otherwise, with no per-minute video fee." }
+  ]
+}

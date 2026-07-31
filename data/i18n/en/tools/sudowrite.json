@@ -1,0 +1,19 @@
+{
+  "tagline": "A fiction-writing assistant built around a structured story bible",
+  "verdictSummary": "The core mechanic — keep a structured 'story bible' of characters, plot, and world details, and feed relevant pieces of it into every generation request so the AI stays consistent with your story — is a genuine weekend build with your own model key. What doesn't survive: Sudowrite's fiction-tuned prompting refined over years of specifically creative-writing use, and features like consistent character voice across a full novel-length project.",
+  "coreLoopDIY": "Maintain a structured story bible — characters, setting, plot points — and generate scene continuations or descriptions that pull relevant story-bible entries into the prompt automatically, so output stays consistent with established details.",
+  "whatYouLose": [
+    "fiction-tuned prompting refined for creative writing specifically",
+    "consistent character voice across a full novel-length project",
+    "specialized brainstorming and description-generation modes",
+    "a writing community and story-sharing features"
+  ],
+  "whyPeopleStillPay": "A raw model can write a scene; keeping fifty established details about your world straight for eighty thousand words, automatically, without you re-explaining them, is the harder context-engineering problem.",
+  "prompt": "Build a fiction-writing assistant centered on a structured story bible, not a generic AI chat wrapper. Use Next.js/TypeScript with a model key read from ANTHROPIC_API_KEY or OPENAI_API_KEY. Let the user maintain a story bible: named entries for characters (with a short description and voice notes), locations, and plot points, stored in SQLite. In the main writing view, as the user writes or requests a continuation, do simple keyword matching between the current scene text and story-bible entry names, and automatically include the matched entries' details in the generation prompt — so mentioning a character by name pulls in their established traits without the user re-typing them. Support two generation modes: 'continue' (extend the current scene) and 'describe' (generate a sensory description of a selected object or place, informed by the story bible's tone notes). Keep full manuscript version history locally so a generation the user doesn't like can always be reverted. Do not build a writing community, story-sharing, or multi-user collaboration — those are out of scope; this is a private, single-user tool. Requires an Anthropic or OpenAI API key.",
+  "faq": [
+    { "q": "How does it keep characters consistent across a long story?", "a": "By automatically pulling in the relevant story-bible entry whenever a character or place is mentioned, so the model gets their established details every time without you re-explaining them in every prompt." },
+    { "q": "Is this tuned specifically for fiction the way Sudowrite is?", "a": "Not at the model level — it uses a general-purpose model with fiction-specific context engineering, the story bible, rather than Sudowrite's years of fiction-specific prompt refinement." },
+    { "q": "Can I share my story or get feedback from other writers in the app?", "a": "No — there's no community or sharing feature. This is a private local tool for one writer." },
+    { "q": "What does it cost to run?", "a": "Model API usage only, billed per token — for regular fiction writing sessions, that's typically comparable to or cheaper than a monthly Sudowrite subscription, depending on how much you generate." }
+  ]
+}

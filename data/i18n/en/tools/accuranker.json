@@ -1,0 +1,19 @@
+{
+  "tagline": "Track your own keyword rankings with a lightweight rank checker",
+  "verdictSummary": "Tracking your own list of keywords — check position daily via a SERP API, store history, chart the trend — is a real weekend build once you accept you need a SERP API for the actual Google data (scraping Google directly gets blocked fast, and that's not a personal project worth attempting). What doesn't survive: AccuRanker's actual selling point, raw tracking speed and reliability at thousands of keywords across many client accounts, and its historical SERP-feature detection depth.",
+  "coreLoopDIY": "Query a SERP API daily for a fixed list of keywords, store each day's ranking position, and chart position history per keyword over time.",
+  "whatYouLose": [
+    "speed and reliability at thousands of keywords",
+    "SERP-feature and competitor tracking depth",
+    "white-label client reporting",
+    "years of SERP-parsing edge cases"
+  ],
+  "whyPeopleStillPay": "Checking ten keywords is a script; checking thousands, daily, across many clients, without ever silently missing a day, is an operations problem — and that reliability is what agencies actually pay for.",
+  "prompt": "Build a personal keyword rank tracker for a fixed list of keywords you choose — not a general SEO platform. Use a SERP API service (e.g. a pay-as-you-go provider like SerpApi or ValueSerp) rather than scraping Google directly, since direct scraping gets blocked quickly and isn't a viable personal-project approach. Use Python or Node with a scheduled daily job (cron or a simple scheduler) that queries the SERP API for each keyword's current ranking position for your domain, and stores the result in SQLite with the date. Build a simple dashboard: a table of current positions, and a line chart of each keyword's position history over the last 90 days. Add a basic alert (email or a written log line) when a keyword moves more than a set number of positions in a day. Store the SERP API key in an environment variable. Do not build competitor tracking, SERP-feature detection (featured snippets, People Also Ask boxes), or white-label client reporting — those are out of scope; this tracks your own keywords for your own domain, nothing more. Needs hosting for the scheduled job, a small database, and a SERP API subscription — expect a modest per-query cost from the API provider, separate from this build itself.",
+  "faq": [
+    { "q": "Does this scrape Google directly?", "a": "No — it queries a paid SERP API instead. Scraping Google directly at any real frequency gets IP-blocked fast, and building around that is not a realistic personal project." },
+    { "q": "How much does the SERP API itself cost?", "a": "Separate from hosting — expect a small per-query fee from whichever SERP API provider you pick, usually a few cents per keyword check, which adds up with more keywords or more frequent checks." },
+    { "q": "Can I track competitor rankings too?", "a": "Not in this build — it's scoped to your own domain's rankings for your own keyword list. Competitor tracking is real additional scope this prompt skips." },
+    { "q": "Will it catch SERP features like featured snippets?", "a": "No — it tracks position only, not which SERP features appear. That detection layer is part of what AccuRanker's subscription is actually paying for." }
+  ]
+}

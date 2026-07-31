@@ -1,0 +1,42 @@
+{
+  "slug": "duda",
+  "name": "Duda",
+  "domains": [
+    "duda.co"
+  ],
+  "category": "website-builder",
+  "subcategory": "websites and landing pages",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "flat-monthly",
+    "source": "https://duda.co/plans",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "editor polish, hosting, templates, and ecosystem",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Webstudio",
+      "url": "https://github.com/webstudio-is/webstudio"
+    }
+  ],
+  "relatedSlugs": [
+    "carrd",
+    "webflow",
+    "framer"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

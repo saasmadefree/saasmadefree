@@ -1,0 +1,19 @@
+{
+  "tagline": "An on-page crawler and rank tracker — not a Domain Authority equivalent",
+  "verdictSummary": "Moz Pro's headline metric, Domain Authority, is a proprietary score trained on Moz's own crawled link index; there's no honest way to reproduce that number, only a different number that isn't comparable to anyone else's. What is buildable is an on-page crawl and keyword tracker — genuinely the same ground this catalogue's Screaming Frog and AccuRanker entries already cover, since Moz Pro's own distinct value is almost entirely the proprietary metric and its link index.",
+  "coreLoopDIY": "Crawl your own site for on-page issues and track a handful of keyword positions — the same buildable core as this catalogue's other SEO tools — without attempting to reproduce a Domain Authority-equivalent score.",
+  "whatYouLose": [
+    "Domain Authority and Page Authority scores",
+    "Moz's own crawled link index",
+    "keyword difficulty modeled on that index",
+    "years of SERP-feature and link-tracking history"
+  ],
+  "whyPeopleStillPay": "The number itself, Domain Authority, has become an industry shorthand precisely because it's Moz's proprietary, consistently-computed score; a homemade equivalent wouldn't mean anything to anyone outside your own project.",
+  "prompt": "Be honest about scope before building anything: Moz Pro's actual headline feature, Domain Authority, is a proprietary score computed from Moz's own crawled link index — there is no honest way to reproduce that specific number, and a self-computed 'authority score' wouldn't be comparable to anything else in the industry. What's worth building instead is the same on-page crawl and keyword-tracking core this catalogue's Screaming Frog SEO Spider and AccuRanker entries already describe — if you haven't built one of those yet, start there rather than duplicating effort here. If you want a distinct addition on top: build a simple backlink list viewer using a smaller, accessible data source, such as Common Crawl's public dataset queried for links to your domain — not a live-updating link index, just an occasional snapshot of who links to you from a large public crawl. Store results in SQLite and show a simple linking-domains list with first-seen dates. Do not attempt to compute an authority score, model keyword difficulty, or promise up-to-date link discovery — those require Moz's own infrastructure and crawled data, not something a personal project can approximate honestly. No API key needed for the Common Crawl path, though it's a large dataset to query and may need cloud compute for the snapshot job.",
+  "faq": [
+    { "q": "Can I compute my own Domain Authority score?", "a": "Not meaningfully — Domain Authority is Moz's proprietary metric trained on their own link index. Any number you compute yourself wouldn't be comparable to real Domain Authority scores anyone else uses." },
+    { "q": "Is this different from the Screaming Frog or AccuRanker DIY builds in this catalogue?", "a": "Mostly it's the same ground — on-page crawling and rank tracking. Moz Pro's own genuinely distinct value is almost entirely the proprietary authority score and its link index, which this build explicitly doesn't attempt to replicate." },
+    { "q": "Can I see who links to my site?", "a": "A rough snapshot, via Common Crawl's public dataset — not a live, comprehensive link index like Moz's own, which crawls the web continuously and privately." },
+    { "q": "What does it cost to run?", "a": "Minimal for the crawl and tracking core; querying Common Crawl at any scale may need paid cloud compute for the snapshot job, though occasional personal use can often stay within free-tier limits." }
+  ]
+}

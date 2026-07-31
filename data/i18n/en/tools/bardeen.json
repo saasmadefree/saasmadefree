@@ -1,0 +1,19 @@
+{
+  "tagline": "A browser extension that scrapes the page you're viewing into a connected service",
+  "verdictSummary": "A browser extension that can scrape structured data off the page you're viewing and send it to another service — Bardeen's actual trick, working even on sites without an API — is a real weekend build using a content script and a fixed set of two or three site/service pairs. What doesn't survive: Bardeen's library of hundreds of pre-built 'playbooks' across many site and service combinations, and reliability as each site's page structure quietly changes.",
+  "coreLoopDIY": "Trigger a browser extension action from the page you're viewing, extract structured data from that page's DOM, and send it to one connected service's API — working even on sites that don't offer their own API.",
+  "whatYouLose": [
+    "hundreds of pre-built site/service automation playbooks",
+    "reliability as target sites' page structure changes over time",
+    "a visual no-code automation builder",
+    "team-shared automation libraries"
+  ],
+  "whyPeopleStillPay": "Scraping one page's structure once is easy; maintaining working extraction logic across hundreds of sites that constantly redesign their pages, without you noticing something silently broke, is the maintenance burden.",
+  "prompt": "Build a browser extension that extracts data from the page you're currently viewing and sends it to one connected service — working on sites that don't have their own API, which is Bardeen's actual differentiator over a pure API-to-API tool like this catalogue's Pipedream entry. Use a Chrome extension (Manifest V3) with a content script that, when triggered by a keyboard shortcut or a right-click context-menu item, extracts structured data from the current page using CSS selectors you define per site, such as product name, price, and URL from an e-commerce page. Send the extracted data to one connected service's API — a spreadsheet, a note-taking app, or a CRM, pick one — using that service's documented API and OAuth or API key. Show a confirmation preview of the extracted data before sending, so a broken selector from a site redesign is caught before bad data gets sent, not after. Store a small library of site-specific extraction configs, which CSS selectors map to which fields per domain, locally, editable when a site changes and breaks extraction. Do not build a library of many pre-built playbooks across dozens of sites and services, or a visual no-code builder — those are out of scope; this handles exactly the site/service combinations you configure yourself. Needs a domain for OAuth callback handling and an OAuth app registration with your chosen destination service.",
+  "faq": [
+    { "q": "Does it work on sites without their own API?", "a": "Yes — that's the core mechanic. It reads structured data directly from the page's HTML using CSS selectors, which works regardless of whether the site itself offers an API." },
+    { "q": "What happens when a site redesigns its page and breaks the selectors?", "a": "Extraction will silently produce wrong or empty data until you notice and update the selector config — there's a confirmation preview specifically to catch this before bad data gets sent, but ongoing maintenance is still on you." },
+    { "q": "How many site/service combinations does it support out of the box?", "a": "None pre-built — you configure each one yourself. Bardeen's library of hundreds of ready-made playbooks is real, accumulated product work this build doesn't include." },
+    { "q": "What does it cost to run?", "a": "Minimal hosting for OAuth callback handling plus whatever the destination service itself costs — no per-automation fee." }
+  ]
+}

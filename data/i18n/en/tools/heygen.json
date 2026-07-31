@@ -1,0 +1,19 @@
+{
+  "tagline": "Generate a talking AI avatar video from a script using a local model",
+  "verdictSummary": "Open-source talking-head lip-sync models can generate a reasonably convincing avatar video from a photo and an audio track in a one-sitting build with a GPU. What doesn't survive: HeyGen's photorealistic quality at scale, its library of stock avatars, and instant multi-language dubbing with lip resync.",
+  "coreLoopDIY": "Generate speech from a script with a local TTS model, feed it and a source photo into a local lip-sync model, and render a talking-head video.",
+  "whatYouLose": [
+    "photorealistic quality at scale",
+    "a library of ready-made stock avatars",
+    "instant multi-language dubbing with lip resync",
+    "enterprise brand and template controls"
+  ],
+  "whyPeopleStillPay": "Open lip-sync models exist, but making them look convincingly real across many faces and languages, reliably and fast, is specialized model work HeyGen has already done.",
+  "prompt": "Build a local talking-avatar video generator from a script and a source photo — assumes local or rented GPU access, same as this catalogue's Ideogram entry. Use an open lip-sync model (e.g. SadTalker or Wav2Lip, both openly available) run locally via a Python service. Generate the voice track first with a local TTS model (e.g. Coqui TTS or Piper) from the user's script text, then feed the audio and a single source photo into the lip-sync model to render the talking-head video. Provide a simple web UI: paste a script, upload a photo, pick a voice, generate, preview, download. Cache generated audio separately from video so re-rendering after a script tweak doesn't require re-running TTS. Add a basic resolution/quality setting, since local lip-sync models are slower at higher resolution. Do not attempt HeyGen's photorealistic quality bar, its stock avatar library, or multi-language dubbing with resynced lips — those are out of scope; be upfront in the README that open lip-sync models still look visibly synthetic compared to HeyGen's proprietary pipeline. No API key needed if running models locally; rented GPU time is the main cost if you don't own one.",
+  "faq": [
+    { "q": "Will it look as realistic as HeyGen's avatars?", "a": "No — open lip-sync models are usable but visibly less polished than HeyGen's proprietary pipeline, especially on side profiles and fast speech. That gap is real and worth expecting." },
+    { "q": "Can I use a stock avatar instead of my own photo?", "a": "Not out of the box — this build only animates a photo you provide. HeyGen's library of licensed stock avatars is exactly the kind of asset a personal project can't reproduce." },
+    { "q": "Does it support multiple languages?", "a": "Only whatever the local TTS model you choose supports — there's no built-in dubbing-with-lip-resync feature like HeyGen's." },
+    { "q": "What does it cost to run?", "a": "Free if you own a capable GPU; a dollar or two an hour if renting one, similar to other local-model builds in this catalogue." }
+  ]
+}

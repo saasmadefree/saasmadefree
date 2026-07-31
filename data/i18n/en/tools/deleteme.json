@@ -1,0 +1,19 @@
+{
+  "tagline": "A personal tracker for manual data-broker opt-out requests",
+  "verdictSummary": "DeleteMe's actual product is mostly labor, not software: filing and re-filing opt-out requests across hundreds of data-broker sites, many of which deliberately make the process slow or require postal mail. A personal tool can organize that checklist and track status, but it can't automate away the actual opt-out submissions most brokers require a human, or DeleteMe's staff, to do repeatedly, since data reappears and needs re-removal.",
+  "coreLoopDIY": "Maintain a checklist of known data-broker sites with their opt-out URLs, track submission status and next-recheck dates per broker, and remind the user when it's time to re-check whether their data has reappeared.",
+  "whatYouLose": [
+    "someone else actually filing and re-filing hundreds of opt-out requests",
+    "coverage of brokers with non-obvious or frequently-changing opt-out processes",
+    "postal-mail-only opt-outs handled on your behalf",
+    "monitoring for reappearance without you having to check"
+  ],
+  "whyPeopleStillPay": "The list of broker URLs is public information; paying someone else to actually do the repetitive, often deliberately annoying submission work, over and over as data reappears, is the real service.",
+  "prompt": "Be upfront that this doesn't automate what DeleteMe actually does — most data brokers deliberately require manual, per-broker opt-out submissions (some by web form, some only by postal mail), and automating that reliably in bulk is exactly the kind of scraping/automation many broker sites are built to resist. What's genuinely useful to build instead: a personal tracker. Use a simple local web app (Next.js/TypeScript with SQLite) pre-loaded with a maintained public list of known data-broker sites and their opt-out URLs — several such lists exist publicly and are updated by privacy communities; cite your source and keep it updated. For each broker, track: opt-out submitted (yes/no, date), method (web form, email, or mail), and a recheck-after date, since removed data commonly reappears after months. Show a simple dashboard of brokers needing action this week. Send yourself a reminder, a local notification or an email digest, when recheck dates come due. Do not build automated form-filling or scraping against broker sites — many explicitly prohibit that in their terms, and this tool's job is to make the manual work organized and less likely to be forgotten, not to circumvent it. No API key needed; an optional transactional email provider if you want the reminder digest by email.",
+  "faq": [
+    { "q": "Will this actually remove my data from broker sites automatically?", "a": "No — that's the core honest limitation here. Most brokers require a manual submission per site, and this tool organizes that checklist rather than automating the submissions themselves." },
+    { "q": "How is this different from just doing it manually with a spreadsheet?", "a": "It's not dramatically different in mechanism — the value is the pre-loaded broker list and the recheck reminders, so you don't have to research which sites exist or remember when to check again." },
+    { "q": "Why does data reappear after I've opted out?", "a": "Brokers frequently re-purchase or re-scrape public records, and many don't permanently suppress your data — which is exactly why DeleteMe's ongoing, repeated service exists rather than a one-time removal." },
+    { "q": "What does it cost to run?", "a": "Essentially nothing — hosting for a small personal app, with no per-broker fee, since there's no paid removal service being used underneath." }
+  ]
+}

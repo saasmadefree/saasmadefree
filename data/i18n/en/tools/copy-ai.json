@@ -1,0 +1,19 @@
+{
+  "tagline": "Chain a couple of AI steps into a repeatable content workflow",
+  "verdictSummary": "Copy.ai's real modern product isn't single-shot copy generation — that's commodity — it's chaining a few AI steps into a repeatable workflow, summarizing an input then drafting output from that summary. That chaining pattern is a genuine weekend build with your own API key. What doesn't survive: Copy.ai's library of pre-built workflow templates and its integrations with dozens of other tools to pull input data automatically.",
+  "coreLoopDIY": "Chain two or three LLM calls into a fixed workflow — summarize an input, then generate a specific output from that summary — with each step's output visible and editable before the next step runs.",
+  "whatYouLose": [
+    "a library of pre-built workflow templates",
+    "integrations with dozens of other tools for automatic input",
+    "team-shared workflow libraries",
+    "usage analytics across a workspace"
+  ],
+  "whyPeopleStillPay": "Chaining two API calls is easy; a library of tested, reliable multi-step workflows connected to the dozens of tools people actually use for input data is the ongoing integration work.",
+  "prompt": "Build a multi-step AI workflow tool — not single-shot copy generation, which is the easier, more commodity feature. Use Next.js/TypeScript with a model key read from ANTHROPIC_API_KEY or OPENAI_API_KEY. Implement exactly one fixed two-step workflow to start: paste raw input text (e.g. a bio, a product page, notes from a call), step one summarizes and extracts key points, step two generates a specific output (an email draft, a social post) from that summary — with the intermediate summary shown and editable before step two runs, so errors don't compound silently. Store each workflow run's input, intermediate output, and final output in SQLite for later reference. Add one more workflow variant, such as a three-step version with a tone-adjustment step in between, to demonstrate the chaining pattern generalizes, without building a full workflow-builder UI. Do not build a library of many pre-built workflow templates, automatic integrations pulling input from other tools, or team-shared libraries — those are out of scope; this is a personal tool with two hardcoded workflow shapes, not a platform. Requires an Anthropic or OpenAI API key.",
+  "faq": [
+    { "q": "How is this different from a single-shot copy generator?", "a": "The workflow chains two or three AI steps together, with each intermediate result visible and editable — closer to Copy.ai's actual current product than to a one-shot 'write me an ad' tool." },
+    { "q": "Can I pull input automatically from other tools, like a CRM?", "a": "No — you paste input in manually. Copy.ai's integrations with dozens of other tools for automatic input are real, ongoing integration work this build doesn't attempt." },
+    { "q": "How many workflow types does it include?", "a": "Two, to demonstrate the pattern — not Copy.ai's library of many pre-built templates for different use cases." },
+    { "q": "What does it cost to run?", "a": "Model API usage only, billed per token — multi-step workflows use more tokens than a single generation, but it's still typically well under a monthly Copy.ai seat for personal-scale use." }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "instapaper-premium",
+  "name": "Instapaper Premium",
+  "domains": [
+    "instapaper.com"
+  ],
+  "category": "read-it-later",
+  "subcategory": "read-later, bookmarks and RSS",
+  "pricing": {
+    "amount": 5.99,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "flat-monthly",
+    "source": "https://instapaper.com/premium",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "capture polish, sync, and content partnerships",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "FreshRSS",
+      "url": "https://github.com/FreshRSS/FreshRSS"
+    }
+  ],
+  "relatedSlugs": [
+    "raindrop-io",
+    "inoreader",
+    "feedly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

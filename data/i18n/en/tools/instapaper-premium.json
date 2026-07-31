@@ -1,0 +1,19 @@
+{
+  "tagline": "Save clean, readable articles with full-text search",
+  "verdictSummary": "Saving a URL, extracting a clean reading view that strips ads and navigation, and full-text search across saved articles is a genuine weekend build using an existing open readability-extraction library — that's most of Instapaper's actual value. What doesn't survive: extraction reliability across the messiest, most unusual sites, and years of format-specific fixes for paywalled sites, JS-rendered content, and unusual article layouts.",
+  "coreLoopDIY": "Save a URL, extract clean article text using an open readability library, store it locally with full-text search, and mark articles read or archived.",
+  "whatYouLose": [
+    "extraction reliability across unusual or JS-heavy sites",
+    "years of site-specific parsing fixes",
+    "browser and mobile app polish with offline sync",
+    "text-to-speech and speed-reading modes"
+  ],
+  "whyPeopleStillPay": "Readability extraction libraries handle most sites well; handling the long tail of sites that break the common pattern, reliably, for years, is the maintenance work underneath.",
+  "prompt": "Build a read-it-later tool centered on clean article extraction. Use an open readability-extraction library, such as Mozilla's Readability.js, the same library Firefox's own reader mode uses, server-side to strip ads, navigation, and clutter from a saved URL, leaving just the article text and images. Use Next.js/TypeScript with Postgres and its full-text search for searching across all saved articles' extracted text. When a user saves a URL, fetch and extract it immediately, and store both the extracted text and a fallback link to the original in case extraction fails or looks wrong. Build a clean reading view with adjustable font size and light/dark mode, and a list view with read, archived, and unread states and tags. Add a basic bookmarklet or browser extension for one-click saving from any page. Do not attempt text-to-speech, mobile app offline sync, or extraction reliability tuning beyond what the open library already provides — sites that defeat the readability library, heavy JS rendering or paywalls, will sometimes need the fallback original link instead of a clean view, and that's an honest, expected gap. No external API key needed; requires hosting and a database.",
+  "faq": [
+    { "q": "Will every article extract cleanly?", "a": "Most will, since the underlying readability library handles common site patterns well — but some sites, especially JS-heavy or paywalled ones, will fail to extract cleanly, and you'll fall back to the original link." },
+    { "q": "Can I search across everything I've saved?", "a": "Yes — full-text search across extracted article text is a core feature here, using Postgres's built-in search." },
+    { "q": "Does it work offline on my phone?", "a": "Not in this build — there's no native mobile app with offline sync, just a web app. That's one of the real things you give up." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database — typically a few dollars a month, since there's no external extraction API this build depends on." }
+  ]
+}

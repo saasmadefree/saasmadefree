@@ -1,0 +1,19 @@
+{
+  "tagline": "Tasks, a Pomodoro timer, and a habit tracker bundled in one app",
+  "verdictSummary": "A task list with due dates, basic recurrence, and a built-in Pomodoro timer and simple habit tracker — TickTick's actual bundle, beyond plain task management already covered by this catalogue's Todoist entry — is a genuine one-sitting build. What doesn't survive: cross-device real-time sync and calendar integration polish refined over years.",
+  "coreLoopDIY": "Manage tasks with due dates and simple recurrence, run a Pomodoro-style focus timer linked to a selected task, and track daily habit completion in the same app.",
+  "whatYouLose": [
+    "real-time cross-device sync",
+    "calendar integration polish",
+    "collaborative shared task lists",
+    "years of edge-case handling for recurring tasks"
+  ],
+  "whyPeopleStillPay": "A task list and a timer are simple; keeping them in perfect sync across every device you own, instantly, for years, is the infrastructure work underneath the bundle.",
+  "prompt": "Build a task manager bundling three things TickTick actually combines, beyond plain task management: a task list with due dates and recurrence, a Pomodoro-style focus timer, and a simple daily habit tracker. Use a local-first approach — Tauri with SQLite, or a simple web app if cross-device use matters more than offline-first — since real-time multi-device sync is explicitly out of scope. Implement tasks with due dates, priority, and basic recurrence rules (daily, weekly, every N days). Build a Pomodoro timer that can be linked to a specific task — start a 25-minute focus session against a chosen task, and log completed sessions per task. Add a simple habit tracker: named habits with a daily check-off, and a streak counter. Show all three — today's tasks, an optional active timer, and today's habits — on one combined daily view, since that bundled view is the actual point, not three separate apps. Do not build real-time cross-device sync, calendar integration, or shared or collaborative task lists — those are out of scope; this is a single-device, single-user tool. Requires a local database; no external API key needed.",
+  "faq": [
+    { "q": "Does it sync between my phone and computer?", "a": "Not in this build — that's explicitly out of scope. Each device would run its own independent local copy, which is a real step down from TickTick's cross-device sync." },
+    { "q": "Is the Pomodoro timer actually linked to specific tasks?", "a": "Yes — sessions are tied to a chosen task, and completed sessions are logged per task, matching TickTick's own bundled approach rather than being a separate, disconnected timer app." },
+    { "q": "Can I share a task list with someone else?", "a": "No — this is a single-user, single-device tool with no collaboration feature." },
+    { "q": "What does it cost to run?", "a": "Nothing beyond running it locally — there's no subscription, since it's a single-device tool with no backend to host." }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "heygen",
+  "name": "HeyGen",
+  "domains": [
+    "heygen.com"
+  ],
+  "category": "ai-audio",
+  "subcategory": "synthetic voice, dubbing and AI avatars",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Creator",
+    "basis": "flat-monthly",
+    "source": "https://heygen.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "models, compute, rights, and safety operations",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Piper",
+      "url": "https://github.com/OHF-Voice/piper1-gpl"
+    }
+  ],
+  "relatedSlugs": [
+    "synthesia",
+    "elevenlabs",
+    "runway"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

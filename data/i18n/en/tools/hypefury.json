@@ -1,0 +1,19 @@
+{
+  "tagline": "Automatically re-queue your best-performing past posts",
+  "verdictSummary": "Automatically re-queuing your own best-performing past posts on a schedule — Hypefury's actual signature feature — is a real weekend build once you're publishing through one network's official API, the same base mechanics as this catalogue's Hootsuite entry. What doesn't survive: multi-network support and Hypefury's auto-DM and thread-scheduling refinements.",
+  "coreLoopDIY": "Track engagement on your own published posts, automatically identify top performers by a simple engagement threshold, and re-queue them for republishing after a configurable interval.",
+  "whatYouLose": [
+    "multi-network publishing in one place",
+    "auto-DM and follow-up automation",
+    "thread-scheduling and evergreen-content refinements",
+    "detailed audience-growth analytics"
+  ],
+  "whyPeopleStillPay": "Re-queuing a post is a database query; building the judgment calls around it — how long before recycling feels stale, how to avoid annoying repeat followers — is refined product thinking, not just code.",
+  "prompt": "Build a post-recycling scheduler for one social network's official API — Hypefury's actual signature feature, layered on top of basic scheduling. Use the same one-network, official-API approach as this catalogue's Hootsuite entry, such as Bluesky or Mastodon, both accessible without lengthy business verification. Use Next.js/TypeScript with Postgres and that network's OAuth flow. Support drafting and scheduling posts as a baseline. On top of that, periodically, a daily background job, fetch each published post's engagement stats through the same API, and if a post crosses a configurable engagement threshold, automatically add it back to the schedule queue after a configurable minimum interval, such as not sooner than 30 days, so your best content resurfaces without manual republishing. Let the user see and remove any auto-queued recycled post before it actually publishes, so nothing goes out unreviewed. Cap how many recycled posts can queue per week to avoid feed spam. Do not build multi-network support, auto-DM or follow-up automation, or detailed growth analytics — those are out of scope; this focuses specifically on the recycling mechanic. Needs an OAuth app registration with your chosen network.",
+  "faq": [
+    { "q": "How does it decide which posts to recycle?", "a": "Based on a configurable engagement threshold you set — posts crossing it get automatically queued for republishing after a minimum interval you also control, so you're not recycling mediocre posts." },
+    { "q": "Will I accidentally spam my followers with old content?", "a": "There's a weekly cap on recycled posts and every auto-queued post is reviewable before it publishes, specifically to reduce that risk — but it's still worth checking the queue periodically." },
+    { "q": "Does it support auto-DMs to new followers, like Hypefury?", "a": "No — that's a separate automation feature this build doesn't include. This is scoped specifically to the recycling mechanic." },
+    { "q": "What does it cost to run?", "a": "Hosting for the scheduled job plus a small database — a few dollars a month, with no per-post fee." }
+  ]
+}

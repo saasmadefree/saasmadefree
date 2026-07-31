@@ -1,0 +1,41 @@
+{
+  "slug": "moz-pro",
+  "name": "Moz Pro",
+  "domains": [
+    "moz.com"
+  ],
+  "category": "seo-marketing",
+  "subcategory": "keyword research, backlinks and rank tracking",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://moz.com/products/pro/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "proprietary web index and data acquisition",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "SerpBear",
+      "url": "https://github.com/towfiqi/serpbear"
+    }
+  ],
+  "relatedSlugs": [
+    "ahrefs",
+    "screaming-frog-seo-spider",
+    "semrush"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "A form that collects a payment through Stripe as part of submission",
+  "verdictSummary": "A form that collects a payment as part of submission, not just data, is a real weekend build once Stripe's own Checkout or Payment Element does the actual payment handling — you should never build custom card processing yourself. What doesn't survive: Fillout's polished embed-anywhere behavior across Notion and any website, and its calculation engine for computing prices or scores from multiple answers.",
+  "coreLoopDIY": "Build a form with a payment step at the end that redirects to Stripe Checkout for the actual charge, and record the submission as paid only after Stripe confirms the payment via webhook.",
+  "whatYouLose": [
+    "polished embed-anywhere behavior across Notion and any website",
+    "a calculation engine for prices or scores from multiple answers",
+    "advanced conditional logic and branching",
+    "a large integration library beyond payments"
+  ],
+  "whyPeopleStillPay": "Wiring up Stripe once is a weekend; making a form that embeds cleanly everywhere, computes complex scores from answers, and branches through dozens of conditions is the ongoing feature work.",
+  "prompt": "Build a form tool that can collect a payment as part of submission — using Stripe Checkout for the actual charge, never custom card handling. Use Next.js/TypeScript with SQLite. Support standard field types (text, select, number) plus one payment field type: when present, submitting the form creates a Stripe Checkout session for a configured amount, fixed or computed from a simple sum of numeric answers such as quantity times a per-unit price, and redirects there. Only mark the submission as paid and complete after Stripe's webhook confirms the payment — never trust the client-side redirect alone, since that can be spoofed or interrupted. Store submissions with their payment status in SQLite, with a dashboard showing paid versus pending or abandoned submissions. Add a basic one-level conditional field, showing field B only if field A has a specific value, to support simple pricing logic. Email the form owner a notification on completed, paid submissions via a transactional email provider. Do not build embedding into third-party tools like Notion, a general calculation or scoring engine, or multi-level branching — those are out of scope; this is a form with an optional Stripe-backed payment step, nothing more. Needs a domain, a transactional email provider, and a Stripe account (test mode works with no real charges for development).",
+  "faq": [
+    { "q": "How does it actually process the payment?", "a": "Through Stripe Checkout — this build never touches card details directly. Stripe handles the payment; the app only records the result after Stripe confirms it via webhook." },
+    { "q": "Can I embed this form inside Notion or another website?", "a": "Not with the polish Fillout has — you could iframe it into a page, but native embed behavior across many platforms is real integration work this build doesn't attempt." },
+    { "q": "What if someone closes the tab after paying but before the redirect completes?", "a": "The webhook confirmation is what actually marks the submission as paid, independent of whether the redirect back completes — so the payment still gets recorded correctly even if that happens." },
+    { "q": "What does it cost to run?", "a": "A domain, a transactional email provider's free tier, and Stripe's standard per-transaction processing fee — no separate subscription cost for the form tool itself." }
+  ]
+}

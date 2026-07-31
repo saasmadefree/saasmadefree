@@ -1,0 +1,19 @@
+{
+  "tagline": "Generate marketing copy drafts with your own LLM API key",
+  "verdictSummary": "A marketing-copy generator wired to your own LLM API key is a real weekend build — prompt templates for ad copy, product descriptions, and blog outlines are just structured prompts. What doesn't survive: Writesonic's fine-tuned models for specific copy formats, its SEO-integrated content workflows, and built-in plagiarism and AI-detection checks.",
+  "coreLoopDIY": "Fill in a structured template — product, audience, tone, format — for a chosen copy type, send it to an LLM API, and generate several draft variations to choose from.",
+  "whatYouLose": [
+    "fine-tuned models for specific copy formats",
+    "SEO-integrated content workflows",
+    "built-in plagiarism and AI-detection checks",
+    "team collaboration and brand-voice memory across a workspace"
+  ],
+  "whyPeopleStillPay": "A prompt template is easy to copy; keeping a whole team's brand voice consistent across dozens of templates, plus compliance checks like plagiarism detection, is the ongoing product work.",
+  "prompt": "Build a marketing-copy generator wired to your own LLM API key — Claude or GPT, read from ANTHROPIC_API_KEY or OPENAI_API_KEY. Use Next.js/TypeScript. Create a small set of structured templates (product description, ad headline plus body, blog outline, social caption) where the user fills in product and audience fields rather than writing a free-form prompt each time — that structure is most of what a copy tool actually adds over a raw chat interface. Generate 3-5 variations per request and let the user save favorites to a local library, tagged by template type. Add a simple brand-voice setting, a short paragraph describing tone and style, that gets prepended to every generation request, so output stays consistent across sessions without re-explaining it each time. Store everything in SQLite. Do not build plagiarism or AI-detection checking, SEO keyword integration, or multi-user team workspaces — those are out of scope. Requires an Anthropic or OpenAI API key; without one, the app still runs but generation is disabled with a clear setup message.",
+  "faq": [
+    { "q": "Which templates does it include?", "a": "A small, deliberately limited set — product descriptions, ad copy, blog outlines, and social captions — rather than Writesonic's dozens of specialized formats, each of which represents real prompt-engineering work this build doesn't replicate." },
+    { "q": "Does it check for plagiarism or AI-detectability?", "a": "No — those checks are out of scope. If that matters for your use case, run the output through a separate dedicated tool." },
+    { "q": "Can my team share a brand voice setting?", "a": "Not in this build — the brand-voice setting is local to your own instance, not a shared team workspace feature." },
+    { "q": "What does it cost to run?", "a": "Just your model provider's per-token usage — for typical copy-generation sessions that's usually a fraction of a monthly Writesonic seat, though heavy daily use adds up." }
+  ]
+}
