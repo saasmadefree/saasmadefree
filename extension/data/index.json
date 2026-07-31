@@ -58,7 +58,7 @@
   "airmailapp.com": {
     "slug": "airmail",
     "verdict": "kinda",
-    "amount": 2.99,
+    "amount": 7.99,
     "currency": "USD",
     "url": "/en/tools/airmail"
   },
@@ -499,7 +499,7 @@
   "doodle.com": {
     "slug": "doodle",
     "verdict": "kinda",
-    "amount": 14.95,
+    "amount": 15,
     "currency": "USD",
     "url": "/en/tools/doodle"
   },
@@ -625,7 +625,7 @@
   "feedly.com": {
     "slug": "feedly",
     "verdict": "yes",
-    "amount": 7,
+    "amount": 8,
     "currency": "USD",
     "url": "/en/tools/feedly"
   },
@@ -744,7 +744,7 @@
   "goodlinks.app": {
     "slug": "goodlinks",
     "verdict": "yes",
-    "amount": 0.83,
+    "amount": 0.42,
     "currency": "USD",
     "url": "/en/tools/goodlinks"
   },
@@ -800,7 +800,7 @@
   "hemingwayapp.com": {
     "slug": "hemingway-editor-plus",
     "verdict": "yes",
-    "amount": 10,
+    "amount": 25,
     "currency": "USD",
     "url": "/en/tools/hemingway-editor-plus"
   },
@@ -940,7 +940,7 @@
   "keepersecurity.com": {
     "slug": "keeper-password-manager",
     "verdict": "no",
-    "amount": 3.75,
+    "amount": 3.58,
     "currency": "USD",
     "url": "/en/tools/keeper-password-manager"
   },
@@ -1115,8 +1115,15 @@
   "magnific.ai": {
     "slug": "magnific-ai",
     "verdict": "no",
-    "amount": 39,
-    "currency": "USD",
+    "amount": 16,
+    "currency": "EUR",
+    "url": "/en/tools/magnific-ai"
+  },
+  "magnific.com": {
+    "slug": "magnific-ai",
+    "verdict": "no",
+    "amount": 16,
+    "currency": "EUR",
     "url": "/en/tools/magnific-ai"
   },
   "mailbird.com": {
@@ -1161,10 +1168,10 @@
     "currency": "USD",
     "url": "/en/tools/mara"
   },
-  "hq.getmatter.com": {
+  "getmatter.com": {
     "slug": "matter",
     "verdict": "kinda",
-    "amount": 5,
+    "amount": 6.67,
     "currency": "USD",
     "url": "/en/tools/matter"
   },
@@ -1556,7 +1563,7 @@
   "pocketsmith.com": {
     "slug": "pocketsmith",
     "verdict": "kinda",
-    "amount": 9.95,
+    "amount": 14.95,
     "currency": "USD",
     "url": "/en/tools/pocketsmith"
   },
@@ -1850,8 +1857,8 @@
   "cloud.seatable.io": {
     "slug": "seatable-cloud",
     "verdict": "kinda",
-    "amount": 8,
-    "currency": "USD",
+    "amount": 9,
+    "currency": "EUR",
     "url": "/en/tools/seatable-cloud"
   },
   "sellfy.com": {
@@ -1983,7 +1990,7 @@
   "sparkmailapp.com": {
     "slug": "spark-premium",
     "verdict": "kinda",
-    "amount": 7.99,
+    "amount": 10,
     "currency": "USD",
     "url": "/en/tools/spark-premium"
   },
@@ -2109,7 +2116,7 @@
   "swellai.com": {
     "slug": "swell-ai",
     "verdict": "kinda",
-    "amount": 17,
+    "amount": 29,
     "currency": "USD",
     "url": "/en/tools/swell-ai"
   },
@@ -2305,7 +2312,7 @@
   "umso.com": {
     "slug": "umso",
     "verdict": "kinda",
-    "amount": 12,
+    "amount": 14,
     "currency": "USD",
     "url": "/en/tools/umso"
   },

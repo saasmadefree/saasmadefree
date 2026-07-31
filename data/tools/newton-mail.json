@@ -11,9 +11,9 @@
     "currency": "USD",
     "plan": "Newton",
     "basis": "annual-effective-monthly",
-    "source": "https://newtonhq.com/pricing",
+    "source": "https://newtonhq.com/",
     "checkedOn": "2026-07-31",
-    "confidence": "medium"
+    "confidence": "high"
   },
   "verdict": "kinda",
   "verdictConfidence": "medium",

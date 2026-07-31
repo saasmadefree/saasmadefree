@@ -7,13 +7,14 @@
   "category": "email",
   "subcategory": "email clients and hosted mail",
   "pricing": {
-    "amount": 7.99,
+    "amount": 10,
     "currency": "USD",
-    "plan": "Premium Individual",
-    "basis": "flat-monthly",
-    "source": "https://sparkmailapp.com/plans",
+    "plan": "Plus",
+    "basis": "per-seat-monthly",
+    "source": "https://sparkmailapp.com/pricing",
     "checkedOn": "2026-07-31",
-    "confidence": "medium"
+    "confidence": "high",
+    "notes": "The 'Premium' tier is now named Plus; monthly rate $10/user, $8.25/user/month billed yearly."
   },
   "verdict": "kinda",
   "verdictConfidence": "medium",

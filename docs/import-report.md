@@ -2298,3 +2298,89 @@ hostname: `ubersuggest` → `app.neilpatel.com`, `appsmith-cloud` → `app.appsm
   were taken strictly in rank order, and the only verdict changes made all moved toward `no`.
 - **All 110 entries are English-only.** French translation is a separate task and was not
   attempted.
+
+## Link sweep — repairing 26 dead `pricing.source` URLs (2026-07-31)
+
+`npm run linkcheck` reported 50 failures, of which **27 were true 404s** (the 26 listed in the
+task plus `brevo.com/pricing`, which 404s on the apex but resolves at `www.brevo.com/pricing/`).
+The other 23 are 401/402/403/429/connection failures — bot-blocking by Cloudflare and friends,
+not dead pages — and were left alone.
+
+Every one of the 27 was re-checked by fetching the vendor's site, confirming the company behind
+it, and re-reading the price. **26 URLs now resolve; the sweep ends at 24 failures (was 50).**
+
+### Prices that were actually wrong (13 of 27)
+
+| Slug | Was | Now | What happened |
+|---|---|---|---|
+| `hemingway-editor-plus` | $10 flat-monthly, "Plus 5K" | **$25** flat-monthly, "Individual 5K" | $10 is the legacy monthly rate. The page's own FAQ says "with the monthly plan, you pay a bit more per month ($25)", and the tier data in the page bundle carries `pricePerMonthMonthly:"$10"` alongside `pricePerMonthNewMonthly:"$25"`. Annual is $100/yr ($8.33/mo), and the advertised "save $200" only reconciles at $25 × 12 − $100. |
+| `swell-ai` | $17 flat-monthly, "Hobby" | **$29** flat-monthly, "Studio" | Hobby is now a **free** tier (1 upload/month). Studio at $29/mo is the entry-level paid plan. |
+| `magnific-ai` | $39 flat-monthly, "Pro" | **€16** flat-monthly, "Premium" | See the domain section below. The standalone $39 upscaler plan no longer exists. |
+| `airmail` | $2.99 flat-monthly | **$7.99** flat-monthly | App Store lists Airmail Pro Monthly $7.99 / Yearly $49.99. |
+| `pocketsmith` | $9.95 flat-monthly | **$14.95** flat-monthly | $9.95 matched neither rate. Foundation is $14.95 billed monthly, $9.99/mo billed annually. |
+| `spark-premium` | $7.99 flat-monthly, "Premium Individual" | **$10** per-seat-monthly, "Plus" | Tier renamed; $10/user monthly, $8.25/user/month billed yearly. |
+| `seatable-cloud` | $8 per-seat-monthly | **€9** per-seat-monthly | The annual-vs-monthly trap: €7/user/month billed yearly, €9 billed monthly. Also EUR, not USD. |
+| `umso` | $12 flat-monthly | **$14** flat-monthly | Basic is $14/site/month monthly, $7 billed yearly. |
+| `feedly` | $7 flat-monthly | **$8** flat-monthly | See the confidence note in the entry — Feedly geo-prices and served EUR. |
+| `matter` | $5 annual-effective | **$6.67** annual-effective | Premium Annual is $79.99/yr. Confidence lowered to `low`; see flags. |
+| `doodle` | $14.95 flat-monthly | **$15** per-seat-monthly | Pro is USD 15 "per seat / month"; $11/seat billed annually, vendor-stated saving $48/yr. Basis was also wrong. |
+| `keeper-password-manager` | $3.75 annual-effective | **$3.58** annual-effective | Personal is $42.99/year. |
+| `goodlinks` | $0.83 annual-effective | **$0.42** annual-effective | $0.83 looks like the $9.99 one-time app price divided by 12. GoodLinks Premium is the $4.99/year "Annual Feature Upgrade" subscription; the app itself is a separate one-time purchase. |
+
+The other 14 had a broken URL but a correct price — re-read and confirmed at `bear-pro` ($2.99),
+`brevo` ($9), `vistacreate` ($13 — annual is $10, and both "save 23%" and "save $36/year" only
+reconcile against a $13 monthly rate), `formstack-forms` ($99), `keysearch` ($24), `ubersuggest`
+($29), `newsblur-premium` ($3 = $36/yr), `newton-mail` ($4.17 = $49.99/yr, stated on the
+homepage), `optery` ($14.99), `serpstat` ($69 — the page defaults to the annual view at $50/mo,
+and the stated $228/yr saving confirms $69 monthly), `quickbase` ($35), `relay-app`, `structured`
+and `typedream` (the last three flagged below).
+
+### Domain defects (the `grist` class)
+
+- **`matter` declared `hq.getmatter.com`, which is dead.** It 301s to `www.getmatter.com`. Because
+  `matchHost` walks *up* from the visited host, a declared `hq.getmatter.com` matches only that
+  host and its subdomains — never `getmatter.com` or the actual reading app at
+  `web.getmatter.com`. The badge could never have fired. Changed to `getmatter.com`.
+- **`magnific-ai` declared `magnific.ai`, which now redirects to `magnific.com`.** Same company —
+  Freepik acquired Magnific and has since rebranded the whole creative suite as Magnific
+  ("Pricing plans | Magnific (formerly Freepik)"). Not a wrong-entity defect, but the live product
+  domain was uncovered, so `magnific.com` was added. **The product scope has changed materially**:
+  the entry describes an AI upscaler with Real-ESRGAN/Upscayl as prior art, and magnific.com now
+  sells a full image/video/audio/stock suite. This entry deserves a re-scope, not just a reprice.
+- `seatable-cloud` keeps `cloud.seatable.io`, which is still live and correct, though the vendor's
+  marketing domain has moved from `seatable.io` to `seatable.com`.
+
+### Left flagged rather than guessed
+
+- **`relay-app` — shutting down.** relay.app/ now serves only a wind-down notice: free accounts
+  deleted 2026-08-15, paid 2026-09-14, new signups and upgrades off since 2026-07-16, pricing page
+  removed. Source repointed at the notice, confidence `low`. The $19 Professional rate is the last
+  known figure and is no longer verifiable.
+- **`typedream` — product gone, URL deliberately left 404.** typedream.com returns 404 at the root;
+  the Next.js app survives only to serve customer sites. Typedream was acquired by beehiiv and
+  folded into its website builder. There is no vendor page showing a price, so the dead URL was
+  kept as the flag rather than replaced with a plausible-looking guess. **This is the one remaining
+  404 in the sweep, on purpose.** Needs a decision: remove the entry, or re-scope it to beehiiv.
+- **`structured` — price genuinely ambiguous.** No pricing page on structured.app, and the App
+  Store lists two concurrent monthly SKUs ($2.99 and $6.99) plus Yearly $9.99/$29.99 and Lifetime
+  $99.99. Kept at $2.99, confidence `low`.
+- **`matter`** — same shape, confidence `low` (see table).
+
+### Method notes worth knowing next time
+
+- **Geo-pricing is the main obstacle to verification from the EU.** Brevo, Keeper, Spark, Feedly,
+  Magnific and Ubersuggest all served EUR. Brevo was resolved from JSON-LD (`"Starter","price":"9",
+  "priceCurrency":"USD"`), Keeper via its own currency selector, Spark via `?currency=USD`. Feedly
+  refuses all currency overrides, so its USD figure comes from the plan SKU ids
+  (`FeedlyProStandardMonthly8` / `FeedlyProStandardYearly72`) — recorded at `medium` confidence
+  with the method written into `pricing.notes`. Magnific could not be moved off EUR at all and is
+  recorded in EUR.
+- **Several prices only exist in JS.** Hemingway's real monthly rate is in a Next.js chunk, not the
+  server HTML; Doodle renders prices through a `number-flow` web component whose digits are
+  unreadable from the DOM and had to be screenshotted. A curl-only check would have silently
+  recorded the annual rate for both.
+- **`pricing.notes` is now used** (previously unused across all 350 entries). It is schema-valid but
+  rendered nowhere — it is a maintainer-facing flag only.
+- No `verdict` was changed. Two look worth revisiting on the new numbers: `swell-ai` (`kinda`,
+  priced from $17 → $29) and `hemingway-editor-plus` (`yes` at what is now $25/mo, 2.5× the
+  recorded price). Reporting, not acting.

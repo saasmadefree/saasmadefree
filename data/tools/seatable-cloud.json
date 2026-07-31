@@ -7,13 +7,14 @@
   "category": "databases",
   "subcategory": "spreadsheet databases and operational data apps",
   "pricing": {
-    "amount": 8,
-    "currency": "USD",
+    "amount": 9,
+    "currency": "EUR",
     "plan": "Plus",
     "basis": "per-seat-monthly",
-    "source": "https://seatable.io/en/prices/",
+    "source": "https://seatable.com/prices/",
     "checkedOn": "2026-07-31",
-    "confidence": "medium"
+    "confidence": "high",
+    "notes": "Monthly billing rate; €7/user/month when billed yearly. seatable.io now redirects to seatable.com."
   },
   "verdict": "kinda",
   "verdictConfidence": "medium",

@@ -7,13 +7,13 @@
   "category": "ai-writing",
   "subcategory": "grammar, editing and long-form writing",
   "pricing": {
-    "amount": 10,
+    "amount": 25,
     "currency": "USD",
-    "plan": "Plus 5K",
+    "plan": "Individual 5K",
     "basis": "flat-monthly",
-    "source": "https://hemingwayapp.com/plus",
+    "source": "https://hemingwayapp.com/hemingway-editor-plus",
     "checkedOn": "2026-07-31",
-    "confidence": "medium"
+    "confidence": "high"
   },
   "verdict": "yes",
   "verdictConfidence": "high",

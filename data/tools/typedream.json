@@ -13,7 +13,8 @@
     "basis": "flat-monthly",
     "source": "https://typedream.com/pricing",
     "checkedOn": "2026-07-31",
-    "confidence": "medium"
+    "confidence": "low",
+    "notes": "FLAGGED: Typedream was acquired by beehiiv and typedream.com no longer serves a marketing or pricing page (root returns 404; the Next.js app only serves customer sites). Price is unverifiable. Source URL deliberately left pointing at the dead page rather than replaced with a guess — this entry needs a decision (remove, or re-scope to beehiiv)."
   },
   "verdict": "kinda",
   "verdictConfidence": "high",
