@@ -22,7 +22,7 @@
     { "name": "Syncthing", "url": "https://syncthing.net", "license": "MPL-2.0" },
     { "name": "Self-hosted LiveSync", "url": "https://github.com/vrtmrz/obsidian-livesync", "license": "MIT" }
   ],
-  "relatedSlugs": ["notion", "calendly", "typeform"],
+  "relatedSlugs": ["evernote", "coda", "notion"],
   "markets": ["en", "fr"],
   "pagePriority": 6,
   "verifiedOneShot": false

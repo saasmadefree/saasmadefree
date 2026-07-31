@@ -21,7 +21,8 @@
   "diyTimeEstimate": "one-sitting",
   "requirements": [
     "anthropic-api-key",
-    "hosting"
+    "hosting",
+    "database"
   ],
   "priorArt": [
     {

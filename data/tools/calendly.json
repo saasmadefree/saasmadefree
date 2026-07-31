@@ -21,7 +21,7 @@
   "priorArt": [
     { "name": "Cal.diy", "url": "https://cal.diy", "license": "MIT" }
   ],
-  "relatedSlugs": ["notion", "typeform", "obsidian"],
+  "relatedSlugs": ["meetergo", "savvycal", "notion"],
   "markets": ["en", "fr"],
   "pagePriority": 8,
   "verifiedOneShot": false

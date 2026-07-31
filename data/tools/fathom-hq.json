@@ -20,7 +20,8 @@
   "moatType": "financial integrations/reporting templates",
   "diyTimeEstimate": "week",
   "requirements": [
-    "hosting"
+    "hosting",
+    "database"
   ],
   "priorArt": [
     {

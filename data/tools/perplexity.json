@@ -22,7 +22,8 @@
   "requirements": [
     "anthropic-api-key",
     "openai-api-key",
-    "hosting"
+    "hosting",
+    "database"
   ],
   "priorArt": [
     {

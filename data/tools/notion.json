@@ -22,7 +22,7 @@
     { "name": "AppFlowy", "url": "https://appflowy.io", "license": "AGPL-3.0" },
     { "name": "Outline", "url": "https://www.getoutline.com", "license": "BSL-1.1" }
   ],
-  "relatedSlugs": ["calendly", "typeform", "obsidian"],
+  "relatedSlugs": ["coda", "obsidian", "calendly"],
   "markets": ["en", "fr"],
   "pagePriority": 9,
   "verifiedOneShot": false
