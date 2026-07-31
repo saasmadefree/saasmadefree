@@ -1,0 +1,21 @@
+{
+  "tagline": "Assistant IA pour l'écriture, le raisonnement, le code et le travail documentaire.",
+  "verdictSummary": "Une surcouche à la forme de Claude — chat au-dessus de l'API Anthropic, import de documents, contextes de projet enregistrés — est réellement facile à construire. Ce qui reste hors de portée, c'est le modèle lui-même, la qualité de son contexte long, et les Artifacts et Projects en tant que surface produit aboutie, et pas juste un appel d'API brut.",
+  "coreLoopDIY": "Une app de chat au-dessus de l'API Anthropic, avec import de documents, historique de conversation, et un regroupement « projet » léger pour partager du contexte.",
+  "whatYouLose": [
+    "le modèle de pointe et ses mises à jour continues",
+    "la performance en contexte long réglée par Anthropic",
+    "les Artifacts comme canvas interactif, pas juste du texte retourné",
+    "les applications mobiles",
+    "un tarif forfaitaire qui ne pénalise pas un usage intensif"
+  ],
+  "whyPeopleStillPay": "La qualité se trouve dans le modèle et la surface produit qui l'entoure, pas dans la fenêtre de chat — une surcouche te donne la même API, mais aucun du travail produit qu'Anthropic construit par-dessus.",
+  "notes": "Un « non » qui laisse quand même une surcouche vraiment utilisable, souvent moins chère, pour les gens qui font surtout du chat et n'ont pas besoin des Artifacts.",
+  "prompt": "Construis un client léger au-dessus de l'API Anthropic : une interface de chat avec réponses en streaming, une barre latérale de conversations, et un rendu Markdown. Laisse une conversation porter un system prompt éditable, avec Sonnet comme modèle par défaut et la possibilité de basculer vers un modèle plus grand par conversation. Ajoute des « projets » : un projet regroupe des conversations liées et contient une poignée de documents de référence (texte brut ou PDF) préfixés comme contexte à chaque échange à l'intérieur — utilise le prompt caching de l'API sur ces documents pour que le contexte répété ne soit pas refacturé à chaque message. Stocke tout dans une vraie base de données avec recherche plein texte sur toutes les conversations, et permets d'exporter n'importe quel fil vers Markdown. Affiche une estimation de coût cumulée par conversation et par mois à partir des données d'usage de l'API, pour que garder cette version plutôt que payer un tarif fixe soit une décision appuyée sur un chiffre, pas sur une impression.\n\nNe construis pas les Artifacts comme canvas interactif, les applications mobiles, ni une tarification forfaitaire pour un usage intensif — si le compteur de coût montre un usage vraiment intensif, un forfait fixe gagne sur le prix, et le geste honnête est de repasser dessus plutôt que de continuer à optimiser autour.",
+  "faq": [
+    { "q": "Puis-je importer mon historique de conversations Claude ?", "a": "Claude.ai permet d'exporter tes données, y compris les conversations, et cet export correspond raisonnablement bien au stockage de cette version — un court script ponctuel convertit le format d'export." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "En tant que page web responsive, oui, si elle est hébergée quelque part d'accessible. Il n'y a ni app native ni mode hors ligne." },
+    { "q": "Combien ça coûte vraiment à faire tourner ?", "a": "L'hébergement coûte quelques dollars par mois ; le coût en tokens pour un usage de chat léger à modéré reste souvent bien en dessous du prix de l'abonnement fixe, surtout une fois le prompt caching branché pour le contexte de projet répété." },
+    { "q": "Quelle est la chose qui ne survit vraiment pas à la reconstruction ?", "a": "Les Artifacts en tant que vraie surface produit. L'API peut retourner du code ou des documents en texte, mais le canvas interactif et versionné dans lequel Claude.ai les transforme est du travail produit que cette surcouche ne reproduit pas." }
+  ]
+}

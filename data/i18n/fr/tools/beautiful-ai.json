@@ -1,0 +1,21 @@
+{
+  "tagline": "Créateur de présentations avec modèles intelligents et mise en forme automatique.",
+  "verdictSummary": "Un outil en ligne de commande qui transforme du Markdown en diapositives, avec une poignée de mises en page fixes et un plan de départ optionnel rédigé par IA, c'est un vrai projet d'une semaine. Ce qui ne vient pas avec, c'est le vrai produit de Beautiful.ai : un moteur de mise en page qui rééquilibre automatiquement le design d'une diapo à mesure que tu modifies son contenu, pour qu'elle ne paraisse jamais déséquilibrée.",
+  "coreLoopDIY": "Écris tes diapositives en Markdown, fais-les passer par une poignée de mises en page fixes avec un aperçu en direct, puis exporte en PDF.",
+  "whatYouLose": [
+    "le moteur de mise en page à ajustement automatique",
+    "une bibliothèque de modèles de marque partagée",
+    "la compatibilité d'import/export avec PowerPoint",
+    "la collaboration en temps réel",
+    "les statistiques de consultation"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour qu'une diapo reste visuellement équilibrée automatiquement quand son contenu change — c'est ce moteur de mise en page adaptatif, pas la création de diapos en elle-même, qui représente le vrai travail d'ingénierie continu derrière le produit.",
+  "notes": "Générer une démo de diapos, c'est facile ; ce qui retient vraiment les gens ici, c'est la finition d'édition qui garde une diapo à l'air soigné pendant qu'on tape.",
+  "prompt": "Construis un outil de création de diapositives basé sur le Markdown : les présentations sont de simples fichiers Markdown, avec une ligne marquant chaque nouvelle diapo et une ligne optionnelle pour les notes de l'orateur. Prends en charge un petit ensemble fixe de mises en page (titre, liste à puces, grand chiffre/stat, texte-et-image en deux colonnes), chacune définie par son propre fichier CSS éditable plutôt qu'intégrée en dur dans l'outil. Ajoute un serveur d'aperçu local avec rechargement à chaud et une commande d'export PDF. Quand le contenu d'une diapo déborde de sa mise en page, réduis la taille du texte une fois automatiquement et affiche un avertissement nommant la diapo concernée, plutôt que de tronquer le contenu silencieusement. Prends en charge une petite config de marque — deux polices, une poignée de couleurs, un emplacement de logo — appliquée à chaque diapo. Ajoute une fonctionnalité optionnelle : à partir d'un plan de notes brut, appelle une API LLM pour rédiger une présentation de départ dans le même format Markdown, à éditer ensuite — ignore-la entièrement, sans erreur, si aucune clé API n'est configurée ; le reste de l'outil fonctionne sans aucune clé API.\n\nN'essaie pas de construire un moteur de mise en page automatique qui rééquilibre le design d'une diapo à mesure que le contenu change, l'export PowerPoint, ou la collaboration en temps réel — ce comportement de mise en page auto-ajustable est précisément du vrai travail produit continu, pas quelque chose qu'un ensemble fixe de mises en page CSS peut reproduire.",
+  "faq": [
+    { "q": "Puis-je importer mes présentations Beautiful.ai existantes ?", "a": "Pas directement — Beautiful.ai exporte en PDF et PPTX, ce qui est utile comme référence mais pas éditable ici. Récupérer une présentation veut dire réécrire son contenu en Markdown à la main, ou utiliser la fonctionnalité optionnelle de plan par IA comme point de départ." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Pour consulter un PDF exporté, oui. Écrire ou modifier une présentation passe par un éditeur de texte et la ligne de commande, ce qui n'est pas vraiment faisable sur téléphone." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "L'hébergement du serveur d'aperçu local est quasi gratuit ; le plan optionnel rédigé par IA coûte un peu par présentation en usage d'API, et ignorer cette fonctionnalité ne coûte rien du tout." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Les mises en page auto-ajustables. Beautiful.ai rééquilibre automatiquement le design d'une diapo quand tu ajoutes ou retires du contenu ; cette version utilise un petit ensemble de mises en page fixes qui ont besoin d'un coup de pouce manuel — une réduction de taille de texte et un avertissement — quand le contenu déborde." }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "tagline": "Éditeur vidéo pensé mobile d'abord, avec modèles, sous-titres et effets.",
+  "verdictSummary": "Un outil en ligne de commande de sous-titrage et de découpe — transcrire, incruster des sous-titres, couper, exporter pour les formats sociaux — c'est un vrai projet d'une session, avec des outils open source, tournant entièrement hors ligne une fois le modèle téléchargé. Ce qui ne vient pas avec, c'est le vrai produit de CapCut : un véritable éditeur de timeline mobile, sa bibliothèque d'effets et de modèles, et la finition qui rend le montage rapide sur un téléphone.",
+  "coreLoopDIY": "Un outil en ligne de commande qui transcrit une vidéo en local, incruste des sous-titres stylisés, coupe les clips, et exporte aux formats d'image courants pour les réseaux sociaux.",
+  "whatYouLose": [
+    "l'éditeur de timeline mobile en lui-même",
+    "la bibliothèque d'effets et de modèles",
+    "une bibliothèque de ressources en croissance",
+    "les préréglages d'export et intégrations spécifiques à chaque plateforme",
+    "la performance de rendu en temps réel"
+  ],
+  "whyPeopleStillPay": "Le montage de formats courts sur téléphone doit être rapide, et une bibliothèque d'effets réutilisables et de tendances, c'est l'essentiel de ce qui donne à un clip un air actuel — ni l'un ni l'autre n'est reproduit par un script de sous-titrage.",
+  "notes": "Une catégorie où l'honnêteté est facile : les sous-titres automatiques sont un problème résolu ; un vrai éditeur de timeline avec effets ne l'est pas.",
+  "prompt": "Construis un outil en ligne de commande de sous-titrage et de découpe vidéo. À partir d'un fichier vidéo, transcris-le en local (faster-whisper ou whisper.cpp — aucune API cloud nécessaire) et incruste des sous-titres stylisés regroupés quelques mots par ligne, avec un fichier de config contrôlant la police, la taille, la couleur et la position. Prends en charge la découpe sur une plage temporelle et l'export aux formats d'image sociaux courants (vertical, carré, grand écran) avec des débits par défaut sensés pour une lecture sur téléphone. Écris le fichier de sous-titres brut à côté de la vidéo pour que les coquilles puissent être corrigées à la main, puis réincruste depuis le fichier corrigé sans retranscrire. N'écrase jamais le fichier source — écris toujours un nouveau fichier de sortie à côté. Prends en charge un mode batch : pointe-le vers un dossier et traite chaque vidéo à l'intérieur.\n\nNe construis pas d'éditeur de timeline, de bibliothèque d'effets ou de modèles, ni de bibliothèque musicale — la finition de montage et la bibliothèque de ressources de CapCut sont le vrai produit, et cet outil se limite à une tâche précise : des clips sous-titrés, coupés, au bon format, à partir d'une seule vidéo source, pas du montage général.",
+  "faq": [
+    { "q": "Puis-je importer mes projets CapCut existants ?", "a": "Non — le format de projet de CapCut est propriétaire et n'exporte vers rien que cet outil puisse lire. Tu partirais du fichier vidéo exporté, pas du projet éditable." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Non — c'est un outil en ligne de commande pensé pour tourner sur un ordinateur avec une vraie puissance de calcul pour la transcription. Le montage pensé mobile d'abord de CapCut est exactement la partie que ça ne remplace pas." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien — ça tourne entièrement hors ligne sur ta propre machine après le téléchargement ponctuel du modèle de transcription, sans hébergement ni clé API." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "L'éditeur en lui-même. Cet outil sous-titre et coupe un seul clip ; il n'a ni timeline, ni effets en glisser-déposer, ni bibliothèque de modèles tendance — pour tout ce qui dépasse les sous-titres et la coupe, il faut revenir à un vrai éditeur vidéo." }
+  ]
+}

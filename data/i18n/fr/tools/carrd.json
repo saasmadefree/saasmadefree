@@ -1,0 +1,19 @@
+{
+  "tagline": "Créateur de sites web une page pour landing pages et profils.",
+  "verdictSummary": "Un site une page bien conçu — titre, bio, liens, un formulaire de contact fonctionnel, un domaine personnalisé — se construit facilement en une session, et Carrd est assez peu cher pour que l'argument de le remplacer tienne surtout au contrôle et à l'apprentissage, pas à l'économie. Si tu as déjà un agent de code, tu n'as pas besoin d'un créateur de site du tout — tu as besoin d'une seule page HTML bien conçue.",
+  "coreLoopDIY": "Un site une page généré depuis un seul fichier de contenu, avec un formulaire de contact fonctionnel et un domaine personnalisé — pas d'éditeur visuel, pas d'abonnement mensuel.",
+  "whatYouLose": [
+    "l'éditeur visuel en glisser-déposer",
+    "le backend de formulaire hébergé de Carrd",
+    "leur galerie de modèles pour démarrer"
+  ],
+  "whyPeopleStillPay": "Le tarif de Carrd est si faible que la plupart des gens qui continuent de payer le font pour n'avoir aucune configuration à faire, pas parce qu'un site une page est difficile à construire.",
+  "notes": "Carrd est réputé pour son prix dérisoire — l'argument honnête pour cette fiche, c'est le contrôle et l'apprentissage, pas l'argent.",
+  "prompt": "Construis un site une page unique et bien conçu à partir d'un seul fichier de contenu (nom, titre, courte bio, image d'avatar, liens sociaux, et une liste optionnelle de projets avec titre, description et URL) — éditer ce fichier constitue tout le CMS, pas besoin de panneau d'admin. Mets un vrai effort de design là-dedans : une hiérarchie typographique claire, des espaces blancs généreux, une couleur d'accent comme variable CSS, un mode sombre via prefers-color-scheme, et des états de survol sobres — ça doit se lire comme conçu, pas comme un modèle standard. Ajoute un formulaire de contact fonctionnel sans service de formulaire tiers : poste vers un petit endpoint sur ton propre serveur qui ajoute le message à un fichier de log (ou te l'envoie par email) et affiche un remerciement en ligne, avec un champ honeypot pour limiter le spam de bots. Garde la page elle-même en HTML statique avec CSS intégré et sans framework, pour qu'elle charge instantanément et obtienne un bon score à n'importe quel audit de performance ; ajoute les balises Open Graph correctes et une image d'aperçu générée. Déploie la page statique sur n'importe quel hébergeur statique ou petit VPS, avec l'endpoint du formulaire comme seul petit morceau de code serveur, et pointe ton propre domaine dessus.",
+  "faq": [
+    { "q": "Puis-je récupérer mon site Carrd existant ?", "a": "Pas automatiquement — Carrd n'offre pas d'export structuré. En pratique, c'est une courte réécriture, pas une migration : copie ton texte et tes liens existants directement dans le nouveau fichier de contenu." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Oui — c'est une page web responsive normale, et un site une page sans panneau d'admin n'a rien qui se comporte différemment sur mobile." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Un domaine plus un hébergement statique, souvent gratuit ou à quelques dollars par mois — vraiment proche de ce que Carrd facture déjà lui-même, donc l'argument pour le faire, c'est le contrôle, pas l'économie." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "L'éditeur visuel. Chaque futur changement de mise en page ou de contenu passe désormais par l'édition d'un fichier et un redéploiement, pas par le glisser d'un bloc dans un navigateur." }
+  ]
+}

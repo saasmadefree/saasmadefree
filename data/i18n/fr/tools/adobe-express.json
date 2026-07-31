@@ -1,0 +1,21 @@
+{
+  "tagline": "Éditeur rapide à base de modèles pour visuels et supports réseaux sociaux.",
+  "verdictSummary": "Un générateur de visuels à base de modèles — des templates HTML/CSS rendus en PNG, une suppression d'arrière-plan via un modèle open source local, couleurs et polices de marque appliquées automatiquement — est un vrai projet de week-end. Ce qui ne vient pas avec, c'est le vrai produit d'Adobe : des ressources sous licence (banque d'images), des outils vidéo et PDF, et une intégration profonde avec le reste de Creative Cloud.",
+  "coreLoopDIY": "Un sélecteur de modèles qui remplit une petite bibliothèque de mises en page HTML/CSS avec ton texte, tes images et tes couleurs de marque, rendues en PNG à des dimensions exactes en pixels.",
+  "whatYouLose": [
+    "Adobe Stock et les ressources sous licence",
+    "les outils d'édition vidéo et PDF",
+    "l'intégration profonde avec Creative Cloud",
+    "les applications mobiles",
+    "une couverture de licence large pour un usage commercial"
+  ],
+  "whyPeopleStillPay": "L'écosystème de contenu et d'export est déjà en place — modèles, banque d'images, couverture de formats pour une dizaine d'usages — les gens paient pour cette étendue, pas pour la capacité de superposer du texte sur une image.",
+  "notes": "Un contraste utile avec Canva dans ce catalogue : une barrière à l'entrée similaire fondée sur les modèles, mais dans un écosystème différent.",
+  "prompt": "Construis un générateur de visuels à base de modèles : une petite bibliothèque de templates HTML/CSS pour les formats courants (post carré, format story, bannière d'en-tête, miniature, carte de citation), chacun rendu en PNG à des dimensions exactes en pixels via une capture d'écran par navigateur headless. Construis une page avec un sélecteur de modèle, un champ par zone de texte, une zone de dépôt d'image, et un aperçu en direct qui rend le même modèle. Applique la suppression d'arrière-plan sur les photos importées avec un modèle open source local — pas besoin d'API payante pour ça. Charge les réglages de marque (deux polices, une poignée de couleurs, un logo) depuis un seul fichier de config que chaque modèle lit automatiquement. Enregistre chaque export avec un petit fichier annexe qui note les valeurs des champs utilisées, pour pouvoir rouvrir et re-générer n'importe quel visuel plus tard.\n\nNe construis pas d'outils vidéo ou PDF, ni de banque d'images — la bibliothèque de contenu sous licence d'Adobe est le vrai produit, et cette version part du principe que tu apportes tes propres images.",
+  "faq": [
+    { "q": "Puis-je récupérer mes designs Adobe Express existants ?", "a": "Pas directement — Adobe Express n'exporte pas vers un format éditable que cette version peut lire, seulement des images aplaties. Un export aplati sert de référence pour reconstruire le visuel, pas d'import." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Pas vraiment — remplir un modèle fonctionne dans un navigateur mobile, mais le placement précis du texte et des images reste une tâche de desktop, et il n'y a pas d'application mobile dédiée ici." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Juste l'hébergement de la petite application web, typiquement quelques dollars par mois ou gratuit sur un hébergeur statique — la suppression d'arrière-plan tourne en local, sans coût d'API." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La bibliothèque de ressources sous licence. Adobe Express fournit des photos, icônes et polices déjà autorisées pour un usage commercial ; cette version te donne des modèles vides et tes propres images, sans aucune de ces garanties de licence." }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "tagline": "Suite de design à base de modèles pour posts sociaux, documents, présentations et ressources de marque.",
+  "verdictSummary": "Un éditeur de canvas — des préréglages pour les formats courants, des calques texte et image, un petit panneau de couleurs de marque, un export PNG/PDF — c'est un vrai projet de week-end au-dessus d'une bibliothèque de canvas open source. Ce qui ne vient pas avec, c'est le vrai produit de Canva : une immense bibliothèque de modèles et de banque d'images sous licence, et une couche de collaboration qui empêche un design partagé de casser quand deux personnes y touchent.",
+  "coreLoopDIY": "Un éditeur de canvas avec des préréglages de format, des calques texte et image, un petit panneau de couleurs de marque, et un export PNG/PDF.",
+  "whatYouLose": [
+    "la bibliothèque de modèles",
+    "les photos et graphismes de banque d'images sous licence",
+    "les outils d'édition par IA de Canva",
+    "la collaboration en temps réel sur un design partagé",
+    "les kits de marque synchronisés entre les membres d'une équipe"
+  ],
+  "whyPeopleStillPay": "L'essentiel du travail de design consiste à bien choisir dans une immense bibliothèque organisée par des pros, et à éditer un fichier partagé sans casser la mise en page de quelqu'un d'autre — pas à dessiner des rectangles, ce qui est la partie facile.",
+  "notes": "Un « en partie » honnête : l'éditeur en lui-même est facile à démontrer, égaler la bibliothèque de ressources et la couche de collaboration ne l'est pas.",
+  "prompt": "Construis un petit éditeur de design en canvas avec une bibliothèque de canvas open source (Fabric.js ou Konva), avec une poignée de préréglages de format pour les usages courants — un post carré, un format story portrait, une bannière d'en-tête, une page imprimable — plus une option de format personnalisé. Prends en charge le texte via les polices déjà présentes sur la machine, l'import d'image, des formes basiques, une liste de calques réordonnable, et des guides d'alignement et d'accroche simples. Charge un petit panneau de marque depuis un fichier de config — une poignée de couleurs de marque et deux polices en nuancier à un clic — pour qu'une identité personnelle reste cohérente d'un design à l'autre sans devoir la refaire à chaque fois. Enregistre chaque design comme un fichier qui se rouvre exactement tel quel ; dupliquer un design enregistré, c'est tout le système de « modèle », pas besoin de moteur de modèles séparé. Exporte en PNG à plusieurs résolutions, et en PDF en rendant le canvas comme une page imprimable. Garde tout en local, sans compte ni télémétrie.\n\nNe construis pas de banque d'images ou de bibliothèque de modèles, de générateur d'image par IA, ni de collaboration en temps réel — apporte tes propres images, et considère ça comme un outil mono-utilisateur. La bibliothèque de ressources sous licence et la possibilité pour deux personnes d'éditer le même fichier en direct sont le vrai produit de Canva, pas un week-end de code de canvas.",
+  "faq": [
+    { "q": "Puis-je récupérer mes designs Canva existants ?", "a": "Pas directement — Canva n'exporte pas vers un format éditable que cette version peut lire, seulement des images et PDF aplatis. Un export aplati fonctionne bien comme image de fond à recalquer, mais les calques doivent être reconstruits à la main." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Pas vraiment. L'édition en canvas demande un contrôle de pointeur précis, vraiment difficile sur un écran tactile, et cette version n'a pas d'application mobile dédiée — c'est un outil desktop." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Juste l'hébergement de la petite application web, typiquement quelques dollars par mois ou gratuit sur un hébergeur statique, puisqu'il n'y a ni base de données ni clé API en jeu." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La bibliothèque. La vraie valeur de Canva, ce sont des milliers de modèles et de ressources sous licence déjà autorisés à l'usage ; cette version te donne un canvas vide et tes propres images, rien de plus." }
+  ]
+}

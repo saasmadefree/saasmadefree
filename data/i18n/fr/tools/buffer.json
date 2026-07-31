@@ -1,0 +1,21 @@
+{
+  "tagline": "Planificateur de publications pour les réseaux sociaux, multi-canal.",
+  "verdictSummary": "Planifier des publications sur un ou deux réseaux sociaux que tu as toi-même autorisés, c'est un vrai projet de plusieurs jours. Ce qui ne survit pas, c'est la maintenance continue : chaque plateforme sociale change son API et ses limites de fréquence selon son propre calendrier, et quelqu'un doit suivre — c'est cet entretien, pas la logique de planification, qui constitue l'essentiel de ce qu'achète l'abonnement.",
+  "coreLoopDIY": "Une file d'attente de publications, connectée à un ou deux réseaux sociaux par OAuth, publiée selon un planning par une tâche en arrière-plan qui journalise les succès et les échecs.",
+  "whatYouLose": [
+    "une prise en charge large et multi-réseaux, tenue à jour à mesure que les plateformes changent leurs API",
+    "des aperçus enrichis des publications avant envoi",
+    "les statistiques",
+    "les workflows de validation en équipe",
+    "les applications mobiles"
+  ],
+  "whyPeopleStillPay": "Les plateformes sociales changent leurs API et leurs limites de fréquence selon leur propre calendrier, pas le tien. Le vrai travail de Buffer, c'est d'absorber ce chaos en continu pour que tu n'aies jamais à t'en apercevoir.",
+  "notes": "Un bon exemple côté réseaux sociaux : un seul réseau est facile à construire ; rester fonctionnel sur plusieurs réseaux, indéfiniment, c'est le vrai produit.",
+  "prompt": "Construis un planificateur de publications personnel pour un ou deux réseaux sociaux que tu utilises réellement et peux autoriser toi-même — choisis des réseaux avec une API stable et accessible aux développeurs (Mastodon et Bluesky conviennent tous les deux). Considère X, Instagram et LinkedIn comme hors périmètre : leurs API sont payantes, soumises à validation, ou activement hostiles aux petits outils personnels, et le README devrait le dire clairement plutôt que de construire un support à moitié fonctionnel pour eux. Construis une vue de composition avec pièce jointe image et une file d'attente ordonnée par heure planifiée ; remplis automatiquement des créneaux de publication quotidiens fixes, ou épingle une publication à une heure précise. Une tâche en arrière-plan sur un intervalle court publie ce qui est dû et enregistre un statut envoyé/échoué par publication — marque une publication comme « en cours d'envoi » avant que l'appel réseau ne se termine, pour qu'un crash ou une nouvelle tentative ne la publie jamais deux fois. Affiche un compteur de caractères par réseau dans le compositeur, puisque les limites diffèrent, et garde un historique des publications récemment envoyées qui pointe vers la publication en ligne pour vérifier qu'elle est bien passée.\n\nNe construis pas de statistiques ni de files de validation en équipe, et n'essaie pas de prendre en charge tous les réseaux à la fois — chacun représente sa propre charge de maintenance continue, et en ajouter un que tu n'utilises pas ne vaut pas l'entretien.",
+  "faq": [
+    { "q": "Puis-je importer ma file d'attente Buffer existante ?", "a": "Pas automatiquement — Buffer ne propose pas d'export structuré des publications planifiées. Tu recréerais ta file à la main, ce qui pour un usage personnel représente une poignée de publications, pas des mois d'arriéré." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "La page de composition est une simple page web responsive, utilisable depuis un navigateur mobile, mais il n'y a pas d'app dédiée ni de notification push si une publication échoue à l'envoi." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données, typiquement quelques dollars par mois. Les API sociales elles-mêmes sont gratuites pour un volume de publication personnel sur les réseaux ciblés par cette version." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Rester à jour. Quand une plateforme sociale change son API ou ses limites de fréquence, l'équipe de Buffer corrige ça pour tout le monde d'un coup ; ici, ton planificateur se casse discrètement jusqu'à ce que tu le remarques et le corriges toi-même." }
+  ]
+}

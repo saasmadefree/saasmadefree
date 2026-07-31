@@ -1,0 +1,21 @@
+{
+  "tagline": "Application de finances personnelles pour les dépenses, les budgets et le suivi du patrimoine.",
+  "verdictSummary": "Un tableau de bord de dépenses piloté par CSV — catégorisation par règles, budgets, détecteur d'abonnements récurrents, patrimoine dans le temps — c'est un vrai projet de week-end, et la seule liste d'abonnements récurrents justifie souvent à elle seule l'effort. Ce qui ne vient pas avec, c'est la synchronisation bancaire en direct : les transactions arrivent en déposant un export CSV, pas automatiquement.",
+  "coreLoopDIY": "Dépose les exports CSV de ta banque dans un dossier surveillé, catégorise les transactions avec des règles (et un repli optionnel par LLM pour tout ce qui ne correspond à rien), et affiche les budgets et le patrimoine dans le temps.",
+  "whatYouLose": [
+    "la synchronisation automatique des comptes bancaires",
+    "la finition des applications natives iOS et Mac",
+    "l'enrichissement professionnel des transactions",
+    "le suivi des investissements",
+    "les notifications push mobiles"
+  ],
+  "whyPeopleStillPay": "L'application donne une sensation native et les données financières à jour apparaissent tout simplement — les gens paient pour ne jamais avoir à se demander d'où viennent les chiffres.",
+  "notes": "Un bon exemple du schéma « natif Apple » dans ce catalogue : la logique centrale est facile, ce sont la synchro et la finition qui retiennent les gens.",
+  "prompt": "Construis un tableau de bord de finances personnelles piloté par des imports CSV, pas des API bancaires : surveille un dossier pour détecter les nouveaux exports CSV de ta banque, analyse chacun via un mapping de colonnes propre à chaque banque que tu maintiens, et déduplique les transactions sur un hash de la date, du montant et de la description. Catégorise avec une liste ordonnée de règles que tu maintiens, appliquées en premier ; tout ce qui ne correspond à rien atterrit dans une file de révision où un simple clic assigne une catégorie et propose de l'enregistrer comme nouvelle règle. Ajoute un repli optionnel par LLM pour la file de révision, en utilisant une clé lue depuis l'environnement — ignore-le entièrement, proprement, si aucune clé n'est configurée. Construis un tableau de bord : dépenses du mois en cours par catégorie face aux budgets, une courbe de tendance sur l'année passée, et les principaux marchands. Ajoute une détection de charges récurrentes : signale tout marchand facturé à intervalle à peu près mensuel comme un abonnement et liste-le avec son coût annualisé — cette seule vue justifie souvent le projet à elle seule. Suis les soldes de compte sous forme de relevés mensuels et trace le patrimoine dans le temps.\n\nNe construis pas de synchronisation bancaire automatique — ça demande un service payant d'agrégation de données et de gérer de vrais identifiants bancaires, ce qui est une vraie infrastructure et un vrai enjeu de confiance, pas un projet personnel de week-end. L'import CSV, fait régulièrement, c'est le compromis honnête pour ne pas s'y engager. Si le repli optionnel par LLM est utilisé, dis clairement dans le README que le texte des transactions quitte la machine pour cette seule fonctionnalité.",
+  "faq": [
+    { "q": "Puis-je importer mes données Copilot Money existantes ?", "a": "Pas directement — Copilot n'offre pas d'export de données structuré. Les exports CSV de ta banque servent de source d'import continue à partir de maintenant, mais la catégorisation historique et les notes ne se reportent pas." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "En tant que page web responsive, oui, pour consulter le tableau de bord. Il n'y a pas d'app native, et importer des CSV reste en pratique une tâche de desktop." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "L'hébergement de la petite app locale est quasi gratuit ; le repli optionnel de catégorisation par LLM coûte un peu à chaque usage, et l'ignorer ne coûte rien." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "L'arrivée automatique des données. Chaque transaction doit être importée depuis un CSV que tu télécharges toi-même — dès que cette habitude s'interrompt, le tableau de bord devient obsolète, ce qu'une connexion bancaire en direct ne ferait jamais." }
+  ]
+}

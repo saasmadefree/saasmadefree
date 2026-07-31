@@ -1,0 +1,21 @@
+{
+  "tagline": "Assistant IA généraliste pour l'écriture, le code et la recherche.",
+  "verdictSummary": "Un client de chat branché sur une API de modèle — historique de conversation, import de fichiers dans le contexte, un compteur de coût en direct — c'est un projet réel et bon marché pour quelqu'un qui veut surtout du chat texte. Ce que ça ne peut pas faire, c'est recréer le modèle de pointe lui-même, la génération d'image, le mode vocal, ou l'écosystème d'outils constamment mis à jour que ChatGPT construit autour.",
+  "coreLoopDIY": "Une interface de chat qui appelle directement une API de modèle, stocke l'historique de conversation, et affiche le coût cumulé par conversation.",
+  "whatYouLose": [
+    "le modèle de pointe lui-même et ses améliorations continues",
+    "la génération d'image et le mode vocal",
+    "l'écosystème d'outils et de plugins en croissance",
+    "les applications mobiles",
+    "la mémoire conservée d'une conversation à l'autre"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour un accès continu à un modèle qui ne cesse de s'améliorer, plus les outils construits autour — pas pour une zone de texte et un bouton d'envoi, qui est la partie facile à construire.",
+  "notes": "Un « non » honnête qui laisse quand même de la place pour une surcouche vraiment utile et bien moins chère, si tout ce que tu utilises réellement, c'est le chat texte.",
+  "prompt": "Si ce que tu utilises réellement, c'est du chat texte simple — pas la voix, la génération d'image, les agents de navigation, ou la mémoire — un client léger sur une API de modèle est un vrai projet, et pour un usage léger, c'est souvent moins cher qu'un abonnement mensuel fixe. Construis une interface de chat : un panneau de réponse en streaming, un sélecteur de modèle qui prend en charge à la fois OpenAI et Anthropic (basculer entre les deux est l'un des vrais avantages de posséder ta propre surcouche), et une barre latérale de conversations avec recherche plein texte. Stocke chaque conversation, permets d'exporter un fil vers Markdown, et laisse une conversation porter un system prompt éditable. Prends en charge l'import d'un fichier texte ou PDF dont le contenu part directement dans la fenêtre de contexte — pas besoin de base de données vectorielle à l'échelle personnelle. Affiche une estimation de coût cumulée par conversation et par mois, calculée à partir de l'usage de tokens de chaque réponse d'API, pour que « est-ce vraiment moins cher » repose sur un vrai chiffre. Lis les clés API depuis des variables d'environnement, ne les commite jamais.\n\nNe construis pas la génération d'image, le mode vocal, les agents de navigation, ni la mémoire persistante entre conversations — ça demande une infrastructure bien au-delà d'une surcouche d'API, et c'est exactement ce que paie l'abonnement si tu utilises ces fonctionnalités.",
+  "faq": [
+    { "q": "Puis-je importer mon historique de conversations ChatGPT ?", "a": "OpenAI permet d'exporter tout ton historique de chat sous forme d'archive structurée, et ça correspond raisonnablement bien à la table de conversations de cette version — un court script ponctuel convertit le format d'export." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "En tant que page web responsive, oui, si tu l'héberges quelque part d'accessible. Il n'y a ni app native, ni notifications push, ni mode hors ligne — c'est un onglet de navigateur, pas une app téléphone." },
+    { "q": "Combien ça coûte vraiment à faire tourner ?", "a": "L'hébergement coûte quelques dollars par mois ; l'usage d'API pour quelqu'un qui fait surtout du chat texte tombe souvent sous les cinq dollars par mois en tokens — le compteur de coût intégré montre exactement où tu te situes par rapport à l'abonnement fixe." },
+    { "q": "Quelle est la chose qui ne survit vraiment pas à la reconstruction ?", "a": "Le modèle qui continue de s'améliorer tout seul. OpenAI intègre en continu de nouvelles capacités dans ChatGPT ; cette surcouche ne s'améliore que si tu le remarques et bascules manuellement vers un modèle plus récent — elle ne progresse pas d'elle-même." }
+  ]
+}
