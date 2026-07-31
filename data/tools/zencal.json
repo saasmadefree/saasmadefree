@@ -1,0 +1,44 @@
+{
+  "slug": "zencal",
+  "name": "Zencal",
+  "domains": [
+    "zencal.io"
+  ],
+  "category": "scheduling",
+  "subcategory": "booking links and calendar automation",
+  "pricing": {
+    "amount": 9.5,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://zencal.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "calendar integrations and reliability",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Cal.com",
+      "url": "https://github.com/calcom/cal.com"
+    }
+  ],
+  "relatedSlugs": [
+    "calendly",
+    "youcanbookme",
+    "meetergo"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "visme",
+  "name": "Visme",
+  "domains": [
+    "visme.co"
+  ],
+  "category": "design",
+  "subcategory": "visual design and presentations",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://visme.co/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "editor polish, assets, collaboration, and distribution",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Penpot",
+      "url": "https://github.com/penpot/penpot"
+    }
+  ],
+  "relatedSlugs": [
+    "piktochart",
+    "canva",
+    "vistacreate"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

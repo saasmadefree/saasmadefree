@@ -2143,3 +2143,158 @@ Site écrit dans dist/ — 2 langue(s), 455 fiche(s), 66 page(s) de catégorie, 
 
 `git status` before staging: the 25×2 new data files plus `extension/data/index.json`. No script
 change. 35 mapped-pool entries remain.
+
+## Batch 10 — the last 10 mapped-pool entries (340 → 350)
+
+The remaining pool after batch 9, taken in the same rank order: `twist`, `umso`,
+`unicorn-platform`, `visme`, `vista-social`, `vistacreate`, `wellsaid-labs`, `writerzen`,
+`zencal`, `zight`. **The already-mapped pool is now exhausted.**
+
+**Two verdict changes**, the same check as every prior batch: `umso` and `unicorn-platform` both
+arrived `yes` with `diyTimeEstimate: multi-day`, which fails CONTRIBUTING's "in one sitting"
+definition. → `kinda`. Running total across batches 6–10: **fourteen**, every one moving toward
+`no`, every one found by applying the contract's wording rather than re-judging the entry.
+
+**Verdict mix: 0 yes / 9 kinda / 1 no.**
+
+### Angles
+
+- `twist` — an async discussion tool defined by its omissions: no presence, no typing
+  indicators, no read receipts, no unread counts, notifications batched by default. The prompt
+  lists these as design decisions to be *refused* later rather than as gaps.
+- `umso` — questionnaire-to-first-draft: six questions produce a complete page with generated
+  copy in every slot, with a hard export block while any invented social-proof or metric
+  placeholder is unedited.
+- `unicorn-platform` — code export as the product, with an explicit acceptance criterion (a
+  developer who has never seen the builder can find and change the headline in five minutes) and
+  an honest statement that the round trip is one-way once the export is edited.
+- `visme` — interactive documents exported as a single self-contained HTML file that works
+  offline, with accessibility treated as a requirement rather than a nicety, plus a PDF export
+  that flattens every tab and reveal step rather than showing only the first.
+- `vista-social` — the engagement inbox rather than the scheduler, with a bounded first backfill
+  and a note that comment-read permission is a stricter grant than posting and may be refused.
+- `vistacreate` — animation, with the specific requirement that preview and export evaluate the
+  *same* keyframe function, because separate implementations always diverge.
+- `wellsaid-labs` — per-word delivery control (phoneme override, emphasis, pause, pace) with a
+  loudness-matched A/B, since an unmatched comparison makes every change sound like an
+  improvement.
+- `writerzen` — SERP-overlap clustering rather than semantic clustering, with the reasoning
+  spelled out: two keywords that read identically can return different results, and overlap
+  measures what the search engine does rather than guessing at it.
+- `zencal` — the reservation-plus-payment race, with all six state-transition paths enumerated
+  and a test required for each, including the two that quietly lose money (releasing a hold whose
+  payment webhook arrived late, and a payment completing against an already-released slug).
+- `zight` — time-to-link as the single design target, with an optimistic clipboard link, a
+  placeholder page for a link opened before the upload finishes, and the median keystroke-to-clipboard
+  time shown in the tool's own settings.
+
+### Full-catalogue quality sweep after the last batch
+
+Ran across all 350 English i18n files, not just this batch:
+
+- **Template markers**: zero. (A first pass with a case-insensitive regex flagged 16 files; all
+  were the ordinary English word "placeholder" in prose. CI's rule is correctly word-boundary and
+  uppercase-only, and it passes.)
+- **FAQ**: every file has exactly 4 entries, none with a stub answer.
+- **Marketing voice**: three hits across the whole catalogue, two of them pre-existing
+  (`missive`, `v0`) and one (`goodlinks`) using "effortless" inside an argument about why capture
+  friction matters, not as puffery.
+- **Literal price figures in editorial**: 16 files, all pre-existing from batches before this
+  session. None introduced by batches 6–10.
+- **Duplicate `relatedSlugs` triples**: 48 across the full catalogue, mostly pre-existing. Four
+  involved two batch 6–10 entries each and were fixed: `goodlinks`/`pinboard`,
+  `hyperwrite`/`rytr`, `magnific-ai`/`playground-ai`, `oncehub`/`zencal`.
+
+### Verification
+
+```
+$ npm run validate
+350 fiche(s), 465 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  175 passed (175)
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run build
+Feed écrit dans dist/feed/v1/ — 350 outil(s).
+Site écrit dans dist/ — 2 langue(s), 465 fiche(s), 66 page(s) de catégorie, 537 URL(s) dans le sitemap.
+
+$ npm run stats
+350 fiche(s) publiée(s)
+  yes      51   15 %
+  kinda   205   59 %
+  no       94   27 %
+```
+
+## Status after batches 6–10
+
+**350 of 608 upstream-derived tools are in the catalogue** (240 at the start of this session
++ 110 imported). 33 categories, none single-tool, **no new category was created** — every entry
+in these five batches fell inside a category `CATEGORY_MAP` already covered, which was the whole
+premise of the assignment.
+
+**The mapped-category pool is exhausted.** What remains is roughly **203 upstream entries whose
+categories are not in `CATEGORY_MAP`** — the ~16 verticals scoped in the "full-608 category plan"
+section above (documents, photo-editing, customer-support, crm/sales-outreach, cloud-storage,
+video-conferencing, time-tracking/project-management, hr/legal, travel/home/wellness,
+career/education, localization, monitoring, audio/media-streaming) plus the `user-research`
+vertical flagged in batch 5 and still unplaced. Importing any of them requires a taxonomy
+decision first, which was explicitly out of scope here and remains the next decision point.
+
+### Exclusions across batches 6–10
+
+| Slug | Reason |
+|---|---|
+| `everydollar-premium` | Domain safety. `everydollar.com` 301-redirects to `ramseysolutions.com/money/everydollar` (verified), `app.everydollar.com` does not resolve, and `ramseysolutions.com` is Ramsey Solutions' whole company site. No listable product-specific hostname. |
+| `discord-nitro`, `matomo-cloud`, `jetbrains-ai-pro` | Decided in batch 5, kept excluded, and this session moved them from the report into `MANUAL_EXCLUSIONS` so a future `--limit` run cannot re-import them. |
+
+Three domain overrides were added instead of exclusions, each confirmed by fetching the
+hostname: `ubersuggest` → `app.neilpatel.com`, `appsmith-cloud` → `app.appsmith.com`,
+`seatable-cloud` → `cloud.seatable.io`.
+
+### What I judged rather than derived, batches 6–10
+
+- **The fourteen `yes` → `kinda` corrections.** Mechanical in principle (upstream `yes` plus a
+  `multi-day` estimate contradicts the written definition of `yes`) but a judgement in the sense
+  that the alternative reading — adjusting `diyTimeEstimate` downward instead — was available and
+  rejected. Upstream's own build estimate is data; the verdict label is editorial, so the verdict
+  moved.
+- **`wordtune` staying at `yes`** despite its browser extension being most of what subscribers
+  use. Written up openly in batch 7's section rather than presented as settled.
+- **`prowritingaid` staying at `yes` with confidence lowered to `medium`** — the deterministic
+  report suite is genuinely one sitting with no dependency, and the grammar-engine gap is real.
+- **The technical differentiation angle for every entry in a crowded subcategory** — 11 SEO
+  entries, 11 databases, 7 social, 5 email clients, 5 read-it-later, 5 product-photo and 5
+  synthetic-voice tools across these batches, each given a distinct, checkable problem. This is
+  product research judgement, not something derivable from upstream's near-identical taglines.
+- **The `database` convention** stated in batch 7: listed when the core loop depends on persisted
+  structured state, omitted for a stateless transform. Applied consistently within batches 6–10;
+  the catalogue-wide inconsistency noted in earlier sections of this report is unchanged.
+- **Refusals written into prompts rather than left as advice** — `sendspark`'s batch cap and
+  absence of any sending path, `d-id`'s non-optional synthetic-media label and consent
+  declaration, `optery`'s refusal to submit anything on the user's behalf, `mouseflow`'s refusal
+  to ship session replay without enforced masking and retention, `taplio`'s refusal to scrape.
+  Each is a judgement that the honest build is the narrower one.
+
+### Concerns
+
+- **Upstream editorial quality in this half of the dataset is poor and occasionally wrong.**
+  Beyond the pervasive templating, five entries across these batches arrived with a prompt
+  describing a *different product*: `optery` (password vault template for a data-broker removal
+  service), `lex` (SEO language for a writing editor), `transistor-fm` (audio editing for a
+  hosting product), `kumospace` (a forum for a spatial video office), and `ulysses`/`dabble`
+  (LLM rewrite prompts with API-key requirements for two tools with no AI feature). Anyone
+  importing the remaining ~203 entries should assume the same rate and check the product before
+  trusting the draft.
+- **48 duplicate `relatedSlugs` triples remain across the full 350-tool catalogue**, mostly from
+  batches predating this session. Four involving new entries were fixed; a full-catalogue
+  diversification pass is a reasonable follow-up but was not in scope here.
+- **The verdict mix continues to run "no"-heavy relative to the catalogue baseline** (batches
+  6–10: 12 yes / 69 kinda / 29 no). This was not corrected for by reweighting selection — entries
+  were taken strictly in rank order, and the only verdict changes made all moved toward `no`.
+- **All 110 entries are English-only.** French translation is a separate task and was not
+  attempted.

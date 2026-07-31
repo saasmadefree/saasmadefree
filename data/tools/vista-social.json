@@ -1,0 +1,44 @@
+{
+  "slug": "vista-social",
+  "name": "Vista Social",
+  "domains": [
+    "vistasocial.com"
+  ],
+  "category": "social-media",
+  "subcategory": "social scheduling and content repurposing",
+  "pricing": {
+    "amount": 39,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://vistasocial.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "API access, connector upkeep, and collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Postiz",
+      "url": "https://github.com/gitroomhq/postiz-app"
+    }
+  ],
+  "relatedSlugs": [
+    "socialbee",
+    "hootsuite",
+    "buffer"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

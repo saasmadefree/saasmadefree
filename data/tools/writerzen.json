@@ -1,39 +1,32 @@
 {
-  "slug": "hyperwrite",
-  "name": "HyperWrite",
+  "slug": "writerzen",
+  "name": "WriterZen",
   "domains": [
-    "hyperwriteai.com"
+    "writerzen.net"
   ],
   "category": "ai-writing",
   "subcategory": "AI drafting, research and content optimization",
   "pricing": {
-    "amount": 19.99,
+    "amount": 19,
     "currency": "USD",
-    "plan": "Premium",
+    "plan": "All-in-One Basic",
     "basis": "flat-monthly",
-    "source": "https://hyperwriteai.com/plans",
+    "source": "https://writerzen.net/pricing",
     "checkedOn": "2026-07-31",
     "confidence": "medium"
   },
   "verdict": "kinda",
-  "verdictConfidence": "high",
+  "verdictConfidence": "medium",
   "moatType": "workflow, data, and model tuning",
   "diyTimeEstimate": "week",
   "requirements": [
-    "anthropic-api-key",
-    "openai-api-key",
+    "hosting",
     "database"
   ],
-  "priorArt": [
-    {
-      "name": "Open WebUI",
-      "url": "https://github.com/open-webui/open-webui"
-    }
-  ],
   "relatedSlugs": [
-    "anyword",
-    "jasper",
-    "copy-ai"
+    "scalenut",
+    "surfer-seo",
+    "keysearch"
   ],
   "markets": [
     "en"

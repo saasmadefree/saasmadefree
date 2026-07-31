@@ -2246,6 +2246,13 @@
     "currency": "USD",
     "url": "/en/tools/transistor-fm"
   },
+  "twist.com": {
+    "slug": "twist",
+    "verdict": "kinda",
+    "amount": 8,
+    "currency": "USD",
+    "url": "/en/tools/twist"
+  },
   "typedream.com": {
     "slug": "typedream",
     "verdict": "kinda",
@@ -2295,6 +2302,13 @@
     "currency": "USD",
     "url": "/en/tools/umami-cloud"
   },
+  "umso.com": {
+    "slug": "umso",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/umso"
+  },
   "unbounce.com": {
     "slug": "unbounce",
     "verdict": "no",
@@ -2308,6 +2322,13 @@
     "amount": 19,
     "currency": "USD",
     "url": "/en/tools/uncircle"
+  },
+  "unicornplatform.com": {
+    "slug": "unicorn-platform",
+    "verdict": "kinda",
+    "amount": 18,
+    "currency": "USD",
+    "url": "/en/tools/unicorn-platform"
   },
   "v0.app": {
     "slug": "v0",
@@ -2344,6 +2365,27 @@
     "currency": "USD",
     "url": "/en/tools/vimcal"
   },
+  "visme.co": {
+    "slug": "visme",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/visme"
+  },
+  "vistasocial.com": {
+    "slug": "vista-social",
+    "verdict": "kinda",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/vista-social"
+  },
+  "create.vista.com": {
+    "slug": "vistacreate",
+    "verdict": "kinda",
+    "amount": 13,
+    "currency": "USD",
+    "url": "/en/tools/vistacreate"
+  },
   "wabery.com": {
     "slug": "wabery",
     "verdict": "kinda",
@@ -2357,6 +2399,13 @@
     "amount": 25,
     "currency": "USD",
     "url": "/en/tools/webflow"
+  },
+  "wellsaidlabs.com": {
+    "slug": "wellsaid-labs",
+    "verdict": "no",
+    "amount": 50,
+    "currency": "USD",
+    "url": "/en/tools/wellsaid-labs"
   },
   "weweb.io": {
     "slug": "weweb",
@@ -2393,6 +2442,13 @@
     "currency": "USD",
     "url": "/en/tools/wordtune"
   },
+  "writerzen.net": {
+    "slug": "writerzen",
+    "verdict": "kinda",
+    "amount": 19,
+    "currency": "USD",
+    "url": "/en/tools/writerzen"
+  },
   "writesonic.com": {
     "slug": "writesonic",
     "verdict": "kinda",
@@ -2427,5 +2483,19 @@
     "amount": 29.99,
     "currency": "USD",
     "url": "/en/tools/zapier"
+  },
+  "zencal.io": {
+    "slug": "zencal",
+    "verdict": "kinda",
+    "amount": 9.5,
+    "currency": "USD",
+    "url": "/en/tools/zencal"
+  },
+  "zight.com": {
+    "slug": "zight",
+    "verdict": "kinda",
+    "amount": 13.95,
+    "currency": "USD",
+    "url": "/en/tools/zight"
   }
 }

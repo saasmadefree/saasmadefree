@@ -1,0 +1,43 @@
+{
+  "slug": "umso",
+  "name": "Umso",
+  "domains": [
+    "umso.com"
+  ],
+  "category": "website-builder",
+  "subcategory": "websites and landing pages",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "flat-monthly",
+    "source": "https://umso.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "editor polish, hosting, templates, and ecosystem",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Webstudio",
+      "url": "https://github.com/webstudio-is/webstudio"
+    }
+  ],
+  "relatedSlugs": [
+    "carrd",
+    "unicorn-platform",
+    "tilda"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

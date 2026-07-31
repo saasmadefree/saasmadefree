@@ -1,0 +1,41 @@
+{
+  "slug": "vistacreate",
+  "name": "VistaCreate",
+  "domains": [
+    "create.vista.com"
+  ],
+  "category": "design",
+  "subcategory": "visual design and presentations",
+  "pricing": {
+    "amount": 13,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://create.vista.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "editor polish, assets, collaboration, and distribution",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "lottie-web",
+      "url": "https://github.com/airbnb/lottie-web"
+    }
+  ],
+  "relatedSlugs": [
+    "snappa",
+    "canva",
+    "visme"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

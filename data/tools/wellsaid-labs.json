@@ -1,0 +1,45 @@
+{
+  "slug": "wellsaid-labs",
+  "name": "WellSaid Labs",
+  "domains": [
+    "wellsaidlabs.com"
+  ],
+  "category": "ai-audio",
+  "subcategory": "synthetic voice, dubbing and AI avatars",
+  "pricing": {
+    "amount": 50,
+    "currency": "USD",
+    "plan": "Creative",
+    "basis": "flat-monthly",
+    "source": "https://wellsaidlabs.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "models, compute, rights, and safety operations",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "espeak-ng",
+      "url": "https://github.com/espeak-ng/espeak-ng"
+    },
+    {
+      "name": "Piper",
+      "url": "https://github.com/OHF-Voice/piper1-gpl"
+    }
+  ],
+  "relatedSlugs": [
+    "murf",
+    "lovo",
+    "elevenlabs"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

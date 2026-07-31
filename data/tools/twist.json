@@ -1,0 +1,44 @@
+{
+  "slug": "twist",
+  "name": "Twist",
+  "domains": [
+    "twist.com"
+  ],
+  "category": "community",
+  "subcategory": "online communities and team communication",
+  "pricing": {
+    "amount": 8,
+    "currency": "USD",
+    "plan": "Unlimited",
+    "basis": "per-seat-monthly",
+    "source": "https://twist.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "network, moderation, and communication infrastructure",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Discourse",
+      "url": "https://github.com/discourse/discourse"
+    }
+  ],
+  "relatedSlugs": [
+    "slack-pro",
+    "pumble",
+    "mattermost-professional"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}
