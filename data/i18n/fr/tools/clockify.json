@@ -1,0 +1,32 @@
+{
+  "tagline": "Un chronomètre avec un plan gratuit généreux et un prix par siège pour les extras.",
+  "verdictSummary": "Un chronomètre, des projets, et un rapport, c’est une soirée. Ce que vend Clockify au-delà de ça, c’est la capture partout — extension navigateur, application desktop, mobile, kiosque — pour que le chronomètre tourne quand il devrait, ce qui est la seule chose qui donne de la valeur aux données de temps. Le projet ici se concentre sur le seul substitut qu’un projet perso peut vraiment offrir : rattraper le temps que tu as oublié de suivre, plutôt que de prétendre que tu t’en souviendras.",
+  "coreLoopDIY": "Suis le temps contre des projets, et laisse l’outil rattraper ce que tu as manqué : un détecteur de trous qui trouve les heures de travail non journalisées et propose de les remplir depuis ton calendrier.",
+  "whatYouLose": [
+    "l’extension navigateur qui démarre un chronomètre depuis l’intérieur d’autres outils",
+    "les applications mobile et desktop, y compris l’invite de temps d’inactivité",
+    "les modes kiosque et GPS pour les équipes sur site",
+    "les feuilles de temps d’équipe, les approbations et les périodes verrouillées",
+    "la facturation et les intégrations comptables qui vont avec"
+  ],
+  "whyPeopleStillPay": "Parce qu’un chronomètre que personne ne démarre ne produit aucune donnée, et c’est l’extension plus les applications qui rendent le démarrage automatique. Le prix par siège, c’est pour l’omniprésence, pas pour le chronomètre lui-même.",
+  "prompt": "Construis un traqueur de temps dont la fonctionnalité distinctive est qu’il remarque le temps que tu n’as pas suivi.\n\nStack : ton choix, SQLite suffit, une seule commande pour lancer.\n\nBases : Clients, Projets, Tâches, Tags, et Entrées de temps avec un début, une fin, une description et un indicateur facturable. Un chronomètre en cours, une saisie manuelle, et un dupliquer-hier.\n\nLe détecteur de trous :\n- Configure les heures de travail par jour de semaine et une durée de trou minimale qui vaut la peine d’être signalée.\n- La vue journalière affiche les blocs suivis contre la fenêtre de travail et met en évidence chaque trou au-dessus du seuil, avec sa durée.\n- Cliquer sur un trou ouvre une entrée préremplie qui le couvre exactement, pour que remplir une heure oubliée soit un clic et une description.\n- Import de calendrier optionnel : lis un flux .ics, et propose chaque événement chevauchant un trou comme entrée suggérée avec le titre de l’événement comme description. Lecture seule, jamais d’écriture en retour, et ne stocke que les événements chevauchant des trous plutôt que tout le calendrier.\n\nL’écran de bilan hebdomadaire, c’est ce qui fait que l’outil est vraiment utilisé : total suivi contre attendu, la liste des trous restants du plus ancien au plus récent, et les entrées sans projet. Un bouton par problème.\n\nRapports : par projet, client, tag et jour, avec une plage de dates, un export CSV, et un lien de partage qui affiche un rapport en lecture seule sur un token aléatoire sans connexion. Protège le token : comparaison en temps constant, pas d’endpoint de listing.\n\nRègles d’arrondi utilisées uniquement au moment du rapport, jamais sur l’entrée stockée — configurable au plus proche 5, 6, 15 ou 30 minutes, vers le haut, vers le bas ou au plus proche. La durée brute est toujours préservée et affichée à côté. Arrondir les données stockées détruit le seul enregistrement que tu as.\n\nClavier d’abord : démarre et arrête depuis n’importe où avec un raccourci, et un sélecteur de projet en recherche floue qui classe par usage récent.\n\nÉcris des tests pour la détection de trous à travers une journée avec plusieurs entrées et à travers une fenêtre de travail qui traverse minuit, et pour l’arrondi appliqué uniquement au moment du rapport.\n\nNe construis ni extension navigateur, ni applications mobiles, ni facturation.",
+  "faq": [
+    {
+      "q": "Pourquoi un détecteur de trous est-il meilleur qu’un rappel ?",
+      "a": "Parce que les rappels arrivent quand tu es occupé et se font ignorer. Une liste de trous en fin de semaine montre exactement ce qui manque et rend la correction possible en un clic par trou, ce qui est la différence entre une feuille de temps que tu complètes et une que tu inventes le vendredi."
+    },
+    {
+      "q": "Pourquoi ne jamais arrondir l’entrée stockée ?",
+      "a": "Parce que l’arrondi est une politique de facturation, et les politiques changent. Arrondir au moment du rapport te permet de changer la règle et de relancer ; arrondir à l’écriture fait disparaître la vérité."
+    },
+    {
+      "q": "Importer un calendrier, n’est-ce pas juste suivre deux fois ?",
+      "a": "C’est utiliser un enregistrement pour en reconstruire un autre. Le calendrier sait que tu étais en réunion de 14h à 15h ; le traqueur ne le sait pas. Suggérer l’entrée plutôt que la créer te garde en contrôle de ce qui est facturé."
+    },
+    {
+      "q": "Que facture vraiment Clockify ?",
+      "a": "Chaque personne invitée est un siège payant, y compris les admins qui ne démarrent jamais de chronomètre, ce qui est le détail qui surprend les gens. Les sièges limités en lecture seule sont beaucoup moins chers, et le plan gratuit couvre vraiment un suivi illimité pour une personne."
+    }
+  ]
+}

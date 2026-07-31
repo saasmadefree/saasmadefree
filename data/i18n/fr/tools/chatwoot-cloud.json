@@ -1,0 +1,32 @@
+{
+  "tagline": "La version hébergée d’une plateforme de support open source que tu peux faire tourner toi-même.",
+  "verdictSummary": "C’est le même cas d’open source hébergé que le catalogue porte déjà pour Ghost, Umami et Tolgee : le logiciel est publié intégralement sous licence MIT, et l’abonnement Cloud, c’est juste quelqu’un d’autre qui le fait tourner. L’auto-hébergement te donne une parité de fonctionnalités plutôt qu’une approximation, donc le verdict honnête est « oui » — avec la réserve que « oui » signifie ici un week-end de déploiement et un devoir opérationnel permanent, pas un après-midi de code. La seule pièce vraiment absente, c’est le pool de crédits IA géré, et tu peux brancher les mêmes fonctionnalités sur ta propre clé de modèle.",
+  "coreLoopDIY": "Déploie le vrai Chatwoot avec Docker, place-le derrière ton propre domaine avec TLS, et connecte les mêmes canaux — email, widget de site web, et les boîtes de réception sociales auxquelles tu as un accès API.",
+  "whatYouLose": [
+    "quelqu’un d’autre qui le maintient à jour, corrigé et sauvegardé",
+    "le pool de crédits Captain AI, sauf si tu apportes ta propre clé de modèle",
+    "les applications de canaux sociaux gérées, qui demandent quand même tes propres validations de plateforme",
+    "le support quand une mise à jour casse une migration",
+    "les applications mobiles signées et publiées par Chatwoot"
+  ],
+  "whyPeopleStillPay": "Parce qu’une boîte de support qui tombe, c’est une panne visible des clients, et 19 $ par agent achètent quelqu’un dont le métier est de s’assurer que ça n’arrive pas. Auto-héberger un support signifie être d’astreinte pour lui.",
+  "prompt": "Déploie Chatwoot toi-même et configure-le correctement. C’est une tâche d’exploitation, pas de code, et le prompt doit être traité comme tel.\n\n1. Lance la stack Docker Compose officielle (application Rails, Sidekiq, Postgres, Redis) épinglée à un tag de version publié précis, jamais latest — un tag non épinglé transforme un redémarrage de conteneur en migration non planifiée.\n2. Place-la derrière un reverse proxy avec TLS automatique sur un sous-domaine que tu possèdes. Configure correctement FRONTEND_URL avant le premier démarrage ; se tromper une fois que des utilisateurs existent casse les liens dans chaque email déjà envoyé.\n3. Configure l’email sortant via un fournisseur transactionnel, et mets en place SPF, DKIM et DMARC sur le domaine d’envoi. Envoie ensuite un test vers une adresse témoin chez Gmail et Outlook et confirme qu’il arrive dans la boîte de réception, pas en spam — avant de laisser un client le voir.\n4. Configure l’email entrant pour que les réponses se rattachent à la conversation, via le webhook entrant du fournisseur.\n5. Ajoute le widget de site web sur une page de test et vérifie qu’il survit à une navigation de page et fonctionne avec les cookies tiers bloqués.\n6. Stockage : pointe les pièces jointes vers un bucket compatible S3 plutôt que vers le système de fichiers du conteneur, pour qu’un redéploiement ne perde pas les fichiers.\n7. Sauvegardes : un pg_dump nocturne plus le bucket de pièces jointes, écrits quelque part hors de la machine. Restaure-le ensuite réellement dans un conteneur temporaire et ouvre une conversation — une sauvegarde non testée n’est pas une sauvegarde, et c’est l’étape que les gens sautent.\n8. Mises à jour : écris un runbook d’une page couvrant l’instantané, la montée du tag, l’exécution des migrations, la vérification, et le retour en arrière. Lis les notes de version pour les changements cassants avant chaque montée.\n9. Si tu veux les fonctionnalités IA, configure-les avec ta propre clé de modèle et fixe une limite de dépense chez le fournisseur.\n\nLivrable : un seul README que ton futur toi peut suivre à 2h du matin, listant chaque variable d’environnement que tu as définie et pourquoi, les commandes de sauvegarde et de restauration mot pour mot, et les étapes exactes pour annuler une mauvaise mise à jour.\n\nNe fork pas le code pour des petits changements. Chaque fork que tu maintiens est une mise à jour que tu finiras par sauter, et les mises à jour sautées, c’est comme ça qu’un support auto-hébergé devient un problème de sécurité.",
+  "faq": [
+    {
+      "q": "L’auto-hébergement est-il vraiment moins cher que 19 $ par agent ?",
+      "a": "En argent, généralement — un petit VPS et du stockage d’objets coûtent quelques dollars par mois pour un ou deux agents. En temps, seulement si les mises à jour et les sauvegardes sont déjà des habitudes chez toi. Le seuil de rentabilité dépend de la valeur que tu donnes à une heure, pas de la facture d’hébergement."
+    },
+    {
+      "q": "Quelle est la façon la plus courante dont un Chatwoot auto-hébergé casse ?",
+      "a": "Un tag d’image non épinglé qui tire une version avec une migration, sur un redémarrage que personne n’avait prévu. Épingler le tag et lire les notes de version avant une montée de version élimine l’essentiel du risque dans cette fiche."
+    },
+    {
+      "q": "Ai-je toujours besoin de validations pour WhatsApp et Instagram ?",
+      "a": "Oui, et ça vaut la peine d’être clair là-dessus. L’auto-hébergement supprime le coût de licence, pas la barrière de plateforme : Meta exige toujours une entreprise vérifiée et des modèles approuvés, que le logiciel soit le tien ou celui de Chatwoot."
+    },
+    {
+      "q": "Puis-je migrer de Chatwoot Cloud vers ma propre instance ?",
+      "a": "Il existe un export des conversations et des contacts, et puisque les deux côtés utilisent le même logiciel, les formats correspondent. Planifie soigneusement la bascule DNS et email entrant — c’est là que les messages se perdent, pas dans la donnée elle-même."
+    }
+  ]
+}

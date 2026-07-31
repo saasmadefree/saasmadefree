@@ -1,0 +1,32 @@
+{
+  "tagline": "Une page par projet qui rassemble les messages, les tâches et les fichiers.",
+  "verdictSummary": "Basecamp, c’est six petits outils agrafés sur une seule page de projet, et l’agrafe, c’est le produit : un forum de messages, des tâches, des docs, un planning, un chat et un check-in, sans rien de configurable. Le reconstruire, c’est une semaine, surtout parce que l’email entrant et sortant est structurel et pas un simple confort — Basecamp fonctionne pour des gens qui ne l’ouvrent jamais. Les manques sont les applications mobiles et le modèle client gratuit, une décision tarifaire plutôt que technique.",
+  "coreLoopDIY": "Une page par projet qui rassemble messages, tâches, docs, fichiers et planning, où chaque message peut être répondu en répondant à l’email de notification sans ouvrir l’application.",
+  "whatYouLose": [
+    "les applications iOS et Android",
+    "les clients et prestataires illimités et gratuits, une idée tarifaire plutôt qu’une fonctionnalité",
+    "les Hill Charts, la façon propre à Basecamp de montrer si un travail est encore incertain",
+    "la disponibilité hébergée et la garantie à long terme sur ton archive",
+    "les modules complémentaires Timesheet et Admin Pro"
+  ],
+  "whyPeopleStillPay": "Parce que la contrainte, c’est la valeur : rien à configurer veut dire rien à débattre, et le fait que les clients soient gratuits te permet de les inviter sans discussion sur le nombre de sièges.",
+  "prompt": "Construis un espace de projet où l’email est un client de premier ordre, pas un simple canal de notification.\n\nStack : ton choix, Postgres, Docker Compose, un domaine, et un fournisseur d’email transactionnel avec un webhook entrant signé.\n\nStructure : un Projet a exactement cinq sections, fixes, non configurables — Messages, Tâches, Docs & Fichiers, Planning, et Check-ins automatiques. Résiste à la tentation d’en ajouter une sixième.\n\nMessages : un forum en fils de discussion. Poster notifie les abonnés par email. Répondre à cet email poste la réponse — parse le webhook entrant, retire l’historique cité avec une vraie routine de nettoyage de citation plutôt qu’une recherche naïve de marqueur, associe le fil via un token dans l’adresse de réponse, et joins les fichiers éventuels. Teste-le contre des réponses venues de Gmail, Outlook et Apple Mail, dont les conventions de citation diffèrent toutes. C’est la fonctionnalité sur laquelle repose tout le projet.\n\nTâches : des listes nommées d’éléments avec un assigné et une date d’échéance. Compléter une tâche notifie quiconque est abonné à la liste. Pas de priorités, pas de statuts au-delà de fait et pas fait, pas de champs personnalisés.\n\nDocs & Fichiers : des documents Markdown avec historique de versions, plus des envois vers le disque local avec un nom de fichier en hash de contenu.\n\nPlanning : des événements datés, et chaque tâche avec une date d’échéance y apparaît automatiquement.\n\nCheck-ins automatiques : une question récurrente selon un planning (« Sur quoi as-tu travaillé aujourd’hui ? »), envoyée par email, à laquelle on répond en répondant à l’email, avec toutes les réponses rassemblées sur une page par question et par jour. C’est la deuxième fonctionnalité qui mérite d’être copiée, et elle dépend entièrement du bon fonctionnement du circuit email.\n\nModèle d’abonnement : par personne, par section, activé par défaut pour tout ce que tu crées ou ce à quoi tu es assigné. Une option de digest qui regroupe les notifications d’une journée en un seul email.\n\nInvités : un rôle qui ne voit que les sections marquées visibles-client, invité par lien magique sans mot de passe. Teste qu’un invité ne peut pas atteindre une section non visible par URL directe.\n\nÉcris des tests pour le nettoyage de citation à travers les trois clients mail, pour la mise en correspondance par token de réponse, et pour la visibilité des invités.\n\nN’ajoute ni champs personnalisés, ni statuts, ni une seconde mise en page de projet. L’absence, c’est le produit.",
+  "faq": [
+    {
+      "q": "Pourquoi répondre par email est-il la partie difficile ?",
+      "a": "Parce que chaque client mail cite différemment, et se tromper signifie que tout le fil précédent est ajouté à chaque réponse. Une vraie routine de nettoyage de citation testée sur trois clients représente une journée de travail, et c’est la différence entre utilisable et embarrassant."
+    },
+    {
+      "q": "À quoi servent les check-ins automatiques ?",
+      "a": "Ils remplacent le stand-up. Une question part selon un planning, les gens répondent en répondant à l’email, et les réponses se rassemblent sur une page — personne n’a besoin d’être en réunion, ni même dans l’application."
+    },
+    {
+      "q": "Refuser les champs personnalisés, n’est-ce pas juste de l’entêtement ?",
+      "a": "C’est la raison pour laquelle Basecamp reste reconnaissable après vingt ans. Chaque champ configurable est une conversation sur le processus au lieu du travail lui-même, et un projet qui en ajoute a reconstruit un autre produit."
+    },
+    {
+      "q": "Que signifie vraiment le prix de Basecamp pour une petite agence ?",
+      "a": "Le plan Plus facture 15 $ par mois par employé et les clients sont gratuits, donc une agence de cinq personnes avec quarante clients paie pour cinq. Le forfait Pro Unlimited à 299 $ fixes devient pertinent aux alentours de vingt employés."
+    }
+  ]
+}

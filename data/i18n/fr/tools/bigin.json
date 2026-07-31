@@ -1,0 +1,32 @@
+{
+  "tagline": "Le CRM volontairement minimaliste de Zoho : pipelines, contacts, et pas grand-chose de plus.",
+  "verdictSummary": "Bigin est un CRM au régime, et le régime, c’est le produit. Reconstruire le logiciel prend un week-end — fiches, quelques pipelines, activités, un écran du jour. Ce que tu ne peux pas reconstruire en un week-end, c’est la partie que les gens touchent vraiment le plus : les applications iOS et Android, qui sont vraiment bonnes et où vit un commercial terrain. Rien ici n’est une barrière de données ou de réseau, donc c’est un vrai substitut avec un vrai trou dedans.",
+  "coreLoopDIY": "Garde des contacts et des entreprises, fais avancer jusqu’à trois pipelines de deals à travers des étapes, journalise appels et rendez-vous sur une fiche, et ouvre un écran « aujourd’hui » qui ne liste que ce qui est dû maintenant.",
+  "whatYouLose": [
+    "les applications iOS et Android, y compris l’accès hors ligne sur la route",
+    "la téléphonie intégrée et le journal d’appels qui va avec",
+    "la connexion en un clic au reste de Zoho (Books, Desk, Campaigns)",
+    "la synchro email — le courrier n’est journalisé que si tu le colles toi-même",
+    "les notifications push pour une activité qui arrive à échéance"
+  ],
+  "whyPeopleStillPay": "Neuf dollars par mois achètent un CRM déjà présent sur le téléphone dans ta poche, déjà sauvegardé, et déjà relié à l’outil de facturation que tu adopteras peut-être l’an prochain. Pour une entreprise de deux personnes, c’est un échange rationnel contre un week-end de construction et une vie entière de maintenance.",
+  "prompt": "Construis un CRM pour petite entreprise qui refuse de grossir. La contrainte, c’est la fonctionnalité.\n\nStack : n’importe quel framework rendu côté serveur avec Postgres ou SQLite, une seule commande pour démarrer.\n\nRègles strictes que le code doit imposer, pas seulement documenter :\n- Un type de fiche peut avoir au maximum huit champs personnalisés. Le bouton « ajouter un champ » se désactive à huit et explique pourquoi.\n- Trois pipelines maximum existent. Créer un quatrième est bloqué.\n- Un pipeline a au maximum sept étapes.\n\nEntités : Contact, Entreprise, Deal, Activité. Un Deal appartient à un pipeline et une étape, a un montant, une date de clôture, et un Contact lié. Une Activité est un appel, un rendez-vous ou une tâche avec une date d’échéance et une note de résultat.\n\nL’écran d’accueil est une seule liste « Aujourd’hui », dans cet ordre : activités en retard, activités dues aujourd’hui, deals dont la date de clôture est passée alors qu’ils sont encore ouverts. Rien d’autre sur cet écran. Pas de graphiques.\n\nL’écran de pipeline est un tableau glisser-déposer avec les totaux d’étape dans l’en-tête, et déplacer une carte entre étapes écrit une entrée dans l’historique de ce deal avec l’ancienne étape, la nouvelle étape, et l’heure.\n\nConstruis-le mobile d’abord : le tableau et la liste Aujourd’hui doivent être utilisables à une main en 390px de large avant de styler quoi que ce soit pour le desktop. Ajoute un manifeste d’application web pour qu’il s’installe sur l’écran d’accueil d’un téléphone et que la liste du jour soit mise en cache en lecture seule hors ligne.\n\nInclus l’import et l’export CSV pour contacts, entreprises et deals, et un dump nocturne de la base de données vers un dossier local avec une commande de restauration documentée.\n\nÉcris des tests pour les trois limites strictes ci-dessus et pour les écritures dans l’historique d’étape.\n\nN’ajoute ni téléphonie, ni synchro email, ni campagnes marketing, ni un second tableau de bord. Si une demande de fonctionnalité arrive, la réponse que donne ce code, c’est non.",
+  "faq": [
+    {
+      "q": "Pourquoi plafonner champs et pipelines dans le code plutôt que juste être discipliné ?",
+      "a": "Parce que le mode d’échec d’un CRM fait maison, ce n’est pas qu’il manque de fonctionnalités, c’est qu’il se transforme en tableur inutilisable en moins d’un an. Bigin vend de la retenue ; un projet qui abandonne cette retenue n’est plus le même produit."
+    },
+    {
+      "q": "Puis-je quand même l’utiliser sur mon téléphone sans applications natives ?",
+      "a": "Oui, en tant qu’application web installée : la liste du jour et le tableau de pipeline sont construits mobile d’abord, et le manifeste lui permet de vivre sur l’écran d’accueil. Ce que tu n’as pas, c’est l’édition hors ligne, la synchro en arrière-plan, ou une notification push quand une activité arrive à échéance."
+    },
+    {
+      "q": "Comment les appels sont-ils journalisés sans téléphonie ?",
+      "a": "Manuellement, depuis la fiche : touche le numéro, passe l’appel dans le composeur de ton téléphone, puis remplis la note de résultat que le formulaire d’activité ouvre. Le composeur intégré de Bigin fait ça en un geste, ce projet le fait en deux."
+    },
+    {
+      "q": "Que se passe-t-il quand je dépasse trois pipelines ?",
+      "a": "Tu as dépassé ce projet, et honnêtement tu as aussi dépassé Bigin Express — c’est exactement la frontière de palier depuis laquelle Zoho te fait monter en gamme. Exporte les CSV et passe à quelque chose avec un vrai schéma, comme l’approche à objets flexibles de la fiche Attio."
+    }
+  ]
+}

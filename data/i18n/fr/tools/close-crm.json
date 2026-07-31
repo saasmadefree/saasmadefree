@@ -1,0 +1,32 @@
+{
+  "tagline": "Un CRM construit autour de l’appel téléphonique, avec le composeur intégré.",
+  "verdictSummary": "La moitié CRM de Close est ordinaire et tu peux la construire. La moitié pour laquelle les gens paient, c’est un opérateur télécom : des numéros que tu peux louer par marché, un composeur puissant, l’enregistrement d’appels, la transcription, et toute la paperasse réglementaire qui permet à tout ça de passer un appel aux États-Unis. Ce n’est pas du code que tu écris, c’est un compte de téléphonie, un enregistrement de marque 10DLC et une posture de conformité. Une version DIY peut tout garder à propos d’un appel, sauf l’appel lui-même.",
+  "coreLoopDIY": "Travaille une liste d’appels plutôt qu’un pipeline : une file de contacts à appeler aujourd’hui, un formulaire de résultat en une touche après chacun, et un suivi automatiquement planifié à partir du résultat choisi.",
+  "whatYouLose": [
+    "le composeur lui-même — pas de numéros, pas d’appels sortants, pas d’enregistrement",
+    "les transcriptions d’appels et l’archive consultable qui en est tirée",
+    "les numéros de présence locale et l’identifiant d’appelant par pays",
+    "le SMS depuis la même fiche, qui demande son propre enregistrement opérateur",
+    "la numérotation prédictive et puissante qui rend l’appel en volume viable"
+  ],
+  "whyPeopleStillPay": "Parce que Close est une entreprise de téléphonie avec un CRM greffé dessus. L’abonnement achète les licences, les relations avec les opérateurs et l’infrastructure d’enregistrement, et le tarif à la minute achète le réseau lui-même. Personne ne reconstruit ça pour un seul commercial.",
+  "prompt": "Construis un CRM centré sur l’appel pour une seule personne. Il ne passera pas d’appels ; il rendra rapide tout ce qui entoure un appel.\n\nStack : ton choix, SQLite convient, une seule commande pour démarrer.\n\nDonnées : Contact (nom, entreprise, un ou plusieurs numéros de téléphone avec une étiquette et un pays, fuseau horaire, notes), statut de Lead, et entrées de Journal d’appels.\n\nLe centre de l’application, c’est la File d’appels. Je construis une file par filtre — statut, dernier contact avant une date, fuseau horaire actuellement dans les heures ouvrées — et ensuite je la travaille. L’écran de file montre un contact à la fois, en grand : nom, entreprise, les trois derniers résultats d’appel, et mes notes. Un bouton révèle le numéro comme un lien tel: pour que le composeur système de mon téléphone ou de mon ordinateur prenne le relais.\n\nQuand je reviens, le formulaire de résultat est déjà focalisé et chaque option est une seule touche : connecté, messagerie vocale, pas de réponse, mauvais numéro, ne pas appeler. Chaque résultat a un intervalle de suivi par défaut configurable, donc choisir « messagerie vocale » planifie la prochaine tentative trois jours plus tard sans un clic de plus. « Ne pas appeler » pose un indicateur permanent que le constructeur de file exclut toujours, et il n’y a aucun moyen de le contourner depuis l’écran de file.\n\nUn champ de note en texte libre s’enregistre automatiquement au fil de la frappe, horodaté, attaché à cette tentative d’appel plutôt qu’au contact en général.\n\nLe reporting tient sur un écran : tentatives par jour, taux de connexion, et nombre moyen de tentatives avant une connexion, sur une plage de dates. Pas de graphiques d’entonnoir.\n\nAjoute une colonne fuseau horaire qui montre l’heure locale actuelle du contact dans la file, et colore-la quand elle sort de 9h à 18h là-bas.\n\nÉcris des tests pour le constructeur de file — en particulier que les contacts « ne pas appeler » ne peuvent jamais apparaître — et pour la planification de suivi à travers un changement d’heure d’été.\n\nN’intègre aucun fournisseur de téléphonie, n’enregistre aucun audio, et n’envoie aucun SMS. Le README doit dire clairement que c’est un organisateur d’appels, pas un système téléphonique.",
+  "faq": [
+    {
+      "q": "Ne pourrais-je pas simplement brancher Twilio et récupérer le composeur ?",
+      "a": "Tu obtiendrais une API, pas le produit. Aux États-Unis, tu as aussi besoin d’une marque et d’une campagne 10DLC enregistrées pour envoyer des SMS, d’un identifiant d’appelant vérifié pour éviter d’être marqué comme spam, et d’un plan pour le jour où un opérateur bloque ton numéro. Close absorbe tout ça ; un compte Twilio personnel t’y expose directement."
+    },
+    {
+      "q": "Que vaut-il vraiment la peine de garder d’un CRM centré sur l’appel ?",
+      "a": "La file et le résultat en une touche. Travailler une liste de quarante personnes est un problème de rythme, pas de données, et l’essentiel de la vitesse vient du fait de ne jamais toucher la souris entre les appels."
+    },
+    {
+      "q": "Puis-je importer mes données Close ?",
+      "a": "Leads, contacts, opportunités et champs personnalisés s’exportent proprement en CSV. Les enregistrements d’appels et les transcriptions sont la partie que tu dois considérer comme abandonnée — prévois un export séparé et anticipé si ça compte pour toi."
+    },
+    {
+      "q": "L’enregistrement d’appel est-il légal si je le construis moi-même ?",
+      "a": "Ça dépend d’où se trouvent les deux parties, et dans plusieurs États américains et la plupart de l’UE, tu as besoin du consentement de tout le monde sur la ligne. C’est cette exposition légale, pas le pipeline audio, qui est la raison pour laquelle ce prompt exclut entièrement l’enregistrement."
+    }
+  ]
+}

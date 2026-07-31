@@ -1,0 +1,32 @@
+{
+  "tagline": "Chaque métrique de chaque hôte, corrélée, avec une facture à la hauteur.",
+  "verdictSummary": "La valeur de Datadog, c’est la couverture : des centaines d’intégrations maintenues, une corrélation entre métriques, traces, logs et sécurité, et une entreprise qui garde tout ça fonctionnel à mesure que ta stack change. C’est une opération de maintenance, pas un code, et aucun projet perso ne s’y substitue. La consolation est plus modeste mais vraiment utile — un hôte, une poignée de métriques qui comptent, et des règles d’alerte que tu peux lire dans un fichier.",
+  "coreLoopDIY": "Surveille bien une seule machine plutôt que mal toute une flotte : une poignée de métriques, un tableau de bord qui tient sur un écran, et des règles d’alerte stockées comme des fichiers lisibles.",
+  "whatYouLose": [
+    "des centaines d’intégrations maintenues qui fonctionnent le jour même où tu ajoutes un service",
+    "la corrélation entre métriques, traces, logs et sécurité en un seul endroit",
+    "la flotte d’agents et sa découverte automatique de services",
+    "la détection d’anomalies calibrée sur les données de milliers d’autres",
+    "la rétention et la performance de requête à l’échelle d’une flotte"
+  ],
+  "whyPeopleStillPay": "Parce que les intégrations sont le produit, et chacune que tu devrais écrire toi-même est une semaine que tu n’avais pas prévue. Le prix par hôte est faible ; c’est l’étendue que tu achètes.",
+  "prompt": "Construis un monitoring mono-hôte qui tient sur un écran et alerte sur ce qui compte.\n\nStack : un collecteur de métriques sur l’hôte, un stockage de séries temporelles, et un petit tableau de bord. Préfère t’appuyer sur des exporteurs existants plutôt que d’écrire la collecte à partir de zéro — précise dans le README ce que tu as choisi.\n\nCollecte, délibérément peu de choses : CPU par mode, mémoire utilisée et disponible, disque utilisé et inodes par système de fichiers, temps d’attente I/O disque, réseau entrant et sortant, charge moyenne, et nombre de processus. Puis une métrique applicative de ton choix, exposée par ton propre service, pour prouver que le chemin fonctionne de bout en bout.\n\nLe tableau de bord tient sur un écran, pas de défilement, pas d’onglets, montrant 24 heures par défaut avec un contrôle pour 7 et 30 jours. Chaque graphique porte une phrase en langage simple en dessous disant à quoi ressemble une mauvaise valeur — « un temps d’attente I/O disque au-dessus de 20% en continu signifie généralement que le disque est le goulot d’étranglement ». Cette phrase, c’est ce qui rend le tableau de bord utilisable par quelqu’un qui ne l’a pas construit.\n\nAlertes en fichiers : un fichier YAML par règle avec une expression de métrique, un seuil, une durée pendant laquelle la condition doit tenir, et un message qui dit quoi faire plutôt que ce qui s’est passé. « Le disque sur / sera plein dans environ 4 heures au taux actuel ; supprime les vieilles sauvegardes dans /var/backups » bat « utilisation disque 91% ». Les règles vivent dans le contrôle de version.\n\nAlerte prédictive sur le disque en particulier : ajuste une simple tendance linéaire sur les dernières 24 heures et alerte sur le temps projeté avant saturation plutôt que sur un pourcentage. C’est une douzaine de lignes et c’est l’alerte qui te sauve vraiment.\n\nRétention : pleine résolution pendant une semaine, moyennes sur cinq minutes pendant un mois, horaire pendant un an, avec la tâche de sous-échantillonnage idempotente.\n\nLivraison : webhook plus email. Une alerte doit se répéter à un intervalle configuré tant qu’elle se déclenche, et envoyer un message de rétablissement quand elle se résorbe.\n\nÉcris des tests pour la tâche de sous-échantillonnage idempotente, pour la condition de durée qui ne se déclenche pas sur un seul pic, et pour la projection disque avec une série plate et une série croissante.\n\nNe construis ni découverte automatique d’agents, ni tracing, ni ingestion de logs.",
+  "faq": [
+    {
+      "q": "Pourquoi alerter sur le temps projeté avant saturation plutôt que sur un pourcentage ?",
+      "a": "Parce que 91% plein va très bien sur un disque qui grossit d’un mégaoctet par jour, et c’est une urgence sur un disque qui se remplit à un gigaoctet par heure. La projection est un ajustement linéaire sur l’historique récent, et elle convertit un chiffre sur lequel personne ne peut agir en une échéance."
+    },
+    {
+      "q": "Pourquoi écrire quoi faire dans le message d’alerte ?",
+      "a": "Parce que les alertes sont lues à trois heures du matin par quelqu’un qui ne les a pas écrites. Une alerte qui nomme le remède se résout en minutes ; une qui nomme le symptôme lance une enquête."
+    },
+    {
+      "q": "Un monitoring mono-hôte vaut-il quelque chose ?",
+      "a": "Pour un serveur personnel ou une petite application, il couvre l’essentiel de ce qui tourne vraiment mal : disque, mémoire et un processus bloqué. Il cesse d’être suffisant dès que tu as des services qui se parlent entre eux, ce qui est là où les outils payants commencent à justifier leur prix."
+    },
+    {
+      "q": "Comment une facture Datadog s’additionne-t-elle vraiment ?",
+      "a": "La ligne infrastructure par hôte est la plus petite part. APM, logs au gigaoctet ingéré, rétention de logs, RUM, tests synthétiques et sécurité facturent chacun séparément, et les quotas par hôte sont modestes. Modélise l’ensemble avant de le comparer à quoi que ce soit."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Sauvegarde illimitée pour un ordinateur, quatre-vingt-dix-neuf dollars par an.",
+  "verdictSummary": "Tu ne peux pas reconstruire l’illimité. Backblaze vend un prix fixe pour autant de téraoctets que la machine en contient, et ça ne marche que parce qu’ils possèdent les disques et lissent le coût sur des millions de clients ; un équivalent auto-hébergé paie le stockage d’objets au gigaoctet et perd dès la première grosse photothèque. Ce que tu peux construire, et ce dont manquent en réalité la plupart des gens qui ont des « sauvegardes », c’est la partie qui compte plus que la destination : une restauration que tu as testée.",
+  "coreLoopDIY": "Sauvegarde vers du stockage d’objets avec chiffrement côté client et déduplication, et fais de l’exercice de restauration un événement planifié et noté plutôt qu’un espoir.",
+  "whatYouLose": [
+    "le stockage illimité à prix fixe — tu paies maintenant au gigaoctet",
+    "le client desktop qui tourne sans qu’on ait à y penser",
+    "l’option de restauration par disque dur envoyé par la poste",
+    "l’historique des versions de fichiers conservé pour toi sans configuration",
+    "la garantie de durabilité de quelqu’un d’autre sur la seule copie de tes photos"
+  ],
+  "whyPeopleStillPay": "Parce que quatre-vingt-dix-neuf dollars fixes pour chaque téraoctet de la machine est une structure économique que seul un opérateur de stockage peut proposer, et parce qu’une sauvegarde à laquelle tu ne penses jamais est la seule qui tourne vraiment.",
+  "prompt": "Construis un lanceur de sauvegardes dont la fonctionnalité phare est un exercice de restauration que tu dois réussir.\n\nStack : un outil en ligne de commande plus une petite page de statut locale. Utilise un moteur de sauvegarde existant et audité pour le chiffrement, le découpage et la déduplication plutôt que d’écrire le tien — précise dans le README lequel et pourquoi, parce qu’un chiffrement de sauvegarde fait maison, c’est la meilleure façon de tout perdre deux fois.\n\nConfiguration : chemins sources avec motifs d’exclusion, une destination compatible S3, une politique de rétention dans la forme standard (garder N quotidiennes, M hebdomadaires, K mensuelles), et un plafond de bande passante.\n\nExécution : planifiée, incrémentale, reprenable après interruption. Journalise ce qui a changé, combien a été envoyé, et combien de temps ça a pris. Échoue bruyamment — une sauvegarde qui n’a pas abouti depuis une semaine doit être impossible à manquer sur la page de statut, en rouge, avec le nombre de jours.\n\nL’exercice de restauration, c’est tout l’intérêt de ce projet. Selon un planning que tu définis, mensuel par défaut :\n1. Choisis un sous-ensemble aléatoire de fichiers dans toute la sauvegarde, pondéré vers les fichiers modifiés récemment.\n2. Restaure-les dans un répertoire temporaire.\n3. Compare-les aux originaux par hash de contenu.\n4. Enregistre un succès ou un échec avec le nombre vérifié, les octets restaurés et le temps pris.\n5. Supprime la copie temporaire.\nLa page de statut affiche la date du dernier exercice réussi aussi en évidence que la dernière sauvegarde réussie, et passe au rouge quand elle dépasse ton seuil. Une sauvegarde sans exercice récent s’affiche comme non vérifiée, pas comme au vert.\n\nInclus aussi une commande de répétition de restauration complète qui indique combien de temps prendrait une restauration complète à ta vitesse de téléchargement mesurée, et affiche le coût total de la sortie de données au tarif publié de ton fournisseur. La plupart des gens n’ont jamais vu ni l’un ni l’autre de ces chiffres, et les deux changent des décisions.\n\nVisibilité des coûts : octets actuellement stockés, coût de stockage mensuel au tarif configuré, et coût projeté à douze mois au taux de croissance actuel.\n\nÉcris des tests pour l’élagage de rétention qui garde exactement les bons instantanés, pour la reprise après un envoi interrompu, et pour l’exercice qui échoue correctement quand un fichier est corrompu dans la destination.\n\nN’écris ni ton propre chiffrement ni ton propre découpage.",
+  "faq": [
+    {
+      "q": "Pourquoi l’exercice de restauration est-il plus important que la sauvegarde ?",
+      "a": "Parce que les sauvegardes non testées échouent exactement au moment où on en a besoin — un mauvais motif d’exclusion, une destination corrompue, une phrase secrète oubliée. Une restauration automatisée mensuelle d’un échantillon aléatoire transforme une croyance en un fait."
+    },
+    {
+      "q": "L’auto-hébergement sera-t-il moins cher que 99 $ par an ?",
+      "a": "Seulement si la machine contient moins d’environ un téraoctet, et encore moins une fois que tu comptes la sortie de données d’une vraie restauration. Le prix fixe de Backblaze est imbattable pour les gros disques ; le stockage au gigaoctet gagne pour un portable au disque modeste."
+    },
+    {
+      "q": "Pourquoi indiquer le coût d’une restauration complète ?",
+      "a": "Parce que la sortie de données est l’endroit où les factures de stockage cloud surprennent les gens, et le jour où tu as besoin de tout récupérer est le pire jour pour découvrir ce chiffre. Certains fournisseurs ne facturent rien pour la sortie, d’autres facturent beaucoup ; savoir lequel tu as choisi fait partie du fait d’avoir une sauvegarde."
+    },
+    {
+      "q": "Backblaze Personal Backup est-il vraiment illimité ?",
+      "a": "Pour les disques internes et connectés de cet ordinateur unique, oui, sans plafond. C’est par ordinateur plutôt que par personne, et ça exclut les disques réseau, ce qui est la limite que les gens rencontrent en premier."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Crée une entreprise américaine depuis n’importe où, et garde-la en règle.",
+  "verdictSummary": "Chaque partie de ce que vend doola est un dépôt fait auprès d’une administration ou un service que seule une entreprise enregistrée peut fournir : des statuts déposés auprès d’un État, un EIN auprès de l’administration fiscale, un registered agent avec une vraie adresse dans cet État, et des rapports annuels à une échéance. Un logiciel peut te le rappeler ; il ne peut pas déposer à ta place. Le verdict est « non », et le projet utile, c’est le rappel — qui est vraiment l’endroit où les gens échouent.",
+  "coreLoopDIY": "Ne rate jamais une échéance : un calendrier de conformité par entité construit à partir des dépôts que tu saisis une fois, avec des rappels escaladés et le document de chaque dépôt stocké où tu peux le retrouver.",
+  "whatYouLose": [
+    "les dépôts eux-mêmes, faits en ton nom",
+    "un registered agent avec une vraie adresse dans l’État",
+    "la demande d’EIN, et quelqu’un qui gère un rejet",
+    "la comptabilité et la préparation fiscale vendues en complément",
+    "quelqu’un à appeler quand un État envoie un avis que tu ne comprends pas"
+  ],
+  "whyPeopleStillPay": "Parce qu’un non-résident qui crée une entreprise américaine n’a pas d’adresse dans l’État et aucun moyen d’accéder à certains de ces dépôts, et parce qu’un rapport annuel manqué peut dissoudre l’entreprise que tu as mis un an à construire.",
+  "prompt": "Construis un traqueur de conformité d’entité. Il ne dépose rien et ne donne aucun conseil ; il s’assure que rien n’est manqué.\n\nStack : une application locale, SQLite, une seule commande. Le README doit préciser que les exigences de dépôt varient selon l’État et le type d’entité et que la donnée est à saisir toi-même à partir de sources officielles.\n\nEntité : nom légal, type, État de constitution, date de constitution, EIN, nom et adresse du registered agent avec sa date de renouvellement, et la fin d’exercice fiscal.\n\nObligations : saisies une fois chacune avec un nom, une autorité, une récurrence (annuelle à date fixe, annuelle relative à la constitution, trimestrielle, ponctuelle), des frais, une URL de dépôt, et un délai d’anticipation. L’application ne livre aucune obligation préremplie — une échéance préremplie fausse est pire qu’un calendrier vide, et le README le dit.\n\nLe calendrier et les rappels :\n- Prochaine échéance par obligation, et une liste unique ordonnée sur toutes les entités de ce qui est dû dans les quatre-vingt-dix prochains jours.\n- Rappels escaladés à 60, 30, 14, 7 et 1 jours, par email et sur le tableau de bord, qui ne s’arrêtent pas tant que l’obligation n’est pas marquée déposée.\n- Marquer comme déposé exige une date, une référence de confirmation et un document téléversé. Pas de document, pas de complétion — cette règle est ce qui rend l’archive utile un an plus tard quand une banque demande une preuve.\n- Les éléments en retard restent marqués comme ayant été en retard en permanence, même après dépôt, pour qu’un motif reste visible.\n\nCoffre-fort de documents par entité : documents de constitution, lettre d’EIN, pacte d’associés, rapports annuels, confirmations de registered agent, chacun étiqueté avec son année.\n\nUne page d’état de l’entité : tout ce qu’une banque ou un comptable demande, sur un seul écran, imprimable — nom légal, EIN, date et État de constitution, registered agent, statut actuel tel que tu l’as confirmé pour la dernière fois et quand tu l’as confirmé.\n\nÉcris des tests pour le calcul de récurrence sur les obligations liées à l’anniversaire de constitution à travers une année bissextile, pour les rappels qui escaladent et ne s’arrêtent pas avant complétion, et pour la complétion refusée sans document.\n\nNe tente aucun dépôt, et ne préremplis aucune obligation.",
+  "faq": [
+    {
+      "q": "Que se passe-t-il vraiment sans ça ?",
+      "a": "Un rapport annuel manqué. Les États facturent une pénalité, puis passent l’entreprise en statut non conforme, et finissent par la dissoudre administrativement — ce qui se découvre quand une banque ou un prestataire de paiement vérifie. La réhabilitation est lente et publique."
+    },
+    {
+      "q": "Pourquoi refuser de préremplir les échéances d’État ?",
+      "a": "Parce qu’elles varient selon l’État et le type d’entité et qu’elles changent, et une échéance fausse mais affichée avec assurance est pire qu’une échéance vide. Un calendrier vide te pousse à vérifier ; un calendrier faux te pousse à te détendre."
+    },
+    {
+      "q": "Pourquoi exiger un document avant de marquer quelque chose comme déposé ?",
+      "a": "Parce que « je l’ai déposé » et « voici la confirmation » sont deux affirmations différentes, et seule la seconde survit à une question d’une banque deux ans plus tard. Ça construit aussi l’archive sans effort séparé."
+    },
+    {
+      "q": "Puis-je être mon propre registered agent ?",
+      "a": "Dans ton État de constitution, généralement seulement si tu y as une adresse physique pendant les heures ouvrées, ce qui est exactement ce qui manque à un non-résident. Cette exigence d’adresse — pas la paperasse — c’est ce qui est vendu."
+    }
+  ]
+}

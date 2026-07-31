@@ -1,0 +1,32 @@
+{
+  "tagline": "Des tests Playwright qui tournent chaque minute contre la production.",
+  "verdictSummary": "L’idée de Checkly, c’est qu’un moniteur est un test : il vit dans ton dépôt, il tourne en CI, et il tourne aussi toutes les quelques minutes contre la production. Reconstruire ça, c’est un week-end, parce que Playwright fait la partie difficile et un planificateur fait le reste. Ça reste un « en partie », parce que ce que tu ne peux pas reproduire à bas coût, c’est faire tourner le même contrôle depuis une douzaine de pays à la fois — ce sont des machines louées dans des régions louées, et c’est ce qui sépare « ton site est en panne » de « ton site est en panne à Sydney ».",
+  "coreLoopDIY": "Garde les contrôles dans le dépôt, fais-les tourner en CI à chaque déploiement et selon un planning contre la production, et laisse un contrôle en échec bloquer le déploiement qui l’a causé.",
+  "whatYouLose": [
+    "des contrôles qui tournent depuis de nombreux emplacements mondiaux en parallèle",
+    "les runners hébergés et leur capacité",
+    "des emplacements privés pour surveiller à l’intérieur d’un réseau",
+    "les tests de régression visuelle et la comparaison de captures d’écran",
+    "des alertes qui survivent au fait que ta propre infrastructure soit ce qui a cassé"
+  ],
+  "whyPeopleStillPay": "Parce qu’un contrôle qui ne tourne que depuis un seul endroit ne te renseigne que sur cet endroit, et louer des machines dans dix régions pour découvrir que Frankfort est lent n’est pas un projet de week-end.",
+  "prompt": "Construis un système de monitoring synthétique où les contrôles sont du code dans le dépôt, pas de la configuration dans un tableau de bord.\n\nStack : Node avec Playwright, plus un petit planificateur et un stockage de résultats (Postgres). Docker Compose.\n\nDéfinition d’un contrôle : un fichier du dépôt qui exporte un nom, un planning, une durée maximale attendue, et soit une assertion HTTP, soit un script Playwright. Découvre les contrôles en parcourant un dossier — ajouter un fichier ajoute un contrôle, sans étape d’enregistrement.\n\nTrois modes d’exécution sur les mêmes définitions, ce qui est tout l’intérêt :\n1. CI : fais tourner chaque contrôle contre un environnement de prévisualisation. Un contrôle en échec fait échouer le build.\n2. Verrou de déploiement : après un déploiement en production, fais tourner les contrôles marqués critiques et, si l’un échoue, quitte avec un code non nul pour que le pipeline puisse revenir en arrière. Documente comment câbler ça.\n3. Planifié : tourne selon l’intervalle déclaré contre la production, en stockant chaque résultat avec la durée, le statut et, en cas d’échec, la trace Playwright et une capture d’écran.\n\nRésultats et alertes :\n- Un contrôle alerte après N échecs consécutifs, pas au premier, parce qu’un seul incident isolé est du bruit. Rends N configurable par contrôle.\n- La récupération envoie sa propre notification. Une alerte sans signal de retour au vert habitue les gens à ignorer les alertes.\n- Suspends les alertes pendant une fenêtre de maintenance déclarée.\n- Stocke la série de durées par contrôle et alerte aussi sur un seuil de dégradation — une page passée de 400ms à 3s n’est pas en panne, et c’est justement ce que tu veux savoir.\n\nLa limite honnête, dans le README et dans l’interface : les résultats sont étiquetés avec l’emplacement d’où ils ont tourné, et une configuration mono-emplacement le dit sur le tableau de bord plutôt que de suggérer une couverture mondiale.\n\nUne page de statut publique générée à partir de l’historique des contrôles, sur son propre rendu statique pour qu’elle reste debout quand ton application ne l’est pas.\n\nÉcris des tests pour le seuil d’échecs consécutifs, pour la suspension par fenêtre de maintenance à une limite, et pour le verrou de déploiement qui quitte avec un code non nul en cas d’échec.\n\nNe construis ni éditeur de contrôle dans le navigateur, ni comparaison de régression visuelle.",
+  "faq": [
+    {
+      "q": "Pourquoi est-ce important de garder les contrôles dans le dépôt ?",
+      "a": "Parce qu’un contrôle écrit dans un tableau de bord dérive de l’application en moins de deux versions, et personne ne le relit. Dans le dépôt, il change dans la même pull request que la fonctionnalité qu’il couvre, et il est relu comme du code."
+    },
+    {
+      "q": "Pourquoi n’alerter qu’après des échecs consécutifs ?",
+      "a": "Parce qu’une seule requête en échec, c’est généralement le réseau, et déclencher une alerte là-dessus apprend aux gens à ignorer les alertes. Deux ou trois d’affilée, c’est un signal ; une seule, c’est de la météo."
+    },
+    {
+      "q": "Que rate un monitoring mono-emplacement ?",
+      "a": "Les pannes régionales, les mauvaises configurations de CDN et la latence pour les utilisateurs loin de tes serveurs — une vraie catégorie de problèmes que ton unique contrôle ne verra jamais. Étiqueter l’emplacement sur le tableau de bord arrête au moins la fausse confiance."
+    },
+    {
+      "q": "Pourquoi générer la page de statut en rendu statique ?",
+      "a": "Parce qu’une page de statut servie par l’infrastructure qu’elle décrit tombe avec elle, exactement au moment où les gens la regardent. Un rendu statique sur un hébergement séparé, c’est toute l’astuce."
+    }
+  ]
+}

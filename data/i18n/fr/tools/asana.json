@@ -1,0 +1,32 @@
+{
+  "tagline": "Des tâches qui remontent en objectifs, pour qu’un manager voie la vue d’ensemble.",
+  "verdictSummary": "La liste de tâches, c’est la moitié facile. La vraie fonction d’Asana, c’est la remontée : une tâche appartient à un projet, un projet contribue à un objectif, et quelqu’un deux niveaux au-dessus lit un statut unique sans avoir à demander à personne. Construire ça honnêtement — où la progression d’un objectif est calculée à partir du travail en dessous plutôt que tapée par un optimiste — c’est un projet d’une semaine. Ce qu’un projet perso n’aura pas, c’est l’application mobile, le multi-utilisateur temps réel, et toute la mécanique de notifications qui fait qu’un outil partagé est vraiment utilisé.",
+  "coreLoopDIY": "Suis les tâches dans des projets, rattache les projets à des objectifs, et lis une seule page où la progression de chaque objectif est calculée à partir des tâches en dessous, avec le projet contributeur le plus à l’arrêt nommé explicitement.",
+  "whatYouLose": [
+    "les applications mobiles et les notifications qui font qu’un outil partagé est utilisé",
+    "l’édition collaborative en temps réel et la présence",
+    "le catalogue d’intégrations vers le chat, le stockage et les calendriers",
+    "AI Studio et les crédits d’automatisation qui vont avec",
+    "les vues de charge de travail et de capacité sur beaucoup de personnes"
+  ],
+  "whyPeopleStillPay": "Parce que la valeur n’apparaît que quand tout le monde y est, et faire venir tout le monde demande des applications, des notifications et un contrat de support. Un outil de suivi auto-hébergé que seulement deux personnes sur cinq consultent vaut moins que rien.",
+  "prompt": "Construis un outil de suivi de travail où la progression remonte et ne peut pas être trafiquée.\n\nStack : ton choix, Postgres, Docker Compose, une seule commande pour démarrer.\n\nHiérarchie : une Tâche appartient à un Projet ; un Projet contribue à zéro ou plusieurs Objectifs avec une pondération. Une Tâche a un assigné, une date d’échéance, un statut, et des sous-tâches optionnelles.\n\nLa règle qui définit ce projet : la progression d’un Objectif est toujours calculée, jamais saisie. La progression est la moyenne pondérée de l’avancement de ses projets, et l’avancement d’un projet est la part de ses tâches closes, une tâche avec sous-tâches comptant via ses sous-tâches. Il n’existe nulle part de champ où un humain tape un pourcentage. Affiche le calcul sur la page objectif — quels projets, quelle pondération, la contribution de chacun — pour qu’un chiffre puisse être contesté.\n\nLa page de statut, c’est le livrable. Pour chaque objectif : la progression calculée, la tendance depuis la semaine dernière tirée d’un instantané hebdomadaire stocké, et la ligne « attention » — le projet contributeur dont l’horodatage de dernière activité est le plus ancien, nommé explicitement. Un objectif complété à 80 % et qui n’a pas bougé depuis trois semaines doit paraître pire qu’un objectif à 40 % qui a bougé hier.\n\nInstantanés : une tâche hebdomadaire stocke la progression de chaque objectif pour que la tendance soit un historique plutôt qu’une supposition. Rends-la idempotente pour une même semaine.\n\nConstruis aussi : Mes tâches sur tous les projets, triées par date d’échéance, un tableau de projet groupé par statut, des filtres enregistrés, des dépendances de tâches avec un avertissement (pas un blocage) quand une tâche démarre avant que son bloquant soit terminé, des commentaires avec des @mentions qui écrivent dans une table de notifications, et un export CSV des tâches et de la remontée d’objectifs.\n\nÉcris des tests pour la remontée avec des sous-tâches imbriquées et des projets sans tâche, pour la normalisation des pondérations quand elles ne totalisent pas un, et pour l’idempotence des instantanés.\n\nNe construis pas de collaboration temps réel, d’applications mobiles, ni de catalogue d’intégrations. Fournis un seul webhook sortant au changement de statut d’une tâche, et arrête-toi là.",
+  "faq": [
+    {
+      "q": "Pourquoi interdire de taper un pourcentage de progression ?",
+      "a": "Parce qu’un pourcentage tapé est la source de fausse tranquillité la plus fiable du suivi de projet. Le calculer à partir du travail clos fait que le chiffre n’est faux que si la liste de tâches est fausse — un problème que tu peux voir et corriger."
+    },
+    {
+      "q": "Que capte vraiment la ligne « activité la plus ancienne » ?",
+      "a": "Le projet sur lequel tout le monde a discrètement arrêté de travailler. Le pourcentage d’avancement le cache parfaitement ; le temps depuis le dernier mouvement, non."
+    },
+    {
+      "q": "Une semaine, c’est réaliste pour ça ?",
+      "a": "Pour la remontée, les instantanés et la page de statut, oui. La semaine part dans les cas limites de la hiérarchie — un projet dans deux objectifs, un objectif sans projet, des sous-tâches qui changent le dénominateur — exactement là où une implémentation naïve raconte n’importe quoi."
+    },
+    {
+      "q": "Comment sortir ses données d’Asana ?",
+      "a": "Export CSV par projet, et JSON pour tout un espace de travail sur les plans payants. Les commentaires et les pièces jointes sont la partie délicate : les pièces jointes sortent sous forme d’URL qui cessent de fonctionner une fois l’espace de travail supprimé."
+    }
+  ]
+}

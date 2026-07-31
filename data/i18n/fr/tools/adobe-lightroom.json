@@ -1,0 +1,32 @@
+{
+  "tagline": "Développe tes fichiers RAW et retrouve ton catalogue sur ton téléphone.",
+  "verdictSummary": "La moitié édition a un vrai équivalent open source qui existe depuis quinze ans, ce qui en fait un « en partie » plutôt qu’un « non » — un photographe peut vraiment développer ses fichiers RAW sans Adobe. Ce qu’achète l’abonnement, c’est tout ce qu’il y a autour : un catalogue qui se synchronise sur un téléphone et une tablette, et les modèles de débruitage et de masquage qu’il a fallu une équipe de recherche pour construire. Un projet perso peut posséder le catalogue et la synchro ; il ne peut pas posséder les modèles.",
+  "coreLoopDIY": "Garde le catalogue et ses retouches sous forme de fichiers sidecar que tu possèdes, synchronisés entre tes propres machines, avec le développement fait par un logiciel open source plutôt que par un abonnement.",
+  "whatYouLose": [
+    "le débruitage IA, le masquage et la sélection de sujet",
+    "les applications mobile et tablette où les retouches te suivent",
+    "les profils boîtier et objectif mesurés par Adobe pour les nouveaux appareils",
+    "le stockage cloud pour les originaux",
+    "la moitié Photoshop de l’abonnement"
+  ],
+  "whyPeopleStillPay": "Parce que douze dollars couvrent les deux choses qui demandent vraiment un budget de recherche — le débruitage qui sauve une photo à ISO élevé, et le masquage qui repère le sujet — plus un catalogue déjà présent sur le téléphone.",
+  "prompt": "Construis la couche catalogue et synchro d’un workflow RAW. Le développement est fait par un logiciel open source existant ; ce projet possède les métadonnées et les rend portables.\n\nStack : ton choix, SQLite pour le catalogue local, plus un petit serveur de synchro avec du stockage d’objets. Le README doit préciser clairement que ce projet complète un développeur RAW plutôt qu’il ne le remplace.\n\nCatalogue : indexe une arborescence de dossiers de fichiers RAW. Pour chacun, stocke le chemin, le hash du contenu, l’heure de capture tirée de l’EXIF, le boîtier, l’objectif, les réglages d’exposition, le GPS, et un aperçu généré. Ne déplace ni ne réécris jamais le fichier original — cette règle est absolue, et le README doit le dire, parce qu’un outil de catalogage qui réorganise le disque d’un photographe est un outil auquel il arrête de faire confiance.\n\nLes retouches vivent dans des **fichiers sidecar juste à côté de l’original**, dans le format que le développeur choisi sait déjà lire, pour que le catalogue ne devienne jamais le seul endroit où ton travail existe. Supprimer cette application doit laisser un dossier de RAW et de sidecars qui s’ouvre correctement dans l’éditeur.\n\nSynchro : l’unité de synchro est le sidecar et les métadonnées du catalogue, pas le fichier RAW — les sidecars pèsent quelques kilo-octets et les RAW plusieurs dizaines de méga-octets, et cette asymétrie est ce qui rend l’édition multi-machines praticable. Les fichiers RAW se synchronisent en option et à la demande. Les conflits sur un sidecar gardent les deux versions avec un horodatage, jamais de fusion.\n\nOrganisation : notes, labels de couleur, drapeaux, mots-clés hiérarchisés, et collections intelligentes définies par une requête sur les métadonnées (boîtier, objectif, focale, ISO, note, mot-clé, plage de dates) qui se réévalue au lieu de stocker une liste figée.\n\nLe rapport qui vaut le coup : des statistiques de prise de vue — focales utilisées, ouvertures, répartition des ISO, taux de conservation par boîtier et objectif. La plupart des photographes n’ont jamais vu quelle focale ils utilisent vraiment, et ça change ce qu’ils emportent.\n\nPréréglages d’export : taille, format, profil colorimétrique, netteté, filigrane, et un modèle de nommage, appliqués en lot en passant par la ligne de commande du développeur.\n\nÉcris des tests pour l’aller-retour des sidecars sans perte, pour le catalogue qui survit au renommage d’un dossier en retrouvant les fichiers par hash de contenu, et pour les collections intelligentes qui se réévaluent au changement de métadonnées.\n\nN’implémente ni développement RAW, ni débruitage, ni masquage.",
+  "faq": [
+    {
+      "q": "Pourquoi synchroniser les sidecars plutôt que les fichiers RAW ?",
+      "a": "Parce que les sidecars pèsent quelques kilo-octets et les fichiers RAW plusieurs dizaines de méga-octets. Synchroniser les retouches est instantané entre les machines ; synchroniser les originaux est une tâche de fond que tu lances volontairement. Les traiter différemment, c’est ce qui rend un catalogue multi-machines utilisable."
+    },
+    {
+      "q": "Le développement RAW open source est-il vraiment à la hauteur ?",
+      "a": "Pour le développement, oui — la couleur, la tonalité et les ajustements locaux sont matures. L’écart se situe dans les fonctionnalités de machine learning : le débruitage sur une photo à ISO élevé et le masquage automatique du sujet sont là où les outils payants ont clairement une avance, et les deux figurent dans ce que tu perds."
+    },
+    {
+      "q": "Pourquoi refuser de déplacer les fichiers originaux ?",
+      "a": "Parce qu’un catalogue qui réorganise un disque crée une dépendance dont tu ne peux plus sortir, et le pire scénario, c’est de perdre la trace de vingt ans de photos. Indexe sur place, écris les sidecars à côté des originaux, et le dossier reste lisible sans ce logiciel."
+    },
+    {
+      "q": "Comment sortir de Lightroom ?",
+      "a": "Les retouches s’exportent en sidecars XMP pour la plupart des ajustements, et les originaux se téléchargent depuis le catalogue cloud. Les ajustements propriétaires — masquage, débruitage, certains profils — ne survivent pas à l’export, donc prévois de redévelopper les images qui comptent plutôt que de compter sur une migration sans perte."
+    }
+  ]
+}

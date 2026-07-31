@@ -1,0 +1,32 @@
+{
+  "tagline": "Paie des gens dans un pays où tu n’as pas d’entreprise.",
+  "verdictSummary": "Le produit de Deel, c’est une structure juridique : des entités enregistrées dans des dizaines de pays, des contrats de travail qui tiennent sous le droit local, des impôts retenus et déclarés correctement, et une responsabilité absorbée quand ça ne l’est pas. Rien de tout ça n’est du logiciel, et le logiciel visible n’en est que la fine couche du dessus. C’est un « non » aussi net que ce catalogue en contient.",
+  "coreLoopDIY": "Garde la paperasse dont tu es personnellement responsable : fiches de prestataires, contrats, factures, historique de paiements, et une checklist par pays de ce que tu dois encore.",
+  "whatYouLose": [
+    "des entités dans des pays où tu n’en as pas",
+    "des contrats de travail locaux conformes et leur couverture de responsabilité",
+    "la retenue et la déclaration fiscales en ton nom",
+    "le paiement lui-même en devise locale",
+    "quelqu’un de responsable quand une classification est contestée"
+  ],
+  "whyPeopleStillPay": "Parce que se tromper sur la classification d’un travailleur ou la retenue à l’étranger coûte cher et se découvre lentement, et Deel vend le fait d’être celui qui porte ce risque.",
+  "prompt": "Construis un registre d’administration de prestataires. Il ne déplace aucun argent et ne donne aucun conseil ; il s’assure que rien ne manque.\n\nStack : ton choix, SQLite suffit, une seule commande pour lancer. Le README doit s’ouvrir en disant que c’est un système de classement, pas une paie, et que les règles de classification et de retenue sont propres à chaque juridiction et hors périmètre.\n\nFiche prestataire : nom légal, pays de résidence fiscale, type d’entité (particulier ou société), identifiant fiscal, coordonnées bancaires stockées chiffrées au repos, et le contrat lui-même.\n\nContrats : un modèle Markdown rendu par prestataire, versionné. Quand un tarif ou une condition change, une nouvelle version est créée et l’ancienne est conservée avec ses dates. Affiche la version en vigueur à n’importe quelle date passée, parce que la question est toujours « qu’est-ce qui a été convenu en mars ».\n\nChecklist de conformité par prestataire, pilotée par un petit fichier de données par pays que tu remplis toi-même à partir de tes propres conseils — l’application le livre vide et explique pourquoi. Les éléments sont des choses comme un contrat signé au dossier, un formulaire fiscal collecté, un formulaire de déclaration annuelle dû, une date de révision de classification. Chacun a une date d’échéance, un emplacement de document et un état. Le tableau de bord est la liste de ce qui est en retard.\n\nFactures : les prestataires les soumettent ou tu les enregistres, avec période, montant, devise et un fichier joint. Marque comme payé avec une date, une méthode et une référence. Rien ici ne déclenche un paiement.\n\nRapports : total payé par prestataire et par année civile dans sa devise et la tienne au taux du jour de paiement, le chiffre nécessaire pour la déclaration annuelle et celui qui est pénible à reconstituer après coup ; plus les documents qui expirent dans les quatre-vingt-dix prochains jours.\n\nStocke les taux utilisés pour la conversion au moment du paiement. Recalculer les totaux historiques au taux d’aujourd’hui produit des chiffres qui ne correspondent à rien de ce que tu as déclaré.\n\nÉcris des tests pour la résolution de version de contrat à une date passée, pour les totaux de devise utilisant le taux historique stocké, et pour la checklist qui fait apparaître un élément exactement à sa date d’échéance.\n\nNe déclenche aucun paiement, ne génère aucun formulaire fiscal, et n’offre aucun conseil de classification.",
+  "faq": [
+    {
+      "q": "Quel est le vrai risque à gérer soi-même ses prestataires ?",
+      "a": "La mauvaise classification. Si un prestataire est traité comme un salarié au regard du droit local, l’entreprise qui embauche peut devoir des arriérés d’impôts, des cotisations sociales et des pénalités, parfois des années plus tard. C’est cette exposition qu’un « employer of record » facture pour l’absorber."
+    },
+    {
+      "q": "Pourquoi stocker le taux de change au moment du paiement ?",
+      "a": "Parce que la déclaration annuelle utilise le taux du jour, et recalculer au taux d’aujourd’hui produit des totaux qui ne se réconcilient avec rien. C’est une colonne de plus, et ça épargne un après-midi vraiment pénible."
+    },
+    {
+      "q": "Pourquoi livrer la checklist pays vide ?",
+      "a": "Parce qu’une checklist de conformité préremplie est un conseil, elle sera fausse pour quelqu’un, et se tromper ici coûte cher. La structure est la partie utile ; le contenu doit venir de ton propre comptable."
+    },
+    {
+      "q": "Puis-je être mon propre registered agent ?",
+      "a": "Dans ton État de constitution, généralement seulement si tu y as une adresse physique pendant les heures ouvrées, ce qui est exactement ce qui manque à un non-résident. Cette exigence d’adresse — pas la paperasse — c’est ce qui est vendu."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Une base de données consultable de quelques centaines de millions de contacts professionnels.",
+  "verdictSummary": "Tu ne paies pas pour des champs de recherche, tu paies pour les lignes derrière : des centaines de millions de fiches contact, revérifiées en continu, assemblées à partir de sources auxquelles une seule personne n’a aucun accès. Aucune quantité de code ne produit ça. Ce qu’un projet perso peut faire, c’est la discipline inverse — garder les prospects que tu as toi-même trouvés, et être strict sur la provenance de chaque donnée et son âge, ce qui est justement le point faible des bases achetées.",
+  "coreLoopDIY": "Garde une base de prospects que tu possèdes vraiment, où chaque champ enregistre sa source et sa date de capture, et où tout ce qui dépasse sa fenêtre de fraîcheur est visiblement marqué comme périmé plutôt que servi discrètement.",
+  "whatYouLose": [
+    "la base de contacts elle-même — personne n’y figure que tu n’aies pas trouvé toi-même",
+    "la recherche par taille d’entreprise, technologie, signal de recrutement ou levée de fonds",
+    "la revérification continue des adresses email que tu possèdes déjà",
+    "l’extension Chrome qui récupère un prospect depuis une page d’entreprise",
+    "les séquences et l’infrastructure d’envoi derrière"
+  ],
+  "whyPeopleStillPay": "Parce que la donnée est le produit, et c’est la seule partie de la prospection sortante qu’on ne peut vraiment pas construire. Tout le reste que vend Apollo n’est qu’un emballage autour du fait de posséder les lignes.",
+  "prompt": "Construis une base de prospects obsédée par la provenance. Elle ne contient que ce que tu y mets, et elle ne te laisse jamais oublier l’âge de chaque donnée.\n\nStack : ton choix, Postgres, une seule commande pour démarrer.\n\nModèle : Entreprise, Personne, et Fait. La subtilité, c’est le Fait. Au lieu de colonnes sur Personne, chaque attribut — email, poste, téléphone, URL LinkedIn, entreprise — est une ligne Fait avec : le nom de l’attribut, la valeur, une source (texte libre, obligatoire, sans valeur par défaut), une date captured_at, et une confiance que tu choisis dans une liste fixe. Une Personne peut porter plusieurs Faits contradictoires pour le même attribut en même temps ; l’interface affiche le plus récent en premier avec les autres repliés en dessous, et n’écarte jamais silencieusement l’ancien.\n\nFraîcheur : chaque type d’attribut a une demi-vie configurable — 180 jours pour les emails, 120 pour les postes, 365 pour les numéros de téléphone. Partout où une valeur est affichée au-delà de sa demi-vie, elle s’affiche avec un marqueur de péremption visible et son âge en jours. Les exports incluent une colonne avec l’âge de chaque valeur exportée.\n\nAjoute un workflow « vérifier » : marquer un Fait comme revérifié aujourd’hui, ce qui écrit un nouveau Fait plutôt que de modifier l’ancien, pour préserver l’historique d’un poste qui change.\n\nRecherche et segmentation : filtre les personnes et entreprises sur n’importe quelle valeur de Fait actuelle, sur la péremption, et sur des tags. Enregistre des segments nommés. Exporte un segment en CSV avec les colonnes de provenance incluses, parce que tout l’intérêt de ce projet, c’est que le CSV que tu remets à quelqu’un soit honnête.\n\nImport : CSV avec un écran de mapping qui t’oblige à nommer une source pour le fichier avant de lancer l’import. Pas de source, pas d’import.\n\nÉcris des tests pour le calcul de fraîcheur aux dates limites et pour l’invariant selon lequel vérifier ne modifie jamais une ligne Fait existante.\n\nNe scrape rien, n’achète ni n’intègre aucun jeu de données de contacts tiers, et n’envoie aucun email. C’est un classeur avec une bonne mémoire.",
+  "faq": [
+    {
+      "q": "Une base de prospects sans données, est-ce vraiment utile ?",
+      "a": "Elle est utile pour ce que tu as déjà et perds sans cesse de vue : les cinquante personnes rencontrées sur deux salons, les leads venus de ton propre site, les comptes que tu as recherchés à la main. Cet ensemble est petit, mais il est à toi, et il reste exact — ce qu’on ne peut pas dire de la plupart des lignes d’une base achetée."
+    },
+    {
+      "q": "Pourquoi stocker les faits en lignes plutôt qu’en colonnes ?",
+      "a": "Parce que le vrai problème d’une base de contacts n’est pas le stockage, c’est de savoir si l’adresse email sous tes yeux date de la semaine dernière ou de 2023. Des faits avec une source et une date rendent ça visible, et garder l’ancienne valeur te permet de voir que quelqu’un a changé de poste."
+    },
+    {
+      "q": "Pourrais-je brancher un fournisseur de données plus tard ?",
+      "a": "Oui, et le modèle est prévu pour ça — un fournisseur n’est qu’un nom de source de plus. Ce que tu achèterais à ce moment-là, c’est la donnée, ce qui est la réalité honnête de ce marché : le logiciel est bon marché, les lignes ne le sont pas."
+    },
+    {
+      "q": "Que permet d’exporter Apollo ?",
+      "a": "Les contacts et comptes que tu as enregistrés dans des listes s’exportent en CSV, dans la limite de tes crédits et de tes quotas d’export, qui dépendent du plan. L’univers consultable n’est pas exportable, par conception — c’est ça, le produit."
+    }
+  ]
+}

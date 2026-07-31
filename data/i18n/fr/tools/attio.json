@@ -1,0 +1,32 @@
+{
+  "tagline": "Un CRM où tu définis les objets, pas seulement les champs.",
+  "verdictSummary": "L’argument de vente d’Attio, c’est que le modèle de données plie : tu ajoutes des objets, pas seulement des colonnes, et chaque vue suit. C’est faisable — des attributs JSONB sur Postgres avec une couche de lecture typée t’y amène — mais « faisable » veut dire ici une semaine, parce qu’un schéma modifiable à l’exécution est la partie difficile, pas le pipeline par-dessus. Les deux choses qu’un projet perso n’aura pas, c’est la capture automatique de la boîte mail et du calendrier, qui demande une application OAuth Google ou Microsoft et un entretien constant des tokens, et l’enrichissement qui remplit une fiche entreprise à partir d’un domaine.",
+  "coreLoopDIY": "Définis tes propres types d’objets et attributs directement dans l’application, place des fiches dedans, relie les fiches entre elles, enregistre des vues filtrées par objet, et fais avancer les deals à travers des étapes que tu as toi-même nommées.",
+  "whatYouLose": [
+    "la capture automatique des emails et du calendrier depuis ta boîte mail",
+    "l’enrichissement d’entreprise et de personne à partir d’un domaine ou d’une adresse email",
+    "l’édition multi-utilisateur en temps réel — deux personnes ne verront jamais le curseur l’une de l’autre",
+    "les applications mobiles",
+    "le catalogue d’intégrations qui pousse les fiches vers Slack, Linear et le reste"
+  ],
+  "whyPeopleStillPay": "Parce qu’un CRM ne devient rentable qu’une fois qu’il n’a plus besoin d’être nourri à la main, et c’est la synchro de boîte mail d’Attio qui fait ce travail. Les équipes paient aussi pour l’assurance qu’un changement de schéma fait un mardi ne va pas corrompre les 40 000 fiches déjà dans le système.",
+  "prompt": "Construis un CRM mono-utilisateur dont le modèle de données est modifiable depuis l’application elle-même, pas depuis un fichier de migration.\n\nStack : Node avec TypeScript, Postgres, et un seul fichier Docker Compose qui lance les deux. Stocke les valeurs d’attributs dans une colonne JSONB indexée par identifiant d’attribut, et garde les définitions d’attributs dans des tables ordinaires pour qu’elles restent interrogeables.\n\nCommence par un concepteur d’objets : je peux créer un type d’objet (Personne, Entreprise, Deal, n’importe quoi), lui donner des attributs avec un type parmi un ensemble fixe (texte, nombre, date, sélection, sélection multiple, devise, case à cocher, url, email, référence vers un autre objet), et marquer un attribut comme titre de la fiche. Changer le type d’un attribut doit passer par un écran de migration explicite qui montre combien de valeurs existantes échoueraient à la conversion et refuse de s’exécuter tant que je n’ai pas choisi ce qui leur arrive — convertir de force, vider, ou annuler. Journalise chaque changement de schéma avec un horodatage et la définition avant/après, et laisse-moi lire ce journal dans l’interface.\n\nFiches : crée, modifie, supprime, et relie des fiches entre types d’objets dans les deux sens, pour qu’ouvrir une Entreprise montre les Personnes qui la référencent sans que j’aie à configurer un champ inverse.\n\nVues : enregistre une vue nommée par type d’objet avec des filtres, un tri, et un jeu de colonnes choisi. Un type de vue est un tableau groupé par un attribut de sélection, ce qui permet de construire un pipeline sans notion spéciale de « deal ».\n\nAjoute une recherche plein texte sur tous les attributs texte de tous les objets, un import CSV avec un écran de mapping colonne-vers-attribut qui prévisualise les dix premières lignes avant validation, et un export CSV de n’importe quelle vue.\n\nÉcris des tests spécifiquement pour la logique de migration de type d’attribut — c’est là que les données se font détruire — et un test de bout en bout qui crée un type d’objet, ajoute une fiche, et la relit à travers une vue enregistrée.\n\nNe construis pas de synchro boîte mail ou calendrier, et n’appelle aucune API d’enrichissement. Dis-le dans le README plutôt que de faire une implémentation à moitié : c’est un CRM dans lequel tu tapes.",
+  "faq": [
+    {
+      "q": "Puis-je récupérer mes données Attio et les importer ici ?",
+      "a": "Oui. Attio exporte chaque objet en CSV, et l’écran d’import de ce projet fait correspondre les colonnes CSV aux attributs que tu as définis. Ce qui ne passe pas, c’est l’historique email et calendrier qu’Attio a capturé pour toi, parce qu’il vit dans la copie de ta boîte mail que possède Attio, pas dans l’export des fiches."
+    },
+    {
+      "q": "JSONB est-il vraiment assez rapide pour un CRM ?",
+      "a": "Pour les données d’une seule personne, largement. Les valeurs d’attribut vivent dans une colonne JSONB avec un index GIN ; filtrer sur un seul attribut à travers des dizaines de milliers de fiches reste de l’ordre de quelques millisecondes. Si tu atteins des millions de lignes, tu promouvrais les attributs les plus sollicités en vraies colonnes, mais tu n’y arriveras pas."
+    },
+    {
+      "q": "Que casse le changement de type d’un attribut ?",
+      "a": "Texte vers nombre, c’est celui qui mord. L’écran de migration compte les valeurs qui ne se convertiront pas et t’oblige à choisir entre forcer, vider ou annuler avant d’écrire quoi que ce soit — ce contrôle est la raison pour laquelle ce projet est une semaine plutôt qu’un week-end."
+    },
+    {
+      "q": "Pourquoi la synchro de boîte mail est-elle hors périmètre plutôt qu’un objectif bonus ?",
+      "a": "Parce que ce n’est pas une fonctionnalité, c’est un travail d’exploitation : un projet Google Cloud, un écran de consentement OAuth vérifié, des tokens de rafraîchissement qui expirent quand tu changes de mot de passe, et un abonnement push Gmail à renouveler tous les sept jours. L’éviter honnêtement vaut mieux que livrer une version qui arrête discrètement de se synchroniser."
+    }
+  ]
+}

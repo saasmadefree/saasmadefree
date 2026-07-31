@@ -1,0 +1,32 @@
+{
+  "tagline": "Un espace de travail unique configuré dans la forme pour laquelle ton équipe s’est battue.",
+  "verdictSummary": "ClickUp vend la configurabilité, et la configurabilité est exactement ce qui rend un projet long : des champs personnalisés, des statuts personnalisés par liste, et huit vues sur les mêmes fiches, c’est une semaine de modélisation de données soignée avant même d’être un produit. Ça reste un « en partie » plutôt qu’un « non », parce que rien de tout ça n’est une barrière défensive — les parties difficiles, c’est le volume de surface fonctionnelle et les applications mobiles, pas quelque chose que tu ne peux pas obtenir. Le vrai risque en reconstruisant ClickUp, c’est de tout reconstruire.",
+  "coreLoopDIY": "Modélise les tâches une seule fois et rends-les de plusieurs façons — liste, tableau, calendrier, grille — avec des champs personnalisés et des statuts par liste, et une vue enregistrée qui se souvient exactement de la façon dont tu l’as laissée.",
+  "whatYouLose": [
+    "les applications mobiles et desktop",
+    "les docs et tableaux blancs collaboratifs en temps réel",
+    "ClickUp Brain et les crédits d’automatisation",
+    "un millier d’intégrations prêtes à l’emploi",
+    "l’ampleur brute de la surface fonctionnelle — formulaires, objectifs, chat, suivi du temps, cartes mentales"
+  ],
+  "whyPeopleStillPay": "Parce qu’une équipe qui a configuré ClickUp pour coller exactement à son processus a construit quelque chose qu’elle ne peut pas facilement recréer, et parce que sept dollars par siège coûtent moins cher que la réunion qu’il faudrait pour se mettre d’accord sur un remplaçant.",
+  "prompt": "Construis un système de tâches où une fiche s’affiche selon quatre vues différentes, et prouve que les vues restent synchronisées.\n\nStack : ton choix, Postgres, Docker Compose.\n\nModèle de données, conçu une fois et soigneusement : un Espace contient des Listes qui contiennent des Tâches. Une Tâche a un titre, une description, des assignés, des dates, et des valeurs pour des champs personnalisés. Les champs personnalisés sont définis par Espace avec un type parmi un ensemble fixe (texte, nombre, date, liste déroulante, étiquettes, case à cocher, montant, relation-vers-tâche) et stockés pour rester filtrables et triables en SQL, pas dans le code applicatif. Les statuts sont définis par Liste, ordonnés, chacun marqué comme ouvert, actif ou fermé.\n\nQuatre vues sur la même requête, une vue étant un objet enregistré avec des filtres, un tri, un regroupement, et un jeu de champs visibles :\n- Liste : à plat, groupée par n’importe quel champ, édition en ligne.\n- Tableau : colonnes issues du champ de regroupement, glisser pour changer la valeur de ce champ. Glisser par statut doit avoir un effet identique à modifier le statut en vue liste — écris un test qui vérifie exactement ça, parce que la divergence entre vues est le bug classique ici.\n- Calendrier : par un champ de date choisi, glisser change la date.\n- Grille : façon tableur, édition en masse sur multi-sélection, et copier-coller d’une sélection rectangulaire.\n\nLes vues enregistrées se souviennent de la position de défilement et des groupes repliés par utilisateur, parce que c’est la différence entre une vue que tu utilises et une que tu reconfigures à chaque fois.\n\nOpérations en masse : multi-sélection puis changement de statut, d’assigné, ou d’un champ personnalisé sur toutes en une seule transaction, avec une seule entrée d’annulation plutôt qu’une par tâche.\n\nAjoute aussi : des relations de tâches (bloque / bloqué par / lié à), une recherche globale sur les titres, descriptions et corps de commentaires, et un import/export CSV qui fait l’aller-retour sur les champs personnalisés.\n\nÉcris des tests pour l’équivalence des vues (le même filtre retourne le même ensemble de tâches dans les quatre), pour la transaction d’édition en masse qui revient intégralement en arrière sur un seul échec, et pour l’aller-retour CSV de chaque type de champ personnalisé.\n\nNe construis ni docs, ni tableaux blancs, ni chat, ni objectifs, ni couche IA. Choisis les quatre vues et termine-les ; une application à tout faire à moitié construite est pire qu’une petite application terminée.",
+  "faq": [
+    {
+      "q": "Pourquoi l’équivalence des vues mérite-t-elle un test ?",
+      "a": "Parce que tableau, liste et calendrier développent généralement chacun leur propre code de filtrage, et le jour où ils ne s’accordent plus sur les tâches qui existent, c’est le jour où les gens arrêtent de faire confiance à l’outil. Une seule fonction de requête partagée et un test vérifiant que les quatre s’accordent ne coûtent presque rien."
+    },
+    {
+      "q": "Comment les champs personnalisés doivent-ils être stockés ?",
+      "a": "D’une façon que la base de données peut filtrer et trier — une table de valeurs typées ou des colonnes JSONB typées avec des index — plutôt qu’un blob que l’application doit charger et parcourir. Filtrer dans le code applicatif fonctionne jusqu’à ce qu’une liste ait deux mille tâches."
+    },
+    {
+      "q": "Reconstruire ClickUp, est-ce seulement une idée réaliste ?",
+      "a": "Reconstruire son cœur de tâches, oui. Reconstruire sa surface fonctionnelle, non, et essayer, c’est comme ça qu’une semaine devient un trimestre. Le prompt délimite volontairement le périmètre à quatre vues pour cette raison."
+    },
+    {
+      "q": "ClickUp s’exporte-t-il proprement ?",
+      "a": "Les tâches s’exportent en CSV par liste avec les champs personnalisés, et il existe une API pour une extraction plus complète. Les docs, tableaux blancs et le chat sont les parties qui ne ressortent pas sous une forme réutilisable, ce qui vaut la peine d’être su avant d’y mettre du contenu."
+    }
+  ]
+}

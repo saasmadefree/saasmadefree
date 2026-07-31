@@ -1,0 +1,32 @@
+{
+  "tagline": "Un prix par espace de travail, tous les canaux de messagerie canalisés dans une seule boîte de réception.",
+  "verdictSummary": "Crisp tarife l’espace de travail, pas le siège, et le bourre de canaux : chat, email, WhatsApp, Instagram, SMS, Line, Viber. La boîte de réception et le widget, c’est un week-end. Chacun de ces canaux au-delà de l’email et du chat est un processus d’approbation avec une plateforme, pas une intégration que tu écris, et c’est toute la raison pour laquelle le bundle vaut 45 $. Une version DIY obtient deux canaux et un silence honnête sur le reste.",
+  "coreLoopDIY": "Fais tourner une seule boîte de réception pour les deux canaux que tu peux vraiment posséder — un widget de site web et ton propre email — avec l’historique de pages du visiteur et ses conversations passées affichées à côté du message.",
+  "whatYouLose": [
+    "WhatsApp, Instagram, SMS, Line et Viber, chacun derrière sa propre approbation de plateforme",
+    "le co-browsing et le partage d’écran en direct pour lesquels Crisp est connu",
+    "les applications mobiles pour répondre en déplacement",
+    "les crédits IA inclus dans le prix de l’espace de travail",
+    "les fonctionnalités CRM et de campagnes empilées sur la même boîte de réception"
+  ],
+  "whyPeopleStillPay": "Parce qu’un prix à l’espace de travail avec des canaux illimités est un rapport qualité-prix inhabituellement bon pour une petite entreprise qui en utilise vraiment trois ou quatre, et parce qu’assembler ces canaux séparément coûte plus en approbations qu’en argent.",
+  "prompt": "Construis une boîte de support centrée sur le chat pour les deux canaux que tu peux vraiment contrôler : un widget de site web et l’email.\n\nStack : ton choix avec websockets, Postgres, Docker Compose, un domaine avec TLS.\n\nWidget : une seule balise script, un shadow DOM pour que le CSS de la page hôte ne puisse pas le toucher, moins de 30 Ko. Il persiste un token de visiteur dans le stockage local pour qu’un visiteur qui revient garde son historique, et il se reconnecte après une navigation de page. Pas de cookies tiers. Respecte prefers-reduced-motion et prefers-color-scheme.\n\nL’élément qui donne à une boîte de chat une impression de qualité, c’est le contexte, donc construis-le : pour chaque visiteur, enregistre les pages qu’il a vues avec horodatage, son référent, sa locale et son fuseau horaire, et affiche ça comme une chronologie compacte à côté de la conversation. Montre la page où il se trouve en ce moment, mise à jour en direct. Plafonne l’historique stocké par visiteur et fais-le expirer selon un planning que tu configures — un journal de pages non borné est un risque pour la vie privée, et tu devrais dire dans le README ce que tu conserves et pour combien de temps.\n\nL’email comme second canal : entrant via un webhook de fournisseur signé, mis en fil par Message-ID et References, dans la même liste de conversations que le chat. Un visiteur qui donne une adresse email dans le chat voit ses conversations email précédentes liées automatiquement.\n\nCôté agent : une seule liste pilotée au clavier. Assignation, statuts, réponses prêtes avec des espaces réservés, et un indicateur de frappe dans les deux sens. Montre au visiteur un état clair « personne n’est là en ce moment, laisse une adresse email » en dehors des heures de bureau configurées plutôt que de prétendre que quelqu’un est disponible.\n\nDéclencheurs, gardés délibérément petits : un moteur de règles avec exactement trois conditions disponibles — temps passé sur la page, URL de page qui correspond, et visiteur qui revient — chacune déclenchant un message, une fois par visiteur et par session. Résiste à la tentation de généraliser ça ; un moteur de campagne complet est un autre produit, et c’est là que les widgets de chat deviennent agaçants.\n\nUn rapport : conversations par canal et par jour, temps médian de première réponse, et la proportion démarrée par un déclencheur contre par le visiteur.\n\nÉcris des tests pour la reconnexion du widget après navigation, pour la limite de rétention de l’historique de pages, et pour le déclencheur qui se déclenche au plus une fois par session.\n\nNe construis ni WhatsApp, ni Instagram, ni SMS, ni co-browsing. Le README devrait les lister comme les raisons pour lesquelles un espace de travail payant reste pertinent.",
+  "faq": [
+    {
+      "q": "Pourquoi une chronologie d’historique de pages du visiteur vaut-elle la peine d’être construite ?",
+      "a": "Parce qu’elle transforme « bonjour, j’ai un problème » en « tu es sur la page tarifs et tu viens de la doc » avant même que l’agent ait tapé quoi que ce soit. C’est le contexte le moins cher en support, et presque personne qui s’auto-héberge ne s’en donne la peine."
+    },
+    {
+      "q": "Le journal de pages est-il un problème de vie privée ?",
+      "a": "Ça peut l’être. Tu enregistres le comportement de navigation sur ton propre site, ce qui dans l’UE doit généralement être divulgué et justifié, et ça ne devrait pas être conservé indéfiniment. La limite de rétention est dans le prompt pour cette raison, pas comme un simple confort de bonne tenue."
+    },
+    {
+      "q": "Pourquoi plafonner le moteur de déclencheurs à trois conditions ?",
+      "a": "Parce que les moteurs de déclencheurs grossissent jusqu’à ce que chaque visiteur reçoive une pop-up en quatre secondes, et ça fait fuir les gens de la page de façon mesurable. Trois conditions couvrent les cas utiles et rendent les cas agaçants impossibles."
+    },
+    {
+      "q": "Comment le tarif par espace de travail de Crisp se compare-t-il une fois que tu as une équipe ?",
+      "a": "Meilleur que le tarif par agent tant que tu n’as pas plusieurs agents : 45 $ couvrent l’espace de travail et les agents supplémentaires coûtent 10 $ chacun. Face à un concurrent à 25 $ par siège, quatre agents, c’est à peu près le point de bascule."
+    }
+  ]
+}

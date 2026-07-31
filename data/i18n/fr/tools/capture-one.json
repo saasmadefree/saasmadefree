@@ -1,0 +1,32 @@
+{
+  "tagline": "La référence en studio, en grande partie parce que la connexion filaire fonctionne vraiment.",
+  "verdictSummary": "Capture One est acheté par les photographes de studio pour une raison plus que toute autre : un appareil branché à un ordinateur apparaît, déclenche, et dépose des fichiers en pleine résolution dans une session, de façon fiable, pour plus de cinq cents modèles d’appareils. Chacun d’eux est un protocole propriétaire rétro-ingénié et maintenu à travers les changements de firmware. Cette longue traîne n’est pas un code que tu écris, c’est une décennie de travail de compatibilité peu glamour, et ça règle le verdict.",
+  "coreLoopDIY": "Fais tourner une session filaire avec les outils du fabricant lui-même, et possède ce qu’il y a autour : les fichiers qui atterrissent dans un dossier de session daté, sauvegardés à leur arrivée, avec une vue côté client qui se rafraîchit.",
+  "whatYouLose": [
+    "la connexion filaire pour des centaines de modèles d’appareils, maintenue à travers les mises à jour de firmware",
+    "les profils colorimétriques et la conversion RAW pour lesquels Capture One est connu",
+    "la visée en direct, le contrôle de la mise au point et les réglages de l’appareil depuis l’ordinateur",
+    "l’application iPad et les outils de collaboration",
+    "les sessions et catalogues conçus autour du travail de studio commercial"
+  ],
+  "whyPeopleStillPay": "Parce qu’une panne de connexion filaire devant un client et une équipe payée coûte plus cher en dix minutes que la licence en un an, et la fiabilité sur chaque appareil de la pièce, c’est ce qu’achète l’argent.",
+  "prompt": "Construis la couche session autour d’un shooting en connexion filaire. La capture elle-même est faite par l’utilitaire de connexion filaire du fabricant de ton appareil, et le README doit le dire clairement plutôt que de faire semblant du contraire.\n\nStack : une application locale, SQLite, aucun réseau requis.\n\nSession : créée avec un nom, une date, un client et une liste de plans. Elle possède un dossier à structure fixe — captures, sélections, exports — créé sur le disque immédiatement pour que la structure existe avant même la première photo.\n\nSurveille le dossier de capture. À l’arrivée de chaque fichier :\n1. Copie-le vers un second emplacement que tu configures — un disque physique différent — avant toute autre chose. Les cartes de l’appareil sont formatées en fin de journée ; une seule copie sur un seul ordinateur, c’est comme ça qu’un shooting se perd. Affiche le statut de copie par fichier et refuse de marquer une session comme terminée tant qu’un fichier n’est pas mirroré.\n2. Extrais l’aperçu et les métadonnées intégrés, et ajoute-les à une grille en direct.\n3. Fais correspondre le fichier à l’élément courant de la liste de plans, que tu fais avancer manuellement.\n\nLa vue client est une fenêtre plein écran séparée, prévue pour un second écran : la dernière capture en grand, avec les quelques précédentes en miniatures, avançant automatiquement à l’arrivée des fichiers, et rien d’autre à l’écran — pas de menus, pas de noms de fichiers, pas de notes. Les photographes font actuellement ça avec un dossier partagé et un diaporama, mal.\n\nNotes et rejets au clavier, écrits dans des sidecars à côté des originaux.\n\nFin de session : un rapport des clichés par élément de la liste de plans, signalant tout élément sans capture, ce qui est le contrôle qui vaut la peine d’être fait avant que le client ne quitte le bâtiment.\n\nExport : une planche-contact en PDF, et un dossier de sélections en copies pleine résolution avec un modèle de nommage.\n\nÉcris des tests pour l’ordre miroir-avant-indexation, pour la session qui refuse de se terminer avec des fichiers non mirrorés, et pour la correspondance de liste de plans à travers une avancée.\n\nN’implémente ni contrôle d’appareil, ni développement RAW.",
+  "faq": [
+    {
+      "q": "Pourquoi le support de la connexion filaire est-il une si longue traîne ?",
+      "a": "Parce que chaque fabricant a son propre protocole, ses particularités par boîtier, et des mises à jour de firmware qui changent le comportement. Supporter cinq cents appareils veut dire les posséder ou les emprunter et les corriger un par un, indéfiniment. C’est la barrière défensive la moins glamour de ce catalogue et l’une des plus solides."
+    },
+    {
+      "q": "Pourquoi mirrorer les fichiers avant de les indexer ?",
+      "a": "Parce que la fenêtre entre « la carte est pleine » et « la carte est formatée », c’est là que les shootings se perdent, et le disque d’un ordinateur portable est à une panne près d’être la seule copie. Faire du miroir la première étape rend la propriété de sécurité réelle plutôt qu’au mieux."
+    },
+    {
+      "q": "La vue client vaut-elle vraiment la peine d’être construite ?",
+      "a": "C’est la fonctionnalité que les photographes en activité improvisent le plus souvent, et le plus mal. Un second écran propre qui montre simplement la dernière photo garde le client engagé et l’empêche de lire tes noms de fichiers et tes rejets par-dessus ton épaule."
+    },
+    {
+      "q": "Puis-je quitter Capture One avec mon travail intact ?",
+      "a": "Les sessions sont des dossiers de RAW avec sidecars, donc les fichiers te suivent. Les ajustements sont propriétaires — les styles, les calques et les retouches colorimétriques ne se traduisent pas vers un autre développeur — donc considère une migration comme un redéveloppement des images qui comptent encore pour toi."
+    }
+  ]
+}
