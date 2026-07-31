@@ -1,0 +1,36 @@
+{
+  "slug": "rocket-lawyer",
+  "name": "Rocket Lawyer",
+  "domains": [
+    "rocketlawyer.com"
+  ],
+  "category": "business-admin",
+  "subcategory": "legal documents and attorney access",
+  "pricing": {
+    "amount": 12.41,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.rocketlawyer.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$149 a year, which is $12.41 a month, for Standard; Plus is $249 and Pro $349. Business filings are extra — the first entity registration is free then $99 plus state fees, an EIN is $70, and registered agent service is $125 a year. The $39.99 \"Premium\" tier upstream recorded no longer exists."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "attorney network and document library",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "relatedSlugs": [
+    "legalzoom",
+    "iubenda",
+    "doola"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

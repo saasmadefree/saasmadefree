@@ -1,0 +1,32 @@
+{
+  "tagline": "Build the rota, clock people in, and stop the texting.",
+  "verdictSummary": "Scheduling and a time clock are ordinary software, and for one location a weekend gets a working version — so this is a kinda. The honest gap is not technical: hourly staff use this on a phone, often an old one, sometimes without data, and getting them to adopt anything is the hard part. The paid product is bought because everybody already has the app, and the payroll add-on turns the clock data into money without retyping.",
+  "coreLoopDIY": "Publish the rota and capture the hours: shifts staff can see on a phone, a clock-in that resists the obvious cheats, and a timesheet that reconciles scheduled against actual before it becomes an argument.",
+  "whatYouLose": [
+    "the mobile apps hourly staff already have and will actually open",
+    "payroll integration turning hours into a pay run",
+    "shift-swap and cover requests handled without you",
+    "labour-cost forecasting against sales data from a point-of-sale system",
+    "hiring and onboarding tools"
+  ],
+  "whyPeopleStillPay": "Because the value only exists if the whole team uses it, and twenty-four dollars a location buys an app they will install and a payroll link that removes the retyping.",
+  "prompt": "Build shift scheduling and time capture for a single site, mobile-first, and make the timesheet defensible.\n\nStack: your choice, Postgres, Docker Compose, a domain with TLS. Everything staff touch must work well at 390px wide and on a slow connection; build that first, not last.\n\nScheduling: employees with roles and availability, shifts with a role, a start and an end, published as a week. Publishing notifies affected staff. A published shift cannot be changed silently — every edit after publication is recorded and notified.\n\nStaff view, one page: my next shift, my week, and a button to request a swap. Swaps go to a named colleague who accepts, then to you to confirm. No group chat.\n\nTime clock, where the honesty lives:\n- Clock in and out from a phone, with the server's time, never the device's.\n- Optionally require the device to be within a radius of the site, with an explicit note to staff that location is checked at clock-in only and not tracked otherwise.\n- Optionally require a photo at clock-in, retained for a short, stated period.\n- Automatic clock-out after a configurable maximum shift length, flagged for review rather than silently trimmed.\n- Breaks: recorded, with a warning when a legally common break threshold is passed — configurable, and labelled clearly as a reminder rather than compliance advice.\n\nThe timesheet is the deliverable: scheduled against actual per shift, with the variance highlighted, and an approval step that locks the row. A locked row can only be changed by an adjustment that keeps both values. Export as CSV in a shape a payroll provider can take.\n\nLabour cost: hourly rates per employee, cost per shift and per week against a budget you set, with an alert when the published week exceeds it. That number before publishing is the one that changes decisions.\n\nWrite tests for overnight shifts crossing midnight, for daylight-saving transitions in both directions, for the auto clock-out flag, and for locked timesheet rows being immutable.\n\nDo not build payroll, hiring, or point-of-sale integration.",
+  "faq": [
+    {
+      "q": "Why use server time for clock-in?",
+      "a": "Because a phone clock is trivially changed, and once one person discovers that, the timesheet is worthless. It is a one-line decision with a large consequence."
+    },
+    {
+      "q": "Why flag auto clock-outs instead of trimming them?",
+      "a": "Because a sixteen-hour shift is usually a forgotten clock-out and occasionally a real double. Silently trimming underpays someone; flagging it for review gets it right and leaves a record of the correction."
+    },
+    {
+      "q": "Why compute labour cost before publishing?",
+      "a": "Because after publishing, fixing an over-budget week means taking shifts away from people who have already planned around them. Seeing the number while it is still a draft is the entire point."
+    },
+    {
+      "q": "What does Homebase actually cost?",
+      "a": "$24 per location per month billed annually with unlimited employees, plus payroll at $39 a month and $6 per employee paid, and tip management at $25 per location. Per-location pricing means a second site doubles the base."
+    }
+  ]
+}

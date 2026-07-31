@@ -1,0 +1,42 @@
+{
+  "slug": "capture-one",
+  "name": "Capture One",
+  "domains": [
+    "captureone.com"
+  ],
+  "category": "photography",
+  "subcategory": "raw editing and tethered capture",
+  "pricing": {
+    "amount": 20.5,
+    "currency": "EUR",
+    "plan": "Pro",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.captureone.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Read from the EU, priced in EUR: €20.50 a month on the annual view (saving €138 against monthly). The All in One tier, which adds the iPad application, is €28. Upstream recorded $24."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "camera support and tethering",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "darktable",
+      "url": "https://github.com/darktable-org/darktable"
+    }
+  ],
+  "relatedSlugs": [
+    "adobe-lightroom",
+    "aftershoot",
+    "smugmug"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

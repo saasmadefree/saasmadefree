@@ -1,0 +1,32 @@
+{
+  "tagline": "Unlimited photo hosting with a print shop attached.",
+  "verdictSummary": "Two things here are not code. Unlimited storage at a flat price is a storage business, and the print shop — labs, fulfilment, returns, and the money moving to you — is a supply chain with a payments layer. What is left is a gallery site, which you can build in a sitting and which nobody would pay twenty dollars a month for. Hence no.",
+  "coreLoopDIY": "Publish a fast, static photography site from a folder of images, with the storage cost and growth visible so the trade against a flat-price host is a number rather than a feeling.",
+  "whatYouLose": [
+    "unlimited storage at a fixed price",
+    "the print store, its labs and the money it earns you",
+    "watermarking and theft protection tooling",
+    "the website templates and their editor",
+    "24/7 human support"
+  ],
+  "whyPeopleStillPay": "Because unlimited storage plus a working shop is a business model, not a feature list, and a photographer selling prints is buying fulfilment rather than hosting.",
+  "prompt": "Build a static photography site generator that is honest about what it costs to run.\n\nStack: a command-line generator plus object storage and a CDN. No server, no database, no runtime.\n\nInput: a folder tree of images plus a small configuration file. Folders become galleries; a per-folder metadata file sets the title, description, cover and ordering.\n\nGenerate: responsive derivatives at several widths, modern formats with a fallback, `srcset` markup, blurred placeholders inlined, lazy loading below the fold, and a lightbox with keyboard navigation and swipe. Preload the next image. Static HTML with no client framework — a photography site should be the fastest thing the visitor loaded that day.\n\nIncremental builds keyed by source content hash, so adding ten photographs to a thousand-photo site rebuilds ten.\n\nMetadata handling with a deliberate choice: strip GPS coordinates from published derivatives by default, and require an explicit opt-in per gallery to keep them. Publishing the exact location of family photographs is a mistake made once.\n\nWatermarking, optional per gallery, applied only to derivatives and never to your originals.\n\nThe cost report, printed after every build and written to a file: total stored bytes for originals and derivatives, monthly storage cost at your provider's published rate, bandwidth served last month if your provider exposes it, and a twelve-month projection at the current growth rate. That number is what makes the comparison with a flat-price host honest rather than ideological.\n\nAlso generate a sitemap, per-gallery RSS, and `<meta>` tags for link previews.\n\nWrite tests for incremental rebuild touching only changed inputs, for GPS stripping by default, and for `srcset` output matching the generated derivative widths.\n\nDo not build a store, a CMS, or an admin interface.",
+  "faq": [
+    {
+      "q": "Why strip GPS by default?",
+      "a": "Because most photographs are taken at home, and publishing coordinates is a privacy failure that is invisible until it is not. Opting in per gallery keeps it available for landscape work where the location is the point."
+    },
+    {
+      "q": "Why print the cost report every build?",
+      "a": "Because \"self-hosting is cheaper\" is usually asserted and rarely measured. Seeing storage and bandwidth in money each time you publish makes the trade against an unlimited-storage host an actual decision."
+    },
+    {
+      "q": "Is a static site good enough for a photography portfolio?",
+      "a": "It is better than good enough — it is faster than anything with a runtime, it cannot go down in an interesting way, and it costs a few dollars a month at portfolio scale. What it cannot do is sell prints."
+    },
+    {
+      "q": "Can I export everything from SmugMug?",
+      "a": "Originals download per gallery or through the API, and the folder structure comes with them. Custom site design, pricelists and order history do not, so if you have been selling, export the order records separately."
+    }
+  ]
+}

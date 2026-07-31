@@ -1,0 +1,37 @@
+{
+  "slug": "deel",
+  "name": "Deel",
+  "domains": [
+    "deel.com"
+  ],
+  "category": "business-admin",
+  "subcategory": "global contractor and employee payroll",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Contractor",
+    "basis": "per-seat-monthly",
+    "source": "https://www.deel.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Deel sells several products at once: $49 per contractor per month for contractor management, $325 per contractor-of-record, $125 per US PEO employee, $599 per EOR employee, and $14 per worker for hiring. The \"US Payroll\" tier upstream recorded does not appear on the page; $49 is the contractor product."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "entities, licences and tax filing",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "relatedSlugs": [
+    "remote-com",
+    "gusto",
+    "factorial-hr"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

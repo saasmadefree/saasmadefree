@@ -1,0 +1,32 @@
+{
+  "tagline": "Run US payroll without learning what a 941 is.",
+  "verdictSummary": "Payroll is arithmetic wrapped in regulation, and the regulation is the product: withholding tables that change, filings due to federal, state and sometimes city authorities, direct deposit through the banking system, and penalties when any of it is late. Gusto is a licensed operation and a filing agent. Writing the arithmetic is a sitting; being allowed to file and to move the money is not.",
+  "coreLoopDIY": "Model payroll rather than run it: gross-to-net for scenarios, employer cost per hire, and a calendar of what is due when — with the filing and the payments done by somebody licensed to do them.",
+  "whatYouLose": [
+    "filing federal, state and local payroll taxes",
+    "moving money to employees and to tax authorities",
+    "withholding tables maintained as the law changes",
+    "benefits administration and the broker relationships behind it",
+    "liability when a filing is late or wrong"
+  ],
+  "whyPeopleStillPay": "Because a missed payroll filing is a penalty and a letter, and the whole value is that somebody else is the one who owes it.",
+  "prompt": "Build a payroll *model*. It computes and warns; it never files and never pays. Say that in the first line of the README, and say that tax rules change and this is not advice.\n\nStack: a local application, SQLite, one command.\n\nGross-to-net calculator with every rate loaded from a data file **you maintain**, dated, so a historical run reproduces exactly what the rates were then. Ship the file empty with a documented shape and a worked example, rather than baking in numbers that will be silently wrong next year.\n\nCompute and show every line separately, never a single net figure: gross, each employee-side deduction, each employer-side contribution, and net. The employer cost total is the number founders consistently underestimate and it should be the largest thing on the screen.\n\nScenarios, which is what makes this worth building:\n- What a raise of X actually costs, employer-side included.\n- Salary versus contractor for the same work, with the caveat that classification is a legal question and not the calculator's to answer.\n- The fully loaded cost of the next hire, including the employer contributions and any per-person software fee.\n\nCalendar: a filing and payment schedule you enter once per obligation, with a recurrence and a lead time, producing a list of what is due in the next thirty days and an alert as each approaches. It tracks; it does not file.\n\nRun records: each modelled pay run stored with its inputs, the rate-file version used, and the outputs, so a figure can be reproduced months later.\n\nA reconciliation view: modelled totals against what your real provider actually charged, imported from a CSV, with the differences highlighted. That check catches a wrong rate or a missed deduction before an auditor does.\n\nWrite tests for gross-to-net against hand-computed examples, for the dated rate file resolving correctly for a past period, and for the calendar firing on the right day across a month boundary.\n\nDo not attempt filing, payments, or benefits enrolment.",
+  "faq": [
+    {
+      "q": "Why not just build real payroll?",
+      "a": "Because running it requires being registered to file with each authority and to move money, and being wrong carries penalties on someone else's behalf. The arithmetic is a weekend; the licence and the liability are the product."
+    },
+    {
+      "q": "Why ship the rate file empty?",
+      "a": "Because baked-in tax rates are wrong the moment they change, and a calculator that is confidently out of date is worse than one that asks. Dated rates also let you reproduce a past run exactly."
+    },
+    {
+      "q": "Is the reconciliation view worth the effort?",
+      "a": "It is the most valuable part. Comparing your model with the real invoice catches a wrong deduction or a missed contribution in the month it happens, rather than at the year end when correcting it is expensive."
+    },
+    {
+      "q": "What does Gusto really cost?",
+      "a": "A monthly base plus a per-person charge, with benefits and add-ons on top — so the headline base is the smaller half of the bill for anything but a very small team. Model the per-person figure before comparing providers."
+    }
+  ]
+}

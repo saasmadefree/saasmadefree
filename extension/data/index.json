@@ -55,6 +55,20 @@
     "currency": "USD",
     "url": "/en/tools/adobe-express"
   },
+  "lightroom.adobe.com": {
+    "slug": "adobe-lightroom",
+    "verdict": "kinda",
+    "amount": 11.99,
+    "currency": "USD",
+    "url": "/en/tools/adobe-lightroom"
+  },
+  "aftershoot.com": {
+    "slug": "aftershoot",
+    "verdict": "no",
+    "amount": 45,
+    "currency": "USD",
+    "url": "/en/tools/aftershoot"
+  },
   "ahrefs.com": {
     "slug": "ahrefs",
     "verdict": "no",
@@ -405,6 +419,13 @@
     "currency": "USD",
     "url": "/en/tools/captions-ai"
   },
+  "captureone.com": {
+    "slug": "capture-one",
+    "verdict": "no",
+    "amount": 20.5,
+    "currency": "EUR",
+    "url": "/en/tools/capture-one"
+  },
   "carrd.co": {
     "slug": "carrd",
     "verdict": "yes",
@@ -636,6 +657,13 @@
     "currency": "USD",
     "url": "/en/tools/datadog"
   },
+  "deel.com": {
+    "slug": "deel",
+    "verdict": "no",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/deel"
+  },
   "deepl.com": {
     "slug": "deepl-pro",
     "verdict": "no",
@@ -684,6 +712,13 @@
     "amount": 15,
     "currency": "USD",
     "url": "/en/tools/doodle"
+  },
+  "doola.com": {
+    "slug": "doola",
+    "verdict": "no",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/doola"
   },
   "dorik.com": {
     "slug": "dorik",
@@ -755,6 +790,13 @@
     "currency": "USD",
     "url": "/en/tools/enpass"
   },
+  "ente.com": {
+    "slug": "ente-photos",
+    "verdict": "yes",
+    "amount": 19,
+    "currency": "EUR",
+    "url": "/en/tools/ente-photos"
+  },
   "equals.com": {
     "slug": "equals",
     "verdict": "kinda",
@@ -768,6 +810,13 @@
     "amount": 14.99,
     "currency": "USD",
     "url": "/en/tools/evernote"
+  },
+  "factorialhr.com": {
+    "slug": "factorial-hr",
+    "verdict": "kinda",
+    "amount": 8,
+    "currency": "USD",
+    "url": "/en/tools/factorial-hr"
   },
   "flexibits.com": {
     "slug": "fantastical",
@@ -852,6 +901,13 @@
     "amount": 10,
     "currency": "USD",
     "url": "/en/tools/flair-ai"
+  },
+  "flickr.com": {
+    "slug": "flickr-pro",
+    "verdict": "no",
+    "amount": 6.83,
+    "currency": "USD",
+    "url": "/en/tools/flickr-pro"
   },
   "flutterflow.io": {
     "slug": "flutterflow",
@@ -1035,6 +1091,13 @@
     "currency": "USD",
     "url": "/en/tools/gumloop"
   },
+  "gusto.com": {
+    "slug": "gusto",
+    "verdict": "no",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/gusto"
+  },
   "getharvest.com": {
     "slug": "harvest",
     "verdict": "kinda",
@@ -1097,6 +1160,13 @@
     "amount": 29,
     "currency": "USD",
     "url": "/en/tools/heygen"
+  },
+  "joinhomebase.com": {
+    "slug": "homebase",
+    "verdict": "kinda",
+    "amount": 24,
+    "currency": "USD",
+    "url": "/en/tools/homebase"
   },
   "honeycomb.io": {
     "slug": "honeycomb",
@@ -1224,6 +1294,13 @@
     "currency": "USD",
     "url": "/en/tools/involve-me"
   },
+  "iubenda.com": {
+    "slug": "iubenda",
+    "verdict": "no",
+    "amount": 4.99,
+    "currency": "EUR",
+    "url": "/en/tools/iubenda"
+  },
   "jasper.ai": {
     "slug": "jasper",
     "verdict": "kinda",
@@ -1342,6 +1419,13 @@
     "amount": 49,
     "currency": "USD",
     "url": "/en/tools/leadpages"
+  },
+  "legalzoom.com": {
+    "slug": "legalzoom",
+    "verdict": "no",
+    "amount": 39.09,
+    "currency": "USD",
+    "url": "/en/tools/legalzoom"
   },
   "lemlist.com": {
     "slug": "lemlist",
@@ -1777,6 +1861,13 @@
     "currency": "USD",
     "url": "/en/tools/nordvpn"
   },
+  "northwestregisteredagent.com": {
+    "slug": "northwest-registered-agent",
+    "verdict": "no",
+    "amount": 10.42,
+    "currency": "USD",
+    "url": "/en/tools/northwest-registered-agent"
+  },
   "notta.ai": {
     "slug": "notta",
     "verdict": "kinda",
@@ -1917,6 +2008,13 @@
     "currency": "USD",
     "url": "/en/tools/photoroom"
   },
+  "pic-time.com": {
+    "slug": "pic-time",
+    "verdict": "kinda",
+    "amount": 7,
+    "currency": "USD",
+    "url": "/en/tools/pic-time"
+  },
   "piktochart.com": {
     "slug": "piktochart",
     "verdict": "kinda",
@@ -1972,6 +2070,13 @@
     "amount": 9.99,
     "currency": "USD",
     "url": "/en/tools/pixelcut"
+  },
+  "pixieset.com": {
+    "slug": "pixieset",
+    "verdict": "kinda",
+    "amount": 8,
+    "currency": "USD",
+    "url": "/en/tools/pixieset"
   },
   "planable.io": {
     "slug": "planable",
@@ -2232,6 +2337,13 @@
     "currency": "USD",
     "url": "/en/tools/relay-app"
   },
+  "remote.com": {
+    "slug": "remote-com",
+    "verdict": "no",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/remote-com"
+  },
   "render.com": {
     "slug": "render",
     "verdict": "no",
@@ -2280,6 +2392,13 @@
     "amount": 2.49,
     "currency": "USD",
     "url": "/en/tools/roboform"
+  },
+  "rocketlawyer.com": {
+    "slug": "rocket-lawyer",
+    "verdict": "no",
+    "amount": 12.41,
+    "currency": "USD",
+    "url": "/en/tools/rocket-lawyer"
   },
   "routine.co": {
     "slug": "routine",
@@ -2518,6 +2637,13 @@
     "amount": 12,
     "currency": "USD",
     "url": "/en/tools/smartsuite"
+  },
+  "smugmug.com": {
+    "slug": "smugmug",
+    "verdict": "no",
+    "amount": 20,
+    "currency": "USD",
+    "url": "/en/tools/smugmug"
   },
   "snappa.com": {
     "slug": "snappa",
@@ -2883,6 +3009,13 @@
     "currency": "USD",
     "url": "/en/tools/trello"
   },
+  "tresorit.com": {
+    "slug": "tresorit",
+    "verdict": "no",
+    "amount": 9.99,
+    "currency": "EUR",
+    "url": "/en/tools/tresorit"
+  },
   "twist.com": {
     "slug": "twist",
     "verdict": "kinda",
@@ -3065,6 +3198,13 @@
     "currency": "USD",
     "url": "/en/tools/weweb"
   },
+  "wheniwork.com": {
+    "slug": "when-i-work",
+    "verdict": "kinda",
+    "amount": 2.5,
+    "currency": "USD",
+    "url": "/en/tools/when-i-work"
+  },
   "whereby.com": {
     "slug": "whereby",
     "verdict": "no",
@@ -3163,6 +3303,13 @@
     "currency": "USD",
     "url": "/en/tools/zapier"
   },
+  "zenbusiness.com": {
+    "slug": "zenbusiness",
+    "verdict": "no",
+    "amount": 16.58,
+    "currency": "USD",
+    "url": "/en/tools/zenbusiness"
+  },
   "zencal.io": {
     "slug": "zencal",
     "verdict": "kinda",
@@ -3176,6 +3323,13 @@
     "amount": 55,
     "currency": "USD",
     "url": "/en/tools/zendesk"
+  },
+  "zenfolio.com": {
+    "slug": "zenfolio",
+    "verdict": "kinda",
+    "amount": 9,
+    "currency": "EUR",
+    "url": "/en/tools/zenfolio"
   },
   "zight.com": {
     "slug": "zight",

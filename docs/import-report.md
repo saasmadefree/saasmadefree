@@ -3172,3 +3172,166 @@ Site écrit dans dist/ — 2 langue(s), 675 fiche(s), 76 page(s) de catégorie, 
 $ npm run stats
 449 fiche(s) : yes 58 (13 %), kinda 257 (57 %), no 134 (30 %)
 ```
+
+
+## Batch 15 — photography and business admin (449 → 471)
+
+**22 entries, not 25**, and the reason is deliberate: after `mylio-photos-plus` was excluded,
+the remaining pool split cleanly into one `cloud-storage` leftover, nine `photography` and
+twelve `business-admin`. Filling the last three slots would have meant opening `job-search`
+with three tools and leaving it there. A category opened and left at three is worse than a
+category left closed, so this batch is short and `job-search` stays untouched.
+
+Closes `cloud-storage` (9) and `business-admin` (12); opens `photography` (9).
+
+### One exclusion
+
+`mylio-photos-plus` — mylio.com/pricing 301-redirects to the homepage, and the homepage renders
+no price anywhere: the plan area is a row of "Free Gift with Purchase" banners with the figures
+appearing only inside a checkout flow. Verified with curl and in a real Chrome session. Same
+standing as `dovetail`, `maze` and `timeular`: nothing to cite.
+
+### Three more stale pricing URLs
+
+The pattern from batch 14 continued. `pic-time.com/pricing` 404s (moved to
+`/pricing/client-delivery-suite`), `zenfolio.com/pricing` 404s (moved to `/plans-pricing/`),
+and `aftershoot.com/pricing` redirects to `account.aftershoot.com`. Two more redirect to a
+different page than the one recorded: `legalzoom.com/attorneys/legal-plans/business.html` →
+`/attorneys/`, and `zenbusiness.com/pricing` → `/pricing-products/`. All five citations were
+repointed.
+
+### Prices — 17 of 22 were wrong
+
+| Slug | Upstream | Corrected |
+|---|---|---|
+| `tresorit` | $13.99 "Personal" | **€9.99 "Personal Essential"** — the plain Personal tier is gone |
+| `aftershoot` | $24.99 "Pro" | **$45 "Complete"** — sold as modules, no Pro tier |
+| `capture-one` | $24 Pro | **€20.50** (geo EUR, annual view) |
+| `ente-photos` | $9.99 "2 TB" | **€19** — $9.99 is the 1 TB rate |
+| `flickr-pro` | $8.25 Pro | **$6.83** ($82 a year) |
+| `pic-time` | $10 Beginner | **$7**, annual-effective |
+| `smugmug` | $15 "Power" | **$20 "Direct"** — the Power tier is gone |
+| `zenfolio` | $9 Portfolio | €9 (currency corrected) |
+| `deel` | $49 "US Payroll" | $49 **"Contractor"** — no US Payroll tier on the page |
+| `homebase` | $24.95 Essentials | **$24**, annual-effective |
+| `remote-com` | $10 "HR Management" | **$29 "Payroll"** — see below |
+| `doola` | $24.75 Starter | **$25** ($300 a year at renewal) |
+| `iubenda` | $6.99 Essentials | **€4.99**, usage-based (pageview quota with overage) |
+| `legalzoom` | $39.99 | **$39.09** ($469 a year) |
+| `rocket-lawyer` | $39.99 "Premium" | **$12.41 "Standard"** — the Premium tier is gone |
+| `zenbusiness` | $16.58 "Pro" | $16.58 **"Worry-Free Compliance"** — formation is now $0 + state fees |
+| `pixieset`, `when-i-work`, `factorial-hr` | — | confirmed correct |
+
+Five entries carry reduced confidence and say why in `pricing.notes`:
+`adobe-lightroom` (**medium** — adobe.com refuses this network entirely, the block already on
+record for `adobe-acrobat-pro` and `adobe-express`; the $11.99 figure is long-standing and
+carried over), `gusto` and `northwest-registered-agent` (**low** — both behind a Cloudflare
+interstitial that a browser session did not clear), `remote-com` and `factorial-hr`
+(**medium** — the page prices products the upstream tier names do not map onto, and Factorial
+advertises "starts at $8 per user" without naming the tier at all), plus `smugmug`, `zenfolio`,
+`ente-photos` and `doola` (**medium** — VAT-inclusive rendering, unlabelled billing period, a
+homepage anchor instead of a pricing page, and a promotional first-year rate respectively).
+
+### Verdicts — four moved, all toward buildable, all argued
+
+- **`ente-photos` `no` → `yes`.** Ente publishes clients and server and documents self-hosting
+  as a supported path, and the official mobile clients accept a custom endpoint. That is the
+  hosted-open-source pattern already applied to `ghost-pro`, `umami-cloud`, `tolgee-cloud` and
+  `chatwoot-cloud`. `verdictConfidence: medium` and `diyTimeEstimate: weekend`, because photos
+  are the least forgiving thing to self-host: the failure mode is a family archive with no
+  second copy, and the prompt is a runbook rather than a build.
+- **`adobe-lightroom` `no` → `kinda`.** A serious open-source raw developer has existed for
+  fifteen years, so "you cannot develop raw files without Adobe" is not true. What is lost is
+  named precisely: AI denoise and masking, the mobile applications, and Adobe's measured camera
+  profiles. Those are the `kinda` list.
+- **`factorial-hr` and `homebase` `no` → `kinda`.** Both were filed with the payroll and
+  employer-of-record products, which are genuinely `no`. Neither *is* payroll: Factorial's core
+  is people, leave and documents, and Homebase's is a rota and a time clock, both a weekend for
+  one site. Their real gap is adoption by staff on phones, which is the mobile-app item in the
+  `kinda` list rather than a moat. `gusto`, `deel` and `remote-com` stay `no` — those three sell
+  licences, filings and money movement.
+- The five legal entries (`doola`, `legalzoom`, `northwest-registered-agent`, `rocket-lawyer`,
+  `zenbusiness`) stay `no` without argument: every one of them is a filing made with a
+  government, an address in a state, or access to a licensed attorney.
+
+Batch mix: 1 `yes` / 8 `kinda` / 13 `no`.
+
+### Editorial
+
+Upstream shipped the same template per category once more, and this batch needed a distinct
+consolation build for each of the thirteen `no` entries — the hardest part of the work.
+
+*Photography (9):* sidecar-based catalogue and sync where edits sync and raws do not
+(`adobe-lightroom`) — grouping and measuring frames while refusing to choose one
+(`aftershoot`) — the tethered-session layer with mirror-before-index and a clean client screen
+(`capture-one`) — a self-hosting runbook with a monthly restore drill and paper key custody
+(`ente-photos`) — a Flickr importer that preserves licences, comments and a redirect map
+(`flickr-pro`) — client galleries with a view log and automatic cold-storage archiving
+(`pic-time`) — a back office where the client's name is typed exactly once, tested end to end
+(`pixieset`) — a static site generator that prints its own storage cost and strips GPS by
+default (`smugmug`) — one photo library with a visibility intersection tested in both
+directions (`zenfolio`).
+
+*Business admin (12):* a contractor file storing exchange rates at payment time (`deel`) — a
+leave engine with the five accrual tests written first (`factorial-hr`) — a payroll *model*
+with a dated rate file and a reconciliation against the real invoice (`gusto`) — server-time
+clock-in and flagged auto clock-outs (`homebase`) — notice periods computed from tenure with
+stale country data flagged (`remote-com`) — atomic shift claiming under concurrency
+(`when-i-work`) — an obligation calendar that ships empty and refuses completion without a
+document (`doola`) — consent that injects nothing before it is given, with a self-audit crawl
+(`iubenda`) — a contract register whose extracted values stay unconfirmed until a human ticks
+them (`legalzoom`) — official mail counted from the date it reached the agent, not the date you
+read it (`northwest-registered-agent`) — versioned document assembly reproducible byte for byte
+(`rocket-lawyer`) — a compliance ledger recording the *consequence* of missing each obligation,
+plus a dissolution checklist (`zenbusiness`).
+
+A deliberate pattern across the legal and compliance entries: every one ships its jurisdiction
+data **empty**, with the README saying why. A prefilled deadline or a prefilled statutory rule
+is advice, it will be wrong for someone, and being wrong there is expensive — an empty calendar
+makes you look it up, a wrong one makes you relax.
+
+`priorArt`: darktable for the two raw developers, PhotoPrism for the four gallery products,
+Ente itself for `ente-photos`, Cryptomator for `tresorit`, Klaro for `iubenda`. Nine entries
+ship with **no** `priorArt` — there is no open-source payroll bureau, employer of record,
+registered agent or attorney network to point a reader at, and inventing one would be worse
+than the gap.
+
+### Verification
+
+```
+$ npm run validate
+471 fiche(s), 697 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  175 passed (175)
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run build
+Site écrit dans dist/ — 2 langue(s), 697 fiche(s), 78 page(s) de catégorie, 781 URL(s).
+
+$ npm run stats
+471 fiche(s) : yes 59 (13 %), kinda 264 (56 %), no 148 (31 %)
+```
+
+### What is left, and which categories are still empty
+
+63 upstream entries remain importable after this batch. Five of the fifteen categories the
+taxonomy pass opened are **still completely empty**, and they are all in that remainder:
+
+| Category | Entries waiting | Notes |
+|---|---|---|
+| `job-search` | 10 | deliberately left closed rather than opened at 3 |
+| `learning` | 10 | language apps and course platforms |
+| `health-fitness` | 10 | |
+| `travel` | 10 | |
+| `home-family` | 9 | |
+| `media-streaming` | 7 | plus 4 upstream `audio` entries routed to the existing `audio-video` |
+| `translation` | 2 | already has 6 tools, so not empty — these complete it |
+
+An empty category produces no page but is still a promise in `data/categories.json`. If the
+remaining batches are not run, those five should be removed from the taxonomy rather than left
+declared.

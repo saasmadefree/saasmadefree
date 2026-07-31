@@ -1,0 +1,32 @@
+{
+  "tagline": "The HR admin a growing company suddenly needs all at once.",
+  "verdictSummary": "Strip out payroll and what remains is a database of people, leave balances, documents and an org chart — ordinary software, and a weekend for a small company, which is why this is a kinda rather than a no. What you take on is the part that is boring and jurisdiction-specific: accrual rules that differ by country and contract, document retention obligations, and the mobile access that decides whether anyone actually books their holiday in it.",
+  "coreLoopDIY": "Run the HR record honestly: people, contracts, documents, and a leave system whose accrual rules are written down and testable rather than approximated.",
+  "whatYouLose": [
+    "payroll and its country-specific filing",
+    "the mobile apps, and therefore actual adoption",
+    "compliance document templates maintained per country",
+    "performance review and recruitment modules",
+    "somebody else holding your employees' personal data"
+  ],
+  "whyPeopleStillPay": "Because HR admin is nobody's job until it is everybody's problem, and eight dollars a head is less than the hours a founder spends approving holiday in a spreadsheet.",
+  "prompt": "Build an HR record whose leave engine is correct rather than approximately correct.\n\nStack: your choice, Postgres, Docker Compose, a domain with TLS, and a transactional email provider.\n\nPeople: personal details, employment start and end, contract type, working pattern (which days, how many hours), manager, and team. Contracts are versioned with effective dates; changing a working pattern in June must not rewrite January.\n\nThe leave engine, which is the whole build:\n- Leave types you define — annual, sick, parental, unpaid — each with its own rules.\n- Accrual: a rate per period, pro-rated by working pattern and by start date within the period, with a configurable carry-over cap and expiry date for carried days.\n- Requests are in **working days for that person's pattern**, so a four-day-a-week employee taking a fortnight uses eight days, not ten, and a public holiday inside the range does not count. Holidays come from a calendar you maintain per location.\n- Balance at any date, computed rather than stored, showing accrued, taken, booked and remaining, with the arithmetic visible so a dispute can be settled by looking.\n- Approval by the manager, with a rejection reason, and an email to both sides.\n- A team calendar showing who is away, and a warning when approving would leave a team below a minimum you set.\n\nWrite the tests for this first: accrual for a mid-year joiner, carry-over expiring, a half-day request, a request spanning a public holiday, and a working-pattern change mid-request.\n\nDocuments: per person, with a type, an expiry where relevant, and a retention period after which they are deleted with the deletion logged. Alert on documents expiring within thirty days.\n\nOrg chart derived from the manager field, not maintained separately.\n\nData protection, because this is the most sensitive database a small company runs: role-based access with managers seeing only their reports, an audit log of who viewed whose record, and a per-person export producing everything held about them.\n\nDo not build payroll, recruitment or performance reviews.",
+  "faq": [
+    {
+      "q": "Why is leave accrual harder than it looks?",
+      "a": "Part-time patterns, mid-year joiners, carry-over expiry, public holidays that differ by office, and half-days. Each is simple alone and they compound, which is why the prompt asks for those five tests before anything else."
+    },
+    {
+      "q": "Why count leave in the person's working days?",
+      "a": "Because counting calendar days quietly overcharges part-time staff, and it is the single most common bug in homemade leave systems. Someone notices within a year and the trust in the numbers is gone."
+    },
+    {
+      "q": "Why log who viewed a record?",
+      "a": "Because an HR database holds salary, health-related absence and home addresses, and \"who looked at this\" is the question that gets asked after an incident. It is a cheap table and it is what makes the access model real."
+    },
+    {
+      "q": "Is Factorial's pricing clear?",
+      "a": "Only partly. The page advertises \"starts at $8 per user per month\" and routes everything else to a quote without naming what the $8 tier includes, which is why this entry's price is recorded at reduced confidence."
+    }
+  ]
+}

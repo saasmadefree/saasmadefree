@@ -1,0 +1,32 @@
+{
+  "tagline": "A photography website and client galleries for someone who will not build one.",
+  "verdictSummary": "This is the least technically distinguished entry in the group and the verdict follows: a portfolio site with client galleries is a weekend, and nothing behind it is a network, a dataset or a licence. What Zenfolio sells is that the photographer never touches a server. That is worth nine euros to plenty of people and it is not a moat, so kinda is the honest answer.",
+  "coreLoopDIY": "Run one site that serves both audiences from the same photo store: a public portfolio for strangers and password-protected client galleries for people who already paid.",
+  "whatYouLose": [
+    "never having to think about hosting, TLS or upgrades",
+    "the template editor and its designs",
+    "the built-in store and booking tools",
+    "the mobile apps",
+    "support when the site is down before a client meeting"
+  ],
+  "whyPeopleStillPay": "Because the buyer is a photographer, not an administrator, and the subscription is the price of never being the person who has to fix it.",
+  "prompt": "Build one application that serves a public portfolio and private client galleries from a single photo library, with the boundary between them enforced rather than assumed.\n\nStack: your choice, Postgres, object storage, Docker Compose, a domain with TLS.\n\nOne photo store. Every photo carries a visibility: public, client, or private. A gallery is a collection with its own visibility, and **the effective visibility of a photo in a gallery is the more restrictive of the two**. Write the test: a public photo inside a client gallery is not reachable from the public site, and a client photo can never appear in the portfolio even if added by mistake. Getting this backwards is how a client's wedding ends up on a public URL.\n\nPublic side: server-rendered portfolio pages, responsive images, an about page, and a contact form that creates an enquiry. Fast and boring by design.\n\nClient side: galleries at unguessable URLs behind a password or an emailed personal link, with favourites, per-photo comments and zip download at a set resolution.\n\nA single admin: upload once, tag, set visibility, and place photos into either kind of gallery. The point of the build is that there is one library and one upload, not two systems.\n\nSearch and organisation for you only: by date, tag, camera and client.\n\nOperational honesty, which is the thing you are taking on by not paying: an automatic TLS certificate with renewal monitoring and an alert if it is within a week of expiry, a nightly database and object backup with a monthly automated restore check, and a status page on the admin showing the last successful backup and the last successful restore.\n\nWrite tests for the visibility intersection in both directions, for personal-link tokens being single-purpose and expiring, and for the backup age indicator turning red past its threshold.\n\nDo not build a store, booking, or a template editor.",
+  "faq": [
+    {
+      "q": "Why is the visibility rule worth a test in both directions?",
+      "a": "Because the expensive failure is asymmetric: a public photo hidden by mistake is an annoyance, and a client photo published by mistake can end a working relationship. Taking the more restrictive of the two, tested both ways, removes the class."
+    },
+    {
+      "q": "What are you really taking on by self-hosting this?",
+      "a": "Certificate renewal, backups, upgrades and being reachable when it breaks. That is why the prompt asks for a backup-age indicator on the admin — it makes the ongoing duty visible instead of forgotten."
+    },
+    {
+      "q": "Why one library rather than two systems?",
+      "a": "Because uploading the same wedding twice is where every homemade photographer site starts to rot. One upload with a visibility flag is both less work and less error-prone."
+    },
+    {
+      "q": "Can I take my Zenfolio site with me?",
+      "a": "Photos download per gallery and client lists export, but the site design and page structure do not travel — plan on rebuilding the site rather than migrating it, and export the client galleries that are still active first."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Form a US company from anywhere, and keep it in good standing.",
+  "verdictSummary": "Every part of what doola sells is a filing made with a government or a service only a registered business can provide: articles of organisation with a state, an EIN with the tax authority, a registered agent with a real address in that state, and annual reports on a deadline. Software can remind you; it cannot file. The verdict is no and the useful build is the reminder — which is genuinely where people fail.",
+  "coreLoopDIY": "Never miss a deadline: a compliance calendar per entity built from filings you enter once, with escalating reminders and the document from each filing stored where you can find it.",
+  "whatYouLose": [
+    "the filings themselves, made on your behalf",
+    "a registered agent with a real address in the state",
+    "the EIN application, and somebody handling a rejection",
+    "bookkeeping and tax preparation sold alongside",
+    "someone to call when a state sends a notice you do not understand"
+  ],
+  "whyPeopleStillPay": "Because a non-resident forming a US company has no address in the state and no route to some of these filings, and because a missed annual report can dissolve the company you spent a year building.",
+  "prompt": "Build an entity compliance tracker. It files nothing and gives no advice; it makes sure nothing is missed.\n\nStack: a local application, SQLite, one command. The README must state that filing requirements vary by state and entity type and that the data is yours to enter from official sources.\n\nEntity: legal name, type, state of formation, formation date, EIN, registered agent name and address with its renewal date, and the fiscal year end.\n\nObligations: entered once each with a name, an authority, a recurrence (annual on a fixed date, annual relative to formation, quarterly, one-off), a fee, a filing URL, and a lead time. The application ships **no** prefilled obligations — a wrong prefilled deadline is worse than an empty calendar, and the README says so.\n\nThe calendar and reminders:\n- Next due date per obligation, and a single ordered list across all entities of what is due in the next ninety days.\n- Escalating reminders at 60, 30, 14, 7 and 1 days, by email and on the dashboard, that do not stop until the obligation is marked filed.\n- Marking filed requires a date, a confirmation reference and an uploaded document. No document, no completion — that rule is what makes the archive worth having a year later when a bank asks for proof.\n- Overdue items are permanently marked as having been late, even after filing, so a pattern is visible.\n\nDocument vault per entity: formation documents, EIN letter, operating agreement, annual reports, registered-agent confirmations, each tagged with its year.\n\nA state-of-the-entity page: everything a bank or an accountant asks for, on one screen, printable — legal name, EIN, formation date and state, registered agent, current standing as you last confirmed it and when you confirmed it.\n\nWrite tests for recurrence computation on formation-anniversary obligations across a leap year, for reminders escalating and not stopping until completion, and for completion being refused without a document.\n\nDo not attempt any filing, and do not prefill obligations.",
+  "faq": [
+    {
+      "q": "What actually goes wrong without this?",
+      "a": "A missed annual report. States charge a penalty, then move the company to a non-compliant status, and eventually administratively dissolve it — which is discovered when a bank or a payment processor checks. Reinstatement is slow and public."
+    },
+    {
+      "q": "Why refuse to prefill state deadlines?",
+      "a": "Because they vary by state and entity type and they change, and a confidently wrong deadline is worse than a blank one. An empty calendar makes you look it up; a wrong one makes you relax."
+    },
+    {
+      "q": "Why require a document before marking something filed?",
+      "a": "Because \"I filed it\" and \"here is the confirmation\" are different claims, and only the second one survives a question from a bank two years later. It also builds the archive without any separate effort."
+    },
+    {
+      "q": "Can I be my own registered agent?",
+      "a": "In your state of formation, usually only if you have a physical address there during business hours, which is exactly what a non-resident lacks. That address requirement — not the paperwork — is the thing being sold."
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "slug": "smugmug",
+  "name": "SmugMug",
+  "domains": [
+    "smugmug.com"
+  ],
+  "category": "photography",
+  "subcategory": "photo hosting with a storefront",
+  "pricing": {
+    "amount": 20,
+    "currency": "USD",
+    "plan": "Direct",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.smugmug.com/plans",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "The tiers are Direct, Portfolio and Pro, billed annually, with unlimited storage. Direct is $20 a month read as ex-VAT; the same page renders about $23.83 when read from the EU with VAT applied, which is why confidence is medium. The \"Power\" tier upstream recorded at $15 no longer exists."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "unlimited storage and print fulfilment",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "PhotoPrism",
+      "url": "https://github.com/photoprism/photoprism"
+    }
+  ],
+  "relatedSlugs": [
+    "zenfolio",
+    "flickr-pro",
+    "pic-time"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

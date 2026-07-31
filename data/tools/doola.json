@@ -1,0 +1,36 @@
+{
+  "slug": "doola",
+  "name": "Doola",
+  "domains": [
+    "doola.com"
+  ],
+  "category": "business-admin",
+  "subcategory": "US company formation and compliance",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.doola.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "$300 a year at renewal, which is $25 a month; a promotional first year at $208 was running when checked, against a $297 list. State fees are extra. Upstream recorded $24.75, which is close to the list price rather than the renewal."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "filings and registered-agent service",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "relatedSlugs": [
+    "zenbusiness",
+    "northwest-registered-agent",
+    "legalzoom"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

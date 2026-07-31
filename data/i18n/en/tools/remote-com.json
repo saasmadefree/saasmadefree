@@ -1,0 +1,32 @@
+{
+  "tagline": "Employ someone abroad without opening a company there.",
+  "verdictSummary": "An employer of record is a company that legally employs your person in a country where you have no presence, and carries the obligations that come with it — contracts, notice periods, statutory benefits, termination rules that differ enormously by jurisdiction. There is no software substitute for being a legal employer. This is a no with no interesting caveat.",
+  "coreLoopDIY": "Keep the international employment file you are responsible for either way: per-country obligations, notice periods, statutory entitlements and document expiry, in one place with dates.",
+  "whatYouLose": [
+    "the legal entity that employs the person",
+    "compliant local contracts, notice periods and statutory benefits",
+    "payroll, withholding and filing in each country",
+    "liability on termination, which is where the real cost sits",
+    "local benefits, insurance and pension enrolment"
+  ],
+  "whyPeopleStillPay": "Because employing one person abroad without an entity is either impossible or slow and expensive, and the alternative — misclassifying them as a contractor — is the mistake that produces a claim years later.",
+  "prompt": "Build an international employment file. It records obligations and dates; it employs nobody and advises on nothing.\n\nStack: your choice, SQLite is enough. The README must say that employment law is jurisdiction-specific, that the country data is yours to fill in from your own advice, and that this tool ships that data empty on purpose.\n\nPerson record: name, country of work, country of tax residence, start date, contract type, employing entity (yours, an employer of record, or none), and the contract file.\n\nCountry profile, maintained by you, one file per country, holding the fields you actually need to remember: statutory notice period by tenure, probation limits, minimum paid leave, public holidays, statutory sick pay basics, mandatory benefits, and termination requirements. Every field carries a source note and a last-reviewed date — a compliance record with no provenance is worse than none, because it gets trusted.\n\nDerived views:\n- **Notice period today** per person, computed from tenure against their country profile, since it changes as they stay and nobody recalculates it until the difficult week.\n- Documents expiring in ninety days — work permits, visas, certificates.\n- Country profiles not reviewed in twelve months, flagged, because stale rules are the failure mode of this kind of file.\n- Cost per person per month: salary plus employer contributions plus any employer-of-record fee, in local and reporting currency at a stored rate.\n\nOffboarding checklist generated from the country profile: notice given and acknowledged, final pay components, accrued leave settled, equipment returned, access revoked, documents retained for the stated period. Each item dated and ticked.\n\nWrite tests for notice-period computation across a tenure boundary, for the stale-review flag at exactly twelve months, and for cost totals using stored historical rates.\n\nDo not compute payroll, generate contracts, or offer legal guidance.",
+  "faq": [
+    {
+      "q": "Why not just hire people as contractors abroad?",
+      "a": "Because if the relationship looks like employment under local law — fixed hours, your equipment, no other clients — authorities can reclassify it, and the bill for back contributions and penalties lands on you. That risk is what an employer of record exists to absorb."
+    },
+    {
+      "q": "Why compute notice period rather than store it?",
+      "a": "Because it usually depends on tenure and therefore changes silently. The week you need it is the week you are least able to research it calmly."
+    },
+    {
+      "q": "Why flag stale country data?",
+      "a": "Because employment rules change and a file that looks authoritative is more dangerous than an empty one. A visible \"last reviewed\" date makes the staleness a fact rather than an assumption."
+    },
+    {
+      "q": "How is Remote priced?",
+      "a": "By product: $29 per employee per month for payroll, $29 per contractor for contractor management, $99 for the plus tier, and $699 per employee for employer of record. The EOR line is the one that reflects the actual legal service."
+    }
+  ]
+}

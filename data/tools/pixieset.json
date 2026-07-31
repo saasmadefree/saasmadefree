@@ -1,0 +1,45 @@
+{
+  "slug": "pixieset",
+  "name": "Pixieset",
+  "domains": [
+    "pixieset.com"
+  ],
+  "category": "photography",
+  "subcategory": "client galleries and photographer website",
+  "pricing": {
+    "amount": 8,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "annual-effective-monthly",
+    "source": "https://pixieset.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$8 a month billed annually, or $10 month-to-month, with 10 GB of photo storage and 100 email campaign sends a month. Studio Manager and the editing suite are separate add-ons from $12 a month."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "integrated photographer suite",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "PhotoPrism",
+      "url": "https://github.com/photoprism/photoprism"
+    }
+  ],
+  "relatedSlugs": [
+    "pic-time",
+    "zenfolio",
+    "smugmug"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

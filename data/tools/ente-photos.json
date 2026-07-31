@@ -1,0 +1,44 @@
+{
+  "slug": "ente-photos",
+  "name": "Ente Photos",
+  "domains": [
+    "ente.com"
+  ],
+  "category": "photography",
+  "subcategory": "open-source encrypted photo storage",
+  "pricing": {
+    "amount": 19,
+    "currency": "EUR",
+    "plan": "2 TB",
+    "basis": "flat-monthly",
+    "source": "https://ente.com/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "Read from the EU, priced in EUR: 2 TB is €19 a month or €239 a year. The tiers are 50 GB €2, 200 GB €4, 1 TB €9 and 2 TB €19. Upstream recorded $9.99 for 2 TB, which is the 1 TB rate. ente.io now redirects to ente.com and the pricing lives on the homepage anchor rather than its own page, which is why confidence is medium."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "open-source core, hosting",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Ente",
+      "url": "https://github.com/ente-io/ente"
+    }
+  ],
+  "relatedSlugs": [
+    "google-one",
+    "icloud-plus",
+    "adobe-lightroom"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

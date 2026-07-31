@@ -1,0 +1,32 @@
+{
+  "tagline": "Form the company for nothing, then sell you staying compliant.",
+  "verdictSummary": "The formation is now a loss leader at zero plus state fees, and the recurring revenue is compliance: annual reports filed for you, a registered agent, and amendments when something changes. All three are services performed with a government or requiring an address in the state. A tracker helps and cannot file, which makes this a no with a genuinely useful consolation.",
+  "coreLoopDIY": "Know what your company owes and to whom: a per-entity obligation register with the state fee, the filing URL and the deadline, and a record of every filing you actually made.",
+  "whatYouLose": [
+    "annual reports filed on your behalf",
+    "a registered agent address in the state",
+    "amendments and change filings handled for you",
+    "somebody watching the state's notices",
+    "the reassurance that a missed deadline is their problem"
+  ],
+  "whyPeopleStillPay": "Because $199 a year is less than one penalty plus the reinstatement process, and because compliance is exactly the kind of task that gets postponed until it is late.",
+  "prompt": "Build a company compliance ledger: what is owed, to whom, when, at what cost, and what was actually filed.\n\nThis overlaps deliberately with a formation tracker but answers a different question — not \"did I file\" but \"what does keeping this company alive cost me, and what would happen if I stopped\".\n\nStack: a local application, SQLite, one command. Requirements vary by state and entity type; the data is yours to enter from official sources and the application ships none.\n\nEntity: name, type, state, formation date, EIN, registered agent and their renewal, standing as you last confirmed it and the date you confirmed it.\n\nObligation: name, authority, recurrence, official fee, filing URL, lead time, and — the field that makes this different — **the consequence of missing it**, entered as free text from the state's own guidance. \"Late fee $50, then administrative dissolution after 60 days\" changes behaviour in a way that a due date alone does not.\n\nThe cost view: annual cost of keeping each entity alive, adding state fees, registered agent, and any service subscriptions you record. For a dormant entity this number is the argument for dissolving it, and most people who own a dormant company have never added it up.\n\nFiling record: date, reference, fee actually paid, and the confirmation document. Fee paid against official fee, so a service markup is visible as a number.\n\nA dissolution checklist per entity, generated from the obligations: final filings, final tax return, cancelling the registered agent, closing accounts, retention period for records. Closing a company properly is a real task and nobody has a list.\n\nEscalating reminders that stop only on a filing record with a document.\n\nWrite tests for annual cost totals across mid-year changes, for recurrence on formation-anniversary obligations, and for reminders continuing until a document is attached.\n\nDo not file anything and do not prefill state requirements.",
+  "faq": [
+    {
+      "q": "Why record the consequence of missing an obligation?",
+      "a": "Because \"annual report due 15 March\" and \"late fee then administrative dissolution after 60 days\" produce completely different behaviour, and the second is on the state's website but never in anyone's calendar."
+    },
+    {
+      "q": "Why compute the annual cost of an entity?",
+      "a": "Because dormant companies quietly cost hundreds a year in fees and agent charges, and nobody adds it up. Seeing the number is usually what prompts either dissolving it or using it."
+    },
+    {
+      "q": "Why include a dissolution checklist?",
+      "a": "Because abandoning a company does not end its obligations — fees accrue and filings stay due until it is formally dissolved. It is the least documented part of owning an entity and the one that generates surprise letters."
+    },
+    {
+      "q": "Is free formation actually free?",
+      "a": "The service fee is; the state fee is not, and it ranges from modest to substantial. The recurring compliance and registered-agent subscriptions are where the business model sits, which is worth knowing before comparing formation prices."
+    }
+  ]
+}

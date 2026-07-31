@@ -1,0 +1,32 @@
+{
+  "tagline": "Fill in a legal document, then have a lawyer look at it.",
+  "verdictSummary": "The interview that turns questions into a finished document is a solved interface problem — a decision tree over a template. The templates themselves are the product: drafted by attorneys, maintained per state, and backed by a real lawyer you can ask. The consolation build is genuinely useful for the documents you write over and over, and it is honest about the fact that the words have to come from somewhere.",
+  "coreLoopDIY": "Turn documents you already have reviewed into reusable interviews: answer questions, get a filled document, and keep a record of exactly what was generated and when.",
+  "whatYouLose": [
+    "the attorney-drafted template library kept current per state",
+    "a lawyer who will review the finished document",
+    "state-specific variations maintained as law changes",
+    "the electronic signature service included in the plan",
+    "business filings and registered-agent service"
+  ],
+  "whyPeopleStillPay": "Because a template is worth what its author is worth, and a document generator with nobody standing behind the words is a formatting tool.",
+  "prompt": "Build a document assembly engine. It fills in templates that you supply; it writes no legal text.\n\nThe README must say plainly: the templates are yours to provide from a source you trust, and this software has no legal knowledge whatsoever.\n\nStack: your choice, Postgres, Docker Compose.\n\nTemplate: a Markdown document with `{{variables}}` and conditional blocks (`{{#if}}`), plus a declared question set — each question with a type (text, number, date, choice, yes/no), help text, and optional conditions controlling when it is asked.\n\nInterview: one question per screen, back and forward, progress shown, answers saved as you go so a long interview can be resumed. Skip questions whose conditions are unmet, and never ask the same fact twice across a document set.\n\nValidation before generation: refuse to generate while any required variable is unfilled, and list exactly which. A document with `{{clientName}}` printed in it is the failure mode of every homemade assembly tool.\n\nGeneration produces a PDF and stores a record containing the template version, every answer, the timestamp and the rendered output. Templates are versioned and never edited in place — a document generated last year must be reproducible byte for byte.\n\nDocument sets: a group of templates sharing an answer set, so an engagement letter, a statement of work and an invoice are produced from one interview.\n\nSigning, kept deliberately modest and honestly labelled: typed name plus stored timestamp, IP address, and a copy of the exact rendered text signed. State in the interface that this is a simple electronic signature and that some documents require more.\n\nA library view of generated documents by counterparty and by template, with full-text search.\n\nWrite tests for conditional questions not being asked when their condition is unmet, for generation refusing on unfilled required variables, and for regenerating a year-old document from its stored answers producing identical output.\n\nDo not include or generate legal templates.",
+  "faq": [
+    {
+      "q": "Where do the templates come from?",
+      "a": "From a lawyer, or from documents you have already had reviewed. That is the honest answer, and it is why this is a no: the engine is the easy part and the words are the product."
+    },
+    {
+      "q": "Why version templates instead of editing them?",
+      "a": "Because a document you generated last year must be reproducible, and editing in place makes the record a fiction. Versioning also lets you see which contracts were produced from the clause you have since improved."
+    },
+    {
+      "q": "Is a typed-name signature worth anything?",
+      "a": "For low-stakes documents between willing parties, often yes, provided you store the exact text signed, the time and the IP. For anything where enforcement matters, use a real signature service — and the interface should say which one you are getting."
+    },
+    {
+      "q": "How is Rocket Lawyer priced?",
+      "a": "$149, $249 or $349 a year for the three membership tiers, with filings billed separately — $99 plus state fees for an entity after the first, $70 for an EIN, $125 a year for registered agent. The membership is the discount, not the whole cost."
+    }
+  ]
+}

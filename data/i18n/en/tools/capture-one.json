@@ -1,0 +1,32 @@
+{
+  "tagline": "The studio standard, largely because tethering actually works.",
+  "verdictSummary": "Capture One is bought by studio photographers for one reason more than any other: a camera plugged into a laptop appears, fires, and drops full-resolution files into a session, reliably, for over five hundred camera models. Each of those is a proprietary protocol reverse-engineered and maintained through firmware changes. That long tail is not a codebase you write, it is a decade of unglamorous compatibility work, and it settles the verdict.",
+  "coreLoopDIY": "Run a tethered session using the manufacturer's own tools, and own the part around it: files landing in a dated session folder, backed up as they arrive, with a client-facing view that refreshes.",
+  "whatYouLose": [
+    "tethering for hundreds of camera models, maintained through firmware updates",
+    "the colour profiles and raw conversion Capture One is known for",
+    "live view, focus control and camera settings from the laptop",
+    "the iPad application and the collaboration tools",
+    "sessions and catalogues designed around commercial studio work"
+  ],
+  "whyPeopleStillPay": "Because a tethering failure in front of a client and a paid crew costs more in ten minutes than the licence costs in a year, and reliability across every camera in the room is what the money buys.",
+  "prompt": "Build the session layer around a tethered shoot. The capture itself is done by your camera manufacturer's own tethering utility, and the README should say so plainly rather than pretending otherwise.\n\nStack: a local application, SQLite, no network required.\n\nSession: created with a name, a date, a client and a shot list. It owns a folder with a fixed structure — captures, selects, exports — created on disk immediately so the shape exists before anything is shot.\n\nWatch the capture folder. As each file lands:\n1. Copy it to a second location you configure — a different physical disk — **before** anything else. In-camera cards get formatted at the end of the day; a single copy on one laptop is how a shoot gets lost. Show the copy status per file and refuse to mark a session complete while any file is unmirrored.\n2. Extract the embedded preview and metadata, and add it to a live grid.\n3. Match it to the current shot-list item, which you advance manually.\n\nThe client view is a separate full-screen window, intended for a second monitor: the latest capture large, with the last few as thumbnails, auto-advancing as files arrive, and nothing else on screen — no menus, no file names, no ratings. Photographers currently do this with a shared folder and a slideshow, badly.\n\nRatings and rejects from the keyboard, written to sidecars beside the originals.\n\nEnd of session: a report of frames per shot-list item, flagging any item with no captures, which is the check worth running before the client leaves the building.\n\nExport: a contact sheet as PDF, and a selects folder of full-resolution copies with a naming template.\n\nWrite tests for the mirror-before-index ordering, for the session refusing to complete with unmirrored files, and for shot-list matching across an advance.\n\nDo not implement camera control or raw development.",
+  "faq": [
+    {
+      "q": "Why is tethering support such a long tail?",
+      "a": "Because every manufacturer has its own protocol, quirks per body, and firmware updates that change behaviour. Supporting five hundred cameras means owning or borrowing them and fixing them one at a time, forever. It is the least glamorous moat in this catalogue and one of the most solid."
+    },
+    {
+      "q": "Why mirror files before indexing them?",
+      "a": "Because the window between \"the card is full\" and \"the card is formatted\" is where shoots are lost, and a laptop disk is one failure away from being the only copy. Ordering the mirror first makes the safety property real rather than best-effort."
+    },
+    {
+      "q": "Is the client view really worth building?",
+      "a": "It is the feature working photographers improvise most often and worst. A clean second screen that just shows the last frame keeps a client engaged and stops them reading your file names and rejects over your shoulder."
+    },
+    {
+      "q": "Can I leave Capture One with my work intact?",
+      "a": "Sessions are folders of raws with sidecars, so the files come with you. The adjustments are proprietary — styles, layers and colour edits do not translate to another developer — so treat a migration as re-developing the images you still care about."
+    }
+  ]
+}

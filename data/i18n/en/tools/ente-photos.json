@@ -1,0 +1,32 @@
+{
+  "tagline": "End-to-end encrypted photo storage whose server you can run yourself.",
+  "verdictSummary": "Ente publishes everything — clients and server — and documents self-hosting as a supported path, which puts it in the same family as Ghost, Umami, Tolgee and Chatwoot: the subscription is somebody else running software you can run. That makes it a yes. The confidence is medium because photos are the least forgiving thing to self-host: the failure mode is not downtime, it is a family archive with no second copy, and the mobile applications you build against your own server are the official ones only if you configure them carefully.",
+  "coreLoopDIY": "Run the real Ente server yourself, point the official clients at it, and build the discipline the subscription otherwise provides — off-site backup, restore tests, and an upgrade runbook.",
+  "whatYouLose": [
+    "somebody else keeping it running, patched and backed up",
+    "their storage redundancy, replaced by whatever you arrange",
+    "support when a client stops syncing after an upgrade",
+    "the shared family plan billing",
+    "confidence that your only copy of twenty years of photographs is safe"
+  ],
+  "whyPeopleStillPay": "Because photographs are irreplaceable and hosting them yourself makes the consequences of your own carelessness permanent. Nineteen euros is cheap insurance against your own backup habits.",
+  "prompt": "Self-host Ente and treat it as the archive of record it will become. This is an operations task, and the deliverable is a runbook.\n\n1. Deploy the official server stack with Docker Compose, pinned to a released version tag, never `latest`.\n2. Object storage for the encrypted blobs. Configure it before the first upload; migrating storage backends after the fact is far worse than choosing correctly now.\n3. A domain with TLS, and correct endpoint configuration in the clients before anyone uploads anything.\n4. Point the official mobile and desktop clients at your server through their custom-endpoint setting, and verify on a second device that a photo uploaded on one appears on the other, in full resolution.\n\nThe operations half, which is the actual work:\n- **Backups**: the Postgres database *and* the object store, both, nightly, to a different provider. Neither alone is a backup — the database holds the encryption metadata and the objects hold the data, and one without the other is unrecoverable.\n- **Restore drill**: monthly, automated. Restore both into a scratch environment, start a client against it, and confirm a photo opens and decrypts. Record pass or fail with the date. An untested photo backup is a rumour.\n- **Key custody**: write down, on paper, where the recovery key is stored and who else can reach it. End-to-end encryption means nobody can help you, and the most likely way to lose these photographs is losing the key rather than losing the server.\n- **Upgrades**: snapshot, read the release notes for breaking changes, bump the tag, run migrations, verify a client sync, and know the rollback command.\n- **Capacity**: monitor object-store growth and alert well before the disk or the budget runs out.\n\nDeliverable: a README a future you can follow at 2am, listing every configuration value and why, the backup and restore commands verbatim, the rollback procedure, and the location of the recovery key.\n\nDo not fork the server for small changes. A fork is an upgrade you will eventually skip, and a skipped upgrade on a photo archive is how it becomes unreadable.",
+  "faq": [
+    {
+      "q": "Why does self-hosting photos deserve more caution than self-hosting a blog?",
+      "a": "Because a blog that breaks is embarrassing and a photo archive that breaks is gone. There is no cached copy, no reader with a screenshot, and with end-to-end encryption there is nobody who can help. The restore drill is not optional here."
+    },
+    {
+      "q": "Do the official mobile apps work against my own server?",
+      "a": "Yes — Ente supports pointing the clients at a custom endpoint, which is what makes this the hosted-open-source case rather than a rebuild. Verify a two-device round trip before you trust it with anything."
+    },
+    {
+      "q": "What happens if I lose the recovery key?",
+      "a": "Your photographs are unrecoverable, by design. That is the honest cost of end-to-end encryption, and it is why the runbook asks for a paper record of where the key lives rather than treating it as a detail."
+    },
+    {
+      "q": "Is self-hosting actually cheaper than €19 a month?",
+      "a": "For 2 TB, object storage plus a small server is usually less in money and more in attention. The break-even is not the hosting bill, it is whether you will genuinely run the monthly restore drill."
+    }
+  ]
+}

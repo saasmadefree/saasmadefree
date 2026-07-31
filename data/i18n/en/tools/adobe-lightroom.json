@@ -1,0 +1,32 @@
+{
+  "tagline": "Develop raw files and have the catalogue follow you to the phone.",
+  "verdictSummary": "The editing half has a serious open-source equivalent that has existed for fifteen years, which is why this is a kinda rather than a no — a photographer can genuinely develop raw files without Adobe. What the subscription buys is everything around it: a catalogue that syncs to a phone and a tablet, and the denoise and masking models that took a research team to build. A personal build can own the catalogue and the sync; it cannot own the models.",
+  "coreLoopDIY": "Keep the catalogue and its edits as sidecar files you own, synced across your own machines, with the developing done by open-source software rather than by a subscription.",
+  "whatYouLose": [
+    "AI denoise, masking and subject selection",
+    "the mobile and tablet applications with edits that follow you",
+    "Adobe's measured camera and lens profiles for new bodies",
+    "cloud storage for the originals",
+    "the Photoshop half of the plan"
+  ],
+  "whyPeopleStillPay": "Because twelve dollars covers the two things that actually take a research budget — denoise that rescues a high-ISO frame, and masking that finds the subject — plus a catalogue that is already on the phone.",
+  "prompt": "Build the catalogue and sync layer for a raw workflow. The developing is done by existing open-source software; this build owns the metadata and makes it portable.\n\nStack: your choice, SQLite for the local catalogue, plus a small sync server with object storage. The README should be explicit that this complements a raw developer rather than replacing one.\n\nCatalogue: index a folder tree of raw files. For each, store path, content hash, capture time from EXIF, camera, lens, exposure settings, GPS, and a generated preview. Never move or rewrite the original file — that rule is absolute, and the README should say so, because a cataloguing tool that reorganises a photographer's disk is a tool they stop trusting.\n\nEdits live in **sidecar files next to the original**, in the format the developer you chose already reads, so the catalogue never becomes the only place your work exists. Deleting this application must leave a folder of raws and sidecars that opens correctly in the editor.\n\nSync: the unit of sync is the sidecar and the catalogue metadata, not the raw file — sidecars are kilobytes and raws are tens of megabytes, and that asymmetry is what makes multi-machine editing practical. Raw files sync optionally and on demand. Conflicts on a sidecar keep both versions with a timestamp, never merge.\n\nOrganisation: ratings, colour labels, flags, keywords with a hierarchy, and smart collections defined by a query over metadata (camera, lens, focal length, ISO, rating, keyword, date range) that re-evaluates rather than storing a fixed list.\n\nThe report worth having: shooting statistics — focal lengths used, apertures, ISO distribution, keeper rate by camera and lens. Most photographers have never seen which focal length they actually use, and it changes what they carry.\n\nExport presets: size, format, colour profile, sharpening, watermark, and a naming template, applied in batch by shelling out to the developer's command-line interface.\n\nWrite tests for sidecar round-tripping without loss, for the catalogue surviving a folder rename by rediscovering files by content hash, and for smart collections re-evaluating on metadata change.\n\nDo not implement raw development, denoise, or masking.",
+  "faq": [
+    {
+      "q": "Why sync sidecars rather than the raw files?",
+      "a": "Because sidecars are a few kilobytes and raw files are tens of megabytes. Syncing edits is instant across machines; syncing originals is a background job you start deliberately. Treating them differently is what makes a multi-machine catalogue usable."
+    },
+    {
+      "q": "Is open-source raw development actually good enough?",
+      "a": "For developing, yes — colour, tone and local adjustments are mature. The gap is the machine-learning features: denoise on a high-ISO frame and automatic subject masking are where the paid tools are clearly ahead, and both are named in what you lose."
+    },
+    {
+      "q": "Why refuse to move the original files?",
+      "a": "Because a catalogue that reorganises a disk creates a dependency you cannot escape, and the failure mode is losing track of twenty years of photographs. Index in place, write sidecars beside the originals, and the folder stays readable without this software."
+    },
+    {
+      "q": "How do I get out of Lightroom?",
+      "a": "Edits export as XMP sidecars for most adjustments, and originals download from the cloud catalogue. Adjustments that are proprietary — masking, denoise, some profiles — do not survive the export, so plan to re-develop the images that matter rather than assuming a lossless move."
+    }
+  ]
+}
