@@ -1,0 +1,42 @@
+{
+  "slug": "loom",
+  "name": "Loom",
+  "domains": [
+    "loom.com"
+  ],
+  "category": "screen-recording",
+  "subcategory": "screen video + sharing",
+  "pricing": {
+    "amount": 18,
+    "currency": "USD",
+    "plan": "Business",
+    "basis": "per-seat-monthly",
+    "source": "https://www.loom.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "hosting/collaboration",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "OBS Studio",
+      "url": "https://github.com/obsproject/obs-studio"
+    }
+  ],
+  "relatedSlugs": [
+    "capcut",
+    "granola",
+    "descript"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

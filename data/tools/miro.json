@@ -1,0 +1,42 @@
+{
+  "slug": "miro",
+  "name": "Miro",
+  "domains": [
+    "miro.com"
+  ],
+  "category": "whiteboard",
+  "subcategory": "collaborative whiteboard",
+  "pricing": {
+    "amount": 10,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "per-seat-monthly",
+    "source": "https://miro.com/pricing/",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "collaboration/performance/templates",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "tldraw",
+      "url": "https://github.com/tldraw/tldraw"
+    }
+  ],
+  "relatedSlugs": [
+    "notion",
+    "canva",
+    "figma"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

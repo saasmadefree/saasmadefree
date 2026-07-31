@@ -1,0 +1,42 @@
+{
+  "slug": "gemini",
+  "name": "Google Gemini",
+  "domains": [
+    "gemini.google.com"
+  ],
+  "category": "ai-assistant",
+  "subcategory": "Google AI subscription",
+  "pricing": {
+    "amount": 19.99,
+    "currency": "USD",
+    "plan": "Google AI Pro",
+    "basis": "flat-monthly",
+    "source": "https://gemini.google/subscriptions/",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "frontier model/platform ecosystem",
+  "diyTimeEstimate": "more",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Open WebUI",
+      "url": "https://github.com/open-webui/open-webui"
+    }
+  ],
+  "relatedSlugs": [
+    "gamma",
+    "beautiful-ai",
+    "jasper"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "make",
+  "name": "Make",
+  "domains": [
+    "make.com"
+  ],
+  "category": "automation",
+  "subcategory": "workflow automation",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Core",
+    "basis": "flat-monthly",
+    "source": "https://www.make.com/en/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "integrations/workflow engine",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Activepieces",
+      "url": "https://github.com/activepieces/activepieces"
+    }
+  ],
+  "relatedSlugs": [
+    "ifttt",
+    "n8n-cloud",
+    "zapier"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

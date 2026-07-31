@@ -1,0 +1,42 @@
+{
+  "slug": "circle",
+  "name": "Circle",
+  "domains": [
+    "circle.so"
+  ],
+  "category": "community",
+  "subcategory": "community + courses",
+  "pricing": {
+    "amount": 99,
+    "currency": "USD",
+    "plan": "Professional/Pro",
+    "basis": "flat-monthly",
+    "source": "https://circle.so/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "community/network/payments",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Discourse",
+      "url": "https://github.com/discourse/discourse"
+    }
+  ],
+  "relatedSlugs": [
+    "mighty-networks",
+    "buffer",
+    "later"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

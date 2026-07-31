@@ -1,0 +1,41 @@
+{
+  "slug": "capcut",
+  "name": "CapCut",
+  "domains": [
+    "capcut.com"
+  ],
+  "category": "audio-video",
+  "subcategory": "short-form video editor",
+  "pricing": {
+    "amount": 19.99,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://www.capcut.com/resource/capcut-standard-vs-pro",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "media pipeline/templates/platform ecosystem",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Shotcut",
+      "url": "https://github.com/mltframework/shotcut"
+    }
+  ],
+  "relatedSlugs": [
+    "granola",
+    "fireflies-ai",
+    "descript"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

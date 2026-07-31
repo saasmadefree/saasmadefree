@@ -1,0 +1,42 @@
+{
+  "slug": "inoreader",
+  "name": "Inoreader",
+  "domains": [
+    "inoreader.com"
+  ],
+  "category": "rss-research",
+  "subcategory": "RSS reader + monitoring",
+  "pricing": {
+    "amount": 9.99,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://www.inoreader.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "data ingestion/integrations",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Miniflux",
+      "url": "https://github.com/miniflux/v2"
+    }
+  ],
+  "relatedSlugs": [
+    "todoist",
+    "akiflow",
+    "feedly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

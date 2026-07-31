@@ -1,0 +1,43 @@
+{
+  "slug": "fathom-analytics",
+  "name": "Fathom Analytics",
+  "domains": [
+    "usefathom.com"
+  ],
+  "category": "analytics",
+  "subcategory": "privacy web analytics",
+  "pricing": {
+    "amount": 15,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "flat-monthly",
+    "source": "https://usefathom.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "hosting/compliance positioning",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Umami",
+      "url": "https://github.com/umami-software/umami"
+    }
+  ],
+  "relatedSlugs": [
+    "umami-cloud",
+    "plausible",
+    "bitly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

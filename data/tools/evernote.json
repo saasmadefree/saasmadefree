@@ -1,0 +1,42 @@
+{
+  "slug": "evernote",
+  "name": "Evernote",
+  "domains": [
+    "evernote.com"
+  ],
+  "category": "notes-knowledge",
+  "subcategory": "capture + notes",
+  "pricing": {
+    "amount": 14.99,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://evernote.com/compare-plans",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "sync/capture ecosystem",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Joplin",
+      "url": "https://github.com/laurent22/joplin"
+    }
+  ],
+  "relatedSlugs": [
+    "raindrop-io",
+    "notion",
+    "coda"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

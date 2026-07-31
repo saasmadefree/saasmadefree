@@ -1,0 +1,43 @@
+{
+  "slug": "copilot-money",
+  "name": "Copilot Money",
+  "domains": [
+    "copilot.money"
+  ],
+  "category": "personal-finance",
+  "subcategory": "budgeting + spending tracker",
+  "pricing": {
+    "amount": 13,
+    "currency": "USD",
+    "plan": "Monthly subscription",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/copilot-track-budget-money/id1447330651",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "bank data/native app/security",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Actual Budget",
+      "url": "https://github.com/actualbudget/actual"
+    }
+  ],
+  "relatedSlugs": [
+    "ynab",
+    "freshbooks",
+    "quickbooks-online"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

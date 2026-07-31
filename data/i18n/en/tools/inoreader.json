@@ -1,0 +1,21 @@
+{
+  "tagline": "Power RSS reader with rules, monitoring, search, and automations.",
+  "verdictSummary": "A single-user RSS reader with keyword rules and alerts is a real weekend build on top of well-understood feed-parsing libraries, though it won't match Inoreader's scale or years of polish. What it does cover is the actual daily loop: fetch feeds, apply rules, get alerted, search everything you've read.",
+  "coreLoopDIY": "Fetch feeds on a schedule, apply keyword rules per feed or folder, tag and file articles automatically, and alert on matches.",
+  "whatYouLose": [
+    "enterprise-scale feed handling",
+    "mobile apps",
+    "third-party integrations",
+    "article translation",
+    "years of search polish"
+  ],
+  "whyPeopleStillPay": "People pay for reliability and a power-user rules engine that keeps working even as individual feeds break or change — not because RSS parsing itself is hard.",
+  "notes": "A useful power-user yes — RSS remains an open protocol, and that openness is exactly what makes this buildable.",
+  "prompt": "Build a single-user RSS reader with rules and alerts: fetch a list of feeds on a schedule, parse new items, and dedupe them by their feed-provided ID. Import an existing OPML export on first run so nothing has to be retyped, and support exporting the current subscription list back out. Build a three-pane reading UI — folders, article list, reading pane — with keyboard navigation and per-folder unread counts. Add keyword rules scoped to a feed or a folder, matching on title or body text, with actions to tag, mark read, or send an alert by email or push notification. Build full-text search across every stored article. Mark a feed as failing after several consecutive fetch errors so broken feeds don't silently go stale.\n\nDo not build mobile apps, article translation, or third-party integrations — adding a new feed means editing the OPML or the UI directly, which is a fine trade for owning your reading list and rules.",
+  "faq": [
+    { "q": "Can I import my existing Inoreader subscriptions?", "a": "Yes — Inoreader exports a standard OPML file with your feeds and folders, and importing that on first run is exactly how this build expects to be set up." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, if hosted somewhere reachable. There's no dedicated mobile app or offline sync." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — genuinely inexpensive since RSS traffic and storage are both small." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Scale and polish under load. Inoreader handles thousands of feeds reliably with years of edge-case handling; a personal build works well at a personal feed count but hasn't been stress-tested the way a mature product has." }
+  ]
+}

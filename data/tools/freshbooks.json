@@ -1,0 +1,43 @@
+{
+  "slug": "freshbooks",
+  "name": "FreshBooks",
+  "domains": [
+    "freshbooks.com"
+  ],
+  "category": "finance-accounting",
+  "subcategory": "invoicing + accounting",
+  "pricing": {
+    "amount": 23,
+    "currency": "USD",
+    "plan": "Lite",
+    "basis": "flat-monthly",
+    "source": "https://www.freshbooks.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "payments/accounting workflow",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Invoice Ninja",
+      "url": "https://github.com/invoiceninja/invoiceninja"
+    }
+  ],
+  "relatedSlugs": [
+    "invoice-ninja",
+    "ynab",
+    "quickbooks-online"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

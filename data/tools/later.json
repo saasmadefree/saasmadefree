@@ -1,0 +1,43 @@
+{
+  "slug": "later",
+  "name": "Later",
+  "domains": [
+    "later.com"
+  ],
+  "category": "social-media",
+  "subcategory": "visual social scheduling",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://later.com/pricing/",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "social API/integration upkeep",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Postiz",
+      "url": "https://github.com/gitroomhq/postiz-app"
+    }
+  ],
+  "relatedSlugs": [
+    "typefully",
+    "beehiiv",
+    "kit"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

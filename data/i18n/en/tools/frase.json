@@ -1,0 +1,20 @@
+{
+  "tagline": "SEO/GEO content platform for research, briefs, and AI writing.",
+  "verdictSummary": "A content-brief generator — pull top-ranking pages for a keyword, summarize their structure, draft a brief, score your draft against it — is a real one-sitting build wrapping a SERP API and an LLM. What doesn't come with it is Frase's actual workflow: a polished editor, AI-search visibility tracking, and team reporting built around that same brief.",
+  "coreLoopDIY": "A command-line tool that pulls top-ranking pages for a keyword, summarizes their structure into a brief, and scores a draft against that brief's coverage.",
+  "whatYouLose": [
+    "a dedicated editor UI built around the brief",
+    "AI-search visibility tracking",
+    "team workflows and reporting",
+    "ongoing SERP-data pipeline maintenance"
+  ],
+  "whyPeopleStillPay": "Writers need a repeatable research-to-editor workflow, not a folder of scraped pages — people pay for that workflow being maintained and polished, not for the ability to fetch search results.",
+  "notes": "A fitting example of the SEO-tooling pattern here: exactly the kind of buildable-but-real-work SaaS this catalogue exists to unpack.",
+  "prompt": "Build a content-brief generator: given a keyword, fetch the top-ranking pages from a real SERP API (do not scrape Google directly), extract each page's title, heading outline, word count, and any questions it answers. Send that aggregate to an LLM API to produce a brief — a suggested title and angle, a target outline, questions to cover, terms competitors use, and a target word-count range — written to a plain Markdown file. Add a second command that scores an existing draft against a brief: which terms and questions are covered or missing, as a plain percentage. Cache fetched pages locally so re-running on the same keyword costs nothing extra.\n\nDo not build an editor UI, rank tracking, or team workflows — briefs and drafts are Markdown files, written in whatever editor you already use, and that's the honest trade against Frase's dedicated writing environment.",
+  "faq": [
+    { "q": "Can I import my existing Frase briefs?", "a": "Not automatically — Frase doesn't offer a structured export of past briefs. Past research stays in Frase; this build starts generating its own briefs going forward." },
+    { "q": "Will it work on my phone?", "a": "No — this is a command-line tool meant to run on a computer, and writing from generated briefs is realistically a desktop workflow." },
+    { "q": "What does it cost to run?", "a": "A SERP API call plus an LLM call per brief, typically a small amount each — cheap enough that occasional use costs a fraction of the subscription." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "AI-search visibility tracking. Frase tracks how content shows up in AI-generated answers, not just traditional search results — that's a maintained, ongoing data pipeline this build doesn't attempt." }
+  ]
+}

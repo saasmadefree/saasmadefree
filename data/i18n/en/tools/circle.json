@@ -1,0 +1,21 @@
+{
+  "tagline": "Community platform with memberships, courses, and events.",
+  "verdictSummary": "A private forum for a few dozen people — spaces, threads, magic-link login, email notifications — is a real weekend build, scoped honestly to a small group. For anything approaching Circle's real membership operations at scale, self-hosting an existing forum platform like Discourse is the more honest move than building one from scratch.",
+  "coreLoopDIY": "A private forum: spaces and threads with Markdown posts, magic-link login restricted to an invite list, and email notifications on new activity.",
+  "whatYouLose": [
+    "payments and paid memberships",
+    "course and live-event integration",
+    "polished mobile apps",
+    "automations and migration tooling",
+    "community-scale admin controls"
+  ],
+  "whyPeopleStillPay": "Communities need real member operations — payments, access control, engagement mechanics — not just a place to post; people pay so those operations are handled, not because a forum is hard to build.",
+  "notes": "Worth being honest about scope here: forums are easy to underestimate, and member operations at real scale are the actual product.",
+  "prompt": "Build a small private community site for a group of a few dozen people — not a general community platform. Members log in with a magic link sent to an email address that must already be on a fixed invite list; no passwords, no public signup. Organize posts into named spaces, each a simple list of Markdown threads with replies, sorted by latest activity. Send an email notification when someone replies to a thread you started or posted in, plus an optional daily digest of new threads, with a per-member mute toggle. Give member profiles a name, avatar, join date, and post count. Moderation is admin-only: delete a post, remove a member.\n\nDo not build payments, memberships, course or event integration, or mobile apps — member operations at that scale are Circle's actual product. If the real need is hundreds of members or paid access, the honest move is self-hosting an existing open-source forum platform like Discourse instead of building one from scratch — say so plainly in the README.",
+  "faq": [
+    { "q": "Can I import my existing Circle community?", "a": "Not automatically — Circle doesn't offer a structured export of posts and members. Migrating means re-inviting members by email and, if the discussion history matters, copying over the threads worth keeping by hand." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, for reading and posting. There's no dedicated mobile app with push notifications — email is the notification channel here." },
+    { "q": "What does it cost to run?", "a": "A small VPS and a database, typically a few dollars a month, plus a transactional email service for magic links and notifications — usually free at this scale." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Real membership operations. The moment payments, courses, or events need to plug into who gets access, that's genuine platform work — this build is honestly scoped to a free, invite-only discussion space, nothing more." }
+  ]
+}

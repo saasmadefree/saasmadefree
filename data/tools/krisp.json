@@ -1,0 +1,41 @@
+{
+  "slug": "krisp",
+  "name": "Krisp",
+  "domains": [
+    "krisp.ai"
+  ],
+  "category": "audio-video",
+  "subcategory": "noise cancellation",
+  "pricing": {
+    "amount": 16,
+    "currency": "USD",
+    "plan": "Pro/Core",
+    "basis": "per-seat-monthly",
+    "source": "https://krisp.ai/pricing/",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "hardware/OS integration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "RNNoise",
+      "url": "https://github.com/xiph/rnnoise"
+    }
+  ],
+  "relatedSlugs": [
+    "superwhisper",
+    "descript",
+    "loom"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

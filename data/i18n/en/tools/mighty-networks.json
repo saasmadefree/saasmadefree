@@ -1,0 +1,21 @@
+{
+  "tagline": "Community, course, and membership platform for creators.",
+  "verdictSummary": "A small paid-membership community — a chronological feed, threaded comments, an events page, gated by a subscription — is a real weekend build for a community of dozens of people. What doesn't come with it is Mighty Networks' actual product: mobile apps, algorithmic engagement, and the operational work of running a community at real scale.",
+  "coreLoopDIY": "A subscription-gated community feed with threaded posts, an events page, and a weekly digest email, scoped to a few dozen members.",
+  "whatYouLose": [
+    "dedicated mobile apps",
+    "algorithmic discovery and engagement features",
+    "live courses and streaming",
+    "a branded-app upgrade path",
+    "ongoing community-operations support"
+  ],
+  "whyPeopleStillPay": "Running a successful community takes ongoing admin, engagement mechanics, and mobile access that people would rather pay for than build and operate themselves.",
+  "notes": "A useful community-platform comparison: not a flat 'no', since the core forum loop genuinely is buildable at small scale.",
+  "prompt": "Build a small paid-membership community site scoped to a few dozen members, not a general community platform — if the real need is hundreds of members, self-hosting an existing open-source forum platform like Discourse is the more honest move, and the README should say so. Gate membership behind a subscription: a webhook from the payment processor activates access on payment and revokes it on cancellation. Sign in by magic link only, no passwords. One chronological feed of member posts (Markdown, with image uploads) with threaded comments and like counts. A simple events page: title, date, a location or call link, and an RSVP list. Send a weekly digest email of new posts and upcoming events, with a one-click unsubscribe from just the digest. Keep an admin view, restricted to you, for removing posts and comping memberships.\n\nDo not build mobile apps, courses, live streaming, or algorithmic discovery feeds — a chronological feed of posts from paying members is the actual product here, not an engagement engine.",
+  "faq": [
+    { "q": "Can I import my existing Mighty Networks community?", "a": "Not automatically — Mighty Networks doesn't offer a structured export of posts and members. Migrating means re-inviting members and, if the discussion history matters, copying over posts worth keeping by hand." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, for reading and posting. There's no dedicated mobile app, and notifications go out by email rather than push." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month, plus standard payment-processing fees on subscriptions — no per-member platform fee beyond that." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Engagement that happens on its own. Mighty Networks invests in discovery and participation mechanics to keep a community active; this build is a plain feed — if people don't check it, nothing nudges them back." }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "dashlane",
+  "name": "Dashlane",
+  "domains": [
+    "dashlane.com"
+  ],
+  "category": "security",
+  "subcategory": "password manager",
+  "pricing": {
+    "amount": 4.99,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.dashlane.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "security/trust/cross-platform",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "KeePassXC",
+      "url": "https://github.com/KeePassXreboot/keepassxc"
+    }
+  ],
+  "relatedSlugs": [
+    "hey-email",
+    "1password",
+    "bitwarden"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

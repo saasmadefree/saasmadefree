@@ -1,0 +1,43 @@
+{
+  "slug": "jasper",
+  "name": "Jasper",
+  "domains": [
+    "jasper.ai"
+  ],
+  "category": "ai-writing",
+  "subcategory": "marketing AI platform",
+  "pricing": {
+    "amount": 69,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://www.jasper.ai/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "workflow/governance/model wrapper",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "LibreChat",
+      "url": "https://github.com/danny-avila/LibreChat"
+    }
+  ],
+  "relatedSlugs": [
+    "quillbot",
+    "grammarly",
+    "languagetool"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

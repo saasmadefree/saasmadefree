@@ -1,0 +1,21 @@
+{
+  "tagline": "Online collaborative whiteboard for diagrams and workshops.",
+  "verdictSummary": "A personal whiteboard built on an existing open-source canvas SDK — sticky notes, shapes, connectors, autosave — is a real weekend build, not a from-scratch canvas engine. What doesn't come with it is Miro's actual product: reliable performance with dozens of simultaneous editors, a deep template library, and workshop-facilitation tooling.",
+  "coreLoopDIY": "A personal whiteboard on top of an existing open-source canvas SDK, with named boards, autosave, and PNG/SVG export.",
+  "whatYouLose": [
+    "reliable performance with many simultaneous editors",
+    "a deep template library",
+    "third-party integrations",
+    "workshop-facilitation tools like timers and voting",
+    "enterprise permission controls"
+  ],
+  "whyPeopleStillPay": "People pay for workshops where dozens of people can join a board at once and everything still holds up — not for the ability to draw a sticky note, which open-source canvas tooling already solves.",
+  "notes": "A good 'kinda': building on an existing canvas SDK makes the demo fast, but production-grade multi-user depth is real, ongoing engineering.",
+  "prompt": "Don't write a canvas engine from scratch — build a personal whiteboard on top of an existing open-source canvas SDK (tldraw is a solid choice; it already handles shapes, sticky notes, connectors, and selection well). A board picker for named boards with thumbnails. Autosave each board's canvas state to a database a couple of seconds after the last change, keeping a short history of recent snapshots as undo insurance. Export the current board to PNG and SVG. Seed a handful of starter templates (a retro grid, brainstorm columns, a weekly plan) from simple config files rather than building a template marketplace. Everything works fully offline and locally by default.\n\nDo not build workshop-facilitation tools (timers, voting), third-party integrations, or performance tuning for boards with dozens of simultaneous editors — those are Miro's actual product depth. Real-time sync between exactly two people is a reasonable stretch goal; supporting a whole team on one board at once is not.",
+  "faq": [
+    { "q": "Can I import my existing Miro boards?", "a": "Miro exports boards as images or PDFs, which preserve the visual but not the editable shapes. There's no supported way to bring boards back in as live, editable elements." },
+    { "q": "Will it work on my phone?", "a": "Viewing a board works on a phone browser, but precise shape placement and connector drawing are genuinely harder on a touchscreen — this is realistically a desktop and tablet tool." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — no per-seat pricing to think about." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "A room full of people editing the same board at once. Real-time multiplayer at Miro's scale needs the same kind of conflict-resolution engineering as Figma's — this build is honestly a personal thinking canvas, not a workshop venue." }
+  ]
+}

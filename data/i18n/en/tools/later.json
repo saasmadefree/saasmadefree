@@ -1,0 +1,21 @@
+{
+  "tagline": "Visual social scheduling, link-in-bio, and creator marketing tools.",
+  "verdictSummary": "A content calendar and posting queue for one or two social networks with stable APIs is a real weekend build. What doesn't come with it is Later's actual product: broad platform coverage kept working as each network's API quietly changes, a link-in-bio page, and analytics.",
+  "coreLoopDIY": "A content calendar and queue that schedules posts through the APIs of networks with sane developer access, with a manual fallback for the ones that don't.",
+  "whatYouLose": [
+    "broad social-platform coverage maintained as APIs change",
+    "a visual content calendar polished for planning",
+    "a link-in-bio page",
+    "analytics",
+    "approval workflows"
+  ],
+  "whyPeopleStillPay": "Publishing workflows and API permissions are a moving target across networks — people pay so someone else absorbs that churn, not because scheduling one post is hard.",
+  "notes": "Useful because it shows why social schedulers are genuinely more than a cron job wrapped in a nice calendar.",
+  "prompt": "Build a personal content calendar and posting queue: a month-grid view plus a list of queued posts, each with text, attached media, a target platform, and a scheduled time. Publish automatically through the official APIs of networks with stable, developer-friendly access (Mastodon and Bluesky both qualify) on a scheduled loop; only add a network beyond that if its API tier genuinely allows posting, checked before building support for it. For a platform whose API doesn't reasonably support posting, don't fight it — send yourself a notification with the caption and image at the scheduled time so you can post by hand in a few seconds, and mark that honestly as manual rather than pretending it's automated. Retry a failed post a couple of times before flagging it clearly on the calendar with the actual error. Once a post succeeds, store the live URL so the calendar links to the real result.\n\nDo not build analytics, a link-in-bio page, or approval workflows — a reliable calendar and queue for the networks you actually use is the honest, complete scope. Note plainly in the README that social APIs drift over time and this needs occasional patching — that upkeep is exactly what the subscription was charging for.",
+  "faq": [
+    { "q": "Can I import my existing Later queue?", "a": "Not automatically — Later doesn't offer a structured export of scheduled posts. Recreating an active queue by hand is realistic for most personal use, since it's rarely more than a handful of pending posts." },
+    { "q": "Will it work on my phone?", "a": "The calendar and composer are responsive web pages, usable on a phone to check or add a post, but there's no dedicated app and no push notification for failures unless you wire one up yourself." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — the social APIs themselves are free for personal-volume posting on networks with sane developer access." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Staying current across platforms. When a network changes its API or posting rules, Later's team fixes it for everyone; here, that network's automation quietly breaks until you notice and either patch it or fall back to posting by hand." }
+  ]
+}

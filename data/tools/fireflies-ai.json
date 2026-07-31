@@ -1,0 +1,42 @@
+{
+  "slug": "fireflies-ai",
+  "name": "Fireflies.ai",
+  "domains": [
+    "fireflies.ai"
+  ],
+  "category": "meeting-notes",
+  "subcategory": "meeting bot + notes",
+  "pricing": {
+    "amount": 18,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "per-seat-monthly",
+    "source": "https://fireflies.ai/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "integrations/collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "whisper.cpp",
+      "url": "https://github.com/ggml-org/whisper.cpp"
+    }
+  ],
+  "relatedSlugs": [
+    "fathom-ai",
+    "krisp",
+    "granola"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

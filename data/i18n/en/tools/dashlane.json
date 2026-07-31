@@ -1,0 +1,22 @@
+{
+  "tagline": "Password manager with autofill, passkeys, sharing, and security alerts.",
+  "verdictSummary": "A command-line encrypted vault — add, generate, and retrieve credentials from one passphrase-protected file — is a real one-sitting build with mature, well-vetted encryption tools. What a personal clone cannot responsibly claim is Dashlane's browser and mobile autofill, passkey support, breach monitoring, or the recovery and audited trust a professional security team provides.",
+  "coreLoopDIY": "A command-line vault: add, retrieve, and generate credentials from one local, passphrase-encrypted file, with the retrieved secret copied to the clipboard and cleared automatically.",
+  "whatYouLose": [
+    "browser and mobile autofill",
+    "passkey support",
+    "breach and security alerts",
+    "account recovery",
+    "independently audited security",
+    "secure sharing with others"
+  ],
+  "whyPeopleStillPay": "People pay for low-friction autofill everywhere and the confidence that the vault itself won't be lost or compromised — not because storing an encrypted file is technically hard.",
+  "notes": "Another high-trust category where 'this is buildable' must not slide into reckless advice.",
+  "prompt": "Build a command-line password vault: one encrypted file on disk holding entries (name, username, password, URL, notes), encrypted with a well-vetted tool like age, using a master passphrase that's prompted at runtime and never written to disk. Commands: add, get <name> (copy to clipboard, clear it after about 20 seconds), list, generate (a long random password, plus a diceware-style passphrase option), edit, delete. Add a backup command that writes a dated copy of the already-encrypted file to a folder you can sync with any file tool you already trust. Everything stays local: no accounts, no telemetry, zero network calls.\n\nDo not build browser-extension autofill, passkey support, breach monitoring, or secure sharing — do not invent any cryptography, use the encryption tool exactly as documented. State plainly in the README that Bitwarden or KeePassXC is the sane choice for most people, and that a forgotten master passphrase means the vault is permanently gone — there is no recovery path here.",
+  "faq": [
+    { "q": "Can I import my existing Dashlane vault?", "a": "Dashlane exports a CSV of your credentials, and a short import script can turn that into entries here. Passkeys and any shared items don't come across — they're not part of the standard export." },
+    { "q": "Will it work on my phone?", "a": "Not usefully. There's no mobile app and no autofill, so retrieving a password means running the CLI on a computer — this is realistically a desktop tool." },
+    { "q": "What does it cost to run?", "a": "Nothing — no hosting, no API key, no subscription. The only cost is your own time if something goes wrong." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Recovery and breach monitoring. Dashlane can help you back into a locked-out account and warns you when a saved credential shows up in a breach; this vault has neither — lose the passphrase and it's gone, and nothing watches for your passwords leaking elsewhere." }
+  ]
+}

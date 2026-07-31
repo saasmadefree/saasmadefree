@@ -1,0 +1,21 @@
+{
+  "tagline": "Text-based audio and video editor with transcription and AI tools.",
+  "verdictSummary": "Cutting a clip by deleting words from its transcript — transcribe locally, map words to timestamps, delete text to cut audio or video — is a real weekend build on open transcription tools. What doesn't come with it is Descript's actual editor: a full nonlinear timeline, AI voice cloning and overdub, and the reliability of a mature rendering pipeline.",
+  "coreLoopDIY": "Transcribe a media file locally, show the transcript as clickable words, delete words or sentences to build a cut list, then render the result with ffmpeg.",
+  "whatYouLose": [
+    "a polished nonlinear timeline editor",
+    "AI voice and overdub tools",
+    "automatic filler-word removal",
+    "project templates",
+    "cloud collaboration"
+  ],
+  "whyPeopleStillPay": "People pay to avoid building and maintaining a media editor themselves, not just for transcription — the editing and rendering pipeline is the real product.",
+  "notes": "A good boundary case: a toy transcript-cutter is easy to build, the product depth around it is obvious once you try to go further.",
+  "prompt": "Build a text-based clip cutter: transcribe a dropped-in audio or video file locally with word-level timestamps (or through a hosted transcription API if a key is configured), then render the transcript as clickable words. Selecting and deleting words or whole sentences adds them to a cut list, undoable before rendering. Render by building a single ffmpeg command that trims the cut spans out of the original media, padding each cut by a small buffer so words aren't clipped mid-syllable. Save each project (transcript plus cut list) as a file next to the source media so an edit can be reopened and refined later.\n\nDo not build a multitrack timeline, AI voice cloning or overdub, automatic filler-word detection, or any cloud features — this is a cutter, not an editor, and that's the honest, complete scope for a personal tool.",
+  "faq": [
+    { "q": "Can I import my existing Descript projects?", "a": "No — Descript's project format is proprietary. You'd start from an exported media file and transcribe it fresh here, not carry over the editable project." },
+    { "q": "Will it work on my phone?", "a": "No — transcription needs real processing power, and text-based cutting is a desktop workflow. This tool isn't meant to run on a phone." },
+    { "q": "What does it cost to run?", "a": "Nothing if you transcribe locally — no hosting, no API key. Using a hosted transcription API instead costs a small amount per minute of audio." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The actual editor. This tool deletes words to cut a clip; it has no timeline, no multitrack audio, no AI voice tools — for anything beyond transcript-based cutting, you're back to a real video editor." }
+  ]
+}

@@ -97,6 +97,13 @@
     "currency": "USD",
     "url": "/en/tools/canva"
   },
+  "capcut.com": {
+    "slug": "capcut",
+    "verdict": "kinda",
+    "amount": 19.99,
+    "currency": "USD",
+    "url": "/en/tools/capcut"
+  },
   "carrd.co": {
     "slug": "carrd",
     "verdict": "yes",
@@ -118,12 +125,33 @@
     "currency": "USD",
     "url": "/en/tools/chatgpt"
   },
+  "circle.so": {
+    "slug": "circle",
+    "verdict": "kinda",
+    "amount": 99,
+    "currency": "USD",
+    "url": "/en/tools/circle"
+  },
   "claude.ai": {
     "slug": "claude",
     "verdict": "no",
     "amount": 20,
     "currency": "USD",
     "url": "/en/tools/claude"
+  },
+  "coda.io": {
+    "slug": "coda",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/coda"
+  },
+  "copilot.money": {
+    "slug": "copilot-money",
+    "verdict": "kinda",
+    "amount": 13,
+    "currency": "USD",
+    "url": "/en/tools/copilot-money"
   },
   "cursor.com": {
     "slug": "cursor",
@@ -132,12 +160,47 @@
     "currency": "USD",
     "url": "/en/tools/cursor"
   },
+  "dashlane.com": {
+    "slug": "dashlane",
+    "verdict": "kinda",
+    "amount": 4.99,
+    "currency": "USD",
+    "url": "/en/tools/dashlane"
+  },
+  "descript.com": {
+    "slug": "descript",
+    "verdict": "kinda",
+    "amount": 24,
+    "currency": "USD",
+    "url": "/en/tools/descript"
+  },
   "elevenlabs.io": {
     "slug": "elevenlabs",
     "verdict": "no",
     "amount": 22,
     "currency": "USD",
     "url": "/en/tools/elevenlabs"
+  },
+  "evernote.com": {
+    "slug": "evernote",
+    "verdict": "kinda",
+    "amount": 14.99,
+    "currency": "USD",
+    "url": "/en/tools/evernote"
+  },
+  "fathom.ai": {
+    "slug": "fathom-ai",
+    "verdict": "kinda",
+    "amount": 20,
+    "currency": "USD",
+    "url": "/en/tools/fathom-ai"
+  },
+  "usefathom.com": {
+    "slug": "fathom-analytics",
+    "verdict": "yes",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/fathom-analytics"
   },
   "feedly.com": {
     "slug": "feedly",
@@ -153,12 +216,47 @@
     "currency": "USD",
     "url": "/en/tools/figma"
   },
+  "fireflies.ai": {
+    "slug": "fireflies-ai",
+    "verdict": "kinda",
+    "amount": 18,
+    "currency": "USD",
+    "url": "/en/tools/fireflies-ai"
+  },
+  "framer.com": {
+    "slug": "framer",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/framer"
+  },
+  "frase.io": {
+    "slug": "frase",
+    "verdict": "kinda",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/frase"
+  },
+  "freshbooks.com": {
+    "slug": "freshbooks",
+    "verdict": "kinda",
+    "amount": 23,
+    "currency": "USD",
+    "url": "/en/tools/freshbooks"
+  },
   "gamma.app": {
     "slug": "gamma",
     "verdict": "kinda",
     "amount": 12,
     "currency": "USD",
     "url": "/en/tools/gamma"
+  },
+  "gemini.google.com": {
+    "slug": "gemini",
+    "verdict": "no",
+    "amount": 19.99,
+    "currency": "USD",
+    "url": "/en/tools/gemini"
   },
   "ghost.org": {
     "slug": "ghost-pro",
@@ -216,12 +314,33 @@
     "currency": "USD",
     "url": "/en/tools/hey-email"
   },
+  "ifttt.com": {
+    "slug": "ifttt",
+    "verdict": "yes",
+    "amount": 2.99,
+    "currency": "USD",
+    "url": "/en/tools/ifttt"
+  },
+  "inoreader.com": {
+    "slug": "inoreader",
+    "verdict": "yes",
+    "amount": 9.99,
+    "currency": "USD",
+    "url": "/en/tools/inoreader"
+  },
   "invoiceninja.com": {
     "slug": "invoice-ninja",
     "verdict": "yes",
     "amount": 14,
     "currency": "USD",
     "url": "/en/tools/invoice-ninja"
+  },
+  "jasper.ai": {
+    "slug": "jasper",
+    "verdict": "kinda",
+    "amount": 69,
+    "currency": "USD",
+    "url": "/en/tools/jasper"
   },
   "kajabi.com": {
     "slug": "kajabi",
@@ -244,12 +363,40 @@
     "currency": "USD",
     "url": "/en/tools/kit"
   },
+  "krisp.ai": {
+    "slug": "krisp",
+    "verdict": "kinda",
+    "amount": 16,
+    "currency": "USD",
+    "url": "/en/tools/krisp"
+  },
   "languagetool.org": {
     "slug": "languagetool",
     "verdict": "yes",
     "amount": 19.9,
     "currency": "EUR",
     "url": "/en/tools/languagetool"
+  },
+  "later.com": {
+    "slug": "later",
+    "verdict": "kinda",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/later"
+  },
+  "linear.app": {
+    "slug": "linear",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/linear"
+  },
+  "loom.com": {
+    "slug": "loom",
+    "verdict": "kinda",
+    "amount": 18,
+    "currency": "USD",
+    "url": "/en/tools/loom"
   },
   "mailchimp.com": {
     "slug": "mailchimp",
@@ -258,12 +405,40 @@
     "currency": "USD",
     "url": "/en/tools/mailchimp"
   },
+  "make.com": {
+    "slug": "make",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/make"
+  },
+  "meetergo.com": {
+    "slug": "meetergo",
+    "verdict": "kinda",
+    "amount": 11,
+    "currency": "EUR",
+    "url": "/en/tools/meetergo"
+  },
   "midjourney.com": {
     "slug": "midjourney",
     "verdict": "no",
     "amount": 10,
     "currency": "USD",
     "url": "/en/tools/midjourney"
+  },
+  "mightynetworks.com": {
+    "slug": "mighty-networks",
+    "verdict": "kinda",
+    "amount": 79.17,
+    "currency": "USD",
+    "url": "/en/tools/mighty-networks"
+  },
+  "miro.com": {
+    "slug": "miro",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/miro"
   },
   "n8n.io": {
     "slug": "n8n-cloud",

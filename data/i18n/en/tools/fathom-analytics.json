@@ -1,0 +1,21 @@
+{
+  "tagline": "Privacy-focused website analytics with simple dashboards.",
+  "verdictSummary": "A privacy-respecting analytics script — pageview beacons, no cookies, a small dashboard with top pages and referrers — is a real weekend build, and there's nothing conceptually hard about it. What the subscription mainly buys is managed infrastructure, uptime, and someone else's privacy-compliance posture.",
+  "coreLoopDIY": "A small tracking script that sends cookieless pageview beacons to your own server, aggregated into a simple dashboard of visits, top pages, and referrers.",
+  "whatYouLose": [
+    "managed infrastructure and uptime",
+    "someone else's privacy and compliance posture",
+    "scheduled email reports",
+    "support",
+    "billing convenience"
+  ],
+  "whyPeopleStillPay": "People pay to avoid maintaining analytics infrastructure and writing their own privacy documentation — not because cookieless pageview counting is technically hard.",
+  "notes": "Useful because several analytics products in this catalogue are genuinely cloneable now — the moat is operational, not technical.",
+  "prompt": "Build a small self-hosted analytics service: a tracking script under a couple of kilobytes that sends a pageview beacon (path, referrer, screen width) with no cookies and no persistent identifier. Count unique visitors without storing personal data — hash the IP address and user agent together with a salt that rotates daily, then discard the raw values immediately. Filter obvious bots with a simple user-agent blocklist before counting. Build a dashboard showing pageviews, unique visitors, top pages, and top referrers over a few time windows, protected by a single access token rather than a full user-account system. Keep raw events only for a short retention window, rolling them up into permanent daily aggregates on a schedule, and prune old raw events automatically.\n\nDo not build scheduled email reports, team seats, or billing — one site, or a short list of sites in a config file, is the honest scope. Be plain in the README that this is polite, privacy-respecting analytics, not a formal legal-compliance product.",
+  "faq": [
+    { "q": "Can I import my existing Fathom Analytics data?", "a": "Not really — Fathom doesn't offer a structured export of raw analytics data, only summary reports. Historical numbers stay in Fathom; this build starts counting fresh from the day you add the script." },
+    { "q": "Will it work on my phone?", "a": "The dashboard is a responsive web page, fine for checking stats on a phone, but there's no dedicated mobile app." },
+    { "q": "What does it cost to run?", "a": "Hosting, a domain, and a database, typically under ten dollars a month — genuinely cheap since analytics data is small and simple to store." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Someone else's compliance posture. Fathom actively maintains privacy-law positioning and documentation you can point at if asked; a self-hosted script is functionally similar but carries none of that maintained legal framing." }
+  ]
+}

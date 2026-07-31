@@ -1,0 +1,20 @@
+{
+  "tagline": "AI meeting recorder that summarizes calls and syncs notes to tools.",
+  "verdictSummary": "A personal call-notes pipeline — drop a recording in a folder, transcribe it, summarize with a template, cut shareable clips — is a real weekend build once you're supplying the recording yourself. What doesn't come with it is automatic call capture, integrations that push notes into a CRM or docs, and team-wide sharing.",
+  "coreLoopDIY": "A watched folder that transcribes any recording dropped into it, summarizes the call with an LLM using a template, and saves the result as a dated Markdown file with clip-cutting for specific moments.",
+  "whatYouLose": [
+    "automatic call capture — a bot joining meetings for you",
+    "integrations that push notes into other tools automatically",
+    "a searchable team library",
+    "permissions and admin controls"
+  ],
+  "whyPeopleStillPay": "People pay for workflow certainty — after every call, the right people and systems already have the notes without anyone doing it by hand.",
+  "notes": "A strong kinda: the core AI loop is obvious, but the surrounding workflow is a real, ongoing product.",
+  "prompt": "Build a personal call-notes pipeline: a watched folder where dropping in a recording triggers transcription (locally, or through a hosted speech API if a key is configured) with speaker labels and timestamps. Summarize the transcript with an LLM using a template file you can swap per call type — the default produces a short summary, decisions made, action items with owners, and open questions. Support cutting any moment from the transcript into a short shareable clip by trimming the source media around that timestamp. Save each call's output as a dated Markdown file with the summary on top and the full transcript below. Build a small local page listing past calls with keyword search across every transcript.\n\nDo not build a bot that joins meetings automatically, calendar-based auto-capture, CRM integrations, or team-wide libraries — you supply the recording yourself, and that's the honest, complete scope for a personal tool.",
+  "faq": [
+    { "q": "Can I import my existing Fathom recordings and notes?", "a": "The recordings, if you've saved them, yes — point the watched folder at them and this build transcribes and summarizes fresh. Fathom's own generated notes and any CRM sync history don't carry over." },
+    { "q": "Will it work on my phone?", "a": "The notes archive is a small web page, readable on a phone, but capturing and processing a call happens on the machine running the pipeline — there's no mobile capture app." },
+    { "q": "What does it cost to run?", "a": "Nothing extra for local transcription and processing; using a hosted transcription or LLM API instead costs a small amount per call, typically well under a dollar." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Automatic capture. Fathom's bot joins your calls and records them without you doing anything; here, forgetting to drop the recording into the watched folder means the call simply isn't processed." }
+  ]
+}

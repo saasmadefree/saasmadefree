@@ -1,0 +1,42 @@
+{
+  "slug": "fathom-ai",
+  "name": "Fathom",
+  "domains": [
+    "fathom.ai"
+  ],
+  "category": "meeting-notes",
+  "subcategory": "meeting assistant",
+  "pricing": {
+    "amount": 20,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "per-seat-monthly",
+    "source": "https://www.fathom.ai/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "integrations/collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "whisperX",
+      "url": "https://github.com/m-bain/whisperX"
+    }
+  ],
+  "relatedSlugs": [
+    "krisp",
+    "superwhisper",
+    "granola"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

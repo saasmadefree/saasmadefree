@@ -1,0 +1,41 @@
+{
+  "slug": "descript",
+  "name": "Descript",
+  "domains": [
+    "descript.com"
+  ],
+  "category": "audio-video",
+  "subcategory": "podcast/video editing",
+  "pricing": {
+    "amount": 24,
+    "currency": "USD",
+    "plan": "Hobbyist",
+    "basis": "flat-monthly",
+    "source": "https://www.descript.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "media pipeline/collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Kdenlive",
+      "url": "https://github.com/KDE/kdenlive"
+    }
+  ],
+  "relatedSlugs": [
+    "loom",
+    "capcut",
+    "krisp"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,46 @@
+{
+  "slug": "linear",
+  "name": "Linear",
+  "domains": [
+    "linear.app"
+  ],
+  "category": "dev-tools",
+  "subcategory": "issue tracking for software teams",
+  "pricing": {
+    "amount": 10,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "annual-effective-monthly",
+    "source": "https://linear.app/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "collaboration/sync/integrations",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Plane",
+      "url": "https://github.com/makeplane/plane"
+    },
+    {
+      "name": "Huly",
+      "url": "https://github.com/hcengineering/platform"
+    }
+  ],
+  "relatedSlugs": [
+    "todoist",
+    "notion",
+    "cursor"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

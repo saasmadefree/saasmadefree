@@ -1,0 +1,21 @@
+{
+  "tagline": "EU-hosted scheduling with video, CRM, workflows, and client portals.",
+  "verdictSummary": "The solo booking loop — a public page, calendar-conflict checking, a confirmation email — is a real weekend build. What stops being buildable almost immediately is everything meetergo bundles around it: multi-provider calendar sync, round-robin routing, payments, video, CRM context, e-signatures, and EU-hosted compliance, all maintained as one ongoing system.",
+  "coreLoopDIY": "A public booking page that checks one connected calendar for conflicts, reserves a slot inside configured availability, creates the calendar event, and sends confirmation and rescheduling emails.",
+  "whatYouLose": [
+    "managed multi-provider calendar sync with conflict protection",
+    "round-robin and routing across a team",
+    "built-in video, payments, and multi-step workflows",
+    "shared CRM context, client portals, and e-signatures",
+    "EU-hosted compliance and integration maintenance"
+  ],
+  "whyPeopleStillPay": "meetergo bundles what would otherwise be a stack of separate tools sharing one customer and meeting record — a solo booking page can be free to replace, but a team pays to avoid rebuilding and operating that whole system themselves.",
+  "notes": "This entry was submitted by the meetergo team itself and judged against the same rubric as everything else here: the booking UI is a real weekend build, and the maintained operating layer around customer meetings is genuinely the product.",
+  "prompt": "Build a personal appointment scheduler covering one calendar and a couple of fixed meeting lengths. A public booking page shows available slots computed from your configured weekly availability, with any busy time from one connected calendar (Google Calendar OAuth is a reasonable default) subtracted out; a guest picks a slot and submits their name and email. Recheck availability inside a transaction right before booking so two people can never take the same slot, then create the calendar event with the guest invited. Send confirmation, cancellation, and rescheduling emails with signed, expiring links, plus one reminder before the meeting. An admin view (behind simple authentication) for editing weekly availability, date overrides, minimum notice, and buffers between meetings, plus an agenda of upcoming bookings with manual cancellation.\n\nDo not build multi-provider calendar sync (Microsoft, Apple), team routing, payments, built-in video, CRM integration, e-signatures, or any compliance claims — those are real, ongoing platform work across many maintained integrations, not a weekend feature. This build replaces the front door to your calendar, not the operating layer behind a business's customer meetings.",
+  "faq": [
+    { "q": "Can I import my existing meetergo booking types and availability?", "a": "Not automatically — there's no structured export of scheduling rules. Recreating a couple of meeting types and your weekly availability is a short, one-time setup, not a real migration." },
+    { "q": "Will it work on my phone?", "a": "The public booking page is fully responsive, so guests booking from a phone works fine. The admin view for editing availability is usable but built with a desktop layout in mind." },
+    { "q": "What does it cost to run?", "a": "Hosting, a domain, and a database, typically a few dollars a month — email sending for confirmations and reminders usually stays within a free tier at personal volume." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Everything meetergo bundles around the booking itself — routing a meeting to the right team member, taking payment, joining a built-in video call, and syncing all of it into a CRM record. This build gets you booked; it doesn't run the business process around the meeting." }
+  ]
+}

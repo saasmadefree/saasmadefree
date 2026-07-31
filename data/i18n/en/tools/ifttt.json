@@ -1,0 +1,19 @@
+{
+  "tagline": "Consumer automation applets across smart home, apps, and services.",
+  "verdictSummary": "A handful of personal trigger-action automations — a scheduled check, a webhook, a target API call — is a genuinely easy build as small scripts. This is a clean yes for exactly the use case most people actually have: a few small, personal automations, not a smart-home integration catalog.",
+  "coreLoopDIY": "A small set of scripted 'applets' — each one a trigger (a schedule or a webhook) paired with an action — logged, retried on failure, and alerting you when one breaks.",
+  "whatYouLose": [
+    "the consumer integration catalog covering hundreds of apps and smart-home devices",
+    "a mobile app for creating applets",
+    "someone else maintaining each integration as its API changes"
+  ],
+  "whyPeopleStillPay": "Clicking together a pre-built applet is easier than writing and maintaining the integration code yourself — people pay to skip that upkeep, not because trigger-action logic is hard.",
+  "notes": "A cheap, clean yes — a useful example of when NOT to overbuild something that's genuinely this simple.",
+  "prompt": "Build a small personal automation runner: each 'applet' is a short script defining a trigger (a cron schedule or a webhook route) and an action function that runs when it fires. Ship a couple of working example applets so the pattern is obvious. For polling-based triggers, track the last-seen state so a restart never re-fires the same event twice. Log every run — applet name, timestamp, success or failure, error text — to a database, with a simple page listing recent runs. Retry a failed run a few times with backoff, then send yourself one alert email after the final failure. Keep all API keys and tokens in the environment, referenced by name from each applet.\n\nDo not build a visual applet builder or smart-home device integrations — a new applet is a new script file, and that's genuinely the whole interface a personal automation tool like this needs.",
+  "faq": [
+    { "q": "Can I import my existing IFTTT applets?", "a": "No — IFTTT's applets don't export to code. Each one you actually use becomes a short script, which for most personal use is a handful of applets, not dozens." },
+    { "q": "Will it work on my phone?", "a": "The run-log page works in a phone browser, but applets themselves run unattended on a server — there's no mobile app for creating or triggering them manually." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a couple of dollars a month, regardless of how many applets run." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Smart-home and consumer-app breadth. IFTTT's real value is a catalog covering hundreds of devices and apps already integrated; this build only ever covers the handful of services you personally wire up." }
+  ]
+}

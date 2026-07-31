@@ -1,0 +1,21 @@
+{
+  "tagline": "Personal finance app for spending, budgets, and net worth tracking.",
+  "verdictSummary": "A CSV-driven spending dashboard — rule-based categorization, budgets, a recurring-subscription finder, net worth over time — is a real weekend build, and the recurring-subscription list alone often justifies the effort. What doesn't come with it is live bank syncing: transactions arrive by dropping in a CSV export, not automatically.",
+  "coreLoopDIY": "Drop bank CSV exports into a watched folder, categorize transactions with rules (and an optional LLM fallback for anything unmatched), and show budgets and net worth over time.",
+  "whatYouLose": [
+    "automatic bank account syncing",
+    "native iOS and Mac app polish",
+    "professional transaction enrichment",
+    "investment tracking",
+    "mobile push notifications"
+  ],
+  "whyPeopleStillPay": "The app feels native and current financial data just appears — people pay so they never have to think about where the numbers come from.",
+  "notes": "A good example of the Apple-native pattern in this catalogue: the core logic is easy, the sync and polish are what's sticky.",
+  "prompt": "Build a personal finance dashboard driven by CSV imports, not bank APIs: watch a folder for new bank CSV exports, parse each one using a per-bank column mapping you maintain, and dedupe transactions on a hash of date, amount, and description. Categorize with an ordered list of rules you maintain, applied first; anything unmatched lands in a review queue where a single click assigns a category and offers to save it as a new rule. Add an optional LLM fallback for the review queue, using a key from the environment — skip it entirely, cleanly, when no key is set. Build a dashboard: current-month spend by category against budgets, a trend line over the past year, and top merchants. Add recurring-charge detection: flag any merchant billed at roughly monthly intervals as a subscription and list it with its annualized cost — this view alone is often worth the build. Track account balances as monthly snapshots and plot net worth over time.\n\nDo not build automatic bank syncing — that needs a paid data-aggregation service and handling real bank credentials, which is genuine infrastructure and a real trust liability, not a personal weekend project. CSV import, done regularly, is the honest trade for not taking that on. If the optional LLM fallback is used, say plainly in the README that transaction text leaves the machine for that one feature.",
+  "faq": [
+    { "q": "Can I import my existing Copilot Money data?", "a": "Not directly — Copilot doesn't offer a structured data export. Your bank's own CSV exports work as the ongoing import source going forward, but historical categorization and notes don't carry over." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, for checking the dashboard. There's no native app, and importing CSVs is realistically a desktop task." },
+    { "q": "What does it cost to run?", "a": "Hosting for the small local app is close to free; the optional LLM categorization fallback costs a small amount per use, and skipping it costs nothing." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Data arriving automatically. Every transaction has to be imported from a CSV you download yourself — the moment that habit lapses, the dashboard goes stale in a way a live bank connection never would." }
+  ]
+}

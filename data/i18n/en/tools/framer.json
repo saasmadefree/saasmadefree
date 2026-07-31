@@ -1,0 +1,21 @@
+{
+  "tagline": "Design-forward website builder with CMS and animations.",
+  "verdictSummary": "A section-based landing-page generator — a library of reusable layout components, one content file per site, static output ready to deploy — is a real weekend build. What doesn't come with it is Framer's actual product: a visual drag-and-drop editor, scroll-triggered animations, a real CMS, and templates polished by professional designers.",
+  "coreLoopDIY": "A library of reusable page sections (hero, feature grid, pricing table, FAQ) filled from one content file per site, built to static files with no runtime server.",
+  "whatYouLose": [
+    "the visual drag-and-drop editor",
+    "scroll and interaction animations",
+    "a real CMS for structured content",
+    "a professional template library",
+    "built-in hosting and forms"
+  ],
+  "whyPeopleStillPay": "Polished landing pages need to ship fast without a design-engineer in the loop for every change — people pay for that speed and polish, not because static site generation is hard.",
+  "notes": "A good modern website-builder entry with a genuinely plausible DIY core, since the output is static files, not a running app.",
+  "prompt": "Build a landing-page generator: a library of reusable section components (hero, feature grid, testimonial, pricing table, FAQ, footer) filled from one content file per site — editing that file is the entire content workflow, no admin panel needed. Build to plain static files with no database and no server at runtime. One shared theme file for fonts, colors, and spacing so every page stays visually consistent without redesigning each one. Add a helper script that drafts a starting content file from a short product description using an LLM API (key from the environment) — this is a one-off generation aid, not something the built site depends on at runtime. Ship a deploy script that pushes the built output to any static host.\n\nDo not build a visual drag-and-drop editor, scroll or interaction animations, a CMS admin UI, or form handling — those are real, ongoing product depth. Editing the content file directly, in a text editor, is the interface here; the section library is the actual product, not a page builder.",
+  "faq": [
+    { "q": "Can I import my existing Framer site?", "a": "Not as an editable project — Framer doesn't export to a format this build can read. You'd recreate the site's content in the new content file, using the live site as a reference for copy and structure." },
+    { "q": "Will it work on my phone?", "a": "The built sites are fully responsive and work fine on a phone as a visitor. Editing content is a text-file task, realistically done on a computer." },
+    { "q": "What does it cost to run?", "a": "Just static hosting, often free or a couple of dollars a month — there's no database and no server process, so hosting costs stay minimal regardless of traffic." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Visual editing. Framer lets you drag, resize, and animate elements directly on the canvas; here, every layout change is an edit to a component file, which is a real shift in who can make changes and how fast." }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "mighty-networks",
+  "name": "Mighty Networks",
+  "domains": [
+    "mightynetworks.com"
+  ],
+  "category": "community",
+  "subcategory": "community + courses",
+  "pricing": {
+    "amount": 79.17,
+    "currency": "USD",
+    "plan": "Launch",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.mightynetworks.com/",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "community/platform/mobile distribution",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Discourse",
+      "url": "https://github.com/discourse/discourse"
+    }
+  ],
+  "relatedSlugs": [
+    "circle",
+    "buffer",
+    "later"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

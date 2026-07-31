@@ -1,0 +1,20 @@
+{
+  "tagline": "Real-time AI noise cancellation and meeting voice enhancement.",
+  "verdictSummary": "Cleaning up a recorded audio file after the fact — suppress background noise, normalize levels — is a real one-sitting build on open-source audio tools, running fully offline. What it cannot do is Krisp's actual product: real-time, low-latency noise suppression running as a virtual microphone during a live call, which needs OS-level audio driver work, not a script.",
+  "coreLoopDIY": "A command-line tool that runs a recorded audio file through an open-source noise-suppression filter and a loudness-normalization pass, writing a cleaned copy alongside the original.",
+  "whatYouLose": [
+    "real-time suppression as a virtual microphone usable in any call app",
+    "the low latency that makes it invisible during a live conversation",
+    "meeting-app integrations",
+    "admin controls for a team"
+  ],
+  "whyPeopleStillPay": "Audio cleanup during a live call has to be instant and invisible — people pay for a real-time virtual microphone, which is genuinely different, harder engineering than cleaning up a file afterward.",
+  "notes": "Interesting because model availability doesn't remove the OS and audio-driver complexity around making it work live.",
+  "prompt": "Build a noise-cleanup tool for recordings, not live calls — say so plainly up front, since that's the real scope boundary here. A command that takes an audio file, runs it through an open-source noise-suppression filter (RNNoise is a solid, well-tested choice), then normalizes loudness so voice levels come out consistent, and writes the cleaned result alongside the original without touching the source file. Add a watch-folder mode: files dropped into an input folder get a cleaned version written to an output folder automatically. Support batch-processing a whole folder at once, printing a rough before/after noise estimate per file.\n\nDo not attempt live-call processing or a virtual audio device — that needs an OS-level audio driver and millisecond latency, which is genuinely Krisp's product, not a missing feature to bolt onto a file-cleanup script. Point to the operating system's own built-in voice isolation as the honest alternative for live calls in the README.",
+  "faq": [
+    { "q": "Can I bring over recordings I cleaned with Krisp?", "a": "The cleaned audio files themselves, yes — they're just files. There's nothing to migrate structurally, since Krisp doesn't have a project format beyond the audio it processes." },
+    { "q": "Will it work on my phone?", "a": "No — this is a command-line tool meant to run on a computer with real processing power, and it's scoped to recordings, not live calls, which is where mobile use would matter most anyway." },
+    { "q": "What does it cost to run?", "a": "Nothing — it runs fully offline on your own machine, no API key and no hosting required." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Live noise suppression. Krisp's actual product cleans your microphone in real time during a call, invisible to the other side; this tool only ever cleans a file after the fact, which is a fundamentally different, easier problem." }
+  ]
+}

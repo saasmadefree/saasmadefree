@@ -1,0 +1,42 @@
+{
+  "slug": "ifttt",
+  "name": "IFTTT",
+  "domains": [
+    "ifttt.com"
+  ],
+  "category": "automation",
+  "subcategory": "consumer automations",
+  "pricing": {
+    "amount": 2.99,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://ifttt.com/plans",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "integration network/convenience",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Huginn",
+      "url": "https://github.com/huginn/huginn"
+    }
+  ],
+  "relatedSlugs": [
+    "zapier",
+    "make",
+    "n8n-cloud"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

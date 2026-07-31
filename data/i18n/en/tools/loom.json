@@ -1,0 +1,21 @@
+{
+  "tagline": "Async screen recording with instant hosting and transcripts.",
+  "verdictSummary": "Local screen recording is the easy half; a two-part build — a recording tool plus a small share server — gets a working link-sharing loop in a real weekend. What doesn't come with it is Loom's actual polish: truly instant, reliable hosting, viewer analytics, comments, and a shared team library.",
+  "coreLoopDIY": "A local recording tool that captures screen and mic, transcribes the result, and uploads both to a small personal server that serves each recording at an unlisted, shareable link.",
+  "whatYouLose": [
+    "instant, always-reliable hosting at scale",
+    "viewer analytics and comments on the recording",
+    "in-app trimming",
+    "a shared team library",
+    "browser-extension recording"
+  ],
+  "whyPeopleStillPay": "A Loom link works everywhere and preserves context for whoever watches it later — people pay for that reliability and the workflow around it, not for the ability to record a screen.",
+  "notes": "A classic paid-for-polish case: the local recording primitive is free and easy; the reliable share-and-watch workflow around it is the subscription.",
+  "prompt": "Build a two-part screen-recording tool: a local recording command that captures screen and microphone to a video file, and a small share server on your own domain. On stopping a recording, transcode it to a web-friendly format, transcribe it locally with Whisper, and upload both the video and transcript to your server over a simple authenticated connection. The server serves each recording at an unguessable, unlisted URL: a video player, title, date, and a searchable transcript below it. Print and copy the share link to your clipboard as soon as the upload finishes — the whole loop from stopping the recording to having a shareable link should take under a minute for a short video. Keep the list of all recordings private to you; the share pages themselves are link-only, with no public index anywhere.\n\nDo not build viewer analytics, comments, in-app trimming, or a shared team library — the unlisted link is the entire permission model here, and that's a real, honest gap next to Loom's actual workspace features.",
+  "faq": [
+    { "q": "Can I import my existing Loom recordings?", "a": "Loom lets you download your videos individually, and those download fine as source files for this build's server. Comments, viewer analytics, and view counts don't come across — that history only exists inside Loom." },
+    { "q": "Will it work on my phone?", "a": "Watching a shared recording works fine on a phone browser. Recording itself is a desktop capture tool, tied to your computer's screen and microphone, not something a phone version of this build handles." },
+    { "q": "What does it cost to run?", "a": "Hosting and storage for your own videos, typically a few dollars a month at personal volume, growing with how much video you keep — there's no per-recording or per-viewer fee." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Knowing who's watching. Loom shows you view counts, who watched how much, and lets people comment inline on a timestamp; an unlisted link is genuinely just a link — you'll never know if it was watched at all." }
+  ]
+}

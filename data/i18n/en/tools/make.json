@@ -1,0 +1,20 @@
+{
+  "tagline": "Visual automation platform for workflows across apps and APIs.",
+  "verdictSummary": "A handful of personal automations — a trigger, a few API calls, retries, a run history — is a real weekend build as plain code instead of a visual flow. What doesn't come with it is Make's actual product: a maintained visual builder, a large catalog of pre-built app modules, and someone else absorbing the ongoing maintenance as those apps' APIs change.",
+  "coreLoopDIY": "A small runner where each automation is a scenario file with a trigger and an ordered list of steps, with every run logged for debugging.",
+  "whatYouLose": [
+    "the visual drag-and-drop builder",
+    "a large catalog of maintained app modules",
+    "built-in scheduling and observability across many workflows",
+    "team governance and sharing"
+  ],
+  "whyPeopleStillPay": "Workflows evolve and their underlying APIs break on their own schedule — a maintained builder absorbs that ongoing upkeep across a large module catalog, which is real, continuous work.",
+  "notes": "A useful smaller-scale comparison to Zapier here: same underlying reasoning, a different builder style.",
+  "prompt": "Build a code-first workflow runner for a handful of personal automations, not a general integration platform. Each automation is a small file exporting a trigger (a cron schedule or a webhook route) and an ordered list of steps, each step a function that receives the previous step's output. The runner executes steps in order, retries a failed step a few times with backoff, then halts the run and records exactly which step failed and why. Save every run — scenario, timing, each step's input and output, final status — to a database; that history is the actual debugging tool, so make it genuinely useful, not an afterthought. Build a minimal dashboard: a scenario list with last-run status, and a per-run view of each step's payload. Ship one or two working example scenarios so the pattern is obvious from day one.\n\nDo not build a visual drag-and-drop builder or a catalog of pre-built app modules — automations here are code you write yourself, one integration at a time, and that's the actual trade against Make's maintained module catalog. If maintaining this stops being worth it, the honest fallback is self-hosting an existing tool like n8n rather than continuing to build this out.",
+  "faq": [
+    { "q": "Can I import my existing Make scenarios?", "a": "No — Make's visual scenarios don't export to code. Each one you actually rely on gets rewritten as a short script, which for most personal use is a handful of automations, not dozens." },
+    { "q": "Will it work on my phone?", "a": "The dashboard for checking run history and status works in a phone browser, but automations themselves run unattended on a server — there's nothing to interact with day to day on mobile." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month, regardless of how many automations run or how often — no per-operation pricing tiers to track." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The module catalog and its upkeep. When an app you depend on changes its API, Make's team fixes their module for everyone; here, your automation just breaks until you notice and patch it yourself." }
+  ]
+}

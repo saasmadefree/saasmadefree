@@ -1,0 +1,41 @@
+{
+  "slug": "frase",
+  "name": "Frase",
+  "domains": [
+    "frase.io"
+  ],
+  "category": "seo-marketing",
+  "subcategory": "content brief + optimization",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://www.frase.io/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "data access/workflow/model wrapper",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key"
+  ],
+  "priorArt": [
+    {
+      "name": "Danswer/Onyx",
+      "url": "https://github.com/onyx-dot-app/onyx"
+    }
+  ],
+  "relatedSlugs": [
+    "ahrefs",
+    "semrush",
+    "quillbot"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

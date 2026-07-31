@@ -1,0 +1,20 @@
+{
+  "tagline": "AI meeting bot that records, transcribes, summarizes, and searches calls.",
+  "verdictSummary": "A searchable personal call archive — transcribe recordings you supply, summarize each with an LLM, search across everything you've ever recorded — is a real weekend build. What doesn't come with it is Fireflies' actual product: a bot that reliably joins meetings on its own, integrations with CRM and project tools, and team-wide permissions.",
+  "coreLoopDIY": "A pipeline that transcribes recordings you drop in, summarizes each with an LLM, and makes every transcript searchable by keyword with a simple topic tracker for recurring subjects.",
+  "whatYouLose": [
+    "a bot that reliably joins and captures meetings on its own",
+    "integrations with CRM and project-management tools",
+    "team permissions and shared libraries",
+    "compliance controls"
+  ],
+  "whyPeopleStillPay": "People pay because the bot reliably shows up, captures, files, and shares notes across an entire team — not because summarizing a transcript is hard.",
+  "notes": "A useful contrast with Granola in this catalogue: the same AI primitive, a genuinely harder product surface around it.",
+  "prompt": "Build a searchable call-transcript archive: a pipeline that transcribes recordings you supply (locally, or through a hosted speech API if a key is configured) and summarizes each with an LLM into an overview, action items with owners, questions asked, and next steps, stored alongside the full transcript. Build full-text search across every transcript ever processed, with results showing matching lines and timestamps that link into the full text. Add a simple topic tracker: a small list of keywords (competitor names, pricing terms, anything worth watching for) with a page listing every call where each one came up, newest first. Support exporting any single call to a plain Markdown file.\n\nDo not build a bot that joins Zoom, Meet, or Teams automatically, calendar-based routing, CRM integrations, or team sharing — you supply the recordings yourself, and that's the honest, complete scope for a personal archive.",
+  "faq": [
+    { "q": "Can I import my existing Fireflies transcripts?", "a": "Fireflies lets you export individual transcripts, and a short script can bulk-import those exports into this build's archive and search index." },
+    { "q": "Will it work on my phone?", "a": "The search archive is a small web page, usable on a phone to look something up, but there's no mobile capture — you still need to supply recordings from somewhere." },
+    { "q": "What does it cost to run?", "a": "Nothing extra for local transcription; a hosted transcription or LLM API instead costs a small amount per call, and hosting the small web app is a few dollars a month." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The bot itself. Fireflies joins your calls and captures them without anyone remembering to hit record; here, if you forget to save and drop in the recording, that call is never in the archive at all." }
+  ]
+}

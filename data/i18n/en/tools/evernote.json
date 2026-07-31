@@ -1,0 +1,21 @@
+{
+  "tagline": "Long-running note app for capture, search, tasks, and cross-device notes.",
+  "verdictSummary": "A personal notes app with tags, attachments, OCR on scanned images, and full-text search is a real weekend build. What doesn't come with it is Evernote's actual moat: years of accumulated notes and switching cost, mature sync across every device, and a browser clipper refined over a decade.",
+  "coreLoopDIY": "A Markdown notes app with tags, file attachments OCR'd on upload so scans stay searchable, full-text search, and a bookmarklet-based web clipper.",
+  "whatYouLose": [
+    "a polished browser and mobile clipper",
+    "mobile apps",
+    "mature cross-device sync",
+    "import/export edge cases handled over years",
+    "the reliability of a product that has outlasted most of its competitors"
+  ],
+  "whyPeopleStillPay": "People pay because all their old notes, scans, and clipped pages are already there — the switching cost of years of accumulated data is the real product, not the notes editor itself.",
+  "notes": "A good example where the core editor is easy but capture depth and years of data are what actually drive retention.",
+  "prompt": "Build a personal notes app: Markdown notes with tags, edited with a live preview. Support attachments — dropping a file or image onto a note stores it and links it back; run OCR on uploaded images and PDF pages so scans and receipts become searchable, not just their filenames. Build full-text search across both note content and OCR'd attachment text. Add a simple web-clipper bookmarklet (not a browser extension) that posts the current page's title, URL, and selected text into a new note. Write a one-off importer for Evernote's own export format so existing notes, tags, and attachments actually move in. Support a scheduled export of everything to plain Markdown files plus their attachments, so nothing is ever trapped in the app.\n\nDo not build mobile apps, real-time cross-device sync, or a full browser extension — a bookmarklet and a working import path are the honest, complete scope for a personal capture tool.",
+  "faq": [
+    { "q": "Can I import my existing Evernote notes?", "a": "Yes — Evernote exports to its own .enex format, and the prompt includes an importer that reads notes, tags, and attachments from it." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, if hosted somewhere reachable, but there's no offline mobile app and no camera-based scan capture the way Evernote's app has." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — OCR runs locally at no extra cost." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Years of refined capture. Evernote's web clipper and mobile scanning have been tuned for over a decade to handle edge cases cleanly; a bookmarklet and a basic OCR pass cover the common case, not all of them." }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "framer",
+  "name": "Framer",
+  "domains": [
+    "framer.com"
+  ],
+  "category": "website-builder",
+  "subcategory": "visual website builder",
+  "pricing": {
+    "amount": 10,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.framer.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "editor/templates/hosting",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "GrapesJS",
+      "url": "https://github.com/GrapesJS/grapesjs"
+    }
+  ],
+  "relatedSlugs": [
+    "carrd",
+    "airtable",
+    "coda"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

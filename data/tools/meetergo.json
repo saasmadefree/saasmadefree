@@ -1,0 +1,45 @@
+{
+  "slug": "meetergo",
+  "name": "meetergo",
+  "domains": [
+    "meetergo.com"
+  ],
+  "category": "scheduling",
+  "subcategory": "scheduling and customer-interaction suite",
+  "pricing": {
+    "amount": 11,
+    "currency": "EUR",
+    "plan": "Light",
+    "basis": "annual-effective-monthly",
+    "source": "https://meetergo.com/en/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "integration reliability/workflow depth/EU compliance operations",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "oauth-app",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Cal.com",
+      "url": "https://github.com/calcom/cal.com"
+    }
+  ],
+  "relatedSlugs": [
+    "calendly",
+    "todoist",
+    "akiflow"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

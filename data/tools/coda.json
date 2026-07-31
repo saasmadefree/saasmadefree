@@ -1,0 +1,42 @@
+{
+  "slug": "coda",
+  "name": "Coda",
+  "domains": [
+    "coda.io"
+  ],
+  "category": "docs-databases",
+  "subcategory": "docs + tables + apps",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Pro Doc Maker",
+    "basis": "per-seat-monthly",
+    "source": "https://coda.io/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "editor/formula/integrations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "AFFiNE",
+      "url": "https://github.com/toeverything/AFFiNE"
+    }
+  ],
+  "relatedSlugs": [
+    "tally",
+    "typeform",
+    "bubble"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

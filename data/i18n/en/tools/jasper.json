@@ -1,0 +1,21 @@
+{
+  "tagline": "AI platform for branded marketing content and campaign workflows.",
+  "verdictSummary": "A branded prompt library — store your voice and product docs, run them through a set of reusable marketing templates, generate a few variants at once — is a real weekend build wrapping a model API. What doesn't come with it is Jasper's actual product: brand governance, approval workflows, and collaboration across a marketing team.",
+  "coreLoopDIY": "A set of reusable marketing prompt templates that automatically prepend your brand voice and product docs, generating a few variants side by side and saving every output by campaign.",
+  "whatYouLose": [
+    "brand governance and approval workflows across a team",
+    "campaign-level collaboration",
+    "compliance and security posture for an organization",
+    "integrations",
+    "UX tuned specifically for marketing teams"
+  ],
+  "whyPeopleStillPay": "People pay to scale marketing output while keeping brand consistency and an approval workflow across a whole team — not because prompting an LLM with brand context is hard.",
+  "notes": "A good paid-wrapper case study: the core loop is buildable, but organizational workflow is a real reason to keep paying.",
+  "prompt": "Build a personal marketing-copy generator: a folder of plain text files holding your brand voice, audience, and product details, automatically prepended to every generation so output stays consistent without repeating yourself. Build a small library of reusable templates (blog outline, landing-page hero, product description, cold email, social post) as prompts with a few fill-in variables. Call a model API and always generate a few variants side by side so you're choosing between options, not accepting the first draft. Save every output with its template, inputs, the variant you picked, and a campaign label, browsable and searchable later. Add a rewrite mode: paste any draft and get it back adjusted to match your brand voice files.\n\nDo not build team collaboration, approval workflows, or multi-writer brand governance — this is a one-person tool, and that's the honest scope against what actually makes Jasper worth paying for at a team's scale.",
+  "faq": [
+    { "q": "Can I import my existing Jasper brand voice and templates?", "a": "Not automatically — Jasper's brand settings live in its own system with no structured export. Rewriting your voice guidelines as plain text files is quick, though, since it's usually a short document to begin with." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, for reading past outputs, but generating and refining copy is realistically a desktop task." },
+    { "q": "What does it cost to run?", "a": "Hosting plus LLM API usage per generation, typically a few cents per batch of variants — no per-seat pricing to think about." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Team brand governance. Jasper's approval workflows keep multiple writers consistent and on-brand at scale; this build has one brand-voice file and one person deciding what ships." }
+  ]
+}

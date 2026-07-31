@@ -1,0 +1,21 @@
+{
+  "tagline": "Invoicing, expenses, time tracking, and accounting for freelancers.",
+  "verdictSummary": "For a freelancer's actual workflow — timed work, client invoices, expense logs, a few reports for an accountant — this is a real weekend build. What doesn't come with it is anything that touches payment collection or real accounting: bank feeds, card payments, and the reliability that comes from years of a dedicated team maintaining exactly that.",
+  "coreLoopDIY": "Client and project records with a start/stop timer, invoices generated from tracked time, expense logging, and a handful of reports exported for an accountant.",
+  "whatYouLose": [
+    "card payment collection",
+    "bank-feed imports",
+    "a client portal",
+    "mobile apps",
+    "formal double-entry accounting"
+  ],
+  "whyPeopleStillPay": "Client billing has to look professional and survive an accountant's audit at tax time — people pay for that reliability, not because tracking hours and generating a PDF is hard.",
+  "notes": "A good 'kinda': freelancers can genuinely DIY most of the core invoicing loop, but payments and real accounting are a different, harder problem.",
+  "prompt": "Build a freelancer invoicing app: clients, projects, and a start/stop timer per project (plus manual time entries), with uninvoiced time rolling into the next invoice draft at the project's hourly rate. Generate invoice PDFs from an HTML template with your logo and bank details, auto-numbered sequentially, emailed to the client via a transactional email service — mark an invoice paid by hand once a bank transfer lands, no payment processing. Log expenses (amount, category, optional client, an attached receipt image). Build a handful of reports: income by month, unpaid invoices with days outstanding, income by client, and a yearly CSV export ready to hand to an accountant. Set up a nightly backup of the database.\n\nDo not build card payment collection, a client portal, or bank feeds — clients receive a PDF and pay by bank transfer, and that's the deliberate scope boundary. Skip double-entry accounting and tax logic entirely; this is invoicing and expense tracking, not a books-of-record system.",
+  "faq": [
+    { "q": "Can I import my existing FreshBooks data?", "a": "Clients and invoice history export as CSV, and that data maps reasonably well onto this build's schema. Time-tracking history and expense receipts generally need to be re-entered, since FreshBooks doesn't offer a structured bulk export for those." },
+    { "q": "Will it work on my phone?", "a": "The pages render on a phone browser for a quick check, but time tracking and invoice creation are realistically desktop tasks — there's no dedicated mobile app here." },
+    { "q": "What does it cost to run?", "a": "Hosting, a database, and a transactional email service, typically a few dollars a month combined — no per-client or per-invoice fee." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Getting paid without asking. FreshBooks can take a card payment right from the invoice; here, every client pays by bank transfer and you mark it paid yourself, which means more manual follow-up on anyone who's late." }
+  ]
+}

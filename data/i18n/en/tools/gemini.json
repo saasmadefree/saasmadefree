@@ -1,0 +1,20 @@
+{
+  "tagline": "Google's AI assistant bundled with Gemini Advanced and Google AI Pro.",
+  "verdictSummary": "A personal chat client over model APIs you pay for directly is a real, cheap build. What can't be replicated is the actual subscription: frontier model access from Google specifically, plus deep integration with Gmail, Docs, and Drive that only Google's own product can offer.",
+  "coreLoopDIY": "A chat client that talks to the Gemini API directly (and optionally other providers), with document upload, conversation history, and full-text search.",
+  "whatYouLose": [
+    "native integration with Gmail, Docs, and Drive",
+    "a unified flat subscription instead of metered per-token billing",
+    "the mobile app experience",
+    "continuous model updates bundled into one product"
+  ],
+  "whyPeopleStillPay": "People pay for model access and being placed natively inside the Google apps they already use — not because a chat interface itself is hard to build.",
+  "notes": "Completes the frontier-model comparison set alongside ChatGPT and Claude — a useful reference point for how the same structural 'no' reasoning applies across vendors.",
+  "prompt": "Build a personal chat client over model APIs you control: a streaming reply pane, a model picker (Gemini's API directly, and optionally others), and conversation history stored with full-text search. Support uploading PDFs and images to models that accept them. Add system-prompt presets as plain files you can select per conversation. Let any conversation export to Markdown. Show a running cost estimate from each API response's usage data, since metered per-token billing can land above or below the flat subscription price depending on how much you actually chat.\n\nDo not build Gmail, Docs, or Drive integration, or a mobile app — those need real platform access this project doesn't have, and they're a meaningful part of what the subscription buys for someone already living in Google's apps.",
+  "faq": [
+    { "q": "Can I import my Gemini conversation history?", "a": "Google's data export tools include your Gemini activity, and that export gives you a record of past conversations, but it doesn't import cleanly into a live, continuing thread in a different tool." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, if hosted somewhere reachable. There's no native app and no integration with your phone's Google apps." },
+    { "q": "What does it cost to run?", "a": "Hosting is a few dollars a month; API usage is metered per token and can land above or below the flat subscription price depending on how much you actually chat — the built-in cost tracker shows you which." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Being where your Google account already lives. Gemini can read context from your Gmail and Drive directly; a personal chat client only ever sees what you explicitly upload to it." }
+  ]
+}

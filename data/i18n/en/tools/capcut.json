@@ -1,0 +1,21 @@
+{
+  "tagline": "Mobile-first video editor with templates, captions, and effects.",
+  "verdictSummary": "A captioning-and-clipping CLI — transcribe, burn captions, trim, export for social formats — is a real one-sitting build on open-source tools, running fully offline after the model downloads once. What doesn't come with it is CapCut's actual product: a full mobile timeline editor, its effects and template library, and the polish that makes editing fast on a phone.",
+  "coreLoopDIY": "A command-line tool that transcribes a video locally, burns in styled captions, trims clips, and exports for common social aspect ratios.",
+  "whatYouLose": [
+    "the mobile timeline editor itself",
+    "the effects and template library",
+    "a growing asset library",
+    "platform-specific export presets and integrations",
+    "real-time rendering performance"
+  ],
+  "whyPeopleStillPay": "Short-form editing on a phone needs to be fast, and a library of reusable effects and trends is most of what makes a clip feel current — neither is something a captioning script replicates.",
+  "notes": "A good category to be honest about: automatic captions are a solved problem; a real timeline editor with effects is not.",
+  "prompt": "Build a command-line video captioning and clipping tool. Given a video file, transcribe it locally (faster-whisper or whisper.cpp — no cloud API needed) and burn in styled captions grouped a few words per line, with a config file controlling font, size, color, and position. Support trimming to a time range and exporting at common social aspect ratios (vertical, square, widescreen) with sensible default bitrates for phone playback. Write the plain subtitle file alongside the video so typos can be fixed by hand, then re-burn from the corrected file without re-transcribing. Never overwrite the source file — always write a new output file next to it. Support batch mode: point it at a folder and process every video inside.\n\nDo not build a timeline editor, an effects or template library, or a music library — CapCut's editing polish and asset library are the actual product, and this tool is scoped to one specific job: captioned, trimmed, correctly-sized clips from a single source video, not general editing.",
+  "faq": [
+    { "q": "Can I import my existing CapCut projects?", "a": "No — CapCut's project format is proprietary and doesn't export to anything this tool can read. You'd start from the exported video file, not the editable project." },
+    { "q": "Will it work on my phone?", "a": "No — this is a command-line tool meant to run on a computer with real processing power for transcription. CapCut's mobile-first editing is exactly the part this doesn't replace." },
+    { "q": "What does it cost to run?", "a": "Nothing — it runs fully offline on your own machine after the one-time transcription model download, with no hosting and no API key." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The editor itself. This tool captions and trims a single clip; it has no timeline, no drag-and-drop effects, and no library of trending templates — for anything beyond captions and a trim, you're back to a real video editor." }
+  ]
+}

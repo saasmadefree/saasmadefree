@@ -1,0 +1,21 @@
+{
+  "tagline": "Doc platform that combines writing, tables, and small apps.",
+  "verdictSummary": "A personal doc editor with embedded tables and simple formula columns is a real weekend build. What doesn't come with it is Coda's actual depth: a full formula language, a marketplace of integration 'packs,' team permissions, and the doc-as-app workflow that makes it a platform rather than an editor.",
+  "coreLoopDIY": "A Markdown doc editor where a fenced block can embed a live table, with typed columns, simple formula columns, and buttons that run a small set of whitelisted actions.",
+  "whatYouLose": [
+    "Coda's full formula language",
+    "packs and third-party integrations",
+    "team permissions",
+    "real-time collaboration",
+    "the polished doc-as-app feel"
+  ],
+  "whyPeopleStillPay": "A doc that behaves like a small app is what teammates can actually understand and maintain without a developer — people pay for that workflow, not for tables inside a document.",
+  "notes": "A useful sibling to Notion and Airtable in this catalogue, leaning more toward formulas and small workflows than either.",
+  "prompt": "Build a personal docs-with-tables tool: documents are Markdown, edited with a live preview, where a specially-marked fenced block references a table by name and renders it live inside the document. Tables have typed columns (text, number, date, select, checkbox) backed by a real database, with inline row editing. Support formula columns — a simple expression over a row's other fields, evaluated safely server-side with no imports and no network access, recomputed whenever a value changes. Let a document declare a button that runs one action from a small, fixed whitelist (add a row with defaults, mark a row done) — documents should never be able to execute arbitrary code. Support named, saved views per table (a filter plus a sort) that can be embedded in any document. Support CSV export per table and Markdown export per document.\n\nDo not build real-time collaboration, permissions, or a packs and integrations ecosystem — Coda's formula language and pack marketplace are the actual product; this is a single-user personal version of the same idea, not a platform.",
+  "faq": [
+    { "q": "Can I import my existing Coda docs?", "a": "Coda exports documents and tables, and the table data maps reasonably well onto this build's schema. Formula columns don't transfer — Coda's formula language is proprietary, so each formula needs to be rewritten by hand." },
+    { "q": "Will it work on my phone?", "a": "For reading a doc, yes, as a responsive page. Editing tables and writing formulas is realistically a desktop task." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month, with no per-seat or per-doc pricing to think about." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The pack ecosystem. Coda's packs connect a doc to dozens of other tools with a few clicks; here, any integration with an outside service is code you write yourself, one at a time." }
+  ]
+}
