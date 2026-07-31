@@ -1,0 +1,32 @@
+{
+  "tagline": "A plain strings table with an API, priced by how many strings you have.",
+  "verdictSummary": "POEditor is the least opinionated tool in this category: strings, languages, contributors, an API, and a price that scales with string count. That last part is the reason to consider replacing it — the code you would write is small, and what you stop paying for is a counter. What you keep paying for elsewhere is the contributor side: inviting translators who are not developers and giving them somewhere pleasant to work.",
+  "coreLoopDIY": "Keep every string and translation in one table with a stable API, sync both ways with your repository, and give non-developer translators a plain editor with no git in sight.",
+  "whatYouLose": [
+    "import and export across a long list of file formats",
+    "ordering human or machine translation from inside the tool",
+    "contributor management, invitations and per-language permissions",
+    "the integrations with GitHub, GitLab and Bitbucket kept working for you",
+    "not thinking about the string count"
+  ],
+  "whyPeopleStillPay": "Because the translators are usually not engineers. Somewhere they can log into and type, without a repository or a pull request, is most of what the subscription buys, and it is the part a personal build tends to skip.",
+  "prompt": "Build a strings table for a project with outside translators.\n\nSchema: terms (key, source text, context note, plural forms), languages, and translations. A stable REST API over it — list terms for a language, update one translation, export a language as a file — because everything else in this build is a client of that API.\n\nGit sync in both directions: import source strings from the repository on a schedule, and export translations back as a branch and a pull request rather than a direct push. A pull request means a human reviews the diff before it merges, which is the safeguard that lets you give translators write access to the editor without giving them write access to the codebase.\n\nThe editor is for people who have never used git. One string at a time, the source above, the context note beside it, plural forms as separate boxes when the language needs them, and a keyboard shortcut to save and advance. Nothing about branches, commits or files. This is where the paid tools earn their money and where homemade ones usually fail — a translator who has to think about tooling translates less.\n\nAdd two checks on save: placeholders present in the source must appear in the translation, and plural forms required by the target language must all be filled. Reject on the first, warn on the second.\n\nInvitations are a signed link per language, expiring, with no account creation. Every account you require is a translator you lose.\n\nOut of scope: file formats beyond the two or three you use, machine translation ordering, and a translation memory.",
+  "faq": [
+    {
+      "q": "Can I import my POEditor project?",
+      "a": "Yes — POEditor exports per language in standard formats, and its API lists terms with their context notes and plurals. This is one of the cleaner migrations in the category."
+    },
+    {
+      "q": "What about the string limit?",
+      "a": "There is not one, which is the main financial argument for building it. Your cost is a server, and it does not care whether you have 3,000 strings or 30,000."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A small VPS with Postgres at around $10 a month, flat. No per-string or per-language charge."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Format coverage. POEditor reads a long list of formats, and the day you need Android XML with plurals or an .xliff from a vendor, that is a parser you write rather than a menu item."
+    }
+  ]
+}

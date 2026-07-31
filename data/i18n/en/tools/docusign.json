@@ -1,0 +1,33 @@
+{
+  "tagline": "The signature everyone accepts, because of the evidence file behind it rather than the picture on the page.",
+  "verdictSummary": "Drawing a signature onto a PDF is an afternoon. What Docusign sells is the file underneath: who opened the envelope, from which address, what they were shown, what they consented to, when each event happened, and a tamper-evident seal over the lot. That artefact is only worth anything because counterparties, courts and auditors already recognise it. You cannot self-host recognition.",
+  "coreLoopDIY": "Send a document for signature over a one-time link, record every event against it, and produce a signed PDF with an appended certificate page listing the hashes, timestamps and consent text.",
+  "whatYouLose": [
+    "a signature a counterparty's legal team will accept without argument",
+    "identity verification — ID checks, knowledge-based authentication, SMS codes",
+    "qualified electronic signatures under eIDAS, and the trust-service provider behind them",
+    "deliverability of the signing invitation from a domain nobody blocks",
+    "the 1,000-plus integrations that start envelopes from Salesforce, Workday or a CRM"
+  ],
+  "whyPeopleStillPay": "Because the value is in the other party accepting it. A Docusign envelope closes a deal without a phone call about whether the signature counts; a homemade one starts that phone call every time.",
+  "notes": "Documenso is a genuine open-source implementation of the mechanics. What it cannot ship you is the recognition.",
+  "prompt": "Build a personal signature-request tool whose real deliverable is the evidence file, not the signature image.\n\nThe core loop: pick a PDF, place signature and date fields for one or more signers, and send each signer a one-time link. When a signer opens the link, show the whole document, require an explicit consent checkbox with the consent text stored verbatim, capture the signature, and record an event.\n\nThe event log is the product. Append-only, never editable, one row per event, each carrying: the event type (sent, opened, viewed to the last page, consented, signed, declined, bounced), the document hash at that moment, the signer identifier, the source IP, the user agent, and a UTC timestamp from the server rather than the browser. When all signers are done, generate the final PDF with a certificate page appended that prints the complete log and the SHA-256 of both the original and the final document, then seal it so any later edit invalidates the hash.\n\nSend invitations through a transactional email provider with SPF, DKIM and DMARC configured on your own domain, and store the provider's delivery and bounce webhooks as events. A signing invitation that lands in spam is a failed signature, and you will only know if you record it.\n\nOut of scope, and say so in the interface: identity verification of any kind, qualified or advanced electronic signatures, and any wording that suggests the output is legally equivalent to a Docusign envelope. It is a record of what happened, which is useful and honest; it is not a trust service.\n\nWrite a test that mutates one byte of a completed document and asserts the seal check fails.",
+  "faq": [
+    {
+      "q": "Can I import my Docusign envelope history?",
+      "a": "You can download completed documents and their certificates as PDFs and archive them. The envelope state, templates and recipient routing do not export in any form another tool can read."
+    },
+    {
+      "q": "Would a signature from this hold up legally?",
+      "a": "Under ESIGN and eIDAS a simple electronic signature can be valid, and a good evidence log helps. But validity is decided after a dispute, and Docusign's value is that the dispute usually does not start. Treat this as fine for internal approvals and risky for anything you would hate to argue about."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A small VPS at roughly $5 a month plus a transactional email plan — free at low volume on most providers, a few dollars a month past that. Setting up SPF, DKIM and DMARC on your domain is the real cost, and it is time rather than money."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Acceptance. Everything technical here is buildable; the reason people pay is that the other side already trusts the envelope, and that is not a feature you can implement."
+    }
+  ]
+}

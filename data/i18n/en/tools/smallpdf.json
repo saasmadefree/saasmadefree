@@ -1,0 +1,32 @@
+{
+  "tagline": "A PDF toolbox that also hands you an unlimited Sign.com subscription in the same bill.",
+  "verdictSummary": "The toolbox half is the same as iLovePDF and Sejda, and self-hosting covers it completely. What makes this one a kinda rather than a yes is the second half: Pro bundles unlimited Sign.com Premium, which is a real e-signature product with an evidence trail, and that is the part a personal build does not reproduce. The other thing worth stealing is the chaining — compress then OCR then split, as one saved recipe.",
+  "coreLoopDIY": "Self-host the toolbox and add a recipe layer on top: name a sequence of operations once, then drop documents through it as a single step.",
+  "whatYouLose": [
+    "the bundled Sign.com Premium subscription and its signature evidence",
+    "the mobile apps and their document camera",
+    "Google Drive and Dropbox connectors",
+    "conversion fidelity on complex Office layouts",
+    "use from a machine with nothing installed"
+  ],
+  "whyPeopleStillPay": "Because two subscriptions arrive as one. Someone who needs both PDF tools and signatures is comparing this against buying a signature product on its own, and at that comparison the toolbox is effectively free.",
+  "prompt": "Build a recipe layer over a self-hosted PDF toolbox.\n\nDeploy Stirling PDF behind Caddy with authentication. Then build the piece it does not have: named recipes that chain operations.\n\nA recipe is a small YAML file — an ordered list of operations with their parameters. The archive recipe might be: OCR, then compress to a named quality, then rename from a pattern using the document date. The share recipe might be: strip metadata, flatten form fields, watermark. Chaining is the whole point, because doing three operations by hand through three separate pages is the friction the paid tools remove.\n\nRun recipes through a real job queue rather than a request handler. Chained OCR and compression on a large scan takes minutes, and a request that times out halfway leaves an intermediate file and no result. The queue should be able to resume, and every job should show which step it is on.\n\nMake failure legible per step: if OCR succeeds and compression corrupts the output, the job report should say exactly that and keep the pre-compression file. Fail forward with the last good artefact rather than discarding the work.\n\nStrip metadata by default on any recipe that produces a file for someone else, and say so — author names, editing software and file paths leak out of PDFs constantly and nobody expects it.\n\nOut of scope: e-signature of any kind, mobile apps, cloud storage connectors. If you need signatures, that is a separate build with a separate honest answer about what it is worth.",
+  "faq": [
+    {
+      "q": "Can I import files from my Smallpdf account?",
+      "a": "Documents download normally. Nothing else carries: Smallpdf stores your tool history and any Sign.com envelopes on its side, and there is no export that another tool reads."
+    },
+    {
+      "q": "What about the signature half?",
+      "a": "It is not in this build, deliberately. Smallpdf Pro bundles Sign.com Premium, and reproducing it means an evidence trail, delivery from a domain that is not blocked, and a counterparty who accepts the result — a much bigger project than the toolbox."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A VPS with room for LibreOffice and a queue worker, roughly $10 a month, plus a domain. All the software is free."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The second subscription. If you are paying Smallpdf mostly for the unlimited signing, self-hosting the toolbox saves you very little and costs you the thing you were actually buying."
+    }
+  ]
+}

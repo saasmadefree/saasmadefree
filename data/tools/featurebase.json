@@ -1,0 +1,46 @@
+{
+  "slug": "featurebase",
+  "name": "Featurebase",
+  "domains": [
+    "featurebase.app"
+  ],
+  "category": "user-research",
+  "subcategory": "feedback board plus help desk",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Growth",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.featurebase.app/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Growth is $29 per seat per month billed yearly, plus $0.49 per AI resolution. Upstream recorded $59, which is the Professional tier. The page shows annual rates only."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "two products on one subscription",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Fider",
+      "url": "https://github.com/getfider/fider",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "canny",
+    "productlane",
+    "frill"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

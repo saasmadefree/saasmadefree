@@ -1,0 +1,32 @@
+{
+  "tagline": "A desktop PDF editor for people whose documents are not allowed to leave the machine.",
+  "verdictSummary": "Foxit's pitch against the web toolboxes is that nothing is uploaded. That constraint is the one part of the product a personal build can match exactly, and it points the DIY version somewhere specific: a local command-line pipeline with a watch folder, not another browser tab. What you give up is the interactive editor — clicking a paragraph and retyping it.",
+  "coreLoopDIY": "Drop files into a watch folder on your own machine and have a local pipeline apply a named recipe — OCR, compress, split, convert — writing results beside the input with nothing ever leaving the disk.",
+  "whatYouLose": [
+    "clicking into a paragraph and retyping it, with reflow",
+    "the Windows and macOS native applications and their shell integration",
+    "the Foxit eSign envelopes bundled with PDF Editor+",
+    "the mobile apps",
+    "PDF/A and accessibility conformance output"
+  ],
+  "whyPeopleStillPay": "Because in regulated offices \"the file never left this laptop\" is a requirement someone has to sign off on, and a commercial desktop licence with a support contract is what gets signed off. A script satisfies the requirement but not the procurement process.",
+  "prompt": "Build a local, offline PDF pipeline that never makes a network request.\n\nIt watches a folder. Any PDF dropped into a subfolder named after a recipe gets that recipe applied and the result written to an output folder alongside a small JSON report. Ship four recipes to start: ocr (Tesseract, keeping the original image layer and adding a text layer under it), compress (Ghostscript, with the target quality named in the recipe rather than guessed), split (by page range or by every occurrence of a bookmark), and to-docx (LibreOffice headless).\n\nMake the offline guarantee real rather than implied: run the whole pipeline in a container with no network, and add a test that asserts the process makes zero outbound connections while processing a document. A claim of \"your files never leave your machine\" is worth nothing unless something enforces it.\n\nThe report per file lists the input hash, the recipe, each step's duration, the output hash, and any warning worth seeing — fonts that could not be embedded, a page that OCR scored badly, a compression ratio so high it probably destroyed something. Print warnings loudly; silent degradation of a scanned document is the failure mode that costs people real work.\n\nGive it a minimal local GUI only if you want one: a single window that shows the queue and lets you open the output folder. Nothing more.\n\nOut of scope: interactive text editing, form design, e-signatures, and any hosted component at all.",
+  "faq": [
+    {
+      "q": "Can I open documents I edited in Foxit?",
+      "a": "Yes — Foxit writes standard PDFs. Nothing carries across from Foxit's own layer: saved recipes, cloud storage connections, and any eSign envelope in progress."
+    },
+    {
+      "q": "Will it work on my phone?",
+      "a": "No. This is a watch folder on a computer, and that is the point — the design constraint is that documents stay on one machine you control."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. Tesseract, Ghostscript and LibreOffice are free, and it runs on hardware you already own. That is the whole argument for building it rather than renting it."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Editing text in place. Foxit lets you click a line in a contract and retype it; this pipeline transforms whole documents and never touches a paragraph."
+    }
+  ]
+}

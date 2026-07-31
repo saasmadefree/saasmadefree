@@ -1,0 +1,48 @@
+{
+  "slug": "nitro-pdf-pro",
+  "name": "Nitro PDF",
+  "domains": [
+    "gonitro.com"
+  ],
+  "category": "documents",
+  "subcategory": "PDF editing and Office conversion",
+  "pricing": {
+    "amount": 15,
+    "currency": "USD",
+    "plan": "Nitro PDF Standard",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.gonitro.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The \"Nitro PDF Pro\" tier upstream recorded at $17.69 no longer exists. The live page sells Nitro PDF Standard at $15 USD per user/month, $180 a year; above it is Nitro PDF Plus (contact sales) and a three-year Nitro PDF Classic licence at $270 once."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "conversion fidelity and eSign envelopes",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Stirling PDF",
+      "url": "https://github.com/Stirling-Tools/Stirling-PDF",
+      "license": "MIT"
+    },
+    {
+      "name": "Documenso",
+      "url": "https://github.com/documenso/documenso",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "foxit-pdf-editor",
+    "adobe-acrobat-pro",
+    "docusign"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

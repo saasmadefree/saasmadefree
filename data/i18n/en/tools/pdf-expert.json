@@ -1,0 +1,32 @@
+{
+  "tagline": "A fast native reader and annotator for people who live in long PDFs on a Mac and an iPad.",
+  "verdictSummary": "Upstream filed this as a one-sitting build, which does not survive contact with what people actually buy it for: opening a 900-page technical manual instantly, annotating it with a Pencil, and finding that annotation on the other device an hour later. A web build can hold the annotations and the search; it cannot hold the native rendering performance or the Pencil, and that is most of the product.",
+  "coreLoopDIY": "Read PDFs in the browser with a fast viewer, keep highlights and notes in a sidecar file next to each document, and search across every annotation you have ever made.",
+  "whatYouLose": [
+    "native rendering speed on very large documents",
+    "Apple Pencil annotation and palm rejection on iPad",
+    "iCloud sync of documents and annotations between Mac, iPhone and iPad",
+    "the system share sheet and Files integration",
+    "offline reading with the full library on device"
+  ],
+  "whyPeopleStillPay": "Because it never stutters. A reader that hesitates on page 700 of a manual gets abandoned within a week, and the money buys rendering work that a personal build does not do.",
+  "prompt": "Build a personal PDF reading library that keeps annotations outside the file.\n\nPoint it at a folder of PDFs. Render pages with PDF.js and virtualise the page list so a 900-page document opens in under a second and scrolls without loading every page — do this first, because if the reader is slow nothing else about the tool matters.\n\nStore annotations as a sidecar JSON file next to each PDF, named after the document's SHA-256 rather than its filename, so renaming or moving the file does not orphan the notes. Each annotation records the page, a normalised rectangle, the type (highlight, underline, note), the colour, the note text and the exact text under the selection. Never write into the PDF itself.\n\nBuild one thing the sidecar format makes easy and the paid apps make hard: search across every annotation in the whole library at once, with the surrounding sentence and a link back to the page. A library of highlights you cannot search is a library you never re-read.\n\nAdd an export that produces a Markdown file per document — highlights in page order, each with its note and a page reference — so the reading has an output.\n\nSync is a folder you already sync: put the PDFs and their sidecars in the same directory and let Syncthing or iCloud Drive move them. Do not build a sync protocol; last-writer-wins on a JSON file is an acceptable answer for one person and a bad one for anybody else.\n\nOut of scope: a native app, stylus input, and editing the PDF.",
+  "faq": [
+    {
+      "q": "Can I bring my existing PDF Expert annotations across?",
+      "a": "Partly. PDF Expert writes standard PDF annotations into the file, so a one-off script with pypdf can read the existing highlights and notes out into sidecar files. Anything that is not a standard annotation — Pencil drawings in particular — comes across as an image or not at all."
+    },
+    {
+      "q": "Will it work on my iPad?",
+      "a": "In Safari, for reading and text highlighting. Pencil annotation will not work properly: palm rejection and pressure are native-app features, and a web canvas is a poor imitation of them."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. It is a static viewer over a local folder and can run entirely on your own machine, with your existing file sync doing the syncing."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The Pencil. If you annotate on an iPad by hand, no browser build will replace it, and that is worth being honest about before you spend a weekend."
+    }
+  ]
+}

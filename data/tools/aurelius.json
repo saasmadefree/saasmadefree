@@ -1,0 +1,38 @@
+{
+  "slug": "aurelius",
+  "name": "Aurelius",
+  "domains": [
+    "aureliuslab.com"
+  ],
+  "category": "user-research",
+  "subcategory": "research repository and insight synthesis",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Professional",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.aureliuslab.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The tier is called Professional, not \"Pro\", and the page states $49/month billed yearly. Above it, Premium is $199/month."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "research repository workflow",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting",
+    "database"
+  ],
+  "relatedSlugs": [
+    "productboard",
+    "canny",
+    "savio"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

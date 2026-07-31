@@ -1,0 +1,32 @@
+{
+  "tagline": "One PDF licence covering the browser, the desktop app and the phone, with the same document on all three.",
+  "verdictSummary": "Xodo's Document Suite is priced on breadth: web, desktop and mobile in one subscription. A self-hosted web toolbox covers one of those three well and the other two badly, so the honest personal build stops pretending to sync and instead makes one folder the single source of truth, reachable from anywhere. That works, and it is visibly less than three native apps.",
+  "coreLoopDIY": "Keep every document in one folder on a machine you control, reach it from any device through a browser, and let an existing file-sync tool handle offline copies.",
+  "whatYouLose": [
+    "the native iOS and Android apps and offline access on a phone",
+    "the desktop application and its file-association integration",
+    "real sync with conflict handling across three platforms",
+    "annotations that follow you between devices mid-document",
+    "the document scanner in the mobile app"
+  ],
+  "whyPeopleStillPay": "Because the same document being genuinely present on three devices is a sync problem, and sync is the part that takes a team years and breaks in ways one person never fully fixes.",
+  "prompt": "Build a single-folder PDF hub reachable from every device you own.\n\nOne directory is the source of truth. Serve it over HTTPS behind authentication, with a PDF.js viewer, full-text search over extracted text, and the everyday operations — merge, split, rotate, compress, OCR — applied server-side.\n\nDo not build sync. Put the folder inside Syncthing or an existing cloud drive and let that handle replication; then make the tool correct under the assumption that files can change underneath it. That means: index by content hash rather than path, re-index on a filesystem watch rather than on a timer, and never hold a file open across a request.\n\nExtract text once per document on ingest, store it in SQLite with FTS5, and make search the front door. A folder of 2,000 PDFs is unusable without it and pleasant with it, and this is the feature that makes a browser hub genuinely better than three apps.\n\nMake the phone case work honestly: a responsive viewer, upload from the camera roll, and a clear statement that there is no offline copy. Do not build a service worker that caches a few documents and calls it offline support — partial offline that silently misses the document you need is worse than none.\n\nStore annotations in sidecar JSON keyed by content hash, next to the file, so the sync tool carries them along with the document.\n\nOut of scope: native apps, mobile scanning with edge detection, and a sync protocol of your own.",
+  "faq": [
+    {
+      "q": "Can I move my Xodo documents over?",
+      "a": "Yes — copy the files into the folder and they are indexed. Annotations made in Xodo are written into the PDFs as standard annotations, so they survive; anything Xodo kept in its own cloud does not."
+    },
+    {
+      "q": "Will it work offline on my phone?",
+      "a": "No. This is a browser hub over a folder on a server, and with no signal there is nothing to read. If offline reading on a phone is why you pay, this build does not replace it."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Around $5 to $10 a month for a VPS plus a domain, or nothing on a machine at home reachable over a tunnel. The search index and viewer are free."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Three real apps. Xodo's whole pitch is that the same document behaves natively on web, desktop and phone; here it behaves well in one browser and adequately in another."
+    }
+  ]
+}

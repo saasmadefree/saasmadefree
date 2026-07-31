@@ -1,0 +1,44 @@
+{
+  "slug": "xodo-pro",
+  "name": "Xodo",
+  "domains": [
+    "xodo.com"
+  ],
+  "category": "documents",
+  "subcategory": "PDF across web, desktop and mobile",
+  "pricing": {
+    "amount": 14.99,
+    "currency": "USD",
+    "plan": "Document Suite",
+    "basis": "annual-effective-monthly",
+    "source": "https://xodo.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "There is no plan called \"Xodo Pro\". The page sells Xodo Web at $7.99/month, Xodo PDF Studio Desktop at $9.99, and Xodo Document Suite at $14.99 — all billed yearly. $14.99 is the Document Suite, the tier that covers web, desktop and mobile together."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "cross-platform apps and sync",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Stirling PDF",
+      "url": "https://github.com/Stirling-Tools/Stirling-PDF",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "pdf-expert",
+    "foxit-pdf-editor",
+    "ilovepdf-premium"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

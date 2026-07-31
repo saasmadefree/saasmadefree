@@ -1,0 +1,49 @@
+{
+  "slug": "dochub",
+  "name": "DocHub",
+  "domains": [
+    "dochub.com"
+  ],
+  "category": "documents",
+  "subcategory": "form filling and low-stakes signing",
+  "pricing": {
+    "amount": 12,
+    "currency": "EUR",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://dochub.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Read on the vendor page with the \"Billed Monthly\" toggle selected. The page geo-prices and served EUR from the EU; the yearly rate is 25% lower."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "form-field handling and Google integration",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Stirling PDF",
+      "url": "https://github.com/Stirling-Tools/Stirling-PDF",
+      "license": "MIT"
+    },
+    {
+      "name": "Documenso",
+      "url": "https://github.com/documenso/documenso",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "smallpdf",
+    "docusign",
+    "sejda-web"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

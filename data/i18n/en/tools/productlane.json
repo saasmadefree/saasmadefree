@@ -1,0 +1,32 @@
+{
+  "tagline": "A support inbox for teams that already live in Linear, with every conversation attached to an issue.",
+  "verdictSummary": "Productlane's whole design decision is that the issue tracker is the source of truth and support is a view onto it. That is a real and unusually clean idea, and it is also what makes the personal build tractable: you are not writing a help desk, you are writing a sync. The sync is where the difficulty lives — two systems, two sets of state, and conflicts that resolve wrongly in silence.",
+  "coreLoopDIY": "Turn incoming emails into threads, attach each thread to an issue in your tracker, and keep status in one direction only so the two systems can never disagree.",
+  "whatYouLose": [
+    "the live-chat widget and in-app messaging",
+    "the maintained Linear integration, kept working across their API changes",
+    "shared team inbox features: assignment, snoozing, internal notes at scale",
+    "the customer portal where users see their own tickets",
+    "SLA tracking and reporting"
+  ],
+  "whyPeopleStillPay": "Because keeping a support tool and an issue tracker in agreement is a maintenance job that never finishes. The API changes, an edge case appears, and somebody has to care. That somebody is what the seat price buys.",
+  "prompt": "Build an email support inbox that treats your issue tracker as the source of truth.\n\nIngest: a catch-all address delivered by webhook from your email provider. Thread by References and In-Reply-To headers, falling back to a token in the reply address — never thread on subject line alone, because two customers writing \"Bug\" become one conversation and someone reads the wrong reply.\n\nEach thread can be linked to exactly one issue in your tracker, created from the thread or attached to an existing one. Sync in one direction only: the tracker owns status, this inbox reflects it. One-way sync is a deliberate constraint that removes the entire class of conflict bugs, and the cost — you change status in the tracker, not here — is small.\n\nPoll the tracker's API on a schedule and reconcile, rather than depending only on webhooks. Webhooks get missed, and a support tool showing a stale status is how a customer gets told something shipped when it did not.\n\nWhen an issue closes, draft a reply to every thread attached to it and hold it for a human to send. Never send automatically: the fix landing and the customer's specific problem being solved are not the same claim.\n\nReplies go out over your provider with proper threading headers so they land in the existing conversation rather than starting a new one, and from a domain with SPF, DKIM and DMARC set up.\n\nOut of scope: live chat, a customer portal, assignment and SLAs, and any write path into the tracker beyond creating and linking issues.",
+  "faq": [
+    {
+      "q": "Can I import my Productlane conversations?",
+      "a": "Export gets you the message text; what does not travel is the link between each conversation and its Linear issue, which is the part the whole tool is organised around. Most people link the still-open threads by hand and archive the rest."
+    },
+    {
+      "q": "Does it work with something other than Linear?",
+      "a": "Yes — the sync is one direction and touches four endpoints, so GitHub Issues or Jira works about as well. Productlane itself is Linear-shaped, which is exactly why a generic build is feasible here."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A VPS with Postgres at around $10 a month plus transactional email, which is a few dollars at small volume. The tracker API calls are free within normal rate limits."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Someone maintaining the integration. Trackers change their APIs, and a one-person sync breaks quietly on a Tuesday; the paid product's real job is noticing before you do."
+    }
+  ]
+}

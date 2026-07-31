@@ -1,0 +1,49 @@
+{
+  "slug": "lokalise",
+  "name": "Lokalise",
+  "domains": [
+    "lokalise.com"
+  ],
+  "category": "translation",
+  "subcategory": "localization platform for product teams",
+  "pricing": {
+    "amount": 144,
+    "currency": "USD",
+    "plan": "Explorer",
+    "basis": "annual-effective-monthly",
+    "source": "https://lokalise.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "There is no \"Essential\" tier. Explorer is $144/month with annual billing, Growth $375, Advanced from $999. The page shows annual rates whichever billing toggle is selected."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "context tooling and enterprise workflow",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Weblate",
+      "url": "https://github.com/WeblateOrg/weblate",
+      "license": "GPL-3.0"
+    },
+    {
+      "name": "Tolgee",
+      "url": "https://github.com/tolgee/tolgee-platform",
+      "license": "Apache-2.0"
+    }
+  ],
+  "relatedSlugs": [
+    "crowdin",
+    "poeditor",
+    "tolgee-cloud"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

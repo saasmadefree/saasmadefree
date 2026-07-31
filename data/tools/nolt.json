@@ -1,0 +1,46 @@
+{
+  "slug": "nolt",
+  "name": "Nolt",
+  "domains": [
+    "nolt.io"
+  ],
+  "category": "user-research",
+  "subcategory": "single feedback board on a custom domain",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Essential",
+    "basis": "annual-effective-monthly",
+    "source": "https://nolt.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "low",
+    "notes": "nolt.io sits behind a Cloudflare challenge that neither a scripted fetch nor a real browser session here could clear, so the price was not read on the vendor page. $29/month on annual billing (and $39 billed monthly) comes from third-party pricing write-ups and matches what upstream recorded. Confidence is low until someone reads it on nolt.io directly."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "hosted board and moderation",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Fider",
+      "url": "https://github.com/getfider/fider",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "frill",
+    "canny",
+    "savio"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

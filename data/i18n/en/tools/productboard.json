@@ -1,0 +1,32 @@
+{
+  "tagline": "Where product teams keep every request, score it, and defend the resulting roadmap.",
+  "verdictSummary": "Productboard is not a database of feature ideas; it is an argument-settling device. Its value is that a scoring model, the evidence behind each item, the roadmap and the issue tracker all agree, and that a stakeholder who disagrees can be shown why. Rebuilding the scoring is a weekend. Rebuilding the agreement between four systems, and the organisational habit of using it, is not something a personal build reaches.",
+  "coreLoopDIY": "Score candidate features against explicit, weighted criteria, keep the evidence for each score attached, and show how the ranking changes when the weights change.",
+  "whatYouLose": [
+    "two-way sync with Jira and Linear that keeps delivery and plan in step",
+    "insights captured automatically from support tools and sales calls",
+    "portfolio roadmaps across several products and teams",
+    "shared views that stakeholders open instead of asking",
+    "the objection-handling that comes from everyone looking at the same scores"
+  ],
+  "whyPeopleStillPay": "Because prioritisation is a political problem before it is a technical one. What is being bought is a neutral place where the trade-off is visible to everyone, and a spreadsheet on one person's laptop does not carry that authority.",
+  "prompt": "Build a prioritisation model you can defend, rather than a roadmap tool.\n\nCandidates are rows. Each has a name, a short description, and a score per criterion — reach, confidence, effort, strategic fit, and whatever else you actually argue about. Criteria have weights that live in one configuration file. The composite score is computed, never typed.\n\nThe feature that makes this worth building: sensitivity. For the current ranking, show which criterion weight would have to change, and by how much, for the top item to be displaced. Prioritisation arguments are almost always disagreements about weights disguised as disagreements about items, and putting the number on it ends them faster than any chart.\n\nEvery score needs a note explaining it, and an item whose scores have no notes is marked unsubstantiated and excluded from the published ranking. Guesses and researched estimates otherwise look identical in a sorted list.\n\nLink each candidate to evidence — request URLs, quotes, ticket references — and show the count of distinct sources next to the score, because one loud customer and twelve quiet ones produce the same row otherwise.\n\nPublish a read-only page with the current ranking, the weights in force, and the date they last changed. Keep every previous version of the weights, so \"we deprioritised this in March\" is answerable.\n\nOut of scope: issue-tracker sync, automatic capture from support tools, multi-team portfolios, and permissions. Export as CSV so the scoring can move into whatever the team really uses.",
+  "faq": [
+    {
+      "q": "Can I import my Productboard data?",
+      "a": "Features and notes export as CSV and load in. The insight-to-feature links, the roadmap layouts and any Jira sync do not, and those links are the part that took the most work to build up."
+    },
+    {
+      "q": "Does it sync with Jira or Linear?",
+      "a": "No. That sync is the single most valuable thing Productboard does and the hardest to keep correct — statuses drift, items get split, and a half-working sync is worse than none. This build ends at a ranking you export."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Almost nothing: a small VPS or even a local process with SQLite, at $5 a month or less. There are no API calls and no storage of any size."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Authority. Productboard works because everyone accepts it as the place the decision was made; a scoring tool one person runs is an opinion with arithmetic attached."
+    }
+  ]
+}

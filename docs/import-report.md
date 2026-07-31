@@ -2504,3 +2504,154 @@ and cloud speech for a self-hosted hub, and its DIY replacement is a reverse pro
 Tailscale, which is a `hosting` story. Filed under the reader's mental model rather than the
 build's; flagged here rather than smoothed over.
 
+
+## Batch 11 — documents, user research, translation (349 → 374)
+
+First batch drawn from the new taxonomy: all 11 `documents`, 8 of the 10 `user-research`
+entries, and 6 `translation`. Two `user-research` entries were dropped mid-batch and
+backfilled from `translation` — see the exclusions below.
+
+### Every price in this batch was re-read, and 20 of 25 were wrong
+
+This is the largest defect rate any batch has recorded, and it is not upstream being careless
+in one direction — plan names have been renamed, tiers removed, and prices moved both up and
+down since the dataset was compiled.
+
+| Slug | Upstream | Corrected | What was wrong |
+|---|---|---|---|
+| `docusign` | $15 flat, URL 404 | **$11** annual-effective | URL dead; Personal is $11/mo on annual billing ($132/yr) and has no month-to-month rate |
+| `foxit-pdf-editor` | $14.99 "PDF Editor Plus", URL 404 | **€13.96** annual-effective | URL dead; tier renamed PDF Editor+; page geo-priced EUR |
+| `sejda-web` | $7.50 "Web Week Pass" | **€8.50** "Web Monthly" | the Week Pass is a €5.50 **one-time** 7-day charge, not a monthly rate |
+| `nitro-pdf-pro` | $17.69 "Nitro PDF Pro" | **$15** "Nitro PDF Standard" | the Pro tier no longer exists |
+| `pandadoc` | $35/seat | **$19**/seat | matches no current tier |
+| `ilovepdf-premium` | $9 flat | **$7** flat | monthly rate is $7, annual $4 |
+| `smallpdf` | $12 flat | **€10** flat | the annual/monthly trap: page defaults to €7.50 yearly, monthly is €10 |
+| `dochub` | $14 flat | **€12** flat | geo-priced EUR |
+| `pdf-expert` | $6.67 annual-effective | **€7.08** annual-effective | €84.99/yr; there is no monthly plan at all |
+| `xodo-pro` | $14.99 "Pro" flat | **$14.99** "Document Suite" annual-effective | no "Pro" tier exists; $14.99 is the yearly-billed suite |
+| `canny` | $99 "Starter" | **$79** "Pro" annual-effective | Starter removed; Pro is "from $79", scaling with tracked users |
+| `featurebase` | $59 "Growth" | **$29** "Growth" annual-effective | $59 is the Professional tier |
+| `productboard` | $25 "Essentials"/maker | $25 **"Plus"**/maker | Essentials removed; the amount happens to match Plus monthly |
+| `productlane` | $29 "Pro"/user | $29 **"Starter"**/user | $29 is Starter; Pro is $59 |
+| `savio` | $49 "Essential" | **$39** "Essential" | |
+| `aurelius` | $49 "Pro" flat | $49 **"Professional"** annual-effective | billed yearly, not monthly |
+| `crowdin` | $59 "Team" flat | **€53 "Pro"** flat | Team is €161/mo monthly; Pro is the entry paid tier; EUR |
+| `deepl-pro` | $10.49 "Starter"/user | **€7.49 "Individual"** annual-effective | no Starter tier; EUR with VAT from the EU |
+| `lokalise` | $120 "Essential" | **$144 "Explorer"** annual-effective | no Essential tier |
+| `poeditor` | $14.99 "Start", URL 404 | **$17** "Start" | `/pricing` 404s, `/pricing/` resolves |
+| `tolgee-cloud` | $25 "Starter" | **€49 "Team"** annual-effective | no Starter tier |
+| `linguise` | $15 "START", URL 404 | $15 (confirmed), URL to `/prices/` | price right, URL dead |
+| `frill` | $25 "Startup" | $25 (confirmed) | |
+| `adobe-acrobat-pro` | $29.99 | $29.99, confidence to medium | see below |
+
+**`adobe-acrobat-pro` is the one price in this batch nobody here could read.** adobe.com
+refuses every connection from this network — `ERR_HTTP2_PROTOCOL_ERROR` in a real Chrome
+session, `curl: (92)` then a timeout on the command line, on both `/acrobat/pricing.html` and
+`/acrobat/pricing/individual.html`. The $29.99 month-to-month figure is corroborated by
+independent reporting (which also gives $19.99/mo for the annual plan), so the entry ships at
+`confidence: medium` with the block written into `pricing.notes` rather than presented as
+read. The pre-existing `adobe-express` entry cites an adobe.com URL under the same constraint.
+
+**`nolt` could not be read either** — nolt.io sits behind a Cloudflare challenge that neither
+a scripted fetch nor a real browser session cleared. Shipped at `confidence: low` with the
+figure attributed to third-party reporting in `pricing.notes`.
+
+### Two exclusions: the price stopped existing
+
+| Slug | Reason |
+|---|---|
+| `dovetail` | dovetail.com/pricing now shows exactly two tiers, Free and Enterprise ("Custom pricing available"). The $39/user/month Team plan upstream recorded is gone. Nothing to cite. |
+| `maze` | maze.co/pricing now shows Free and Enterprise ("Contact sales") only. Same situation. |
+
+Both are in `MANUAL_EXCLUSIONS` with the reason and the date, so a future `--limit` run cannot
+pick them back up. `typedream` was added at the same time for the separate reason recorded in
+the taxonomy section above.
+
+This leaves `user-research` with 8 members rather than 10 — still comfortably above the floor,
+and worth naming as a risk the taxonomy pass could not have seen: a category sized from
+upstream metadata can shrink once the prices are actually checked.
+
+### Verdicts
+
+3 `yes` / 17 `kinda` / 5 `no`.
+
+- **`ilovepdf-premium` and `sejda-web` stay `yes`** (upstream had both as `yes` with a
+  `multi-day` estimate, which fails CONTRIBUTING's definition on its face). They stay because
+  they are the hosted-open-source case the catalogue already carries for `umami-cloud`,
+  `n8n-cloud` and `ghost-pro`: Stirling PDF implements the whole operation set, so the
+  substitute is not an approximation. `diyTimeEstimate` moved to `weekend` to match that
+  pattern, rather than the verdict moving.
+- **`tolgee-cloud` moved `kinda` to `yes`.** Tolgee is Apache-2.0 and published in full; the
+  Cloud subscription is hosting for identical software. Same shape and same `moatType`
+  (`open-source core/hosting`) as the entries above.
+- **`frill` and `nolt` moved `yes` to `kinda`**, both upstream `yes` with `multi-day`. Frill's
+  actual product is a cross-origin widget running inside somebody else's stylesheet and CSP;
+  Nolt's is a public board that attracts spam within days of launch. Neither is a sitting.
+- **`smallpdf` stays `kinda` while the two toolboxes beside it are `yes`** — the closest call
+  in the batch. All three do the same PDF operations, but Smallpdf Pro bundles an unlimited
+  Sign.com Premium subscription, and e-signature with an evidence trail is a separate product
+  self-hosting does not replace. Written into the entry so a reader can check the reasoning.
+- **`linguise` moved `no` to `kinda`.** A verdict moving toward buildable deserves scrutiny,
+  so the argument is stated concretely: Linguise's product is a translating reverse proxy with
+  a cache, an override table and correct hreflang, and all four are a weekend for a single site
+  you control. The machine-translation API it depends on is the same class of dependency as the
+  API-key requirements the catalogue already lists elsewhere, not a moat.
+- **`pdf-expert` moved `yes` to `kinda`.** What people buy is native rendering speed on huge
+  documents and Apple Pencil annotation; a browser build holds the annotations and loses both.
+
+### Editorial
+
+Every prompt and every FAQ was written from scratch. The upstream drafts in this pool are
+templated to the point of being wrong: `canny`'s `whatYouLose` and `whyPeopleStillPay`
+described a research-participant panel and video transcription — Dovetail's product, not a
+feature-request board — and all 11 `documents` entries shipped the same `priorArt` (Stirling
+PDF), the same prompt skeleton, and the same "Recheck price before merge." note in a
+reader-facing field. Nothing upstream wrote survives in the published files.
+
+One angle per entry, so eleven PDF tools do not read as one page repeated: Acrobat splits into
+the toolbox half and the conformance half, with veraPDF as the arbiter; DocHub is AcroForm
+field detection; Docusign is the evidence file rather than the signature image; Foxit is an
+offline pipeline with a test asserting zero outbound connections; iLovePDF and Sejda are the
+same deployment with different emphases (limits you set, retention you can watch); Nitro is a
+conversion harness that scores its own round-trip drift; PandaDoc is proposal arithmetic
+computed rather than typed; PDF Expert is sidecar annotations searchable across a library;
+Smallpdf is chained operations as saved recipes; Xodo is one folder as the source of truth with
+search as the front door. Research side: Aurelius enforces evidence-to-insight links as a
+database constraint, Canny is deduplication at submission time, Featurebase is a changelog
+generated from shipped items, Frill is the shadow-DOM widget, Nolt is moderation as a launch
+requirement, Productboard is weight sensitivity in a scoring model, Productlane is a
+deliberately one-directional tracker sync, Savio is revenue at stake with the fetch date shown.
+Translation: Crowdin is the byte-identical round trip, DeepL is glossary substitution around a
+weaker model, Linguise is hreflang, Lokalise is screenshots generated in CI, POEditor is an
+editor with no git in it, Tolgee is self-hosting the real platform.
+
+`priorArt` was corrected rather than carried: Documenso for the four signature-adjacent
+entries, Fider for the feedback boards, Weblate/Tolgee/LibreTranslate for translation.
+`aurelius` and `productboard` ship with no `priorArt` at all rather than an invented one.
+
+### Verification
+
+```
+$ npm run validate
+374 fiche(s), 489 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  175 passed (175)
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run build
+Site écrit dans dist/ — 2 langue(s), 489 fiche(s), 69 page(s) de catégorie, 564 URL(s).
+
+$ npm run linkcheck
+491 OK, 25 en échec — 23 pré-existants (anti-robot 401/402/403/429), zéro nouvelle URL morte.
+
+$ npm run stats
+374 fiche(s) : yes 54 (14 %), kinda 221 (59 %), no 99 (26 %)
+```
+
+`nolt.io/pricing` shows up in the linkcheck failures as a 403 — the same Cloudflare challenge
+that stopped the price being read, not a dead page.

@@ -1,0 +1,32 @@
+{
+  "tagline": "Fill in PDF forms, annotate them, and collect a signature that does not need to hold up in court.",
+  "verdictSummary": "The interesting part of DocHub is not signing, it is form fields. A PDF form is an AcroForm structure with named fields, and reading, filling and flattening it is a solved problem in pypdf. Build that and you have most of DocHub. What stays out of reach is the Google Drive and Gmail integration that puts DocHub one click from where the documents already live.",
+  "coreLoopDIY": "Open a PDF, detect its AcroForm fields, fill them from a form in the browser, drop a signature image where there is no field, and flatten the result to a new file while keeping the original untouched.",
+  "whatYouLose": [
+    "the Google Drive, Gmail and Workspace integrations",
+    "sending a document to someone else to sign, with reminders",
+    "any evidence trail a counterparty would accept",
+    "the mobile apps",
+    "shared templates and folders across a team"
+  ],
+  "whyPeopleStillPay": "Because DocHub lives inside Gmail and Drive. The document arrives as an attachment, and it is filled, signed and sent back without ever being downloaded — that adjacency is the product, and self-hosting it puts the file back on your disk.",
+  "prompt": "Build a personal PDF form filler.\n\nThe core loop: upload a PDF, and if it carries an AcroForm, read the field names, types and page positions with pypdf and render an HTML form that mirrors them. Fill the fields from that form, then write a flattened copy — appearance streams generated, fields no longer editable — to a new file. Never modify the uploaded original; store it read-only and keep every output as a separate versioned file next to it.\n\nWhen the PDF has no AcroForm, fall back to placement mode: show the page as an image, let the user drag text boxes, checkmarks and a signature image onto it, and stamp them into a new PDF at the coordinates given. Store the placements as JSON keyed by the document hash so re-opening the same document restores them.\n\nSignature capture is a drawing canvas that produces a transparent PNG, stored once and reusable. Be explicit in the interface that this stamps a picture of a signature into a document and produces no evidence of who drew it or when.\n\nOut of scope: sending a document to a third party to sign, reminder emails, identity verification, and any claim that the result is a qualified or legally binding electronic signature. Those need an evidence trail this build does not produce, and offering them without one is worse than not offering them.\n\nTest with a real government form that uses AcroForm fields and one that is a flat scan.",
+  "faq": [
+    {
+      "q": "Can I bring my saved DocHub templates across?",
+      "a": "The documents themselves export as ordinary PDFs and open fine. The field mappings and reusable templates do not — DocHub stores those in its own format, and you will re-place fields once per document on first use."
+    },
+    {
+      "q": "Can I send a document to someone else to sign?",
+      "a": "No, and that is a deliberate boundary. Sending to a counterparty means their identity, their consent record and a delivery receipt, which is a different and much larger build. This fills and signs documents that stay with you."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing if it runs on your own machine. On a small VPS, about $5 a month. pypdf and the rendering libraries are free and there is no per-document cost."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The Gmail and Drive adjacency. DocHub's real trick is that the attachment never leaves Google — you open it, fill it, and send it back. Here, every document is a download and an upload."
+    }
+  ]
+}

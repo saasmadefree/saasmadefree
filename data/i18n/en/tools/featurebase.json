@@ -1,0 +1,32 @@
+{
+  "tagline": "A feedback board, a changelog and a live-chat help desk sold as one subscription.",
+  "verdictSummary": "Featurebase bundles three things that are usually bought separately, and the bundle is the product. Each part is individually modest — a board, a changelog, an inbox — but building all three and keeping them consistent is where the weekend goes. The honest personal build picks the loop that connects them: a shipped item automatically writes the changelog entry and notifies everyone who asked for it.",
+  "coreLoopDIY": "Run one board where requests are collected and voted on, and when a request is marked shipped, generate the changelog entry from it and notify every voter automatically.",
+  "whatYouLose": [
+    "the live-chat widget and the unified support inbox",
+    "the AI agent that answers common support questions",
+    "per-seat team workflows, assignment and SLAs",
+    "the mobile app for answering conversations",
+    "multilingual support across the board and help centre"
+  ],
+  "whyPeopleStillPay": "Because it collapses two vendors into one. A small team paying separately for a support inbox and a feedback tool is comparing the whole bundle against either one on its own, and at that comparison it is cheap.",
+  "prompt": "Build a feedback board whose changelog writes itself.\n\nStart with the board: posts, votes, comments, statuses, a public roadmap view. Nothing unusual.\n\nThe loop that matters: when a post moves to shipped, it becomes a changelog entry. Take the post title, the linked commit or release note if you provide one, and draft the entry with an LLM — then require a human to edit and approve before it publishes. Never publish generated release notes unreviewed; a changelog is a promise about what a product does, and a hallucinated line in it is worse than no changelog.\n\nOn publish, notify everyone who voted on that post, in a single digest per person per week rather than one email per shipped item. Include what they voted for and what it does now. This is the entire reason the loop is worth automating: the people who asked are the people who should hear.\n\nBuild the changelog as a public page and an RSS feed. RSS is four lines of code and means the changelog can be consumed by other tools without an integration.\n\nAdd a small embeddable widget — a script tag that opens the board in an overlay on your own site. Scope its CSS so it cannot inherit or leak host page styles, and pass the current user's identifier so votes are attributed instead of anonymous.\n\nOut of scope, deliberately: live chat, a support inbox, ticket assignment and SLAs. A help desk is a bigger product than everything above put together, and half a help desk is worse than none — messages arrive and nobody is on the hook to answer them.",
+  "faq": [
+    {
+      "q": "Can I import my Featurebase data?",
+      "a": "Posts, votes and comments export and can be loaded in. Support conversations are the awkward part: they carry attachments and threading that no generic import will reconstruct, so most people archive them and start clean."
+    },
+    {
+      "q": "Does it replace the help desk half?",
+      "a": "No. This is the board and the changelog only. If the support inbox is why you pay, this build replaces maybe a third of what you use."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A VPS with Postgres at about $10 a month, plus a few cents per generated changelog draft. There is no per-resolution charge because there is no AI agent answering anyone."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "One vendor for both jobs. Rebuilding the board is easy; the reason Featurebase gets bought is that it also handles the support side, and that half is not in scope here."
+    }
+  ]
+}

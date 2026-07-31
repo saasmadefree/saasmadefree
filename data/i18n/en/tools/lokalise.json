@@ -1,0 +1,32 @@
+{
+  "tagline": "Localization for product teams, built around showing translators where each string appears.",
+  "verdictSummary": "The database half of Lokalise is the same as every other translation platform and equally buildable. Its actual differentiator is context: a screenshot bound to each key, so a translator sees that this string is a button 80 pixels wide and not a paragraph. That is buildable too, and doing it properly — capturing screenshots in CI and matching strings to regions automatically — is the weekend. The enterprise workflow around it is not.",
+  "coreLoopDIY": "Keep keys and translations in a database, attach a screenshot region to every key, and show translators the screenshot with their string highlighted in place.",
+  "whatYouLose": [
+    "automatic screenshot capture from a design tool or CI pipeline",
+    "branching, review chains and approval workflows for large teams",
+    "the SDKs that ship translations over the air to mobile apps",
+    "quality-assurance checks across dozens of file formats",
+    "single sign-on, audit logs and enterprise administration"
+  ],
+  "whyPeopleStillPay": "Because at team scale localisation is a process problem, not a storage problem. Who approves, what blocks a release, which strings are missing for the German launch — the workflow is what costs money, and it only earns its keep with several people in it.",
+  "prompt": "Build a translation editor where every key carries a screenshot.\n\nKeys, languages and translations in a database, imported from and exported to your project's JSON or .strings files.\n\nThe context system is the point. A screenshot is uploaded with a manifest listing which keys appear in it and at which pixel rectangles. In the editor, translating a key shows the screenshot with that rectangle highlighted and everything else dimmed. A translator who can see the string in place makes different and better decisions than one reading a list, and this single feature explains most of Lokalise's value.\n\nGenerate the manifest rather than typing it: add a debug build of your app that renders each localised string wrapped in a marker, screenshot the screens with Playwright in CI, and extract the marker positions from the DOM. Manual screenshot mapping decays within one release, so if it is not automated it is not worth building.\n\nStore the rendered pixel width of each string region and warn when a translation is more than 30 percent longer than the source. German and Finnish routinely overflow layouts built against English, and catching it in the editor is far cheaper than in a bug report.\n\nAdd the checks that catch real breakage: placeholder mismatches between source and translation, unbalanced tags in strings containing markup, and missing keys per language before a release.\n\nExport back to the project files with a byte-identical round-trip test, and make missing keys per language fail the build rather than fall back silently to English.\n\nOut of scope: over-the-air mobile updates, branching, approval workflows and permissions.",
+  "faq": [
+    {
+      "q": "Can I import my Lokalise project?",
+      "a": "Keys and translations export per language and load in cleanly. Screenshots and their key mappings are the valuable part and do not export usefully, so the context has to be regenerated — which is why the prompt automates it."
+    },
+    {
+      "q": "Do I need the screenshot pipeline to start?",
+      "a": "No, but without it this is just another string table, and the string table is the part you could get from Weblate for free. The screenshots are the reason to build rather than install."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A VPS with Postgres and object storage for screenshots, roughly $10 to $15 a month. The CI screenshot job runs on runners you already pay for."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The release process. Lokalise is bought so that a launch is blocked by missing German rather than discovered by a German user, and that gate is organisational as much as technical."
+    }
+  ]
+}

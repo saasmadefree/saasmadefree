@@ -1,0 +1,32 @@
+{
+  "tagline": "Translate strings by alt-clicking them in your running application, instead of hunting for keys.",
+  "verdictSummary": "Tolgee Cloud is hosting for software that is Apache-licensed and published in full. Self-hosting it gives you the whole product — the in-context editor, the SDKs, the platform — with no feature removed, which puts it squarely in the deploy-the-real-thing category alongside the other open-source cloud offerings in this catalogue. The work is a Docker Compose file, a database and a certificate, not a rebuild.",
+  "coreLoopDIY": "Run the Tolgee platform on your own server, point your application's SDK at it, and translate strings by alt-clicking them in the running app.",
+  "whatYouLose": [
+    "backups, upgrades and uptime being somebody else's job",
+    "the hosted content-delivery endpoint that serves translations globally",
+    "included AI translation credits",
+    "support with a response time attached"
+  ],
+  "whyPeopleStillPay": "Because it is the localisation database for a live product, and when it is down the application either falls back to keys or fails. Paying for uptime you did not build is a rational trade at almost any team size.",
+  "notes": "Same shape as the other open-source cloud entries in this catalogue: identical software, the subscription buys operations.",
+  "prompt": "Self-host the Tolgee platform for one project.\n\nRun it with Docker Compose: the Tolgee server, Postgres, and Caddy in front for automatic certificates on your own domain. Use the official image and change nothing about the application — the point of this exercise is that the software is already the product.\n\nThe two decisions that matter are operational.\n\nFirst, backups. The translation database is the state that would hurt to lose, and it is small. Set up nightly pg_dump to object storage with a retention policy, then actually restore one into a scratch database and confirm the project opens. A backup nobody has restored is a hypothesis.\n\nSecond, how your application gets translations at runtime. Two honest options: the SDK fetching from your server, which means your app depends on this server being up, or exporting translations at build time into static files, which removes the runtime dependency and gives up live updates. Pick deliberately and write down which one you chose, because discovering the answer during an outage is the wrong time.\n\nSet up the in-context editor in your development build only — the alt-click editing overlay is the reason to run Tolgee at all, and it should never ship to production.\n\nAdd the export step to CI so a release always carries a snapshot of translations, whichever runtime option you chose.\n\nOut of scope: modifying the platform, and building anything Tolgee already ships.",
+  "faq": [
+    {
+      "q": "Can I move my Tolgee Cloud project to my own server?",
+      "a": "Yes, and this is the cleanest migration in the category: it is the same software. Export the project from Cloud and import it into your instance, then repoint the SDK at your host."
+    },
+    {
+      "q": "Do I lose any features by self-hosting?",
+      "a": "Not the in-context editor, the SDKs or the platform. What is not included is the hosted content-delivery endpoint, the bundled AI translation credits, and support."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A VPS with a couple of gigabytes of memory for the JVM and Postgres, roughly $10 to $15 a month, plus a domain and a few cents of backup storage."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Someone else being awake. If your application fetches translations at runtime and your server is down, your users see keys — which is why the prompt makes you choose that dependency deliberately."
+    }
+  ]
+}

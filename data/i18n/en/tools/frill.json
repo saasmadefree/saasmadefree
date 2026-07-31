@@ -1,0 +1,32 @@
+{
+  "tagline": "An ideas board, roadmap, changelog and announcement widget you drop into your own product.",
+  "verdictSummary": "Upstream called this a yes, and it does not survive writing the losses down. The board is easy; the product is the widget — a script tag that opens on somebody else's page, in their stylesheet, under their content security policy, knowing who the logged-in user is. Getting that right across four surfaces (ideas, roadmap, changelog, announcements) is a solid weekend, not one sitting.",
+  "coreLoopDIY": "Host a board with a public roadmap and changelog, and embed all of it in your own product through a single script tag that identifies the logged-in user.",
+  "whatYouLose": [
+    "the widget being tested against thousands of host sites and their CSP rules",
+    "surveys and targeted announcements to user segments",
+    "the hosted board on your own subdomain with a certificate handled for you",
+    "moderation and spam handling on a public board",
+    "the integrations that push ideas into an issue tracker"
+  ],
+  "whyPeopleStillPay": "Because an embedded widget is the sort of thing that works everywhere until it does not, and then it breaks inside a customer's product. Paying for it means somebody else owns that class of bug.",
+  "prompt": "Build an embeddable feedback widget, and treat the embedding as the hard part.\n\nThe backend is a board: ideas, votes, comments, statuses, a roadmap view derived from status, and a changelog of shipped items.\n\nThe widget is one script tag on the host page. Render it inside a shadow DOM so no host stylesheet can reach in and nothing you ship leaks out — this is not optional, it is the single difference between a widget that works on any site and one that renders differently on every site. Load it lazily, after the host page is interactive, and keep the initial script under 10 KB with the rest fetched on open.\n\nIdentify the user by having the host pass a signed token — an identifier and an HMAC over it with a shared secret — rather than an email in plain text. Without a signature, anyone can vote as anyone, and vote counts on an unsigned widget mean nothing.\n\nDocument the content security policy the host needs (your connect-src and frame-src) and fail loudly with a console message naming the missing directive when a request is blocked. A widget that silently does nothing under a strict CSP is the support ticket you will get most often.\n\nBuild the roadmap and changelog as normal server-rendered pages as well as widget views, so both are indexable and linkable outside the product.\n\nOut of scope: surveys, segmented announcements, and issue-tracker integrations. Test the widget on a page with an aggressive reset stylesheet and a strict CSP before you consider it done.",
+  "faq": [
+    {
+      "q": "Can I import my Frill ideas?",
+      "a": "Frill exports ideas, votes and comments, and they load in cleanly. The widget configuration — colours, placement, which surfaces are enabled — is per-vendor and gets set up again from scratch."
+    },
+    {
+      "q": "Will the widget work inside my app?",
+      "a": "Yes, if you can add a script tag and set two CSP directives. The shadow DOM handles the styling collisions. What you do not get is Frill's experience of every odd host environment they have already hit."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A VPS with Postgres at about $10 a month, a domain, and email that is free at this volume. There is no per-idea limit, which is what the Startup tier caps at 50."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Confidence that it renders correctly everywhere. Your widget is tested on your site; Frill's is tested on thousands, and that difference only shows up in production on somebody else's page."
+    }
+  ]
+}

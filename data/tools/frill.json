@@ -1,0 +1,46 @@
+{
+  "slug": "frill",
+  "name": "Frill",
+  "domains": [
+    "frill.co"
+  ],
+  "category": "user-research",
+  "subcategory": "embeddable feedback widget and roadmap",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Startup",
+    "basis": "flat-monthly",
+    "source": "https://frill.co/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Confirmed on the vendor page at $25/month for Startup (50 ideas, 1 survey). A yearly option exists; the monthly figure is the one recorded here."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "embeddable widget and hosted board",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Fider",
+      "url": "https://github.com/getfider/fider",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "nolt",
+    "canny",
+    "featurebase"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Where source strings, translators and your repository meet, for a hundred file formats.",
+  "verdictSummary": "For your own project, translation management is a small database and a git integration — and Weblate is a mature open-source implementation you can self-host today. What Crowdin sells beyond that is breadth: parsers for a hundred file formats that round-trip without destroying comments or ordering, and a marketplace of vendors who will do the translating. Neither is something you build; one you narrow, the other you replace with a person.",
+  "coreLoopDIY": "Pull source strings out of your repository into a database, translate them in a web editor, and write them back as a commit that changes only the translated values.",
+  "whatYouLose": [
+    "parsers for a hundred file formats you have not thought about yet",
+    "the vendor marketplace and ordering professional translation in-product",
+    "translation memory shared across projects and pretranslation from it",
+    "the integrations with figma, design tools and CI providers",
+    "in-context screenshots that show translators where a string lands"
+  ],
+  "whyPeopleStillPay": "Because file formats are where localisation actually breaks. An .xliff that loses its notes or a .strings file that reorders on write produces a diff nobody can review, and the parsers are the part that took years.",
+  "prompt": "Build a translation manager for the two or three file formats you actually use.\n\nPick them explicitly — JSON with nested keys, gettext .po, and one more — and write a parser and a serialiser for each. The serialiser is the hard half and the one to test first: parse a file, serialise it unchanged, and assert byte equality. If a round trip is not byte-identical, every translation commit carries formatting noise and reviewers stop reading them.\n\nSync with git rather than with an API: pull the source files on a schedule, diff against the strings in the database, and add new keys as untranslated. Mark strings whose source text changed as needing review rather than silently keeping the old translation — a stale translation of changed source is the bug that reaches users.\n\nThe editor shows the key, the source, existing translations in other languages for context, and the file and line it came from. Add machine translation as a suggestion only, clearly marked, never saved as the value without a human accepting it.\n\nWrite back as a commit per language on a branch, touching only value positions. Never let the writer reorder keys, rewrite quoting or strip comments — the git diff being reviewable is the entire contract between this tool and the developers who have to merge it.\n\nStore a translation memory as exact-match plus embedding similarity over previous pairs, and offer matches at 90 percent and above.\n\nOut of scope: formats you do not use, a vendor marketplace, and design-tool integrations.",
+  "faq": [
+    {
+      "q": "Can I import my Crowdin project?",
+      "a": "Yes for the strings themselves: export translations per language and load them keyed by string identifier. Translation memory, glossaries and approval history do not export in a form another tool reads."
+    },
+    {
+      "q": "What if I need a format you did not build?",
+      "a": "You write the parser, and the round-trip test tells you whether it works. That is the honest trade: Crowdin's hundred formats are a hundred problems already solved, and each one you need is a day you spend."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A small VPS with Postgres at around $10 a month, plus machine-translation calls of a few dollars a month at project scale. Consider self-hosting Weblate instead before building this."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Ordering a translation. Crowdin lets you buy a professional translation without leaving the tool; here that becomes an email, an invoice and a copy-paste at both ends."
+    }
+  ]
+}
