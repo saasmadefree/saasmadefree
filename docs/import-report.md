@@ -3319,8 +3319,10 @@ $ npm run stats
 
 ### What is left, and which categories are still empty
 
-63 upstream entries remain importable after this batch. Five of the fifteen categories the
-taxonomy pass opened are **still completely empty**, and they are all in that remainder:
+62 upstream entries remain importable after this batch (166 selected, minus the 7 excluded
+across batches 12–15, minus the 97 imported). **Six** of the fifteen categories the taxonomy
+pass opened are still completely empty, verified by counting `data/tools` against
+`data/categories.json` rather than from memory:
 
 | Category | Entries waiting | Notes |
 |---|---|---|
@@ -3333,5 +3335,5 @@ taxonomy pass opened are **still completely empty**, and they are all in that re
 | `translation` | 2 | already has 6 tools, so not empty — these complete it |
 
 An empty category produces no page but is still a promise in `data/categories.json`. If the
-remaining batches are not run, those five should be removed from the taxonomy rather than left
+remaining batches are not run, those six should be removed from the taxonomy rather than left
 declared.
