@@ -1,0 +1,32 @@
+{
+  "tagline": "De l’email froid en volume, réparti sur des dizaines de boîtes mail préchauffées.",
+  "verdictSummary": "Tout ce que vend Instantly se ramène à un seul actif qu’il ne te vendra pas : la délivrabilité. Les boîtes illimitées, la rotation, le réseau de préchauffage partagé où des milliers de comptes marquent le courrier des autres comme important — ce pool est un effet de réseau, et c’est exactement la dépendance tierce difficile qui exclut un « oui », peu importe la taille du code. Un projet perso peut planifier des envois à travers des boîtes que tu possèdes déjà et respecter leurs vraies limites, ce qui est le travail d’une session, et atterrira quand même en spam si les domaines derrière sont froids.",
+  "coreLoopDIY": "Répartis une séquence à travers les boîtes que tu possèdes déjà, dans la vraie limite quotidienne de chaque fournisseur, avec un arrêt strict dès qu’un humain répond.",
+  "whatYouLose": [
+    "le réseau de préchauffage partagé, qui est le vrai produit",
+    "un approvisionnement en domaines et boîtes tout faits avec une réputation existante",
+    "le monitoring de délivrabilité et les tests de placement en boîte de réception à travers les fournisseurs",
+    "la base de leads vendue en complément du plan d’envoi",
+    "quelqu’un d’autre qui absorbe les conséquences quand un domaine se grille"
+  ],
+  "whyPeopleStillPay": "Parce que l’email froid réussit ou échoue entièrement selon où il atterrit, et le pool de préchauffage plus l’approvisionnement en boîtes est le seul levier qui bouge ça. Personne n’achète le planificateur.",
+  "prompt": "Construis un planificateur d’envoi pour des boîtes mail que tu possèdes déjà. Il ne préchauffera rien et ne prétendra pas le faire.\n\nStack : ton choix, Postgres, Docker Compose. Connecte les boîtes via les API Gmail et Microsoft Graph avec OAuth plutôt que du SMTP brut, parce que les API des fournisseurs te donnent de vraies erreurs de quota au lieu d’une limitation silencieuse.\n\nModèle de boîte mail : chaque boîte connectée a un plafond quotidien configuré, un planning de montée en puissance (démarre à N par jour, augmente de M par jour jusqu’au plafond), et une fenêtre d’envoi dans le fuseau horaire propre de cette boîte. Le planificateur ne dépasse jamais le chiffre actuel de montée en puissance, et refuse de tourner hors de la fenêtre.\n\nRotation : quand une campagne doit envoyer, choisis la boîte avec le plus de quota restant aujourd’hui, en faisant varier l’intervalle entre les envois par un écart aléatoire configurable plutôt que d’envoyer à horaire fixe.\n\nModèle de campagne : une liste de destinataires, un ensemble ordonné d’étapes avec des délais en jours ouvrés, et des corps par étape avec interpolation {{champ}}. Les corps sont en texte brut avec une version HTML minimale optionnelle — pas de pixels de traçage, pas d’enrobage de liens, pas de balises image invisibles. Dis dans le README que les pixels de traçage sont une raison majeure pour laquelle le courrier froid est filtré.\n\nL’arrêt sur réponse est la logique la plus importante du projet. Interroge chaque boîte pour de nouveaux messages, fais correspondre par In-Reply-To et References d’abord et par sujet normalisé plus expéditeur en repli, et sur une vraie réponse humaine, arrête immédiatement toutes les étapes restantes pour ce destinataire à travers toutes les campagnes. Détecte et ignore les répondeurs automatiques — en-têtes Auto-Submitted, X-Autoreply, formats de rebond courants — pour qu’une absence du bureau ne compte pas comme une réponse et n’arrête pas la séquence.\n\nDésabonnement : chaque message porte un en-tête List-Unsubscribe avec un point d’entrée fonctionnel en un clic, et un opt-out est global et permanent.\n\nUn tableau de bord : par boîte, envois aujourd’hui contre la montée en puissance, rebonds sur les sept derniers jours, et taux de réponse. Arrête une boîte automatiquement si son taux de rebond sur les cent derniers envois dépasse un seuil que tu configures.\n\nÉcris des tests pour le comparateur de réponses contre un corpus d’en-têtes réels incluant une absence du bureau et un rebond, et pour la montée en puissance qui ne dépasse jamais le plafond à travers une limite de journée.\n\nNe construis pas de réseau de préchauffage, n’achète ni ne génère de boîtes mail, et mets une ligne dans le README expliquant qu’un domaine sans historique d’envoi atterrira en spam quel que soit ce logiciel.",
+  "faq": [
+    {
+      "q": "Pourquoi un pool de préchauffage est-il si dur à répliquer ?",
+      "a": "Parce que le préchauffage fonctionne en faisant échanger du courrier entre de nombreux vrais comptes chez de nombreux fournisseurs et en le marquant comme désiré, ce qui ne fonctionne qu’à une échelle qu’une seule personne ne peut pas atteindre. Deux de tes propres boîtes qui s’envoient des emails n’apprennent rien à Gmail."
+    },
+    {
+      "q": "Est-il sûr d’envoyer de l’email froid depuis mon domaine principal ?",
+      "a": "Non. Un pic de taux de rebond ou de plainte sur le domaine qui porte ton vrai courrier peut te coûter ton email professionnel ordinaire pendant des semaines. Quiconque fait ça en volume utilise des domaines séparés, et acheter et préchauffer ces domaines est une grosse partie de ce que couvre l’abonnement."
+    },
+    {
+      "q": "Pourquoi laisser de côté le suivi d’ouverture ?",
+      "a": "Parce qu’un pixel de traçage est une image distante chargée depuis un domaine sans réputation, ce qui est un signal de spam bien connu, et parce que les données d’ouverture sont peu fiables depuis que les clients mail ont commencé à précharger les images. Le taux de réponse est le seul chiffre de cette catégorie qui vaut la peine d’être optimisé."
+    },
+    {
+      "q": "Quelles sont les obligations légales ?",
+      "a": "Elles dépendent d’où se trouvent tes destinataires, et elles ne sont pas optionnelles. Dans l’UE et au Royaume-Uni, l’email commercial non sollicité vers des particuliers demande généralement une base légale et exige toujours un opt-out fonctionnel et une identité réelle dans le message ; aux États-Unis, CAN-SPAM exige une adresse physique et le respect rapide des opt-outs. L’en-tête List-Unsubscribe du prompt est un plancher, pas un conseil de conformité."
+    }
+  ]
+}

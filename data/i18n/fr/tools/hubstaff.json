@@ -1,0 +1,32 @@
+{
+  "tagline": "Suivi du temps avec captures d’écran, scores d’activité et paie rattachée.",
+  "verdictSummary": "Ce que vend Hubstaff, ce n’est pas un chronomètre, c’est une chaîne qui finit par un mouvement d’argent : des heures suivies, un score d’activité, une feuille de temps approuvée, et un paiement automatique à un prestataire dans un autre pays. La moitié paiement demande des partenaires de transmission d’argent et la moitié surveillance demande un logiciel installé sur des machines que tu administres et une base légale pour observer les gens travailler. Ni l’une ni l’autre n’a sa place dans un projet perso. Le projet de consolation ici surveille exactement une personne : toi.",
+  "coreLoopDIY": "Mesure tes propres habitudes de travail en local — application active, détection d’inactivité, et un score de concentration — avec tout qui reste sur ta machine et personne d’autre qui puisse le voir.",
+  "whatYouLose": [
+    "suivre quelqu’un d’autre que toi-même, ce qui est tout le produit commercial",
+    "les paiements automatiques aux prestataires via des partenaires de paie",
+    "les workflows d’approbation de feuilles de temps et les périodes de paie verrouillées",
+    "le GPS, le géorepérage et le pointage sur site",
+    "les applications mobiles et desktop publiées et signées par un éditeur"
+  ],
+  "whyPeopleStillPay": "Parce que payer douze prestataires dans neuf pays à partir de feuilles de temps approuvées est un problème de conformité et de paiement, pas un problème de suivi, et Hubstaff a les partenaires pour ça.",
+  "prompt": "Construis un moniteur d’activité personnel. Il surveille une seule machine — la tienne — et rien n’en sort.\n\nSois explicite dans le README sur le périmètre : c’est de l’auto-mesure. Déployer quoi que ce soit de similaire sur les machines d’autres personnes soulève des obligations de consentement et de droit du travail qui varient selon le pays et ne sont pas une question technique.\n\nStack : un petit agent desktop plus un tableau de bord web local. N’importe quel langage avec des API de fenêtre au niveau OS ; SQLite pour le stockage ; tout sur localhost sans aucun point d’entrée distant.\n\nL’agent échantillonne toutes les quelques secondes et enregistre : l’application active, le titre de la fenêtre, et si une saisie a eu lieu depuis le dernier échantillon. Il ne capture jamais le contenu de l’écran et n’enregistre jamais les frappes clavier — dis-le dans le README, et pense-le vraiment.\n\nMesures dérivées :\n- Inactivité : aucune saisie pendant plus longtemps qu’un seuil configurable termine le bloc en cours. Au retour, demande une fois ce qu’était ce trou, avec des options pour l’écarter, le marquer comme une pause, ou l’assigner à un projet.\n- Sessions : activité continue dans une catégorie, avec une longueur minimale pour qu’un coup d’œil de deux secondes à un navigateur ne fragmente pas une heure de travail.\n- Changements de contexte par heure, une mesure d’attention plus honnête que n’importe quel score de concentration unique.\n- Catégories : tu assignes toi-même applications et motifs de titre de fenêtre à des catégories. Ne livre aucune classification par défaut — une note de productivité héritée est l’opinion de quelqu’un d’autre sur ton travail.\n\nContrôles de vie privée, de premier rang plutôt qu’une réflexion après coup :\n- Un bouton pause qui arrête entièrement l’échantillonnage, avec les périodes en pause visibles comme telles plutôt que discrètement manquantes.\n- Rédaction de titre par application : pour les applications choisies, ne stocke que le nom de l’application, jamais le titre de la fenêtre.\n- Rétention : les échantillons bruts sont supprimés après N jours par défaut, ne laissant que les agrégats. Fais en sorte que N soit petit.\n- Une commande qui supprime tout.\n\nTableau de bord : une chronologie de journée, des totaux par catégorie, des changements de contexte par heure, et une tendance semaine sur semaine. Export CSV.\n\nÉcris des tests pour la détection d’inactivité à la limite du seuil, pour la fusion de sessions avec une courte interruption, et pour la rétention qui supprime vraiment les lignes brutes.\n\nN’ajoute ni reporting distant, ni captures d’écran, ni journalisation de frappes, ni aucun moyen d’observer une autre machine.",
+  "faq": [
+    {
+      "q": "Pourquoi refuser les captures d’écran alors que le produit payant en a ?",
+      "a": "Parce qu’une archive locale de captures d’écran est un risque sans contrepartie pour de l’auto-mesure — elle capture des mots de passe, des messages privés et des données client — et parce qu’au moment où tu la construis, l’outil devient quelque chose que tu pourrais pointer vers quelqu’un d’autre."
+    },
+    {
+      "q": "Pourquoi ne livrer aucune classification d’application par défaut ?",
+      "a": "Parce que « productif » est contextuel : un navigateur, c’est de la recherche pour une personne et de la procrastination pour une autre, et hériter des notes d’un éditeur, c’est comme ça que ces outils produisent des chiffres qui semblent injustes. Dix minutes d’auto-classification sont plus précises que n’importe quel défaut."
+    },
+    {
+      "q": "Surveiller des employés est-ce légal si je le construis moi-même ?",
+      "a": "Ça dépend énormément de la juridiction, et le construire toi-même ne supprime aucune des obligations. Dans une grande partie de l’Europe, la surveillance continue demande une base légale documentée, la proportionnalité, et une notification aux personnes surveillées. C’est pourquoi ce prompt est limité à ta propre machine."
+    },
+    {
+      "q": "Que signifie en pratique le minimum de deux sièges ?",
+      "a": "Que les 4,99 $ annoncés ne sont jamais le vrai plancher — le compte Hubstaff le moins cher est de deux sièges, donc environ 9,98 $ par mois en facturation annuelle, même pour un utilisateur solo."
+    }
+  ]
+}

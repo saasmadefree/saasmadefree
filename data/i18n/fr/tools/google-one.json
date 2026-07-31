@@ -1,0 +1,32 @@
+{
+  "tagline": "Deux téraoctets partagés entre Drive, Gmail et Photos, plus de l’IA.",
+  "verdictSummary": "Deux téraoctets de stockage durable et répliqué pour dix euros par mois, c’est un prix qui existe parce que Google possède les datacenters, et le palier inclut maintenant l’accès IA en plus. Aucun équivalent auto-hébergé ne rivalise sur l’un ou l’autre. Le projet qui vaut le coup, c’est la seule chose qu’un stockage perso peut faire mieux qu’un quota packagé : te dire ce qu’il y a vraiment dedans, ce qui est dupliqué, et ce que tu supprimerais si tu pouvais le voir.",
+  "coreLoopDIY": "Fais tourner ton propre stockage de fichiers et ajoute le rapport que personne n’obtient d’un quota cloud : ce qui utilise l’espace, quels fichiers sont des doublons octet pour octet, et ce qui n’a pas été ouvert depuis des années.",
+  "whatYouLose": [
+    "deux téraoctets de stockage répliqué à dix euros",
+    "le quota mutualisé entre mail, photos et documents",
+    "l’accès IA inclus qui vient maintenant avec le palier",
+    "les applications mobiles et la sauvegarde photo automatique",
+    "la durabilité sans que tu portes le problème"
+  ],
+  "whyPeopleStillPay": "Parce que le stockage à ce prix, c’est un métier de datacenter, et parce que le quota couvre le mail et les photos que tu n’allais de toute façon jamais déplacer.",
+  "prompt": "Construis un stockage de fichiers personnel dont la fonctionnalité distinctive est de savoir ce qu’il contient.\n\nStack : ton choix, Postgres, stockage d’objets ou disque local, Docker Compose. Envisage de déployer une plateforme de fichiers auto-hébergée existante et de construire l’analyse comme un compagnon — précise quelle voie tu as choisie.\n\nBases : upload, téléchargement, dossiers, renommer, déplacer, supprimer vers une corbeille avec une période de rétention, et liens de partage avec une expiration.\n\nLa couche d’analyse, c’est la raison de construire plutôt que de déployer :\n1. Espace par dossier, en treemap et en tableau trié, calculé à partir des tailles stockées plutôt qu’en parcourant le disque à la demande.\n2. Doublons octet pour octet : regroupe les fichiers par hash de contenu, montre chaque groupe avec le total d’octets gaspillés, et propose de remplacer par un lien en gardant une vraie copie. Ne supprime jamais automatiquement. Montre les chemins pour que l’utilisateur puisse voir que deux d’entre eux sont des sauvegardes qu’il voulait garder.\n3. Images quasi identiques : hachage perceptuel pour regrouper la même photo à différentes tailles ou avec différentes compressions, là où une photothèque perd vraiment son espace. Présente uniquement comme des suggestions, avec une vue côte à côte.\n4. Fichiers froids : non accédés depuis N années, triés par taille. C’est la liste sur laquelle les gens agissent vraiment.\n5. Croissance : octets stockés par mois dans le temps, avec une projection de quand ton disque ou ton budget sera épuisé.\n\nLe hachage doit être incrémental — hache à l’upload, ne reparcours jamais tout — et l’analyse doit tourner comme une tâche de fond avec une progression, sans bloquer le chargement d’une page.\n\nUn rapport mensuel envoyé par email ou écrit dans un fichier : ce qui a grossi, ce qui a été ajouté, les plus gros nouveaux dossiers, et les meilleurs groupes de doublons.\n\nÉcris des tests pour le regroupement de doublons à travers des fichiers identiques avec des noms et horodatages différents, pour les totaux du treemap qui correspondent exactement à la somme des tailles de fichiers, et pour le hachage perceptuel qui regroupe une image redimensionnée avec son original.\n\nNe construis ni édition collaborative en temps réel, ni application mobile, ni reconnaissance faciale sur les photos.",
+  "faq": [
+    {
+      "q": "Pourquoi « qu’est-ce qui utilise mon espace » n’est-il pas standard ?",
+      "a": "Parce que les fournisseurs cloud n’ont aucun intérêt à t’aider à utiliser moins. Une barre de quota te dit que tu es à 92 % et rien sur quels quatre dossiers en représentent 60 %, ce qui est la seule forme exploitable de l’information."
+    },
+    {
+      "q": "Le hachage perceptuel vaut-il la complexité ?",
+      "a": "Pour les photothèques, oui — l’espace part vers la même photo sauvegardée en trois tailles sur cinq ans d’imports, et la correspondance par hash exact rate tout ça. Présenter les groupes comme des suggestions plutôt que d’agir dessus garde ça sûr."
+    },
+    {
+      "q": "L’auto-hébergement peut-il battre dix euros pour deux téraoctets ?",
+      "a": "Pas sur la durabilité. Tu peux le battre sur le disque brut avec une machine à la maison, et tu seras la seule copie sauf si tu paies aussi pour une sauvegarde hors site — auquel cas le calcul favorise généralement l’abonnement à nouveau."
+    },
+    {
+      "q": "Comment récupérer mes données de Google One ?",
+      "a": "Takeout exporte Drive, Photos et Gmail, en archives fractionnées que tu télécharges dans une fenêtre de temps donnée. Photos est le cas délicat : l’export sépare les images de leurs sidecars de métadonnées, et les rattacher après coup est un travail de script."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Des heures suivies qui se transforment en facture sans être retapées.",
+  "verdictSummary": "Harvest est un chronomètre dont la raison d’être est l’étape suivante : les heures deviennent une facture, la facture est payée, et ni l’une ni l’autre n’est retapée. Le suivi et le document de facture, c’est un week-end. Se faire payer, c’est là que les tiers arrivent — un prestataire de paiement pour accepter une carte, et un système comptable pour rapprocher — ce qui est pourquoi ça reste un « en partie » plutôt qu’un « oui », même si le code est petit.",
+  "coreLoopDIY": "Suis les heures et les dépenses contre un projet client, puis génère une facture à partir des entrées non facturées en une étape, avec les entrées marquées facturées pour que rien ne soit jamais facturé deux fois.",
+  "whatYouLose": [
+    "accepter les paiements par carte sur la facture",
+    "les intégrations QuickBooks, Xero et Stripe qui rapprochent ce qui a été payé",
+    "les chronomètres mobile et desktop",
+    "les rappels de paiement automatiques au client",
+    "le reporting de capacité et d’utilisation d’équipe"
+  ],
+  "whyPeopleStillPay": "Parce que la valeur est dans le dernier kilomètre — un client qui clique sur payer sur la facture — et ce kilomètre passe par un prestataire de paiement et un système comptable que quelqu’un doit maintenir.",
+  "prompt": "Construis un traqueur de temps dont la sortie est une facture correcte, avec le problème de double facturation résolu proprement.\n\nStack : ton choix, Postgres, une seule commande pour lancer.\n\nModèle : Client, Projet, Tâche, EntréeDeTemps, Dépense, Facture, LigneDeFacture.\n\nL’exactitude de la facturation, c’est tout le projet :\n- Une EntréeDeTemps a un indicateur facturable et un invoice_id qui est nul jusqu’à facturation. Facturer sélectionne les entrées facturables non facturées sur une plage de dates et fixe cet id à l’intérieur d’une seule transaction. Il n’y a aucune autre façon pour qu’une entrée devienne facturée.\n- Une entrée facturée est immuable. La modifier exige d’annuler la facture ou d’écrire une entrée d’ajustement, et l’interface doit expliquer laquelle.\n- Les taux se résolvent par spécificité — personne sur projet, puis projet, puis personne, puis défaut — en utilisant le taux en vigueur à la date de l’entrée. Changer un taux aujourd’hui ne doit jamais changer la valeur d’un travail déjà journalisé. Teste ça en premier.\n- Les dépenses s’attachent à un projet avec un fichier de reçu, une catégorie, et un pourcentage de marge optionnel, et remontent dans la facture comme leurs propres lignes.\n\nDocument de facture : numéro depuis une séquence configurable sans trous, dates d’émission et d’échéance, coordonnées de facturation du client, lignes groupées par projet, tâche ou personne selon le choix, sous-total, une ligne de taxe avec un taux configurable, et un total. Rendu en PDF. Stocke le PDF rendu plutôt que de le régénérer — une facture régénérée peut différer silencieusement de celle que le client a reçue.\n\nÉtats : brouillon, envoyée, partiellement payée, payée, annulée. Les paiements sont enregistrés manuellement avec une date, un montant et une méthode ; plusieurs paiements peuvent solder une facture. Annuler ne supprime jamais : ça libère les entrées vers non-facturé et enregistre qui a annulé et quand.\n\nRapports : heures non facturées par client, ancienneté des factures impayées en tranches de 30/60/90 jours, et revenus par mois depuis les dates de facture.\n\nÉcris des tests pour la transaction de facturation atomique, pour une entrée qui n’apparaît jamais sur deux factures sous facturation concurrente, pour la résolution historique de taux, et pour l’annulation qui libère les entrées exactement une fois.\n\nN’intègre ni prestataire de paiement, ni système comptable. Exporte un CSV que ton comptable peut importer.",
+  "faq": [
+    {
+      "q": "Pourquoi la double facturation est-elle la partie difficile plutôt que le PDF ?",
+      "a": "Parce que c’est silencieux. Un PDF qui a l’air faux se remarque ; les mêmes trois heures sur deux factures, non, jusqu’à ce qu’un client le remarque à ta place. Un invoice_id sur l’entrée fixé à l’intérieur d’une seule transaction, c’est toute la solution, et ça demande un test sous concurrence."
+    },
+    {
+      "q": "Pourquoi stocker le PDF rendu plutôt que de le régénérer ?",
+      "a": "Parce que ton modèle, ton adresse ou ton taux de taxe changeront, et régénérer la facture 41 l’année prochaine produirait un document que le client n’a jamais reçu. Le fichier stocké, c’est l’enregistrement."
+    },
+    {
+      "q": "Pourquoi les numéros de facture ne doivent-ils avoir aucun trou ?",
+      "a": "Parce que dans plusieurs juridictions, une séquence sans trou est une exigence légale pour les factures, et partout, un trou est la première chose qu’un comptable demande. Alloue le numéro à l’envoi, pas à la création du brouillon."
+    },
+    {
+      "q": "Harvest peut-il exporter tout ce dont j’ai besoin ?",
+      "a": "Entrées de temps, dépenses, factures et clients s’exportent tous en CSV, et l’API couvre le reste. Les PDF de facture doivent être téléchargés séparément — le CSV a les chiffres, pas les documents que tu as réellement envoyés."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Un avocat sous contrat, au prix d’un abonnement.",
+  "verdictSummary": "Ce qui est vendu, c’est l’accès à des avocats agréés à un tarif fixe, plus des dépôts que seule une société de services peut faire. Ni l’un ni l’autre n’est du code. La consolation, c’est un système de documents qui rend plus productif le temps d’avocat que tu achètes vraiment — ce qui est une vraie économie, parce que la partie coûteuse du travail juridique, c’est un professionnel qui lit des choses que tu aurais pu organiser toi-même.",
+  "coreLoopDIY": "Tire plus de chaque heure payée : tes contrats au même endroit avec leurs dates, obligations et renouvellements extraits, pour qu’un avocat révise la clause spécifique au lieu de chercher le contrat.",
+  "whatYouLose": [
+    "des avocats, et la capacité d’obtenir une réponse sur laquelle tu peux compter",
+    "les dépôts d’entreprise faits en ton nom",
+    "les modèles de documents rédigés par des avocats",
+    "la révision de documents illimitée à un tarif fixe",
+    "quelqu’un qui porte la responsabilité professionnelle pour la réponse"
+  ],
+  "whyPeopleStillPay": "Parce qu’à un moment donné, un vrai avocat doit regarder ça, et un tarif mensuel fixe rend la question assez bon marché pour que tu la poses vraiment avant de signer plutôt qu’après.",
+  "prompt": "Construis un registre de contrats qui rend le temps juridique acheté plus productif.\n\nStack : ton choix, Postgres, Docker Compose. Une clé Anthropic ou OpenAI est optionnelle et uniquement pour l’aide à l’extraction. Le README doit dire que ceci organise des documents et ne les interprète pas, et que rien ici n’est un conseil juridique.\n\nFiche document : titre, contrepartie, type, date de signature, date d’effet, et le fichier. Stocke le fichier exactement tel que reçu — ne réécris jamais l’original.\n\nChamps extraits, saisis par toi et optionnellement suggérés par un modèle, chacun avec une référence de page et de paragraphe vers le document pour que chaque valeur puisse être vérifiée en un clic :\n- Début et fin de durée, type de renouvellement (automatique, manuel, aucun) et la période de préavis pour empêcher le renouvellement.\n- Droits de résiliation de chaque côté.\n- Conditions et montants de paiement.\n- Plafond de responsabilité et indemnités, le cas échéant.\n- Droit applicable et juridiction.\n- Période de confidentialité.\nUne valeur suggérée est visiblement marquée comme non confirmée jusqu’à ce que tu l’acceptes. Ne laisse jamais la supposition d’un modèle rester dans le registre en ayant l’air d’un fait.\n\nLe calendrier est la récompense : les échéances de préavis de renouvellement calculées depuis la fin de durée moins la période de préavis, avec des rappels escaladés. Un contrat à renouvellement automatique que tu comptais annuler est l’erreur de gestion la plus coûteuse que fait une petite entreprise, et c’est entièrement un problème de date.\n\nVue de comparaison : le même champ à travers chaque contrat d’un type, pour qu’un plafond de responsabilité inhabituel ou une clause de résiliation hostile ressorte contre ta propre norme.\n\nUn pack « demander à l’avocat » : sélectionne un contrat et les clauses sur lesquelles tu as des questions, et exporte un seul PDF avec le document, les champs extraits et tes questions. Ce pack, c’est ce qui transforme une heure facturable en réponse plutôt qu’en séance de lecture.\n\nUne recherche plein texte à travers tous les documents.\n\nÉcris des tests pour le calcul d’échéance de préavis à travers les fins de mois, pour les valeurs suggérées jamais traitées comme confirmées, et pour le pack d’export incluant le document original non modifié.\n\nNe génère pas de contrats, et ne fais pas répondre un modèle à des questions juridiques.",
+  "faq": [
+    {
+      "q": "Pourquoi marquer les valeurs extraites comme non confirmées ?",
+      "a": "Parce qu’un modèle qui lit un contrat a généralement raison et se trompe occasionnellement avec assurance sur une période de préavis, et une date fausse dans un calendrier de renouvellement est pire que pas de calendrier du tout. Exiger une coche humaine coûte quelques secondes et élimine toute la classe d’erreur."
+    },
+    {
+      "q": "Quelle est la fonctionnalité la plus précieuse ici ?",
+      "a": "L’échéance de préavis de renouvellement. Les contrats à renouvellement automatique que tu voulais quitter sont un coût récurrent et évitable pour les petites entreprises, et c’est purement une question de date calculée à partir d’une clause que personne ne relit."
+    },
+    {
+      "q": "Le pack « demander à l’avocat » fait-il vraiment économiser de l’argent ?",
+      "a": "Il économise la partie de l’heure passée à trouver et lire. Envoyer le document, les termes extraits et trois questions précises te donne une réponse plutôt qu’une orientation, et c’est la différence entre une heure et trois."
+    },
+    {
+      "q": "Que coûte vraiment LegalZoom ?",
+      "a": "469 $ par an, ou 259 $ pour six mois, pour le plan avocat, avec la révision de documents au-delà de dix pages facturée sur un barème forfaitaire en plus. Les dépôts d’entreprise sont tarifés séparément de l’abonnement."
+    }
+  ]
+}

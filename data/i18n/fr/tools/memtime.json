@@ -1,0 +1,32 @@
+{
+  "tagline": "Enregistre tout ce que tu as fait hors ligne, pour que tu puisses remplir la feuille de temps de mémoire.",
+  "verdictSummary": "La promesse de Memtime est étroite et bonne : il enregistre chaque application, document et email que tu as touchés, entièrement sur ta propre machine, pour que remplir une feuille de temps devienne de la lecture plutôt que du souvenir. Une version fonctionnelle, c’est un week-end — et un équivalent open source mature existe déjà, ce qui en fait un « en partie » avec un vrai substitut plutôt qu’un « non ». Ce que tu prends en charge, c’est la partie que Memtime fait de façon invisible : une capture qui continue de fonctionner à travers trois systèmes d’exploitation et chaque mise à jour d’application.",
+  "coreLoopDIY": "Enregistre en local ce que tu faisais minute par minute, puis reconstruis la journée : une chronologie sur laquelle tu fais glisser la souris pour transformer une plage d’activité en une seule entrée de feuille de temps, avec les documents que tu as touchés listés en dessous.",
+  "whatYouLose": [
+    "une capture qui continue de fonctionner sur macOS, Windows et Linux sans maintenance",
+    "les intégrations profondes qui poussent les entrées vers les logiciels de projet",
+    "la granularité par document et par email à l’intérieur d’Office et des clients mail",
+    "une application desktop signée et notariée",
+    "le support quand une mise à jour de l’OS casse les permissions de capture"
+  ],
+  "whyPeopleStillPay": "Parce que la capture est ennuyeuse et fragile, et elle doit être parfaite pour valoir quelque chose. Une heure manquante un mardi rend tout l’enregistrement peu fiable, et payer fait de ça le problème de quelqu’un d’autre.",
+  "prompt": "Construis un enregistreur d’activité local dont le but est de reconstruire une feuille de temps après coup.\n\nStack : un enregistreur en arrière-plan plus un tableau de bord local, SQLite, tout sur ta propre machine sans aucun appel réseau. Envisage de t’appuyer sur une couche de capture existante plutôt que d’écrire des hooks OS à partir de zéro — précise dans le README ce que tu as choisi et pourquoi.\n\nEnregistrement : toutes les quelques secondes, l’application active, le titre de la fenêtre, et si une saisie a eu lieu. Stocke le flux brut de façon compacte en écrivant une ligne seulement quand quelque chose change, avec une durée, plutôt qu’une ligne par échantillon.\n\nL’interface de reconstruction, c’est le produit :\n- Une chronologie de journée, horizontale, une ligne par application, des blocs colorés dimensionnés par durée, zoomable d’une journée entière jusqu’à la minute.\n- Fais glisser sur la chronologie pour créer une entrée de feuille de temps couvrant cette plage. Le formulaire d’entrée s’ouvre avec une description suggérée construite à partir des titres de fenêtre les plus fréquents de la sélection, et liste chaque document et application touchés pour que tu voies ce que c’était.\n- Les entrées peuvent chevaucher le flux brut librement — l’enregistrement brut est la preuve, les entrées sont ton compte-rendu de celle-ci, et les deux sont stockés séparément et ne s’écrasent jamais l’un l’autre.\n- Une barre de couverture montre quelle part de la journée de travail est maintenant couverte par des entrées, pour que finir soit un état visible plutôt qu’une supposition.\n\nRecherche à travers les titres de fenêtre avec une plage de dates, parce que « quand ai-je travaillé sur le dossier Henderson pour la dernière fois » est l’autre question à laquelle cette donnée répond.\n\nVie privée : un contrôle pause qui montre les périodes en pause comme telles ; une rédaction de titre par application ; une suppression automatique des échantillons bruts après une fenêtre configurable tout en gardant les entrées ; et une commande qui efface tout.\n\nExport : les entrées en CSV, et un JSON par jour du flux brut si tu le veux.\n\nÉcris des tests pour la compaction en plages qui reproduit le flux original, pour les limites de sélection par glisser aux bords des blocs, et pour la rétention qui retire les lignes brutes tout en laissant les entrées intactes.\n\nNe construis ni intégrations, ni synchro cloud, ni application mobile.",
+  "faq": [
+    {
+      "q": "Pourquoi garder le flux brut et les entrées séparés ?",
+      "a": "Parce que le flux brut, c’est ce qui s’est passé, et les entrées, c’est ce que tu es prêt à facturer. Laisser une entrée écraser l’enregistrement retire ta capacité à te vérifier toi-même, ce qui est la seule raison d’enregistrer en premier lieu."
+    },
+    {
+      "q": "Qu’est-ce qui casse vraiment dans la capture multiplateforme ?",
+      "a": "Les permissions. macOS demande des autorisations d’accessibilité et d’enregistrement d’écran qui se réinitialisent sur certaines mises à jour ; Wayland expose bien moins que X11 ; Windows se comporte différemment pour les processus élevés. Cette maintenance, c’est ce que couvre le prix de la licence."
+    },
+    {
+      "q": "Une barre de couverture n’est-elle pas triviale ?",
+      "a": "Elle est triviale et c’est la raison pour laquelle l’outil est utilisé. Le travail de feuille de temps n’a pas de fin naturelle, donc un « tu es à 87 % du mardi » visible, c’est ce qui transforme une corvée sans fin en une tâche que tu peux terminer."
+    },
+    {
+      "q": "Memtime envoie-t-il mes données quelque part ?",
+      "a": "Son propre argument de vente, c’est que non — la capture reste sur la machine. C’est aussi la conception suivie ici, et c’est pourquoi ce projet n’a absolument aucune couche réseau : en ajouter une serait la seule façon de l’empirer."
+    }
+  ]
+}

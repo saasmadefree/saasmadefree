@@ -1,0 +1,32 @@
+{
+  "tagline": "Le tableau que tout le monde sait déjà utiliser.",
+  "verdictSummary": "Un tableau avec des listes et des cartes qu’on peut glisser, c’est le logiciel le plus reconstruit d’internet, et un week-end en donne un bon. Ce que vend vraiment Trello au palier Premium, c’est les vues supplémentaires sur les mêmes cartes, le robot d’automatisation, et le fait que quiconque tu invites sait déjà comment ça marche. Rien de tout ça n’est une barrière défensive, donc c’est un « en partie » — mais le dernier point est la raison pour laquelle un tableau auto-hébergé finit si souvent par n’être utilisé que par une seule personne.",
+  "coreLoopDIY": "Des tableaux, listes et cartes que tu peux faire glisser, plus les mêmes cartes rendues comme un calendrier et une table à travers les tableaux, et un petit moteur de règles qui se déclenche quand une carte bouge.",
+  "whatYouLose": [
+    "les applications mobiles et l’accès hors ligne",
+    "l’écosystème Power-Up et ses centaines d’intégrations",
+    "le multi-utilisateur en temps réel — deux personnes ne voient jamais le même glissement",
+    "des invités qui savent déjà comment ça marche",
+    "l’identité Atlassian et le SSO vendu en complément"
+  ],
+  "whyPeopleStillPay": "Parce qu’une formation zéro vaut de vrais sous, et parce que Trello, c’est là où un groupe de gens qui ne s’accordent sur rien d’autre acceptera de mettre ses cartes.",
+  "prompt": "Construis un tableau kanban et fais ensuite les deux choses qui séparent un bon tableau d’une démo : un vrai ordonnancement par glisser-déposer, et une seconde vue sur les mêmes cartes.\n\nStack : ton choix, Postgres, Docker Compose.\n\nTableaux, Listes, Cartes. Une Carte a un titre, une description en Markdown, des membres, des étiquettes, une date d’échéance avec un indicateur fait, une checklist, des commentaires, des pièces jointes et une couleur de couverture.\n\nL’ordonnancement, c’est la partie toujours mal faite. Stocke la position comme une valeur fractionnaire entre voisins plutôt qu’une séquence dense d’entiers, pour qu’un glisser écrive une ligne au lieu de renuméroter la liste. Gère l’épuisement de précision en renormalisant les positions de cette liste dans une passe en arrière-plan. Écris un test qui effectue deux cents glissers séquentiels vers la même position et vérifie que l’ordonnancement reste correct.\n\nLe glisser doit être optimiste dans l’interface et réconcilié contre la réponse du serveur, avec un retour en arrière visible si l’écriture échoue — un tableau qui perd silencieusement un glisser est pire qu’un qui est lent.\n\nDeuxième et troisième vues sur les mêmes cartes, à travers tous les tableaux dont tu es membre :\n- Calendrier : les cartes avec des dates d’échéance, glisser une carte change la date d’échéance.\n- Table : chaque carte comme une ligne avec tableau, liste, étiquettes, membres et date d’échéance, triable et filtrable, avec édition en ligne.\n\nAutomatisation, gardée petite : des règles de la forme « quand une carte est déplacée vers la liste X » ou « quand une date d’échéance passe » ou « chaque jour ouvré à l’heure T », puis des actions parmi un ensemble fermé — déplacer, archiver, ajouter ou retirer une étiquette, ajouter un membre, poster un commentaire, fixer une date d’échéance. Journalise chaque exécution. Plafonne la profondeur de chaîne à deux.\n\nFiltres qui persistent par tableau et par utilisateur : par étiquette, membre, fenêtre d’échéance, et texte libre.\n\nAjoute aussi : des modèles de carte par liste, une archive de tableaux avec recherche, et un export JSON d’un tableau entier dans une forme documentée.\n\nÉcris des tests pour l’ordonnancement fractionnaire sous des insertions répétées, pour le glisser calendrier qui écrit le même champ que l’éditeur de carte, et pour le plafonnement de profondeur de chaîne d’automatisation.\n\nNe construis ni Power-Ups, ni applications mobiles, ni multi-utilisateur en temps réel.",
+  "faq": [
+    {
+      "q": "Pourquoi l’ordonnancement de cartes mérite-t-il un test avec deux cents glissers ?",
+      "a": "Parce que les positions fractionnaires épuisent la précision en virgule flottante après environ cinquante insertions entre les deux mêmes voisins, et le symptôme, ce sont des cartes qui ne restent pas en place. C’est le bug kanban classique et il n’apparaît qu’après la démo."
+    },
+    {
+      "q": "Le glisser optimiste vaut-il la complexité supplémentaire ?",
+      "a": "Oui. Un tableau où la carte attend visiblement le serveur semble cassé même quand c’est rapide, et la réconciliation, c’est une douzaine de lignes. Ce qui compte, c’est de montrer un retour en arrière quand l’écriture échoue vraiment."
+    },
+    {
+      "q": "Quel est le vrai risque d’auto-héberger un tableau pour une équipe ?",
+      "a": "Que tu sois le seul à l’utiliser. L’avantage de Trello, c’est que tout le monde le connaît déjà et l’a sur son téléphone ; un tableau auto-hébergé, c’est un identifiant de plus et aucune notification, et l’adoption, c’est à ça que sert un tableau."
+    },
+    {
+      "q": "Puis-je récupérer mes tableaux Trello ?",
+      "a": "Oui — chaque tableau s’exporte en JSON depuis le menu, y compris cartes, listes, checklists, commentaires et définitions d’étiquettes. Les pièces jointes sont des URL, donc télécharge-les séparément avant de fermer le compte."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Livre la galerie, et vends des tirages depuis l’intérieur.",
+  "verdictSummary": "La galerie, c’est un week-end : upload, organiser, partager avec un mot de passe, laisser le client télécharger et mettre en favori. Ce qui n’est pas un week-end, c’est la boutique derrière — trente labos dans différents pays, l’exécution automatique, l’impression avec gestion des couleurs et quelqu’un à blâmer quand un album arrive endommagé. C’est un réseau de fournisseurs, et c’est la moitié qui transforme un outil de livraison en revenu. Constructible avec un vrai manque, ce que « en partie » signifie.",
+  "coreLoopDIY": "Livre les galeries correctement : une galerie protégée par mot de passe, mobile d’abord, où le client met en favori, commente et télécharge, et tu peux voir exactement ce qu’il a regardé.",
+  "whatYouLose": [
+    "la boutique de tirages et son exécution en labo mondiale",
+    "les campagnes de vente automatiques et les emails de rappel aux clients",
+    "l’impression avec gestion des couleurs et quelqu’un qui gère une réimpression",
+    "l’application mobile pour le client",
+    "la livraison hébergée quand une galerie part vers deux cents invités à la fois"
+  ],
+  "whyPeopleStillPay": "Parce que les ventes de tirages, c’est la marge, et construire une boutique signifie négocier avec des labos, gérer la couleur, prendre des paiements et porter chaque réclamation. La galerie, c’est le prétexte ; la boutique, c’est le business.",
+  "prompt": "Construis une livraison photo client conçue autour de ce que le client en fait vraiment.\n\nStack : ton choix, Postgres, stockage d’objets, Docker Compose, un domaine avec TLS, et un fournisseur d’email transactionnel avec SPF, DKIM et DMARC.\n\nGalerie : un ensemble de photos, une couverture, un titre et une date, à une URL impossible à deviner. Accès par mot de passe ou par lien personnel envoyé par email. Expiration optionnelle, avec une page claire « cette galerie a expiré le <date>, contacte le photographe » plutôt qu’une 404.\n\nLa qualité de livraison, c’est la partie qui est jugée : génère plusieurs tailles à l’upload, sers des images adaptatives, charge paresseusement sous la ligne de flottaison, et précharge l’image suivante dans la visionneuse. Une galerie qui saccade sur un téléphone, c’est l’impression que garde ton client.\n\nActions client :\n- Favoris, avec un nombre cible optionnel fixé par toi et un indicateur de progression visible, parce que « choisis 30 pour l’album » est l’instruction la plus courante de ce métier.\n- Commentaires par photo, privés pour toi.\n- Téléchargements : par photo ou album entier en zip, à une résolution que tu fixes par galerie, avec un journal de téléchargement.\n- Partager une seule photo sur une plateforme sociale avec un filigrane appliqué uniquement à cette copie.\n\nLe journal de vues est la fonctionnalité que les photographes veulent vraiment et ont rarement : quelles photos ont été ouvertes, combien de temps la galerie a été vue, combien de visiteurs uniques, et quelles photos ont été mises en favori par qui quand plusieurs personnes ont des liens. Agrège ça sur une page et envoie un résumé par email le lendemain du premier accès.\n\nEmails : galerie prête, un rappel si les favoris sont incomplets après N jours, et un avertissement d’expiration. Tous depuis ton propre domaine.\n\nDiscipline de stockage : archive par galerie après une période configurable, déplaçant les originaux vers du stockage froid et gardant les tailles web en ligne, avec une restauration en une commande. Les photographes accumulent des téraoctets et ne suppriment jamais rien.\n\nÉcris des tests pour le comportement d’expiration, pour le téléchargement zip d’un gros album en streaming plutôt qu’en tampon, et pour le compte de favoris qui applique sa cible sans bloquer.\n\nNe construis ni boutique de tirages, ni prise de paiements.",
+  "faq": [
+    {
+      "q": "Pourquoi le journal de vues vaut-il la peine d’être construit ?",
+      "a": "Parce qu’il te dit si le client a vraiment ouvert la galerie avant que tu ne le relances, et sur quelles photos il s’est attardé. C’est la différence entre deviner et savoir, et presque aucune galerie faite maison ne l’a."
+    },
+    {
+      "q": "Qu’est-ce qui rend une boutique de tirages difficile plutôt que fastidieuse ?",
+      "a": "La gestion des couleurs et les réclamations. Faire correspondre un tirage à l’écran demande des labos profilés et des tirages de test, et quand ça ne correspond pas, quelqu’un doit réimprimer à ses frais. Cette relation, c’est le produit que tu ne construis pas."
+    },
+    {
+      "q": "Pourquoi archiver automatiquement vers du stockage froid ?",
+      "a": "Parce que les galeries de livraison sont lues une fois puis gardées pour toujours par anxiété. Déplacer les originaux vers du stockage froid après quelques mois réduit la facture d’un ordre de grandeur tout en gardant la galerie consultable."
+    },
+    {
+      "q": "Puis-je déplacer mes galeries hors de Pic-Time ?",
+      "a": "Les originaux se téléchargent par galerie, et les sélections client s’exportent. Les favoris, commentaires et l’historique de vues sont les parties qui restent derrière, ce qui compte le plus pour les galeries encore en cours — exporte-les avant de changer."
+    }
+  ]
+}

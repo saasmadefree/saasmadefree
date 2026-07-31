@@ -1,0 +1,32 @@
+{
+  "tagline": "Construis le planning, pointe les employés, et arrête les textos.",
+  "verdictSummary": "La planification et une pointeuse sont du logiciel ordinaire, et pour un seul site, un week-end donne une version fonctionnelle — donc c’est un « en partie ». Le vrai manque n’est pas technique : le personnel horaire utilise ça sur un téléphone, souvent ancien, parfois sans données mobiles, et le faire adopter quoi que ce soit est la partie difficile. Le produit payant est acheté parce que tout le monde a déjà l’application, et le module de paie transforme les données de pointage en argent sans retaper.",
+  "coreLoopDIY": "Publie le planning et capture les heures : des créneaux que le personnel voit sur un téléphone, un pointage qui résiste aux tricheries évidentes, et une feuille de temps qui rapproche le prévu du réel avant que ça devienne un litige.",
+  "whatYouLose": [
+    "les applications mobiles que le personnel horaire a déjà et ouvrira vraiment",
+    "l’intégration paie qui transforme les heures en cycle de paie",
+    "les échanges de créneaux et demandes de remplacement gérés sans toi",
+    "la prévision de coût de main-d’œuvre contre les données de vente d’un système de caisse",
+    "les outils de recrutement et d’intégration"
+  ],
+  "whyPeopleStillPay": "Parce que la valeur n’existe que si toute l’équipe l’utilise, et vingt-quatre dollars par site achètent une application qu’ils installeront et un lien de paie qui supprime la retape.",
+  "prompt": "Construis la planification des créneaux et la capture de temps pour un seul site, mobile d’abord, et rends la feuille de temps défendable.\n\nStack : ton choix, Postgres, Docker Compose, un domaine avec TLS. Tout ce que le personnel touche doit bien fonctionner en 390px de large et sur une connexion lente ; construis ça en premier, pas en dernier.\n\nPlanification : des employés avec des rôles et des disponibilités, des créneaux avec un rôle, un début et une fin, publiés en semaine. Publier notifie le personnel concerné. Un créneau publié ne peut pas être changé en silence — chaque modification après publication est enregistrée et notifiée.\n\nVue du personnel, une page : mon prochain créneau, ma semaine, et un bouton pour demander un échange. Les échanges vont vers un collègue nommé qui accepte, puis vers toi pour confirmation. Pas de chat de groupe.\n\nPointeuse, où vit l’honnêteté :\n- Pointer entrée et sortie depuis un téléphone, avec l’heure du serveur, jamais celle de l’appareil.\n- Exiger optionnellement que l’appareil soit dans un rayon du site, avec une note explicite au personnel indiquant que la localisation n’est vérifiée qu’au pointage et pas suivie autrement.\n- Exiger optionnellement une photo au pointage, conservée pour une période courte et annoncée.\n- Pointage de sortie automatique après une durée de créneau maximale configurable, signalé pour révision plutôt que discrètement raccourci.\n- Pauses : enregistrées, avec un avertissement quand un seuil de pause légalement courant est dépassé — configurable, et clairement étiqueté comme un rappel plutôt qu’un conseil de conformité.\n\nLa feuille de temps est le livrable : prévu contre réel par créneau, avec l’écart mis en évidence, et une étape d’approbation qui verrouille la ligne. Une ligne verrouillée ne peut être changée que par un ajustement qui garde les deux valeurs. Exporte en CSV dans une forme qu’un fournisseur de paie peut accepter.\n\nCoût de main-d’œuvre : taux horaires par employé, coût par créneau et par semaine contre un budget que tu fixes, avec une alerte quand la semaine publiée le dépasse. Ce chiffre avant publication est celui qui change des décisions.\n\nÉcris des tests pour les créneaux de nuit qui traversent minuit, pour les transitions d’heure d’été dans les deux sens, pour l’indicateur de pointage de sortie automatique, et pour les lignes de feuille de temps verrouillées qui sont immuables.\n\nNe construis ni paie, ni recrutement, ni intégration de caisse.",
+  "faq": [
+    {
+      "q": "Pourquoi utiliser l’heure du serveur pour le pointage ?",
+      "a": "Parce que l’horloge d’un téléphone se change trivialement, et une fois qu’une personne le découvre, la feuille de temps ne vaut plus rien. C’est une décision d’une ligne avec une grande conséquence."
+    },
+    {
+      "q": "Pourquoi signaler les pointages de sortie automatiques plutôt que de les raccourcir ?",
+      "a": "Parce qu’un créneau de seize heures est généralement un oubli de pointage de sortie et occasionnellement un vrai double créneau. Raccourcir discrètement sous-paie quelqu’un ; le signaler pour révision fait bien les choses et laisse une trace de la correction."
+    },
+    {
+      "q": "Pourquoi calculer le coût de main-d’œuvre avant publication ?",
+      "a": "Parce qu’après publication, corriger une semaine hors budget signifie retirer des créneaux à des gens qui ont déjà organisé leur vie autour. Voir le chiffre pendant que c’est encore un brouillon, c’est tout l’intérêt."
+    },
+    {
+      "q": "Que coûte vraiment Homebase ?",
+      "a": "24 $ par site et par mois facturé annuellement avec des employés illimités, plus la paie à 39 $ par mois et 6 $ par employé payé, et la gestion des pourboires à 25 $ par site. Le tarif par site signifie qu’un second site double le forfait de base."
+    }
+  ]
+}

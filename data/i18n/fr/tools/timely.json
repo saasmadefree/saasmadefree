@@ -1,0 +1,32 @@
+{
+  "tagline": "Enregistre ta journée, puis rédige la feuille de temps pour que tu l’approuves.",
+  "verdictSummary": "Timely enregistre tout en local puis fait transformer par un modèle le flux brut en brouillons d’entrées de feuille de temps que tu approuves ou rejettes. Les deux moitiés sont maintenant à la portée d’un projet perso — la capture, c’est un week-end, et la rédaction, c’est un appel à un modèle avec ta propre clé — ce qui est pourquoi ça sort d’un « non » sec. Ça reste un « en partie » parce que deux vrais manques restent : l’application mobile qui capture les heures que tu passes loin de la machine, et une qualité de rédaction qui s’améliore en apprenant d’un grand nombre de corrections, pas seulement les tiennes.",
+  "coreLoopDIY": "Capture la journée en local, fais grouper ça par un modèle en brouillons d’entrées avec une supposition de projet et une description, et approuve ou corrige chacune — avec les corrections qui reviennent comme exemples pour que le prochain brouillon soit plus proche.",
+  "whatYouLose": [
+    "l’application mobile, et donc chaque heure passée loin de l’ordinateur",
+    "une rédaction réglée sur un large corpus de corrections plutôt que seulement les tiennes",
+    "la planification de capacité d’équipe et les vues manager",
+    "les intégrations qui remontent les noms de projet depuis tes autres outils",
+    "une application desktop signée et le support quand la capture casse"
+  ],
+  "whyPeopleStillPay": "Parce que le brouillon doit être assez bon pour qu’approuver soit plus rapide que taper, et y arriver, c’est un travail de réglage plutôt que de code. Un brouillon que tu réécris à chaque fois est pire qu’un formulaire vide.",
+  "prompt": "Construis un rédacteur de feuille de temps : capture locale, un modèle qui propose des entrées, et une boucle de correction qui rend les propositions meilleures.\n\nStack : un enregistreur local plus un tableau de bord, SQLite, et une clé Anthropic ou OpenAI lue depuis l’environnement. La capture reste locale ; seul un résumé compact est jamais envoyé au modèle, et le README doit dire exactement ce qui quitte la machine.\n\nCapture : application active, titre de fenêtre, activité de saisie, compactée en plages. Envisage une couche de capture open source existante.\n\nRédaction, une fois par jour ou à la demande :\n1. Segmente le flux brut en blocs avec une durée minimale, en fusionnant les courtes interruptions.\n2. Pour chaque bloc, construis un résumé compact — durée, mix d’applications, les meilleurs titres de fenêtre avec leurs comptes. Tronque les titres et retire tout ce qui correspond à tes règles de rédaction avant que le résumé ne soit construit, pas après.\n3. Envoie les blocs de la journée en une seule requête avec ta liste de projets et jusqu’à vingt de tes entrées récemment approuvées comme exemples, et demande une entrée brouillon par bloc : projet, description, et une confiance.\n4. Rends les brouillons dans une file de révision, chacun montrant la preuve — les titres réels derrière — pour qu’un mauvais projet soit évident plutôt que plausible.\n\nLa boucle de correction, c’est la fonctionnalité :\n- Approuve, édite, scinde, fusionne, ou écarte un brouillon. Chaque correction est stockée avec le résumé de bloc qui l’a produite.\n- Les corrections deviennent les exemples envoyés dans la requête du jour suivant, les plus récents en premier, plafonnées à un nombre fixe.\n- Suis et affiche le taux d’acceptation de brouillon semaine par semaine. S’il ne monte pas, la boucle ne fonctionne pas et tu devrais pouvoir le voir plutôt que le supposer.\n\nContrôle des coûts : une requête par jour et par lot, un budget de tokens qui s’arrête plutôt que de tronquer, et un coût courant visible.\n\nHeures hors ligne : un chemin de saisie manuelle qui ne prétend pas être capturé, marqué visiblement comme manuel dans chaque rapport, parce que les heures loin de la machine sont la principale chose que cette conception ne peut pas voir.\n\nVie privée : pause, rédaction par application, fenêtre de rétention brute, commande d’effacement, et un aperçu de exactement ce qui serait envoyé au modèle avant la première requête.\n\nÉcris des tests pour la rédaction appliquée avant la synthèse, pour la segmentation de blocs au seuil de fusion, et pour l’ensemble d’exemples qui reste sous son plafond.\n\nNe construis ni application mobile, ni vues d’équipe.",
+  "faq": [
+    {
+      "q": "Qu’est-ce qui rend vraiment un brouillon assez bon pour être approuvé ?",
+      "a": "Une attribution de projet correcte. Une description que tu peaufines, ça va ; un mauvais projet signifie que tu dois regarder la preuve, et à ce moment-là, le taper toi-même était plus rapide. C’est pourquoi la file de révision montre les titres de fenêtre derrière chaque brouillon."
+    },
+    {
+      "q": "La boucle de correction améliore-t-elle vraiment quelque chose ?",
+      "a": "Fournir les entrées récemment approuvées comme exemples aide sensiblement avec ton propre vocabulaire et ta nomenclature de projets. Ce n’est pas entraîner un modèle, et le graphique de taux d’acceptation existe pour que tu puisses faire la différence entre une vraie amélioration et un vœu pieux."
+    },
+    {
+      "q": "Quelle part de mon activité est envoyée à un modèle ?",
+      "a": "Un résumé — durées, noms d’applications, et titres de fenêtre tronqués — après rédaction, une fois par jour. C’est quand même une vraie information sur ton travail, ce qui est pourquoi le prompt demande un aperçu de la charge utile avant la première requête plutôt qu’un paragraphe dans une politique de confidentialité."
+    },
+    {
+      "q": "Pourquoi les heures hors ligne comptent-elles autant ici ?",
+      "a": "Parce que pour quiconque prend des appels, rencontre des clients ou travaille sur papier, elles représentent une grande part du temps facturable et sont complètement invisibles à la capture locale. Les marquer manuel garde l’enregistrement honnête sur quels chiffres ont été observés et lesquels ont été retenus."
+    }
+  ]
+}

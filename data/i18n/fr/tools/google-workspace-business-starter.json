@@ -1,0 +1,32 @@
+{
+  "tagline": "Mail, stockage, documents et Meet sur ton propre domaine, pour un seul prix de siège.",
+  "verdictSummary": "Cette fiche est un bundle, et chaque morceau fait échouer une reconstruction pour une raison différente : l’email professionnel demande un domaine avec une réputation d’envoi et quelqu’un pour répondre quand ça arrête de délivrer, le stockage demande de la durabilité, et Meet demande une infrastructure média. Sept euros par siège, c’est bon marché pour n’importe lequel des trois pris isolément. Ce qu’un projet perso peut vraiment posséder, c’est la moitié salle de réunion, parce qu’une salle auto-hébergée pour une poignée de personnes est réelle — c’est donc ce que construit le prompt, et il dit clairement quelles parties il ne tente pas.",
+  "coreLoopDIY": "Possède la salle de réunion : des liens de salle permanents sur ton propre domaine, adossés à un serveur de visioconférence auto-hébergé, avec des invitations calendrier que tu génères toi-même.",
+  "whatYouLose": [
+    "l’email professionnel sur ton domaine, et la délivrabilité derrière",
+    "les documents et tableurs collaboratifs avec édition en temps réel",
+    "le stockage mutualisé durable et ses clients de synchro",
+    "des réunions qui tiennent au-delà d’une poignée de participants",
+    "un contrat de support et une console d’administration"
+  ],
+  "whyPeopleStillPay": "Parce que c’est quatre produits au prix d’un café par personne, et parce qu’un email professionnel qui tombe en panne un mardi est un problème que tu veux voir porté par quelqu’un d’autre.",
+  "prompt": "Construis la moitié réunion d’un bundle professionnel : des liens de salle permanents et mémorables sur ton propre domaine, sur un logiciel de visioconférence que tu fais tourner toi-même.\n\nSois explicite dans le README sur ce que ce n’est pas — ce n’est ni l’email, ni les documents, ni le stockage, et chacun de ces trois est un travail séparé et plus lourd.\n\nStack : un serveur de visioconférence auto-hébergé (Jitsi Meet est la référence ; note dans le README qu’un serveur TURN est obligatoire, pas optionnel, parce qu’une part significative des participants est derrière un NAT qui bloque les connexions directes), plus une petite application sur ton propre domaine qui possède les salles et les invitations.\n\nSalles : une salle nommée et permanente sur meet.tondomaine.tld/nom. Chaque salle a un propriétaire, un lobby optionnel, et une règle d’accès parmi un ensemble fixe — ouverte à quiconque a le lien, ouverte seulement aux membres connectés, ou frapper-pour-entrer avec le propriétaire qui admet les gens. Ne génère jamais un nom de salle devinable ou séquentiel ; une salle ouverte avec une URL prévisible, c’est comme ça que des inconnus atterrissent dans une réunion.\n\nInvitations : depuis une salle, génère un .ics pour une réunion ponctuelle ou récurrente avec l’URL de la salle dans le lieu et le corps. Fais les détails correctement — DTSTART en UTC avec un TZID, un UID stable, SEQUENCE incrémenté aux modifications, RRULE pour la récurrence — et teste dans Google Calendar, Apple Calendar et Outlook.\n\nHonnêteté sur la capacité : mets la limite de participants testée sur la page de la salle, mesurée sur ton propre matériel plutôt que devinée, et refuse l’entrée au-delà avec un message clair plutôt que de dégrader l’expérience pour tout le monde. Documente comment tu l’as mesurée.\n\nExploitation, parce que c’est le vrai coût : un contrôle de santé qui vérifie que le serveur TURN relaie vraiment, une alerte s’il s’arrête, et une section README sur la bande passante qu’une réunion consomme par participant pour que la facture d’hébergement ne soit pas une surprise.\n\nÉcris des tests pour la génération de noms de salle impossibles à deviner, pour les règles d’accès imposées côté serveur plutôt que dans l’interface, et pour la récurrence et les mises à jour .ics.\n\nNe tente ni email, ni documents, ni stockage de fichiers.",
+  "faq": [
+    {
+      "q": "Pourquoi un serveur TURN est-il décrit comme obligatoire ?",
+      "a": "Parce que sans lui, les participants derrière un NAT symétrique ou un pare-feu d’entreprise restrictif ne peuvent tout simplement pas se connecter, et l’échec ressemble à « la visioconférence est cassée » plutôt qu’à un composant manquant. Il porte aussi un vrai coût de bande passante, puisque le média relayé passe par ton serveur."
+    },
+    {
+      "q": "Combien de participants une salle auto-hébergée peut-elle vraiment contenir ?",
+      "a": "Ça dépend entièrement de ton matériel et de ta liaison montante, ce qui est pourquoi le prompt te demande de mesurer plutôt que de deviner. Un VPS modeste gère la réunion d’une petite équipe ; tout ce qui approche un webinaire demande une infrastructure que tu devrais payer à quelqu’un d’autre."
+    },
+    {
+      "q": "Pourrais-je aussi remplacer la moitié email ?",
+      "a": "Tu pourrais router le courrier via un fournisseur transactionnel sur ton propre domaine, mais faire tourner la boîte mail et maintenir une bonne délivrabilité est un travail permanent, et se tromper signifie des factures qui n’arrivent jamais en silence. C’est de loin la raison la plus forte pour laquelle cette fiche est un « non »."
+    },
+    {
+      "q": "Google Workspace permet-il de partir proprement ?",
+      "a": "Raisonnablement. Takeout exporte mail, Drive, Calendar et Contacts par utilisateur, et la console d’administration a un outil d’export de données pour tout le domaine. La partie délicate, ce sont les drives partagés et les permissions, qui ressortent comme des fichiers sans leur structure de partage."
+    }
+  ]
+}

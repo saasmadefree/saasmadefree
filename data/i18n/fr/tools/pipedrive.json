@@ -1,0 +1,32 @@
+{
+  "tagline": "Le CRM à pipeline qui te harcèle jusqu’à ce que chaque deal ait une prochaine étape.",
+  "verdictSummary": "Le parti pris de conception de Pipedrive, c’est qu’un deal sans prochaine activité planifiée est un deal mort, et toute l’interface te pousse à corriger ça. Reconstruire ce parti pris, c’est une semaine — le pipeline est facile, la mécanique de discipline autour, c’est le travail. Les manques sont les habituels d’un CRM payant : pas de synchro boîte mail sans application OAuth, pas d’application mobile, et pas de marketplace de plusieurs centaines de connecteurs prêts à l’emploi. Aucun d’eux n’est une barrière de données, donc c’est un vrai substitut avec de vrais trous.",
+  "coreLoopDIY": "Fais avancer les deals à travers un pipeline visuel où chaque deal ouvert doit porter une prochaine activité planifiée, et lis un rapport quotidien de ceux qui se sont enlisés.",
+  "whatYouLose": [
+    "la synchro email bidirectionnelle et le suivi des ouvertures depuis l’intérieur du deal",
+    "la marketplace d’intégrations prêtes à l’emploi vers la comptabilité, le support et les outils marketing",
+    "les applications mobiles et leur capture d’appels et de notes",
+    "la prévision de revenus et le suivi d’objectifs",
+    "les automatisations qui se déclenchent sur un changement d’étape sans que tu les écrives"
+  ],
+  "whyPeopleStillPay": "Parce que c’est le CRM qu’un manager commercial peut déployer un lundi et voir utilisé un vendredi, et parce que la marketplace signifie que l’outil que la personne des finances utilise déjà est à un clic d’être connecté.",
+  "prompt": "Construis un CRM à pipeline qui ne laissera pas un deal rester immobile.\n\nStack : ton choix, Postgres, Docker Compose, une commande.\n\nModèle : Organisation, Personne, Deal, Activité. Un Deal a une valeur, une devise, une date de clôture attendue, une étape, un responsable, et des liens vers une Organisation et un nombre quelconque de Personnes.\n\nLa règle qui définit ce projet : un Deal ouvert doit avoir exactement une prochaine Activité planifiée. Impose-la de trois façons.\n1. Compléter une activité ouvre immédiatement le formulaire « planifier la suivante », préempli avec une date par défaut raisonnable, et la carte du deal est marquée visiblement tant que rien n’est planifié.\n2. Le tableau de pipeline affiche tout deal sans activité planifiée, ou avec une en retard, dans un état distinct qui ne peut pas être ignoré.\n3. Un rapport « En train de pourrir » liste les deals dont la dernière activité est plus ancienne qu’un seuil par étape que je configure — les premières étapes pourrissent en sept jours, les dernières en trente.\n\nTableau de pipeline : glisser-déposer entre étapes, totaux par étape dans l’en-tête, total pondéré utilisant une probabilité par étape que je fixe. Chaque déplacement d’étape écrit une ligne d’historique immuable avec l’horodatage, pour que je puisse calculer le temps passé par étape.\n\nUn écran de rapport : deals gagnés et perdus par mois, temps moyen par étape, et taux de conversion entre étapes adjacentes, calculé à partir des lignes d’historique plutôt que de l’état actuel.\n\nAjoute des notes, des pièces jointes vers le disque local, des tags, des filtres enregistrés, un import CSV avec mapping, et un export CSV.\n\nÉcris des tests pour l’invariant pas-de-prochaine-activité — y compris que fermer un deal comme Gagné ou Perdu le libère — et pour le temps par étape à travers un deal qui a reculé.\n\nNe construis ni synchro email, ni marketplace d’intégrations, ni règles d’automatisation. Donne plutôt à l’application un webhook sortant au changement d’étape, et laisse l’utilisateur le brancher sur ce qu’il fait tourner.",
+  "faq": [
+    {
+      "q": "La règle « doit avoir une prochaine activité », n’est-ce pas juste agaçant ?",
+      "a": "Ça l’est, délibérément. C’est aussi le seul comportement qui sépare un CRM qui fonctionne d’une base de deals enlisés, et c’est la raison pour laquelle Pipedrive continue d’être recommandé à des équipes qui ont abandonné deux autres CRM."
+    },
+    {
+      "q": "Pourquoi calculer les rapports à partir des lignes d’historique plutôt que de l’état actuel ?",
+      "a": "Parce que l’état actuel ne peut pas te dire combien de temps quelque chose a pris. Stocker une ligne immuable à chaque changement d’étape ne coûte rien et fait la différence entre « douze deals en Négociation » et « les deals passent dix-neuf jours en Négociation en moyenne »."
+    },
+    {
+      "q": "Qu’est-ce qui remplace la marketplace d’intégrations ?",
+      "a": "Un seul webhook sortant au changement d’étape, que tu pointes vers n’importe quel moteur d’automatisation que tu as déjà. Ça couvre les cas courants — poster dans un canal de chat, créer un brouillon de facture — et ça ne couvre aucune des synchros bidirectionnelles profondes que font les applications de la marketplace."
+    },
+    {
+      "q": "Pourquoi le prix de cette fiche est-il marqué à confiance basse ?",
+      "a": "Parce que la page de tarifs de Pipedrive renvoie un blocage anti-bot depuis ce réseau, aussi bien en récupération scriptée qu’en vrai navigateur, donc personne ici n’a pu lire le chiffre directement sur la page. Le chiffre vient du jeu de données amont et devrait être vérifié avant que tu ne t’y fies."
+    }
+  ]
+}

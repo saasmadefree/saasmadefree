@@ -1,0 +1,32 @@
+{
+  "tagline": "Vingt ans de photographies, et les gens qui les ont commentées.",
+  "verdictSummary": "Le stockage n’est pas le sujet, ni l’interface. Flickr est une archive avec un public : des groupes actifs depuis quinze ans, des fils de commentaires sur des photos prises avant que la plupart des réseaux sociaux n’existent, et un corpus Creative Commons vers lequel le reste du web fait des liens. Tu ne peux pas reconstruire une communauté en écrivant du logiciel, et le DIY honnête, c’est une galerie où il n’y a personne — c’est pourquoi le prompt ci-dessous porte sur bien faire sortir ton travail.",
+  "coreLoopDIY": "Possède l’archive plutôt que le public : une galerie auto-hébergée qui ingère un export Flickr complet avec ses titres, tags, albums, licences et commentaires préservés et lisibles.",
+  "whatYouLose": [
+    "le public — groupes, favoris, commentaires et découverte",
+    "le stockage illimité en pleine résolution",
+    "les liens entrants et les résultats de recherche accumulés pendant des années",
+    "l’écosystème Creative Commons et la réutilisation de ton travail",
+    "l’application mobile"
+  ],
+  "whyPeopleStillPay": "Parce que la valeur accumulée en quinze ans vit dans l’attention des autres, et annuler ne la déplace nulle part. Sept dollars par mois, c’est le loyer d’une histoire que tu ne peux pas emporter avec toi.",
+  "prompt": "Construis une galerie auto-hébergée dont la fonctionnalité phare est d’ingérer fidèlement un export Flickr, y compris les parties que la plupart des importeurs jettent.\n\nStack : ton choix, Postgres, stockage d’objets ou disque, Docker Compose, un domaine avec TLS. Envisage de déployer une application photo auto-hébergée existante et d’écrire l’importeur par-dessus — précise quelle voie tu as choisie.\n\nL’importeur, c’est le projet. Un export de données Flickr est un ensemble d’archives zip : des fichiers originaux dans certaines, des métadonnées JSON dans d’autres. Gère tout :\n- Titres, descriptions, tags et tags machine.\n- Albums et ordre du photostream.\n- Licence par photo, préservée exactement. Quelqu’un qui a publié un travail sous Creative Commons a pris un engagement, et un importeur qui perd la licence le rompt en silence.\n- Commentaires et favoris, avec le nom d’affichage du commentateur et la date, stockés et rendus en lecture seule. Ils ne t’appartiennent pas pour les modifier, et ils sont la partie de l’archive à la plus grande valeur sentimentale.\n- EXIF, géolocalisation quand présente, et compteurs de vues comme un chiffre historique daté de l’export plutôt qu’un nombre en direct.\n- Noms de fichiers originaux, et l’identifiant photo Flickr, pour qu’un vieux lien entrant puisse être mappé vers la nouvelle page.\n\nTable de redirection : génère un mapping des identifiants de photo et d’album Flickr vers tes nouvelles URL, en sortie sous forme d’un fichier que tu peux fournir à ton serveur web. Quinze ans de liens entrants valent bien un après-midi.\n\nGalerie : albums, tags, une archive par date, une recherche plein texte sur titres, descriptions et tags, et une page par photo montrant licence, EXIF et les commentaires préservés avec une note claire indiquant qu’ils sont archivés depuis Flickr.\n\nPartage : public, non répertorié avec une URL impossible à deviner, ou privé, par album et par photo, le réglage le plus restrictif l’emportant.\n\nIntégrité : vérifie chaque fichier contre le manifeste de l’export pendant l’import et signale tout ce qui manque, parce que les exports Flickr partiels sont fréquents et découvrir un trou des années plus tard est le mauvais scénario.\n\nÉcris des tests pour la préservation de licence sur chaque variante Creative Commons, pour l’ordre et l’attribution des commentaires, et pour la table de redirection couvrant chaque photo importée.\n\nNe construis pas de fonctionnalités sociales. Il n’y a personne là-bas.",
+  "faq": [
+    {
+      "q": "Pourquoi insister pour préserver les commentaires ?",
+      "a": "Parce qu’ils sont la partie d’une archive de quinze ans qui ne peut pas être recréée, et c’est ce qui en fait le témoignage d’une vie plutôt qu’un dossier de fichiers. La plupart des importeurs les abandonnent parce qu’ils sont gênants à gérer, ce qui est exactement pourquoi le prompt les nomme."
+    },
+    {
+      "q": "Pourquoi la licence compte-t-elle autant ?",
+      "a": "Parce qu’une publication Creative Commons est une promesse faite à tous ceux qui ont réutilisé le travail. Perdre cette métadonnée à l’import signifie republier sans les conditions que tu avais accordées, ce qui est à la fois discourtois et juridiquement confus."
+    },
+    {
+      "q": "La table de redirection en vaut-elle vraiment la peine ?",
+      "a": "Si quelqu’un a un jour fait un lien vers tes photographies — un blog, un forum, Wikipédia — alors oui. C’est un seul fichier généré, et ça préserve la seule chose qu’une archive gagne en vieillissant."
+    },
+    {
+      "q": "Un export Flickr est-il complet ?",
+      "a": "Raisonnablement, mais il arrive sous forme de nombreuses archives zip séparées demandées sur plusieurs jours, et il est facile d’en manquer une. Vérifie contre le manifeste pendant l’import ; un trou détecté à l’import est réparable, un trou détecté dans trois ans ne l’est pas."
+    }
+  ]
+}

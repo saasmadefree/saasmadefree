@@ -1,0 +1,32 @@
+{
+  "tagline": "Des webinaires dans le navigateur, en direct ou rejoués selon un planning comme s’ils étaient en direct.",
+  "verdictSummary": "L’astuce utile de Demio, c’est le webinaire automatisé : un enregistrement qui tourne selon un planning avec la couche d’interaction rejouée en même temps. La planification et la surcouche synchronisée, c’est un projet d’une session. La diffusion vidéo ne l’est pas, ni la fiabilité qui permet à une entreprise d’y faire passer son tunnel de vente. Le prompt ci-dessous construit le lecteur automatisé et insiste pour qu’il dise au spectateur ce qu’il est, parce que l’alternative, c’est la partie de cette catégorie qui rend les gens méfiants.",
+  "coreLoopDIY": "Joue un enregistrement selon un planning avec les sondages, liens et messages rejoués à leurs horodatages d’origine — étiqueté clairement comme un replay, jamais déguisé en direct.",
+  "whatYouLose": [
+    "la diffusion en direct et la capacité de livraison derrière",
+    "une vraie interaction bidirectionnelle pendant la session",
+    "le lecteur hébergé et ses statistiques",
+    "la fiabilité à quelques centaines de spectateurs simultanés",
+    "les intégrations de marketing automation qui se déclenchent sur la présence"
+  ],
+  "whyPeopleStillPay": "Parce qu’un webinaire evergreen est un canal de vente qui tourne pendant que tu dors, et la différence entre un qui fonctionne et un qui saccade, c’est une capacité de livraison que personne ne reconstruit.",
+  "prompt": "Construis un lecteur de webinaire automatisé : un enregistrement qui tourne selon un planning avec une piste d’interaction chronométrée à côté.\n\nStack : ton choix, Postgres, Docker Compose, un domaine avec TLS. Sers le fichier vidéo depuis du stockage d’objets ou un CDN ; le README doit préciser que les spectateurs simultanés coûtent de la bande passante et que c’est la vraie limite.\n\nModèle de session : une URL d’enregistrement, une durée, et un planning — des horaires fixes que tu listes, ou « chaque jour à 14h dans le fuseau horaire du visiteur », ou « démarre N minutes après l’inscription ». Un spectateur qui rejoint en retard entre dans la vidéo au bon décalage plutôt qu’au début, ce qui est tout l’intérêt du direct simulé.\n\nPiste d’interaction : une liste ordonnée d’événements avec un décalage d’horodatage — montre un sondage, révèle un lien, poste un message de chat scripté, affiche une diapositive. Le lecteur déclenche chacun quand la vidéo dépasse son décalage. Compose-la sur un éditeur de chronologie avec un curseur de défilement, parce que taper des horodatages à la main est inutilisable.\n\nRègles d’honnêteté, imposées dans le code, jamais laissées à l’opérateur :\n- Le lecteur affiche un badge « Replay » permanent et non masquable dès que la session n’est pas un vrai flux en direct.\n- Les messages de chat scriptés sont visuellement distingués des vrais messages de spectateurs et étiquetés comme scriptés.\n- Pas de faux compteurs de spectateurs. Si tu affiches un chiffre, c’est le vrai compte simultané ou rien.\nDis dans le README que c’est délibéré : une session en direct simulé présentée comme réellement en direct est une tromperie, et dans plusieurs juridictions une pratique commerciale déloyale.\n\nUne vraie interaction qui fonctionne quand même : une boîte à questions qui part dans ta boîte de réception et est répondue par email après coup, avec la question et le décalage vidéo enregistrés pour que tu saches ce qui l’a suscitée.\n\nInscription avec un lien de participation personnel, des rappels, et un rapport : inscriptions, participations, temps de visionnage médian, et déperdition à une résolution d’une minute, le chiffre qui te dit où l’enregistrement perd des gens.\n\nÉcris des tests pour l’arithmétique de participation au décalage à travers les fuseaux horaires, pour les événements d’interaction qui se déclenchent exactement une fois sur un retour en arrière, et pour le badge de replay impossible à désactiver par configuration.\n\nNe construis ni diffusion en direct, ni salle de chat en direct.",
+  "faq": [
+    {
+      "q": "Pourquoi imposer le badge de replay dans le code ?",
+      "a": "Parce qu’à partir du moment où c’est un réglage, il se retrouve désactivé. Présenter un enregistrement comme un événement en direct est une tromperie, et intégrer l’honnêteté dans le code fait de cet outil quelque chose que tu peux confier à quelqu’un d’autre sans t’inquiéter."
+    },
+    {
+      "q": "Quelle est la partie la plus difficile du direct simulé ?",
+      "a": "Rejoindre en retard. Le spectateur doit entrer au bon décalage, les événements d’interaction déjà passés ne doivent pas se déclencher, et revenir en arrière ne doit pas les redéclencher. Se tromper là-dessus affiche un sondage vieux de vingt minutes et trahit la supercherie."
+    },
+    {
+      "q": "Où le rapport de déperdition se justifie-t-il vraiment ?",
+      "a": "À une résolution d’une minute, il nomme le point exact où les gens partent — généralement une ouverture trop lente ou une digression trop longue. C’est le chiffre le plus exploitable du marketing de webinaire, et presque personne ne le regarde."
+    },
+    {
+      "q": "Puis-je récupérer mes enregistrements et données Demio ?",
+      "a": "Les enregistrements se téléchargent par session et les données d’inscrits s’exportent en CSV. La chronologie d’interaction — sondages, liens chronométrés, documents distribués — est une configuration qui ne s’exporte pas, donc capture-la en écran ou note-la avant d’annuler."
+    }
+  ]
+}

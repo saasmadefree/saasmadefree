@@ -1,0 +1,32 @@
+{
+  "tagline": "Suit où ton attention est vraiment allée, puis bloque le pire.",
+  "verdictSummary": "Une capture passive plus un score quotidien plus une liste de blocage pendant les sessions de concentration, c’est un vrai projet d’une session, sans aucune dépendance tierce nulle part — tout tourne en local et ne demande ni clé, ni compte, ni service. Ça en fait un « oui ». La confiance est moyenne plutôt qu’élevée pour une raison honnête : RescueTime livre une classification maintenue de centaines de milliers de sites et d’applications, et la tienne démarre vide, donc la première semaine se passe à l’entraîner.",
+  "coreLoopDIY": "Capture où ton attention est allée, note la journée selon des catégories que tu as toi-même définies, et fais tourner des sessions de concentration qui bloquent vraiment les sites que tu as nommés tant qu’elles durent.",
+  "whatYouLose": [
+    "la classification de productivité maintenue pour des centaines de milliers de sites",
+    "l’application mobile et le temps d’écran du téléphone dans le même tableau",
+    "l’historique multi-appareils au même endroit",
+    "l’invite de temps hors ligne qui demande ce qu’était une réunion",
+    "une application desktop signée et quelqu’un qui la maintient"
+  ],
+  "whyPeopleStillPay": "Parce que la classification représente une décennie de curation, et parce qu’un outil de concentration que tu as construit et que tu peux désactiver trivialement est un outil de concentration que tu désactiveras trivialement.",
+  "prompt": "Construis un traqueur d’attention local avec un mode concentration qui a des dents.\n\nStack : un enregistreur en arrière-plan plus un tableau de bord local, SQLite, aucun appel réseau. Envisage de t’appuyer sur une couche de capture open source existante plutôt que d’écrire des hooks OS.\n\nCapture : application active, titre de fenêtre, et activité de saisie, échantillonnées toutes les quelques secondes, stockées compactées en plages.\n\nClassification : tu définis des catégories et assignes un score de -2 à +2. Les règles de correspondance sont ordonnées et la première correspondance gagne ; chaque règle correspond à un nom d’application ou un motif de titre de fenêtre. Ne livre aucune classification par défaut — livre plutôt un écran « classer le non classé » qui liste les applications et motifs de titre prenant le plus de temps jusqu’ici, le plus de temps en premier, pour que dix minutes de travail couvrent quatre-vingt-dix pour cent de tes journées.\n\nScore quotidien : moyenne pondérée par le temps des scores de catégorie, affichée à côté des heures brutes pour qu’il ne puisse jamais être lu sans son propre dénominateur.\n\nSessions de concentration, la moitié qui change le comportement :\n- Démarre une session de N minutes avec une liste de blocage choisie d’applications et de domaines.\n- Blocage d’applications : détecte le processus et amène un rappel plein écran au premier plan plutôt que de le tuer — tuer perd du travail non sauvegardé et transforme l’outil en ennemi.\n- Blocage de sites : réécris le fichier hosts, avec l’original sauvegardé d’abord et restauré à la fin de session et à la sortie du processus, y compris un crash. Teste délibérément ce chemin ; un outil qui laisse ton fichier hosts cassé après un crash est pire que pas d’outil.\n- Une session peut être terminée en avance, mais la terminer exige de taper une phrase que tu as configurée, et chaque fin anticipée est journalisée avec l’heure et la portion écoulée. La friction, c’est la fonctionnalité ; rends-la visible plutôt que punitive.\n- Après chaque session, une invite d’une seule question : as-tu fait ce que tu voulais faire ? Stocke la réponse.\n\nTableau de bord : chronologie du jour, totaux par catégorie, tendance de score sur quatre semaines, sessions de concentration terminées contre démarrées, et le compte honnête de fins anticipées.\n\nVie privée : contrôle pause, rédaction de titre par application, fenêtre de rétention d’échantillons bruts, et une commande d’effacement.\n\nÉcris des tests pour l’ordre de règles où la première correspondance gagne, pour la restauration du fichier hosts après une sortie brutale de processus, et pour le calcul de score avec le temps non classé exclu plutôt que compté comme zéro.\n\nNe construis ni synchro cloud, ni application mobile, ni tableau de bord d’équipe partagé.",
+  "faq": [
+    {
+      "q": "Pourquoi ne livrer aucune catégorie par défaut ?",
+      "a": "Parce que des notes de productivité héritées sont fausses pour quiconque a un travail inhabituel, et un score faux est pire que pas de score du tout — tu arrêtes de faire confiance à l’outil en semaine deux. L’écran « classer le non classé, le plus gros d’abord » te rend précis en dix minutes."
+    },
+    {
+      "q": "Le blocage par fichier hosts n’est-il pas facile à contourner ?",
+      "a": "Trivialement, et c’est très bien ainsi. Le but, c’est la friction, pas la prison : ajouter trois secondes et une décision consciente élimine la plupart des visites réflexes. Ce qui compte techniquement, c’est de restaurer le fichier en cas de crash, la seule façon dont ce projet peut te faire activement du tort."
+    },
+    {
+      "q": "Pourquoi exclure le temps non classé du score ?",
+      "a": "Parce que le compter comme zéro rend chaque score dénué de sens jusqu’à ce que la classification soit complète, et les gens abandonnent avant ça. L’exclure et montrer la part non classée garde le chiffre honnête."
+    },
+    {
+      "q": "Pourquoi est-ce un « oui » alors qu’une grande partie de la catégorie ne l’est pas ?",
+      "a": "Parce qu’il n’y a vraiment rien de tiers dedans — pas de clé API, pas de service, pas de données à acheter. Ça tourne entièrement sur ta machine, et c’est exactement ce que signifie un « oui » ici."
+    }
+  ]
+}

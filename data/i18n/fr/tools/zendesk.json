@@ -1,0 +1,32 @@
+{
+  "tagline": "Le help desk entreprise par défaut : tickets, centre d’aide, messagerie et voix.",
+  "verdictSummary": "Pour une petite équipe, Zendesk Suite Team, c’est du ticketing, un centre d’aide et un canal de messagerie — tout ça, c’est du logiciel ordinaire, ce qui explique pourquoi ça se lit comme « en partie » et pas « non ». Ce que le prix achète vraiment, c’est tout ce qui entoure ça à l’échelle : la voix avec un vrai opérateur derrière, une marketplace d’applications, et les contrôles d’audit, de rétention et de résidence qu’une revue d’achat demande. Un projet perso peut égaler le quotidien et ne peut pas égaler le questionnaire.",
+  "coreLoopDIY": "Fais tourner les tickets et un centre d’aide public depuis un seul stockage, avec un portail client où quelqu’un peut voir et répondre à ses propres tickets passés sans qu’un agent de support ne transfère quoi que ce soit.",
+  "whatYouLose": [
+    "le canal voix, qui demande un opérateur et un provisionnement de numéros",
+    "la marketplace d’applications et ses intégrations CRM et commerce profondes",
+    "la résidence des données, les politiques de rétention et le journal d’audit qu’une revue entreprise demande",
+    "les applications mobiles",
+    "les modules complémentaires de gestion de main-d’œuvre et d’assurance qualité"
+  ],
+  "whyPeopleStillPay": "Parce que Zendesk est la réponse qui survit à une revue de sécurité, et parce qu’une fois qu’une entreprise a construit son reporting et ses intégrations autour, le coût de changement se mesure en trimestres.",
+  "prompt": "Construis un help desk avec un vrai portail client, pas juste une boîte de réception avec un formulaire public.\n\nStack : ton choix, Postgres, Docker Compose. Courrier entrant via un webhook de fournisseur signé, sortant via un fournisseur transactionnel sur un domaine que tu possèdes avec SPF, DKIM et DMARC.\n\nCôté agent, gardé conventionnel : tickets avec statut, priorité, assigné, tags, messages en fil, notes internes stockées séparément des réponses publiques, réponses prêtes, et vues enregistrées avec filtres.\n\nLe portail client, c’est la partie qui vaut la semaine :\n- Authentification par lien magique envoyé par email, pas de mots de passe. Les liens sont à usage unique, expirent en quinze minutes, et sont invalidés à l’usage. Limite le débit des demandes par adresse.\n- Un client connecté voit chaque ticket qu’il a soumis, son statut, et le fil public complet — jamais les notes internes. Écris un test qui vérifie qu’une note interne ne peut jamais apparaître dans le corps de réponse du portail.\n- Il peut répondre, ce qui s’ajoute au même ticket et notifie l’assigné, et joindre un fichier avec une liste blanche de types et un plafond de taille.\n- Organisations : un domaine email peut être mappé à une organisation, et un membre désigné peut voir tous les tickets de cette organisation. C’est la fonctionnalité qui sépare un portail d’un formulaire, et c’est là que vivent les bugs d’autorisation — teste qu’un membre de l’organisation A ne peut jamais charger un ticket de l’organisation B, par URL directe comme via la liste.\n- Un centre d’aide public : des articles Markdown avec des catégories, une recherche plein texte, et chaque article insérable dans une réponse d’agent.\n\nGestion des données, parce que c’est la moitié honnête de cette fiche : une politique de rétention configurable qui supprime les tickets fermés et leurs pièces jointes après N jours, un export par client produisant tout ce que tu détiens sur lui comme un seul fichier JSON, et une suppression définitive qui retire vraiment les pièces jointes du stockage plutôt que de les orpheliner.\n\nUn rapport : tickets par statut et priorité par semaine, temps médian de première réponse, et taux de réouverture.\n\nÉcris des tests pour l’usage unique et l’expiration du lien magique, pour l’accès inter-organisations qui est refusé, et pour la suppression définitive qui retire les fichiers du disque.\n\nNe construis ni canal voix, ni applications mobiles, ni marketplace.",
+  "faq": [
+    {
+      "q": "Pourquoi le portail client est-il la partie difficile plutôt que la boîte de réception ?",
+      "a": "Parce que c’est la seule partie avec un modèle d’autorisation. Une boîte de réception est la tienne ; un portail décide quel inconnu peut voir quel ticket, et la fonctionnalité organisation transforme une seule erreur en fuite de données entre deux de tes clients."
+    },
+    {
+      "q": "Les liens magiques sont-ils assez sûrs pour des tickets de support ?",
+      "a": "Pour cet usage, oui, et plus sûr que des mots de passe que personne ne gérera — à condition qu’ils soient à usage unique, de courte durée, limités en débit et invalidés à l’usage. Tout ce qui envoie un lien réutilisable par email est une porte dérobée permanente dans la boîte mail de quelqu’un."
+    },
+    {
+      "q": "Pourquoi construire la rétention et l’export dans un help desk personnel ?",
+      "a": "Parce que les tickets de support accumulent des données personnelles plus vite que tout ce que tu fais tourner d’autre, et « supprime tout ce que tu as sur moi » est une demande à laquelle tu peux être légalement obligé de répondre. Le construire dès le jour un coûte une fraction du prix de le rétrofitter."
+    },
+    {
+      "q": "Quitter Zendesk, c’est difficile ?",
+      "a": "Les données sortent — l’API parcourt les tickets, utilisateurs, organisations et articles du centre d’aide, et il y a un export en masse sur demande. La partie coûteuse, c’est les intégrations et les rapports que d’autres équipes ont construits par-dessus, ce qui est le vrai coût de changement plutôt que l’export lui-même."
+    }
+  ]
+}

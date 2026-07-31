@@ -1,0 +1,32 @@
+{
+  "tagline": "Envoie tout, garde ça pas cher, interroge-le vite.",
+  "verdictSummary": "Stocker des logs et les interroger est un problème résolu, avec d’excellentes briques open source, donc c’est un « en partie » plutôt qu’un « non ». Ce qui prend une semaine, ce n’est pas l’ingestion, c’est la discipline : schéma à la lecture sur du stockage d’objets, et un plafond de coût strict qui laisse tomber des données plutôt que de t’envoyer une facture. L’avantage d’Axiom, c’est que son moteur de requête reste rapide à des volumes où un système fait maison s’effondre, et qu’il absorbe les mois de surprise.",
+  "coreLoopDIY": "Ingère des événements structurés vers du stockage d’objets bon marché, interroge-les avec un vrai langage de filtre et d’agrégation, et impose un budget mensuel en laissant tomber des données et en te prévenant, plutôt qu’en facturant.",
+  "whatYouLose": [
+    "la performance de requête aux volumes où ça cesse d’être facile",
+    "le point d’entrée d’ingestion géré et ses bibliothèques clientes",
+    "les modules complémentaires entreprise — SSO, RBAC, journal d’audit",
+    "la garantie de durabilité de quelqu’un d’autre sur ton historique de logs",
+    "la fiabilité des alertes pendant l’incident même que tu es en train de logger"
+  ],
+  "whyPeopleStillPay": "Parce que des logs ne valent la peine d’être gardés que si tu peux les interroger sous pression, et un système fait maison est le plus lent exactement quand un incident le sollicite le plus.",
+  "prompt": "Construis un système de stockage de logs dont la fonctionnalité phare est un plafond de coût réellement appliqué.\n\nStack : ton choix, un stockage d’objets compatible S3, et un petit service de requête. Docker Compose pour le développement local. Envisage de t’appuyer sur un moteur de recherche existant conçu pour le stockage d’objets plutôt que d’écrire un index à partir de zéro.\n\nIngestion : un point d’entrée HTTP acceptant du JSON délimité par des sauts de ligne avec un champ timestamp obligatoire et des champs additionnels arbitraires. Mets en tampon en mémoire, écris vers le stockage d’objets dans des fichiers en colonnes partitionnés par dataset et par heure. Aucun schéma n’est déclaré à l’avance ; les champs sont découverts et leurs types enregistrés par partition.\n\nRequête : un petit langage avec filtre, agrégation, group-by, tri et limite sur une plage temporelle, qui retourne des tables. Pousse les prédicats jusqu’au niveau partition pour qu’une requête d’une heure ne lise jamais une semaine de fichiers. Affiche les octets scannés avec chaque résultat — ce chiffre est ce qui apprend aux gens à écrire de meilleures requêtes.\n\nLe budget, qui est tout l’intérêt de ce projet :\n- Un budget d’ingestion mensuel en gigaoctets et un budget de requête mensuel en octets scannés, tous deux configurés.\n- À 80 % de l’un ou l’autre, un avertissement apparaît dans l’interface et une alerte est envoyée.\n- À 100 % du budget d’ingestion, le comportement est choisi, pas implicite : laisser tomber avec un compteur de ce qui a été perdu par dataset, ou échantillonner à un taux annoncé. Ne jamais accepter et facturer en silence.\n- Une rétention par dataset en jours, avec l’expiration qui supprime les objets du stockage et ne se contente pas de masquer les lignes.\nDis dans le README pourquoi c’est conçu ainsi : un pipeline de logs sans plafond transforme une instruction de debug incontrôlée en facture à quatre chiffres, et c’est l’accident coûteux le plus courant en observabilité.\n\nAlertes : une requête enregistrée, un intervalle, et un seuil. Déclenche vers un webhook. Enregistre chaque évaluation pour qu’une alerte manquée puisse être investiguée.\n\nÉcris des tests pour l’élagage de partitions qui réduit vraiment les octets scannés, pour le budget qui stoppe l’ingestion à la limite, et pour la rétention qui supprime les objets.\n\nNe construis ni agents ni bibliothèques clientes pour une dizaine de langages — un seul point d’entrée HTTP documenté suffit.",
+  "faq": [
+    {
+      "q": "Pourquoi mettre le plafond de coût avant les fonctionnalités ?",
+      "a": "Parce que le mode d’échec du logging auto-hébergé, ce n’est pas qu’il arrête de fonctionner, c’est une ligne de debug dans une boucle chaude et une facture de stockage que personne n’a remarquée pendant trois semaines. Un plafond qui laisse tomber et compte coûte moins cher que n’importe quelle quantité de vigilance."
+    },
+    {
+      "q": "Pourquoi afficher les octets scannés sur chaque requête ?",
+      "a": "Parce que c’est le seul retour qui change les comportements. Une fois que les gens voient qu’une plage temporelle non bornée scanne cent gigaoctets, ils commencent à ajouter des filtres de temps sans qu’on le leur demande."
+    },
+    {
+      "q": "Le schéma à la lecture est-il vraiment meilleur ici ?",
+      "a": "Pour des logs, oui — les champs changent dès que quelqu’un ajoute une ligne de log, et un schéma déclaré signifie soit des migrations constantes, soit des données perdues. Découvrir les champs par partition coûte un peu de performance de requête et épargne beaucoup de friction."
+    },
+    {
+      "q": "Que facture vraiment Axiom ?",
+      "a": "Un forfait plateforme de 25 $ par mois qui inclut un vrai quota — 1 To ingéré, 100 Go-heures interrogés, 100 Go stockés — avec l’usage au-delà facturé en plus, plus des modules complémentaires entreprise en option. Le plan gratuit Personal est plus petit mais vraiment utilisable."
+    }
+  ]
+}

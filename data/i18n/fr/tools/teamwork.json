@@ -1,0 +1,32 @@
+{
+  "tagline": "Gestion de projet visée droit sur les agences qui facturent leurs clients à l’heure.",
+  "verdictSummary": "Teamwork est un outil de projet dont le vrai sujet, c’est la rentabilité : les tâches portent des heures journalisées, les heures portent des taux, et un projet te dit s’il a rapporté de l’argent. Cette chaîne — estimation, journalisation, taux, facture, marge — c’est une semaine à construire correctement, et correctement signifie que le taux qui s’appliquait ce jour-là est le taux utilisé, pas celui d’aujourd’hui. Rien là-dedans n’est une barrière défensive, donc c’est un « en partie », avec pour manques les applications mobiles, les intégrations et le portail client.",
+  "coreLoopDIY": "Journalise des heures contre des tâches, tarife-les avec le taux en vigueur ce jour-là, et lis un chiffre par projet : heures estimées contre heures consommées, et argent facturé contre coût.",
+  "whatYouLose": [
+    "les applications mobiles pour journaliser du temps loin d’un bureau",
+    "le portail côté client et ses fils de commentaires",
+    "les intégrations comptables qui poussent une facture vers Xero ou QuickBooks",
+    "la planification de ressources et la prévision d’utilisation",
+    "les produits desk et helpdesk vendus en complément"
+  ],
+  "whyPeopleStillPay": "Parce qu’une agence qui ne voit pas la marge de projet devine, et coudre ensemble un traqueur, une feuille de temps et un outil de facturation produit exactement les coutures qui rendent le chiffre peu fiable.",
+  "prompt": "Construis un traqueur de projet pour le travail facturable, où l’argent est calculé et auditable.\n\nStack : ton choix, Postgres, Docker Compose.\n\nModèle : Client, Projet, Tâche, EntréeDeTemps, Taux, Facture.\n\nLe modèle de taux, c’est là que ce projet se gagne ou se perd. Un Taux a une portée (personne, rôle, projet, ou une personne spécifique sur un projet spécifique), un montant, un montant de coût, et une date d’effet. Résoudre le taux pour une entrée de temps utilise la portée la plus spécifique en vigueur à la date de l’entrée, jamais la date actuelle. Changer un taux aujourd’hui ne doit pas retarifer silencieusement le travail du trimestre dernier. Écris le test pour ça en premier : journalise une entrée, change le taux, vérifie que la valeur de l’entrée est inchangée, et vérifie qu’une nouvelle entrée reçoit le nouveau taux.\n\nEntrées de temps : date, durée, tâche, personne, un indicateur facturable, et une note. Les entrées sont immuables une fois qu’elles apparaissent sur une facture envoyée ; les modifier après ça exige une entrée d’ajustement explicite, ce qu’une piste d’audit signifie en pratique.\n\nÉconomie de projet sur une page : heures estimées contre journalisées, par tâche et au total ; revenu aux taux facturables résolus ; coût aux taux de coût résolus ; marge en argent et en pourcentage ; et une ligne de consommation montrant les heures journalisées contre le temps calendaire écoulé. Colore les projets qui dépassent l’estimation et sont encore ouverts.\n\nFacturation : sélectionne les entrées facturables non facturées dans une plage de dates, groupe par tâche ou par personne, produis une facture avec des lignes, et marque ces entrées facturées avec l’id de la facture. Génère un PDF. Ne construis pas la collecte de paiement.\n\nAjoute aussi : des listes de tâches avec dépendances et jalons, une vue de feuille de temps par personne avec un total hebdomadaire, et un export CSV des entrées de temps avec leurs taux résolus inclus.\n\nÉcris des tests pour la résolution historique de taux à travers un changement de taux, pour la précédence de portée quand plusieurs taux pourraient s’appliquer, et pour l’immuabilité des entrées facturées.\n\nNe construis ni portail client, ni applications mobiles, ni intégrations comptables. Exporte un CSV que ton comptable peut importer, et arrête-toi là.",
+  "faq": [
+    {
+      "q": "Pourquoi la résolution de taux daté est-elle la partie difficile ?",
+      "a": "Parce que l’implémentation naïve joint au taux actuel, et la première fois que tu augmentes tes prix, chaque facture historique change discrètement. C’est un bug de corruption de données silencieux : rien ne plante, les chiffres sont simplement faux à partir de là."
+    },
+    {
+      "q": "Que m’apporte « immuable une fois facturée » ?",
+      "a": "La capacité de répondre à « pourquoi cette facture dit 12 heures alors que la feuille de temps en dit 11 » un an plus tard. Une entrée d’ajustement garde les deux faits ; une édition n’en garde aucun."
+    },
+    {
+      "q": "Les taux de coût devraient-ils vraiment être dans la même table ?",
+      "a": "Oui, avec la même mécanique de date d’effet, parce que la marge est le chiffre pour lequel ce projet existe, et une marge calculée à partir d’un taux de coût actuel contre un taux facturable historique n’a aucun sens."
+    },
+    {
+      "q": "Teamwork exporte-t-il ce dont j’ai besoin ?",
+      "a": "Les entrées de temps, tâches et projets s’exportent en CSV, et l’API couvre le reste. L’historique de taux est la partie à vérifier soigneusement — exporte-le séparément, parce qu’un export d’entrées de temps avec seulement les taux actuels ne se rapprochera pas des factures que tu as déjà envoyées."
+    }
+  ]
+}

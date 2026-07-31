@@ -1,0 +1,32 @@
+{
+  "tagline": "Un stockage chiffré d’une entreprise dont le produit entier consiste à ne pas lire tes fichiers.",
+  "verdictSummary": "Chiffrer les fichiers avant l’envoi, c’est la partie facile, et des outils open source matures le font déjà bien. La partie difficile, et la raison pour laquelle les gens paient, c’est tout ce qui entoure la clé : récupérer un compte sans porte dérobée, changer un mot de passe sans rechiffrer chaque fichier, partager avec quelqu’un qui n’a pas de compte, et des audits qui rendent l’affirmation vérifiable. Un projet perso peut chiffrer ; il ne peut généralement répondre à « que se passe-t-il si j’oublie le mot de passe » par rien d’autre que « tu perds tout ».",
+  "coreLoopDIY": "Chiffre côté client avec une hiérarchie de clés qui survit à un changement de mot de passe, et écris le modèle de menace — y compris exactement ce que la récupération sauve et ne sauve pas.",
+  "whatYouLose": [
+    "un scénario de récupération qui marche pour une personne non technique",
+    "les clients mobiles et desktop avec un chiffrement transparent",
+    "des audits indépendants de l’implémentation",
+    "le partage avec des destinataires qui n’ont pas de compte",
+    "une juridiction et une posture juridique choisies délibérément"
+  ],
+  "whyPeopleStillPay": "Parce que le chiffrement est une promesse, et une promesse vaut ce que valent les audits, le processus de récupération et la juridiction derrière. Ce sont des choses institutionnelles, pas techniques.",
+  "prompt": "Construis un stockage de fichiers chiffré et, avant le code, écris le modèle de menace. Le README s’ouvre avec.\n\nLe modèle de menace doit dire clairement : contre qui ceci protège (un opérateur de serveur curieux ou compromis), contre qui non (un serveur hostile servant du code client modifié, un malware sur ta propre machine, quiconque a ta phrase secrète), et ce qui se passe quand la phrase secrète est perdue.\n\nStack : un client — ligne de commande et une page navigateur — plus un serveur de stockage stupide. Le serveur stocke du texte chiffré et des métadonnées et ne peut rien déchiffrer. Envisage de t’appuyer sur un outil de chiffrement audité existant plutôt que d’écrire les primitives.\n\nHiérarchie de clés, la décision de conception dont tout le reste découle :\n- Une clé maîtresse aléatoire de 256 bits chiffre les clés par fichier.\n- La clé maîtresse est enveloppée par une clé dérivée de ta phrase secrète avec Argon2id à des paramètres que tu documentes.\n- Changer la phrase secrète ne re-enveloppe que la clé maîtresse. Les fichiers ne sont jamais touchés. Démontre ça dans un test : change la phrase secrète, prouve que chaque fichier se déchiffre encore, prouve qu’aucun octet de texte chiffré n’a changé.\n- Chaque fichier reçoit sa propre clé aléatoire, enveloppée par la clé maîtresse. Partager un seul fichier signifie partager la clé de ce fichier, pas la maîtresse.\n\nRécupération, et sois honnête là-dessus : génère un code de récupération à la configuration qui enveloppe la clé maîtresse d’une seconde façon, affiché une fois, avec une confirmation forcée que l’utilisateur l’a stocké. Indique dans l’interface, pas seulement dans la doc, que perdre à la fois la phrase secrète et le code de récupération signifie que les fichiers sont irrécupérables — parce que c’est la propriété réelle, et la cacher, c’est comme ça que les gens perdent leurs données.\n\nPartage : un partage produit un lien avec la clé du fichier dans le fragment d’URL, pour que le serveur n’apprenne toujours rien. Expiration et limites de téléchargement imposées côté serveur sur le texte chiffré.\n\nMétadonnées : chiffre aussi les noms de fichiers et la structure de dossiers, et dis clairement ce qui fuite nécessairement quand même — tailles de fichiers, heures d’upload, la forme de l’arbre de dossiers, et les motifs d’accès.\n\nIntégrité : du chiffrement authentifié partout, et une commande de vérification qui contrôle le tag de chaque fichier stocké et signale la corruption, puisqu’une pourriture de bits silencieuse dans du texte chiffré est irrécupérable.\n\nÉcris des tests pour le changement de phrase secrète qui ne rechiffre pas les fichiers, pour le déballage de code de récupération, pour le texte chiffré altéré qui est rejeté plutôt que de produire des données aléatoires, et pour la commande de vérification qui détecte un bit inversé.\n\nN’invente pas de primitives, et n’ajoute pas de chemin de réinitialisation de mot de passe — ce serait une porte dérobée par définition.",
+  "faq": [
+    {
+      "q": "Pourquoi la hiérarchie de clés compte-t-elle autant ?",
+      "a": "Parce que sans elle, changer ta phrase secrète signifie télécharger, déchiffrer et réenvoyer tout — ce que personne ne fait, donc personne ne change sa phrase secrète. Envelopper une seule clé maîtresse rend une rotation instantanée et rend le partage par fichier possible."
+    },
+    {
+      "q": "Pourquoi refuser une réinitialisation de mot de passe ?",
+      "a": "Parce qu’une réinitialisation qui récupère tes fichiers signifie que le serveur peut les déchiffrer, ce qui contredit toute la prémisse. Le code de récupération est la version honnête : une seconde clé que tu détiens, pas une porte dérobée que quelqu’un d’autre détient."
+    },
+    {
+      "q": "Que fuite encore malgré tout le chiffrement ?",
+      "a": "Les tailles de fichiers, le nombre de fichiers, la forme de l’arbre de dossiers, les heures d’upload et d’accès, et ton adresse IP. Ces métadonnées suffisent souvent à en déduire beaucoup, et tout outil qui prétend le contraire en fait trop."
+    },
+    {
+      "q": "Proton Drive est-il audité ?",
+      "a": "Proton publie des audits de sécurité indépendants de ses applications, ce qui est une grande partie de ce qui distingue un service chiffré payant d’un service fait maison. Ton propre projet a l’assurance que tu peux lui donner, ce qui, honnêtement, n’est pas grand-chose."
+    }
+  ]
+}

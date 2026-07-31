@@ -1,0 +1,32 @@
+{
+  "tagline": "Des événements vidéo en direct avec inscription, chat et archive de replay.",
+  "verdictSummary": "La vidéo, c’est la partie que tu ne peux pas construire. Livrer un flux en direct à quelques centaines de spectateurs simultanés sans saccade demande une origine, un CDN et de la bande passante facturée au gigaoctet, et la tarification de Crowdcast au participant existe précisément parce que c’est là son coût. Ce qui entoure la vidéo — une page d’inscription, des emails de rappel, une archive de replay — est un projet d’une session, et ça vaut la peine d’exister en soi, parce que c’est la moitié qui détermine si quelqu’un se présente.",
+  "coreLoopDIY": "Fais tourner le tunnel autour de l’événement plutôt que l’événement lui-même : une page d’inscription, une invitation calendrier, des emails de rappel à intervalles raisonnables, et une archive de replay protégée par la même inscription.",
+  "whatYouLose": [
+    "la vidéo en direct elle-même, et la bande passante derrière",
+    "le chat en direct et les questions-réponses synchronisés avec le flux",
+    "les statistiques de présence liées à la chronologie vidéo",
+    "le replay hébergé avec son propre lecteur et son CDN",
+    "la fiabilité quand quatre cents personnes rejoignent à la même minute"
+  ],
+  "whyPeopleStillPay": "Parce qu’une vidéo en direct qui saccade est pire que pas d’événement du tout, et payer par participant, c’est comment tu achètes la capacité de diffusion sans la posséder.",
+  "prompt": "Construis le tunnel autour d’un événement en direct. La vidéo est confiée au service de streaming que tu utilises déjà ; ce projet possède tout le reste.\n\nStack : ton choix, Postgres, Docker Compose, un domaine, et un fournisseur d’email transactionnel avec SPF, DKIM et DMARC configurés.\n\nÉvénement : titre, description, heure de début avec un fuseau horaire explicite, durée, un plafond optionnel, et une URL de flux que tu colles plus tard.\n\nPage d’inscription : nom, email, et jusqu’à trois questions personnalisées que tu définis par événement. À la soumission, stocke l’inscription et envoie une confirmation contenant un lien de participation personnel avec un token unique, plus une vraie pièce jointe .ics. Génère le .ics toi-même et fais-le correctement — DTSTART en UTC avec un TZID pour l’affichage, un UID stable, SEQUENCE incrémenté à chaque changement pour que les mises à jour remplacent plutôt que dupliquent, et un METHOD:REQUEST. Teste-le dans Google Calendar, Apple Calendar et Outlook ; ils ne sont pas d’accord entre eux, et une invitation qui se duplique elle-même est de loin l’échec le plus courant ici.\n\nRappels : un planning par événement, par défaut 24 heures, 1 heure et 10 minutes avant, chacun envoyé uniquement aux inscrits qui n’ont pas encore rejoint. Le planificateur doit être idempotent — un redémarrage ne doit pas renvoyer — et doit respecter le fuseau horaire de l’inscrit quand il affiche l’heure.\n\nParticipation : le lien personnel enregistre la participation puis redirige vers l’URL du flux. Cet enregistrement unique est ce qui rend tout mesurable — inscriptions, participations, et le taux de présence par événement et par source de trafic, via un paramètre ?source= porté depuis le lien d’inscription.\n\nReplay : après l’événement, attache une URL d’enregistrement. Le même lien personnel sert alors la page de replay, donc les vues de replay sont attribuées à la même personne. Exige optionnellement une nouvelle inscription pour le replay, et compte-les séparément.\n\nUn rapport : par événement, inscriptions par source, taux de présence, vues de replay, et la déperdition entre les envois de rappels.\n\nÉcris des tests pour la génération .ics selon les attentes des trois clients calendrier, pour l’idempotence des rappels après un redémarrage, et pour les tokens de participation à usage unique et impossibles à deviner.\n\nNe diffuse pas de vidéo, ne construis pas de chat, et n’héberge pas l’enregistrement.",
+  "faq": [
+    {
+      "q": "Pourquoi générer une invitation calendrier est-il plus dur qu’il n’y paraît ?",
+      "a": "Parce que les trois principaux clients ne sont pas d’accord sur les fuseaux horaires, les mises à jour et les annulations. Te tromper sur UID et SEQUENCE fait que chaque changement crée un second événement sur le calendrier du participant, ce qui est pire que de n’envoyer aucune invitation."
+    },
+    {
+      "q": "Que me dit vraiment le taux de présence ?",
+      "a": "Quel canal envoie des gens qui viennent plutôt que des gens qui s’inscrivent. Les inscriptions flattent chaque source également ; le taux de présence les distingue, et il est invisible tant que tu n’attribues pas la participation."
+    },
+    {
+      "q": "Où la vidéo devrait-elle vraiment aller ?",
+      "a": "N’importe où ayant déjà une capacité de diffusion — un hébergeur de streaming payant, ou une instance Owncast auto-hébergée si ton audience est petite et que tu comprends la facture de bande passante. Tout l’intérêt de ce projet, c’est que le tunnel se moque de ton choix."
+    },
+    {
+      "q": "Puis-je exporter mes inscriptions Crowdcast ?",
+      "a": "Oui, les données d’inscrits et de présence s’exportent en CSV par événement. Les enregistrements se téléchargent individuellement, donc récupère-les délibérément avant d’annuler."
+    }
+  ]
+}

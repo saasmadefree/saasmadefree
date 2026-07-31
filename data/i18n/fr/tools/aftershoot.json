@@ -1,0 +1,32 @@
+{
+  "tagline": "Trie les bonnes photos parmi trois mille clichés de mariage.",
+  "verdictSummary": "Le tri de photos est un problème de jugement déguisé en problème technique. Les modèles d’Aftershoot ont été entraînés sur la façon dont les photographes professionnels choisissent réellement entre des clichés quasi identiques — quel clignement d’œil compte, quelle expression l’emporte, quand une photo légèrement moins nette est en fait la meilleure — et ce jeu d’entraînement, c’est le produit. Un projet perso peut faire la partie mécanique, et cette partie mécanique est vraiment utile, mais elle ne choisira pas la photo.",
+  "coreLoopDIY": "Fais honnêtement la moitié mécanique du tri : regroupe les clichés quasi identiques, note chacun sur la netteté et les yeux ouverts, et présente le groupe côte à côte pour que tu choisisses toi-même — sans jamais choisir à ta place.",
+  "whatYouLose": [
+    "le jugement entraîné sur quelle photo est la meilleure",
+    "la retouche automatique calée sur ton propre style, tirée de tes retouches passées",
+    "la retouche de portrait",
+    "l’application desktop et sa rapidité sur des milliers de RAW",
+    "toute précision approchant celle que revendique le produit payant"
+  ],
+  "whyPeopleStillPay": "Parce qu’un mariage, c’est trois mille photos, et le tri est la journée la moins agréable du métier. Les modèles sont entraînés sur des choix auxquels un développeur solo n’a aucun accès.",
+  "prompt": "Construis un assistant de tri qui regroupe et mesure, mais refuse de décider.\n\nStack : une application locale, SQLite, pas de réseau. Lis les aperçus JPEG intégrés aux fichiers RAW plutôt que de les décoder — décoder trois mille RAW, c’est la différence entre des minutes et des heures.\n\nRegroupement : rassemble les clichés en rafales selon l’écart de temps de capture et la similarité visuelle, via un hash perceptuel sur l’aperçu. Un groupe est un ensemble de tentatives quasi identiques de la même photo, l’unité dans laquelle un photographe choisit vraiment.\n\nMesures par cliché, toutes mécaniques et toutes explicables :\n- Netteté : variance du Laplacien sur toute l’image, et séparément sur la zone de visage détectée, car un arrière-plan net avec un visage flou est une photo à jeter.\n- Yeux : détecte les visages et estime si les yeux sont ouverts, avec un score de confiance par visage, jamais comme un verdict.\n- Exposition : pourcentages de hautes lumières et d’ombres écrêtées d’après l’histogramme.\n- Dérive de cadrage : à quel point le cadrage a bougé au sein du groupe.\n\nL’interface de révision, c’est le cœur du projet : un groupe à la fois, les clichés côte à côte à une taille exploitable, avec les mesures affichées en petites étiquettes sous chacun. Clavier uniquement — touches numériques pour noter, espace pour avancer, une touche pour garder tout le groupe, une pour le rejeter. L’application suggère une sélection par défaut basée sur les mesures et ne présélectionne rien ; la suggestion est un simple surlignage, et passer outre prend une seule touche.\n\nÉcris les notes et les rejets dans des fichiers sidecar à côté des originaux pour que le développeur RAW les récupère. Ne déplace ni ne supprime jamais un fichier.\n\nUne session peut être mise en pause et reprise exactement là où elle s’est arrêtée, parce que trier trois mille clichés n’est pas l’affaire d’une session.\n\nRapport par session : clichés revus, taux de conservation, temps par groupe, et à quelle fréquence tu as suivi la suggestion — ce dernier chiffre te dit honnêtement si les mesures mécaniques valent quelque chose pour ton travail.\n\nÉcris des tests pour le regroupement en rafales à la limite de l’écart de temps, pour le score de netteté qui classe un cliché net connu au-dessus d’un cliché flou connu, et pour la reprise qui retourne exactement au bon groupe.\n\nN’entraîne aucun modèle sur tes retouches, et ne supprime rien automatiquement.",
+  "faq": [
+    {
+      "q": "À quel point le score mécanique peut-il se rapprocher d’un vrai tri ?",
+      "a": "Il élimine de façon fiable ce qui est manifestement inutilisable — mauvaise mise au point, écrêtage total, yeux fermés — ce qui représente une vraie part d’un shooting. Il ne peut pas te dire lequel, parmi quatre sourires nets et bien exposés, est LA photo, et c’est là que se trouve l’essentiel du travail."
+    },
+    {
+      "q": "Pourquoi mesurer la netteté du visage séparément ?",
+      "a": "Parce que la netteté sur toute l’image note bien une photo avec un arrière-plan net et un sujet flou, alors que cette photo est toujours à rejeter. La netteté sur la zone du visage est de loin la mesure la plus utile de la liste."
+    },
+    {
+      "q": "Pourquoi suivre l’accord avec la suggestion ?",
+      "a": "Parce que c’est la seule évaluation honnête. Si tu passes outre la suggestion la plupart du temps, les mesures n’aident pas pour ton style, et tu devrais arrêter de les regarder."
+    },
+    {
+      "q": "Pourquoi lire l’aperçu intégré plutôt que le RAW ?",
+      "a": "La vitesse. Chaque RAW contient un JPEG plein format généré par le boîtier, largement suffisant pour la détection de netteté et de visage. Décoder les RAW pour le tri transforme une passe de vingt minutes en un après-midi entier."
+    }
+  ]
+}

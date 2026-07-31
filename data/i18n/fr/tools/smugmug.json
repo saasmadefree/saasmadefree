@@ -1,0 +1,32 @@
+{
+  "tagline": "Hébergement photo illimité avec une boutique de tirages attachée.",
+  "verdictSummary": "Deux choses ici ne sont pas du code. Le stockage illimité à prix fixe est un métier de stockage, et la boutique de tirages — labos, exécution, retours, et l’argent qui vient jusqu’à toi — est une chaîne d’approvisionnement avec une couche de paiement. Ce qui reste, c’est un site de galerie, que tu peux construire en une session et pour lequel personne ne paierait vingt dollars par mois. D’où le « non ».",
+  "coreLoopDIY": "Publie un site photo rapide et statique depuis un dossier d’images, avec le coût de stockage et la croissance visibles pour que l’échange face à un hébergeur à prix fixe soit un chiffre plutôt qu’un ressenti.",
+  "whatYouLose": [
+    "le stockage illimité à prix fixe",
+    "la boutique de tirages, ses labos et l’argent qu’elle te fait gagner",
+    "le filigrane et l’outillage de protection contre le vol",
+    "les modèles de site web et leur éditeur",
+    "le support humain 24/7"
+  ],
+  "whyPeopleStillPay": "Parce que stockage illimité plus une boutique qui fonctionne, c’est un modèle économique, pas une liste de fonctionnalités, et un photographe qui vend des tirages achète de l’exécution plutôt que de l’hébergement.",
+  "prompt": "Construis un générateur de site photographique statique honnête sur ce qu’il coûte à faire tourner.\n\nStack : un générateur en ligne de commande plus du stockage d’objets et un CDN. Pas de serveur, pas de base de données, pas de runtime.\n\nEntrée : une arborescence de dossiers d’images plus un petit fichier de configuration. Les dossiers deviennent des galeries ; un fichier de métadonnées par dossier fixe le titre, la description, la couverture et l’ordre.\n\nGénère : des dérivés adaptatifs à plusieurs largeurs, des formats modernes avec un repli, du markup srcset, des espaces réservés flous en ligne, un chargement paresseux sous la ligne de flottaison, et une visionneuse avec navigation clavier et balayage. Précharge l’image suivante. Du HTML statique sans framework client — un site photographique devrait être la chose la plus rapide que le visiteur a chargée ce jour-là.\n\nBuilds incrémentaux indexés par hash de contenu source, pour qu’ajouter dix photographies à un site de mille photos n’en reconstruise que dix.\n\nGestion des métadonnées avec un choix délibéré : retire les coordonnées GPS des dérivés publiés par défaut, et exige un opt-in explicite par galerie pour les garder. Publier l’emplacement exact de photos de famille est une erreur qu’on fait une fois.\n\nFiligrane, optionnel par galerie, appliqué uniquement aux dérivés et jamais à tes originaux.\n\nLe rapport de coût, imprimé après chaque build et écrit dans un fichier : octets stockés totaux pour originaux et dérivés, coût de stockage mensuel au tarif publié de ton fournisseur, bande passante servie le mois dernier si ton fournisseur l’expose, et une projection à douze mois au taux de croissance actuel. Ce chiffre, c’est ce qui rend la comparaison avec un hébergeur à prix fixe honnête plutôt qu’idéologique.\n\nGénère aussi un sitemap, un RSS par galerie, et des balises <meta> pour les aperçus de liens.\n\nÉcris des tests pour le rebuild incrémental qui ne touche que les entrées changées, pour le retrait GPS par défaut, et pour la sortie srcset qui correspond aux largeurs de dérivés générées.\n\nNe construis ni boutique, ni CMS, ni interface d’administration.",
+  "faq": [
+    {
+      "q": "Pourquoi retirer le GPS par défaut ?",
+      "a": "Parce que la plupart des photos sont prises à la maison, et publier des coordonnées est un manquement à la vie privée invisible jusqu’à ce qu’il ne le soit plus. L’opt-in par galerie garde ça disponible pour le travail de paysage où l’emplacement est justement le sujet."
+    },
+    {
+      "q": "Pourquoi imprimer le rapport de coût à chaque build ?",
+      "a": "« L’auto-hébergement est moins cher » est généralement affirmé et rarement mesuré. Voir le stockage et la bande passante en argent à chaque publication transforme l’échange contre un hébergeur à stockage illimité en une vraie décision."
+    },
+    {
+      "q": "Un site statique suffit-il pour un portfolio de photographie ?",
+      "a": "C’est mieux que suffisant — c’est plus rapide que tout ce qui a un runtime, ça ne peut pas tomber en panne de façon intéressante, et ça coûte quelques dollars par mois à l’échelle d’un portfolio. Ce que ça ne peut pas faire, c’est vendre des tirages."
+    },
+    {
+      "q": "Puis-je tout exporter depuis SmugMug ?",
+      "a": "Les originaux se téléchargent par galerie ou via l’API, et la structure de dossiers les accompagne. Le design de site personnalisé, les listes de prix et l’historique de commandes, non, donc si tu as vendu, exporte les enregistrements de commande séparément."
+    }
+  ]
+}

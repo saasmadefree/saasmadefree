@@ -1,0 +1,32 @@
+{
+  "tagline": "Pose n’importe quelle question à ton trafic, y compris celles que tu n’avais pas prévues.",
+  "verdictSummary": "La promesse, c’est de pouvoir grouper par identifiant utilisateur, ou identifiant de build, ou feature flag, à n’importe quel moment, sans l’avoir prédéclaré — et que la réponse revient en quelques secondes sur des milliards d’événements. C’est un moteur de stockage et de requête spécialisé, réglé pendant des années, tournant sur du matériel dimensionné pour la pire requête. Un projet perso peut démontrer l’idée à petit volume et va se heurter au mur bien avant la partie intéressante, ce qui est exactement pourquoi le verdict est « non ».",
+  "coreLoopDIY": "Émets un événement large par requête avec tout ce que tu sais, stocke-le en colonnes, et groupe par n’importe quel champ — avec le volume auquel ça arrête de fonctionner mesuré et affiché plutôt que découvert pendant un incident.",
+  "whatYouLose": [
+    "la vitesse de requête aux volumes où la haute cardinalité devient vraiment difficile",
+    "la cascade de traçage et l’instrumentation automatique",
+    "les outils d’investigation guidée qui suggèrent quel champ explique une anomalie",
+    "la rétention à l’échelle",
+    "quelqu’un d’autre qui l’exploite pendant l’incident que tu investigues"
+  ],
+  "whyPeopleStillPay": "Parce que toute la valeur, c’est de répondre rapidement à une question non planifiée sous pression, et un système fait maison est le plus lent exactement quand le trafic est le plus étrange.",
+  "prompt": "Construis une analyse à événements larges et découvre honnêtement où ça arrête de monter en charge.\n\nStack : ClickHouse ou un équivalent en colonnes, un petit service d’ingestion, et une interface de requête. Docker Compose.\n\nL’idée d’instrumentation, que le README devrait expliquer : au lieu de nombreuses lignes de log étroites, émets un événement large par unité de travail — par requête HTTP, par job — portant tout ce qui est connu au moment où elle se termine : durée, statut, route, identifiant utilisateur, identifiant de compte, identifiant de build, feature flags, cache atteint ou manqué, temps base de données, temps d’appel externe. Une ligne, cinquante colonnes, aucune agrégation à l’entrée.\n\nIngestion : un point d’entrée HTTP acceptant des événements JSON, mis en tampon et par lots. Les nouveaux champs créent des colonnes automatiquement. Fournis une petite bibliothèque cliente pour un langage montrant comment construire l’événement large correctement, y compris le piège que les champs doivent être ajoutés tout au long de la requête et vidés une seule fois à la fin.\n\nRequête : choisis une plage temporelle, filtre sur n’importe quel champ, groupe par n’importe quel champ, et agrège avec count, percentiles, moyenne, max, et count-distinct. Les percentiles comptent plus que les moyennes ici et devraient être le défaut. Les résultats se rendent comme une série temporelle avec les groupes superposés, plafonnés aux N meilleurs groupes plus un panier « autre ».\n\nLa fonctionnalité qui rend ce projet valable : BubbleUp. Sélectionne une région lente ou en échec du graphique, et l’outil compare la distribution de chaque champ à l’intérieur de la sélection contre l’extérieur, en classant les champs selon leur degré de différence. Cette seule interaction — « qu’est-ce qui est différent dans les requêtes lentes » — est la raison même d’émettre des événements larges, et c’est quelques centaines de lignes de statistiques sur des données en colonnes.\n\nMontée en charge honnête, exigée plutôt qu’optionnelle : livre un générateur de charge et un script de benchmark, exécute-le, et affiche dans le README le volume d’événements et la cardinalité mesurés auxquels le temps de requête médian dépasse deux secondes sur ton matériel. Annonce le chiffre plutôt que de suggérer qu’il n’y a pas de limite.\n\nRétention par dataset avec suppression réelle, et un plafond d’ingestion journalier qui laisse tomber avec un compteur.\n\nÉcris des tests pour la création automatique de colonne sur un nouveau champ, pour l’exactitude des percentiles contre une distribution connue, et pour le classement de comparaison sur un dataset synthétique avec un champ coupable planté.\n\nNe construis ni cascades de traçage, ni instrumentation automatique.",
+  "faq": [
+    {
+      "q": "Qu’est-ce qu’un événement large, et pourquoi un par requête ?",
+      "a": "C’est une seule ligne portant tout ce que tu savais à la fin de l’unité de travail — des dizaines de champs, aucune agrégation. Un par requête signifie que tu peux découper selon n’importe quelle combinaison plus tard, ce qui est impossible une fois que tu as pré-agrégé en compteurs."
+    },
+    {
+      "q": "Pourquoi la haute cardinalité est-elle difficile ?",
+      "a": "Parce que grouper par quelque chose avec des millions de valeurs distinctes — identifiant utilisateur, identifiant de requête — met en échec les stratégies d’indexation qui rendent rapides les stockages de métriques traditionnels. Le stockage en colonnes aide ; rester rapide à des milliards de lignes, c’est la partie spécialisée que tu paies."
+    },
+    {
+      "q": "Pourquoi publier le benchmark là où ça casse ?",
+      "a": "Parce que l’alternative, c’est de le découvrir pendant un incident. Un « les requêtes ralentissent au-delà d’environ ce volume sur ce matériel » mesuré est plus utile que n’importe quelle affirmation, et ça te dit quand arrêter de t’auto-héberger."
+    },
+    {
+      "q": "Comment Honeycomb tarife-t-il ?",
+      "a": "Par volume d’événements : gratuit jusqu’à 20 millions d’événements par mois, Pro à partir de 150 $ pour 50 millions et jusqu’à 750 millions, avec les points de données métriques comptés séparément. L’échantillonnage est la façon standard dont les équipes gardent ce chiffre bas, et ça vaut la peine de le concevoir tôt."
+    }
+  ]
+}

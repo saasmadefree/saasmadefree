@@ -36,7 +36,8 @@
     "google-workspace-business-starter"
   ],
   "markets": [
-    "en"
+    "en",
+    "fr"
   ],
   "pagePriority": 4,
   "verifiedOneShot": false

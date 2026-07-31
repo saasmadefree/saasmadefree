@@ -1,0 +1,32 @@
+{
+  "tagline": "Une salle de réunion à une URL que tu gardes, sans rien à installer.",
+  "verdictSummary": "Le produit de Whereby, c’est que le lien fonctionne toujours : pas de téléchargement, pas de compte pour les invités, pas de « tu m’entends ? ». Livrer ça de façon fiable veut dire des serveurs média et des relais près de tes participants, ce qui est de l’infrastructure plutôt que du code, donc le verdict est « non ». La pièce qui vaut la peine d’être construite, c’est la porte d’entrée — une URL de salle permanente et mémorable avec des règles d’accès qu’un inconnu ne peut pas contourner en parlant — ce qui est le travail d’une session par-dessus un logiciel de visioconférence que tu fais tourner.",
+  "coreLoopDIY": "Possède le lien de la salle et ses règles : une URL permanente, un lobby, et frapper-pour-entrer, avec tout imposé côté serveur plutôt que dans l’interface.",
+  "whatYouLose": [
+    "l’infrastructure média qui fait tenir un appel",
+    "les applications mobiles et le réglage navigateur sur chaque appareil",
+    "l’enregistrement avec un stockage qui monte en charge",
+    "les sous-domaines personnalisés et les salles à la marque",
+    "quelqu’un à appeler quand un client ne peut pas rejoindre"
+  ],
+  "whyPeopleStillPay": "Parce que « le lien marche, c’est tout, pour n’importe qui, sur n’importe quel appareil » est une promesse que tu ne peux tenir qu’avec des serveurs dans assez d’endroits, et onze dollars par mois est un petit prix pour ne jamais dépanner le navigateur d’un invité.",
+  "prompt": "Construis la porte d’entrée des salles de réunion que tu héberges : des URL permanentes et des règles d’accès qui tiennent vraiment.\n\nStack : un serveur de visioconférence auto-hébergé (LiveKit ou Jitsi comme référence, avec un serveur TURN, qui est obligatoire plutôt qu’optionnel), plus une petite application sur ton propre domaine qui possède les salles, les tokens et l’accès.\n\nSalles : permanentes, nommées, sur tondomaine.tld/nom-de-salle. Les noms sont choisis mais validés — rejette tout ce qui est court, séquentiel ou devinable, et réserve une liste de mots évidents. Une salle ouverte à une URL prévisible, c’est comme ça que des inconnus finissent dans ton appel.\n\nModes d’accès par salle, imposés quand le token de participation est frappé sur le serveur, jamais dans le client :\n- Ouvert : quiconque a le lien rejoint.\n- Lobby : les participants attendent qu’un propriétaire les admette, voyant une page qui le dit.\n- Frappe : comme le lobby, mais le propriétaire reçoit une notification avec le nom déclaré de celui qui frappe et peut admettre ou refuser, avec les refus mémorisés pour cette session.\n- Membres seulement : une liste blanche de connectés.\nLe token de participation est de courte durée, à usage unique et lié à la salle. Écris le test qu’un token pour la salle A ne peut pas rejoindre la salle B, et qu’un token expiré est refusé.\n\nPage de salle avant de rejoindre : un contrôle d’appareil qui confirme caméra, microphone et réseau avant que le participant ne soit devant qui que ce soit, montrant un simple réussite ou échec avec quoi faire en cas d’échec. C’est une petite fonctionnalité qui retire la plupart de la maladresse au début d’un appel.\n\nContrôles du propriétaire : verrouiller la salle, couper le micro d’un participant, retirer un participant avec un blocage pour cette session, et terminer la réunion pour tout le monde. Tout imposé côté serveur.\n\nExploitation : un point d’entrée de santé qui vérifie que le serveur TURN relaie vraiment le média plutôt que de simplement répondre, une alerte quand il échoue, et une section README indiquant la limite de participants mesurée pour ton matériel et la bande passante par participant.\n\nÉcris des tests pour la portée et l’expiration de token, pour l’admission de lobby côté serveur, et pour le validateur de nom de salle qui rejette les noms séquentiels et courts.\n\nNe construis ni enregistrement, ni applications mobiles, ni système de planification.",
+  "faq": [
+    {
+      "q": "Pourquoi imposer l’accès quand le token est frappé plutôt que dans l’interface ?",
+      "a": "Parce que tout ce qui est imposé côté client n’est qu’une suggestion. Le serveur décide s’il émet un token de participation, et ce seul choix rend le lobby et la frappe réels plutôt que décoratifs."
+    },
+    {
+      "q": "Un contrôle d’appareil avant de rejoindre vaut-il la peine d’être construit ?",
+      "a": "C’est l’une des petites fonctionnalités à la plus haute valeur en visioconférence. Attraper un micro coupé avant que le participant ne soit à l’écran devant cinq personnes retire les deux minutes les plus courantes de chaque appel."
+    },
+    {
+      "q": "Combien de personnes une salle auto-hébergée peut-elle contenir ?",
+      "a": "Ça dépend de ta liaison montante et de ton CPU, ce qui est pourquoi le prompt te demande de mesurer et de publier le chiffre. Les appels de petite équipe sont confortables sur du matériel modeste ; la promesse de cent participants sur un plan payant, c’est de la capacité achetée, pas du code malin."
+    },
+    {
+      "q": "Pourquoi la citation de prix pointe-t-elle vers une URL différente ?",
+      "a": "Parce que whereby.com/pricing n’est pas une page de tarifs — Whereby transforme tout chemin non reconnu en salle de réunion, donc cette URL ouvre une salle appelée « pricing ». La vraie page est sous /information/meetings/pricing, ce que cite cette fiche."
+    }
+  ]
+}

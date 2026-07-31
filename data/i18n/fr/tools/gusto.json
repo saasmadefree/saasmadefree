@@ -1,0 +1,32 @@
+{
+  "tagline": "Fais tourner la paie américaine sans avoir à apprendre ce qu’est un formulaire 941.",
+  "verdictSummary": "La paie, c’est de l’arithmétique enveloppée dans de la réglementation, et la réglementation, c’est le produit : des tables de retenue qui changent, des déclarations dues aux administrations fédérale, d’État et parfois municipale, des virements via le système bancaire, et des pénalités quand quoi que ce soit est en retard. Gusto est une opération sous licence et un agent déclarant. Écrire l’arithmétique, c’est un projet d’une session ; être autorisé à déclarer et à déplacer l’argent ne l’est pas.",
+  "coreLoopDIY": "Modélise la paie plutôt que de la faire tourner : brut-vers-net pour des scénarios, coût employeur par embauche, et un calendrier de ce qui est dû quand — avec les déclarations et les paiements faits par quelqu’un habilité à le faire.",
+  "whatYouLose": [
+    "déclarer les charges sociales fédérales, d’État et locales",
+    "déplacer l’argent vers les employés et vers les administrations fiscales",
+    "les tables de retenue maintenues à mesure que la loi change",
+    "l’administration des avantages sociaux et les relations de courtage derrière",
+    "la responsabilité quand une déclaration est en retard ou fausse"
+  ],
+  "whyPeopleStillPay": "Parce qu’une déclaration de paie manquée, c’est une pénalité et une lettre, et toute la valeur, c’est que c’est quelqu’un d’autre qui la doit.",
+  "prompt": "Construis un modèle de paie. Il calcule et alerte ; il ne déclare et ne paie jamais. Dis-le dans la première ligne du README, et dis que les règles fiscales changent et que ceci n’est pas un conseil.\n\nStack : une application locale, SQLite, une seule commande.\n\nCalculateur brut-vers-net avec chaque taux chargé depuis un fichier de données que tu maintiens, daté, pour qu’une exécution historique reproduise exactement les taux d’alors. Livre le fichier vide avec une forme documentée et un exemple travaillé, plutôt que d’y intégrer des chiffres qui seront silencieusement faux l’année prochaine.\n\nCalcule et affiche chaque ligne séparément, jamais un seul chiffre net : brut, chaque déduction côté employé, chaque cotisation côté employeur, et net. Le total du coût employeur est le chiffre que les fondateurs sous-estiment systématiquement, et il devrait être le plus gros élément à l’écran.\n\nScénarios, ce qui rend ce projet valable :\n- Ce que coûte vraiment une augmentation de X, cotisations employeur incluses.\n- Salarié contre prestataire pour le même travail, avec la réserve que la classification est une question juridique, pas une réponse que le calculateur peut donner.\n- Le coût pleinement chargé de la prochaine embauche, cotisations employeur et tout frais logiciel par personne inclus.\n\nCalendrier : un planning de déclarations et de paiements que tu saisis une fois par obligation, avec une récurrence et un délai d’anticipation, produisant une liste de ce qui est dû dans les trente prochains jours et une alerte à mesure que chacune approche. Il suit ; il ne déclare pas.\n\nEnregistrements d’exécution : chaque cycle de paie modélisé stocké avec ses entrées, la version du fichier de taux utilisée, et les sorties, pour qu’un chiffre puisse être reproduit des mois plus tard.\n\nUne vue de rapprochement : totaux modélisés contre ce que ton vrai fournisseur a réellement facturé, importé depuis un CSV, avec les différences mises en évidence. Ce contrôle attrape un taux faux ou une déduction manquée avant qu’un auditeur ne le fasse.\n\nÉcris des tests pour brut-vers-net contre des exemples calculés à la main, pour le fichier de taux daté qui se résout correctement pour une période passée, et pour le calendrier qui se déclenche le bon jour à travers une limite de mois.\n\nNe tente ni déclaration, ni paiements, ni inscription aux avantages sociaux.",
+  "faq": [
+    {
+      "q": "Pourquoi ne pas simplement construire une vraie paie ?",
+      "a": "Parce que la faire tourner exige d’être enregistré pour déclarer auprès de chaque administration et pour déplacer l’argent, et se tromper porte des pénalités au nom de quelqu’un d’autre. L’arithmétique, c’est un week-end ; la licence et la responsabilité, c’est le produit."
+    },
+    {
+      "q": "Pourquoi livrer le fichier de taux vide ?",
+      "a": "Parce que des taux fiscaux intégrés en dur sont faux dès qu’ils changent, et un calculateur périmé mais confiant est pire qu’un calculateur qui pose la question. Des taux datés te permettent aussi de reproduire exactement une exécution passée."
+    },
+    {
+      "q": "La vue de rapprochement vaut-elle l’effort ?",
+      "a": "C’est la partie la plus précieuse. Comparer ton modèle avec la vraie facture attrape une déduction fausse ou une cotisation manquée dans le mois où ça arrive, plutôt qu’en fin d’année quand la corriger coûte cher."
+    },
+    {
+      "q": "Que coûte vraiment Gusto ?",
+      "a": "Un forfait mensuel plus un tarif par personne, avec les avantages sociaux et les modules complémentaires en plus — donc le forfait affiché est la plus petite moitié de la facture pour tout ce qui dépasse une très petite équipe. Modélise le chiffre par personne avant de comparer les fournisseurs."
+    }
+  ]
+}

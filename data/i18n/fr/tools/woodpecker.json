@@ -1,0 +1,32 @@
+{
+  "tagline": "De l’email froid qui continue de relancer jusqu’à ce que quelqu’un réponde vraiment.",
+  "verdictSummary": "La discipline de Woodpecker, c’est la relance : envoyer, attendre, renvoyer, et arrêter à l’instant où un humain répond. Chaque morceau de ça est constructible en une session, et la détection de réponse est la partie intéressante. Ce qui n’est pas constructible, c’est l’appareil environnant que le prix couvre vraiment — préchauffage gratuit, vérification de catch-all, boîtes mail et domaines préparés, et le monitoring de délivrabilité qui te dit quand ton envoi tourne mal. La réputation d’envoi est nommée dans les propres règles de ce projet comme une dépendance tierce difficile, et c’est exactement ce cas.",
+  "coreLoopDIY": "Un moteur de relance qui rédige le prochain message dans ta propre boîte mail selon un planning et arrête la séquence à l’instant où un vrai humain répond — tu appuies sur envoyer, il n’envoie jamais pour toi.",
+  "whatYouLose": [
+    "l’envoi, et donc tout volume au-delà de ce sur quoi tu peux appuyer sur envoyer",
+    "le préchauffage gratuit de boîte mail et la vérification de catch-all incluse",
+    "des domaines et boîtes mail préparés avec un DNS configuré",
+    "la rotation de boîte de réception à travers de nombreuses boîtes mail",
+    "le panneau agence et les sous-comptes par client"
+  ],
+  "whyPeopleStillPay": "Parce que les relances ne fonctionnent que si elles arrivent, et arriver est fonction de boîtes mail préchauffées, de domaines propres et d’un taux de rebond surveillé. La planification, c’est la partie visible et la moins chère.",
+  "prompt": "Construis un moteur de relance qui prépare des messages et refuse de les envoyer.\n\nLa contrainte de conception est délibérée : il crée des brouillons dans ta propre boîte mail au bon moment, et toi, tu envoies. Ça garde le volume humain, garde l’envoi sur ta propre réputation, et rend l’outil inutile pour du spam.\n\nStack : ton choix, Postgres, Docker Compose. Connecte-toi à Gmail ou Microsoft Graph avec OAuth pour la création de brouillon et la lecture de boîte de réception.\n\nModèle de séquence : une liste ordonnée d’étapes, chacune avec un délai en jours ouvrés et un modèle de corps avec interpolation {{champ}}. Les étapes après la première doivent pouvoir répondre dans le fil — fixe In-Reply-To et References sur le brouillon pour que la relance apparaisse sous l’original plutôt que comme un nouveau message, ce qui est à la fois plus poli et meilleur pour la délivrabilité.\n\nExécution quotidienne : pour chaque inscription dont la prochaine étape est due, rends le corps, crée un brouillon dans la bonne boîte mail, et marque-le préparé. Présente-les sur un écran comme « N brouillons prêts » avec un lien vers la boîte mail. N’envoie pas, et n’offre pas de bouton envoyer — l’absence, c’est la fonctionnalité.\n\nConditions d’arrêt, où vit la vraie logique :\n- Une réponse sur le fil arrête la séquence, mais seulement si elle est humaine. Filtre d’abord les DSN et répondeurs automatiques par en-tête : Auto-Submitted, Precedence, X-Autoreply, et les types de contenu de statut de livraison standards.\n- Une absence du bureau met en pause plutôt qu’elle n’arrête, et replanifie la prochaine étape après la date de retour quand elle peut être analysée depuis le corps — un petit travail à haute valeur.\n- Toute phrase de désabonnement d’une liste configurable, comparée sans distinction de casse dans une réponse, arrête la séquence et écrit une suppression globale permanente.\n- Un rebond dur arrête la séquence et supprime l’adresse.\n\nLa liste de suppression est globale, permanente, importable et exportable, et vérifiée au moment de l’inscription pour qu’un import CSV ne puisse pas réinscrire une adresse supprimée.\n\nUn rapport : par séquence, brouillons préparés et réellement envoyés (détecte en cherchant le message dans Envoyés), réponses, et taux de réponse par numéro d’étape — qui te dit si la troisième relance mérite sa place.\n\nÉcris des tests pour le classificateur réponse-humaine-contre-automatisée contre de vrais en-têtes, pour l’analyse de date d’absence du bureau, et pour la suppression qui survit à une réimportation.\n\nN’envoie pas d’email, n’implémente pas de préchauffage, et n’ajoute ni suivi d’ouverture ni suivi de clic.",
+  "faq": [
+    {
+      "q": "Pourquoi construire un envoyeur qui n’envoie pas ?",
+      "a": "Parce que le bouton envoyer, c’est ce qui transforme un outil de relance en canon à spam, et parce qu’envoyer depuis une boîte mail personnelle à un volume automatisé, c’est ce qui fait suspendre la boîte mail. Les brouillons gardent le volume à un niveau que ton domaine peut porter."
+    },
+    {
+      "q": "À quel point la détection de réponse automatisée fonctionne-t-elle vraiment ?",
+      "a": "Les règles d’en-tête attrapent les rebonds et la plupart des répondeurs automatiques de façon fiable. Les cas délicats, c’est une réponse humaine qui cite un répondeur automatique, et des messages de vacances qui ne portent aucun en-tête distinctif du tout — ce qui est pourquoi l’absence du bureau met en pause plutôt qu’elle n’arrête."
+    },
+    {
+      "q": "Analyser une date de retour depuis une absence du bureau vaut-il l’effort ?",
+      "a": "C’est de loin la petite fonctionnalité à la plus haute valeur ici. Relancer le jour où quelqu’un revient bat relancer pendant qu’il est absent, et les dates sont généralement dans une poignée de formats prévisibles."
+    },
+    {
+      "q": "Que facture vraiment Woodpecker ?",
+      "a": "Les prospects contactés, sur un curseur : environ sept euros par centaine, avec préchauffage, vérification et membres d’équipe illimités inclus. Les modules complémentaires — comptes LinkedIn, boîtes mail préparées, domaines, serveurs dédiés — c’est là que s’accumule le coût d’une vraie installation de prospection sortante."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "La bulle de chat dans le coin, plus une IA qui répond avant qu’un humain ne voie le message.",
+  "verdictSummary": "Le widget et la boîte de réception derrière représentent une semaine de vrai travail — websockets, persistance des messages, un embed qui survit à une navigation de page — et les messageries open source prouvent que c’est faisable. La moitié IA est constructible aussi, comme de la recherche documentaire sur ta propre doc, à condition de la faire refuser plutôt qu’inventer. Ce que tu n’obtiens pas, ce sont les SDK natifs iOS et Android, la suite de tours de produit sortants, et la qualité de résolution qu’Intercom a réglée sur un corpus énorme. C’est un manque substantiel, pas disqualifiant.",
+  "coreLoopDIY": "Un widget de chat intégrable adossé à ta propre boîte de réception, où un premier répondant IA ne répond qu’à partir de ta documentation et bascule vers un humain dès qu’il ne peut pas citer de source.",
+  "whatYouLose": [
+    "les SDK de messagerie natifs iOS et Android",
+    "les tours de produit, checklists, sondages et le reste de la suite sortante",
+    "la qualité de réponse de Fin et le corpus derrière",
+    "la suite de reporting et le scoring de qualité au niveau conversation",
+    "l’app store d’intégrations prêtes à l’emploi"
+  ],
+  "whyPeopleStillPay": "Parce qu’Intercom, c’est là où support, onboarding et messagerie in-produit vivent au même endroit, et parce que Fin qui résout une vraie part des tickets vaut plus que le prix du siège. La facturation à la résolution existe parce que cette valeur est mesurable.",
+  "prompt": "Construis une messagerie client avec un premier répondant IA qui préférerait ne rien dire plutôt que deviner.\n\nStack : ton choix avec websockets, Postgres avec pgvector, Docker Compose, et un domaine avec TLS parce que le widget sera intégré sur d’autres origines.\n\nWidget : une seule balise script, moins de 30 Ko, pas de framework. Il rend un lanceur et un panneau, ouvre un websocket, et — la partie que les gens ratent — survit à une navigation de page complète en persistant l’id de conversation et un token de visiteur dans le stockage local et en se reconnectant. Fonctionne sans cookies tiers. Respecte prefers-reduced-motion et prefers-color-scheme. Accessible au clavier : focus piégé dans le panneau quand il est ouvert, Échap ferme, et le focus retourne au lanceur.\n\nServeur : conversations, messages, visiteurs. Un visiteur est anonyme jusqu’à identification ; supporte un appel d’identification avec un token signé côté serveur pour qu’un utilisateur connecté ne puisse pas être usurpé en modifiant le stockage local. Dis clairement dans le README pourquoi un appel d’identification non signé est une faille de sécurité.\n\nPremier répondant IA sur ta propre doc :\n- Ingère des fichiers Markdown ou un sitemap, découpe avec chevauchement, encode en vecteurs, stocke dans pgvector.\n- Sur une question entrante, récupère les meilleurs morceaux et appelle un modèle Anthropic ou OpenAI avec un prompt qui n’autorise que deux résultats : une réponse qui cite et lie au moins une source récupérée, ou la chaîne exacte qui déclenche un transfert. Si le meilleur score de récupération est en dessous d’un seuil configurable, saute complètement le modèle et transfère — moins cher et plus honnête.\n- Chaque réponse IA affiche ses sources comme des liens que le visiteur peut ouvrir, et un bouton « ça ne m’a pas aidé » qui escalade immédiatement vers la file humaine.\n- Plafonne la dépense : un budget de tokens par conversation et par jour qui transfère plutôt que de le dépasser.\n\nCôté humain : une boîte de réception d’agent avec assignation, statuts, réponses prêtes, et une vue en direct de ce que le visiteur est en train de taper. Quand un humain rejoint, l’IA arrête de répondre dans cette conversation en permanence.\n\nRepli email : si personne ne répond dans une fenêtre configurable, collecte l’adresse email du visiteur et continue la conversation par courrier, en rattachant les réponses à la même fiche.\n\nUn rapport : conversations, part résolue par l’IA sans transfert, et raisons de transfert détaillées.\n\nÉcris des tests pour le seuil de récupération qui transfère, pour l’IA qui n’émet jamais de réponse sans lien de source, et pour la reconnexion après navigation.\n\nNe construis ni SDK mobiles, ni tours de produit, ni campagnes sortantes.",
+  "faq": [
+    {
+      "q": "Pourquoi forcer l’IA à citer une source ?",
+      "a": "Parce qu’un bot de support qui invente une politique de remboursement crée une responsabilité, et parce qu’une citation est un indicateur d’ancrage bon marché et vérifiable. Refuser quand la récupération est faible économise aussi entièrement l’appel au modèle, ce qui est le cas rare où le choix le plus sûr est aussi le moins cher."
+    },
+    {
+      "q": "Qu’est-ce qui est vraiment difficile dans le widget ?",
+      "a": "Survivre à la navigation et vivre à l’intérieur du CSS de quelqu’un d’autre. Les deux sont des problèmes résolus — un id de conversation persisté et une shadow root — mais ils font la différence entre une démo et quelque chose que tu mettrais sur un vrai site."
+    },
+    {
+      "q": "Puis-je égaler le taux de résolution de Fin ?",
+      "a": "Pas de série. La recherche sur une bonne documentation traite une part significative des questions répétitives, et l’avantage d’Intercom, c’est le réglage sur un volume énorme de vraies conversations. Le cadrage honnête, c’est que tu construis un bon déflecteur, pas un agent de remplacement."
+    },
+    {
+      "q": "Comment le tarif d’Intercom s’additionne-t-il vraiment ?",
+      "a": "Un prix de siège plus 0,99 $ pour chaque conversation que Fin résout, avec des modules Copilot et la suite sortante facturés séparément. La ligne à la résolution est celle qui monte avec ton succès, et c’est le chiffre à modéliser avant de basculer dans un sens ou l’autre."
+    }
+  ]
+}

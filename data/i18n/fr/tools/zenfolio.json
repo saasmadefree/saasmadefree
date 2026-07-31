@@ -1,0 +1,32 @@
+{
+  "tagline": "Un site de photographie et des galeries client pour quelqu’un qui n’en construira pas.",
+  "verdictSummary": "C’est la fiche la moins distinguée techniquement du groupe et le verdict suit : un site de portfolio avec des galeries client, c’est un week-end, et rien derrière n’est un réseau, un jeu de données ou une licence. Ce que vend Zenfolio, c’est que le photographe ne touche jamais un serveur. Ça vaut neuf euros pour beaucoup de gens et ce n’est pas une barrière défensive, donc « en partie » est la réponse honnête.",
+  "coreLoopDIY": "Fais tourner un seul site qui sert les deux audiences depuis le même stockage photo : un portfolio public pour les inconnus et des galeries client protégées par mot de passe pour les gens qui ont déjà payé.",
+  "whatYouLose": [
+    "ne jamais avoir à penser à l’hébergement, au TLS ou aux mises à jour",
+    "l’éditeur de modèles et ses designs",
+    "la boutique et les outils de réservation intégrés",
+    "les applications mobiles",
+    "le support quand le site est en panne avant un rendez-vous client"
+  ],
+  "whyPeopleStillPay": "Parce que l’acheteur est un photographe, pas un administrateur, et l’abonnement, c’est le prix de ne jamais être la personne qui doit réparer ça.",
+  "prompt": "Construis une seule application qui sert un portfolio public et des galeries client privées depuis une seule bibliothèque photo, avec la frontière entre les deux imposée plutôt que supposée.\n\nStack : ton choix, Postgres, stockage d’objets, Docker Compose, un domaine avec TLS.\n\nUn seul stockage photo. Chaque photo porte une visibilité : publique, client, ou privée. Une galerie est une collection avec sa propre visibilité, et la visibilité effective d’une photo dans une galerie est la plus restrictive des deux. Écris le test : une photo publique à l’intérieur d’une galerie client n’est pas accessible depuis le site public, et une photo client ne peut jamais apparaître dans le portfolio même si elle est ajoutée par erreur. Se tromper là-dessus, c’est comme ça que le mariage d’un client finit sur une URL publique.\n\nCôté public : des pages de portfolio rendues côté serveur, des images adaptatives, une page à propos, et un formulaire de contact qui crée une demande. Rapide et sans fioritures par conception.\n\nCôté client : des galeries à des URL impossibles à deviner derrière un mot de passe ou un lien personnel envoyé par email, avec des favoris, des commentaires par photo et un téléchargement zip à une résolution fixée.\n\nUne administration unique : upload une fois, étiquette, fixe la visibilité, et place les photos dans l’un ou l’autre type de galerie. Le but du projet, c’est qu’il y ait une bibliothèque et un upload, pas deux systèmes.\n\nRecherche et organisation pour toi seulement : par date, tag, appareil et client.\n\nHonnêteté opérationnelle, ce que tu prends en charge en ne payant pas : un certificat TLS automatique avec un monitoring de renouvellement et une alerte s’il est à une semaine de l’expiration, une sauvegarde nocturne de base de données et d’objets avec un contrôle de restauration automatisé mensuel, et une page de statut sur l’administration montrant la dernière sauvegarde réussie et la dernière restauration réussie.\n\nÉcris des tests pour l’intersection de visibilité dans les deux sens, pour les tokens de lien personnel qui sont à usage unique et expirent, et pour l’indicateur d’âge de sauvegarde qui passe au rouge au-delà de son seuil.\n\nNe construis ni boutique, ni réservation, ni éditeur de modèles.",
+  "faq": [
+    {
+      "q": "Pourquoi la règle de visibilité mérite-t-elle un test dans les deux sens ?",
+      "a": "Parce que l’échec coûteux est asymétrique : une photo publique cachée par erreur est un agacement, et une photo client publiée par erreur peut mettre fin à une relation de travail. Prendre la plus restrictive des deux, testée dans les deux sens, élimine toute la classe."
+    },
+    {
+      "q": "Que prends-tu vraiment en charge en auto-hébergeant ça ?",
+      "a": "Le renouvellement de certificat, les sauvegardes, les mises à jour et être joignable quand ça casse. C’est pourquoi le prompt demande un indicateur d’âge de sauvegarde sur l’administration — ça rend le devoir permanent visible au lieu d’oublié."
+    },
+    {
+      "q": "Pourquoi une bibliothèque plutôt que deux systèmes ?",
+      "a": "Parce qu’uploader le même mariage deux fois, c’est là que tout site de photographe fait maison commence à pourrir. Un seul upload avec un indicateur de visibilité, c’est à la fois moins de travail et moins sujet aux erreurs."
+    },
+    {
+      "q": "Puis-je emporter mon site Zenfolio avec moi ?",
+      "a": "Les photos se téléchargent par galerie et les listes clients s’exportent, mais le design de site et la structure de page ne voyagent pas — prévois de reconstruire le site plutôt que de le migrer, et exporte d’abord les galeries client encore actives."
+    }
+  ]
+}

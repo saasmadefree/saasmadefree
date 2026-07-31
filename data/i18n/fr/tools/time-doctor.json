@@ -1,0 +1,32 @@
+{
+  "tagline": "Captures d’écran, scores d’activité et rapports de productivité sur toute une main-d’œuvre.",
+  "verdictSummary": "C’est un logiciel acheté par un employeur pour observer des employés, et tout ce qui le rend valable à acheter est organisationnel plutôt que technique : un agent déployé et maintenu en vie sur des machines que tu administres, des intégrations paie et SIRH vendues à deux cents dollars chacune, et une position défendable quand quelqu’un demande sur quelle base tu surveilles des gens qui travaillent. Rien de tout ça n’est un projet perso. Ce que tu peux construire pour toi-même, c’est un miroir, et le prompt fait exactement ça et rien de plus.",
+  "coreLoopDIY": "Mesure ta propre semaine et obtiens un rapport honnête à son sujet — où sont partis les heures, à quel point elles étaient fragmentées, et comment ça se compare avec les quatre dernières semaines.",
+  "whatYouLose": [
+    "observer quelqu’un d’autre que toi-même, ce qui est le produit",
+    "les captures d’écran, l’enregistrement d’écran et l’analyse de motifs de frappe",
+    "les intégrations paie et SIRH, et les approbations qui les alimentent",
+    "les repères tirés de centaines de milliers d’autres utilisateurs",
+    "un fournisseur à désigner quand le comité d’entreprise demande qui a autorisé ça"
+  ],
+  "whyPeopleStillPay": "Parce qu’une entreprise qui surveille du personnel distribué a besoin d’un agent qui survit aux redémarrages sur des machines devant lesquelles elle ne se trouve pas, plus une trace papier, plus quelqu’un à tenir responsable des deux.",
+  "prompt": "Construis un auto-rapport hebdomadaire à partir de tes propres données d’activité. Une personne, une machine, une page.\n\nAvant toute chose, le README doit dire ce que ceci n’est pas : ça n’observe pas d’autres personnes, et appliquer quoi que ce soit de similaire à des employés porte des obligations de consentement, de notification et de proportionnalité qui varient selon le pays et ne se résolvent pas en écrivant le code toi-même.\n\nStack : un enregistreur local plus un générateur de rapport statique, SQLite, pas de réseau.\n\nCapture : application active, titre de fenêtre, activité de saisie. Pas de captures d’écran, pas de frappes, pas de caméra.\n\nLe rapport hebdomadaire est le livrable entier — une page, générée selon un planning, lisible en quatre-vingt-dix secondes :\n1. Heures par catégorie, contre la médiane sur quatre semaines, avec le changement énoncé en mots autant qu’en chiffres.\n2. Fragmentation : changements de contexte par heure de travail, et la plus longue plage ininterrompue de la semaine avec le jour où c’est arrivé.\n3. Les trois plus grands changements par rapport à ta propre référence sur quatre semaines, à la hausse ou à la baisse, nommés précisément — une application, une catégorie, un moment de la journée.\n4. La ligne non comptabilisée : heures de travail sans activité enregistrée, énoncées clairement plutôt qu’absorbées dans une catégorie.\n5. Une question, pas un score : quelque chose que la donnée soulève mais ne peut pas répondre, comme « les jeudis après-midi sont tombés à un tiers de leur temps de concentration habituel — sais-tu pourquoi ? »\n\nDélibérément absent, et nommé comme absent dans le rapport : un pourcentage de productivité. Un chiffre unique invite à la comparaison avec d’autres personnes et avec une version imaginaire meilleure de toi-même, et cette donnée ne soutient ni l’une ni l’autre. Dis-le dans le pied de page du rapport.\n\nLa référence, c’est uniquement ton propre historique. Ne compare jamais contre une norme préétablie.\n\nSors le rapport comme un fichier HTML statique dans un dossier, un par semaine, pour que l’archive soit navigable et comparable.\n\nVie privée : contrôle pause avec le temps en pause affiché comme tel, rédaction de titre par application, fenêtre de rétention brute, commande d’effacement.\n\nÉcris des tests pour le calcul de référence avec moins de quatre semaines (il doit le dire plutôt qu’extrapoler), et pour le calcul d’heures non comptabilisées à travers une pause.\n\nN’ajoute ni reporting distant, ni captures d’écran, ni aucune capacité multi-utilisateur.",
+  "faq": [
+    {
+      "q": "Pourquoi omettre délibérément un score de productivité ?",
+      "a": "Parce qu’un chiffre unique est la fonctionnalité qui rend ces outils corrosifs. Ça compresse une semaine de contexte en quelque chose de comparable, puis les gens optimisent le chiffre au lieu du travail. Les catégories et la fragmentation sont exploitables ; un score est un verdict."
+    },
+    {
+      "q": "Que faudrait-il pour surveiller légitimement une équipe ?",
+      "a": "Une notification aux personnes surveillées, une base légale documentée, une proportionnalité entre ce que tu collectes et pourquoi, des limites de rétention, et dans plusieurs pays européens une consultation des représentants du personnel. Le logiciel est la partie facile, ce qui est précisément pourquoi cette fiche est un « non »."
+    },
+    {
+      "q": "Pourquoi énoncer les heures non comptabilisées plutôt que de les remplir ?",
+      "a": "Parce que les remplir, c’est inventer des données. Le temps passé au tableau blanc, en appel depuis un téléphone, ou à lire sur papier, c’est du vrai travail sans trace numérique, et un rapport qui les catégorise discrètement a cessé d’être un enregistrement."
+    },
+    {
+      "q": "Que coûte vraiment Time Doctor ?",
+      "a": "Le prix du siège n’est que le début : l’enregistrement d’écran, la détection d’activité inhabituelle et les insights de réunion sont des modules complémentaires par utilisateur, et les intégrations paie ou SIRH natives coûtent 200 $ par intégration et par mois. Les fonctionnalités pour lesquelles les gens l’achètent ne sont majoritairement pas dans le palier de base."
+    }
+  ]
+}

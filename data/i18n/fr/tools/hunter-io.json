@@ -1,0 +1,32 @@
+{
+  "tagline": "Trouve l’adresse email derrière un nom et un domaine, et vérifie qu’elle existe.",
+  "verdictSummary": "Hunter fait deux choses, et une seule est du code. La vérification — résoudre le MX, ouvrir une conversation SMTP, demander si la boîte existe, détecter un catch-all — c’est le travail d’une session et vraiment utile. La recherche, c’est l’autre moitié, et elle repose sur un index crawlé d’adresses publiées à travers le web qui a pris des années à construire et se rafraîchit en continu. Sans l’index, il ne te reste qu’à deviner des motifs, et deviner des motifs sans preuve se trompe assez souvent pour endommager un domaine d’envoi.",
+  "coreLoopDIY": "Vérifie les adresses correctement — recherche MX, sonde SMTP, détection de catch-all et d’adresses jetables, avec des limites de débit qui te gardent hors des listes noires — et sois honnête sur le fait que deviner un motif sans index est un pile ou face.",
+  "whatYouLose": [
+    "l’index crawlé d’adresses, qui est ce qui fait fonctionner la recherche tout court",
+    "la confiance de motif par domaine dérivée de milliers d’adresses observées",
+    "la liste de sources montrant où sur le web une adresse a été vue",
+    "la réputation auprès des serveurs mail — tes sondes se font limiter bien plus vite",
+    "l’envoyeur de campagne et son préchauffage"
+  ],
+  "whyPeopleStillPay": "Parce que l’index représente une décennie de crawl et ne peut pas être recréé, et parce que les sondes de Hunter viennent d’adresses IP que les fournisseurs mail tolèrent déjà — les tiennes, non.",
+  "prompt": "Construis un vérificateur d’email prudent plutôt que rapide, et un devineur de motif honnête sur le fait d’être une supposition.\n\nStack : ton choix, Postgres, et un serveur avec un vrai domaine, un DNS inversé correct et un nom HELO valide. Dis dans le README que faire tourner ça depuis une IP résidentielle te fera limiter ou bloquer en moins d’une heure.\n\nPipeline de vérification, dans l’ordre, court-circuitant dès qu’une réponse est certaine :\n1. Vérification syntaxique contre les vraies règles pertinentes de la RFC, pas une regex tirée d’un article de blog.\n2. Vérifications de domaine : le domaine se résout-il, a-t-il des enregistrements MX, est-il sur une liste de domaines jetables que tu tiens localement et peux mettre à jour.\n3. Détection de catch-all : sonde une adresse aléatoire de ce domaine qui n’existe certainement pas. Si elle est acceptée, le domaine accepte tout et aucune réponse par adresse n’est possible. Enregistre le domaine comme catch-all et arrête-toi — ne rapporte pas l’adresse réelle comme valide.\n4. Sonde SMTP de l’adresse réelle : connecte-toi, EHLO, MAIL FROM avec un expéditeur nul, RCPT TO, lis le code, QUIT. N’envoie jamais DATA.\n\nLa limitation de débit, c’est la partie qui décide si ça marche : pas plus d’une connexion à la fois par domaine de destination, un délai configurable entre les sondes vers le même domaine, un recul exponentiel sur les 4xx, et un disjoncteur par domaine qui s’arrête une heure après des échecs temporaires répétés. Mets en cache chaque résultat avec un horodatage et un TTL configurable pour qu’une revérification soit gratuite.\n\nLes résultats sont un statut parmi un ensemble fixe — valide, invalide, catch-all, inconnu, jetable, compte-rôle — et jamais un pourcentage. « Inconnu » doit être un résultat de premier rang que l’interface ne cache pas, parce que le greylisting le rend courant.\n\nDevinette de motif, en second et clairement séparée : étant donné un domaine et des adresses connues sur ce domaine, infère le motif (prénom.nom, pnom, prénom) et génère un candidat pour un nouveau nom. Étiquette chaque adresse générée comme une supposition, montre quel motif et combien d’adresses connues le soutiennent, et refuse d’émettre une supposition pour un domaine avec moins de trois adresses connues.\n\nMode en masse : CSV en entrée, CSV en sortie, reprenable, avec le statut par adresse et la date de vérification.\n\nÉcris des tests pour la détection de catch-all, pour le disjoncteur, et pour l’inférence de motif y compris le cas de refus.\n\nNe crawle pas le web pour des adresses, et n’envoie pas d’email.",
+  "faq": [
+    {
+      "q": "La vérification SMTP fonctionne-t-elle encore en 2026 ?",
+      "a": "En partie, et moins qu’avant. Les gros fournisseurs greylistent ou acceptent tout venant d’expéditeurs inconnus, donc un vérificateur bien construit retourne « inconnu » ou « catch-all » pour une grande part des adresses. Tout outil qui rapporte un partage propre valide/invalide pour les domaines Gmail et Outlook te dit ce que tu veux entendre."
+    },
+    {
+      "q": "Sonder va-t-il faire blacklister mon serveur ?",
+      "a": "Ça peut, ce qui est pourquoi la limite de concurrence par domaine et le disjoncteur sont dans le prompt plutôt que laissés en exercice. Sonde poliment, mets en cache agressivement, et ne fais jamais tourner ça depuis une IP d’où tu envoies aussi du vrai courrier."
+    },
+    {
+      "q": "Pourquoi refuser de deviner un motif à partir de moins de trois adresses ?",
+      "a": "Parce que deux observations soutiennent plusieurs motifs à égalité, et la supposition sera faussement confiante. Envoyer à une adresse mal devinée produit un rebond, et les rebonds sont ce qui détruit la réputation d’un domaine d’envoi."
+    },
+    {
+      "q": "Que reste-t-il de Hunter une fois qu’on retire l’index ?",
+      "a": "Le vérificateur, qui est réel et vaut la peine d’être eu, et un ensemble de workflows pour organiser les domaines que tu recherches. C’est une description honnête de ce que donne ce projet — et c’est pourquoi le verdict est « non » plutôt que « en partie »."
+    }
+  ]
+}

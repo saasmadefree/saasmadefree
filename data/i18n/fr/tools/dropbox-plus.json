@@ -1,0 +1,32 @@
+{
+  "tagline": "Un dossier identique sur chaque machine, et qui l’est presque toujours.",
+  "verdictSummary": "La synchro a l’air triviale et ne l’est pas. Un moteur correct doit gérer deux machines qui éditent hors ligne, la dérive d’horloge, les systèmes de fichiers insensibles à la casse, les fichiers verrouillés par une application, les renommages qui ressemblent à une suppression suivie d’une création, et les envois partiels sur une connexion coupée — et il doit faire tout ça sans jamais perdre un octet. Dropbox y a passé très longtemps, et le stockage en dessous a son propre coût. La consolation, c’est une synchro honnête sur les conflits au lieu de faire comme s’ils n’arrivaient jamais.",
+  "coreLoopDIY": "Garde un dossier synchronisé entre machines via ton propre serveur, et quand deux versions divergent, garde les deux et le dis — ne choisis jamais un gagnant en silence.",
+  "whatYouLose": [
+    "le stockage lui-même, et sa durabilité",
+    "un moteur de synchro endurci contre une décennie de cas limites de systèmes de fichiers",
+    "la synchro sélective et les fichiers substituts à la demande",
+    "les applications mobiles et leur gestion hors ligne",
+    "les liens de partage, les commentaires et les demandes de fichiers"
+  ],
+  "whyPeopleStillPay": "Parce que la synchro échoue silencieusement, et l’argent achète quelqu’un qui a déjà rencontré toutes les façons dont elle échoue. Un moteur fait maison qui perd un seul fichier a échoué à la seule chose qu’il est censé faire.",
+  "prompt": "Construis un moteur de synchronisation de fichiers et traite la gestion des conflits comme la fonctionnalité, pas comme le cas limite.\n\nStack : un démon client plus un serveur avec du stockage d’objets et Postgres. Docker Compose. Envisage de t’appuyer sur un moteur de synchro pair-à-pair existant et de construire le reporting autour — précise dans le README quelle voie tu as choisie.\n\nClient : surveille un dossier avec l’API de notification du système de fichiers de l’OS, plus un scan complet au démarrage et un scan périodique comme filet de sécurité, parce que les API de notification manquent des événements sous charge. Découpe les fichiers par contenu, hashe chaque morceau, n’envoie que les morceaux inconnus.\n\nMétadonnées par fichier : chemin, taille, heure de modification, hash de contenu, et un vecteur de version par appareil plutôt qu’un horodatage unique. Les horodatages mentent — les horloges dérivent, et les systèmes de fichiers arrondissent différemment.\n\nGestion des conflits, qui est tout l’intérêt du projet :\n- Il y a conflit quand deux appareils ont des versions dont aucun vecteur ne domine l’autre. Détecte-le explicitement ; ne compare pas des horodatages pour choisir.\n- En cas de conflit, garde les deux : le fichier local reste, l’autre arrive sous le nom nom (conflit depuis APPAREIL 2026-07-31 14:02).ext, et une entrée apparaît dans un journal de conflits avec les deux hashs et les deux heures.\n- Ne supprime ni n’écrase jamais en cas de conflit. Ne fusionne jamais de texte automatiquement.\n- Un écran de conflits liste les non résolus avec un diff pour les fichiers texte et une action « garder celui-ci » qui archive l’autre plutôt que de le supprimer.\n\nLes cas limites qui doivent être gérés et testés, parce que c’est là que les vrais moteurs de synchro perdent des données :\n- Systèmes de fichiers insensibles à la casse : Rapport.txt et rapport.txt arrivant sur macOS depuis Linux.\n- Renommages détectés comme renommage plutôt que suppression-puis-création, par hash de contenu.\n- Un fichier en cours d’écriture pendant qu’il est lu — réessaie en cas de désaccord de hash plutôt que d’envoyer une copie déchirée.\n- Différences de longueur de chemin et de caractères interdits entre systèmes d’exploitation.\n- Propagation des suppressions, avec un dossier corbeille et une période de rétention pour qu’une suppression propagée soit récupérable.\n\nStatut : heure de dernière synchro par appareil, octets en attente, et un indicateur bien visible quand un appareil n’a pas synchronisé depuis plus longtemps qu’un seuil.\n\nÉcris des tests pour chaque cas limite ci-dessus, et spécifiquement pour une édition concurrente sur deux appareils hors ligne produisant deux fichiers et une entrée de conflit, avec zéro octet perdu.\n\nNe construis ni synchro sélective, ni substituts de fichiers, ni client mobile.",
+  "faq": [
+    {
+      "q": "Pourquoi des vecteurs de version plutôt que des heures de modification ?",
+      "a": "Parce que les horloges ne s’accordent pas, les systèmes de fichiers arrondissent à des précisions différentes, et un fichier copié par certains outils garde son ancien horodatage. Comparer des heures pour décider d’un gagnant, c’est comme ça que les moteurs de synchro suppriment la mauvaise version, et le bug est invisible jusqu’à ce qu’il compte vraiment."
+    },
+    {
+      "q": "Garder les deux copies, n’est-ce pas gênant ?",
+      "a": "C’est légèrement gênant et ça ne perd jamais de données. Chaque stratégie de résolution automatique est un pari sur quel humain avait raison, et se tromper est irrécupérable — donc la gêne est le bon compromis."
+    },
+    {
+      "q": "Quel cas limite mord en premier ?",
+      "a": "La sensibilité à la casse, si tu mélanges macOS et Linux. Deux fichiers distincts sur une machine et identiques sur une autre boucleront indéfiniment si tu ne le gères pas explicitement, et cette boucle peut consommer beaucoup de bande passante avant que quelqu’un ne le remarque."
+    },
+    {
+      "q": "Comment récupérer tout ce qui est dans Dropbox ?",
+      "a": "L’export de compte produit une archive complète, ou tu peux simplement copier le dossier local si tu as la synchro complète plutôt que des fichiers en ligne uniquement. Les dossiers partagés possédés par d’autres personnes ne passent pas, et l’historique de versions reste derrière."
+    }
+  ]
+}

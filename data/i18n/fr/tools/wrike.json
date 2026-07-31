@@ -1,0 +1,32 @@
+{
+  "tagline": "Gestion du travail construite autour de comment les demandes arrivent et se font approuver.",
+  "verdictSummary": "La fonctionnalité distinctive de Wrike, c’est la porte d’entrée : un formulaire de demande qui devient une tâche structurée dans le bon dossier avec le bon responsable, et une étape d’approbation avec une décision enregistrée plutôt que retenue de mémoire. Bien construire la chaîne demande-vers-approbation, c’est une semaine, surtout parce que les formulaires avec branches et l’état d’approbation sont plus délicats qu’il n’y paraît. C’est un « en partie », pas un « non » — les manques sont les applications mobiles, l’épreuvage sur fichiers, et les contrôles entreprise, rien de tout ça n’étant une barrière défensive.",
+  "coreLoopDIY": "Un formulaire de demande public qui se branche selon les réponses, crée une tâche au bon endroit avec les bons champs déjà remplis, et la fait passer par une approbation enregistrée avant que le travail ne démarre.",
+  "whatYouLose": [
+    "les applications mobiles",
+    "l’épreuvage et l’annotation sur images, vidéo et PDF",
+    "la planification de ressources et de capacité entre équipes",
+    "les contrôles entreprise — SSO, audit, rétention, rôles personnalisés",
+    "le catalogue d’intégrations et les synchros bidirectionnelles"
+  ],
+  "whyPeopleStillPay": "Parce que le formulaire de demande, c’est ce qui empêche le travail d’arriver comme un message de chat, et parce qu’une approbation que personne ne peut contester plus tard vaut plus pour une équipe marketing ou créative que n’importe quelle mise en page de tableau.",
+  "prompt": "Construis un système de demandes entrantes et d’approbation avec un traqueur de tâches attaché, dans cet ordre de priorité.\n\nStack : ton choix, Postgres, Docker Compose, un domaine avec TLS pour que le formulaire public puisse y vivre.\n\nFormulaires de demande :\n- Un constructeur de formulaires avec des champs (texte, texte long, sélection, sélection multiple, date, nombre, upload de fichier) et des branches : une question peut révéler ou cacher des questions ultérieures selon une réponse. Les conditions de branche sont stockées comme des données et évaluées de façon identique côté client et côté serveur — valider uniquement côté client, c’est comment un formulaire public se remplit de combinaisons impossibles.\n- Mapping de soumission : chaque formulaire déclare dans quel projet la tâche atterrit, quels champs correspondent à quels champs de tâche, qui est l’assigné par défaut, et quelle chaîne d’approbation s’applique. Ce mapping, c’est la fonctionnalité ; sans lui, un formulaire n’est qu’un tableur avec des étapes en plus.\n- Soumission publique avec un token ou un captcha, une confirmation par email au demandeur contenant un lien de suivi, et des uploads de fichiers validés par type et taille.\n\nApprobations :\n- Une chaîne d’approbation est une liste ordonnée d’étapes, chacune avec un ou plusieurs approbateurs et une règle un-quelconque ou tous.\n- Une tâche en approbation est verrouillée pour édition sur les champs en révision, et le verrou est montré avec un motif.\n- Chaque décision enregistre l’approbateur, la décision, l’horodatage et un commentaire, en permanence. Un rejet renvoie la tâche à l’étape précédente avec le commentaire attaché et n’est jamais effacé par une approbation ultérieure.\n- Une échéance par étape, avec un rappel avant et un état en retard visible après — jamais d’auto-approbation. L’auto-approbation silencieuse défait le but d’une approbation.\n\nTraqueur en dessous : dossiers et projets, tâches avec assigné, dates, statut et champs personnalisés, une vue table et une vue tableau, et des dépendances.\n\nLe lien de suivi du demandeur montre le statut et la progression d’approbation sans connexion, sur un token impossible à deviner, et ne montre rien d’autre que ça.\n\nÉcris des tests pour l’évaluation de branche qui s’accorde entre client et serveur, pour l’approbation tous-contre-un-quelconque, pour le rejet qui revient à l’étape précédente avec l’historique intact, et pour le token de suivi qui n’expose rien au-delà de la demande.\n\nNe construis ni épreuvage, ni planification de ressources, ni applications mobiles.",
+  "faq": [
+    {
+      "q": "Pourquoi évaluer les branches côté serveur aussi ?",
+      "a": "Parce qu’un formulaire public peut être soumis par n’importe quoi, pas seulement ton JavaScript. Les branches côté client sont une commodité ; l’évaluation côté serveur, c’est ce qui rend les données résultantes fiables."
+    },
+    {
+      "q": "Pourquoi refuser l’auto-approbation sur une échéance ?",
+      "a": "Parce que toute la valeur d’une approbation, c’est que quelqu’un en est responsable. Une étape qui s’auto-approuve après cinq jours est un enregistrement où personne n’a décidé, ce qui est pire que pas d’enregistrement du tout."
+    },
+    {
+      "q": "À quoi sert le lien de suivi ?",
+      "a": "Ça arrête l’email « des nouvelles de ma demande ? ». Un token impossible à deviner qui montre le statut et rien d’autre coûte une heure et supprime toute une catégorie d’interruption."
+    },
+    {
+      "q": "Wrike exporte-t-il proprement ?",
+      "a": "Les tâches et dossiers s’exportent en Excel, et l’API couvre le reste. L’historique d’approbation est la partie à extraire délibérément — c’est l’enregistrement à la plus longue durée de vie utile et au chemin d’export le moins évident."
+    }
+  ]
+}

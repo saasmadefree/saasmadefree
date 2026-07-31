@@ -1,0 +1,32 @@
+{
+  "tagline": "Des webinaires dans le navigateur facturés à la tête plutôt qu’au mois.",
+  "verdictSummary": "Livestorm facture maintenant par participant, ce qui est un aveu honnête d’où se trouve son coût : livrer de la vidéo en direct à chaque personne supplémentaire. C’est de l’infrastructure, et c’est pourquoi c’est un « non ». La moitié qui vaut la peine d’être reconstruite, c’est la couche d’engagement — sondages, questions votées, certificats de présence — parce qu’elle fonctionne à côté de n’importe quelle source vidéo et parce que c’est ce qui transforme une diffusion en quelque chose dont les gens se souviennent avoir assisté.",
+  "coreLoopDIY": "Fais tourner la couche d’engagement à côté de n’importe quelle vidéo que tu utilises : des sondages qui se ferment sur un minuteur, un tableau de questions où le public vote pour ce qu’il veut voir répondu, et des certificats de présence délivrés à partir de vraies données de présence.",
+  "whatYouLose": [
+    "la diffusion vidéo, ce qu’achète le prix par participant",
+    "le lecteur intégré et ses statistiques seconde par seconde",
+    "les sous-titres traduits en temps réel",
+    "les intégrations CRM et marketing automation",
+    "la fiabilité quand des centaines de personnes rejoignent en même temps"
+  ],
+  "whyPeopleStillPay": "Parce que le tarif par participant signifie que tu ne paies que quand l’événement a fonctionné, et parce que personne ne veut expliquer à quatre cents inscrits pourquoi le flux a gelé.",
+  "prompt": "Construis la couche d’engagement du public pour une session en direct. Elle se place à côté d’une vidéo que tu héberges n’importe où et ne touche jamais au flux.\n\nStack : ton choix avec websockets, Postgres, Docker Compose.\n\nUne Session a une heure de début, une durée, et une liste de participants qui ont rejoint via un lien à token personnel.\n\nTableau de questions, la pièce maîtresse : n’importe qui peut poster une question, n’importe qui peut voter, et la vue présentateur est triée par votes avec les questions répondues qui se replient en bas. Deux détails distinguent ça d’une fenêtre de chat — une limite de débit par participant pour qu’une personne ne puisse pas inonder la file, et une détection de quasi-doublon au moment de la soumission qui propose « ça ressemble à une question existante, voter pour elle à la place ? » plutôt que de créer une quatorzième version de la même chose.\n\nSondages : choix multiple ou échelle, ouverts par le présentateur avec un compte à rebours, se fermant automatiquement. Les résultats se rendent en direct comme un graphique en barres et sont figés une fois fermés. Un participant qui rejoint après la fermeture d’un sondage voit le résultat, pas une chance de voter.\n\nPrésence : échantillonne chaque participant connecté toutes les trente secondes et stocke-le. Ce flux d’échantillons est la source de tout ce qui suit, et il est délibérément grossier — tu as besoin de présence, pas de surveillance.\n\nCertificats de présence : à partir des données de présence, calcule les minutes de présence de chaque participant, et délivre un certificat PDF seulement à ceux au-dessus d’un seuil que tu fixes, avec leur nom, le titre de la session, la date, les minutes de présence et un code de vérification. Publie une page où le code peut être vérifié. Le but, c’est que le certificat soit dérivé d’une vraie présence plutôt que de l’inscription.\n\nUn rapport : participants simultanés dans le temps, volume de questions et taux de réponse, taux de réponse aux sondages, et distribution de présence.\n\nExport : questions et votes en CSV, échantillons de présence en CSV, certificats en fichiers.\n\nÉcris des tests pour l’idempotence du vote par participant, pour la fermeture de sondage irréversible, et pour le calcul de minutes de présence avec un participant qui se déconnecte et revient.\n\nNe diffuse pas de vidéo et ne construis pas de salle de chat — le tableau de questions n’est délibérément pas un chat.",
+  "faq": [
+    {
+      "q": "Pourquoi un tableau de questions plutôt qu’un chat ?",
+      "a": "Parce que le chat pendant un webinaire est du bruit sur lequel le présentateur ne peut pas agir, et le vote transforme le même public en une liste classée de ce à quoi il veut vraiment une réponse. C’est le seul modèle d’interaction qui améliore une grande session plutôt que de la distraire."
+    },
+    {
+      "q": "Les certificats de présence valent-ils la peine d’être construits ?",
+      "a": "Pour tout ce qui a une forme de formation, oui — ils sont fréquemment la raison pour laquelle quelqu’un reste jusqu’à la fin. Les dériver des échantillons de présence plutôt que de l’inscription, c’est ce qui leur donne un sens."
+    },
+    {
+      "q": "L’échantillonnage de présence est-il un problème de vie privée ?",
+      "a": "C’est une donnée personnelle, donc dis ce que tu collectes et garde-le brièvement. Échantillonner toutes les trente secondes suffit pour les totaux de minutes de présence, ce qui est pourquoi le prompt précise un intervalle grossier plutôt qu’un suivi continu."
+    },
+    {
+      "q": "Comment fonctionne vraiment le modèle de crédits par participant de Livestorm ?",
+      "a": "Tu achètes un pack annuel et dépenses un crédit par personne unique et par session, en direct ou en replay, sur douze mois. La même personne à deux sessions coûte deux crédits ; les membres de ta propre équipe ne consomment pas de crédits. Si tu épuises le pack, les nouveaux participants ne peuvent pas rejoindre tant que tu ne montes pas de gamme."
+    }
+  ]
+}

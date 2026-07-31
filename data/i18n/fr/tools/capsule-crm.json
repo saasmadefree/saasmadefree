@@ -1,0 +1,32 @@
+{
+  "tagline": "Un CRM qui continue après le deal gagné, jusqu’au travail que tu as promis.",
+  "verdictSummary": "La plupart des CRM s’arrêtent à « Gagné » et te renvoient vers un outil de projet. Capsule garde la même fiche et la transforme en projet de livraison avec des tâches. Ce relais est la chose intéressante à reconstruire, et c’est un week-end : une opportunité gagnée fait naître un projet à partir d’un modèle, et les tâches héritent du client. Les manques sont ordinaires — pas de synchro boîte mail sans application OAuth, pas d’application mobile, pas de connecteurs Xero ou Zendesk — rien de tout ça n’est une barrière défensive, tout ça est du travail que tu porterais ensuite toi-même.",
+  "coreLoopDIY": "Suis des contacts et des opportunités à travers un pipeline, et quand l’une est marquée gagnée, génère un projet de livraison à partir d’un modèle de tâches pour que le travail promis apparaisse avec des dates et un responsable sans avoir à être retapé.",
+  "whatYouLose": [
+    "la capture automatique des emails dans la chronologie du contact",
+    "les connecteurs Xero, Zendesk et Import2 inclus dans le plan payant",
+    "les applications mobiles",
+    "Transpond, le volet marketing que Capsule vend en complément",
+    "quelqu’un d’autre qui gère les sauvegardes et les mises à jour"
+  ],
+  "whyPeopleStillPay": "Parce que le relais entre vente et livraison est l’endroit où les petites entreprises laissent tomber des choses, et payer quinze euros par siège pour que ça ne soit plus ton problème coûte moins cher que le seul projet que tu oublies de démarrer.",
+  "prompt": "Construis un CRM dont le travail n’est pas fini quand un deal est gagné.\n\nStack : ton choix de framework serveur, Postgres, Docker Compose, une seule commande pour lancer.\n\nMoitié vente : Contacts, Entreprises, Opportunités. Une Opportunité a une valeur, une date de clôture prévue, une étape, et un responsable. Les étapes sont configurables et les deux dernières sont terminales : Gagné et Perdu.\n\nMoitié livraison — c’est tout l’intérêt de ce projet. Définis des Modèles de projet : une liste ordonnée de titres de tâches, chacune avec un décalage en jours par rapport au démarrage du projet et un responsable par défaut optionnel. Quand une Opportunité passe à Gagné, l’application demande quel modèle appliquer (ou aucun), puis crée un Projet lié à la même Entreprise et au même Contact, avec chaque tâche matérialisée à la date de démarrage plus son décalage. Le projet garde un lien vers l’opportunité qui l’a produit, et la chronologie du contact montre les deux.\n\nUn Projet a un statut, une date d’échéance, et un pourcentage de complétion calculé à partir de ses tâches — jamais saisi.\n\nConstruis un écran qui mélange les deux moitiés : « cette semaine » liste les opportunités dont la clôture tombe cette semaine et les tâches de projet dues cette semaine, dans une seule liste, triée par date, avec un badge indiquant de quel côté vient chaque élément. Cette liste unique est ce qu’un opérateur solo ouvre vraiment le matin.\n\nAjoute des notes horodatées sur les contacts, entreprises, opportunités et projets ; un système de tags partagé entre les quatre ; l’import et l’export CSV ; et une recherche plein texte.\n\nÉcris des tests pour la matérialisation de modèle — notamment qu’un modèle appliqué deux fois ne duplique pas les tâches — et pour le calcul du pourcentage de complétion.\n\nNe construis ni synchro email, ni facturation, ni campagnes marketing. Quand un projet est terminé, le flux s’arrête ; exporter vers ton outil comptable, c’est un CSV, pas une intégration.",
+  "faq": [
+    {
+      "q": "Que fait vraiment gagner « générer un projet à partir d’un modèle » ?",
+      "a": "Retaper les six mêmes tâches d’onboarding avec les mêmes dates relatives pour chaque nouveau client, et le moment où tu oublies de le faire. En pratique, ça transforme un deal gagné en plan daté en un clic, ce qui est le seul comportement qui distingue Capsule d’un CRM à pipeline seul."
+    },
+    {
+      "q": "Est-ce que je perds l’historique email si je quitte Capsule ?",
+      "a": "En partie. Capsule exporte contacts, opportunités, tâches et notes en CSV. Les emails capturés dans la chronologie s’exportent dans le cadre de l’export de l’historique de fiches au niveau du compte, mais ils arrivent sous forme de fichier plat plutôt que de boîte de réception en fils, donc prévois de les garder comme une archive plutôt que comme quelque chose auquel tu peux répondre."
+    },
+    {
+      "q": "Deux personnes peuvent-elles l’utiliser ?",
+      "a": "Il a des responsables et des assignations, donc oui pour une petite équipe qui se fait confiance. Il n’a pas de modèle de permissions — tout le monde peut tout voir et tout modifier — ce qui est acceptable à deux et faux à dix."
+    },
+    {
+      "q": "Pourquoi le pourcentage de complétion est-il calculé plutôt que saisi ?",
+      "a": "Parce qu’un pourcentage tapé est un ressenti et un pourcentage calculé est un fait. Le dériver des tâches closes fait que le chiffre n’est faux que si la liste de tâches est fausse, un problème que tu peux vraiment voir et corriger."
+    }
+  ]
+}

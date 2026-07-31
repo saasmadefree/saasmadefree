@@ -1,0 +1,32 @@
+{
+  "tagline": "Regarde ce que l’utilisateur a fait avant l’erreur, puis lis la console.",
+  "verdictSummary": "Ça atterrit au même endroit que les fiches de replay de session déjà dans le catalogue : l’enregistreur est open source, et tout ce qui coûte cher est en aval — le stockage, la capture fiable à travers chaque navigateur, et le pipeline qui continue de fonctionner pendant que ton site tombe en panne. Un projet perso obtient la moitié bien moins chère et souvent plus utile : une piste de fil d’Ariane de console, réseau et interaction menant jusqu’à une erreur, sans aucune vidéo.",
+  "coreLoopDIY": "Capture les soixante dernières secondes avant une erreur sous forme de fil d’Ariane structuré — clics, navigations, appels réseau, sortie console — et attache-les au rapport, avec le masquage activé par défaut.",
+  "whatYouLose": [
+    "le replay visuel de la session",
+    "le pipeline de stockage et de livraison derrière",
+    "la capture fiable à travers chaque navigateur et chaque particularité de framework",
+    "les analytics produit, entonnoirs et heatmaps sur les mêmes données",
+    "les résumés IA construits sur un large corpus de sessions"
+  ],
+  "whyPeopleStillPay": "Parce que voir l’utilisateur appuyer deux fois sur le bouton explique un bug qu’aucune stack trace n’explique, et parce que stocker et servir cette vidéo pour chaque session est un vrai coût avec de vraies exigences de fiabilité.",
+  "prompt": "Construis un rapporteur d’erreurs avec un fil d’Ariane plutôt que de la vidéo. Délibérément aucun replay.\n\nStack : un petit SDK navigateur plus un serveur avec Postgres, Docker Compose, un domaine avec TLS.\n\nLe SDK garde un tampon glissant des N derniers éléments de fil d’Ariane, soixante secondes par défaut, entièrement en mémoire et jamais envoyé sauf si une erreur survient. Un élément de fil d’Ariane est de type : clic avec un chemin de sélecteur CSS et le nom accessible de l’élément, navigation, requête réseau avec méthode, chemin d’URL, statut et durée, sortie console, ou un événement personnalisé.\n\nLe masquage est activé par défaut et désactivable uniquement par opt-in explicite par champ, et c’est la partie qui doit être juste :\n- N’enregistre jamais les valeurs de saisie. Enregistre qu’un champ a été focalisé et son nom de champ, jamais son contenu.\n- Retire les query strings et les corps de requête sauf si un champ est explicitement autorisé.\n- Rédige tout ce qui correspond à des motifs de secrets courants dans la sortie console.\n- N’enregistre jamais depuis un élément marqué d’un attribut data-private ou à l’intérieur d’un champ mot de passe.\nÉcris des tests pour chacun de ces points, parce qu’un enregistreur de fil d’Ariane qui fuite un numéro de carte est un incident pire que le bug qu’il était censé capturer.\n\nSur une erreur non attrapée ou un rejet non géré : envoie la stack, le tampon de fil d’Ariane, la version de release, l’URL, le navigateur et la fenêtre d’affichage, et rien d’autre. Regroupe en lots et réessaie avec backoff, et laisse tomber plutôt que de mettre en file sans limite si hors ligne.\n\nServeur : regroupe les erreurs par une empreinte calculée à partir de la stack normalisée — retire les numéros de ligne des frames minifiées, replie les frames de framework — pour qu’un bug soit un seul ticket. Montre le fil d’Ariane comme une chronologie à côté de la stack, avec l’écart de temps entre les étapes, puisqu’un écart de quatre secondes avant un double clic raconte sa propre histoire.\n\nSource maps : envoie par release, applique à l’ingestion plutôt qu’à l’affichage, et refuse de servir les maps publiquement.\n\nRétention : une fenêtre fixe avec suppression réelle, et un plafond d’événements quotidien par projet qui laisse tomber avec un compteur.\n\nÉcris des tests pour le masquage, pour la stabilité d’empreinte à travers des releases avec des numéros de ligne différents, et pour le tampon qui ne dépasse jamais son plafond.\n\nN’enregistre pas le DOM, ne construis pas de replay, et n’ajoute pas d’analytics produit.",
+  "faq": [
+    {
+      "q": "Le fil d’Ariane suffit-il vraiment sans vidéo ?",
+      "a": "Pour la plupart des bugs, oui, et c’est plus petit, moins cher et bien moins risqué à stocker. « A cliqué sur Envoyer, puis a re-cliqué sur Envoyer 400 millisecondes plus tard, POST a retourné 500 » porte la même information que la vidéo, en cent octets."
+    },
+    {
+      "q": "Pourquoi le masquage est-il la partie la plus dure ?",
+      "a": "Parce que le défaut de tout enregistreur, c’est de tout capturer, et les pages intéressantes sont celles qui portent des données personnelles. Un masquage en opt-out plutôt qu’en opt-in finit par enregistrer un formulaire de paiement, et aucune politique de rétention ne répare ça."
+    },
+    {
+      "q": "Pourquoi appliquer les source maps à l’ingestion ?",
+      "a": "Pour que les maps n’aient jamais besoin d’être accessibles publiquement. Une source map servie publiquement remet ton code source original à quiconque le demande, et c’est une fuite étonnamment courante."
+    },
+    {
+      "q": "Que coûte vraiment LogRocket en pratique ?",
+      "a": "Ça monte avec les sessions capturées — sa propre page affiche 176 $ par mois à la position par défaut du curseur et dit que le chiffre final dépend des sièges, de la rétention et des modules complémentaires. L’enregistrement conditionnel, qui capture environ un quart des sessions, est comment les équipes gardent ça dans une fourchette raisonnable."
+    }
+  ]
+}

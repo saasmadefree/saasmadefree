@@ -1,0 +1,32 @@
+{
+  "tagline": "Le planning sur le téléphone de tout le monde, avec des échanges qui se règlent tout seuls.",
+  "verdictSummary": "Deux dollars cinquante par tête est tarifé contre l’effort de ne pas le faire, et le logiciel en dessous, c’est un week-end. Le manque, c’est l’adoption : ça ne marche que si chaque membre du personnel l’a sur son téléphone et l’ouvre, et une application installée avec des notifications push, c’est différent d’une page web qu’il faut se rappeler d’aller voir. Rien ici n’est un réseau ou un jeu de données, donc « en partie » est juste.",
+  "coreLoopDIY": "Publie le planning une fois et laisse-le se maintenir tout seul : le personnel voit ses créneaux, les propose, et prend des remplacements, avec ton approbation comme seule étape qui a besoin de toi.",
+  "whatYouLose": [
+    "les applications mobiles et les notifications push",
+    "la pointeuse et son export de paie sur les paliers payants",
+    "la planification multi-site",
+    "les demandes de disponibilité gérées entièrement dans l’application par le personnel",
+    "quelqu’un d’autre qui le garde en fonctionnement un vendredi soir"
+  ],
+  "whyPeopleStillPay": "Parce que toute la valeur, c’est que le planning atteigne tout le monde et que les changements les atteignent aussi, et ça demande une application que les gens ont déjà plutôt qu’un lien que tu renvoies sans arrêt.",
+  "prompt": "Construis un outil de planification dont la fonctionnalité distinctive est que les changements de créneaux se résolvent sans toi.\n\nStack : ton choix, Postgres, Docker Compose, un domaine avec TLS. Mobile d’abord, sans clavier, utilisable sur une connexion lente.\n\nPlanning : des employés avec des rôles et une disponibilité déclarée, des créneaux avec rôle, début, fin et effectif requis, publiés une semaine à la fois.\n\nDisponibilité : chaque employé fixe une disponibilité récurrente et des exceptions ponctuelles. Assigner quelqu’un hors de sa disponibilité est permis mais avertit et enregistre que ça a été contourné — un blocage strict se fait juste contourner par SMS.\n\nLa boucle de libre-service, qui est le sujet :\n- Proposer un créneau : un employé relâche un créneau dans un pool ouvert.\n- Prendre depuis le pool : quiconque a le bon rôle et une disponibilité correspondante le voit et peut le prendre. Prendre doit être atomique — deux personnes qui appuient à la même seconde ne doivent pas toutes deux l’obtenir, et ça demande une vraie transaction, pas un vérifier-puis-écrire.\n- Échange direct : propose un échange avec un collègue nommé, qui accepte ou refuse.\n- Chaque résolution demande une seule approbation de manager et rien de plus. Le manager voit une file unique de changements en attente avec accepter et rejeter.\n- Règles imposées avant qu’une prise ne soit proposée : pas déjà en train de travailler à ce moment, pas de dépassement d’un plafond d’heures hebdomadaire, et un écart de repos minimum entre créneaux.\n\nNotifications : push web là où disponible, email sinon, pour les plannings publiés, les changements sur tes propres créneaux, et un créneau disponible dans le pool pour lequel tu es qualifié. Sois honnête dans le README que sans application native, c’est là qu’une version auto-hébergée est la plus faible.\n\nMontre, sur le planning, la couverture par rôle et par heure comme une petite barre, pour qu’un samedi en sous-effectif soit visible pendant que c’est encore un brouillon.\n\nÉcris des tests pour la prise atomique sous concurrence, pour les règles d’écart de repos et de plafond hebdomadaire qui bloquent une prise, et pour les contournements de disponibilité qui sont enregistrés.\n\nNe construis ni pointeuse, ni paie, ni support multi-site.",
+  "faq": [
+    {
+      "q": "Pourquoi la prise atomique compte-t-elle ?",
+      "a": "Parce que deux personnes qui prennent le même créneau, c’est un litige garanti, et un vérifier-puis-écrire naïf se trompe exactement quand le pool est occupé. Une transaction avec une mise à jour conditionnelle résout ça et a besoin d’un test pour rester résolue."
+    },
+    {
+      "q": "Pourquoi avertir plutôt que bloquer sur la disponibilité ?",
+      "a": "Parce que les managers ont légitimement besoin de demander à quelqu’un de travailler hors de sa disponibilité déclarée, et un blocage strict pousse cette conversation vers des SMS que le planning ne peut pas voir. Avertir et enregistrer garde ça dans le système."
+    },
+    {
+      "q": "Combien coûte vraiment l’absence d’application ?",
+      "a": "Beaucoup, honnêtement. Le personnel horaire ne vérifiera pas une page web, et le push web est inconstant sur iOS. Attends-toi à devoir aussi envoyer un SMS pour tout ce qui est urgent, ce qui est un vrai coût que l’abonnement absorbe."
+    },
+    {
+      "q": "Que coûte When I Work ?",
+      "a": "2,50 $ par utilisateur et par mois pour un seul site, 5 $ pour le multi-site, 8 $ pour le palier supérieur — avec la pointeuse et l’export de paie sur les paliers supérieurs plutôt que sur le palier d’entrée."
+    }
+  ]
+}

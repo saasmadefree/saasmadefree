@@ -1,0 +1,32 @@
+{
+  "tagline": "Un help desk avec une base de connaissances publique rattachée au même contenu.",
+  "verdictSummary": "C’est la fiche la plus reconstructible de cette catégorie, au point qu’un clone open source de Help Scout existe depuis des années. Un week-end te donne une boîte partagée, un site de docs publiques et la boucle entre les deux. Ça reste un « en partie » plutôt qu’un « oui » pour deux raisons qui ne sont pas du code : envoyer du courrier de support demande un domaine avec une vraie réputation et un fournisseur transactionnel, et faire tourner ça toi-même signifie porter la disponibilité d’un canal que les clients utilisent quand ils sont déjà mécontents.",
+  "coreLoopDIY": "Réponds à l’email depuis une boîte partagée où réponses enregistrées et articles d’aide publics sont les mêmes fiches, pour qu’améliorer une réponse améliore la doc, et un rapport montre quels articles détournent vraiment des tickets.",
+  "whatYouLose": [
+    "la disponibilité hébergée et les sauvegardes sur le canal que les clients utilisent quand ils sont en colère",
+    "les applications mobiles",
+    "AI Answers qui résout les tickets depuis ta documentation automatiquement",
+    "les connecteurs Salesforce, Jira et HubSpot",
+    "la suite de reporting et ses vues enregistrées"
+  ],
+  "whyPeopleStillPay": "Parce que l’email de support ne doit pas tomber en panne, et parce que l’interface agréable et sans chichis, c’est ce qui empêche une petite équipe d’abandonner l’outil. Ni l’un ni l’autre n’est excitant, et les deux expliquent pourquoi l’abonnement se renouvelle.",
+  "prompt": "Construis un help desk où la base de connaissances et les réponses enregistrées sont le même contenu, pas deux copies.\n\nStack : ton choix, Postgres, Docker Compose. Courrier entrant via un webhook signé d’un fournisseur d’email ; sortant via un fournisseur transactionnel sur un domaine que tu possèdes avec SPF, DKIM et DMARC documentés dans le README.\n\nL’idée unique : un Article a un titre, un corps en Markdown, une visibilité (public, interne) et un ensemble de tags. Un article public est rendu sur un site de docs à une URL stable. N’importe quel article, public ou interne, peut être inséré dans une réponse — l’éditeur propose un sélecteur en recherche instantanée qui insère soit le texte complet, soit un lien vers l’URL publique. Il n’y a pas de stock séparé de « réponses enregistrées » qui dérive avec le temps.\n\nLa boucle qui rend ça valable : quand un article est inséré dans une réponse, enregistre-le. L’écran de rapport montre alors, par article, combien de fois il a été utilisé dans des réponses et combien de fois sa page publique a été vue, côte à côte. Un article beaucoup utilisé dans les réponses mais rarement vu publiquement est un trou de documentation — il devrait être trouvable avant que le client n’écrive. Fais ressortir exactement cette liste comme « articles à promouvoir ».\n\nBoîte de réception : conversations avec un assigné, un statut (active, en attente, fermée), mise en fil par Message-ID avec References, MIME brut conservé, images distantes retirées. Navigation clavier d’abord.\n\nSite de docs : rendu côté serveur, pas de framework client, recherche plein texte sur les corps d’articles avec Postgres, un arbre de catégories depuis les tags, et chaque article se terminant par un « ça t’a aidé » oui/non qui stocke un compteur et rien d’identifiant.\n\nVue client : ouvrir une conversation montre chaque conversation précédente de cette adresse email, le contexte utile le moins cher qui existe.\n\nÉcris des tests pour le compteur d’usage d’article (une réponse utilisant deux articles compte les deux), pour la recherche de docs, et pour la mise en fil d’une réponse qui a perdu son en-tête References.\n\nNe construis ni chat en direct, ni application mobile, ni couche de réponse IA. Note dans le README que la base de connaissances est un prérequis pour n’importe lequel de ces trois, ce qui est pourquoi c’est la chose construite en premier.",
+  "faq": [
+    {
+      "q": "Pourquoi fusionner les réponses enregistrées et les articles d’aide ?",
+      "a": "Parce que les garder séparés garantit qu’ils divergent, et la divergence favorise toujours la copie privée — la doc publique se périme pendant que l’équipe colle une réponse exacte vingt fois par semaine. Une seule fiche rend l’amélioration automatique."
+    },
+    {
+      "q": "Que me dit vraiment le rapport « articles à promouvoir » ?",
+      "a": "Qu’une réponse que tu donnes constamment n’est pas trouvable. Chaque entrée de cette liste est un ticket que tu pourrais arrêter de recevoir en mettant l’article quelque part que le client atteint en premier, ce qui est le travail de support au levier le plus élevé qui existe."
+    },
+    {
+      "q": "FreeScout n’est-il pas simplement la réponse ici ?",
+      "a": "Pour beaucoup de gens, oui — c’est une boîte partagée open source mature avec un module de docs, et l’installer est plus rapide que de construire ça. Le projet de ce prompt existe pour la boucle d’usage d’article, que les help desks tout faits ne mesurent pas."
+    },
+    {
+      "q": "Quitter Help Scout, c’est douloureux ?",
+      "a": "L’API parcourt les conversations et les docs, donc un export complet est un script plutôt qu’une demande au support. Les pièces jointes doivent être récupérées séparément par URL avant la fermeture du compte, ce qui est la partie que les gens oublient."
+    }
+  ]
+}

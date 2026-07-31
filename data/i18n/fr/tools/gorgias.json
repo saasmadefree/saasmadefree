@@ -1,0 +1,32 @@
+{
+  "tagline": "Un help desk qui affiche les commandes du client à côté de son message.",
+  "verdictSummary": "Gorgias existe parce qu’un agent de support qui répond à « où est ma commande » ne devrait pas avoir à ouvrir l’admin de la boutique. Cette barre latérale — commandes, suivi, un remboursement scripté — est une application privée contre une API commerce documentée, et c’est un week-end. Le verdict est « en partie » plutôt que « oui » parce que les canaux au-delà de l’email et du chat sont verrouillés : la messagerie Instagram et TikTok Shop demande une approbation de plateforme, et le volume de tickets lui-même est compté, ce que le prix mesure vraiment.",
+  "coreLoopDIY": "Réponds à l’email et au chat de support avec l’historique de commandes du client affiché à côté du message, et effectue les deux ou trois actions qui résolvent la plupart des tickets — renvoyer le suivi, rembourser, réexpédier — depuis l’intérieur du ticket, avec une ligne d’audit pour chacune.",
+  "whatYouLose": [
+    "la messagerie Instagram, Facebook et TikTok Shop, chacune derrière une approbation de plateforme",
+    "les canaux voix et SMS",
+    "l’agent IA qui résout les tickets de façon autonome, et le volume d’exemples derrière",
+    "l’attribution de revenus pour les ventes générées par le support",
+    "les intégrations de l’app store avec les fournisseurs de fidélité, d’abonnement et de retours"
+  ],
+  "whyPeopleStillPay": "Parce que les marchands à volume vivent et meurent sur le temps de traitement des tickets, et une intégration maintenue avec chaque application commerce qu’ils utilisent déjà n’est pas quelque chose qu’une barre latérale maison arrive à suivre.",
+  "prompt": "Construis un help desk pour une boutique en ligne, où le contexte commande est toujours à l’écran.\n\nStack : ton choix, Postgres, Docker Compose. Courrier entrant via un webhook signé, sortant via un fournisseur transactionnel sur un domaine que tu possèdes avec SPF, DKIM et DMARC. Données commerce via une application privée sur ta propre boutique — l’Admin API de Shopify est la référence ici, et le README doit préciser clairement que c’est une application personnalisée pour une boutique, pas une application publique pour l’app store.\n\nLa vue ticket a trois colonnes : conversation au milieu, contexte client à droite, actions en bas.\n\nPanneau de contexte, résolu depuis l’adresse email de l’expéditeur : nombre et valeur de commandes à vie, les cinq dernières commandes avec statut et suivi d’expédition, et tout retour en cours. Mets-le en cache avec un TTL court, montre l’heure de récupération, et dégrade vers « contexte indisponible » plutôt que de bloquer la réponse quand l’API est en panne — un agent doit toujours pouvoir répondre.\n\nActions, et c’est là qu’il faut de la prudence. Chacune est un formulaire avec une étape de confirmation, et chaque exécution écrit une ligne d’audit immuable avec l’acteur, la charge utile envoyée et la réponse reçue, rendue dans le fil du ticket :\n- Renvoyer l’email de suivi d’expédition.\n- Rembourser une commande, totalement ou partiellement, avec un motif. Plafonne le montant au total de la commande dans le code, pas seulement dans l’interface.\n- Annuler une commande non expédiée.\nLes remboursements déplacent de l’argent ; traite chacun comme exigeant une seconde confirmation explicite montrant le montant exact.\n\nMacros : réponses prêtes avec {{orderNumber}}, {{trackingUrl}}, {{customerFirstName}} interpolés depuis le contexte résolu, pour que la réponse courante soit une seule touche.\n\nUn widget de chat en direct : un petit script intégrable, un websocket vers le serveur, et des messages qui atterrissent dans la même file de tickets que l’email. Persiste l’id du visiteur dans le stockage local pour qu’un visiteur qui revient garde son fil. Garde le widget sous 20 Ko et fais-le fonctionner sans cookies.\n\nRoutage : les tickets qui mentionnent les mots remboursement, retour ou rétrofacturation reçoivent un tag automatiquement ; tout le reste atterrit non assigné dans une file.\n\nÉcris des tests pour le plafond de montant de remboursement, pour la ligne d’audit écrite avant que le ticket ne soit mis à jour, et pour le panneau de contexte qui se dégrade correctement sur un timeout d’API.\n\nNe construis ni canaux de messagerie sociale, ni voix, ni agent IA autonome.",
+  "faq": [
+    {
+      "q": "Pourquoi une application commerce privée est-elle plus facile qu’il n’y paraît ?",
+      "a": "Parce qu’une application personnalisée pour une boutique que tu possèdes saute tout le chemin d’application publique : pas de revue, pas d’écran de consentement OAuth pour d’autres marchands, pas d’API de facturation. Tu la crées dans l’admin de la boutique, obtiens un token, et appelles l’API. La complexité dans ce domaine est toute dans la distribution, et tu ne distribues pas."
+    },
+    {
+      "q": "Quelle part réelle du support représente « où est ma commande » ?",
+      "a": "Assez pour que le panneau de contexte et deux macros résolvent une grande part des tickets sans rien taper. C’est la vraie raison pour laquelle ce projet vaut un week-end plutôt qu’une semaine — les parties ambitieuses sont rarement utilisées."
+    },
+    {
+      "q": "Qu’est-ce qui rend les canaux sociaux difficiles plutôt que fastidieux ?",
+      "a": "Ils sont soumis à permission. La messagerie Instagram passe par la plateforme entreprise de Meta avec une revue d’application et une entreprise vérifiée ; TikTok Shop a sa propre approbation. Tu ne peux pas décider de les supporter, tu dois y être autorisé, et cette barrière, c’est ce qu’un help desk payant a déjà franchi."
+    },
+    {
+      "q": "Le tarif au ticket de Gorgias est-il un piège ?",
+      "a": "C’est un vrai coût variable que tu devrais modéliser. Starter inclut 50 tickets par mois et facture 0,40 $ pour chacun au-delà, donc un pic saisonnier devient une facture plutôt qu’un changement de plan. Ce comptage est précisément ce qu’un help desk auto-hébergé n’a pas."
+    }
+  ]
+}

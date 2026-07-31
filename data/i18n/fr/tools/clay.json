@@ -1,0 +1,32 @@
+{
+  "tagline": "Un tableur qui appelle une centaine de fournisseurs de données et garde la première réponse qui marche.",
+  "verdictSummary": "Clay est un orchestrateur, et l’orchestration est la partie qu’on peut construire — un tableau où chaque colonne est une étape, les étapes s’exécutent dans l’ordre, et une cascade s’arrête au premier fournisseur qui retourne quelque chose. Tu peux écrire ça. Ce que tu ne peux pas écrire, ce sont les cent contrats en dessous : Clay revend un accès à des fournisseurs auxquels la plupart des particuliers n’ont même pas accès à l’achat, et mutualise le volume pour qu’une seule recherche coûte des centimes. Construis le moteur d’exécution et tu possèdes une très bonne machine vide.",
+  "coreLoopDIY": "Un tableau où chaque colonne est une étape d’enrichissement contre une clé API que tu fournis, exécutée en cascade qui s’arrête à la première réponse trouvée, avec le coût par ligne de chaque appel fournisseur enregistré au fil de l’eau.",
+  "whatYouLose": [
+    "les fournisseurs eux-mêmes — tu ne peux appeler que des services auxquels tu peux t’inscrire et que tu peux payer directement",
+    "les tarifs mutualisés — une recherche qui coûte un centime à Clay peut te coûter bien plus",
+    "le catalogue de connecteurs maintenu, y compris des fournisseurs sans aucun accès en libre-service",
+    "les modèles de prospection sortante prêts à l’emploi et les recettes communautaires qui vont autour",
+    "quelqu’un d’autre qui maintient les intégrations fonctionnelles quand un fournisseur change son API"
+  ],
+  "whyPeopleStillPay": "Parce que la valeur, c’est un pouvoir d’achat agrégé plus une centaine d’intégrations maintenues, et les deux sont des actifs commerciaux plutôt que du code. Une équipe qui utilise Clay achète un accès, pas un tableur.",
+  "prompt": "Construis un moteur d’enrichissement bring-your-own-key en forme de tableau.\n\nStack : ton choix, Postgres, Docker Compose, une seule commande.\n\nModèle : un Tableau a des Lignes et des Colonnes. Une Colonne est de type : entrée (tapée par moi ou importée), http (appelle un fournisseur configuré), llm (interroge un modèle avec d’autres colonnes interpolées), formule (une petite expression sur d’autres colonnes), ou cascade.\n\nLes fournisseurs sont déclarés dans un fichier de configuration, chacun avec un nom, une URL de base, un en-tête d’authentification lu depuis une variable d’environnement, un modèle de requête, un JSONPath pour la valeur à extraire, un JSONPath pour « trouvé ou non », et un coût par appel en centimes. Livre deux exemples réels utilisant des services avec de vraies API en libre-service et des plans gratuits, et dis clairement dans le README que chaque fournisseur est un service auquel tu dois t’inscrire toi-même.\n\nUne colonne cascade liste des colonnes fournisseur dans l’ordre. Elle les exécute une par une et s’arrête à la première qui rapporte un résultat trouvé, en enregistrant quel fournisseur a répondu. Cette colonne « qui a répondu » est ce qui rend l’outil intéressant — sur une centaine de lignes, elle te dit quels fournisseurs tu devrais arrêter de payer.\n\nExécution : exécuter une colonne traite les lignes par lots avec une concurrence configurable, réessaie sur un 429 avec un backoff, et est reprenable — tuer le processus en cours d’exécution et le relancer ne doit pas rappeler un fournisseur pour une ligne déjà résolue. Chaque appel écrit une ligne de registre : identifiant de ligne, colonne, fournisseur, statut, coût en centimes, horodatage.\n\nConstruis un écran de coûts : dépense par fournisseur, par colonne et par jour, plus le coût par enrichissement réussi, le chiffre qui compte vraiment.\n\nLe type de colonne llm prend un modèle de prompt avec interpolation {{colonne}} et appelle un modèle Anthropic ou OpenAI selon la clé présente dans l’environnement. Plafonne-le : un budget de tokens par exécution qui arrête l’exécution plutôt que de le dépasser.\n\nImporte et exporte en CSV. Les exports incluent le « répondu par » de la cascade et le coût par ligne.\n\nÉcris des tests pour le court-circuit de la cascade, pour la reprise après un arrêt brutal, et pour le total correct du registre de coûts.\n\nN’intègre aucun jeu de données et ne scrape rien. La machine est vide jusqu’à ce que tu branches des clés que tu paies toi-même.",
+  "faq": [
+    {
+      "q": "Mes coûts par recherche seront-ils vraiment pires que ceux de Clay ?",
+      "a": "Généralement oui, parfois de façon spectaculaire. Clay achète du volume à travers des milliers de clients et revend les recherches au crédit ; un compte solo paie le prix catalogue et fait souvent face à un minimum mensuel par fournisseur. L’écran de coûts de ce projet existe pour que tu le découvres en semaine un plutôt qu’en mois six."
+    },
+    {
+      "q": "Pourquoi la reprenabilité compte-t-elle autant ?",
+      "a": "Parce qu’une exécution plantée qui rappelle les fournisseurs te facture deux fois la même ligne. Le registre et le contrôle de reprise coûtent peu à construire et font la différence entre une expérience et une facture."
+    },
+    {
+      "q": "La colonne LLM est-elle un substitut à de vraies données ?",
+      "a": "Non, et la traiter comme tel est la façon la plus courante de produire une liste de bêtises assénées avec assurance. Elle est bonne pour reformater et classer ce que d’autres colonnes ont déjà trouvé ; elle est mauvaise pour connaître l’adresse email de quelqu’un."
+    },
+    {
+      "q": "Puis-je récupérer mes tableaux Clay ?",
+      "a": "Les tableaux s’exportent en CSV, donc les valeurs que tu as déjà enrichies te suivent. Les recettes — quel fournisseur a tourné dans quel ordre, avec quel mapping — ne s’exportent pas dans une forme lisible ailleurs, donc reconstruis-les à partir de l’export tant que tu peux encore les voir."
+    }
+  ]
+}

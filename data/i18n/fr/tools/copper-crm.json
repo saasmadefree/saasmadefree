@@ -1,0 +1,32 @@
+{
+  "tagline": "Le CRM qui vit là où ta Gmail est déjà.",
+  "verdictSummary": "Copper vend une seule idée : tu ne quittes jamais Gmail, et chaque message et rendez-vous atterrit sur la bonne fiche sans qu’on le lui dise. Un projet perso peut faire la majeure partie du chemin sans rien demander à Google, en utilisant une vieille astuce — une adresse BCC par fiche qui reçoit le courrier et le classe. C’est un week-end. Ce que ça ne fera pas, c’est capturer le courrier que tu as oublié de mettre en BCC, exactement l’échec que Copper existe pour empêcher, et ça ne mettra pas le CRM à l’intérieur de la fenêtre Gmail.",
+  "coreLoopDIY": "Donne à chaque contact et deal sa propre adresse BCC privée ; tout ce que tu mets en copie de cette adresse atterrit sur la fiche comme une entrée en fil, consultable, et un bookmarklet de navigateur crée la fiche à partir de n’importe quelle page que tu regardes.",
+  "whatYouLose": [
+    "la capture automatique — le courrier que tu oublies de mettre en BCC n’est simplement pas classé",
+    "la barre latérale à l’intérieur de Gmail et Google Calendar",
+    "la synchro calendrier — les rendez-vous n’apparaissent jamais seuls sur une fiche",
+    "les applications mobiles",
+    "la liaison de fichiers Google Drive sur une fiche"
+  ],
+  "whyPeopleStillPay": "Parce que « ça apparaît, c’est tout » est le produit entier. Copper est acheté par des équipes qui ont déjà perdu un deal à cause d’un email que personne n’a journalisé, et vingt-neuf dollars par siège, c’est le prix de ne pas avoir à s’en souvenir.",
+  "prompt": "Construis un CRM qui capture l’email sans jamais demander d’accès OAuth à Google.\n\nLe mécanisme : chaque fiche reçoit une adresse d’entrée privée. Mets en place une boîte fourre-tout sur un domaine que tu possèdes — le README devrait montrer ça avec un fournisseur d’email entrant qui poste un webhook, et noter qu’auto-héberger le récepteur est possible mais un travail plus lourd. Les adresses ressemblent à crm+<token-de-fiche>@tondomaine.tld. Mets cette adresse en copie de n’importe quel email et le message est stocké contre la fiche.\n\nStack : ton choix, Postgres, Docker Compose. Le point d’entrée webhook doit vérifier la signature du fournisseur et rejeter tout ce qui n’est pas signé.\n\nStockage : garde le MIME brut à côté de la version analysée. Regroupe les messages en fils par Message-ID, In-Reply-To et References pour qu’une réponse atterrisse sous l’original plutôt que comme un nouvel élément. Extrais et stocke les pièces jointes sur le disque local avec un hash de contenu comme nom de fichier, et ne rends jamais les images distantes.\n\nFiches : Contact, Entreprise, Opportunité. Chacune a une chronologie qui fusionne emails, notes et changements d’étape en une seule liste chronologique. Quand un message arrive d’une adresse qui ne correspond à aucun contact, mets-le dans une file de triage façon inbox-zero où je l’assigne à une fiche ou l’écarte en une touche.\n\nCapture depuis le navigateur : livre un bookmarklet qui récupère le titre de la page, l’URL et tout texte sélectionné, et ouvre un formulaire préempli « nouveau contact ou note ». C’est le substitut honnête à une extension navigateur, et ça prend une heure, pas un week-end.\n\nLa recherche doit couvrir les corps d’email, pas seulement les champs de fiche.\n\nÉcris des tests pour la logique de mise en fil et pour la vérification de signature sur le webhook entrant — un point d’entrée entrant non authentifié est un moyen de remplir ton CRM avec le spam de quelqu’un d’autre.\n\nNe construis ni synchro OAuth Gmail, ni add-on Gmail. Sois explicite dans le README que la capture est opt-in par message : si tu ne mets pas en BCC, rien n’est enregistré.",
+  "faq": [
+    {
+      "q": "Pourquoi le BCC plutôt que connecter Gmail proprement ?",
+      "a": "Parce que se connecter proprement demande un projet Google Cloud, un écran de consentement OAuth vérifié avec une revue de sécurité si tu le partages un jour, des tokens de rafraîchissement à surveiller, et un abonnement watch Gmail qui expire tous les sept jours. L’adresse BCC te donne quatre-vingts pour cent de la valeur en un après-midi, avec le coût honnête qu’elle ne capture que ce dont tu te souviens de mettre en copie."
+    },
+    {
+      "q": "Une adresse fourre-tout est-elle sûre à exposer ?",
+      "a": "Les tokens sont par fiche et aléatoires, donc en deviner un est impraticable, mais quiconque apprend une adresse peut poster sur cette fiche. Vérifie la signature du fournisseur sur chaque webhook, limite le débit par token, et traite le contenu entrant comme non fiable — pas de chargement d’images distantes, pas d’exécution HTML."
+    },
+    {
+      "q": "Et les rendez-vous ?",
+      "a": "C’est le vrai trou. Copper lit ton calendrier ; ce projet, non. Le contournement, c’est de mettre la fiche en BCC sur l’invitation calendrier pour qu’au moins le texte de l’invitation soit classé, et d’accepter que les réunions internes récurrentes n’apparaîtront jamais."
+    },
+    {
+      "q": "Puis-je continuer à l’utiliser si je quitte Google entièrement ?",
+      "a": "Oui, et mieux que Copper — rien dans cette conception n’est spécifique à Google. N’importe quelle boîte mail capable de BCC fonctionne, ce qui n’est pas vrai d’un CRM construit comme add-on Gmail."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Un stockage cloud que tu peux lire directement, sans avoir à d’abord télécharger.",
+  "verdictSummary": "Le facteur différenciant de pCloud, c’est que ta bibliothèque est lisible directement : la vidéo streame et la musique joue sans passer par ton dossier de téléchargements. Streamer depuis ton propre stockage est un problème résolu, avec d’excellents logiciels open source, donc le logiciel n’est pas la barrière — le stockage et la bande passante sortante le sont, et ils sont tarifés au gigaoctet pour toi et au datacenter pour eux. Le prompt ci-dessous construit honnêtement la moitié lecture, y compris la partie que tout le monde sous-estime : le transcodage.",
+  "coreLoopDIY": "Lis ta bibliothèque depuis ton propre stockage : streaming adaptatif avec transcodage seulement quand l’appareil ne peut vraiment pas gérer le fichier, et un cache pour que ça n’arrive qu’une fois.",
+  "whatYouLose": [
+    "deux téraoctets et le quota de transfert pour vraiment streamer",
+    "les clients mobiles et desktop",
+    "l’option d’achat à vie, un vrai produit financier",
+    "le versionnement de fichiers et le retour en arrière",
+    "quelqu’un d’autre qui paie la facture de sortie de données"
+  ],
+  "whyPeopleStillPay": "Parce que streamer, c’est de la bande passante, et la bande passante est la seule chose dans cette catégorie qui n’a pas de contournement malin. Le plan à vie existe parce qu’ils savent que le coût marginal du stockage baisse et le tien, non.",
+  "prompt": "Construis un serveur média sur ton propre stockage, avec une stratégie de transcodage honnête.\n\nStack : ton choix plus ffmpeg, stockage d’objets ou disque, Docker Compose, un domaine avec TLS. Envisage de déployer un serveur média existant et de construire l’analyse autour — précise quelle voie tu as choisie et pourquoi.\n\nBibliothèque : scanne les chemins, lis les métadonnées de conteneur et de codec avec ffprobe, stocke-les. Ne re-sonde jamais un fichier dont la taille et l’heure de modification sont inchangées ; un rescan qui re-sonde tout, c’est ce qui rend ces outils lents.\n\nLecture, et la règle qui décide si c’est agréable ou terrible :\n- Lecture directe d’abord. Si le client peut gérer le conteneur, le codec vidéo, le codec audio et le débit, streame les octets originaux avec des requêtes HTTP range. Ne transcode pas par défaut ; c’est l’erreur qui transforme un petit serveur en incendie de CPU.\n- Remux ensuite. Si les codecs vont mais pas le conteneur, réemballe sans réencoder. Bon marché.\n- Transcode en dernier recours, et dis-le dans l’interface, en montrant pourquoi — quel codec l’a forcé et quel est le coût CPU.\n- Mets en cache la sortie transcodée indexée par hash de source plus profil cible, pour que la deuxième lecture soit gratuite. Plafonne et évince le cache par âge et taille.\n\nStreaming adaptatif : produis du HLS avec deux ou trois niveaux de qualité pour le contenu transcodé, pour qu’une mauvaise connexion descende en qualité plutôt que de bufferiser. La lecture directe reste un flux unique.\n\nRéalité de la bande passante, de premier rang : un budget de sortie mensuel par utilisateur, un affichage des octets servis ce mois-ci, et une estimation de ce que ça coûterait au tarif de sortie publié de ton fournisseur. Streamer un film, c’est plusieurs gigaoctets ; la plupart des gens qui construisent ça n’ont jamais fait ce calcul.\n\nAjoute aussi : une position de reprise par utilisateur et par élément, synchronisée entre appareils ; la gestion des sous-titres avec fichiers externes et pistes intégrées ; et un lien de partage pour un élément avec une expiration et son propre plafond de bande passante.\n\nÉcris des tests pour la matrice de décision de lecture directe contre une table de capacités client, pour les clés de cache distinguant les profils de qualité, et pour les requêtes range qui servent les bonnes plages d’octets sur une recherche.\n\nNe construis ni application mobile, ni scraper de métadonnées pour les jaquettes de film.",
+  "faq": [
+    {
+      "q": "Pourquoi la lecture directe est-elle l’optimisation la plus importante ?",
+      "a": "Parce que transcoder un seul flux 4K peut saturer le CPU d’un petit serveur, alors que la lecture directe est à peine plus de travail que de servir un fichier. Bien faire la correspondance de capacités signifie que la plupart des lectures ne coûtent presque rien."
+    },
+    {
+      "q": "Combien coûte vraiment le streaming en sortie de données ?",
+      "a": "Un film de deux heures à un débit modéré, c’est plusieurs gigaoctets. Aux tarifs de sortie typiques du stockage d’objets, ça fait des centimes par vue, ce qui est très bien pour toi et inabordable à l’échelle de pCloud — ce qui est exactement pourquoi ils tarifient le stockage comme ils le font."
+    },
+    {
+      "q": "Un plan de stockage à vie est-il une bonne affaire ?",
+      "a": "C’est un pari que l’entreprise survivra à tes fichiers. Parfois ça paie généreusement ; ça concentre aussi le risque, donc un plan à vie est une raison de garder une seconde sauvegarde indépendante plutôt qu’une raison de se détendre."
+    },
+    {
+      "q": "Puis-je exporter facilement depuis pCloud ?",
+      "a": "Oui — c’est du stockage de fichiers simple avec un client desktop et un accès WebDAV, donc une copie complète est un long téléchargement plutôt qu’une migration. Cette portabilité, c’est l’un des meilleurs aspects du produit."
+    }
+  ]
+}

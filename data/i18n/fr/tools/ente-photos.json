@@ -1,0 +1,32 @@
+{
+  "tagline": "Stockage photo chiffré de bout en bout, avec un serveur que tu peux faire tourner toi-même.",
+  "verdictSummary": "Ente publie tout — clients et serveur — et documente l’auto-hébergement comme une voie officiellement supportée, ce qui le place dans la même famille que Ghost, Umami, Tolgee et Chatwoot : l’abonnement, c’est juste quelqu’un d’autre qui fait tourner un logiciel que tu peux faire tourner toi-même. Ça en fait un « oui ». La confiance est moyenne parce que les photos sont la chose la moins indulgente à auto-héberger : le mode d’échec n’est pas la panne, c’est une archive familiale sans deuxième copie, et les applications mobiles ne restent les officielles contre ton propre serveur que si tu les configures avec soin.",
+  "coreLoopDIY": "Fais tourner le vrai serveur Ente toi-même, pointe les clients officiels dessus, et construis la discipline que l’abonnement fournit autrement — sauvegarde hors site, tests de restauration, et un runbook de mise à jour.",
+  "whatYouLose": [
+    "quelqu’un d’autre qui le garde en état de marche, corrigé et sauvegardé",
+    "leur redondance de stockage, remplacée par ce que tu organises toi-même",
+    "le support quand un client arrête de se synchroniser après une mise à jour",
+    "la facturation de plan familial partagé",
+    "la confiance que ta seule copie de vingt ans de photographies est en sécurité"
+  ],
+  "whyPeopleStillPay": "Parce que les photographies sont irremplaçables et les héberger toi-même rend les conséquences de ta propre négligence permanentes. Dix-neuf euros, c’est une assurance bon marché contre tes propres habitudes de sauvegarde.",
+  "prompt": "Auto-héberge Ente et traite-le comme l’archive de référence qu’il deviendra. C’est une tâche d’exploitation, et le livrable est un runbook.\n\n1. Déploie la stack serveur officielle avec Docker Compose, épinglée à un tag de version publié, jamais latest.\n2. Stockage d’objets pour les blobs chiffrés. Configure-le avant le premier envoi ; migrer de backend de stockage après coup est bien pire que de bien choisir dès maintenant.\n3. Un domaine avec TLS, et une configuration d’endpoint correcte dans les clients avant que quiconque n’envoie quoi que ce soit.\n4. Pointe les clients mobile et desktop officiels vers ton serveur via leur réglage d’endpoint personnalisé, et vérifie sur un second appareil qu’une photo envoyée sur l’un apparaît sur l’autre, en pleine résolution.\n\nLa moitié exploitation, qui est le vrai travail :\n- Sauvegardes : la base Postgres et le stockage d’objets, les deux, chaque nuit, chez un fournisseur différent. Aucun des deux seul n’est une sauvegarde — la base porte les métadonnées de chiffrement et les objets portent les données, et l’un sans l’autre est irrécupérable.\n- Exercice de restauration : mensuel, automatisé. Restaure les deux dans un environnement temporaire, démarre un client contre lui, et confirme qu’une photo s’ouvre et se déchiffre. Enregistre un succès ou un échec avec la date. Une sauvegarde photo non testée n’est qu’une rumeur.\n- Garde des clés : écris sur papier où la clé de récupération est stockée et qui d’autre peut y accéder. Le chiffrement de bout en bout signifie que personne ne peut t’aider, et la façon la plus probable de perdre ces photographies, c’est de perdre la clé plutôt que de perdre le serveur.\n- Mises à jour : instantané, lis les notes de version pour les changements cassants, monte le tag, exécute les migrations, vérifie une synchro client, et connais la commande de retour en arrière.\n- Capacité : surveille la croissance du stockage d’objets et alerte bien avant que le disque ou le budget ne soit épuisé.\n\nLivrable : un README que ton futur toi peut suivre à 2h du matin, listant chaque valeur de configuration et pourquoi, les commandes de sauvegarde et de restauration mot pour mot, la procédure de retour en arrière, et l’emplacement de la clé de récupération.\n\nNe fork pas le serveur pour des petits changements. Un fork est une mise à jour que tu finiras par sauter, et une mise à jour sautée sur une archive photo, c’est comme ça qu’elle devient illisible.",
+  "faq": [
+    {
+      "q": "Pourquoi auto-héberger des photos mérite-t-il plus de prudence qu’auto-héberger un blog ?",
+      "a": "Parce qu’un blog qui casse est gênant, et une archive photo qui casse a disparu. Il n’y a pas de copie en cache, pas de lecteur avec une capture d’écran, et avec le chiffrement de bout en bout, personne ne peut aider. L’exercice de restauration n’est pas optionnel ici."
+    },
+    {
+      "q": "Les applications mobiles officielles fonctionnent-elles contre mon propre serveur ?",
+      "a": "Oui — Ente permet de pointer les clients vers un endpoint personnalisé, ce qui en fait le cas open source hébergé plutôt qu’une reconstruction. Vérifie un aller-retour à deux appareils avant de lui faire confiance avec quoi que ce soit."
+    },
+    {
+      "q": "Que se passe-t-il si je perds la clé de récupération ?",
+      "a": "Tes photographies sont irrécupérables, par conception. C’est le coût honnête du chiffrement de bout en bout, et c’est pourquoi le runbook demande une trace papier de l’emplacement de la clé plutôt que de traiter ça comme un détail."
+    },
+    {
+      "q": "L’auto-hébergement est-il vraiment moins cher que 19 € par mois ?",
+      "a": "Pour 2 To, du stockage d’objets plus un petit serveur coûte généralement moins en argent et plus en attention. Le seuil de rentabilité n’est pas la facture d’hébergement, c’est de savoir si tu feras vraiment tourner l’exercice de restauration mensuel."
+    }
+  ]
+}
