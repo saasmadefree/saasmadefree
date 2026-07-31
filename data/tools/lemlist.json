@@ -1,0 +1,37 @@
+{
+  "slug": "lemlist",
+  "name": "Lemlist",
+  "domains": [
+    "lemlist.com"
+  ],
+  "category": "crm-sales",
+  "subcategory": "cold email personalisation",
+  "pricing": {
+    "amount": 55,
+    "currency": "USD",
+    "plan": "Email",
+    "basis": "per-seat-monthly",
+    "source": "https://www.lemlist.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "The page reads \"From $55 per user per month\" for the Email plan; the rate rises with the number of connected senders, and the \"Email Pro\" tier recorded upstream no longer exists. Lead and phone-number lookups are billed separately as credits."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "warm-up network",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "relatedSlugs": [
+    "instantly",
+    "woodpecker",
+    "smartlead"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

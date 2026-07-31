@@ -1,0 +1,32 @@
+{
+  "tagline": "The pipeline CRM that nags you until every deal has a next step.",
+  "verdictSummary": "Pipedrive's design opinion is that a deal without a scheduled next activity is a dead deal, and the whole interface pushes you to fix that. Rebuilding that opinion is a week — the pipeline is easy, the discipline machinery around it is the work. The gaps are the usual paid-CRM ones: no mailbox sync without an OAuth app, no mobile app, and no marketplace of several hundred prebuilt connectors. None of them is a data moat, so this is a genuine substitute with genuine holes.",
+  "coreLoopDIY": "Run deals through a visual pipeline where every open deal must carry a scheduled next activity, and read a daily report of the ones that have gone stale.",
+  "whatYouLose": [
+    "two-way email sync and tracked opens from inside the deal",
+    "the marketplace of prebuilt integrations to accounting, support and marketing tools",
+    "the mobile apps and their call and note capture",
+    "revenue forecasting and goal tracking",
+    "automations that fire on a stage change without you writing them"
+  ],
+  "whyPeopleStillPay": "Because it is the CRM a sales manager can roll out on Monday and see used on Friday, and because the marketplace means the tool the finance person already uses is one click from being connected.",
+  "prompt": "Build a pipeline CRM that will not let a deal sit still.\n\nStack: your choice, Postgres, Docker Compose, one command.\n\nModel: Organisation, Person, Deal, Activity. A Deal has a value, a currency, an expected close date, a stage, an owner, and links to one Organisation and any number of People.\n\nThe rule that defines this build: an open Deal must have exactly one scheduled next Activity. Enforce it three ways.\n1. Completing an activity opens the \"schedule the next one\" form immediately, prefilled with a sensible default date, and the deal card is visibly marked until something is scheduled.\n2. The pipeline board renders any deal with no scheduled activity, or with an overdue one, in a distinct state that cannot be dismissed.\n3. A \"Rotting\" report lists deals whose last activity is older than a per-stage threshold I configure — early stages rot in seven days, late stages in thirty.\n\nPipeline board: drag and drop between stages, per-stage totals in the header, weighted total using a per-stage probability I set. Every stage move writes an immutable history row with the timestamp, so I can compute time-in-stage.\n\nOne report screen: deals won and lost per month, average time-in-stage per stage, and conversion rate between adjacent stages, computed from the history rows rather than from the current state.\n\nAdd notes, file attachments to local disk, tags, saved filters, CSV import with mapping, and CSV export.\n\nWrite tests for the no-next-activity invariant — including that closing a deal as Won or Lost releases it — and for time-in-stage across a deal that moved backwards.\n\nDo not build email sync, an integration marketplace, or automation rules. Give the app an outbound webhook on stage change instead, and let the user wire it to whatever they run.",
+  "faq": [
+    {
+      "q": "Is the \"must have a next activity\" rule not just annoying?",
+      "a": "It is, deliberately. It is also the single behaviour that separates a CRM that works from a database of stale deals, and it is the reason Pipedrive keeps getting recommended to teams that have abandoned two other CRMs."
+    },
+    {
+      "q": "Why compute reports from history rows instead of current state?",
+      "a": "Because current state cannot tell you how long something took. Storing an immutable row on every stage change costs nothing and is the difference between \"twelve deals in Negotiation\" and \"deals spend nineteen days in Negotiation on average\"."
+    },
+    {
+      "q": "What replaces the integration marketplace?",
+      "a": "One outbound webhook on stage change, which you point at whatever automation runner you already have. That covers the common cases — post to a chat channel, create an invoice draft — and covers none of the deep two-way syncs the marketplace apps do."
+    },
+    {
+      "q": "Why is the price on this entry marked low confidence?",
+      "a": "Because Pipedrive's pricing page returns a bot block from this network, in a scripted fetch and in a real browser alike, so nobody here could read the number off the page. The figure comes from the upstream dataset and should be checked before you rely on it."
+    }
+  ]
+}

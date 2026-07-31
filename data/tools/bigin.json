@@ -1,0 +1,43 @@
+{
+  "slug": "bigin",
+  "name": "Bigin",
+  "domains": [
+    "bigin.com"
+  ],
+  "category": "crm-sales",
+  "subcategory": "small-business pipeline CRM",
+  "pricing": {
+    "amount": 9,
+    "currency": "USD",
+    "plan": "Express",
+    "basis": "per-seat-monthly",
+    "source": "https://www.bigin.com/pricing.html",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Month-to-month rate. Billed yearly the same seat is $7."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "mobile apps and Zoho ecosystem",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Twenty",
+      "url": "https://github.com/twentyhq/twenty"
+    }
+  ],
+  "relatedSlugs": [
+    "less-annoying-crm",
+    "capsule-crm",
+    "zoho-crm"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

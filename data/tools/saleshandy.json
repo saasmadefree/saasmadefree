@@ -1,0 +1,44 @@
+{
+  "slug": "saleshandy",
+  "name": "Saleshandy",
+  "domains": [
+    "saleshandy.com"
+  ],
+  "category": "crm-sales",
+  "subcategory": "cold email deliverability",
+  "pricing": {
+    "amount": 36,
+    "currency": "USD",
+    "plan": "Outreach Starter",
+    "basis": "flat-monthly",
+    "source": "https://saleshandy.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$36 a month if paid monthly; $25 a month billed annually ($300 a year), for 2,000 active prospects and 6,000 emails a month."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "sending reputation",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "checkdmarc",
+      "url": "https://github.com/domainaware/checkdmarc"
+    }
+  ],
+  "relatedSlugs": [
+    "woodpecker",
+    "instantly",
+    "smartlead"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,45 @@
+{
+  "slug": "intercom",
+  "name": "Intercom",
+  "domains": [
+    "intercom.com"
+  ],
+  "category": "customer-support",
+  "subcategory": "customer messenger and help desk",
+  "pricing": {
+    "amount": 39,
+    "currency": "USD",
+    "plan": "Essential",
+    "basis": "per-seat-monthly",
+    "source": "https://www.intercom.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The page's structured pricing data lists Essential at $39 per seat per month; the visible card shows a discounted $29 monthly / $19 annual new-customer offer. Fin, the AI agent, is $0.99 per resolution on top and is metered separately."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "messenger SDKs and AI resolution",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Chatwoot",
+      "url": "https://github.com/chatwoot/chatwoot"
+    }
+  ],
+  "relatedSlugs": [
+    "help-scout",
+    "front",
+    "gorgias"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

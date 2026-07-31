@@ -1,0 +1,43 @@
+{
+  "slug": "snov-io",
+  "name": "Snov.io",
+  "domains": [
+    "snov.io"
+  ],
+  "category": "crm-sales",
+  "subcategory": "email finder and sequences",
+  "pricing": {
+    "amount": 39,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://snov.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$39 a month for the Starter plan, which bundles credits and recipients. LinkedIn account slots are sold separately at $69 a month each."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "email database and sending",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Twenty",
+      "url": "https://github.com/twentyhq/twenty"
+    }
+  ],
+  "relatedSlugs": [
+    "hunter-io",
+    "apollo-io",
+    "lemlist"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

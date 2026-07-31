@@ -139,6 +139,13 @@
     "currency": "USD",
     "url": "/en/tools/anyword"
   },
+  "apollo.io": {
+    "slug": "apollo-io",
+    "verdict": "no",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/apollo-io"
+  },
   "about.appsheet.com": {
     "slug": "appsheet",
     "verdict": "kinda",
@@ -159,6 +166,13 @@
     "amount": 38,
     "currency": "USD",
     "url": "/en/tools/arcade"
+  },
+  "attio.com": {
+    "slug": "attio",
+    "verdict": "kinda",
+    "amount": 44,
+    "currency": "USD",
+    "url": "/en/tools/attio"
   },
   "aureliuslab.com": {
     "slug": "aurelius",
@@ -222,6 +236,13 @@
     "amount": 39,
     "currency": "USD",
     "url": "/en/tools/bigcommerce"
+  },
+  "bigin.com": {
+    "slug": "bigin",
+    "verdict": "kinda",
+    "amount": 9,
+    "currency": "USD",
+    "url": "/en/tools/bigin"
   },
   "bitly.com": {
     "slug": "bitly",
@@ -342,6 +363,13 @@
     "currency": "USD",
     "url": "/en/tools/capcut"
   },
+  "capsulecrm.com": {
+    "slug": "capsule-crm",
+    "verdict": "kinda",
+    "amount": 15,
+    "currency": "EUR",
+    "url": "/en/tools/capsule-crm"
+  },
   "captions.ai": {
     "slug": "captions-ai",
     "verdict": "no",
@@ -398,6 +426,13 @@
     "currency": "USD",
     "url": "/en/tools/claude"
   },
+  "clay.com": {
+    "slug": "clay",
+    "verdict": "no",
+    "amount": 167,
+    "currency": "USD",
+    "url": "/en/tools/clay"
+  },
   "macpaw.com": {
     "slug": "cleanmymac",
     "verdict": "kinda",
@@ -425,6 +460,13 @@
     "amount": 6.75,
     "currency": "USD",
     "url": "/en/tools/clockwise"
+  },
+  "close.com": {
+    "slug": "close-crm",
+    "verdict": "no",
+    "amount": 19,
+    "currency": "USD",
+    "url": "/en/tools/close-crm"
   },
   "coda.io": {
     "slug": "coda",
@@ -460,6 +502,13 @@
     "amount": 13,
     "currency": "USD",
     "url": "/en/tools/copilot-money"
+  },
+  "copper.com": {
+    "slug": "copper-crm",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/copper-crm"
   },
   "copy.ai": {
     "slug": "copy-ai",
@@ -720,6 +769,13 @@
     "currency": "USD",
     "url": "/en/tools/flutterflow"
   },
+  "folk.app": {
+    "slug": "folk",
+    "verdict": "kinda",
+    "amount": 30,
+    "currency": "USD",
+    "url": "/en/tools/folk"
+  },
   "formstack.com": {
     "slug": "formstack-forms",
     "verdict": "no",
@@ -761,6 +817,13 @@
     "amount": 25,
     "currency": "USD",
     "url": "/en/tools/frill"
+  },
+  "front.com": {
+    "slug": "front",
+    "verdict": "kinda",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/front"
   },
   "gamma.app": {
     "slug": "gamma",
@@ -818,6 +881,13 @@
     "currency": "USD",
     "url": "/en/tools/goodlinks"
   },
+  "gorgias.com": {
+    "slug": "gorgias",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/gorgias"
+  },
   "grammarly.com": {
     "slug": "grammarly",
     "verdict": "kinda",
@@ -867,6 +937,13 @@
     "currency": "USD",
     "url": "/en/tools/heartbeat-community"
   },
+  "helpscout.com": {
+    "slug": "help-scout",
+    "verdict": "kinda",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/help-scout"
+  },
   "hemingwayapp.com": {
     "slug": "hemingway-editor-plus",
     "verdict": "yes",
@@ -908,6 +985,13 @@
     "amount": 99,
     "currency": "USD",
     "url": "/en/tools/hootsuite"
+  },
+  "hunter.io": {
+    "slug": "hunter-io",
+    "verdict": "no",
+    "amount": 49,
+    "currency": "EUR",
+    "url": "/en/tools/hunter-io"
   },
   "hypefury.com": {
     "slug": "hypefury",
@@ -958,6 +1042,13 @@
     "currency": "USD",
     "url": "/en/tools/inoreader"
   },
+  "instantly.ai": {
+    "slug": "instantly",
+    "verdict": "no",
+    "amount": 47,
+    "currency": "USD",
+    "url": "/en/tools/instantly"
+  },
   "instapaper.com": {
     "slug": "instapaper-premium",
     "verdict": "yes",
@@ -971,6 +1062,13 @@
     "amount": 29.99,
     "currency": "USD",
     "url": "/en/tools/integrately"
+  },
+  "intercom.com": {
+    "slug": "intercom",
+    "verdict": "kinda",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/intercom"
   },
   "invoiceninja.com": {
     "slug": "invoice-ninja",
@@ -1105,12 +1203,26 @@
     "currency": "USD",
     "url": "/en/tools/leadpages"
   },
+  "lemlist.com": {
+    "slug": "lemlist",
+    "verdict": "no",
+    "amount": 55,
+    "currency": "USD",
+    "url": "/en/tools/lemlist"
+  },
   "leonardo.ai": {
     "slug": "leonardo-ai",
     "verdict": "no",
     "amount": 12,
     "currency": "USD",
     "url": "/en/tools/leonardo-ai"
+  },
+  "lessannoyingcrm.com": {
+    "slug": "less-annoying-crm",
+    "verdict": "kinda",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/less-annoying-crm"
   },
   "lex.page": {
     "slug": "lex",
@@ -1623,6 +1735,13 @@
     "currency": "USD",
     "url": "/en/tools/pipedream"
   },
+  "pipedrive.com": {
+    "slug": "pipedrive",
+    "verdict": "kinda",
+    "amount": 24,
+    "currency": "USD",
+    "url": "/en/tools/pipedrive"
+  },
   "pirsch.io": {
     "slug": "pirsch",
     "verdict": "kinda",
@@ -1959,6 +2078,20 @@
     "currency": "USD",
     "url": "/en/tools/rytr"
   },
+  "saleshandy.com": {
+    "slug": "saleshandy",
+    "verdict": "no",
+    "amount": 36,
+    "currency": "USD",
+    "url": "/en/tools/saleshandy"
+  },
+  "salesmate.io": {
+    "slug": "salesmate",
+    "verdict": "no",
+    "amount": 23,
+    "currency": "USD",
+    "url": "/en/tools/salesmate"
+  },
   "savio.io": {
     "slug": "savio",
     "verdict": "kinda",
@@ -2120,6 +2253,13 @@
     "currency": "EUR",
     "url": "/en/tools/smallpdf"
   },
+  "smartlead.ai": {
+    "slug": "smartlead",
+    "verdict": "no",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/smartlead"
+  },
   "smartsuite.com": {
     "slug": "smartsuite",
     "verdict": "kinda",
@@ -2133,6 +2273,13 @@
     "amount": 15,
     "currency": "USD",
     "url": "/en/tools/snappa"
+  },
+  "snov.io": {
+    "slug": "snov-io",
+    "verdict": "no",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/snov-io"
   },
   "socialbee.com": {
     "slug": "socialbee",
@@ -2182,6 +2329,13 @@
     "amount": 5,
     "currency": "USD",
     "url": "/en/tools/stackby"
+  },
+  "streak.com": {
+    "slug": "streak-crm",
+    "verdict": "no",
+    "amount": 59,
+    "currency": "USD",
+    "url": "/en/tools/streak-crm"
   },
   "structured.app": {
     "slug": "structured",
@@ -2554,6 +2708,13 @@
     "currency": "USD",
     "url": "/en/tools/vistacreate"
   },
+  "waalaxy.com": {
+    "slug": "waalaxy",
+    "verdict": "no",
+    "amount": 19,
+    "currency": "EUR",
+    "url": "/en/tools/waalaxy"
+  },
   "wabery.com": {
     "slug": "wabery",
     "verdict": "kinda",
@@ -2602,6 +2763,13 @@
     "amount": 29,
     "currency": "USD",
     "url": "/en/tools/wix"
+  },
+  "woodpecker.co": {
+    "slug": "woodpecker",
+    "verdict": "no",
+    "amount": 35,
+    "currency": "EUR",
+    "url": "/en/tools/woodpecker"
   },
   "wordtune.com": {
     "slug": "wordtune",
@@ -2672,5 +2840,12 @@
     "amount": 13.95,
     "currency": "USD",
     "url": "/en/tools/zight"
+  },
+  "crm.zoho.com": {
+    "slug": "zoho-crm",
+    "verdict": "kinda",
+    "amount": 20,
+    "currency": "USD",
+    "url": "/en/tools/zoho-crm"
   }
 }

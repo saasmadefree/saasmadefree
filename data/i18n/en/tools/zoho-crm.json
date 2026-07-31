@@ -1,0 +1,32 @@
+{
+  "tagline": "The cheap CRM that is really a doorway into fifty other Zoho apps.",
+  "verdictSummary": "For one person, Zoho CRM Standard is leads, contacts, deals, custom fields, workflow rules and reports — and every one of those is ordinary software you can build, which is why this is a kinda rather than a no. The moat is not in the CRM, it is in the suite around it: the moment you also want Zoho Books, Desk and Campaigns talking to each other, twenty dollars buys wiring nobody rebuilds. The build here takes a week because the reporting layer, done properly, is most of the work.",
+  "coreLoopDIY": "Run the pipeline, then get real answers out of it: reports defined as readable SQL views, scheduled into an email digest so the numbers arrive without anyone opening the CRM.",
+  "whatYouLose": [
+    "the rest of the Zoho suite and the one-click connections between its apps",
+    "the marketplace of several hundred CRM extensions",
+    "email and telephony integration inside the record",
+    "the mobile apps",
+    "workflow rules and blueprints configured by clicking rather than by writing code"
+  ],
+  "whyPeopleStillPay": "Because Zoho's pitch is that every other business tool you will need is already next door at the same price, and moving from CRM to invoicing to helpdesk costs a click instead of an integration project.",
+  "prompt": "Build a CRM whose reporting layer is the main event, not an afterthought.\n\nStack: Postgres specifically — the design depends on it — plus your choice of server framework and Docker Compose.\n\nCRM core, kept plain: Lead, Contact, Account, Deal, Activity. Leads convert into a Contact plus an Account plus optionally a Deal, in one transaction, keeping a link back to the originating lead. Deals have stage, amount, close date, owner. Every stage change writes an immutable history row.\n\nThe reporting layer:\n- Reports are defined as named SQL views in a migrations folder, one file per report, each with a comment at the top explaining in one sentence what question it answers. Ship five: pipeline by stage, deals won and lost by month, average sales cycle, activities per owner per week, and leads by source with conversion rate.\n- The app lists available reports by reading the view catalogue, runs them with an optional date-range parameter, and renders the result as a table with CSV download. No query builder UI — if you want a new report you write a view, and the README explains how.\n- Any report can be scheduled: pick a report, a cron expression and recipients, and the app emails the rendered table on that schedule. Use a local mail transport in development and document the production setup.\n\nSecurity boundary worth getting right: reports run as a database role with SELECT only, on a connection separate from the application's. Say so in the README.\n\nAlso include: custom fields per entity, saved list views with filters, tags, CSV import with mapping, and full-text search.\n\nWrite tests for lead conversion (idempotent, no orphaned records) and for the scheduler firing exactly once per due window after a restart.\n\nDo not build marketing automation, telephony, or a helpdesk. This is the CRM, and the README should say plainly that the rest of the Zoho suite has no equivalent here.",
+  "faq": [
+    {
+      "q": "Why are reports SQL views instead of a report builder?",
+      "a": "Because a report builder is weeks of work that produces worse queries than you would write by hand, and because a view with a comment at the top is readable, diffable and reviewable. It also means a wrong number can be traced to a specific file."
+    },
+    {
+      "q": "Is this really a fair substitute for Zoho CRM?",
+      "a": "For a solo user on the Standard tier, close — the feature list at that tier is pipeline, custom fields, reports and workflow rules. For anyone using Zoho as a suite, no: the value of Zoho is the neighbours, and this build has no neighbours."
+    },
+    {
+      "q": "What about workflow rules?",
+      "a": "Left out, and that is the biggest honest gap after the suite. Zoho lets a non-developer say \"when a deal reaches Negotiation, create a task and email the owner\" by clicking. Here that is a piece of code you write, or a webhook you wire to something else."
+    },
+    {
+      "q": "How painful is getting data out of Zoho CRM?",
+      "a": "Not very. Every module exports to CSV, and there is a full data backup that produces a zip of everything. The awkward parts are attachments and the audit trail, which come out in shapes that are hard to import anywhere else."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "A CRM built around the phone call, with the dialler inside it.",
+  "verdictSummary": "The CRM half of Close is ordinary and you can build it. The half people pay for is a carrier: numbers you can rent per market, a power dialler, call recording, transcription, and the regulatory paperwork that lets any of it place a call in the United States. That is not code you write, it is a telephony account, a 10DLC brand registration and a compliance posture. A DIY version can hold everything about a call except the call.",
+  "coreLoopDIY": "Work a call list instead of a pipeline: a queue of contacts to phone today, a one-key outcome form after each one, and a follow-up automatically scheduled from the outcome you picked.",
+  "whatYouLose": [
+    "the dialler itself — no numbers, no outbound calls, no recording",
+    "call transcripts and the searchable archive built from them",
+    "local presence numbers and per-country caller ID",
+    "SMS from the same record, which needs its own carrier registration",
+    "the predictive and power dialling that make volume calling viable at all"
+  ],
+  "whyPeopleStillPay": "Because Close is a phone company with a CRM attached. The subscription buys the licences, the carrier relationships and the recording infrastructure, and the per-minute rate buys the actual network. Nobody rebuilds that for one salesperson.",
+  "prompt": "Build a call-first CRM for one person. It will not place calls; it will make everything around a call fast.\n\nStack: your choice, SQLite is fine, one command to start.\n\nData: Contact (name, company, one or more phone numbers with a label and a country, timezone, notes), Lead status, and CallLog entries.\n\nThe centre of the app is the Call Queue. I build a queue by filter — status, last-contacted-before a date, timezone currently inside business hours — and then I work it. The queue screen shows one contact at a time, large: name, company, the last three call outcomes, and my notes. One button reveals the number as a tel: link so the system dialler on my phone or desktop takes over.\n\nWhen I come back, the outcome form is already focused and every option is a single keypress: connected, voicemail, no answer, wrong number, do not call. Each outcome has a configurable default follow-up interval, so picking \"voicemail\" schedules the next attempt three days out without another click. \"Do not call\" sets a permanent flag that the queue builder always excludes, and there is no way to override it from the queue screen.\n\nA free-text note field autosaves as I type, timestamped, attached to that call attempt rather than to the contact in general.\n\nReporting is one screen: attempts per day, connect rate, and average attempts before a connect, over a date range. No funnel charts.\n\nAdd a timezone column that shows the contact's current local time in the queue, and colour it when it is outside 9am to 6pm there.\n\nWrite tests for the queue builder — particularly that do-not-call contacts can never appear — and for follow-up scheduling across a daylight-saving boundary.\n\nDo not integrate a telephony provider, do not record audio, and do not send SMS. The README should say plainly that this is a call organiser, not a phone system.",
+  "faq": [
+    {
+      "q": "Could I not just wire in Twilio and get the dialler back?",
+      "a": "You would get an API, not the product. In the United States you also need a registered 10DLC brand and campaign to send SMS, a verified caller ID to avoid being labelled spam, and a plan for what happens when a carrier blocks your number. Close absorbs all of that; a personal Twilio account exposes you to it."
+    },
+    {
+      "q": "What is actually worth keeping from a call-first CRM?",
+      "a": "The queue and the one-keypress outcome. Working a list of forty people is a rhythm problem, not a data problem, and most of the speed comes from never touching the mouse between calls."
+    },
+    {
+      "q": "Can I import my Close data?",
+      "a": "Leads, contacts, opportunities and custom fields export cleanly as CSV. Call recordings and transcripts are the part you should assume you are leaving behind — plan an export of those separately and early if they matter to you."
+    },
+    {
+      "q": "Is call recording legal if I build it myself?",
+      "a": "It depends on where both parties are, and in several US states and most of the EU you need consent from everyone on the line. That legal exposure, not the audio pipeline, is the reason this prompt leaves recording out entirely."
+    }
+  ]
+}

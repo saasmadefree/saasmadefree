@@ -1,0 +1,43 @@
+{
+  "slug": "pipedrive",
+  "name": "Pipedrive",
+  "domains": [
+    "pipedrive.com"
+  ],
+  "category": "crm-sales",
+  "subcategory": "sales pipeline CRM",
+  "pricing": {
+    "amount": 24,
+    "currency": "USD",
+    "plan": "Essential",
+    "basis": "per-seat-monthly",
+    "source": "https://www.pipedrive.com/en/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "low",
+    "notes": "Not verifiable from here: pipedrive.com/en/pricing returns a Cloudflare block (\"Attention Required\") to both a scripted fetch and a real Chrome session on this network, so the figure is carried over from the upstream dataset rather than read off the page. The published Essential rate has been $24 per seat month-to-month with a lower annual rate; treat both the amount and the plan name as unconfirmed."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "integration marketplace",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Twenty",
+      "url": "https://github.com/twentyhq/twenty"
+    }
+  ],
+  "relatedSlugs": [
+    "attio",
+    "capsule-crm",
+    "close-crm"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

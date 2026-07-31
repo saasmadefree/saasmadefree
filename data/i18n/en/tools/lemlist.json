@@ -1,0 +1,32 @@
+{
+  "tagline": "Cold email with a personalised image or landing page for every recipient.",
+  "verdictSummary": "The signature trick — a screenshot or image with the recipient's company name burned into it, and a landing page addressed to them by name — is a sitting's work with a headless browser and an image library. That part genuinely rebuilds. The rest of lemlist is lemwarm, a network of thousands of real mailboxes warming each other, and that is a network effect you cannot join by writing code. Personalisation without deliverability is a beautifully addressed letter in a spam folder.",
+  "coreLoopDIY": "Generate the personalised artefact rather than the campaign: a per-recipient image or one-page microsite rendered from a template and merged data, ready to attach to mail you send yourself.",
+  "whatYouLose": [
+    "lemwarm, the shared warm-up network across thousands of real mailboxes",
+    "sending, scheduling and the deliverability operations behind them",
+    "the lead database and the phone-number lookups sold as credits",
+    "the multichannel steps that mix email with LinkedIn and calls",
+    "inbox-placement reporting across providers"
+  ],
+  "whyPeopleStillPay": "Because personalisation only pays off if the message is read, and being read is a deliverability problem that lemwarm exists to solve. The image generator is the demo; the warm-up network is the product.",
+  "prompt": "Build a personalised-artefact generator for outreach. It produces images and one-page microsites; it never sends anything.\n\nStack: your choice, plus a headless browser (Playwright or Puppeteer) and Postgres. One command via Docker Compose, and the README must note that the browser image is large.\n\nTemplates are HTML with {{field}} placeholders and a declared output: image or page.\n\nImage output: render the template at a fixed size and export PNG. Support two composition modes that cover most real use.\n1. Overlay: place text and a logo at coordinates on a background image, with a per-field maximum width so a long company name shrinks or wraps instead of overflowing. Getting that right is most of the work.\n2. Screenshot: load a URL taken from the recipient row, wait for network idle with a timeout, optionally dismiss cookie banners with a configurable selector list, and capture the viewport with an optional annotation drawn on top.\n\nPage output: render to a static HTML file under a per-recipient random token, written to a folder any web server can serve. No JavaScript in the output, no tracking, no analytics — a page that phones home defeats the purpose.\n\nBatch: take a CSV, generate one artefact per row, and write an output CSV with the original columns plus a local path or a URL. Make it resumable — a rerun skips rows whose artefact already exists — and cap concurrency, because a headless browser will happily eat every core you have.\n\nAdd a preview screen that renders three sample rows from the CSV before committing to the whole file, since template bugs are only visible on real data. Include a deliberately awkward sample: a very long company name, a name with accents, and an empty field.\n\nEmpty-field handling is a first-class decision: per placeholder, choose skip-the-row, use-a-fallback, or fail-the-batch. Never render \"Hi {{firstName}}\" literally.\n\nWrite tests for text fitting at the maximum width and for the empty-field policies.\n\nDo not send email, do not connect a mailbox, and do not implement open or click tracking.",
+  "faq": [
+    {
+      "q": "Does personalised imagery actually lift replies?",
+      "a": "It gets attention when it is specific and it is ignored when it is a template with a name pasted in. The screenshot-of-their-own-site variant tends to do better than a logo overlay, because it proves you looked."
+    },
+    {
+      "q": "Why generate static pages with no tracking?",
+      "a": "Because a page that loads analytics from a third party is slower, easier to filter and, if you are emailing people in Europe, drags consent obligations into a cold outreach you probably cannot justify. A static page with a random token is enough."
+    },
+    {
+      "q": "How do I actually send these?",
+      "a": "From your own mailbox, in small numbers, by hand or with the scheduler described in the Instantly entry. The artefact generator is deliberately decoupled so it cannot become a bulk sender by accident."
+    },
+    {
+      "q": "Can I export my lemlist campaigns?",
+      "a": "Leads and campaign statistics export as CSV. The templates, images and lemwarm history do not come with you, so if a particular image template is working, rebuild it from the rendered output before you cancel."
+    }
+  ]
+}

@@ -277,6 +277,23 @@ const SLUG_DOMAIN_OVERRIDES = new Map([
   ['ubersuggest', 'app.neilpatel.com'], // neilpatel.com is Neil Patel's whole personal-brand site (blog, agency, courses); Ubersuggest itself lives at a path there. Confirmed: app.neilpatel.com returns <title>Ubersuggest</title>.
   ['appsmith-cloud', 'app.appsmith.com'], // appsmith.com is the open-source project's own site (self-hosters land there too) — same umami.is precedent. Confirmed: app.appsmith.com returns <title>Appsmith</title>.
   ['seatable-cloud', 'cloud.seatable.io'], // seatable.io is the open-source/self-host project site — same umami.is precedent. Confirmed: cloud.seatable.io returns <title>Log in - SeaTable Cloud</title>.
+  // --- hostname-too-broad / stale-domain overrides found while screening the
+  // 166 entries of the new-taxonomy pool (see docs/import-report.md, batches
+  // 12-18). The extension matcher walks hostname labels upward, so an apex
+  // listed here also claims every subdomain under it — which is exactly why a
+  // corporate apex must never be listed, and why a per-tenant apex like
+  // freshdesk.com is the right answer rather than the marketing site.
+  ['zoho-crm', 'crm.zoho.com'], // zoho.com is Zoho's whole 50-app suite (Mail, Books, Desk, Projects, ...). Confirmed: crm.zoho.com returns <title>Zoho CRM …</title>.
+  ['freshdesk', 'freshdesk.com'], // upstream said freshworks.com — that is the parent company's site (Freshsales, Freshservice, Freshchat, Freshdesk). Freshdesk tenants live at <company>.freshdesk.com, which the label-walking matcher covers from the apex. Confirmed: freshdesk.com resolves (302 to the product page).
+  ['chatwoot-cloud', 'app.chatwoot.com'], // chatwoot.com is the open-source project's own site, where self-hosters land — the umami.is / appsmith.com precedent. Confirmed: app.chatwoot.com returns <title>Chatwoot</title>.
+  ['youtube-music-premium', 'music.youtube.com'], // youtube.com is all of YouTube. Confirmed: music.youtube.com returns <title>YouTube Music</title>.
+  ['ente-photos', 'ente.com'], // ente.io 301-redirects to ente.com; the extension only ever sees the post-redirect hostname.
+  ['harvest', 'getharvest.com'], // harvestapp.com 301-redirects to getharvest.com.
+  ['macrofactor', 'macrofactor.com'], // macrofactorapp.com 301-redirects to macrofactor.com.
+  ['timely', 'timely.com'], // timelyapp.com 301-redirects to timely.com. Confirmed exclusively the time-tracking product.
+  ['zoom-pro', ['zoom.com', 'zoom.us']], // zoom.us 301-redirects to zoom.com for the marketing site, but meetings are still joined on *.zoom.us hostnames; both are exclusively Zoom.
+  ['timeular', 'early.app'], // Timeular rebranded to EARLY; timeular.com 301-redirects to early.app.
+  ['groove', 'helply.com'], // Groove rebranded to Helply; groovehq.com 301-redirects to helply.com.
 ]);
 
 // Manual exclusions beyond the automatic eligibility() checks — a real
@@ -294,12 +311,18 @@ const MANUAL_EXCLUSIONS = new Map([
   ['dovetail', 'no citable price any more: dovetail.com/pricing now shows exactly two tiers, Free ($0) and Enterprise ("Custom pricing available"). Upstream recorded a $39/user/month "Team" plan that the page no longer offers. Same standing as the 47 no-derivable-amount exclusions — there is no number to cite without inventing one. Verified in a browser on 2026-07-31.'],
   ['maze', 'no citable price any more: maze.co/pricing now shows Free and Enterprise ("Contact sales") only. Upstream recorded a $99/month "Starter" plan that the page no longer offers. Verified in a browser on 2026-07-31.'],
   ['typedream', 'removed from the catalogue on 2026-07-31 (commit ade4f5b): typedream.com 404s down to its root, the product was acquired by beehiiv and is no longer sold, and the recorded $15 "Launch" price is unverifiable because nobody can subscribe to it. Deleting the fiche freed the slug, so without this entry a future --limit run would import the dead product straight back in — the same footgun the notion exclusion exists for.'],
+  ['reply-io', 'price unreadable and uncorroborated: reply.io/pricing sits behind a Cloudflare challenge that neither curl nor a real Chrome session clears (three attempts, 2026-07-31), and unlike the adobe-acrobat-pro case there is no independent source confirming the $89 "Multichannel" tier upstream recorded. Batch 11 found 20 of 25 upstream prices stale, so an unverifiable upstream figure is more likely wrong than right. Excluded rather than shipped as a confident-looking citation.'],
+  ['butter', 'the product is gone: butter.us has no A record at all (dig returns nothing), and dashboard.butter.us times out. Butter shut down; there is no site to cite a price from and no hostname for the extension to match. Verified 2026-07-31.'],
+  ['goto-meeting', 'no product-specific hostname that a browser ever lands on: gotomeeting.com 301-redirects to goto.com/meeting (a path), global.gotomeeting.com redirects to app.goto.com/meetings, and app.goto.com plus goto.com are shared by every GoTo product (Connect, Resolve, Webinar, Meeting). Same domain-safety failure mode as everydollar-premium. Verified 2026-07-31.'],
   ['digitalocean-app-platform', 'no confirmed product-specific hostname exists: the App Platform dashboard lives at a path (cloud.digitalocean.com/apps) on the control panel shared by every DigitalOcean product (Droplets, Kubernetes, Spaces, ...), and the bare digitalocean.com is the whole company\'s marketing site. Same domain-safety failure mode as microsoft-365-personal — excluded rather than firing on unrelated DigitalOcean traffic.'],
 ]);
 
 function buildDomains(entry) {
   const slugOverride = SLUG_DOMAIN_OVERRIDES.get(entry.slug);
-  if (slugOverride) return [normalizeDomain(slugOverride)];
+  if (slugOverride) {
+    const list = Array.isArray(slugOverride) ? slugOverride : [slugOverride];
+    return list.map((d) => normalizeDomain(d));
+  }
   const upstreamBare = normalizeDomain(entry.domain);
   const bare = DOMAIN_OVERRIDES.get(upstreamBare) ?? upstreamBare;
   return [bare, ...(EXTRA_DOMAINS.get(bare) ?? [])];
@@ -453,11 +476,10 @@ function eligibility(entry, existing) {
   if (MANUAL_EXCLUSIONS.has(entry.slug)) {
     return { ok: false, reason: MANUAL_EXCLUSIONS.get(entry.slug) };
   }
-  const slugOverride = SLUG_DOMAIN_OVERRIDES.get(entry.slug);
-  const upstreamBare = normalizeDomain(entry.domain);
-  const bare = slugOverride ? normalizeDomain(slugOverride) : (DOMAIN_OVERRIDES.get(upstreamBare) ?? upstreamBare);
-  if (existing.domains.has(bare)) {
-    return { ok: false, reason: `domain "${bare}" already claimed by an existing entry` };
+  for (const bare of buildDomains(entry)) {
+    if (existing.domains.has(bare)) {
+      return { ok: false, reason: `domain "${bare}" already claimed by an existing entry` };
+    }
   }
   if (!entry.pricing?.plan || !entry.pricing?.source) {
     return { ok: false, reason: 'incomplete upstream pricing (null plan and/or source — nothing to substantiate a price with)' };

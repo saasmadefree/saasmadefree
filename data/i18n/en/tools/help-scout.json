@@ -1,0 +1,32 @@
+{
+  "tagline": "A help desk with a public knowledge base attached to the same content.",
+  "verdictSummary": "This is the most rebuildable entry in the category, to the point that an open-source clone of Help Scout has existed for years. A weekend gets a shared inbox, a public docs site and the loop between them. It stays a kinda rather than a yes for two reasons that are not code: sending support mail requires a domain with a real reputation and a transactional provider, and running the thing yourself means owning uptime for a channel customers use when they are already unhappy.",
+  "coreLoopDIY": "Answer email from a shared inbox where saved replies and public help articles are the same records, so improving an answer improves the docs, and a report shows which articles are actually deflecting tickets.",
+  "whatYouLose": [
+    "the hosted uptime and backups on the channel customers reach for when angry",
+    "the mobile apps",
+    "AI Answers resolving tickets from your documentation automatically",
+    "Salesforce, Jira and HubSpot connectors",
+    "the reporting suite and its saved views"
+  ],
+  "whyPeopleStillPay": "Because support email must not go down, and because the pleasant, unfussy interface is what stops a small team abandoning the tool. Neither is exciting and both are why the subscription renews.",
+  "prompt": "Build a help desk where the knowledge base and the saved replies are the same content, not two copies of it.\n\nStack: your choice, Postgres, Docker Compose. Inbound mail through a signed webhook from an email provider; outbound through a transactional provider on a domain you own with SPF, DKIM and DMARC documented in the README.\n\nThe single idea: an Article has a title, a body in Markdown, a visibility (public, internal) and a set of tags. A public article is rendered on a docs site at a stable URL. Any article, public or internal, can be inserted into a reply — the composer offers a search-as-you-type picker that inserts either the full text or a link to the public URL. There is no separate \"saved replies\" store to drift out of date.\n\nThe loop that makes it worth building: when an article is inserted into a reply, record it. The report screen then shows, per article, how many times it was used in replies and how many times its public page was viewed, side by side. An article used heavily in replies but rarely viewed publicly is a documentation gap — it should be findable before the customer writes in. Surface exactly that list as \"articles to promote\".\n\nInbox: conversations with an assignee, a status (active, pending, closed), threading by Message-ID with References, raw MIME kept, remote images stripped. Keyboard-first navigation.\n\nDocs site: server-rendered, no client framework, full-text search over article bodies with Postgres, a category tree from tags, and each article ending with a \"did this help\" yes/no that stores a count and nothing identifying.\n\nCustomer view: opening a conversation shows every previous conversation from that email address, which is the cheapest useful context there is.\n\nWrite tests for the article-usage counter (a reply using two articles counts both), for the docs search, and for threading a reply that has lost its References header.\n\nDo not build live chat, a mobile app, or an AI answering layer. Note in the README that the knowledge base is a prerequisite for any of those, which is why it is the thing built first.",
+  "faq": [
+    {
+      "q": "Why merge saved replies and help articles?",
+      "a": "Because keeping them separate guarantees they diverge, and the divergence always favours the private copy — the public docs go stale while the team pastes an accurate answer twenty times a week. One record makes the improvement automatic."
+    },
+    {
+      "q": "What does the \"articles to promote\" report actually tell me?",
+      "a": "That an answer you give constantly is not findable. Every entry on that list is a ticket you could stop receiving by putting the article somewhere the customer reaches first, which is the highest-leverage support work there is."
+    },
+    {
+      "q": "Is FreeScout not simply the answer here?",
+      "a": "For many people, yes — it is a mature open-source shared inbox with a docs module, and installing it is faster than building this. The build in this prompt exists for the article-usage loop, which off-the-shelf desks do not measure."
+    },
+    {
+      "q": "How painful is leaving Help Scout?",
+      "a": "The API pages through conversations and docs, so a full export is a script rather than a support request. Attachments need fetching separately by URL before your account closes, which is the part people forget."
+    }
+  ]
+}

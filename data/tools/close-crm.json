@@ -1,0 +1,43 @@
+{
+  "slug": "close-crm",
+  "name": "Close",
+  "domains": [
+    "close.com"
+  ],
+  "category": "crm-sales",
+  "subcategory": "CRM with built-in calling",
+  "pricing": {
+    "amount": 19,
+    "currency": "USD",
+    "plan": "Solo",
+    "basis": "per-seat-monthly",
+    "source": "https://close.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The \"Startup\" tier recorded upstream no longer exists. Solo is $19 per user month-to-month, $9 billed annually. Calling minutes and phone numbers are billed on top, from about $0.02 a minute and $1 a line."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "telephony infrastructure",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Twenty",
+      "url": "https://github.com/twentyhq/twenty"
+    }
+  ],
+  "relatedSlugs": [
+    "salesmate",
+    "pipedrive",
+    "streak-crm"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "A help desk that shows the customer's orders next to their message.",
+  "verdictSummary": "Gorgias exists because a support agent answering \"where is my order\" should not have to open the store admin. That sidebar — orders, tracking, a scripted refund — is a private app against a documented commerce API, and it is a weekend. The verdict is kinda rather than yes because the channels beyond email and chat are gated: Instagram and TikTok Shop messaging need platform approval, and the ticket volume itself is metered, which is what the price is really counting.",
+  "coreLoopDIY": "Answer support email and chat with the customer's order history rendered beside the message, and take the two or three actions that resolve most tickets — resend tracking, refund, reship — from inside the ticket, with an audit line for each.",
+  "whatYouLose": [
+    "Instagram, Facebook and TikTok Shop messaging, each behind platform approval",
+    "voice and SMS channels",
+    "the AI agent that resolves tickets autonomously, and the volume of examples behind it",
+    "revenue attribution for support-driven sales",
+    "the app-store integrations with loyalty, subscription and returns vendors"
+  ],
+  "whyPeopleStillPay": "Because merchants at volume live and die on ticket handling time, and a maintained integration with every commerce app they already use is not something an in-house sidebar keeps up with.",
+  "prompt": "Build a help desk for one online store, where the order context is always on screen.\n\nStack: your choice, Postgres, Docker Compose. Mail in through a signed inbound webhook, mail out through a transactional provider on a domain you own with SPF, DKIM and DMARC. Commerce data through a private app on your own store — Shopify's Admin API is the reference here, and the README should be explicit that this is a custom app for one store, not a public app for the app store.\n\nThe ticket view is three columns: conversation in the middle, customer context on the right, actions at the bottom.\n\nContext panel, resolved from the sender's email address: lifetime order count and value, the last five orders with status and fulfilment tracking, and any open returns. Cache it with a short TTL, show the fetch time, and degrade to \"context unavailable\" rather than blocking the reply when the API is down — an agent must always be able to answer.\n\nActions, and this is where care is needed. Each is a form with a confirmation step, and every execution writes an immutable audit row with the actor, the payload sent and the response received, rendered in the ticket thread:\n- Resend the fulfilment tracking email.\n- Refund an order, fully or partially, with a reason. Cap the amount at the order total in the code, not just in the UI.\n- Cancel an unfulfilled order.\nRefunds move money; treat every one as requiring an explicit second confirmation showing the exact amount.\n\nMacros: canned replies with {{orderNumber}}, {{trackingUrl}}, {{customerFirstName}} interpolated from the resolved context, so the common answer is one keystroke.\n\nA live-chat widget: a small embeddable script, a websocket to the server, and messages that land in the same ticket queue as email. Persist the visitor id in local storage so a returning visitor keeps their thread. Keep the widget under 20KB and make it work without cookies.\n\nRouting: tickets that mention refund, return or chargeback words get a tag automatically; everything else lands unassigned in one queue.\n\nWrite tests for the refund amount cap, for the audit row being written before the ticket is updated, and for the context panel degrading gracefully on an API timeout.\n\nDo not build social messaging channels, voice, or an autonomous AI agent.",
+  "faq": [
+    {
+      "q": "Why is a private commerce app easier than it sounds?",
+      "a": "Because a custom app for a store you own skips the entire public-app path: no review, no OAuth consent screen for other merchants, no billing API. You create it in the store admin, get a token, and call the API. The complexity in this space is all in distribution, and you are not distributing."
+    },
+    {
+      "q": "How much of a real support load is \"where is my order\"?",
+      "a": "Enough that the context panel and two macros will resolve a large share of tickets without typing anything. That is the honest reason this build is worth a weekend rather than a week — the ambitious parts are rarely used."
+    },
+    {
+      "q": "What makes the social channels hard rather than tedious?",
+      "a": "They are permissioned. Instagram messaging goes through the Meta business platform with app review and a verified business; TikTok Shop is its own approval. You cannot decide to support them, you have to be allowed to, and that gate is what a paid help desk has already passed."
+    },
+    {
+      "q": "Is Gorgias's ticket pricing a trap?",
+      "a": "It is a real variable cost you should model. Starter includes 50 tickets a month and charges $0.40 for each one beyond, so a seasonal spike is a bill rather than a plan change. That metering is precisely what a self-hosted desk does not have."
+    }
+  ]
+}

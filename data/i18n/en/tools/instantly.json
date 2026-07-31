@@ -1,0 +1,32 @@
+{
+  "tagline": "Cold email at volume, spread across dozens of warmed mailboxes.",
+  "verdictSummary": "Everything Instantly sells reduces to one asset it will not sell you: deliverability. The unlimited mailboxes, the rotation, the shared warm-up network where thousands of accounts mark each other's mail as important — that pool is a network effect, and it is exactly the hard third-party dependency that rules out a yes no matter how small the code is. A personal build can schedule sends across mailboxes you already own and respect their real limits, which is a sitting, and will still land in spam if the domains behind them are cold.",
+  "coreLoopDIY": "Spread a sequence across the mailboxes you already own, inside each provider's real daily limit, with a hard stop the moment a human replies.",
+  "whatYouLose": [
+    "the shared warm-up network, which is the actual product",
+    "a supply of ready-made domains and mailboxes with existing reputation",
+    "deliverability monitoring and inbox-placement testing across providers",
+    "the lead database sold alongside the sending plan",
+    "someone else absorbing the consequences when a domain gets burned"
+  ],
+  "whyPeopleStillPay": "Because cold email works or fails entirely on where it lands, and the warm-up pool plus the mailbox supply is the only lever that moves that. Nobody buys the scheduler.",
+  "prompt": "Build a sending scheduler for mailboxes you already own. It will not warm anything up and it will not pretend to.\n\nStack: your choice, Postgres, Docker Compose. Connect mailboxes through the Gmail and Microsoft Graph APIs with OAuth rather than raw SMTP, because provider APIs give you real quota errors instead of silent throttling.\n\nMailbox model: each connected mailbox has a configured daily cap, a ramp schedule (start at N a day, increase by M a day up to the cap), and a send window in that mailbox's own timezone. The scheduler never exceeds the current ramped figure, and refuses to run outside the window.\n\nRotation: when a campaign needs to send, pick the mailbox with the most remaining quota today, jittering the interval between sends by a configurable random spread rather than sending on a fixed clock.\n\nCampaign model: a list of recipients, an ordered set of steps with delays in business days, and per-step bodies with {{field}} interpolation. Bodies are plain text with an optional minimal HTML version — no tracking pixels, no link wrapping, no image beacons. Say in the README that tracking pixels are a leading reason cold mail is filtered.\n\nThe reply stop is the most important logic in the build. Poll each mailbox for new messages, match by In-Reply-To and References first and by normalised subject plus sender as a fallback, and on a genuine human reply immediately halt all remaining steps for that recipient across every campaign. Detect and ignore auto-responders — Auto-Submitted headers, X-Autoreply, common bounce formats — so an out-of-office does not count as a reply and does not stop the sequence.\n\nUnsubscribe: every message carries a List-Unsubscribe header with a working one-click endpoint, and an opt-out is global and permanent.\n\nOne dashboard: per mailbox, sends today against ramp, bounces in the last seven days, and reply rate. Halt a mailbox automatically if its bounce rate over the last hundred sends crosses a threshold you configure.\n\nWrite tests for the reply matcher against a corpus of real headers including an out-of-office and a bounce, and for the ramp never exceeding the cap across a day boundary.\n\nDo not build a warm-up network, do not buy or generate mailboxes, and put a line in the README explaining that a domain with no sending history will land in spam regardless of this software.",
+  "faq": [
+    {
+      "q": "Why is a warm-up pool so hard to replicate?",
+      "a": "Because warming works by having many real accounts at many providers exchange mail and mark it as wanted, which only functions at a scale one person cannot reach. Two of your own mailboxes emailing each other teaches Gmail nothing."
+    },
+    {
+      "q": "Is it safe to send cold email from my main domain?",
+      "a": "No. A bounce rate or complaint rate spike on the domain that carries your real mail can cost you your ordinary business email for weeks. Anyone doing this at volume uses separate domains, and buying and warming those is a large part of what the subscription covers."
+    },
+    {
+      "q": "Why leave out open tracking?",
+      "a": "Because a tracking pixel is a remote image loaded from a domain with no reputation, which is a well-known spam signal, and because open data has been unreliable since mail clients began pre-fetching images. Reply rate is the only number in this category worth optimising."
+    },
+    {
+      "q": "What are the legal obligations?",
+      "a": "They depend on where your recipients are, and they are not optional. In the EU and the UK, unsolicited commercial email to individuals generally needs a lawful basis and always needs a working opt-out and a real identity in the message; in the US, CAN-SPAM requires a physical address and honouring opt-outs promptly. The List-Unsubscribe header in the prompt is a floor, not compliance advice."
+    }
+  ]
+}

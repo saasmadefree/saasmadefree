@@ -1,0 +1,44 @@
+{
+  "slug": "woodpecker",
+  "name": "Woodpecker",
+  "domains": [
+    "woodpecker.co"
+  ],
+  "category": "crm-sales",
+  "subcategory": "cold email follow-ups",
+  "pricing": {
+    "amount": 35,
+    "currency": "EUR",
+    "plan": "Cold Email",
+    "basis": "usage-based",
+    "source": "https://woodpecker.co/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "Priced by a slider at €7.00 per 100 contacted prospects; €35 a month is the default 500-prospect position, billed monthly, before VAT. The page is priced in EUR when read from the EU. Add-ons (LinkedIn accounts, mailboxes, domains, agency panel) are billed on top."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "deliverability operations",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Mautic",
+      "url": "https://github.com/mautic/mautic"
+    }
+  ],
+  "relatedSlugs": [
+    "saleshandy",
+    "instantly",
+    "smartlead"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

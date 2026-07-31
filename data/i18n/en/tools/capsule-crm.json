@@ -1,0 +1,32 @@
+{
+  "tagline": "A CRM that keeps going after the deal is won, into the work you promised.",
+  "verdictSummary": "Most CRMs stop at \"Won\" and hand you off to a project tool. Capsule keeps the same record and turns it into a delivery project with tasks. That handoff is the interesting thing to rebuild and it is a weekend: a won opportunity spawns a project from a template, and the tasks inherit the customer. The gaps are the ordinary ones — no mailbox sync without an OAuth app, no mobile app, no Xero or Zendesk connectors — none of which is a moat, all of which is work you would then own.",
+  "coreLoopDIY": "Track contacts and opportunities through a pipeline, and when one is marked won, generate a delivery project from a task template so the promised work appears with dates and an owner without being retyped.",
+  "whatYouLose": [
+    "automatic email capture into the contact timeline",
+    "the Xero, Zendesk and Import2 connectors that come with the paid tier",
+    "the mobile apps",
+    "Transpond, the marketing side Capsule sells alongside",
+    "someone else running backups and upgrades"
+  ],
+  "whyPeopleStillPay": "Because the handoff from sales to delivery is where small businesses drop things, and paying fifteen euros a seat to have it not be your problem is cheaper than the one project you forget to start.",
+  "prompt": "Build a CRM whose job is not finished when a deal is won.\n\nStack: your choice of server framework, Postgres, Docker Compose, one command to run.\n\nSales half: Contacts, Companies, Opportunities. An Opportunity has a value, an expected close date, a stage, and one owner. Stages are configurable and the last two are terminal: Won and Lost.\n\nDelivery half — this is the point of the build. Define Project Templates: an ordered list of task titles, each with an offset in days from project start and an optional default owner. When an Opportunity is moved to Won, the app asks which template to apply (or none), then creates a Project linked to the same Company and Contact, with every task materialised at start date plus its offset. The project keeps a link back to the opportunity that produced it, and the contact's timeline shows both.\n\nA Project has a status, a due date, and a completion percentage computed from its tasks — never typed in.\n\nBuild one screen that mixes both halves: \"this week\" lists opportunities with a close date this week and project tasks due this week, in one list, sorted by date, with a badge saying which side each came from. That single list is what a solo operator actually opens in the morning.\n\nAdd notes with timestamps on contacts, companies, opportunities and projects; a tag system shared across all four; CSV import and export; and full-text search.\n\nWrite tests for template materialisation — especially that a template applied twice does not duplicate tasks — and for the completion-percentage computation.\n\nDo not build email sync, invoicing, or marketing campaigns. When a project is finished the flow ends; exporting to your accounting tool is a CSV, not an integration.",
+  "faq": [
+    {
+      "q": "What does \"generate a project from a template\" actually save me?",
+      "a": "Retyping the same six onboarding tasks with the same relative dates for every new client, and the moment of forgetting to do it. In practice it turns a won deal into a dated plan in one click, which is the single behaviour that distinguishes Capsule from a pipeline-only CRM."
+    },
+    {
+      "q": "Do I lose the email history if I move off Capsule?",
+      "a": "Partly. Capsule exports contacts, opportunities, tasks and notes as CSV. Emails captured into the timeline export as part of the record history in the account data export, but they arrive as a flat file rather than a threaded inbox, so plan to keep them as an archive rather than something you can reply from."
+    },
+    {
+      "q": "Can two people use this?",
+      "a": "It has owners and assignments, so yes for a small team that trusts each other. It has no permission model — everyone can see and edit everything — which is fine at two and wrong at ten."
+    },
+    {
+      "q": "Why is completion percentage computed instead of entered?",
+      "a": "Because a typed percentage is a feeling and a computed one is a fact. Deriving it from closed tasks means the number is wrong only when the task list is wrong, which is a problem you can actually see and fix."
+    }
+  ]
+}

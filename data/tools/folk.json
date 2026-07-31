@@ -1,0 +1,43 @@
+{
+  "slug": "folk",
+  "name": "Folk",
+  "domains": [
+    "folk.app"
+  ],
+  "category": "crm-sales",
+  "subcategory": "contact-first CRM",
+  "pricing": {
+    "amount": 30,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "per-seat-monthly",
+    "source": "https://www.folk.app/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Standard is $30 per member month-to-month, $24 billed yearly. Upstream recorded $30 against the \"Premium\" tier; $30 is Standard — Premium is $60 month-to-month."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "browser capture and enrichment credits",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Monica",
+      "url": "https://github.com/monicahq/monica"
+    }
+  ],
+  "relatedSlugs": [
+    "attio",
+    "copper-crm",
+    "less-annoying-crm"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

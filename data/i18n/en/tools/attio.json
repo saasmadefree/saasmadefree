@@ -1,0 +1,32 @@
+{
+  "tagline": "A CRM where you define the objects, not just the fields.",
+  "verdictSummary": "Attio's selling point is that the data model bends: you add objects, not just columns, and every view follows. That is buildable — JSONB attributes over Postgres with a typed read layer gets you there — but \"buildable\" here means a week, because a schema you can change at runtime is the hard part, not the pipeline on top of it. The two things a personal build will not have are automatic mailbox and calendar capture, which needs a Google or Microsoft OAuth app and constant token care, and the enrichment that fills a company record from a domain.",
+  "coreLoopDIY": "Define your own object types and attributes in the app itself, put records in them, connect records to each other, save filtered views per object, and move deals through stages you named.",
+  "whatYouLose": [
+    "automatic email and calendar capture from your mailbox",
+    "company and person enrichment from a domain or an email address",
+    "real-time multiplayer editing, so two people never see each other's cursor",
+    "the mobile apps",
+    "the integration catalogue that pushes records into Slack, Linear and the rest"
+  ],
+  "whyPeopleStillPay": "Because a CRM only pays off once it stops needing to be fed by hand, and Attio's mailbox sync is what does the feeding. Teams also pay for the assurance that a schema change made on a Tuesday will not corrupt the 40,000 records already in the system.",
+  "prompt": "Build a single-user CRM whose data model is editable from inside the app, not from a migration file.\n\nStack: Node with TypeScript, Postgres, and one Docker Compose file that brings up both. Store attribute values in a JSONB column keyed by attribute id, and keep the attribute definitions in ordinary tables so they can be queried.\n\nStart with an object designer: I can create an object type (Person, Company, Deal, anything), give it attributes with a type from a fixed set (text, number, date, select, multi-select, currency, checkbox, url, email, reference-to-another-object), and mark one attribute as the record title. Changing an attribute's type must go through an explicit migration screen that shows how many existing values would fail to convert and refuses to run until I choose what happens to them — coerce, blank, or abort. Log every schema change with a timestamp and the before/after definition, and let me read that log in the UI.\n\nRecords: create, edit, delete, and link records across object types in both directions, so opening a Company shows the People that reference it without me configuring a reverse field.\n\nViews: save a named view per object type with filters, a sort, and a chosen column set. One view type is a board grouped by a select attribute, which is how a pipeline gets built without a special \"deal\" concept.\n\nAdd full-text search across every text attribute of every object, CSV import with a column-to-attribute mapping screen that previews the first ten rows before committing, and CSV export of any view.\n\nWrite tests for the attribute-type migration logic specifically — that is where data gets destroyed — and one end-to-end test that creates an object type, adds a record, and reads it back through a saved view.\n\nDo not build mailbox or calendar sync, and do not call any enrichment API. Say so in the README instead of half-implementing it: this is a CRM you type into.",
+  "faq": [
+    {
+      "q": "Can I get my Attio data out and into this?",
+      "a": "Yes. Attio exports each object as CSV, and the import screen in this build maps CSV columns onto attributes you have defined. What does not come across is the email and calendar history Attio captured for you, because that lives in Attio's copy of your mailbox, not in the record export."
+    },
+    {
+      "q": "Is JSONB really fast enough for a CRM?",
+      "a": "For one person's data, comfortably. Attribute values live in a JSONB column with a GIN index; filtering on a single attribute across tens of thousands of records stays in the low milliseconds. If you get to millions of rows you would promote the hottest attributes to real columns, but you will not get there."
+    },
+    {
+      "q": "What breaks when I change an attribute's type?",
+      "a": "Text to number is the one that bites. The migration screen counts the values that will not parse and makes you pick coerce, blank or abort before anything is written — that check is the reason this build is a week rather than a weekend."
+    },
+    {
+      "q": "Why is the mailbox sync out of scope rather than a stretch goal?",
+      "a": "Because it is not a feature, it is an operations job: a Google Cloud project, a verified OAuth consent screen, refresh tokens that expire when you change your password, and a Gmail push subscription that has to be renewed every seven days. Skipping it honestly is better than shipping a version that silently stops syncing."
+    }
+  ]
+}

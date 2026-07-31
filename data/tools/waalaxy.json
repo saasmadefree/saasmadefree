@@ -1,0 +1,37 @@
+{
+  "slug": "waalaxy",
+  "name": "Waalaxy",
+  "domains": [
+    "waalaxy.com"
+  ],
+  "category": "crm-sales",
+  "subcategory": "LinkedIn outreach",
+  "pricing": {
+    "amount": 19,
+    "currency": "EUR",
+    "plan": "Pro",
+    "basis": "per-seat-monthly",
+    "source": "https://www.waalaxy.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "€19 per user per month for Pro with 300 invitations a month. Upstream recorded $43; the current Pro tier is €19 and the page is priced in EUR."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "LinkedIn access and account risk",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "relatedSlugs": [
+    "snov-io",
+    "apollo-io",
+    "lemlist"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

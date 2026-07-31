@@ -1,0 +1,32 @@
+{
+  "tagline": "Zoho's deliberately small CRM: pipelines, contacts, and not much else.",
+  "verdictSummary": "Bigin is a CRM that has been on a diet, and the diet is the product. Rebuilding the software takes a weekend — records, a few pipelines, activities, a today screen. What you cannot rebuild in a weekend is the part people actually touch most: the iOS and Android apps, which are genuinely good and are where a field salesperson lives. Nothing here is a data or network moat, so this is a real substitute with a real hole in it.",
+  "coreLoopDIY": "Keep contacts and companies, run up to three pipelines of deals through stages, log calls and meetings against a record, and open a \"today\" screen that lists only what is due now.",
+  "whatYouLose": [
+    "the iOS and Android apps, including offline access on the road",
+    "built-in telephony and the call log that comes with it",
+    "one-click connection to the rest of Zoho (Books, Desk, Campaigns)",
+    "email sync, so mail gets logged only when you paste it",
+    "push notifications for an activity falling due"
+  ],
+  "whyPeopleStillPay": "Nine dollars a month buys a CRM that is already on the phone in your pocket, already backed up, and already wired into the invoicing tool you may adopt next year. For a two-person business that is a rational trade against a weekend of building and a lifetime of maintaining.",
+  "prompt": "Build a small-business CRM that refuses to grow. The constraint is the feature.\n\nStack: any server-rendered framework you like with Postgres or SQLite, one command to start.\n\nHard rules the code must enforce, not just document:\n- A record type may have at most eight custom fields. The \"add field\" button disables at eight and says why.\n- At most three pipelines exist. Creating a fourth is blocked.\n- A pipeline has at most seven stages.\n\nEntities: Contact, Company, Deal, Activity. A Deal belongs to one pipeline and one stage, has an amount, a close date, and one linked Contact. An Activity is a call, a meeting or a task with a due date and an outcome note.\n\nThe home screen is a single \"Today\" list, in this order: activities overdue, activities due today, deals whose close date has passed while still open. Nothing else on that screen. No charts.\n\nThe pipeline screen is a drag-and-drop board with the stage totals in the header, and moving a card between stages writes an entry in that deal's history with the old stage, the new stage, and the time.\n\nBuild it mobile-first: the board and the Today list must be usable one-handed at 390px wide before you style anything for desktop. Add a web app manifest so it installs to a phone home screen and the today list is cached read-only when offline.\n\nInclude CSV import and export for contacts, companies and deals, and a nightly database dump to a local folder with a documented restore command.\n\nWrite tests for the three hard limits above and for the stage-history writes.\n\nDo not add telephony, email sync, marketing campaigns, or a second dashboard. If a feature request arrives, the answer this codebase gives is no.",
+  "faq": [
+    {
+      "q": "Why cap fields and pipelines in code instead of just being disciplined?",
+      "a": "Because the failure mode of a self-built CRM is not that it lacks features, it is that it grows into an unusable spreadsheet within a year. Bigin sells restraint; a rebuild that abandons the restraint is not the same product."
+    },
+    {
+      "q": "Can I still use it on my phone without native apps?",
+      "a": "Yes, as an installed web app: the today list and the pipeline board are built mobile-first and the manifest lets it live on the home screen. What you do not get is offline editing, background sync, or a push notification when an activity falls due."
+    },
+    {
+      "q": "How do calls get logged without telephony?",
+      "a": "Manually, from the record: tap the number, place the call in your phone dialler, then fill the outcome note that the activity form opens with. Bigin's built-in dialler does that in one motion and this does it in two."
+    },
+    {
+      "q": "What happens when I outgrow three pipelines?",
+      "a": "You have outgrown this build, and honestly you have outgrown Bigin Express too — that is the tier boundary Zoho sells you upward from. Export the CSVs and move to something with a real schema, like the flexible-object approach in the Attio entry."
+    }
+  ]
+}

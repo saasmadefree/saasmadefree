@@ -1,0 +1,32 @@
+{
+  "tagline": "A spreadsheet that calls a hundred data providers and keeps the first answer that works.",
+  "verdictSummary": "Clay is an orchestrator, and orchestration is the buildable part — a table where each column is a step, steps run in order, and a waterfall stops at the first provider that returns something. You can write that. What you cannot write is the hundred contracts underneath it: Clay resells access to providers most individuals cannot buy from at all, and pools the volume so a single lookup costs cents. Build the runner and you own a very good empty machine.",
+  "coreLoopDIY": "A table where each column is an enrichment step against an API key you supply, run as a waterfall that stops at the first hit, with the per-row cost of every provider call recorded as it happens.",
+  "whatYouLose": [
+    "the providers themselves — you can only call services you can sign up for and pay for directly",
+    "pooled pricing, so a lookup that costs Clay a cent may cost you far more",
+    "the maintained connector catalogue, including providers with no self-serve access at all",
+    "the prebuilt outbound templates and the community recipes around them",
+    "anyone else keeping the integrations working when a provider changes its API"
+  ],
+  "whyPeopleStillPay": "Because the value is aggregated purchasing power plus a hundred maintained integrations, and both are commercial assets rather than code. A team that runs Clay is buying access, not a spreadsheet.",
+  "prompt": "Build a bring-your-own-key enrichment runner shaped like a table.\n\nStack: your choice, Postgres, Docker Compose, one command.\n\nModel: a Table has Rows and Columns. A Column is one of: input (typed by me or imported), http (call a configured provider), llm (prompt a model with other columns interpolated), formula (a small expression over other columns), or waterfall.\n\nProviders are declared in a config file, each with a name, a base URL, an auth header read from an environment variable, a request template, a JSONPath for the value to extract, a JSONPath for \"found or not\", and a cost per call in cents. Ship two real examples using services with genuine self-serve APIs and free tiers, and say clearly in the README that every provider is one you must sign up for yourself.\n\nA waterfall column lists provider columns in order. It runs them one at a time and stops at the first that reports found, recording which provider answered. That \"which one answered\" column is what makes the tool worth having — over a hundred rows it tells you which providers you should stop paying for.\n\nExecution: running a column processes rows in batches with a configurable concurrency, retries on 429 with backoff, and is resumable — killing the process mid-run and restarting must not re-call a provider for a row that already resolved. Every call writes a ledger row: row id, column, provider, status, cost in cents, timestamp.\n\nBuild a cost screen: spend by provider, by column and by day, plus cost per successful enrichment, which is the number that actually matters.\n\nThe llm column type takes a prompt template with {{column}} interpolation and calls an Anthropic or OpenAI model with whichever key is in the environment. Cap it: a per-run token budget that stops the run rather than exceeding it.\n\nImport and export CSV. Exports include the waterfall's \"answered by\" and the per-row cost.\n\nWrite tests for waterfall short-circuiting, for resumability after a hard kill, and for the cost ledger totalling correctly.\n\nDo not embed any dataset and do not scrape. The machine is empty until you plug in keys you pay for.",
+  "faq": [
+    {
+      "q": "Will my per-lookup costs really be worse than Clay's?",
+      "a": "Usually yes, sometimes dramatically. Clay buys volume across thousands of customers and resells lookups by the credit; a solo account pays list price and often faces a monthly minimum per provider. The cost screen in this build exists so you find that out in week one rather than month six."
+    },
+    {
+      "q": "Why does resumability matter so much?",
+      "a": "Because a crashed run that re-calls providers charges you twice for the same row. The ledger and the resume check are cheap to build and are the difference between an experiment and a bill."
+    },
+    {
+      "q": "Is the LLM column a substitute for real data?",
+      "a": "No, and treating it as one is the most common way people produce a list of confident nonsense. It is good at reformatting and classifying what other columns already found; it is bad at knowing someone's email address."
+    },
+    {
+      "q": "Can I get my Clay tables out?",
+      "a": "Tables export to CSV, so the values you have already enriched come with you. The recipes — which provider ran in what order, with what mapping — do not export in a form anything else can read, so rebuild them from the export while you can still see them."
+    }
+  ]
+}

@@ -2655,3 +2655,202 @@ $ npm run stats
 
 `nolt.io/pricing` shows up in the linkcheck failures as a 403 — the same Cloudflare challenge
 that stopped the price being read, not a dead page.
+
+
+## Batch 12 — CRM, sales outreach, first help desks (374 → 399)
+
+First batch of the second half. The remaining pool was recomputed rather than trusted:
+`node scripts/import-upstream.mjs --limit 400 --dry-run` against the 608-entry source and the
+374-tool disk state selects **166** eligible entries, which is the real remainder, not the
+"~168" carried in the handover. They arrive under 16 raw upstream categories and cover all 15
+categories that the taxonomy pass opened and left empty.
+
+### Domain screening, all 166 up front
+
+Every domain in the remaining pool was fetched, not recalled. The extension matcher walks
+hostname labels upward (`extension/lib/domain-match.mjs`), so **an apex listed in `domains[]`
+also claims every subdomain under it** — which is what makes a corporate apex dangerous, and
+what makes a per-tenant apex like `freshdesk.com` the right answer rather than the marketing
+site. Eleven overrides and two exclusions came out of it:
+
+| Slug | Upstream domain | Decision |
+|---|---|---|
+| `zoho-crm` | `zoho.com` | → `crm.zoho.com`. The bare domain is Zoho's whole 50-app suite. Confirmed: `<title>Zoho CRM …</title>`. |
+| `freshdesk` | `freshworks.com` | → `freshdesk.com`. Upstream pointed at the *parent company* (Freshsales, Freshservice, Freshchat all live there). Freshdesk tenants are `<company>.freshdesk.com`, which the label walk covers from the apex. |
+| `chatwoot-cloud` | `chatwoot.com` | → `app.chatwoot.com`. Open-source project site; the `umami.is` precedent. Confirmed. |
+| `youtube-music-premium` | `youtube.com` | → `music.youtube.com`. Confirmed: `<title>YouTube Music</title>`. |
+| `ente-photos` | `ente.io` | → `ente.com` (301). |
+| `harvest` | `harvestapp.com` | → `getharvest.com` (301). |
+| `macrofactor` | `macrofactorapp.com` | → `macrofactor.com` (301). |
+| `timely` | `timelyapp.com` | → `timely.com` (301). |
+| `timeular` | `timeular.com` | → `early.app`. Timeular rebranded to EARLY. |
+| `groove` | `groovehq.com` | → `helply.com`. Groove rebranded to Helply. |
+| `zoom-pro` | `zoom.us` | → `["zoom.com", "zoom.us"]`. The marketing site moved to zoom.com but meetings are still joined on `*.zoom.us`; both are exclusively Zoom. `SLUG_DOMAIN_OVERRIDES` now accepts an array for this case. |
+| `butter` | `butter.us` | **Excluded.** `dig butter.us` returns no A record at all and `dashboard.butter.us` times out. The product is gone; there is no page to cite and no hostname to match. |
+| `goto-meeting` | `goto.com` | **Excluded.** `gotomeeting.com` 301s to `goto.com/meeting` (a path), `global.gotomeeting.com` redirects to `app.goto.com/meetings`, and both `app.goto.com` and `goto.com` are shared by every GoTo product. Same failure mode as `everydollar-premium`. |
+
+`google-workspace-business-starter` was **kept** on `workspace.google.com` after weighing it
+against the `microsoft-365-personal` exclusion. The difference is real: `microsoft.com` is a
+corporate catch-all and the M365 web hostname is shared across unrelated Microsoft products,
+whereas `workspace.google.com` is exclusively Google Workspace and resolves 200 as the
+product's own site. The tier-versus-product mismatch (this entry is the Business Starter tier
+of a bundle) is an editorial problem, not a domain-safety one.
+
+### One exclusion for an unreadable price
+
+`reply-io` — `reply.io/pricing` sits behind a Cloudflare challenge that neither `curl` nor a
+real Chrome session cleared, in three attempts. Unlike `adobe-acrobat-pro`, where independent
+reporting corroborated the figure, nothing here confirms the `$89 "Multichannel"` upstream
+recorded. Batch 11 found 20 of 25 upstream prices stale; an unverifiable upstream figure is
+more likely wrong than right, so it is excluded rather than shipped with a confident-looking
+citation. `crm-sales` lands at 21 tools instead of 22, still far above the floor.
+
+Backfilled from `customer-support`: `intercom`.
+
+### Prices — 18 of 25 were wrong
+
+Same pattern batch 11 found, at the same rate.
+
+| Slug | Upstream | Corrected | What was wrong |
+|---|---|---|---|
+| `attio` | $36 Plus | **$44** Plus | $36 matches no tier; Plus is $44 monthly, $35 annual |
+| `capsule-crm` | $21 Starter | **€15** Starter, annual-effective | numbers are client-side only; read in a browser, geo-priced EUR |
+| `close-crm` | $59 "Startup" | **$19 "Solo"** | the Startup tier no longer exists |
+| `copper-crm` | $29 Basic, per-seat-monthly | $29 Basic, **annual-effective** | the page prints "paid annually" and offers no monthly rate |
+| `folk` | $30 "Premium" | $30 **"Standard"** | $30 is Standard; Premium is $60 monthly |
+| `salesmate` | $29 Basic, per-seat-monthly | **$23** Basic, **annual-effective** | the page's default view is the annual-billed rate |
+| `apollo-io` | $59 Basic, per-seat-monthly | **$49** Basic, **annual-effective** | default view is annual |
+| `clay` | $149 Launch | **$167** Launch, usage-based | Launch is two independent sliders; $167 is the annual-billed floor |
+| `hunter-io` | $49 Starter USD | **€49** Starter | correct number, geo-priced EUR |
+| `instantly` | $37 Growth | **$47** Growth | $37.60 is the annual rate; monthly is $47 |
+| `lemlist` | $69 "Email Pro" | **$55 "Email"** | the Email Pro tier no longer exists |
+| `smartlead` | $39 "Basic" | $39 **"Base"** | tier renamed |
+| `waalaxy` | $43 Pro | **€19** Pro | large drop, and the page is EUR |
+| `woodpecker` | $29 "Cold Email" flat | **€35**, usage-based | it is a slider: €7.00 per 100 contacted prospects, €35 at the default 500 |
+| `front` | $29 Starter, per-seat-monthly | **$25** Starter, **annual-effective** | default view is annual |
+| `gorgias` | $60 "Basic" | **$10 "Starter"**, usage-based | Starter is $10/mo for 50 tickets + $0.40 overage; the old $60 Basic is now $90 |
+| `help-scout` | $25 Standard, per-seat-monthly | $25 Standard, **annual-effective** | the Annual toggle is the active one on load |
+| `pipedrive` | $24 Essential | unchanged, confidence → **low** | see below |
+| `bigin`, `less-annoying-crm`, `zoho-crm`, `streak-crm`, `saleshandy`, `snov-io`, `intercom` | — | confirmed correct | |
+
+**`pipedrive` is this batch's unreadable price.** `pipedrive.com/en/pricing` returns a
+Cloudflare "Attention Required" block to a scripted fetch *and* to a real Chrome session on
+this network. Unlike `reply-io`, the $24 Essential month-to-month figure is long-standing and
+widely published, so it ships at `confidence: low` with the block written into `pricing.notes`
+and named in the entry's own FAQ — the `adobe-acrobat-pro` / `nolt` precedent. It shows up in
+`linkcheck` as a 403, which is the same class as the pre-existing anti-robot failures.
+
+`snov-io` also appears in the linkcheck failures as "fetch failed". That is an undici quirk
+against their TLS stack, not a dead page: `curl -sSI https://snov.io/` returns `HTTP/2 200`,
+and the price was read from the live page.
+
+### Verdicts — four moved, all documented, none for balance
+
+Four entries moved from `no` to `kinda`. Each is argued from the `whatYouLose` list, written
+first:
+
+- **`zoho-crm`.** Upstream marked `close-crm`, `salesmate`, `streak-crm` and `zoho-crm` `no`
+  with no visible shared principle. The first three have one: telephony (Close, Salesmate) and
+  living inside somebody else's DOM (Streak). Zoho CRM Standard has none — for a solo user it
+  is leads, contacts, deals, custom fields and reports, which is exactly the set `pipedrive`
+  and `attio` are already `kinda` for. Keeping it at `no` would have been an inconsistency,
+  not a standard.
+- **`front`, `gorgias`, `intercom`.** A help desk has no network effect, no proprietary data
+  and no compliance moat — mature open-source shared inboxes and messengers exist. What these
+  three genuinely lose is the `kinda` list from CONTRIBUTING almost verbatim: mobile apps,
+  real-time collaboration, and third-party channels behind an approval gate (WhatsApp and SMS
+  for Front, Instagram and TikTok Shop for Gorgias, native SDKs for Intercom). `help-scout`
+  was already `kinda` and stays there.
+
+The ten `sales-outreach` entries stay `no` without argument, because CONTRIBUTING names their
+dependencies explicitly: a sending reputation (`instantly`, `lemlist`, `saleshandy`,
+`smartlead`, `woodpecker`, `snov-io`) and an index you don't have (`apollo-io`, `hunter-io`,
+`clay`). `waalaxy` is `no` for a different reason worth stating: its product is automating a
+platform that forbids automation, and the risk it absorbs — a permanent account restriction —
+is not something a personal build should take on. Its prompt deliberately builds a manual
+tracker over LinkedIn's own data export instead.
+
+Batch mix: 0 `yes` / 11 `kinda` / 14 `no`. Selected by category, not by verdict.
+
+### Editorial — one angle per entry
+
+The upstream drafts in this pool are templated at the category level: all eleven CRMs shipped
+the identical `moatType`, `subcategory`, `priorArt` (Twenty) and prompt skeleton, all ten
+outreach entries shipped Mautic as prior art regardless of product, and every draft carried
+"Recheck price before merge." inside `notes`, a reader-facing field. Every prompt and all 100
+FAQ answers were written from scratch.
+
+*CRM (11):* a runtime-editable schema with a destructive-migration guard (`attio`) — limits
+enforced in code, not documented (`bigin`) — a won opportunity materialises a delivery project
+from a template (`capsule-crm`) — a call queue with one-keypress outcomes and no telephony
+(`close-crm`) — per-record BCC capture so Google is never asked for OAuth (`copper-crm`) —
+custom fields that belong to the list rather than the person, plus a "gone quiet" query
+(`folk`) — CalDAV and CardDAV as the mobile app (`less-annoying-crm`) — an invariant that an
+open deal must carry a scheduled next activity (`pipedrive`) — a multi-channel planner that
+sends nothing (`salesmate`) — a supported Gmail add-on rather than a DOM-injecting extension,
+and honesty about the ceiling that imposes (`streak-crm`) — reports as reviewable SQL views
+behind a read-only role (`zoho-crm`).
+
+*Outreach (10):* facts stored as rows with a source and a half-life, so staleness is visible
+(`apollo-io`) — a bring-your-own-key waterfall runner whose real output is cost per successful
+enrichment (`clay`) — a careful SMTP verifier with a per-domain circuit breaker, and a pattern
+guesser that refuses below three known addresses (`hunter-io`) — ramped, jittered sending
+across mailboxes you own with a tested human-versus-autoresponder reply stop (`instantly`) —
+per-recipient image and microsite generation with first-class empty-field policies (`lemlist`)
+— an SPF lookup counter, DMARC aggregate-report ingestion and a manual placement test
+(`saleshandy`) — a unified reply inbox that classifies by header rule before it spends a token
+(`smartlead`) — a fixed-stage outreach funnel computed from transition rows (`snov-io`) — a
+follow-up queue built from LinkedIn's own data export, with reply rate per template
+(`waalaxy`) — a follow-up engine that creates drafts and has no send button (`woodpecker`).
+
+*Help desks (4):* a status machine with a tested guard that internal comments can never reach
+the customer (`front`) — order context beside the message with capped, audited refund actions
+(`gorgias`) — knowledge base and saved replies as one record, plus an "articles to promote"
+report (`help-scout`) — an AI first responder that must cite a source or hand over
+(`intercom`).
+
+`priorArt` was corrected per entry rather than carried: Twenty for the pipeline CRMs, EspoCRM
+for the two suite-shaped ones, Monica for the two relationship-first ones, SuiteCRM for
+`zoho-crm`, FreeScout for the shared inboxes, Chatwoot for the messenger-shaped desks,
+`check-if-email-exists` for `hunter-io`, `checkdmarc` for `saleshandy`, Mautic for
+`woodpecker`. Seven entries ship with **no** `priorArt` (`apollo-io`, `clay`, `instantly`,
+`lemlist`, `smartlead`, `waalaxy`, `streak-crm`) rather than an invented one — there is no
+open-source contact database, no open-source warm-up network, and no open-source
+Gmail-embedded CRM.
+
+`requirements[]` was reconciled against each rewritten prompt, not the mechanical pass, which
+produced a uniform `hosting` for all eleven CRMs and `domain`+`email-provider` for all ten
+outreach entries. Notable corrections: `copper-crm` gains `domain`+`email-provider` (the BCC
+receiver is the entry's whole idea), `less-annoying-crm` gains `domain` (CalDAV clients refuse
+plain HTTP), `streak-crm` drops `hosting` and gains `oauth-app` (Apps Script hosts itself),
+`clay`/`smartlead`/`intercom` gain `anthropic-api-key`, and `apollo-io`/`waalaxy`/`snov-io`
+drop `email-provider` entirely because their prompts send nothing.
+
+`relatedSlugs` were hand-diversified: the mechanical pass produced `[apollo-io, clay, lemlist]`
+for six outreach entries and `[pipedrive, close-crm, attio]` for seven CRMs. No two entries in
+this batch share a triple.
+
+### Verification
+
+```
+$ npm run validate
+399 fiche(s), 625 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  175 passed (175)
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run build
+Site écrit dans dist/ — 2 langue(s), 625 fiche(s), 71 page(s) de catégorie, 702 URL(s).
+
+$ npm run linkcheck
+523 OK, 26 en échec — pipedrive (403, documented above) and snov-io (undici "fetch failed"
+against a page curl reads as HTTP/2 200); the rest pre-existing.
+
+$ npm run stats
+399 fiche(s) : yes 54 (14 %), kinda 233 (58 %), no 112 (28 %)
+```

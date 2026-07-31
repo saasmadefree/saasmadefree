@@ -1,0 +1,32 @@
+{
+  "tagline": "Automated LinkedIn invitations and follow-up messages, at a daily quota.",
+  "verdictSummary": "Waalaxy automates a platform that forbids automation, and the subscription is largely a bet that its evasion stays ahead of LinkedIn's detection. That is not a capability anyone should rebuild: the software is trivial and the consequence — a restricted or permanently banned account you cannot appeal — falls entirely on you. What is worth building is the honest half: a tracker over LinkedIn's own official data export that tells you who to follow up with, while you do the sending by hand.",
+  "coreLoopDIY": "Import your own LinkedIn data export, and get a follow-up queue: who accepted and was never messaged, who went quiet, who is due a nudge — with the sending done by you, in LinkedIn.",
+  "whatYouLose": [
+    "automated invitations and message sending, which is the entire paid product",
+    "the daily quota management that keeps automation under LinkedIn's radar",
+    "the browser extension and its live view of a profile",
+    "automated sequences that mix LinkedIn steps with email",
+    "somebody else's judgement about how far is too far"
+  ],
+  "whyPeopleStillPay": "Because it does something that is against LinkedIn's terms and does it carefully, and buyers are paying for the carefulness — the limits, the delays, the human-like pacing — more than for the automation itself.",
+  "prompt": "Build a LinkedIn relationship tracker that never touches LinkedIn programmatically. Everything comes from the data export LinkedIn gives you, and every message is sent by you, by hand.\n\nWhy: automating LinkedIn breaches its user agreement and risks a permanent restriction on the account, and no personal tool is worth that. State this in the README.\n\nStack: your choice, SQLite is enough, one command.\n\nInput: LinkedIn's official data archive. Parse Connections.csv (name, company, position, connected-on date) and Invitations.csv (sent and received, with dates and status). Re-importing a fresh archive must be incremental — new connections appear, existing ones update, nothing is duplicated, and the connected-on date is never overwritten.\n\nDerived state per person: invitation sent date, accepted date, and whether I have recorded any conversation since. That last one is manual, and it is the point.\n\nThe queue is the product. Four lists, each ordered oldest first:\n1. Accepted but never spoken to — connected more than N days ago with no logged conversation. This is where almost everyone leaks value.\n2. Went quiet — a conversation logged, no activity since M days.\n3. Invitation pending beyond a threshold, so you can decide to withdraw it.\n4. Due a nudge — a manual reminder date has arrived.\n\nWorking an entry: open it, see their details, copy a message template rendered with their name and company to the clipboard, then mark it sent and set the next reminder. The app never opens LinkedIn for you; it gives you the text and the link to the profile.\n\nTemplates: named, with {{firstName}}, {{company}}, {{position}} placeholders, and a per-template count of how many times it has been used and how many of those led to a logged reply. That reply rate per template is the only analytics worth having here.\n\nTags and a free-text note per person, and full-text search across notes.\n\nWrite tests for incremental re-import (idempotent, no duplicates, dates preserved) and for the queue boundaries at exactly N days.\n\nDo not automate a browser, do not use unofficial LinkedIn endpoints, and do not store LinkedIn credentials.",
+  "faq": [
+    {
+      "q": "How likely is an automation tool to get my account restricted?",
+      "a": "Likely enough that vendors publish daily limits and pacing advice, which tells you the risk is real and managed rather than absent. Restrictions arrive without warning and appeals rarely succeed, and the account you lose is usually the one your professional network lives in."
+    },
+    {
+      "q": "Is a manual queue really better than automation?",
+      "a": "It is slower and it is yours. Most of the value in LinkedIn outreach comes from following up with people who already accepted you — a list you already have and never work — and doing thirty of those a week by hand outperforms a thousand automated invitations that get you flagged."
+    },
+    {
+      "q": "How do I get the LinkedIn export?",
+      "a": "From the settings, under data privacy, request the archive. The larger archive takes about a day to arrive; the connections and invitations files are usually available within minutes."
+    },
+    {
+      "q": "Why track reply rate per template?",
+      "a": "Because it is the one measurement that changes behaviour, and it is invisible when you send from LinkedIn directly. Two templates and forty sends is enough to see a real difference."
+    }
+  ]
+}

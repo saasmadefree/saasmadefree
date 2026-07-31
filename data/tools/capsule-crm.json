@@ -1,0 +1,43 @@
+{
+  "slug": "capsule-crm",
+  "name": "Capsule",
+  "domains": [
+    "capsulecrm.com"
+  ],
+  "category": "crm-sales",
+  "subcategory": "CRM with project delivery",
+  "pricing": {
+    "amount": 15,
+    "currency": "EUR",
+    "plan": "Starter",
+    "basis": "annual-effective-monthly",
+    "source": "https://capsulecrm.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "Page is geo-priced and renders the annual-billed rate by default: €15 per user per month, billed annually. A month-to-month option exists at a higher rate that the default view does not show; the plan numbers are injected client-side, so this was read in a browser rather than from the HTML."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "hosted reliability and integrations",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "EspoCRM",
+      "url": "https://github.com/espocrm/espocrm"
+    }
+  ],
+  "relatedSlugs": [
+    "less-annoying-crm",
+    "bigin",
+    "pipedrive"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

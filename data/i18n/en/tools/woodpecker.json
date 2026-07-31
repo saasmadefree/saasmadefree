@@ -1,0 +1,32 @@
+{
+  "tagline": "Cold email that keeps following up until someone actually answers.",
+  "verdictSummary": "Woodpecker's discipline is the follow-up: send, wait, send again, and stop the instant a human replies. Every piece of that is buildable in a sitting, and the reply detection is the interesting bit. What is not buildable is the surrounding apparatus the price actually covers — free warm-up, catch-all verification, prepared mailboxes and domains, and the deliverability monitoring that tells you when your sending is going wrong. Sending reputation is named in this project's own rules as a hard dependency, and this is exactly that case.",
+  "coreLoopDIY": "A follow-up engine that drafts the next message into your own mailbox on schedule and stops the sequence the moment a real human replies — you press send, it never sends for you.",
+  "whatYouLose": [
+    "sending, and therefore any volume beyond what you can press send on",
+    "free mailbox warm-up and the catch-all verification bundled with it",
+    "prepared domains and mailboxes with configured DNS",
+    "inbox rotation across many mailboxes",
+    "the agency panel and per-client sub-accounts"
+  ],
+  "whyPeopleStillPay": "Because follow-ups only work if they arrive, and arriving is a function of warmed mailboxes, clean domains and a monitored bounce rate. The scheduling is the visible part and the cheapest part.",
+  "prompt": "Build a follow-up engine that prepares messages and refuses to send them.\n\nThe design constraint is deliberate: it creates drafts in your own mailbox at the right moment, and you send. That keeps the volume human, keeps the sending on your own reputation, and makes the tool useless for spam.\n\nStack: your choice, Postgres, Docker Compose. Connect to Gmail or Microsoft Graph with OAuth for draft creation and inbox reading.\n\nSequence model: an ordered list of steps, each with a delay in business days and a body template with {{field}} interpolation. Steps after the first must be able to reply in-thread — set In-Reply-To and References on the draft so the follow-up appears under the original rather than as a fresh message, which is both more polite and better for deliverability.\n\nDaily run: for every enrolment whose next step is due, render the body, create a draft in the right mailbox, and mark it prepared. Present them in one screen as \"N drafts ready\" with a link into the mailbox. Do not send, and do not offer a send button — the absence is the feature.\n\nStop conditions, which is where the real logic lives:\n- A reply on the thread stops the sequence, but only if it is human. Filter DSNs and auto-responders by header first: Auto-Submitted, Precedence, X-Autoreply, and the standard delivery-status content types.\n- An out-of-office pauses rather than stops, and reschedules the next step to after the return date when one can be parsed from the body — a small, high-value piece of work.\n- Any opt-out phrase from a configurable list, matched case-insensitively in a reply, stops the sequence and writes a permanent global suppression.\n- A hard bounce stops the sequence and suppresses the address.\n\nSuppression list is global, permanent, importable and exportable, and checked at enrolment time so a CSV import cannot re-enrol a suppressed address.\n\nOne report: per sequence, drafts prepared and actually sent (detect by looking for the message in Sent), replies, and reply rate by step number — which tells you whether the third follow-up earns its place.\n\nWrite tests for the human-versus-automated reply classifier against real headers, for out-of-office date parsing, and for suppression surviving a re-import.\n\nDo not send email, do not implement warm-up, and do not add open or click tracking.",
+  "faq": [
+    {
+      "q": "Why build a sender that will not send?",
+      "a": "Because the send button is what turns a follow-up tool into a spam cannon, and because sending from a personal mailbox at automated volume is what gets the mailbox suspended. Drafts keep the volume at a level your domain can carry."
+    },
+    {
+      "q": "How well does automated reply detection actually work?",
+      "a": "Header rules catch bounces and most auto-responders reliably. The awkward cases are a human reply quoting an auto-responder, and vacation messages that carry no distinguishing header at all — which is why out-of-office pauses rather than stops."
+    },
+    {
+      "q": "Is parsing a return date from an out-of-office worth the effort?",
+      "a": "It is the single highest-value small feature here. Following up on the day someone gets back beats following up while they are away, and the dates are usually in a handful of predictable formats."
+    },
+    {
+      "q": "What does Woodpecker actually charge for?",
+      "a": "Contacted prospects, on a slider: about seven euros per hundred, with warm-up, verification and unlimited team members included. The add-ons — LinkedIn accounts, prepared mailboxes, domains, dedicated servers — are where a real outbound setup's cost accumulates."
+    }
+  ]
+}

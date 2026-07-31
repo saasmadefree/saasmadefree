@@ -1,0 +1,32 @@
+{
+  "tagline": "Find the email address behind a name and a domain, and check that it exists.",
+  "verdictSummary": "Hunter does two things and only one of them is code. Verification — resolve the MX, open an SMTP conversation, ask whether the mailbox exists, detect a catch-all — is a sitting's work and genuinely useful. Finding is the other half, and it rests on a crawled index of addresses published across the web that took years to build and is continuously refreshed. Without the index you are left guessing patterns, and pattern guessing without evidence is wrong often enough to damage a sending domain.",
+  "coreLoopDIY": "Verify addresses properly — MX lookup, SMTP probe, catch-all and disposable detection, with rate limits that keep you off blocklists — and be honest that pattern guessing without an index is a coin flip.",
+  "whatYouLose": [
+    "the crawled index of addresses, which is what makes finding work at all",
+    "the per-domain pattern confidence derived from thousands of observed addresses",
+    "the sources list showing where on the web an address was seen",
+    "reputation with mail servers, so your probes get throttled far sooner",
+    "the campaign sender and its warm-up"
+  ],
+  "whyPeopleStillPay": "Because the index is a decade of crawling and cannot be recreated, and because Hunter's probes come from IP addresses mail providers already tolerate — yours do not.",
+  "prompt": "Build an email verifier that is careful rather than fast, and a pattern guesser that is honest about being a guess.\n\nStack: your choice, Postgres, and a server with a real domain, correct reverse DNS and a valid HELO name. Say in the README that running this from a residential IP will get you throttled or blocked within an hour.\n\nVerification pipeline, in order, short-circuiting as soon as an answer is certain:\n1. Syntax check against the actual RFC-relevant rules, not a regex from a blog post.\n2. Domain checks: does the domain resolve, does it have MX records, is it on a disposable-domain list you keep locally and can update.\n3. Catch-all detection: probe a random address at that domain that certainly does not exist. If it is accepted, the domain accepts everything and no per-address answer is possible. Record the domain as catch-all and stop — do not report the real address as valid.\n4. SMTP probe of the real address: connect, EHLO, MAIL FROM with a null sender, RCPT TO, read the code, QUIT. Never send DATA.\n\nRate limiting is the part that decides whether this works: no more than one connection at a time per destination domain, a configurable delay between probes to the same domain, exponential backoff on 4xx, and a per-domain circuit breaker that stops for an hour after repeated temporary failures. Cache every result with a timestamp and a configurable TTL so a re-check is free.\n\nResults are a status from a fixed set — valid, invalid, catch-all, unknown, disposable, role-account — and never a percentage. \"Unknown\" must be a first-class outcome that the UI does not hide, because greylisting makes it common.\n\nPattern guessing, second and clearly separated: given a domain and known addresses at it, infer the pattern (first.last, flast, first) and generate a candidate for a new name. Label every generated address as a guess, show which pattern and how many known addresses support it, and refuse to emit a guess for a domain with fewer than three known addresses.\n\nBulk mode: CSV in, CSV out, resumable, with the per-address status and check date.\n\nWrite tests for catch-all detection, for the circuit breaker, and for the pattern inference including the refusal case.\n\nDo not crawl the web for addresses, and do not send email.",
+  "faq": [
+    {
+      "q": "Does SMTP verification still work in 2026?",
+      "a": "Partly, and less than it used to. Large providers greylist or accept everything from unknown senders, so a well-built verifier returns \"unknown\" or \"catch-all\" for a large slice of addresses. Any tool that reports a clean valid/invalid split for Gmail and Outlook domains is telling you what you want to hear."
+    },
+    {
+      "q": "Will probing get my server blocklisted?",
+      "a": "It can, which is why the per-domain concurrency limit and the circuit breaker are in the prompt rather than left as an exercise. Probe politely, cache aggressively, and never run this from an IP you also send real mail from."
+    },
+    {
+      "q": "Why refuse to guess a pattern from fewer than three addresses?",
+      "a": "Because two observations support several patterns equally and the guess will be confidently wrong. Sending to a wrong-guess address produces a bounce, and bounces are what wreck a sending domain's reputation."
+    },
+    {
+      "q": "What is left of Hunter once you remove the index?",
+      "a": "The verifier, which is real and worth having, and a set of workflows for organising domains you are researching. That is a fair description of what this build gives you — and it is why the verdict is no rather than kinda."
+    }
+  ]
+}
