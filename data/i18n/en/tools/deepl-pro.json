@@ -1,0 +1,33 @@
+{
+  "tagline": "Machine translation people pay for because the output reads like it was written by a person.",
+  "verdictSummary": "Everything around DeepL is trivial — a text box, a document upload, a glossary table. The product is the model, and the model is the one thing not in reach. You can self-host LibreTranslate and get usable translations for a great many purposes, and you will notice the difference immediately on anything with idiom, register or a long sentence. This is a no not because the code is hard but because the code is not what is being sold.",
+  "coreLoopDIY": "Run LibreTranslate locally behind a small interface with your own glossary applied before and after, and accept output that is serviceable rather than good.",
+  "whatYouLose": [
+    "the translation quality that is the entire reason to pay",
+    "document translation that preserves .docx and .pptx formatting",
+    "the contractual promise that your text is not used for training",
+    "the browser extension, desktop and mobile apps",
+    "the API with a supported SDK and a service level"
+  ],
+  "whyPeopleStillPay": "Because a translation that reads naturally is worth the money the first time it saves you rewriting a page by hand, and no self-hosted model currently matches it on European language pairs.",
+  "notes": "Listed as a no on the honest reading of the contract: the DIY version depends either on a model you cannot train or on an API you must rent.",
+  "prompt": "Build a local translation tool over LibreTranslate, and design it around the model being mediocre.\n\nRun LibreTranslate in Docker with the language pairs you need. Put a small interface in front of it with three things it does not have.\n\nFirst, a glossary that is applied as a hard substitution before and after translation: your product names, feature names and technical terms replaced with placeholders on the way in and restored on the way out, so the model never gets a chance to translate them. This one feature closes most of the visible gap between self-hosted output and a paid service on product text.\n\nSecond, a review queue rather than a result page. Every translation lands as a draft with the source beside it, and nothing is marked done until a human confirms. Treat machine output as a first draft, not an answer — the failure mode of a good-enough translator is a confident sentence that means something slightly different.\n\nThird, a memory of confirmed pairs. Exact matches are reused verbatim; near matches are offered as suggestions. Over a few hundred confirmations this beats the raw model on your own repetitive content, which is where most of the volume is.\n\nDocument translation stops at plain text, Markdown and HTML, where the structure is inspectable. Do not attempt .docx or .pptx: preserving layout through a round trip is a separate project and produces broken files when done casually.\n\nOut of scope: training or fine-tuning a model, an API for other people, and any claim about quality.",
+  "faq": [
+    {
+      "q": "Can I import my DeepL glossaries?",
+      "a": "Yes — DeepL glossaries export as TSV pairs and load straight into the substitution table. That is genuinely the most portable part of the product."
+    },
+    {
+      "q": "How much worse is the output?",
+      "a": "On short factual sentences between major European languages, close enough. On anything with idiom, formal register or subordinate clauses, clearly worse, and the difference is obvious to a native reader in the first paragraph."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing per word, but LibreTranslate wants a few gigabytes of memory and is slow on CPU. A VPS that runs it comfortably is $15 to $20 a month, which is more than the Individual plan."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The quality. Every other part of DeepL is a weekend; the reason anyone pays is the part you cannot build."
+    }
+  ]
+}

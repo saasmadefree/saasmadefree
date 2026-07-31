@@ -1,0 +1,32 @@
+{
+  "tagline": "Feature requests pulled out of support tools and ranked by how much revenue is asking.",
+  "verdictSummary": "Savio's idea is that a feature request means nothing without knowing who asked and what they pay. Joining feedback to account revenue is a small piece of code and a genuinely better ranking than vote counts. The work is everywhere else: one connector per support tool and CRM, each with its own auth, pagination and rate limits, and each breaking on its own schedule.",
+  "coreLoopDIY": "Collect requests with the account that asked attached, join them to a revenue figure per account, and rank by revenue at stake rather than by number of votes.",
+  "whatYouLose": [
+    "ready-made connectors for Intercom, Zendesk, Help Scout, HubSpot and Slack",
+    "those connectors being kept working when a vendor changes its API",
+    "the browser extension that files a request from wherever you are reading it",
+    "per-customer feedback pages a success manager can open in a call",
+    "automatic notification of the requesters when something ships"
+  ],
+  "whyPeopleStillPay": "Because the value only appears once the data is complete, and completeness is the thing integrations buy. A ranking built on the third of requests you remembered to log is worse than no ranking, because it looks authoritative.",
+  "prompt": "Build a feature-request tracker that ranks by revenue rather than by votes.\n\nThree tables: accounts (name, monthly revenue, plan, renewal date), requests (title, description, status), and asks (which account asked for which request, when, and a link to where it was said). The ask table is the whole design — a request is not an object with a vote count, it is a set of asks from named accounts.\n\nRank by revenue at stake: the sum of monthly revenue across the accounts that asked. Show alongside it the raw account count and the largest single account's share, because one big customer and fifteen small ones produce the same total and mean entirely different things about the product.\n\nIngest deliberately generically: one webhook endpoint that takes a title, a body, an account identifier and a source URL. Then write thin adapters — a Zapier or n8n workflow, an email address, a bookmarklet — that post to it. Adapters to specific vendors are what rot; a stable inbound contract with disposable adapters in front of it is what survives.\n\nSync accounts and revenue from one source you already have — Stripe is the honest choice for most people, since it is where the money actually is — on a nightly job. Store the fetch date next to the figure and show it in the interface, because stale revenue silently produces a confidently wrong ranking, which is the specific failure this tool invites.\n\nGive each account a page listing everything it has ever asked for and the status of each, so a renewal conversation can be prepared in thirty seconds.\n\nOut of scope: vendor-specific connectors, a public voting board, a browser extension, and any notification back to end customers.",
+  "faq": [
+    {
+      "q": "Can I import my Savio data?",
+      "a": "Requests and the customers attached to them export as CSV and load in. The live connections to Intercom, HubSpot and the rest do not transfer at all — you rebuild ingestion from the generic webhook up."
+    },
+    {
+      "q": "Do I have to connect a CRM?",
+      "a": "No, but the ranking is only as good as the revenue figures. Stripe is usually enough and is one API. A manually maintained spreadsheet works too, right up until it goes three months stale and nobody notices."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A small VPS with Postgres at around $10 a month. The nightly revenue sync is a handful of API calls and costs nothing."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Capture that happens without effort. Savio earns its price by getting requests in from wherever they were said; a webhook you have to remember to trigger collects a biased sample and ranks it with false precision."
+    }
+  ]
+}

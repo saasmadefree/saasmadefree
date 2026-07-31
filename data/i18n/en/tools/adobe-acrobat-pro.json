@@ -1,0 +1,33 @@
+{
+  "tagline": "The PDF editor every other one is measured against, plus the compliance output nobody else emits.",
+  "verdictSummary": "Acrobat is two products on one bill. The first is a toolbox — merge, split, compress, OCR, convert — and open source covers it completely. The second edits the body text of a PDF somebody else authored, with the original fonts and correct reflow, and emits tagged PDF/UA and validated PDF/A. That half is decades of typesetting and standards work, and no personal build gets near it.",
+  "coreLoopDIY": "Self-host Stirling PDF for the everyday operations, keep every original file untouched, and write each operation to a new versioned output rather than editing in place.",
+  "whatYouLose": [
+    "editing the body text of a PDF you did not author, with fonts and reflow intact",
+    "tagged PDF/UA output that passes an accessibility checker",
+    "PDF/A archival output that passes a conformance validator",
+    "Acrobat Sign and the audit trail behind it",
+    "the Microsoft Office, Outlook and browser plug-ins"
+  ],
+  "whyPeopleStillPay": "Because in a lot of jobs the deliverable is not \"a PDF\" but \"a PDF that passes the checker\" — an accessibility audit, an archival deposit, a regulator's intake form. Acrobat is the tool whose output those checkers were written against.",
+  "notes": "The toolbox half genuinely is replaceable. It is worth separating the two before deciding you need the subscription.",
+  "prompt": "Build a self-hosted PDF workbench for one person.\n\nDeploy Stirling PDF behind a reverse proxy with HTTP basic auth, and put a small wrapper in front of it that does three things Stirling does not: it keeps an immutable copy of every uploaded original in a content-addressed store keyed by SHA-256, it writes each operation to a new file rather than overwriting, and it records an append-only log line per operation with the input hash, the operation and its parameters, the output hash and a timestamp.\n\nSupport the operations you actually use: merge, split, reorder, rotate, compress, watermark, redact, OCR with Tesseract, and Office-to-PDF via LibreOffice headless.\n\nAdd one conformance step that most tools skip: after any operation, run veraPDF against the output and store the verdict alongside it. When the file is not valid PDF/A or PDF/UA, say so in plain words on the result page. Never label an output \"archival\" or \"accessible\" on the strength of having produced it — only on the strength of the validator having passed it.\n\nOut of scope, deliberately: editing existing body text, generating tagged PDF/UA structure, e-signatures, and any cloud account. Editing text inside a PDF someone else laid out is a font-substitution and reflow problem, not a feature you bolt on, and a build that pretends otherwise produces documents that look wrong on somebody else's screen.\n\nFinish by running the operations end to end on a scanned document, a form and a slide deck, and print the log.",
+  "faq": [
+    {
+      "q": "Can I open my existing Acrobat files in this?",
+      "a": "Yes — they are ordinary PDFs, and nothing here changes that. What does not travel is anything stored in an Acrobat cloud account: shared review comments, saved Sign templates, and Document Cloud storage links."
+    },
+    {
+      "q": "Will the OCR be as good as Acrobat's?",
+      "a": "On clean 300 dpi scans of printed text, Tesseract is close enough that you will not notice. On low-contrast phone photos, skewed pages, tables and handwriting it is noticeably worse, and you will end up re-scanning documents you would previously have thrown at Acrobat."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A small VPS, around $5 a month, or nothing at all if you run it on a machine you already own. Stirling PDF, Tesseract, LibreOffice and veraPDF are all free and everything runs locally — there is no per-document charge."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Compliance output you can defend. If someone requires a tagged, accessible PDF or a PDF/A-2b archive, this build can tell you that your file is not one — but it cannot produce one."
+    }
+  ]
+}

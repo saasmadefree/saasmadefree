@@ -1,0 +1,44 @@
+{
+  "slug": "ilovepdf-premium",
+  "name": "iLovePDF Premium",
+  "domains": [
+    "ilovepdf.com"
+  ],
+  "category": "documents",
+  "subcategory": "online PDF toolbox",
+  "pricing": {
+    "amount": 7,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "flat-monthly",
+    "source": "https://www.ilovepdf.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Read on the vendor page: $7/month billed monthly, or $4/month billed annually ($48/year). Upstream had recorded $9."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "open-source core/hosting",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Stirling PDF",
+      "url": "https://github.com/Stirling-Tools/Stirling-PDF",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "sejda-web",
+    "smallpdf",
+    "xodo-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

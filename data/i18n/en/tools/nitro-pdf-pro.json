@@ -1,0 +1,32 @@
+{
+  "tagline": "PDF editing sold on how cleanly it converts to and from Word, Excel and PowerPoint.",
+  "verdictSummary": "Nitro's pitch is conversion fidelity — you get the Word file back and it is still laid out correctly. LibreOffice does the same job at maybe eighty percent of the quality, and the honest personal build is not a better converter but a harness that tells you when the conversion went wrong before you send it to someone. The eSign envelopes bundled in are a separate product with a separate answer.",
+  "coreLoopDIY": "Convert with LibreOffice headless, then round-trip the result back to PDF and score how far it drifted from the original, so a bad conversion is caught by the tool rather than by the recipient.",
+  "whatYouLose": [
+    "conversion fidelity on multi-column layouts, text boxes and embedded fonts",
+    "the Windows desktop application and its Office ribbon integration",
+    "Nitro eSign envelopes and their audit trail",
+    "the admin portal and per-seat licence management",
+    "a support contract when a conversion is wrong on a document that matters"
+  ],
+  "whyPeopleStillPay": "Because the deliverable is usually somebody else's editable file. A conversion that is eighty percent right means an hour of manual fixing per document, and at any real volume that hour costs more than the licence.",
+  "prompt": "Build a PDF conversion harness that grades its own output.\n\nThe core loop: convert a PDF to DOCX, XLSX or PPTX with LibreOffice headless, then immediately convert the result back to PDF and compare it to the original. Rasterise both at 150 dpi, compute a per-page structural similarity score, and store it with the output.\n\nSurface the score, do not hide it. Above a threshold you choose, mark the conversion clean. Below it, mark the page and show the two renders side by side so the drift is visible — a table that lost its borders, a heading that changed font, a text box that moved. The point of the tool is to know before sending, not to convert better than LibreOffice can.\n\nAlso record the specific failure signals that predict a bad conversion before it runs: fonts referenced but not embedded, pages with more than two text columns, scanned pages with no text layer, and forms. Show them as warnings on upload.\n\nKeep every original immutable, write outputs to new files, and store the score, the warnings and both hashes in a small SQLite database so you can look back at which documents converted badly and why.\n\nOut of scope: writing your own PDF-to-Office converter, e-signatures, and any attempt to fix a bad conversion automatically. Automatic repair of a layout the converter already misread produces documents that are wrong in ways nobody notices.\n\nValidate on a contract with numbered clauses, a financial statement with merged table cells, and a slide deck.",
+  "faq": [
+    {
+      "q": "Can I import my Nitro files?",
+      "a": "Nitro edits ordinary PDFs and Office files, so the documents themselves are fine. Nothing carries across from the Nitro Admin portal, and any eSign envelope mid-flight has to be finished in Nitro."
+    },
+    {
+      "q": "Will the Word files be as clean?",
+      "a": "No, and the tool is designed around admitting it. LibreOffice handles straightforward text well and struggles with columns, text boxes and unembedded fonts. The scoring step exists so you find out before your client does."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A VPS with a couple of gigabytes of memory, roughly $10 a month, because LibreOffice and the rasterisation step both want headroom. All the software is free."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The conversion quality itself. Everything here measures fidelity honestly; none of it improves it, and on the documents where fidelity matters most Nitro is still better."
+    }
+  ]
+}

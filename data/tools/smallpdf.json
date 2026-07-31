@@ -1,0 +1,49 @@
+{
+  "slug": "smallpdf",
+  "name": "Smallpdf Pro",
+  "domains": [
+    "smallpdf.com"
+  ],
+  "category": "documents",
+  "subcategory": "PDF toolbox with bundled e-signature",
+  "pricing": {
+    "amount": 10,
+    "currency": "EUR",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://smallpdf.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Read with the Monthly toggle selected: €10.00/month. The page defaults to the yearly view at €7.50/month (€90/year), which is the figure a quick check records by mistake. Served in EUR from the EU."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "bundled e-signature and chained operations",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Stirling PDF",
+      "url": "https://github.com/Stirling-Tools/Stirling-PDF",
+      "license": "MIT"
+    },
+    {
+      "name": "Documenso",
+      "url": "https://github.com/documenso/documenso",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "ilovepdf-premium",
+    "sejda-web",
+    "dochub"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

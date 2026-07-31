@@ -1,0 +1,43 @@
+{
+  "slug": "deepl-pro",
+  "name": "DeepL Pro",
+  "domains": [
+    "deepl.com"
+  ],
+  "category": "translation",
+  "subcategory": "machine translation",
+  "pricing": {
+    "amount": 7.49,
+    "currency": "EUR",
+    "plan": "Individual",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.deepl.com/en/pro",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "There is no \"Starter\" tier. The page shows Individual €7.49/month billed annually, Team €24.99 per user, Business €49.99 per user. Served in EUR with VAT included from the EU; the USD list differs."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "translation model",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "LibreTranslate",
+      "url": "https://github.com/LibreTranslate/LibreTranslate",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "linguise",
+    "crowdin",
+    "lokalise"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "foxit-pdf-editor",
+  "name": "Foxit PDF Editor",
+  "domains": [
+    "foxit.com"
+  ],
+  "category": "documents",
+  "subcategory": "desktop PDF editing, offline",
+  "pricing": {
+    "amount": 13.96,
+    "currency": "EUR",
+    "plan": "PDF Editor+",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.foxit.com/pdf-editor/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The URL upstream recorded (foxit.com/pdf-editor/pricing.html) now 404s. Read on the live page with the \"Annual plan, billed monthly\" toggle selected: €13.96 per user/month, or €159.59 per user/year paid in full. The plan is now called PDF Editor+, not PDF Editor Plus. Foxit geo-prices and served EUR."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "desktop engine and offline batch work",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Stirling PDF",
+      "url": "https://github.com/Stirling-Tools/Stirling-PDF",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "adobe-acrobat-pro",
+    "nitro-pdf-pro",
+    "xodo-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

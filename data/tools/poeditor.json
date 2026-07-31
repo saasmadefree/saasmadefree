@@ -1,0 +1,44 @@
+{
+  "slug": "poeditor",
+  "name": "POEditor",
+  "domains": [
+    "poeditor.com"
+  ],
+  "category": "translation",
+  "subcategory": "string management with contributors",
+  "pricing": {
+    "amount": 17,
+    "currency": "USD",
+    "plan": "Start",
+    "basis": "flat-monthly",
+    "source": "https://poeditor.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "poeditor.com/pricing without the trailing slash 404s; /pricing/ resolves. Start is $17/month for 3,000 strings, then Plus $51, Premium $136, Enterprise $221. Upstream recorded $14.99."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "contributor workflow and format breadth",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Weblate",
+      "url": "https://github.com/WeblateOrg/weblate",
+      "license": "GPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "tolgee-cloud",
+    "crowdin",
+    "lokalise"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Drops into any site and serves machine-translated versions on their own indexable URLs.",
+  "verdictSummary": "What Linguise sells is not translation, it is the plumbing: translated pages living at real URLs with correct hreflang tags so search engines index them, all without touching the CMS. That plumbing is a translating reverse proxy with a cache and an override table — a genuine weekend for one site you control. The one-line install into any CMS, and the edge network serving it, are what you give up.",
+  "coreLoopDIY": "Put a translating proxy in front of your own site, cache each translated page, serve it under a language prefix with correct hreflang, and keep a table of manual corrections that always win.",
+  "whatYouLose": [
+    "installing on any CMS without touching the site's code",
+    "edge caching close to the visitor rather than one server",
+    "the visual editor for correcting translations on the page itself",
+    "automatic handling of dynamic content and single-page applications",
+    "somebody else absorbing a machine-translation bill that scales with traffic"
+  ],
+  "whyPeopleStillPay": "Because it is a plug-in rather than an architecture change. A proxy in front of your site is a piece of infrastructure someone has to own, and for most site owners fifteen dollars is much cheaper than becoming that someone.",
+  "prompt": "Build a translating reverse proxy for one site you control.\n\nRequests to /fr/... or /de/... fetch the corresponding page from the origin, translate the visible text, and serve the result. Everything else passes through untouched.\n\nParse with a real HTML parser and translate text nodes only. Never regex the markup: attributes, inline scripts and JSON-LD blocks get mangled, and the failure is invisible until a page stops rendering. Skip the contents of script, style, code and pre entirely, and skip any element carrying a translate=\"no\" attribute.\n\nRewrite links in the translated page so internal URLs keep the language prefix and external ones do not. Emit hreflang link tags for every language including x-default, and a canonical pointing at the translated URL rather than the source. Getting hreflang wrong is the specific way this class of tool fails: the pages get indexed, then treated as duplicates, and the traffic never arrives.\n\nCache aggressively, keyed by the origin page's content hash and the target language, so an unchanged page is never re-translated. This is what keeps the translation bill bounded, and it is worth building before the translation itself.\n\nAn override table wins over everything: a per-URL, per-string map of corrected translations, applied after the machine pass. Product names, calls to action and legal wording all need it, and a tool without an override path gets abandoned the first time it mistranslates a price.\n\nOut of scope: a visual on-page editor, client-side rendered applications, and multi-site support. Verify by checking a translated page in a search engine's URL inspector rather than by eye.",
+  "faq": [
+    {
+      "q": "Can I move my Linguise translation edits across?",
+      "a": "Linguise stores manual edits in its dashboard and exports them; they map onto the override table reasonably well. The mapping is per URL and per string, so a site restructure since the edits were made means redoing part of it."
+    },
+    {
+      "q": "Will the translated pages get indexed?",
+      "a": "They can, if the hreflang tags, canonicals and sitemap entries are all correct and consistent. That is the hard part and the reason it is in the prompt three times — most homemade versions fail here rather than at translation."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A small VPS at $5 to $10 a month plus the machine-translation calls. With caching by content hash, a stable site of a few hundred pages costs a few dollars once and almost nothing after."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Not owning a proxy. Everything a visitor sees now passes through code you wrote, so when it breaks, your site is down and not just your translations."
+    }
+  ]
+}

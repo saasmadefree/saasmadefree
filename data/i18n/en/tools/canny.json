@@ -1,0 +1,32 @@
+{
+  "tagline": "A public board where users post feature requests, vote on them, and see what shipped.",
+  "verdictSummary": "The board is not the hard part — Fider is an open-source implementation of exactly it. The hard part is that the same request arrives forty times in forty wordings, and Canny merges them without losing the vote count or the requester list. Deduplication with embeddings and a human confirm step is a genuine weekend build. What stays out of reach is Canny Pro's current pitch: pulling feedback automatically out of Intercom, Zendesk and Gong.",
+  "coreLoopDIY": "Collect requests on a public board, cluster near-duplicates automatically, merge them on a single click while keeping every vote and requester, and publish statuses back.",
+  "whatYouLose": [
+    "automatic capture from Intercom, Zendesk, Gong and sales calls",
+    "linking a request to the revenue of the accounts asking for it",
+    "the Jira, Linear and Slack integrations that close the loop back",
+    "single sign-on so voters are identified rather than self-declared",
+    "somebody else absorbing the spam on a public board"
+  ],
+  "whyPeopleStillPay": "Because the board only works if it is full, and it is only full if feedback lands in it without anyone typing it in. Canny's current price is for the capture, not the voting.",
+  "prompt": "Build a public feature-request board whose distinguishing feature is deduplication.\n\nThe board itself is ordinary: anyone can post a title and description, vote once per post, and comment. Posts carry a status — open, planned, in progress, shipped, declined — and the public roadmap is just a filtered view of that field.\n\nThe part worth building well: when a new post is submitted, embed its title and description, compare against existing posts with cosine similarity, and if anything crosses a threshold, show the poster the near-duplicates before they submit, with a \"this is my request too\" button that votes on the existing post instead of creating a new one. Deflecting the duplicate at submission time is far more effective than merging afterwards.\n\nFor the ones that get through, give the admin a merge action that moves votes, comments and requesters onto the surviving post, keeps the merged titles as aliases so search still finds them, and is reversible. An irreversible merge on a wrong guess destroys signal you cannot recover, so store the merge as a link rather than deleting the row.\n\nEmail every voter on a request when its status changes, in one batched message rather than one per post, and always with an unsubscribe link. This closing of the loop is the reason people post at all.\n\nSpam is the operational reality of a public board: rate-limit by IP, require email confirmation before a post appears, and hold first-time posters for review.\n\nOut of scope: integrations with support tools, revenue attribution, single sign-on. Show vote counts as counts, never as a priority score — the moment a board ranks by votes, the roadmap belongs to whoever organised a campaign.",
+  "faq": [
+    {
+      "q": "Can I import my Canny board?",
+      "a": "Canny exports posts, votes and comments as CSV, and the board content moves across. Merge history does not, so previously merged duplicates arrive as separate posts and you will re-merge the obvious ones."
+    },
+    {
+      "q": "Will it pull feedback from my support inbox?",
+      "a": "No, and that is the main gap. Canny Pro is largely sold on automatic capture from Intercom, Zendesk and call recordings; this build only holds what someone types into the board directly."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A VPS with Postgres at around $10 a month, plus a few dollars a month in embedding calls at any realistic volume, plus transactional email that is free at this scale."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "A full board. Canny fills itself from the places customers already complain; a self-hosted board fills only if you personally go and paste things into it, and most of them go quiet within a month."
+    }
+  ]
+}

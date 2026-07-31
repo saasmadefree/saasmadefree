@@ -1,0 +1,45 @@
+{
+  "slug": "docusign",
+  "name": "DocuSign",
+  "domains": [
+    "docusign.com"
+  ],
+  "category": "documents",
+  "subcategory": "electronic signature and audit trail",
+  "pricing": {
+    "amount": 11,
+    "currency": "USD",
+    "plan": "Personal",
+    "basis": "annual-effective-monthly",
+    "source": "https://ecom.docusign.com/plans-and-pricing/esignature",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The URL upstream recorded (docusign.com/products/electronic-signature/plans-and-pricing) now 404s; this is the live store page. Personal is \"Annual | Billed monthly\" at $11/month, $132 a year, and the page offers no month-to-month rate for that tier."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "legal evidence and identity",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Documenso",
+      "url": "https://github.com/documenso/documenso",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "pandadoc",
+    "dochub",
+    "adobe-acrobat-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

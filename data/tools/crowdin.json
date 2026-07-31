@@ -1,0 +1,49 @@
+{
+  "slug": "crowdin",
+  "name": "Crowdin",
+  "domains": [
+    "crowdin.com"
+  ],
+  "category": "translation",
+  "subcategory": "translation management for developers",
+  "pricing": {
+    "amount": 53,
+    "currency": "EUR",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://crowdin.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Read with the Monthly toggle selected: Pro from €53/month (€45 billed annually). Upstream recorded $59 against the Team tier, which is €161/month monthly. \"From\" is literal — the price scales with hosted words. Served in EUR from the EU."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "file-format parsers and vendor marketplace",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Weblate",
+      "url": "https://github.com/WeblateOrg/weblate",
+      "license": "GPL-3.0"
+    },
+    {
+      "name": "Tolgee",
+      "url": "https://github.com/tolgee/tolgee-platform",
+      "license": "Apache-2.0"
+    }
+  ],
+  "relatedSlugs": [
+    "lokalise",
+    "poeditor",
+    "tolgee-cloud"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

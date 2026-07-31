@@ -1,0 +1,33 @@
+{
+  "tagline": "Every everyday PDF operation as a web page, with the free tier's limits removed.",
+  "verdictSummary": "What Premium buys is the removal of limits — bigger files, more tasks per day, no waiting. The operations themselves are exactly what Stirling PDF already implements, and self-hosting it sets those limits to whatever your own machine will bear. This is the deploy-the-open-source case rather than a from-scratch build, so it is a real weekend with no gap in what the tool does.",
+  "coreLoopDIY": "Run Stirling PDF on your own server behind a login, with the file-size cap, the concurrency and the retention period set by you instead of by a plan.",
+  "whatYouLose": [
+    "the iOS and Android apps",
+    "the desktop application",
+    "drive-by use with no account, from any machine",
+    "Word and PowerPoint conversion at iLovePDF's fidelity on complex layouts",
+    "somebody else keeping it running"
+  ],
+  "whyPeopleStillPay": "Because it is there when you need it, on a borrowed laptop, with no server to have set up six months earlier. Seven dollars removes a limit you hit twice a year, which is a fair price for not thinking about it.",
+  "notes": "A genuinely honest yes: the substitute is not an approximation, it is the same set of operations run on hardware you control.",
+  "prompt": "Deploy Stirling PDF for yourself and make it usable by exactly one person.\n\nRun it with Docker Compose behind Caddy, which handles the certificate for your domain automatically. Put HTTP basic auth or an authentication proxy in front of the whole thing — an open PDF toolbox on the public internet becomes someone else's free file-conversion service within a week.\n\nSet the three limits that Premium is actually selling, and set them from your own hardware rather than copying a plan: maximum upload size, maximum concurrent jobs, and how long output files live before a cleanup job deletes them. Write those three numbers into the login page so you know what they are.\n\nAdd a cleanup cron that deletes processed files older than the retention you chose, and make it delete on a schedule rather than on access — a job that only runs when someone visits leaves files on disk indefinitely on a tool used once a month.\n\nGive LibreOffice enough memory. Office-to-PDF conversion is the operation that fails first on a small instance, and it fails by producing a blank or truncated document rather than an error, which is much worse.\n\nOut of scope: mobile apps, a desktop build, and multi-user accounts. Verify by converting a 40 MB scanned document, a slide deck with embedded fonts, and a spreadsheet, and checking each output opens correctly.",
+  "faq": [
+    {
+      "q": "Can I still use it from my phone?",
+      "a": "Through the browser, yes — Stirling PDF's interface works on a phone screen. What you lose is the native app: no share-sheet integration, no offline queue, and no camera-to-scanned-PDF flow."
+    },
+    {
+      "q": "Is the Word conversion as good?",
+      "a": "For text documents, yes — both sides use LibreOffice or something like it. On heavily formatted layouts with columns, text boxes and embedded fonts, iLovePDF's output is usually tidier, and this is the one place you will notice a difference."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "About $5 to $10 a month for a VPS with enough memory for LibreOffice, plus a domain. Below the subscription, but not free, and you are the one who restarts it."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Being available from any machine without preparation. iLovePDF works from a borrowed computer in an airport; your server works if you set it up, kept it patched, and can remember the password."
+    }
+  ]
+}

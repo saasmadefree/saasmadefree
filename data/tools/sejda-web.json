@@ -1,0 +1,44 @@
+{
+  "slug": "sejda-web",
+  "name": "Sejda Web",
+  "domains": [
+    "sejda.com"
+  ],
+  "category": "documents",
+  "subcategory": "online PDF toolbox with short retention",
+  "pricing": {
+    "amount": 8.5,
+    "currency": "EUR",
+    "plan": "Web Monthly",
+    "basis": "flat-monthly",
+    "source": "https://www.sejda.com/upgrade",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Upstream recorded the \"Web Week Pass\" as if it were a monthly rate. It is a €5.50 one-time charge for 7 days that does not renew. The recurring monthly plan is Web Monthly at €8.50; the page states prices are in EUR. sejda.com/pricing redirects here."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "open-source core/hosting",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Stirling PDF",
+      "url": "https://github.com/Stirling-Tools/Stirling-PDF",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "ilovepdf-premium",
+    "smallpdf",
+    "dochub"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

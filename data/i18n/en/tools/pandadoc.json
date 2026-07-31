@@ -1,0 +1,32 @@
+{
+  "tagline": "Proposals and quotes assembled from reusable blocks, priced, sent, signed and tracked.",
+  "verdictSummary": "Assembling a proposal from content blocks and a pricing table is genuinely a weekend — it is a templating problem with a spreadsheet in the middle. Two things around it are not. The signature at the end carries the same evidence problem Docusign does, and the reason PandaDoc is bought at all is that the deal data comes out of a CRM and the signed document goes back into it. Strip both and you have a nice document generator that nobody was paying for.",
+  "coreLoopDIY": "Fill a proposal template from a row of your own data, build the pricing table from line items, render a PDF, and send it with a link that tells you when it was opened.",
+  "whatYouLose": [
+    "the two-way sync with Salesforce, HubSpot and Pipedrive that starts and closes the deal record",
+    "a signature the buyer's procurement team accepts without a conversation",
+    "in-document payment collection at the moment of signing",
+    "per-section viewing analytics that show where the buyer stopped reading",
+    "approval workflows and locked pricing that stop a rep discounting past their authority"
+  ],
+  "whyPeopleStillPay": "Because it sits between the CRM and the money. The proposal is generated from the opportunity, the signature closes it, and the record updates itself — that loop is what a sales team is buying, and the document is only the visible part of it.",
+  "prompt": "Build a proposal generator for one person selling their own work.\n\nThe core loop: a proposal is a YAML file naming a template, a client, and a list of line items. Each line item has a description, quantity, unit price and optional discount. Render it to HTML with a templating engine, then to PDF, with the pricing table computed from the line items rather than typed — a proposal where the total disagrees with the lines is the failure that costs real money, so compute it once and assert the arithmetic in a test.\n\nContent blocks live as separate Markdown files — scope, terms, timeline, about — and the YAML lists which ones to include and in what order. Changing a term once should change it in every proposal generated afterwards and in none generated before, so record the block versions used into the output.\n\nSend by generating a unique link per recipient rather than attaching the PDF. Log an event when the link is opened, with a timestamp and how far down the page they scrolled. That is a much weaker signal than PandaDoc's per-section analytics and it is worth having anyway: knowing a proposal was never opened changes the follow-up.\n\nAcceptance is a typed name plus a consent checkbox, recorded with a timestamp, the IP and the document hash, and countersigned into a final PDF. State plainly in the interface that this records an agreement and is not a qualified electronic signature.\n\nOut of scope: CRM integration, payment collection, approval chains, and multi-user editing. Currency handling is one decision, made once: store amounts as integer minor units and format at render time.",
+  "faq": [
+    {
+      "q": "Can I import my PandaDoc templates?",
+      "a": "Not usefully. You can export a completed document as PDF, but PandaDoc templates are a block structure in its own format, and rebuilding them as Markdown blocks is a manual pass — an hour or two for a handful of templates."
+    },
+    {
+      "q": "Can the client pay from the document?",
+      "a": "No. Taking payment means a payment processor, a merchant account and handling failures and refunds, and that is a separate build entirely. This ends at an accepted proposal; the invoice is a different tool."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A small VPS at around $5 a month plus transactional email, which is free at the volume one person sends. No per-document or per-signature charge."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The loop back into the CRM. PandaDoc is worth its price when the opportunity generates the proposal and the signature updates the opportunity; a standalone generator makes you retype both ends."
+    }
+  ]
+}

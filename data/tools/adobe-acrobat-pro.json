@@ -1,0 +1,43 @@
+{
+  "slug": "adobe-acrobat-pro",
+  "name": "Adobe Acrobat Pro",
+  "domains": [
+    "acrobat.adobe.com"
+  ],
+  "category": "documents",
+  "subcategory": "PDF authoring, OCR and compliance output",
+  "pricing": {
+    "amount": 29.99,
+    "currency": "USD",
+    "plan": "Acrobat Pro",
+    "basis": "flat-monthly",
+    "source": "https://www.adobe.com/acrobat/pricing.html",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "adobe.com refuses every connection from this network (ERR_HTTP2_PROTOCOL_ERROR in a real browser, curl times out), so the figure was not read on Adobe's own page. $29.99 is the month-to-month individual rate; the annual plan is $19.99/mo. Confidence is medium for that reason, not because the number is in doubt."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "rendering fidelity and compliance output",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Stirling PDF",
+      "url": "https://github.com/Stirling-Tools/Stirling-PDF",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "foxit-pdf-editor",
+    "nitro-pdf-pro",
+    "pdf-expert"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

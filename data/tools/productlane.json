@@ -1,0 +1,39 @@
+{
+  "slug": "productlane",
+  "name": "Productlane",
+  "domains": [
+    "productlane.com"
+  ],
+  "category": "user-research",
+  "subcategory": "customer support tied to an issue tracker",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "per-seat-monthly",
+    "source": "https://productlane.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The page shows Starter $29, Pro $59 and Scale $99, all per user per month on monthly billing. Upstream had recorded $29 against the Pro tier; $29 is Starter."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "issue-tracker-native support workflow",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database",
+    "email-provider",
+    "oauth-app"
+  ],
+  "relatedSlugs": [
+    "featurebase",
+    "savio",
+    "canny"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

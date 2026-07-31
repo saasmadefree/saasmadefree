@@ -1,0 +1,46 @@
+{
+  "slug": "canny",
+  "name": "Canny",
+  "domains": [
+    "canny.io"
+  ],
+  "category": "user-research",
+  "subcategory": "feature request board and roadmap",
+  "pricing": {
+    "amount": 79,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "annual-effective-monthly",
+    "source": "https://canny.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The \"Starter\" tier upstream recorded at $99 no longer exists. The live page shows Free, then Pro from $79/month billed yearly, then Business (custom). \"From\" is literal: the price scales with tracked users above 100."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "deduplication and support-tool capture",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Fider",
+      "url": "https://github.com/getfider/fider",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "featurebase",
+    "nolt",
+    "productboard"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

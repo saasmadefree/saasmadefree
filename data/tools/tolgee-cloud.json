@@ -1,0 +1,45 @@
+{
+  "slug": "tolgee-cloud",
+  "name": "Tolgee Cloud",
+  "domains": [
+    "tolgee.io"
+  ],
+  "category": "translation",
+  "subcategory": "in-context translation, open source",
+  "pricing": {
+    "amount": 49,
+    "currency": "EUR",
+    "plan": "Team",
+    "basis": "annual-effective-monthly",
+    "source": "https://tolgee.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "There is no \"Starter\" tier. Cloud plans are Team €49/month, Business €179, Advanced €499, all billed annually with two months free; monthly billing costs more. Upstream recorded $25. The self-hosted edition of the same software is free."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "open-source core/hosting",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Tolgee",
+      "url": "https://github.com/tolgee/tolgee-platform",
+      "license": "Apache-2.0"
+    }
+  ],
+  "relatedSlugs": [
+    "poeditor",
+    "crowdin",
+    "lokalise"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

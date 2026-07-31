@@ -1,0 +1,32 @@
+{
+  "tagline": "One feedback board, on your own domain, with voting and a roadmap and nothing else.",
+  "verdictSummary": "Nolt is the smallest product in this category, which makes it the most tempting to rebuild and the easiest to underestimate. The board is an afternoon. The operational half — a public URL on your domain with a certificate, spam that arrives within days of launch, and single sign-on so votes come from real users — is what turns it into a weekend and keeps it from being a yes.",
+  "coreLoopDIY": "Run one board on your own subdomain where users post ideas, vote once each, and watch statuses change, with moderation you actually enforce.",
+  "whatYouLose": [
+    "single sign-on so votes are tied to real accounts",
+    "spam and abuse handling on a public board",
+    "the Slack, Discord, GitHub and Trello integrations",
+    "private boards for a specific customer segment",
+    "a hosted board that stays up without you"
+  ],
+  "whyPeopleStillPay": "Because a feedback board is a public surface with your name on it. When it is defaced or full of spam, that is visible to customers, and $29 is a small price for that being somebody else's pager.",
+  "prompt": "Build a single public feedback board and take moderation seriously from the start.\n\nThe board: post a title and description, one vote per person per post, comments, and five statuses with a public roadmap view derived from them. Server-rendered pages so every post has a real URL that search engines and support agents can link to.\n\nIdentity is the decision that shapes everything else. Pick one and enforce it: either email confirmation before a post or vote counts, or a signed token passed from your own application for logged-in users. Anonymous voting on a public board produces numbers that mean nothing, and building the board first and identity later means throwing away the vote data.\n\nBuild the moderation queue before launch, not after: hold every first post from a given email or IP for review, rate-limit posting to a few per hour per source, and give yourself a one-click ban that also hides everything that source ever posted. A public board attracts spam within days, and retrofitting moderation while it is being flooded is miserable.\n\nEmail voters when a status changes, batched per person, always with an unsubscribe link.\n\nRun it on your own subdomain with automatic certificates through Caddy, and set up the roadmap as the default landing view — the roadmap is the reason people come back, the board is the reason they come once.\n\nOut of scope: multiple boards, private boards, integrations, and any AI feature. Keep the schema small enough that a year of posts fits comfortably in SQLite.",
+  "faq": [
+    {
+      "q": "Can I import my Nolt board?",
+      "a": "Nolt exports posts and votes, so the content moves. Voter identities do not travel in a usable form, so historic vote counts arrive as numbers rather than as people you can notify later."
+    },
+    {
+      "q": "How bad is the spam really?",
+      "a": "Bad enough that it is in the prompt. A public form with no barrier attracts automated posting within days of being indexed, which is why email confirmation and a review queue are treated as launch requirements rather than polish."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A small VPS at $5 a month, a domain, and transactional email that is free at this scale. SQLite means no database bill."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Not being on call for it. A feedback board is customer-facing, so when it is down or defaced it is your reputation, and Nolt's price is largely for that not being your problem."
+    }
+  ]
+}

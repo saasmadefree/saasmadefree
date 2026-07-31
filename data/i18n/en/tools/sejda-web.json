@@ -1,0 +1,31 @@
+{
+  "tagline": "The same PDF operations as everyone else, sold on deleting your files five hours later.",
+  "verdictSummary": "Sejda competes on retention: files are deleted after a few hours and the free tier is limited by pages and tasks rather than nagging. Self-hosting Stirling PDF gives you the operations outright, and it makes the retention promise something you can verify instead of read. That makes this a deploy-the-open-source case rather than a rebuild, and there is no functional gap left over.",
+  "coreLoopDIY": "Run Stirling PDF on your own machine with a deletion clock you set and can watch, so the privacy claim is a cron job you own rather than a sentence in a policy.",
+  "whatYouLose": [
+    "the Sejda Desktop application",
+    "use from any machine with no setup and no account",
+    "the OCR and processing limits being somebody else's problem",
+    "guaranteed uptime when you need it once a quarter"
+  ],
+  "whyPeopleStillPay": "Because the privacy promise is what is being sold, and buying it from a company with a policy is less work than running a server. Most people who would benefit from self-hosting will not, and Sejda is honestly priced for them.",
+  "prompt": "Deploy a PDF toolbox for yourself whose retention policy is enforced rather than promised.\n\nRun Stirling PDF with Docker Compose behind Caddy for automatic HTTPS on your own domain, with authentication in front of the whole surface.\n\nThe part worth building yourself is the deletion clock. Mount the working directory as a tmpfs so intermediate files live in memory and disappear on restart, and run a sweeper every five minutes that deletes anything older than the retention window you chose. Show the window and the age of the oldest file on the landing page. A retention promise you cannot see is indistinguishable from no retention policy at all, which is exactly the thing being sold here.\n\nWrite a test for the sweeper: create a file with a modification time past the window, run the sweeper, assert the file is gone. This is the one piece of logic where a silent failure means documents sitting on a disk for months.\n\nTurn off every default that phones home, and check the container makes no outbound connections while processing, so \"nothing leaves this server\" is a property you verified rather than assumed.\n\nSet the upload limit from your own hardware and put the number on the login page.\n\nOut of scope: a desktop application, mobile apps, accounts for other people. Verify by processing a large scanned document and confirming both the output and the intermediates are gone after the window expires.",
+  "faq": [
+    {
+      "q": "Can I keep using it from a machine that is not mine?",
+      "a": "Yes, through the browser, but you have to log in — and that is the trade. Sejda works from a borrowed laptop with no account at all, which is a real convenience you are giving up."
+    },
+    {
+      "q": "Does it run offline?",
+      "a": "On a laptop, yes: run the same Compose file locally and it works with no network at all, which is stronger than anything a hosted tool can offer. On a VPS it obviously does not."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Around $5 to $10 a month for a VPS plus a domain, or nothing on hardware you already have. There is no per-file charge and no page limits beyond what the machine can do."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Somebody else keeping it up. Sejda is there the day you need it; your server is there if you patched it, paid for it, and the disk did not fill."
+    }
+  ]
+}

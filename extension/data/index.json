@@ -41,6 +41,13 @@
     "currency": "USD",
     "url": "/en/tools/adalo"
   },
+  "acrobat.adobe.com": {
+    "slug": "adobe-acrobat-pro",
+    "verdict": "no",
+    "amount": 29.99,
+    "currency": "USD",
+    "url": "/en/tools/adobe-acrobat-pro"
+  },
   "new.express.adobe.com": {
     "slug": "adobe-express",
     "verdict": "kinda",
@@ -152,6 +159,13 @@
     "amount": 38,
     "currency": "USD",
     "url": "/en/tools/arcade"
+  },
+  "aureliuslab.com": {
+    "slug": "aurelius",
+    "verdict": "kinda",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/aurelius"
   },
   "avoma.com": {
     "slug": "avoma",
@@ -299,6 +313,13 @@
     "amount": 3,
     "currency": "USD",
     "url": "/en/tools/canary-mail"
+  },
+  "canny.io": {
+    "slug": "canny",
+    "verdict": "kinda",
+    "amount": 79,
+    "currency": "USD",
+    "url": "/en/tools/canny"
   },
   "canva.com": {
     "slug": "canva",
@@ -454,6 +475,13 @@
     "currency": "USD",
     "url": "/en/tools/craft"
   },
+  "crowdin.com": {
+    "slug": "crowdin",
+    "verdict": "kinda",
+    "amount": 53,
+    "currency": "EUR",
+    "url": "/en/tools/crowdin"
+  },
   "cursor.com": {
     "slug": "cursor",
     "verdict": "kinda",
@@ -482,6 +510,13 @@
     "currency": "USD",
     "url": "/en/tools/dashlane"
   },
+  "deepl.com": {
+    "slug": "deepl-pro",
+    "verdict": "no",
+    "amount": 7.49,
+    "currency": "EUR",
+    "url": "/en/tools/deepl-pro"
+  },
   "joindeleteme.com": {
     "slug": "deleteme",
     "verdict": "no",
@@ -495,6 +530,20 @@
     "amount": 24,
     "currency": "USD",
     "url": "/en/tools/descript"
+  },
+  "dochub.com": {
+    "slug": "dochub",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "EUR",
+    "url": "/en/tools/dochub"
+  },
+  "docusign.com": {
+    "slug": "docusign",
+    "verdict": "no",
+    "amount": 11,
+    "currency": "USD",
+    "url": "/en/tools/docusign"
   },
   "doodle.com": {
     "slug": "doodle",
@@ -622,6 +671,13 @@
     "currency": "USD",
     "url": "/en/tools/feathery"
   },
+  "featurebase.app": {
+    "slug": "featurebase",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/featurebase"
+  },
   "feedly.com": {
     "slug": "feedly",
     "verdict": "yes",
@@ -671,6 +727,13 @@
     "currency": "USD",
     "url": "/en/tools/formstack-forms"
   },
+  "foxit.com": {
+    "slug": "foxit-pdf-editor",
+    "verdict": "kinda",
+    "amount": 13.96,
+    "currency": "EUR",
+    "url": "/en/tools/foxit-pdf-editor"
+  },
   "framer.com": {
     "slug": "framer",
     "verdict": "kinda",
@@ -691,6 +754,13 @@
     "amount": 23,
     "currency": "USD",
     "url": "/en/tools/freshbooks"
+  },
+  "frill.co": {
+    "slug": "frill",
+    "verdict": "kinda",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/frill"
   },
   "gamma.app": {
     "slug": "gamma",
@@ -866,6 +936,13 @@
     "amount": 2.99,
     "currency": "USD",
     "url": "/en/tools/ifttt"
+  },
+  "ilovepdf.com": {
+    "slug": "ilovepdf-premium",
+    "verdict": "yes",
+    "amount": 7,
+    "currency": "USD",
+    "url": "/en/tools/ilovepdf-premium"
   },
   "incogni.com": {
     "slug": "incogni",
@@ -1049,6 +1126,13 @@
     "currency": "USD",
     "url": "/en/tools/linear"
   },
+  "linguise.com": {
+    "slug": "linguise",
+    "verdict": "kinda",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/linguise"
+  },
   "livingwriter.com": {
     "slug": "livingwriter",
     "verdict": "kinda",
@@ -1062,6 +1146,13 @@
     "amount": 10,
     "currency": "EUR",
     "url": "/en/tools/lnkflow"
+  },
+  "lokalise.com": {
+    "slug": "lokalise",
+    "verdict": "kinda",
+    "amount": 144,
+    "currency": "USD",
+    "url": "/en/tools/lokalise"
   },
   "loom.com": {
     "slug": "loom",
@@ -1343,12 +1434,26 @@
     "currency": "USD",
     "url": "/en/tools/nightwatch"
   },
+  "gonitro.com": {
+    "slug": "nitro-pdf-pro",
+    "verdict": "kinda",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/nitro-pdf-pro"
+  },
   "nocodb.com": {
     "slug": "nocodb-cloud",
     "verdict": "kinda",
     "amount": 15,
     "currency": "USD",
     "url": "/en/tools/nocodb-cloud"
+  },
+  "nolt.io": {
+    "slug": "nolt",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/nolt"
   },
   "nordpass.com": {
     "slug": "nordpass",
@@ -1441,6 +1546,13 @@
     "currency": "USD",
     "url": "/en/tools/pageoptimizer-pro"
   },
+  "pandadoc.com": {
+    "slug": "pandadoc",
+    "verdict": "no",
+    "amount": 19,
+    "currency": "USD",
+    "url": "/en/tools/pandadoc"
+  },
   "paperform.co": {
     "slug": "paperform",
     "verdict": "kinda",
@@ -1461,6 +1573,13 @@
     "amount": 29,
     "currency": "USD",
     "url": "/en/tools/payhip"
+  },
+  "pdfexpert.com": {
+    "slug": "pdf-expert",
+    "verdict": "kinda",
+    "amount": 7.08,
+    "currency": "EUR",
+    "url": "/en/tools/pdf-expert"
   },
   "pebblely.com": {
     "slug": "pebblely",
@@ -1588,6 +1707,13 @@
     "currency": "USD",
     "url": "/en/tools/podsqueeze"
   },
+  "poeditor.com": {
+    "slug": "poeditor",
+    "verdict": "kinda",
+    "amount": 17,
+    "currency": "USD",
+    "url": "/en/tools/poeditor"
+  },
   "post-bridge.com": {
     "slug": "post-bridge",
     "verdict": "kinda",
@@ -1601,6 +1727,20 @@
     "amount": 29,
     "currency": "USD",
     "url": "/en/tools/postiz"
+  },
+  "productboard.com": {
+    "slug": "productboard",
+    "verdict": "no",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/productboard"
+  },
+  "productlane.com": {
+    "slug": "productlane",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/productlane"
   },
   "promptdc.com": {
     "slug": "promptdc",
@@ -1819,6 +1959,13 @@
     "currency": "USD",
     "url": "/en/tools/rytr"
   },
+  "savio.io": {
+    "slug": "savio",
+    "verdict": "kinda",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/savio"
+  },
   "savvycal.com": {
     "slug": "savvycal",
     "verdict": "kinda",
@@ -1860,6 +2007,13 @@
     "amount": 9,
     "currency": "EUR",
     "url": "/en/tools/seatable-cloud"
+  },
+  "sejda.com": {
+    "slug": "sejda-web",
+    "verdict": "yes",
+    "amount": 8.5,
+    "currency": "EUR",
+    "url": "/en/tools/sejda-web"
   },
   "sellfy.com": {
     "slug": "sellfy",
@@ -1958,6 +2112,13 @@
     "amount": 10,
     "currency": "USD",
     "url": "/en/tools/slite"
+  },
+  "smallpdf.com": {
+    "slug": "smallpdf",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "EUR",
+    "url": "/en/tools/smallpdf"
   },
   "smartsuite.com": {
     "slug": "smartsuite",
@@ -2246,6 +2407,13 @@
     "currency": "USD",
     "url": "/en/tools/todoist"
   },
+  "tolgee.io": {
+    "slug": "tolgee-cloud",
+    "verdict": "yes",
+    "amount": 49,
+    "currency": "EUR",
+    "url": "/en/tools/tolgee-cloud"
+  },
   "transistor.fm": {
     "slug": "transistor-fm",
     "verdict": "no",
@@ -2462,6 +2630,13 @@
     "amount": 25,
     "currency": "USD",
     "url": "/en/tools/xero"
+  },
+  "xodo.com": {
+    "slug": "xodo-pro",
+    "verdict": "kinda",
+    "amount": 14.99,
+    "currency": "USD",
+    "url": "/en/tools/xodo-pro"
   },
   "ynab.com": {
     "slug": "ynab",

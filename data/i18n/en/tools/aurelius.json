@@ -1,0 +1,32 @@
+{
+  "tagline": "A place to keep research notes so the insights stay attached to the evidence behind them.",
+  "verdictSummary": "The database underneath is small — notes, tags, projects, insights, and a link table between them. What Aurelius sells is a discipline: an insight has to cite the quotes it came from, and the tool will not let you forget which interview a claim came out of. That constraint is buildable in a weekend and worth building. Transcription of 180 languages and a shared repository a whole team trusts are not.",
+  "coreLoopDIY": "Import interview notes and transcripts, tag passages, write insights that must cite at least one tagged passage, and search everything by tag, project or phrase.",
+  "whatYouLose": [
+    "transcription across 180 languages, with speaker separation",
+    "a repository a whole team searches and trusts as the record",
+    "the visual analysis board for affinity diagramming",
+    "automatic report generation for stakeholders",
+    "unlimited storage of interview recordings"
+  ],
+  "whyPeopleStillPay": "Because a research repository is only worth anything when other people use it. One researcher with good notes does not need Aurelius; a team that has to find last year's finding before repeating the study does.",
+  "prompt": "Build a personal research repository whose central rule is that insights must cite evidence.\n\nData model, kept deliberately small: projects have documents, documents have passages, passages carry tags, and insights link to passages. Store it in Postgres. The one rule the schema enforces: an insight with no linked passage cannot be marked published. Enforce it as a constraint, not a warning — the entire reason to build this rather than use a notes app is that the link is mandatory.\n\nIngest is a Markdown or plain-text transcript per document, plus a date and a participant label. Split into passages on paragraph boundaries and keep offsets so a passage always points back at its exact place in the source.\n\nTagging is manual first: select a passage, apply a tag. Then add one assisted step — send a document to an LLM and ask it to propose tags from the tags you already use, never inventing new ones, and present them as suggestions a human accepts one by one. An automatic tagger that invents its own vocabulary destroys the consistency that makes the repository searchable, which is the failure mode to design against.\n\nSearch across passages, tags and insights, showing the surrounding paragraph and a link back to the document.\n\nThe output is one page per insight: the claim, the passages that support it in full, the documents and dates they came from, and how many separate participants said it. Show that count prominently — an insight supported by one participant and an insight supported by nine look identical in a slide deck and mean completely different things.\n\nOut of scope: audio transcription, video storage, a participant panel, and multi-user permissions.",
+  "faq": [
+    {
+      "q": "Can I import my existing Aurelius data?",
+      "a": "Aurelius exports projects and notes, and the text moves across fine. What does not is the link structure between insights and the evidence they cite — that is the part you would most want, and re-linking it is manual."
+    },
+    {
+      "q": "Does it transcribe interviews?",
+      "a": "No. Run Whisper separately on your recordings, then feed the transcripts in as documents. Splitting transcription from analysis keeps the repository useful even when the recording was made somewhere else entirely."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A small VPS with Postgres, roughly $10 a month, plus a few cents per document if you use the assisted tagging. The repository itself costs nothing to keep."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Being the team's memory. A repository nobody else can open is a personal notes system with extra steps, and Aurelius earns its price precisely when other people search it."
+    }
+  ]
+}
