@@ -1,33 +1,20 @@
 {
-  "tagline": "Create Thumbnails That Make People Click",
-  "verdictSummary": "A basic AI thumbnail generator can be built quickly using existing image models, but recreating ThumblifyAI requires much more than connecting an image API. The product's advantage comes from specialized thumbnail-focused system prompts, AI workflows, creator-focused features, thumbnail inspiration, style matching, AI customization features, and continuous iteration around generating clickable YouTube thumbnails.",
-  "coreLoopDIY": "Generate YouTube thumbnail concepts and images using AI models with custom prompts and creator-focused workflows.",
+  "tagline": "AI thumbnail generator for YouTube creators.",
+  "verdictSummary": "A personal thumbnail generator — a style picker, a generated background composited with your own photo, a bold text layer — is a real weekend build wrapping an image-generation API. What doesn't come with it is ThumblifyAI's actual product: prompts tuned specifically for what makes a thumbnail get clicked, refined continuously against real performance.",
+  "coreLoopDIY": "Generate a background image from a title and style preset, composite an uploaded photo onto it, and add a bold text layer — producing a few variants to choose from.",
   "whatYouLose": [
-    "specialized thumbnail-specific system prompts",
-    "style matching and recreation features",
-    "custom AI training and personalization features",
-    "creator-focused workflow and UI/UX",
-    "thumbnail inspiration system"
+    "thumbnail-specific prompt tuning refined over time",
+    "style-matching and recreation features",
+    "a curated thumbnail inspiration library",
+    "a workflow built specifically around a creator's process"
   ],
-  "whyPeopleStillPay": "Creators are not only paying for AI image generation. The biggest value is creating high-quality thumbnails without needing to become prompt experts. ThumblifyAI's tuned prompts and workflows, and generation process are tuned specifically for creating catchy YouTube thumbnails. Users get a faster and more consistent path from video idea to thumbnail instead of spending hours experimenting with prompts, styles, and settings.",
-  "notes": "AI thumbnail maker platform built for YouTube creators.",
-  "prompt": "Build me a personal YouTube thumbnail generator inspired by ThumblifyAI. Requirements:\n\n- Node + Express, one localhost page; no accounts, no telemetry, keys in .env.\n- Input: video title, a face/subject photo upload, and a style picker with 5\n  presets (bold MrBeast-style, minimal tech, tutorial, vlog, gaming).\n- Generation: send the title + style prompt to an image model API (key in\n  .env; support OpenAI Images or Replicate, one flag to choose). Composite\n  the uploaded face onto the generated background with sharp: auto-cutout\n  via an rembg CLI call, drop shadow, rim light.\n- Text layer: the title (or a punchier 3-5 word hook the LLM suggests)\n  rendered with sharp over the composite, thick outline, 2 font choices.\n- Output 1280x720 PNG under 2MB, plus a 3-variant grid so I can pick; save\n  every result to thumbnails/ with the prompt used, so styles are repeatable.\n- A history page of past generations with one-click re-run.\n- Out of scope: accounts, teams, A/B testing against YouTube analytics, and\n  bulk generation. This is one thumbnail at a time for my own channel.\n- README: which API keys I need, rembg install, and rough per-image cost.",
+  "whyPeopleStillPay": "The value isn't image generation itself — it's not having to become a prompt expert to get a thumbnail that actually gets clicks. People pay for a tuned, fast, repeatable path from an idea to a finished thumbnail.",
+  "notes": "A straightforward, well-scoped entry: the generation mechanics are easy, the tuning behind what makes a thumbnail click-worthy is the part that took real iteration.",
+  "prompt": "Build a personal YouTube thumbnail generator: take a video title, an uploaded photo of yourself or the subject, and a style preset (a handful of common thumbnail styles cover most cases) as input. Generate a background image from the title and style through an image-generation API, then composite the uploaded photo onto it — cut the subject out with a local background-removal tool, add a drop shadow and rim light so it reads as intentional, not pasted. Render a bold text layer over the composite: either the title itself or a short, punchier hook suggested by an LLM, in a heavy outlined font. Output the final image at standard YouTube thumbnail dimensions, along with a few variants to choose between. Save every generation with the exact prompt and settings used, so a style is repeatable later, and keep a history page for one-click re-runs.\n\nDo not build accounts, team features, or A/B testing against real YouTube performance — this generates one thumbnail at a time for your own channel, and that's the honest, complete scope.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing ThumblifyAI thumbnails?", "a": "The images themselves, yes, if you've saved them — they're just files. The specific prompts and style tuning behind them aren't exported, so recreating a look means starting a new prompt." },
+    { "q": "Will it work on my phone?", "a": "Uploading a photo and picking a style works on a phone browser, but reviewing and comparing generated variants is easier on a larger screen." },
+    { "q": "What does it cost to run?", "a": "Image-generation API usage per thumbnail, typically a small amount per image — hosting the small app itself is close to free." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Prompts tuned for clicks specifically. ThumblifyAI's actual edge is prompt and workflow tuning refined against what makes people click, not the ability to generate an image — this build gives you a solid starting point, not that accumulated tuning." }
   ]
 }

@@ -1,34 +1,21 @@
 {
-  "tagline": "Template-based quick editor for social graphics, videos, PDFs, and assets",
-  "verdictSummary": "You can build a quick image editor and template exporter, but Adobe's stock/licensing, PDF/media tooling, brand assets, and Creative Cloud tie-ins are the product.",
-  "coreLoopDIY": "Build a small template editor for images/videos with text overlays, background removal via API, and export.",
+  "tagline": "Template-based quick editor for social graphics and assets.",
+  "verdictSummary": "A template-based graphics generator — HTML/CSS templates rendered to PNG, background removal via a local open model, brand colors and fonts applied automatically — is a real weekend build. What doesn't come with it is Adobe's actual product: licensed stock assets, video and PDF tooling, and deep integration with the rest of Creative Cloud.",
+  "coreLoopDIY": "A template picker that fills a small set of HTML/CSS layouts with your text, image, and brand colors, rendered to PNG at exact pixel sizes.",
   "whatYouLose": [
-    "Adobe Stock/assets",
-    "PDF/video tooling",
-    "brand kits",
-    "Creative Cloud integration",
+    "Adobe Stock and licensed assets",
+    "video and PDF editing tools",
+    "deep Creative Cloud integration",
     "mobile apps",
-    "licensing coverage"
+    "broad licensing coverage for commercial use"
   ],
-  "whyPeopleStillPay": "They pay because the content and export ecosystem is already there.",
-  "notes": "Useful contrast with Canva: same template moat, different ecosystem.",
-  "prompt": "Build me a social graphics generator to replace Adobe Express. Requirements:\n\n- A local web app: Node + Express, templates are plain HTML/CSS files in\n  templates/, rendered to PNG by a headless Playwright screenshot at exact\n  pixel sizes. No frontend framework.\n- Ship 5 starter templates: Instagram square 1080x1080, story 1080x1920,\n  X post 1600x900, YouTube thumbnail 1280x720, and a quote card.\n- The page shows a template picker, one input per text field, an image drop\n  zone, and an accent color picker, with a live preview iframe rendering the\n  same template HTML.\n- Background removal for uploaded photos via rembg running locally, no paid\n  key needed.\n- Brand lives in brand.json: two font files in fonts/, 4 hex colors, a logo\n  path; every template reads from it.\n- Exports save to ~/Graphics/YYYY-MM-DD-<slug>.png plus a JSON sidecar of the\n  field values so any graphic can be re-rendered later.\n- Localhost only, no accounts, no telemetry, my photos never leave the machine.\n- Out of scope: video, PDFs, and stock assets. Adobe's licensed library is\n  the product, I bring my own images.\n- README: setup, installing rembg, and how to add a new template.",
+  "whyPeopleStillPay": "The content and export ecosystem is already there — templates, stock assets, and format coverage across a dozen use cases — people pay for that breadth, not for the ability to overlay text on an image.",
+  "notes": "A useful contrast with Canva in this catalogue: a similar template moat, inside a different ecosystem.",
+  "prompt": "Build a template-based graphics generator: a small library of HTML/CSS templates for common formats (a square social post, a story size, a header banner, a thumbnail, a quote card), each rendered to a PNG at exact pixel dimensions using a headless browser screenshot. Build a page with a template picker, one input per text field, an image drop zone, and a live preview that renders the same template. Run background removal on uploaded photos with a local open-source model — no paid API needed for this. Load brand settings (two fonts, a handful of colors, a logo) from one config file that every template reads from automatically. Save each export alongside a small sidecar file recording the field values used, so any graphic can be reopened and re-rendered later.\n\nDo not build video or PDF tooling, or a stock-asset library — Adobe's licensed content library is the actual product, and this build assumes you bring your own images.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I bring in my existing Adobe Express designs?", "a": "Not directly — Adobe Express doesn't export to an editable format this build can read, only flattened images. A flattened export works as a reference to rebuild from, not an import." },
+    { "q": "Will it work on my phone?", "a": "Not well — filling in a template works in a phone browser, but precise text and image placement is a desktop task, and there's no dedicated mobile app here." },
+    { "q": "What does it cost to run?", "a": "Just hosting for the small web app, typically a few dollars a month or free on a static-friendly host — background removal runs locally with no API cost." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The licensed asset library. Adobe Express bundles stock photos, icons, and fonts already cleared for commercial use; this build hands you empty templates and your own images, with none of that licensing coverage." }
   ]
 }

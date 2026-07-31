@@ -1,33 +1,20 @@
 {
-  "tagline": "Schedule and cross-post to every major social network from one place, with an API and MCP server",
-  "verdictSummary": "The core loop (compose, queue, cron tick, publish) is one-shottable for networks with open APIs like Bluesky, Mastodon, and Telegram. What you cannot one-shot is the reason Post Bridge exists: one-click posting to TikTok, Instagram, YouTube, Facebook, Threads, Pinterest, LinkedIn, and Google Business Profile. Those APIs are approval-gated behind Meta App Review, TikTok's Content Posting API, YouTube quota, and business verification, which as an individual you often can't even qualify for. On top of that sits per-platform video transcoding, constant token-refresh babysitting, and an API plus MCP server so an agent can post for you. You can vibecode a personal cross-poster for the open networks in a sitting; you cannot vibecode the approvals.",
-  "coreLoopDIY": "Compose posts into a slot-based queue, publish on schedule to open-API networks via per-network adapters, and log outcomes, with a push-to-post-by-hand fallback for the approval-gated platforms.",
+  "tagline": "Schedule and cross-post to every major social network from one place.",
+  "verdictSummary": "The core loop — compose, queue, publish on a schedule — is a real one-sitting build for networks with genuinely open APIs like Bluesky, Mastodon, and Telegram. What isn't buildable is the actual reason Post Bridge exists: one-click posting to TikTok, Instagram, YouTube, Facebook, Threads, Pinterest, LinkedIn, and Google Business Profile, all approval-gated behind business verification and app review that an individual often can't even qualify for alone.",
+  "coreLoopDIY": "Compose posts into a slot-based queue, publish on schedule to networks with open APIs, and fall back to a manual push notification for every approval-gated platform.",
   "whatYouLose": [
-    "one-click connect to approval-gated platforms (TikTok, Instagram, YouTube, Facebook, Threads, Pinterest, LinkedIn, Google Business Profile)",
-    "pre-approved platform OAuth apps you often can't obtain as an individual",
-    "per-platform video transcoding and format handling",
-    "token-refresh babysitting as platforms expire and change policies",
-    "the hosted API and MCP server that lets a coding agent post for you"
+    "one-click access to approval-gated platforms like TikTok, Instagram, YouTube, and Facebook",
+    "pre-approved OAuth apps you likely can't obtain solo",
+    "per-platform video transcoding",
+    "ongoing token-refresh maintenance"
   ],
-  "whyPeopleStillPay": "The hosted product ships with OAuth apps that Meta, TikTok, YouTube, Pinterest, and Google have already put through business verification and app review, so connecting Instagram or TikTok is a click instead of a multi-week developer-app process you may not qualify for solo. It also absorbs constant API and policy churn, per-platform video specs, and token expiry, and exposes an API plus MCP server so your coding agent can schedule posts through it rather than you rebuilding and maintaining the poster yourself.",
-  "notes": "The full big-platform set is the moat: the approvals, not the code · plus an API and MCP server so your agent posts for you instead of rebuilding it.",
-  "prompt": "Build me a personal social post scheduler to replace Post Bridge. Requirements:\n\n- Node + Express + better-sqlite3; a localhost page with a compose box,\n  image/video attach, and the queue ordered by send time.\n- Targets with open APIs only: Bluesky (app password via @atproto/api),\n  Mastodon (access token), and a Telegram channel (bot token). Creds in\n  .env, one small adapter file per network so a fourth is addable later.\n- For the approval-gated platforms people actually want (TikTok, Instagram,\n  YouTube, Facebook, Threads, Pinterest, LinkedIn), do NOT fight their APIs:\n  at post time send me an ntfy.sh push with the caption and media path so I\n  can post by hand in a minute. Say clearly in the README that these need\n  approved developer apps and business verification you cannot one-shot.\n- Slot-based queue: I define posting times per weekday in my timezone and\n  new posts fill the next free slot; a post can also be pinned to an exact\n  datetime or duplicated across networks with per-network text and counts.\n- A node-cron tick every minute publishes due posts, marks each row sent or\n  failed, retries failures 3 times with backoff, and marks before sending so\n  nothing double-posts.\n- Attached media stored in media/ next to the database, images resized per\n  network with sharp.\n- A history page of the last 100 sent posts linking to the live posts.\n- Runs on my always-on box; localhost only, no accounts, no telemetry.\n- Out of scope: cross-network analytics, teams, and per-platform video\n  transcoding.\n- README: getting a Bluesky app password, a Mastodon token, and a Telegram\n  bot token, plus an honest note that social APIs drift and this needs\n  occasional patching.",
+  "whyPeopleStillPay": "The hosted product ships with OAuth apps that major platforms have already put through business verification and app review, turning a multi-week developer-approval process into one click — and it absorbs the constant API churn and token expiry that would otherwise be your job.",
+  "notes": "The full big-platform set is the moat — the approvals, not the code.",
+  "prompt": "Build a personal social post scheduler targeting only networks with genuinely open developer APIs — Bluesky, Mastodon, and a Telegram channel are all realistic starting points. Build a compose view with an image or video attachment and a slot-based queue: define preferred posting times per weekday, and new posts fill the next free slot or get pinned to an exact time. A scheduled job publishes due posts, marking each as sent or failed and retrying briefly before giving up. For platforms people actually want but can't reasonably automate — TikTok, Instagram, YouTube, Facebook, Threads, Pinterest, LinkedIn — don't fight their APIs: send yourself a notification with the caption and media at the scheduled time so you can post by hand in under a minute, and be explicit in the UI that this is manual, not automated.\n\nDo not attempt to acquire approval-gated platform access yourself — that needs business verification and app review most individuals don't qualify for solo, and pretending otherwise wastes real effort. Be plain in the README that social APIs drift and this needs occasional patching to stay working.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing Post Bridge queue?", "a": "Not automatically — there's no structured export of scheduled posts. Recreating an active queue by hand is realistic, since it's rarely more than a handful of pending posts." },
+    { "q": "Will it work on my phone?", "a": "The compose page is a responsive web page, usable on a phone, and the push-notification fallback for gated platforms is specifically designed to be actioned from a phone in under a minute." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — the open-API networks this build targets are free to post to at personal volume." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "One-click access to the big platforms. TikTok, Instagram, and the rest stay behind approval processes an individual developer often can't complete alone — this build's honest answer for those is a fast manual post, not real automation." }
   ]
 }

@@ -1,34 +1,21 @@
 {
-  "tagline": "Daily planner that pulls tasks and calendar into a focused schedule",
-  "verdictSummary": "A daily planning dashboard is not hard, but Sunsama's value is many integrations, careful UX, calendar sync, and habit-forming workflow.",
-  "coreLoopDIY": "Pull tasks/calendar events, let the user drag tasks into a day plan, track estimates/completion, and run a daily shutdown prompt.",
+  "tagline": "Daily planner that pulls tasks and calendar into a focused schedule.",
+  "verdictSummary": "A solo daily-planning dashboard — a read-only calendar overlay next to a task list, drag tasks into today, an end-of-day shutdown ritual — is a real weekend build. What doesn't come with it is Sunsama's actual breadth: integrations with a wide range of task tools, two-way calendar sync, and years of habit-forming interaction design.",
+  "coreLoopDIY": "A daily planning view showing your calendar as a read-only timeline next to a task list you drag into today, with an end-of-day shutdown flow that carries unfinished tasks forward or drops them deliberately.",
   "whatYouLose": [
-    "integration breadth",
-    "calendar two-way sync",
-    "daily ritual design",
+    "integrations with a wide range of external task tools",
+    "two-way calendar sync",
+    "years of careful daily-ritual UX design",
     "mobile apps",
-    "analytics",
-    "reliability"
+    "planning analytics"
   ],
-  "whyPeopleStillPay": "They pay for a planning habit that survives across tools, not a new to-do list.",
-  "notes": "Good high-price target where the answer is not trivially yes because integrations matter.",
-  "prompt": "Build me a solo daily planner like Sunsama. Requirements:\n\n- A local web app on localhost:4400: Node + Express + better-sqlite3, server-rendered\n  with a little vanilla JS for drag and drop. No frontend framework.\n- Today view, two columns: my Google Calendar events (read-only via googleapis, OAuth\n  creds in .env) as a timeline, and today's task list beside it.\n- Tasks have title, estimate in minutes, project tag, done flag. Quick-add box at the\n  top, plus a backlog panel of unplanned tasks I can drag into today.\n- Header shows planned minutes vs a daily budget from config (default 6h) and turns\n  red when I overplan.\n- A /shutdown page for the end of day: walks each unfinished task, one keystroke to\n  roll to tomorrow, send to backlog, or drop, then shows planned vs actual.\n- Keep per-day history in SQLite so a /week page can show the last 7 days of planned\n  vs done.\n- Calendar is read-only: never write events. Out of scope: task-tool integrations\n  (Todoist, Trello, email), mobile apps, and two-way calendar sync.\n- No accounts, no telemetry, everything local except the Google API calls.\n- README: Google Cloud console steps for the OAuth client · budget an hour, that\n  console is the worst part of this build.",
+  "whyPeopleStillPay": "People pay for a planning habit that survives across every tool they use, not for a new to-do list — the integration breadth and ritual design are the actual product.",
+  "notes": "A good high-price target where the answer isn't a trivial yes, precisely because integrations matter here.",
+  "prompt": "Build a solo daily planner: a Today view showing your calendar as a read-only timeline, pulled through its API, next to today's task list. Tasks have a title, a time estimate, a project tag, and a done flag; a quick-add box and a backlog panel let you drag unplanned tasks into today. Show planned minutes against a configurable daily budget, turning visibly red when you overplan. Build an end-of-day shutdown flow: step through each unfinished task with a single action to roll it to tomorrow, send it to the backlog, or drop it, then show a plain planned-versus-actual summary. Keep a day-by-day history so a weekly view can show the last week's planned-versus-done trend.\n\nDo not build integrations with other task tools, two-way calendar writes, or mobile apps — the calendar here is read-only truth, never written to, and that's the honest, complete scope for a personal planning tool.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing Sunsama history?", "a": "Not automatically — Sunsama doesn't offer a structured export of your planning history. Starting fresh from today is the realistic option rather than porting past days over." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, for a quick check, but the drag-and-drop planning workflow is genuinely built for a larger screen — there's no dedicated mobile app." },
+    { "q": "What does it cost to run?", "a": "Hosting, typically a few dollars a month — the calendar API itself is free at personal usage volumes." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Integration breadth. Sunsama pulls tasks in from a wide range of other tools so you plan from one place; this build only shows your calendar and its own task list, and anything else you use stays a separate tab." }
   ]
 }

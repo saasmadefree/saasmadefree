@@ -20,6 +20,7 @@
   "moatType": "bank data/security/convenience",
   "diyTimeEstimate": "week",
   "requirements": [
+    "hosting",
     "database"
   ],
   "priorArt": [

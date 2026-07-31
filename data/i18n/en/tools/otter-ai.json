@@ -1,34 +1,21 @@
 {
-  "tagline": "Meeting transcription, summaries, and AI chat over conversations",
-  "verdictSummary": "You can build transcription and summaries, but Otter's value includes live meeting assistant behavior, account sync, speaker workflow, integrations, and mobile/web reliability.",
-  "coreLoopDIY": "Use a meeting bot or local recorder, run transcription, diarize speakers, summarize, then expose search/chat over transcripts.",
+  "tagline": "Meeting transcription, summaries, and AI chat over conversations.",
+  "verdictSummary": "A personal transcription-and-search tool — record or import audio, transcribe locally with speaker labels, summarize with an LLM, search across everything — is a real weekend build. What doesn't come with it is Otter's live meeting-bot behavior, polished multi-speaker diarization, and searchable history synced across devices.",
+  "coreLoopDIY": "Record or import meeting audio, transcribe it locally with speaker labels, summarize with an LLM, and search across every transcript you've ever saved.",
   "whatYouLose": [
-    "live bot joining meetings",
-    "speaker diarization quality",
+    "a bot that joins meetings live",
+    "higher-quality speaker diarization on real crosstalk",
     "mobile apps",
-    "team/admin controls",
-    "searchable account history",
-    "integrations"
+    "team and admin controls",
+    "sync across devices"
   ],
-  "whyPeopleStillPay": "They pay for capture reliability and shared searchable meeting memory, not just the transcript file.",
-  "notes": "Recognizable but not trivial; good example of transcription being easy while production capture is not.",
-  "prompt": "Build me a personal meeting transcription and search tool to replace Otter.ai.\nRequirements:\n\n- Python stack: whisperX (faster-whisper backend) for transcription, Flask for the UI,\n  stdlib sqlite3 for storage.\n- A CLI: `otter record` captures the mic to ~/Meetings/YYYY-MM-DD-HHMM/audio.wav; `otter\n  import file.m4a` handles recordings made elsewhere.\n- Transcribe locally with whisperX, word timestamps plus speaker diarization; label\n  speakers SPEAKER_1/2 and let me rename them once per meeting.\n- Send the transcript to an LLM (key in .env) for a summary: 5 bullets, decisions made,\n  action items with owners. Save transcript.md and summary.md next to the audio.\n- Index transcripts into SQLite FTS5; `otter search \"budget\"` returns matching lines\n  with meeting date and timestamp.\n- A minimal page on localhost:8787: meeting list, one search box, and an ask box that\n  answers questions over a chosen transcript via the LLM.\n- Everything stays on my machine except the LLM calls; no accounts, no telemetry.\n- Out of scope: a bot that joins Zoom/Meet calls, mobile apps, and team sharing.\n  Diarization will be rough on crosstalk, accept it.\n- README: Python and ffmpeg install, model download size, and the macOS mic permission.",
+  "whyPeopleStillPay": "People pay for capture reliability and a shared, searchable meeting memory — not just for a transcript file, which is the easy part.",
+  "notes": "Recognizable but not trivial: a good example of transcription being easy while production-grade capture is not.",
+  "prompt": "Build a personal meeting transcription and search tool: a command to capture microphone audio to a file, or import a recording made elsewhere. Transcribe locally with word-level timestamps and speaker diarization, labeling speakers generically and letting you rename them once per meeting. Send the transcript to an LLM for a summary — a short overview, decisions made, action items with owners — saved alongside the full transcript. Build full-text search across every transcript, returning matching lines with the meeting's date and timestamp. Add a simple chat mode: ask a question about a specific meeting and get an answer generated from its transcript.\n\nDo not build a bot that joins Zoom or Meet calls automatically, mobile apps, or team sharing — accept that diarization will be rough on heavy crosstalk, and say so honestly in the README rather than promising more than a local model delivers.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing Otter.ai transcripts?", "a": "Otter lets you export individual transcripts as text, and a short script can bulk-import those into this build's search index — the original audio generally isn't included in the export." },
+    { "q": "Will it work on my phone?", "a": "The search and summary views are responsive web pages, usable on a phone to look something up, but there's no dedicated mobile app for capturing meetings on the go." },
+    { "q": "What does it cost to run?", "a": "Nothing extra for local transcription; LLM API usage for summaries and chat costs a small amount per meeting, typically well under a dollar." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Reliable live capture. Otter's bot joins calls and records automatically; here, forgetting to hit record or import a file means that meeting simply isn't in the archive." }
   ]
 }

@@ -1,0 +1,21 @@
+{
+  "tagline": "AI meeting recorder with transcripts, summaries, and clips.",
+  "verdictSummary": "A personal meeting recorder — capture your own system and mic audio, transcribe locally, summarize with an LLM, mark and clip highlights — is a real weekend build. What doesn't come with it is a bot that joins meetings on your behalf, a shared team library, and CRM integrations that push notes where a sales or success team actually works.",
+  "coreLoopDIY": "Record your own system and microphone audio locally, transcribe and summarize it, mark highlights with a hotkey during the call, and browse everything in a searchable local library.",
+  "whatYouLose": [
+    "an automated bot that joins and records meetings without you starting anything",
+    "a shared team library",
+    "CRM integrations",
+    "polished clip-sharing links",
+    "admin controls across a team"
+  ],
+  "whyPeopleStillPay": "People pay for repeatable, team-wide capture and distribution — not because summarizing a transcript is hard, but because getting every meeting recorded and shared consistently across a team takes real operational infrastructure.",
+  "notes": "A useful entry for separating two different things this category often blurs together: summarization is easy, meeting operations across a team are not.",
+  "prompt": "Build a personal meeting recorder: a simple start/stop control that captures your system audio and microphone together, locally, with no bot joining the call on your behalf. On stop, transcribe the recording with a local Whisper model (or a hosted Whisper API if a key is present), then send the transcript to an LLM for a short summary and action items, saving the summary, transcript, and audio together in a dated folder. While recording, support a hotkey that drops a highlight marker; after the call, turn each marker into a short clip cut a fixed number of seconds around it. Build a local library page listing past meetings with full-text search across every transcript, and inline playback of recordings and clips.\n\nDo not build a bot that auto-joins Zoom or Meet, CRM sync, or a shared team library — this records only what you can locally hear, for yourself. Say plainly in the README that recording other people still requires their consent, regardless of what the tool makes technically easy.",
+  "faq": [
+    { "q": "Can I import my existing tl;dv recordings?", "a": "tl;dv lets you download your recordings and transcripts individually, and those work fine as source files for this build's library — just drop them into the same folder structure and re-index." },
+    { "q": "Will it work on my phone?", "a": "The library page for browsing past meetings works in a phone browser, but recording itself is tied to your computer's own audio, so this is a desktop tool for the actual capture." },
+    { "q": "What does it cost to run?", "a": "Nothing if you stay fully local with a local Whisper model; using a hosted transcription or summary API costs a small amount per meeting." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "A bot joining meetings for you. tl;dv can record a call you're not even actively running yourself; this build only ever captures what's playing through your own machine while you remember to hit start." }
+  ]
+}

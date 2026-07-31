@@ -1,0 +1,20 @@
+{
+  "tagline": "Prompt-to-design tool for multi-screen mobile app UI.",
+  "verdictSummary": "One screen is already free: any coding agent produces a decent mobile screen from a plain description. What Sleek actually sells is consistency across many screens, and that turns out to be mostly prompt discipline — lock in a design system once, paste it into every later call, and tell the model the mobile conventions it won't apply unprompted, like safe areas and native navigation. What genuinely doesn't come free is a click-to-edit canvas instead of re-prompting a whole file, and a tuned multi-step generation pipeline instead of one call to one model.",
+  "coreLoopDIY": "Generate a design system once, generate each screen against it as a standalone file, review them together, and export both images and editable design-tool layers.",
+  "whatYouLose": [
+    "clicking an element to change it instead of re-prompting the whole screen",
+    "a tuned multi-step generation pipeline instead of one model call",
+    "sketch-to-design input",
+    "shared project history and team seats"
+  ],
+  "whyPeopleStillPay": "Nobody really pays for a single screen anymore — that got free the moment coding agents got good. What's left is genuinely real work, just thinner than it looks: a chain of prompts refined over months, and a canvas where a change is a click instead of a full re-prompt. Neither is a moat, and this build is the honest test of what they're worth to you.",
+  "notes": "An unusually self-aware entry: the product's own team acknowledges most of what it does is now free inside any capable coding agent.",
+  "prompt": "Build a mobile screen generator: given a plain-language description of an app (or a sketch), first generate a screen list — 6 to 10 names with a one-line purpose each — for the user to review and edit. From that approved list, generate two things exactly once and never regenerate them: a design-system file (colors, fonts with a type scale, spacing, an icon set) and a shared navigation component. Every subsequent screen generation call pastes both of those in verbatim as context — that's what keeps screen nine visually consistent with screen one. Generate each screen as a standalone HTML file styled with utility classes, rendered inside a phone-sized frame, respecting real mobile conventions: safe-area insets, minimum tap target sizes, native-feeling navigation instead of a cropped website. Support editing a screen by re-sending its current file plus a plain-language instruction, so untouched parts of the design stay put. Export each screen as a high-resolution image, and support converting the rendered screens into editable design-tool layers using an existing open-source DOM-to-design-tool converter rather than building that conversion yourself.\n\nDo not build a click-to-edit canvas, share links, or hosting — this runs on your own machine, and re-prompting a screen file is the accepted trade against a real visual editor.",
+  "faq": [
+    { "q": "Can I import my existing Sleek projects?", "a": "Not as editable source — Sleek doesn't export the underlying prompts or design-system definition, only the rendered screens and Figma layers. You'd treat an exported screen as a visual reference and recreate the design-system file that drives new generations." },
+    { "q": "Will it work on my phone?", "a": "Reviewing generated screens works on a phone browser, but the generation and editing workflow is realistically a desktop task." },
+    { "q": "What does it cost to run?", "a": "Just LLM API usage per screen generated, typically a small amount per screen — there's no hosting or database, since everything runs locally and writes to files." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Editing by clicking instead of re-prompting. Every change here means resending a whole screen file with an instruction and waiting for a new generation; a real design canvas lets you nudge one element and move on." }
+  ]
+}

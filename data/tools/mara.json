@@ -1,0 +1,52 @@
+{
+  "slug": "mara",
+  "name": "Mara",
+  "domains": [
+    "hiremara.com"
+  ],
+  "category": "newsletter",
+  "subcategory": "lifecycle email for SaaS, run by an agent",
+  "pricing": {
+    "amount": 99,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://hiremara.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "deliverability/iteration loop/operations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Mautic",
+      "url": "https://github.com/mautic/mautic"
+    },
+    {
+      "name": "Listmonk",
+      "url": "https://github.com/knadh/listmonk"
+    },
+    {
+      "name": "Keila",
+      "url": "https://github.com/pentacent/keila"
+    }
+  ],
+  "relatedSlugs": [
+    "kit",
+    "mailchimp",
+    "beehiiv"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

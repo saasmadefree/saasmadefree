@@ -1,34 +1,20 @@
 {
-  "tagline": "Browser IDE with agents, instant apps, hosting, and deployment",
-  "verdictSummary": "A dev container plus code-server plus deployment can replace some value, but Replit's beginner-friendly cloud IDE, agents, secrets, hosting, and zero-setup environment are a platform.",
-  "coreLoopDIY": "Run code-server in a cloud VM, add templates, secrets, git, AI coding extension, and one-click deploy scripts.",
+  "tagline": "Browser-based coding environment with AI agents, hosting, and instant deployment.",
+  "verdictSummary": "A browser-based code editor running on your own server, with an instant URL per project, is a real weekend build assembled from existing open-source parts. What doesn't come with it is Replit's actual product: a genuinely zero-setup environment, hosted AI agents, and real-time multiplayer editing.",
+  "coreLoopDIY": "A browser-based code editor running on your own server, with each project scaffolded from a template and instantly reachable at its own subdomain.",
   "whatYouLose": [
-    "zero-setup browser IDE",
-    "hosted agents",
-    "multiplayer",
-    "templates",
-    "deployments",
-    "education/community workflows"
+    "a truly zero-setup environment with no server to maintain yourself",
+    "hosted AI coding agents",
+    "real-time multiplayer editing",
+    "a template and community ecosystem"
   ],
-  "whyPeopleStillPay": "They pay because code runs in the browser immediately without local environment drama.",
-  "notes": "Good 'kinda' because the core is composable but platform polish matters.",
-  "prompt": "Build me a personal cloud dev environment to replace Replit, on a VPS I already have.\nRequirements:\n\n- code-server (VS Code in the browser) behind Caddy with HTTPS and basic auth, installed\n  by one setup script. This is assembly of good parts, not a new IDE.\n- A `dev new <name> --template node|python|static` CLI that copies from a templates/\n  folder (each with .gitignore, README stub, and a run script) into ~/projects/<name>\n  and runs git init.\n- Each project gets a port in projects.json; Caddy routes <name>.dev.mydomain.com to it,\n  so anything I run is instantly viewable at a URL.\n- `dev deploy <name>` commits and restarts the project's systemd user service; `dev logs\n  <name>` tails it.\n- Per-project secrets in <project>/.env, never committed; the template .gitignore\n  enforces it.\n- Nightly tarball of ~/projects to a backups/ folder, keep 7.\n- Reachable only over HTTPS with auth (bind to a VPN interface instead if one exists);\n  no telemetry.\n- Out of scope: multiplayer editing, hosted AI agents, and per-project containers. One\n  VPS, one user, my own projects.\n- README: the wildcard DNS record, Caddy config, and code-server auth setup.",
+  "whyPeopleStillPay": "Code running in the browser immediately, with no local environment drama, is what people are actually paying for — not the code editor itself, which is open source.",
+  "notes": "A good kinda: the core is genuinely composable from existing parts, but platform polish is where the real product lives.",
+  "prompt": "Build a personal cloud development environment on a server you already have: run an open-source browser-based code editor (VS Code in the browser is the natural choice) behind HTTPS with basic authentication — this is assembly of existing good parts, not a new editor. Build a small CLI that scaffolds a new project from a template folder (each with its own gitignore, README stub, and run script), with each project assigned its own port and reachable at its own subdomain automatically. Add a deploy command that restarts a project's service and a logs command that tails its output. Keep secrets in a per-project environment file that's never committed. Take a scheduled backup of all projects to a tarball.\n\nDo not build real-time multiplayer editing, hosted AI agents, or per-project containers — one server for one person's own projects is the honest, complete scope, and that's a genuinely different product from a platform meant to onboard beginners with zero setup.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I bring over my existing Replit projects?", "a": "Yes for the code — clone or download the repl's files and drop them into a new project folder here. Replit's own hosted secrets, always-on deployments, and multiplayer sessions don't carry over." },
+    { "q": "Will it work on my phone?", "a": "A browser-based editor technically loads on a phone browser, but real coding on a touchscreen is genuinely uncomfortable — this is realistically a laptop or desktop tool." },
+    { "q": "What does it cost to run?", "a": "One VPS and a domain, typically under ten dollars a month, running as many personal projects as it can hold — no per-project pricing." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Zero setup. Replit's whole point is that a beginner can start coding with nothing installed and nothing to configure; this build requires you to already have a server, which is exactly the setup Replit exists to skip." }
   ]
 }

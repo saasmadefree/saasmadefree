@@ -1,0 +1,43 @@
+{
+  "slug": "wabery",
+  "name": "Wabery",
+  "domains": [
+    "wabery.com"
+  ],
+  "category": "dev-tools",
+  "subcategory": "WhatsApp Business API infrastructure",
+  "pricing": {
+    "amount": 15,
+    "currency": "USD",
+    "plan": "125K messages",
+    "basis": "usage-based",
+    "source": "https://wabery.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "Meta approval/compliance/managed infrastructure",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Meta WhatsApp Cloud API",
+      "url": "https://developers.facebook.com/docs/whatsapp/cloud-api"
+    }
+  ],
+  "relatedSlugs": [
+    "cursor",
+    "github-copilot",
+    "linear"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

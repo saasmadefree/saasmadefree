@@ -1,34 +1,21 @@
 {
-  "tagline": "Privacy-first website analytics without cookies or personal tracking",
-  "verdictSummary": "Pageview analytics, events, dashboards, and exports are very buildable; paid value is hosted privacy posture, reports, reliability, and support.",
-  "coreLoopDIY": "Add JS tracker, record anonymous pageviews/events, aggregate by dimensions, and expose dashboard/API.",
+  "tagline": "Privacy-first website analytics without cookies or personal tracking.",
+  "verdictSummary": "Cookie-free pageview tracking with daily rollups and a simple dashboard is a real weekend build — the pattern is now well-established across several entries in this catalogue. What the subscription mainly buys is hosted privacy positioning, managed reliability, and someone else's support.",
+  "coreLoopDIY": "A small tracking script that sends cookie-free pageview beacons, aggregated nightly into daily rollups shown on a per-site dashboard.",
   "whatYouLose": [
-    "managed hosting",
-    "privacy/legal positioning",
-    "bot filtering",
-    "reports",
-    "uptime",
-    "support"
+    "managed hosting and uptime",
+    "ready-made privacy and legal positioning",
+    "bot filtering tuned over time",
+    "scheduled reports",
+    "dedicated support"
   ],
-  "whyPeopleStillPay": "They pay for low-maintenance analytics they can put in a privacy policy with confidence.",
-  "notes": "Another strong yes; helps cluster analytics apps on the site.",
-  "prompt": "Build me privacy-first web analytics to replace Simple Analytics, self-hosted for my own\nsites. Requirements:\n\n- A Node + Express service with better-sqlite3: one /collect endpoint and a dashboard at\n  /dash behind basic auth (password in .env).\n- A tracker snippet under 1 KB of plain JS, no cookies: sends path, referrer, screen\n  width, and a daily-salted hash of IP + user agent for unique counting; the salt\n  rotates daily so nothing is traceable across days.\n- Keep raw hits 30 days; a nightly node-cron job aggregates into daily rollups per site\n  (pageviews, uniques, top pages, top referrers, device split), keeps rollups forever,\n  deletes expired raw hits.\n- Custom events via sa('signup') in the snippet, counted per day.\n- Dashboard per site: a 30-day chart (hand-rolled SVG, no chart library), pages and\n  referrers tables, a date-range picker.\n- Filter obvious bots by user-agent list; ignore my own visits via a localStorage opt-\n  out flag.\n- CSV export per site and month from the dashboard.\n- No cookies and no personal data stored, GDPR-sane by construction.\n- Out of scope: funnels, session replay, and multi-user access. Uptime is on me; the\n  collect endpoint sits behind my existing reverse proxy.\n- README: the snippet to paste and the Caddy or nginx route.",
+  "whyPeopleStillPay": "People pay for low-maintenance analytics they can point to confidently in a privacy policy — not because cookie-free pageview counting is technically hard.",
+  "notes": "Another strong yes, and part of a genuine cluster of cloneable analytics products in this catalogue.",
+  "prompt": "Build a privacy-first analytics service for your own sites: a tracking script under a kilobyte, with no cookies, that sends path, referrer, and screen width, plus a daily-salted hash of IP and user agent for unique-visitor counting — the salt rotates every day so nothing is traceable across days. Keep raw hits for a short window, then aggregate them nightly into permanent daily rollups per site (pageviews, uniques, top pages, top referrers, device split) and delete the expired raw data. Support simple custom events fired from the tracking snippet. Build a per-site dashboard behind basic authentication: a trend chart, pages and referrers tables, and a date-range picker. Filter obvious bots by user-agent, and support an opt-out flag so your own visits don't get counted. Add CSV export per site and month.\n\nDo not build funnels, session replay, or multi-user access — this is a personal, single-operator tool. Uptime is your responsibility now; there's no managed infrastructure behind it.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing Simple Analytics data?", "a": "Simple Analytics can export your stats as CSV for reference, but there's no way to import that history into this build's own rollups — it starts counting fresh from the day you switch the tracking script." },
+    { "q": "Will it work on my phone?", "a": "The dashboard is a responsive page, fine for checking stats on a phone. There's no dedicated app, but a simple analytics dashboard rarely needs one." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — genuinely cheap, since aggregated analytics data stays small." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Ready-made privacy positioning. Simple Analytics maintains its own legal and compliance documentation you can point to when asked; a self-hosted script is functionally similar in what it collects but carries none of that maintained framing." }
   ]
 }

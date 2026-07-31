@@ -1,0 +1,43 @@
+{
+  "slug": "rankhog",
+  "name": "Rankhog",
+  "domains": [
+    "rankhog.com"
+  ],
+  "category": "seo-marketing",
+  "subcategory": "Reddit visibility for Google and AI answers",
+  "pricing": {
+    "amount": 99,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "per-seat-monthly",
+    "source": "https://rankhog.com/#pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "account trust/platform enforcement",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "redsignal",
+      "url": "https://github.com/ivucicev/redsignal"
+    }
+  ],
+  "relatedSlugs": [
+    "surfer-seo",
+    "semrush",
+    "ahrefs"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 2,
+  "verifiedOneShot": false
+}

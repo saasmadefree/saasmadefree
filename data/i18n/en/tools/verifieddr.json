@@ -1,33 +1,20 @@
 {
-  "tagline": "Search and AI visibility platform with TrueDR, monitoring, and verified partnerships",
-  "verdictSummary": "A personal dashboard for an owned site is a weekend build with Search Console and model APIs, but TrueDR, backlink intelligence, historical monitoring, and the partner marketplace depend on paid data, operations, and a live network.",
-  "coreLoopDIY": "Track one site's search performance and sample buyer-question visibility across model APIs, then rank the pages and queries that need work.",
+  "tagline": "Search and AI visibility platform with backlink verification and monitoring.",
+  "verdictSummary": "A personal visibility tracker for one site — pull real Search Console data, ask a fixed set of buyer questions across a few AI model APIs, crawl your own sitemap for technical issues — is a real weekend build. What doesn't come with it is verified backlink data, a cross-site partner network, and the managed, always-on monitoring that catches a lost mention before you'd notice.",
+  "coreLoopDIY": "Track one site's real Search Console performance and sample a fixed set of buyer questions across a few AI model APIs, ranking the pages and queries that need attention.",
   "whatYouLose": [
-    "TrueDR and commercial backlink data",
-    "exact ChatGPT, Perplexity, and Google AI Mode surfaces",
-    "cross-site partner network and marketplace",
-    "managed refresh jobs and alerts",
-    "traffic estimates and competitor data"
+    "verified backlink and domain-rating data",
+    "exact visibility into every AI-search surface",
+    "a cross-site partner network and marketplace",
+    "managed always-on monitoring and alerts"
   ],
-  "whyPeopleStillPay": "They pay for verified backlink and traffic data, cross-model checks, historical monitoring, and a partner network without maintaining API integrations and scheduled jobs.",
-  "notes": "A strong kinda: the solo monitoring loop is reachable, but the external data and partner network are the product.",
-  "prompt": "Build me a local search and AI visibility tracker like VerifiedDR for one site. Requirements:\n\n- Use Node 22, Express, better-sqlite3, and server-rendered HTML with a little\n  vanilla JS; bind the app to localhost:4173.\n- A settings page stores one domain, brand aliases, and 20 buyer questions in\n  SQLite; API secrets stay in .env.\n- Connect Google Search Console with OAuth and import clicks, impressions, CTR,\n  and average position for the last 28 days by query and landing page.\n- On demand, ask the 20 questions through OpenAI Responses, Perplexity, and\n  Gemini APIs; store answers, citations, run date, and brand/domain mentions.\n- Show 7-day and 28-day GSC changes, mention rate per model, cited domains, and\n  a history sparkline for every question on the local dashboard.\n- Crawl the sitemap weekly with undici and cheerio; record status, title,\n  canonical, noindex, and broken internal links for every page.\n- Build an action queue: lost mentions first, falling GSC pages second, and\n  broken or noindex pages third; every item links to its evidence.\n- Schedule checks with node-cron, retain raw JSON, and export every run as\n  Markdown plus CSV in ./exports/.\n- No accounts or telemetry. Keep it local except for OAuth and API calls.\n  Skip TrueDR, external backlink data, competitors, and the partner marketplace.\n- README: Google OAuth setup, required keys, API cost estimates, backup and\n  restore commands, and how to run one manual check.",
+  "whyPeopleStillPay": "People pay for verified backlink and traffic data, checks across multiple AI models, and a partner network — without maintaining the API integrations and scheduled jobs themselves.",
+  "notes": "A strong kinda: the solo monitoring loop is genuinely reachable, but the external data and partner network are the actual product.",
+  "prompt": "Build a local search and AI-visibility tracker for one site you own: connect Google Search Console through OAuth and import clicks, impressions, click-through rate, and average position by query and page for the last several weeks. Store a fixed list of buyer-relevant questions, and on demand, ask each one through a few different model APIs, recording the answers, any citations, and whether your brand or domain gets mentioned. Show recent Search Console changes, a per-model mention rate, and a history trend for each tracked question on a simple dashboard. Crawl your own sitemap periodically, recording page status, title, canonical tags, noindex flags, and broken internal links. Build a prioritized action list — lost AI mentions first, falling Search Console pages second, broken or noindex pages third — with every item linking back to its evidence.\n\nDo not build backlink data collection, a partner network, or competitor tracking — that data can't be self-collected at any reasonable effort, and it's the actual moat behind the subscription.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing VerifiedDR data?", "a": "Not really — its backlink and monitoring data live inside its own platform with no export. Your Search Console data, though, is yours regardless and connects the same way here." },
+    { "q": "Will it work on my phone?", "a": "The dashboard is a small local web page, viewable on a phone if exposed on your network, but there's no dedicated app and no push alerts for a lost mention." },
+    { "q": "What does it actually cost to run?", "a": "Search Console access is free; API calls across a few model providers for the buyer-question checks cost a small amount per run, typically a few cents to a few dollars depending on frequency." },
+    { "q": "What's the one thing that genuinely doesn't survive the rebuild?", "a": "Verified backlink data. Domain-rating and backlink numbers require crawling the web at a scale no personal project can match — that visibility only exists because the platform already did the crawling." }
   ]
 }

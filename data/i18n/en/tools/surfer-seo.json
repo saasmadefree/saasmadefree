@@ -1,35 +1,21 @@
 {
-  "tagline": "SEO content optimization and AI writing based on SERP analysis",
-  "verdictSummary": "A SERP-scrape-to-content-brief tool is buildable, but reliable SERP data, NLP scoring, editor workflow, AI articles, audits, and integrations create ongoing work.",
-  "coreLoopDIY": "Fetch top SERP pages via API, extract headings/entities/terms, score a draft, and produce brief/editor suggestions.",
+  "tagline": "SEO content optimization and AI writing based on SERP analysis.",
+  "verdictSummary": "A content-brief-and-scoring CLI — fetch top-ranking pages for a keyword, extract common terms and structure, generate a brief, score a draft against it — is a real weekend build wrapping a search API and a model. What doesn't come with it is Surfer's reliable SERP data pipeline, its scoring model tuned over years, and an integrated writing editor.",
+  "coreLoopDIY": "A command-line tool that fetches and analyzes the top-ranking pages for a keyword, generates a content brief from common terms and structure, and scores a draft against that brief.",
   "whatYouLose": [
-    "SERP data reliability",
-    "scoring model",
-    "editor UX",
-    "AI article workflows",
-    "integrations",
-    "audits",
-    "support"
+    "a maintained, reliable SERP data pipeline",
+    "a scoring model tuned over years of results",
+    "an integrated writing editor with live scoring",
+    "AI article generation workflows",
+    "site audits"
   ],
-  "whyPeopleStillPay": "They pay because content optimization needs repeatable data and an editor that writers will use.",
-  "notes": "Great kinda: not impossible, but the core data and scoring need upkeep.",
-  "prompt": "Build me a content-brief and draft-scoring tool to replace Surfer SEO, personal scale. Requirements:\n\n- A Node CLI with two commands: brief \"<keyword>\" and score <draft.md> \"<keyword>\".\n- brief: fetch the top 10 results from Serper.dev (key in .env), download each page,\n  extract title, headings, and body text with cheerio + @mozilla/readability.\n- Compute across the winners: median word count, recurring H2/H3 topics, and the 30\n  most frequent meaningful terms via simple tf-idf. No NLP service.\n- Send that to an LLM (key in .env) to write briefs/<keyword>-YYYY-MM-DD.md: suggested\n  outline, target word count, terms to cover, questions to answer.\n- score: compare my draft against the brief's term list and outline, print a coverage\n  percentage and a table of missing terms in the terminal.\n- Cache every SERP response and fetched page in SQLite (better-sqlite3) so re-runs\n  cost zero API credits.\n- No accounts, no telemetry, everything local except the Serper and LLM calls.\n- Out of scope: a writing editor with live scoring, site audits, and rank tracking.\n  This outputs Markdown briefs, and page scraping will break on some sites · Serper\n  is the one paid dependency, say both in the README.\n- README: where to get the Serper key and the rough API cost per brief.",
+  "whyPeopleStillPay": "Content optimization needs repeatable data and an editor writers will actually use — people pay for both being already assembled and kept working, not because term-frequency analysis is hard.",
+  "notes": "A good kinda: genuinely not impossible, but the underlying data and scoring need real ongoing upkeep.",
+  "prompt": "Build a content-brief and draft-scoring tool: given a keyword, fetch the top-ranking pages from a real search API, extract each page's title, headings, and body text. Compute simple term-frequency statistics across the results — median word count, recurring subtopics, the most frequent meaningful terms — without any dedicated NLP service. Send that analysis to an LLM to produce a brief: a suggested outline, a target word count, and terms and questions to cover. Build a separate scoring command that compares a draft against a previously generated brief, printing a coverage percentage and a list of missing terms. Cache every fetched page and API response so re-running a brief costs nothing extra.\n\nDo not build a writing editor with live scoring, site audits, or rank tracking — this outputs Markdown briefs you write against in your own editor, and page scraping will occasionally break on some sites, which is worth saying plainly in the README rather than pretending otherwise.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing Surfer SEO briefs?", "a": "Not really — Surfer's briefs live in its own editor with no structured export. Regenerating a brief for a keyword you've already researched is quick, since the tool does the same lookup fresh." },
+    { "q": "Will it work on my phone?", "a": "No — this is a command-line tool producing plain Markdown files meant to be opened in a real text editor, not a phone task." },
+    { "q": "What does it actually cost to run?", "a": "A search API call plus an LLM call per brief, typically a few cents to a few dollars depending on the API tier — no ongoing hosting cost since it runs locally." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "A maintained scoring model. Surfer's term and structure scoring has been tuned against a large, continuously refreshed sample of real rankings; this build's term-frequency analysis is a reasonable approximation, not the same calibrated model." }
   ]
 }

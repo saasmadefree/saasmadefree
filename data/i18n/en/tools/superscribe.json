@@ -1,0 +1,20 @@
+{
+  "tagline": "Turns calls on your existing number into CRM-ready notes, with desktop dictation.",
+  "verdictSummary": "The desktop dictation half — a hotkey, streaming transcription, an LLM cleanup pass, pasted into whatever's focused — is a solved, one-sitting build with mature open-source equivalents to build from. The actual hero product is not that: live-transcribing phone calls on your existing number needs carrier call forwarding, a pooled telephony number, a real softphone integration, and a call-audio pipeline that can only be debugged against live calls — that's the half this build deliberately leaves out.",
+  "coreLoopDIY": "A hotkey-triggered dictation tool: stream microphone audio to a real-time transcription service, run one LLM cleanup pass, and paste the result into whatever app has focus.",
+  "whatYouLose": [
+    "call capture on your existing phone number",
+    "auto-filing of dictations and calls to the right project or client",
+    "a searchable workspace of transcripts with reports and CRM drafts",
+    "Windows support and signed auto-updating installers"
+  ],
+  "whyPeopleStillPay": "People pay for the phone rail — answering calls normally on the number they already have, no separate app or device — and for everything downstream landing pre-organized: transcripts matched to the right client and turned into searchable history and CRM-ready notes without manual filing.",
+  "notes": "Half of this is a clean, buildable dictation tool; the existing-number phone-call capture is the half that pulls the whole verdict down to 'kinda'.",
+  "prompt": "Build a push-to-talk dictation tool for macOS: a global hotkey held down records the microphone, streamed in real time to a speech-to-text API, showing partial results in a small floating panel as you speak. On release, run one LLM cleanup pass over the final transcript — fixing punctuation, dropping filler words — then paste the result into whatever field has focus, restoring the previous clipboard contents afterward. If no API key is configured for the real-time transcription service, fall back to recording locally and transcribing with a local Whisper model once you stop talking — slower, but fully offline and free. Keep a history of recent transcripts in a simple list with copy buttons.\n\nDo not build live word-by-word typing into the focused field (paste on release is the honest, achievable version), Windows support, or — most importantly — the phone-call capture product: forwarding calls from your existing number needs carrier-level call forwarding and a telephony integration that's real infrastructure, not a weekend feature, and pretending otherwise would be dishonest about the scope. If call notes matter, upload a recording by hand instead.",
+  "faq": [
+    { "q": "Can I bring over my Superscribe dictation history?", "a": "There's no structured export of past dictations — this build starts its own local history from scratch, though nothing about your workflow otherwise changes." },
+    { "q": "Will it work on my phone?", "a": "The dictation tool itself is a macOS menu-bar utility tied to system-wide hotkeys, so no. And the phone-call capture feature this doesn't replace wouldn't run on the phone either — it works by forwarding calls to separate infrastructure." },
+    { "q": "What does it cost to run?", "a": "The real-time transcription API costs a small amount per use; falling back to the offline local model costs nothing beyond your own machine." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Calls on your existing phone number. That needs carrier call forwarding into a real telephony pipeline — genuine infrastructure this build deliberately doesn't attempt, not a missing feature that got cut for time." }
+  ]
+}

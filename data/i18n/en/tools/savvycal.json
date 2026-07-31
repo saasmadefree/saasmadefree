@@ -1,0 +1,20 @@
+{
+  "tagline": "Scheduling links with overlay calendars and polished booking UX.",
+  "verdictSummary": "A solo booking page for one calendar — read availability, show open slots, book, confirm — is a real weekend build. What takes it beyond a weekend is getting time zones, double-booking prevention, and reminder emails genuinely reliable, which is exactly the unglamorous work a scheduling tool actually gets paid for.",
+  "coreLoopDIY": "A booking page for one calendar, reading Google Calendar free/busy, showing open slots in the visitor's own timezone, and creating the event with the guest invited.",
+  "whatYouLose": [
+    "SavvyCal's distinctive overlay-calendar booking UX",
+    "team scheduling links and routing",
+    "payment collection at booking time",
+    "an automated reminder sequence"
+  ],
+  "whyPeopleStillPay": "People pay for a reliable scheduling experience that doesn't create friction or confusion for the guest — timezone handling and double-booking prevention are easy to get subtly wrong, and that's exactly where trust breaks.",
+  "notes": "A good smaller-brand example: real open-source prior art exists, which makes the buildable case here more concrete than most.",
+  "prompt": "Build a solo booking page for one calendar: define a handful of link types (a slug, a duration, a buffer, allowed hours) in a config file. Read free/busy from one connected calendar via OAuth and show open slots for the next couple of weeks in the visitor's detected timezone, with a manual timezone switcher. On booking, collect the guest's name and email, re-check free/busy right before confirming (not just at page-render time) so two guests can never grab the same slot, then create the calendar event with the guest invited so the calendar app itself sends the invite. Send a confirmation email to both the guest and yourself, including a cancel link that removes the event.\n\nDo not build team scheduling links, routing across multiple people, payment collection, or a reminder-email sequence — this is one calendar, one person, and getting timezones and double-booking genuinely right for that one case is already the real work.",
+  "faq": [
+    { "q": "Can I import my existing SavvyCal link types and availability?", "a": "Not automatically — there's no structured export of scheduling rules. Recreating a handful of link types and your availability windows is a short, one-time setup." },
+    { "q": "Will it work on my phone?", "a": "The public booking page is fully responsive, so guests booking from a phone works fine. Editing link types is a config-file task, realistically done on a computer." },
+    { "q": "What does it cost to run?", "a": "Hosting and a domain, typically a few dollars a month — no per-booking or per-link fee." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The polish that prevents booking friction. SavvyCal's overlay calendar and reminder sequence exist specifically to reduce no-shows and confusion; this build gets the booking right but doesn't chase the guest afterward to make sure they show up." }
+  ]
+}

@@ -1,35 +1,21 @@
 {
-  "tagline": "No-code portals and internal apps on Airtable/Google Sheets and databases",
-  "verdictSummary": "A client portal over Airtable can be built, but Softr's block library, auth, roles, data sources, payments, and publishing workflow are the product.",
-  "coreLoopDIY": "Build a CRUD portal with auth, role-gated pages, list/detail views, forms, and Airtable/Postgres backing data.",
+  "tagline": "No-code portals and internal apps on Airtable, Google Sheets, and databases.",
+  "verdictSummary": "A client portal over your own Airtable base — magic-link login restricted to an allow-list, per-client filtered views, one submission form — is a real weekend build for the one portal you actually need. What doesn't come with it is Softr's actual product: a visual builder for making new portals repeatedly, a library of data-source integrations, and built-in payments and memberships.",
+  "coreLoopDIY": "A client portal reading and writing through your existing Airtable base, with magic-link login restricted to an allow-list and each client seeing only rows linked to them.",
   "whatYouLose": [
-    "visual builder",
-    "templates",
-    "role permissions",
-    "data-source integrations",
-    "payments",
-    "memberships",
+    "the visual portal builder for making new ones without code",
+    "a library of data-source integrations",
+    "role permissions beyond a simple client/admin flag",
+    "payments and memberships",
     "hosting"
   ],
-  "whyPeopleStillPay": "They pay so non-engineers can launch portals without hiring a developer.",
-  "notes": "Useful for the no-code replacement category: yes for a custom portal, kinda for the platform.",
-  "prompt": "Build me a client portal to replace Softr: one portal for my own clients, not a portal\nbuilder. Requirements:\n\n- Node + Express + nunjucks, server-rendered; data stays in Airtable via its REST API\n  (base ID and token in .env) so records keep being edited there.\n- Magic-link login: a client enters their email, gets a signed link via Resend (secret\n  in .env); sessions in signed cookies. Allowed emails live in an Airtable Clients\n  table.\n- Each client sees only rows linked to their client record: a list view with the columns\n  named in views.json, and a detail view per record.\n- One submission form that appends a row to a chosen table, with file upload passed\n  through to Airtable attachments.\n- A role flag on the client record (client vs admin); admins see all rows.\n- Cache Airtable reads for 60 seconds to stay under rate limits.\n- Runs on my VPS behind HTTPS; no telemetry, no third parties beyond Airtable and the\n  email sender.\n- Out of scope: a drag-and-drop page builder, payments, and memberships. Pages are\n  defined in config files, that is the builder.\n- README: Airtable token scopes, expected table and field names, and email sender setup.",
+  "whyPeopleStillPay": "People pay so non-engineers can launch a new portal without hiring a developer every time — that repeatability is the actual product, not any single portal.",
+  "notes": "A useful example: a yes for the one portal you need right now, a kinda for the platform that lets you keep making more.",
+  "prompt": "Build one client portal — not a portal builder — backed by your existing Airtable base through its API, so records keep being edited there. Log clients in with a magic link sent to an email address that must already be on an allow-list stored in Airtable. Show each client only the records linked to them: a list view with a configurable set of visible columns, and a detail view per record. Add one submission form that appends a new row to a chosen table, with file uploads passed straight through to Airtable's own attachment fields. Give client records a simple role flag distinguishing an ordinary client from an admin who sees everything. Cache Airtable reads briefly to stay comfortably under its rate limits.\n\nDo not build a drag-and-drop page builder, payments, or memberships — pages are defined in a config file, and that's the honest builder here. This makes one portal well; making another one means writing more config, not clicking through a visual tool.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing Softr portal?", "a": "The underlying data, yes, if it's already in Airtable or a similar source — this build reads from the same kind of data source directly. The page layouts and Softr's own blocks need to be rebuilt as config here." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes — client-facing portals like this are usually simple enough to work fine on a phone browser." },
+    { "q": "What does it cost to run?", "a": "Hosting, typically a few dollars a month, plus whatever your Airtable plan already costs — no separate per-user portal fee." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Making the next portal quickly. Softr's visual builder lets you spin up a new client portal in an afternoon without touching code; here, every new portal is a small development project, even a fast one." }
   ]
 }

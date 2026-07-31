@@ -1,0 +1,42 @@
+{
+  "slug": "postiz",
+  "name": "Postiz",
+  "domains": [
+    "postiz.com"
+  ],
+  "category": "social-media",
+  "subcategory": "social scheduling",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "flat-monthly",
+    "source": "https://postiz.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "social API/integration upkeep",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Postiz (open source)",
+      "url": "https://github.com/gitroomhq/postiz-app"
+    }
+  ],
+  "relatedSlugs": [
+    "buffer",
+    "later",
+    "typefully"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

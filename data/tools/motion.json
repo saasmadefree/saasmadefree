@@ -24,12 +24,6 @@
     "database",
     "oauth-app"
   ],
-  "priorArt": [
-    {
-      "name": "No maintained direct clone found",
-      "url": "not found"
-    }
-  ],
   "relatedSlugs": [
     "reclaim-ai",
     "akiflow",

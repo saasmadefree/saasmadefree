@@ -1,0 +1,45 @@
+{
+  "slug": "uncircle",
+  "name": "Uncircle",
+  "domains": [
+    "uncircle.app"
+  ],
+  "category": "dev-tools",
+  "subcategory": "dev-stack workspace for CLI agents",
+  "pricing": {
+    "amount": 19,
+    "currency": "USD",
+    "plan": "Lifetime license",
+    "basis": "one-time",
+    "source": "https://uncircle.app/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "native polish + process-management edge cases",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "mprocs",
+      "url": "https://github.com/pvolok/mprocs"
+    },
+    {
+      "name": "process-compose",
+      "url": "https://github.com/F1bonacc1/process-compose"
+    }
+  ],
+  "relatedSlugs": [
+    "cursor",
+    "github-copilot",
+    "linear"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

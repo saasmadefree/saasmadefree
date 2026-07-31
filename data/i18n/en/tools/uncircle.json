@@ -1,0 +1,20 @@
+{
+  "tagline": "Native workspace that keeps repos, terminals, and CLI agents in one window.",
+  "verdictSummary": "The core loop — read a list of processes from a config file, run them, stream their logs into terminals, show live status — is a genuine one-sitting build on mature libraries, and free open-source terminal multiplexers already give you most of it. What doesn't come free is everything around that core: a real native app with tray and notifications, reliably killing whole process trees without orphans across operating systems, restart logic that doesn't flap, and signed auto-updating builds. Since the paid product is a one-time purchase rather than a subscription, the usual math is different too: it's not about ongoing cost, it's whether an evening of building beats paying once.",
+  "coreLoopDIY": "A local web dashboard that starts and stops the processes defined in a repo's config file, streaming their output into browser-based terminals.",
+  "whatYouLose": [
+    "a real native app with tray icon and system notifications",
+    "reliable process-tree cleanup and restart logic across operating systems",
+    "built-in presets for popular coding agents",
+    "a file editor and diff view built into the same window"
+  ],
+  "whyPeopleStillPay": "It's a one-time purchase with a free tier, so the real question isn't subscription math — it's whether an evening spent building this beats paying once for something that already handles clean process shutdown, non-flapping restarts, and native notifications correctly.",
+  "notes": "Submitted by the maker, and an honest 'kinda': a one-time-purchase product changes the usual calculus this whole catalogue applies.",
+  "prompt": "Build a local dev-stack dashboard: a single process, started from any project folder, that reads a config file listing the processes that make up your dev stack (name, command, working directory) and opens a local web page. Run each process in a real pseudo-terminal and stream its output over a websocket into a browser-based terminal, one tab per process. A sidebar lists every process with a status indicator and start/stop/restart controls, plus start-all and stop-all — stopping a process must kill its entire process tree, not just the top-level command, so nothing gets orphaned. If a process exits with an error, auto-restart it with backoff, and flag it clearly if it keeps crashing in a loop. Scan process output for localhost URLs and render them as clickable links above each terminal. Support ad-hoc shell tabs too, so a CLI coding agent can run inside the same dashboard alongside your actual dev processes.\n\nDo not build a native window, system tray integration, notifications, or multi-repo management — this is a browser-based dashboard for one repo per running instance, and that's a deliberate, honest scope boundary against the real native app.",
+  "faq": [
+    { "q": "Can I import my existing Uncircle setup?", "a": "Uncircle's process configuration is a plain file per project, and recreating it in this build's own config format is usually a direct, short translation." },
+    { "q": "Will it work on my phone?", "a": "Viewing terminal output works in a phone browser in a pinch, but this is fundamentally a developer tool meant for a desktop screen next to your editor." },
+    { "q": "What does it cost to run?", "a": "Nothing beyond your own machine — no hosting, no API key, no subscription, since it's a local dashboard for local processes." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Reliability under stress. Clean shutdown of whole process trees, restart logic that doesn't flap, and native crash notifications are all the kind of detail that's easy to get mostly right and genuinely hard to get exactly right — that gap shows up on a bad day, not a demo." }
+  ]
+}

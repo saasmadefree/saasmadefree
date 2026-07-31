@@ -20,7 +20,7 @@
   "moatType": "cloud platform/deployment",
   "diyTimeEstimate": "week",
   "requirements": [
-    "anthropic-api-key",
+    "hosting",
     "domain"
   ],
   "priorArt": [

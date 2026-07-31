@@ -1,34 +1,21 @@
 {
-  "tagline": "Mac launcher with extensions, snippets, clipboard history, and AI",
-  "verdictSummary": "A personal launcher command or menubar utility is buildable, but Raycast's native polish, extension ecosystem, sync, AI, and Mac integration take serious product work.",
-  "coreLoopDIY": "Build a command palette with local commands, clipboard history, snippets, and LLM shortcuts.",
+  "tagline": "Mac launcher with extensions, snippets, clipboard history, and AI.",
+  "verdictSummary": "A personal command palette covering clipboard history, snippets, and a few AI shortcuts is a real weekend build with a cross-platform app framework. What doesn't come with it is Raycast's actual product: a genuinely native, low-latency launcher, a large extension ecosystem, and cloud sync — all real product work at the OS level.",
+  "coreLoopDIY": "A global-hotkey command palette with clipboard history, text-expansion snippets, and a couple of AI-powered shortcuts that read from and write back to the clipboard.",
   "whatYouLose": [
-    "extension ecosystem",
-    "store/discovery",
-    "native speed",
-    "cloud sync",
-    "team/shared snippets",
-    "polished AI commands"
+    "the extension ecosystem and its store",
+    "native OS-level speed",
+    "cloud sync across machines",
+    "shared team snippets",
+    "years of interaction polish"
   ],
-  "whyPeopleStillPay": "They pay because the launcher is a daily OS layer; latency and polish matter a lot.",
-  "notes": "Great example of small utility becoming hard because it sits at OS level.",
-  "prompt": "Build me a Mac command palette covering the parts of Raycast Pro I actually use:\nclipboard history, snippets, and AI commands. Requirements:\n\n- An Electron tray app with a global hotkey (alt+space) opening one centered input\n  window; electron-store for settings, better-sqlite3 for data.\n- Clipboard history: watch the clipboard, keep the last 500 text entries with timestamp\n  and source app, fuzzy-search them with fuse.js, Enter pastes the selection.\n- Snippets: a snippets.json of {keyword, expansion}; picking one copies the expansion\n  with {date} and {clipboard} placeholders filled in.\n- AI commands: Fix Grammar, Summarize, and Translate run the current clipboard through\n  an LLM (key in .env) and put the result back on the clipboard with a notification.\n- Custom commands: shell scripts in a commands/ folder appear in the palette by\n  filename; their output is copied or shown.\n- Everything local except the LLM calls; no accounts, no telemetry.\n- Out of scope: an extension store, file search, window management, and cloud sync. Do\n  not chase native launcher speed, this is Electron and that is the tradeoff.\n- README: the macOS accessibility permission needed for paste simulation, and how to\n  change the hotkey.",
+  "whyPeopleStillPay": "A launcher lives at the OS level as a daily-use tool — latency and native polish matter enormously there, and that's real, ongoing engineering, not a checklist of features.",
+  "notes": "A great example of a small utility becoming genuinely hard because of where it sits — right at the operating-system layer.",
+  "prompt": "Build a personal command palette covering the parts of a paid launcher you actually use: a global hotkey opens a centered input window. Build clipboard history that watches the system clipboard and keeps a searchable list of recent entries, selecting one pastes it. Build text-expansion snippets: a keyword expands into a saved template with placeholders like the current date or clipboard contents filled in. Add a small set of AI commands — fix grammar, summarize, translate — that send the current clipboard contents to an LLM and write the result back to the clipboard with a notification. Support custom commands as plain scripts in a folder, appearing in the palette by filename, with their output copied or shown.\n\nDo not build an extension store, file search, or window management, and don't chase native launcher speed — this runs as a cross-platform app rather than a true OS-level utility, and that latency gap is the honest trade for building it yourself.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I bring over my Raycast extensions and snippets?", "a": "Not directly — Raycast's extensions are its own ecosystem with no export. Snippets are usually short enough to recreate by hand in this build's own config file." },
+    { "q": "Will it work on my phone?", "a": "No — a global hotkey launcher is inherently a desktop concept tied to the operating system you're actively using. This isn't meant to run on a phone." },
+    { "q": "What does it cost to run?", "a": "Nothing beyond the machine you already own for the core features; the optional AI commands cost a small amount of API usage per use." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Native speed. Raycast is built to open and respond in milliseconds as an OS-level tool; this build runs as a cross-platform app, and that latency difference is genuinely noticeable on every single use." }
   ]
 }

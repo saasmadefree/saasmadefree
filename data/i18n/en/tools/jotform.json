@@ -1,0 +1,21 @@
+{
+  "tagline": "Form builder with payments, approvals, apps, and workflow tools.",
+  "verdictSummary": "A personal form builder — field types, public form pages, stored responses, CSV export, email notifications — is a real weekend build. What doesn't come with it is Jotform's actual breadth: a large widget catalog, payment collection, approval workflows, PDF generation, and a full app builder layered on top of forms.",
+  "coreLoopDIY": "An admin UI for building forms field by field, public form pages that validate and store responses, with CSV export and email notification per submission.",
+  "whatYouLose": [
+    "the wide widget and template catalog",
+    "payment collection",
+    "approval workflows and PDF generation",
+    "a full app builder",
+    "compliance certifications for regulated industries"
+  ],
+  "whyPeopleStillPay": "Forms turn into small business processes without custom code — people pay for that breadth, not because a basic form with validation is hard to build.",
+  "notes": "A good 'kinda': forms themselves are easy; the business-process sprawl Jotform covers on top of them is not.",
+  "prompt": "Build a personal form builder with two surfaces: an admin view (kept off the public internet, behind simple authentication) for creating forms field by field — text, email, textarea, select, checkbox, date, file upload — and a public page per form for anyone with the link. Validate required fields and email format on both the client and server, and add basic spam defenses: a honeypot field and a per-IP rate limit. Store every submission with a timestamp and the form's version at submission time, with an admin table view per form and CSV export. Email yourself a plain-text summary of each new submission.\n\nDo not build payment collection, PDF generation, approval workflows, or a widget catalog — the field types above are the whole palette here, and that's a deliberate boundary against Jotform's much broader business-process feature set.",
+  "faq": [
+    { "q": "Can I import my existing Jotform forms?", "a": "Not automatically — Jotform doesn't offer a structured export of form definitions. Response data exports as CSV and stays safe; recreating the form fields themselves is usually a few minutes of clicking for most forms." },
+    { "q": "Will it work on my phone?", "a": "Yes for filling out a form — the public pages are fully responsive. The admin builder is usable on a phone but designed with a desktop layout in mind." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — file uploads are the main thing that grows storage costs over time." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Payments and approvals. Jotform can collect a card payment or route a form through an approval chain right out of the box; this build only ever collects and stores an answer — anything beyond that is a separate tool." }
+  ]
+}

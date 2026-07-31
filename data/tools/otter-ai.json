@@ -20,7 +20,7 @@
   "moatType": "integrations/sync/collaboration",
   "diyTimeEstimate": "week",
   "requirements": [
-    "none"
+    "anthropic-api-key"
   ],
   "priorArt": [
     {

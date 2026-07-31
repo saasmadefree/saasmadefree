@@ -1,35 +1,21 @@
 {
-  "tagline": "Hosted website builder for portfolios, businesses, blogs, and stores",
-  "verdictSummary": "A portfolio or marketing site is easy to build, but Squarespace's paid value is templates, editor, hosting, commerce/forms, domains, and support.",
-  "coreLoopDIY": "Generate a static site from templates, add a small CMS, host it, and configure domain/forms.",
+  "tagline": "Hosted website builder for portfolios, businesses, blogs, and stores.",
+  "verdictSummary": "A personal portfolio-and-blog site — static pages generated from Markdown, a working contact form, an RSS feed — is a real weekend build with excellent performance by default. What doesn't come with it is Squarespace's actual product: a visual drag-and-drop editor, a large template library, and built-in e-commerce.",
+  "coreLoopDIY": "A static site generated from Markdown content, with a shared layout system, a working contact form, and an RSS feed, deployed as plain files.",
   "whatYouLose": [
-    "template quality",
-    "editor",
-    "hosting",
-    "ecommerce/forms",
-    "domains/email workflows",
-    "mobile-responsive polish",
+    "a visual drag-and-drop editor",
+    "a large curated template library",
+    "built-in e-commerce and booking tools",
+    "managed hosting and domain workflows",
     "support"
   ],
-  "whyPeopleStillPay": "They pay because it removes design, hosting, and maintenance from the website project.",
-  "notes": "Mainstream and useful; verdict depends on site complexity.",
-  "prompt": "Build me a personal website to replace Squarespace: portfolio, blog, and a contact form. Requirements:\n\n- A static site built with Eleventy: home, about, a projects grid, and a blog.\n  Content is Markdown files in content/, front matter for title/date/tags.\n- One layout system: a base template plus Nunjucks partials for header/footer/cards,\n  system font stack, responsive images via @11ty/eleventy-img. No CSS framework.\n- Blog gets tag pages and an RSS feed generated at build time.\n- Contact form POSTs to a tiny Express handler that emails me via SMTP creds in .env\n  and appends each message to data/messages.jsonl. Honeypot field for spam, no captcha.\n- npm run build outputs dist/; npm run deploy rsyncs dist/ to my VPS, served by Caddy\n  with automatic HTTPS. Put the Caddyfile snippet in the README.\n- No accounts, no telemetry, no CMS database. Content lives in git, edits are commits.\n- Out of scope: a drag-and-drop editor, ecommerce, and switchable themes. I edit\n  Markdown and CSS directly, that is the trade.\n- README: DNS records to set, Caddy snippet, SMTP setup for the form handler.",
+  "whyPeopleStillPay": "People pay because it removes design, hosting, and maintenance from a website project entirely — not because a portfolio site is technically hard to build.",
+  "notes": "A mainstream entry where the honest verdict genuinely depends on how much of the site's complexity is store-and-editor versus plain content.",
+  "prompt": "Build a personal website — home, about, a projects grid, and a blog — as a static site generated from Markdown content files with front matter for title, date, and tags. Use one shared layout system (a base template plus reusable partials for header, footer, and content cards) so a redesign touches one place, not every page. Generate blog tag pages and an RSS feed at build time. Add a working contact form that posts to a small server endpoint, emails you the message, and logs it as a fallback, with a honeypot field rather than a captcha. Build to plain static files, deployable to any static host or a small VPS behind a reverse proxy with automatic HTTPS.\n\nDo not build a drag-and-drop editor, e-commerce, or switchable themes — editing Markdown and CSS directly is the trade for owning the whole thing outright.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I export my existing Squarespace site?", "a": "Squarespace offers limited content export, mainly blog posts in a WordPress-compatible format, which is a reasonable starting point — layout, design, and any store or booking pages need to be rebuilt from scratch." },
+    { "q": "Will it work on my phone?", "a": "The published site itself is fully responsive. Editing content means editing Markdown files, which is a desktop task, not a phone one — that's the trade against Squarespace's own mobile-friendly editor." },
+    { "q": "What does it cost to run?", "a": "Static hosting is often free or a couple of dollars a month, plus a domain — genuinely cheap since there's no database or per-visit server work." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The visual editor. Every future layout change here means editing code and redeploying, not dragging a block around in a browser — a real, ongoing trade for a non-technical site owner." }
   ]
 }

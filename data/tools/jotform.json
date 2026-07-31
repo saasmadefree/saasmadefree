@@ -1,0 +1,43 @@
+{
+  "slug": "jotform",
+  "name": "Jotform",
+  "domains": [
+    "jotform.com"
+  ],
+  "category": "forms",
+  "subcategory": "forms + workflows",
+  "pricing": {
+    "amount": 39,
+    "currency": "USD",
+    "plan": "Bronze",
+    "basis": "flat-monthly",
+    "source": "https://www.jotform.com/pricing/",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "workflow breadth/integrations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "OhMyForm",
+      "url": "https://github.com/ohmyform/ohmyform"
+    }
+  ],
+  "relatedSlugs": [
+    "tally",
+    "notion",
+    "calendly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

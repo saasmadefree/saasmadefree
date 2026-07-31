@@ -1,0 +1,49 @@
+{
+  "slug": "sleek",
+  "name": "Sleek",
+  "domains": [
+    "sleek.design"
+  ],
+  "category": "design",
+  "subcategory": "AI mobile app design",
+  "pricing": {
+    "amount": 24.99,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://sleek.design/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "output quality + editing UX",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "anthropic-api-key"
+  ],
+  "priorArt": [
+    {
+      "name": "dom-to-figma",
+      "url": "https://github.com/figitdesign/web-to-figma"
+    },
+    {
+      "name": "Penpot",
+      "url": "https://github.com/penpot/penpot"
+    },
+    {
+      "name": "Onlook",
+      "url": "https://github.com/onlook-dev/onlook"
+    }
+  ],
+  "relatedSlugs": [
+    "figma",
+    "canva",
+    "gamma"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

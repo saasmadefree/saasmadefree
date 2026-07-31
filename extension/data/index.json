@@ -13,6 +13,13 @@
     "currency": "USD",
     "url": "/en/tools/1password"
   },
+  "new.express.adobe.com": {
+    "slug": "adobe-express",
+    "verdict": "kinda",
+    "amount": 9.99,
+    "currency": "USD",
+    "url": "/en/tools/adobe-express"
+  },
   "ahrefs.com": {
     "slug": "ahrefs",
     "verdict": "no",
@@ -146,6 +153,13 @@
     "currency": "USD",
     "url": "/en/tools/coda"
   },
+  "codesandbox.io": {
+    "slug": "codesandbox",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/codesandbox"
+  },
   "copilot.money": {
     "slug": "copilot-money",
     "verdict": "kinda",
@@ -201,6 +215,13 @@
     "amount": 15,
     "currency": "USD",
     "url": "/en/tools/fathom-analytics"
+  },
+  "fathomhq.com": {
+    "slug": "fathom-hq",
+    "verdict": "kinda",
+    "amount": 53,
+    "currency": "USD",
+    "url": "/en/tools/fathom-hq"
   },
   "feedly.com": {
     "slug": "feedly",
@@ -342,6 +363,13 @@
     "currency": "USD",
     "url": "/en/tools/jasper"
   },
+  "jotform.com": {
+    "slug": "jotform",
+    "verdict": "kinda",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/jotform"
+  },
   "kajabi.com": {
     "slug": "kajabi",
     "verdict": "kinda",
@@ -391,6 +419,13 @@
     "currency": "USD",
     "url": "/en/tools/linear"
   },
+  "lnkflow.io": {
+    "slug": "lnkflow",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "EUR",
+    "url": "/en/tools/lnkflow"
+  },
   "loom.com": {
     "slug": "loom",
     "verdict": "kinda",
@@ -411,6 +446,13 @@
     "amount": 12,
     "currency": "USD",
     "url": "/en/tools/make"
+  },
+  "hiremara.com": {
+    "slug": "mara",
+    "verdict": "kinda",
+    "amount": 99,
+    "currency": "USD",
+    "url": "/en/tools/mara"
   },
   "meetergo.com": {
     "slug": "meetergo",
@@ -440,12 +482,33 @@
     "currency": "USD",
     "url": "/en/tools/miro"
   },
+  "monarch.com": {
+    "slug": "monarch-money",
+    "verdict": "kinda",
+    "amount": 14.99,
+    "currency": "USD",
+    "url": "/en/tools/monarch-money"
+  },
+  "usemotion.com": {
+    "slug": "motion",
+    "verdict": "kinda",
+    "amount": 34,
+    "currency": "USD",
+    "url": "/en/tools/motion"
+  },
   "n8n.io": {
     "slug": "n8n-cloud",
     "verdict": "yes",
     "amount": 24,
     "currency": "USD",
     "url": "/en/tools/n8n-cloud"
+  },
+  "netlify.com": {
+    "slug": "netlify",
+    "verdict": "kinda",
+    "amount": 20,
+    "currency": "USD",
+    "url": "/en/tools/netlify"
   },
   "notion.so": {
     "slug": "notion",
@@ -475,6 +538,13 @@
     "currency": "USD",
     "url": "/en/tools/obsidian"
   },
+  "otter.ai": {
+    "slug": "otter-ai",
+    "verdict": "kinda",
+    "amount": 16.99,
+    "currency": "USD",
+    "url": "/en/tools/otter-ai"
+  },
   "perplexity.ai": {
     "slug": "perplexity",
     "verdict": "kinda",
@@ -488,6 +558,34 @@
     "amount": 9,
     "currency": "USD",
     "url": "/en/tools/plausible"
+  },
+  "podia.com": {
+    "slug": "podia",
+    "verdict": "kinda",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/podia"
+  },
+  "post-bridge.com": {
+    "slug": "post-bridge",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/post-bridge"
+  },
+  "postiz.com": {
+    "slug": "postiz",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/postiz"
+  },
+  "promptdc.com": {
+    "slug": "promptdc",
+    "verdict": "yes",
+    "amount": 9,
+    "currency": "USD",
+    "url": "/en/tools/promptdc"
   },
   "quickbooks.intuit.com": {
     "slug": "quickbooks-online",
@@ -510,12 +608,54 @@
     "currency": "USD",
     "url": "/en/tools/raindrop-io"
   },
+  "rankhog.com": {
+    "slug": "rankhog",
+    "verdict": "kinda",
+    "amount": 99,
+    "currency": "USD",
+    "url": "/en/tools/rankhog"
+  },
+  "raycast.com": {
+    "slug": "raycast-pro",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/raycast-pro"
+  },
+  "read.readwise.io": {
+    "slug": "readwise-reader",
+    "verdict": "kinda",
+    "amount": 12.99,
+    "currency": "USD",
+    "url": "/en/tools/readwise-reader"
+  },
+  "reclaim.ai": {
+    "slug": "reclaim-ai",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/reclaim-ai"
+  },
+  "replit.com": {
+    "slug": "replit",
+    "verdict": "kinda",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/replit"
+  },
   "runwayml.com": {
     "slug": "runway",
     "verdict": "no",
     "amount": 15,
     "currency": "USD",
     "url": "/en/tools/runway"
+  },
+  "savvycal.com": {
+    "slug": "savvycal",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/savvycal"
   },
   "semrush.com": {
     "slug": "semrush",
@@ -531,12 +671,68 @@
     "currency": "USD",
     "url": "/en/tools/shopify"
   },
+  "simpleanalytics.com": {
+    "slug": "simple-analytics",
+    "verdict": "yes",
+    "amount": 20,
+    "currency": "USD",
+    "url": "/en/tools/simple-analytics"
+  },
+  "sleek.design": {
+    "slug": "sleek",
+    "verdict": "kinda",
+    "amount": 24.99,
+    "currency": "USD",
+    "url": "/en/tools/sleek"
+  },
+  "softr.io": {
+    "slug": "softr",
+    "verdict": "kinda",
+    "amount": 59,
+    "currency": "USD",
+    "url": "/en/tools/softr"
+  },
+  "squarespace.com": {
+    "slug": "squarespace",
+    "verdict": "kinda",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/squarespace"
+  },
+  "sunsama.com": {
+    "slug": "sunsama",
+    "verdict": "kinda",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/sunsama"
+  },
+  "superscribe.io": {
+    "slug": "superscribe",
+    "verdict": "kinda",
+    "amount": 38,
+    "currency": "USD",
+    "url": "/en/tools/superscribe"
+  },
   "superwhisper.com": {
     "slug": "superwhisper",
     "verdict": "yes",
     "amount": 8.49,
     "currency": "USD",
     "url": "/en/tools/superwhisper"
+  },
+  "superx.so": {
+    "slug": "superx",
+    "verdict": "kinda",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/superx"
+  },
+  "surferseo.com": {
+    "slug": "surfer-seo",
+    "verdict": "kinda",
+    "amount": 99,
+    "currency": "USD",
+    "url": "/en/tools/surfer-seo"
   },
   "tally.so": {
     "slug": "tally",
@@ -551,6 +747,27 @@
     "amount": 39,
     "currency": "USD",
     "url": "/en/tools/teachable"
+  },
+  "tella.com": {
+    "slug": "tella",
+    "verdict": "yes",
+    "amount": 13,
+    "currency": "USD",
+    "url": "/en/tools/tella"
+  },
+  "thumblifyai.com": {
+    "slug": "thumblifyai",
+    "verdict": "kinda",
+    "amount": 9.99,
+    "currency": "USD",
+    "url": "/en/tools/thumblifyai"
+  },
+  "tldv.io": {
+    "slug": "tldv",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/tldv"
   },
   "todoist.com": {
     "slug": "todoist",
@@ -587,6 +804,13 @@
     "currency": "USD",
     "url": "/en/tools/umami-cloud"
   },
+  "uncircle.app": {
+    "slug": "uncircle",
+    "verdict": "kinda",
+    "amount": 19,
+    "currency": "USD",
+    "url": "/en/tools/uncircle"
+  },
   "vercel.com": {
     "slug": "vercel",
     "verdict": "kinda",
@@ -594,12 +818,47 @@
     "currency": "USD",
     "url": "/en/tools/vercel"
   },
+  "verifieddr.com": {
+    "slug": "verifieddr",
+    "verdict": "kinda",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/verifieddr"
+  },
+  "wabery.com": {
+    "slug": "wabery",
+    "verdict": "kinda",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/wabery"
+  },
   "webflow.com": {
     "slug": "webflow",
     "verdict": "kinda",
     "amount": 25,
     "currency": "USD",
     "url": "/en/tools/webflow"
+  },
+  "whimsical.com": {
+    "slug": "whimsical",
+    "verdict": "yes",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/whimsical"
+  },
+  "wix.com": {
+    "slug": "wix",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/wix"
+  },
+  "xero.com": {
+    "slug": "xero",
+    "verdict": "no",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/xero"
   },
   "ynab.com": {
     "slug": "ynab",

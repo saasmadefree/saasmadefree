@@ -1,0 +1,20 @@
+{
+  "tagline": "WhatsApp API infrastructure for AI agents, automations, and inboxes.",
+  "verdictSummary": "A single-business WhatsApp API gateway — send and receive messages, verify webhooks, retry delivery, inspect conversations — is genuinely buildable for your own verified WhatsApp Business Account and phone number. What can't be one-shotted is becoming a provider for other businesses: that needs Meta's own business verification and app-review process, not just working code, plus the ongoing operational reliability of production messaging infrastructure.",
+  "coreLoopDIY": "For one verified WhatsApp Business Account, send and receive messages through Meta's Cloud API, verify and persist webhook events, retry failed deliveries, and inspect conversations from a small admin view.",
+  "whatYouLose": [
+    "Meta Business Partner and approved Tech Provider status",
+    "onboarding other businesses' phone numbers through your own infrastructure",
+    "managed queues and monitoring at production reliability",
+    "the visual Flows builder and its data-exchange hosting"
+  ],
+  "whyPeopleStillPay": "The REST calls are the easy part. Wabery packages Meta's approval process, secure multi-tenant infrastructure, durable delivery, and ongoing API and policy changes into something production-ready — a DIY gateway is reasonable for your own single business; becoming an approved provider for other businesses is a company, not a weekend project.",
+  "notes": "The API itself is genuinely buildable in a weekend. Becoming an approved, reliable provider for other businesses is not, and that distinction is the whole verdict here.",
+  "prompt": "Build a single-business WhatsApp API gateway using Meta's WhatsApp Cloud API, for your own verified business and phone number only. An authenticated API for sending text, template, and media messages, accepting an idempotency key so a retried request never double-sends. Implement Meta's webhook verification and signature checking, persist every inbound event before responding to it, deduplicate by Meta's own event ID, and normalize inbound messages, delivery statuses, and errors into your database. Queue outbound sends with a few retries and exponential backoff, with a way to inspect and manually replay anything that ends up in a dead-letter state. Forward normalized events to one webhook you configure, signed so the receiver can verify authenticity. A small admin view behind authentication: conversations, message status, failed jobs, and a reply box.\n\nDo not build multi-tenant customer onboarding, Meta Business Partner status, the Flows builder, or anything implying a production SLA for other businesses — those need Meta's own review and approval process, which is a business relationship, not something code can grant itself.",
+  "faq": [
+    { "q": "Can I import my existing Wabery setup?", "a": "Your WhatsApp Business Account and phone number stay with Meta regardless of which gateway sits in front of them — the migration is mostly re-pointing your webhook and re-issuing an access token, not moving data." },
+    { "q": "Will it work on my phone?", "a": "The admin inbox renders on a phone browser for checking conversations, but this is infrastructure meant to run continuously on a server, not something you interact with primarily on mobile." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a modest monthly cost — WhatsApp's own conversation-based pricing from Meta applies either way, regardless of which gateway sends the message." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Being allowed to serve other businesses. Meta's own approval process — business verification, app review, Tech Provider status — gates multi-tenant WhatsApp access; a self-built gateway is legitimately fine for your own number and stops there." }
+  ]
+}

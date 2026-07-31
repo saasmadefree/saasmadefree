@@ -1,0 +1,20 @@
+{
+  "tagline": "Rewrites selected text or turns vague requests into ready-to-use prompts.",
+  "verdictSummary": "A browser extension that captures selected text, sends it to an LLM with one of a couple of fixed instructions, and replaces or copies the result is a genuinely one-sitting build. The commercial product earns its price through breadth: tuned rewrite modes, a coding-specific mode that adapts to whichever AI tool you're prompting, and reliable text replacement across editors — Gmail, Docs, Shadow DOM — that are notoriously easy to corrupt with a naive approach.",
+  "coreLoopDIY": "A browser extension: select text, pick a mode, send it to an LLM with a fixed system prompt for that mode, then replace the selection in place or copy the result.",
+  "whatYouLose": [
+    "a library of tuned writing profiles beyond the basics",
+    "a coding mode that detects which AI tool you're prompting and adapts to it",
+    "reliable behavior across every rich-text editor on the web",
+    "account sync and managed billing"
+  ],
+  "whyPeopleStillPay": "People pay for confidence that the rewrite works cleanly across the sites and editors they actually use every day — replacing text in place, without corrupting it, is a genuinely fiddly compatibility problem across the web's many different editors.",
+  "notes": "The core bring-your-own-key workflow reproduces well; the commercial product's edge is broader editor compatibility and ongoing fixes as sites change.",
+  "prompt": "Build a browser extension (Manifest V3, no build step) that rewrites selected text using an LLM. Store your API key locally in the browser, never synced. Support exactly two modes: a writing mode with a handful of fixed rewrite styles (tighten, fix grammar, more formal, shorten), and a coding mode that turns a vague request into a structured, implementation-ready prompt — goal, context, constraints, acceptance criteria. Trigger it from a right-click context menu on any selection, and also show a small floating button next to a text selection for a faster path. For a plain input or textarea, replace only the selected range and restore the cursor position afterward; for a rich-text editor, use the browser's own selection Range API to replace content safely, and if a field looks too risky to edit directly (a framework-managed or read-only editor), fall back to copying the result to the clipboard instead of guessing.\n\nDo not build accounts, sync, billing, or a backend server — the API key lives only in the browser, calls go straight from the extension to the model provider, and the whole point is that nothing about your text or your key passes through a server you don't control.",
+  "faq": [
+    { "q": "Can I bring over anything from the commercial extension?", "a": "Not applicable — there's no account data to migrate. This build reads your own API key from its options page and works immediately." },
+    { "q": "Will it work on my phone?", "a": "No — Chrome extensions don't run on mobile browsers the same way. This is a desktop browser tool." },
+    { "q": "What does it cost to run?", "a": "Nothing beyond LLM API usage per rewrite, typically a fraction of a cent each — there's no subscription, no hosting, and no account." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Reliability across every editor on the web. Some rich-text editors actively resist safe text replacement, and the commercial product has done the ongoing work of handling those edge cases one site at a time; this build handles the common cases and falls back to copy-paste for the rest." }
+  ]
+}

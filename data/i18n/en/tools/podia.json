@@ -1,35 +1,21 @@
 {
-  "tagline": "Creator platform for courses, digital products, email, and memberships",
-  "verdictSummary": "Selling a few digital downloads or a course is buildable, but Podia bundles checkout, file delivery, courses, email, memberships, affiliates, and support.",
-  "coreLoopDIY": "Build product pages, Stripe checkout, gated downloads/course lessons, customer accounts, and email receipts.",
+  "tagline": "Creator platform for courses, digital products, email, and memberships.",
+  "verdictSummary": "Selling a handful of digital downloads — a product page, hosted checkout, a signed download link delivered by email — is a real weekend build. What doesn't come with it is Podia's actual breadth: course hosting, memberships, built-in email marketing, and affiliate tooling, each real product surface on its own.",
+  "coreLoopDIY": "A product page per digital download with hosted checkout, a signed, expiring download link emailed automatically after payment, and a simple admin view of orders and revenue.",
   "whatYouLose": [
-    "checkout/product UX",
-    "course hosting",
-    "email marketing",
+    "course hosting and drip content",
     "memberships",
-    "affiliates",
-    "tax/payment details",
-    "support"
+    "built-in email marketing",
+    "affiliate tooling",
+    "customer accounts and a self-serve portal"
   ],
-  "whyPeopleStillPay": "They pay because commerce plus content delivery has lots of edge cases.",
-  "notes": "Good creator monetization entry where 60% DIY value is realistic.",
-  "prompt": "Build me a small digital-products store to replace Podia, for selling a few downloads,\nnot running a course business. Requirements:\n\n- Node + Express + better-sqlite3, server-rendered pages with nunjucks, deployed on my\n  VPS behind my existing reverse proxy.\n- Products live in products.json: slug, title, price, description, and the file to\n  deliver. Delivered files sit outside the web root.\n- One page per product plus a /store index. The buy button goes straight to Stripe\n  Checkout (keys in .env); no cart, no coupons.\n- Stripe webhook on payment: record the order in SQLite (email, product, amount,\n  timestamp) and email the buyer a download link via Resend or SMTP (creds in .env).\n- Download links are signed tokens that expire after 7 days or 5 uses; an expired link\n  shows a resend-by-email form.\n- An /admin page behind HTTP basic auth: order list and revenue per product.\n- Out of scope: memberships, drip courses, email marketing, and affiliates. Do not build\n  customer accounts, the receipt email is the account.\n- README: Stripe webhook setup with the CLI test command, and a plain note that\n  VAT/sales tax is on me, Stripe Tax exists if it matters.",
+  "whyPeopleStillPay": "Commerce plus content delivery has a lot of edge cases — expired links, failed payments, resending a receipt — and people pay so those are already handled.",
+  "notes": "A good creator-monetization entry where a genuine majority of the value is realistically DIY-able.",
+  "prompt": "Build a small digital-products store for selling a handful of downloads — not a course platform. Each product is defined with a name, price, description, and the file to deliver, stored outside the public web root. A buy button goes straight to a hosted checkout; a webhook on successful payment records the order and emails the buyer a signed download link that expires after a few days or a handful of uses, with a resend-by-email option if it lapses. Build a small admin view behind basic authentication showing orders and revenue per product.\n\nDo not build memberships, drip-fed courses, email marketing, or an affiliate program, and don't build customer accounts — the receipt email is the account here. Note plainly in the README that sales tax handling is on you, and point at the payment processor's own tax feature if that ever matters.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing Podia products and customers?", "a": "The product files and descriptions, yes — copy them into the new product list directly. Customer and order history generally doesn't need to move, since past sales are already delivered." },
+    { "q": "Will it work on my phone?", "a": "The storefront pages are responsive, so buying works fine on mobile. The admin view is usable in a pinch but isn't built mobile-first." },
+    { "q": "What does it cost to run?", "a": "Hosting, a database, and email delivery, typically a few dollars a month, plus standard payment-processing fees on actual sales." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The rest of the platform. Podia's real value is that courses, memberships, email marketing, and affiliates all live in one system; this build sells files reliably and stops there." }
   ]
 }

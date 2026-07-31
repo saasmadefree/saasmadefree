@@ -1,0 +1,44 @@
+{
+  "slug": "savvycal",
+  "name": "SavvyCal",
+  "domains": [
+    "savvycal.com"
+  ],
+  "category": "scheduling",
+  "subcategory": "booking links",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "flat-monthly",
+    "source": "https://savvycal.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "calendar integration/polish",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "oauth-app",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Cal.com",
+      "url": "https://github.com/calcom/cal.com"
+    }
+  ],
+  "relatedSlugs": [
+    "calendly",
+    "meetergo",
+    "todoist"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

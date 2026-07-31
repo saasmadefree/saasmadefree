@@ -1,34 +1,21 @@
 {
-  "tagline": "Fast collaborative flowcharts, wireframes, mind maps, and docs",
-  "verdictSummary": "A constrained diagramming tool with nodes, connectors, sticky notes, and export is a very vibecodable core loop; polish and collaboration are what you lose.",
-  "coreLoopDIY": "Create a canvas with node shapes, connectors, auto-layout hints, text editing, and PNG/SVG export.",
+  "tagline": "Fast collaborative flowcharts, wireframes, mind maps, and docs.",
+  "verdictSummary": "A single-player flowchart tool — shapes, connectors that stay attached, snap-to-grid, undo/redo, export to PNG and SVG — is a real weekend build that can run entirely in the browser with zero backend. What doesn't come with it is real-time multiplayer editing and the wireframe and mind-map toolkits that go beyond basic flowcharts.",
+  "coreLoopDIY": "A single-player canvas with connectable shapes, sticky notes, snap-to-grid alignment, and undo/redo, saved locally in the browser with export to PNG and SVG.",
   "whatYouLose": [
-    "templates",
-    "multiplayer polish",
+    "a template library",
+    "real-time multiplayer editing",
     "docs integration",
-    "wireframe components",
-    "comments",
-    "sharing permissions"
+    "wireframe component kits",
+    "comments and sharing permissions"
   ],
-  "whyPeopleStillPay": "They pay for speed and tidy diagrams that teammates can edit without setup.",
-  "notes": "A good yes/kinda boundary; I marked yes because the constrained core is reachable.",
-  "prompt": "Build me a single-player flowchart tool like Whimsical. Requirements:\n\n- A local web app: Vite + React, shapes rendered as SVG. No backend, runs as a\n  static build, fully offline.\n- Shapes: rectangle, rounded rectangle, diamond, ellipse, sticky note, text label.\n  Drag to move, handles to resize, double-click to edit text inline.\n- Connectors attach to shape anchor points, stay attached when shapes move, route\n  orthogonally with arrowheads, and can carry a text label.\n- Snap-to-grid plus alignment guides while dragging; keyboard support for\n  copy/paste, delete, arrow-key nudge, and undo/redo via a history stack.\n- A toolbar with the shape palette and 8 preset fill colors. No free-form style\n  panel.\n- Boards autosave to IndexedDB (via localforage), with JSON import/export; export\n  the selection or the whole board as PNG and SVG.\n- No accounts, no telemetry, nothing leaves the browser.\n- Out of scope: real-time multiplayer, comments, wireframe component kits, and\n  mind-map mode. Flowcharts and stickies only.\n- README: npm install / npm run dev, plus the keyboard shortcut list.",
+  "whyPeopleStillPay": "People pay for speed and tidy diagrams that teammates can edit together without any setup — the collaboration, not the shapes, is the product.",
+  "notes": "A good yes/kinda boundary: the constrained core loop here is genuinely reachable in a weekend.",
+  "prompt": "Build a single-player flowchart tool that runs entirely in the browser with no backend: a canvas with basic shapes (rectangle, rounded rectangle, diamond, ellipse, sticky note, text label) that can be dragged, resized, and edited inline. Connectors attach to shape anchor points, stay attached as shapes move, and route cleanly with arrowheads, optionally carrying a text label. Add snap-to-grid and alignment guides while dragging, plus keyboard support for copy, paste, delete, nudging with arrow keys, and undo/redo through a history stack. Autosave boards to the browser's local storage, with JSON import and export, and export the current selection or the whole board as PNG and SVG.\n\nDo not build real-time multiplayer, comments, wireframe component kits, or a mind-map mode — flowcharts and sticky notes are the complete, honest scope for a personal, client-only tool.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing Whimsical boards?", "a": "Whimsical can export a board as an image, which is useful as a reference to trace over, but not as editable shapes — recreating a board's actual shapes and connectors here is a rebuild, not a migration." },
+    { "q": "Will it work on my phone?", "a": "Viewing works, but precise shape placement and connector routing are genuinely easier with a mouse — this is realistically a desktop tool, same as most canvas-based editors." },
+    { "q": "What does it cost to run?", "a": "Nothing — it's a static, client-only app with no server or database, hostable for free almost anywhere." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Real-time collaboration. Whimsical's actual value for a team is everyone editing the same board together live; a single-player local tool can't put two people in the same diagram at once." }
   ]
 }

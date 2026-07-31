@@ -1,0 +1,36 @@
+{
+  "slug": "promptdc",
+  "name": "PromptDC",
+  "domains": [
+    "promptdc.com"
+  ],
+  "category": "ai-writing",
+  "subcategory": "AI prompt & writing assistant",
+  "pricing": {
+    "amount": 9,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "per-seat-monthly",
+    "source": "https://promptdc.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "Polish, site compatibility, and maintained rewrite profiles",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key"
+  ],
+  "relatedSlugs": [
+    "grammarly",
+    "languagetool",
+    "quillbot"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

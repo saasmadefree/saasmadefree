@@ -1,34 +1,21 @@
 {
-  "tagline": "Read-it-later app with highlights, RSS, PDFs, and spaced review",
-  "verdictSummary": "Saving articles and highlighting is easy; reliable extraction, mobile/offline reading, sync, Kindle/import integrations, RSS/PDF support, and review loops are real work.",
-  "coreLoopDIY": "Build a browser save endpoint, article extractor, reader view, highlights table, export to Markdown, and review emails.",
+  "tagline": "Read-it-later app with highlights, RSS, PDFs, and spaced review.",
+  "verdictSummary": "A self-hosted reading app — save an article by URL, extract clean text, highlight passages, export everything to Markdown — is a real weekend build covering the daily-use core. What doesn't come with it is Readwise's actual depth: mature parsing across difficult sites, RSS and PDF ingestion, Kindle integration, and a spaced-repetition review system.",
+  "coreLoopDIY": "Save articles by URL through a bookmarklet, extract clean readable text, highlight passages, and export everything to Markdown on a schedule so nothing stays trapped in the app.",
   "whatYouLose": [
-    "excellent parsing",
-    "mobile/offline apps",
-    "Kindle integrations",
-    "RSS/PDF workflows",
-    "spaced repetition",
-    "exports"
+    "parsing quality tuned across years of difficult websites",
+    "mobile and offline apps",
+    "Kindle highlight integration",
+    "RSS and PDF ingestion",
+    "a spaced-repetition review system"
   ],
-  "whyPeopleStillPay": "They pay because all reading inputs flow into one durable highlight system.",
-  "notes": "Useful because DIY covers 60% quickly but power users pay for the ingestion web.",
-  "prompt": "Build me a personal read-it-later app to replace Readwise Reader. Requirements:\n\n- A self-hosted web app (VPS or localhost): Node + Express + better-sqlite3, server-\n  rendered with one clean reading column.\n- Save via a bookmarklet POSTing the URL; extract with @mozilla/readability + jsdom and\n  store title, author, site, word count, and cleaned HTML. When extraction fails, keep\n  the bare link with a 'source only' badge instead of mangling it.\n- Reading view: the cleaned article, estimated read time, and select-to-highlight (a\n  little vanilla JS; store the highlight with surrounding context).\n- Library: Inbox, Archive, and per-tag lists; keyboard j/k to move, Enter to open, e to\n  archive.\n- A highlights page grouped by article, plus a nightly node-cron export of all\n  highlights to ~/highlights/YYYY-MM-DD.md so they outlive the app.\n- A daily review email with 5 random old highlights via Resend or SMTP (creds in .env).\n- Full-text search over articles and highlights with SQLite FTS5.\n- No accounts, no telemetry; if hosted, put it behind basic auth and HTTPS.\n- Out of scope: RSS ingestion, PDF/epub parsing, Kindle sync, and mobile apps. The\n  browser is the reader.\n- README: bookmarklet install and SMTP setup.",
+  "whyPeopleStillPay": "All of someone's reading inputs — articles, Kindle highlights, PDFs, RSS — flow into one durable highlight system; people pay for that consolidation, not for highlighting text itself.",
+  "notes": "A useful example: the DIY version covers the daily-use core quickly, but the wider ingestion ecosystem is where power users actually get their value.",
+  "prompt": "Build a personal read-it-later app: a bookmarklet posts the current page's URL to your server, which extracts clean readable text and stores the title, author, site, and cleaned content — falling back to just the bare link with a clear 'source only' badge when extraction fails, rather than mangling the page. Build a reading view with an estimated read time and select-to-highlight, storing each highlight with its surrounding context. Organize saved articles into an inbox, an archive, and tag-based lists. Build a highlights page grouped by article, with a scheduled export of everything to dated Markdown files so highlights outlive the app regardless of what happens to it. Add full-text search across both articles and highlights.\n\nDo not build RSS ingestion, PDF or ebook parsing, Kindle sync, or mobile apps — the browser and the bookmarklet are the entire capture surface here, and that's the honest, complete scope for a personal tool.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing Readwise Reader library?", "a": "Readwise lets you export your highlights, and a short script can convert that export into this build's format. The original article HTML and reading position generally don't come across, only the saved highlights." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, for reading and highlighting, but there's no offline mode and no dedicated mobile app — you need a network connection to reach it." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Spaced-repetition review. Readwise resurfaces old highlights on a schedule designed to help you actually retain them; this build exports highlights to files but doesn't decide when to show you which ones again." }
   ]
 }

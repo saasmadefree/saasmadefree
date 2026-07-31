@@ -1,0 +1,20 @@
+{
+  "tagline": "Finds ranking Reddit threads and drafts replies for you to post.",
+  "verdictSummary": "The finding-and-drafting half — watch subreddits, keep only threads already ranking in Google, draft a rules-aware reply — is a real one-sitting build, and genuinely useful on its own. What it cannot solve is the part that actually gets a mention seen: an account with real history and trust in those communities, built over weeks of ordinary participation, not code.",
+  "coreLoopDIY": "A script that watches subreddits for your keywords, keeps only threads already ranking in Google, and drafts a rules-aware reply for you to review and post yourself.",
+  "whatYouLose": [
+    "account age, karma, and comment history in the communities that matter",
+    "the weeks of ordinary participation that make a mention read as genuine",
+    "per-subreddit rule and pacing judgment",
+    "a managed service that carries the ban risk"
+  ],
+  "whyPeopleStillPay": "The failure mode here is invisible and expensive: a shadowban looks fine to you and invisible to everyone else, and you only learn about it weeks later. People pay to skip the account warm-up and to have someone else carry that risk — not because finding a relevant thread is hard.",
+  "notes": "The build is a weekend; the account trust it needs is a season — worth saying plainly, since that's the actual bottleneck, not the code.",
+  "prompt": "Build a personal Reddit opportunity finder: given a list of keywords and target subreddits in a config file, sweep Reddit's public JSON endpoints (no login needed) at a slow, respectful rate, and keep only threads that are already ranking in Google for your keyword — check with a real search API, since those are the threads worth actually reading. Store each hit with its age, score, comment count, and whether your keyword already appears in the top comments, and never resurface a thread you've dismissed. Draft a reply for each kept thread with an LLM, given the thread text and that subreddit's own posted rules, instructed to answer the question first and mention your product only where it genuinely fits — store the draft, never send it. Build a simple local page listing hits with their draft beside each one, editable, with a copy button and a link to the live thread.\n\nDo not build anything that posts, comments, upvotes, or logs into Reddit on your behalf — automated posting is exactly what gets accounts flagged and shadowbanned, and the README should say so directly. You post, from your own account, by hand.",
+  "faq": [
+    { "q": "Can I import my existing Rankhog data?", "a": "Not really — there's nothing structured to import; you'd start a fresh sweep with your own keyword and subreddit list, which takes a few minutes to set up." },
+    { "q": "Will it work on my phone?", "a": "The local page listing hits and drafts renders on a phone browser if hosted reachable, but running the actual sweep is a script meant for a computer." },
+    { "q": "What does it cost to run?", "a": "A search API call plus an LLM call per sweep, typically a small amount each — cheap enough that regular use costs a fraction of a subscription." },
+    { "q": "What's the one thing that genuinely doesn't survive the rebuild?", "a": "The account itself. No script gives you a Reddit account with a year of trusted history in the communities you care about — that only comes from weeks of showing up as a real participant before you ever mention a product." }
+  ]
+}

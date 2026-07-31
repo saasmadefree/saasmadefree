@@ -1,0 +1,53 @@
+{
+  "slug": "superscribe",
+  "name": "Superscribe",
+  "domains": [
+    "superscribe.io"
+  ],
+  "category": "voice-dictation",
+  "subcategory": "business call notes + dictation",
+  "pricing": {
+    "amount": 38,
+    "currency": "USD",
+    "plan": "Business Voice",
+    "basis": "flat-monthly",
+    "source": "https://superscribe.io",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "telephony infrastructure/integrated workspace breadth",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key"
+  ],
+  "priorArt": [
+    {
+      "name": "Handy",
+      "url": "https://github.com/cjpais/Handy"
+    },
+    {
+      "name": "VoiceInk",
+      "url": "https://github.com/Beingpax/VoiceInk"
+    },
+    {
+      "name": "FreeFlow",
+      "url": "https://github.com/zachlatta/freeflow"
+    },
+    {
+      "name": "Twilio Media Streams",
+      "url": "https://www.twilio.com/docs/voice/media-streams"
+    }
+  ],
+  "relatedSlugs": [
+    "superwhisper",
+    "otter-ai",
+    "granola"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 2,
+  "verifiedOneShot": false
+}

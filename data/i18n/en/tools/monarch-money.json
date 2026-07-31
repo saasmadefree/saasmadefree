@@ -1,34 +1,21 @@
 {
-  "tagline": "Personal finance dashboard for budgeting, transactions, goals, and net worth",
-  "verdictSummary": "A manual finance dashboard is buildable, but high-quality bank aggregation, transaction cleaning, investment data, household collaboration, and mobile sync make it real work.",
-  "coreLoopDIY": "Import transactions from CSV or Plaid, categorize spending, track accounts/goals/net worth, and show monthly reports.",
+  "tagline": "Personal finance dashboard for budgeting, transactions, goals, and net worth.",
+  "verdictSummary": "A CSV-first finance dashboard — import bank exports, categorize with simple rules, track budgets and net worth — is a real weekend build, and it keeps bank credentials out of the picture entirely. What doesn't come with it is live bank and investment sync, which needs a data-aggregation service most personal projects shouldn't try to build themselves.",
+  "coreLoopDIY": "Import bank and card CSV exports, categorize transactions with simple rules, track budgets and account balances, and chart net worth over time.",
   "whatYouLose": [
-    "bank/investment sync",
-    "transaction categorization",
-    "household collaboration",
+    "automatic bank and investment sync",
+    "transaction categorization tuned by a maintained service",
+    "household and shared collaboration",
     "mobile apps",
-    "support",
-    "data security posture"
+    "a professional data-security posture"
   ],
-  "whyPeopleStillPay": "They pay because personal finance apps are only valuable when data arrives automatically and safely.",
-  "notes": "Good kinda: spreadsheet replacement is yes, bank-sync product is harder.",
-  "prompt": "Build me a CSV-first personal finance dashboard to replace Monarch Money. Requirements:\n\n- Node + Express + better-sqlite3 on localhost:4910, server-rendered pages with\n  Chart.js for the graphs.\n- Import bank and card CSV exports: per-bank column mapping saved after the first\n  import, dedupe on a date+amount+description hash so re-imports are always safe.\n- Rule-based categorization: substring or regex on description sets the category,\n  rules run on import, and a fast keyboard-driven screen clears the leftovers.\n- Monthly budget targets per category with actual-vs-budget bars and overspend\n  flags, plus a cash-flow view by month.\n- An accounts table including manual balances for things without CSVs (pension,\n  property); a net-worth chart built from balance snapshots I enter monthly.\n- A recurring-charge detector: same merchant, similar amount, monthly cadence,\n  listed with annualized cost. That is the subscription-audit view.\n- Everything local in one SQLite file, no bank credentials anywhere, no accounts,\n  no telemetry. Nightly DB copy to backups/, keep 30.\n- Out of scope: automatic bank sync via Plaid, household multi-user, and mobile\n  apps. The monthly CSV ritual is the price of keeping credentials out of this.\n- README: import walkthrough for two example bank CSV formats, backup location.",
+  "whyPeopleStillPay": "Personal finance apps are only valuable when the data arrives automatically and safely — people pay so linking a bank account isn't something they build and secure themselves.",
+  "notes": "A good kinda: the spreadsheet-replacement half is a clean yes, live bank sync is genuinely harder.",
+  "prompt": "Build a CSV-first personal finance dashboard: import bank and card CSV exports, with a per-bank column mapping saved after the first import and rows deduped by a date-amount-description hash so re-imports are always safe. Categorize with simple rules — a substring or pattern match on the description sets the category automatically — and give a fast review screen for whatever's left uncategorized. Track monthly budget targets per category with actual-versus-budget bars, and a manual-entry accounts table (for things without CSVs, like a pension or property) feeding a net-worth chart built from balance snapshots you enter periodically. Add a recurring-charge detector: the same merchant at a similar amount on a roughly monthly cadence gets flagged and listed with its annualized cost — this subscription-audit view alone often justifies the build.\n\nDo not build automatic bank sync, multi-user household accounts, or mobile apps — no bank credentials should ever need to enter this system, and the monthly CSV import ritual is the honest price of keeping it that way.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing Monarch Money data?", "a": "Monarch lets you export transactions to CSV, and that maps directly onto this build's import flow. Investment holdings and net-worth history generally don't export cleanly, since those come from Monarch's own data aggregation." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, for viewing and quick entry. There's no dedicated app and no automatic bank sync, so checking in requires more deliberate effort than a five-second phone glance." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — genuinely inexpensive since this handles no live bank connections." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Automatic sync. Every number here arrives through a manual CSV import, which means the dashboard is only ever as current as your last import — a real behavior change from data that updates itself." }
   ]
 }

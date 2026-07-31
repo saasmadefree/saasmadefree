@@ -1,34 +1,21 @@
 {
-  "tagline": "AI calendar and task scheduler that auto-plans your workday",
-  "verdictSummary": "You can build an auto-scheduler for your own tasks, but robust calendar conflict handling, integrations, and productized rescheduling take real engineering.",
-  "coreLoopDIY": "Create tasks with duration/deadline/priority, read calendar availability, solve a schedule, and write time blocks back.",
+  "tagline": "AI calendar and task scheduler that auto-plans your workday.",
+  "verdictSummary": "A greedy auto-scheduler for your own tasks — read calendar availability, pack tasks into free slots by deadline and priority, write the plan back as calendar events — is a real weekend build. What doesn't come with it is robust conflict handling across multiple calendars, team scheduling, and the years of edge-case polish behind 'just replan when something changes.'",
+  "coreLoopDIY": "A scheduler that reads your calendar's free/busy time, packs your tasks into available slots by deadline and priority within working hours, and writes the result back as clearly labeled calendar events.",
   "whatYouLose": [
     "multi-calendar sync",
-    "recurring work rules",
+    "recurring-work rules",
     "mobile apps",
     "team scheduling",
-    "polished rescheduling",
-    "support"
+    "years of polish behind smooth automatic rescheduling"
   ],
-  "whyPeopleStillPay": "They pay because the calendar stays organized without manual drag-and-drop.",
-  "notes": "A good 'kinda' because the core algorithm is doable but the product promise is ongoing automation.",
-  "prompt": "Build me a personal task auto-scheduler to replace Motion. Requirements:\n\n- Node + better-sqlite3 + googleapis. Tasks in SQLite: title, duration estimate,\n  deadline, priority, done. A small Express page on localhost:4920 to add and edit\n  tasks, plus a `plan` CLI command.\n- Read my Google Calendar free/busy for the next 14 days (OAuth token cached\n  locally); respect working hours 09:00-18:00 and a lunch block, both set in\n  config.json.\n- The planner is greedy, not clever: earliest deadline first, weighted by priority,\n  packing tasks into free slots in 30-minute increments and splitting anything over\n  90 minutes into chunks.\n- Write the plan back as calendar events with a [plan] prefix. Replanning deletes\n  only [plan] events and relays them, never touching real meetings.\n- Overdue or unschedulable tasks show in red on the web page instead of being\n  silently dropped.\n- A 07:30 node-cron run replans the day and emails me the schedule (SMTP in .env).\n- Single user, local only, no accounts, no telemetry beyond the Google API calls.\n- Out of scope: team scheduling, mobile apps, and meeting-invite handling. It plans\n  my solo work around a calendar it treats as read-only truth.\n- README: the Google Cloud console OAuth setup. Budget an hour for that alone.",
+  "whyPeopleStillPay": "People pay because the calendar stays organized without manual drag-and-drop — the automation has to be trustworthy enough to hand off to, which is mostly an edge-case problem, not an algorithm problem.",
+  "notes": "A good kinda: the core scheduling algorithm is doable, the ongoing automation promise is the real product.",
+  "prompt": "Build a personal task auto-scheduler: tasks have a title, a duration estimate, a deadline, and a priority. Read your calendar's free/busy time for the next couple of weeks through its API, respecting configured working hours and a lunch block. Use a straightforward greedy algorithm — earliest deadline first, weighted by priority — to pack tasks into free slots, splitting anything long into smaller chunks. Write the resulting plan back as calendar events clearly marked as machine-created (a prefix in the title is enough), and make replanning delete and recreate only those marked events — never touch a real meeting. Surface overdue or unschedulable tasks visibly rather than silently dropping them. Run this on a schedule each morning so the plan stays current.\n\nDo not build team scheduling, mobile apps, or meeting-invite handling — this plans your own solo work around a calendar it treats as read-only truth, and that's the honest, complete scope.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing Motion tasks?", "a": "Not automatically — Motion doesn't offer a structured export of its task list. Recreating an active task list by hand is realistic, since most people don't carry a large backlog of scheduled items." },
+    { "q": "Will it work on my phone?", "a": "The scheduled plan shows up as normal calendar events, visible on any calendar app on your phone. Adding or editing tasks, though, needs the small web page or CLI, not a mobile-native flow." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — the calendar API itself is free at personal usage volumes." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Graceful handling of a busy, changing calendar. Motion's rescheduling has been tuned against years of real conflicts and edge cases; a greedy algorithm here works well for a fairly calm calendar and gets rougher the messier your week actually is." }
   ]
 }

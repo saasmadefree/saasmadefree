@@ -1,33 +1,21 @@
 {
-  "tagline": "Smart calendar scheduling for habits, tasks, breaks, and meetings",
-  "verdictSummary": "A personal auto-blocker is buildable, but two-way calendar sync, scheduling links, team features, and conflict-safe automation are upkeep-heavy.",
-  "coreLoopDIY": "Read free/busy, create flexible calendar holds for tasks/habits, adjust when meetings move, and expose settings.",
+  "tagline": "Smart calendar scheduling for habits, tasks, breaks, and meetings.",
+  "verdictSummary": "An auto-blocker for one calendar — read free/busy time, place recurring holds for habits and tasks inside preferred windows, move them when a real meeting lands on top — is a real weekend build. What doesn't come with it is two-way sync across multiple calendars, team coordination, and years of edge-case handling behind 'it never makes an embarrassing mistake.'",
+  "coreLoopDIY": "A scheduled script that reads your calendar's free/busy time and places clearly marked holds for recurring habits and tasks inside their preferred windows, moving only the holds it created when a real meeting conflicts.",
   "whatYouLose": [
-    "team coordination",
-    "smart rescheduling polish",
-    "scheduling links",
-    "calendar edge cases",
-    "uptime"
+    "multi-calendar and team coordination",
+    "polished automatic rescheduling",
+    "shareable scheduling links",
+    "years of calendar edge-case handling",
+    "someone else's uptime"
   ],
-  "whyPeopleStillPay": "They pay because calendar automation is only valuable if it never makes embarrassing mistakes.",
-  "notes": "Clear case where the product is integrations plus trust, not AI magic.",
-  "prompt": "Build me a personal calendar auto-blocker to replace Reclaim.ai, for one Google\nCalendar, mine. Requirements:\n\n- A Node script on a 30-minute cron (node-cron or plain crontab): googleapis for\n  Calendar, better-sqlite3 for state, config in a YAML file. No web UI.\n- config.yaml defines habits and tasks: name, duration, ideal window (e.g. gym, 60 min,\n  weekdays 16:00-19:00), times per week, and priority.\n- Each run: read free/busy for the next 7 days and place holds for unscheduled habits\n  inside their windows, highest priority first.\n- Tag every event it creates with a marker string in the description; the script may\n  only ever move or delete events carrying that marker.\n- If a meeting lands on a hold, re-place the hold at the next free slot in its window\n  and append the move to a plain-text log.\n- `blocker plan` prints next week's placements as a table before anything is written;\n  `blocker clear` removes every machine-created hold.\n- OAuth client credentials and refresh token in .env; budget an hour for the Google\n  Cloud console, it is genuinely annoying.\n- Out of scope: scheduling links, team coordination, and multi-calendar juggling. Never\n  touch or decline events it did not create.\n- README: Google Cloud console steps, the calendar scopes needed, and the first-run auth\n  flow.",
+  "whyPeopleStillPay": "Calendar automation is only valuable if it never makes an embarrassing mistake — people pay for that trustworthiness, which is mostly built from handling edge cases correctly, not from the core scheduling idea.",
+  "notes": "A clear case where the product is really integrations plus trust, not the scheduling algorithm itself.",
+  "prompt": "Build a personal calendar auto-blocker for one calendar: define habits and tasks in a config file with a name, duration, an ideal time window, a target frequency per week, and a priority. On a schedule, read your calendar's free/busy time for the next week and place holds for unscheduled habits inside their windows, highest priority first. Tag every event the script creates with a distinct marker so it only ever moves or deletes events it made itself — never anything else on the calendar. If a real meeting lands on a hold, move that hold to the next free slot in its window and log the change. Provide a dry-run mode that prints next week's placements as a table before writing anything, and a clear-all command that removes every machine-created hold.\n\nDo not build scheduling links, team coordination, or juggling multiple calendars at once — this manages one person's one calendar, and it should never touch or decline an event it didn't create itself.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing Reclaim.ai habits and tasks?", "a": "Not automatically — Reclaim's habit and task definitions live in its own system with no structured export. Recreating them in a config file is quick, since it's usually a short list." },
+    { "q": "Will it work on my phone?", "a": "The holds it creates show up as normal events on any calendar app, including on your phone. Configuring new habits or tasks means editing a file, which isn't a phone-friendly workflow." },
+    { "q": "What does it cost to run?", "a": "Hosting for the scheduled script, typically a few dollars a month — the calendar API itself is free at personal usage volumes." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Trustworthy edge-case handling. Reclaim has been tuned against years of real calendar chaos — overlapping holds, last-minute cancellations, timezone changes; a personal script here handles the common cases and will occasionally need a manual nudge on the unusual ones." }
   ]
 }

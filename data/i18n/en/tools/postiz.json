@@ -1,0 +1,20 @@
+{
+  "tagline": "Social media scheduler for many channels with AI assistance.",
+  "verdictSummary": "The core scheduling loop — compose, queue, publish on a schedule — is a real one-sitting build for networks with open, developer-friendly APIs like Mastodon, Bluesky, and Telegram. What isn't one-sitting is the reason schedulers exist as a product at all: platform-approved OAuth apps for Instagram, LinkedIn, TikTok, and X are approval-gated or paid, and keeping dozens of integrations alive as platforms change their policies is permanent, ongoing maintenance. Postiz is also genuinely open source, so for the full feature set, self-hosting it directly is the more honest move than rebuilding a smaller version.",
+  "coreLoopDIY": "A compose box and a slot-based queue that publishes on schedule to a handful of networks with open APIs, through one small adapter per network.",
+  "whatYouLose": [
+    "dozens of maintained channel integrations",
+    "pre-approved OAuth apps for platforms that gate third-party posting",
+    "per-network post previews and analytics",
+    "team collaboration"
+  ],
+  "whyPeopleStillPay": "The hosted version ships with platform-approved OAuth apps already in place, so connecting Instagram, LinkedIn, or TikTok is a click instead of a developer-app review process — and social APIs change their terms constantly, so paying outsources that ongoing upkeep.",
+  "notes": "A rare case where the product being evaluated is itself open source — self-hosting it is a genuinely available option, not just a suggestion.",
+  "prompt": "Build a personal social post scheduler for a couple of networks with open, stable APIs — Mastodon and Bluesky are both good candidates, and a Telegram channel via a bot token is a reasonable third. A compose view with image attachment and a slot-based queue: define posting times per weekday and new posts fill the next free slot, or pin a post to an exact time. A background job on a short interval publishes anything due, marking each post as sending before the network call completes so a crash never double-posts, retrying failures a few times with backoff. Show a per-network character counter, since limits differ, and keep a history of recently sent posts linking to the live post.\n\nDo not build support for Instagram, LinkedIn, TikTok, or X — their APIs are approval-gated or paid for third-party tools, and the README should say so plainly rather than half-building broken integrations. Skip analytics, team features, and AI content generation entirely; if the full multi-network feature set genuinely matters, self-hosting the real, open-source Postiz is the honest move instead of rebuilding a smaller version of it.",
+  "faq": [
+    { "q": "Can I import my existing Postiz queue?", "a": "Since Postiz is open source, its own database schema is inspectable, and a determined export is possible — but there's no built-in one-click export. For most personal use, recreating an active queue by hand is faster than writing a migration script." },
+    { "q": "Will it work on my phone?", "a": "The compose page works in a phone browser, but there's no dedicated app and no push notification if a post fails — check the history page to confirm a post actually went out." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — the social APIs themselves are free for personal-volume posting on the networks this build targets." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Broad platform coverage. The hosted product's real value is dozens of pre-approved integrations, including the platforms that actively resist third-party posting; this build only ever covers the handful of networks with genuinely open APIs." }
+  ]
+}

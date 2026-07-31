@@ -1,0 +1,20 @@
+{
+  "tagline": "Branded short links with click tracking and ad-platform conversion attribution.",
+  "verdictSummary": "A branded short link that redirects, logs the click, and passes through UTM and ad-click parameters is genuinely a one-sitting build on a modern edge platform. What isn't a sitting's work is the loop back into the ad platforms themselves: turning a click into a Purchase event that Meta and Google can actually attribute, days later, on a different device, without silently breaking every time either platform changes its conversion API.",
+  "coreLoopDIY": "An edge redirect that resolves a slug, logs the click with any ad-click identifiers attached, injects UTM parameters, and forwards to the destination without slowing the redirect down.",
+  "whatYouLose": [
+    "Purchase events reconciled back to Meta and Google with stable deduplication against the browser pixel",
+    "offline conversion import that survives a multi-day gap between click and sale",
+    "automatic TLS for a client's own branded domain",
+    "per-creator commission reporting"
+  ],
+  "whyPeopleStillPay": "The redirect itself is a commodity nobody should pay much for. What isn't commodity is staying current as Meta and Google continuously change their conversion endpoints and identifier formats, plus the attribution store connecting a click today to a sale that happens days later on a different device — paying outsources exactly that ongoing upkeep.",
+  "notes": "The redirector really is a one-sitting build; the loop back into ad accounts is the actual product being sold.",
+  "prompt": "Build a branded link shortener with click tracking on an edge platform (Cloudflare Workers with KV for the slug lookup and a small database for the click log is a clean fit, and runs comfortably on a free tier). The redirect handler looks up the destination, logs the click asynchronously so the redirect itself never waits on the write, then forwards the visitor — never index the redirect page itself. Inject UTM parameters configured per link, and pass through any incoming ad-click identifiers (Meta's fbclid, Google's gclid/gbraid/wbraid) to the destination untouched, logging them alongside the click. Filter obvious bot traffic by user-agent before counting a click. A small password-protected admin view for creating links and seeing per-link, per-day click counts.\n\nDo not build the loop back to Meta's Conversions API or Google's offline conversion import — correctly deduplicating a Purchase event against the browser pixel, and reversing it cleanly on a refund, is real, ongoing integration work with two platforms that both change their requirements on their own schedule; a silently wrong conversion feed is worse than none at all. Do not attempt TLS provisioning for a domain you don't personally own — that's a different, harder problem than pointing your own domain at the redirect.",
+  "faq": [
+    { "q": "Can I import my existing LnkFlow links?", "a": "The link list and their destinations, yes — most link shorteners export a CSV of slugs and targets that maps directly onto a simple lookup table. Historical click and attribution data doesn't transfer, since it only exists inside LnkFlow's own attribution store." },
+    { "q": "Will it work on my phone?", "a": "The admin view for checking click counts renders fine on a phone. Creating and sharing links works identically on any device, since a short link is just a URL." },
+    { "q": "What does it cost to run?", "a": "Close to nothing on a free tier at personal-to-small-business traffic — the redirect and click logging are genuinely cheap to run at the edge." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Reliable attribution. Knowing that a specific click actually turned into a paid sale, days later, on a different device, and telling the ad platform about it correctly — that loop breaks silently and often, and keeping it working is real, continuous integration work, not a one-time build." }
+  ]
+}

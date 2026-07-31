@@ -1,34 +1,21 @@
 {
-  "tagline": "Cloud accounting, invoicing, bank reconciliation, payroll add-ons, and reporting",
-  "verdictSummary": "Invoices and reports are buildable, but Xero's real product is bank feeds, accounting workflows, accountant collaboration, compliance expectations, integrations, and trust.",
-  "coreLoopDIY": "Build simple bookkeeping with invoices, expenses, CSV imports, chart of accounts, and reports for personal/internal use.",
+  "tagline": "Cloud accounting, invoicing, bank reconciliation, and reporting.",
+  "verdictSummary": "Xero's actual product isn't the ledger interface — it's bank feeds, reconciliation, payroll and tax integrations, and books an accountant will actually accept. A personal clone of that gambles with real finances against a compliance surface that never stops moving, so the honest answer here is don't. What is buildable, and worth building, is a much smaller freelancer-grade bookkeeping tool to stay organized between real accounting tools, not instead of them.",
+  "coreLoopDIY": "A simple income-and-expense ledger with CSV bank import, rule-based auto-categorization, sequential invoices, and a few reports to hand to a real accountant.",
   "whatYouLose": [
-    "bank reconciliation",
-    "accountant workflows",
-    "payroll/tax integrations",
-    "app marketplace",
-    "audit history",
-    "compliance support"
+    "bank feed reconciliation",
+    "accountant collaboration workflows",
+    "payroll and tax integrations",
+    "an audit trail",
+    "formal compliance support"
   ],
-  "whyPeopleStillPay": "They pay because businesses need dependable books, not just a ledger UI.",
-  "notes": "Another structural no due regulatory/financial integrations.",
-  "prompt": "Honest answer: don't. Xero's product is not the ledger UI, it is bank\nfeeds, reconciliation, payroll and tax integrations, and books your accountant\nwill accept. A vibecoded clone of that gambles with your actual finances, and\nthe compliance surface never stops moving.\n\nIf you need real accounting without the subscription, run Odoo or Invoice Ninja\n(links in prior art) and keep the accountant.\n\nIf what you actually need is freelancer-grade bookkeeping, here's the weekend\nversion:\n\n- A local web app (Node + Express + better-sqlite3): income and expense entries\n  with date, amount, category, client, and an attached receipt file.\n- CSV import from my bank's export, plus a rules table (description pattern to\n  category) so repeat transactions auto-categorize.\n- Invoices numbered sequentially, rendered to PDF with pdfkit, one paid/unpaid\n  flag. Nothing more.\n- Reports: quarterly income, expenses by category, and a one-page cash P&L I can\n  print for my accountant.\n- Binds to localhost only, no telemetry; nightly copy of the SQLite file to a\n  dated backup.\n\nWhat you will NOT have: bank feeds, reconciliation, payroll, tax filing, audit\nhistory, or numbers anyone will sign off unchecked. Use it to stay organized\nbetween real tools, not instead of them.",
+  "whyPeopleStillPay": "Businesses need books they can trust and an accountant will sign off on, not just a ledger interface — that trust and compliance surface is the actual product, not the UI.",
+  "notes": "Another structural no, driven by regulatory and financial-integration depth rather than a missing feature.",
+  "prompt": "Do not attempt real accounting software — if genuine bookkeeping is needed without the subscription, self-hosting an existing open-source option and keeping a real accountant is the honest move, not a personal clone.\n\nWhat's worth building instead is lightweight freelancer bookkeeping to stay organized between real tools: income and expense entries with a date, amount, category, optional client, and an attached receipt. Import a bank CSV export and auto-categorize repeat transactions with a simple pattern-to-category rules table. Generate sequentially numbered invoices as PDFs with a paid/unpaid flag, nothing more. Produce a few honest reports — quarterly income, expenses by category, a one-page cash summary printable for an accountant.\n\nDo not build bank feed reconciliation, payroll, tax filing, or an audit trail — and be explicit that none of these numbers should be signed off unchecked. This is a personal organizing tool, not a system of record.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing Xero data?", "a": "Xero exports invoices and transactions to CSV, which maps reasonably well onto this build's simpler schema. Reconciliation history, payroll records, and audit trails don't transfer, since this build doesn't have equivalents." },
+    { "q": "Will it work on my phone?", "a": "The admin pages render on a phone browser for a quick check, but this build isn't designed mobile-first the way a dedicated accounting app would be." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — genuinely cheap since this is a small personal ledger, not a full accounting system." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Numbers an accountant will sign off on unchecked. Xero's compliance surface — audit trails, reconciliation, payroll tax rules — exists because real money and real regulations are involved; this build is for staying organized, not for being the system of record." }
   ]
 }

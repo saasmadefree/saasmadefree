@@ -1,34 +1,21 @@
 {
-  "tagline": "Web hosting platform for static sites, functions, forms, and deploy previews",
-  "verdictSummary": "Static hosting and functions are easy to assemble, but Netlify's value is Git-based deploys, previews, forms, redirects, edge functions, and managed platform reliability.",
-  "coreLoopDIY": "Deploy static builds from git, serve via CDN/reverse proxy, add forms/functions, and create preview URLs.",
+  "tagline": "Web hosting platform for static sites, functions, forms, and deploy previews.",
+  "verdictSummary": "A git-push deploy pipeline to your own server with branch previews on subdomains is a real weekend build. What doesn't come with it is Netlify's actual product: a global CDN and edge functions, and a hosted platform whose reliability isn't your own server's uptime.",
+  "coreLoopDIY": "A deploy service that builds and atomically swaps a live static site on push to a branch, with automatic subdomain previews for other branches.",
   "whatYouLose": [
-    "deploy previews",
-    "CDN/edge functions",
-    "forms",
-    "rollbacks",
+    "a global CDN and edge functions",
+    "hosted forms",
+    "built-in redirect and header rules",
     "team workflows",
-    "uptime/support"
+    "uptime that isn't tied to a single server"
   ],
-  "whyPeopleStillPay": "They pay because simple sites still need dependable CI/CD, routing, and previews.",
-  "notes": "Good to pair with Vercel; users can compare platform lock-in vs self-hosting.",
-  "prompt": "Build me a personal static-site deploy pipeline to replace Netlify, running on my own\nVPS. Requirements:\n\n- A small deploy service: Node + Express receiving a GitHub webhook on localhost, with\n  Caddy in front serving the built sites over HTTPS.\n- On push to main: pull the repo into /srv/sites/<repo>/, run the build command from a\n  per-site config (sites.json: repo, branch, buildCmd, outputDir), and atomically swap a\n  `current` symlink to the new build.\n- Keep the last 5 builds per site on disk so rollback is `deployctl rollback <site>`, a\n  one-line CLI.\n- Branch previews: pushes to other branches deploy to <branch>.<site>.mydomain.com via a\n  Caddy wildcard route.\n- Build logs go to /srv/sites/<repo>/logs/<timestamp>.log; `deployctl status` lists\n  sites, last deploy time, and pass/fail.\n- Webhook secret and tokens in .env. The service binds to localhost behind Caddy; no\n  accounts, no telemetry.\n- Out of scope: CDN/edge functions, form handling, and team features. This is one VPS,\n  not a global network. Skip the dashboard UI, the CLI is enough.\n- README: the Caddy config snippet, GitHub webhook setup, and the wildcard DNS record\n  previews need.",
+  "whyPeopleStillPay": "Even a simple site still needs dependable CI/CD, routing, and previews — people pay so that infrastructure isn't something they run themselves.",
+  "notes": "A good pairing with the Vercel entry in this catalogue — worth comparing platform convenience against self-hosting directly.",
+  "prompt": "Build a personal static-site deploy pipeline on your own server: a small service that receives a webhook on push, pulls the repository, runs the project's build command, and atomically swaps a live symlink to the new build — a failed build must leave the currently-live site untouched. Keep a handful of recent builds per site so rolling back is a one-line command. Support branch previews: a push to any branch other than the main one deploys to its own subdomain automatically, routed through a wildcard reverse-proxy rule. Log build output per deploy and expose a simple status command listing sites, last deploy time, and pass/fail.\n\nDo not build a global CDN, edge functions, hosted forms, or a web dashboard — this is one server, not a global network, and a command-line status view is enough for a personal tool.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I migrate my existing Netlify sites?", "a": "The build command and output directory, yes — those map directly onto this setup's per-site config. Netlify-specific features like hosted forms and edge functions need rewriting, since there's no drop-in equivalent here." },
+    { "q": "Will it work for a team?", "a": "For deploys, yes, if everyone has push access to the repository. What doesn't come with it is Netlify's own team-permission and review workflow around deploys." },
+    { "q": "What does it cost to run?", "a": "One small VPS and a domain, typically under ten dollars a month — often less than Netlify's paid tiers once a project needs more than the free allowance." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The global CDN. Netlify serves every site from locations near each visitor worldwide; a single VPS serves from one location, and matching that spread is a real infrastructure project on its own." }
   ]
 }

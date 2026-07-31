@@ -1,0 +1,42 @@
+{
+  "slug": "tldv",
+  "name": "tl;dv",
+  "domains": [
+    "tldv.io"
+  ],
+  "category": "meeting-notes",
+  "subcategory": "meeting recorder + clips",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "per-seat-monthly",
+    "source": "https://tldv.io/app/pricing/",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "integrations/media/collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "whisper.cpp",
+      "url": "https://github.com/ggml-org/whisper.cpp"
+    }
+  ],
+  "relatedSlugs": [
+    "superwhisper",
+    "granola",
+    "fathom-ai"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

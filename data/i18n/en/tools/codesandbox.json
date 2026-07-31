@@ -1,34 +1,20 @@
 {
-  "tagline": "Cloud development environments and browser-based coding sandboxes",
-  "verdictSummary": "You can self-host a browser IDE, but fast templates, previews, cloud VMs, collaboration, and workflow integrations are the product.",
-  "coreLoopDIY": "Run code-server or dev containers, expose preview URLs, sync git repos, and add templates.",
+  "tagline": "Cloud development environments and browser-based sandboxes.",
+  "verdictSummary": "Running a real browser-based IDE on your own server — code-server behind a private tunnel, a CLI to spin up a new sandbox from a template — is a real weekend build using existing open-source tools. What doesn't come with it is CodeSandbox's actual product: instant templates, disposable cloud VMs, live preview URLs, and real-time collaboration.",
+  "coreLoopDIY": "Self-host the open-source code-server (VS Code in the browser) behind a private tunnel, with a CLI that spins up a new sandbox from a template folder.",
   "whatYouLose": [
-    "instant templates",
-    "cloud sandboxes",
-    "preview URLs",
-    "collaboration",
-    "managed infrastructure",
-    "integration polish"
+    "instant, disposable cloud sandboxes",
+    "public preview URLs for sharing a running app",
+    "real-time collaboration",
+    "managed infrastructure"
   ],
-  "whyPeopleStillPay": "They pay to avoid managing dev machines for experiments and previews.",
-  "notes": "Useful for builders deciding whether to roll a cloud IDE stack.",
-  "prompt": "Build me a personal cloud dev environment to replace CodeSandbox.\nRequirements:\n\n- Do not write an IDE. Set up code-server (VS Code in the browser) on my\n  VPS via its official install script, running under systemd, bound to\n  localhost.\n- Access over Tailscale or an SSH tunnel only; no public exposure, built-in\n  password auth switched off. That is the whole security model, keep it\n  that simple.\n- A sandbox CLI: sandbox new <name> --template node|python|static copies a\n  folder from templates/ into ~/sandboxes/<name>, runs its install step,\n  and prints the code-server URL opened to it.\n- Three templates: node (Express hello world + nodemon), python (venv +\n  Flask), static (index.html served with live-server).\n- Previews: each sandbox's dev server gets its own port, reachable through\n  the same tunnel; a tiny index page lists sandboxes and their ports.\n- sandbox rm <name> archives the folder to a tarball before deleting it.\n- No accounts, no telemetry; everything lives on my own server.\n- Out of scope: multi-user collaboration, instant VM forking, and public\n  preview URLs; managed infrastructure is the hosted product.\n- README: install steps, tunnel setup, and how to add a template.",
+  "whyPeopleStillPay": "People pay to avoid managing dev machines just for quick experiments and previews — spinning up and tearing down environments on demand is the actual convenience, not the editor itself.",
+  "notes": "Useful for anyone deciding whether to roll their own cloud IDE stack instead of paying for one — the pieces exist, assembling them is real but bounded work.",
+  "prompt": "Do not build an editor — deploy the real, open-source code-server (VS Code in the browser) on your own VPS, running under a process manager, bound to localhost. Access it only through a private tunnel (Tailscale or an SSH tunnel) — no public exposure, and that's the entire security model, kept deliberately simple. Build a small CLI that creates a new sandbox from a named template folder (a Node starter, a Python starter, a static-site starter), runs its install step, and prints the URL to open it. Give each sandbox's dev server its own port reachable through the same tunnel, with a small index page listing active sandboxes and their ports. Add a command to archive and remove a sandbox, tarring it before deleting.\n\nDo not build multi-user collaboration, instant VM forking, or public preview URLs — those need real multi-tenant infrastructure, which is exactly what the hosted product provides and a personal server shouldn't attempt to replicate.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing CodeSandbox projects?", "a": "Yes, largely — CodeSandbox projects are just code, downloadable as a zip, which drops straight into a new sandbox folder here. Live collaboration state and sandbox forking history don't carry over, since those are platform-specific." },
+    { "q": "Will it work on my phone?", "a": "A code editor in a browser tab technically loads on a phone, but real editing needs a keyboard — this is a desktop tool in practice." },
+    { "q": "What does it cost to run?", "a": "One VPS, typically five to ten dollars a month depending on how much you run at once — no per-sandbox or per-hour pricing." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Instant, shareable preview URLs. CodeSandbox gives every sandbox a public URL you can hand to anyone in seconds; here, previews stay behind your private tunnel, which is more secure but means nothing is casually shareable." }
   ]
 }

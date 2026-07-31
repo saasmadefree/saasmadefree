@@ -1,0 +1,20 @@
+{
+  "tagline": "AI lifecycle marketer that writes and sends product emails automatically.",
+  "verdictSummary": "The first version — product events feeding an LLM draft, held for approval, sent on a schedule — is a real weekend build. What doesn't come out of one build is what happens after the first send: deliverability and domain reputation, split-testing variants against real results, classifying and answering replies, and someone still tuning the thing months later. Build the sender, then be honest about whether you'll keep operating it.",
+  "coreLoopDIY": "Product events trigger an LLM-drafted lifecycle email in your own voice, held in an approval queue, sent through a real email provider once approved.",
+  "whatYouLose": [
+    "deliverability work: domain warmup, reputation, bounce and complaint handling",
+    "an improvement loop that writes variants, tests them, and rewrites the losers",
+    "reply handling and classification",
+    "the ongoing maintenance that's the actual reason lifecycle programs quietly stop working"
+  ],
+  "whyPeopleStillPay": "Lifecycle email isn't a build problem, it's an upkeep problem — the DIY version works exactly as well as your first draft and stays there, because nobody goes back to rewrite the activation email that quietly stopped converting. People pay for the part that keeps happening after launch week.",
+  "notes": "Submitted by the maker. The honest split stated plainly: the sender is a weekend; the loop that keeps rewriting it, based on real outcomes, is not.",
+  "prompt": "Build a self-hosted lifecycle email tool for one product: an endpoint that accepts product events (a signup, a trial nearing its end, a feature used) tied to a contact. Define a couple of sequences as simple config files — an entry event, then steps with a wait period and a plain-language instruction for what that email should nudge the reader toward. On a schedule, find contacts due for their next step, and draft that email with an LLM API, given your own brand-voice notes and that contact's recent activity. Every draft lands in an approval queue — nothing sends without a human clicking approve. Send approved mail through a real transactional provider, record bounce and complaint webhooks into a suppression list checked before every future send, and put a working one-click unsubscribe link in every footer. Cap how many emails one contact can receive across all sequences in a short window, enforced before drafting, not after.\n\nDo not build A/B variant testing, reply parsing, or a visual sequence builder — this runs one program for one product with one operator approving everything, and that's the honest scope. Be blunt in the README that a new sending domain needs a genuine warmup period before real volume, and that mail from a cold domain lands in spam no matter how good the copy is.",
+  "faq": [
+    { "q": "Can I import my existing Mara sequences and contacts?", "a": "Contacts and their event history generally don't export in a structured format. Sequences themselves are short enough to recreate directly as config files — the real content to preserve is your brand-voice notes, which are just a document." },
+    { "q": "Will it work on my phone?", "a": "The approval queue is a simple web page, usable from a phone for approving or rejecting a draft, but writing sequences and reviewing brand voice is realistically a desktop task." },
+    { "q": "What does it cost to run?", "a": "Hosting plus a transactional email provider, typically a few dollars a month at low volume, plus LLM API usage per drafted email — all metered, none of it a flat platform fee." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The email that keeps getting better. Mara's actual pitch is that it keeps testing and rewriting based on what worked; a personal build sends what you approved once and stays exactly that good until you personally go back and change it." }
+  ]
+}

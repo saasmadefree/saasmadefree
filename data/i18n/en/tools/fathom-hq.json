@@ -1,35 +1,21 @@
 {
-  "tagline": "Financial reporting, KPI dashboards, consolidations, and forecasting for businesses",
-  "verdictSummary": "A KPI dashboard over accounting exports is buildable, but Fathom's value is accounting integrations, consolidation, forecasting, polished board reports, and accountant workflows.",
-  "coreLoopDIY": "Import Xero/QuickBooks CSV/API data, calculate KPIs, build dashboards, and export PDF reports.",
+  "tagline": "KPI dashboards and board reports built from accounting exports.",
+  "verdictSummary": "A KPI dashboard built from monthly accounting CSV exports — revenue, margin, custom ratios, trend charts, a one-command PDF report — is a real weekend build with zero API keys, since your financials never have to touch a server. What doesn't come with it is live accounting sync, multi-entity consolidation, and forecasting.",
+  "coreLoopDIY": "Import monthly accounting CSV exports, compute KPIs and custom ratios locally, and generate a dashboard plus a one-command PDF board report.",
   "whatYouLose": [
-    "accounting integrations",
-    "consolidation",
-    "templates",
+    "live accounting API sync",
+    "multi-entity consolidation",
     "forecasting",
-    "report builder",
-    "advisor workflows",
-    "reliability"
+    "a polished report builder",
+    "advisor-facing workflows"
   ],
-  "whyPeopleStillPay": "They pay because board/advisor reporting needs accuracy, comparability, and presentable output.",
-  "notes": "Interesting finance ops case: charting is easy, accounting semantics are harder.",
-  "prompt": "Build me a small-business KPI dashboard to replace Fathom HQ. Requirements:\n\n- A local web app: Node + Express + better-sqlite3, binds to localhost, my\n  financials never touch a server.\n- Import: I drop monthly Xero or QuickBooks CSV exports (P&L and balance\n  sheet) into ./imports/; a parser loads them as monthly line items in SQLite.\n- KPIs computed per month: revenue, gross margin %, net profit, cash on hand,\n  plus custom ratios defined in kpis.json as formulas over account names.\n- Dashboard: KPI tiles with month-over-month change, 12-month trend charts via\n  Chart.js, and a drill-down table per account.\n- Targets: kpis.json can set a target per KPI; show green/red against it.\n- One-command board pack: render the dashboard to ./reports/YYYY-MM.pdf with\n  Puppeteer, one page of KPIs, one of charts.\n- No accounts, no telemetry, everything local, no API keys needed at all.\n- Out of scope: live accounting API sync, multi-entity consolidation, and\n  forecasting. CSV in, dashboard and PDF out.\n- README: exactly which reports to export from Xero/QuickBooks and the CSV\n  columns the parser expects.",
+  "whyPeopleStillPay": "Board and advisor reporting needs to be accurate, comparable month to month, and presentable without extra formatting work — people pay for that reliability and polish, not for the ability to chart a number.",
+  "notes": "An interesting finance-ops case: charting the numbers is easy, getting the accounting semantics right is the actual work.",
+  "prompt": "Build a small-business KPI dashboard that runs entirely on your own machine, with your financials never touching a server: drop monthly accounting CSV exports (profit and loss, balance sheet) into a folder, and parse them into monthly line items in a local database. Compute standard KPIs per month — revenue, gross margin, net profit, cash on hand — plus custom ratios you define as formulas over account names in a config file. Build a dashboard of KPI tiles showing month-over-month change, a 12-month trend chart per KPI, and a drill-down table per account. Let each KPI carry an optional target, shown as a clear over/under indicator. Add a one-command export that renders the dashboard to a PDF board report.\n\nDo not build live accounting API sync, multi-entity consolidation, or forecasting — CSV in, dashboard and PDF out is the honest, complete scope for a personal version, and requires zero API keys.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I import my existing Fathom HQ setup?", "a": "Not directly — Fathom's KPI definitions and report templates don't export. Your underlying accounting data, though, is the same monthly CSV export from Xero or QuickBooks either way, so the source data isn't lost." },
+    { "q": "Will it work on my phone?", "a": "The dashboard renders on a phone browser for a quick check, but importing CSVs and setting up KPI formulas is realistically a desktop task." },
+    { "q": "What does it cost to run?", "a": "Nothing beyond the machine you already own — no hosting, no API key, no subscription, since everything stays local." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Multi-entity consolidation. Fathom can roll several related businesses into one comparable view; this build handles one set of books at a time, and combining several means doing that math yourself." }
   ]
 }

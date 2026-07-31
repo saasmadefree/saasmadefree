@@ -1,35 +1,21 @@
 {
-  "tagline": "Website builder with templates, AI tools, ecommerce, bookings, and apps",
-  "verdictSummary": "A custom site is buildable; Wix as a platform includes editor, templates, apps, ecommerce/bookings, hosting, domains, and a huge long-tail feature surface.",
-  "coreLoopDIY": "Build the specific site directly with a framework or static generator and deploy it with forms/bookings/payments as needed.",
+  "tagline": "Website builder with templates, AI tools, e-commerce, bookings, and apps.",
+  "verdictSummary": "The one specific business website you need — a static site with clean copy, a working contact form, solid SEO basics baked in at build time — is a real weekend build. What doesn't come with it is Wix as a platform: a visual drag-and-drop editor, an app marketplace, and built-in e-commerce and booking tools.",
+  "coreLoopDIY": "A static site with copy in plain content files, a working contact form, and SEO fundamentals — a sitemap, meta tags, structured data — generated automatically at build time.",
   "whatYouLose": [
-    "drag-and-drop editor",
-    "app marketplace",
-    "ecommerce/bookings",
-    "templates",
-    "hosting/domains",
-    "support",
+    "a drag-and-drop visual editor",
+    "the app marketplace",
+    "built-in e-commerce and booking tools",
+    "managed hosting and domains",
     "mobile apps"
   ],
-  "whyPeopleStillPay": "They pay because one website project tends to become ten maintenance requests.",
-  "notes": "Good to compare with Webflow/Framer and show the DIY site-vs-builder distinction.",
-  "prompt": "Build me a website for my business to replace Wix · the one site I need, not a site builder. Requirements:\n\n- An Astro static site: home, services, about, contact. Copy lives in Markdown and\n  YAML data files so text edits never touch layout code.\n- One mobile-first stylesheet with CSS custom properties for brand colors and type.\n  No CSS framework, no page-builder abstraction.\n- Contact form POSTs to a small Express handler: emails me via SMTP creds in .env\n  and appends to data/messages.jsonl. Honeypot for spam.\n- SEO basics at build time: sitemap.xml, robots.txt, per-page title/meta/OG tags,\n  and a JSON-LD LocalBusiness block with hours and address.\n- npm run build then rsync dist/ to my VPS, served by Caddy with automatic HTTPS.\n- No accounts, no telemetry, no admin panel; content edits are git commits.\n- If I need appointment booking, link to my scheduling tool; do not build a booking\n  engine into this site.\n- Out of scope: drag-and-drop editing, the app marketplace, and ecommerce. If the\n  business needs a real store, that is a Shopify problem, not this build.\n- README: DNS records, Caddy snippet, and exactly which files to edit for common\n  copy changes.",
+  "whyPeopleStillPay": "One website project tends to turn into ten ongoing maintenance requests — people pay so those keep being handled without hiring anyone.",
+  "notes": "Worth comparing against the Webflow and Framer entries in this catalogue — the DIY-site-versus-site-builder distinction is the same story each time.",
+  "prompt": "Build the one business website actually needed — not a site builder. A static site (home, services, about, contact) with copy in plain content files, so text edits never touch layout code. One mobile-first stylesheet using shared variables for brand colors and type, no framework or page-builder abstraction. A contact form that posts to a small server endpoint, emails you the message, and logs it as a fallback, with a honeypot field against spam. Generate SEO fundamentals automatically at build time: a sitemap, robots.txt, per-page meta tags, and a structured-data block with the business's name, hours, and address. If appointment booking matters, link out to a dedicated scheduling tool rather than building a booking engine here.\n\nDo not build drag-and-drop editing, an app marketplace, or e-commerce — if the business genuinely needs a real store, that's a job for dedicated commerce software, not an extension of this site.",
   "faq": [
-    {
-      "q": "TODO",
-      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    },
-    {
-      "q": "TODO",
-      "a": "TODO"
-    }
+    { "q": "Can I export my existing Wix site?", "a": "Not really — Wix doesn't offer a structured content export. Copying the text and images over by hand into the new content files is realistic for a typical small-business site." },
+    { "q": "Will it work on my phone?", "a": "The published site is fully responsive. Editing content means editing files, which is a desktop task, not a phone one — that's the trade against Wix's own editor." },
+    { "q": "What does it cost to run?", "a": "Hosting and a domain, typically a few dollars a month, plus email delivery for the contact form — no per-app marketplace fees." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The app marketplace. Wix lets a non-technical owner add booking, chat, or loyalty features with a few clicks; here, each of those is a separate piece of software to integrate and maintain." }
   ]
 }
