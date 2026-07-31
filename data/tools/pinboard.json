@@ -1,0 +1,42 @@
+{
+  "slug": "pinboard",
+  "name": "Pinboard",
+  "domains": [
+    "pinboard.in"
+  ],
+  "category": "read-it-later",
+  "subcategory": "read-later, bookmarks and RSS",
+  "pricing": {
+    "amount": 1.83,
+    "currency": "USD",
+    "plan": "Regular account",
+    "basis": "annual-effective-monthly",
+    "source": "https://pinboard.in/tour/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "capture polish, sync, and content partnerships",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "linkding",
+      "url": "https://github.com/sissbruecker/linkding"
+    }
+  ],
+  "relatedSlugs": [
+    "raindrop-io",
+    "instapaper-premium",
+    "matter"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

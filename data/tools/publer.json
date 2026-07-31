@@ -1,0 +1,44 @@
+{
+  "slug": "publer",
+  "name": "Publer",
+  "domains": [
+    "publer.io"
+  ],
+  "category": "social-media",
+  "subcategory": "social scheduling and content repurposing",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Professional",
+    "basis": "flat-monthly",
+    "source": "https://publer.io/plans",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "API access, connector upkeep, and collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Postiz",
+      "url": "https://github.com/gitroomhq/postiz-app"
+    }
+  ],
+  "relatedSlugs": [
+    "metricool",
+    "buffer",
+    "later"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

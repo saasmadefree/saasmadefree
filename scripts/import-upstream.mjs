@@ -272,6 +272,11 @@ const SLUG_DOMAIN_OVERRIDES = new Map([
   ['proton-pass-plus', 'pass.proton.me'],
   ['quicken-simplifi', 'simplifi.quicken.com'], // quicken.com also claimed by quicken-classic-deluxe; simplifi.com does not resolve to Quicken (verified)
   ['v0', 'v0.app'], // Vercel rebranded v0.dev -> v0.app in January 2026 (confirmed: v0.dev is stale, v0.app is live); not a collision, just an upstream-stale domain
+  // --- hostname-too-broad overrides found while screening the remaining
+  // mapped-category pool (see docs/import-report.md, batches 6-10) ---
+  ['ubersuggest', 'app.neilpatel.com'], // neilpatel.com is Neil Patel's whole personal-brand site (blog, agency, courses); Ubersuggest itself lives at a path there. Confirmed: app.neilpatel.com returns <title>Ubersuggest</title>.
+  ['appsmith-cloud', 'app.appsmith.com'], // appsmith.com is the open-source project's own site (self-hosters land there too) — same umami.is precedent. Confirmed: app.appsmith.com returns <title>Appsmith</title>.
+  ['seatable-cloud', 'cloud.seatable.io'], // seatable.io is the open-source/self-host project site — same umami.is precedent. Confirmed: cloud.seatable.io returns <title>Log in - SeaTable Cloud</title>.
 ]);
 
 // Manual exclusions beyond the automatic eligibility() checks — a real
@@ -282,6 +287,10 @@ const MANUAL_EXCLUSIONS = new Map([
   ['microsoft-365-personal', 'no confirmed product-specific hostname exists: the pricing page lives at a path on the huge microsoft.com corporate domain, and the web-app hostname (m365.cloud.microsoft) is shared across every Microsoft 365 tier, not this one. Excluded per the domain-safety rule rather than firing on unrelated Microsoft traffic.'],
   ['readwise', 'same underlying subscription as our existing "readwise-reader" entry — upstream\'s own data has both "readwise" and "readwise-reader" on the identical domain (readwise.io) with the identical pricing.plan ("Readwise Full"). It\'s already blocked by the domain-collision check via DOMAIN_OVERRIDES, but is listed here explicitly so the reason is documented rather than looking like an ordinary domain clash.'],
   ['notion', 'deliberately removed from the catalogue by owner decision (see docs/import-report.md) — was previously hand-curated data/tools/notion.json, deleted along with its i18n files and 27 relatedSlugs repointed. Without this entry, "slug already present" no longer blocks upstream\'s own notion.json from being re-imported by a future --limit run, so it\'s excluded here explicitly. Do not re-add without a new owner decision.'],
+  ['discord-nitro', 'no dedicated hostname exists: discord.com is the entire free Discord product surface, and Nitro is a paid add-on on top of it. Listing it would fire the extension panel on every Discord visitor, paying or not — same domain-safety failure mode as github-copilot/microsoft-365-personal. Decided during batch 5, recorded here so a later --limit run can\'t pick it back up.'],
+  ['matomo-cloud', 'no fixed, listable hostname exists: Matomo Cloud provisions each customer their own <name>.matomo.cloud subdomain at signup, and the bare matomo.org is the self-hosted open-source project\'s own site — a far broader audience than paying Cloud customers. domains[] holds literal hostnames, not wildcards. Decided during batch 5.'],
+  ['jetbrains-ai-pro', 'no product-specific hostname exists: jetbrains.com is JetBrains\' whole corporate site (IntelliJ IDEA, PyCharm, WebStorm and every other product live there, all with far more traffic than AI Pro), and the AI Pro pricing page is a path, not a subdomain. Decided during batch 5.'],
+  ['everydollar-premium', 'no product-specific hostname exists: everydollar.com 301-redirects to ramseysolutions.com/money/everydollar (verified), app.everydollar.com does not resolve, and ramseysolutions.com is Ramsey Solutions\' entire company site — books, courses, the radio show, insurance referrals — of which EveryDollar is one product among many. Same domain-safety failure mode as microsoft-365-personal.'],
   ['digitalocean-app-platform', 'no confirmed product-specific hostname exists: the App Platform dashboard lives at a path (cloud.digitalocean.com/apps) on the control panel shared by every DigitalOcean product (Droplets, Kubernetes, Spaces, ...), and the bare digitalocean.com is the whole company\'s marketing site. Same domain-safety failure mode as microsoft-365-personal — excluded rather than firing on unrelated DigitalOcean traffic.'],
 ]);
 

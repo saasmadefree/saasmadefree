@@ -1,0 +1,43 @@
+{
+  "slug": "novelcrafter",
+  "name": "Novelcrafter",
+  "domains": [
+    "novelcrafter.com"
+  ],
+  "category": "ai-writing",
+  "subcategory": "grammar, editing and long-form writing",
+  "pricing": {
+    "amount": 4,
+    "currency": "USD",
+    "plan": "Hobbyist",
+    "basis": "flat-monthly",
+    "source": "https://novelcrafter.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "polish, integrations, and proprietary language models",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Manuskript",
+      "url": "https://github.com/olivierkes/manuskript"
+    }
+  ],
+  "relatedSlugs": [
+    "sudowrite",
+    "lex",
+    "prowritingaid"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

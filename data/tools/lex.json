@@ -1,0 +1,43 @@
+{
+  "slug": "lex",
+  "name": "Lex",
+  "domains": [
+    "lex.page"
+  ],
+  "category": "ai-writing",
+  "subcategory": "AI drafting, research and content optimization",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://lex.page/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "workflow, data, and model tuning",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Novel",
+      "url": "https://github.com/steven-tey/novel"
+    }
+  ],
+  "relatedSlugs": [
+    "novelcrafter",
+    "sudowrite",
+    "hemingway-editor-plus"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

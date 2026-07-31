@@ -1,0 +1,42 @@
+{
+  "slug": "proton-pass-plus",
+  "name": "Proton Pass Plus",
+  "domains": [
+    "pass.proton.me"
+  ],
+  "category": "security",
+  "subcategory": "passwords, privacy and private networking",
+  "pricing": {
+    "amount": 4.99,
+    "currency": "USD",
+    "plan": "Pass Plus",
+    "basis": "flat-monthly",
+    "source": "https://proton.me/pass/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "security assurance, infrastructure, and trust",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "domain",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Vaultwarden",
+      "url": "https://github.com/dani-garcia/vaultwarden"
+    }
+  ],
+  "relatedSlugs": [
+    "bitwarden",
+    "nordpass",
+    "enpass"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "se-ranking",
+  "name": "SE Ranking",
+  "domains": [
+    "seranking.com"
+  ],
+  "category": "seo-marketing",
+  "subcategory": "keyword research, backlinks and rank tracking",
+  "pricing": {
+    "amount": 65,
+    "currency": "USD",
+    "plan": "Essential",
+    "basis": "flat-monthly",
+    "source": "https://seranking.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "proprietary web index and data acquisition",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "SerpBear",
+      "url": "https://github.com/towfiqi/serpbear"
+    }
+  ],
+  "relatedSlugs": [
+    "accuranker",
+    "semrush",
+    "ahrefs"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

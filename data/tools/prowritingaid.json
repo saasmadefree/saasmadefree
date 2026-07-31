@@ -1,0 +1,41 @@
+{
+  "slug": "prowritingaid",
+  "name": "ProWritingAid",
+  "domains": [
+    "prowritingaid.com"
+  ],
+  "category": "ai-writing",
+  "subcategory": "grammar, editing and long-form writing",
+  "pricing": {
+    "amount": 30,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "flat-monthly",
+    "source": "https://prowritingaid.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "polish, integrations, and proprietary language models",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "LanguageTool",
+      "url": "https://github.com/languagetool-org/languagetool"
+    }
+  ],
+  "relatedSlugs": [
+    "languagetool",
+    "hemingway-editor-plus",
+    "grammarly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

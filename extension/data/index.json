@@ -881,6 +881,13 @@
     "currency": "USD",
     "url": "/en/tools/leonardo-ai"
   },
+  "lex.page": {
+    "slug": "lex",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/lex"
+  },
   "linear.app": {
     "slug": "linear",
     "verdict": "kinda",
@@ -909,12 +916,33 @@
     "currency": "USD",
     "url": "/en/tools/lovable"
   },
+  "lowfruits.io": {
+    "slug": "lowfruits",
+    "verdict": "no",
+    "amount": 29.9,
+    "currency": "USD",
+    "url": "/en/tools/lowfruits"
+  },
+  "luckyorange.com": {
+    "slug": "lucky-orange",
+    "verdict": "no",
+    "amount": 19,
+    "currency": "USD",
+    "url": "/en/tools/lucky-orange"
+  },
   "lunchmoney.app": {
     "slug": "lunch-money",
     "verdict": "kinda",
     "amount": 10,
     "currency": "USD",
     "url": "/en/tools/lunch-money"
+  },
+  "magnific.ai": {
+    "slug": "magnific-ai",
+    "verdict": "no",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/magnific-ai"
   },
   "mailchimp.com": {
     "slug": "mailchimp",
@@ -937,12 +965,26 @@
     "currency": "USD",
     "url": "/en/tools/make"
   },
+  "mangools.com": {
+    "slug": "mangools",
+    "verdict": "no",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/mangools"
+  },
   "hiremara.com": {
     "slug": "mara",
     "verdict": "kinda",
     "amount": 99,
     "currency": "USD",
     "url": "/en/tools/mara"
+  },
+  "hq.getmatter.com": {
+    "slug": "matter",
+    "verdict": "kinda",
+    "amount": 5,
+    "currency": "USD",
+    "url": "/en/tools/matter"
   },
   "mattermost.com": {
     "slug": "mattermost-professional",
@@ -971,6 +1013,13 @@
     "amount": 14.99,
     "currency": "USD",
     "url": "/en/tools/mem-ai"
+  },
+  "metricool.com": {
+    "slug": "metricool",
+    "verdict": "kinda",
+    "amount": 22,
+    "currency": "USD",
+    "url": "/en/tools/metricool"
   },
   "midjourney.com": {
     "slug": "midjourney",
@@ -1028,6 +1077,13 @@
     "currency": "USD",
     "url": "/en/tools/motion"
   },
+  "mouseflow.com": {
+    "slug": "mouseflow",
+    "verdict": "no",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/mouseflow"
+  },
   "moz.com": {
     "slug": "moz-pro",
     "verdict": "no",
@@ -1063,6 +1119,13 @@
     "currency": "USD",
     "url": "/en/tools/netlify"
   },
+  "newsblur.com": {
+    "slug": "newsblur-premium",
+    "verdict": "yes",
+    "amount": 3,
+    "currency": "USD",
+    "url": "/en/tools/newsblur-premium"
+  },
   "nocodb.com": {
     "slug": "nocodb-cloud",
     "verdict": "kinda",
@@ -1084,6 +1147,20 @@
     "currency": "USD",
     "url": "/en/tools/nordvpn"
   },
+  "notta.ai": {
+    "slug": "notta",
+    "verdict": "kinda",
+    "amount": 13.49,
+    "currency": "USD",
+    "url": "/en/tools/notta"
+  },
+  "novelcrafter.com": {
+    "slug": "novelcrafter",
+    "verdict": "kinda",
+    "amount": 4,
+    "currency": "USD",
+    "url": "/en/tools/novelcrafter"
+  },
   "nuclino.com": {
     "slug": "nuclino",
     "verdict": "kinda",
@@ -1097,6 +1174,13 @@
     "amount": 4,
     "currency": "USD",
     "url": "/en/tools/obsidian"
+  },
+  "optery.com": {
+    "slug": "optery",
+    "verdict": "no",
+    "amount": 14.99,
+    "currency": "USD",
+    "url": "/en/tools/optery"
   },
   "otter.ai": {
     "slug": "otter-ai",
@@ -1126,6 +1210,13 @@
     "currency": "USD",
     "url": "/en/tools/paste"
   },
+  "payhip.com": {
+    "slug": "payhip",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/payhip"
+  },
   "perplexity.ai": {
     "slug": "perplexity",
     "verdict": "kinda",
@@ -1140,12 +1231,40 @@
     "currency": "USD",
     "url": "/en/tools/photoroom"
   },
+  "pinboard.in": {
+    "slug": "pinboard",
+    "verdict": "yes",
+    "amount": 1.83,
+    "currency": "USD",
+    "url": "/en/tools/pinboard"
+  },
   "pipedream.com": {
     "slug": "pipedream",
     "verdict": "no",
     "amount": 29,
     "currency": "USD",
     "url": "/en/tools/pipedream"
+  },
+  "pitch.com": {
+    "slug": "pitch",
+    "verdict": "kinda",
+    "amount": 20,
+    "currency": "USD",
+    "url": "/en/tools/pitch"
+  },
+  "pixelcut.ai": {
+    "slug": "pixelcut",
+    "verdict": "kinda",
+    "amount": 9.99,
+    "currency": "USD",
+    "url": "/en/tools/pixelcut"
+  },
+  "planable.io": {
+    "slug": "planable",
+    "verdict": "kinda",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/planable"
   },
   "planetscale.com": {
     "slug": "planetscale",
@@ -1160,6 +1279,13 @@
     "amount": 9,
     "currency": "USD",
     "url": "/en/tools/plausible"
+  },
+  "play.ht": {
+    "slug": "playht",
+    "verdict": "no",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/playht"
   },
   "pocketsmith.com": {
     "slug": "pocketsmith",
@@ -1196,12 +1322,47 @@
     "currency": "USD",
     "url": "/en/tools/promptdc"
   },
+  "pass.proton.me": {
+    "slug": "proton-pass-plus",
+    "verdict": "no",
+    "amount": 4.99,
+    "currency": "USD",
+    "url": "/en/tools/proton-pass-plus"
+  },
+  "prowritingaid.com": {
+    "slug": "prowritingaid",
+    "verdict": "yes",
+    "amount": 30,
+    "currency": "USD",
+    "url": "/en/tools/prowritingaid"
+  },
+  "publer.io": {
+    "slug": "publer",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/publer"
+  },
   "quickbooks.intuit.com": {
     "slug": "quickbooks-online",
     "verdict": "no",
     "amount": 38,
     "currency": "USD",
     "url": "/en/tools/quickbooks-online"
+  },
+  "quicken.com": {
+    "slug": "quicken-classic-deluxe",
+    "verdict": "no",
+    "amount": 5.99,
+    "currency": "USD",
+    "url": "/en/tools/quicken-classic-deluxe"
+  },
+  "simplifi.quicken.com": {
+    "slug": "quicken-simplifi",
+    "verdict": "no",
+    "amount": 5.99,
+    "currency": "USD",
+    "url": "/en/tools/quicken-simplifi"
   },
   "quillbot.com": {
     "slug": "quillbot",
@@ -1265,6 +1426,13 @@
     "amount": 12,
     "currency": "USD",
     "url": "/en/tools/recraft"
+  },
+  "reederapp.com": {
+    "slug": "reeder",
+    "verdict": "yes",
+    "amount": 1,
+    "currency": "USD",
+    "url": "/en/tools/reeder"
   },
   "relay.app": {
     "slug": "relay-app",
@@ -1342,6 +1510,13 @@
     "amount": 29,
     "currency": "USD",
     "url": "/en/tools/scribe"
+  },
+  "seranking.com": {
+    "slug": "se-ranking",
+    "verdict": "no",
+    "amount": 65,
+    "currency": "USD",
+    "url": "/en/tools/se-ranking"
   },
   "semrush.com": {
     "slug": "semrush",

@@ -1585,3 +1585,183 @@ or introduce one new vertical at a time as the plan suggests.
 - The ~193-entry (now ~203 with `user-research`) unmapped-category remainder is real,
   substantial remaining work requiring genuine taxonomy decisions before it can be imported —
   not something this batch attempted or should be read as having made progress on.
+
+## Batch 6 — 25 tools from the remaining mapped pool (240 → 265)
+
+Continues directly from batch 5. Read the report, `CONTRIBUTING.md` (including the amended
+"The verdict" section), `scripts/import-upstream.mjs` and the `granola` pair before starting;
+no decision already on record above was re-derived.
+
+**Recomputed the remaining pool rather than trusting the count.** Re-ran the eligibility logic
+(`eligibility()` / `hasDerivableAmount()` / `CATEGORY_MAP`, parsed straight out of the
+production script so the analysis cannot drift from it) against the 608-entry upstream set and
+the 240-tool disk state: 307 eligible, of which **114 fall inside a mapped category** and 193
+do not. Subtracting the three already-excluded domain-safety cases from batch 5
+(`discord-nitro`, `matomo-cloud`, `jetbrains-ai-pro`) leaves **111 actually importable**, not
+114 — the difference is those three, kept excluded and not re-litigated.
+
+### Domain safety — the whole remaining 111 screened up front, not batch by batch
+
+Four entries in the remaining pool failed the "never claim a domain the tool doesn't
+exclusively own" rule. Three were resolved with a confirmed narrower hostname, one had none to
+find and is excluded:
+
+| Slug | Upstream domain | Decision |
+|---|---|---|
+| `ubersuggest` | `neilpatel.com` | → `app.neilpatel.com`. The bare domain is Neil Patel's whole personal-brand site (blog, agency, courses) and Ubersuggest lives at a path on it. Confirmed by fetch: `app.neilpatel.com` returns `<title>Ubersuggest</title>`. |
+| `appsmith-cloud` | `appsmith.com` | → `app.appsmith.com`. The bare domain is the open-source project's own site, where self-hosters land — the `umami.is` → `cloud.umami.is` precedent exactly. Confirmed by fetch. |
+| `seatable-cloud` | `seatable.io` | → `cloud.seatable.io`. Same open-source-project-site pattern. Confirmed by fetch: returns `<title>Log in - SeaTable Cloud</title>`. |
+| `everydollar-premium` | `ramseysolutions.com` | **Excluded.** `everydollar.com` 301-redirects to `ramseysolutions.com/money/everydollar` (verified), `app.everydollar.com` does not resolve, and `ramseysolutions.com` is Ramsey Solutions' entire company site — books, courses, the radio show — of which EveryDollar is one product. No listable product-specific hostname exists. Same failure mode as `microsoft-365-personal`. |
+
+The three overrides went into `SLUG_DOMAIN_OVERRIDES`; `everydollar-premium` into
+`MANUAL_EXCLUSIONS`. The batch-5 trio (`discord-nitro`, `matomo-cloud`, `jetbrains-ai-pro`) was
+also written into `MANUAL_EXCLUSIONS` with its reasoning — those decisions previously lived only
+in this report, which meant a future `--limit` run could have picked them straight back up.
+That leaves **110 importable entries** in the mapped pool: 25 here, 85 after.
+
+Every other domain in this batch was checked individually: `lex.page`, `lowfruits.io`,
+`luckyorange.com`, `magnific.ai`, `mangools.com`, `hq.getmatter.com`, `metricool.com`,
+`mouseflow.com`, `newsblur.com`, `notta.ai`, `novelcrafter.com`, `optery.com`, `payhip.com`,
+`pinboard.in`, `pitch.com`, `pixelcut.ai`, `planable.io`, `play.ht`, `pass.proton.me`,
+`prowritingaid.com`, `publer.io`, `quicken.com`, `simplifi.quicken.com`, `reederapp.com`,
+`seranking.com` — each a dedicated, single-product hostname. `quicken.com` stays with
+`quicken-classic-deluxe` and `simplifi.quicken.com` with `quicken-simplifi`, per the collision
+resolution already on record.
+
+### One verdict change, made against the contract and away from `yes`
+
+`lex` arrived from upstream as `yes` with `diyTimeEstimate: multi-day` (→ `week`).
+CONTRIBUTING.md defines `yes` as "a usable personal version **in one sitting**", and a
+week-long build fails that on its face; nor is Lex the hosted-open-source exception
+(`bitwarden`, `ghost-pro`) — there is no real open-source Lex to deploy. Downgraded to `kinda`.
+Same reasoning as batch 5's `buttondown`/`jenni-ai`, and like those it moves *away* from `yes`.
+
+`prowritingaid` was checked in the other direction and kept at `yes`, with
+`verdictConfidence` lowered `high` → `medium`: almost every report ProWritingAid is known for
+(sentence variety, sticky sentences, overused words, readability, dialogue tags) is
+deterministic text analysis needing no key and no service, which is genuinely one sitting and
+has no hard third-party dependency — consistent with `hemingway-editor-plus` and `languagetool`
+already sitting at `yes`. The confidence drop reflects the real gap: its grammar engine is not
+reproducible, and the integrations are simply absent.
+
+**Verdict mix this batch: 4 yes / 10 kinda / 11 no.** Selected by rank, not by verdict. No
+verdict was moved to shift the distribution.
+
+### Upstream templating in this pool, and what replaced it
+
+Same finding as batch 5, worse in places. Four `read-it-later` entries (`matter`,
+`newsblur-premium`, `pinboard`, `reeder`) shipped the *identical* prompt; so did the three
+`seo-marketing` entries (`lowfruits`, `mangools`, `se-ranking`), the two `analytics` entries,
+the three `social-media` entries, the two `ai-image` entries and the two `personal-finance`
+entries. Two upstream templates were also substantively wrong for the product:
+
+- **`optery`** shipped the password-vault template (Argon2id, encrypted vault, master key) for
+  a data-broker removal service — the same mismatch batch 5 found on `nordvpn`/`incogni`. Its
+  `priorArt` (Vaultwarden) was dropped rather than replaced, following the `incogni` precedent.
+- **`lex`** shipped SEO-tool language ("proprietary ranking data", "brand-trained models") in a
+  `whatYouLose` list for a writing editor.
+
+Every prompt and all 100 FAQ entries were written from scratch. Angles chosen per crowded
+subcategory, each a real, checkable product difference rather than a reskin:
+
+- *Read-it-later (4):* newsletter email ingestion via a domain you own (`matter`) vs. a naive-Bayes
+  training classifier that promotes and buries stories, which is NewsBlur's actual signature
+  (`newsblur-premium`) vs. bookmark-first with bulk tag operations and a link-rot checker, no
+  feeds at all (`pinboard`) vs. a single chronological timeline mixing RSS, YouTube and podcasts
+  with *no unread counts anywhere*, which is Reeder's one design decision (`reeder`).
+- *SEO (3):* a SERP weakness scorer over a paid API, explicit that it scores the keywords you
+  bring and cannot find them (`lowfruits`) vs. a keyword workspace built entirely on Google
+  Search Console — the one keyword dataset a site owner legitimately owns, with an archive that
+  outlives Search Console's own 16-month window (`mangools`) vs. multi-client rank tracking whose
+  real output is a branded scheduled PDF, with the SERP data bill shown on the dashboard
+  (`se-ranking`).
+- *Analytics (2):* click and scroll heatmaps anchored to CSS selectors rather than pixels, with
+  session replay explicitly refused rather than shipped unsafely (`lucky-orange`) vs. an
+  rrweb-based replay build where the entire prompt is organised around masking defaults, sampling
+  caps and enforced retention (`mouseflow`).
+- *Social (3):* scheduler that closes the loop by re-reading each post's insights at 24h/7d/30d
+  (`metricool`) vs. approval-first, where publishing is the last step and the deliverable is an
+  immutable approval trail an agency can attach to an invoice (`planable`) vs. bulk CSV import
+  plus evergreen recycling, with a duplicate-content guard and a refusal to auto-generate
+  variations (`publer`).
+- *AI-image (2):* tiled Real-ESRGAN/GFPGAN batch upscaling with a 1:1 before-after slider, honest
+  that it reconstructs implied detail and does not invent it (`magnific-ai`) vs. a cutout →
+  composite → marketplace-preset resize pipeline with erode/feather matte controls and no
+  generative step at all (`pixelcut`).
+- *Personal finance (2):* a double-entry ledger built around **investment lot tracking** — FIFO/LIFO/
+  specific-ID disposal, splits adjusting basis across open lots, dividend reinvestment creating new
+  lots (`quicken-classic-deluxe`) vs. forward-looking projection: recurrence detection over
+  imported history producing one safe-to-spend figure, with a staleness marker that refuses to show
+  the number as fact when imports are old (`quicken-simplifi`).
+- *Others:* AI actions operating on the document with a `.history/` snapshot per save (`lex`);
+  local multilingual Whisper with translate-to-English and an independent notes language
+  (`notta`); a codex whose matched entries are assembled into the drafting prompt, shown to the
+  user before sending (`novelcrafter`); an evidence archive of dated screenshots plus re-listing
+  detection, which never submits anything on the user's behalf (`optery`); digital-goods-only
+  storefront with licence keys and revoke-on-refund, VAT explicitly the operator's problem
+  (`payhip`); deck-as-code with exactly six layouts (`pitch`); a streaming TTS server whose
+  headline output is its own time-to-first-byte distribution (`playht`); a vault plus catch-all
+  alias manager that never sends or receives mail itself (`proton-pass-plus`); nine deterministic
+  style reports with zero network calls (`prowritingaid`).
+
+### `priorArt` corrections
+
+Nine entries inherited prior art that did not match the actual product or the rewritten prompt:
+`optery` (Vaultwarden → dropped, no confident open-source equivalent), `lex` (Open WebUI, a chat
+UI → Novel), `novelcrafter` (LanguageTool, a grammar checker → Manuskript), `pitch` (Penpot, a
+design tool → reveal.js), `pinboard` (FreshRSS, a feed reader → linkding), `reeder` (FreshRSS →
+NetNewsWire, an actual open-source feed *client*), `matter` (FreshRSS → wallabag),
+`magnific-ai` (ComfyUI → Real-ESRGAN + Upscayl), `pixelcut` (ComfyUI → rembg). Generic-but-correct
+prior art (SerpBear, Umami, Postiz, Actual Budget, Piper, whisper.cpp, Medusa) was left alone.
+
+### `requirements[]` — hand-reconciled against each rewritten prompt
+
+The mechanical pass was wrong or incomplete on 19 of the 25. Corrections: `lowfruits`,
+`newsblur-premium`, `pinboard`, `se-ranking` (`none` → `hosting`+`database` — all four run a
+scheduled job and store history); `mangools` (`none` → `hosting`+`database`+`oauth-app`, since
+the Search Console API needs an OAuth client); `matter` (`none` →
+`hosting`+`database`+`email-provider`, for the newsletter ingest); `metricool`, `planable`,
+`publer` (`domain`+`oauth-app` → plus `hosting`+`database`); `lucky-orange`, `mouseflow`
+(added `database`); `payhip` (added `hosting`+`database`); `notta`, `novelcrafter` (added
+`database`); `lex` (added `anthropic-api-key` alongside `openai-api-key`, the established
+both-providers convention for personal drafting tools, plus `database`);
+`quicken-classic-deluxe`, `quicken-simplifi`, `reeder` (`none` → `database`); `playht`
+(`none` → `hosting`, it is a server); `proton-pass-plus` (`none` → `domain`+`email-provider` —
+the alias half is the reason this entry exists and it does not work without both);
+`prowritingaid` (`anthropic-api-key`+`openai-api-key` → `none`, since the rewritten prompt is
+deterministic with no network calls at all — the `hemingway-editor-plus` precedent).
+
+### `relatedSlugs` diversification
+
+The mechanical pass produced four identical triples (`matter`/`newsblur-premium`/`pinboard`/
+`reeder` all resolved to `[raindrop-io, inoreader, feedly]`) plus three more duplicate pairs
+(`lucky-orange`/`mouseflow`, `magnific-ai`/`pixelcut`, `planable`/`publer`) — the known
+"filters bad links, does not guarantee the best available one wins" gap. All 25 were
+hand-reviewed and re-diversified against the now-larger category pools; no two entries in this
+batch share a triple, and every link is a real same-category or genuine-adjacency pick.
+`lex`'s upstream-derived `[writesonic, copy-ai, anyword]` (marketing-copy generators, for a
+document editor) was replaced with `[novelcrafter, sudowrite, hemingway-editor-plus]`.
+
+### Verification
+
+```
+$ npm run validate
+265 fiche(s), 380 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  175 passed (175)
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run build
+Feed écrit dans dist/feed/v1/ — 265 outil(s).
+Site écrit dans dist/ — 2 langue(s), 380 fiche(s), 66 page(s) de catégorie, 452 URL(s) dans le sitemap.
+```
+
+`git status` before staging showed only the 25×2 new data files, `scripts/import-upstream.mjs`,
+and `extension/data/index.json` (regenerated by `npm run build`). `scripts/lib/site-*.mjs`,
+`scripts/assets/`, `extension/` source, `worker/` source, `public/` and `data/i18n/*/ui.json`
+untouched — no new category or `runHint` was needed.
