@@ -37,3 +37,20 @@ for (const key of data.i18n.keys()) {
 }
 const byLang = [...langs].sort((a, b) => b[1] - a[1]).map(([l, n]) => `${l} ${n}`).join(', ');
 console.log(`\n${data.i18n.size} traduction(s) — ${byLang}`);
+
+// Une catégorie trop peu peuplée produit une page de catégorie sans valeur,
+// pour le lecteur comme pour l'indexation. La règle appliquée à l'ouverture
+// des catégories récentes est d'au moins 5 outils ; rien ne la vérifiait
+// ensuite, et six catégories anciennes étaient passées dessous sans que
+// personne ne le voie. Un agent a même affirmé le contraire dans son rapport.
+const THIN = 6;
+const perCategory = new Map();
+for (const tool of data.tools.values()) {
+  perCategory.set(tool.category, (perCategory.get(tool.category) ?? 0) + 1);
+}
+const thin = [...perCategory].filter(([, n]) => n < THIN).sort((a, b) => a[1] - b[1]);
+console.log(`\n${perCategory.size} catégorie(s) peuplée(s)`);
+if (thin.length > 0) {
+  console.log(`  sous ${THIN} outils — page mince, à fusionner ou à étoffer :`);
+  for (const [slug, n] of thin) console.log(`    ${String(n).padStart(3)}  ${slug}`);
+}
