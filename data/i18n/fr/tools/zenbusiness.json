@@ -1,0 +1,32 @@
+{
+  "tagline": "Crée l’entreprise gratuitement, puis te vend le fait de rester en conformité.",
+  "verdictSummary": "La constitution est maintenant un produit d’appel à zéro plus les frais d’État, et le revenu récurrent, c’est la conformité : rapports annuels déposés pour toi, un registered agent, et des modifications quand quelque chose change. Les trois sont des services accomplis auprès d’une administration ou exigeant une adresse dans l’État. Un traqueur aide et ne peut pas déposer, ce qui fait de ça un « non » avec une consolation vraiment utile.",
+  "coreLoopDIY": "Sache ce que ton entreprise doit et à qui : un registre d’obligations par entité avec les frais d’État, l’URL de dépôt et l’échéance, et un enregistrement de chaque dépôt que tu as réellement fait.",
+  "whatYouLose": [
+    "les rapports annuels déposés en ton nom",
+    "une adresse de registered agent dans l’État",
+    "les modifications et dépôts de changement gérés pour toi",
+    "quelqu’un qui surveille les avis de l’État",
+    "la réassurance qu’une échéance manquée est leur problème"
+  ],
+  "whyPeopleStillPay": "Parce que 199 $ par an, c’est moins qu’une seule pénalité plus le processus de réhabilitation, et parce que la conformité est exactement le genre de tâche qu’on reporte jusqu’à ce qu’elle soit en retard.",
+  "prompt": "Construis un registre de conformité d’entreprise : ce qui est dû, à qui, quand, à quel coût, et ce qui a réellement été déposé.\n\nCeci chevauche délibérément un traqueur de constitution mais répond à une question différente — pas « ai-je déposé » mais « combien me coûte le fait de garder cette entreprise en vie, et que se passerait-il si j’arrêtais ».\n\nStack : une application locale, SQLite, une seule commande. Les exigences varient selon l’État et le type d’entité ; la donnée est à saisir toi-même à partir de sources officielles et l’application n’en livre aucune.\n\nEntité : nom, type, État, date de constitution, EIN, registered agent et son renouvellement, statut tel que tu l’as confirmé pour la dernière fois et la date où tu l’as confirmé.\n\nObligation : nom, autorité, récurrence, frais officiels, URL de dépôt, délai d’anticipation, et — le champ qui rend ça différent — la conséquence de la manquer, saisie en texte libre depuis les propres directives de l’État. « Frais de retard de 50 $, puis dissolution administrative après 60 jours » change le comportement d’une façon qu’une simple date d’échéance ne fait pas.\n\nLa vue de coût : coût annuel de garder chaque entité en vie, en ajoutant les frais d’État, le registered agent, et tout abonnement de service que tu enregistres. Pour une entité dormante, ce chiffre est l’argument pour la dissoudre, et la plupart des gens qui possèdent une entreprise dormante ne l’ont jamais additionné.\n\nEnregistrement de dépôt : date, référence, frais réellement payés, et le document de confirmation. Frais payés contre frais officiels, pour qu’une marge de service soit visible comme un chiffre.\n\nUne checklist de dissolution par entité, générée depuis les obligations : derniers dépôts, dernière déclaration fiscale, annulation du registered agent, fermeture des comptes, période de rétention des enregistrements. Fermer une entreprise correctement est une vraie tâche et personne n’a de liste.\n\nRappels escaladés qui ne s’arrêtent que sur un enregistrement de dépôt avec un document.\n\nÉcris des tests pour les totaux de coût annuel à travers des changements en cours d’année, pour la récurrence sur les obligations liées à l’anniversaire de constitution, et pour les rappels qui continuent jusqu’à ce qu’un document soit attaché.\n\nNe dépose rien et ne préremplis pas les exigences d’État.",
+  "faq": [
+    {
+      "q": "Pourquoi enregistrer la conséquence de manquer une obligation ?",
+      "a": "« Rapport annuel dû le 15 mars » et « frais de retard puis dissolution administrative après 60 jours » produisent des comportements complètement différents, et le second est sur le site de l’État mais jamais dans le calendrier de personne."
+    },
+    {
+      "q": "Pourquoi calculer le coût annuel d’une entité ?",
+      "a": "Parce que les entreprises dormantes coûtent discrètement des centaines par an en frais et charges d’agent, et personne ne les additionne. Voir le chiffre, c’est généralement ce qui incite soit à la dissoudre, soit à l’utiliser."
+    },
+    {
+      "q": "Pourquoi inclure une checklist de dissolution ?",
+      "a": "Parce qu’abandonner une entreprise ne met pas fin à ses obligations — les frais s’accumulent et les dépôts restent dus jusqu’à ce qu’elle soit formellement dissoute. C’est la partie la moins documentée de posséder une entité et celle qui génère des lettres surprises."
+    },
+    {
+      "q": "La constitution gratuite est-elle vraiment gratuite ?",
+      "a": "Les frais de service, oui ; les frais d’État, non, et ils vont de modestes à substantiels. Les abonnements récurrents de conformité et de registered agent, c’est là que se situe le modèle économique, ce qui vaut la peine de savoir avant de comparer les prix de constitution."
+    }
+  ]
+}

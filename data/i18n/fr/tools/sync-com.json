@@ -1,0 +1,32 @@
+{
+  "tagline": "Un stockage chiffré vendu sur sa capacité à être défendable quand un client demande.",
+  "verdictSummary": "Sync.com vend à des gens qui doivent répondre à des questions — comptables, cliniques, avocats — et ce qu’ils achètent, c’est une juridiction, une revendication de conformité et une piste d’audit que quelqu’un d’autre garantit. Le chiffrement et un lien de partage sont le travail d’une session. L’enregistrement de qui a ouvert quoi, quand, depuis où, tenu sous une forme que tu montrerais à un régulateur, c’est la moitié constructible et elle vaut vraiment la peine d’être eue ; la moitié institutionnelle n’est pas quelque chose qu’un projet perso produit.",
+  "coreLoopDIY": "Partage des fichiers chiffrés avec des contrôles qui tiennent — expiration, limites de téléchargement, liens par destinataire — et garde un journal d’accès assez complet pour répondre à « qui a ouvert ça et quand » un an plus tard.",
+  "whatYouLose": [
+    "une posture de conformité que quelqu’un d’autre certifie",
+    "les clients de synchro et les applications mobiles",
+    "une juridiction choisie et ses garanties de résidence des données",
+    "le support quand un client pose une question à laquelle tu ne peux pas répondre",
+    "la garantie de durabilité derrière le stockage"
+  ],
+  "whyPeopleStillPay": "Parce que le produit, c’est une réponse à une question d’un client ou d’un régulateur, et un serveur auto-hébergé avec un bon journal n’est pas la même chose qu’une attestation de fournisseur.",
+  "prompt": "Construis un partage de fichiers chiffré dont la fonctionnalité distinctive est un journal d’accès que tu serais prêt à remettre à un client.\n\nStack : ton choix, Postgres, stockage d’objets, Docker Compose, un domaine avec TLS. Chiffre côté client avec la Web Crypto API ; le serveur stocke du texte chiffré.\n\nModèle de partage, par destinataire plutôt que par fichier :\n- Un partage cible un destinataire nommé avec son propre lien et son propre enveloppement de clé, pour que révoquer un destinataire n’affecte pas les autres et que le journal puisse attribuer chaque accès à une personne.\n- Contrôles, imposés côté serveur : date d’expiration, téléchargements maximum, phrase secrète optionnelle mélangée dans la dérivation de clé dans le navigateur, et révocation instantanée.\n- Un lien révoqué retourne un clair « ce lien a été révoqué le <date> » plutôt qu’une 404, parce que le destinataire a besoin de savoir que c’était délibéré.\n\nLe journal d’accès, c’est le projet :\n- Chaque événement — partage créé, lien ouvert, téléchargement démarré, téléchargement terminé, téléchargement échoué, partage révoqué, partage expiré — avec horodatage, destinataire, id de partage, adresse IP et user agent.\n- En écriture seule. Aucun chemin de mise à jour ou de suppression n’existe dans le code, et chaque ligne porte une chaîne de hash sur la ligne précédente pour que l’altération soit détectable. Écris le test qui vérifie la chaîne et détecte une ligne modifiée.\n- Une vue chronologie par partage, et une vue par destinataire à travers tous les partages.\n- Exporte un rapport PDF ou CSV signé pour une plage de dates, l’artefact que quelqu’un te demande vraiment.\n- Rétention : configurable, avec la suppression des lignes de journal expirées enregistrée comme sa propre entrée de journal.\n\nÉquilibre de vie privée, et indique-le dans le README : tu journalises des adresses IP et des heures d’accès sur tes destinataires, ce qui est une donnée personnelle. Dis ce que tu gardes, pour combien de temps, et pourquoi, et rends la rétention assez courte pour être justifiable.\n\nNotifications : alerte optionnellement l’expéditeur à la première ouverture et au téléchargement, la fonctionnalité que les gens remarquent vraiment.\n\nÉcris des tests pour la chaîne de hash qui détecte l’altération, pour la révocation qui prend effet immédiatement y compris pour un téléchargement en cours, et pour l’enveloppement de clé par destinataire qui fait qu’une révocation ne casse pas les autres.\n\nNe construis ni clients de synchro, ni application mobile.",
+  "faq": [
+    {
+      "q": "Pourquoi des liens par destinataire plutôt qu’un lien par fichier ?",
+      "a": "Parce qu’un lien unique transféré à quatre personnes produit quatre entrées de journal indistinguables, et le journal, c’est tout l’intérêt. L’enveloppement par destinataire signifie aussi que révoquer une personne est une vraie opération plutôt que d’invalider tout le monde."
+    },
+    {
+      "q": "Un journal en chaîne de hash est-il excessif pour un outil personnel ?",
+      "a": "C’est environ trente lignes et ça transforme « voici mon journal » en « voici mon journal et il n’a pas été modifié ». Si la raison pour laquelle tu construis ça, c’est répondre à la question d’un client, cette différence, c’est toute la valeur."
+    },
+    {
+      "q": "Ai-je le droit de journaliser les adresses IP de mes destinataires ?",
+      "a": "Généralement oui pour un but de sécurité légitime, mais c’est une donnée personnelle : dis-le, garde-la brièvement, et supprime-la selon un planning. Un journal gardé pour toujours « juste au cas où », c’est la partie qui transforme une fonctionnalité de conformité en problème de conformité."
+    },
+    {
+      "q": "Que vend vraiment Sync.com que je ne peux pas construire ?",
+      "a": "Une juridiction, des attestations tierces, et le nom de quelqu’un d’autre sur la réponse. Quand un client demande qui peut lire ses fichiers, « un fournisseur avec de la documentation de conformité publiée » et « mon propre serveur » sont des réponses différentes, peu importe laquelle est techniquement meilleure."
+    }
+  ]
+}

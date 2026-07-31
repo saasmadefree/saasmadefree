@@ -1,0 +1,32 @@
+{
+  "tagline": "La plateforme de réunion de Cisco, avec un assistant IA inclus.",
+  "verdictSummary": "Des appels vidéo qui fonctionnent de façon fiable pour deux cents personnes dans une douzaine de pays, c’est un réseau, pas une application : des nœuds média près de chaque participant, une capacité pour la pire minute de la journée, et un contrat de support quand une réunion de conseil d’administration se coupe. C’est sans ambiguïté un « non ». Ce qui vaut la peine d’être retenu, c’est la partie qui survit à l’appel — un enregistrement transformé en transcription et une liste de décisions — et ça tourne parfaitement bien sur ton propre ordinateur portable après la fin de la réunion.",
+  "coreLoopDIY": "Possède ce que la réunion laisse derrière : enregistre en local, transcris sur ta propre machine, et produis une note datée avec les décisions et les actions, consultable à travers chaque réunion que tu as eue.",
+  "whatYouLose": [
+    "la réunion elle-même et le réseau qui la porte",
+    "la transcription en direct et les sous-titres pendant l’appel",
+    "l’identification de locuteur depuis les propres canaux audio de la plateforme",
+    "l’assistant qui répond aux questions à l’intérieur de la réunion",
+    "le rappel téléphonique et la téléphonie derrière"
+  ],
+  "whyPeopleStillPay": "Parce qu’une plateforme de réunion est jugée sur son pire appel, et acheter de la capacité dans chaque région est le seul moyen de contrôler ça. L’assistant IA est une fonctionnalité ; le réseau, c’est le produit.",
+  "prompt": "Construis un pipeline post-réunion. Rien ici ne se passe pendant l’appel.\n\nStack : un outil en ligne de commande local plus une petite interface web locale, SQLite, et une clé Anthropic ou OpenAI dans l’environnement. La transcription tourne en local avec whisper.cpp ; seul le texte de la transcription est jamais envoyé à un modèle, et le README doit le dire clairement.\n\nEntrée : un fichier audio ou vidéo depuis n’importe quel enregistreur que tu as utilisé, plus des métadonnées optionnelles — titre, date, noms des participants.\n\nPipeline :\n1. Extrais l’audio et normalise le volume avant la transcription. Les participants silencieux sont la cause principale des mauvaises transcriptions, et cette étape en corrige plus qu’un meilleur modèle ne le fait.\n2. Transcris en local avec des horodatages au niveau du mot.\n3. Diarise en locuteurs si tu peux, et sois honnête quand tu ne peux pas : les locuteurs non étiquetés doivent apparaître comme « Locuteur 1 » plutôt que d’être devinés. Propose un écran d’étiquetage en une passe où tu entends un échantillon de chaque locuteur et tapes un nom une fois.\n4. Envoie la transcription à un modèle avec un prompt qui retourne une forme stricte : un résumé, les décisions prises, des actions avec un responsable et une date d’échéance là où une a été énoncée, et des questions ouvertes. Chaque élément doit porter l’horodatage du passage dont il vient.\n5. Rends une note Markdown datée avec le résumé en haut, les actions comme une checklist, et la transcription complète en dessous d’un séparateur avec les horodatages comme ancres pour qu’une affirmation puisse être vérifiée en un clic.\n\nL’archive, c’est ce qui rend ça valable à construire : recherche plein texte à travers chaque note et transcription, filtrable par participant et date, avec des résultats qui lient vers l’horodatage. Ajoute une vue « actions ouvertes » à travers toutes les réunions, montrant le responsable et l’ancienneté, parce que des actions extraites puis jamais revisitées, c’est du théâtre.\n\nContrôle des coûts : un budget de tokens par réunion qui découpe les longues transcriptions et résume les morceaux plutôt que de les tronquer silencieusement.\n\nÉcris des tests pour le découpage qui préserve les horodatages à travers une limite, pour la forme de sortie stricte qui est rejetée et réessayée quand le modèle dévie, et pour la recherche qui trouve une phrase qui s’étend sur deux segments de transcription.\n\nNe construis ni client de réunion, ni sous-titres en direct, ni bot de calendrier qui rejoint des appels.",
+  "faq": [
+    {
+      "q": "Pourquoi la normalisation du volume compte-t-elle plus que le modèle ?",
+      "a": "Parce que la plupart des erreurs de transcription viennent d’un participant loin du microphone, et aucun modèle ne récupère une information qui n’a pas été capturée. Normaliser d’abord est une étape ffmpeg d’une ligne qui améliore la précision plus que n’importe quel changement de paramètre."
+    },
+    {
+      "q": "Pourquoi insister sur des horodatages pour chaque élément extrait ?",
+      "a": "Parce que la valeur d’une décision extraite, c’est qu’elle peut être vérifiée. « On a convenu de livrer le 14 » avec un lien vers le moment où ça a été dit règle un différend ; la même phrase sans lien en démarre un."
+    },
+    {
+      "q": "L’étiquetage de locuteur vaut-il l’effort ?",
+      "a": "C’est la différence entre une transcription et un enregistrement de qui s’est engagé à quoi. La diarisation automatique te donne la segmentation ; une passe à taper les noms te donne le reste, et prétendre savoir sans demander est l’échec qui vaut la peine d’être évité."
+    },
+    {
+      "q": "Puis-je récupérer les enregistrements et transcriptions de Webex ?",
+      "a": "Les enregistrements se téléchargent individuellement ou via l’API admin, et les transcriptions les accompagnent là où l’assistant en a produit une. Fais-le avant que la licence n’expire — les enregistrements cloud sont liés à l’abonnement et disparaissent avec lui."
+    }
+  ]
+}

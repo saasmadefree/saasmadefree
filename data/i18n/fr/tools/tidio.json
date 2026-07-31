@@ -1,0 +1,32 @@
+{
+  "tagline": "Un widget de chat où un agent IA répond d’abord et un humain prend le relais pour le reste.",
+  "verdictSummary": "Tidio vend des conversations, pas des sièges : un widget, un agent IA appelé Lyro qui répond à partir de ton contenu, et un constructeur de flux pour les cas scriptés. Le widget et les réponses par recherche documentaire, c’est un week-end avec ta propre clé de modèle. Ce que tu achètes vraiment, c’est quelqu’un d’autre qui absorbe le comptage et le réglage — et le vrai manque d’un projet DIY, c’est qu’une mauvaise réponse te coûte un client alors qu’une mauvaise réponse sur Tidio leur coûte une conversation facturable.",
+  "coreLoopDIY": "Un widget où une IA répond à partir de ton propre contenu quand elle peut citer une source, un petit flux scripté gère les deux ou trois questions prévisibles, et tout le reste atteint un humain.",
+  "whatYouLose": [
+    "le réglage de Lyro, et le volume de vraies conversations derrière",
+    "le constructeur de flux visuel, remplacé ici par un ensemble de règles délibérément petit",
+    "les applications mobiles",
+    "les intégrations e-commerce prêtes à l’emploi pour le statut de commande et la récupération de panier",
+    "un tarif compté qui descend aussi bien qu’il monte"
+  ],
+  "whyPeopleStillPay": "Parce que payer par conversation résolue aligne la facture sur la valeur, et parce que régler un agent IA pour qu’il réponde bien est un travail permanent plutôt qu’une étape de configuration.",
+  "prompt": "Construis un widget de chat avec une stratégie de réponse à trois couches : scriptée, récupérée, humaine. L’ordre compte et chaque couche doit savoir quand abandonner.\n\nStack : ton choix avec websockets, Postgres avec pgvector, Docker Compose, un domaine avec TLS.\n\nCouche 1 — flux scriptés, gardés minuscules. Un flux est un arbre de décision d’au maximum trois niveaux avec des boutons, pas du texte libre. Livre exactement les cas où un script bat un modèle : statut de commande par numéro, heures d’ouverture, et comment joindre un humain. Si le visiteur tape du texte libre à n’importe quel moment, abandonne le flux immédiatement plutôt que de répéter le menu — les flux qui piègent les gens sont la raison pour laquelle les widgets de chat se font fermer.\n\nCouche 2 — réponse par recherche documentaire. Ingère ta doc ou ton site, découpe avec chevauchement, encode en vecteurs dans pgvector. Sur une question, récupère et vérifie le meilleur score de similarité contre un plancher configurable. En dessous du plancher, transfère sans même appeler le modèle. Au-dessus, appelle le modèle avec un prompt qui doit soit répondre avec un lien vers une source récupérée, soit émettre le token de transfert. Rends les sources comme des liens cliquables sous chaque réponse.\n\nCouche 3 — humain. Une simple boîte de réception d’agent avec assignation et réponses prêtes. Une fois qu’un humain rejoint une conversation, les deux couches automatisées sont désactivées en permanence pour elle.\n\nMesure ce qui compte : pour chaque conversation, enregistre quelle couche l’a résolue, et si le visiteur a appuyé sur « ça ne m’a pas aidé ». Le rapport, c’est la part de résolution par couche et les dix meilleures questions qui ont atteint un humain, la liste qui te dit quoi écrire ensuite.\n\nContrôle des coûts : un budget de tokens par conversation et par jour. Le dépasser transfère plutôt que de tronquer une réponse en plein milieu de phrase.\n\nHors heures, saute la couche 3 et collecte une adresse email, en le disant clairement.\n\nÉcris des tests pour le plancher de récupération qui déclenche un transfert, pour le modèle qui ne retourne jamais de réponse sans source, et pour le texte libre qui abandonne un flux.\n\nNe construis ni constructeur de flux visuel, ni applications mobiles, ni intégrations e-commerce.",
+  "faq": [
+    {
+      "q": "Pourquoi scripter quoi que ce soit si tu as la recherche documentaire ?",
+      "a": "Parce que « où est ma commande » a besoin d’une recherche, pas d’un paragraphe, et un bouton bat la frappe pour les trois questions qui font l’essentiel du volume. Les scripts devraient couvrir les cas déterministes et s’arrêter là."
+    },
+    {
+      "q": "Quel est l’intérêt de suivre quelle couche a résolu une conversation ?",
+      "a": "C’est la seule mesure honnête de savoir si l’IA aide vraiment. Sans ça, tu croiras le taux de déviation que le modèle rapporte sur lui-même, qui est toujours flatteur."
+    },
+    {
+      "q": "Comment fonctionne en pratique le comptage de conversations de Tidio ?",
+      "a": "Les conversations facturables sont les chats et tickets traités par des humains ; les conversations Lyro AI sont comptées séparément, tout comme les visiteurs de Flows. Ça signifie qu’un bon agent IA fait baisser une ligne et monter une autre, et le plan dont tu as besoin dépend de la direction que prend ton mix."
+    },
+    {
+      "q": "Puis-je exporter depuis Tidio ?",
+      "a": "Les conversations et contacts s’exportent depuis le panneau, et il y a une API pour l’archive. Le matériel d’entraînement de Lyro et les flux sont de la configuration plutôt que de la donnée, donc prévois de les reconstruire plutôt que de les migrer."
+    }
+  ]
+}

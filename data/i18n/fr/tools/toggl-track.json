@@ -1,0 +1,32 @@
+{
+  "tagline": "Le chronomètre déjà à l’intérieur de chaque autre outil que tu utilises.",
+  "verdictSummary": "Le chronomètre de Toggl, c’est une soirée. Ce qu’achète l’abonnement, c’est que le chronomètre soit partout — une extension navigateur qui met un bouton démarrer à l’intérieur d’une centaine d’autres applications web, plus des clients desktop et mobile — et une couche de reporting qui transforme des entrées en quelque chose qu’un client acceptera. La reconstruction ici s’attaque à la moitié reporting, parce que c’est la partie qu’un projet perso peut vraiment égaler, et elle est honnête sur le fait que la moitié capture, c’est là que va l’argent.",
+  "coreLoopDIY": "Suis le temps, puis produis l’artefact qui met fin à la conversation : un rapport prêt pour le client sur un lien de partage, groupé et arrondi selon des règles que tu fixes, avec les durées brutes préservées en dessous.",
+  "whatYouLose": [
+    "l’extension navigateur qui ajoute un chronomètre à l’intérieur d’autres applications web",
+    "les clients desktop et mobile, et l’invite de temps d’inactivité",
+    "les taux facturables, les tableaux de bord d’équipe et la rentabilité de projet",
+    "l’intégration calendrier qui transforme une réunion en entrée",
+    "le fini des rapports exportés et leur habillage de marque"
+  ],
+  "whyPeopleStillPay": "Parce que le temps n’est suivi que si démarrer le chronomètre ne coûte rien, et l’extension plus les applications, c’est ce qui rend ça vrai. Tout le reste dans Toggl est remplaçable ; cette partie-là, c’est ce que tu paies.",
+  "prompt": "Construis un traqueur de temps dont la fonctionnalité la plus forte est le rapport que tu remets à un client.\n\nStack : ton choix, Postgres, Docker Compose, un domaine avec TLS pour les liens de partage.\n\nBases de suivi : Clients, Projets, Tâches, Tags, EntréesDeTemps avec début, fin, description, indicateur facturable. Un chronomètre en cours, une saisie manuelle, un dupliquer-hier, et une édition en masse sur une sélection.\n\nSaisie clavier d’abord : un raccourci global ouvre une entrée unique où taper une description, @projet et #tag démarre un chronomètre en une ligne, avec une correspondance floue classée par usage récent. C’est ce qui se rapproche le plus de l’extension pour un outil auto-hébergé, et ça vaut l’heure passée.\n\nLa couche de reporting :\n- Groupe par deux quelconques parmi client, projet, tâche, tag, personne, jour, avec des sous-totaux à chaque niveau.\n- Arrondi appliqué uniquement au moment du rapport, configurable au plus proche 5, 6, 15 ou 30 minutes, vers le haut, vers le bas ou au plus proche, avec le total non arrondi toujours affiché à côté. N’arrondis jamais l’entrée stockée.\n- Une ligne d’écart d’arrondi — l’écart entre brut et arrondi — pour que personne ne puisse accuser le rapport de le cacher.\n- Liens de partage : un rapport public en lecture seule sur un long token aléatoire, avec une date d’expiration optionnelle et une révocation optionnelle. Compare les tokens en temps constant, n’expose aucun endpoint de listing, et fixe noindex sur la page.\n- Exporte le même rapport en CSV et en page HTML propre à l’impression qui produit un PDF correct via le navigateur.\n- Définitions de rapport enregistrées avec un nom, réexécutables contre une nouvelle plage de dates en un clic.\n\nDétail qui vaut la peine d’être construit : un avertissement « pas de projet » sur l’écran de rapport qui refuse de générer un lien de partage tant qu’une entrée de la plage n’a pas de projet, puisque c’est l’échec qui fait qu’un client demande ce qu’étaient les quatre heures manquantes.\n\nÉcris des tests pour chaque mode d’arrondi aux limites exactes, pour les sous-totaux de groupement à deux niveaux qui totalisent le total, et pour l’expiration et la révocation de token de partage.\n\nNe construis ni extension navigateur, ni applications mobiles, ni taux facturables et rentabilité — c’est le territoire de la fiche Harvest.",
+  "faq": [
+    {
+      "q": "Pourquoi montrer explicitement l’écart d’arrondi ?",
+      "a": "Parce qu’arrondir au quart d’heure le plus proche sur quarante entrées peut ajouter quelques heures à une facture, et un client qui le découvre par lui-même supposera le pire. Afficher l’écart en fait une politique plutôt qu’une surprise."
+    },
+    {
+      "q": "Un raccourci clavier peut-il vraiment remplacer l’extension navigateur ?",
+      "a": "Pour démarrer et arrêter, en grande partie — une ligne avec correspondance floue de projet est rapide. Ce qu’il ne peut pas faire, c’est mettre un bouton démarrer à l’intérieur du ticket que tu regardes déjà, ce qui est ce qui rend l’extension digne d’être payée."
+    },
+    {
+      "q": "Les liens de partage publics sont-ils sûrs ?",
+      "a": "Seulement avec précaution. Un long token aléatoire, une comparaison en temps constant, pas d’endpoint de listing, noindex, et une date d’expiration les rendent acceptables pour un rapport. Tout ce qui est plus court ou devinable, c’est les données de facturation d’un client sur le web ouvert."
+    },
+    {
+      "q": "Toggl exporte-t-il tout ?",
+      "a": "Les entrées, projets, clients et tags s’exportent tous en CSV, et l’API couvre le reste y compris les rapports enregistrés. C’est l’un des exports les plus propres de cette catégorie, ce qui rend l’essai d’un remplaçant peu risqué."
+    }
+  ]
+}

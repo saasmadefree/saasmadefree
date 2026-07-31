@@ -1,0 +1,32 @@
+{
+  "tagline": "Un stockage chiffré vendu à des gens qui doivent justifier leur choix.",
+  "verdictSummary": "Tresorit vend à des avocats, cliniques et sociétés financières, et ce qu’ils achètent, c’est une juridiction suisse, des certifications publiées, et une entreprise qui répondra à un questionnaire fournisseur. Le chiffrement et les contrôles d’appareil, c’est le travail d’une session. Les certifications ne sont pas quelque chose que tu construis, et c’est l’un des cas les plus clairs du catalogue où le logiciel est la partie bon marché.",
+  "coreLoopDIY": "Chiffre côté client, puis ajoute le contrôle dont le travail réglementé a vraiment besoin : un inventaire de quel appareil détient quelle clé, et un effacement distant qui est enregistré plutôt que supposé.",
+  "whatYouLose": [
+    "des certifications et une juridiction que quelqu’un d’autre garantit",
+    "les clients desktop et mobile avec un chiffrement transparent",
+    "les plugins Gmail et Outlook pour les pièces jointes chiffrées",
+    "le support quand un client pose une question à laquelle tu ne peux pas répondre",
+    "les garanties de durabilité sur le stockage"
+  ],
+  "whyPeopleStillPay": "Parce que l’acheteur doit défendre son choix devant un régulateur ou un client, et une réponse qui finit par « et voici leur certification » vaut plus qu’une meilleure cryptographie sans paperasse.",
+  "prompt": "Construis un stockage chiffré avec un inventaire d’appareils, parce que dans le travail réglementé, « qui peut déchiffrer ça » est la question qu’on te pose.\n\nStack : ton choix, Postgres, stockage d’objets, Docker Compose, un domaine avec TLS. Chiffrement côté client avec la Web Crypto API et un client en ligne de commande ; le serveur ne détient que du texte chiffré.\n\nModèle de clés : une clé maîtresse aléatoire enveloppée par appareil. Enrôler un appareil génère une paire de clés d’appareil, et la clé maîtresse est enveloppée pour lui. Un appareil est nommé, daté, et listé.\n\nL’inventaire d’appareils, c’est le projet :\n- Chaque appareil enrôlé : nom, plateforme, date d’enrôlement, dernière vue, et quels fichiers il a déchiffrés, depuis un journal d’accès en écriture seule.\n- Révoquer un appareil : déballe la clé maîtresse pour chaque appareil restant, génère une nouvelle clé maîtresse, re-enveloppe-la pour les survivants, et rechiffre uniquement les clés de fichier — pas le contenu des fichiers. Teste que l’appareil révoqué ne peut rien déchiffrer d’ajouté après coup, et que tout le reste s’ouvre encore.\n- Sois honnête sur la limite, dans l’interface et le README : la révocation ne peut pas faire oublier ce que l’appareil a déjà téléchargé. Dis-le là où un utilisateur le lira, plutôt que de suggérer que c’est un effacement à distance.\n\nUne commande d’effacement local que le client honore au prochain contact, enregistrée dans le journal comme demandée, accusée réception, ou jamais accusée réception — le troisième état étant celui qui compte et celui que la plupart des outils cachent discrètement.\n\nPartage : des liens par destinataire avec la clé de fichier enveloppée par une phrase secrète qu’ils reçoivent hors bande, expiration, limites de téléchargement, et révocation.\n\nAudit : journal en écriture seule avec une chaîne de hash, exportable comme rapport signé pour une plage de dates.\n\nÉcris des tests pour la révocation qui fait tourner la clé maîtresse sans réenvoyer le contenu des fichiers, pour la chaîne de hash qui détecte l’altération, et pour le journal d’effacement qui distingue accusé de non accusé.\n\nNe revendique aucune conformité à quoi que ce soit. Indique ce que fait le système et laisse le lecteur faire le lien.",
+  "faq": [
+    {
+      "q": "Pourquoi faire tourner la clé maîtresse à la révocation plutôt que juste retirer l’appareil ?",
+      "a": "Parce que retirer un enveloppement ne fait rien si l’appareil a déjà extrait la clé. Faire tourner et re-envelopper pour les survivants signifie que tout ce qui est ajouté après coup est vraiment hors de portée, ce qui est l’affirmation la plus forte que la conception peut honnêtement faire."
+    },
+    {
+      "q": "Pourquoi enregistrer les effacements non accusés réception ?",
+      "a": "Parce qu’une demande d’effacement qui n’a jamais atteint l’appareil est le seul cas qui compte, et un outil qui affiche une coche verte pour « effacement envoyé » te dit ce que tu veux entendre. Trois états — demandé, accusé réception, jamais accusé réception — c’est le modèle honnête."
+    },
+    {
+      "q": "Un système auto-hébergé peut-il être conforme ?",
+      "a": "Il peut satisfaire des exigences techniques. Ce qu’il ne peut pas produire, c’est une attestation tierce, ce qu’un client ou un auditeur demande généralement vraiment. Cet écart est institutionnel et c’est pourquoi cette fiche est un « non »."
+    },
+    {
+      "q": "Tresorit exporte-t-il proprement ?",
+      "a": "Oui — c’est du stockage de fichiers avec des clients desktop, donc une copie complète est une synchro vers un dossier local. Le journal d’audit et l’historique d’appareils sont les parties qui restent derrière, ce qui vaut la peine d’être noté si c’est la raison pour laquelle tu l’as acheté."
+    }
+  ]
+}

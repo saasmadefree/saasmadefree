@@ -1,0 +1,32 @@
+{
+  "tagline": "Un pipeline qui vit dans la fenêtre Gmail elle-même, pas dans un autre onglet.",
+  "verdictSummary": "Le produit de Streak, c’est une surface qu’il ne possède pas. Le pipeline se pose dans la propre liste de fils de Gmail, et le publipostage envoie depuis ton propre compte — les deux obtenus en s’injectant dans une interface que Google peut changer sans prévenir. Tu peux construire un module complémentaire Google Workspace supporté qui montre l’état du pipeline dans une barre latérale, et c’est le travail d’une session, mais une barre latérale n’est pas la liste de fils. Parier un CRM sur un accès continu au DOM de quelqu’un d’autre, c’est le genre de dépendance qui fait de ça un « non », peu importe la taille du code.",
+  "coreLoopDIY": "Un module complémentaire barre latérale Gmail qui reconnaît l’expéditeur du fil ouvert, montre et modifie son étape de pipeline et ses notes, et stocke tout dans ta propre base de données.",
+  "whatYouLose": [
+    "les colonnes de pipeline à l’intérieur de la liste de fils Gmail, qui est le vrai produit",
+    "le publipostage avec des champs par destinataire et une limitation de débit d’envoi",
+    "le suivi d’email pour les ouvertures et clics de lien",
+    "les pipelines partagés et la vue d’activité d’équipe",
+    "les extraits et l’envoi différé à l’intérieur de la fenêtre de composition"
+  ],
+  "whyPeopleStillPay": "Parce que les commerciaux vivent dans leur boîte de réception et tout CRM qui leur demande d’ouvrir un second onglet perd. Streak facture le fait d’être celui qui ne demande pas ça.",
+  "prompt": "Construis un CRM barre latérale Gmail en utilisant l’API Google Workspace Add-on supportée, pas une extension qui s’injecte dans le DOM.\n\nPourquoi ce choix compte, et le README devrait le dire : un module complémentaire construit avec CardService continue de fonctionner quand le markup de Gmail change, et une extension qui lit la liste de fils ne le fait pas.\n\nPièces :\n1. Un module complémentaire Apps Script avec un déclencheur contextuel Gmail. Quand un fil est ouvert, il lit l’adresse de l’expéditeur via l’API du module complémentaire, appelle ton backend, et rend une carte : le nom du contact, l’étape actuelle, les trois dernières notes, et des boutons pour changer d’étape ou ajouter une note. Éditer écrit directement dans ton backend.\n2. Un petit backend — ton langage au choix, Postgres ou SQLite — exposant une API JSON authentifiée pour la recherche par email, le changement d’étape, et l’ajout de note. Authentifie le module complémentaire au backend avec un token longue durée stocké dans les propriétés utilisateur Apps Script, et fais-le tourner depuis une carte de réglages.\n3. Une interface web simple sur le backend pour tout ce pour quoi la barre latérale est trop petite : la vue tableau, les modifications en masse, l’import et l’export CSV.\n\nModèle : Contact (l’email est l’identité), Pipeline, Étape, Note. Chaque changement d’étape stocke qui, quand, de quoi et vers quoi.\n\nComme le module complémentaire tourne dans le bac à sable de Google, sois explicite sur ses limites dans le README : il ne peut pas voir la liste de fils, ne peut pas modifier la fenêtre de composition au-delà des actions de composition supportées, et a des limites de quota sur le temps d’exécution de script.\n\nQuand la barre latérale voit une adresse sans contact, propose un « créer un contact depuis cet expéditeur » en un geste qui récupère le nom d’affichage depuis le message.\n\nÉcris des tests pour l’API backend, et une checklist de test manuel pour le module complémentaire puisqu’Apps Script est difficile à tester automatiquement — cette honnêteté vaut mieux qu’une fausse suite de tests.\n\nNe construis pas d’extension Chrome qui scrape l’interface de Gmail, et n’implémente ni publipostage ni suivi d’ouverture.",
+  "faq": [
+    {
+      "q": "Pourquoi refuser la voie de l’extension Chrome alors qu’elle ressemblerait plus à Streak ?",
+      "a": "Parce que c’est un passif de maintenance avec une date d’expiration fixe que tu ne contrôles pas. Le markup de Gmail change selon le calendrier de Google, et un CRM perso qui casse silencieusement est pire qu’un qui n’a jamais prétendu être là."
+    },
+    {
+      "q": "Le module complémentaire peut-il montrer une colonne de pipeline à côté de chaque fil ?",
+      "a": "Non. L’API Workspace Add-on te donne une barre latérale et une poignée d’actions de composition, et c’est le plafond. C’est la raison concrète pour laquelle le verdict ici est « non » plutôt que « en partie »."
+    },
+    {
+      "q": "Et le publipostage ?",
+      "a": "Laissé de côté exprès. Envoyer quelques centaines de messages depuis un compte Gmail personnel se heurte à un plafond quotidien strict et, plus important, aux problèmes de délivrabilité qui font suspendre des comptes. Si tu as besoin de volume, c’est le travail d’une vraie plateforme d’envoi, avec tout le coût que ça implique."
+    },
+    {
+      "q": "Streak me laisse-t-il emporter mes données ?",
+      "a": "Oui — les pipelines s’exportent en CSV par pipeline, avec les boîtes, étapes et champs personnalisés. Les fils email eux-mêmes restent dans Gmail, ce qui est sans doute leur bonne place."
+    }
+  ]
+}

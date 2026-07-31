@@ -1,0 +1,32 @@
+{
+  "tagline": "Le CRM bon marché qui est en fait une porte d’entrée vers cinquante autres applications Zoho.",
+  "verdictSummary": "Pour une personne, Zoho CRM Standard, c’est des leads, contacts, deals, champs personnalisés, règles de workflow et rapports — et chacune de ces choses est du logiciel ordinaire que tu peux construire, ce qui en fait un « en partie » plutôt qu’un « non ». La barrière défensive n’est pas dans le CRM, elle est dans la suite autour : à partir du moment où tu veux aussi que Zoho Books, Desk et Campaigns se parlent entre eux, vingt dollars achètent un câblage que personne ne reconstruit. Le projet ici prend une semaine parce que la couche de reporting, bien faite, c’est l’essentiel du travail.",
+  "coreLoopDIY": "Fais tourner le pipeline, puis obtiens de vraies réponses de sa part : des rapports définis comme des vues SQL lisibles, planifiés dans un digest email pour que les chiffres arrivent sans que personne n’ouvre le CRM.",
+  "whatYouLose": [
+    "le reste de la suite Zoho et les connexions en un clic entre ses applications",
+    "la marketplace de plusieurs centaines d’extensions CRM",
+    "l’intégration email et téléphonie à l’intérieur de la fiche",
+    "les applications mobiles",
+    "les règles de workflow et blueprints configurés en cliquant plutôt qu’en écrivant du code"
+  ],
+  "whyPeopleStillPay": "Parce que l’argument de vente de Zoho, c’est que chaque autre outil professionnel dont tu auras besoin est déjà juste à côté au même prix, et passer du CRM à la facturation au helpdesk coûte un clic au lieu d’un projet d’intégration.",
+  "prompt": "Construis un CRM dont la couche de reporting est l’événement principal, pas une réflexion après coup.\n\nStack : Postgres spécifiquement — la conception en dépend — plus ton choix de framework serveur et Docker Compose.\n\nCœur CRM, gardé simple : Lead, Contact, Compte, Deal, Activité. Les leads se convertissent en un Contact plus un Compte plus optionnellement un Deal, en une seule transaction, en gardant un lien vers le lead d’origine. Les deals ont une étape, un montant, une date de clôture, un responsable. Chaque changement d’étape écrit une ligne d’historique immuable.\n\nLa couche de reporting :\n- Les rapports sont définis comme des vues SQL nommées dans un dossier de migrations, un fichier par rapport, chacun avec un commentaire en haut expliquant en une phrase quelle question il répond. Livre-en cinq : pipeline par étape, deals gagnés et perdus par mois, cycle de vente moyen, activités par responsable et par semaine, et leads par source avec taux de conversion.\n- L’application liste les rapports disponibles en lisant le catalogue de vues, les exécute avec un paramètre de plage de dates optionnel, et rend le résultat comme une table avec téléchargement CSV. Pas d’interface de constructeur de requêtes — si tu veux un nouveau rapport, tu écris une vue, et le README explique comment.\n- N’importe quel rapport peut être planifié : choisis un rapport, une expression cron et des destinataires, et l’application envoie la table rendue par email selon ce planning. Utilise un transport mail local en développement et documente la configuration de production.\n\nFrontière de sécurité qui mérite d’être bien faite : les rapports tournent avec un rôle de base de données en SELECT uniquement, sur une connexion séparée de celle de l’application. Dis-le dans le README.\n\nAjoute aussi : des champs personnalisés par entité, des vues de liste enregistrées avec filtres, des tags, un import CSV avec mapping, et une recherche plein texte.\n\nÉcris des tests pour la conversion de lead (idempotente, aucune fiche orpheline) et pour le planificateur qui se déclenche exactement une fois par fenêtre due après un redémarrage.\n\nNe construis ni marketing automation, ni téléphonie, ni helpdesk. C’est le CRM, et le README devrait dire clairement que le reste de la suite Zoho n’a pas d’équivalent ici.",
+  "faq": [
+    {
+      "q": "Pourquoi les rapports sont-ils des vues SQL plutôt qu’un constructeur de rapports ?",
+      "a": "Parce qu’un constructeur de rapports, c’est des semaines de travail qui produisent des requêtes plus mauvaises que tu écrirais à la main, et parce qu’une vue avec un commentaire en haut est lisible, comparable et relisable. Ça signifie aussi qu’un chiffre faux peut être tracé vers un fichier précis."
+    },
+    {
+      "q": "Est-ce vraiment un substitut équitable à Zoho CRM ?",
+      "a": "Pour un utilisateur solo sur le palier Standard, presque — la liste de fonctionnalités à ce palier, c’est pipeline, champs personnalisés, rapports et règles de workflow. Pour quiconque utilise Zoho comme une suite, non : la valeur de Zoho, c’est les voisins, et ce projet n’a pas de voisins."
+    },
+    {
+      "q": "Et les règles de workflow ?",
+      "a": "Laissées de côté, et c’est le plus gros manque honnête après la suite. Zoho permet à un non-développeur de dire « quand un deal atteint Négociation, crée une tâche et envoie un email au responsable » en cliquant. Ici, c’est un bout de code que tu écris, ou un webhook que tu branches vers autre chose."
+    },
+    {
+      "q": "Récupérer ses données de Zoho CRM, c’est douloureux ?",
+      "a": "Pas vraiment. Chaque module s’exporte en CSV, et il y a une sauvegarde complète des données qui produit un zip de tout. Les parties délicates, ce sont les pièces jointes et la piste d’audit, qui sortent sous des formes difficiles à importer ailleurs."
+    }
+  ]
+}

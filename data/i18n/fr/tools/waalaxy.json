@@ -1,0 +1,32 @@
+{
+  "tagline": "Des invitations et relances LinkedIn automatisées, à un quota quotidien.",
+  "verdictSummary": "Waalaxy automatise une plateforme qui interdit l’automatisation, et l’abonnement est largement un pari que son évasion reste en avance sur la détection de LinkedIn. Ce n’est pas une capacité que quiconque devrait reconstruire : le logiciel est trivial et la conséquence — un compte restreint ou banni définitivement sans recours — retombe entièrement sur toi. Ce qui vaut la peine d’être construit, c’est la moitié honnête : un traqueur sur le propre export de données officiel de LinkedIn qui te dit qui relancer, pendant que tu fais l’envoi à la main.",
+  "coreLoopDIY": "Importe ton propre export de données LinkedIn, et obtiens une file de relance : qui a accepté et n’a jamais reçu de message, qui est devenu silencieux, qui a droit à un rappel — avec l’envoi fait par toi, dans LinkedIn.",
+  "whatYouLose": [
+    "les invitations automatisées et l’envoi de messages, qui est le produit payant entier",
+    "la gestion du quota quotidien qui garde l’automatisation sous le radar de LinkedIn",
+    "l’extension navigateur et sa vue en direct d’un profil",
+    "les séquences automatisées qui mélangent des étapes LinkedIn avec de l’email",
+    "le jugement de quelqu’un d’autre sur jusqu’où c’est trop loin"
+  ],
+  "whyPeopleStillPay": "Parce qu’il fait quelque chose qui va contre les conditions de LinkedIn et le fait avec soin, et les acheteurs paient pour ce soin — les limites, les délais, le rythme façon humain — plus que pour l’automatisation elle-même.",
+  "prompt": "Construis un traqueur de relations LinkedIn qui ne touche jamais LinkedIn de façon programmatique. Tout vient de l’export de données que LinkedIn te donne, et chaque message est envoyé par toi, à la main.\n\nPourquoi : automatiser LinkedIn viole son contrat d’utilisation et risque une restriction permanente du compte, et aucun outil perso ne vaut ça. Indique-le dans le README.\n\nStack : ton choix, SQLite suffit, une commande.\n\nEntrée : l’archive de données officielle de LinkedIn. Analyse Connections.csv (nom, entreprise, poste, date de connexion) et Invitations.csv (envoyées et reçues, avec dates et statut). Réimporter une archive fraîche doit être incrémental — les nouvelles connexions apparaissent, les existantes se mettent à jour, rien n’est dupliqué, et la date de connexion n’est jamais écrasée.\n\nÉtat dérivé par personne : date d’envoi d’invitation, date d’acceptation, et si j’ai enregistré une conversation depuis. Ce dernier point est manuel, et c’est tout l’intérêt.\n\nLa file, c’est le produit. Quatre listes, chacune triée du plus ancien au plus récent :\n1. Accepté mais jamais parlé — connecté depuis plus de N jours sans conversation journalisée. C’est là que presque tout le monde perd de la valeur.\n2. Devenu silencieux — une conversation journalisée, aucune activité depuis M jours.\n3. Invitation en attente au-delà d’un seuil, pour que tu puisses décider de la retirer.\n4. Rappel dû — une date de rappel manuelle est arrivée.\n\nTravailler une entrée : ouvre-la, vois ses détails, copie un modèle de message rendu avec son nom et son entreprise dans le presse-papiers, puis marque-la comme envoyée et fixe le prochain rappel. L’application n’ouvre jamais LinkedIn pour toi ; elle te donne le texte et le lien vers le profil.\n\nModèles : nommés, avec des espaces réservés {{firstName}}, {{company}}, {{position}}, et un compte par modèle de combien de fois il a été utilisé et combien ont mené à une réponse journalisée. Ce taux de réponse par modèle est la seule analytique qui vaut la peine d’être eue ici.\n\nTags et une note en texte libre par personne, et une recherche plein texte à travers les notes.\n\nÉcris des tests pour la réimportation incrémentale (idempotente, sans doublons, dates préservées) et pour les limites de file exactement à N jours.\n\nN’automatise pas de navigateur, n’utilise pas de points d’entrée LinkedIn non officiels, et ne stocke pas d’identifiants LinkedIn.",
+  "faq": [
+    {
+      "q": "Quelle est la probabilité qu’un outil d’automatisation fasse restreindre mon compte ?",
+      "a": "Assez probable pour que les fournisseurs publient des limites quotidiennes et des conseils de rythme, ce qui te dit que le risque est réel et géré plutôt qu’absent. Les restrictions arrivent sans avertissement et les recours réussissent rarement, et le compte que tu perds, c’est généralement celui où vit ton réseau professionnel."
+    },
+    {
+      "q": "Une file manuelle est-elle vraiment meilleure que l’automatisation ?",
+      "a": "C’est plus lent et c’est la tienne. L’essentiel de la valeur en prospection LinkedIn vient du fait de relancer les gens qui t’ont déjà accepté — une liste que tu as déjà et ne travailles jamais — et en faire trente par semaine à la main surpasse mille invitations automatisées qui te font signaler."
+    },
+    {
+      "q": "Comment obtenir l’export LinkedIn ?",
+      "a": "Depuis les réglages, sous confidentialité des données, demande l’archive. La plus grosse archive prend environ un jour à arriver ; les fichiers connexions et invitations sont généralement disponibles en quelques minutes."
+    },
+    {
+      "q": "Pourquoi suivre le taux de réponse par modèle ?",
+      "a": "Parce que c’est la seule mesure qui change le comportement, et elle est invisible quand tu envoies directement depuis LinkedIn. Deux modèles et quarante envois suffisent pour voir une vraie différence."
+    }
+  ]
+}

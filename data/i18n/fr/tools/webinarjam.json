@@ -1,0 +1,32 @@
+{
+  "tagline": "Des webinaires construits pour vendre quelque chose à la quarante-deuxième minute.",
+  "verdictSummary": "WebinarJam est un instrument de vente avec un lecteur vidéo attaché, et le lecteur vidéo, c’est la partie qui coûte de l’argent à faire tourner — chaque palier de sa page de tarifs est un cran de capacité de participants. C’est de l’infrastructure de livraison et ça règle le verdict. L’instrument lui-même est le travail d’une session : une chronologie d’offres qui apparaissent et expirent, un replay avec une échéance, et une mesure honnête de ce que chacune a converti.",
+  "coreLoopDIY": "Fais tourner la chronologie d’offres plutôt que la diffusion : des boutons et offres qui apparaissent à des moments fixés, une page de replay dont l’échéance est réelle, et un suivi de conversion par offre.",
+  "whatYouLose": [
+    "la diffusion en direct et la capacité de participants tarifée palier par palier",
+    "le chat en direct et les outils de modération autour",
+    "le lecteur hébergé et ses statistiques d’attention",
+    "les intégrations de paiement qui closent la vente à l’intérieur de la salle",
+    "la fiabilité à l’exact moment où ton offre passe en direct"
+  ],
+  "whyPeopleStillPay": "Parce qu’un webinaire qui bufferise pendant le pitch coûte plus cher que l’abonnement, et la capacité pour la minute de pointe, c’est exactement ce que vendent les paliers.",
+  "prompt": "Construis une chronologie d’offres de vente qui tourne à côté d’une vidéo. Ce n’est délibérément pas une plateforme vidéo.\n\nStack : ton choix, Postgres, Docker Compose, un domaine avec TLS.\n\nChronologie d’offres : une session a une liste ordonnée d’éléments chronométrés, chacun avec un décalage depuis le début de la session — montre un bouton d’appel à l’action, révèle un prix, affiche un témoignage, ouvre ou ferme une offre à quantité limitée. Compose-les sur une chronologie avec un curseur de défilement.\n\nLa règle qui compte : une expiration doit être réelle. Quand une offre se ferme, le point d’entrée derrière arrête d’accepter des commandes, côté serveur. Un compte à rebours qui expire visuellement alors que le lien fonctionne encore, c’est le motif malhonnête le plus courant de cette catégorie, et ce projet doit le rendre impossible. Écris le test.\n\nQuantité limitée, si utilisée, décrémente contre un vrai compteur partagé entre tous les spectateurs, et atteindre zéro ferme l’offre pour tout le monde. Pas de fausse rareté par visiteur.\n\nReplay avec une échéance : après la session, une page de replay disponible pour une fenêtre que tu fixes, avec la même chronologie d’offres rejouée aux mêmes décalages. Quand la fenêtre se termine, la page retourne un simple « ce replay est terminé » et les points d’entrée d’offres sont fermés. L’échéance est stockée sur la session, pas dans un cookie, pour qu’effacer les cookies ne la ressuscite pas — et le README devrait dire pourquoi : une échéance qui ne vit que dans le navigateur est un mensonge que le visiteur peut attraper.\n\nAttribution : chaque spectateur arrive avec un token. Enregistre quelles offres il a vues, à quel décalage il est parti, et quel lien il a cliqué. Le rapport, c’est le taux de clic et de conversion par offre, plus le temps de visionnage au moment de chaque offre — le chiffre qui te dit si la quarante-deuxième minute est la bonne minute.\n\nLe paiement est hors périmètre : l’appel à l’action lie vers n’importe quelle page de paiement que tu as déjà, avec le token de spectateur ajouté pour que la conversion puisse être attribuée.\n\nÉcris des tests pour l’expiration côté serveur, pour le compteur de quantité partagé sous des commandes concurrentes, et pour l’application de la fenêtre de replay qui survit à un cookie effacé.\n\nNe diffuse pas de vidéo, et n’implémente ni faux compteurs de participants, ni comptes à rebours par visiteur.",
+  "faq": [
+    {
+      "q": "Pourquoi l’expiration côté serveur est-elle traitée comme une exigence stricte ?",
+      "a": "Parce qu’un compte à rebours visible avec un lien qui fonctionne encore après, c’est une fausse déclaration à un client, et dans l’UE et au Royaume-Uni, une échéance artificielle dans un flux de vente est une pratique commerciale déloyale listée. Faire imposer ça par le serveur est à la fois honnête et plus simple."
+    },
+    {
+      "q": "Que me dit le temps de visionnage au moment de l’offre ?",
+      "a": "Si les gens sont encore là quand tu fais ton pitch. Avancer une offre de cinq minutes parce que la moitié du public est parti à la quarante-deuxième minute est le changement au levier le plus élevé dans un webinaire de vente, et c’est invisible sans cette mesure."
+    },
+    {
+      "q": "Pourquoi ne pas aussi construire le paiement ?",
+      "a": "Parce que prendre des paiements amène un prestataire, une gestion fiscale et des obligations de remboursement, et chacune de ces choses est mieux gérée par un produit construit pour ça. Passer un token à ta page de paiement existante garde l’attribution sans la responsabilité."
+    },
+    {
+      "q": "Comment WebinarJam tarife-t-il vraiment ?",
+      "a": "Par capacité de participants en direct : 100 participants à 49 $ par mois facturé mensuellement, 500 à 99 $, 2 000 à 299 $, avec environ 20 % de réduction en facturation annuelle. Le palier dont tu as besoin est fixé par ton plus gros événement, pas ta moyenne."
+    }
+  ]
+}

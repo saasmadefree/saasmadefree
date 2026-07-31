@@ -1,0 +1,32 @@
+{
+  "tagline": "L’appel vidéo par défaut, partout, pour tout le monde.",
+  "verdictSummary": "Zoom est un réseau média mondial avec un client par-dessus, et le client, c’est la moitié bon marché. Aucun projet perso n’atteint la fiabilité qui en a fait le défaut, et la fiabilité, c’est toute la proposition. Donc au lieu de prétendre, le projet ici répond à la question que l’abonnement soulève mais ne pose jamais : que coûtent vraiment tes réunions, et laquelle des récurrentes devrait être supprimée ?",
+  "coreLoopDIY": "Pointe l’outil vers ton propre calendrier et obtiens le chiffre que personne ne calcule : heures en réunion par semaine, le coût de chaque série récurrente en heures salariées, et celles sans ordre du jour et sans notes.",
+  "whatYouLose": [
+    "les réunions elles-mêmes et le réseau derrière",
+    "l’enregistrement, le stockage cloud et le compagnon IA",
+    "le rappel téléphonique et la téléphonie derrière",
+    "le client qui fonctionne sur chaque appareil que possèdent tes participants",
+    "quelqu’un à appeler quand un appel échoue"
+  ],
+  "whyPeopleStillPay": "Parce que le défaut compte : tout le monde l’a, tout le monde peut rejoindre, et l’appel ne se coupe pas. C’est de la capacité achetée et un support client universel, et aucune salle auto-hébergée ne remplace ça.",
+  "prompt": "Construis un analyseur de coût de réunion sur ton propre calendrier. Il ne rejoint jamais un appel.\n\nStack : un outil en ligne de commande local plus un rapport statique, SQLite, pas de réseau au-delà de la récupération d’un flux calendrier.\n\nEntrée : un ou plusieurs flux .ics — l’URL d’export ou d’abonnement que ton calendrier offre déjà. Analyse correctement les règles de récurrence, y compris les exceptions et les occurrences annulées, parce qu’une série récurrente avec trois annulations, c’est exactement là où les analyseurs naïfs surcomptent.\n\nClassification, gardée manuelle et honnête : pour chaque événement, tu assignes un type une fois — un-à-un, équipe récurrente, externe, entretien, bloc de concentration — et l’outil retient le choix par série pour que tu le fasses une fois par série, pas une fois par occurrence.\n\nLes chiffres :\n1. Heures en réunion par semaine, réparties par type, avec une tendance sur quatre semaines.\n2. Coût par série récurrente : nombre de participants fois durée fois un chiffre horaire configurable, par occurrence et annualisé. Affiche le chiffre annuel en argent — une réunion hebdomadaire d’une heure avec huit personnes est un chiffre vraiment saisissant et c’est tout l’intérêt du projet.\n3. Fragmentation : le plus long bloc libre ininterrompu par jour, une meilleure mesure de si le calendrier est praticable que le total d’heures de réunion.\n4. La liste de candidats : les séries récurrentes avec le pire ratio coût-signal, définies explicitement comme sans ordre du jour dans la description, sans document de notes attaché, et un nombre de participants au-dessus d’un seuil. Nomme-les et leur coût annuel, parce qu’une liste de trois réunions précises est exploitable et un tableau de bord ne l’est pas.\n\nVie privée : ceci lit les noms et disponibilités de tes collègues. Garde tout en local, propose un mode de rédaction qui remplace les noms par des initiales dans le rapport, et rends la rétention explicite.\n\nSortie : un fichier HTML statique par semaine dans un dossier, pour que l’archive soit navigable et comparable.\n\nÉcris des tests pour l’expansion de récurrence avec exceptions et annulations, pour l’arithmétique de coût à travers une série avec un nombre de participants variable, et pour le calcul de bloc libre à travers des événements toute la journée.\n\nNe t’intègre à aucune plateforme de réunion, et ne tente ni de rejoindre, ni d’enregistrer, ni de transcrire quoi que ce soit.",
+  "faq": [
+    {
+      "q": "Pourquoi l’analyse de récurrence calendrier est-elle la partie difficile ?",
+      "a": "Parce que RRULE avec des dates d’exception, des occurrences modifiées et des décalages de fuseau horaire est vraiment délicat, et se tromper gonfle silencieusement chaque chiffre du rapport. Utilise une bibliothèque bien testée et écris des tests contre une série avec des annulations."
+    },
+    {
+      "q": "Mettre un chiffre en argent sur une réunion, n’est-ce pas grossier ?",
+      "a": "C’est grossier et ça marche. Une heure hebdomadaire avec huit personnes, c’est plusieurs centaines d’heures par an, et voir ça comme un chiffre annuel, c’est ce qui fait annuler une réunion permanente — là où « on a trop de réunions » n’y arrive jamais."
+    },
+    {
+      "q": "Pourquoi classer à la main plutôt que deviner depuis le titre ?",
+      "a": "Parce que les heuristiques de titre se trompent assez souvent pour discréditer tout le rapport, et la classification est par série plutôt que par événement, donc le vrai coût, c’est quelques minutes, une fois."
+    },
+    {
+      "q": "Une partie de Zoom est-elle seulement reconstructible ?",
+      "a": "Les petites salles auto-hébergées le sont, et les fiches Whereby et Google Workspace couvrent ça. Ce qui n’est pas reconstructible, c’est un appel qui fonctionne pour un inconnu sur un réseau inconnu dans un autre pays, ce qui est précisément pourquoi Zoom est devenu le défaut."
+    }
+  ]
+}

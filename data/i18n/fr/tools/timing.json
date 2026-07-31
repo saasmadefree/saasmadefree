@@ -1,0 +1,32 @@
+{
+  "tagline": "Suivi du temps sur Mac qui classe ta journée dans des projets tout seul.",
+  "verdictSummary": "Capture ce que tu as fait, puis laisse des règles lisibles classer ça : le titre de fenêtre contient « Henderson » veut dire le projet Henderson, cette application veut dire admin. Chaque partie de ça tourne en local sans clé et sans service, ce qui en fait un « oui » en une session. La confiance est moyenne parce que l’avantage de Timing, c’est la profondeur de la capture native — quel document, quel onglet de navigateur, quel appel — et une version faite maison voit moins que la version payante.",
+  "coreLoopDIY": "Enregistre l’activité en local, puis applique une liste ordonnée de règles qui assignent chaque bloc à un projet automatiquement, en montrant quelle règle a correspondu pour qu’une mauvaise assignation soit corrigible plutôt que mystérieuse.",
+  "whatYouLose": [
+    "la profondeur de capture — le document, l’onglet ou l’appel spécifique, pas juste l’application",
+    "le compagnon iOS et le temps d’appel téléphonique importé",
+    "les intégrations qui remontent les noms de tâches depuis ClickUp, Linear ou un calendrier",
+    "une application Mac signée et notariée",
+    "quelqu’un qui répare la capture quand une mise à jour macOS change les permissions"
+  ],
+  "whyPeopleStillPay": "Parce que les règles ne valent que ce sur quoi elles peuvent correspondre, et Timing voit plus qu’un enregistreur fait maison. La profondeur de capture, c’est le produit ; le moteur de règles, c’est la démo.",
+  "prompt": "Construis un traqueur de temps automatique dont les règles sont lisibles et auditables.\n\nStack : un enregistreur local plus un tableau de bord, SQLite, aucun appel réseau. Envisage de t’appuyer sur une couche de capture open source existante plutôt que d’écrire des hooks OS toi-même.\n\nCapture : application active, titre de fenêtre, chemin de document là où l’OS en expose un, et activité de saisie, compactée en plages.\n\nLe moteur de règles, c’est le produit :\n- Une règle a un comparateur (application égale, titre de fenêtre contient, titre correspond à une expression régulière, chemin de document commence par), un projet cible, et une position dans une liste ordonnée. La première correspondance gagne.\n- Chaque bloc assigné enregistre quelle règle a correspondu, affichée dans l’interface. Une assignation inexpliquée, c’est ce qui fait que les gens arrêtent de faire confiance à un traqueur automatique.\n- Un écran « pourquoi ceci n’est pas assigné » liste les plus gros blocs non assignés par temps total, les plus gros en premier, avec un « créer une règle à partir de ce titre de fenêtre » en un clic qui préremplit un comparateur raisonnable.\n- Les changements de règle ne sont pas rétroactifs par défaut. Propose une action explicite « réappliquer les règles aux N derniers jours » qui montre combien de blocs changeraient avant de s’exécuter, parce que réécrire silencieusement la feuille de temps du mois dernier est une façon de perdre un litige de facturation.\n\nProjets avec un indicateur facturable et un taux horaire, une chronologie de journée, un résumé de semaine par projet, et un export CSV incluant la règle correspondante pour chaque ligne.\n\nRemplacement manuel : n’importe quel bloc peut être réassigné à la main, et une assignation manuelle n’est jamais écrasée par une exécution de règle ultérieure. Marque-la visiblement comme manuelle.\n\nVie privée : contrôle pause montrant le temps en pause comme en pause, rédaction de titre par application, fenêtre de rétention d’échantillons bruts, et une commande d’effacement.\n\nÉcris des tests pour l’ordre où la première correspondance gagne, pour les assignations manuelles qui survivent à une réexécution de règle, et pour l’aperçu rétroactif qui compte correctement.\n\nNe construis ni synchro cloud, ni application mobile, ni intégrations de tâches tierces.",
+  "faq": [
+    {
+      "q": "Pourquoi montrer quelle règle a correspondu ?",
+      "a": "Parce que le mode d’échec du suivi automatique, c’est un bloc classé sous le mauvais projet sans explication, et le seul recours de l’utilisateur est de tout méfier. Nommer la règle transforme ça en une correction de deux secondes."
+    },
+    {
+      "q": "Pourquoi les changements de règle ne sont-ils pas rétroactifs par défaut ?",
+      "a": "Parce qu’une feuille de temps que tu as déjà facturée ne devrait pas changer quand tu ranges une règle. L’action explicite de réapplication, avec un aperçu de combien de blocs bougent, garde ça une décision plutôt qu’un effet secondaire."
+    },
+    {
+      "q": "Quelle profondeur de capture perds-tu vraiment ?",
+      "a": "Sur macOS, un enregistreur fait maison obtient de façon fiable l’application et le titre de fenêtre ; il obtient le document ouvert seulement pour les applications qui l’exposent, et il obtient les onglets de navigateur seulement avec une extension navigateur. Cet écart, c’est l’essentiel de ce qu’achète la licence."
+    },
+    {
+      "q": "Timing me laisse-t-il exporter mon historique ?",
+      "a": "Oui — les entrées de temps et les projets s’exportent en CSV, et l’activité brute est dans une base de données locale que tu peux lire. C’est l’un des outils les plus portables ici, en grande partie parce qu’il n’a jamais envoyé tes données nulle part au départ."
+    }
+  ]
+}
