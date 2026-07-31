@@ -1,0 +1,32 @@
+{
+  "tagline": "Live chat built around how fast one agent can handle six conversations.",
+  "verdictSummary": "LiveChat is not really a widget company, it is an agent-productivity company: message sneak-peek, canned responses on a slash command, and a concurrency limit that stops one person being handed twelve chats. Rebuilding that is a weekend and the result is genuinely usable. What stays behind is the mobile app, the marketplace, and the chatbot product sold separately — none of them a moat, all of them work you would then own.",
+  "coreLoopDIY": "Answer several chats at once without losing track: a queue with a per-agent concurrency cap, slash-command canned replies, and a preview of what the visitor is typing before they send it.",
+  "whatYouLose": [
+    "the desktop and mobile apps, and notifications when you are not on the tab",
+    "the chatbot product, which LiveChat sells separately anyway",
+    "the marketplace of prebuilt integrations and ticket handoffs",
+    "hosted reliability during a traffic spike",
+    "the reporting suite and agent-performance scoring"
+  ],
+  "whyPeopleStillPay": "Because chat is a staffing problem, and the tools that let one person hold six conversations without dropping any are what the seat price actually buys.",
+  "prompt": "Build a live chat system designed around one agent handling several conversations at once.\n\nStack: your choice with websockets, Postgres, Docker Compose, a domain with TLS.\n\nVisitor widget: shadow DOM, small, reconnects after navigation, persists a visitor token in local storage, works without third-party cookies, keyboard accessible.\n\nThe agent console is the product. Build these four things properly:\n1. **Concurrency cap.** Each agent sets a maximum number of active chats. Routing never exceeds it. When every agent is at capacity, new visitors get an explicit queue position and an estimated wait, not silence.\n2. **Sneak peek.** Stream the visitor's in-progress typing to the agent before they hit send, throttled to roughly four updates a second. This is the single feature that changes how fast an agent can work, and it is a few lines over the same websocket.\n3. **Canned replies on a slash command.** Typing `/` opens a filter-as-you-type list; selecting one inserts the text with placeholders already interpolated. Rank by the agent's own usage frequency, not alphabetically.\n4. **A multi-conversation layout.** A sidebar of active chats each showing an unread badge and a time-since-last-agent-reply that turns red past a threshold, so the one you are neglecting is obvious.\n\nRouting: round-robin among agents under their cap, with a manual transfer that carries the full history and adds a system line naming who transferred to whom.\n\nAfter-hours: outside configured office hours the widget collects a message and an email address, and says so plainly.\n\nOne report: chats per agent per day, median first response, median chat duration, and maximum concurrent chats reached.\n\nWrite tests for the concurrency cap under simultaneous arrivals, for queue position updating as agents free up, and for transfer preserving history.\n\nDo not build a chatbot, mobile apps, or an integration marketplace.",
+  "faq": [
+    {
+      "q": "Is sneak peek not creepy?",
+      "a": "It is the thing agents miss most when they move off LiveChat, and it is standard in the category — but it should be disclosed. Say it in the chat greeting or your privacy notice; a feature that surprises people when they learn about it is a feature you should be telling them about."
+    },
+    {
+      "q": "Why does the concurrency cap matter so much?",
+      "a": "Because unbounded routing produces the worst possible outcome: every visitor gets a slow, distracted agent instead of some getting a fast one and the rest getting an honest queue position. The cap is what turns chat from chaotic into staffable."
+    },
+    {
+      "q": "What does queue position require?",
+      "a": "Only that you count. The hard part is being honest when the estimate is bad — better to say \"3 ahead of you\" with no time estimate than to promise two minutes and take twelve."
+    },
+    {
+      "q": "Does LiveChat export my transcripts?",
+      "a": "Yes, archives export as CSV or through the API, including tags and ratings. Attachments are URLs that stop working after the account closes, so pull them first."
+    }
+  ]
+}

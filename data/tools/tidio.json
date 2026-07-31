@@ -1,0 +1,45 @@
+{
+  "slug": "tidio",
+  "name": "Tidio",
+  "domains": [
+    "tidio.com"
+  ],
+  "category": "customer-support",
+  "subcategory": "chat with an AI agent",
+  "pricing": {
+    "amount": 24.17,
+    "currency": "EUR",
+    "plan": "Starter",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.tidio.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Read from the EU, where the page is priced in EUR and defaults to the annual view: €24.17 a month for 100 billable conversations, which is €29 billed monthly with two months free on annual. Lyro AI conversations and Flows visitors are metered separately."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "AI resolution and conversation metering",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Chatwoot",
+      "url": "https://github.com/chatwoot/chatwoot"
+    }
+  ],
+  "relatedSlugs": [
+    "crisp",
+    "livechat",
+    "intercom"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

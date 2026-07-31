@@ -1,0 +1,32 @@
+{
+  "tagline": "Tracks where your attention actually went, then blocks the worst of it.",
+  "verdictSummary": "Passive capture plus a daily score plus a blocklist during focus sessions is a genuine one-sitting build with no third-party dependency anywhere in it — everything runs locally and needs no key, no account and no service. That makes it a yes. The confidence is medium rather than high for one honest reason: RescueTime ships a maintained classification of hundreds of thousands of sites and applications, and yours starts empty, so the first week is spent teaching it.",
+  "coreLoopDIY": "Capture where your attention went, score the day against categories you defined yourself, and run focus sessions that actually block the sites you named while they last.",
+  "whatYouLose": [
+    "the maintained productivity classification for hundreds of thousands of sites",
+    "the mobile app and phone screen-time in the same picture",
+    "cross-device history in one place",
+    "the offline-time prompt that asks what a meeting was",
+    "a signed desktop application and someone maintaining it"
+  ],
+  "whyPeopleStillPay": "Because the classification is a decade of curation, and because a focus tool that you built and can trivially disable is a focus tool you will trivially disable.",
+  "prompt": "Build a local attention tracker with a focus mode that has teeth.\n\nStack: a background recorder plus a local dashboard, SQLite, no network calls. Consider building on an existing open-source capture layer instead of writing OS hooks.\n\nCapture: active application, window title, and input activity, sampled every few seconds, stored run-length compacted.\n\nClassification: you define categories and assign a score from -2 to +2. Matching rules are ordered and the first match wins; each rule matches an application name or a window-title pattern. Ship **no** default classification — instead, ship a \"classify the unclassified\" screen that lists the applications and title patterns taking the most time so far, most time first, so ten minutes of work covers ninety percent of your days.\n\nDaily score: time-weighted mean of category scores, shown next to the raw hours so it can never be read without its own denominator.\n\nFocus sessions, the half that changes behaviour:\n- Start a session of N minutes with a chosen blocklist of applications and domains.\n- Blocking applications: detect the process and bring a full-screen reminder to the front rather than killing it — killing loses unsaved work and turns the tool into an enemy.\n- Blocking sites: rewrite the hosts file, with the original backed up first and restored on session end **and on process exit**, including a crash. Test that path deliberately; a tool that leaves your hosts file broken after a crash is worse than no tool.\n- A session can be ended early, but ending it requires typing a sentence you configured, and every early end is logged with the time and the elapsed portion. The friction is the feature; make it visible rather than punitive.\n- After each session, a one-question prompt: did you do the thing you meant to? Store the answer.\n\nDashboard: today's timeline, category totals, score trend over four weeks, focus sessions completed against started, and the honest early-end count.\n\nPrivacy: pause control, per-application title redaction, raw-sample retention window, and a wipe command.\n\nWrite tests for first-match-wins rule ordering, for hosts-file restoration after an abrupt process exit, and for score computation with unclassified time excluded rather than counted as zero.\n\nDo not build cloud sync, a mobile app, or a shared team dashboard.",
+  "faq": [
+    {
+      "q": "Why ship no default categories?",
+      "a": "Because inherited productivity ratings are wrong for anyone whose work is unusual, and a wrong score is worse than no score — you stop trusting the tool in week two. The \"classify the unclassified, biggest first\" screen gets you accurate in ten minutes."
+    },
+    {
+      "q": "Is hosts-file blocking not easy to bypass?",
+      "a": "Trivially, and that is fine. The point is friction, not prison: adding three seconds and a conscious decision removes most reflex visits. What matters technically is restoring the file on crash, which is the one way this build can actively harm you."
+    },
+    {
+      "q": "Why exclude unclassified time from the score?",
+      "a": "Because counting it as zero makes every score meaningless until classification is complete, and people give up before that. Excluding it and showing the unclassified share keeps the number honest."
+    },
+    {
+      "q": "Why is this a yes when so much of the category is not?",
+      "a": "Because there is genuinely nothing third-party in it — no API key, no service, no data you must buy. It runs entirely on your machine, and that is exactly what a yes means here."
+    }
+  ]
+}

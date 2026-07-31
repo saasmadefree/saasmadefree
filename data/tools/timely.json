@@ -1,0 +1,43 @@
+{
+  "slug": "timely",
+  "name": "Timely",
+  "domains": [
+    "timely.com"
+  ],
+  "category": "time-tracking",
+  "subcategory": "AI-drafted timesheets",
+  "pricing": {
+    "amount": 11,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "per-seat-monthly",
+    "source": "https://www.timely.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Month-to-month rate; $9 per user per month billed yearly. Tasks is an add-on from about $5 per person. timelyapp.com now redirects to timely.com."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "drafting quality and mobile capture",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "anthropic-api-key",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "ActivityWatch",
+      "url": "https://github.com/ActivityWatch/activitywatch"
+    }
+  ],
+  "relatedSlugs": [
+    "memtime",
+    "harvest",
+    "rize"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

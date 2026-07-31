@@ -1,0 +1,32 @@
+{
+  "tagline": "Project management aimed squarely at agencies billing clients by the hour.",
+  "verdictSummary": "Teamwork is a project tool whose real subject is profitability: tasks carry logged hours, hours carry rates, and a project tells you whether it made money. That chain — estimate, log, rate, invoice, margin — is a week to build correctly, and correctly means the rate that applied on the day is the rate used, not today's. Nothing in it is a moat, so this is a kinda, with the gaps being mobile apps, integrations and the client portal.",
+  "coreLoopDIY": "Log hours against tasks, price them with the rate that was in force on the day, and read one number per project: hours estimated against hours burned, and money billed against cost.",
+  "whatYouLose": [
+    "the mobile apps for logging time away from a desk",
+    "the client-facing portal and its comment threads",
+    "accounting integrations that push an invoice into Xero or QuickBooks",
+    "resource scheduling and utilisation forecasting",
+    "the desk and helpdesk products sold alongside"
+  ],
+  "whyPeopleStillPay": "Because an agency that cannot see project margin is guessing, and stitching a tracker, a timesheet and an invoicing tool together produces exactly the seams that make the number untrustworthy.",
+  "prompt": "Build a project tracker for billable work, where the money is computed and auditable.\n\nStack: your choice, Postgres, Docker Compose.\n\nModel: Client, Project, Task, TimeEntry, Rate, Invoice.\n\nThe rate model is where this build is won or lost. A Rate has a scope (person, role, project, or a specific person on a specific project), an amount, a cost amount, and an **effective-from date**. Resolving the rate for a time entry uses the most specific scope in force **on the date of the entry**, never the current date. Changing a rate today must not silently repriced last quarter's work. Write the test for this first: log an entry, change the rate, assert the entry's value is unchanged, and assert a new entry gets the new rate.\n\nTime entries: date, duration, task, person, a billable flag, and a note. Entries are immutable once they appear on a sent invoice; editing one after that requires an explicit adjustment entry, which is what an audit trail means in practice.\n\nProject economics on one page: hours estimated versus logged, per task and in total; revenue at the resolved billable rates; cost at the resolved cost rates; margin in money and percent; and a burn line showing logged hours against elapsed calendar time. Colour the projects that are over estimate and still open.\n\nInvoicing: select unbilled billable entries within a date range, group by task or by person, produce an invoice with line items, and mark those entries billed with the invoice id. Generate a PDF. Do not build payment collection.\n\nAlso: task lists with dependencies and milestones, a per-person timesheet view with a weekly total, and CSV export of time entries with their resolved rates included.\n\nWrite tests for historical rate resolution across a rate change, for scope precedence when several rates could apply, and for the immutability of invoiced entries.\n\nDo not build a client portal, mobile apps, or accounting integrations. Export a CSV your accountant can import and stop there.",
+  "faq": [
+    {
+      "q": "Why is dated rate resolution the hard part?",
+      "a": "Because the naive implementation joins to the current rate, and the first time you raise your prices every historical invoice quietly changes. It is a silent data-corruption bug: nothing errors, the numbers are simply wrong from then on."
+    },
+    {
+      "q": "What does \"immutable once invoiced\" buy me?",
+      "a": "The ability to answer \"why does this invoice say 12 hours when the timesheet says 11\" a year later. An adjustment entry keeps both facts; an edit keeps neither."
+    },
+    {
+      "q": "Should cost rates really be in the same table?",
+      "a": "Yes, with the same effective-from mechanics, because margin is the number this build exists for and a margin computed from a current cost rate against a historical billable rate is meaningless."
+    },
+    {
+      "q": "Does Teamwork export what I need?",
+      "a": "Time entries, tasks and projects export as CSV, and the API covers the rest. The rate history is the part to check carefully — export it separately, because a time-entry export with only current rates will not reconcile against the invoices you already sent."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "One workspace price, every messaging channel funnelled into one inbox.",
+  "verdictSummary": "Crisp prices the workspace, not the seat, and stuffs it with channels: chat, email, WhatsApp, Instagram, SMS, Line, Viber. The inbox and the widget are a weekend. Every one of those channels beyond email and chat is an approval process with a platform, not an integration you write, and that is the whole reason the bundle is worth $45. A DIY version gets two channels and honest silence about the rest.",
+  "coreLoopDIY": "Run one inbox for the two channels you can genuinely own — a website widget and your own email — with the visitor's page history and past conversations shown beside the message.",
+  "whatYouLose": [
+    "WhatsApp, Instagram, SMS, Line and Viber, each behind its own platform approval",
+    "the co-browsing and live screen-sharing that Crisp is known for",
+    "the mobile apps for answering on the move",
+    "the AI credits bundled into the workspace price",
+    "the CRM and campaign features stacked on the same inbox"
+  ],
+  "whyPeopleStillPay": "Because a workspace price with unlimited channels is unusually good value for a small company that genuinely uses three or four of them, and because assembling those channels separately costs more in approvals than in money.",
+  "prompt": "Build a chat-first support inbox for the two channels you can actually control: a website widget and email.\n\nStack: your choice with websockets, Postgres, Docker Compose, a domain with TLS.\n\nWidget: one script tag, shadow DOM so the host page's CSS cannot touch it, under 30KB. It persists a visitor token in local storage so a returning visitor keeps their history, and it reconnects after a page navigation. No third-party cookies. Honour prefers-reduced-motion and prefers-color-scheme.\n\nThe piece that makes a chat inbox feel expensive is context, so build it: for every visitor, record the pages they viewed with timestamps, their referrer, their locale and their timezone, and render that as a compact timeline beside the conversation. Show the page they are on right now, updating live. Cap the stored history per visitor and expire it on a schedule you configure — an unbounded page log is a privacy liability, and you should say in the README what you retain and for how long.\n\nEmail as the second channel: inbound through a signed provider webhook, threaded by Message-ID and References, in the same conversation list as chat. A visitor who gives an email address in chat has their previous email conversations linked automatically.\n\nAgent side: one keyboard-driven list. Assignment, statuses, canned replies with placeholders, and a typing indicator in both directions. Show the visitor a clear \"nobody is here right now, leave an email address\" state outside configured office hours rather than pretending someone is available.\n\nTriggers, kept deliberately small: a rule engine with exactly three conditions available — time on page, page URL matches, and returning visitor — each firing one message once per visitor per session. Resist making this general; a full campaign engine is a different product and it is where chat widgets become annoying.\n\nOne report: conversations by channel per day, median first response time, and the proportion started by a trigger versus by the visitor.\n\nWrite tests for widget reconnection after navigation, for the page-history retention cutoff, and for the trigger firing at most once per session.\n\nDo not build WhatsApp, Instagram, SMS, or co-browsing. The README should list them as the reasons a paid workspace still makes sense.",
+  "faq": [
+    {
+      "q": "Why is a visitor page-history timeline worth building?",
+      "a": "Because it turns \"hi, I have a problem\" into \"you are on the pricing page and you came from the docs\" before the agent types anything. It is the cheapest context in support and almost nobody self-hosting bothers."
+    },
+    {
+      "q": "Is the page log a privacy problem?",
+      "a": "It can be. You are recording browsing behaviour on your own site, which in the EU generally needs to be disclosed and justified, and it should not be kept indefinitely. The retention cutoff is in the prompt for that reason rather than as a housekeeping nicety."
+    },
+    {
+      "q": "Why cap the trigger engine at three conditions?",
+      "a": "Because trigger engines grow until every visitor gets a pop-up in four seconds, and that measurably drives people off the page. Three conditions cover the useful cases and make the annoying ones impossible."
+    },
+    {
+      "q": "How does Crisp's per-workspace pricing compare once you have a team?",
+      "a": "Better than per-agent until you have several agents: $45 covers the workspace and extra agents are $10 each. Against a $25-per-seat competitor, four agents is roughly the crossover point."
+    }
+  ]
+}

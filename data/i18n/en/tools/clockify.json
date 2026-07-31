@@ -1,0 +1,32 @@
+{
+  "tagline": "A timer with a generous free tier and a seat price for the extras.",
+  "verdictSummary": "A timer, projects, and a report is an evening. What Clockify sells past that is capture everywhere — browser extension, desktop app, mobile, kiosk — so that the timer is running when it should be, which is the only thing that makes time data worth anything. The rebuild here focuses on the one substitute a personal build can genuinely offer: catching the time you forgot to track, rather than pretending you will remember.",
+  "coreLoopDIY": "Track time against projects, and let the tool catch what you missed: a gap detector that finds unlogged working hours and offers to fill them from your calendar.",
+  "whatYouLose": [
+    "the browser extension that starts a timer from inside other tools",
+    "the mobile and desktop apps, including the idle-time prompt",
+    "the kiosk and GPS modes for on-site teams",
+    "team timesheets, approvals and locked periods",
+    "invoicing and the accounting integrations attached to it"
+  ],
+  "whyPeopleStillPay": "Because a timer nobody starts produces no data, and the extension plus the apps are what make starting it automatic. The seat price is for ubiquity, not for the stopwatch.",
+  "prompt": "Build a time tracker whose distinguishing feature is that it notices the time you did not track.\n\nStack: your choice, SQLite is enough, one command to run.\n\nBasics: Clients, Projects, Tasks, Tags, and TimeEntries with a start, an end, a description and a billable flag. A running timer, manual entry, and duplicate-yesterday.\n\nThe gap detector:\n- Configure working hours per weekday and a minimum gap length worth reporting.\n- The day view renders tracked blocks against the working window and highlights every gap over the threshold, with its duration.\n- Clicking a gap opens a prefilled entry covering exactly it, so filling in a forgotten hour is one click and one description.\n- Optional calendar import: read an .ics feed, and offer each event overlapping a gap as a suggested entry with the event title as the description. Read-only, never write back, and store only the events overlapping gaps rather than the whole calendar.\n\nThe weekly review screen, which is what makes this get used: total tracked against expected, the list of remaining gaps oldest first, and entries with no project. One button per problem.\n\nReports: by project, client, tag and day, with a date range, an export to CSV, and a share link that renders a read-only report on a random token with no login. Guard the token: constant-time comparison, no listing endpoint.\n\nRounding rules used only at report time, never on the stored entry — configurable to the nearest 5, 6, 15 or 30 minutes, up, down or nearest. The raw duration is always preserved and shown alongside. Rounding stored data destroys the only record you have.\n\nKeyboard-first: start and stop from anywhere with a shortcut, and a fuzzy project picker that ranks by recent use.\n\nWrite tests for gap detection across a day with several entries and across a working window crossing midnight, and for rounding being applied at report time only.\n\nDo not build a browser extension, mobile apps, or invoicing.",
+  "faq": [
+    {
+      "q": "Why is a gap detector better than a reminder?",
+      "a": "Because reminders arrive when you are busy and get dismissed. A gap list at the end of the week shows exactly what is missing and makes fixing it one click per gap, which is the difference between a timesheet you complete and one you invent on Friday."
+    },
+    {
+      "q": "Why never round the stored entry?",
+      "a": "Because rounding is a billing policy, and policies change. Rounding at report time means you can change the rule and re-run; rounding on write means the truth is gone."
+    },
+    {
+      "q": "Is importing a calendar not just tracking twice?",
+      "a": "It is using one record to reconstruct another. The calendar knows you were in a meeting from 2 to 3; the tracker does not. Suggesting the entry rather than creating it keeps you in control of what gets billed."
+    },
+    {
+      "q": "What does Clockify actually charge for?",
+      "a": "Every invited person is a paid seat, including admins who never start a timer, which is the detail that surprises people. Limited view-only seats are much cheaper, and the free tier really does cover unlimited tracking for one person."
+    }
+  ]
+}

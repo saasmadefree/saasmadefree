@@ -1,0 +1,43 @@
+{
+  "slug": "toggl-track",
+  "name": "Toggl Track",
+  "domains": [
+    "toggl.com"
+  ],
+  "category": "time-tracking",
+  "subcategory": "timer with a reporting layer",
+  "pricing": {
+    "amount": 9,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "annual-effective-monthly",
+    "source": "https://toggl.com/track/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "The page prints $9 per licence per month for Starter and $14 for Premium without labelling the billing period on the card; $9 is the annual-billed rate and month-to-month is higher. Upstream recorded $10."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "capture everywhere and reporting polish",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Kimai",
+      "url": "https://github.com/kimai/kimai"
+    }
+  ],
+  "relatedSlugs": [
+    "clockify",
+    "harvest",
+    "timely"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

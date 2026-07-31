@@ -1,0 +1,32 @@
+{
+  "tagline": "Work management built around how requests come in and get approved.",
+  "verdictSummary": "Wrike's distinguishing feature is the front door: a request form that becomes a structured task in the right folder with the right owner, and an approval step with a decision that is recorded rather than remembered. Building the intake-to-approval chain properly is a week, mostly because branching forms and approval state are fiddlier than they look. It is a kinda, not a no — the gaps are mobile apps, proofing on files, and the enterprise controls, none of which is a moat.",
+  "coreLoopDIY": "A public request form that branches on the answers, creates a task in the right place with the right fields already filled, and routes it through a recorded approval before work starts.",
+  "whatYouLose": [
+    "the mobile apps",
+    "proofing and mark-up on images, video and PDFs",
+    "resource and capacity planning across teams",
+    "the enterprise controls — SSO, audit, retention, custom roles",
+    "the integration catalogue and two-way syncs"
+  ],
+  "whyPeopleStillPay": "Because the intake form is what stops work arriving as a chat message, and because an approval nobody can later dispute is worth more to a marketing or creative team than any board layout.",
+  "prompt": "Build a request-intake and approval system with a task tracker attached, in that order of priority.\n\nStack: your choice, Postgres, Docker Compose, a domain with TLS so the public form can live on it.\n\nRequest forms:\n- A form builder with fields (text, long text, select, multi-select, date, number, file upload) and **branching**: a question can reveal or hide later questions based on an answer. Branch conditions are stored as data and evaluated identically on the client and the server — validating only on the client is how a public form gets filled with impossible combinations.\n- Submission mapping: each form declares which project the task lands in, which fields map to which task fields, who the default assignee is, and which approval chain applies. That mapping is the feature; without it a form is just a spreadsheet with extra steps.\n- Public submission with a token or captcha, an emailed confirmation to the requester containing a tracking link, and file uploads validated by type and size.\n\nApprovals:\n- An approval chain is an ordered list of steps, each with one or more approvers and a rule of any-one or all-of.\n- A task in approval is locked for editing on the fields under review, and the lock is shown with a reason.\n- Each decision records approver, decision, timestamp and comment, permanently. A rejection returns the task to the previous step with the comment attached and is never erased by a later approval.\n- A deadline per step, with a reminder before it and a visible overdue state after — no auto-approval, ever. Silent auto-approval defeats the purpose of an approval.\n\nTracker underneath: folders and projects, tasks with assignee, dates, status and custom fields, a table view and a board view, and dependencies.\n\nThe requester's tracking link shows status and approval progress without a login, on an unguessable token, and shows nothing but that.\n\nWrite tests for branch evaluation agreeing between client and server, for all-of versus any-one approval, for rejection returning to the previous step with history intact, and for the tracking token exposing nothing beyond the request.\n\nDo not build proofing, resource planning, or mobile apps.",
+  "faq": [
+    {
+      "q": "Why evaluate branching on the server as well?",
+      "a": "Because a public form can be submitted by anything, not just your JavaScript. Client-side branching is a convenience; server-side evaluation is what makes the resulting data trustworthy."
+    },
+    {
+      "q": "Why refuse auto-approval on a deadline?",
+      "a": "Because the entire value of an approval is that somebody is accountable for it. A step that approves itself after five days is a record that nobody decided, which is worse than no record."
+    },
+    {
+      "q": "What is the tracking link for?",
+      "a": "It stops the \"any update on my request?\" email. An unguessable token that shows status and nothing else costs an hour and removes a whole category of interruption."
+    },
+    {
+      "q": "Does Wrike export cleanly?",
+      "a": "Tasks and folders export to Excel, and the API covers the rest. Approval history is the part to extract deliberately — it is the record with the longest useful life and the least obvious export path."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "monday-com",
+  "name": "monday.com",
+  "domains": [
+    "monday.com"
+  ],
+  "category": "project-management",
+  "subcategory": "spreadsheet-shaped work platform",
+  "pricing": {
+    "amount": 9,
+    "currency": "EUR",
+    "plan": "Basic",
+    "basis": "annual-effective-monthly",
+    "source": "https://monday.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Read from the EU, where the page is priced in EUR and opens on the annual view: €9 per user per month, \"total €90 a month for 10 seats, billed annually\", an 18% discount on the monthly rate. Seats are sold in blocks and there is a 3-seat minimum. AI features are credit-metered on top."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "template ecosystem and adoption",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Plane",
+      "url": "https://github.com/makeplane/plane"
+    }
+  ],
+  "relatedSlugs": [
+    "smartsheet",
+    "clickup",
+    "asana"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

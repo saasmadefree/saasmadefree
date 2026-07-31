@@ -1,0 +1,32 @@
+{
+  "tagline": "The hosted version of an open-source support platform you can run yourself.",
+  "verdictSummary": "This is the hosted-open-source case the catalogue already carries for Ghost, Umami and Tolgee: the software is published in full under MIT, and the Cloud subscription is somebody else running it. Self-hosting gives you feature parity rather than an approximation, so the honest verdict is yes — with the caveat that \"yes\" here means a weekend of deployment and an ongoing operational duty, not an afternoon of code. The only genuinely absent piece is the managed AI credit pool, and you can point the same features at your own model key.",
+  "coreLoopDIY": "Deploy the real Chatwoot with Docker, put it behind your own domain with TLS, and connect the same channels — email, website widget, and the social inboxes you have API access to.",
+  "whatYouLose": [
+    "somebody else keeping it up, patched and backed up",
+    "the Captain AI credit pool, unless you bring your own model key",
+    "the managed social-channel apps, which still need your own platform approvals",
+    "support when an upgrade breaks a migration",
+    "the mobile apps signed and published by Chatwoot"
+  ],
+  "whyPeopleStillPay": "Because a support inbox going down is a customer-facing outage, and $19 an agent buys somebody whose job is making sure it does not. Self-hosting a support desk means being on call for it.",
+  "prompt": "Deploy Chatwoot yourself and configure it properly. This is an operations task, not a coding one, and the prompt should be treated that way.\n\n1. Bring up the official Docker Compose stack (Rails app, Sidekiq, Postgres, Redis) pinned to a specific released version tag, never `latest` — an unpinned tag turns a container restart into an unplanned migration.\n2. Put it behind a reverse proxy with automatic TLS on a subdomain you own. Set FRONTEND_URL correctly before the first boot; getting it wrong after users exist means broken links in every email already sent.\n3. Configure outbound email through a transactional provider, and set up SPF, DKIM and DMARC on the sending domain. Then send a test to a seed address at Gmail and Outlook and confirm it lands in the inbox, not spam — before letting a customer see it.\n4. Configure inbound email so replies thread back into the conversation, using the provider's inbound webhook.\n5. Add the website widget to a test page and verify it survives a page navigation and works with third-party cookies blocked.\n6. Storage: point attachments at an S3-compatible bucket rather than the container filesystem, so a redeploy does not lose files.\n7. Backups: a nightly `pg_dump` plus the attachment bucket, written somewhere off the machine. Then actually restore it into a scratch container and open a conversation — an untested backup is not a backup, and this step is the one people skip.\n8. Upgrades: write a one-page runbook covering snapshot, bump the tag, run migrations, verify, and roll back. Read the release notes for breaking changes before every bump.\n9. If you want the AI features, configure them against your own model key and set a spend limit at the provider.\n\nDeliverable: a single README that a future you can follow at 2am, listing every environment variable you set and why, the backup and restore commands verbatim, and the exact steps to roll back a bad upgrade.\n\nDo not fork the codebase for small changes. Every fork you maintain is an upgrade you will eventually skip, and skipped upgrades are how a self-hosted support desk becomes a security problem.",
+  "faq": [
+    {
+      "q": "Is self-hosting really cheaper than $19 an agent?",
+      "a": "In money, usually — a small VPS and object storage runs a few dollars a month for one or two agents. In time, only if upgrades and backups are habits you already have. The break-even is about how you value an hour, not about the hosting bill."
+    },
+    {
+      "q": "What is the most common way a self-hosted Chatwoot breaks?",
+      "a": "An unpinned image tag pulling a version with a migration, on a restart nobody planned. Pinning the tag and reading release notes before a bump removes most of the risk in this entry."
+    },
+    {
+      "q": "Do I still need approvals for WhatsApp and Instagram?",
+      "a": "Yes, and that is worth being clear about. Self-hosting removes the licence cost, not the platform gate: Meta still requires a verified business and approved templates whether the software is yours or Chatwoot's."
+    },
+    {
+      "q": "Can I migrate from Chatwoot Cloud to my own instance?",
+      "a": "There is an export of conversations and contacts, and since both sides are the same software the shapes match. Plan the DNS and inbound-email cutover carefully — that is where messages get lost, not in the data."
+    }
+  ]
+}

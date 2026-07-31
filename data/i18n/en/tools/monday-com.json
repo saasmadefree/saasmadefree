@@ -1,0 +1,32 @@
+{
+  "tagline": "Colourful boards that are really spreadsheets with types and automations.",
+  "verdictSummary": "Underneath the colour, monday.com is a typed spreadsheet: every column has a behaviour, and the automations read like sentences. Rebuilding the typed-column core with a rule builder is a week, and it is a genuinely useful week because the result is the shape most small teams actually need. The gaps are the mobile apps, real-time collaboration and the template gallery — adoption machinery rather than a moat.",
+  "coreLoopDIY": "Boards of rows and typed columns, with automations written as readable sentences — when a status becomes done, notify the owner and move the item to a group.",
+  "whatYouLose": [
+    "the mobile apps and push notifications",
+    "real-time multiplayer editing on the same board",
+    "the template gallery, which is how most teams start",
+    "the app marketplace and its deep integrations",
+    "AI credits and the assistants they power"
+  ],
+  "whyPeopleStillPay": "Because monday.com is bought by people who are not going to build anything, and the templates plus the onboarding are what get a whole department using the same board within a week.",
+  "prompt": "Build a typed-column board platform with an automation builder that reads like English.\n\nStack: your choice, Postgres, Docker Compose.\n\nBoard model: a Board has Groups (row sections) and Columns. Every Column has a type from a closed set, and the type owns its behaviour — rendering, editing, sorting, filtering and aggregation: text, long text, number, status (named options with colours), date, timeline (start and end), person, checkbox, dropdown, link, file, formula, mirror (a value read from a linked item on another board), and dependency.\n\nSummary rows: each group and the board footer show a per-column aggregate chosen by the column type — sum or average for numbers, a distribution bar for status, earliest and latest for dates, a count of ticked for checkbox.\n\nThe automation builder is the differentiator, and its constraint is that a rule must be readable as one sentence: *When [trigger], [condition], then [action].*\n- Triggers: status changes to X; a date arrives; an item is created; a column changes; every period.\n- Conditions: optional, one comparison on one column.\n- Actions: notify a person; set a column value; move to a group; create an item on another board; archive.\nRender each configured rule as that sentence in the UI. Run rules once per triggering event, log every run with the outcome, and cap the chain depth at three with a visible error rather than a silent stop — recursion is the failure mode of every rule engine.\n\nViews over the same board: table (default), kanban grouped by any status column, calendar by a date column, and timeline by a timeline column.\n\nCross-board relations: a link column pointing at items on another board, and a mirror column reading one of the linked item's values. Mirrors are read-only and must never be writable through the mirror, which is the bug this feature always ships with.\n\nWrite tests for chain-depth capping, for mirror read-only enforcement, and for group aggregates with empty and null values.\n\nDo not build a template gallery, mobile apps, or real-time collaboration.",
+  "faq": [
+    {
+      "q": "Why insist the automation reads as a sentence?",
+      "a": "Because it is the constraint that keeps a rule builder usable by non-developers, and it is most of why monday.com gets adopted by teams who would never open a workflow tool. Once rules stop reading as sentences you have built a scripting language with a worse editor."
+    },
+    {
+      "q": "What is a mirror column and why is it dangerous?",
+      "a": "It shows a value that lives on a linked item on another board. It is dangerous because making it editable creates two sources of truth for one value, and reconciling those is not a bug you fix, it is a bug you live with."
+    },
+    {
+      "q": "Why cap automation chain depth?",
+      "a": "Because rule A firing rule B firing rule A is trivially easy to configure by accident, and an uncapped engine will happily send four hundred notifications before anyone notices. A visible error at depth three is better than a silent stop nobody can debug."
+    },
+    {
+      "q": "How does monday.com actually bill?",
+      "a": "Per seat, in blocks, with a three-seat minimum, and the price shown by default is the annual one — the monthly rate is about 18% higher. AI features are metered in credits on top of the seat price."
+    }
+  ]
+}

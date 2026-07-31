@@ -1,0 +1,43 @@
+{
+  "slug": "clockify",
+  "name": "Clockify",
+  "domains": [
+    "clockify.me"
+  ],
+  "category": "time-tracking",
+  "subcategory": "free-tier time tracker",
+  "pricing": {
+    "amount": 4.99,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "per-seat-monthly",
+    "source": "https://clockify.me/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Month-to-month rate; $3.99 per seat billed annually. Every invited user occupies a paid seat, including admins who never track time. Limited seats for view-only people are $0.99 a month."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "capture everywhere",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Kimai",
+      "url": "https://github.com/kimai/kimai"
+    }
+  ],
+  "relatedSlugs": [
+    "toggl-track",
+    "harvest",
+    "memtime"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

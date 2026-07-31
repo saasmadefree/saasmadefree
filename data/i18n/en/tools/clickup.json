@@ -1,0 +1,32 @@
+{
+  "tagline": "One workspace configured into whatever shape your team argued for.",
+  "verdictSummary": "ClickUp sells configurability, and configurability is exactly what makes a rebuild long: custom fields, custom statuses per list, and eight views over the same records is a week of careful data modelling before it is a product. It is still a kinda rather than a no, because none of it is a moat — the hard parts are volume of surface area and the mobile apps, not anything you cannot obtain. The honest risk in rebuilding ClickUp is rebuilding all of it.",
+  "coreLoopDIY": "Model tasks once and render them several ways — list, board, calendar, table — with custom fields and per-list statuses, and a saved view that remembers exactly how you left it.",
+  "whatYouLose": [
+    "the mobile and desktop apps",
+    "real-time collaborative docs and whiteboards",
+    "ClickUp Brain and the automation credits",
+    "a thousand prebuilt integrations",
+    "the sheer feature surface — forms, goals, chat, time tracking, mind maps"
+  ],
+  "whyPeopleStillPay": "Because a team that has configured ClickUp to its exact process has built something it cannot easily re-create, and because seven dollars a seat is less than the meeting it would take to agree on a replacement.",
+  "prompt": "Build a task system where one record renders as four different views, and prove the views stay in sync.\n\nStack: your choice, Postgres, Docker Compose.\n\nData model, designed once and carefully: Space contains Lists contains Tasks. A Task has a title, description, assignees, dates, and values for custom fields. Custom fields are defined per Space with a type from a fixed set (text, number, date, dropdown, labels, checkbox, money, relationship-to-task) and stored so they can be filtered and sorted in SQL, not in application code. Statuses are defined per List, ordered, each flagged as open, active or closed.\n\nFour views over the same query, and a view is a saved object with filters, a sort, a grouping, and a visible-field set:\n- **List**: flat, grouped by any field, inline editing.\n- **Board**: columns from the grouping field, drag to change that field's value. Dragging by status must be identical in effect to editing the status in list view — write a test asserting exactly that, because divergence between views is the classic bug here.\n- **Calendar**: by a chosen date field, dragging changes the date.\n- **Table**: spreadsheet-like, bulk edit on multi-select, and copy-paste of a rectangular selection.\n\nSaved views remember scroll position and collapsed groups per user, because that is the difference between a view you use and one you re-configure every time.\n\nBulk operations: multi-select then change status, assignee, or a custom field on all of them in one transaction, with a single undo entry rather than one per task.\n\nAlso: task relationships (blocks / blocked by / related), a global search across titles, descriptions and comment bodies, and CSV import and export that round-trips custom fields.\n\nWrite tests for view equivalence (the same filter returns the same task set in all four), for the bulk-edit transaction rolling back entirely on one failure, and for CSV round-tripping every custom field type.\n\nDo not build docs, whiteboards, chat, goals, or an AI layer. Pick the four views and finish them; a half-built everything-app is worse than a finished small one.",
+  "faq": [
+    {
+      "q": "Why is view equivalence worth a test?",
+      "a": "Because board, list and calendar usually grow their own filtering code, and the day they disagree about which tasks exist is the day people stop trusting the tool. One shared query function and a test that all four agree costs almost nothing."
+    },
+    {
+      "q": "How should custom fields be stored?",
+      "a": "In a way the database can filter and sort — a typed value table or typed JSONB columns with indexes — rather than a blob the application has to load and sift. Filtering in application code works until a list has two thousand tasks."
+    },
+    {
+      "q": "Is rebuilding ClickUp a realistic idea at all?",
+      "a": "Rebuilding its task core is. Rebuilding its surface area is not, and trying is how a week becomes a quarter. The prompt deliberately fences the scope at four views for that reason."
+    },
+    {
+      "q": "Does ClickUp export cleanly?",
+      "a": "Tasks export as CSV per list with custom fields, and there is an API for a fuller extraction. Docs, whiteboards and chat are the parts that do not come out in a reusable shape, which is worth knowing before you put them there."
+    }
+  ]
+}

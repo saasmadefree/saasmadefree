@@ -1,0 +1,43 @@
+{
+  "slug": "harvest",
+  "name": "Harvest",
+  "domains": [
+    "getharvest.com"
+  ],
+  "category": "time-tracking",
+  "subcategory": "time tracking with invoicing",
+  "pricing": {
+    "amount": 9,
+    "currency": "USD",
+    "plan": "Teams",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.getharvest.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$9 per seat per month billed annually ($108 a seat a year); $11 month-to-month. The \"Pro\" tier upstream recorded no longer exists — the current tiers are Free, Teams and Enterprise — and harvestapp.com/pricing now 404s, the site having moved to getharvest.com."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "invoicing and payment integrations",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Kimai",
+      "url": "https://github.com/kimai/kimai"
+    }
+  ],
+  "relatedSlugs": [
+    "teamwork",
+    "toggl-track",
+    "timely"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

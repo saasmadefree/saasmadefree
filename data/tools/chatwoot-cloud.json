@@ -1,0 +1,44 @@
+{
+  "slug": "chatwoot-cloud",
+  "name": "Chatwoot Cloud",
+  "domains": [
+    "app.chatwoot.com"
+  ],
+  "category": "customer-support",
+  "subcategory": "open-source support platform, hosted",
+  "pricing": {
+    "amount": 19,
+    "currency": "USD",
+    "plan": "Startups",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.chatwoot.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$19 per agent per month billed annually. Captain AI credits are included per plan (300 a month on Startups) and billed at $20 per 1,000 beyond that."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "open-source core, hosting",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Chatwoot",
+      "url": "https://github.com/chatwoot/chatwoot"
+    }
+  ],
+  "relatedSlugs": [
+    "crisp",
+    "help-scout",
+    "freshdesk"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

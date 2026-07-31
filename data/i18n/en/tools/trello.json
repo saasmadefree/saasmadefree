@@ -1,0 +1,32 @@
+{
+  "tagline": "The board everyone already knows how to use.",
+  "verdictSummary": "A board with lists and draggable cards is the most-rebuilt piece of software on the internet and a weekend gets a good one. What Trello actually sells at the Premium tier is the extra views over the same cards, the automation robot, and the fact that anyone you invite already knows how it works. None of those is a moat, so this is a kinda — but the last one is the reason a self-hosted board so often ends up used by one person.",
+  "coreLoopDIY": "Boards, lists and cards you can drag, plus the same cards rendered as a calendar and a table across boards, and a small rule engine that fires when a card moves.",
+  "whatYouLose": [
+    "the mobile apps and offline access",
+    "the Power-Up ecosystem and its hundreds of integrations",
+    "real-time multiplayer, so two people never see the same drag",
+    "invitees who already know how it works",
+    "Atlassian identity and the SSO sold alongside it"
+  ],
+  "whyPeopleStillPay": "Because zero training is worth real money, and because Trello is where a group of people who agree on nothing else will agree to put their cards.",
+  "prompt": "Build a kanban board and then do the two things that separate a good one from a demo: real drag-and-drop ordering, and a second view over the same cards.\n\nStack: your choice, Postgres, Docker Compose.\n\nBoards, Lists, Cards. A Card has a title, description in Markdown, members, labels, a due date with a done flag, a checklist, comments, attachments and a cover colour.\n\nOrdering is the part that is always done badly. Store position as a fractional value between neighbours rather than a dense integer sequence, so a drag writes one row instead of renumbering the list. Handle precision exhaustion by renormalising that list's positions in a background pass. Write a test that performs two hundred sequential drags to the same position and asserts the ordering stays correct.\n\nDrag must be optimistic in the UI and reconciled against the server response, with a visible revert if the write fails — a board that silently loses a drag is worse than one that is slow.\n\nSecond and third views over the same cards, across all boards you are a member of:\n- **Calendar**: cards with due dates, dragging a card changes the due date.\n- **Table**: every card as a row with board, list, labels, members and due date, sortable and filterable, with inline editing.\n\nAutomation, kept small: rules of the form \"when a card is moved to list X\" or \"when a due date passes\" or \"every weekday at time T\", then actions from a closed set — move, archive, add or remove a label, add a member, post a comment, set a due date. Log every run. Cap chain depth at two.\n\nFilters that persist per board per user: by label, member, due window, and free text.\n\nAlso: card templates per list, board archive with search, and JSON export of a whole board in a documented shape.\n\nWrite tests for fractional ordering under repeated inserts, for the calendar drag writing the same field as the card editor, and for automation chain-depth capping.\n\nDo not build Power-Ups, mobile apps, or real-time multiplayer.",
+  "faq": [
+    {
+      "q": "Why does card ordering deserve a test with two hundred drags?",
+      "a": "Because fractional positions run out of floating-point precision after roughly fifty inserts between the same two neighbours, and the symptom is cards that will not stay put. It is the classic kanban bug and it only appears after the demo."
+    },
+    {
+      "q": "Is optimistic drag worth the extra complexity?",
+      "a": "Yes. A board where the card visibly waits for the server feels broken even when it is fast, and the reconciliation is a dozen lines. What matters is showing a revert when the write actually fails."
+    },
+    {
+      "q": "What is the honest risk of self-hosting a board for a team?",
+      "a": "That you are the only one who uses it. Trello's advantage is that everyone already knows it and it is on their phone; a self-hosted board is one more login and no notification, and adoption is what a board is for."
+    },
+    {
+      "q": "Can I get my Trello boards out?",
+      "a": "Yes — every board exports as JSON from the menu, including cards, lists, checklists, comments and label definitions. Attachments are URLs, so download them separately before closing the account."
+    }
+  ]
+}

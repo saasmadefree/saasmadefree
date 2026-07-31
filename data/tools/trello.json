@@ -1,0 +1,43 @@
+{
+  "slug": "trello",
+  "name": "Trello",
+  "domains": [
+    "trello.com"
+  ],
+  "category": "project-management",
+  "subcategory": "kanban boards",
+  "pricing": {
+    "amount": 12.5,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "per-seat-monthly",
+    "source": "https://trello.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Month-to-month rate; the same seat is $10 billed annually. Trello is an Atlassian product and SSO requires a separate Atlassian Guard subscription from about $4 per user per month."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "ubiquity and power-up ecosystem",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Plane",
+      "url": "https://github.com/makeplane/plane"
+    }
+  ],
+  "relatedSlugs": [
+    "meistertask",
+    "shortcut",
+    "basecamp"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Automatic tracking that tells you when your focus is actually good.",
+  "verdictSummary": "Rize turns passive capture into two numbers a person can act on: how long your uninterrupted stretches are, and what time of day you are sharpest. Both are computations over data you already have on your own machine, with no service, no key and no dataset behind them — so this is a yes, in a sitting. What the subscription buys is polish and the tuning of the session-detection thresholds, which is real but is not a dependency.",
+  "coreLoopDIY": "Detect work sessions automatically from your own activity, measure how long you go uninterrupted and when in the day it happens, and get one specific recommendation instead of a dashboard.",
+  "whatYouLose": [
+    "the tuned session-detection thresholds, which you now own",
+    "the polished native application and its menu-bar presence",
+    "calendar integration that labels a session with the meeting it collided with",
+    "cross-device tracking",
+    "the break reminders driven by the vendor's own model of fatigue"
+  ],
+  "whyPeopleStillPay": "Because the value is in the thresholds being right without being fiddled with, and because a nagging tool only works if it is not one you can edit at 3pm when it annoys you.",
+  "prompt": "Build a focus-quality tracker. The output is not a dashboard, it is two numbers and one suggestion.\n\nStack: a local recorder plus a dashboard, SQLite, no network. Build on an existing open-source capture layer if you can.\n\nFrom the raw activity stream, derive sessions:\n- A session starts when activity in one category persists past a minimum length.\n- A switch to a different category shorter than a configurable tolerance is an **interruption** — it is counted but does not end the session, which is what makes this measure meaningful. A longer switch ends it.\n- Store per session: category, start, end, and the interruption count.\n\nThe two numbers:\n1. **Median uninterrupted stretch** — the median run of activity within sessions between interruptions. Median, not mean, because one four-hour Sunday ruins a mean.\n2. **Peak focus window** — bucket the last four weeks of session time by hour of day, weight by uninterrupted stretch length, and name the two-hour window that scores highest.\n\nThe daily suggestion, exactly one, chosen by a small set of explicit rules you can read in the code — for example: if today's interruption rate is above the four-week median, name the application that caused the most interruptions; if the peak window contained meetings, say so and name the meeting hours; if no session reached the minimum length all day, say that plainly. Never generate more than one, and never generate a vague one.\n\nBreak tracking: detect gaps over a threshold as breaks, show breaks taken per working hour, and flag a day with a long continuous stretch and no break rather than congratulating it.\n\nDashboard: today's sessions as a timeline with interruptions marked, the two numbers with their four-week trend, and the suggestion at the top.\n\nPrivacy: pause control, title redaction per application, raw retention window, wipe command.\n\nWrite tests for interruption-versus-session-end at the tolerance boundary, for median computation on an even count, and for the peak-window calculation with fewer than four weeks of data (it must decline to answer rather than guess).\n\nDo not build calendar integration, cloud sync, or a team view.",
+  "faq": [
+    {
+      "q": "Why median rather than average uninterrupted time?",
+      "a": "Because the distribution is heavily skewed — a handful of long stretches and many short ones — and the mean flatters you on exactly the weeks you were most scattered. The median moves when your ordinary day changes, which is what you want to see."
+    },
+    {
+      "q": "Why only one suggestion a day?",
+      "a": "Because a list of five is a dashboard, and dashboards get skimmed. One specific sentence naming one application or one hour is something you can act on before lunch."
+    },
+    {
+      "q": "What makes tuning the thresholds harder than it sounds?",
+      "a": "The interruption tolerance. Too short and every glance at a chat window ends a session, so nothing ever looks focused; too long and a twenty-minute detour counts as deep work. Expect to adjust it for a week, and that adjustment is exactly what a paid tool has done for you."
+    },
+    {
+      "q": "Why refuse to compute the peak window with little data?",
+      "a": "Because two days of data will confidently name an hour, you will believe it, and it will be noise. Declining to answer until there is enough history is the difference between a measurement and a horoscope."
+    }
+  ]
+}

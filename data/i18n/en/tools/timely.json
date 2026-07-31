@@ -1,0 +1,32 @@
+{
+  "tagline": "Records your day, then writes the timesheet for you to approve.",
+  "verdictSummary": "Timely records everything locally and then has a model turn the raw stream into draft timesheet entries you approve or reject. Both halves are now available to a personal build — capture is a weekend, and the drafting is a model call with your own key — which is why this moves off a flat no. It stays a kinda because two real gaps remain: the mobile app that captures the hours you spend away from the machine, and drafting quality that improves by learning from a large number of corrections, not just yours.",
+  "coreLoopDIY": "Capture the day locally, have a model group it into draft entries with a project guess and a description, and approve or correct each one — with the corrections feeding back as examples so the next draft is closer.",
+  "whatYouLose": [
+    "the mobile app, and therefore every hour spent away from the computer",
+    "drafting tuned on a large corpus of corrections rather than only yours",
+    "team capacity planning and the manager views",
+    "the integrations that pull project names from your other tools",
+    "a signed desktop application and support when capture breaks"
+  ],
+  "whyPeopleStillPay": "Because the draft has to be good enough that approving is faster than typing, and getting there is a tuning job rather than a coding one. A draft you rewrite every time is worse than a blank form.",
+  "prompt": "Build a timesheet drafter: local capture, a model that proposes entries, and a correction loop that makes the proposals better.\n\nStack: a local recorder plus a dashboard, SQLite, and an Anthropic or OpenAI key read from the environment. Capture stays local; only a compact summary is ever sent to the model, and the README must say exactly what leaves the machine.\n\nCapture: active application, window title, input activity, run-length compacted. Consider an existing open-source capture layer.\n\nDrafting, once a day or on demand:\n1. Segment the raw stream into blocks with a minimum length, merging short interruptions.\n2. For each block build a compact summary — duration, application mix, the top window titles with counts. Truncate titles and drop anything matching your redaction rules **before** the summary is built, not after.\n3. Send the day's blocks in one request with your project list and up to twenty of your recent approved entries as examples, and ask for a draft entry per block: project, description, and a confidence.\n4. Render the drafts in a review queue, each showing the evidence — the actual titles behind it — so a wrong project is obvious rather than plausible.\n\nThe correction loop is the feature:\n- Approve, edit, split, merge, or discard a draft. Every correction is stored with the block summary that produced it.\n- Corrections become the examples fed into the next day's request, most recent first, capped at a fixed count.\n- Track and display **draft acceptance rate** week by week. If it is not rising, the loop is not working and you should be able to see that rather than assume it.\n\nCost control: one request per day per batch, a token budget that stops rather than truncating, and a visible running cost.\n\nOffline hours: a manual entry path that does not pretend to be captured, marked visibly as manual in every report, because hours away from the machine are the main thing this design cannot see.\n\nPrivacy: pause, per-application redaction, raw retention window, wipe command, and a preview of exactly what would be sent to the model before the first request.\n\nWrite tests for redaction being applied before summarisation, for block segmentation at the merge threshold, and for the example set staying under its cap.\n\nDo not build a mobile app or team views.",
+  "faq": [
+    {
+      "q": "What actually makes a draft good enough to approve?",
+      "a": "Correct project attribution. A description you tidy up is fine; a wrong project means you have to look at the evidence, and at that point typing it yourself was faster. That is why the review queue shows the window titles behind every draft."
+    },
+    {
+      "q": "Does the correction loop really improve anything?",
+      "a": "Feeding recent approved entries as examples helps noticeably with your own vocabulary and project naming. It is not training a model, and the acceptance-rate chart exists so you can tell the difference between improvement and wishful thinking."
+    },
+    {
+      "q": "How much of my activity gets sent to a model?",
+      "a": "A summary — durations, application names, and truncated window titles — after redaction, once a day. It is still real information about your work, which is why the prompt asks for a preview of the payload before the first request rather than a paragraph in a privacy policy."
+    },
+    {
+      "q": "Why do offline hours matter so much here?",
+      "a": "Because for anyone who takes calls, meets clients or works on paper, they are a large share of billable time and completely invisible to local capture. Marking them manual keeps the record honest about which numbers were observed and which were remembered."
+    }
+  ]
+}

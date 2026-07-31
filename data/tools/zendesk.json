@@ -1,0 +1,45 @@
+{
+  "slug": "zendesk",
+  "name": "Zendesk",
+  "domains": [
+    "zendesk.com"
+  ],
+  "category": "customer-support",
+  "subcategory": "enterprise support suite",
+  "pricing": {
+    "amount": 55,
+    "currency": "USD",
+    "plan": "Suite Team",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.zendesk.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$55 per agent per month paid yearly. The cheaper $19 tier on the same page is Support Team, which is ticketing only. Add-ons — AI agents, workforce management, quality assurance — are billed per agent on top."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "compliance and channel breadth",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "FreeScout",
+      "url": "https://github.com/freescout-help-desk/freescout"
+    }
+  ],
+  "relatedSlugs": [
+    "freshdesk",
+    "intercom",
+    "help-scout"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

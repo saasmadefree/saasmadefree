@@ -2854,3 +2854,153 @@ against a page curl reads as HTTP/2 200); the rest pre-existing.
 $ npm run stats
 399 fiche(s) : yes 54 (14 %), kinda 233 (58 %), no 112 (28 %)
 ```
+
+
+## Batch 13 — the rest of the help desks, project management, time tracking (399 → 424)
+
+Closes `customer-support` (10), opens `project-management` (10) and fills nine of eleven
+`time-tracking` slots.
+
+### Two more exclusions, both because the product moved
+
+| Slug | Reason |
+|---|---|
+| `groove` | groovehq.com 301-redirects to **helply.com**. Groove relaunched as Helply with a new name, a new positioning and a completely different model: $1 per ticket, minimum 250 tickets a month, minimum $3,000 annual contract, annual billing only. The recorded "$20 Standard per user" tier no longer exists. Importing it under the old slug and name would put "Groove is replaceable" on a page that says Helply — the mismatch the domain-safety rule exists to prevent. Helply is a legitimate future entry under its own slug; it is not this one. |
+| `timeular` | timeular.com redirects to **early.app** after the rebrand to EARLY, and `early.app/pricing` prints **no price at all** — the plan cards carry feature lists and a "Start free trial" button and nothing else, verified in a real Chrome session after scrolling and waiting. Same standing as `dovetail` and `maze`: no number on the page to cite. |
+
+Both are in `MANUAL_EXCLUSIONS` with the reason and the date. `customer-support` lands at 10
+and `time-tracking` at 10, both well above the floor.
+
+### Prices — 15 of 25 were wrong
+
+| Slug | Upstream | Corrected | What was wrong |
+|---|---|---|---|
+| `chatwoot-cloud` | $19 Startups, per-seat-monthly | $19, **annual-effective** | the page says "billed annually" |
+| `freshdesk` | $18 Growth | **$19**, annual-effective | |
+| `livechat` | $24 Starter | **$19**, annual-effective | $19 annual / $25 monthly; upstream matched neither |
+| `tidio` | $29 Starter USD | **€24.17**, annual-effective | geo-priced EUR and the annual view is the default |
+| `zendesk` | $69 "Suite Team" | **$55** Suite Team, annual-effective | the $19 tier on the same page is Support Team, a different product |
+| `clickup` | $10 Unlimited | **$7**, annual-effective | $7 is what the page shows by default |
+| `meistertask` | $15 Pro | **€12.50** Pro | geo-priced EUR, VAT excluded |
+| `monday-com` | $12 "Basic" | **€9** Basic, annual-effective | €12 is Standard; Basic is €9 and the page opens on the annual view |
+| `shortcut` | $10 Team | **$8.50** Team | |
+| `smartsheet` | $12 Pro | **$9**, annual-effective | $9 yearly / $12 monthly |
+| `teamwork` | $13.99 "Deliver" | **$9.99** Deliver | matched no tier |
+| `wrike` | $10 Team, per-seat-monthly | $10, **annual-effective** | the page states it is billed annually |
+| `harvest` | $13.75 "Pro" | **$9 "Teams"** | the Pro tier is gone (Free / Teams / Enterprise), and harvestapp.com/pricing now 404s |
+| `hubstaff` | $7 Starter | **$4.99**, annual-effective | plus a two-seat minimum, so the real floor is $9.98 |
+| `rescuetime` | $12 "Premium" | **$9 "Focus"** | the Premium tier no longer exists |
+| `rize` | $16.99 "Rize" | **$12.99 "Basic"** | matched no tier |
+| `toggl-track` | $10 Starter | **$9**, annual-effective | |
+| `asana`, `basecamp`, `trello`, `crisp`, `clockify`, `time-doctor`, `timely` | — | confirmed correct | |
+
+Four entries carry `confidence: medium` because the page does not label the billing period on
+the plan card and the HTML gives no reliable signal: `meistertask`, `shortcut`, `smartsheet`,
+`toggl-track`, plus `memtime`, whose page prints €15, $18 and £13 side by side for the same
+tier. **The rule applied throughout this batch, stated so it can be checked:** where a page
+offers both a monthly and an annual rate, the figure recorded is the one the page renders by
+default, with the other named in `pricing.notes`. Where the default could not be determined,
+the annual-effective figure is recorded at `medium` confidence with the monthly rate in the
+notes.
+
+### Verdicts
+
+3 `yes` / 20 `kinda` / 2 `no`.
+
+- **`chatwoot-cloud` moved `kinda` → `yes`.** It is the hosted-open-source case the catalogue
+  already carries for `ghost-pro`, `umami-cloud`, `n8n-cloud` and `tolgee-cloud`: Chatwoot is
+  published in full under MIT and the Cloud subscription is somebody else running the same
+  software, so self-hosting is parity rather than approximation. `diyTimeEstimate` moved to
+  `weekend` to match that pattern, exactly as batch 11 did for `ilovepdf-premium`.
+- **`rescuetime` and `rize` stay `yes`.** Both run entirely on the local machine with no API
+  key, no service and no dataset — the literal definition of `yes` in CONTRIBUTING. Both carry
+  `verdictConfidence: medium` for a stated reason: RescueTime ships a maintained classification
+  of hundreds of thousands of sites that yours starts without, and Rize's session-detection
+  thresholds are tuned for you.
+- **`zendesk` moved `no` → `kinda`**, on the same argument made for `front`, `gorgias` and
+  `intercom` in batch 12 — no network effect, no proprietary data, mature open-source
+  equivalents — with voice, the marketplace and the enterprise compliance controls named in
+  `whatYouLose`. This is now a category-wide judgement rather than four separate ones, and it
+  is stated here as such so it can be disagreed with in one place.
+- **`timely` moved `no` → `kinda`.** Its product is local capture plus a model that drafts
+  timesheet entries, and both halves are now available to a personal build with an API key.
+  The gaps that keep it off `yes` are named: the mobile app, which is the only way it sees
+  hours spent away from the machine, and drafting quality tuned on more corrections than yours.
+- **`hubstaff` and `time-doctor` stay `no`**, and for a reason worth stating rather than
+  assuming: their product is observing *other people*. That needs an agent deployed on machines
+  you administer, payroll and HRIS partners billed at $200 per integration, and a defensible
+  legal basis for monitoring that varies by country. Both prompts scope down to measuring
+  yourself and say so, and both deliberately refuse to build screenshots or keystroke capture.
+- The ten `project-management` entries are all `kinda`, unchanged from upstream. Their losses
+  are the CONTRIBUTING `kinda` list almost verbatim — mobile apps, real-time collaboration,
+  integration catalogues — and none of them has a data or network moat.
+
+### Editorial
+
+Upstream templating again at the category level: all ten project-management entries shipped the
+same `moatType`, `subcategory`, prompt skeleton and `priorArt` (Plane), and all eleven
+time-tracking entries shipped Kimai regardless of whether the product tracks projects or
+attention. Every prompt and all 100 FAQ answers rewritten.
+
+*Help desks (6):* deploy the real Chatwoot as an operations runbook, backups included and
+tested (`chatwoot-cloud`) — a visitor page-history timeline with an explicit retention cutoff
+(`crisp`) — an SLA clock in business hours that pauses on the customer and marks a breach
+permanently (`freshdesk`) — the four agent-throughput features that let one person hold six
+chats, sneak peek included (`livechat`) — a three-layer answering strategy where each layer
+knows when to give up (`tidio`) — a customer portal with organisation-level authorisation,
+retention and hard delete (`zendesk`).
+
+*Project management (10):* goal progress computed and never typed, with the stalest contributing
+project named (`asana`) — reply-by-email as a first-class client, quote stripping tested against
+three mail clients (`basecamp`) — one record, four views, with a test that they agree
+(`clickup`) — automations attached to the column with a no-cascade rule (`meistertask`) — typed
+columns and rules that read as one sentence, with mirror columns read-only (`monday-com`) —
+stories moved by git webhooks, burndown from stored snapshots (`shortcut`) — a real forward and
+backward pass with float and a critical path (`smartsheet`) — dated rate resolution so changing
+a rate never reprices last quarter (`teamwork`) — fractional card ordering tested under two
+hundred drags (`trello`) — branching intake forms validated server-side and approvals that never
+auto-approve (`wrike`).
+
+*Time tracking (9):* a gap detector that finds the hours you forgot (`clockify`) — the
+double-billing problem solved with an `invoice_id` set in one transaction (`harvest`) — a
+self-only activity monitor that refuses screenshots and keystrokes (`hubstaff`) — drag across a
+recorded timeline to create an entry, with raw stream and entries stored separately (`memtime`)
+— focus sessions whose hosts-file block is restored even after a crash (`rescuetime`) — two
+numbers and exactly one daily suggestion (`rize`) — a weekly self-report that deliberately has
+no productivity score, and says so in its own footer (`time-doctor`) — a draft-and-correct loop
+with a visible acceptance rate (`timely`) — client-ready reports where rounding happens at
+report time and the difference is printed (`toggl-track`).
+
+`priorArt` corrected per entry: Plane for the trackers, FreeScout for the two ticketing desks,
+Chatwoot for the chat-shaped ones, Kimai for the three timer-and-invoice tools, ActivityWatch
+for the five passive-capture tools (Kimai is a timesheet system and was wrong for all of them).
+`hubstaff` and `time-doctor` ship with no `priorArt` — there is no open-source workforce
+monitoring tool this project would point a reader at.
+
+`requirements[]` reconciled: the import produced a uniform `hosting`+`domain` for the six help
+desks and a bare `database` for all nine time-tracking entries. Corrections include
+`email-provider` added to the four desks that actually receive mail, `oauth-app` for
+`shortcut` (git webhooks need an app), `anthropic-api-key` for `tidio` and `timely`, `domain`
+dropped from the local-only trackers, and `hosting` dropped from `memtime`, `rescuetime`,
+`rize` and `time-doctor` because their prompts run entirely on one machine with no server.
+
+### Verification
+
+```
+$ npm run validate
+424 fiche(s), 650 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  175 passed (175)
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run build
+Site écrit dans dist/ — 2 langue(s), 650 fiche(s), 73 page(s) de catégorie, 729 URL(s).
+
+$ npm run stats
+424 fiche(s) : yes 57 (13 %), kinda 253 (60 %), no 114 (27 %)
+```
