@@ -16,5 +16,76 @@
     "cli-paste": "Prompt copied. Run claude in your terminal and paste it.",
     "clipboard": "Prompt copied. Paste it into your agent.",
     "not-yet": "No prompt handoff yet for this agent."
+  },
+  "site": {
+    "brand": "SaaS Made Free",
+    "skipToContent": "Skip to content",
+    "languageSwitcherLabel": "Language",
+    "directoryLabel": "Directory",
+    "footer": { "source": "Source on GitHub", "privacy": "Privacy" },
+    "verdicts": {
+      "yes": { "label": "Yes", "desc": "Replace it today. Nothing important is lost." },
+      "kinda": { "label": "Partly", "desc": "Rebuildable in a weekend, but you give up things like the mobile app, the sync, or the integrations. The entry says which." },
+      "no": { "label": "No", "desc": "Keep paying. The value is the network, the data or the compliance — no prompt replaces that." }
+    },
+    "home": {
+      "titleTag": "SaaS Made Free — which subscriptions are one prompt away from free?",
+      "metaDescription": "Which of your paid SaaS subscriptions could a coding agent rebuild for you — and which should you honestly keep paying for?",
+      "heroLine1": "Some subscriptions are a business.",
+      "heroLine2": "Some are just a prompt.",
+      "lede": "An open directory of the software you pay for every month, and whether a coding agent could rebuild a version you own. One prompt per tool, written to be handed straight to Claude, Cursor or ChatGPT.",
+      "verdictsHeading": "Three verdicts",
+      "tallyOne": "{count} tool published so far. The catalogue is being written, one verified entry at a time.",
+      "tallyOther": "{count} tools published so far. The catalogue is being written, one verified entry at a time.",
+      "searchLabel": "Search the directory",
+      "searchPlaceholder": "Search by name or category",
+      "categoryFilterLabel": "Filter by category",
+      "categoryFilterAll": "All categories",
+      "listHeading": "The directory",
+      "listCaption": "Every tool published so far, sorted by votes.",
+      "colName": "Tool",
+      "colCategory": "Category",
+      "colPrice": "Monthly price",
+      "colVerdict": "Verdict",
+      "colVotes": "Votes",
+      "noResults": "No tools match that search."
+    },
+    "tool": {
+      "titleTemplate": "Can a coding agent replace {name}? — SaaS Made Free",
+      "metaDescriptionTemplate": "Can a coding agent replace {name}? The verdict, the real price, and what you'd lose.",
+      "verdictHeading": "Verdict",
+      "priceHeading": "Price",
+      "priceSourceLabel": "Source",
+      "priceCheckedLabel": "Checked on",
+      "whatYouLoseHeading": "What you lose",
+      "whyPeopleStillPayHeading": "Why people still pay",
+      "promptHeading": "The prompt",
+      "copyButton": "Copy prompt",
+      "copiedButton": "Copied",
+      "copyFailed": "Couldn't copy automatically — select the text above instead.",
+      "priorArtHeading": "Prior art",
+      "licenseLabel": "License",
+      "faqHeading": "Questions",
+      "relatedHeading": "Related tools",
+      "voteHeading": "Already built this yourself?",
+      "voteButton": "Record my vote",
+      "voteCountOne": "{count} vote",
+      "voteCountOther": "{count} votes",
+      "voteUnavailable": "Vote count unavailable right now.",
+      "voteThanks": "Thanks — this vote was recorded.",
+      "voteAlready": "Already counted from this browser today.",
+      "voteError": "Couldn't reach the vote service. Try again later."
+    },
+    "category": {
+      "titleTemplate": "Which {category} tools can a coding agent replace? — SaaS Made Free",
+      "metaDescriptionTemplate": "Which {category} tools can a coding agent replace, and which should you keep paying for?",
+      "heading": "Tools in {category}"
+    },
+    "root": {
+      "titleTag": "SaaS Made Free",
+      "metaDescription": "An open directory of the SaaS subscriptions a coding agent could rebuild for you.",
+      "redirecting": "Taking you to the English directory.",
+      "continueLink": "Continue to the directory"
+    }
   }
 }

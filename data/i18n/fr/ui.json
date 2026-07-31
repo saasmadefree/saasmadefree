@@ -16,5 +16,76 @@
     "cli-paste": "Prompt copié. Lance claude dans ton terminal et colle-le.",
     "clipboard": "Prompt copié. Colle-le dans ton agent.",
     "not-yet": "Pas encore de transfert de prompt pour cet agent."
+  },
+  "site": {
+    "brand": "SaaS Made Free",
+    "skipToContent": "Aller au contenu",
+    "languageSwitcherLabel": "Langue",
+    "directoryLabel": "Annuaire",
+    "footer": { "source": "Code source sur GitHub", "privacy": "Confidentialité" },
+    "verdicts": {
+      "yes": { "label": "Oui", "desc": "Remplace-le aujourd'hui. Tu ne perds rien d'important." },
+      "kinda": { "label": "En partie", "desc": "Reconstructible en un week-end, mais tu perds des choses comme l'appli mobile, la synchro ou les intégrations. La fiche précise lesquelles." },
+      "no": { "label": "Non", "desc": "Continue de payer. La valeur, c'est le réseau, les données ou la conformité — aucun prompt ne remplace ça." }
+    },
+    "home": {
+      "titleTag": "SaaS Made Free — quels abonnements ne tiennent qu'à un prompt ?",
+      "metaDescription": "Quels abonnements SaaS un agent IA pourrait-il reconstruire pour toi — et lesquels vaut-il mieux continuer à payer ?",
+      "heroLine1": "Certains abonnements sont un vrai business.",
+      "heroLine2": "D'autres ne tiennent qu'à un prompt.",
+      "lede": "Un annuaire ouvert des logiciels que tu paies chaque mois, et de la possibilité qu'un agent IA en reconstruise une version que tu possèdes. Un prompt par outil, écrit pour être donné directement à Claude, Cursor ou ChatGPT.",
+      "verdictsHeading": "Trois verdicts",
+      "tallyOne": "{count} outil publié pour l'instant. Le catalogue s'écrit fiche vérifiée après fiche vérifiée.",
+      "tallyOther": "{count} outils publiés pour l'instant. Le catalogue s'écrit fiche vérifiée après fiche vérifiée.",
+      "searchLabel": "Chercher dans l'annuaire",
+      "searchPlaceholder": "Chercher par nom ou catégorie",
+      "categoryFilterLabel": "Filtrer par catégorie",
+      "categoryFilterAll": "Toutes les catégories",
+      "listHeading": "L'annuaire",
+      "listCaption": "Tous les outils publiés pour l'instant, triés par votes.",
+      "colName": "Outil",
+      "colCategory": "Catégorie",
+      "colPrice": "Prix mensuel",
+      "colVerdict": "Verdict",
+      "colVotes": "Votes",
+      "noResults": "Aucun outil ne correspond à cette recherche."
+    },
+    "tool": {
+      "titleTemplate": "Un agent IA peut-il remplacer {name} ? — SaaS Made Free",
+      "metaDescriptionTemplate": "Un agent IA peut-il remplacer {name} ? Le verdict, le vrai prix, et ce que tu perds.",
+      "verdictHeading": "Verdict",
+      "priceHeading": "Prix",
+      "priceSourceLabel": "Source",
+      "priceCheckedLabel": "Vérifié le",
+      "whatYouLoseHeading": "Ce que tu perds",
+      "whyPeopleStillPayHeading": "Pourquoi certains continuent de payer",
+      "promptHeading": "Le prompt",
+      "copyButton": "Copier le prompt",
+      "copiedButton": "Copié",
+      "copyFailed": "Copie automatique impossible — sélectionne le texte ci-dessus.",
+      "priorArtHeading": "Alternatives existantes",
+      "licenseLabel": "Licence",
+      "faqHeading": "Questions",
+      "relatedHeading": "Outils proches",
+      "voteHeading": "Tu l'as déjà reconstruit toi-même ?",
+      "voteButton": "Enregistrer mon vote",
+      "voteCountOne": "{count} vote",
+      "voteCountOther": "{count} votes",
+      "voteUnavailable": "Nombre de votes indisponible pour l'instant.",
+      "voteThanks": "Merci — ton vote est enregistré.",
+      "voteAlready": "Déjà comptabilisé depuis ce navigateur aujourd'hui.",
+      "voteError": "Impossible de joindre le service de vote. Réessaie plus tard."
+    },
+    "category": {
+      "titleTemplate": "Quels outils de {category} un agent IA peut-il remplacer ? — SaaS Made Free",
+      "metaDescriptionTemplate": "Quels outils de {category} un agent IA peut-il remplacer, et lesquels vaut-il mieux continuer à payer ?",
+      "heading": "Outils de la catégorie {category}"
+    },
+    "root": {
+      "titleTag": "SaaS Made Free",
+      "metaDescription": "Un annuaire ouvert des abonnements SaaS qu'un agent IA pourrait reconstruire pour toi.",
+      "redirecting": "Direction l'annuaire en anglais.",
+      "continueLink": "Continuer vers l'annuaire"
+    }
   }
 }

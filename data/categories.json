@@ -1,5 +1,5 @@
 {
-  "docs-and-wiki": { "emoji": "📄" },
-  "scheduling": { "emoji": "📅" },
-  "forms-and-surveys": { "emoji": "📝" }
+  "docs-and-wiki": { "emoji": "📄", "label": { "en": "Docs & wikis", "fr": "Docs et wikis" } },
+  "scheduling": { "emoji": "📅", "label": { "en": "Scheduling", "fr": "Planification" } },
+  "forms-and-surveys": { "emoji": "📝", "label": { "en": "Forms & surveys", "fr": "Formulaires et sondages" } }
 }
