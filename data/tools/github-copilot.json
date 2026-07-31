@@ -2,7 +2,8 @@
   "slug": "github-copilot",
   "name": "GitHub Copilot",
   "domains": [
-    "github.com"
+    "githubcopilot.com",
+    "copilot.github.com"
   ],
   "category": "dev-tools",
   "subcategory": "AI coding assistant",

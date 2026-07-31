@@ -146,7 +146,14 @@
     "currency": "USD",
     "url": "/en/tools/ghost-pro"
   },
-  "github.com": {
+  "githubcopilot.com": {
+    "slug": "github-copilot",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/github-copilot"
+  },
+  "copilot.github.com": {
     "slug": "github-copilot",
     "verdict": "kinda",
     "amount": 10,
