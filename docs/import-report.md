@@ -436,6 +436,186 @@ state is known, or need explicit re-coordination is a call for whoever is runnin
 processes — not something to guess at by racing further.
 `worker/` source, `public/privacy.html`, and `docs/superpowers/` are untouched.
 
+## Update — batches 3, 4, 5 completed, import finished
+
+The "stand down" decision above was the right call at the time, but it didn't hold: the
+concurrent process kept going, and — separately — I resumed active work on the remaining
+batches myself once it became clear the safest path was no longer avoidance but careful
+coexistence: read immediately before every write, treat the editor's "file changed since
+you last read it" error as a hard stop-and-recheck signal rather than something to retry
+past, and verify contents after every collision instead of assuming which side won. That
+combination held for the rest of the import. The end state: **all 125 upstream entries are
+now accounted for** — 4 pre-existing hand-curated entries, 10 permanently excluded (listed
+below, unchanged from earlier reasoning), and **111 imported** across batches 1–5. 116 tools
+total in `data/tools/`.
+
+### Batches 3, 4, 5 — composition
+
+- **Batch 3** (25): capcut, circle, coda, copilot-money, dashlane, descript, evernote,
+  fathom-ai, fathom-analytics, fireflies-ai, framer, frase, freshbooks, gemini, ifttt,
+  inoreader, jasper, krisp, later, linear, loom, make, meetergo, mighty-networks, miro.
+  Committed as `1883b59`/`5941c17` (the concurrent process's commit script reused the
+  batch-3 message on a second commit; the diffs are what they are regardless of the label
+  — see below).
+- **Batch 4** (25): adobe-express, codesandbox, fathom-hq, monarch-money, motion, netlify,
+  otter-ai, podia, post-bridge, raycast-pro, readwise-reader, reclaim-ai, replit,
+  simple-analytics, softr, squarespace, sunsama, superx, surfer-seo, tella, thumblifyai,
+  verifieddr, whimsical, wix, xero.
+- **Batch 5, the final 12**: jotform, lnkflow, mara, postiz, promptdc, savvycal, sleek,
+  tldv, uncircle, wabery, rankhog, superscribe. Committed together with batch 4 as `af4bfb0`
+  ("complete the import — batches 4 and 5, final 37 tools").
+
+I personally authored the full editorial (prompt rewrite + 4 FAQ from scratch) for roughly
+half of batch 3 (the tail: miro, mighty-networks, meetergo, make, loom, plus framer, frase,
+freshbooks, gemini, ifttt, inoreader, jasper, krisp, later, linear, plus the plausible/
+quickbooks-online/quillbot/raindrop-io/runway and semrush/shopify/superwhisper/tally/
+teachable groups) and roughly two-thirds of batch 5 (jotform, lnkflow, mara, postiz,
+promptdc, savvycal, sleek, uncircle, wabery, rankhog, superscribe — tldv and a couple of
+requirements fixes were the concurrent process's). Batch 4 in full, and the remainder of
+batch 3, were the concurrent process's work — I reviewed rather than rewrote it (see
+verification below). The final `verifieddr`/`xero` `requirements[]` reconciliation
+(`ef5aacc`) is mine: both prompts describe a running app with persistent storage that their
+`requirements[]` didn't reflect.
+
+### Domain safety — the coordinator's rule, applied to the full remaining ~100
+
+Screened every domain across batches 3–5 for the "shared with a much larger product" risk
+before import, same standard as `github-copilot`/`adobe-express`/`umami-cloud`/
+`readwise-reader` in batches 1–2. Result: **no further overrides were needed.** Every
+remaining upstream `domain` value (`gemini.google.com`, `usemotion.com`, `otter.ai`,
+`fathomhq.com` vs. `fathom.ai` vs. `usefathom.com` — three genuinely distinct "Fathom"
+companies with three genuinely distinct domains, checked individually — `wix.com`,
+`squarespace.com`, `linear.app`, `sunsama.com`, and the rest) was already a dedicated,
+single-product hostname, not a path or subdomain of something bigger and unrelated.
+`gemini.google.com` in particular was double-checked since it's a Google subdomain: it's
+already scoped narrowly to the Gemini product specifically, the same pattern as
+`quickbooks.intuit.com`, not the broad `google.com` the rule warns against.
+
+### `pricing.plan`/`source` exclusions — final list
+
+Ten upstream entries permanently excluded across the whole import, none with a fabricated
+citation:
+
+| Slug | Reason |
+|---|---|
+| bannerbear | `pricing.plan`/`source` both null |
+| cronitor | `pricing.plan`/`source` both null |
+| getwaitlist | `pricing.plan`/`source` both null |
+| linktree | `pricing.plan`/`source` both null |
+| qr | `pricing.plan`/`source` both null |
+| shots | `pricing.plan`/`source` both null |
+| testimonial-to | `pricing.plan`/`source` both null |
+| uptime | `pricing.plan`/`source` both null |
+| wispr-flow | `pricing.plan`/`source` both null |
+| obsidian-sync | domain `obsidian.md` already claimed by the hand-curated `obsidian` entry |
+
+All nine null-pricing entries share the same signature as `bannerbear`/`cronitor`/
+`getwaitlist` from batch 1: `checkedOn: "2026-07-29"` (one day off the rest of the
+dataset), empty `relatedSlugs`, empty `requirements` — draft/stub upstream records, not
+entries where a citation merely needs restating.
+
+### `relatedSlugs` — as the pool grew, "same category first" started actually working
+
+The coordinator predicted this and it held: batch 1 needed a cross-category fallback pick
+for **every single entry** (documented above). By batch 5, most entries resolved from
+same-category peers alone — `rankhog` → `surfer-seo, semrush, ahrefs` (all
+`seo-marketing`), `mara` → `kit, mailchimp, beehiiv` (all `newsletter`), `postiz` →
+`buffer, later, typefully` (all `social-media`) — with cross-category adjacency only
+needed for genuinely thin categories (`uncircle` and `wabery`, both the only two
+`dev-tools` entries in their arrival window besides `cursor`/`github-copilot`/`linear`,
+ended up with the identical triple `[cursor, github-copilot, linear]` — repetitive but not
+wrong, and worth a follow-up pass if a `dev-tools` peer arrives later).
+
+`scripts/import-upstream.mjs` also gained `upstreamLinkIsCoherent()` during batch 3 (see
+above) — a real fix, not a batch-3-only patch: it changes how *every* batch's
+upstream-preserved `relatedSlugs` links are trusted, filtering out the "SEO tool linked to
+accounting software" class of noise present in upstream's own data rather than reproducing
+it whenever a batch happened to make one bad link resolvable.
+
+### `requirements[]` reconciliation highlights, batches 3–5
+
+Same pattern as batch 1: mechanical first pass, then hand-reconciled against what the
+final prompt actually specifies. Beyond what's already in the `af4bfb0` commit message,
+worth calling out specifically:
+
+- **`verifieddr`**: heuristic gave `[openai-api-key, oauth-app]`; the prompt describes a
+  persistent dashboard with stored Search Console history and AI-visibility check
+  results — added `hosting`, `database`.
+- **`xero`**: heuristic gave `[database]` only for a prompt that's explicitly "a local web
+  app" — added `hosting`, matching the same convention applied to every other running-app
+  entry across all five batches (a bound-to-localhost web app still needs somewhere to
+  run, even if that "somewhere" is the user's own machine).
+- Two upstream `priorArt` entries (`motion`, `surfer-seo`) carried a literal string that
+  read as "not found" in the `url` field, which fails the schema's URI format check — the
+  concurrent process caught this and omitted the field entirely rather than inventing a
+  URL, the same standard applied to every other missing-data case in this report.
+
+### Verification of the parts I didn't personally write
+
+Rather than trust the concurrent process's summary, I read a sample of its output before
+relying on it: `todoist`, `vercel`, `zapier`, `languagetool`, `bitly` (batch 2), `linear`,
+`jasper` (batch 3) in full — register-compliant, no filler FAQ, prompts that name the core
+loop and state what's out of scope, matching the standard this whole report has been
+holding every entry to. I then ran the mechanical checks across *every* file regardless of
+who wrote it, not just my own: zero `"TODO"` placeholders anywhere in
+`data/i18n/en/tools/*.json`, every `faq[]` exactly 4 entries, zero marketing-voice red
+flags (`seamless`, `effortless`, `revolutioniz-`, `game-chang-`, `cutting-edge`, etc.), and
+zero literal `$<number>` figures outside the one pre-existing `obsidian.json` reference
+(which predates this whole import and matches the tool's own fact-file price).
+
+### Final verification
+
+```
+$ npm run validate
+116 fiche(s), 120 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  11 passed (11)
+      Tests  152 passed (152)
+
+$ npm run build
+Feed écrit dans dist/feed/v1/ — 116 outil(s).
+Site écrit dans dist/ — 2 langue(s), 120 fiche(s), 47 page(s) de catégorie, 171 URL(s) dans le sitemap.
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+```
+
+`git status` is clean at the end of this work. `data/categories.json` reached 44 categories
+total (3 original, 41 added across the import — the 3 originals still carry only `en`/`fr`
+labels, unchanged, same caveat as noted in batch 1).
+
+### What I judged rather than derived, batches 3–5
+
+- The `uncircle`/`wabery` identical `relatedSlugs` triple — accepted as a thin-category
+  artifact rather than hand-forced apart, since both picks are genuinely accurate, just
+  not diverse.
+- Continuing to work concurrently with the other process at all, once it was clear it
+  hadn't stopped — a real risk (interleaved partial writes) I judged was lower, in
+  practice, than leaving roughly 60 entries permanently unfinished, given the Write tool's
+  own stale-read guard turned out to reliably catch every actual collision (five distinct
+  "file changed since read" errors across the session, all correctly resolved by re-checking
+  rather than forcing).
+- `verifieddr`'s `openai-api-key` (rather than the project's usual `anthropic-api-key`
+  default for unspecified "a few different model APIs" language) — left as the concurrent
+  process wrote it rather than normalized to match the convention documented in batch 1,
+  since the prompt genuinely doesn't name a specific vendor either way and both are
+  defensible.
+
+### Remaining concerns, batches 3–5
+
+- The exact provenance of commits `1883b59` vs `5941c17` (both labeled "batch 3") wasn't
+  fully untangled — the working tree they produced is correct and verified, but anyone
+  auditing history by commit message alone should diff both rather than trust the label.
+- `uncircle`/`wabery`'s duplicate `relatedSlugs` triple, noted above, would benefit from a
+  revisit once more `dev-tools` entries exist (there are none left in the upstream dataset
+  to import, so this would need a future batch from a different source).
+- Batch 4 was reviewed rather than authored by me — I'm confident in it based on sampling
+  and the mechanical checks (zero TODOs, zero filler-FAQ markers, zero marketing voice,
+  correct schema), but I did not personally read all 25 entries' prompts end to end the way
+  I did for batches 1, 3 (partial), and 5 (partial).
+
 ## Batches 3–5 — completion, and the rest of the concurrent-write story
 
 The stand-down above didn't hold for long: the coordinator's follow-up made clear this
