@@ -1,0 +1,50 @@
+{
+  "slug": "plan-to-eat",
+  "name": "Plan to Eat",
+  "domains": [
+    "plantoeat.com"
+  ],
+  "category": "home-family",
+  "subcategory": "meal planning over your own recipes",
+  "pricing": {
+    "amount": 4.08,
+    "currency": "USD",
+    "plan": "Plan to Eat",
+    "basis": "annual-effective-monthly",
+    "source": "https://app.plantoeat.com/hi/plans",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "plantoeat.com/pricing 404s; the site sends new users to the signup page, which states the annual subscription is \"normally $49.0/year\", i.e. $4.08/month, before a promotional discount. No monthly rate is published on that page."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "hosted convenience over an open-source equivalent",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Mealie",
+      "url": "https://github.com/mealie-recipes/mealie",
+      "license": "AGPL-3.0"
+    },
+    {
+      "name": "Grocy",
+      "url": "https://github.com/grocy/grocy",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "mealime-pro",
+    "anylist-complete",
+    "crouton"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,44 @@
+{
+  "slug": "mealime-pro",
+  "name": "Mealime Pro",
+  "domains": [
+    "mealime.com"
+  ],
+  "category": "home-family",
+  "subcategory": "meal plans with generated grocery lists",
+  "pricing": {
+    "amount": 2.99,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/mealime-meal-plans-recipes/id1079999103",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "mealime.com/pro redirects to the homepage, which prints no price. Read from the App Store listing, whose developer text states \"Opt for Mealime Meal Planner Pro at $2.99 USD/month\"."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "recipe content and dietary filtering",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Mealie",
+      "url": "https://github.com/mealie-recipes/mealie",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "plan-to-eat",
+    "crouton",
+    "pestle"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

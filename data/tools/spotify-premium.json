@@ -1,0 +1,44 @@
+{
+  "slug": "spotify-premium",
+  "name": "Spotify Premium",
+  "domains": [
+    "spotify.com"
+  ],
+  "category": "media-streaming",
+  "subcategory": "music streaming",
+  "pricing": {
+    "amount": 12.99,
+    "currency": "USD",
+    "plan": "Premium Individual",
+    "basis": "flat-monthly",
+    "source": "https://www.spotify.com/us/premium/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Geo-priced: the unprefixed spotify.com/premium/ served €8.99 from this network. The US page cited here states $12.99/month for Premium Individual, with Duo $18.99 and Family $21.99."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "licensed catalogue and recommendation data",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Navidrome",
+      "url": "https://github.com/navidrome/navidrome",
+      "license": "GPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "apple-music",
+    "tidal",
+    "soundcloud-go-plus"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

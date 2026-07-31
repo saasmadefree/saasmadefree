@@ -1,0 +1,44 @@
+{
+  "slug": "tidal",
+  "name": "TIDAL",
+  "domains": [
+    "tidal.com"
+  ],
+  "category": "media-streaming",
+  "subcategory": "high-fidelity music streaming",
+  "pricing": {
+    "amount": 13.99,
+    "currency": "USD",
+    "plan": "Individual",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/tidal-music-hifi-sound/id913943275",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "tidal.com/pricing returns 403 to curl and an empty document body in a real Chrome session from this network. Read from the App Store listing: TIDAL Individual $13.99 and TIDAL Family $22.99."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "licensed catalogue in lossless formats",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Navidrome",
+      "url": "https://github.com/navidrome/navidrome",
+      "license": "GPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "apple-music",
+    "spotify-premium",
+    "youtube-music-premium"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

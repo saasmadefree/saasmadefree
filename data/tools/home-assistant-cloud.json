@@ -1,0 +1,49 @@
+{
+  "slug": "home-assistant-cloud",
+  "name": "Home Assistant Cloud",
+  "domains": [
+    "nabucasa.com"
+  ],
+  "category": "home-family",
+  "subcategory": "remote access and voice for a self-hosted hub",
+  "pricing": {
+    "amount": 6.5,
+    "currency": "USD",
+    "plan": "Cloud",
+    "basis": "flat-monthly",
+    "source": "https://www.nabucasa.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The page lists a rate per region rather than one price. USA: $6.50/month or $65/year, excluding sales tax — recorded here. European Union: €7.50/month or €75/year, VAT included. United Kingdom: £6.50/month. Canada: CA$8.70/month."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "voice assistant partnerships and hosted relay",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Home Assistant",
+      "url": "https://github.com/home-assistant/core",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "Tailscale",
+      "url": "https://github.com/tailscale/tailscale",
+      "license": "BSD-3-Clause"
+    }
+  ],
+  "relatedSlugs": [
+    "tody",
+    "cozi-gold",
+    "familywall-premium"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

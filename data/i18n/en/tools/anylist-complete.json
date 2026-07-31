@@ -1,0 +1,32 @@
+{
+  "tagline": "Grocery list that stays in sync between everyone in the house.",
+  "verdictSummary": "A shared list looks trivial and is not, because the requirement is not \"a list\" — it is two phones in a supermarket, one with no signal, both crossing items off, and neither of them losing an item. That is real-time sync with offline conflict handling, which CONTRIBUTING names as a `kinda` gap for good reason. The rest of AnyList — recipes, meal plans, categorised aisles — genuinely is a weekend.",
+  "coreLoopDIY": "Keep one shared list per household, add items from recipes, sort them by aisle, and cross them off from any phone in the shop.",
+  "whatYouLose": [
+    "sync that survives two people editing offline at once",
+    "the iOS and Android apps, plus Watch and Siri support",
+    "the item catalogue that already knows which aisle mustard belongs in",
+    "sharing that works when the other person is not technical",
+    "recipe web import maintained against sites that keep changing"
+  ],
+  "whyPeopleStillPay": "Ten dollars a year, and the other people in your house will actually use it — which is the only requirement a shared shopping list has.",
+  "prompt": "Build a shared household shopping list as an offline-first web app, and treat the sync as the feature rather than the plumbing.\n\nThe data model is a list of items, each with a name, a quantity, a category and a checked flag. What makes it work is how updates merge. Give every item a stable id generated on the client and store per-field last-write-wins timestamps; represent a deletion as a tombstone with a timestamp rather than a removed row. Two people crossing off different items offline must merge cleanly, and the same item crossed off twice must stay crossed off rather than flapping.\n\nWrite that as a test before writing the UI: two clients, both offline, one adds and checks items while the other deletes and re-adds, then both reconnect. Assert the final state on both. This is the whole engineering content of the project.\n\nCategories come from a local mapping file — item name to aisle — that you extend as you shop, so the list sorts into supermarket order. Ship it with a starter mapping of a few hundred common items and let unknown items land in \"other\" rather than guessing.\n\nAdd recipes: a recipe is a name and a list of ingredients with quantities; adding a recipe to the list merges its ingredients, summing quantities where units match and listing them separately where they do not.\n\nRun it as a progressive web app with a service worker so it opens and works in a shop basement, and put it behind a shared login simple enough that someone who does not care about any of this can use it.\n\nDo not build a barcode-scanning pantry inventory in the same project. Tracking what you already have is a different discipline with a much higher abandonment rate, and bolting it on is how a working list app becomes an unused one.",
+  "faq": [
+    {
+      "q": "Can I import my AnyList data?",
+      "a": "Partly. AnyList exports recipes in a structured format that maps cleanly onto a recipe table. Lists themselves are transient and not worth migrating — you will have a new one by Thursday."
+    },
+    {
+      "q": "Will the rest of my household actually use it?",
+      "a": "That is the real question, and the honest answer is that a self-hosted URL behind a login is a harder sell than an app store install. Build for the phone browser, add it to their home screen for them, and expect one conversation about why the app icon is a bookmark."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A few dollars a month for a small always-on host, which is more than the ten dollars a year AnyList charges. This one is not a money-saving rebuild; it is an ownership one."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Being trusted by everyone in the house. AnyList works the first time on every phone, and a shared list that one person refuses to open is not a shared list."
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "slug": "youtube-music-premium",
+  "name": "YouTube Music Premium",
+  "domains": [
+    "music.youtube.com"
+  ],
+  "category": "media-streaming",
+  "subcategory": "music streaming over a video platform",
+  "pricing": {
+    "amount": 7.99,
+    "currency": "EUR",
+    "plan": "Individual",
+    "basis": "flat-monthly",
+    "source": "https://www.youtube.com/musicpremium",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "Geo-priced and could not be moved to USD — adding gl=US and hl=en still returned EUR from this network. The page states Individual €7.99/month, Family €12.99 and Student €3.99. The figures render from an embedded JSON payload rather than as visible server-rendered text."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "licensed catalogue plus user-uploaded video",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Navidrome",
+      "url": "https://github.com/navidrome/navidrome",
+      "license": "GPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "spotify-premium",
+    "apple-music",
+    "soundcloud-go-plus"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

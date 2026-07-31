@@ -1,0 +1,49 @@
+{
+  "slug": "everand",
+  "name": "Everand",
+  "domains": [
+    "everand.com"
+  ],
+  "category": "media-streaming",
+  "subcategory": "ebook and audiobook subscription",
+  "pricing": {
+    "amount": 11.99,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/everand-audiobooks-ebooks/id542557212",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "everand.com returns a bot challenge (\"Client Challenge\") to curl and to a browser session from this network, on the homepage and on /plans_and_pricing. Read from the App Store listing, whose description states \"STANDARD PLAN • $11.99/month • Unlock 1 title per month\", \"PLUS PLAN • $16.99/month\" and \"DELUXE PLAN • $28.99/month\"."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "licensed publisher catalogue",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Kavita",
+      "url": "https://github.com/Kareadita/Kavita",
+      "license": "GPL-3.0"
+    },
+    {
+      "name": "Audiobookshelf",
+      "url": "https://github.com/advplyr/audiobookshelf",
+      "license": "GPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "audible-premium-plus",
+    "tidal",
+    "spotify-premium"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

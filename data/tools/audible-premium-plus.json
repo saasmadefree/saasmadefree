@@ -1,0 +1,44 @@
+{
+  "slug": "audible-premium-plus",
+  "name": "Audible Premium Plus",
+  "domains": [
+    "audible.com"
+  ],
+  "category": "media-streaming",
+  "subcategory": "audiobook subscription",
+  "pricing": {
+    "amount": 14.95,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "flat-monthly",
+    "source": "https://www.audible.com/ep/memberbenefits",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The plan table opens on the Monthly view: Standard $8.99/mo, Premium $14.95/mo. The Annual view offers Premium at $149.50/yr for 12 credits and $229.50/yr for 24."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "licensed audiobook catalogue and narration",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Audiobookshelf",
+      "url": "https://github.com/advplyr/audiobookshelf",
+      "license": "GPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "everand",
+    "spotify-premium",
+    "apple-music"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

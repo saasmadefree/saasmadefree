@@ -1,0 +1,45 @@
+{
+  "slug": "familywall-premium",
+  "name": "FamilyWall Premium",
+  "domains": [
+    "familywall.com"
+  ],
+  "category": "home-family",
+  "subcategory": "family organiser with location sharing",
+  "pricing": {
+    "amount": 7.99,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/familywall-family-organizer/id496889629",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "familywall.com/en/pricing 404s, as does /en/premium. Read from the App Store listing, whose developer text states \"the Premium offer is charged on a subscription basis for 7.99 USD / month or 44.99 USD / Year (for the US)\"."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "location sharing and household adoption",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Radicale",
+      "url": "https://github.com/Kozea/Radicale",
+      "license": "GPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "cozi-gold",
+    "anylist-complete",
+    "tody"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

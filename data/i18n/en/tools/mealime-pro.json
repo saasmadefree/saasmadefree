@@ -1,0 +1,32 @@
+{
+  "tagline": "Picks weeknight meals for your diet and builds the shopping list.",
+  "verdictSummary": "The machinery — pick recipes, merge their ingredients into a categorised list, adjust for household size — is a weekend, and a good self-hosted recipe manager gives you most of it out of the box. What Mealime supplies that no software does is the recipes: several thousand written and tested to be cookable in half an hour, tagged for allergies and diets, with the tagging correct enough to be trusted by someone avoiding nuts.",
+  "coreLoopDIY": "Choose meals for the week from your own recipe collection, and get one merged, aisle-sorted shopping list with quantities scaled to how many you are feeding.",
+  "whatYouLose": [
+    "the recipe collection, written and tested for weeknight cooking",
+    "allergen and diet tagging you can rely on rather than verify",
+    "automatic substitutions when a recipe does not fit your restrictions",
+    "the mobile app with hands-free cooking mode",
+    "grocery delivery integration in supported regions"
+  ],
+  "whyPeopleStillPay": "Three dollars a month buys the answer to \"what are we eating on Wednesday\", and having to supply your own recipes is exactly the work you were trying to avoid.",
+  "prompt": "Build a weekly meal planner over your own recipe collection, with the shopping list as the real output.\n\nRecipes come from your own store — see the Crouton entry for the import approach. Each carries a yield, ingredients parsed into quantity, unit and item, and tags you assign.\n\nPlanning is a week grid. Assign recipes to days, set the number of people per meal, and the planner scales quantities accordingly.\n\nThe list generator is where the care goes. Merge every ingredient across the week, converting units within a system so 500 g and 0.5 kg become one line, and never converting across systems silently. Items that cannot be merged stay as separate lines with their recipe named beside them. Then group by aisle using a mapping file you extend over time, and add a pantry list — staples you always have — that is excluded by default with a one-tap override.\n\nAdd a leftovers pass: a recipe whose yield exceeds the people assigned generates a leftover portion, which can be dragged onto a later day and is then excluded from the shopping list. That single mechanic is the difference between a plan that survives a week and one abandoned on Wednesday.\n\nBuild one report: which recipes you actually cooked versus planned, over the last three months. Planning is easy and cooking is not, and the gap is worth seeing.\n\nDo not have a model invent recipes. An untested generated recipe is a wasted evening and a wasted shop, and the failure is only visible after you have bought the ingredients.",
+  "faq": [
+    {
+      "q": "Can I export my Mealime recipes and plans?",
+      "a": "Barely. Mealime has no structured export — recipes can be printed or shared one at a time, and plans not at all. Whatever you want to keep, copy out by hand before cancelling."
+    },
+    {
+      "q": "Where do I get recipes worth planning around?",
+      "a": "Your own collection, imported from sites that publish structured recipe data. That is genuinely the work: a planner over twelve recipes gets boring in a month, and building a hundred you actually like takes a season."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A few dollars a month for hosting, or nothing on a machine at home. Roughly the same as the subscription, without the recipes."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Trusting the allergen tag. Mealime's filtering is checked by people whose job it is; yours is as good as the tag you typed at eleven at night."
+    }
+  ]
+}

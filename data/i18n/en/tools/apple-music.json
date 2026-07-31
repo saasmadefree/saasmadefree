@@ -1,0 +1,32 @@
+{
+  "tagline": "Over a hundred million licensed songs, streaming and downloadable.",
+  "verdictSummary": "This is the clearest kind of `no` in the catalogue: what you pay for is a licence to listen to recordings owned by other people, negotiated with three major labels and thousands of independents. No amount of software creates that right. A self-hosted music server is an excellent thing to run and it plays only what you already own.",
+  "coreLoopDIY": "Run a music server over the files you own, correctly tagged, streaming to every device you have.",
+  "whatYouLose": [
+    "the catalogue — a hundred million recordings you do not own",
+    "new releases the moment they come out",
+    "lossless and spatial audio delivery across the whole library",
+    "the editorial playlists and radio stations",
+    "integration with every device Apple makes, including the car"
+  ],
+  "whyPeopleStillPay": "Twelve dollars for everything ever recorded is not a software price and never was; it is the cheapest access to recorded music has ever been.",
+  "prompt": "Build the library discipline that makes a self-hosted music collection actually usable — the part people skip and then abandon.\n\nRun Navidrome over your music folder. It speaks the Subsonic API, which means dozens of existing clients on phones, desktops and cars work with it immediately, and that is the reason to choose it over writing anything.\n\nThe project is the ingest pipeline in front of it. Use beets as the engine and configure it deliberately.\n\nMatch every album against MusicBrainz on import, and require a confirmation for anything below a match threshold you set. An automatically-mis-tagged album is worse than an untagged one, because you will never find it again and you will not know it is wrong.\n\nCompute AcoustID fingerprints so files with no usable tags at all can still be identified from their audio.\n\nFetch and embed cover art at import, and normalise it to a consistent size — mixed 300-pixel and 3000-pixel art makes every client look broken.\n\nCompute ReplayGain values per track and per album on import. Without it, a shuffle across a collection assembled over twenty years is a volume knob exercise, and this is the single most noticeable difference between a home library and a streaming service.\n\nEnforce one path scheme and never let a file into the library outside it.\n\nWrite a health report: files with no MusicBrainz id, albums with missing tracks, duplicate recordings across formats, and files whose tags disagree with their path. Run it monthly.\n\nDo not attempt to fill gaps in your collection from anywhere but a shop. The catalogue is the thing you are not replacing, and pretending otherwise turns a good project into a bad one.",
+  "faq": [
+    {
+      "q": "Can I export my Apple Music library?",
+      "a": "Your playlists and library metadata export as XML from the desktop app, and that is worth keeping — playlists are the part you built. The tracks themselves are licensed, not owned, and do not come with you unless you bought them."
+    },
+    {
+      "q": "Will my own devices play from a self-hosted server?",
+      "a": "Yes. Subsonic-compatible clients exist for iOS, Android, desktop and several car head units, and they handle offline caching. That ecosystem is why the server choice matters more than the interface."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Storage plus a small always-on machine — a large lossless collection is a few terabytes, so budget for a disk rather than a subscription. MusicBrainz and AcoustID are free."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Hearing a song mentioned in conversation and playing it thirty seconds later. Your library holds what you bought; the subscription holds everything."
+    }
+  ]
+}

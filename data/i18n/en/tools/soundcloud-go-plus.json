@@ -1,0 +1,32 @@
+{
+  "tagline": "Ad-free listening across music that is mostly not on other services.",
+  "verdictSummary": "SoundCloud's catalogue is different in kind from the others: remixes, DJ sets, demos and unsigned artists who upload there and nowhere else. That is a two-sided network — artists post because listeners are there — and it is the reason a lot of music on SoundCloud has no legal home anywhere else. Nothing you build reaches it.",
+  "coreLoopDIY": "Follow the artists you actually care about at the source, buy their releases directly, and keep the result in a library you own.",
+  "whatYouLose": [
+    "the catalogue of unsigned and independent uploads",
+    "DJ sets, remixes and bootlegs that exist nowhere else legally",
+    "discovery through reposts, which is how the platform actually works",
+    "commenting on the waveform at a timestamp, a genuinely original feature",
+    "offline listening in the app and high-quality streaming"
+  ],
+  "whyPeopleStillPay": "Fifteen dollars a month for the mix a producer uploaded at two in the morning and will never release commercially.",
+  "prompt": "Build an artist-following system that routes around a platform rather than replacing it.\n\nMaintain a list of artists you follow, each with the channels they publish on: a Bandcamp page, a mailing list, an RSS feed, a label page. Most independent artists announce releases in more than one place and at least one of them is machine-readable.\n\nPoll those channels on a schedule and produce one digest: new releases, with links to buy. Bandcamp exposes feeds for artists and labels; label sites often have RSS; mailing lists can be routed to an address you parse. Where an artist offers nothing machine-readable, store a note and a check cadence and put them in a manual list — an honest gap rather than a silent one.\n\nThe purchases side is the point. Record what you bought, from where, in what format, and where the files landed. A folder of purchases with no record becomes unmanageable within a year, and the record is what makes buying directly sustainable as a habit rather than an occasional gesture.\n\nFile purchased downloads into your music server with the ingest pipeline described in the Apple Music entry, so bought music is indistinguishable from the rest of the library.\n\nAdd a \"supported this year\" report: artists, releases and total spent. Direct purchase pays an artist far more than a stream, and seeing the number is the argument for the whole approach.\n\nDo not download from streaming platforms. It breaches their terms, it pays the artist nothing, and the entire point of this build is the opposite.",
+  "faq": [
+    {
+      "q": "Can I export my SoundCloud likes and follows?",
+      "a": "Partially — SoundCloud offers a data download that includes your likes, follows and playlists as structured data. That list of artists is exactly the input this build needs, so request it before cancelling."
+    },
+    {
+      "q": "Will I still find new music?",
+      "a": "Not the same way. Reposts and the algorithmic feed are how SoundCloud discovery works, and following known artists at source finds their new work and nothing else. That is the honest trade."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A few dollars a month for a small poller, plus whatever you spend buying music — which is the point rather than a side effect."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The unreleased track. A remix uploaded to SoundCloud and never sold anywhere has no purchase route, and following the artist tells you it exists without letting you keep it."
+    }
+  ]
+}

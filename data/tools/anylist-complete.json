@@ -1,0 +1,44 @@
+{
+  "slug": "anylist-complete",
+  "name": "AnyList Complete",
+  "domains": [
+    "anylist.com"
+  ],
+  "category": "home-family",
+  "subcategory": "shared grocery lists",
+  "pricing": {
+    "amount": 0.83,
+    "currency": "USD",
+    "plan": "Complete",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.anylist.com/complete",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The page states \"$9.99 / year for an individual or $14.99 / year for a household\". The individual rate is recorded, i.e. $0.83/month."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "real-time sync and household adoption",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Grocy",
+      "url": "https://github.com/grocy/grocy",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "plan-to-eat",
+    "mealime-pro",
+    "cozi-gold"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,31 @@
+{
+  "tagline": "Pulls a usable recipe out of a video caption or a blog post.",
+  "verdictSummary": "Pestle's distinctive claim is capturing recipes from places that were never meant to hold one — an Instagram caption, a video description, a blog post with the method buried under a life story. That is exactly what a language model with a strict output schema does well now, which puts this firmly in one-sitting territory. What you lose is a very good native app and the ongoing work of keeping extraction working as platforms change.",
+  "coreLoopDIY": "Paste any URL or block of text, get a structured recipe you can check and correct, and keep it in a local library.",
+  "whatYouLose": [
+    "the native apps for iPhone, iPad, Mac and Watch",
+    "the share-sheet capture that makes saving a recipe one tap",
+    "extraction maintained against platforms that keep changing",
+    "iCloud sync with nothing to host"
+  ],
+  "whyPeopleStillPay": "Saving a recipe has to take one tap from inside the app you found it in, and a paste box on a laptop is a different habit that most people will not form.",
+  "prompt": "Build a recipe extractor for sources that do not publish structured data.\n\nThe input is a URL or a block of pasted text. Try three strategies in order and record which one produced each recipe.\n\nFirst, schema.org `Recipe` JSON-LD, which most large recipe sites publish and which needs no model at all. Second, a readability pass to strip the page to its main content, then a language model with a strict JSON schema — title, yield, ingredients as an array of `{quantity, unit, item, raw}`, steps as an ordered array. Third, for pasted captions and transcripts, the model directly on the text.\n\nModel output is untrusted by construction. Show the extracted recipe beside the source text in a review screen and require a confirmation before it enters the library. Highlight anything with low confidence: an ingredient with no quantity, a step under five words, a yield the model invented. The failure mode here is not a missing recipe, it is a plausible recipe with the salt quantity wrong, and only a human catches that.\n\nAlways store the source: URL, the raw text, and the capture date. When an extraction turns out wrong six months later, the original is what lets you fix it.\n\nAdd a share target so the browser on a phone can send a page directly into the tool — a progressive web app can register as a share target and it gets you most of the way to the native capture experience.\n\nStore recipes as Markdown with YAML front matter, indexed in SQLite.\n\nDo not download video or transcribe it automatically. Platform terms forbid it, the pipeline breaks constantly, and pasting a caption takes four seconds.",
+  "faq": [
+    {
+      "q": "Can I import my Pestle recipes?",
+      "a": "Yes. Pestle exports recipes individually and supports the open `.crumb` format shared with Crouton, so a library moves across with its ingredients and steps intact."
+    },
+    {
+      "q": "How accurate is model extraction?",
+      "a": "Good on prose that contains a real recipe, poor when the source is vague — \"a splash of cream\" stays a splash. The review step is not optional, and treating it as optional is how you end up cooking from a recipe nobody wrote."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A fraction of a cent per extraction, and nothing at all for the many sites where structured data works. Storage is a folder of text files."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "One tap from the app you were already in. Pestle's share sheet catches a recipe in the two seconds you are willing to spend; a paste box catches the ones you remember later, which is fewer."
+    }
+  ]
+}

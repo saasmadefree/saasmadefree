@@ -1,0 +1,44 @@
+{
+  "slug": "soundcloud-go-plus",
+  "name": "SoundCloud Go+",
+  "domains": [
+    "soundcloud.com"
+  ],
+  "category": "media-streaming",
+  "subcategory": "streaming for independent and unsigned music",
+  "pricing": {
+    "amount": 14.99,
+    "currency": "USD",
+    "plan": "Go+",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/soundcloud-the-music-you-love/id336353151",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "soundcloud.com/go redirects to checkout.soundcloud.com/go, which renders its plan cards client-side and returned an empty shell to scripted fetches. Read from the App Store listing: SoundCloud Go+ $14.99 and SoundCloud Go $5.99."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "artist network and unsigned catalogue",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Navidrome",
+      "url": "https://github.com/navidrome/navidrome",
+      "license": "GPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "spotify-premium",
+    "youtube-music-premium",
+    "tidal"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}
