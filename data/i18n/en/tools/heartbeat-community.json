@@ -1,0 +1,19 @@
+{
+  "tagline": "A community chat space with an integrated events calendar",
+  "verdictSummary": "A community chat space with an integrated events calendar — members can see and RSVP to scheduled community events alongside regular channel discussion — is a real weekend-to-week build combining this catalogue's Slack Pro-style chat core with a simple calendar and RSVP feature. What doesn't survive: Heartbeat's polish across native mobile apps and years of community-moderation tooling.",
+  "coreLoopDIY": "Host channel-based chat for a private community, alongside a scheduled-events calendar where members can see upcoming events and RSVP, with a reminder sent before each event.",
+  "whatYouLose": [
+    "native mobile apps",
+    "years of community-moderation tooling",
+    "video/voice infrastructure for hosting events directly in-app",
+    "member directory and profile richness"
+  ],
+  "whyPeopleStillPay": "Chat plus a calendar is buildable; running that reliably for a community that expects mobile notifications and in-app event hosting, with moderation tools mature enough to trust, is the ongoing product work.",
+  "prompt": "Build a community chat space with an integrated events calendar, extending this catalogue's Slack Pro entry's chat core with scheduled events and RSVPs. Use Next.js/TypeScript with WebSockets for live chat and Postgres for durable storage, the same base as the Slack Pro build. Add an events feature: any member, or just owners, your choice, can create an event with a title, description, date and time, and optional external link for a video call hosted elsewhere, since in-app video hosting is out of scope. Show upcoming events in a simple calendar or list view visible to all members, with an RSVP button that tracks who's attending. Send an email reminder to RSVP'd members a configurable time before the event, such as one hour before, via a transactional email provider. Keep the channel-based chat, threads, and reactions from the Slack Pro build's core as the space's primary daily-use surface, with events as a secondary feature layered on top, not the other way around. Do not build native mobile apps, in-app video or voice hosting for events, or advanced moderation tooling — those are out of scope. Requires hosting, a domain, and a transactional email provider for event reminders.",
+  "faq": [
+    { "q": "How is this different from the Slack Pro build in this catalogue?", "a": "It adds a scheduled-events calendar with RSVPs and reminders on top of the same channel-chat core — useful specifically for a community that runs recurring events, not just ongoing discussion." },
+    { "q": "Does it host video calls for events directly?", "a": "No — events link out to a video call hosted elsewhere, any existing video-conferencing tool. In-app video hosting is out of scope." },
+    { "q": "Will members get a mobile app notification for events?", "a": "No native mobile app here — reminders go out by email instead, which is a real step down from a polished mobile push notification." },
+    { "q": "What does it cost to run?", "a": "Hosting, a domain, and a transactional email provider's free tier for reminders — typically a few dollars a month for a small community, with no per-member fee." }
+  ]
+}

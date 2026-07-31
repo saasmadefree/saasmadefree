@@ -27,6 +27,13 @@
     "currency": "USD",
     "url": "/en/tools/activecampaign"
   },
+  "adalo.com": {
+    "slug": "adalo",
+    "verdict": "no",
+    "amount": 45,
+    "currency": "USD",
+    "url": "/en/tools/adalo"
+  },
   "new.express.adobe.com": {
     "slug": "adobe-express",
     "verdict": "kinda",
@@ -55,6 +62,20 @@
     "currency": "USD",
     "url": "/en/tools/akiflow"
   },
+  "amazingmarvin.com": {
+    "slug": "amazing-marvin",
+    "verdict": "yes",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/amazing-marvin"
+  },
+  "amie.so": {
+    "slug": "amie",
+    "verdict": "kinda",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/amie"
+  },
   "amplitude.com": {
     "slug": "amplitude",
     "verdict": "no",
@@ -68,6 +89,20 @@
     "amount": 8.25,
     "currency": "USD",
     "url": "/en/tools/anytype"
+  },
+  "about.appsheet.com": {
+    "slug": "appsheet",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/appsheet"
+  },
+  "arcade.software": {
+    "slug": "arcade",
+    "verdict": "kinda",
+    "amount": 38,
+    "currency": "USD",
+    "url": "/en/tools/arcade"
   },
   "avoma.com": {
     "slug": "avoma",
@@ -89,6 +124,13 @@
     "amount": 12,
     "currency": "USD",
     "url": "/en/tools/baserow-cloud"
+  },
+  "bear.app": {
+    "slug": "bear-pro",
+    "verdict": "yes",
+    "amount": 2.99,
+    "currency": "USD",
+    "url": "/en/tools/bear-pro"
   },
   "beautiful.ai": {
     "slug": "beautiful-ai",
@@ -167,6 +209,13 @@
     "currency": "USD",
     "url": "/en/tools/canva"
   },
+  "capacities.io": {
+    "slug": "capacities",
+    "verdict": "yes",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/capacities"
+  },
   "capcut.com": {
     "slug": "capcut",
     "verdict": "kinda",
@@ -208,6 +257,20 @@
     "amount": 20,
     "currency": "USD",
     "url": "/en/tools/claude"
+  },
+  "macpaw.com": {
+    "slug": "cleanmymac",
+    "verdict": "kinda",
+    "amount": 3.33,
+    "currency": "USD",
+    "url": "/en/tools/cleanmymac"
+  },
+  "getclockwise.com": {
+    "slug": "clockwise",
+    "verdict": "no",
+    "amount": 6.75,
+    "currency": "USD",
+    "url": "/en/tools/clockwise"
   },
   "coda.io": {
     "slug": "coda",
@@ -286,6 +349,13 @@
     "currency": "USD",
     "url": "/en/tools/elevenlabs"
   },
+  "equals.com": {
+    "slug": "equals",
+    "verdict": "kinda",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/equals"
+  },
   "evernote.com": {
     "slug": "evernote",
     "verdict": "kinda",
@@ -327,6 +397,13 @@
     "amount": 53,
     "currency": "USD",
     "url": "/en/tools/fathom-hq"
+  },
+  "feathery.io": {
+    "slug": "feathery",
+    "verdict": "kinda",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/feathery"
   },
   "feedly.com": {
     "slug": "feedly",
@@ -391,6 +468,13 @@
     "currency": "USD",
     "url": "/en/tools/gamma"
   },
+  "gather.town": {
+    "slug": "gather-town",
+    "verdict": "no",
+    "amount": 7,
+    "currency": "USD",
+    "url": "/en/tools/gather-town"
+  },
   "gemini.google.com": {
     "slug": "gemini",
     "verdict": "no",
@@ -446,6 +530,27 @@
     "amount": 8,
     "currency": "USD",
     "url": "/en/tools/grist"
+  },
+  "guidde.com": {
+    "slug": "guidde",
+    "verdict": "kinda",
+    "amount": 23,
+    "currency": "USD",
+    "url": "/en/tools/guidde"
+  },
+  "gumloop.com": {
+    "slug": "gumloop",
+    "verdict": "no",
+    "amount": 97,
+    "currency": "USD",
+    "url": "/en/tools/gumloop"
+  },
+  "heartbeat.chat": {
+    "slug": "heartbeat-community",
+    "verdict": "kinda",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/heartbeat-community"
   },
   "hey.com": {
     "slug": "hey-email",
@@ -573,6 +678,13 @@
     "currency": "USD",
     "url": "/en/tools/later"
   },
+  "leadpages.com": {
+    "slug": "leadpages",
+    "verdict": "kinda",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/leadpages"
+  },
   "leonardo.ai": {
     "slug": "leonardo-ai",
     "verdict": "no",
@@ -636,6 +748,13 @@
     "currency": "EUR",
     "url": "/en/tools/meetergo"
   },
+  "meetgeek.ai": {
+    "slug": "meetgeek",
+    "verdict": "kinda",
+    "amount": 19,
+    "currency": "USD",
+    "url": "/en/tools/meetgeek"
+  },
   "midjourney.com": {
     "slug": "midjourney",
     "verdict": "no",
@@ -649,6 +768,13 @@
     "amount": 79.17,
     "currency": "USD",
     "url": "/en/tools/mighty-networks"
+  },
+  "mimestream.com": {
+    "slug": "mimestream",
+    "verdict": "kinda",
+    "amount": 4.99,
+    "currency": "USD",
+    "url": "/en/tools/mimestream"
   },
   "miro.com": {
     "slug": "miro",
@@ -670,6 +796,13 @@
     "amount": 14.99,
     "currency": "USD",
     "url": "/en/tools/monarch-money"
+  },
+  "morgen.so": {
+    "slug": "morgen",
+    "verdict": "kinda",
+    "amount": 14,
+    "currency": "USD",
+    "url": "/en/tools/morgen"
   },
   "usemotion.com": {
     "slug": "motion",
@@ -733,6 +866,13 @@
     "amount": 16.99,
     "currency": "USD",
     "url": "/en/tools/otter-ai"
+  },
+  "paperform.co": {
+    "slug": "paperform",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/paperform"
   },
   "pasteapp.io": {
     "slug": "paste",
@@ -839,6 +979,13 @@
     "currency": "USD",
     "url": "/en/tools/raycast-pro"
   },
+  "read.ai": {
+    "slug": "read-ai",
+    "verdict": "kinda",
+    "amount": 19.75,
+    "currency": "USD",
+    "url": "/en/tools/read-ai"
+  },
   "read.readwise.io": {
     "slug": "readwise-reader",
     "verdict": "kinda",
@@ -852,6 +999,13 @@
     "amount": 12,
     "currency": "USD",
     "url": "/en/tools/reclaim-ai"
+  },
+  "relay.app": {
+    "slug": "relay-app",
+    "verdict": "kinda",
+    "amount": 19,
+    "currency": "USD",
+    "url": "/en/tools/relay-app"
   },
   "replit.com": {
     "slug": "replit",
@@ -873,6 +1027,13 @@
     "amount": 29,
     "currency": "USD",
     "url": "/en/tools/riverside"
+  },
+  "rows.com": {
+    "slug": "rows",
+    "verdict": "kinda",
+    "amount": 8,
+    "currency": "USD",
+    "url": "/en/tools/rows"
   },
   "runwayml.com": {
     "slug": "runway",
@@ -915,6 +1076,13 @@
     "amount": 39,
     "currency": "USD",
     "url": "/en/tools/shopify"
+  },
+  "shortwave.com": {
+    "slug": "shortwave",
+    "verdict": "kinda",
+    "amount": 8.5,
+    "currency": "USD",
+    "url": "/en/tools/shortwave"
   },
   "simpleanalytics.com": {
     "slug": "simple-analytics",
@@ -1062,6 +1230,13 @@
     "amount": 3,
     "currency": "USD",
     "url": "/en/tools/ticktick"
+  },
+  "tilda.cc": {
+    "slug": "tilda",
+    "verdict": "yes",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/tilda"
   },
   "tillerhq.com": {
     "slug": "tiller-money",

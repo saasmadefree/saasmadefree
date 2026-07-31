@@ -1,0 +1,19 @@
+{
+  "tagline": "A block-based page builder focused on editorial, magazine-style layouts",
+  "verdictSummary": "A block-based page builder focused on editorial, magazine-style layouts — pre-designed content blocks such as a big headline, a photo grid, a pull quote, assembled in sequence — is a genuine one-sitting-to-weekend build, and it's honestly the same core mechanic as this catalogue's other section-based website builders. What doesn't survive: Tilda's specific library of polished editorial block designs and its built-in blog/CMS features for ongoing publishing.",
+  "coreLoopDIY": "Assemble a page from a library of pre-designed editorial content blocks — headline, photo grid, pull quote, article body — in sequence, and publish it as a static page.",
+  "whatYouLose": [
+    "a polished library of editorial block designs",
+    "built-in blog and CMS features for ongoing publishing",
+    "managed hosting and CDN",
+    "e-commerce and membership add-ons"
+  ],
+  "whyPeopleStillPay": "Assembling blocks in sequence is simple; designing a library of blocks that actually look good together, consistently, across any content someone drops in, is real, ongoing design work.",
+  "prompt": "Build a block-based page builder focused on editorial layouts, using the same section-assembly mechanic as this catalogue's other website-builder entries but with a magazine-style block library specifically: a large headline block, a photo-grid block, a pull-quote block, an article-body block with drop-cap styling, and a byline/date block. Use Next.js/TypeScript with static generation. Let the user assemble a page by adding blocks in sequence, editing each block's content inline, and reordering by drag-and-drop, stored as JSON describing the block sequence. Render published pages statically for fast load and good SEO. Add a simple post-list page that auto-generates from all published pages tagged as articles, functioning as a lightweight blog index. Publish to a subdomain by default, with instructions for connecting a custom domain. Do not build e-commerce, membership or paywall features, or a large template marketplace — those are out of scope; this is a focused editorial-layout builder, nothing more. Requires hosting, and a domain if you want one beyond the default subdomain.",
+  "faq": [
+    { "q": "How is this different from the other website builders in this catalogue?", "a": "Mostly in the block library's design focus, editorial layouts like pull quotes and drop-cap article bodies, rather than generic business-site sections like pricing tables. The underlying block-assembly mechanic is the same pattern." },
+    { "q": "Does it have a blog built in?", "a": "A lightweight one — pages tagged as articles auto-populate a post-list index, which covers basic ongoing publishing without a full CMS." },
+    { "q": "Can I sell products or gate content behind a membership?", "a": "No — e-commerce and membership features are out of scope. This is a content-publishing tool, not a commerce platform." },
+    { "q": "What does it cost to run?", "a": "Hosting, and an optional domain — typically a few dollars a month or less." }
+  ]
+}

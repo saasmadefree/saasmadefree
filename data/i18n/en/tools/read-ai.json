@@ -1,0 +1,19 @@
+{
+  "tagline": "Basic speaking-time and sentiment stats from a meeting transcript",
+  "verdictSummary": "Computing basic speaking-time-per-participant stats and a simple sentiment score per segment from a transcript is a real weekend build using an open sentiment-analysis model. What doesn't survive: Read AI's more sophisticated engagement modeling and its calendar-triggered automatic recording across a whole team's meetings.",
+  "coreLoopDIY": "Transcribe an imported meeting recording locally, compute speaking-time-per-participant statistics from speaker labels, and run each segment through a lightweight open sentiment-analysis model to surface a simple tone trend over the meeting.",
+  "whatYouLose": [
+    "more sophisticated, validated engagement modeling",
+    "calendar-triggered automatic recording across a team",
+    "cross-meeting participant analytics over time",
+    "video-based engagement signals like attention and camera-on time"
+  ],
+  "whyPeopleStillPay": "Computing speaking time and basic sentiment is a weekend script; validating that an engagement score actually means something useful, across many meeting types and speaking styles, is a harder, longer-term modeling problem.",
+  "prompt": "Build a meeting-analytics tool computing basic speaking-time and sentiment stats from a transcript, on top of this catalogue's Avoma-style local transcription approach. Use Python with FastAPI, whisper.cpp for transcription with speaker diarization, manual correction, same approach as the Avoma entry, and a lightweight open sentiment-analysis model, a small HuggingFace transformer model run locally, for per-segment tone scoring. After transcribing and speaker-labeling a recording, compute: total speaking time per participant as a percentage of the meeting, a simple timeline chart of sentiment score over the meeting's duration, and a basic 'most positive' and 'most negative' segment callout. Present these as a summary dashboard alongside the transcript. Be explicit in the README that this is a lightweight, unvalidated heuristic, not a scientifically validated engagement model — sentiment analysis on transcribed speech, missing tone-of-voice nuance, is genuinely imprecise, and presenting it as more authoritative than it is would be dishonest. Do not build calendar-triggered automatic recording, cross-meeting analytics over time, or video-based engagement signals — those are out of scope. Needs hosting to run continuously, or can run on a personal machine for occasional use; no external API key required for the local sentiment model.",
+  "faq": [
+    { "q": "How accurate is the sentiment scoring?", "a": "Treat it as a rough, unvalidated signal, not a scientific measurement — sentiment analysis on transcribed text alone misses tone-of-voice nuance, and this build is upfront about that rather than presenting the score as more authoritative than it is." },
+    { "q": "Does it track engagement across multiple meetings over time?", "a": "No — each meeting is analyzed independently. Cross-meeting participant analytics is real additional scope this build doesn't include." },
+    { "q": "Does it need a camera feed to measure engagement?", "a": "No — it only works from the audio and transcript, so there's no camera-on-time or attention-tracking signal, unlike some engagement tools." },
+    { "q": "What does it cost to run?", "a": "Hosting to run continuously, or nothing extra on your own machine — the sentiment model runs locally with no external API fee." }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "amazing-marvin",
+  "name": "Amazing Marvin",
+  "domains": [
+    "amazingmarvin.com"
+  ],
+  "category": "tasks",
+  "subcategory": "personal tasks, routines and daily planning",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Marvin",
+    "basis": "flat-monthly",
+    "source": "https://amazingmarvin.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "cross-device reliability and workflow polish",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Vikunja",
+      "url": "https://github.com/go-vikunja/vikunja"
+    }
+  ],
+  "relatedSlugs": [
+    "ticktick",
+    "todoist",
+    "akiflow"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

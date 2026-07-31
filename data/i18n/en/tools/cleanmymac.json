@@ -1,0 +1,19 @@
+{
+  "tagline": "Scan well-documented cache locations and clean only after review",
+  "verdictSummary": "A tool that scans known safe-to-clean locations — caches, old installers, log files — and reports reclaimable space before deleting anything is a genuine weekend build using well-documented macOS cache directory conventions. What doesn't survive: years of testing which files are actually safe to remove without breaking an app, across every macOS version and every app's particular quirks — get this wrong and CleanMyMac's whole value proposition, safety, is exactly what you'd be missing.",
+  "coreLoopDIY": "Scan known cache and temporary-file locations, calculate reclaimable disk space per category, and delete only after explicit user review and confirmation — never automatically.",
+  "whatYouLose": [
+    "years of testing which files are safe to delete without breaking apps",
+    "a complete app uninstaller that finds every leftover file",
+    "malware scanning",
+    "ongoing maintenance as macOS changes its own file layout"
+  ],
+  "whyPeopleStillPay": "Finding cache files is easy; knowing with confidence which of them are actually safe to delete, across thousands of different apps and macOS versions, without breaking something, is the tested knowledge being paid for.",
+  "prompt": "Build a Mac disk-cleanup utility that scans known, well-documented cache and temporary-file locations — ~/Library/Caches, /var/folders temp directories, old installer .dmg and .pkg files in Downloads, browser caches — and reports reclaimable space per category, never deleting anything without explicit user review. Use Swift and SwiftUI for a native macOS app. Show a scan results screen grouped by category (System caches, App caches, Downloads and installers, Logs) with size per item and a checkbox to include or exclude each before deletion. Build an app uninstaller feature: when the user selects an installed app to remove, search common leftover-file locations, Application Support, Preferences, Caches, for files matching that app's bundle identifier, and show them for review before deleting alongside the app itself. Be explicit in the README and in-app copy that this build has not been tested against the breadth of apps and macOS versions a mature tool like CleanMyMac has — some 'safe to delete' assumptions in a personal tool could be wrong, so default to conservative categories, well-documented cache directories, and always require explicit per-item confirmation, never a one-click 'clean everything' action. Do not build malware scanning or automatic background cleaning — those are out of scope. No account or API key needed.",
+  "faq": [
+    { "q": "Is it safe to delete everything this finds?", "a": "Review each category before deleting — this build deliberately requires explicit confirmation per item rather than one-click cleaning, precisely because 'safe to delete' assumptions in a personal tool haven't been tested as broadly as CleanMyMac's have." },
+    { "q": "Does it remove every trace of an uninstalled app?", "a": "It searches common leftover-file locations by bundle identifier, which catches most cases, but won't have the same completeness as years of testing against thousands of specific apps." },
+    { "q": "Does it scan for malware?", "a": "No — that's out of scope. This is a disk-space cleanup tool only." },
+    { "q": "What does it cost to run?", "a": "Nothing — it's a local Mac app with no backend or subscription." }
+  ]
+}

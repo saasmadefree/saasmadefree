@@ -32,25 +32,25 @@ beforeEach(async () => {
 
 describe('POST /api/v1/vote', () => {
   it('compte un premier vote', async () => {
-    const res = await post('notion');
+    const res = await post('obsidian');
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual({ count: 1, counted: true });
   });
 
   it('ne compte pas deux fois la même IP le même jour', async () => {
-    await post('notion');
-    const res = await post('notion');
+    await post('obsidian');
+    const res = await post('obsidian');
     expect(await res.json()).toEqual({ count: 1, counted: false });
   });
 
   it('compte deux IP différentes séparément', async () => {
-    await post('notion', '203.0.113.7');
-    const res = await post('notion', '198.51.100.4');
+    await post('obsidian', '203.0.113.7');
+    const res = await post('obsidian', '198.51.100.4');
     expect(await res.json()).toEqual({ count: 2, counted: true });
   });
 
   it('sépare les compteurs par outil', async () => {
-    await post('notion');
+    await post('obsidian');
     const res = await post('calendly');
     expect(await res.json()).toEqual({ count: 1, counted: true });
   });
@@ -75,34 +75,34 @@ describe('POST /api/v1/vote', () => {
 
   it('renvoie 429 au-delà de trente requêtes par minute', async () => {
     let last;
-    for (let i = 0; i < 32; i++) last = await post('notion', '192.0.2.99');
+    for (let i = 0; i < 32; i++) last = await post('obsidian', '192.0.2.99');
     expect(last.status).toBe(429);
     expect(last.headers.get('access-control-allow-origin')).toBe('*');
   });
 
   it('expose les en-têtes CORS', async () => {
-    const res = await post('notion');
+    const res = await post('obsidian');
     expect(res.headers.get('access-control-allow-origin')).toBe('*');
   });
 });
 
 describe('GET /api/v1/votes', () => {
   it('renvoie les compteurs par outil', async () => {
-    await post('notion', '203.0.113.7');
-    await post('notion', '198.51.100.4');
+    await post('obsidian', '203.0.113.7');
+    await post('obsidian', '198.51.100.4');
     await post('calendly', '203.0.113.7');
     const ctx = createExecutionContext();
     const res = await worker.fetch(new Request('https://votes.test/api/v1/votes'), env, ctx);
     await waitOnExecutionContext(ctx);
-    expect(await res.json()).toEqual({ notion: 2, calendly: 1 });
+    expect(await res.json()).toEqual({ obsidian: 2, calendly: 1 });
   });
 
   it('répond aussi sur l’alias du feed, avec un cache d’une heure', async () => {
-    await post('notion', '203.0.113.7');
+    await post('obsidian', '203.0.113.7');
     const ctx = createExecutionContext();
     const res = await worker.fetch(new Request('https://votes.test/feed/v1/votes.json'), env, ctx);
     await waitOnExecutionContext(ctx);
-    expect(await res.json()).toEqual({ notion: 1 });
+    expect(await res.json()).toEqual({ obsidian: 1 });
     expect(res.headers.get('cache-control')).toContain('max-age=3600');
   });
 });
@@ -124,7 +124,7 @@ describe('purge de la table rate', () => {
     await env.DB.prepare('INSERT INTO rate (ip_hash, minute, n) VALUES (?, ?, ?)')
       .bind('ip-hash-perime-2', '2000-01-01T00:05', 3).run();
 
-    const res = await post('notion', '203.0.113.50');
+    const res = await post('obsidian', '203.0.113.50');
     expect(res.status).toBe(200);
 
     const { results } = await env.DB.prepare('SELECT ip_hash, minute FROM rate').all();
@@ -151,7 +151,7 @@ describe('gestion des erreurs D1', () => {
     // précis à lever, sans passer par un mock : c'est une vraie erreur D1
     // ("no such table"), pas une simulation applicative.
     await env.DB.exec('DROP TABLE rate');
-    const res = await post('notion', '203.0.113.60');
+    const res = await post('obsidian', '203.0.113.60');
     expect(res.status).toBe(500);
     expect(res.headers.get('access-control-allow-origin')).toBe('*');
   });
@@ -167,7 +167,7 @@ describe('VOTE_SALT absent', () => {
     delete env.VOTE_SALT;
     let res;
     try {
-      res = await post('notion', '203.0.113.70');
+      res = await post('obsidian', '203.0.113.70');
     } finally {
       env.VOTE_SALT = original;
     }
@@ -183,7 +183,7 @@ describe('VOTE_SALT absent', () => {
     env.VOTE_SALT = '';
     let res;
     try {
-      res = await post('notion', '203.0.113.71');
+      res = await post('obsidian', '203.0.113.71');
     } finally {
       env.VOTE_SALT = original;
     }

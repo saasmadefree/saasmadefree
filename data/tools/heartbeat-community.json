@@ -1,0 +1,43 @@
+{
+  "slug": "heartbeat-community",
+  "name": "Heartbeat",
+  "domains": [
+    "heartbeat.chat"
+  ],
+  "category": "community",
+  "subcategory": "online communities and team communication",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Build",
+    "basis": "flat-monthly",
+    "source": "https://heartbeat.chat/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "network, moderation, and communication infrastructure",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Discourse",
+      "url": "https://github.com/discourse/discourse"
+    }
+  ],
+  "relatedSlugs": [
+    "slack-pro",
+    "circle",
+    "gather-town"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

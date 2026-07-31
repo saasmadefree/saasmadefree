@@ -1,0 +1,19 @@
+{
+  "tagline": "Auto-generate short highlight clips from a meeting recording",
+  "verdictSummary": "Auto-generating a few short highlight clips from a meeting recording, based on simple heuristics like explicit keyword flags, is a real weekend build on top of this catalogue's local-transcription approach already described for Avoma. What doesn't survive: MeetGeek's more sophisticated highlight-detection model and its calendar-triggered automatic recording.",
+  "coreLoopDIY": "Transcribe an imported meeting recording locally, flag candidate highlight moments using simple heuristics such as explicit 'important' keyword mentions, and cut short video clips around each flagged moment.",
+  "whatYouLose": [
+    "more sophisticated, model-based highlight detection",
+    "calendar-triggered automatic recording",
+    "team-shared highlight libraries",
+    "cross-meeting search and analytics"
+  ],
+  "whyPeopleStillPay": "Cutting a clip around a keyword mention is simple; reliably detecting what actually mattered in a meeting without explicit cues, across every kind of conversation, is a harder modeling problem.",
+  "prompt": "Build a meeting-highlight extractor on top of local transcription, extending this catalogue's Avoma entry's approach with automatic clip generation. Use Python with FastAPI, whisper.cpp for local transcription, and ffmpeg for video processing. After transcribing an imported recording, explicit user import, not automatic bot-joining, same principle as the Avoma entry, scan the transcript for candidate highlight moments using simple, explainable heuristics: explicit flag phrases the user can configure, such as 'this is important' or 'action item', or a basic speaking-pace-change detector as a secondary signal. For each flagged moment, cut a short video clip, a configurable window, such as 20 seconds before to 10 seconds after, from the original recording using ffmpeg, with the matched phrase as the clip's caption. Present flagged clips in a review list where the user confirms or discards each before it's kept, since heuristic detection will produce false positives. Export confirmed clips as individual MP4 files. Do not build a more sophisticated ML-based highlight-detection model, calendar-triggered automatic recording, or team-shared libraries — those are out of scope; this uses simple, explainable heuristics rather than a trained model, and says so. Needs hosting to run continuously, or can run on a personal machine for occasional use; no external API key required.",
+  "faq": [
+    { "q": "How does it decide what's a highlight?", "a": "Simple, explainable heuristics, configurable flag phrases you set, plus a basic speaking-pace signal, not a trained model like MeetGeek's more sophisticated detection. Expect to review and discard some false positives." },
+    { "q": "Does it join my meetings automatically to record them?", "a": "No — same principle as this catalogue's Avoma entry: it only processes a recording you've already made and explicitly imported." },
+    { "q": "Can I customize what counts as a highlight?", "a": "Yes — the flag phrases it looks for are configurable, so you can tune them to how your own meetings actually talk about decisions and action items." },
+    { "q": "What does it cost to run?", "a": "Hosting to run continuously, or nothing extra if you run it on your own machine occasionally — no external API fee, since transcription and clip generation are both local." }
+  ]
+}

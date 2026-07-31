@@ -1,0 +1,19 @@
+{
+  "tagline": "A native macOS client built specifically on the Gmail API, not IMAP",
+  "verdictSummary": "A native macOS email client built specifically against the Gmail API, using Gmail's own label system natively instead of translating it through generic IMAP folders, is a real weekend-to-week build, and a genuinely different technical approach from this catalogue's IMAP-based Superhuman and Fastmail entries. What doesn't survive: years of Gmail API quirks and Mimestream's specific native macOS polish, widgets, share sheet, and Spotlight integration.",
+  "coreLoopDIY": "Connect one Gmail account via OAuth and the Gmail API specifically, not generic IMAP, rendering Gmail's own label system natively rather than translating it into folders, with local caching for fast search.",
+  "whatYouLose": [
+    "years of Gmail API quirks and rate-limit handling",
+    "native macOS polish such as widgets, Spotlight, and share sheet",
+    "multi-account support",
+    "push notifications via Gmail's push API"
+  ],
+  "whyPeopleStillPay": "Reading Gmail's API is documented and approachable; keeping a native client working smoothly through Gmail's rate limits, quota changes, and macOS's own API evolution, for years, is the maintenance work underneath.",
+  "prompt": "Build a native macOS email client against the Gmail API specifically — not generic IMAP, which is the approach this catalogue's Superhuman and Fastmail entries already take. Use Swift and SwiftUI with Google's Gmail API (OAuth) directly, rendering Gmail's own label system, not folders, since Gmail messages can have multiple labels which IMAP awkwardly translates into folders, natively in the UI: a message can show multiple label chips, and label-based filtering works the way Gmail's own web interface does. Cache message metadata and bodies locally in SQLite for fast search and offline reading, syncing incrementally via the Gmail API's history and sync tokens rather than re-fetching everything each time. Implement compose, reply, archive, label management, and Gmail-style search operators (from:, subject:, has:attachment) parsed and translated into Gmail API search queries. Do not build support for non-Gmail accounts, multi-account support, or native push notifications via Gmail's push API — those are out of scope; this is a single-Gmail-account client using the Gmail API's specific data model, not a generic email client. Needs a Google OAuth app (free to register) with Gmail API access; no other external service required.",
+  "faq": [
+    { "q": "Why build against the Gmail API instead of IMAP, like the other email-client entries in this catalogue?", "a": "Because Gmail's label system doesn't map cleanly onto IMAP folders — building against the Gmail API directly lets labels work the way they actually do in Gmail's own interface, which is a genuinely different, more native approach." },
+    { "q": "Can I connect a non-Gmail account?", "a": "No — this build is specifically for Gmail, using the Gmail API's own data model. A non-Gmail account would need the generic IMAP approach this catalogue's Fastmail entry describes instead." },
+    { "q": "Does it support multiple Gmail accounts?", "a": "Not in this build — it's scoped to one account, on purpose, to keep the sync logic manageable." },
+    { "q": "What does it cost to run?", "a": "Nothing beyond the Gmail account you already have — it's a local app with no backend, and the Gmail API's free tier covers personal use easily." }
+  ]
+}

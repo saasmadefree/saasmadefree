@@ -1,0 +1,41 @@
+{
+  "slug": "tilda",
+  "name": "Tilda",
+  "domains": [
+    "tilda.cc"
+  ],
+  "category": "website-builder",
+  "subcategory": "websites and landing pages",
+  "pricing": {
+    "amount": 10,
+    "currency": "USD",
+    "plan": "Personal",
+    "basis": "annual-effective-monthly",
+    "source": "https://tilda.cc/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "editor polish, hosting, templates, and ecosystem",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Webstudio",
+      "url": "https://github.com/webstudio-is/webstudio"
+    }
+  ],
+  "relatedSlugs": [
+    "duda",
+    "leadpages",
+    "carrd"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

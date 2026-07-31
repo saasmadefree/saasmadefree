@@ -1,0 +1,43 @@
+{
+  "slug": "leadpages",
+  "name": "Leadpages",
+  "domains": [
+    "leadpages.com"
+  ],
+  "category": "website-builder",
+  "subcategory": "websites and landing pages",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "flat-monthly",
+    "source": "https://leadpages.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "editor polish, hosting, templates, and ecosystem",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Webstudio",
+      "url": "https://github.com/webstudio-is/webstudio"
+    }
+  ],
+  "relatedSlugs": [
+    "duda",
+    "tilda",
+    "carrd"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

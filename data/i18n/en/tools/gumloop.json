@@ -1,0 +1,19 @@
+{
+  "tagline": "A linear workflow where an LLM call is a first-class step type",
+  "verdictSummary": "A visual workflow builder where a step can be 'summarize this with an LLM' as a first-class node, chained with regular data-transformation steps — Gumloop's actual AI-native angle — is a real weekend build with your own model API key. What doesn't survive: Gumloop's library of pre-built connector nodes and its visual no-code canvas polish for non-developers.",
+  "coreLoopDIY": "Chain a small fixed set of node types — fetch data, transform with a script, or process with an LLM call — into a linear workflow, run on a trigger, with each step's output visible before the next runs.",
+  "whatYouLose": [
+    "a library of pre-built connector nodes for many services",
+    "a true visual drag-and-drop canvas for non-developers",
+    "team-shared workflow libraries",
+    "high-scale durable execution"
+  ],
+  "whyPeopleStillPay": "Chaining a couple of AI and data steps together is a weekend; a library of pre-built connectors plus a true visual canvas usable by non-developers is a much larger, more polished product.",
+  "prompt": "Build a linear workflow tool where an LLM call is a first-class step type, not just data transformation — Gumloop's actual AI-native idea. Use Next.js/TypeScript with Postgres, and a model key read from ANTHROPIC_API_KEY or OPENAI_API_KEY. Implement three node types usable in sequence: a trigger (webhook or manual run), a transform step (a small explicit JS function), and an AI step (send the current data plus a configured prompt template to the model, use its response as the step's output). Let the user define a workflow as an ordered list of these node types, a config file or a simple form-based builder, not a full drag-and-drop canvas, and run it end-to-end on trigger. Show each step's output before the next runs, both live during a run and in a stored run history, so an AI step's output can be inspected rather than trusted blindly. Store every run in Postgres with per-step status. Do not build a true visual drag-and-drop canvas, a library of pre-built connector nodes for specific services, or team-shared libraries — those are out of scope; workflows here are configured, not visually dragged into place. Requires an Anthropic or OpenAI API key, plus hosting and a database.",
+  "faq": [
+    { "q": "Can AI actually be a step in the workflow, not just at the end?", "a": "Yes — that's the core idea here. An AI step can sit anywhere in the sequence, its output feeding into the next transform or AI step, matching Gumloop's own AI-native workflow design." },
+    { "q": "Is there a visual drag-and-drop canvas?", "a": "No — workflows are configured as an ordered list of steps rather than dragged into place visually. A true visual canvas is real UI-builder engineering this build doesn't attempt." },
+    { "q": "How many services does it connect to out of the box?", "a": "None pre-built — the transform step is a generic function you write, and any API call needs to be coded into it yourself, unlike Gumloop's library of pre-built connectors." },
+    { "q": "What does it cost to run?", "a": "Hosting, a database, and model API usage for AI steps, billed per token — costs scale with how many workflows include an AI step and how often they run." }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "A landing-page builder with real A/B split testing",
+  "verdictSummary": "A landing-page builder with real A/B split testing — serve two page variants randomly, track conversion rate per variant, declare a winner by a simple statistical threshold — is a real weekend-to-week build. What doesn't survive: Leadpages' large template library and its tight native integrations with dozens of email marketing tools.",
+  "coreLoopDIY": "Build and publish a landing page from reusable sections, with support for two variants served randomly to visitors, tracking conversions per variant to determine a winner.",
+  "whatYouLose": [
+    "a large template library",
+    "tight native integrations with dozens of email marketing tools",
+    "managed hosting and CDN at scale",
+    "advanced statistical significance testing"
+  ],
+  "whyPeopleStillPay": "Splitting traffic between two pages is simple; a template library plus dozens of maintained integrations with the email tools people actually use is the much larger ongoing surface.",
+  "prompt": "Build a landing-page builder with real A/B split testing as the actual point, not just page publishing, since this catalogue's other website-builder entries already cover that ground. Use Next.js/TypeScript with the same section-based editor pattern as this catalogue's Duda entry, predefined sections for hero, features, testimonial, and CTA form, for building pages. For a page with two variants, A and B, of the same section, randomly assign each new visitor to one variant, stored in a cookie so they see the same variant on repeat visits, and record which variant they saw. Add a lead-capture form section that stores submissions in SQLite, tagged with which variant led to the conversion. Build a simple results view: visitors per variant, conversions per variant, and conversion rate, with a basic significance indicator, such as a simple binomial test, so you don't declare a winner off too little data. Email new form submissions to the page owner via a transactional email provider. Do not build a large template library, native integrations with specific email marketing tools, or advanced multi-variant, beyond A/B, testing — those are out of scope; this is a two-variant split-test tool, nothing more. Requires hosting, a domain, and a transactional email provider for lead notifications.",
+  "faq": [
+    { "q": "How does it decide which variant a visitor sees?", "a": "Randomly on their first visit, then consistently on repeat visits via a cookie — standard split-testing mechanics, tracked per variant for conversion comparison." },
+    { "q": "How does it know when there's a real winner?", "a": "A basic statistical significance check, so you're not declaring a winner off a handful of visits — but it's simpler than the more sophisticated testing Leadpages offers." },
+    { "q": "Does it integrate with my email marketing tool?", "a": "No — leads are stored locally and emailed to you as a notification. Native integrations with specific email tools are real, ongoing work this build doesn't attempt." },
+    { "q": "What does it cost to run?", "a": "Hosting, a domain, and a transactional email provider's free tier — typically a few dollars a month." }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "A minimal Markdown note app organized purely by nested hashtags",
+  "verdictSummary": "A minimal Markdown note editor organized purely by nested hashtags, with no folders, and export to several formats, is a genuine one-sitting build. What doesn't survive: Bear's specific typography and theme polish, and its cross-device iCloud sync.",
+  "coreLoopDIY": "Write notes in Markdown, organize them purely through nested hashtags parsed from the text itself, and export to multiple formats such as PDF, HTML, and plain Markdown.",
+  "whatYouLose": [
+    "Bear's specific typography and theme polish",
+    "cross-device iCloud sync",
+    "years of export-format edge-case fixes",
+    "a dedicated iOS and iPadOS app"
+  ],
+  "whyPeopleStillPay": "A tag parser and a Markdown editor are simple; making export formats look genuinely good across PDF, HTML, and beyond, on every device, is real ongoing design and engineering work.",
+  "prompt": "Build a minimal Markdown note app organized purely by nested hashtags, with no folder system — Bear's actual organizing idea. Use Tauri with SQLite for local storage. Parse hashtags directly from note text (e.g. a tag like #work/projects/website creates a nested tag hierarchy) rather than requiring separate tag management — the tags are the organization system, browsable as a nested sidebar tree built from parsed tags across all notes. Build a clean, distraction-light Markdown editor with a live preview toggle, and a simple typography theme, one good font pairing with adjustable size, rather than a large theme library. Support full-text search across all notes and tags. Implement export to plain Markdown, HTML, and PDF, using a headless browser like Playwright to render Markdown-to-HTML-to-PDF cleanly — get the PDF export looking genuinely presentable, since that's a real point of friction in a from-scratch build. Do not build cross-device sync, pair the local SQLite file with an existing sync tool like iCloud Drive or Syncthing if needed, or a large theme library — those are out of scope. No account or API key needed.",
+  "faq": [
+    { "q": "How does organization work without folders?", "a": "Through nested hashtags parsed directly from note text — the same tag becomes a browsable node in a sidebar tree, which is exactly Bear's own organizing idea, not a separate tagging system bolted on." },
+    { "q": "Will exports look as polished as Bear's?", "a": "The prompt specifically calls for getting PDF export looking genuinely presentable, since that's real design work — but matching Bear's specific typography choices exactly isn't the goal, just a clean, readable baseline." },
+    { "q": "Does it sync between my devices?", "a": "Not built in — pair the local SQLite file with an existing sync tool like iCloud Drive or Syncthing if you need that across devices." },
+    { "q": "What does it cost to run?", "a": "Nothing — it's a local app with no backend, so there's no hosting cost or subscription." }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "read-ai",
+  "name": "Read AI",
+  "domains": [
+    "read.ai"
+  ],
+  "category": "meeting-notes",
+  "subcategory": "meeting transcription and AI notes",
+  "pricing": {
+    "amount": 19.75,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://read.ai/plans-pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "capture reliability, integrations, and collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "whisper.cpp",
+      "url": "https://github.com/ggerganov/whisper.cpp"
+    }
+  ],
+  "relatedSlugs": [
+    "fathom-ai",
+    "avoma",
+    "meetgeek"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

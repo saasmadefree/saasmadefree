@@ -1,0 +1,19 @@
+{
+  "tagline": "A schema-driven mobile app generator built on Expo",
+  "verdictSummary": "A schema-driven mobile app — define a data model, get generated list, detail, and form screens, run it as a real cross-platform app via Expo — is a real weekend-to-week build. What doesn't survive: Adalo's true drag-and-drop visual freedom for non-developers, its component marketplace, and one-click App Store and Play Store publishing without touching a developer account yourself.",
+  "coreLoopDIY": "Define a data model with fields, generate list, detail, and form screens for it automatically, and run the result as a real cross-platform mobile app via Expo.",
+  "whatYouLose": [
+    "true drag-and-drop visual freedom for non-developers",
+    "a component and template marketplace",
+    "one-click App Store and Play Store publishing",
+    "years of native-API compatibility maintenance"
+  ],
+  "whyPeopleStillPay": "Generating standard CRUD screens is bounded work; giving true non-developers pixel-level visual control, plus navigating app store review and native API changes for years, is the much larger ongoing product.",
+  "prompt": "Build a schema-driven mobile app generator using Expo (React Native), not a true drag-and-drop visual builder — that's real UI-builder engineering out of proportion for a personal tool. Define an app's data model as a JSON config: entities with typed fields (text, number, image, boolean, relation to another entity). From that config, generate standard screens: a list screen per entity with search, a detail screen showing all fields, and a create/edit form, using a fixed, configurable-but-not-arbitrary visual theme (a color and font choice, not free-form layout). Back the data with a hosted API (Node/Express with Postgres) that the Expo app talks to. Support basic auth (email/password) gating access to the app's data. Run the result as a real Expo app installable via Expo Go for testing, without requiring an Apple or Google developer account for development. Document the separate, real steps needed to actually publish to the App Store or Play Store, a paid developer account and the store review process, rather than pretending that's automated — it isn't, for anyone. Do not build a visual drag-and-drop canvas, a component marketplace, or automated store publishing — those are out of scope. Requires hosting for the backend API; an Apple or Google developer account only if you actually want to publish to app stores, which is a separate cost this build doesn't include.",
+  "faq": [
+    { "q": "Can I customize the layout freely, like Adalo's drag-and-drop editor?", "a": "No — this build uses a fixed, configurable theme rather than a true visual canvas. Pixel-level layout freedom for non-developers is real UI-builder engineering this prompt doesn't attempt." },
+    { "q": "Does it publish to the App Store automatically?", "a": "No — that requires a paid Apple developer account and going through Apple's own review process, which no tool automates away. This build gets you a working app; publishing it is a separate, real step." },
+    { "q": "Do I need to know how to code?", "a": "Yes, at least enough to run and configure the generated project — this isn't a true no-code tool for non-developers the way Adalo is." },
+    { "q": "What does it cost to run?", "a": "Hosting for the backend API, typically a few dollars a month — app store accounts, if you want to publish, cost separately, since Apple charges an annual developer fee." }
+  ]
+}

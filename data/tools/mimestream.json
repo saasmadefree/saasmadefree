@@ -1,0 +1,41 @@
+{
+  "slug": "mimestream",
+  "name": "Mimestream",
+  "domains": [
+    "mimestream.com"
+  ],
+  "category": "email",
+  "subcategory": "email clients and hosted mail",
+  "pricing": {
+    "amount": 4.99,
+    "currency": "USD",
+    "plan": "Individual",
+    "basis": "flat-monthly",
+    "source": "https://mimestream.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "mail infrastructure, integrations, and client polish",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "mailcow",
+      "url": "https://github.com/mailcow/mailcow-dockerized"
+    }
+  ],
+  "relatedSlugs": [
+    "superhuman",
+    "fastmail",
+    "hey-email"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

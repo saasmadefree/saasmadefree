@@ -1,0 +1,19 @@
+{
+  "tagline": "AI thread summaries and natural-language search on top of Gmail",
+  "verdictSummary": "AI-generated summaries of long email threads, and natural-language search translated into a real Gmail search query, Shortwave's actual AI-forward angle, is a real weekend build with your own model API key on top of the Gmail API. What doesn't survive: Shortwave's tight integration polish and its AI features tuned specifically for email content over months of iteration.",
+  "coreLoopDIY": "Connect one Gmail account via the Gmail API, summarize a long thread on demand using an LLM, and translate a natural-language search query into Gmail's own search syntax before running it.",
+  "whatYouLose": [
+    "AI features tuned specifically for email content over months of iteration",
+    "native macOS and mobile app polish",
+    "team shared-inbox AI features",
+    "AI-drafted reply suggestions"
+  ],
+  "whyPeopleStillPay": "Calling an LLM to summarize a thread is a weekend; tuning AI features specifically for the quirks of real email, quoted replies, signatures, forwarded chains, so summaries stay accurate, is the ongoing refinement work.",
+  "prompt": "Build a Gmail client with two specific AI features, thread summarization and natural-language search, rather than a general AI wrapper around email. Use Next.js/TypeScript with the Gmail API (OAuth) for the base email client (list, read, reply, archive), and a model key read from ANTHROPIC_API_KEY or OPENAI_API_KEY for the AI features specifically. For thread summarization: on a long thread, more than a handful of messages, offer a 'Summarize' button that strips quoted-reply boilerplate and signatures before sending the thread's actual content to the model, returning a short summary of the discussion and any open questions. For natural-language search: let the user type a plain-English query like 'the email about the contract from last month', send it to the model with instructions to translate it into Gmail's own search operator syntax (from:, subject:, after:, has:attachment), and run the translated query against the Gmail API — show the translated query to the user so they can see and correct what was actually searched. Do not build AI-drafted reply suggestions, native mobile or desktop apps, or team shared-inbox features — those are out of scope; this is a single-account web client with two specific, well-scoped AI features. Needs a Google OAuth app with Gmail API access, plus an Anthropic or OpenAI API key for the AI features — without a key, the client still works as a plain Gmail client with those two buttons disabled.",
+  "faq": [
+    { "q": "What exactly does the AI do here?", "a": "Two specific things: summarizing long threads, and translating a plain-English search into Gmail's actual search syntax, not a general AI assistant bolted onto email." },
+    { "q": "Can I see what search query the AI actually ran?", "a": "Yes — the translated Gmail search syntax is shown alongside the results specifically so you can verify or correct what was actually searched, rather than trusting a black box." },
+    { "q": "Does it draft replies for me?", "a": "No — that's out of scope. This build's AI features are limited to summarization and search translation." },
+    { "q": "What does it cost to run?", "a": "Minimal hosting plus model API usage for the two AI features, billed per token — search translation and summarization are both short requests, so costs stay modest even with regular use." }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "Notes as typed objects — a Person, a Book, a Project — not just pages",
+  "verdictSummary": "A note system where every page is a typed 'object' — a Person, a Book, a Project — with structured properties specific to its type, is a real weekend-to-week build once you accept a fixed, small set of object types rather than Capacities' fully customizable type system. What doesn't survive: user-definable custom object types with their own property schemas, and cross-device real-time sync.",
+  "coreLoopDIY": "Create notes as typed objects from a small fixed set of types, each with structured properties specific to its type, and browse or filter objects by type and property value.",
+  "whatYouLose": [
+    "user-definable custom object types with their own schemas",
+    "cross-device real-time sync",
+    "a visual object-relationship graph",
+    "AI-assisted property extraction"
+  ],
+  "whyPeopleStillPay": "A few hardcoded object types is a weekend; letting users define arbitrary new types with their own property schemas, safely and flexibly, is meaningfully harder generalized product design.",
+  "prompt": "Build a note system where pages are typed objects, not freeform documents — Capacities' actual distinguishing idea. Use Next.js/TypeScript with Postgres. Implement a small fixed set of object types to start: Person, Book, Project, Note, each with its own structured property schema — a Person has name, email, and tags; a Book has title, author, rating, and status. Creating a new object requires picking a type first, then filling in that type's specific fields, plus a freeform Markdown body for everything else. Build a browsable, filterable list per type, such as all Books filterable by status, and a simple search across all objects regardless of type. Support linking one object to another, such as a Project linking to several People, with the link shown on both sides. Do not build a user-facing type designer for arbitrary custom types, real-time multi-device sync, or an AI-assisted property extraction feature — those are out of scope; this ships with a fixed, useful set of types rather than a fully general type system. Requires hosting and a database; no external API key needed.",
+  "faq": [
+    { "q": "Can I create my own custom object types, like in Capacities?", "a": "Not in this build — it ships with a fixed set: Person, Book, Project, Note. Letting users define arbitrary new types with their own schemas is real, harder generalized product design this prompt doesn't attempt." },
+    { "q": "How is this different from a tag-based notes app?", "a": "Every page has a type with structured fields specific to it, not just freeform text with tags — a Book object has a rating field, not just a tag, which changes how you can filter and browse." },
+    { "q": "Does it sync across my devices in real time?", "a": "No — that's out of scope. This runs as a hosted web app you'd access from any device, but without real-time multi-device conflict handling." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database — typically a few dollars a month, since there's no external API this build depends on." }
+  ]
+}

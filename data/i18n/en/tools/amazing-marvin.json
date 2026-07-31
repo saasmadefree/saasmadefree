@@ -1,0 +1,19 @@
+{
+  "tagline": "A task manager with a few swappable, built-in prioritization strategies",
+  "verdictSummary": "A task manager with a few swappable prioritization strategies — sort by due date, by a simple eat-the-frog rule, by custom weighted scoring — is a genuine one-sitting build. What doesn't survive: Amazing Marvin's deep customization system letting users script entirely custom strategies, and its very large settings surface built up over years of power-user requests.",
+  "coreLoopDIY": "Manage tasks with due dates and priority, and switch between a small set of built-in prioritization strategies that reorder the visible task list differently.",
+  "whatYouLose": [
+    "a scripting system for fully custom user-defined strategies",
+    "a very large, power-user-driven settings surface",
+    "cross-device sync",
+    "time-tracking integration"
+  ],
+  "whyPeopleStillPay": "A few hardcoded sorting strategies are simple; a system flexible enough for users to script their own arbitrary prioritization logic safely is a much bigger, more open-ended design problem.",
+  "prompt": "Build a task manager with a few swappable, built-in prioritization strategies rather than Amazing Marvin's fully scriptable strategy system. Use Tauri with SQLite. Implement standard task fields: title, due date, estimated time, project, priority. Build three built-in strategies as different sort or filter views over the same task list: 'Due soonest', a simple due-date sort; 'Eat the frog', which surfaces the single highest-priority task first and hides the rest until it's done or explicitly skipped; and 'Time-boxed', which shows only tasks whose estimated time fits in a user-set 'time available today' budget, greedily filling it. Let the user switch between strategies from a dropdown, applied live to the same underlying task list — the strategies are just different lenses on the same data, not separate systems. Add basic recurring tasks and a simple daily review screen. Do not build a scripting system for user-defined custom strategies, cross-device sync, or time-tracking integration — those are out of scope; three solid built-in strategies is the actual scope here, not an open-ended framework. Requires a local database; no external API key needed.",
+  "faq": [
+    { "q": "Can I create my own custom prioritization strategy?", "a": "Not in this build — it ships with three solid built-in strategies rather than Amazing Marvin's scriptable system for fully custom user-defined logic, which is real, more open-ended engineering." },
+    { "q": "How does 'eat the frog' mode work?", "a": "It surfaces only your single highest-priority task and hides the rest of the list until that task is done or explicitly skipped — a forcing function for tackling the hardest thing first." },
+    { "q": "Does it sync across devices?", "a": "No — this is a local, single-device tool with no backend to sync through." },
+    { "q": "What does it cost to run?", "a": "Nothing — it's a local app with no subscription, since there's no backend it depends on." }
+  ]
+}

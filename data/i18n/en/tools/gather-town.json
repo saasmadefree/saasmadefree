@@ -1,0 +1,19 @@
+{
+  "tagline": "A 2D pixel-art space with proximity-based video chat",
+  "verdictSummary": "A 2D virtual space where avatars walk around a pixel-art map and video chat automatically connects when two avatars are near each other is a genuinely ambitious, more-than-a-weekend build — the proximity-based WebRTC connection management alone is real distributed-systems work. What doesn't survive: Gather's polished map editor, its reliability at scale with many simultaneous users, and years of interaction-design refinement.",
+  "coreLoopDIY": "Render a 2D pixel-art map where users control a moving avatar, and automatically establish a WebRTC video connection between any two avatars that come within a configured proximity distance of each other, tearing it down when they move apart.",
+  "whatYouLose": [
+    "a polished visual map editor",
+    "reliability at scale with many simultaneous users",
+    "years of proximity-video interaction-design refinement",
+    "screen sharing and interactive objects within the space"
+  ],
+  "whyPeopleStillPay": "A basic proximity-video prototype is a real but bounded project; making it feel smooth and reliable with dozens of people moving around simultaneously, without connection glitches, is genuinely hard real-time systems work.",
+  "prompt": "Build a 2D virtual space with proximity-based video chat — be upfront that this is more ambitious than most entries in this catalogue, since managing WebRTC connections dynamically as avatars move is real distributed-systems work, not a simple CRUD app. Use a canvas-based 2D renderer, such as PixiJS, for a tile-based map where each connected user controls a moving avatar via arrow keys, with positions synced over WebSockets. When two avatars' positions come within a configured proximity distance, establish a WebRTC peer connection between those two users specifically, using a signaling server you run and a public STUN server for NAT traversal, so they see and hear each other; tear the connection down cleanly when they move apart. Use one fixed, pre-built pixel-art map to start rather than a visual map editor — that's a substantial separate feature. Handle the specific hard case carefully: a user moving between multiple nearby avatars in quick succession shouldn't leave stale or duplicate video connections. Do not build a map editor, screen sharing, interactive objects, or optimization for more than a handful of simultaneous users — those are out of scope and each represents real additional engineering; this is a working prototype for a small group, not production infrastructure at Gather's scale. Requires hosting, a domain, and a signaling/STUN setup for WebRTC — free STUN servers exist, but a TURN server for reliable NAT traversal at scale is a real cost this build's honest small-scale scope tries to avoid needing.",
+  "faq": [
+    { "q": "Is this actually a weekend project?", "a": "Realistically no — it's flagged here as more ambitious than most of this catalogue. Dynamically managing WebRTC connections as people move around is real distributed-systems work, closer to a multi-week project for someone comfortable with real-time systems." },
+    { "q": "Can I design my own map?", "a": "Not with a visual editor in this build — it uses one fixed pre-built map. A map editor is a substantial separate feature Gather has actually built." },
+    { "q": "How many people can use it at once?", "a": "This build is honestly scoped to a handful of simultaneous users — proximity video at Gather's actual scale, with many people moving around reliably, needs production-grade infrastructure this prompt doesn't attempt." },
+    { "q": "What does it cost to run?", "a": "Hosting, a domain, and WebRTC infrastructure — free STUN servers cover basic NAT traversal, but reliable connections for everyone may eventually need a paid TURN server, a real cost worth planning for." }
+  ]
+}

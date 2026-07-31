@@ -1,0 +1,19 @@
+{
+  "tagline": "A calendar where you drag tasks onto time slots to schedule them",
+  "verdictSummary": "A calendar view where you can drag a task directly onto a time slot to schedule it — Amie's actual core loop, time-blocking made visual — is a real weekend build combining a simple task list with a calendar UI reading from Google Calendar. What doesn't survive: Amie's cross-platform native app polish and its social and shared-calendar features.",
+  "coreLoopDIY": "Maintain a simple task list alongside a calendar view reading from Google Calendar, and let the user drag a task onto a time slot to create a calendar event representing that time-blocked work.",
+  "whatYouLose": [
+    "native cross-platform app polish",
+    "social and shared-calendar features",
+    "years of drag-and-drop interaction refinement",
+    "multiple calendar provider support"
+  ],
+  "whyPeopleStillPay": "A drag-to-schedule interaction is buildable; making it feel instant and delightful across every edge case, like overlapping events, quick rescheduling, and undo, is refined interaction design work.",
+  "prompt": "Build a calendar tool combining a task list with a draggable time-blocking calendar view — Amie's actual core loop. Use Next.js/TypeScript with the Google Calendar API (OAuth) for reading and writing events. Maintain a simple task list (title, optional duration estimate, done state) alongside a weekly calendar view showing events fetched from the connected Google Calendar. Implement drag-and-drop: dragging a task from the list onto a calendar time slot creates a real Google Calendar event at that time, using the task's duration estimate or a default, effectively time-blocking it; dragging an existing event to a new slot updates its time via the API. Mark time-blocked tasks as scheduled in the task list, linked to their calendar event. Support quick undo for the last drag action, since mis-drops are the main friction point in this interaction pattern. Do not build native mobile or desktop apps, shared or social calendar features, or support for calendar providers beyond Google — those are out of scope; this is a single-user, single-provider web tool. Needs a Google OAuth app (free to register) with Calendar API access; no other external service required.",
+  "faq": [
+    { "q": "What's the actual core interaction here?", "a": "Dragging a task from your list directly onto a calendar time slot, which creates a real calendar event — that visual time-blocking loop is Amie's own signature feature, not just another to-do list next to a calendar." },
+    { "q": "Does it work with Outlook or Apple Calendar?", "a": "No — only Google Calendar in this build. Supporting multiple providers is real additional integration work this prompt skips." },
+    { "q": "What if I drag a task to the wrong slot?", "a": "There's a quick undo for the last drag specifically because mis-drops are the main friction point in this interaction — but there's no full undo history beyond that." },
+    { "q": "What does it cost to run?", "a": "Minimal hosting plus the Google Calendar API's free tier — typically a few dollars a month or less." }
+  ]
+}

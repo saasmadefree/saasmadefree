@@ -1,0 +1,19 @@
+{
+  "tagline": "A personal focus-time blocker, not a team-wide meeting optimizer",
+  "verdictSummary": "Detecting fragmented free time on your own calendar and suggesting it as protected 'focus time' blocks is a real, scoped weekend build reading from the Google Calendar API. What doesn't survive: Clockwise's actual hard problem, automatically renegotiating and moving other people's meetings across a whole team to create larger focus blocks — that requires coordinating consent across multiple calendars you don't own, not just reading your own.",
+  "coreLoopDIY": "Read your own Google Calendar, detect gaps between existing meetings, and automatically create protected 'focus time' hold events in those gaps above a configurable minimum duration.",
+  "whatYouLose": [
+    "automatic cross-team meeting renegotiation",
+    "coordinating consent across calendars you don't own",
+    "smart meeting-time suggestions optimized for a whole team",
+    "org-wide focus-time analytics"
+  ],
+  "whyPeopleStillPay": "Blocking your own free time is a script; safely proposing and moving other people's meetings across an org, with their consent, to create bigger focus blocks for everyone, is a coordination problem you can't solve by reading your own calendar alone.",
+  "prompt": "Build a personal focus-time blocker for your own calendar, not a team-wide meeting optimizer — that requires coordinating other people's calendars and consent, which is out of reach for a personal project. Use a scheduled script (Node.js, run daily via cron) with the Google Calendar API (OAuth) to read your own calendar's events for the coming week. Detect gaps between existing meetings that are at least a configurable minimum length, such as 90 minutes, and automatically create a 'Focus time' hold event in each qualifying gap, marked as busy so others see you as unavailable when checking your free/busy status. Let the user exclude certain days or time ranges, such as never before 10am, from focus-time creation. Add a simple weekly summary email or log of how much focus time was protected. Re-run daily so newly-scheduled meetings that eat into a focus block get detected and the block adjusted or removed. Do not build cross-team meeting renegotiation, moving other people's existing meetings, or org-wide analytics — those are explicitly out of scope; this only ever reads and modifies your own calendar. Needs a Google OAuth app (free to register) with Calendar API access; no other external service required.",
+  "faq": [
+    { "q": "Will it move other people's meetings to make room for my focus time?", "a": "No — that's exactly the part of Clockwise's actual product this build doesn't attempt. It only creates focus blocks in gaps that already exist on your own calendar, never touching meetings you don't own." },
+    { "q": "How does it know when to protect focus time?", "a": "It looks for gaps between your existing meetings above a minimum length you configure, and marks those as busy focus-time holds — a straightforward gap-detection script, not an optimization algorithm." },
+    { "q": "What happens if a new meeting gets booked into a focus block?", "a": "The daily re-run detects the conflict and adjusts or removes the affected focus block, so your calendar stays accurate rather than showing a stale hold." },
+    { "q": "What does it cost to run?", "a": "Minimal hosting for the scheduled job plus the Google Calendar API's free tier — typically a few dollars a month or less." }
+  ]
+}

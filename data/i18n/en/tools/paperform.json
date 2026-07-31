@@ -1,0 +1,19 @@
+{
+  "tagline": "A document-style form with a live price calculator",
+  "verdictSummary": "A form editor styled like writing a document, with a live price calculator that updates as the visitor answers questions, is a real weekend build — the calculation itself is just arithmetic tied to field values. What doesn't survive: Paperform's large template library and its many native payment and CRM integrations beyond a single Stripe connection.",
+  "coreLoopDIY": "Build a document-style form editor where fields flow inline with text, and compute a running price total from selected answers, displayed live before the visitor submits.",
+  "whatYouLose": [
+    "a large template library",
+    "many native payment and CRM integrations",
+    "advanced logic beyond simple price calculation",
+    "e-signature and PDF generation"
+  ],
+  "whyPeopleStillPay": "Calculating a running total from a few fields is simple; a library of ready-made templates and integrations with the dozens of tools businesses already use is the ongoing product work.",
+  "prompt": "Build a form tool styled like writing a document — fields flow inline with surrounding text, rather than sitting in a rigid grid — with a live price calculator. Use Next.js/TypeScript with SQLite. In the form builder, let the creator write body text with embedded fields (short text, select, number, quantity) using a simple inline syntax, rendered as a flowing document rather than a stacked list of boxes. Add a price-calculation feature: mark specific select or number fields as contributing to a total, such as a select option worth a fixed amount or a quantity field multiplied by a per-unit price, and show a running total that updates live as the visitor answers, before submission — this is the feature actually worth building, not just another form. Publish each form at a stable slug with server-side validation. Store responses with their final calculated total in SQLite, with a dashboard for search and CSV export. Send the form owner a notification on new submissions via a transactional email provider. Do not build a template library, native payment or CRM integrations beyond what you wire up yourself, or e-signature and PDF generation — those are out of scope; this is a document-style form with a working price calculator, nothing more. Needs a transactional email provider for notifications; no other external service required unless you add payment collection yourself.",
+  "faq": [
+    { "q": "What makes this different from a normal form builder?", "a": "The document-style layout, fields flowing inline with text instead of sitting in a rigid grid, plus a live price calculator that updates as the visitor answers, before they submit." },
+    { "q": "Does it actually process payments?", "a": "No — it calculates and displays a running total live, but doesn't charge anyone. Wiring that total into an actual checkout, Stripe for example, is a separate step you'd add yourself." },
+    { "q": "Can I start from a template?", "a": "No pre-built templates here — Paperform's large library is real accumulated content this build doesn't include. You write each form's structure from scratch." },
+    { "q": "What does it cost to run?", "a": "A transactional email provider's free tier for notifications, plus minimal hosting — typically nothing beyond what you'd pay anyway." }
+  ]
+}

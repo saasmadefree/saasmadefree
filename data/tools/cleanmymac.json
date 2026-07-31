@@ -1,0 +1,41 @@
+{
+  "slug": "cleanmymac",
+  "name": "CleanMyMac",
+  "domains": [
+    "macpaw.com"
+  ],
+  "category": "productivity-utilities",
+  "subcategory": "macOS automation and desktop utilities",
+  "pricing": {
+    "amount": 3.33,
+    "currency": "USD",
+    "plan": "Plan for 1 Mac",
+    "basis": "annual-effective-monthly",
+    "source": "https://macpaw.com/store/cleanmymac",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "OS integration polish and maintenance",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Espanso",
+      "url": "https://github.com/espanso/espanso"
+    }
+  ],
+  "relatedSlugs": [
+    "paste",
+    "raycast-pro",
+    "textexpander"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "Merge two or three calendar accounts into one unified weekly view",
+  "verdictSummary": "Aggregating two or three calendar accounts you already have into one unified weekly view, alongside a simple task list, is a real weekend-to-week build using each provider's own API. What doesn't survive: Morgen's polish across many calendar and task-app integrations at once, and years of edge-case handling for how different providers represent recurring events and timezones slightly differently.",
+  "coreLoopDIY": "Connect two or three calendar accounts via their own APIs, merge their events into one unified weekly view, and maintain a simple linked task list alongside it.",
+  "whatYouLose": [
+    "polish across many calendar and task-app integrations at once",
+    "years of provider-specific recurring-event and timezone edge cases",
+    "cross-platform native app polish",
+    "team scheduling features"
+  ],
+  "whyPeopleStillPay": "Merging two calendars once is a weekend; correctly handling how Google, Outlook, and iCloud each represent recurring events and timezones slightly differently, reliably, for years, is the accumulated integration work.",
+  "prompt": "Build a unified calendar view aggregating two calendar accounts you actually use — for a personal project, two, such as a work Google account and a personal one, is a realistic and honest scope; Morgen's support for many providers at once is real, larger integration work. Use Next.js/TypeScript with the Google Calendar API (OAuth) for each connected account — if one of your accounts is Outlook or iCloud, that's a separate API integration with its own quirks, and adding a second provider type roughly doubles the integration work, which is worth being upfront about. Merge events from both connected accounts into one unified weekly view, color-coded by source account, with overlapping-event handling that shows both clearly rather than hiding one. Maintain a simple task list alongside the calendar, title, due date, done state, stored locally, without syncing to an external task app. Handle recurring events by expanding each provider's recurrence rule into individual instances for display — this is the specific area where providers diverge in representation, so test it carefully. Do not build support for more than two calendar accounts, task-app integrations beyond the built-in list, or native mobile apps — those are out of scope. Needs an OAuth app registration per calendar provider you connect; no other external service required.",
+  "faq": [
+    { "q": "How many calendars can it connect?", "a": "Two, by design — Morgen's support for many providers and accounts at once is real, larger integration work each additional provider type roughly doubles." },
+    { "q": "Does it integrate with Todoist or Asana for tasks?", "a": "No — this build keeps its own simple local task list rather than syncing with external task apps, which is a real feature gap compared to Morgen." },
+    { "q": "Will recurring events show up correctly from both calendars?", "a": "That's the trickiest part to get right, since providers represent recurrence slightly differently — test this specifically rather than assuming it just works." },
+    { "q": "What does it cost to run?", "a": "Minimal hosting plus each calendar API's free tier — typically a few dollars a month or less." }
+  ]
+}

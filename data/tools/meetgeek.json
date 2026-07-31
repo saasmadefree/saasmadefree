@@ -1,0 +1,41 @@
+{
+  "slug": "meetgeek",
+  "name": "MeetGeek",
+  "domains": [
+    "meetgeek.ai"
+  ],
+  "category": "meeting-notes",
+  "subcategory": "meeting transcription and AI notes",
+  "pricing": {
+    "amount": 19,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "per-seat-monthly",
+    "source": "https://meetgeek.ai/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "capture reliability, integrations, and collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "whisper.cpp",
+      "url": "https://github.com/ggerganov/whisper.cpp"
+    }
+  ],
+  "relatedSlugs": [
+    "fathom-ai",
+    "read-ai",
+    "avoma"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

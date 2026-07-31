@@ -1,0 +1,19 @@
+{
+  "tagline": "Generate a simple app view directly from an existing Google Sheet",
+  "verdictSummary": "Generating a simple mobile-friendly app view directly from an existing Google Sheet — AppSheet's actual core trick — is a real weekend build using the Google Sheets API. What doesn't survive: AppSheet's offline sync, its automation and workflow engine, and years of handling the many ways a spreadsheet can be structured unexpectedly.",
+  "coreLoopDIY": "Read an existing Google Sheet's structure via its API, generate a list and detail/edit view from the columns automatically, and write edits back to the same sheet.",
+  "whatYouLose": [
+    "offline mode with sync",
+    "an automation and workflow engine",
+    "handling of unusually structured spreadsheets",
+    "barcode scanning and native device features"
+  ],
+  "whyPeopleStillPay": "Reading and writing one well-structured sheet is simple; working reliably against spreadsheets real users have already messed up in creative ways, offline and reconnecting cleanly, is the accumulated engineering.",
+  "prompt": "Build a tool that generates a simple app view directly from an existing Google Sheet — AppSheet's actual core trick. Use Next.js/TypeScript with the Google Sheets API (OAuth) to read a connected sheet's header row as the schema and its rows as records. Generate a list view, searchable and sortable by any column, and a detail/edit view from that schema automatically — no manual field configuration needed if the sheet is reasonably well-structured. Write edits back to the same sheet via the API, using the sheet's own row identifiers so edits land in the right place, and handle the common failure case where a row was added or deleted in the sheet directly while the app was open by refetching and warning on conflict, never silently overwriting. Support a basic photo-upload field type that stores an image URL back into a cell. Do not build offline mode with sync, an automation and workflow engine, or handling for unusually structured spreadsheets like merged cells or multiple header rows — those are out of scope; this works well on a normal, single-header-row sheet and says so. Needs a Google OAuth app (free to register) with Sheets API access; no other external service required.",
+  "faq": [
+    { "q": "Does it work offline?", "a": "No — every read and write goes through the Google Sheets API live. AppSheet's offline mode with sync is real engineering this build doesn't attempt." },
+    { "q": "What if my sheet has merged cells or multiple header rows?", "a": "It probably won't work well — this build assumes a normal, single-header-row sheet. Unusual spreadsheet structures are exactly the kind of edge case AppSheet has spent years handling that a personal build hasn't." },
+    { "q": "What happens if someone edits the sheet directly while I'm using the app?", "a": "The app detects the conflict on your next action and warns you rather than silently overwriting — but you'll need to manually resolve which version is correct." },
+    { "q": "What does it cost to run?", "a": "Minimal hosting plus the Google Sheets API's generous free tier — realistically nothing beyond what you already pay for Google Workspace, if anything." }
+  ]
+}

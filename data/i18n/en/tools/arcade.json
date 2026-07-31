@@ -1,0 +1,19 @@
+{
+  "tagline": "Capture a browser flow and let viewers click through it interactively",
+  "verdictSummary": "Capturing a browser flow as a series of screenshots with clickable hotspots — so a viewer clicks through an interactive replay instead of watching a passive video — is a real weekend build, reusing this catalogue's Scribe capture approach as a starting point. What doesn't survive: Arcade's polish in hotspot auto-detection accuracy and its analytics on how viewers actually click through a shared demo.",
+  "coreLoopDIY": "Capture a browser workflow as a sequence of full-page screenshots with a hotspot marking where the user clicked on each, and let a viewer click through the sequence interactively rather than watch a passive video.",
+  "whatYouLose": [
+    "polished automatic hotspot detection accuracy",
+    "viewer click-through analytics",
+    "team-shared demo libraries",
+    "custom branding on shared demos"
+  ],
+  "whyPeopleStillPay": "Capturing screenshots with click coordinates is simple; making the hotspot detection reliably accurate across any website's UI, and giving teams analytics on how prospects actually click through a shared demo, is the ongoing product work.",
+  "prompt": "Build an interactive-demo capture tool, extending this catalogue's Scribe capture approach with clickable replay instead of a static guide. Use a Chrome extension (Manifest V3) that, while recording, captures a full-page screenshot at each click along with the clicked element's on-page coordinates and size, building a sequence of screenshot-plus-hotspot pairs. On export, generate a self-contained HTML page that replays the sequence: show the first screenshot with a pulsing hotspot over the recorded click location, and advance to the next screenshot only when the viewer clicks that hotspot — an interactive walkthrough, not a passive video. Support adding a short text caption to each step, editable after capture. Export as a single HTML file with embedded images, portable, no server required to view it, or optionally host it yourself for a shareable link. Do not build automatic hotspot-accuracy tuning beyond straightforward coordinate capture, viewer analytics, or team-shared libraries — those are out of scope; this produces one interactive demo per capture, viewable standalone. No API key or account needed.",
+  "faq": [
+    { "q": "How is this different from a screen-recording video?", "a": "The viewer clicks through it themselves, step by step, rather than watching a passive video — each step shows a hotspot where the original click happened, and advances when the viewer clicks it too." },
+    { "q": "Does it show me analytics on how people click through my demo?", "a": "No — that's out of scope. You get the interactive demo itself, but not data on how viewers actually interact with it." },
+    { "q": "Can I share it without hosting anything?", "a": "Yes — it exports as a single self-contained HTML file with embedded images, viewable by opening the file directly, no server required." },
+    { "q": "What does it cost to run?", "a": "Nothing — it's a browser extension with local export, so there's no hosting cost unless you choose to host the exported file yourself for a shareable link." }
+  ]
+}

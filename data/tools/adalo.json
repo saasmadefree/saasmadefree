@@ -1,0 +1,41 @@
+{
+  "slug": "adalo",
+  "name": "Adalo",
+  "domains": [
+    "adalo.com"
+  ],
+  "category": "no-code-apps",
+  "subcategory": "internal tools and application builders",
+  "pricing": {
+    "amount": 45,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://adalo.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "connectors, runtime reliability, and governance",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Appsmith",
+      "url": "https://github.com/appsmithorg/appsmith"
+    }
+  ],
+  "relatedSlugs": [
+    "flutterflow",
+    "retool",
+    "bubble"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "Turn a captured click sequence into a narrated video with local TTS",
+  "verdictSummary": "Turning a captured click sequence into a narrated video — auto-generating a script describing each step and reading it aloud with local TTS — is a real weekend build combining this catalogue's Scribe-style capture with the TTS approach already described for Murf. What doesn't survive: Guidde's polish in auto-generated narration wording and its team-shared video libraries with analytics.",
+  "coreLoopDIY": "Capture a browser workflow as a sequence of screenshots per click, generate a basic narration script per step from a template, convert it to speech with local TTS, and assemble screenshots and narration into a video.",
+  "whatYouLose": [
+    "polished auto-generated narration wording",
+    "team-shared video libraries with analytics",
+    "video hosting and embeddable players",
+    "multi-language narration"
+  ],
+  "whyPeopleStillPay": "Combining screenshots with TTS narration is buildable; writing narration that actually reads naturally, plus hosting and organizing a growing library of these videos for a team, is the ongoing product work.",
+  "prompt": "Build a tool that turns a captured browser workflow into a narrated video — combining this catalogue's Scribe-style click capture with local text-to-speech, same approach as this catalogue's Murf entry. Use a Chrome extension (Manifest V3) to capture a screenshot and a basic templated description at each click, the same mechanism as this catalogue's Scribe entry. After capture, let the user review and edit each step's description text, since auto-generated descriptions are a rough draft, not final copy. Convert each step's finalized description to speech using a local TTS model (Coqui TTS or Piper). Assemble the screenshots and narration into a video using ffmpeg: each screenshot shown for the duration of its narration clip, with a simple zoom-to-hotspot effect on the clicked element. Export as an MP4. Do not build team-shared video libraries with analytics, hosted embeddable players, or multi-language narration — those are out of scope; this produces one narrated video per capture, exported as a file. No API key or account needed; TTS and video assembly run locally.",
+  "faq": [
+    { "q": "Does the narration sound natural?", "a": "Reasonably, using an open local TTS model — but the actual wording comes from a basic templated description per step that you're expected to edit before finalizing, not polished auto-generated copy like Guidde's." },
+    { "q": "Can my team share and track views of these videos?", "a": "No — there's no hosting or analytics layer. Each video exports as a standalone MP4 file you'd share manually." },
+    { "q": "Does it support multiple languages?", "a": "Only whatever the local TTS model you choose supports — there's no dedicated multi-language narration feature." },
+    { "q": "What does it cost to run?", "a": "Nothing beyond your own machine — TTS and video assembly run locally with no per-video fee." }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "feathery",
+  "name": "Feathery",
+  "domains": [
+    "feathery.io"
+  ],
+  "category": "forms",
+  "subcategory": "forms, surveys and lead capture",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "flat-monthly",
+    "source": "https://feathery.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "integrations, deliverability, and workflow depth",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Formbricks",
+      "url": "https://github.com/formbricks/formbricks"
+    }
+  ],
+  "relatedSlugs": [
+    "surveymonkey",
+    "fillout",
+    "paperform"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

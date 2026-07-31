@@ -1,0 +1,19 @@
+{
+  "tagline": "A spreadsheet where a cell range is populated by a saved SQL query",
+  "verdictSummary": "A spreadsheet where a cell range can be populated by a saved SQL query against a database you connect, refreshed on demand, is a real weekend-to-week build — that's genuinely close to Equals' actual trick of pulling live data into spreadsheet formulas. What doesn't survive: Equals' library of pre-built connectors to specific SaaS APIs, Stripe, HubSpot, and dozens more, and its collaborative multiplayer spreadsheet engine.",
+  "coreLoopDIY": "Write a saved SQL query against a connected database, and populate a spreadsheet range with its results, refreshable on demand, alongside normal formula cells referencing that data.",
+  "whatYouLose": [
+    "pre-built connectors to dozens of specific SaaS APIs",
+    "a collaborative multiplayer spreadsheet engine",
+    "scheduled automatic refresh",
+    "a large library of chart and dashboard templates"
+  ],
+  "whyPeopleStillPay": "One SQL-backed range is a weekend; a library of pre-built connectors to dozens of specific SaaS APIs, each with its own auth and data shape, is the much larger ongoing integration surface.",
+  "prompt": "Build a spreadsheet where a named range can be populated by a saved SQL query against a connected database — Equals' actual core trick, live data inside spreadsheet cells. Use Next.js/TypeScript with a spreadsheet-grid library, or build a simple one with rows, columns, and formula support, and a Postgres driver for the connected data source. Let the user define a 'data range': a name, a SQL query, read-only, enforce a read-only database role for the connection, and a target location in the sheet. On refresh, a manual button, since scheduled automatic refresh is real additional infrastructure, run the query and populate the target cells with the results, which normal spreadsheet formulas elsewhere in the sheet can then reference like any other cell. Support standard spreadsheet formulas — sum, average, basic arithmetic across cell references — so data-range results feed into further calculation. Add a simple bar or line chart type that reads from a cell range. Do not build pre-built connectors to specific SaaS APIs, a multiplayer collaborative engine, or scheduled automatic refresh — those are out of scope; this connects to one database you already have via SQL, nothing more. Requires hosting and a read-only connection to the database you're querying; no other external service needed.",
+  "faq": [
+    { "q": "Can it pull data from Stripe or HubSpot directly, like Equals?", "a": "Not out of the box — this build connects to a database via SQL, not to specific SaaS APIs. You'd need to get your data into a queryable database first, or build a connector for each API yourself." },
+    { "q": "Does it refresh automatically on a schedule?", "a": "No — refresh is a manual button in this build. Scheduled automatic refresh is real additional infrastructure this prompt doesn't include." },
+    { "q": "Can multiple people edit the same sheet at once?", "a": "No — there's no collaborative multiplayer engine here, just single-user editing." },
+    { "q": "What does it cost to run?", "a": "Hosting plus whatever your connected database already costs — no separate per-query fee, since queries run against infrastructure you already have." }
+  ]
+}

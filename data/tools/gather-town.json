@@ -1,0 +1,42 @@
+{
+  "slug": "gather-town",
+  "name": "Gather",
+  "domains": [
+    "gather.town"
+  ],
+  "category": "community",
+  "subcategory": "online communities and team communication",
+  "pricing": {
+    "amount": 7,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "per-seat-monthly",
+    "source": "https://gather.town/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "network, moderation, and communication infrastructure",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Discourse",
+      "url": "https://github.com/discourse/discourse"
+    }
+  ],
+  "relatedSlugs": [
+    "slack-pro",
+    "circle",
+    "heartbeat-community"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

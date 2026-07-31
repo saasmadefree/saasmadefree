@@ -1,0 +1,44 @@
+{
+  "slug": "relay-app",
+  "name": "Relay.app",
+  "domains": [
+    "relay.app"
+  ],
+  "category": "automation",
+  "subcategory": "workflow automation and app integrations",
+  "pricing": {
+    "amount": 19,
+    "currency": "USD",
+    "plan": "Professional",
+    "basis": "flat-monthly",
+    "source": "https://relay.app/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "connector breadth and execution reliability",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "oauth-app",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Activepieces",
+      "url": "https://github.com/activepieces/activepieces"
+    }
+  ],
+  "relatedSlugs": [
+    "pipedream",
+    "ifttt",
+    "bardeen"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

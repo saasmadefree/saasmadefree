@@ -1,0 +1,44 @@
+{
+  "slug": "shortwave",
+  "name": "Shortwave",
+  "domains": [
+    "shortwave.com"
+  ],
+  "category": "email",
+  "subcategory": "email clients and hosted mail",
+  "pricing": {
+    "amount": 8.5,
+    "currency": "USD",
+    "plan": "Personal",
+    "basis": "annual-effective-monthly",
+    "source": "https://shortwave.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "mail infrastructure, integrations, and client polish",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key",
+    "hosting",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "mailcow",
+      "url": "https://github.com/mailcow/mailcow-dockerized"
+    }
+  ],
+  "relatedSlugs": [
+    "superhuman",
+    "fastmail",
+    "hey-email"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

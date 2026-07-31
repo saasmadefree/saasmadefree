@@ -1,0 +1,42 @@
+{
+  "slug": "paperform",
+  "name": "Paperform",
+  "domains": [
+    "paperform.co"
+  ],
+  "category": "forms",
+  "subcategory": "forms, surveys and lead capture",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Essentials",
+    "basis": "flat-monthly",
+    "source": "https://paperform.co/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "integrations, deliverability, and workflow depth",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Formbricks",
+      "url": "https://github.com/formbricks/formbricks"
+    }
+  ],
+  "relatedSlugs": [
+    "surveymonkey",
+    "fillout",
+    "typeform"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

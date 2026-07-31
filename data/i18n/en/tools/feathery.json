@@ -1,0 +1,19 @@
+{
+  "tagline": "A headless form-logic engine you render your own UI on top of",
+  "verdictSummary": "A headless form-logic layer — you build the actual UI in your own app, this handles validation, conditional branching, and submission storage — is a real weekend build for a developer, and arguably the more honest fit for Feathery's actual audience, who are developers wanting full UI control anyway. What doesn't survive: Feathery's visual no-code builder for non-developers, and its library of pre-built field types and integrations.",
+  "coreLoopDIY": "Define a form's fields and conditional logic as a JSON schema, expose it through an API and a small React hook, and let the consuming app render its own UI while this handles validation, branching, and submission storage.",
+  "whatYouLose": [
+    "a visual no-code builder for non-developers",
+    "a library of pre-built field types and integrations",
+    "hosted form pages with no code required",
+    "advanced analytics on form completion"
+  ],
+  "whyPeopleStillPay": "Writing form logic once for your own app is a weekend; maintaining a general headless engine with a visual builder on top, usable by non-developers too, is the much larger product surface.",
+  "prompt": "Build a headless form-logic engine — Feathery's actual developer-facing idea — rather than a visual form builder. Use Next.js/TypeScript for the backend API and Postgres for storage. Define a form as a JSON schema: fields (type, label, validation rules) and conditional branching rules, such as showing field X only if field Y equals a value. Expose a small REST API, or a React hook wrapping it, that a separate consuming app can use to fetch a form's current schema, submit validated responses field-by-field or as a batch, and resume a partially-completed submission by ID. Handle validation and branching logic entirely server-side, so the consuming app's UI can be anything — the point is that this project supplies the logic, not the visual design. Build one example consuming React app demonstrating the pattern, rendering fields from the schema and showing or hiding based on branching, but keep it clearly separate from the core engine. Store submissions in Postgres with completion status and timestamps. Do not build a visual no-code form builder, a hosted-page product, or a library of pre-built integrations — those are out of scope; this is a logic layer for developers building their own form UI. Requires hosting and a database; no external API key needed.",
+  "faq": [
+    { "q": "Do I still need to build my own form UI?", "a": "Yes — that's the actual design here. This handles validation, branching, and storage; you, or your app, render the fields however you want, which is closer to how Feathery's own developer-facing product works." },
+    { "q": "Can non-technical people use this to build a form?", "a": "Not really — there's no visual builder. This is a logic engine meant to be consumed by a developer's own app, not a drag-and-drop tool for non-developers." },
+    { "q": "Does it support conditional branching?", "a": "Yes — that's a core feature, defined in the JSON schema and evaluated server-side, so branching logic stays consistent regardless of which UI consumes it." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database — typically a few dollars a month, with no per-submission fee." }
+  ]
+}

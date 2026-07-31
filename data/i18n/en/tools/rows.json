@@ -1,0 +1,19 @@
+{
+  "tagline": "A spreadsheet formula that fetches any API and parses the response into cells",
+  "verdictSummary": "A spreadsheet formula that fetches a URL and parses its JSON response directly into cells — Rows' actual trick of treating any API as a data source, not just a database — is a real weekend build. What doesn't survive: Rows' library of pre-built integrations with authentication already handled for dozens of specific services, and its collaborative multiplayer engine.",
+  "coreLoopDIY": "Add a spreadsheet formula function that fetches a URL, with optional headers for auth, and maps its JSON response into a range of cells, refreshable on demand alongside normal formulas.",
+  "whatYouLose": [
+    "pre-built integrations with authentication already handled for dozens of services",
+    "a collaborative multiplayer spreadsheet engine",
+    "scheduled automatic refresh",
+    "publishing a sheet as an interactive web app"
+  ],
+  "whyPeopleStillPay": "One fetch-and-parse formula is a weekend; a library of pre-built, pre-authenticated integrations to dozens of specific APIs, each with its own auth flow, is the much larger ongoing integration surface.",
+  "prompt": "Build a spreadsheet with a formula function that fetches an HTTP API and parses its JSON response into cells — Rows' actual core trick, treating any API as a live data source. Use Next.js/TypeScript with a spreadsheet-grid library or a simple custom grid implementation. Implement a formula function, usable in a cell, that takes a URL and an optional header set for an API key or bearer token, entered once and stored encrypted, referenced by name in the formula rather than pasted in plaintext, fetches it server-side, never from the browser, to keep credentials off the client, and maps a JSON path from the response into a target range of cells. Support standard spreadsheet formulas referencing the fetched data. Cache each fetch's result until manually refreshed, since automatic scheduled refresh is real additional infrastructure. Add clear error display in-cell when a fetch fails, such as a wrong URL, auth error, or unparseable response, rather than a blank cell. Do not build pre-built integrations with authentication already handled for specific named services, a multiplayer collaborative engine, or publishing a sheet as an interactive web app — those are out of scope; this is a generic fetch-and-parse formula against any API you point it at. Requires hosting; no specific external API required, since it works against whatever URL you give it.",
+  "faq": [
+    { "q": "Does it have pre-built connections to services like Stripe or Airtable?", "a": "No — it has one generic fetch formula that works against any API's URL, not a library of pre-authenticated, pre-built integrations to specific named services like Rows has." },
+    { "q": "Is it safe to put an API key in a formula?", "a": "Store it once as a named, encrypted credential and reference it by name in the formula, rather than pasting the raw key into a cell directly — the fetch itself runs server-side so the key never reaches the browser." },
+    { "q": "Does data refresh automatically?", "a": "No — refresh is manual in this build. Scheduled automatic refresh is real additional infrastructure this prompt doesn't include." },
+    { "q": "What does it cost to run?", "a": "Hosting only — no separate fee beyond whatever the APIs you're calling might themselves charge." }
+  ]
+}

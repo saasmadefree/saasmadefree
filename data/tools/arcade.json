@@ -1,0 +1,41 @@
+{
+  "slug": "arcade",
+  "name": "Arcade",
+  "domains": [
+    "arcade.software"
+  ],
+  "category": "screen-recording",
+  "subcategory": "screen recording, walkthroughs and product demos",
+  "pricing": {
+    "amount": 38,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://arcade.software/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "capture polish, hosting, and collaboration",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Cap",
+      "url": "https://github.com/CapSoftware/Cap"
+    }
+  ],
+  "relatedSlugs": [
+    "scribe",
+    "guidde",
+    "loom"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

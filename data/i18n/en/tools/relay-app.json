@@ -1,0 +1,19 @@
+{
+  "tagline": "A two-service automation that pauses for human approval before continuing",
+  "verdictSummary": "A workflow that pauses at a specific step and waits for a human to approve, edit, or reject before continuing — Relay.app's actual differentiator over fully automated tools — is a real weekend build once the automation itself is scoped to two connected services. What doesn't survive: Relay's library of pre-built connectors and its polished approval-request UI across mobile notifications.",
+  "coreLoopDIY": "Run a workflow between two connected services that pauses at a designated step, notifies a human reviewer, and waits for explicit approve, edit, or reject input before the next step executes.",
+  "whatYouLose": [
+    "a library of pre-built connectors for many services",
+    "polished mobile push notifications for pending approvals",
+    "team-shared workflow libraries",
+    "high-scale durable execution"
+  ],
+  "whyPeopleStillPay": "A pause-and-wait step is a state machine, buildable in a weekend; a library of pre-built connectors plus a genuinely pleasant approval experience across devices is the much larger ongoing product.",
+  "prompt": "Build a two-service automation with a human-approval step in the middle — Relay.app's actual differentiator over fully automated tools like this catalogue's Pipedream and Gumloop entries. Use TypeScript/Node.js with Postgres. Implement a fixed workflow: trigger (webhook), a data-fetch or transform step, a 'pending approval' step that pauses the run and emails a reviewer a link with the current data and approve/edit/reject actions, and a final action step, calling the second connected service's API, that only runs after approval. Store each run's state explicitly (pending, approved, rejected, completed) in Postgres so a paused run survives a server restart. The approval link should work without requiring the reviewer to log in first — a signed, single-use token is enough for a personal tool. Let the reviewer edit the data before approving, not just accept or reject it as-is. Do not build a library of pre-built connectors for many services, mobile push notifications, or team-shared libraries — those are out of scope; this automates exactly one pipeline between two named services, with one human approval point. Needs a domain for webhook and approval-link handling, a transactional email provider for approval notifications, and an OAuth app registration for whichever connected service requires it.",
+  "faq": [
+    { "q": "What happens while a run is waiting for approval?", "a": "It's genuinely paused — its state is stored in Postgres, so it survives a server restart, and picks up exactly where it left off once the reviewer responds." },
+    { "q": "Does the reviewer need an account to approve something?", "a": "No — the approval link uses a signed, single-use token, so a personal reviewer can act on it without logging in first." },
+    { "q": "Can the reviewer change the data before approving?", "a": "Yes — editing before approval is a deliberate part of the design, not just a binary accept-or-reject." },
+    { "q": "What does it cost to run?", "a": "Hosting, a domain, and a transactional email provider's free tier for approval notifications — typically a few dollars a month." }
+  ]
+}

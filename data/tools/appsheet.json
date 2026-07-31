@@ -1,0 +1,42 @@
+{
+  "slug": "appsheet",
+  "name": "AppSheet",
+  "domains": [
+    "about.appsheet.com"
+  ],
+  "category": "no-code-apps",
+  "subcategory": "internal tools and application builders",
+  "pricing": {
+    "amount": 10,
+    "currency": "USD",
+    "plan": "Core",
+    "basis": "per-seat-monthly",
+    "source": "https://about.appsheet.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "connectors, runtime reliability, and governance",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Appsmith",
+      "url": "https://github.com/appsmithorg/appsmith"
+    }
+  ],
+  "relatedSlugs": [
+    "flutterflow",
+    "retool",
+    "bubble"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}
