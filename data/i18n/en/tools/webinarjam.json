@@ -1,0 +1,32 @@
+{
+  "tagline": "Webinars built to sell something at minute forty-two.",
+  "verdictSummary": "WebinarJam is a sales instrument with a video player attached, and the video player is the part that costs money to run — every tier on its pricing page is an attendee capacity step. That is delivery infrastructure and it settles the verdict. The instrument itself is a sitting: a timeline of offers that appear and expire, a replay with a deadline, and honest measurement of what each one converted.",
+  "coreLoopDIY": "Run the offer timeline rather than the broadcast: buttons and offers that appear at set points, a replay page whose deadline is real, and per-offer conversion tracking.",
+  "whatYouLose": [
+    "live streaming and the attendee capacity that is priced tier by tier",
+    "live chat and the moderation tools around it",
+    "the hosted player and its attention analytics",
+    "the payment integrations that close the sale inside the room",
+    "reliability at the exact moment your offer goes live"
+  ],
+  "whyPeopleStillPay": "Because a webinar that buffers during the pitch costs more than the subscription, and capacity for the peak minute is exactly what the tiers are selling.",
+  "prompt": "Build a sales-offer timeline that runs beside a video. It is deliberately not a video platform.\n\nStack: your choice, Postgres, Docker Compose, a domain with TLS.\n\nOffer timeline: a session has an ordered list of timed elements, each with an offset from the session start — show a call-to-action button, reveal a price, display a testimonial, open or close a limited-quantity offer. Author them on a timeline with a scrubber.\n\nThe rule that matters: **an expiry must be real.** When an offer closes, the endpoint behind it stops accepting orders, server-side. A countdown that expires visually while the link still works is the single most common dishonest pattern in this category, and this build must make it impossible. Write the test.\n\nLimited quantity, if used, decrements against a real counter shared across all viewers, and hitting zero closes the offer for everyone. No per-visitor fake scarcity.\n\nReplay with a deadline: after the session, a replay page available for a window you set, with the same offer timeline replayed at the same offsets. When the window ends, the page returns a plain \"this replay has ended\" and the offer endpoints are closed. The deadline is stored on the session, not in a cookie, so clearing cookies does not resurrect it — and the README should say why: a deadline that only lives in the browser is a lie the visitor can catch.\n\nAttribution: every viewer arrives with a token. Record which offers they saw, at what offset they left, and which link they clicked. The report is per-offer click-through and conversion, plus watch time at the moment of each offer — which is the number that tells you whether minute forty-two is the right minute.\n\nCheckout is out of scope: the call-to-action links to whatever payment page you already have, with the viewer token appended so the conversion can be attributed.\n\nWrite tests for server-side expiry, for the shared quantity counter under concurrent orders, and for replay-window enforcement surviving a cleared cookie.\n\nDo not stream video, and do not implement fake attendee counters or per-visitor countdowns.",
+  "faq": [
+    {
+      "q": "Why is server-side expiry treated as a hard requirement?",
+      "a": "Because a visible countdown with a working link afterwards is a false statement to a customer, and in the EU and UK an artificial deadline in a sales flow is a listed unfair commercial practice. Making the server enforce it is both honest and simpler."
+    },
+    {
+      "q": "What does watch time at the offer moment tell me?",
+      "a": "Whether people are still there when you pitch. Moving an offer five minutes earlier because half the audience has left by minute forty-two is the highest-leverage change in a sales webinar, and it is invisible without this measurement."
+    },
+    {
+      "q": "Why not build checkout too?",
+      "a": "Because taking payments brings a processor, tax handling and refund obligations, and every one of those is better handled by a product built for it. Passing a token to your existing payment page keeps attribution without the liability."
+    },
+    {
+      "q": "How does WebinarJam actually price?",
+      "a": "By live attendee capacity: 100 attendees at $49 a month billed monthly, 500 at $99, 2,000 at $299, with roughly 20% off on annual billing. The tier you need is set by your biggest event, not your average one."
+    }
+  ]
+}

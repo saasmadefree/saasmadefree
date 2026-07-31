@@ -1,0 +1,32 @@
+{
+  "tagline": "Encrypted storage from a company whose whole product is not reading your files.",
+  "verdictSummary": "Encrypting files before upload is the easy part and mature open-source tools already do it well. The hard part, and the reason people pay, is everything around the key: recovering an account without a back door, changing a password without re-encrypting every file, sharing with someone who has no account, and audits that make the claim checkable. A personal build can encrypt; it usually cannot answer \"what happens when I forget the password\" with anything but \"you lose everything\".",
+  "coreLoopDIY": "Encrypt client-side with a key hierarchy that survives a password change, and write down the threat model — including exactly what recovery does and does not save.",
+  "whatYouLose": [
+    "a recovery story that works for a non-technical person",
+    "the mobile and desktop clients with transparent encryption",
+    "independent audits of the implementation",
+    "sharing with recipients who do not have an account",
+    "a jurisdiction and a legal posture chosen deliberately"
+  ],
+  "whyPeopleStillPay": "Because encryption is a promise, and a promise is worth what the audits, the recovery process and the jurisdiction behind it are worth. Those are institutional, not technical.",
+  "prompt": "Build encrypted file storage and, before the code, write the threat model. The README opens with it.\n\nThe threat model must state plainly: who this protects against (a curious or breached server operator), who it does not (a hostile server serving modified client code, malware on your own machine, anyone with your passphrase), and what happens when the passphrase is lost.\n\nStack: a client — command-line and a browser page — plus a dumb storage server. The server stores ciphertext and metadata and can decrypt nothing. Consider standing on an existing audited encryption tool rather than writing the primitives.\n\nKey hierarchy, which is the design decision everything else follows from:\n- A random 256-bit **master key** encrypts per-file keys.\n- The master key is wrapped by a key derived from your passphrase with Argon2id at parameters you document.\n- Changing the passphrase re-wraps the master key only. Files are never touched. Demonstrate this in a test: change the passphrase, prove every file still decrypts, prove no ciphertext byte changed.\n- Each file gets its own random key, wrapped by the master key. Sharing a single file means sharing that file's key, not the master.\n\nRecovery, and be honest about it: generate a recovery code at setup that wraps the master key a second way, displayed once, with a forced confirmation that the user has stored it. State in the interface, not just the docs, that losing both the passphrase and the recovery code means the files are unrecoverable — because that is the actual property, and hiding it is how people lose their data.\n\nSharing: a share produces a link with the file key in the URL fragment, so the server still learns nothing. Expiry and download limits enforced server-side on the ciphertext.\n\nMetadata: encrypt filenames and folder structure too, and say clearly what necessarily leaks anyway — file sizes, upload times, the shape of the folder tree, and access patterns.\n\nIntegrity: authenticated encryption throughout, and a verification command that checks every stored file's tag and reports corruption, since silent bit rot in ciphertext is unrecoverable.\n\nWrite tests for passphrase change not re-encrypting files, for recovery-code unwrapping, for tampered ciphertext being rejected rather than producing garbage, and for the verification command detecting a flipped bit.\n\nDo not invent primitives, and do not add a password-reset path — it would be a back door by definition.",
+  "faq": [
+    {
+      "q": "Why does the key hierarchy matter so much?",
+      "a": "Because without it, changing your passphrase means downloading, decrypting and re-uploading everything — which nobody does, so nobody changes their passphrase. Wrapping one master key makes a rotation instant and makes per-file sharing possible."
+    },
+    {
+      "q": "Why refuse a password reset?",
+      "a": "Because a reset that recovers your files means the server can decrypt them, which contradicts the entire premise. The recovery code is the honest version: a second key you hold, not a back door somebody else holds."
+    },
+    {
+      "q": "What still leaks even with everything encrypted?",
+      "a": "File sizes, the number of files, the shape of the folder tree, upload and access times, and your IP address. That metadata is often enough to infer a great deal, and any tool claiming otherwise is overselling."
+    },
+    {
+      "q": "Is Proton Drive audited?",
+      "a": "Proton publishes independent security audits of its applications, which is a large part of what distinguishes a paid encrypted service from a homemade one. Your own build has whatever assurance you can give it, which is honestly not much."
+    }
+  ]
+}

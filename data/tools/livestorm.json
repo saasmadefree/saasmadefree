@@ -1,0 +1,43 @@
+{
+  "slug": "livestorm",
+  "name": "Livestorm",
+  "domains": [
+    "livestorm.co"
+  ],
+  "category": "video-meetings",
+  "subcategory": "webinars priced per attendee",
+  "pricing": {
+    "amount": 2.5,
+    "currency": "EUR",
+    "plan": "Pro",
+    "basis": "usage-based",
+    "source": "https://livestorm.co/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "Livestorm has moved to attendee credits and no longer publishes a monthly fee: Pro is €2.50 per attendee credit, bought as a yearly pack, where one credit is one unique participant per session over 12 months. The amount recorded here is therefore per attendee, not per month — the basis code says usage-based for exactly that reason. Upstream recorded $99 a month, which no longer exists."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "live media delivery",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "BigBlueButton",
+      "url": "https://github.com/bigbluebutton/bigbluebutton"
+    }
+  ],
+  "relatedSlugs": [
+    "crowdcast",
+    "demio",
+    "webinarjam"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

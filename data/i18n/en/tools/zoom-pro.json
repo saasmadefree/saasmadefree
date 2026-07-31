@@ -1,0 +1,32 @@
+{
+  "tagline": "The default video call, everywhere, for everyone.",
+  "verdictSummary": "Zoom is a global media network with a client on top, and the client is the cheap half. No personal build reaches the reliability that made it the default, and reliability is the entire proposition. So instead of pretending, the build here answers the question the subscription raises but never asks: what do your meetings actually cost, and which recurring one should be deleted?",
+  "coreLoopDIY": "Point the tool at your own calendar and get the number nobody computes: hours in meetings per week, the cost of each recurring series in salaried hours, and the ones with no agenda and no notes.",
+  "whatYouLose": [
+    "the meetings themselves and the network behind them",
+    "recording, cloud storage and the AI companion",
+    "phone dial-in and the telephony behind it",
+    "the client that works on every device your participants own",
+    "anyone to call when a call fails"
+  ],
+  "whyPeopleStillPay": "Because the default matters: everyone has it, everyone can join, and the call does not drop. That is bought capacity and universal client support, and no self-hosted room replaces it.",
+  "prompt": "Build a meeting-cost analyser over your own calendar. It never joins a call.\n\nStack: a local command-line tool plus a static report, SQLite, no network beyond fetching a calendar feed.\n\nInput: one or more `.ics` feeds — the export or subscription URL your calendar already offers. Parse recurrence rules properly, including exceptions and cancelled instances, because a recurring series with three cancellations is exactly where naive parsers over-count.\n\nClassification, kept manual and honest: for each event you assign a type once — one-to-one, team recurring, external, interview, focus block — and the tool remembers the choice by series so you do it once per series, not once per instance.\n\nThe numbers:\n1. **Hours in meetings per week**, split by type, with a four-week trend.\n2. **Cost per recurring series**: attendee count times duration times a configurable hourly figure, per occurrence and annualised. Print the annual figure in money — a weekly one-hour meeting with eight people is a genuinely startling number and it is the point of the build.\n3. **Fragmentation**: the longest uninterrupted free block per day, which is a better measure of whether the calendar is workable than total meeting hours.\n4. **The candidates list**: recurring series with the worst cost-to-signal ratio, defined explicitly as no agenda in the description, no attached notes document, and an attendee count above a threshold. Name them and their annual cost, because a list of three specific meetings is actionable and a dashboard is not.\n\nPrivacy: this reads your colleagues' names and availability. Keep everything local, offer a redaction mode that replaces names with initials in the report, and make retention explicit.\n\nOutput: one static HTML file per week in a folder, so the archive is browsable and comparable.\n\nWrite tests for recurrence expansion with exceptions and cancellations, for cost arithmetic across a series with varying attendee counts, and for the free-block computation across all-day events.\n\nDo not integrate with a meeting platform, and do not attempt to join, record or transcribe anything.",
+  "faq": [
+    {
+      "q": "Why is calendar recurrence parsing the hard part?",
+      "a": "Because `RRULE` with exception dates, modified instances and timezone shifts is genuinely fiddly, and getting it wrong silently inflates every number in the report. Use a well-tested library and write tests against a series with cancellations."
+    },
+    {
+      "q": "Is putting a money figure on a meeting not crude?",
+      "a": "It is crude and it works. A weekly hour with eight people is several hundred hours a year, and seeing that as an annual number is what gets a standing meeting cancelled — where \"we have too many meetings\" never does."
+    },
+    {
+      "q": "Why classify by hand instead of guessing from the title?",
+      "a": "Because title heuristics are wrong often enough to discredit the whole report, and the classification is per series rather than per event, so the real cost is a few minutes once."
+    },
+    {
+      "q": "Is any of Zoom rebuildable at all?",
+      "a": "Small self-hosted rooms are, and the Whereby and Google Workspace entries cover that. What is not rebuildable is a call that works for a stranger on an unknown network in another country, which is precisely why Zoom became the default."
+    }
+  ]
+}

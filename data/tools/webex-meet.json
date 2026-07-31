@@ -1,0 +1,43 @@
+{
+  "slug": "webex-meet",
+  "name": "Webex Meet",
+  "domains": [
+    "webex.com"
+  ],
+  "category": "video-meetings",
+  "subcategory": "enterprise video meetings",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Webex Meet",
+    "basis": "annual-effective-monthly",
+    "source": "https://pricing.webex.com/us/en/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$144 per user per year, which the page also prints as $12 per user per month. The URL upstream recorded (webex.com/pricing/index.html) returns an Akamai \"Access Denied\" from here and in a browser; webex.com/pricing redirects to this pricing subdomain, which serves normally."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "global media infrastructure",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "whisper.cpp",
+      "url": "https://github.com/ggml-org/whisper.cpp"
+    }
+  ],
+  "relatedSlugs": [
+    "zoom-pro",
+    "microsoft-teams-essentials",
+    "google-workspace-business-starter"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

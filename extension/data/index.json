@@ -195,6 +195,20 @@
     "currency": "USD",
     "url": "/en/tools/avoma"
   },
+  "axiom.co": {
+    "slug": "axiom",
+    "verdict": "kinda",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/axiom"
+  },
+  "backblaze.com": {
+    "slug": "backblaze-personal-backup",
+    "verdict": "no",
+    "amount": 8.25,
+    "currency": "USD",
+    "url": "/en/tools/backblaze-personal-backup"
+  },
   "bardeen.ai": {
     "slug": "bardeen",
     "verdict": "no",
@@ -433,6 +447,13 @@
     "currency": "USD",
     "url": "/en/tools/chatwoot-cloud"
   },
+  "checklyhq.com": {
+    "slug": "checkly",
+    "verdict": "kinda",
+    "amount": 24,
+    "currency": "USD",
+    "url": "/en/tools/checkly"
+  },
   "circle.so": {
     "slug": "circle",
     "verdict": "kinda",
@@ -566,6 +587,13 @@
     "currency": "USD",
     "url": "/en/tools/crisp"
   },
+  "crowdcast.io": {
+    "slug": "crowdcast",
+    "verdict": "no",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/crowdcast"
+  },
   "crowdin.com": {
     "slug": "crowdin",
     "verdict": "kinda",
@@ -601,6 +629,13 @@
     "currency": "USD",
     "url": "/en/tools/dashlane"
   },
+  "datadoghq.com": {
+    "slug": "datadog",
+    "verdict": "no",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/datadog"
+  },
   "deepl.com": {
     "slug": "deepl-pro",
     "verdict": "no",
@@ -614,6 +649,13 @@
     "amount": 10.75,
     "currency": "USD",
     "url": "/en/tools/deleteme"
+  },
+  "demio.com": {
+    "slug": "demio",
+    "verdict": "no",
+    "amount": 45,
+    "currency": "USD",
+    "url": "/en/tools/demio"
   },
   "descript.com": {
     "slug": "descript",
@@ -670,6 +712,13 @@
     "amount": 39,
     "currency": "USD",
     "url": "/en/tools/drip"
+  },
+  "dropbox.com": {
+    "slug": "dropbox-plus",
+    "verdict": "no",
+    "amount": 9.99,
+    "currency": "EUR",
+    "url": "/en/tools/dropbox-plus"
   },
   "duda.co": {
     "slug": "duda",
@@ -930,6 +979,20 @@
     "currency": "USD",
     "url": "/en/tools/goodlinks"
   },
+  "one.google.com": {
+    "slug": "google-one",
+    "verdict": "no",
+    "amount": 9.99,
+    "currency": "EUR",
+    "url": "/en/tools/google-one"
+  },
+  "workspace.google.com": {
+    "slug": "google-workspace-business-starter",
+    "verdict": "no",
+    "amount": 6.8,
+    "currency": "EUR",
+    "url": "/en/tools/google-workspace-business-starter"
+  },
   "gorgias.com": {
     "slug": "gorgias",
     "verdict": "kinda",
@@ -1035,6 +1098,13 @@
     "currency": "USD",
     "url": "/en/tools/heygen"
   },
+  "honeycomb.io": {
+    "slug": "honeycomb",
+    "verdict": "no",
+    "amount": 150,
+    "currency": "USD",
+    "url": "/en/tools/honeycomb"
+  },
   "hootsuite.com": {
     "slug": "hootsuite",
     "verdict": "no",
@@ -1069,6 +1139,13 @@
     "amount": 19.99,
     "currency": "USD",
     "url": "/en/tools/hyperwrite"
+  },
+  "icloud.com": {
+    "slug": "icloud-plus",
+    "verdict": "no",
+    "amount": 9.99,
+    "currency": "USD",
+    "url": "/en/tools/icloud-plus"
   },
   "ideogram.ai": {
     "slug": "ideogram",
@@ -1315,6 +1392,13 @@
     "currency": "USD",
     "url": "/en/tools/livechat"
   },
+  "livestorm.co": {
+    "slug": "livestorm",
+    "verdict": "no",
+    "amount": 2.5,
+    "currency": "EUR",
+    "url": "/en/tools/livestorm"
+  },
   "livingwriter.com": {
     "slug": "livingwriter",
     "verdict": "kinda",
@@ -1328,6 +1412,13 @@
     "amount": 10,
     "currency": "EUR",
     "url": "/en/tools/lnkflow"
+  },
+  "logrocket.com": {
+    "slug": "logrocket",
+    "verdict": "no",
+    "amount": 176,
+    "currency": "USD",
+    "url": "/en/tools/logrocket"
   },
   "lokalise.com": {
     "slug": "lokalise",
@@ -1469,6 +1560,13 @@
     "currency": "USD",
     "url": "/en/tools/meetgeek"
   },
+  "mega.io": {
+    "slug": "mega-pro",
+    "verdict": "no",
+    "amount": 8.33,
+    "currency": "EUR",
+    "url": "/en/tools/mega-pro"
+  },
   "meistertask.com": {
     "slug": "meistertask",
     "verdict": "kinda",
@@ -1496,6 +1594,13 @@
     "amount": 22,
     "currency": "USD",
     "url": "/en/tools/metricool"
+  },
+  "teams.microsoft.com": {
+    "slug": "microsoft-teams-essentials",
+    "verdict": "no",
+    "amount": 4,
+    "currency": "USD",
+    "url": "/en/tools/microsoft-teams-essentials"
   },
   "midjourney.com": {
     "slug": "midjourney",
@@ -1777,6 +1882,13 @@
     "currency": "USD",
     "url": "/en/tools/payhip"
   },
+  "pcloud.com": {
+    "slug": "pcloud",
+    "verdict": "no",
+    "amount": 8.33,
+    "currency": "EUR",
+    "url": "/en/tools/pcloud"
+  },
   "pdfexpert.com": {
     "slug": "pdf-expert",
     "verdict": "kinda",
@@ -1818,6 +1930,13 @@
     "amount": 1.83,
     "currency": "USD",
     "url": "/en/tools/pinboard"
+  },
+  "pingdom.com": {
+    "slug": "pingdom",
+    "verdict": "kinda",
+    "amount": 16,
+    "currency": "EUR",
+    "url": "/en/tools/pingdom"
   },
   "pipedream.com": {
     "slug": "pipedream",
@@ -1958,6 +2077,13 @@
     "amount": 9,
     "currency": "USD",
     "url": "/en/tools/promptdc"
+  },
+  "drive.proton.me": {
+    "slug": "proton-drive-plus",
+    "verdict": "no",
+    "amount": 3.99,
+    "currency": "EUR",
+    "url": "/en/tools/proton-drive-plus"
   },
   "pass.proton.me": {
     "slug": "proton-pass-plus",
@@ -2281,6 +2407,13 @@
     "currency": "USD",
     "url": "/en/tools/sendspark"
   },
+  "sentry.io": {
+    "slug": "sentry",
+    "verdict": "kinda",
+    "amount": 26,
+    "currency": "USD",
+    "url": "/en/tools/sentry"
+  },
   "seobility.net": {
     "slug": "seobility",
     "verdict": "kinda",
@@ -2554,6 +2687,13 @@
     "currency": "USD",
     "url": "/en/tools/swell-ai"
   },
+  "sync.com": {
+    "slug": "sync-com",
+    "verdict": "no",
+    "amount": 6,
+    "currency": "USD",
+    "url": "/en/tools/sync-com"
+  },
   "synthesia.io": {
     "slug": "synthesia",
     "verdict": "no",
@@ -2693,6 +2833,13 @@
     "amount": 11,
     "currency": "USD",
     "url": "/en/tools/timely"
+  },
+  "timingapp.com": {
+    "slug": "timing",
+    "verdict": "yes",
+    "amount": 8,
+    "currency": "EUR",
+    "url": "/en/tools/timing"
   },
   "tldv.io": {
     "slug": "tldv",
@@ -2883,12 +3030,26 @@
     "currency": "USD",
     "url": "/en/tools/wabery"
   },
+  "webex.com": {
+    "slug": "webex-meet",
+    "verdict": "no",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/webex-meet"
+  },
   "webflow.com": {
     "slug": "webflow",
     "verdict": "kinda",
     "amount": 25,
     "currency": "USD",
     "url": "/en/tools/webflow"
+  },
+  "webinarjam.com": {
+    "slug": "webinarjam",
+    "verdict": "no",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/webinarjam"
   },
   "wellsaidlabs.com": {
     "slug": "wellsaid-labs",
@@ -2903,6 +3064,13 @@
     "amount": 39,
     "currency": "USD",
     "url": "/en/tools/weweb"
+  },
+  "whereby.com": {
+    "slug": "whereby",
+    "verdict": "no",
+    "amount": 10.99,
+    "currency": "USD",
+    "url": "/en/tools/whereby"
   },
   "whimsical.com": {
     "slug": "whimsical",
@@ -3022,5 +3190,19 @@
     "amount": 20,
     "currency": "USD",
     "url": "/en/tools/zoho-crm"
+  },
+  "zoom.com": {
+    "slug": "zoom-pro",
+    "verdict": "no",
+    "amount": 13.33,
+    "currency": "EUR",
+    "url": "/en/tools/zoom-pro"
+  },
+  "zoom.us": {
+    "slug": "zoom-pro",
+    "verdict": "no",
+    "amount": 13.33,
+    "currency": "EUR",
+    "url": "/en/tools/zoom-pro"
   }
 }

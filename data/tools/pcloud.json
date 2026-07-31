@@ -1,0 +1,43 @@
+{
+  "slug": "pcloud",
+  "name": "pCloud",
+  "domains": [
+    "pcloud.com"
+  ],
+  "category": "cloud-storage",
+  "subcategory": "storage with media playback",
+  "pricing": {
+    "amount": 8.33,
+    "currency": "EUR",
+    "plan": "Premium Plus 2 TB",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.pcloud.com/cloud-storage-pricing-plans.html",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Read from the EU, priced in EUR: €99.99 a year for the 2 TB tier (list €119.88), which is €8.33 a month. The page opens on the annual view and also offers a one-time lifetime purchase. Upstream recorded $9.99."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "storage and delivery economics",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Jellyfin",
+      "url": "https://github.com/jellyfin/jellyfin"
+    }
+  ],
+  "relatedSlugs": [
+    "mega-pro",
+    "google-one",
+    "backblaze-personal-backup"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

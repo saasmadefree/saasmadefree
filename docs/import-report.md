@@ -3004,3 +3004,171 @@ Site écrit dans dist/ — 2 langue(s), 650 fiche(s), 73 page(s) de catégorie, 
 $ npm run stats
 424 fiche(s) : yes 57 (13 %), kinda 253 (60 %), no 114 (27 %)
 ```
+
+
+## Batch 14 — video meetings, monitoring, cloud storage (424 → 449)
+
+Closes `time-tracking` (10), opens `video-meetings` (9), `monitoring` (7) and `cloud-storage`
+(8 of 9).
+
+### One exclusion, and two pricing URLs that were simply wrong
+
+`box-personal-pro` is excluded: `box.com/pricing` and `box.com/pricing/individual` both return
+a Cloudflare interstitial that neither curl nor a real Chrome session cleared, and unlike the
+`pipedrive` case there is no long-standing published figure corroborating the $14 "Personal
+Pro" upstream recorded. The `reply-io` precedent — unreadable *and* uncorroborated means
+excluded, unreadable but corroborated means `confidence: low` with the block written into the
+notes.
+
+Two upstream `pricing.source` URLs turned out to point at something other than a pricing page:
+
+- **`whereby`** — `whereby.com/pricing` is **not a pricing page**. Whereby turns any
+  unrecognised path into a meeting room, so that URL opens a room called "pricing", complete
+  with a name prompt. The real page is `whereby.com/information/meetings/pricing`, and the
+  entry cites that. This is worth flagging as a class: a 200 response is not evidence that a
+  citation is correct.
+- **`webex-meet`** — `webex.com/pricing/index.html` returns an Akamai "Access Denied" both to
+  a script and to a browser; `webex.com/pricing` redirects to the `pricing.webex.com`
+  subdomain, which serves normally. Citation moved there.
+- **`harvest`** (batch 13) was the same shape: `harvestapp.com/pricing` now 404s.
+
+### Prices — 19 of 25 were wrong
+
+| Slug | Upstream | Corrected |
+|---|---|---|
+| `timing` | $11 Professional | **€8**, annual-effective (geo EUR, €10 monthly) |
+| `demio` | $59 Starter | **$45**, annual-effective ($63 monthly) |
+| `livestorm` | $99 Pro, flat-monthly | **€2.50 per attendee**, usage-based — see below |
+| `microsoft-teams-essentials` | $4, per-seat-monthly | $4, **annual-effective** |
+| `webex-meet` | $14.50 Meet | **$12** ($144 a year) |
+| `webinarjam` | $49 "Basic" | $49 **"Starter"** — $49 is the 100-attendee tier, not the 500 |
+| `whereby` | $8.99 Pro | **$10.99** Pro |
+| `zoom-pro` | $15.99 Pro | **€13.33**, annual-effective (geo EUR) |
+| `google-workspace-business-starter` | $7 | **€6.80** (geo EUR) |
+| `axiom` | $25 "Personal" | $25 **"Axiom Cloud"** — Personal is now the free tier |
+| `checkly` | $39 Starter | **$24** |
+| `honeycomb` | $130 Pro | **$150** Pro |
+| `logrocket` | $69 "Team" | **$176 "Core"**, usage-based (slider default) |
+| `pingdom` | $15 | **€16** (geo EUR) |
+| `sentry` | $29 Team | **$26** Team |
+| `backblaze-personal-backup` | $9 | **$8.25** ($99 a year per computer) |
+| `dropbox-plus` | $11.99 Plus | **€9.99** (geo EUR) |
+| `google-one` | $9.99 "Premium 2 TB" | €9.99 **"Google AI Plus (2 TB)"** — tier renamed |
+| `mega-pro` | $10.99 Pro I | **€8.33**, annual-effective (geo EUR) |
+| `pcloud` | $9.99 | **€8.33** (€99.99 a year) |
+| `proton-drive-plus` | $4.99 | **€3.99**, annual-effective |
+| `sync-com` | $8 Solo Basic | **$6**, annual-effective — but see below |
+| `crowdcast`, `datadog`, `icloud-plus` | — | confirmed correct |
+
+**`livestorm` is a judgement call worth stating.** It has moved off monthly pricing entirely:
+Pro is €2.50 per attendee credit, bought as a yearly pack, with no monthly fee published
+anywhere on the page. That is a citable price but it is not a monthly one. Rather than exclude
+a live product for changing its pricing model, the entry records `amount: 2.50` with
+`basis: usage-based` and a `pricing.notes` that says in the first sentence that the figure is
+per attendee rather than per month. Flagged here because a reader skimming the card will see
+"€2.50" and could reasonably misread it.
+
+`sync-com` and `logrocket` carry `confidence: medium`: Sync's figures are printed against
+struck-through list prices, so they are promotional and may not persist, and LogRocket's is
+the default position of a session-volume slider on a page that says the final price depends on
+seats, retention and add-ons. `dropbox-plus`, `pingdom` and `meistertask`-style
+billing-period ambiguity is handled the same way as batch 13.
+
+### Verdicts
+
+1 `yes` / 3 `kinda` / 21 `no`. This batch is `no`-heavy because of what is in it, not because
+of a quota: nine video-conferencing products and eight cloud-storage products are the two
+clearest infrastructure categories in the whole catalogue.
+
+- **All nine `video-meetings` entries stay `no`.** Multi-party real-time video needs media
+  servers and relays near every participant, and the pricing pages say so themselves —
+  Crowdcast bills per live attendee, Livestorm per attendee credit, WebinarJam prices every
+  tier as an attendee capacity step. That is infrastructure, which is the CONTRIBUTING
+  definition of `no`.
+- **All eight `cloud-storage` entries stay `no`**, for the same structural reason: durability
+  and egress are priced by the datacentre. `backblaze-personal-backup` is the clearest case —
+  you cannot rebuild "unlimited".
+- **`pingdom` moved `no` → `kinda`.** Uptime checking has the most mature open-source
+  equivalent in this whole batch, and the DIY version is a weekend. What remains — checks from
+  many countries, and SMS delivery — needs rented hosts and a messaging provider, both
+  available to anyone, so neither is a hard dependency. The prompt makes the one genuinely
+  non-negotiable point the deployment rule rather than a feature: run the monitor somewhere
+  that is not the thing it monitors.
+- `axiom`, `checkly` and `sentry` stay `kinda`, `datadog`, `honeycomb` and `logrocket` stay
+  `no`. `logrocket` staying `no` is consistent with `mouseflow` and `lucky-orange`, already in
+  the catalogue at `no` for the same session-replay reasons.
+- `timing` stays `yes` at `verdictConfidence: medium` — local capture, no key, no service, but
+  a homemade recorder sees less than the native one does.
+
+### Editorial
+
+Upstream shipped one template per category again: all nine video entries carried the same
+`moatType`, `subcategory` and Jitsi prior art, all seven monitoring entries carried Uptime
+Kuma regardless of whether the product is a log store or a session recorder, and all eight
+storage entries carried Nextcloud and `requirements: ["none"]`.
+
+Every `no` entry needed a *different* consolation build, which is where the work went:
+
+*Video (9):* the registration and reminder funnel with `.ics` that survives three calendar
+clients (`crowdcast`) — an automated-webinar player whose "Replay" badge cannot be turned off
+in configuration (`demio`) — permanent room links over a self-hosted conferencing server, with
+TURN named as mandatory (`google-workspace-business-starter`) — an engagement layer of upvoted
+questions, timed polls and presence-derived attendance certificates (`livestorm`) — team chat
+where every message belongs to a named topic (`microsoft-teams-essentials`) — a local
+record-transcribe-extract pipeline where every extracted item carries its timestamp
+(`webex-meet`) — a sales-offer timeline whose expiry is enforced server-side, with fake
+scarcity refused (`webinarjam`) — room access rules enforced when the join token is minted
+(`whereby`) — a meeting-cost analyser over your own calendar that prints the annual cost of
+each recurring series (`zoom-pro`).
+
+*Monitoring (7):* a cost ceiling that drops and counts rather than bills (`axiom`) — checks as
+code, run in CI and as a deploy gate (`checkly`) — one host, one screen, and disk alerts on
+projected time-to-full rather than a percentage (`datadog`) — wide events with a BubbleUp-style
+"what is different about the slow ones", plus a published benchmark of where it stops scaling
+(`honeycomb`) — breadcrumbs instead of video, with masking on by default and tested
+(`logrocket`) — a monitor that must not share fate with what it watches (`pingdom`) — a
+readable, overridable fingerprint and regression detection across releases (`sentry`).
+
+*Storage (8):* a scheduled restore drill that scores itself (`backblaze-personal-backup`) —
+version vectors and keep-both conflicts, with the five filesystem edge cases that lose data
+listed and tested (`dropbox-plus`) — the space report a quota bar never gives you, including
+perceptual-hash near-duplicates (`google-one`) — CalDAV, CardDAV and WebDAV so the iPhone's own
+apps sync against your server (`icloud-plus`) — browser-side encryption with the key in the URL
+fragment, and an honest statement of what that does not protect against (`mega-pro`) — direct
+play first, transcode last, with the egress bill shown (`pcloud`) — a key hierarchy where a
+passphrase change re-wraps one key and touches no ciphertext, plus a threat model at the top of
+the README (`proton-drive-plus`) — a hash-chained, append-only access log you would hand to a
+client (`sync-com`).
+
+`priorArt` corrected per entry rather than carried: Owncast for the three streaming-shaped
+webinar tools, BigBlueButton for Livestorm, LiveKit for Whereby, Jitsi for Google Workspace,
+Zulip for Teams, whisper.cpp for Webex; Quickwit, Uptime Kuma, Prometheus, ClickHouse, rrweb
+and GlitchTip across monitoring; restic, Syncthing, Nextcloud, Send, Jellyfin and Cryptomator
+across storage. `zoom-pro` ships with no `priorArt` — its consolation build is a calendar
+analyser and there is nothing honest to point at.
+
+`requirements[]` was rebuilt: `["none"]` on all eight storage entries was wrong in every case
+(each prompt runs a server), `hosting`+`domain` on all nine video entries was wrong for the
+four whose prompts run locally, and `anthropic-api-key` was added to `webex-meet` for the
+extraction step.
+
+### Verification
+
+```
+$ npm run validate
+449 fiche(s), 675 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  175 passed (175)
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run build
+Site écrit dans dist/ — 2 langue(s), 675 fiche(s), 76 page(s) de catégorie, 757 URL(s).
+
+$ npm run stats
+449 fiche(s) : yes 58 (13 %), kinda 257 (57 %), no 134 (30 %)
+```

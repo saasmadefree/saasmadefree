@@ -1,0 +1,42 @@
+{
+  "slug": "backblaze-personal-backup",
+  "name": "Backblaze Personal Backup",
+  "domains": [
+    "backblaze.com"
+  ],
+  "category": "cloud-storage",
+  "subcategory": "unlimited computer backup",
+  "pricing": {
+    "amount": 8.25,
+    "currency": "USD",
+    "plan": "Computer Backup",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.backblaze.com/cloud-backup/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$99 per computer per year, which is $8.25 a month. Priced per computer, not per person or per terabyte, and the storage is unlimited for the machine's own drives."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "unlimited storage economics",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "restic",
+      "url": "https://github.com/restic/restic"
+    }
+  ],
+  "relatedSlugs": [
+    "pcloud",
+    "sync-com",
+    "dropbox-plus"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Cisco's meeting platform, with an AI assistant included.",
+  "verdictSummary": "Video calls that work reliably for two hundred people in a dozen countries are a network, not an application: media nodes near every participant, capacity for the worst minute of the day, and a support contract when a board meeting drops. That is unambiguously a no. What is worth taking away is the part that outlives the call — a recording turned into a transcript and a list of decisions — and that runs perfectly well on your own laptop after the meeting has ended.",
+  "coreLoopDIY": "Own what the meeting leaves behind: record locally, transcribe on your own machine, and produce a dated note with decisions and actions that is searchable across every meeting you have had.",
+  "whatYouLose": [
+    "the meeting itself and the network that carries it",
+    "live transcription and captions during the call",
+    "speaker identification from the platform's own audio channels",
+    "the assistant answering questions inside the meeting",
+    "phone dial-in and the telephony behind it"
+  ],
+  "whyPeopleStillPay": "Because a meeting platform is judged on its worst call, and buying capacity in every region is the only way to control that. The AI assistant is a feature; the network is the product.",
+  "prompt": "Build a post-meeting pipeline. Nothing here happens during the call.\n\nStack: a local command-line tool plus a small local web interface, SQLite, and an Anthropic or OpenAI key in the environment. Transcription runs locally with whisper.cpp; only the transcript text is ever sent to a model, and the README must say so plainly.\n\nInput: an audio or video file from whatever recorder you used, plus optional metadata — title, date, attendee names.\n\nPipeline:\n1. Extract audio and normalise loudness before transcription. Quiet participants are the main cause of bad transcripts and this step fixes more of it than a better model does.\n2. Transcribe locally with word-level timestamps.\n3. Diarise into speakers if you can, and be honest when you cannot: unlabelled speakers must appear as \"Speaker 1\" rather than being guessed at. Offer a one-pass labelling screen where you hear a sample of each speaker and type a name once.\n4. Send the transcript to a model with a prompt returning a strict shape: a summary, decisions made, action items with an owner and a due date where one was spoken, and open questions. Every item must carry the timestamp of the passage it came from.\n5. Render a dated Markdown note with the summary at the top, the action items as a checklist, and the full transcript below a divider with timestamps as anchors so a claim can be checked in one click.\n\nThe archive is what makes it worth building: full-text search across every note and transcript, filterable by attendee and date, with results linking to the timestamp. Add an \"open actions\" view across all meetings, showing owner and age, because actions extracted and then never revisited are theatre.\n\nCost control: a token budget per meeting that chunks long transcripts and summarises the chunks rather than truncating them silently.\n\nWrite tests for chunking preserving timestamps across a boundary, for the strict output shape being rejected and retried when the model deviates, and for search finding a phrase spanning two transcript segments.\n\nDo not build a meeting client, live captions, or a calendar bot that joins calls.",
+  "faq": [
+    {
+      "q": "Why does loudness normalisation matter more than the model?",
+      "a": "Because most transcript errors come from one participant being far from the microphone, and no model recovers information that was not captured. Normalising first is a one-line ffmpeg step that improves accuracy more than any parameter change."
+    },
+    {
+      "q": "Why insist on timestamps for every extracted item?",
+      "a": "Because the value of an extracted decision is that it can be checked. \"We agreed to ship on the 14th\" with a link to the moment it was said settles an argument; the same sentence without a link starts one."
+    },
+    {
+      "q": "Is speaker labelling worth the effort?",
+      "a": "It is the difference between a transcript and a record of who committed to what. Automatic diarisation gets you the segmentation; one pass of typing names in gets you the rest, and pretending to know without asking is the failure worth avoiding."
+    },
+    {
+      "q": "Can I get recordings and transcripts out of Webex?",
+      "a": "Recordings download individually or through the admin API, and transcripts come with them where the assistant produced one. Do it before the licence lapses — cloud recordings are tied to the subscription and disappear with it."
+    }
+  ]
+}

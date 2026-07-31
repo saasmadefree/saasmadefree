@@ -1,0 +1,42 @@
+{
+  "slug": "timing",
+  "name": "Timing",
+  "domains": [
+    "timingapp.com"
+  ],
+  "category": "time-tracking",
+  "subcategory": "automatic tracking on the Mac",
+  "pricing": {
+    "amount": 8,
+    "currency": "EUR",
+    "plan": "Professional",
+    "basis": "annual-effective-monthly",
+    "source": "https://timingapp.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The page opens on the annual view: €8 per month billed annually, €10 month-to-month, one Mac per person. Geo-priced in EUR when read from the EU. Upstream recorded $11."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "native capture depth on macOS",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "ActivityWatch",
+      "url": "https://github.com/ActivityWatch/activitywatch"
+    }
+  ],
+  "relatedSlugs": [
+    "memtime",
+    "rize",
+    "rescuetime"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

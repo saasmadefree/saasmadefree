@@ -1,0 +1,44 @@
+{
+  "slug": "icloud-plus",
+  "name": "iCloud Plus",
+  "domains": [
+    "icloud.com"
+  ],
+  "category": "cloud-storage",
+  "subcategory": "device-integrated storage",
+  "pricing": {
+    "amount": 9.99,
+    "currency": "USD",
+    "plan": "2 TB",
+    "basis": "flat-monthly",
+    "source": "https://www.apple.com/icloud/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$9.99 a month for 2 TB, alongside 50 GB at $0.99 and 200 GB at $2.99, with 6 TB and 12 TB tiers above. Shareable with a Family Sharing group at no extra cost."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "operating-system integration",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Nextcloud",
+      "url": "https://github.com/nextcloud/server"
+    }
+  ],
+  "relatedSlugs": [
+    "google-one",
+    "proton-drive-plus",
+    "dropbox-plus"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "honeycomb",
+  "name": "Honeycomb",
+  "domains": [
+    "honeycomb.io"
+  ],
+  "category": "monitoring",
+  "subcategory": "high-cardinality event analysis",
+  "pricing": {
+    "amount": 150,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "usage-based",
+    "source": "https://www.honeycomb.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Pro starts at $150 a month for 50 million events and 250 million metric data points, scaling to 750 million events. The free tier covers 20 million events. Upstream recorded $130."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "query engine at high cardinality",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "ClickHouse",
+      "url": "https://github.com/ClickHouse/ClickHouse"
+    }
+  ],
+  "relatedSlugs": [
+    "axiom",
+    "datadog",
+    "sentry"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

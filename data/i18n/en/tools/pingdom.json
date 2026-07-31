@@ -1,0 +1,32 @@
+{
+  "tagline": "Is the site up, and does someone find out at three in the morning?",
+  "verdictSummary": "Uptime checking is the most self-hosted thing in this whole category — a mature open-source equivalent has existed for years and a weekend gets you a good one. So this is a kinda, not a no. But the two things you must not fake are worth naming: the checker has to live somewhere that is not your infrastructure, or it dies with the thing it watches, and the alert has to arrive on a channel that works when the internet does not, which means an SMS provider and a real phone.",
+  "coreLoopDIY": "Check from a host that is deliberately not yours, alert on a channel that works when your infrastructure does not, and publish a status page that stays up when the site does not.",
+  "whatYouLose": [
+    "checks from many countries at once, and the regional failures only they see",
+    "SMS and voice alerting included rather than assembled from a provider",
+    "real user monitoring on the same dashboard",
+    "transaction checks recorded without writing code",
+    "somebody else guaranteeing the alert was delivered"
+  ],
+  "whyPeopleStillPay": "Because the whole product is a phone ringing at 3am, and the value is entirely in that ring being reliable and independent of everything you run.",
+  "prompt": "Build uptime monitoring whose first design rule is that it must not share fate with what it watches.\n\nStack: your choice, SQLite is enough, Docker Compose. The README must open with the deployment rule: run this on a different provider, in a different region, from the infrastructure it monitors, and say why.\n\nChecks: HTTP with an expected status and optional body match, TCP port, DNS record resolving to an expected value, TLS certificate expiry in days, and a heartbeat endpoint for cron jobs that alerts when a job does not check in on time.\n\nRun each on its interval, store every result with the response time, and require N consecutive failures before an incident opens — configurable per check, defaulting to two, because one failure is usually the network.\n\nIncidents: open on the failure threshold, close on recovery, storing start, end and every result in between. Compute uptime percentage from incidents rather than from the raw sample count, which is what makes a monthly figure defensible.\n\nAlerting, with an escalation policy: first notification to a webhook, and after M minutes still failing, escalate to SMS through a provider whose credentials you supply. Send a recovery notification always. Deduplicate so one incident sends one alert per channel per escalation step, and log every delivery attempt with the provider's response — an alert you believe was sent and was not is the worst possible failure of this tool.\n\nSelf-check: the monitor pings its own heartbeat to an external free service, so the thing watching everything is itself watched. Say in the README that this is not optional.\n\nStatus page: static output regenerated after each check, published to hosting separate from both the monitor and the monitored site. Show 90 days of daily status, current state, and open incidents with a timeline.\n\nMaintenance windows suppress alerts but still record results, marked as such, so the uptime figure can be computed either way.\n\nWrite tests for the consecutive-failure threshold, for uptime computed across an incident spanning midnight, for alert deduplication, and for maintenance windows suppressing notification but not recording.\n\nDo not build real user monitoring or a browser-recorded transaction editor.",
+  "faq": [
+    {
+      "q": "Why is where you run it the first design rule?",
+      "a": "Because a monitor on the same server as the site reports the site as up until they both go down together, silently. It is the mistake that makes self-hosted uptime monitoring worthless, and it is entirely a deployment decision."
+    },
+    {
+      "q": "Do I really need SMS?",
+      "a": "If the point is being woken up, yes. Push notifications depend on an app, a phone with signal and data, and a service you do not control; SMS degrades better. It costs a few cents a message through any provider and it is the part the paid tools bundle."
+    },
+    {
+      "q": "What does one location actually miss?",
+      "a": "Regional network problems, CDN misconfiguration and DNS issues that affect some countries and not others — a real class of outage where your single check says everything is fine. Renting two cheap hosts in different regions narrows it considerably."
+    },
+    {
+      "q": "Why compute uptime from incidents rather than samples?",
+      "a": "Because sample-based percentages change meaning when you change the check interval, and they cannot express a partial-minute outage. Incidents with a start and an end give a figure you can defend in a service-level conversation."
+    }
+  ]
+}

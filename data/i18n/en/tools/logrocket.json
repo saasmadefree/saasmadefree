@@ -1,0 +1,32 @@
+{
+  "tagline": "Watch what the user did before the error, then read the console.",
+  "verdictSummary": "This lands in the same place as the session-replay entries already in the catalogue: the recorder is open source, and everything expensive is downstream of it — the storage, the reliable capture across every browser, and the pipeline that keeps working while your site is failing. A personal build gets the far cheaper and often more useful half: a breadcrumb trail of console, network and interaction leading up to an error, with no video at all.",
+  "coreLoopDIY": "Capture the last sixty seconds before an error as structured breadcrumbs — clicks, navigations, network calls, console output — and attach them to the report, with masking on by default.",
+  "whatYouLose": [
+    "visual replay of the session",
+    "the storage and delivery pipeline behind it",
+    "reliable capture across every browser and framework quirk",
+    "product analytics, funnels and heatmaps on the same data",
+    "the AI summaries built on a large corpus of sessions"
+  ],
+  "whyPeopleStillPay": "Because watching the user hit the button twice explains a bug that no stack trace does, and because storing and serving that video for every session is a real cost with real reliability requirements.",
+  "prompt": "Build an error reporter with breadcrumbs instead of video. Deliberately no replay.\n\nStack: a small browser SDK plus a server with Postgres, Docker Compose, a domain with TLS.\n\nThe SDK keeps a rolling buffer of the last N breadcrumbs, default sixty seconds, entirely in memory and never sent unless an error occurs. A breadcrumb is one of: click with a CSS selector path and the element's accessible name, navigation, network request with method, URL path, status and duration, console output, or a custom event.\n\nMasking is on by default and off only by explicit opt-in per field, and this is the part that must be right:\n- Never record input values. Record that an input was focused and its field name, never its content.\n- Strip query strings and request bodies unless a field is explicitly allowlisted.\n- Redact anything matching common secret patterns in console output.\n- Never record from an element marked with a `data-private` attribute or inside a password field.\nWrite tests for each of these, because a breadcrumb recorder that leaks a card number is a worse incident than the bug it was capturing.\n\nOn an uncaught error or unhandled rejection: send the stack, the breadcrumb buffer, the release version, the URL, the browser and viewport, and nothing else. Batch and retry with backoff, and drop rather than queue unboundedly if offline.\n\nServer: group errors by a fingerprint computed from the normalised stack — strip line numbers of minified frames, collapse framework frames — so one bug is one issue. Show the breadcrumb trail as a timeline beside the stack, with the time gap between steps, since a four-second gap before a double click tells its own story.\n\nSource maps: upload per release, apply on ingest rather than at display time, and refuse to serve maps publicly.\n\nRetention: a fixed window with real deletion, and a per-project daily event cap that drops with a counter.\n\nWrite tests for masking, for fingerprint stability across releases with different line numbers, and for the buffer never exceeding its cap.\n\nDo not record the DOM, do not build replay, and do not add product analytics.",
+  "faq": [
+    {
+      "q": "Are breadcrumbs really enough without video?",
+      "a": "For most bugs, yes, and they are smaller, cheaper and far less risky to store. \"Clicked Submit, then clicked Submit again 400 milliseconds later, POST returned 500\" is the same information as the video, in a hundred bytes."
+    },
+    {
+      "q": "Why is masking the hardest part?",
+      "a": "Because the default of any recorder is to capture everything, and the interesting pages are the ones with personal data on them. Masking that is opt-out rather than opt-in eventually records a payment form, and no amount of retention policy fixes that."
+    },
+    {
+      "q": "Why apply source maps on ingest?",
+      "a": "So the maps never need to be publicly reachable. A publicly served source map hands your original source to anyone who asks, and it is a surprisingly common leak."
+    },
+    {
+      "q": "What does LogRocket cost in practice?",
+      "a": "It scales with sessions captured — its own page shows $176 a month at the default slider position and says the final figure depends on seats, retention and add-ons. Conditional recording, capturing roughly a quarter of sessions, is how teams keep that in range."
+    }
+  ]
+}

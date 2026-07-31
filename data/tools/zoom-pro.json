@@ -1,0 +1,37 @@
+{
+  "slug": "zoom-pro",
+  "name": "Zoom Workplace Pro",
+  "domains": [
+    "zoom.com",
+    "zoom.us"
+  ],
+  "category": "video-meetings",
+  "subcategory": "video meetings",
+  "pricing": {
+    "amount": 13.33,
+    "currency": "EUR",
+    "plan": "Pro",
+    "basis": "annual-effective-monthly",
+    "source": "https://zoom.us/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Read from the EU, where the page prices in EUR: €13.33 per user per month billed annually, excluding VAT, with a 15% first-year promotion running at the time of checking. Upstream recorded $15.99."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "global media infrastructure",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "relatedSlugs": [
+    "webex-meet",
+    "whereby",
+    "microsoft-teams-essentials"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

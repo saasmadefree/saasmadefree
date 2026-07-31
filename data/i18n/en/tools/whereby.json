@@ -1,0 +1,32 @@
+{
+  "tagline": "A meeting room at a URL you keep, with nothing to install.",
+  "verdictSummary": "Whereby's product is that the link always works: no download, no account for guests, no \"can you hear me\". Delivering that reliably means media servers and relays near your participants, which is infrastructure rather than code, so the verdict is no. The piece worth building is the front door — a permanent, memorable room URL with access rules a stranger cannot talk their way past — which is a sitting on top of conferencing software you run.",
+  "coreLoopDIY": "Own the room link and its rules: a permanent URL, a lobby, and knock-to-enter, with everything enforced on the server rather than in the interface.",
+  "whatYouLose": [
+    "the media infrastructure that makes a call hold up",
+    "the mobile apps and browser tuning across every device",
+    "recording with storage that scales",
+    "custom subdomains and branded rooms",
+    "somebody to call when a client cannot join"
+  ],
+  "whyPeopleStillPay": "Because \"the link just works, for anyone, on any device\" is a promise you can only keep with servers in enough places, and eleven dollars a month is a small price for never troubleshooting a guest's browser.",
+  "prompt": "Build the front door for meeting rooms you host: permanent URLs and access rules that actually hold.\n\nStack: a self-hosted conferencing server (LiveKit or Jitsi as the reference, with a TURN server, which is mandatory rather than optional), plus a small application on your own domain that owns rooms, tokens and access.\n\nRooms: permanent, named, at yourdomain.tld/room-name. Names are chosen but validated — reject anything short, sequential or guessable, and reserve a list of obvious words. An open room at a predictable URL is how strangers end up in your call.\n\nAccess modes per room, enforced when the join token is minted on the server, never in the client:\n- **Open**: anyone with the link joins.\n- **Lobby**: participants wait until an owner admits them, seeing a page that says so.\n- **Knock**: like lobby, but the owner gets a notification with the knocker's stated name and can admit or refuse, with refusals remembered for that session.\n- **Members only**: a signed-in allowlist.\nThe join token is short-lived, single-use and bound to the room. Write the test that a token for room A cannot join room B, and that an expired token is refused.\n\nRoom page before joining: a device check that confirms camera, microphone and network before the participant is in front of anyone, showing a simple pass or fail with what to do about a failure. This is a small feature that removes most of the awkwardness at the start of a call.\n\nOwner controls: lock the room, mute a participant, remove a participant with a block for that session, and end the meeting for everyone. All server-enforced.\n\nOperations: a health endpoint that verifies the TURN server actually relays media rather than merely responding, an alert when it fails, and a README section stating the measured participant limit for your hardware and the bandwidth per participant.\n\nWrite tests for token scoping and expiry, for lobby admission being server-side, and for the room-name validator rejecting sequential and short names.\n\nDo not build recording, mobile apps, or a scheduling system.",
+  "faq": [
+    {
+      "q": "Why enforce access when the token is minted rather than in the UI?",
+      "a": "Because anything enforced in the client is a suggestion. The server decides whether to issue a join token, and that single choice makes lobby and knock real rather than decorative."
+    },
+    {
+      "q": "Is a pre-join device check worth building?",
+      "a": "It is one of the highest-value small features in conferencing. Catching a muted microphone before the participant is on camera in front of five people removes the most common two minutes of every call."
+    },
+    {
+      "q": "How many people can a self-hosted room hold?",
+      "a": "It depends on your uplink and CPU, which is why the prompt asks you to measure and publish the number. Small team calls are comfortable on modest hardware; the hundred-attendee promise on a paid plan is bought capacity, not clever code."
+    },
+    {
+      "q": "Why does the price citation point at a different URL?",
+      "a": "Because whereby.com/pricing is not a pricing page — Whereby turns any unrecognised path into a meeting room, so that URL opens a room called \"pricing\". The real page is under /information/meetings/pricing, which is what this entry cites."
+    }
+  ]
+}

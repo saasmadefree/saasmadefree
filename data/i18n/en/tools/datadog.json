@@ -1,0 +1,32 @@
+{
+  "tagline": "Every metric from every host, correlated, with a bill to match.",
+  "verdictSummary": "Datadog's value is coverage: hundreds of maintained integrations, correlation across metrics, traces, logs and security, and a company keeping all of it working as your stack changes. That is a maintenance operation, not a codebase, and no personal build substitutes for it. The consolation is smaller and genuinely useful — one host, a handful of metrics that matter, and alert rules you can read in a file.",
+  "coreLoopDIY": "Monitor one machine properly instead of a fleet badly: a handful of metrics, a dashboard that fits on one screen, and alert rules stored as readable files.",
+  "whatYouLose": [
+    "hundreds of maintained integrations that work on the day you add a service",
+    "correlation across metrics, traces, logs and security in one place",
+    "the agent fleet and its automatic service discovery",
+    "anomaly detection tuned on other people's data",
+    "retention and query performance at fleet scale"
+  ],
+  "whyPeopleStillPay": "Because the integrations are the product, and every one you would have to write yourself is a week you did not plan for. The per-host price is small; the breadth is what you are buying.",
+  "prompt": "Build single-host monitoring that fits on one screen and alerts on things that matter.\n\nStack: a metrics collector on the host, a time-series store, and a small dashboard. Prefer standing on existing exporters rather than writing collection from scratch — say in the README what you chose.\n\nCollect, deliberately few: CPU by mode, memory used and available, disk used and inodes per filesystem, disk I/O wait, network in and out, load average, and process count. Then one application metric of your choosing, exposed by your own service, to prove the path works end to end.\n\nThe dashboard is one screen, no scrolling, no tabs, showing 24 hours by default with a control for 7 and 30 days. Every chart carries a plain-language sentence under it saying what a bad value looks like — \"disk I/O wait above 20% sustained usually means the disk is the bottleneck\". That sentence is what makes the dashboard usable by someone who did not build it.\n\nAlerts as files: one YAML file per rule with a metric expression, a threshold, a duration the condition must hold, and a message that says what to do rather than what happened. \"Disk on / will be full in about 4 hours at the current rate; delete old backups in /var/backups\" beats \"disk usage 91%\". Rules live in version control.\n\nPredictive disk alerting specifically: fit a simple linear trend over the last 24 hours and alert on projected time-to-full rather than on a percentage. It is a dozen lines and it is the alert that actually saves you.\n\nRetention: full resolution for a week, five-minute averages for a month, hourly for a year, with the downsampling job idempotent.\n\nDelivery: webhook plus email. An alert must repeat at a configured interval while firing and send a recovery message when it clears.\n\nWrite tests for the downsampling job being idempotent, for the duration condition not firing on a single spike, and for the disk projection with a flat and a rising series.\n\nDo not build agent auto-discovery, tracing, or log ingestion.",
+  "faq": [
+    {
+      "q": "Why alert on projected time-to-full instead of a percentage?",
+      "a": "Because 91% full is fine on a disk that grows a megabyte a day and an emergency on one filling at a gigabyte an hour. The projection is a linear fit over recent history and it converts a number nobody can act on into a deadline."
+    },
+    {
+      "q": "Why write what to do in the alert message?",
+      "a": "Because alerts are read at three in the morning by someone who did not write them. An alert that names the remedy is resolved in minutes; one that names the symptom starts an investigation."
+    },
+    {
+      "q": "Is one-host monitoring worth anything?",
+      "a": "For a personal server or a small application, it covers most of what actually goes wrong: disk, memory and a stuck process. It stops being enough the moment you have services talking to each other, which is where the paid tools begin to earn their price."
+    },
+    {
+      "q": "How does a Datadog bill actually add up?",
+      "a": "The per-host infrastructure line is the smallest part. APM, logs by ingested gigabyte, log retention, RUM, synthetics and security each bill separately, and the allowances per host are modest. Model the whole set before comparing it with anything."
+    }
+  ]
+}

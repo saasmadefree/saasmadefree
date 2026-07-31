@@ -1,0 +1,43 @@
+{
+  "slug": "axiom",
+  "name": "Axiom",
+  "domains": [
+    "axiom.co"
+  ],
+  "category": "monitoring",
+  "subcategory": "log and event storage",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Axiom Cloud",
+    "basis": "usage-based",
+    "source": "https://axiom.co/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$25 a month platform fee plus usage above the included allowance (1 TB loaded, 100 GB-hours queried, 100 GB stored). The \"Personal\" tier upstream recorded is now the free tier at $0; $25 buys Axiom Cloud. Enterprise features are self-serve add-ons at $50 to $100 each."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "query performance at volume",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Quickwit",
+      "url": "https://github.com/quickwit-oss/quickwit"
+    }
+  ],
+  "relatedSlugs": [
+    "honeycomb",
+    "datadog",
+    "sentry"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Chat, calls and meetings for a small business at four dollars a head.",
+  "verdictSummary": "At four dollars a user this is priced to be cheaper than thinking about it, and it bundles chat, storage, and meetings that hold up. The meeting half is media infrastructure and the identity half is a directory other software expects to find — neither is a personal build. The chat half genuinely is, and it is worth building well, because the thing most small teams actually need from Teams is a conversation they can find again six months later.",
+  "coreLoopDIY": "Run team chat you can actually search: topic-threaded conversations rather than a scrolling river, with a retention policy you set and a full-text search that finds the decision six months later.",
+  "whatYouLose": [
+    "meetings, calls and screen sharing",
+    "the identity directory that other business software expects",
+    "the mobile and desktop apps with reliable notifications",
+    "file storage and co-authoring in Office documents",
+    "guest access for people outside your organisation"
+  ],
+  "whyPeopleStillPay": "Because four dollars buys chat, meetings and storage that a small business would otherwise assemble from three vendors, and because it is already installed on everyone's laptop.",
+  "prompt": "Build team chat organised by topic, not by time.\n\nStack: your choice with websockets, Postgres, Docker Compose, a domain with TLS.\n\nThe structural decision: a message belongs to a **topic** inside a channel, and a topic is created by whoever starts the conversation, with a name. Reading a channel means reading a list of topics with unread counts, not scrolling a merged river of messages. This is the one design choice that makes chat searchable a year later, and it should be enforced — there is no way to post to a channel without naming a topic, though picking an existing one is one keystroke.\n\nMessages: Markdown, edit and delete with an edit marker, reactions, @mentions writing to a notifications table, and file attachments to local disk with a content-hash filename and a type allowlist.\n\nSearch has to be genuinely good or the design is pointless: full-text over message bodies with Postgres, filterable by channel, topic, sender and date range, with the matching term highlighted and three messages of surrounding context. Search must include topic names, since a well-named topic is often the whole answer.\n\nRetention: a per-channel policy in days, defaulting to unlimited but easy to set, deleting messages and their attachments from disk. Show the policy in the channel header so nobody is surprised. A channel marked as a decision log can be exempted explicitly.\n\nRead state per user per topic, so an unread badge means something. Mark-all-read at the channel level.\n\nExport: a whole channel as JSON, and as readable Markdown with one file per topic — that second format is what makes an archive useful after you stop running the server.\n\nWrite tests for read-state correctness with concurrent posts, for retention deleting attachments from disk and not just rows, and for search returning correct context at message boundaries.\n\nDo not build voice or video calling, screen sharing, or a mobile app.",
+  "faq": [
+    {
+      "q": "Why force every message into a named topic?",
+      "a": "Because untopiced chat is unsearchable within weeks — the decision is in there somewhere, in a river of messages, without a handle. Naming the topic costs one keystroke and is the difference between a chat log and a record."
+    },
+    {
+      "q": "Is chat without meetings really useful?",
+      "a": "For a small team, yes: the meeting can happen anywhere, and the thing you cannot outsource is the written record. This build deliberately does the durable half and leaves the ephemeral half to whichever conferencing tool you already have."
+    },
+    {
+      "q": "Why export to Markdown as well as JSON?",
+      "a": "Because JSON is for importing somewhere and Markdown is for reading in five years with no software at all. An archive you cannot open without running a server is not an archive."
+    },
+    {
+      "q": "What does Teams Essentials actually include?",
+      "a": "Chat, calls and video meetings with recordings and transcripts, plus 10 GB of storage per user, on an annual auto-renewing subscription. It does not include the Office desktop applications — that is the Business Basic tier and above."
+    }
+  ]
+}

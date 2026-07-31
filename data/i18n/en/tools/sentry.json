@@ -1,0 +1,32 @@
+{
+  "tagline": "Ten thousand crashes collapsed into the four bugs that caused them.",
+  "verdictSummary": "The endpoint that receives an error is an afternoon. The product is the grouping: turning a hundred thousand events into a handful of issues, keeping the same bug in the same issue across releases, and noticing when a fixed one comes back. That is a weekend to build passably and a long time to build as well as Sentry does, which is why this is a kinda rather than a yes — and there is a compatible open-source server if you would rather deploy than build.",
+  "coreLoopDIY": "Receive errors, group them by a fingerprint you can read and override, track which release introduced and fixed each one, and shout when a resolved issue reappears.",
+  "whatYouLose": [
+    "SDKs for dozens of languages and frameworks, maintained",
+    "grouping quality tuned against an enormous corpus of real stacks",
+    "session replay, tracing and profiling on the same events",
+    "ingestion that stays up during your own incident",
+    "the integrations that open a ticket and link the commit"
+  ],
+  "whyPeopleStillPay": "Because bad grouping makes an error tracker useless — one bug spread across forty issues, or forty bugs collapsed into one — and grouping is the part that is hard to get right and invisible when it works.",
+  "prompt": "Build an error tracker where grouping is the feature and the fingerprint is readable.\n\nStack: your choice, Postgres, Docker Compose, a domain with TLS.\n\nIngestion: an HTTP endpoint per project with a key, accepting a payload of exception type, message, stack frames, release, environment, and arbitrary tags and context. Rate-limit per project and drop with a counter rather than queueing without bound.\n\nFingerprinting, the core of the build, and it must be inspectable:\n1. Normalise the stack — drop absolute paths to a repo-relative form, remove line numbers from frames outside your own code, collapse consecutive frames from the same third-party package into one.\n2. Take the top N in-application frames, in order.\n3. Hash those plus the exception type. Not the message: messages contain ids, values and timestamps, and hashing them creates one issue per occurrence, which is the classic mistake.\n4. Show the exact frames that produced the fingerprint on the issue page, and allow a manual override — merge two issues, or split one by an extra key — recorded and reversible.\n\nReleases: every event carries a release. An issue records first-seen release and last-seen release. Marking an issue resolved records the release it was resolved in, and **an event arriving from a later release reopens it as a regression**, flagged distinctly from a new issue. That regression signal is the single most valuable thing an error tracker produces and it needs the release plumbing to work at all.\n\nIssue page: count over time, affected users, tag distributions (browser, version, environment) with the most skewed one highlighted, the latest event's full stack with source-map or symbol resolution applied at ingest, and the breadcrumbs if the client sent any.\n\nAlerting: a new issue, or an issue exceeding a rate threshold, or a regression. Deliver to a webhook. Do not alert on every event.\n\nRetention with real deletion, and a per-project quota that drops and counts.\n\nWrite tests for fingerprint stability across a release that shifts line numbers, for message contents never affecting the fingerprint, for regression detection across release ordering, and for merge and split being reversible.\n\nDo not build session replay, tracing, or SDKs for more than one language.",
+  "faq": [
+    {
+      "q": "Why exclude the message from the fingerprint?",
+      "a": "Because messages embed record ids, values and timestamps, so hashing them produces one issue per occurrence and the tracker becomes a log viewer. Type plus normalised frames is what makes ten thousand events into four bugs."
+    },
+    {
+      "q": "Why does regression detection need release tracking?",
+      "a": "Because \"resolved\" only means anything relative to a version. Without releases, an old event trickling in reopens the issue and everyone learns to ignore the signal; with them, a reopen means the fix genuinely broke."
+    },
+    {
+      "q": "Should I not just deploy an existing error tracker?",
+      "a": "For most people, yes — a Sentry-compatible open-source server exists and accepts the official SDKs, which is a large head start. Build this one if you want the grouping to be something you can read and change."
+    },
+    {
+      "q": "How does Sentry's pricing work?",
+      "a": "A plan price plus metered volume: errors, session replays, tracing spans and cron monitors are each counted separately against a pre-paid allowance, with overage billed on top. The plan price is the floor, not the bill."
+    }
+  ]
+}

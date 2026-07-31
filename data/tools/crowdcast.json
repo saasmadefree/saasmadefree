@@ -1,0 +1,45 @@
+{
+  "slug": "crowdcast",
+  "name": "Crowdcast",
+  "domains": [
+    "crowdcast.io"
+  ],
+  "category": "video-meetings",
+  "subcategory": "live events with registration",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Lite",
+    "basis": "usage-based",
+    "source": "https://www.crowdcast.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$49 a month for Lite, which includes a live-attendee cap and 10 streaming hours; extra live attendees are 15¢ each, extra hours $20 per 5, and additional team seats $29 each."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "live media delivery",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Owncast",
+      "url": "https://github.com/owncast/owncast"
+    }
+  ],
+  "relatedSlugs": [
+    "demio",
+    "webinarjam",
+    "livestorm"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

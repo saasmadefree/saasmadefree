@@ -1,0 +1,32 @@
+{
+  "tagline": "Ask any question of your traffic, including ones you did not plan for.",
+  "verdictSummary": "The promise is that you can group by user id, or build id, or feature flag, at any time, without having pre-declared it — and that the answer comes back in seconds over billions of events. That is a specialised storage and query engine, tuned for years, running on hardware sized for the worst query. A personal build can demonstrate the idea at small volume and will hit the wall well before the interesting part, which is exactly why the verdict is no.",
+  "coreLoopDIY": "Emit one wide event per request with everything you know, store it columnar, and group by any field — with the volume at which this stops working measured and printed rather than discovered during an incident.",
+  "whatYouLose": [
+    "query speed at the volumes where high cardinality is actually hard",
+    "the tracing waterfall and automatic instrumentation",
+    "the guided investigation tools that suggest which field explains an anomaly",
+    "retention at scale",
+    "somebody else operating it during the incident you are investigating"
+  ],
+  "whyPeopleStillPay": "Because the entire value is answering an unplanned question quickly under pressure, and a homemade store is slowest precisely when the traffic is strangest.",
+  "prompt": "Build wide-event analysis and find out honestly where it stops scaling.\n\nStack: ClickHouse or an equivalent columnar store, a small ingestion service, and a query interface. Docker Compose.\n\nThe instrumentation idea, which the README should explain: instead of many narrow log lines, emit **one wide event per unit of work** — per HTTP request, per job — carrying everything known by the time it finishes: duration, status, route, user id, account id, build id, feature flags, cache hit or miss, database time, external call time. One row, fifty columns, no aggregation on the way in.\n\nIngestion: an HTTP endpoint taking JSON events, buffered and batched. New fields create columns automatically. Provide a small client library for one language showing how to build the wide event correctly, including the trap that fields must be added throughout the request and flushed once at the end.\n\nQuery: pick a time range, filter on any field, group by any field, and aggregate with count, percentiles, average, max, and count-distinct. Percentiles matter more than averages here and should be the default. Results render as a time series with the groups overlaid, capped at the top N groups plus an \"other\" bucket.\n\nThe feature that makes this worth building: **BubbleUp**. Select a slow or failing region of the chart, and the tool compares the distribution of every field inside the selection against outside it, ranking fields by how different they are. That single interaction — \"what is different about the slow requests\" — is the reason to emit wide events at all, and it is a few hundred lines of statistics over columnar data.\n\nHonest scaling, required rather than optional: ship a load generator and a benchmark script, run it, and print in the README the measured event volume and cardinality at which median query time crosses two seconds on your hardware. State the number instead of implying there is no limit.\n\nRetention by dataset with real deletion, and a per-day ingestion cap that drops with a counter.\n\nWrite tests for automatic column creation on a new field, for percentile correctness against a known distribution, and for the comparison ranking on a synthetic dataset with one planted culprit field.\n\nDo not build trace waterfalls or automatic instrumentation.",
+  "faq": [
+    {
+      "q": "What is a wide event and why one per request?",
+      "a": "It is a single row carrying everything you knew by the end of the unit of work — dozens of fields, no aggregation. One per request means you can slice by any combination later, which is impossible once you have pre-aggregated into counters."
+    },
+    {
+      "q": "Why is high cardinality hard?",
+      "a": "Because grouping by something with millions of distinct values — user id, request id — defeats the indexing strategies that make traditional metric stores fast. Columnar storage helps; staying fast at billions of rows is the specialised part you are paying for."
+    },
+    {
+      "q": "Why publish the benchmark where it breaks?",
+      "a": "Because the alternative is discovering it during an incident. A measured \"queries slow past roughly this volume on this hardware\" is more useful than any claim, and it tells you when to stop self-hosting."
+    },
+    {
+      "q": "How does Honeycomb price?",
+      "a": "By event volume: free to 20 million events a month, Pro from $150 for 50 million and up to 750 million, with metric data points counted separately. Sampling is the standard way teams keep that number down, and it is worth designing for early."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Browser webinars, live or replayed on a schedule as if they were live.",
+  "verdictSummary": "Demio's useful trick is the automated webinar: a recording that runs on a schedule with the interaction layer replayed alongside it. The scheduling and the synchronised overlay are a sitting. The video delivery is not, and neither is the reliability that makes a business run its funnel through it. The prompt below builds the automated player and insists it tells the viewer what it is, because the alternative is the part of this category that makes people distrust it.",
+  "coreLoopDIY": "Play a recording on a schedule with the polls, links and messages replayed at their original timestamps — labelled clearly as a replay, never dressed up as live.",
+  "whatYouLose": [
+    "live streaming and the delivery capacity behind it",
+    "genuine two-way interaction during the session",
+    "the hosted player and its analytics",
+    "reliability at a few hundred concurrent viewers",
+    "the marketing-automation integrations that fire on attendance"
+  ],
+  "whyPeopleStillPay": "Because an evergreen webinar is a sales channel that runs while you sleep, and the difference between one that works and one that stutters is delivery capacity nobody rebuilds.",
+  "prompt": "Build an automated webinar player: a recording that runs on a schedule with a timed interaction track beside it.\n\nStack: your choice, Postgres, Docker Compose, a domain with TLS. Serve the video file from object storage or a CDN; the README should be explicit that concurrent viewers cost bandwidth and that is the real limit.\n\nSession model: a recording URL, a duration, and a schedule — fixed times you list, or \"every day at 14:00 in the visitor's timezone\", or \"starts N minutes after registration\". A viewer joining late enters the video at the correct offset rather than from the beginning, which is the entire point of simulated-live.\n\nInteraction track: an ordered list of events with a timestamp offset — show a poll, reveal a link, post a scripted chat message, display a slide. The player fires each as the video passes its offset. Author it on a timeline editor with a scrubber, because typing timestamps by hand is unusable.\n\n**Honesty rules, enforced in the code, not left to the operator:**\n- The player shows a persistent, non-dismissable \"Replay\" badge whenever the session is not a genuine live stream.\n- Scripted chat messages are visually distinguished from real viewer messages and labelled as scripted.\n- No fake viewer counts. If you display a number, it is the real concurrent count or nothing.\nSay in the README that these are deliberate: a simulated-live session presented as live is a misrepresentation, and in several jurisdictions an unfair commercial practice.\n\nReal interaction that still works: a question box that goes to your inbox and gets answered by email afterwards, with the question and the video offset recorded so you know what prompted it.\n\nRegistration with a personal join link, reminders, and a report: registrations, joins, median watch time, and drop-off at one-minute resolution, which is the number that tells you where the recording loses people.\n\nWrite tests for join-at-offset arithmetic across timezones, for interaction events firing exactly once on a seek backwards, and for the replay badge being impossible to disable through configuration.\n\nDo not build live streaming or a live chat room.",
+  "faq": [
+    {
+      "q": "Why enforce the replay badge in code?",
+      "a": "Because the moment it is a setting, it gets turned off. Presenting a recording as a live event is a misrepresentation, and building the honesty in makes the tool one you can hand to someone else without worrying."
+    },
+    {
+      "q": "What is the hardest part of simulated-live?",
+      "a": "Joining late. The viewer must enter at the right offset, the interaction events already passed must not fire, and seeking backwards must not re-trigger them. Getting that wrong shows a poll from twenty minutes ago and gives the game away."
+    },
+    {
+      "q": "Where does the drop-off report earn its place?",
+      "a": "At one-minute resolution it names the exact point people leave — usually a slow opening or a long tangent. It is the most actionable number in webinar marketing and almost nobody looks at it."
+    },
+    {
+      "q": "Can I take my Demio recordings and data with me?",
+      "a": "Recordings download per session and registrant data exports as CSV. The interaction timeline — polls, timed links, handouts — is configuration that does not export, so screenshot or note it before you cancel."
+    }
+  ]
+}

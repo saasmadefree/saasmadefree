@@ -1,0 +1,32 @@
+{
+  "tagline": "Two terabytes shared across Drive, Gmail and Photos, plus AI.",
+  "verdictSummary": "Two terabytes of durable, replicated storage for ten euros a month is a price that exists because Google owns the datacentres, and the tier now bundles AI access on top. No self-hosted equivalent competes on either. The build worth doing is the one thing a personal store can do better than a bundled quota: tell you what is actually in there, what is duplicated, and what you would delete if you could see it.",
+  "coreLoopDIY": "Run your own file store and add the report nobody gets from a cloud quota: what is using the space, which files are byte-identical duplicates, and what has not been opened in years.",
+  "whatYouLose": [
+    "two terabytes of replicated storage at ten euros",
+    "the pooled quota across mail, photos and documents",
+    "the bundled AI access that now comes with the tier",
+    "the mobile apps and automatic photo backup",
+    "durability without you owning the problem"
+  ],
+  "whyPeopleStillPay": "Because storage at that price is a datacentre business, and because the quota covers the mail and photos you were never going to move anyway.",
+  "prompt": "Build a personal file store whose distinguishing feature is knowing what is in it.\n\nStack: your choice, Postgres, object storage or a local disk, Docker Compose. Consider deploying an existing self-hosted file platform and building the analysis as a companion — say which route you took.\n\nBasics: upload, download, folders, rename, move, delete to a trash with a retention period, and share links with an expiry.\n\nThe analysis layer, which is the reason to build rather than deploy:\n1. **Space by folder**, as a treemap and as a sorted table, computed from stored sizes rather than by walking the disk on demand.\n2. **Byte-identical duplicates**: group files by content hash, show each group with total wasted bytes, and offer replace-with-a-link keeping one real copy. Never delete automatically. Show the paths so the user can see that two of them are backups they meant to keep.\n3. **Near-duplicate images**: perceptual hashing to group the same photo at different sizes or with different compression, which is where a photo library actually loses its space. Present as suggestions only, with a side-by-side view.\n4. **Cold files**: not accessed in N years, sorted by size. This is the list people actually act on.\n5. **Growth**: stored bytes per month over time, with a projection of when your disk or budget runs out.\n\nHashing must be incremental — hash on upload, never re-walk everything — and the analysis must run as a background job with progress, not block a page load.\n\nA monthly report emailed or written to a file: what grew, what was added, the biggest new folders, and the top duplicate groups.\n\nWrite tests for duplicate grouping across identical files with different names and timestamps, for the treemap totals matching the sum of file sizes exactly, and for perceptual hashing grouping a resized image with its original.\n\nDo not build real-time collaborative editing, a mobile app, or photo face recognition.",
+  "faq": [
+    {
+      "q": "Why is \"what is using my space\" not standard?",
+      "a": "Because cloud providers have no incentive to help you use less. A quota bar tells you that you are at 92% and nothing about which four folders are 60% of it, which is the only actionable form of the information."
+    },
+    {
+      "q": "Is perceptual hashing worth the complexity?",
+      "a": "For photo libraries, yes — the space goes to the same picture saved at three sizes across five years of imports, and exact-hash matching misses all of it. Presenting the groups as suggestions rather than acting on them keeps it safe."
+    },
+    {
+      "q": "Can self-hosting beat ten euros for two terabytes?",
+      "a": "Not on durability. You can beat it on raw disk with a machine at home, and you will be the only copy unless you also pay for off-site backup — at which point the arithmetic usually favours the subscription again."
+    },
+    {
+      "q": "How do I get my data out of Google One?",
+      "a": "Takeout exports Drive, Photos and Gmail, in chunked archives you download within a window. Photos is the awkward one: the export separates images from their metadata sidecars, and reattaching them afterwards is a scripting job."
+    }
+  ]
+}

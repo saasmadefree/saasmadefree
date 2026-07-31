@@ -1,0 +1,43 @@
+{
+  "slug": "google-one",
+  "name": "Google One",
+  "domains": [
+    "one.google.com"
+  ],
+  "category": "cloud-storage",
+  "subcategory": "personal cloud storage",
+  "pricing": {
+    "amount": 9.99,
+    "currency": "EUR",
+    "plan": "Google AI Plus (2 TB)",
+    "basis": "flat-monthly",
+    "source": "https://one.google.com/about/plans",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Read from the EU, priced in EUR. The 2 TB tier is now branded \"Google AI Plus\" rather than \"Premium\" — the name upstream recorded — and sits between Basic (100 GB, €1.99) and Google AI Pro (5 TB, €21.99). Storage is pooled across Drive, Gmail and Photos."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "storage economics and bundled AI",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Nextcloud",
+      "url": "https://github.com/nextcloud/server"
+    }
+  ],
+  "relatedSlugs": [
+    "icloud-plus",
+    "dropbox-plus",
+    "pcloud"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

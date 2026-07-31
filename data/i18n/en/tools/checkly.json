@@ -1,0 +1,32 @@
+{
+  "tagline": "Playwright tests that run every minute against production.",
+  "verdictSummary": "Checkly's idea is that a monitor is a test: it lives in your repository, it runs in CI, and it also runs every few minutes against production. Rebuilding that is a weekend, because Playwright does the hard part and a scheduler does the rest. It stays a kinda because the thing you cannot cheaply reproduce is running the same check from a dozen countries at once — that is rented machines in rented regions, and it is what separates \"your site is down\" from \"your site is down in Sydney\".",
+  "coreLoopDIY": "Keep the checks in the repository, run them in CI on every deploy and on a schedule against production, and let a failed check block the deploy that caused it.",
+  "whatYouLose": [
+    "checks running from many global locations in parallel",
+    "the hosted runners and their capacity",
+    "private locations for monitoring inside a network",
+    "visual regression testing and screenshot diffing",
+    "alerting that survives your own infrastructure being the thing that broke"
+  ],
+  "whyPeopleStillPay": "Because a check that only runs from one place tells you about one place, and renting machines in ten regions to find out that Frankfurt is slow is not a weekend project.",
+  "prompt": "Build synthetic monitoring where checks are code in the repository, not configuration in a dashboard.\n\nStack: Node with Playwright, plus a small scheduler and result store (Postgres). Docker Compose.\n\nCheck definition: a file in the repo exporting a name, a schedule, an expected maximum duration, and either an HTTP assertion or a Playwright script. Discover checks by globbing a directory — adding a file is adding a check, with no registration step.\n\nThree run modes over the same definitions, which is the whole point:\n1. **CI**: run every check against a preview environment. A failing check fails the build.\n2. **Deploy gate**: after a production deploy, run the checks tagged critical and, if any fails, exit non-zero so the pipeline can roll back. Document how to wire that.\n3. **Scheduled**: run on the declared interval against production, storing every result with duration, status and, on failure, the Playwright trace and a screenshot.\n\nResults and alerting:\n- A check alerts after N consecutive failures, not the first, because a single blip is noise. Make N per check.\n- Recovery sends its own notification. An alert with no all-clear trains people to ignore alerts.\n- Suppress alerts during a declared maintenance window.\n- Store the duration series per check and alert on a degradation threshold too — a page that went from 400ms to 3s is not down, and it is the thing you actually want to know.\n\nThe honest limitation, in the README and in the interface: results are labelled with the location they ran from, and a single-location setup says so on the dashboard rather than implying global coverage.\n\nA public status page generated from the check history, on its own static output so it stays up when your application does not.\n\nWrite tests for the consecutive-failure threshold, for maintenance-window suppression across a boundary, and for the deploy gate exiting non-zero on failure.\n\nDo not build a browser-based check editor or visual regression diffing.",
+  "faq": [
+    {
+      "q": "Why does keeping checks in the repository matter?",
+      "a": "Because a check written in a dashboard drifts from the application within two releases, and nobody reviews it. In the repo it changes in the same pull request as the feature it covers, and it gets reviewed like code."
+    },
+    {
+      "q": "Why alert only after consecutive failures?",
+      "a": "Because a single failed request is usually the network, and paging on it teaches people to ignore the pager. Two or three in a row is a signal; one is weather."
+    },
+    {
+      "q": "How much does single-location monitoring miss?",
+      "a": "Regional outages, CDN misconfiguration and latency for users far from your servers — a real category of problem that your one check will never see. Labelling the location on the dashboard at least stops the false confidence."
+    },
+    {
+      "q": "Why generate the status page as static output?",
+      "a": "Because a status page served by the infrastructure it reports on goes down with it, which is exactly when people look at it. Static output on separate hosting is the whole trick."
+    }
+  ]
+}

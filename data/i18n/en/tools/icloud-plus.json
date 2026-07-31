@@ -1,0 +1,32 @@
+{
+  "tagline": "Storage that is already inside the phone, invisible until it fills up.",
+  "verdictSummary": "iCloud+ is not really a storage product, it is an operating-system feature with a bill: device backups, the photo library, keychain sync and Private Relay, all wired into places no third party can reach. That integration is not something code replaces. What a personal build can do is meet the phone where it is, through the open protocols Apple's own apps already speak, and get contacts, calendars and files onto the device without an app.",
+  "coreLoopDIY": "Serve your own contacts, calendars and files over CalDAV, CardDAV and WebDAV so the phone's built-in apps sync against your server with nothing installed.",
+  "whatYouLose": [
+    "whole-device backup and restore to a new phone",
+    "the Photos library with its sync, sharing and on-device search",
+    "keychain and password sync across devices",
+    "Private Relay and Hide My Email",
+    "the invisibility — it works without anyone configuring anything"
+  ],
+  "whyPeopleStillPay": "Because it is already switched on and it restores a lost phone in one step. Ten dollars for the family's photos and the ability to walk out of a shop with a working replacement device is not a hard sale.",
+  "prompt": "Build a personal server that the phone already knows how to talk to. No app, no installation — just open protocols.\n\nStack: your choice, Postgres, Docker Compose, and a real domain with valid TLS, because Apple's clients refuse anything else. Use existing CalDAV, CardDAV and WebDAV server libraries rather than implementing the protocols by hand.\n\nThree endpoints:\n1. **CardDAV** — contacts, read-write, with vCard round-tripping that preserves photos and custom fields. Editing a contact on the phone must write back correctly.\n2. **CalDAV** — calendars, read-write, with recurrence, exceptions, alarms and timezones. Recurrence is where these implementations break; test a weekly series with two modified instances and one deletion.\n3. **WebDAV** — files, mountable from macOS Finder and reachable from the iOS Files app.\n\nDiscovery matters more than it looks: implement `.well-known/caldav` and `.well-known/carddav` redirects and the principal-URL discovery flow, so a user types a server address and an application password rather than five URLs. Half the perceived difficulty of self-hosting this is discovery not working.\n\nAuthentication: per-device application passwords, listed, named and individually revocable, never the account password. A lost phone should be one click to cut off.\n\nA plain web interface for the same data, so contacts and calendars are editable from a desktop browser too.\n\nBe explicit in the README about what is deliberately absent: device backup, the photo library, and keychain sync are not open protocols and are not attempted.\n\nWrite tests for the vCard round trip including a photo and a custom field, for CalDAV recurrence with modified and deleted instances, and for a revoked application password immediately failing.\n\nDo not attempt device backup, photo library sync, or password sync.",
+  "faq": [
+    {
+      "q": "Do Apple's built-in apps really sync against a third-party server?",
+      "a": "Yes — Contacts and Calendar speak CardDAV and CalDAV natively, and Files speaks WebDAV. Add the account in settings and it behaves like any other. That is the entire reason this build is worth doing."
+    },
+    {
+      "q": "What breaks most often?",
+      "a": "Discovery and recurrence. Discovery because clients expect specific well-known redirects, and recurrence because a repeating event with edited and deleted instances has a fiddly representation that many servers get subtly wrong."
+    },
+    {
+      "q": "Why per-device application passwords?",
+      "a": "Because a phone stores the credential permanently, and losing the phone should not mean rotating the password on every other device. Named, individually revocable credentials make that a single click."
+    },
+    {
+      "q": "How do I get my data out of iCloud?",
+      "a": "Apple's privacy portal exports contacts, calendars, photos and Drive files. Device backups are the exception — they are not exportable in any usable form, which is precisely why that half of the product is not rebuildable."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "A folder that is the same on every machine, and mostly is.",
+  "verdictSummary": "Sync looks trivial and is not. A correct engine has to handle two machines editing offline, clock skew, case-insensitive filesystems, files locked by an application, renames that look like a delete and a create, and partial uploads on a dropped connection — and it has to do all of it without ever losing a byte. Dropbox has spent a very long time on that, and the storage underneath is its own cost. The consolation is a sync that is honest about conflicts instead of pretending they do not happen.",
+  "coreLoopDIY": "Keep a folder in sync between machines through your own server, and when two versions disagree, keep both and say so — never silently pick a winner.",
+  "whatYouLose": [
+    "the storage itself, and its durability",
+    "a sync engine hardened against a decade of filesystem edge cases",
+    "selective sync and on-demand file placeholders",
+    "the mobile apps and their offline handling",
+    "sharing links, comments and requests for files"
+  ],
+  "whyPeopleStillPay": "Because sync fails quietly, and the money buys somebody who has already met every way it fails. A homemade engine that loses one file has failed at the only thing it does.",
+  "prompt": "Build a file sync engine and treat conflict handling as the feature, not the edge case.\n\nStack: a client daemon plus a server with object storage and Postgres. Docker Compose. Consider standing on an existing peer-to-peer sync engine and building the reporting around it — say in the README which route you took.\n\nClient: watch a folder with the OS filesystem notification API, plus a full scan on start and a periodic scan as a safety net, because notification APIs miss events under load. Chunk files by content, hash each chunk, upload only unknown chunks.\n\nMetadata per file: path, size, modification time, content hash, and a **version vector per device** rather than a single timestamp. Timestamps lie — clocks drift, and filesystems round differently.\n\nConflict handling, which is the whole point:\n- A conflict is when two devices have versions with neither vector dominating the other. Detect it explicitly; do not compare timestamps and pick.\n- On conflict, **keep both**: the local file stays, the other arrives as `name (conflict from DEVICE 2026-07-31 14:02).ext`, and an entry appears in a conflict log with both hashes and both times.\n- Never delete or overwrite on conflict. Never merge text automatically.\n- A conflicts screen lists unresolved ones with a diff for text files and a keep-this-one action that archives the other rather than deleting it.\n\nThe edge cases that must be handled and tested, because these are where real sync engines lose data:\n- Case-insensitive filesystems: `Report.txt` and `report.txt` arriving on macOS from Linux.\n- Renames detected as rename rather than delete-plus-create, by content hash.\n- A file being written while it is read — retry on hash mismatch rather than uploading a torn copy.\n- Path length and illegal-character differences between operating systems.\n- Deletes propagating, with a trash folder and a retention period so a propagated delete is recoverable.\n\nStatus: last sync time per device, pending bytes, and a loud indicator when a device has not synced in longer than a threshold.\n\nWrite tests for each edge case above, and specifically for a concurrent edit on two offline devices producing two files and one conflict entry, with zero bytes lost.\n\nDo not build selective sync, placeholders, or a mobile client.",
+  "faq": [
+    {
+      "q": "Why version vectors instead of modification times?",
+      "a": "Because clocks disagree, filesystems round to different precisions, and a file copied by some tools keeps its old timestamp. Comparing times to decide a winner is how sync engines delete the wrong version, and the bug is invisible until it matters."
+    },
+    {
+      "q": "Is keeping both copies not annoying?",
+      "a": "It is mildly annoying and it never loses data. Every automatic resolution strategy is a guess about which human was right, and being wrong is unrecoverable — so the annoyance is the correct trade."
+    },
+    {
+      "q": "Which edge case bites first?",
+      "a": "Case sensitivity, if you mix macOS and Linux. Two files that are distinct on one machine and the same on another will loop forever unless you handle it explicitly, and that loop can burn a lot of bandwidth before anyone notices."
+    },
+    {
+      "q": "How do I get everything out of Dropbox?",
+      "a": "The account export produces a full archive, or you can simply copy the local folder if you have full sync rather than online-only files. Shared folders owned by other people do not come across, and version history stays behind."
+    }
+  ]
+}
