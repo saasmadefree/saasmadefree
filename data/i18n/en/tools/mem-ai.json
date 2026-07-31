@@ -1,0 +1,19 @@
+{
+  "tagline": "Notes that surface related ones automatically, by embedding similarity",
+  "verdictSummary": "Automatically surfacing related notes as you write, using embedding similarity instead of manual [[wiki-links]], is a real weekend build with your own model API key, on top of this catalogue's other local notes tools. What doesn't survive: Mem's specific AI-chat-over-your-notes polish and its collaborative team features.",
+  "coreLoopDIY": "Store notes as Markdown files, generate an embedding for each note using an LLM API, and automatically surface the most similar existing notes as related suggestions while writing a new one, without manual linking.",
+  "whatYouLose": [
+    "a polished AI chat interface over your whole note collection",
+    "collaborative team notes",
+    "mobile app polish",
+    "automatic tagging beyond similarity-based suggestions"
+  ],
+  "whyPeopleStillPay": "Computing embedding similarity is an API call; a genuinely pleasant chat interface over your entire note history, and keeping that fast as the collection grows into the thousands, is the ongoing product refinement.",
+  "prompt": "Build a notes app that automatically surfaces related notes by embedding similarity, not manual links — Mem's actual differentiating idea. Use Next.js/TypeScript with Postgres and the pgvector extension for storing and querying embeddings. Store notes as Markdown, and on save, generate an embedding for the note's content using an embeddings API from your Anthropic or OpenAI key's provider, or a dedicated embeddings endpoint. As the user writes a new note, query pgvector for the most similar existing notes by embedding distance, and show them as a live 'related notes' sidebar, updating as the user types, debounced, not on every keystroke. Support manual [[wiki-links]] too as a fallback for explicit connections, alongside the automatic similarity suggestions. Add a simple 'ask your notes' chat box: embed the user's question, retrieve the most similar notes, and send them as context to an LLM for an answer grounded in the retrieved notes. Do not build a polished mobile app, team collaboration, or automatic tagging beyond similarity suggestions — those are out of scope. Requires an Anthropic or OpenAI API key for embeddings and chat, plus hosting and a Postgres database with pgvector.",
+  "faq": [
+    { "q": "Do I need to manually link notes together?", "a": "Not primarily — related notes are surfaced automatically by embedding similarity as you write, though manual [[wiki-links]] still work as a fallback for explicit connections you want to force." },
+    { "q": "Can I ask questions across all my notes?", "a": "Yes — a basic 'ask your notes' feature retrieves the most relevant notes by similarity and sends them to an LLM for a grounded answer, though it's simpler than Mem's own more polished chat interface." },
+    { "q": "Does it work without an API key?", "a": "No — embedding generation and the chat feature both need a model API key; there's no keyless fallback in this build, unlike some other AI-optional entries in this catalogue." },
+    { "q": "What does it cost to run?", "a": "Hosting, a Postgres database, and API usage for embeddings and chat, billed per token — embeddings are cheap per note, but costs scale with how much you write and how often you use the chat feature." }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "Self-host the real open-source ActivePieces, not a reimplementation",
+  "verdictSummary": "ActivePieces is itself open source and explicitly built to be self-hosted — for this entry, deploying the real project via its own Docker Compose setup is the honest move rather than a smaller reimplementation, and it's a genuine weekend project to get running. What the subscription, not the software, buys is ActivePieces' own managed hosting and support on top of the same open core, plus its library of maintained cloud connector pieces, some of which require paid API relationships the open-source build can't replicate.",
+  "coreLoopDIY": "Deploy ActivePieces' own open-source server via Docker Compose with a Postgres database, and self-host the exact same visual automation builder the paid cloud tier runs.",
+  "whatYouLose": [
+    "managed hosting and guaranteed uptime",
+    "some cloud-exclusive connector pieces requiring paid vendor relationships",
+    "vendor support and incident response",
+    "guaranteed timely security patches without tracking them yourself"
+  ],
+  "whyPeopleStillPay": "The software is free either way; the subscription buys someone else running it reliably, patching it promptly, and maintaining paid API relationships for certain connectors the self-hosted version can't include.",
+  "prompt": "This is another case where the honest answer is: self-host the real open-source project. Deploy ActivePieces' own open-source server via its official Docker Compose setup, backed by PostgreSQL, on a VPS you control. Configure a domain with a reverse proxy (Caddy) for automatic HTTPS. Since this is the real, complete open-source product, the actual work is operational: configure the connector 'pieces' you need — many are open source and included; some cloud-exclusive ones require API relationships ActivePieces itself has and a self-hosted instance won't have access to, so check which pieces you actually need before assuming full parity — schedule Postgres backups, and subscribe to ActivePieces' release notes to apply security updates promptly. Set up at least one real workflow end-to-end, a trigger, a transform step, an action, to confirm the self-hosted instance actually works before relying on it. Do not attempt to build a smaller custom automation tool instead of self-hosting — ActivePieces' open-source core already has broader connector coverage than a weekend build could match, and the honest move here is running the real thing. Requires hosting (a modest VPS is enough for personal automation volume), a domain, and time to configure whichever connector pieces you actually need.",
+  "faq": [
+    { "q": "Why does this say to install ActivePieces instead of building something?", "a": "Because it's already open source and designed to be self-hosted — rebuilding a worse version of the same automation platform would be dishonest when the real, complete product is free to run yourself." },
+    { "q": "Do I get every connector piece by self-hosting?", "a": "Not necessarily — some cloud-exclusive pieces need API relationships ActivePieces itself maintains, which a self-hosted instance won't automatically have. Check which pieces you actually need before assuming full parity with the paid cloud tier." },
+    { "q": "What's actually hard about self-hosting it?", "a": "Not the initial setup — that's genuinely a weekend project. The ongoing part is patching promptly and maintaining it, exactly what the paid managed tier takes off your plate." },
+    { "q": "What does it cost to run?", "a": "A VPS and a domain — typically well under what ActivePieces' paid tiers would cost, since you're running the same open-source core yourself." }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "A minimal team wiki with a visual board view alongside the page list",
+  "verdictSummary": "A minimal team wiki with a visual board view — arrange pages spatially on a canvas instead of just a linear list — is a real weekend build. What doesn't survive: real-time multiplayer editing, a hard problem this catalogue has flagged repeatedly, and years of polish in how the visual board handles hundreds of pages without becoming cluttered.",
+  "coreLoopDIY": "Write team wiki pages in Markdown, organize them in collections, and arrange pages spatially on a visual board view as an alternative to a linear list, with drag-and-drop repositioning.",
+  "whatYouLose": [
+    "real-time multiplayer editing",
+    "polish in how the board view scales to hundreds of pages",
+    "version history with visual diffs",
+    "cross-workspace search"
+  ],
+  "whyPeopleStillPay": "A board view with draggable cards is a real but bounded UI project; real-time collaborative editing without conflicts, which a team wiki genuinely needs, is the hard problem this catalogue keeps naming rather than solving casually.",
+  "prompt": "Build a minimal team wiki with a visual board view as an alternative way to browse pages, on top of a fixed data model rather than Nuclino's own real-time collaborative engine. Use Next.js/TypeScript with Postgres. Support Markdown pages organized into named collections, a lightweight wiki structure with no deep nesting. Build two views per collection: a standard list view, and a board view where each page is a draggable card positioned freely on a 2D canvas, with position saved per page. Support [[wiki-links]] between pages with backlinks shown at the bottom of each page. Implement basic version history: save a snapshot on each edit, viewable as a list of past versions with a simple text diff, not a fancy visual diff, between any two. Add full-text search across all pages in the workspace. Do not build real-time multiplayer editing, the same honest limitation as this catalogue's other team-tool entries, since conflict-free concurrent editing is genuinely hard; use last-save-wins with a warning if the page changed since you started editing. Requires hosting and a database; no external API key needed.",
+  "faq": [
+    { "q": "Can multiple people edit the same page at once?", "a": "Not safely — like several other team tools in this catalogue, real-time conflict-free collaborative editing is flagged as genuinely hard rather than attempted casually. This build warns you if the page changed since you started editing, rather than silently overwriting." },
+    { "q": "What's the board view actually for?", "a": "Arranging pages spatially, by topic or relationship, as an alternative to browsing a flat list — useful for seeing how a project's pages relate to each other visually." },
+    { "q": "Does it have visual diffs between versions?", "a": "A simple text diff, not Nuclino's more visual comparison — enough to see what changed, though less polished." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database — typically a few dollars a month for a small team, with no per-seat fee." }
+  ]
+}

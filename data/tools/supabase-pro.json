@@ -1,0 +1,43 @@
+{
+  "slug": "supabase-pro",
+  "name": "Supabase Pro",
+  "domains": [
+    "supabase.com"
+  ],
+  "category": "hosting",
+  "subcategory": "application hosting and backend platforms",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "usage-based",
+    "source": "https://supabase.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "infrastructure scale, operations, and reliability",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Coolify",
+      "url": "https://github.com/coollabsio/coolify"
+    }
+  ],
+  "relatedSlugs": [
+    "vercel",
+    "railway",
+    "render"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

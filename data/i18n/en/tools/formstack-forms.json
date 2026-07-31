@@ -1,0 +1,19 @@
+{
+  "tagline": "A form that fills a PDF template with submitted answers automatically",
+  "verdictSummary": "Filling a PDF template with submitted form data automatically — Formstack's actual document-automation angle — is a real weekend build using an existing PDF-form-filling library. What doesn't survive: Formstack's large template library and its e-signature integration.",
+  "coreLoopDIY": "Publish a form, and on submission, fill a pre-uploaded PDF template's form fields with the submitted answers automatically, generating a completed document ready for download.",
+  "whatYouLose": [
+    "a large library of pre-built document templates",
+    "e-signature integration",
+    "advanced workflow routing and approvals",
+    "enterprise compliance attestations"
+  ],
+  "whyPeopleStillPay": "Filling one PDF template is a library call; a large template library plus e-signature integration and approval routing for real business documents is the much larger ongoing product.",
+  "prompt": "Build a form tool that fills a PDF template with submitted answers automatically — Formstack's actual document-automation angle. Use Next.js/TypeScript with SQLite, and a PDF-form-filling library such as pdf-lib, which can fill existing PDF form fields programmatically. Let the form creator upload a PDF that already has fillable form fields, created in any PDF editor, and map each field to a question in the form builder. Support standard field types (text, select, date, signature-as-typed-name) in the form builder itself. On submission, fill the mapped PDF fields with the submitted answers using pdf-lib, and generate a completed, downloadable PDF — store it alongside the raw submission data in SQLite. Send the form owner, and optionally the submitter, the generated PDF via a transactional email provider. Do not build a large template library, real e-signature (cryptographically verified) integration, or approval-routing workflows — those are out of scope; a typed name in a signature field is not a legally verified e-signature, and the README should say so plainly. Needs a domain and a transactional email provider; no other external service required.",
+  "faq": [
+    { "q": "Does it generate a legally binding e-signature?", "a": "No — a typed name in a signature field is not cryptographically verified the way real e-signature services are. If you need legally binding signatures, that's a real reason to use a dedicated e-signature tool." },
+    { "q": "Can I use any PDF as a template?", "a": "It needs to be a PDF with actual fillable form fields already defined, created in a PDF editor — this build fills existing fields, it doesn't add them to a flat PDF." },
+    { "q": "How many document templates does it support?", "a": "As many as you upload and map yourself — there's no pre-built library like Formstack's, which represents real accumulated content." },
+    { "q": "What does it cost to run?", "a": "A domain plus a transactional email provider's free tier — typically nothing beyond what you already pay for the domain." }
+  ]
+}

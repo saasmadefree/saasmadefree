@@ -1,0 +1,19 @@
+{
+  "tagline": "A lead-gated interactive demo, layered on this catalogue's Arcade pattern",
+  "verdictSummary": "An interactive demo, reusing this catalogue's Arcade-style click-through mechanic, gated behind a lead-capture form before the viewer can proceed — Supademo's actual sales-oriented angle — is a real weekend build layering a simple gate on top of that existing pattern. What doesn't survive: Supademo's AI-generated voiceover and its CRM integrations for captured leads.",
+  "coreLoopDIY": "Capture an interactive click-through demo using this catalogue's Arcade-style mechanic, and require a visitor to submit their email before the demo becomes viewable, storing captured leads alongside which demo they viewed.",
+  "whatYouLose": [
+    "AI-generated voiceover narration",
+    "CRM integrations for captured leads",
+    "viewer analytics on drop-off per step",
+    "team-shared demo libraries"
+  ],
+  "whyPeopleStillPay": "A lead-capture gate is a simple form; AI-generated narration and piping captured leads directly into the CRM tools sales teams actually use is the ongoing integration and polish work.",
+  "prompt": "Build a lead-gated interactive demo tool, combining this catalogue's Arcade-style click-through capture with a lead-capture form — Supademo's actual sales-oriented angle. Use the same Chrome extension capture mechanic as the Arcade entry, a screenshot plus a hotspot per click, replayed as an interactive walkthrough. Add a gate: before a visitor can start clicking through the demo, show a simple form asking for their email, and optionally name and company, store the submission in SQLite tagged with which demo they're about to view, and only then reveal the interactive replay. Notify the demo owner of new leads via a transactional email provider. Add a basic per-demo view count and completion count, did they reach the final step, as simple analytics, without per-step drop-off granularity. Do not build AI-generated voiceover, CRM integrations, or team-shared libraries — those are out of scope; this is a lead-gated version of the interactive-demo mechanic, nothing more. Needs a domain and a transactional email provider; no other external service required.",
+  "faq": [
+    { "q": "How is this different from the Arcade build in this catalogue?", "a": "Same underlying interactive click-through mechanic, with a lead-capture email gate added before the demo becomes viewable — a sales-oriented layer on top of the same core idea." },
+    { "q": "Does it have AI narration like Supademo?", "a": "No — that's a separate feature (this catalogue's Guidde entry covers narrated video guides using local TTS, a related but different idea) not included here." },
+    { "q": "Where do captured leads go?", "a": "Stored in your own database, with an email notification per new lead — there's no CRM integration piping them anywhere automatically." },
+    { "q": "What does it cost to run?", "a": "A domain plus a transactional email provider's free tier — typically nothing beyond what you already pay for the domain." }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "An infinitely nestable outline where any line can be a task or a note",
+  "verdictSummary": "An infinitely nestable outline where any line can be a task, a note, or a folded sub-list — Taskade's actual core interface, closer to Workflowy's outlining model than a traditional task list — is a genuine one-sitting build. What doesn't survive: Taskade's AI agents that can autonomously execute steps in a workflow, and its real-time multiplayer editing.",
+  "coreLoopDIY": "Maintain an infinitely nestable bullet outline where any line can be marked as a task with a checkbox or left as plain text, foldable at any level, with keyboard-first navigation.",
+  "whatYouLose": [
+    "AI agents that autonomously execute workflow steps",
+    "real-time multiplayer editing",
+    "a large template library of pre-built outline structures",
+    "cross-device sync"
+  ],
+  "whyPeopleStillPay": "A nestable outline with checkboxes is a bounded, buildable UI project; AI agents that can actually execute steps in a workflow reliably, plus real-time collaboration, are the much harder ongoing engineering.",
+  "prompt": "Build an infinitely nestable outline editor, closer to Workflowy's model than a traditional task list — Taskade's actual core interface. Use Tauri with SQLite. Implement a single continuous outline per document: each line is a node with optional children, foldable and unfoldable, with keyboard-first editing — Tab to indent a line under the previous one, Shift+Tab to outdent, Enter to create a sibling line, a shortcut to fold or unfold the current line's children. Let any line be marked as a task with a checkbox, toggling strikes it through when checked, or stay as a plain outline node — no separate 'task mode', tasks and notes live in the same outline. Support a zoom-in view: click a line to see just that line and its children as a focused sub-document, then zoom back out. Add full-text search across the whole outline, jumping directly to and expanding the matching line's location. Do not build AI agents that execute workflow steps, real-time multiplayer editing, or cross-device sync — those are out of scope; this is a single-user, single-device outlining tool, nothing more. Requires a local database; no external API key needed.",
+  "faq": [
+    { "q": "Is this a task list or a notes app?", "a": "Both at once, deliberately — any line in the outline can be a checkbox task or plain text, with no separate mode to switch between, which is closer to Taskade's actual model than a dedicated task list." },
+    { "q": "Does it have AI agents that complete tasks for me?", "a": "No — that's a real, separate feature Taskade has built, involving reliably executing workflow steps autonomously, which is out of scope here." },
+    { "q": "Can I focus on just one branch of the outline?", "a": "Yes — clicking a line zooms into it as a focused sub-document showing just that line and its children, then you zoom back out to the full outline." },
+    { "q": "What does it cost to run?", "a": "Nothing — it's a local app with no backend, so there's no hosting cost or subscription." }
+  ]
+}

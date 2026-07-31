@@ -1,0 +1,44 @@
+{
+  "slug": "lovable",
+  "name": "Lovable",
+  "domains": [
+    "lovable.dev"
+  ],
+  "category": "dev-tools",
+  "subcategory": "AI coding agents and developer workspaces",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://lovable.dev/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "frontier models, context infrastructure, and execution safety",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key",
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Continue",
+      "url": "https://github.com/continuedev/continue"
+    }
+  ],
+  "relatedSlugs": [
+    "windsurf",
+    "replit",
+    "bolt-new"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

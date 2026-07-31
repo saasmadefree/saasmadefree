@@ -1,0 +1,19 @@
+{
+  "tagline": "Non-locking MySQL migrations using gh-ost, not a Vitess reimplementation",
+  "verdictSummary": "PlanetScale's actual signature capability, changing a live MySQL table's schema without locking it or causing downtime, is a genuinely hard distributed-systems problem PlanetScale solved by building on Vitess, YouTube's own MySQL-scaling layer. The honest DIY substitute uses gh-ost, an existing open-source tool built for exactly this (originally from GitHub), rather than reimplementing online schema change from scratch.",
+  "coreLoopDIY": "Run schema migrations against a live MySQL database using gh-ost, an existing open-source online-schema-change tool, so tables stay readable and writable throughout the migration instead of being locked.",
+  "whatYouLose": [
+    "Vitess-level horizontal sharding at massive scale",
+    "a polished branching and deploy-request workflow for schema changes",
+    "managed infrastructure and automatic backups",
+    "built-in query insights and performance analytics"
+  ],
+  "whyPeopleStillPay": "gh-ost solves the online-migration problem for one database; PlanetScale's actual product is running that reliably at scale across many customers' databases, plus the deploy-request workflow that makes schema changes reviewable like code.",
+  "prompt": "Build a workflow for running MySQL schema migrations without locking tables, using gh-ost, an existing, mature open-source tool originally built at GitHub for exactly this, rather than attempting to reimplement online schema change, which is genuinely hard distributed-systems work. Set up a self-hosted MySQL instance (Docker Compose is fine for personal use). Install gh-ost and write a small wrapper script that takes a migration SQL statement, runs it through gh-ost's triggerless copy-and-swap approach (it copies the table's data in the background, tracks changes with binlog streaming, then does a fast atomic swap), and reports progress. Track applied migrations in a metadata table so you know what's been run. Add a dry-run mode, which gh-ost supports natively, so a migration can be validated before actually running. Do not attempt to build Vitess-style horizontal sharding, a deploy-request review workflow, or managed automatic backups — those are out of scope; this wraps gh-ost for one database, not PlanetScale's actual multi-tenant infrastructure. Requires hosting for the MySQL instance; no other external service needed, since gh-ost itself is free and open source.",
+  "faq": [
+    { "q": "Does this actually avoid locking the table during migration?", "a": "Yes — that's the whole point of using gh-ost, which is a mature, real tool built specifically for online schema changes, not a homemade approximation." },
+    { "q": "Do I get PlanetScale's branching and deploy-request workflow for schema changes?", "a": "No — that's real product design PlanetScale has built on top of Vitess. This build gives you a safe migration mechanism, not a reviewable branching workflow around it." },
+    { "q": "Does it scale the way PlanetScale (via Vitess) does?", "a": "No — this runs against a single MySQL instance. Vitess-style horizontal sharding across many database shards is genuinely enterprise-scale infrastructure this build doesn't attempt." },
+    { "q": "What does it cost to run?", "a": "Hosting for the MySQL instance — typically a few dollars a month, since gh-ost itself has no licensing cost." }
+  ]
+}

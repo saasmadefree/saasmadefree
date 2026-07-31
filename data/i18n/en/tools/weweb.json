@@ -1,0 +1,19 @@
+{
+  "tagline": "A visual frontend builder that connects to a backend you already have",
+  "verdictSummary": "A visual frontend builder that connects to a backend you already have, rather than bundling its own — WeWeb's actual distinguishing choice — is a real weekend-to-week build once you accept a smaller set of pre-built UI components than a mature no-code tool ships with. What doesn't survive: WeWeb's large component library and its polished visual styling controls.",
+  "coreLoopDIY": "Build a page from a small set of UI components — list, form, button, text — bound to data fetched from an external REST API you already run, rather than an app builder with its own bundled backend.",
+  "whatYouLose": [
+    "a large library of pre-built, styled UI components",
+    "polished visual styling controls, spacing and responsive breakpoints, without writing CSS",
+    "a plugin ecosystem for third-party integrations",
+    "team collaboration on the same project"
+  ],
+  "whyPeopleStillPay": "A handful of data-bound components is a real but bounded project; a large library of polished, responsive components plus a no-CSS visual styling system is the much larger ongoing design and engineering surface.",
+  "prompt": "Build a visual frontend builder that connects to an external backend API you already have — WeWeb's actual distinguishing choice, as opposed to an app builder with its own bundled database like this catalogue's Bubble or Glide entries. Use Next.js/TypeScript for the builder itself. Implement a small set of data-bound components: a list/repeater bound to a REST API endpoint's array response, rendering one card per item; a detail view bound to a single-record endpoint; a form that posts to a configured endpoint on submit; and basic text, button, and image elements. Let the user configure each component's data source, a URL, HTTP method, and optional auth header, and bind specific response fields to display, through a settings panel rather than code. Store the page layout as JSON, a component tree plus bindings, and render it both in a builder preview and as a published static page. Do not build a large component library, a no-CSS visual styling system beyond basic color and spacing presets, or a plugin ecosystem — those are out of scope; this connects a handful of components to your own API, nothing more. Requires hosting for the builder and published pages; the backend you're connecting to, Supabase, a custom API, anything with a REST endpoint, is separate and not part of this build.",
+  "faq": [
+    { "q": "Does it come with its own backend/database?", "a": "No — that's the actual design choice here, matching WeWeb's own positioning. You bring an existing backend, Supabase, a custom API, anything with REST endpoints, and this builds the frontend against it." },
+    { "q": "How many pre-built components does it include?", "a": "A small, deliberately limited set — list, detail, form, text, button — rather than WeWeb's larger library, which represents real accumulated design work." },
+    { "q": "Can I style things visually without writing CSS?", "a": "Only basic color and spacing presets — a full no-CSS visual styling system with responsive breakpoint controls is real UI-builder engineering this build doesn't attempt." },
+    { "q": "What does it cost to run?", "a": "Hosting only — no separate fee, since the backend you connect to is something you already pay for or run yourself." }
+  ]
+}

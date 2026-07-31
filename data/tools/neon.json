@@ -1,0 +1,41 @@
+{
+  "slug": "neon",
+  "name": "Neon",
+  "domains": [
+    "neon.com"
+  ],
+  "category": "hosting",
+  "subcategory": "application hosting and backend platforms",
+  "pricing": {
+    "amount": 19,
+    "currency": "USD",
+    "plan": "Launch",
+    "basis": "flat-monthly",
+    "source": "https://neon.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "infrastructure scale, operations, and reliability",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Coolify",
+      "url": "https://github.com/coollabsio/coolify"
+    }
+  ],
+  "relatedSlugs": [
+    "vercel",
+    "railway",
+    "supabase-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "enpass",
+  "name": "Enpass",
+  "domains": [
+    "enpass.io"
+  ],
+  "category": "security",
+  "subcategory": "passwords, privacy and private networking",
+  "pricing": {
+    "amount": 1.99,
+    "currency": "USD",
+    "plan": "Individual",
+    "basis": "flat-monthly",
+    "source": "https://enpass.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "security assurance, infrastructure, and trust",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Vaultwarden",
+      "url": "https://github.com/dani-garcia/vaultwarden"
+    }
+  ],
+  "relatedSlugs": [
+    "bitwarden",
+    "nordpass",
+    "1password"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

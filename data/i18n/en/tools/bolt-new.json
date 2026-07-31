@@ -1,0 +1,19 @@
+{
+  "tagline": "A browser-only AI coding tool built on WebContainers, no server execution",
+  "verdictSummary": "Running a full Node.js dev environment entirely in the browser — no server-side execution — using WebContainers (StackBlitz's own open-source browser-based Node runtime) is bolt.new's actual technical foundation, and it's a genuinely different approach from every other AI-coding entry in this catalogue, which all assume a server or local machine running the actual code. A scoped build using the same open-source WebContainers technology is real, but more involved than most entries here.",
+  "coreLoopDIY": "Run a Node.js project entirely client-side in the browser using WebContainers, an existing open-source browser-based runtime, not something to build from scratch, with an AI chat panel that edits files and runs commands inside that in-browser environment, all without any server-side code execution.",
+  "whatYouLose": [
+    "a frontier model tuned for full-stack code generation",
+    "years of WebContainers compatibility work across npm packages",
+    "one-click deployment integrated with a hosting platform",
+    "team collaboration on the same in-browser project"
+  ],
+  "whyPeopleStillPay": "WebContainers itself is open source and free to use; what bolt.new actually sells is the tuned model plus years of making sure real npm packages actually work inside a browser-based Node runtime, which has genuine compatibility gaps.",
+  "prompt": "Build a browser-based AI coding tool using WebContainers, StackBlitz's own open-source, MIT-licensed technology for running Node.js entirely client-side in the browser, no server execution. Use WebContainers' API directly, it's a real, free, existing library, not something to reimplement, to boot an in-browser Node environment, mount a starter project's files, and run npm install and dev servers entirely client-side. Build a chat panel alongside it where a user describes a change; send the request plus the current project's file tree and relevant file contents to a model, read ANTHROPIC_API_KEY or OPENAI_API_KEY, and apply the model's proposed file edits directly into the WebContainer's in-browser filesystem, with a diff preview before applying. Show the running dev server's preview in an iframe alongside the code, live-updating as files change. Be upfront in the README about WebContainers' real limitation: it doesn't support every npm package, particularly ones needing native binary compilation, and that gap is bolt.new's own years of compatibility work, not something this smaller build has solved. Do not build team collaboration, one-click deployment integration, or a frontier fine-tuned model — those are out of scope. Requires an Anthropic or OpenAI API key, plus hosting for the app shell itself, since the actual code execution happens in the visitor's browser, not on your server.",
+  "faq": [
+    { "q": "Does code actually run on my server?", "a": "No — that's the whole point of WebContainers. Node.js and the project's dev server run entirely inside the visitor's browser, using real, existing open-source technology, not a simulation." },
+    { "q": "Will every npm package work?", "a": "No — packages needing native binary compilation generally don't work in a browser-based runtime. This is a real, known WebContainers limitation, not something this build has solved that bolt.new hasn't already spent years on." },
+    { "q": "How is this different from the other AI-coding entries in this catalogue?", "a": "Every other one assumes code runs on a server or your local machine. This one runs entirely in the browser via WebContainers — a genuinely different technical foundation, not just a different UI." },
+    { "q": "What does it cost to run?", "a": "Minimal hosting for the app shell plus model API usage per token — since code execution happens client-side, your hosting costs don't scale with how much code visitors run." }
+  ]
+}

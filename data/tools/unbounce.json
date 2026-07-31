@@ -1,0 +1,44 @@
+{
+  "slug": "unbounce",
+  "name": "Unbounce",
+  "domains": [
+    "unbounce.com"
+  ],
+  "category": "website-builder",
+  "subcategory": "websites and landing pages",
+  "pricing": {
+    "amount": 99,
+    "currency": "USD",
+    "plan": "Build",
+    "basis": "flat-monthly",
+    "source": "https://unbounce.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "editor polish, hosting, templates, and ecosystem",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key",
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Webstudio",
+      "url": "https://github.com/webstudio-is/webstudio"
+    }
+  ],
+  "relatedSlugs": [
+    "duda",
+    "tilda",
+    "carrd"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "A vault that syncs through storage you already control, not a vendor cloud",
+  "verdictSummary": "A local encrypted vault that syncs through a storage backend you already use and control — Dropbox, iCloud Drive, or a WebDAV server — rather than a vendor-hosted cloud, is Enpass's actual differentiator and a genuine weekend build. What doesn't survive: an independent security audit and Enpass's own polished autofill across every browser and platform.",
+  "coreLoopDIY": "Store an encrypted vault as a single file, and sync that file across devices using a storage backend the user already controls, such as Dropbox, iCloud Drive, or a self-hosted WebDAV server, rather than a vendor-run sync service.",
+  "whatYouLose": [
+    "an independent third-party security audit",
+    "polished autofill across every browser and platform",
+    "vendor account recovery",
+    "a mobile app with the same file-sync integrations"
+  ],
+  "whyPeopleStillPay": "The 'sync through your own storage' idea is simple to build; a polished, reliably-autofilling app on every platform, backed by an actual security audit, is the years of engineering and credibility work.",
+  "prompt": "Build a local encrypted password vault that syncs through a storage backend the user already controls — Dropbox, iCloud Drive, or a self-hosted WebDAV server — rather than a vendor-hosted cloud sync service. Use a WebExtension (Manifest V3) for browser autofill, backed by a native companion app that holds the encrypted vault, following the same architecture as this catalogue's NordPass entry. Encrypt the vault file with XChaCha20-Poly1305 via libsodium and Argon2id key derivation, same as the NordPass build — don't invent new cryptography. The actual differentiator: instead of syncing to a vendor's servers, save the single encrypted vault file inside a folder the user points at their own Dropbox, iCloud Drive, or WebDAV-mounted folder — any existing file-sync mechanism handles the actual multi-device sync, since the file is already encrypted and safe to store anywhere. Detect when the vault file has been updated externally, a newer sync, and reload it, handling the edge case where the file changed between when you opened it and when you save an edit by warning rather than silently overwriting. Do not build vendor-hosted sync infrastructure, a mobile app, or claim an independent security audit — those are out of scope; be explicit that this build hasn't been audited, same honesty as the NordPass entry. No account, vendor server, or API key needed — sync piggybacks entirely on storage you already use.",
+  "faq": [
+    { "q": "How does syncing work without a vendor server?", "a": "The encrypted vault is just a file, saved inside a folder you point at Dropbox, iCloud Drive, or a WebDAV server you already use — that existing sync mechanism handles multi-device sync, since the file is safe to store anywhere once encrypted." },
+    { "q": "What happens if I edit the vault on two devices before they sync?", "a": "The build detects the file changed externally and warns you rather than silently overwriting — you'll need to manually reconcile, since there's no automatic conflict merge for a single encrypted file." },
+    { "q": "Is this audited the same way NordPass is?", "a": "No — same honest gap as this catalogue's NordPass entry: no independent security audit, which is worth being upfront about." },
+    { "q": "What does it cost to run?", "a": "Nothing beyond whatever storage service you're already using for sync — Dropbox, iCloud, or your own WebDAV server." }
+  ]
+}

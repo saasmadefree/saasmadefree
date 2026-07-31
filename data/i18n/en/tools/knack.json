@@ -1,0 +1,19 @@
+{
+  "tagline": "A standalone customer or member portal app with its own login",
+  "verdictSummary": "A database-backed app with its own end-user login system — a customer or member portal where visitors sign in to see only their own records — is a real weekend-to-week build, and it's the actual thing Knack is for, distinct from this catalogue's Caspio entry, which is about embedding into an existing site rather than being its own standalone portal. What doesn't survive: Knack's large library of pre-built portal templates and years of permission-rule edge cases.",
+  "coreLoopDIY": "Build a standalone web app where end users log in and see only records scoped to their own account, defined by a simple ownership rule on each table, distinct from an admin who sees everything.",
+  "whatYouLose": [
+    "a large library of pre-built portal templates",
+    "years of permission-rule edge cases across complex organizational hierarchies",
+    "managed hosting and scale",
+    "a visual page-layout builder"
+  ],
+  "whyPeopleStillPay": "One ownership rule is simple; a permission system flexible enough to model real organizational hierarchies without becoming an unmaintainable mess of exceptions is the harder ongoing design problem.",
+  "prompt": "Build a standalone customer or member portal app with its own end-user login, distinct from this catalogue's Caspio entry, which is about embedding widgets into an existing site rather than being its own app. Use Next.js/TypeScript with Postgres and a simple email/password or magic-link auth system. Define tables where each record has an owner field linking to the logged-in user's account. Build list and detail views that automatically filter to records the logged-in user owns — a customer sees only their own orders, a member sees only their own submissions — with a separate admin role that sees everything unfiltered. Support a basic self-service signup flow so end users can create their own accounts rather than being provisioned manually. Add a simple public-facing landing page for the portal, distinct from the authenticated app. Do not build a visual page-layout builder, a large library of pre-built portal templates, or complex multi-level organizational permission hierarchies beyond the owner/admin split — those are out of scope; this is a working two-role portal, not a fully general permission engine. Requires hosting and a database; no external API key needed.",
+  "faq": [
+    { "q": "How is this different from the Caspio build in this catalogue?", "a": "Caspio's build is about embedding a form or grid into an existing website; this one is a standalone app with its own login system where end users see only their own data — a customer or member portal, not an embeddable widget." },
+    { "q": "Can I model complex organizational permissions, like team leads seeing their team's records?", "a": "Not out of the box — this build ships with a simple owner/admin split. More complex hierarchies are real, harder permission-modeling work this prompt doesn't attempt." },
+    { "q": "Do end users need an account created for them, or can they sign up themselves?", "a": "They can self-serve sign up, which is closer to how a real customer portal works, rather than requiring manual provisioning." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database — typically a few dollars a month, with no per-portal-user fee." }
+  ]
+}

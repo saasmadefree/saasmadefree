@@ -1,0 +1,19 @@
+{
+  "tagline": "Approximate database branching with dump-and-restore, not true copy-on-write",
+  "verdictSummary": "Neon's actual headline feature, instant copy-on-write database branches, like git branches but for your data, genuinely relies on storage-layer engineering (separating compute from storage so a branch doesn't copy the actual data) that's meaningfully harder to replicate than the rest of this catalogue's database-hosting entries. A more honest, buildable substitute: a script that creates a full logical dump-and-restore 'branch' instead of true copy-on-write, which is slower but achieves the same practical workflow at small scale.",
+  "coreLoopDIY": "Create a new Postgres database seeded from a full dump of an existing one, a real, if slower, stand-in for Neon's instant copy-on-write branching, work against it independently, and drop it when done.",
+  "whatYouLose": [
+    "true instant, storage-level copy-on-write branching",
+    "branches created in seconds regardless of database size",
+    "automatic scale-to-zero compute",
+    "point-in-time restore to any second"
+  ],
+  "whyPeopleStillPay": "A dump-and-restore script approximates branching at small scale; making a branch of a 500GB database appear in under a second, without copying the data, requires storage-engine work most teams shouldn't attempt to rebuild.",
+  "prompt": "Build a 'branching' workflow for Postgres using dump-and-restore rather than attempting Neon's actual storage-layer copy-on-write engineering, which is genuinely out of scope for a personal project. Use a shell script or small Node CLI that takes a source database name, runs pg_dump against it, creates a new database with a branch-style name, and restores the dump into it — a 'branch' that's a real, independent, full copy, not an instant zero-copy one. Track branch metadata (source, created-at, purpose) in a small local SQLite file so you can list and manage branches. Add a 'merge' helper that's really just a reminder-and-checklist step: since these are independent database copies, not tracked diffs, there's no automatic merge — document manually what changed and re-apply it to the main database, or export a schema diff using a tool like migra for structural changes specifically. Add a cleanup command that drops old branch databases past a configurable age. Be explicit in the README that this trades Neon's actual innovation, instant branches regardless of database size, for a simpler mechanism that works fine at small-to-medium scale but gets slow on large databases, since a full dump-and-restore duration scales with data size. Do not attempt storage-layer copy-on-write branching — that's real distributed-systems engineering. Requires hosting for a Postgres instance; no other external service needed.",
+  "faq": [
+    { "q": "Is this as fast as Neon's branching?", "a": "No — Neon's branches appear in under a second regardless of database size because of storage-layer engineering this build doesn't attempt. This build's branches are full dump-and-restore copies, so speed scales with your database size." },
+    { "q": "Can I merge changes from a branch back into the main database?", "a": "Not automatically — there's a schema-diff helper for structural changes, but data changes need manual review and reapplication. Neon doesn't really solve this either; branching isn't the same as version control merging." },
+    { "q": "Will this work well on a large database?", "a": "It'll get noticeably slower as your database grows, since each branch is a full copy — this build is honestly scoped to small-to-medium databases, not Neon's actual scale." },
+    { "q": "What does it cost to run?", "a": "Hosting for a Postgres instance — typically a few dollars a month, though storage costs grow with however many branch copies you keep around." }
+  ]
+}

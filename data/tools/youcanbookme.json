@@ -1,0 +1,44 @@
+{
+  "slug": "youcanbookme",
+  "name": "YouCanBookMe",
+  "domains": [
+    "youcanbook.me"
+  ],
+  "category": "scheduling",
+  "subcategory": "booking links and calendar automation",
+  "pricing": {
+    "amount": 9,
+    "currency": "USD",
+    "plan": "Individual",
+    "basis": "flat-monthly",
+    "source": "https://youcanbook.me/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "calendar integrations and reliability",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "oauth-app",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Cal.com",
+      "url": "https://github.com/calcom/cal.com"
+    }
+  ],
+  "relatedSlugs": [
+    "cal-com-teams",
+    "fantastical",
+    "calendly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

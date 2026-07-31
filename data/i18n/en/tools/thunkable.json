@@ -1,0 +1,19 @@
+{
+  "tagline": "A Scratch-style block editor that compiles to a real mobile app",
+  "verdictSummary": "Thunkable's actual origin and real differentiator is Scratch-style block-based visual programming for app logic — it began as a fork of MIT App Inventor — genuinely different from this catalogue's Adalo and FlutterFlow entries, which are schema-and-screen generators, not visual logic editors. A block-based logic editor over a fixed set of blocks is a real, if involved, weekend-to-week build.",
+  "coreLoopDIY": "Assemble app logic by dragging and connecting visual blocks — when this button is tapped, do this; if this condition, then that — from a fixed block library, compiled into a working Expo app rather than a general schema-driven CRUD generator.",
+  "whatYouLose": [
+    "a large block library covering many app behaviors",
+    "Thunkable's own compiler maturity across many block combinations",
+    "a component marketplace",
+    "one-click store publishing"
+  ],
+  "whyPeopleStillPay": "A small set of working blocks is a real project; a block library expressive enough for genuinely complex app logic, reliably compiled for years across every block combination someone might build, is the much larger ongoing engineering.",
+  "prompt": "Build a block-based visual programming editor for simple app logic, Thunkable's actual origin and differentiator, distinct from this catalogue's Adalo and FlutterFlow entries, which generate screens from a data schema rather than compiling visual logic blocks. Use a block-editor library like Blockly, Google's open-source visual programming toolkit, the same category of tool MIT App Inventor and Thunkable itself are built on, for the drag-and-drop block canvas. Implement a small, fixed set of blocks: event blocks (when button tapped, when screen opens), action blocks (navigate to screen, show message, set a variable), and condition blocks (if/then). Compile the assembled blocks into a small Expo (React Native) app's logic — each block maps to a corresponding React Native code snippet, generated and bundled into a real working app. Provide 2-3 pre-built screens, not a screen designer, so the focus stays on the block logic connecting them. Do not build a large block library, a component marketplace, or one-click store publishing — those are out of scope; this demonstrates the block-to-code compilation pattern with a deliberately small block set, not Thunkable's full library. Requires hosting only if you want to preview builds remotely; Expo Go lets you test locally without it.",
+  "faq": [
+    { "q": "Is this the same as the Adalo or FlutterFlow builds in this catalogue?", "a": "No — those generate screens from a data schema. This one is about visual block-based programming for app logic, Thunkable's actual origin as an MIT App Inventor fork, a genuinely different mechanic." },
+    { "q": "How many blocks does it support?", "a": "A small, fixed starter set — event, action, and condition blocks — rather than Thunkable's larger library, which represents years of accumulated block types." },
+    { "q": "Do I need to design the screens myself?", "a": "The build ships with 2-3 pre-built screens so you can focus on wiring up logic between them, rather than including a full visual screen designer." },
+    { "q": "What does it cost to run?", "a": "Nothing required beyond Expo Go for local testing — hosting is only needed if you want remote preview builds." }
+  ]
+}

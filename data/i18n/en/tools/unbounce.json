@@ -1,0 +1,19 @@
+{
+  "tagline": "Generate landing-page copy with your own LLM key, on a section-built page",
+  "verdictSummary": "Generating landing-page copy — headlines, subheadings, CTA button text — from a short product description using your own LLM API key is a real weekend build layered on top of this catalogue's other website-builder entries' section-assembly pattern. What doesn't survive: Unbounce's conversion-rate-optimized copy tuned on real campaign performance data, and its dynamic text replacement for paid-ad-matching landing pages.",
+  "coreLoopDIY": "Generate several landing-page copy variants — headline, subheading, and CTA button text — from a short product description using an LLM API, insert the chosen variant into a section-based page, and publish it.",
+  "whatYouLose": [
+    "copy tuned on real conversion-performance data across many campaigns",
+    "dynamic text replacement matching a visitor's ad keyword",
+    "a large template library",
+    "managed hosting and CDN at scale"
+  ],
+  "whyPeopleStillPay": "Generating plausible copy from a description is one API call; copy genuinely tuned to convert, validated against real performance data across thousands of campaigns, is a different, harder claim a personal build can't make.",
+  "prompt": "Build a landing-page tool with AI-generated copy, Unbounce's Smart Copy angle, layered on the same section-based page-assembly pattern as this catalogue's other website-builder entries. Use Next.js/TypeScript with SQLite, and a model key read from ANTHROPIC_API_KEY or OPENAI_API_KEY. Let the user describe their product or offer in a few sentences; send that to the model with a prompt template requesting several distinct variants of a headline, subheading, and CTA button text. Show the variants for the user to pick from or edit, then insert the chosen copy into a section-based page (hero, features, CTA) using the same pattern as this catalogue's Duda entry. Publish the page statically. Add basic dynamic text replacement: a URL query parameter can override the headline text, so a paid-ad campaign's landing page can echo the ad's own keyword, a bounded version of Unbounce's dynamic-text feature. Do not build copy tuned on real conversion-performance data, since that requires data this build has no access to, or CDN-scale managed hosting — those are out of scope; the generated copy is a plausible, editable draft, not a data-validated conversion optimization. Requires an Anthropic or OpenAI API key, hosting, and a domain.",
+  "faq": [
+    { "q": "Is the AI-generated copy actually optimized to convert, like Unbounce's?", "a": "No — it's a plausible draft generated from your product description, not copy validated against real conversion data across many campaigns, which is a claim this build can't honestly make." },
+    { "q": "Does it support matching a landing page to a specific ad's keyword?", "a": "A basic version — a URL query parameter can override the headline, echoing an ad's keyword back on the landing page, which is a bounded take on Unbounce's dynamic text replacement." },
+    { "q": "Can I edit the AI-generated copy before publishing?", "a": "Yes — the generated variants are a starting point you review and edit, not published automatically." },
+    { "q": "What does it cost to run?", "a": "Hosting, a domain, and model API usage per token for copy generation — copy generation itself is a cheap, occasional request, so costs stay modest." }
+  ]
+}

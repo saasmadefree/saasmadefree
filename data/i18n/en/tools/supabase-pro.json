@@ -1,0 +1,19 @@
+{
+  "tagline": "Self-host PostgREST and GoTrue — the actual open-source core Supabase runs on",
+  "verdictSummary": "Supabase's actual distinguishing trick — point it at a Postgres schema and get an instant REST API, built-in auth, and realtime subscriptions for free — is a real weekend-to-week build using PostgREST, the same open-source project Supabase itself is built on. What doesn't survive: Supabase's managed infrastructure, its generous free tier at scale, and years of edge-case hardening across auth providers and realtime connections.",
+  "coreLoopDIY": "Run PostgREST, the same open-source REST-from-Postgres-schema generator Supabase uses internally, against your own Postgres database to get an instant, auto-generated REST API, plus a simple auth service and WebSocket-based realtime change notifications.",
+  "whatYouLose": [
+    "managed infrastructure and generous free tier at scale",
+    "years of auth-provider and realtime edge-case hardening",
+    "a polished dashboard and table editor UI",
+    "edge functions and storage buckets with a CDN"
+  ],
+  "whyPeopleStillPay": "PostgREST itself is free and open source; what Supabase actually sells is not having to run and scale it yourself, plus a dashboard good enough that non-backend engineers can use it.",
+  "prompt": "Be honest that this is largely 'self-host the open-source project Supabase itself is built on' rather than reimplementing it from scratch — Supabase's core trick is PostgREST, an existing open-source tool that generates a REST API directly from a Postgres schema. Deploy PostgREST via Docker Compose against your own Postgres database; it will automatically expose every table and view as a REST endpoint with filtering, and respects Postgres row-level security policies for auth, which is exactly how Supabase's own 'auth' works under the hood. Add GoTrue, also open source, also literally what Supabase itself uses, for email/password and OAuth authentication, issuing JWTs that PostgREST's row-level security policies can check. For realtime, run a small WebSocket service that listens to Postgres's logical replication stream, using a library like pg-logical-replication, and pushes row-change notifications to subscribed clients. Wire these three pieces together behind a reverse proxy (Caddy) with automatic HTTPS. Do not build a polished table-editor dashboard, edge functions, or storage buckets with CDN — those are out of scope; this replicates the API, auth, and realtime core, not the whole product. Requires hosting, a domain, and a Postgres database — all three components are open source with no licensing cost.",
+  "faq": [
+    { "q": "Am I really just reimplementing Supabase, or running the same software?", "a": "Mostly running the same underlying open-source pieces, PostgREST and GoTrue, that Supabase itself builds on — for the API and auth core, self-hosting is close to literal, not a from-scratch clone." },
+    { "q": "Do I get the same free tier limits?", "a": "No — you're paying for your own hosting instead, which might be cheaper or more expensive than Supabase's free tier depending on your usage, but there's no vendor-imposed cap." },
+    { "q": "Does it have the table editor dashboard?", "a": "No — that's real UI work Supabase has built on top of the open-source core. You'd manage your schema through normal Postgres tools instead." },
+    { "q": "What does it cost to run?", "a": "Hosting plus a Postgres database — typically a few dollars a month for light use, since PostgREST, GoTrue, and the realtime piece are all free open-source software." }
+  ]
+}

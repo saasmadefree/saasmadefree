@@ -1,0 +1,19 @@
+{
+  "tagline": "A budgeting ledger with genuine multi-currency support",
+  "verdictSummary": "A personal finance ledger with real multi-currency support — converting and displaying balances in a home currency while preserving the original transaction currency — is a genuine weekend build using a currency-conversion API. What doesn't survive: Lunch Money's public API ecosystem, third-party tools built against it, and live bank-feed connections.",
+  "coreLoopDIY": "Import transactions in multiple currencies, convert each to a chosen home currency using a currency-exchange-rate API for display and totals, while preserving the original currency and amount on the record.",
+  "whatYouLose": [
+    "a public API ecosystem with third-party integrations",
+    "live automatic bank-feed connections",
+    "years of currency-conversion edge cases like historical rates and rounding",
+    "budget rollover and category-group polish"
+  ],
+  "whyPeopleStillPay": "Converting one currency is an API call; building an ecosystem other developers build on top of, plus getting historical exchange-rate edge cases right for years of transaction history, is the ongoing work.",
+  "prompt": "Build a personal finance ledger with genuine multi-currency support, Lunch Money's actual differentiator. Use Next.js/TypeScript with SQLite. Support CSV import, the same duplicate-detection and column-mapping approach as this catalogue's Tiller entry, with a per-transaction currency field, not assuming everything is in one currency. Use a free-tier currency-exchange-rate API to convert each transaction to a chosen home currency for display and totals, while always preserving and showing the original currency and amount too — never lose the source data to a conversion. Cache exchange rates by date, since a transaction from six months ago should convert at that date's rate, not today's, for accurate historical totals. Build budget and net-worth views computed in the home currency from the converted amounts. Expose a simple read-only REST API, with a personal API token, over your own data, so you can build small scripts or integrations against it yourself, echoing Lunch Money's API-first design in miniature. Do not build live bank-account connections or a public third-party integration ecosystem — those are out of scope; the API here is for your own personal use, not other developers. Requires hosting and a database; a free currency-exchange-rate API key.",
+  "faq": [
+    { "q": "Does it convert old transactions at today's exchange rate or the rate at the time?", "a": "At the rate for that transaction's date, cached so historical totals stay accurate rather than drifting every time exchange rates move." },
+    { "q": "Can I still see the original currency a transaction was in?", "a": "Yes — the original currency and amount are always preserved alongside the converted home-currency value, never overwritten." },
+    { "q": "Does it have a public API other people can build integrations against, like Lunch Money's?", "a": "It has a simple personal API for your own scripts, but there's no public ecosystem — that's real, ongoing developer-relations work this build doesn't attempt." },
+    { "q": "What does it cost to run?", "a": "Hosting, a database, and a currency-exchange API's free tier — typically nothing beyond minimal hosting costs." }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "Generate embeddable forms and grids to drop into any existing website",
+  "verdictSummary": "Caspio's actual mechanic — build a form, report, or grid against your database, then get an embed snippet to drop into any existing website — is a real weekend build once you separate 'the embeddable widget' from 'the app.' What doesn't survive: Caspio's compliance certifications (HIPAA, SOC 2) that make it a defensible choice for regulated industries, which a personal project can't credibly claim.",
+  "coreLoopDIY": "Define a table and a form or grid view against it, and generate a small embeddable JavaScript snippet that renders that view inside an iframe on any external website, reading and writing to your own database via a scoped API token.",
+  "whatYouLose": [
+    "compliance certifications defensible for regulated industries",
+    "a large library of pre-built view templates",
+    "managed hosting and audit logging",
+    "granular field-level permission rules"
+  ],
+  "whyPeopleStillPay": "The embed mechanic is buildable; being the vendor a healthcare or government client's compliance team will actually sign off on is a business relationship and certification process, not a coding problem.",
+  "prompt": "Build a tool that generates embeddable forms and grids you can drop into any existing website — Caspio's actual core mechanic, distinct from an all-in-one app builder. Use Next.js/TypeScript with Postgres. Let the user define a table (typed fields) and build a form view or a read-only grid view against it. For each view, generate an embed snippet: an iframe pointing at a hosted, scoped page for that view, authenticated by a per-view API token, not a full user login, so it can be embedded on a completely separate website without requiring visitors to have an account. Handle form submissions server-side, writing validated data back to the table. Support basic styling options, a few color and font choices, so the embedded iframe can loosely match the host site rather than looking obviously foreign. Do not build compliance certifications, a large template library, or granular field-level permissions beyond a table-level API token — those are out of scope; this is the embeddable-view mechanic, not the certified enterprise product. Requires hosting and a database; no external API key needed for the core build.",
+  "faq": [
+    { "q": "Can I embed a form on a website that isn't hosted by this tool?", "a": "Yes — that's the actual point. The embed snippet is a self-contained iframe pointing back at your hosted instance, so it works on any external site, no different login required for visitors." },
+    { "q": "Is this HIPAA-compliant like Caspio?", "a": "No — compliance certification is a business and audit process, not something a personal build can credibly claim. If you handle regulated data, that's a real reason to keep paying for a certified vendor." },
+    { "q": "How many pre-built view templates does it include?", "a": "None — you build each form or grid from scratch. Caspio's larger template library is real accumulated product content this build doesn't include." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database — typically a few dollars a month, with no per-embed fee." }
+  ]
+}

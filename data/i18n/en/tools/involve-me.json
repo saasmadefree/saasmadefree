@@ -1,0 +1,19 @@
+{
+  "tagline": "A scored quiz that branches to a personalized result",
+  "verdictSummary": "A quiz that assigns points per answer and branches to a personalized result based on the total score — involve.me's actual interactive-quiz mechanic — is a real weekend build, genuinely similar arithmetic to this catalogue's Paperform price-calculator entry but branching on a total score rather than displaying a running price.",
+  "coreLoopDIY": "Build a multi-question quiz where each answer option is assigned points, sum the points as the visitor answers, and show one of several pre-written result pages based on which score range the total falls into.",
+  "whatYouLose": [
+    "a large template library of pre-built quiz formats",
+    "lead-capture integrations with marketing tools",
+    "A/B testing of quiz variants",
+    "advanced analytics on drop-off per question"
+  ],
+  "whyPeopleStillPay": "Scoring and branching to a result is simple arithmetic; a library of proven quiz templates and integrations with the marketing tools people actually use to follow up on leads is the ongoing product surface.",
+  "prompt": "Build an interactive scored quiz tool — involve.me's actual mechanic, distinct from this catalogue's Paperform entry, which calculates a running price rather than branching to a result. Use Next.js/TypeScript with SQLite. In the quiz builder, let the creator write multiple-choice questions where each answer option is assigned a point value. As a visitor answers, sum the points client-side for a responsive feel, then validate the total server-side on submission — never trust a client-reported score for anything that matters. Define result tiers: score ranges each mapped to a pre-written result page (title, description, optional call-to-action link). Show the visitor their matching result immediately after the last question. Capture an optional email address before revealing the result, a common lead-generation pattern, and store the visitor's answers, score, and email in SQLite. Notify the quiz owner of new leads via a transactional email provider. Do not build a large template library, marketing-tool integrations, or A/B testing of quiz variants — those are out of scope; this is one scored quiz with configurable results, nothing more. Requires a domain and a transactional email provider; no other external service needed.",
+  "faq": [
+    { "q": "How is this different from the Paperform build in this catalogue?", "a": "Paperform's build calculates a running price total; this one sums points to branch into one of several pre-written result pages, a genuinely different interaction even though the underlying arithmetic is similar." },
+    { "q": "Is the score calculated safely, or can someone cheat it?", "a": "The total is validated server-side on submission, not trusted from the client, so someone can't just edit the page to force a specific result." },
+    { "q": "Can I build multiple different quizzes?", "a": "Yes, each with its own questions, point values, and result tiers — but there's no shared template library to start from, unlike involve.me's." },
+    { "q": "What does it cost to run?", "a": "A domain plus a transactional email provider's free tier — typically nothing beyond what you already pay for the domain." }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "A self-hosted, single-server platform for one containerized service",
+  "verdictSummary": "Deploying one containerized web service with automatic TLS and health checks is the same buildable core this catalogue's Railway entry already describes — Render and Railway are close enough in shape that the honest build is the same single-server PaaS pattern, not a second, different one. What doesn't survive either way: managed multi-region infrastructure and someone else on call when a box goes down.",
+  "coreLoopDIY": "Accept a Git repository or container image, build and run it in Docker on one server, route a domain to it with automatic HTTPS, and keep basic logs and health checks — the same core loop as this catalogue's Railway entry.",
+  "whatYouLose": [
+    "managed multi-region infrastructure",
+    "one-click database provisioning",
+    "autoscaling under load",
+    "someone else on call for infrastructure incidents"
+  ],
+  "whyPeopleStillPay": "A deploy button is easy to fake; being the team that gets paged when a data center has a bad night is the actual product, same as with any managed PaaS.",
+  "prompt": "Build the same single-server PaaS described in this catalogue's Railway entry — Render's actual shape (accept a repo or image, build with Docker, route with automatic HTTPS, health-check before swapping traffic) is close enough to Railway's that reimplementing it as a second, differently-designed system would be dishonest busywork. Use Docker Compose with Caddy as the reverse proxy for automatic Let's Encrypt TLS. Build a small control-plane service that watches for new commits or manual redeploy triggers, builds the image, health-checks the new container before routing traffic to it with a blue-green swap, and keeps the last few images for instant rollback. Store environment variables encrypted at rest, injected at container start. Stream bounded build and runtime logs per app through a minimal dashboard, with restart, rollback, and redeploy actions. Add a basic host-level disk and memory alert. Do not build multi-region infrastructure, autoscaling, or managed database provisioning — this runs on one server, and that limitation belongs in the README, not hidden. Requires a server (a modest VPS is enough for a few small apps) and a domain pointed at it.",
+  "faq": [
+    { "q": "Is this different from the Railway build in this catalogue?", "a": "Not fundamentally — Render and Railway solve the same problem the same shape of way, so this build deliberately reuses that pattern rather than inventing an artificially different second one." },
+    { "q": "What happens if the server goes down?", "a": "Everything on it goes down with it — there's no automatic failover, the real trade-off for skipping managed multi-region infrastructure." },
+    { "q": "Does it support databases out of the box?", "a": "You can deploy a database container the same way as any other app, but there's no one-click managed database with automatic backups — that's on you." },
+    { "q": "What does it cost to run?", "a": "Whatever your VPS and domain cost — often under $10 a month total for a handful of small apps, versus Render's usage-based billing." }
+  ]
+}

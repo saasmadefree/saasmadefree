@@ -1,0 +1,19 @@
+{
+  "tagline": "The simplest possible automation — no conditions, no branching, no AI steps",
+  "verdictSummary": "The simplest possible automation — when A happens, do B, no conditions, no branching, no AI steps — is a genuine one-sitting build, deliberately simpler than this catalogue's other automation entries. What doesn't survive: Pabbly Connect's library of many pre-built connector integrations and its higher step-volume ceiling.",
+  "coreLoopDIY": "Connect exactly two named services with a strictly linear trigger-then-action flow — no conditions, no branching, no AI steps — as the deliberately simplest automation shape in this catalogue.",
+  "whatYouLose": [
+    "a library of many pre-built connector integrations",
+    "higher step-volume ceilings for heavy automation use",
+    "conditional branching within a single workflow",
+    "team-shared automation libraries"
+  ],
+  "whyPeopleStillPay": "A linear two-step automation is genuinely simple to build once; a library of maintained connectors across dozens of services, reliable at real volume, is the much larger ongoing product.",
+  "prompt": "Build the simplest possible automation tool: when a trigger fires on one service, do exactly one action on a second service — no conditions, no branching, no AI steps. This is deliberately the simplest automation shape in this catalogue, in contrast to the more complex conditional and human-in-the-loop patterns this catalogue's other automation entries describe. Use TypeScript/Node.js with SQLite; a full Postgres and Redis setup is overkill for something this simple. Implement one webhook endpoint per configured automation that, on receiving the trigger service's webhook payload, extracts a couple of configured fields and calls the second service's API with them, using stored, encrypted credentials. Log every run, trigger payload, action result, success or failure, to SQLite for a simple activity feed. Add basic retry-once-on-failure, since transient API errors happen, but keep the retry logic itself simple, not a full exponential-backoff queue system. Do not build conditional branching, multi-step chains, AI-generated steps, or a broad connector library — those are all explicitly out of scope; if you need any of them, this catalogue's Pipedream, Gumloop, or Relay.app entries cover that ground instead. Needs a domain for the webhook endpoint and an OAuth app registration for whichever service requires it.",
+  "faq": [
+    { "q": "Can I add a conditional step, like 'only if X'?", "a": "No — that's deliberately out of scope. This is the simplest linear automation shape in this catalogue; if you need conditions or branching, look at the Pipedream or Gumloop entries instead." },
+    { "q": "How many services does it connect to?", "a": "Exactly two per automation, hardcoded when you set it up — there's no library of pre-built connectors, unlike Pabbly Connect's larger integration catalog." },
+    { "q": "What happens if the action fails?", "a": "It retries once, then logs the failure to the activity feed — simple, not a full retry-queue system with backoff, matching this build's deliberately minimal scope." },
+    { "q": "What does it cost to run?", "a": "Minimal hosting for the webhook endpoint plus a small database — typically a couple of dollars a month for light use." }
+  ]
+}

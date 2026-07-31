@@ -1,0 +1,19 @@
+{
+  "tagline": "Generate a full-stack starter app — frontend, schema, and auth wired together",
+  "verdictSummary": "Generating a complete starter app — frontend, a database schema, and basic auth already wired together — from one descriptive prompt is a real weekend build once you accept a fixed, opinionated stack rather than Lovable's flexibility. What doesn't survive: Lovable's iterative multi-turn refinement polish and its one-click Supabase project provisioning.",
+  "coreLoopDIY": "From one descriptive prompt, generate a complete starter project — a Next.js frontend, a Postgres schema inferred from the described data model, and basic email/password auth — already wired together as a runnable app, not just isolated components.",
+  "whatYouLose": [
+    "iterative multi-turn refinement polish",
+    "one-click backend project provisioning",
+    "a frontier model tuned for full-stack scaffolding specifically",
+    "visual editing of the generated UI"
+  ],
+  "whyPeopleStillPay": "Generating one starter scaffold is bounded work; iterating on it conversationally across many turns while keeping frontend, schema, and auth consistent with each change is the harder, ongoing product problem.",
+  "prompt": "Build a tool that generates a complete, runnable full-stack starter app from one descriptive prompt — frontend, database schema, and auth already wired together, not just isolated UI components like this catalogue's v0 entry. Use a fixed stack, Next.js, Postgres, a simple email/password auth library, so the model's job is filling in a known template rather than choosing infrastructure. Read a model key from ANTHROPIC_API_KEY or OPENAI_API_KEY. Given a prompt like 'a habit tracker where users log daily habits and see a streak', have the model infer a Postgres schema (users, habits, habit_logs tables with sensible relations), generate CRUD API routes for it, generate matching frontend pages (a dashboard, a habit list, a log-entry form), and wire auth so routes are protected. Write all generated files to a real project directory, run migrations against a connected Postgres database, and start the dev server so the user has something running immediately. Support one follow-up refinement prompt, such as 'also add a weekly summary view', that the model applies as a diff against the existing generated project, rather than only supporting a single one-shot generation. Do not build many-turn iterative refinement, one-click cloud database provisioning, or visual UI editing — those are out of scope; this generates a solid starting scaffold plus one refinement, not an ongoing conversational IDE. Requires an Anthropic or OpenAI API key, hosting, and a Postgres database.",
+  "faq": [
+    { "q": "Does it wire up the database and auth automatically, or just generate frontend code?", "a": "Both — schema, API routes, and basic auth are generated and connected, not just UI components. That's the actual point of this build, distinct from a pure frontend-component generator." },
+    { "q": "Can I keep refining it conversationally, like Lovable?", "a": "One follow-up refinement is supported, applied as a diff to the existing project — but many-turn iterative refinement across a long session is real, harder product work this build doesn't fully replicate." },
+    { "q": "Does it provision a database for me automatically?", "a": "No — you connect an existing Postgres database yourself. One-click cloud database provisioning is real infrastructure integration Lovable has built." },
+    { "q": "What does it cost to run?", "a": "Hosting, a database, and model API usage per token — a full scaffold generation uses more tokens than a single chat message, so expect a noticeable but bounded cost per generation." }
+  ]
+}

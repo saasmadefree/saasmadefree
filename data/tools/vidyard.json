@@ -1,0 +1,42 @@
+{
+  "slug": "vidyard",
+  "name": "Vidyard",
+  "domains": [
+    "vidyard.com"
+  ],
+  "category": "screen-recording",
+  "subcategory": "screen recording, walkthroughs and product demos",
+  "pricing": {
+    "amount": 59,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://vidyard.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "capture polish, hosting, and collaboration",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Cap",
+      "url": "https://github.com/CapSoftware/Cap"
+    }
+  ],
+  "relatedSlugs": [
+    "scribe",
+    "arcade",
+    "guidde"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

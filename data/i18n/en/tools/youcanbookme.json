@@ -1,0 +1,19 @@
+{
+  "tagline": "Pool several team members' calendars and route bookings fairly",
+  "verdictSummary": "Pooling several team members' availability so a booking goes to whichever one is free — the team-routing feature this catalogue's Cal.com Teams entry explicitly left out of scope — is a real, if more involved, week-long build. This is the natural next step once the single-user booking mechanic already described elsewhere in this catalogue works.",
+  "coreLoopDIY": "Connect several team members' Google Calendars, compute the union of their availability, and book a visitor's requested slot against whichever team member is actually free at that time, rotating fairly across members over time.",
+  "whatYouLose": [
+    "polished round-robin fairness tuning",
+    "embeddable widget behavior on any external website",
+    "team-wide analytics on booking distribution",
+    "payment collection on booking"
+  ],
+  "whyPeopleStillPay": "Pooling two calendars is a real project; keeping routing fair across a growing team, embedding cleanly on any website, and showing booking-distribution analytics for a whole team, is the ongoing product surface.",
+  "prompt": "Build a team booking tool that pools several people's availability — the team-routing feature this catalogue's Cal.com Teams entry explicitly scoped out as a personal-project single-user build. Extend that same booking mechanic, Next.js/TypeScript, Postgres, Google Calendar OAuth per connected account, to support multiple connected team-member calendars. For a booking page, compute each team member's availability the same way as the single-user version, then compute the union: a visitor can book any slot where at least one team member is free. When a visitor books, assign the booking to whichever available team member has received the fewest bookings this week, simple round-robin fairness, and create the calendar event on that specific member's calendar. Send confirmation emails to both the visitor and the assigned team member. Add a basic admin view showing booking counts per team member, so fairness is visible and verifiable. Do not build embeddable widget behavior for external websites, payment collection, or advanced fairness weighting beyond simple round-robin — those are out of scope; this pools availability and routes fairly, nothing more sophisticated. Requires hosting, a domain, a Google OAuth app per connected team member, and a transactional email provider for confirmations.",
+  "faq": [
+    { "q": "How is this different from the Cal.com Teams build in this catalogue?", "a": "That build is explicitly single-user and skips team routing. This one is the natural extension: pooling several team members' calendars and routing bookings fairly between them." },
+    { "q": "How does it decide which team member gets a booking?", "a": "Simple round-robin by weekly booking count — whoever has the fewest bookings this week among those actually available at the requested time gets it — not sophisticated weighting, but genuinely fair over time." },
+    { "q": "Can I embed the booking page on my company website?", "a": "Only as a standalone page you link to, not a polished embeddable widget — that's real additional integration work this build doesn't include." },
+    { "q": "What does it cost to run?", "a": "Hosting, a domain, and a transactional email provider's free tier — costs scale slightly with team size since each member needs their own OAuth-connected calendar, but stay modest for a small team." }
+  ]
+}

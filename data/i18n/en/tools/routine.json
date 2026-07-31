@@ -1,0 +1,19 @@
+{
+  "tagline": "Convert any note line into a task, then drag it onto your calendar",
+  "verdictSummary": "Turning a line in a note directly into a scheduled task — type a note, select a line, convert it to a task with one action, then drag it onto your calendar — is a real weekend build combining this catalogue's notes and calendar-scheduling approaches into one flow. What doesn't survive: Routine's specific polish in making that conversion feel instant, and its multi-calendar-provider support.",
+  "coreLoopDIY": "Write freeform notes, select any line and convert it into a task with one action, and schedule that task onto a connected calendar using the same drag-to-time-block interaction as this catalogue's Amie entry.",
+  "whatYouLose": [
+    "polish in making note-to-task conversion feel instant",
+    "multi-calendar-provider support",
+    "native cross-platform apps",
+    "team-shared notes and tasks"
+  ],
+  "whyPeopleStillPay": "Converting a line of text into a task record is simple; making that feel genuinely fast and natural as part of a daily writing habit, without breaking flow, is real interaction-design refinement.",
+  "prompt": "Build a tool that merges freeform notes with task scheduling: write a note, convert any line into a task with one action, then drag that task onto a calendar to time-block it — combining this catalogue's notes-taking pattern with its Amie entry's drag-to-schedule mechanic into one flow. Use Next.js/TypeScript with Postgres and the Google Calendar API (OAuth) for the calendar side. Build a simple daily-note editor, one Markdown note per day, like a running log. Let the user select any line of text and convert it to a task with a keyboard shortcut or button — this creates a linked task record referencing back to the source note line, without deleting the original text. Show tasks not yet scheduled in a sidebar list, and let the user drag any of them onto a weekly calendar view to create a real Google Calendar event at that time, the same transactional drag-to-schedule mechanic as the Amie entry. Mark scheduled tasks as such in both the note and the task list. Do not build multi-calendar-provider support, native cross-platform apps, or team-shared notes — those are out of scope; this is a single-user, single-calendar-provider tool combining two patterns already described elsewhere in this catalogue. Needs a Google OAuth app (free to register) with Calendar API access, plus hosting and a database.",
+  "faq": [
+    { "q": "How is this different from the Amie build in this catalogue?", "a": "Amie's build starts from a plain task list; this one starts from freeform daily notes, where any line can become a task with one action, then gets scheduled the same drag-to-calendar way." },
+    { "q": "Does converting a note line to a task delete the original text?", "a": "No — the task is a linked record referencing the note line, so your daily note stays intact as a readable log even after tasks are pulled out of it." },
+    { "q": "Does it support Outlook or Apple Calendar?", "a": "No — only Google Calendar, matching this catalogue's other calendar-integration entries' honest single-provider scope." },
+    { "q": "What does it cost to run?", "a": "Hosting, a database, and the Google Calendar API's free tier — typically a few dollars a month or less." }
+  ]
+}

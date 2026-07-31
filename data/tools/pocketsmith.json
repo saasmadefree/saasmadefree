@@ -1,0 +1,42 @@
+{
+  "slug": "pocketsmith",
+  "name": "PocketSmith",
+  "domains": [
+    "pocketsmith.com"
+  ],
+  "category": "personal-finance",
+  "subcategory": "budgeting, invoicing and small-business finance",
+  "pricing": {
+    "amount": 9.95,
+    "currency": "USD",
+    "plan": "Foundation",
+    "basis": "flat-monthly",
+    "source": "https://pocketsmith.com/plans",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "financial integrations, compliance, and trust",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Actual Budget",
+      "url": "https://github.com/actualbudget/actual"
+    }
+  ],
+  "relatedSlugs": [
+    "tiller-money",
+    "ynab",
+    "copilot-money"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

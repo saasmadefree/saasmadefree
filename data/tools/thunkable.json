@@ -1,0 +1,41 @@
+{
+  "slug": "thunkable",
+  "name": "Thunkable",
+  "domains": [
+    "thunkable.com"
+  ],
+  "category": "no-code-apps",
+  "subcategory": "internal tools and application builders",
+  "pricing": {
+    "amount": 59,
+    "currency": "USD",
+    "plan": "Builder",
+    "basis": "flat-monthly",
+    "source": "https://thunkable.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "connectors, runtime reliability, and governance",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Appsmith",
+      "url": "https://github.com/appsmithorg/appsmith"
+    }
+  ],
+  "relatedSlugs": [
+    "flutterflow",
+    "retool",
+    "weweb"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

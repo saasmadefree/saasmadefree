@@ -1,0 +1,19 @@
+{
+  "tagline": "A budgeting ledger that projects your future balance forward",
+  "verdictSummary": "Projecting a future account balance by extrapolating recurring transactions forward on a calendar — Pocketsmith's actual signature feature — is a real weekend build once your recurring transactions are correctly identified. What doesn't survive: Pocketsmith's automatic recurring-transaction detection and its polished multi-account forecast blending.",
+  "coreLoopDIY": "Tag transactions as recurring with a frequency and next-expected date, and project a future balance chart by simulating those recurring transactions forward from today alongside the current actual balance.",
+  "whatYouLose": [
+    "automatic recurring-transaction detection",
+    "polished multi-account forecast blending",
+    "live bank-feed connections",
+    "what-if scenario comparison tools"
+  ],
+  "whyPeopleStillPay": "Projecting forward from known recurring transactions is simple math; automatically detecting which of hundreds of transactions are actually recurring, without the user tagging each one, is a real pattern-recognition problem.",
+  "prompt": "Build a personal finance ledger with a forward-looking balance forecast — Pocketsmith's actual signature feature, distinct from this catalogue's other personal-finance entries which focus on categorization or multi-currency. Use Next.js/TypeScript with SQLite, the same CSV import approach as this catalogue's Tiller entry. Let the user tag any transaction as recurring, with a frequency (weekly, monthly, custom interval) and next-expected date and amount. Build a forecast view: starting from today's actual balance, simulate each recurring transaction forward day by day for the next 90 days, producing a projected balance line chart that shows both the confirmed actual balance (past) and the projected balance (future) on one continuous timeline. Let the user adjust a recurring transaction's amount or skip a single occurrence without deleting the rule, to handle real-world variance. As a nice-to-have, flag transactions that look recurring based on a simple heuristic — same payee and similar amount appearing three or more times at roughly regular intervals — as suggestions the user confirms, rather than claiming full automatic detection. Do not build multi-account forecast blending, live bank-feed connections, or what-if scenario comparison — those are out of scope. Requires hosting and a database; no external API key needed.",
+  "faq": [
+    { "q": "Does it automatically find my recurring bills, or do I have to tag them?", "a": "It suggests candidates using a simple heuristic — same payee and similar amount appearing several times at regular intervals — but you confirm each one. Pocketsmith's fully automatic detection is a harder pattern-recognition problem this build approximates rather than solves." },
+    { "q": "How far into the future does the forecast go?", "a": "90 days by default in this build — a deliberate, honest scope rather than promising indefinite accuracy, since forecasts naturally get less reliable further out." },
+    { "q": "Can I see the forecast across multiple accounts combined?", "a": "Not in this build — it forecasts one account's balance. Blending multiple accounts into one combined forecast is real additional work Pocketsmith has built." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database — typically a few dollars a month, with no external API dependency for the forecast itself." }
+  ]
+}

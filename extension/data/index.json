@@ -27,6 +27,13 @@
     "currency": "USD",
     "url": "/en/tools/activecampaign"
   },
+  "activepieces.com": {
+    "slug": "activepieces-cloud",
+    "verdict": "kinda",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/activepieces-cloud"
+  },
   "adalo.com": {
     "slug": "adalo",
     "verdict": "no",
@@ -167,6 +174,13 @@
     "currency": "USD",
     "url": "/en/tools/bitwarden"
   },
+  "bolt.new": {
+    "slug": "bolt-new",
+    "verdict": "no",
+    "amount": 20,
+    "currency": "USD",
+    "url": "/en/tools/bolt-new"
+  },
   "bubble.io": {
     "slug": "bubble",
     "verdict": "kinda",
@@ -229,6 +243,13 @@
     "amount": 1.58,
     "currency": "USD",
     "url": "/en/tools/carrd"
+  },
+  "caspio.com": {
+    "slug": "caspio",
+    "verdict": "no",
+    "amount": 100,
+    "currency": "USD",
+    "url": "/en/tools/caspio"
   },
   "chatgpt.com": {
     "slug": "chatgpt",
@@ -349,6 +370,13 @@
     "currency": "USD",
     "url": "/en/tools/elevenlabs"
   },
+  "enpass.io": {
+    "slug": "enpass",
+    "verdict": "kinda",
+    "amount": 1.99,
+    "currency": "USD",
+    "url": "/en/tools/enpass"
+  },
   "equals.com": {
     "slug": "equals",
     "verdict": "kinda",
@@ -439,6 +467,13 @@
     "amount": 30,
     "currency": "USD",
     "url": "/en/tools/flutterflow"
+  },
+  "formstack.com": {
+    "slug": "formstack-forms",
+    "verdict": "no",
+    "amount": 99,
+    "currency": "USD",
+    "url": "/en/tools/formstack-forms"
   },
   "framer.com": {
     "slug": "framer",
@@ -622,6 +657,13 @@
     "currency": "USD",
     "url": "/en/tools/invoice-ninja"
   },
+  "involve.me": {
+    "slug": "involve-me",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/involve-me"
+  },
   "jasper.ai": {
     "slug": "jasper",
     "verdict": "kinda",
@@ -656,6 +698,13 @@
     "amount": 39,
     "currency": "USD",
     "url": "/en/tools/kit"
+  },
+  "knack.com": {
+    "slug": "knack",
+    "verdict": "kinda",
+    "amount": 59,
+    "currency": "USD",
+    "url": "/en/tools/knack"
   },
   "krisp.ai": {
     "slug": "krisp",
@@ -713,6 +762,20 @@
     "currency": "USD",
     "url": "/en/tools/loom"
   },
+  "lovable.dev": {
+    "slug": "lovable",
+    "verdict": "no",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/lovable"
+  },
+  "lunchmoney.app": {
+    "slug": "lunch-money",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/lunch-money"
+  },
   "mailchimp.com": {
     "slug": "mailchimp",
     "verdict": "kinda",
@@ -754,6 +817,13 @@
     "amount": 19,
     "currency": "USD",
     "url": "/en/tools/meetgeek"
+  },
+  "mem.ai": {
+    "slug": "mem-ai",
+    "verdict": "kinda",
+    "amount": 14.99,
+    "currency": "USD",
+    "url": "/en/tools/mem-ai"
   },
   "midjourney.com": {
     "slug": "midjourney",
@@ -832,6 +902,13 @@
     "currency": "USD",
     "url": "/en/tools/n8n-cloud"
   },
+  "neon.com": {
+    "slug": "neon",
+    "verdict": "no",
+    "amount": 19,
+    "currency": "USD",
+    "url": "/en/tools/neon"
+  },
   "netlify.com": {
     "slug": "netlify",
     "verdict": "kinda",
@@ -853,6 +930,13 @@
     "currency": "USD",
     "url": "/en/tools/nordpass"
   },
+  "nuclino.com": {
+    "slug": "nuclino",
+    "verdict": "kinda",
+    "amount": 8,
+    "currency": "USD",
+    "url": "/en/tools/nuclino"
+  },
   "obsidian.md": {
     "slug": "obsidian",
     "verdict": "yes",
@@ -866,6 +950,13 @@
     "amount": 16.99,
     "currency": "USD",
     "url": "/en/tools/otter-ai"
+  },
+  "pabbly.com": {
+    "slug": "pabbly-connect",
+    "verdict": "no",
+    "amount": 19,
+    "currency": "USD",
+    "url": "/en/tools/pabbly-connect"
   },
   "paperform.co": {
     "slug": "paperform",
@@ -902,12 +993,26 @@
     "currency": "USD",
     "url": "/en/tools/pipedream"
   },
+  "planetscale.com": {
+    "slug": "planetscale",
+    "verdict": "no",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/planetscale"
+  },
   "plausible.io": {
     "slug": "plausible",
     "verdict": "yes",
     "amount": 9,
     "currency": "USD",
     "url": "/en/tools/plausible"
+  },
+  "pocketsmith.com": {
+    "slug": "pocketsmith",
+    "verdict": "kinda",
+    "amount": 9.95,
+    "currency": "USD",
+    "url": "/en/tools/pocketsmith"
   },
   "podia.com": {
     "slug": "podia",
@@ -1007,6 +1112,13 @@
     "currency": "USD",
     "url": "/en/tools/relay-app"
   },
+  "render.com": {
+    "slug": "render",
+    "verdict": "no",
+    "amount": 7,
+    "currency": "USD",
+    "url": "/en/tools/render"
+  },
   "replit.com": {
     "slug": "replit",
     "verdict": "kinda",
@@ -1027,6 +1139,13 @@
     "amount": 29,
     "currency": "USD",
     "url": "/en/tools/riverside"
+  },
+  "routine.co": {
+    "slug": "routine",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/routine"
   },
   "rows.com": {
     "slug": "rows",
@@ -1140,6 +1259,20 @@
     "currency": "USD",
     "url": "/en/tools/sunsama"
   },
+  "supabase.com": {
+    "slug": "supabase-pro",
+    "verdict": "kinda",
+    "amount": 25,
+    "currency": "USD",
+    "url": "/en/tools/supabase-pro"
+  },
+  "supademo.com": {
+    "slug": "supademo",
+    "verdict": "kinda",
+    "amount": 36,
+    "currency": "USD",
+    "url": "/en/tools/supademo"
+  },
   "superhuman.com": {
     "slug": "superhuman",
     "verdict": "no",
@@ -1196,6 +1329,13 @@
     "currency": "USD",
     "url": "/en/tools/tally"
   },
+  "taskade.com": {
+    "slug": "taskade",
+    "verdict": "kinda",
+    "amount": 20,
+    "currency": "USD",
+    "url": "/en/tools/taskade"
+  },
   "teachable.com": {
     "slug": "teachable",
     "verdict": "kinda",
@@ -1223,6 +1363,13 @@
     "amount": 9.99,
     "currency": "USD",
     "url": "/en/tools/thumblifyai"
+  },
+  "thunkable.com": {
+    "slug": "thunkable",
+    "verdict": "no",
+    "amount": 59,
+    "currency": "USD",
+    "url": "/en/tools/thunkable"
   },
   "ticktick.com": {
     "slug": "ticktick",
@@ -1287,6 +1434,13 @@
     "currency": "USD",
     "url": "/en/tools/umami-cloud"
   },
+  "unbounce.com": {
+    "slug": "unbounce",
+    "verdict": "no",
+    "amount": 99,
+    "currency": "USD",
+    "url": "/en/tools/unbounce"
+  },
   "uncircle.app": {
     "slug": "uncircle",
     "verdict": "kinda",
@@ -1315,6 +1469,13 @@
     "currency": "USD",
     "url": "/en/tools/verifieddr"
   },
+  "vidyard.com": {
+    "slug": "vidyard",
+    "verdict": "no",
+    "amount": 59,
+    "currency": "USD",
+    "url": "/en/tools/vidyard"
+  },
   "wabery.com": {
     "slug": "wabery",
     "verdict": "kinda",
@@ -1328,6 +1489,13 @@
     "amount": 25,
     "currency": "USD",
     "url": "/en/tools/webflow"
+  },
+  "weweb.io": {
+    "slug": "weweb",
+    "verdict": "kinda",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/weweb"
   },
   "whimsical.com": {
     "slug": "whimsical",
@@ -1370,6 +1538,13 @@
     "amount": 14.99,
     "currency": "USD",
     "url": "/en/tools/ynab"
+  },
+  "youcanbook.me": {
+    "slug": "youcanbookme",
+    "verdict": "kinda",
+    "amount": 9,
+    "currency": "USD",
+    "url": "/en/tools/youcanbookme"
   },
   "zapier.com": {
     "slug": "zapier",

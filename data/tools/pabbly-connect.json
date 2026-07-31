@@ -1,0 +1,43 @@
+{
+  "slug": "pabbly-connect",
+  "name": "Pabbly Connect",
+  "domains": [
+    "pabbly.com"
+  ],
+  "category": "automation",
+  "subcategory": "workflow automation and app integrations",
+  "pricing": {
+    "amount": 19,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "flat-monthly",
+    "source": "https://pabbly.com/connect/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "connector breadth and execution reliability",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Activepieces",
+      "url": "https://github.com/activepieces/activepieces"
+    }
+  ],
+  "relatedSlugs": [
+    "pipedream",
+    "ifttt",
+    "relay-app"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

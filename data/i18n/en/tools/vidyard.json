@@ -1,0 +1,19 @@
+{
+  "tagline": "Record a personal video message with a unique tracked link per recipient",
+  "verdictSummary": "Recording a quick personal video message and tracking whether a specific recipient actually watched it — Vidyard's actual sales-outreach angle — is a real weekend build using standard browser video recording and view-tracking. What doesn't survive: Vidyard's video hosting at scale, its CRM integrations, and analytics on exactly how much of the video each viewer watched.",
+  "coreLoopDIY": "Record a short video message in the browser using the MediaRecorder API, generate a unique shareable link per recipient, and track whether that specific link was opened and the video played.",
+  "whatYouLose": [
+    "hosted video infrastructure and CDN delivery at scale",
+    "CRM integrations",
+    "granular watch-time analytics per viewer",
+    "personalized video thumbnails with the recipient's name overlaid"
+  ],
+  "whyPeopleStillPay": "Recording and hosting one video is simple; delivering video reliably at scale, integrating with the CRM tools sales teams live in, and showing exactly how far each of hundreds of recipients watched, is the ongoing infrastructure work.",
+  "prompt": "Build a personal video-messaging tool for sales-style outreach: record a quick video in the browser, generate a unique link per recipient, and track whether they watched it. Use a browser-based recorder, the MediaRecorder API, to capture webcam and/or screen video directly in the browser, upload it to your own storage, local disk or S3-compatible, on stop. Generate a unique shareable link per send, not just per video, since the same video can be sent to multiple recipients each getting their own tracked link, using a UUID. When a recipient opens their link, record a 'viewed' timestamp, and use the video player's timeupdate event to track roughly how much of the video played, a simple percentage, not frame-accurate analytics. Show the sender a dashboard of sends with viewed/not-viewed status and rough watch percentage. Do not build CDN-scale video delivery, CRM integrations, or personalized thumbnail generation — those are out of scope; this is a personal tool for sending a handful of tracked video messages, not infrastructure for a sales team's volume. Requires hosting, storage for video files, and a domain for the tracked links; no other external service needed.",
+  "faq": [
+    { "q": "Can I send the same video to multiple people and track each separately?", "a": "Yes — each send gets its own unique link, so you can tell exactly which recipient watched, even though the underlying video file is shared." },
+    { "q": "How accurate is the watch-time tracking?", "a": "Rough — a simple percentage based on the video player's playback position, not Vidyard's more granular per-second analytics." },
+    { "q": "Will it handle sending videos to hundreds of prospects?", "a": "Not well — this is scoped as a personal tool for a handful of tracked sends, not infrastructure built for a sales team's volume. Video storage and delivery at scale is real infrastructure work." },
+    { "q": "What does it cost to run?", "a": "Hosting, video storage, and a domain — costs scale with how much video you store and how many people watch it, but stay modest at personal scale." }
+  ]
+}

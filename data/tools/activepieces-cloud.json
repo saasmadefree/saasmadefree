@@ -1,0 +1,42 @@
+{
+  "slug": "activepieces-cloud",
+  "name": "Activepieces Cloud",
+  "domains": [
+    "activepieces.com"
+  ],
+  "category": "automation",
+  "subcategory": "workflow automation and app integrations",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Plus",
+    "basis": "flat-monthly",
+    "source": "https://activepieces.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "connector breadth and execution reliability",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Activepieces",
+      "url": "https://github.com/activepieces/activepieces"
+    }
+  ],
+  "relatedSlugs": [
+    "pipedream",
+    "ifttt",
+    "relay-app"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}
