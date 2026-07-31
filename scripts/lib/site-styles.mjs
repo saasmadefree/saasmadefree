@@ -14,10 +14,20 @@ export const SITE_CSS = `:root{
   --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
   --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
 }
+/* Le thème suit le système par défaut, sauf si le lecteur a choisi. Le
+   :not([data-theme="light"]) est ce qui laisse un choix explicite « clair »
+   l'emporter sur un système en sombre. */
 @media (prefers-color-scheme:dark){
-  :root{ --paper:#111110; --card:#1a1917; --ink:#f2f0e9; --muted:#9c9a8d; --rule:#2c2a25;
-         --yes:#22c55e; --kinda:#f59e0b; --no:#fb7185; --on-accent:#0d0d0c;
-         --accent:#22c55e; --focus:#93c5fd; }
+  :root:not([data-theme="light"]){
+    --paper:#111110; --card:#1a1917; --ink:#f2f0e9; --muted:#9c9a8d; --rule:#2c2a25;
+    --yes:#22c55e; --kinda:#f59e0b; --no:#fb7185; --on-accent:#0d0d0c;
+    --accent:#22c55e; --focus:#93c5fd;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111110; --card:#1a1917; --ink:#f2f0e9; --muted:#9c9a8d; --rule:#2c2a25;
+  --yes:#22c55e; --kinda:#f59e0b; --no:#fb7185; --on-accent:#0d0d0c;
+  --accent:#22c55e; --focus:#93c5fd;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -40,6 +50,16 @@ a:hover{text-decoration-thickness:.14em}
   flex-wrap:wrap;padding-bottom:1rem;margin-bottom:clamp(2rem,6vh,3.5rem);
   border-bottom:1px solid var(--rule)}
 .brand{font-weight:700;letter-spacing:-.01em;text-decoration:none;font-size:1rem}
+.header-tools{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.theme-toggle{display:inline-flex;align-items:center;gap:.45em;font-size:.8rem;
+  padding:.3em .75em;border-radius:999px;border:1px solid var(--rule);
+  background:var(--card);color:var(--muted);font-weight:400}
+.theme-toggle:hover:not(:disabled){border-color:var(--ink);color:var(--ink);opacity:1}
+.theme-icon::before{content:"\\25D0"}
+:root[data-theme="dark"] .theme-icon::before{content:"\\25D1"}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .theme-icon::before{content:"\\25D1"}
+}
 .lang-switch{display:flex;gap:.6rem;font-size:.8rem;color:var(--muted)}
 .lang-switch a{color:var(--muted);text-decoration:none;padding:.25em .6em;border-radius:999px}
 .lang-switch a:hover{background:color-mix(in srgb,var(--ink) 7%,transparent)}

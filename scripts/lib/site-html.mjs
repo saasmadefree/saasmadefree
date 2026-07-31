@@ -88,6 +88,11 @@ export function renderLayout({
     xDefaultLink,
     '<link rel="icon" href="/icon.png">',
     '<link rel="stylesheet" href="/assets/site.css">',
+    // Ce script est volontairement inline et synchrone, avant la feuille de
+    // style : un thème appliqué après le premier rendu ferait clignoter la page
+    // en clair avant de passer en sombre. C'est le seul script bloquant du site.
+    '<script>try{var t=localStorage.getItem("theme");'
+      + 'if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;}catch(e){}</script>',
     `<meta property="og:title" content="${escapeHtml(title)}">`,
     `<meta property="og:description" content="${escapeHtml(description)}">`,
     '<meta property="og:type" content="website">',
@@ -105,7 +110,14 @@ ${headLines}
 <a class="skip-link" href="#main">${escapeHtml(ui.site.skipToContent)}</a>
 <div class="page">
   <header class="site-header">
-    <a class="brand" href="${escapeHtml(homeHref)}">${escapeHtml(ui.site.brand)}</a>${langSwitcher}
+    <a class="brand" href="${escapeHtml(homeHref)}">${escapeHtml(ui.site.brand)}</a>
+    <div class="header-tools">${langSwitcher}
+      <button type="button" id="theme-toggle" class="theme-toggle" hidden
+              data-label-dark="${escapeHtml(ui.site.themeToDark ?? 'Dark mode')}"
+              data-label-light="${escapeHtml(ui.site.themeToLight ?? 'Light mode')}">
+        <span aria-hidden="true" class="theme-icon"></span><span class="theme-text"></span>
+      </button>
+    </div>
   </header>
   <main id="main">
 ${main}

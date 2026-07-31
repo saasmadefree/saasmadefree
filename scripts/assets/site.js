@@ -85,6 +85,39 @@
     });
   }
 
+  // Bascule de thème. Le bouton est rendu hidden : sans JavaScript il n'aurait
+  // aucun effet, et un contrôle mort est pire qu'un contrôle absent.
+  function enhanceThemeToggle() {
+    var btn = document.getElementById('theme-toggle');
+    if (!btn) return;
+    var root = document.documentElement;
+    var media = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function current() {
+      var explicit = root.dataset.theme;
+      if (explicit === 'dark' || explicit === 'light') return explicit;
+      return media.matches ? 'dark' : 'light';
+    }
+    function render() {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      var label = next === 'dark' ? btn.dataset.labelDark : btn.dataset.labelLight;
+      btn.querySelector('.theme-text').textContent = label;
+      btn.setAttribute('aria-label', label);
+    }
+    btn.hidden = false;
+    render();
+    btn.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      render();
+    });
+    // Si le lecteur n'a rien choisi, suivre le système quand il change.
+    media.addEventListener('change', function () {
+      if (!root.dataset.theme) render();
+    });
+  }
+
   function enhanceCopyButton() {
     var button = document.getElementById('copy-prompt');
     var code = document.getElementById('prompt-text');
@@ -174,6 +207,7 @@
   }
 
   enhanceHome();
+  enhanceThemeToggle();
   enhanceCopyButton();
   enhanceVote();
 })();

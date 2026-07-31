@@ -107,6 +107,8 @@
       "metaDescription": "An open directory of the SaaS subscriptions a coding agent could rebuild for you.",
       "redirecting": "Taking you to the English directory.",
       "continueLink": "Continue to the directory"
-    }
+    },
+    "themeToDark": "Dark mode",
+    "themeToLight": "Light mode"
   }
 }

@@ -107,6 +107,8 @@
       "metaDescription": "Un annuaire ouvert des abonnements SaaS qu'un agent IA pourrait reconstruire pour toi.",
       "redirecting": "Direction l'annuaire en anglais.",
       "continueLink": "Continuer vers l'annuaire"
-    }
+    },
+    "themeToDark": "Mode sombre",
+    "themeToLight": "Mode clair"
   }
 }
