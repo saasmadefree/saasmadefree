@@ -22,11 +22,18 @@ affiliate site:
 | `kinda` | Buildable in a weekend, but with substantial gaps — mobile apps, real-time sync, third-party integrations, OAuth. The entry says which. |
 | `no` | Keep paying. The value is the network, the data, the infrastructure, or the compliance — not the code, and no prompt replaces it. |
 
-**4 tools are published so far.** The catalogue is being written; every entry is verified by
-hand before it lands. No aggregate figure is quoted here until the data behind it exists in
-this repository.
+<a id="the-honest-number"></a>
 
-The project's name says "made free." Only three entries in ten support that claim without qualification. Leading with the real distribution instead of a blanket promise is what keeps this from reading like an affiliate site, and it's why the project is worth sharing among developers who will check the claim against the code before they trust it.
+### The honest number
+
+Run `npm run stats` to print the live distribution, read straight from `data/tools/`. No
+aggregate figure is written into this file: a hand-copied percentage drifts the moment the
+next batch lands, and this project's whole argument is that its numbers are true.
+
+At the time of writing, fewer than two entries in ten are a plain `yes`, and more than one in
+four say *keep paying*. Leading with that instead of a blanket promise is what keeps this from
+reading like an affiliate site — and it's the part developers will check against the data
+before they trust anything else here.
 
 ## Running it
 

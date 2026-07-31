@@ -10,7 +10,9 @@ This repository also contains extension and worker code, but most contributions 
 - **`kinda`** — buildable in a weekend, but with substantial gaps: mobile apps, real-time sync, third-party integrations, OAuth.
 - **`no`** — the value isn't the code. It's the network, the data, the infrastructure, or the compliance behind the tool.
 
-Across the dataset this project started from, that split is roughly 30% `yes`, 58% `kinda`, 12% `no` (see the README's [honest number](README.md#the-honest-number)). If a new entry pushes the `yes` share up because it "feels generous," it's probably wrong. Write the honest `whatYouLose` list first, in the tool's i18n file, and let the verdict follow from that list — not the other way round.
+Run `npm run stats` for the live split (see the README's [honest number](README.md#the-honest-number)). Read it as a sanity check on your own entry, never as a target: **do not shift a verdict to move the distribution.** A directory that softens its verdicts to look more useful destroys the only thing it sells.
+
+Write the honest `whatYouLose` list first, in the tool's i18n file, and let the verdict follow from that list — not the other way round. If the list names a hard third-party dependency the DIY build can't do without — a sending reputation, an index you don't have, a payment licence — then it isn't a `yes`, however small the code is.
 
 ## Anatomy of a tool entry
 
