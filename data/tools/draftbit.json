@@ -1,0 +1,41 @@
+{
+  "slug": "draftbit",
+  "name": "Draftbit",
+  "domains": [
+    "draftbit.com"
+  ],
+  "category": "no-code-apps",
+  "subcategory": "internal tools and application builders",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://draftbit.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "connectors, runtime reliability, and governance",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Plasmic",
+      "url": "https://github.com/plasmicapp/plasmic"
+    }
+  ],
+  "relatedSlugs": [
+    "flutterflow",
+    "thunkable",
+    "adalo"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

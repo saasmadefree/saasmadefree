@@ -1,0 +1,43 @@
+{
+  "slug": "tactiq",
+  "name": "Tactiq",
+  "domains": [
+    "tactiq.io"
+  ],
+  "category": "meeting-notes",
+  "subcategory": "meeting transcription and AI notes",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://tactiq.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "capture reliability, integrations, and collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "whisper.cpp",
+      "url": "https://github.com/ggerganov/whisper.cpp"
+    }
+  ],
+  "relatedSlugs": [
+    "meetgeek",
+    "tldv",
+    "otter-ai"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

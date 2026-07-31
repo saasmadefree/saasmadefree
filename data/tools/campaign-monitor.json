@@ -1,0 +1,44 @@
+{
+  "slug": "campaign-monitor",
+  "name": "Campaign Monitor",
+  "domains": [
+    "campaignmonitor.com"
+  ],
+  "category": "newsletter",
+  "subcategory": "email newsletters and creator publishing",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Lite",
+    "basis": "flat-monthly",
+    "source": "https://campaignmonitor.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "deliverability, growth network, and integrations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Listmonk",
+      "url": "https://github.com/knadh/listmonk"
+    }
+  ],
+  "relatedSlugs": [
+    "mailchimp",
+    "activecampaign",
+    "constant-contact"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

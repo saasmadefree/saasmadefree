@@ -1,0 +1,44 @@
+{
+  "slug": "taplio",
+  "name": "Taplio",
+  "domains": [
+    "taplio.com"
+  ],
+  "category": "social-media",
+  "subcategory": "social scheduling and content repurposing",
+  "pricing": {
+    "amount": 39,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://taplio.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "API access, connector upkeep, and collaboration",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Postiz",
+      "url": "https://github.com/gitroomhq/postiz-app"
+    }
+  ],
+  "relatedSlugs": [
+    "hypefury",
+    "superx",
+    "post-bridge"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

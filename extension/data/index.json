@@ -55,6 +55,13 @@
     "currency": "USD",
     "url": "/en/tools/ahrefs"
   },
+  "airmailapp.com": {
+    "slug": "airmail",
+    "verdict": "kinda",
+    "amount": 2.99,
+    "currency": "USD",
+    "url": "/en/tools/airmail"
+  },
   "airtable.com": {
     "slug": "airtable",
     "verdict": "kinda",
@@ -68,6 +75,13 @@
     "amount": 34,
     "currency": "USD",
     "url": "/en/tools/akiflow"
+  },
+  "albato.com": {
+    "slug": "albato",
+    "verdict": "no",
+    "amount": 19,
+    "currency": "USD",
+    "url": "/en/tools/albato"
   },
   "alitu.com": {
     "slug": "alitu",
@@ -97,6 +111,13 @@
     "currency": "USD",
     "url": "/en/tools/amplitude"
   },
+  "any.do": {
+    "slug": "anydo",
+    "verdict": "yes",
+    "amount": 7.99,
+    "currency": "USD",
+    "url": "/en/tools/anydo"
+  },
   "anytype.io": {
     "slug": "anytype",
     "verdict": "kinda",
@@ -117,6 +138,13 @@
     "amount": 10,
     "currency": "USD",
     "url": "/en/tools/appsheet"
+  },
+  "app.appsmith.com": {
+    "slug": "appsmith-cloud",
+    "verdict": "kinda",
+    "amount": 40,
+    "currency": "USD",
+    "url": "/en/tools/appsmith-cloud"
   },
   "arcade.software": {
     "slug": "arcade",
@@ -166,6 +194,13 @@
     "amount": 49,
     "currency": "USD",
     "url": "/en/tools/beehiiv"
+  },
+  "bettermode.com": {
+    "slug": "bettermode",
+    "verdict": "kinda",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/bettermode"
   },
   "bigcommerce.com": {
     "slug": "bigcommerce",
@@ -250,6 +285,20 @@
     "amount": 12,
     "currency": "USD",
     "url": "/en/tools/calendly"
+  },
+  "campaignmonitor.com": {
+    "slug": "campaign-monitor",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/campaign-monitor"
+  },
+  "canarymail.io": {
+    "slug": "canary-mail",
+    "verdict": "kinda",
+    "amount": 3,
+    "currency": "USD",
+    "url": "/en/tools/canary-mail"
   },
   "canva.com": {
     "slug": "canva",
@@ -370,6 +419,13 @@
     "currency": "USD",
     "url": "/en/tools/codesandbox"
   },
+  "colossyan.com": {
+    "slug": "colossyan",
+    "verdict": "no",
+    "amount": 27,
+    "currency": "USD",
+    "url": "/en/tools/colossyan"
+  },
   "constantcontact.com": {
     "slug": "constant-contact",
     "verdict": "kinda",
@@ -405,6 +461,20 @@
     "currency": "USD",
     "url": "/en/tools/cursor"
   },
+  "d-id.com": {
+    "slug": "d-id",
+    "verdict": "no",
+    "amount": 5.99,
+    "currency": "USD",
+    "url": "/en/tools/d-id"
+  },
+  "dabblewriter.com": {
+    "slug": "dabble",
+    "verdict": "kinda",
+    "amount": 14,
+    "currency": "USD",
+    "url": "/en/tools/dabble"
+  },
   "dashlane.com": {
     "slug": "dashlane",
     "verdict": "kinda",
@@ -432,6 +502,20 @@
     "amount": 14.95,
     "currency": "USD",
     "url": "/en/tools/doodle"
+  },
+  "dorik.com": {
+    "slug": "dorik",
+    "verdict": "kinda",
+    "amount": 19,
+    "currency": "USD",
+    "url": "/en/tools/dorik"
+  },
+  "draftbit.com": {
+    "slug": "draftbit",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/draftbit"
   },
   "getdrafts.com": {
     "slug": "drafts-pro",
@@ -1518,6 +1602,13 @@
     "currency": "USD",
     "url": "/en/tools/se-ranking"
   },
+  "sellfy.com": {
+    "slug": "sellfy",
+    "verdict": "kinda",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/sellfy"
+  },
   "semrush.com": {
     "slug": "semrush",
     "verdict": "no",
@@ -1553,6 +1644,13 @@
     "currency": "USD",
     "url": "/en/tools/simple-analytics"
   },
+  "sitebulb.com": {
+    "slug": "sitebulb",
+    "verdict": "kinda",
+    "amount": 18,
+    "currency": "USD",
+    "url": "/en/tools/sitebulb"
+  },
   "slack.com": {
     "slug": "slack-pro",
     "verdict": "no",
@@ -1567,12 +1665,26 @@
     "currency": "USD",
     "url": "/en/tools/sleek"
   },
+  "slite.com": {
+    "slug": "slite",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/slite"
+  },
   "softr.io": {
     "slug": "softr",
     "verdict": "kinda",
     "amount": 59,
     "currency": "USD",
     "url": "/en/tools/softr"
+  },
+  "sparkmailapp.com": {
+    "slug": "spark-premium",
+    "verdict": "kinda",
+    "amount": 7.99,
+    "currency": "USD",
+    "url": "/en/tools/spark-premium"
   },
   "speechify.com": {
     "slug": "speechify",
@@ -1672,12 +1784,26 @@
     "currency": "USD",
     "url": "/en/tools/synthesia"
   },
+  "tactiq.io": {
+    "slug": "tactiq",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/tactiq"
+  },
   "tally.so": {
     "slug": "tally",
     "verdict": "yes",
     "amount": 29,
     "currency": "USD",
     "url": "/en/tools/tally"
+  },
+  "taplio.com": {
+    "slug": "taplio",
+    "verdict": "no",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/taplio"
   },
   "taskade.com": {
     "slug": "taskade",
@@ -1706,6 +1832,13 @@
     "amount": 4.16,
     "currency": "USD",
     "url": "/en/tools/textexpander"
+  },
+  "thinkific.com": {
+    "slug": "thinkific",
+    "verdict": "kinda",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/thinkific"
   },
   "thumblifyai.com": {
     "slug": "thumblifyai",
@@ -1756,6 +1889,20 @@
     "currency": "USD",
     "url": "/en/tools/todoist"
   },
+  "transistor.fm": {
+    "slug": "transistor-fm",
+    "verdict": "no",
+    "amount": 19,
+    "currency": "USD",
+    "url": "/en/tools/transistor-fm"
+  },
+  "typedream.com": {
+    "slug": "typedream",
+    "verdict": "kinda",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/typedream"
+  },
   "typeform.com": {
     "slug": "typeform",
     "verdict": "yes",
@@ -1776,6 +1923,20 @@
     "amount": 12.5,
     "currency": "USD",
     "url": "/en/tools/typefully"
+  },
+  "app.neilpatel.com": {
+    "slug": "ubersuggest",
+    "verdict": "no",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/ubersuggest"
+  },
+  "ulysses.app": {
+    "slug": "ulysses",
+    "verdict": "yes",
+    "amount": 5.99,
+    "currency": "USD",
+    "url": "/en/tools/ulysses"
   },
   "cloud.umami.is": {
     "slug": "umami-cloud",
@@ -1826,6 +1987,13 @@
     "currency": "USD",
     "url": "/en/tools/vidyard"
   },
+  "vimcal.com": {
+    "slug": "vimcal",
+    "verdict": "kinda",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/vimcal"
+  },
   "wabery.com": {
     "slug": "wabery",
     "verdict": "kinda",
@@ -1867,6 +2035,13 @@
     "amount": 29,
     "currency": "USD",
     "url": "/en/tools/wix"
+  },
+  "wordtune.com": {
+    "slug": "wordtune",
+    "verdict": "yes",
+    "amount": 13.99,
+    "currency": "USD",
+    "url": "/en/tools/wordtune"
   },
   "writesonic.com": {
     "slug": "writesonic",

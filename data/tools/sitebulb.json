@@ -1,0 +1,41 @@
+{
+  "slug": "sitebulb",
+  "name": "Sitebulb",
+  "domains": [
+    "sitebulb.com"
+  ],
+  "category": "seo-marketing",
+  "subcategory": "technical audits and on-page optimization",
+  "pricing": {
+    "amount": 18,
+    "currency": "USD",
+    "plan": "Lite",
+    "basis": "flat-monthly",
+    "source": "https://sitebulb.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "crawl scale, rule depth, and operational polish",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "SEOnaut",
+      "url": "https://github.com/stjudewashere/seonaut"
+    }
+  ],
+  "relatedSlugs": [
+    "screaming-frog-seo-spider",
+    "se-ranking",
+    "semrush"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

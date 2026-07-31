@@ -1,0 +1,44 @@
+{
+  "slug": "sellfy",
+  "name": "Sellfy",
+  "domains": [
+    "sellfy.com"
+  ],
+  "category": "creator-commerce",
+  "subcategory": "digital products, courses and memberships",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://sellfy.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "payments, tax, distribution, and operations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Medusa",
+      "url": "https://github.com/medusajs/medusa"
+    }
+  ],
+  "relatedSlugs": [
+    "payhip",
+    "podia",
+    "kajabi"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

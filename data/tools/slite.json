@@ -1,0 +1,42 @@
+{
+  "slug": "slite",
+  "name": "Slite",
+  "domains": [
+    "slite.com"
+  ],
+  "category": "notes-knowledge",
+  "subcategory": "notes, wikis and personal knowledge bases",
+  "pricing": {
+    "amount": 10,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "per-seat-monthly",
+    "source": "https://slite.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "sync, collaboration, and capture polish",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "AppFlowy",
+      "url": "https://github.com/AppFlowy-IO/AppFlowy"
+    }
+  ],
+  "relatedSlugs": [
+    "craft",
+    "nuclino",
+    "bear-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

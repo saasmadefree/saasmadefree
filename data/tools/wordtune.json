@@ -1,0 +1,36 @@
+{
+  "slug": "wordtune",
+  "name": "Wordtune",
+  "domains": [
+    "wordtune.com"
+  ],
+  "category": "ai-writing",
+  "subcategory": "grammar, editing and long-form writing",
+  "pricing": {
+    "amount": 13.99,
+    "currency": "USD",
+    "plan": "Advanced",
+    "basis": "annual-effective-monthly",
+    "source": "https://wordtune.com/plans",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "polish, integrations, and proprietary language models",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key"
+  ],
+  "relatedSlugs": [
+    "quillbot",
+    "grammarly",
+    "languagetool"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

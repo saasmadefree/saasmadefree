@@ -1,0 +1,44 @@
+{
+  "slug": "bettermode",
+  "name": "Bettermode",
+  "domains": [
+    "bettermode.com"
+  ],
+  "category": "community",
+  "subcategory": "online communities and team communication",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://bettermode.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "network, moderation, and communication infrastructure",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Discourse",
+      "url": "https://github.com/discourse/discourse"
+    }
+  ],
+  "relatedSlugs": [
+    "circle",
+    "mighty-networks",
+    "heartbeat-community"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

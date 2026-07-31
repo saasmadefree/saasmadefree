@@ -1,0 +1,41 @@
+{
+  "slug": "anydo",
+  "name": "Any.do",
+  "domains": [
+    "any.do"
+  ],
+  "category": "tasks",
+  "subcategory": "personal tasks, routines and daily planning",
+  "pricing": {
+    "amount": 7.99,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "flat-monthly",
+    "source": "https://any.do/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "cross-device reliability and workflow polish",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Vikunja",
+      "url": "https://github.com/go-vikunja/vikunja"
+    }
+  ],
+  "relatedSlugs": [
+    "ticktick",
+    "routine",
+    "todoist"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

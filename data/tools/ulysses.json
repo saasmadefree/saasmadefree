@@ -1,0 +1,41 @@
+{
+  "slug": "ulysses",
+  "name": "Ulysses",
+  "domains": [
+    "ulysses.app"
+  ],
+  "category": "ai-writing",
+  "subcategory": "grammar, editing and long-form writing",
+  "pricing": {
+    "amount": 5.99,
+    "currency": "USD",
+    "plan": "Personal",
+    "basis": "flat-monthly",
+    "source": "https://ulysses.app/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "polish, integrations, and proprietary language models",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Zettlr",
+      "url": "https://github.com/Zettlr/Zettlr"
+    }
+  ],
+  "relatedSlugs": [
+    "drafts-pro",
+    "hemingway-editor-plus",
+    "prowritingaid"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}
