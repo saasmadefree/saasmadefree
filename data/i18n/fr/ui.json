@@ -2,15 +2,15 @@
   "pricingBasis": {
     "flat-monthly": "Forfait mensuel",
     "per-seat-monthly": "Mensuel par utilisateur",
-    "annual-effective-monthly": "Facturé à l'année, prix mensuel équivalent",
-    "usage-based": "Facturation à l'usage",
+    "annual-effective-monthly": "Facturé à l’année, prix mensuel équivalent",
+    "usage-based": "Facturation à l’usage",
     "one-time": "Paiement unique"
   },
   "diyTimeEstimate": {
     "one-sitting": "En une session",
     "weekend": "Un week-end",
     "week": "Une semaine",
-    "more": "Plus d'une semaine"
+    "more": "Plus d’une semaine"
   },
   "requirements": {
     "anthropic-api-key": "Clé API Anthropic",
@@ -19,7 +19,7 @@
     "domain": "Un nom de domaine",
     "database": "Une base de données",
     "oauth-app": "Une application OAuth",
-    "email-provider": "Un fournisseur d'emails",
+    "email-provider": "Un fournisseur d’emails",
     "none": "Rien"
   },
   "runHints": {
@@ -48,32 +48,32 @@
     "verdicts": {
       "yes": {
         "label": "Oui",
-        "desc": "Remplace-le aujourd'hui. Tu ne perds rien d'important."
+        "desc": "Remplace-le aujourd’hui. Tu ne perds rien d’important."
       },
       "kinda": {
         "label": "Presque",
-        "desc": "Reconstructible en un week-end, mais tu perds des choses comme l'appli mobile, la synchro ou les intégrations. La fiche précise lesquelles."
+        "desc": "Reconstructible en un week-end, mais tu perds des choses comme l’appli mobile, la synchro ou les intégrations. La fiche précise lesquelles."
       },
       "no": {
         "label": "Non",
-        "desc": "Continue de payer. La valeur, c'est le réseau, les données ou la conformité — aucun prompt ne remplace ça."
+        "desc": "Continue de payer. La valeur, c’est le réseau, les données ou la conformité — aucun prompt ne remplace ça."
       }
     },
     "home": {
-      "titleTag": "SaaS Made Free — quels abonnements ne tiennent qu'à un prompt ?",
+      "titleTag": "SaaS Made Free — quels abonnements ne tiennent qu’à un prompt ?",
       "metaDescription": "Quels abonnements SaaS un agent IA pourrait-il reconstruire pour toi — et lesquels vaut-il mieux continuer à payer ?",
       "heroLine1": "Certains abonnements sont un vrai business.",
-      "heroLine2": "D'autres ne tiennent qu'à un prompt.",
-      "lede": "Un annuaire ouvert des logiciels que tu paies chaque mois, et de la possibilité qu'un agent IA en reconstruise une version que tu possèdes. Un prompt par outil, écrit pour être donné directement à Claude, Cursor ou ChatGPT.",
+      "heroLine2": "D’autres ne tiennent qu’à un prompt.",
+      "lede": "Un annuaire ouvert des logiciels que tu paies chaque mois, et de la possibilité qu’un agent IA en reconstruise une version que tu possèdes. Un prompt par outil, écrit pour être donné directement à Claude, Cursor ou ChatGPT.",
       "verdictsHeading": "Trois verdicts",
-      "tallyOne": "{count} outil publié pour l'instant. Le catalogue s'écrit fiche vérifiée après fiche vérifiée.",
-      "tallyOther": "{count} outils publiés pour l'instant. Le catalogue s'écrit fiche vérifiée après fiche vérifiée.",
-      "searchLabel": "Chercher dans l'annuaire",
+      "tallyOne": "{count} outil publié pour l’instant. Le catalogue s’écrit fiche vérifiée après fiche vérifiée.",
+      "tallyOther": "{count} outils publiés pour l’instant. Le catalogue s’écrit fiche vérifiée après fiche vérifiée.",
+      "searchLabel": "Chercher dans l’annuaire",
       "searchPlaceholder": "Chercher par nom ou catégorie",
       "categoryFilterLabel": "Filtrer par catégorie",
       "categoryFilterAll": "Toutes les catégories",
-      "listHeading": "L'annuaire",
-      "listCaption": "Tous les outils publiés pour l'instant, triés par votes.",
+      "listHeading": "L’annuaire",
+      "listCaption": "Tous les outils publiés pour l’instant, triés par votes.",
       "colName": "Outil",
       "colCategory": "Catégorie",
       "colPrice": "Prix mensuel",
@@ -86,18 +86,18 @@
       "allCategoriesChip": "Toutes les catégories →",
       "searchClearLabel": "Effacer la recherche",
       "searchResultsLabel": "Résultats de recherche",
-      "searchViewAllTemplate": "↓ Voir les {count} résultats dans l'annuaire",
+      "searchViewAllTemplate": "↓ Voir les {count} résultats dans l’annuaire",
       "tickerAriaLabel": "Prix du catalogue, défilement",
-      "mrrLabel": "Dépense mensuelle représentée par les votes enregistrés jusqu'ici",
-      "mrrSrTemplate": "{amount} par mois représentés par les votes enregistrés jusqu'ici",
-      "mrrUnavailable": "Chiffre en direct indisponible pour l'instant.",
+      "mrrLabel": "Dépense mensuelle représentée par les votes enregistrés jusqu’ici",
+      "mrrSrTemplate": "{amount} par mois représentés par les votes enregistrés jusqu’ici",
+      "mrrUnavailable": "Chiffre en direct indisponible pour l’instant.",
       "figuresAriaLabel": "Chiffres du catalogue",
       "figureToolsPublished": "Outils publiés",
       "figureCategories": "Catégories",
       "figureLanguages": "Langues",
       "figureTotalPrice": "Prix mensuel total du catalogue (USD)",
       "figurePrompts": "Prompts écrits",
-      "rankNote": "Classé par votes enregistrés jusqu'ici, puis par degré de préparation de la fiche.",
+      "rankNote": "Classé par votes enregistrés jusqu’ici, puis par degré de préparation de la fiche.",
       "verdictFilterAriaLabel": "Filtrer par verdict"
     },
     "tool": {
@@ -120,18 +120,18 @@
       "copiedButton": "Copié",
       "copyFailed": "Copie automatique impossible — sélectionne le texte ci-dessus.",
       "openInAgentTemplate": "Ouvrir dans {name}",
-      "promptOpenCaption": "L'ouverture pré-remplit le prompt — il ne reste qu'à appuyer sur entrée.",
+      "promptOpenCaption": "L’ouverture pré-remplit le prompt — il ne reste qu’à appuyer sur entrée.",
       "priorArtHeading": "Alternatives existantes",
       "licenseLabel": "Licence",
       "faqHeading": "Questions",
       "relatedHeading": "Outils proches",
-      "voteHeading": "Tu l'as déjà reconstruit toi-même ?",
+      "voteHeading": "Tu l’as déjà reconstruit toi-même ?",
       "voteButton": "Enregistrer mon vote",
       "voteCountOne": "{count} vote",
       "voteCountOther": "{count} votes",
-      "voteUnavailable": "Nombre de votes indisponible pour l'instant.",
+      "voteUnavailable": "Nombre de votes indisponible pour l’instant.",
       "voteThanks": "Merci — ton vote est enregistré.",
-      "voteAlready": "Déjà comptabilisé depuis ce navigateur aujourd'hui.",
+      "voteAlready": "Déjà comptabilisé depuis ce navigateur aujourd’hui.",
       "voteError": "Impossible de joindre le service de vote. Réessaie plus tard.",
       "shareOnXLabel": "Partager sur X",
       "shareTextTemplate": "Un prompt peut-il remplacer {name} ? Le verdict : {verdict}."
@@ -143,9 +143,9 @@
     },
     "root": {
       "titleTag": "SaaS Made Free",
-      "metaDescription": "Un annuaire ouvert des abonnements SaaS qu'un agent IA pourrait reconstruire pour toi.",
-      "redirecting": "Direction l'annuaire en anglais.",
-      "continueLink": "Continuer vers l'annuaire"
+      "metaDescription": "Un annuaire ouvert des abonnements SaaS qu’un agent IA pourrait reconstruire pour toi.",
+      "redirecting": "Direction l’annuaire en anglais.",
+      "continueLink": "Continuer vers l’annuaire"
     },
     "themeToDark": "Mode sombre",
     "themeToLight": "Mode clair",
@@ -158,7 +158,7 @@
   },
   "categoriesIndex": {
     "titleTag": "Toutes les catégories — SaaS Made Free",
-    "metaDescription": "Toutes les catégories de l'annuaire SaaS Made Free, avec le nombre d'outils publiés dans chacune.",
+    "metaDescription": "Toutes les catégories de l’annuaire SaaS Made Free, avec le nombre d’outils publiés dans chacune.",
     "heading": "Toutes les catégories",
     "toolCountOne": "{count} outil",
     "toolCountOther": "{count} outils"

@@ -8,3 +8,6 @@ worker/src/slugs.generated.mjs
 docs/superpowers/
 build/
 .cache/
+
+# Worktrees des agents (jamais versionnés)
+.claude/

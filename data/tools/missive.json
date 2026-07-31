@@ -36,7 +36,8 @@
     "hey-email"
   ],
   "markets": [
-    "en"
+    "en",
+    "fr"
   ],
   "pagePriority": 4,
   "verifiedOneShot": false
