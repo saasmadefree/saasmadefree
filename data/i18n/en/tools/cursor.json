@@ -1,0 +1,20 @@
+{
+  "tagline": "AI-first code editor with agents, composer, and model routing.",
+  "verdictSummary": "The pieces of Cursor already exist as open-source parts: a capable editor, an in-editor AI extension, and a terminal coding agent. Assembling and configuring them is a real weekend project. What doesn't come with the assembly is Cursor's own polish — a single product where the agent, the editor, and model routing were all built together.",
+  "coreLoopDIY": "Assemble an editor, an in-editor AI extension, and a terminal coding agent from existing open-source parts, wired to model APIs you control.",
+  "whatYouLose": [
+    "a single integrated product instead of three assembled parts",
+    "Cursor's own model routing and usage credits",
+    "background and cloud agents",
+    "the fastest completions, tuned specifically for their editor"
+  ],
+  "whyPeopleStillPay": "People pay for speed: the agent is already inside the editor with defaults that work, instead of an afternoon spent wiring three separate tools together.",
+  "notes": "A core entry for this site's own audience — the answer shouldn't be a lazy yes or no.",
+  "prompt": "Don't build an editor or an agent — assemble an AI coding setup from parts that already exist. Install VS Code (or VSCodium) with the Continue extension for in-editor chat, inline edit, and autocomplete, and set up a terminal-based coding agent (Claude Code or aider) for larger, multi-file changes. Configure Continue so chat and inline edit use a capable model over API (key read from an environment variable, never hardcoded in a config file) and autocomplete uses a fast, cheap model — a small local model served by Ollama keeps completions free and working offline, at some cost in quality. Turn on Continue's codebase indexing and confirm a 'where is this defined' question actually finds the right file. Set sensible keybindings so editing and chat are one keystroke away, matching the muscle memory of an editor-native agent.\n\nDo not attempt to build background or cloud agents, or Cursor's own composer UX — that product-level iteration speed, more than any individual feature, is what the subscription is actually buying.",
+  "faq": [
+    { "q": "Can I bring over my Cursor settings and rules?", "a": "Not directly — Cursor's project rules and settings are its own format. Continue reads its own YAML config, so you'd re-create your preferences there by hand, which for most people is a handful of lines." },
+    { "q": "Does this work as well away from a network connection?", "a": "Chat and inline edit still need internet either way, to reach the model API. What you gain here is a genuinely offline autocomplete option through a local model, which Cursor doesn't offer at all." },
+    { "q": "What does it actually cost to run?", "a": "Only API usage — Continue and Ollama are both free. Compare the per-token API pricing against the flat subscription after two weeks of real use; for light-to-medium use it's often cheaper, for heavy agent use it usually isn't." },
+    { "q": "What's the one thing that genuinely doesn't survive the rebuild?", "a": "The single-product iteration speed. Cursor's team ships editor, agent, and model routing together as one thing; this setup is three separate tools you keep in sync yourself, and they will occasionally drift." }
+  ]
+}

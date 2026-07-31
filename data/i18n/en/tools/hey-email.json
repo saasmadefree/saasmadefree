@@ -1,0 +1,20 @@
+{
+  "tagline": "Email client built around screening, bundles, and a privacy-first inbox.",
+  "verdictSummary": "Running your own global email service is not something to attempt casually — deliverability, spam reputation, and abuse handling are real infrastructure, and a solo rebuild mostly just means your mail lands in spam. What is realistically buildable is HEY's best ideas — a screener for new senders, bundled newsletters, a reply-later queue — as a client over a mailbox you already trust.",
+  "coreLoopDIY": "A client over an existing IMAP mailbox that screens first-time senders, bundles approved newsletters into a batched view, and keeps a persistent reply-later queue.",
+  "whatYouLose": [
+    "HEY's own deliverability and spam-reputation systems",
+    "abuse handling for a mailbox you don't run yourself",
+    "the mobile apps",
+    "a custom @hey.com identity"
+  ],
+  "whyPeopleStillPay": "Email is infrastructure — deliverability and sender reputation are the actual product, and neither is something a personal project builds in a weekend, or safely at all.",
+  "notes": "A valuable 'no': the client-side ideas are cloneable, but the email infrastructure underneath is not an afternoon project.",
+  "prompt": "Do not try to run your own email service — deliverability and spam reputation are genuine infrastructure, and a solo rebuild of that layer mostly ends with your own mail landing in spam. Instead, build HEY's best ideas as a client over a mailbox you already trust and pay for (Fastmail or Gmail both work over IMAP). Connect over IMAP for reading and SMTP for sending, credentials from the environment. Build 'the screener': mail from a sender you haven't approved before lands in a review queue where you approve or block them once, and that decision applies to all their future mail automatically. Group approved senders into categories so newsletters render as a batched feed and receipts land in a separate paper-trail view, keeping the main inbox for people only. Add a 'reply later' action that pins a thread to a persistent stack until you clear it. Write screening decisions back as IMAP folders or labels so a phone's own mail app roughly mirrors the same sorting. Strip remote images from the reading pane by default.\n\nDo not build your own SMTP server, a custom email domain, or native mobile apps — those either need infrastructure this project shouldn't take on, or are real platform work beyond a personal client.",
+  "faq": [
+    { "q": "Can I bring over my existing email and contacts?", "a": "Yes — this connects to your existing mailbox over IMAP, so your mail, folders, and contacts are already there; nothing needs to be exported or migrated." },
+    { "q": "Will it work on my phone?", "a": "The screening and sorting decisions sync back as IMAP folders, so a phone's regular mail app roughly reflects them, but there's no dedicated mobile app with HEY's own screener and bundle views." },
+    { "q": "What does it actually cost to run?", "a": "Hosting for the small web client, plus whatever your underlying mailbox already costs — often less than HEY's own price, since you're not paying for their infrastructure." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Trustworthy email infrastructure that isn't your problem. HEY's team handles deliverability, spam, and abuse at scale; here, you're still fundamentally dependent on your underlying mailbox provider for all of that, same as before." }
+  ]
+}

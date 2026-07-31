@@ -1,0 +1,42 @@
+{
+  "slug": "glide",
+  "name": "Glide",
+  "domains": [
+    "glideapps.com"
+  ],
+  "category": "no-code-apps",
+  "subcategory": "app builder",
+  "pricing": {
+    "amount": 60,
+    "currency": "USD",
+    "plan": "Maker",
+    "basis": "flat-monthly",
+    "source": "https://www.glideapps.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "no-code builder/platform",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "NocoDB",
+      "url": "https://github.com/nocodb/nocodb"
+    }
+  ],
+  "relatedSlugs": [
+    "bubble",
+    "airtable",
+    "carrd"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

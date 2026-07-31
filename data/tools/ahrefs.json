@@ -1,0 +1,42 @@
+{
+  "slug": "ahrefs",
+  "name": "Ahrefs",
+  "domains": [
+    "ahrefs.com"
+  ],
+  "category": "seo-marketing",
+  "subcategory": "SEO/backlink data",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://ahrefs.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "proprietary data/crawler scale",
+  "diyTimeEstimate": "more",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Screaming Frog alternatives: SEO Macroscope",
+      "url": "https://github.com/smac89/SEO-Macroscope"
+    }
+  ],
+  "relatedSlugs": [
+    "beehiiv",
+    "kit",
+    "buffer"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

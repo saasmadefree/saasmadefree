@@ -1,0 +1,42 @@
+{
+  "slug": "carrd",
+  "name": "Carrd",
+  "domains": [
+    "carrd.co"
+  ],
+  "category": "website-builder",
+  "subcategory": "one-page sites",
+  "pricing": {
+    "amount": 1.58,
+    "currency": "USD",
+    "plan": "Pro Standard",
+    "basis": "annual-effective-monthly",
+    "source": "https://carrd.co/pro",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "price/polish/hosting",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "GrapesJS",
+      "url": "https://github.com/GrapesJS/grapesjs"
+    }
+  ],
+  "relatedSlugs": [
+    "airtable",
+    "bubble",
+    "glide"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

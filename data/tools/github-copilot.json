@@ -1,0 +1,41 @@
+{
+  "slug": "github-copilot",
+  "name": "GitHub Copilot",
+  "domains": [
+    "github.com"
+  ],
+  "category": "dev-tools",
+  "subcategory": "AI coding assistant",
+  "pricing": {
+    "amount": 10,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://docs.github.com/en/copilot/get-started/plans-for-github-copilot",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "model/platform/editor integration",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "anthropic-api-key"
+  ],
+  "priorArt": [
+    {
+      "name": "Continue",
+      "url": "https://github.com/continuedev/continue"
+    }
+  ],
+  "relatedSlugs": [
+    "cursor",
+    "chatgpt",
+    "claude"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

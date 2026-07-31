@@ -1,0 +1,44 @@
+{
+  "slug": "invoice-ninja",
+  "name": "Invoice Ninja",
+  "domains": [
+    "invoiceninja.com"
+  ],
+  "category": "finance-accounting",
+  "subcategory": "invoicing",
+  "pricing": {
+    "amount": 14,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://invoiceninja.com/pricing-plans/",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "open-source core/hosting/payments",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Invoice Ninja",
+      "url": "https://github.com/invoiceninja/invoiceninja"
+    }
+  ],
+  "relatedSlugs": [
+    "kajabi",
+    "ghost-pro",
+    "carrd"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

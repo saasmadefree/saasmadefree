@@ -1,0 +1,43 @@
+{
+  "slug": "buffer",
+  "name": "Buffer",
+  "domains": [
+    "buffer.com"
+  ],
+  "category": "social-media",
+  "subcategory": "social scheduling",
+  "pricing": {
+    "amount": 6,
+    "currency": "USD",
+    "plan": "Essentials",
+    "basis": "per-seat-monthly",
+    "source": "https://buffer.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "social API/integration upkeep",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Postiz",
+      "url": "https://github.com/gitroomhq/postiz-app"
+    }
+  ],
+  "relatedSlugs": [
+    "beehiiv",
+    "ahrefs",
+    "kit"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

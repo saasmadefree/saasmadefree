@@ -1,0 +1,45 @@
+{
+  "slug": "figma",
+  "name": "Figma",
+  "domains": [
+    "figma.com"
+  ],
+  "category": "design",
+  "subcategory": "collaborative interface design",
+  "pricing": {
+    "amount": 20,
+    "currency": "USD",
+    "plan": "Professional Full seat",
+    "basis": "per-seat-monthly",
+    "source": "https://www.figma.com/pricing/",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "collaboration/ecosystem/performance",
+  "diyTimeEstimate": "more",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Penpot",
+      "url": "https://github.com/penpot/penpot"
+    },
+    {
+      "name": "Excalidraw",
+      "url": "https://github.com/excalidraw/excalidraw"
+    }
+  ],
+  "relatedSlugs": [
+    "canva",
+    "gamma",
+    "carrd"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

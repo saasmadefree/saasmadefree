@@ -1,0 +1,44 @@
+{
+  "slug": "ghost-pro",
+  "name": "Ghost Pro",
+  "domains": [
+    "ghost.org"
+  ],
+  "category": "publishing",
+  "subcategory": "blog/newsletter/membership",
+  "pricing": {
+    "amount": 35,
+    "currency": "USD",
+    "plan": "Publisher",
+    "basis": "flat-monthly",
+    "source": "https://ghost.org/pricing/",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "open-source core/hosting/deliverability",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Ghost",
+      "url": "https://github.com/TryGhost/Ghost"
+    }
+  ],
+  "relatedSlugs": [
+    "ahrefs",
+    "beehiiv",
+    "kit"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

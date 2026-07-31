@@ -1,0 +1,44 @@
+{
+  "slug": "hey-email",
+  "name": "HEY",
+  "domains": [
+    "hey.com",
+    "app.hey.com"
+  ],
+  "category": "email",
+  "subcategory": "consumer email service",
+  "pricing": {
+    "amount": 8.25,
+    "currency": "USD",
+    "plan": "Personal address",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.hey.com/pricing/",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "deliverability/compliance/infrastructure",
+  "diyTimeEstimate": "more",
+  "requirements": [
+    "hosting",
+    "domain",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Mail-in-a-Box",
+      "url": "https://github.com/mail-in-a-box/mailinabox"
+    }
+  ],
+  "relatedSlugs": [
+    "1password",
+    "bitwarden",
+    "github-copilot"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

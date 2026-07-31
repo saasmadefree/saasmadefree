@@ -1,0 +1,21 @@
+{
+  "tagline": "Social media scheduler for publishing posts across channels.",
+  "verdictSummary": "Scheduling posts to one or two social networks you've personally authorized is a real multi-day build. What doesn't survive is the ongoing maintenance: every social platform changes its API and rate limits on its own schedule, and someone has to keep up — that upkeep, not the scheduling logic, is most of what the subscription buys.",
+  "coreLoopDIY": "A post queue, connected to one or two social networks by OAuth, published on a schedule by a background job that logs what succeeded and what failed.",
+  "whatYouLose": [
+    "broad multi-network support kept up to date as platforms change their APIs",
+    "rich post previews before publishing",
+    "analytics",
+    "team approval workflows",
+    "the mobile apps"
+  ],
+  "whyPeopleStillPay": "Social platforms change their APIs and rate limits on their own schedule, not yours. Buffer's real job is absorbing that churn continuously so you never have to notice it.",
+  "notes": "A good social example: one network is an easy build; staying working across many networks, indefinitely, is the real product.",
+  "prompt": "Build a personal post scheduler for one or two social networks you actually use and can authorize yourself — pick networks with a stable, developer-friendly API (Mastodon and Bluesky both qualify). Treat X, Instagram, and LinkedIn as out of scope: their APIs are paid, approval-gated, or actively hostile to small personal tools, and the README should say so plainly rather than half-building support for them. Build a compose view with an image attachment and a queue ordered by scheduled time; either fill fixed daily posting slots automatically or pin a post to an exact time. A background job on a short interval publishes anything due and records a sent/failed status per post — mark a post as 'sending' before the network call completes so a crash or a retry never posts it twice. Show a per-network character count in the composer, since limits differ, and keep a history of recently sent posts that link to the live post so you can check it actually landed.\n\nDo not build analytics or team approval queues, and don't try to support every network at once — each one is its own ongoing maintenance burden, and adding one you don't use isn't worth the upkeep.",
+  "faq": [
+    { "q": "Can I import my existing Buffer queue?", "a": "Not automatically — Buffer doesn't offer a structured export of scheduled posts. You'd recreate your queue by hand, which for most personal use is a handful of posts, not months of backlog." },
+    { "q": "Will it work on my phone?", "a": "The compose page is a plain responsive web page, usable from a phone browser, but there's no dedicated app and no push notification if a post fails to send." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month. The social APIs themselves are free for personal-volume posting on the networks this build targets." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Staying current. When a social platform changes its API or rate limits, Buffer's team fixes it for everyone at once; here, your scheduler quietly breaks until you notice and patch it yourself." }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "Simple one-page website builder for landing pages and profiles.",
+  "verdictSummary": "A well-designed one-page site — headline, bio, links, a working contact form, a custom domain — is easily a one-sitting build, and Carrd is cheap enough that the case for replacing it is mostly about control and learning rather than cost. If you already have a coding agent, you don't need a site builder at all — you need one well-designed HTML page.",
+  "coreLoopDIY": "A single-page site generated from one content file, with a working contact form and a custom domain — no visual editor, no monthly fee.",
+  "whatYouLose": [
+    "the visual drag-and-drop editor",
+    "Carrd's hosted form backend",
+    "their template gallery to start from"
+  ],
+  "whyPeopleStillPay": "Carrd's fee is so small that most people who keep paying are paying for zero setup, not because a one-page site is hard to build.",
+  "notes": "Carrd is famously cheap — the honest case for this entry is control and learning, not the money.",
+  "prompt": "Build a single, well-designed one-page site from one content file (name, headline, a short bio, an avatar image, social links, and an optional list of projects with a title, description, and URL) — editing that file is the entire CMS, no admin panel needed. Put real design effort into it: a clear typographic hierarchy, generous whitespace, one accent color as a CSS variable, dark mode via prefers-color-scheme, and restrained hover states — it should read as designed, not templated. Add a working contact form with no third-party form service: post to a small endpoint on your own server that appends the message to a log file (or emails it to you) and shows an inline thank-you, with a honeypot field to cut down on bot spam. Keep the page itself static HTML with inlined CSS and no framework, so it loads instantly and scores well on any performance audit; add proper Open Graph tags and a generated preview image. Deploy the static page to any static host or small VPS, with the form endpoint as the one small piece of server code, and point your own domain at it.",
+  "faq": [
+    { "q": "Can I bring over my existing Carrd site?", "a": "Not automatically — there's no structured export from Carrd. In practice this is a short rewrite, not a migration: copy your existing text and links straight into the new content file." },
+    { "q": "Will it work on my phone?", "a": "Yes — it's a normal responsive web page, and a one-page site with no admin panel has nothing that behaves differently on mobile." },
+    { "q": "What does it cost to run?", "a": "A domain plus static hosting, which is often free or a couple of dollars a month — genuinely close to what Carrd itself already charges, so the case for doing this is control, not savings." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The visual editor. Every future change to layout or content now means editing a file and redeploying, not dragging a block around in a browser." }
+  ]
+}

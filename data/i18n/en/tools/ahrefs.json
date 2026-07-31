@@ -1,0 +1,21 @@
+{
+  "tagline": "SEO platform built on a proprietary web crawl, keyword, and backlink index.",
+  "verdictSummary": "A personal rank tracker and on-page auditor for a site you control is a real weekend build. What isn't buildable is the actual product: a backlink index built from a web crawl running continuously for years, plus keyword volume and SERP data at a scale no personal project can match.",
+  "coreLoopDIY": "A daily rank tracker and a technical SEO crawler for one site you control, backed by a small self-hosted database.",
+  "whatYouLose": [
+    "the backlink index",
+    "keyword volume and difficulty data",
+    "years of historical trend data",
+    "competitive research on other people's sites",
+    "AI-search visibility data"
+  ],
+  "whyPeopleStillPay": "Ahrefs sells a dataset, not a dashboard — a web crawl run continuously for years plus licensed keyword and clickstream data. No amount of personal engineering reproduces that alone, in a weekend or ever.",
+  "notes": "One of the clearest 'no' entries here: state the data moat plainly instead of pretending a crawler script closes the gap.",
+  "prompt": "Build a rank tracker and technical SEO auditor for the domains you actually control — not a general SEO platform. For rank tracking: a scheduled job that checks a list of your own keywords against a real SERP API (several have a free tier; do not scrape Google's results pages directly, you'll get blocked quickly) and stores position, ranking URL, and date in a small database, with a simple dashboard showing the trend per keyword. For the audit half: a crawler limited to your own domain that follows internal links and flags the basics — broken links, missing or duplicate titles and descriptions, redirect chains, thin pages — written to a plain report. Pull your real click and impression data for free from the Google Search Console API and show it next to your rank data; budget real time for the OAuth setup, it's the fiddly part. Run this on a schedule with no accounts beyond the API keys it needs.\n\nDo not attempt to build a backlink index, a keyword database, or competitor research on other people's sites — that requires crawling the entire web continuously, which is exactly what you're paying Ahrefs to have already done.",
+  "faq": [
+    { "q": "Can I import my existing Ahrefs data — my backlink history, my tracked keywords?", "a": "Your tracked keyword list, yes — that's just a text file you maintain yourself. The backlink index and historical crawl data cannot be exported or rebuilt; that data only exists inside Ahrefs' own crawl." },
+    { "q": "Will it work on my phone?", "a": "The dashboard is a small web page, so it renders on a phone browser if you expose it on your network, but there's no dedicated app and no push alerts — you'd have to remember to check it." },
+    { "q": "What does it actually cost to run?", "a": "A SERP API's free tier usually covers a personal keyword list, and Search Console access is free. Budget a few dollars a month once you outgrow the free tier — a rounding error next to Ahrefs' Starter plan." },
+    { "q": "What's the one thing that genuinely doesn't survive the rebuild?", "a": "Anyone else's site. You can track and audit your own domain all day; you cannot see who links to a competitor or what they rank for — that visibility is the entire product, and it only exists because Ahrefs already crawled it." }
+  ]
+}

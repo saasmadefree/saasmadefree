@@ -1,0 +1,21 @@
+{
+  "tagline": "AI-generated slide decks, docs, and one-page sites.",
+  "verdictSummary": "An outline-to-slides pipeline — ask an LLM for structure, render it into a themed deck, export to PDF — is a real weekend build on top of an open-source slide tool. What's missing is Gamma's polished editing model, its responsive card layouts, and hosted share links with analytics.",
+  "coreLoopDIY": "Ask an LLM for a slide outline, turn the result into structured slide content, and render it through a themed template into a deck you can preview and export.",
+  "whatYouLose": [
+    "the polished visual editor",
+    "Gamma's responsive card layout model",
+    "hosted share links with analytics",
+    "custom domains",
+    "the breadth of their template library"
+  ],
+  "whyPeopleStillPay": "People pay because the output looks acceptable immediately, without wrestling with slide software — the generation step is the easy part, the layout and export polish is not.",
+  "notes": "A strong modern 'kinda': a genuinely viral category with solid open-source and API building blocks already available.",
+  "prompt": "Build a command-line slide-deck generator on top of an open-source presentation tool (Slidev is a good fit, since it renders Markdown to slides). Given a topic, call an LLM API for an outline, then generate per-slide content as structured data (title, bullets, speaker notes, a layout name chosen from a small fixed set — title slide, bullet list, two-column, big quote, image-and-text). Render that structured content into the tool's slide format, and support both a live preview and export to PDF. Keep a single theme file for fonts and colors so decks stay visually consistent without redesigning each one. Support regenerating a single slide by number without touching the rest of the deck. Keep decks as plain files on disk, not a database, so they're easy to hand-edit after generation and to keep in version control. If an image-generation API key is present, offer generated images per slide; if it's absent, skip images cleanly rather than failing.\n\nDo not build a web-based visual editor, shareable links with analytics, or real-time collaboration — editing the generated slide file directly is the editor here, and that's the trade for not paying for the hosted product.",
+  "faq": [
+    { "q": "Can I import my existing Gamma decks?", "a": "Not directly — Gamma exports to PDF and PPTX, which are fine for viewing but not for re-editing here. Bringing a deck in means re-outlining it as input to the generator, not a structural import." },
+    { "q": "Will it work on my phone?", "a": "Viewing an exported PDF, yes. Generating or editing a deck is a command-line and text-editor workflow, which isn't realistically a phone task." },
+    { "q": "What does it cost to run?", "a": "LLM API usage per deck, typically a few cents to generate an outline and slide content; hosting isn't needed if you only ever export to PDF locally." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The responsive card layout Gamma actually renders — text and images that auto-resize to keep a slide balanced regardless of content length. This build uses a small fixed set of layouts, not that adaptive engine." }
+  ]
+}

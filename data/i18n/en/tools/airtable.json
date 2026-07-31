@@ -1,0 +1,21 @@
+{
+  "tagline": "Spreadsheet-style database with views, forms, and automations.",
+  "verdictSummary": "A single-user spreadsheet-database — typed columns, saved views, linked records — is a one-sitting build over a real database. What doesn't come with it is Airtable's breadth: dozens of field types, automations, a generated API, mobile apps, and granular sharing permissions for a team.",
+  "coreLoopDIY": "A grid editor over a real database: typed columns, inline editing, saved filtered views, and linked records between tables.",
+  "whatYouLose": [
+    "rich field types like attachments, formulas, and lookups",
+    "automations triggered by row changes",
+    "a generated API and third-party integrations",
+    "mobile apps",
+    "per-collaborator permissions"
+  ],
+  "whyPeopleStillPay": "Non-engineers use Airtable to turn a spreadsheet into a small internal tool without asking anyone to write code — the moment a team needs permissions, automations, or a mobile view, that convenience is what the subscription buys.",
+  "notes": "A foundational entry: a lot of internal tools people pay for elsewhere are secretly Airtable-shaped.",
+  "prompt": "Build a personal spreadsheet-database: a grid UI over a real database (SQLite is fine) where tables and typed columns (text, number, date, single-select, checkbox, URL) are defined from the interface, not a config file. Support inline cell editing, per-column sorting and filtering, and saved views — a name plus a stored filter/sort/hidden-columns combination — listed in a sidebar. Add one linked-record column type: a cell that references a row in another table, picked from a dropdown, shown as a clickable chip. Include a simple public form per table (one input per column) for quick data entry from a phone or a teammate without giving them the full grid. Every table should support CSV import and export, so nothing is ever trapped in the tool.\n\nDo not build automations, a generated API, or per-person permissions — those are the parts that turn a personal database into a team platform, and that's genuinely more than a sitting's work.",
+  "faq": [
+    { "q": "Can I import my existing Airtable base?", "a": "Yes for the data — export each table to CSV from Airtable and import it here. What you lose in the move: any formula or lookup column, since those become plain stored values, not live formulas." },
+    { "q": "Will it work on my phone?", "a": "The grid itself is desktop-shaped, but the simple per-table entry form is deliberately built to work one-handed on a phone — that covers quick data entry, not browsing or editing the full base." },
+    { "q": "What does it cost to run?", "a": "Hosting plus a database, typically a few dollars a month — SQLite runs for free on even a small server, since it's just a file." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Automations. Airtable can trigger an email, a Slack message, or a status update the moment a row changes; this build only ever does exactly what you click, nothing runs in the background." }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "tagline": "AI meeting notepad that turns transcripts into structured notes.",
+  "verdictSummary": "Recording audio, transcribing it locally with Whisper, and asking an LLM to structure the result into a summary and action items is a genuine one-sitting build — one of the cleanest yes entries in the catalogue. What the paid product mainly adds on top is cross-device sync, a mobile app, and automatic calendar joins.",
+  "coreLoopDIY": "Record meeting audio, transcribe it with Whisper (locally or via API), send the transcript to an LLM for a structured summary, and save the result as a dated Markdown file.",
+  "whatYouLose": [
+    "sync across devices",
+    "the mobile app",
+    "automatic calendar-linked joining of meetings",
+    "someone else's servers and support"
+  ],
+  "whyPeopleStillPay": "People pay because it's always on, tied into their calendar and work calls without any setup, and trustworthy enough that meeting history never gets lost.",
+  "notes": "A poster child for this whole trend: local audio capture, Whisper transcription, and an LLM summary into a Markdown folder is genuinely a one-prompt build.",
+  "prompt": "Build a local meeting-notes tool: a simple start/stop recording control that captures system and microphone audio together. On stop, transcribe the recording with whisper.cpp running locally (fully offline, free), or optionally via a hosted Whisper API if a key is present in the environment for faster turnaround. Send the transcript to an LLM (Anthropic or OpenAI, whichever key is configured) with a prompt that returns a short summary, any decisions made, and action items with owners where mentioned. Save the result to a dated Markdown file — summary at the top, full transcript below a divider — with the audio file kept alongside it. Everything stays local except the API calls you explicitly choose to make; with whisper.cpp and a local model, the whole loop can run fully offline.\n\nDo not build cross-device sync, a mobile app, or automatic calendar integration to auto-join meetings — those need infrastructure and platform access well beyond a personal recording tool.",
+  "faq": [
+    { "q": "Can I import my existing Granola notes?", "a": "Granola lets you export notes, and since this build also writes plain Markdown files, moving them into the same folder structure is a straightforward copy, not a real migration." },
+    { "q": "Will it work on my phone?", "a": "No — this is a desktop tool tied to capturing your computer's own audio during a call. There's no mobile version and no sync to read notes elsewhere." },
+    { "q": "What does it cost to run?", "a": "Nothing if you stay fully local with whisper.cpp and a local model. Using a hosted Whisper API or a cloud LLM for summaries costs a small amount per meeting, typically well under a dollar." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Joining meetings automatically. Granola links to your calendar and captures calls without you remembering to hit record; here, forgetting to start the recording means the meeting simply isn't captured." }
+  ]
+}

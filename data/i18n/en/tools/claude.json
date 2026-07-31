@@ -1,0 +1,21 @@
+{
+  "tagline": "AI assistant for writing, reasoning, coding, and document work.",
+  "verdictSummary": "A Claude-shaped wrapper — chat over the Anthropic API, document upload, saved project contexts — is genuinely easy to build. What stays out of reach is the model itself, its long-context quality, and Artifacts and Projects as a polished product surface rather than a plain API call.",
+  "coreLoopDIY": "A chat app over the Anthropic API, with document upload, conversation history, and a lightweight 'project' grouping for shared context.",
+  "whatYouLose": [
+    "the frontier model and its continuous upgrades",
+    "long-context performance tuned by Anthropic",
+    "Artifacts as an interactive canvas, not just returned text",
+    "the mobile apps",
+    "flat-rate pricing that doesn't punish heavy use"
+  ],
+  "whyPeopleStillPay": "The quality sits in the model and the product surface around it, not in the chat window — a wrapper gets you the same API, but none of Anthropic's product work on top of it.",
+  "notes": "A 'no' that still leaves a genuinely usable, often cheaper wrapper for people who mainly chat and don't need Artifacts.",
+  "prompt": "Build a thin client on the Anthropic API: a chat interface with streaming replies, a conversation sidebar, and Markdown rendering. Let a conversation carry an editable system prompt, with Sonnet as the default model and the option to switch to a larger model per conversation. Add 'projects': a project groups related conversations and holds a handful of reference documents (plain text or PDF) that get prepended as context to every chat inside it — use the API's prompt caching on those documents so repeated context doesn't get re-billed every message. Store everything in a real database with full-text search across all conversations, and let any thread export to Markdown. Show a running cost estimate per conversation and per month from the API's usage data, so keeping this instead of paying a flat fee is a decision backed by a number, not a feeling.\n\nDo not build Artifacts as an interactive canvas, the mobile apps, or flat-rate pricing for heavy use — if the cost meter shows genuinely heavy usage, a flat-rate plan wins on price, and the honest move is to switch back rather than keep optimizing around it.",
+  "faq": [
+    { "q": "Can I import my Claude conversation history?", "a": "Claude.ai lets you export your data, including conversations, and the export maps reasonably well onto this build's storage — a short one-off script converts the export format." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, if it's hosted somewhere reachable. There's no native app and no offline mode." },
+    { "q": "What does it actually cost to run?", "a": "Hosting is a few dollars a month; token costs for light-to-medium chat use are often well under the flat subscription price, especially once prompt caching is wired up for repeated project context." },
+    { "q": "What's the one thing that genuinely doesn't survive the rebuild?", "a": "Artifacts as a real product surface. The API can return code or documents as text, but the interactive, versioned canvas Claude.ai renders them into is product work this wrapper doesn't replicate." }
+  ]
+}

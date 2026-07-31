@@ -1,0 +1,47 @@
+{
+  "slug": "granola",
+  "name": "Granola",
+  "domains": [
+    "granola.ai"
+  ],
+  "category": "meeting-notes",
+  "subcategory": "meeting transcription + AI notes",
+  "pricing": {
+    "amount": 14,
+    "currency": "USD",
+    "plan": "Business",
+    "basis": "per-seat-monthly",
+    "source": "https://www.granola.ai/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "polish/sync/collaboration",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "quill",
+      "url": "https://github.com/dremnik/quill"
+    },
+    {
+      "name": "whisper.cpp",
+      "url": "https://github.com/ggml-org/whisper.cpp"
+    }
+  ],
+  "relatedSlugs": [
+    "chatgpt",
+    "claude",
+    "grammarly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

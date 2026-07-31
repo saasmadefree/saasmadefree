@@ -1,0 +1,21 @@
+{
+  "tagline": "Email list management and campaign sending for creators.",
+  "verdictSummary": "Sending email to a small list you already own — sign-up forms, a campaign composer, tagging, one basic autoresponder — is a real multi-day build. What doesn't come with it is Kit's actual moat: deliverability at scale, automations, and a creator-recommendation network that helps a list grow on its own.",
+  "coreLoopDIY": "A subscriber list with a double opt-in sign-up form, a Markdown campaign composer, and scheduled sends through a transactional email API with bounce handling.",
+  "whatYouLose": [
+    "deliverability tuned by someone else's sending reputation",
+    "visual automation builders",
+    "landing pages",
+    "the creator-recommendation network",
+    "one-click migration tooling"
+  ],
+  "whyPeopleStillPay": "Email marketing is part deliverability and part ongoing business workflow — writing and sending one campaign is the easy ten percent.",
+  "notes": "A good creator-economy entry: not a 'no', but the actual moat is operational, not technical.",
+  "prompt": "Build a personal newsletter tool for a small list: a public sign-up form requiring double opt-in — a confirmation link by email before anyone is actually added — and a one-click unsubscribe link in every send, no login required to unsubscribe. Compose campaigns in Markdown from an admin view kept off the public internet (bind it to localhost or put it behind your own VPN), preview the rendered HTML, and send to everyone or to a specific tag. Send through a real transactional provider (Amazon SES or Postmark) at a throttled rate, recording a per-recipient status; wire up bounce and complaint webhooks to automatically suppress addresses that bounce or complain, rather than continuing to mail them. Add tags on subscribers and one simple autoresponder: a single welcome email sent a fixed number of minutes after confirmation. Support CSV import and export of the full list so it's never trapped.\n\nDo not build landing pages, a visual automation builder, a recommendation network, or commerce features — those are Kit's actual product. Be blunt in the README that deliverability is DNS homework: walk through SPF, DKIM, and DMARC setup before the first real send, and budget real time for it.",
+  "faq": [
+    { "q": "Can I import my existing Kit (or ConvertKit) subscriber list?", "a": "Yes — export your subscribers to CSV and import them here. What doesn't transfer is your existing sending reputation; a new sending domain starts from zero regardless of list size." },
+    { "q": "Will it work on my phone?", "a": "The admin composer is a plain web page, workable on a phone for a quick edit or send, but there's no dedicated app and no mobile-optimized editor." },
+    { "q": "What does it cost to run?", "a": "Hosting, a database, and a domain, plus a transactional email provider — most have a free tier covering a small list, growing to a few dollars a month as the list grows." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Growth you didn't have to work for. Kit's creator-recommendation network puts your newsletter in front of other creators' readers automatically; a self-hosted sender only ever reaches people who already know about you." }
+  ]
+}

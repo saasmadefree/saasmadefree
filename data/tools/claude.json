@@ -1,0 +1,42 @@
+{
+  "slug": "claude",
+  "name": "Claude",
+  "domains": [
+    "claude.ai"
+  ],
+  "category": "ai-assistant",
+  "subcategory": "AI assistant",
+  "pricing": {
+    "amount": 20,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://claude.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "frontier model/platform",
+  "diyTimeEstimate": "more",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "LibreChat",
+      "url": "https://github.com/danny-avila/LibreChat"
+    }
+  ],
+  "relatedSlugs": [
+    "gamma",
+    "chatgpt",
+    "grammarly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

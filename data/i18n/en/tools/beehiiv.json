@@ -1,0 +1,21 @@
+{
+  "tagline": "Newsletter publishing, list growth, and monetization platform.",
+  "verdictSummary": "Writing posts, storing subscribers, and sending campaigns through an email API is a real multi-day build. What doesn't come with it is beehiiv's actual product: inbox deliverability tuned by someone else's sending reputation, and a cross-publication recommendation network that grows a list without buying ads.",
+  "coreLoopDIY": "A Markdown post editor, a subscriber list with double opt-in, and a scheduled sender that emails campaigns through a transactional email API.",
+  "whatYouLose": [
+    "inbox deliverability tuned by someone else's sending reputation",
+    "the cross-newsletter recommendation network that brings in new subscribers",
+    "the built-in ad marketplace",
+    "automations beyond a single welcome email",
+    "one-click migration tooling"
+  ],
+  "whyPeopleStillPay": "Writing and sending an email is the easy part. Reaching the inbox reliably, and growing the list without buying ads yourself, is what beehiiv's infrastructure and network actually do.",
+  "notes": "A genuinely valuable 'kinda' — the network and deliverability layer is the real reason to keep paying, not the editor.",
+  "prompt": "Build a personal newsletter sender: posts written in Markdown, a subscriber list in a database with a public sign-up form that requires double opt-in (a confirmation link by email before anyone is actually added), and an admin view to write, preview, and send a campaign to the full list or to a tag. Send through a transactional email API (Resend, Postmark, or similar) rather than raw SMTP, and record a sent/failed status per recipient so an interrupted send can resume without emailing anyone twice. Every email must carry a working one-click unsubscribe link and the List-Unsubscribe header — that's a legal requirement, not a nice-to-have, and it should be impossible to send a campaign without it. Publish a plain web archive of past posts, and support CSV import and export of the subscriber list so someone can move in or out in one file.\n\nDo not build open/click analytics beyond a basic send count, a recommendation network, or paid subscriptions — those are the actual product beehiiv sells. In the README, say plainly that a new sending domain needs to warm up gradually or the mail lands in spam; that reputation-building, more than any code here, is what the subscription fee buys.",
+  "faq": [
+    { "q": "Can I import my existing subscriber list?", "a": "Yes — the build supports CSV import and export, so your list travels with you either direction. What doesn't transfer is your sender reputation; a new sending domain starts from zero no matter how many subscribers you bring." },
+    { "q": "Will it work on my phone?", "a": "The admin view is a plain web page, usable on a phone for a quick send, but there's no dedicated app, no push notifications, and no mobile-optimized composer." },
+    { "q": "What does it cost to run?", "a": "Hosting plus a domain, plus a transactional email API — most of those have a free tier that covers a small list, growing to a few dollars a month as your list does." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Growth that isn't your own doing. beehiiv's cross-newsletter recommendation network sends other publications' readers your way automatically; a self-hosted sender only ever reaches people who already found you." }
+  ]
+}

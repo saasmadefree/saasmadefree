@@ -1,0 +1,41 @@
+{
+  "slug": "canva",
+  "name": "Canva",
+  "domains": [
+    "canva.com"
+  ],
+  "category": "design",
+  "subcategory": "graphic design suite",
+  "pricing": {
+    "amount": 18,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://www.canva.com/en_in/pricing/",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "licensed assets/templates/collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Penpot",
+      "url": "https://github.com/penpot/penpot"
+    }
+  ],
+  "relatedSlugs": [
+    "figma",
+    "gamma",
+    "carrd"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

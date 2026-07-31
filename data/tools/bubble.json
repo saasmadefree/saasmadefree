@@ -1,0 +1,42 @@
+{
+  "slug": "bubble",
+  "name": "Bubble",
+  "domains": [
+    "bubble.io"
+  ],
+  "category": "no-code-apps",
+  "subcategory": "visual web app builder",
+  "pricing": {
+    "amount": 32,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://bubble.io/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "no-code platform/ecosystem",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Appsmith",
+      "url": "https://github.com/appsmithorg/appsmith"
+    }
+  ],
+  "relatedSlugs": [
+    "glide",
+    "airtable",
+    "carrd"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

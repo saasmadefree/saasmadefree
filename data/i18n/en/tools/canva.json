@@ -1,0 +1,21 @@
+{
+  "tagline": "Template-based design suite for social posts, docs, decks, and brand assets.",
+  "verdictSummary": "A canvas editor — presets for common sizes, text and image layers, a small brand-color panel, PNG/PDF export — is a real weekend build on top of an open-source canvas library. What doesn't come with it is Canva's actual product: a huge licensed template and stock-asset library, and a collaboration layer that keeps a shared design from breaking when two people touch it.",
+  "coreLoopDIY": "A canvas editor with size presets, text and image layers, a small brand-color panel, and PNG/PDF export.",
+  "whatYouLose": [
+    "the template library",
+    "licensed stock photos and graphics",
+    "Canva's AI editing tools",
+    "real-time collaboration on a shared design",
+    "brand kits synced across a team"
+  ],
+  "whyPeopleStillPay": "Most design work is choosing well from a huge, professionally curated library and editing a shared file without breaking someone else's layout — not drawing rectangles, which is the easy part.",
+  "notes": "An honest 'kinda': the editor itself is easy to demo, matching the asset library and the collaboration layer is not.",
+  "prompt": "Build a small canvas design editor using an open-source canvas library (Fabric.js or Konva) with a handful of size presets for common formats — a square social post, a portrait story size, a header banner, a printable page — plus a custom-size option. Support text using fonts already on the machine, image upload, basic shapes, a layer list with reordering, and simple alignment and snap guides. Load a small brand panel from a config file — a handful of brand colors and two fonts as one-click swatches — so a personal brand stays consistent across designs without redoing it each time. Save each design as a file that reopens exactly as it was; duplicating a saved design is the whole 'template' system, no separate template engine needed. Export to PNG at a couple of resolutions, and to PDF by rendering the canvas to a printable page. Keep everything local, with no accounts and no telemetry.\n\nDo not build a stock-photo or template library, an AI image generator, or real-time collaboration — bring your own images, and treat this as a single-user tool. The licensed asset library and the ability for two people to edit the same file live are Canva's actual product, not a weekend of canvas code.",
+  "faq": [
+    { "q": "Can I bring in my existing Canva designs?", "a": "Not directly — Canva doesn't export to an editable format this build can read, only flattened images and PDFs. A flattened export works fine as a background image to trace over, but the layers have to be rebuilt by hand." },
+    { "q": "Will it work on my phone?", "a": "Not well. Canvas editing needs precise pointer control that's genuinely hard on a touchscreen, and this build has no dedicated mobile app — it's a desktop tool." },
+    { "q": "What does it cost to run?", "a": "Just hosting for the small web app, typically a few dollars a month or free on a static host, since there's no database and no API key involved." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The library. Canva's actual value is thousands of licensed templates and stock assets already cleared for use; this build hands you an empty canvas and your own images, nothing more." }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "airtable",
+  "name": "Airtable",
+  "domains": [
+    "airtable.com"
+  ],
+  "category": "databases",
+  "subcategory": "spreadsheet database",
+  "pricing": {
+    "amount": 24,
+    "currency": "USD",
+    "plan": "Team",
+    "basis": "per-seat-monthly",
+    "source": "https://airtable.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "database/editor/integrations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "NocoDB",
+      "url": "https://github.com/nocodb/nocodb"
+    }
+  ],
+  "relatedSlugs": [
+    "bubble",
+    "glide",
+    "carrd"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

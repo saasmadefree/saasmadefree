@@ -1,0 +1,42 @@
+{
+  "slug": "gamma",
+  "name": "Gamma",
+  "domains": [
+    "gamma.app"
+  ],
+  "category": "presentations",
+  "subcategory": "AI decks/docs/webpages",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Plus",
+    "basis": "per-seat-monthly",
+    "source": "https://gamma.app/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "editor/templates/hosting",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Slidev",
+      "url": "https://github.com/slidevjs/slidev"
+    }
+  ],
+  "relatedSlugs": [
+    "chatgpt",
+    "claude",
+    "grammarly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

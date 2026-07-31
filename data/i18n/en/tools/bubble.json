@@ -1,0 +1,20 @@
+{
+  "tagline": "No-code platform for building web apps with a visual workflow engine.",
+  "verdictSummary": "The honest move is never to clone Bubble itself — it's to rebuild the one specific app you actually run on it, in plain code. That's a real multi-day build: CRUD screens, a couple of workflows, and hosting. What you give up is the visual editor, which means every future change is now a code change, not a drag-and-drop one.",
+  "coreLoopDIY": "Rebuild the specific app — its screens, data model, and one or two core workflows — directly in code, rather than cloning Bubble as a platform.",
+  "whatYouLose": [
+    "the visual editor for making changes without touching code",
+    "Bubble's plugin marketplace",
+    "built-in hosting and scaling",
+    "the ability for a non-developer to maintain the app afterward"
+  ],
+  "whyPeopleStillPay": "People keep paying because future changes stay visual — no developer required. The moment you own the code instead, every change is a pull request, not a drag-and-drop edit.",
+  "notes": "One of the more important entries here: the point isn't to clone Bubble the platform, it's to rebuild your one app and own the code.",
+  "prompt": "Before writing anything, get the actual shape of the app: the 3–5 core screens, the data types and their fields, and the one or two workflows that matter most. Then build exactly that app in code — not a general-purpose app builder, not a Bubble clone. A typical shape: server-rendered pages backed by a real database, CRUD screens (list with search/filter, detail view, create/edit forms with validation) for each data type, and each 'workflow' from the original app rewritten as a plain function — a form submit that updates a row, sends an email, and redirects; anything scheduled becomes a cron job in the same process. Add authentication only if people other than the owner will log in; for a single-user tool, skip auth entirely and keep it private. Store data in a real database with a scheduled export so nothing is ever trapped.\n\nDo not build a visual editor, a plugin system, or anything else platform-shaped — the deliverable is one working app that deploys to a small server, not a tool for building other apps. Make clear in the README that every future change is now a code change: that trade is the actual point of doing this.",
+  "faq": [
+    { "q": "Can I bring over my existing Bubble app and data?", "a": "The data, yes — Bubble can export your database to CSV, and that maps onto the new schema. The app itself doesn't transfer: Bubble's visual workflows have to be re-read and rewritten as code by hand, one at a time." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, the same way the Bubble version did. There's no native app either way, so nothing changes there." },
+    { "q": "What does it cost to run?", "a": "A small VPS and a database, typically five to ten dollars a month — often less than a workflow-heavy Bubble plan, since you're only paying for your own server." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Visual, no-code changes. Every future tweak — a new field, a new screen, a changed workflow — now goes through code and a deploy, not a drag-and-drop edit in a browser tab." }
+  ]
+}

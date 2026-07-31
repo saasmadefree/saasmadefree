@@ -1,0 +1,21 @@
+{
+  "tagline": "RSS reader and research feed for websites, newsletters, and alerts.",
+  "verdictSummary": "Core RSS reading — polling feeds, folders, unread state, full-text search — is a textbook one-sitting build on an open protocol with mature open-source parts already available. What's missing is Feedly's own feed discovery and its AI-assisted filtering across a very large number of sources.",
+  "coreLoopDIY": "Poll RSS feeds on a schedule, store items in a database, and expose folders, unread state, and full-text search.",
+  "whatYouLose": [
+    "mobile apps",
+    "feed discovery and suggestions",
+    "Feedly's AI-assisted filtering (Leo)",
+    "integrations with other tools",
+    "someone else's uptime"
+  ],
+  "whyPeopleStillPay": "People pay to avoid maintaining hundreds of feeds and reader apps across devices themselves — RSS is an open, well-understood protocol, so the value is mostly convenience and polish.",
+  "notes": "A textbook yes: an open protocol with several mature open-source readers already covering this exact use case.",
+  "prompt": "Build a personal RSS reader that polls a list of feeds on a schedule (every 30 minutes is a reasonable default), parses new items, dedupes them by their feed-provided ID, and stores them in a database. Import an existing OPML export on first run so nothing has to be retyped. Build a reading UI with folders, per-folder unread counts, a keyboard-navigable article list, one-key mark-as-read, and starring; add full-text search across everything you've read. Add an optional 'summarize this article' feature that calls an LLM API if a key is present in the environment — hide the button entirely when no key is set, so the core reader works with zero API keys. Prune read items after a set retention window, keep starred items indefinitely.\n\nDo not build a mobile app or Feedly's feed-discovery and suggestion system — adding a new feed means editing the OPML file, and that's a fine trade for owning your reading list.",
+  "faq": [
+    { "q": "Can I import my existing Feedly feeds?", "a": "Yes — Feedly exports a standard OPML file with your feeds and folders, and importing that on first run is exactly how this build expects to be set up." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, if you host it somewhere reachable. There's no dedicated mobile app or offline sync." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month; the optional AI summary feature adds a small per-article API cost only when you use it." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Discovering new sources. Feedly suggests feeds based on what its whole user base reads; here, finding a new feed to add is entirely on you." }
+  ]
+}

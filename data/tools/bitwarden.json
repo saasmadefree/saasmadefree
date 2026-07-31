@@ -1,0 +1,43 @@
+{
+  "slug": "bitwarden",
+  "name": "Bitwarden",
+  "domains": [
+    "bitwarden.com",
+    "vault.bitwarden.com"
+  ],
+  "category": "security",
+  "subcategory": "password manager",
+  "pricing": {
+    "amount": 1.65,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "annual-effective-monthly",
+    "source": "https://bitwarden.com/pricing/",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "security/trust/hosting",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "vaultwarden",
+      "url": "https://github.com/dani-garcia/vaultwarden"
+    }
+  ],
+  "relatedSlugs": [
+    "hey-email",
+    "1password",
+    "github-copilot"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,20 @@
+{
+  "tagline": "Open-source password manager, hosted or self-hosted.",
+  "verdictSummary": "Because Bitwarden's server is itself open source, this is a real yes: deploy the compatible vaultwarden server on a small VPS behind HTTPS, and the official Bitwarden apps and browser extensions — autofill, passkeys and all — work against your own server instead of theirs. What you take on is the operational side: patching, uptime, and backups.",
+  "coreLoopDIY": "Self-host the open-source vaultwarden server behind HTTPS, then use the official Bitwarden apps and extensions pointed at your own URL.",
+  "whatYouLose": [
+    "managed hosting and uptime",
+    "premium support if something breaks",
+    "emergency access for someone else to reach your vault",
+    "someone else owning the security-patching schedule"
+  ],
+  "whyPeopleStillPay": "A professionally maintained security service is cheap next to the cost of a mistake — most people pay to make patching and uptime someone else's job, not because the software is hard to run.",
+  "notes": "Interesting because the paid app itself has a genuinely open-source, self-hostable lineage — one of the cleanest yes entries in the catalogue.",
+  "prompt": "Do not write a password manager — deploy the existing open-source one. Run vaultwarden (the Bitwarden-compatible server) on a small VPS via Docker Compose, with its data directory on a persistent volume, behind a reverse proxy that handles HTTPS automatically (Caddy is the simplest option). The official Bitwarden apps, browser extensions, and mobile clients need HTTPS to work at all, so this step isn't optional. Once your one account is registered, lock signups down (vaultwarden has an environment variable for exactly this) so the server never accepts a second account. Point the official Bitwarden apps and extensions at your server's URL instead of bitwarden.com — autofill, passkeys, and the rest keep working exactly as before. Set up a nightly backup job that archives the data directory, encrypts the archive, and copies it off the VPS; actually run a restore from that backup once before trusting it. Bitwarden's own export/import flow moves an existing vault in.\n\nDo not attempt to build password-manager software yourself, and do not skip HTTPS to save time — a vault without it is worse than the subscription you're replacing. In the README, be honest that the clients cache the vault locally, so a dead server locks you out of nothing immediately, but you now own every future security update yourself.",
+  "faq": [
+    { "q": "Can I import my existing Bitwarden vault?", "a": "Yes, directly — Bitwarden's own export/import feature works against your self-hosted server exactly as it does against bitwarden.com, since vaultwarden speaks the same protocol." },
+    { "q": "Will it work on my phone?", "a": "Yes — the official Bitwarden mobile apps and browser extensions work unchanged, you just point them at your own server's URL instead of the default one." },
+    { "q": "What does it cost to run?", "a": "A small VPS, typically a few dollars a month, plus a domain if you don't already have one. Premium itself is priced low enough that self-hosting often costs more in pure dollars — this one is worth doing for control and curiosity, not to save money." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Someone else owning the operational risk. If vaultwarden has a security vulnerability, applying the patch is now your job on your own timeline — Bitwarden's hosted service patches itself before most self-hosters even hear about it." }
+  ]
+}

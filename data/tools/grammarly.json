@@ -1,0 +1,42 @@
+{
+  "slug": "grammarly",
+  "name": "Grammarly",
+  "domains": [
+    "grammarly.com"
+  ],
+  "category": "ai-writing",
+  "subcategory": "writing assistant",
+  "pricing": {
+    "amount": 30,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://www.grammarly.com/plans",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "cross-app integration/model quality",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "LanguageTool",
+      "url": "https://github.com/languagetool-org/languagetool"
+    }
+  ],
+  "relatedSlugs": [
+    "canva",
+    "figma",
+    "chatgpt"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

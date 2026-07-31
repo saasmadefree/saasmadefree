@@ -1,0 +1,21 @@
+{
+  "tagline": "Invoicing, PDF generation, payments, and client billing.",
+  "verdictSummary": "Because Invoice Ninja is itself open source, self-hosting the real thing is the honest first option; a lighter personal invoicer with clients, line items, PDF export, and a payment link is also a real weekend build if that's all you actually need. Either way, hosting, backups, and payment configuration become your job.",
+  "coreLoopDIY": "A small invoicing app: clients, line-item invoices, generated PDFs, email delivery, and an optional payment link, backed by a database with nightly backups.",
+  "whatYouLose": [
+    "managed hosting and upgrades handled for you",
+    "backups run by someone else",
+    "support if something breaks",
+    "a client portal",
+    "easy payment reconciliation across many invoices"
+  ],
+  "whyPeopleStillPay": "Billing software is boring and it should never break on the day an invoice is due — people pay so the operational risk around getting paid isn't their problem.",
+  "notes": "A clean hosted-open-source yes, with a realistic operational caveat.",
+  "prompt": "Note in the README that Invoice Ninja itself is open source and self-hostable — that's the first option worth considering. If a lighter personal tool is genuinely what's needed instead, build a small invoicing app: clients (name, email, address, currency, default rate) and invoices with line items (description, quantity, unit price, tax), auto-numbered sequentially. Generate a clean PDF per invoice from an HTML template, with your logo, payment terms, and bank details pulled from a config file. Email the PDF to the client, track draft/sent/paid status per invoice, and show a dashboard of unpaid invoices sorted by days outstanding. Add an optional payment link per invoice through a payments API, included in both the PDF and the email — mark invoices paid by hand once money actually lands, no automatic reconciliation. Set up a nightly backup of the database to a dated file, keeping a rolling window of recent backups.\n\nDo not build quotes, expense tracking, multi-user access, or a client portal — those are real scope beyond a personal invoicing tool, and Invoice Ninja itself already covers them if that breadth turns out to matter.",
+  "faq": [
+    { "q": "Can I import my existing Invoice Ninja data?", "a": "Yes — Invoice Ninja can export clients and invoices, and that data maps cleanly onto a simpler schema like this one. Quotes, expenses, and portal-specific settings don't come across, since this build doesn't have those features." },
+    { "q": "Will it work on my phone?", "a": "The admin pages render on a phone browser for a quick check or a one-off invoice, but this build isn't designed mobile-first the way a dedicated app would be." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month, plus payment-processor fees only on invoices actually paid through the optional link — no fee at all if you invoice for bank transfer." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "A client portal. There's nowhere for a client to log in and see their own invoice history here; every invoice is a one-off PDF and email, fine for occasional billing and a real gap for recurring clients." }
+  ]
+}

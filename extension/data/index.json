@@ -1,10 +1,220 @@
 {
+  "1password.com": {
+    "slug": "1password",
+    "verdict": "kinda",
+    "amount": 2.99,
+    "currency": "USD",
+    "url": "/en/tools/1password"
+  },
+  "my.1password.com": {
+    "slug": "1password",
+    "verdict": "kinda",
+    "amount": 2.99,
+    "currency": "USD",
+    "url": "/en/tools/1password"
+  },
+  "ahrefs.com": {
+    "slug": "ahrefs",
+    "verdict": "no",
+    "amount": 29,
+    "currency": "USD",
+    "url": "/en/tools/ahrefs"
+  },
+  "airtable.com": {
+    "slug": "airtable",
+    "verdict": "kinda",
+    "amount": 24,
+    "currency": "USD",
+    "url": "/en/tools/airtable"
+  },
+  "beehiiv.com": {
+    "slug": "beehiiv",
+    "verdict": "kinda",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/beehiiv"
+  },
+  "bitwarden.com": {
+    "slug": "bitwarden",
+    "verdict": "yes",
+    "amount": 1.65,
+    "currency": "USD",
+    "url": "/en/tools/bitwarden"
+  },
+  "vault.bitwarden.com": {
+    "slug": "bitwarden",
+    "verdict": "yes",
+    "amount": 1.65,
+    "currency": "USD",
+    "url": "/en/tools/bitwarden"
+  },
+  "bubble.io": {
+    "slug": "bubble",
+    "verdict": "kinda",
+    "amount": 32,
+    "currency": "USD",
+    "url": "/en/tools/bubble"
+  },
+  "buffer.com": {
+    "slug": "buffer",
+    "verdict": "kinda",
+    "amount": 6,
+    "currency": "USD",
+    "url": "/en/tools/buffer"
+  },
   "calendly.com": {
     "slug": "calendly",
     "verdict": "kinda",
     "amount": 12,
     "currency": "USD",
     "url": "/en/tools/calendly"
+  },
+  "canva.com": {
+    "slug": "canva",
+    "verdict": "kinda",
+    "amount": 18,
+    "currency": "USD",
+    "url": "/en/tools/canva"
+  },
+  "carrd.co": {
+    "slug": "carrd",
+    "verdict": "yes",
+    "amount": 1.58,
+    "currency": "USD",
+    "url": "/en/tools/carrd"
+  },
+  "chatgpt.com": {
+    "slug": "chatgpt",
+    "verdict": "no",
+    "amount": 20,
+    "currency": "USD",
+    "url": "/en/tools/chatgpt"
+  },
+  "chat.openai.com": {
+    "slug": "chatgpt",
+    "verdict": "no",
+    "amount": 20,
+    "currency": "USD",
+    "url": "/en/tools/chatgpt"
+  },
+  "claude.ai": {
+    "slug": "claude",
+    "verdict": "no",
+    "amount": 20,
+    "currency": "USD",
+    "url": "/en/tools/claude"
+  },
+  "cursor.com": {
+    "slug": "cursor",
+    "verdict": "kinda",
+    "amount": 20,
+    "currency": "USD",
+    "url": "/en/tools/cursor"
+  },
+  "elevenlabs.io": {
+    "slug": "elevenlabs",
+    "verdict": "no",
+    "amount": 22,
+    "currency": "USD",
+    "url": "/en/tools/elevenlabs"
+  },
+  "feedly.com": {
+    "slug": "feedly",
+    "verdict": "yes",
+    "amount": 7,
+    "currency": "USD",
+    "url": "/en/tools/feedly"
+  },
+  "figma.com": {
+    "slug": "figma",
+    "verdict": "no",
+    "amount": 20,
+    "currency": "USD",
+    "url": "/en/tools/figma"
+  },
+  "gamma.app": {
+    "slug": "gamma",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/gamma"
+  },
+  "ghost.org": {
+    "slug": "ghost-pro",
+    "verdict": "yes",
+    "amount": 35,
+    "currency": "USD",
+    "url": "/en/tools/ghost-pro"
+  },
+  "github.com": {
+    "slug": "github-copilot",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/github-copilot"
+  },
+  "glideapps.com": {
+    "slug": "glide",
+    "verdict": "kinda",
+    "amount": 60,
+    "currency": "USD",
+    "url": "/en/tools/glide"
+  },
+  "grammarly.com": {
+    "slug": "grammarly",
+    "verdict": "kinda",
+    "amount": 30,
+    "currency": "USD",
+    "url": "/en/tools/grammarly"
+  },
+  "granola.ai": {
+    "slug": "granola",
+    "verdict": "yes",
+    "amount": 14,
+    "currency": "USD",
+    "url": "/en/tools/granola"
+  },
+  "hey.com": {
+    "slug": "hey-email",
+    "verdict": "no",
+    "amount": 8.25,
+    "currency": "USD",
+    "url": "/en/tools/hey-email"
+  },
+  "app.hey.com": {
+    "slug": "hey-email",
+    "verdict": "no",
+    "amount": 8.25,
+    "currency": "USD",
+    "url": "/en/tools/hey-email"
+  },
+  "invoiceninja.com": {
+    "slug": "invoice-ninja",
+    "verdict": "yes",
+    "amount": 14,
+    "currency": "USD",
+    "url": "/en/tools/invoice-ninja"
+  },
+  "kajabi.com": {
+    "slug": "kajabi",
+    "verdict": "kinda",
+    "amount": 179,
+    "currency": "USD",
+    "url": "/en/tools/kajabi"
+  },
+  "kit.com": {
+    "slug": "kit",
+    "verdict": "kinda",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/kit"
+  },
+  "app.kit.com": {
+    "slug": "kit",
+    "verdict": "kinda",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/kit"
   },
   "notion.so": {
     "slug": "notion",

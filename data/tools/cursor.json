@@ -1,0 +1,41 @@
+{
+  "slug": "cursor",
+  "name": "Cursor",
+  "domains": [
+    "cursor.com"
+  ],
+  "category": "dev-tools",
+  "subcategory": "AI code editor",
+  "pricing": {
+    "amount": 20,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://cursor.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "editor integration/model routing",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "anthropic-api-key"
+  ],
+  "priorArt": [
+    {
+      "name": "Continue",
+      "url": "https://github.com/continuedev/continue"
+    }
+  ],
+  "relatedSlugs": [
+    "github-copilot",
+    "chatgpt",
+    "claude"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,20 @@
+{
+  "tagline": "Real-time collaborative design and prototyping tool.",
+  "verdictSummary": "A single-player vector canvas — shapes, text, layers, local-only persistence — is a real weekend build, and several genuinely good open-source alternatives already exist. What can't be one-shotted is Figma's actual moat: real-time multiplayer editing on a high-performance canvas, plus the fact that an entire team already works inside the same file.",
+  "coreLoopDIY": "A single-player canvas editor — shapes, text, frames, layers — persisted locally in the browser, with no server at all.",
+  "whatYouLose": [
+    "real-time multiplayer editing",
+    "the rest of your team, who are already on Figma",
+    "the plugin ecosystem",
+    "years of canvas-performance engineering"
+  ],
+  "whyPeopleStillPay": "Entire product and design teams coordinate inside the same file — people pay because everyone is already there, not because drawing rectangles is hard.",
+  "notes": "The credibility entry. Figma's value is multiplayer CRDTs, a decade of canvas engineering, and everyone else being on it — you can't one-shot a network effect. If real single-player vector editing is what you actually need today, use Penpot or Excalidraw instead of waiting on a prompt.",
+  "prompt": "If what you actually need is single-player vector editing, don't build this — run Penpot (open source, self-hostable) or Excalidraw instead; either is a better, more finished tool than a personal clone will be on day one.\n\nIf you still want the weekend version: a canvas editor with rectangles, ellipses, text, and frames; selection, move, and resize handles; a right-hand panel for fill, stroke, and corner radius; a layers list with drag-to-reorder. Persist documents entirely in the browser (IndexedDB is enough) with JSON import/export so a file can move between machines. Export a selection as SVG and PNG. Keep it a single page, vanilla JS or a lightweight framework, with no backend and no accounts at all — this is a local tool, not a hosted product.\n\nDo not attempt real-time multiplayer, comments, reusable components, or a plugin system. Multiplayer specifically needs conflict-free replicated data types and a sync server — that's a genuinely hard distributed-systems problem, not a missing feature.",
+  "faq": [
+    { "q": "Can I import my existing Figma files?", "a": "Not directly — Figma's file format isn't public, and there's no supported export to an editable format this build can read. You'd rebuild a design's shapes by hand, or start fresh." },
+    { "q": "Will it work on my phone?", "a": "Not well. Precise shape editing needs a mouse or a stylus, and a touchscreen makes this kind of canvas work genuinely harder — this build has no phone-adapted interface." },
+    { "q": "What does it cost to run?", "a": "Nothing — it's a static, single-page app with browser-local storage, no server and no database required." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Everyone else being in the file with you. Real-time multiplayer editing is the actual product; a single-player local tool can't put your team in the same canvas, no matter how good the drawing tools get." }
+  ]
+}

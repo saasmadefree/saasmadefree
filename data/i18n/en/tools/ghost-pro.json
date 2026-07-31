@@ -1,0 +1,21 @@
+{
+  "tagline": "Managed hosting for the open-source Ghost publishing platform.",
+  "verdictSummary": "Because Ghost itself is open source, this is a real yes: self-host the actual Ghost software behind HTTPS instead of building a clone of it. What you take on in exchange is everything Ghost(Pro) was doing quietly in the background — upgrades, backups, email deliverability setup, and uptime.",
+  "coreLoopDIY": "Self-host the open-source Ghost platform behind HTTPS, with newsletter email and payments wired to your own accounts.",
+  "whatYouLose": [
+    "managed hosting and uptime",
+    "automatic upgrades",
+    "backups handled for you",
+    "done-for-you email deliverability setup",
+    "support if something breaks"
+  ],
+  "whyPeopleStillPay": "Publishing shouldn't turn into server administration — people pay Ghost(Pro) specifically to keep the software's own maintenance off their plate.",
+  "notes": "A strong yes, and an important one: hosted open-source is exactly the category many subscriptions in this catalogue quietly belong to.",
+  "prompt": "Do not build a publishing platform — deploy the real, open-source Ghost. Run it via Docker Compose on a small VPS: the official Ghost image plus MySQL, both with persistent volumes for content and the database. Put a reverse proxy in front for automatic HTTPS on your domain, with Ghost itself bound to localhost so nothing but the proxy is exposed. Wire newsletter and transactional email to a real provider (Mailgun, Postmark, or similar) with credentials from the environment, and write out the SPF/DKIM/DMARC DNS records you'll need to add as a checklist. If paid memberships matter, connect Stripe in test mode first, keys from the environment. Set up a nightly backup job — a database dump plus an archive of the content volume — and write, and actually test, a restore procedure; an untested backup isn't a real one. Write a simple update script that pulls new images and restarts, with a note to read Ghost's release notes before any major-version jump.\n\nDo not build a custom theme from scratch — start from Ghost's default theme and adjust it. Be plain in the README that upgrades and email deliverability are now your responsibility; that ongoing maintenance, not the software itself, is what the hosted plan was actually charging for.",
+  "faq": [
+    { "q": "Can I migrate my existing Ghost(Pro) site over?", "a": "Yes — Ghost has a built-in export/import for content, and since this runs the same open-source software, your theme and integrations carry over largely unchanged." },
+    { "q": "Will it work on my phone?", "a": "The published site itself, yes, exactly as before. The admin interface is usable on a phone browser in a pinch but is genuinely built for a desktop screen." },
+    { "q": "What does it cost to run?", "a": "A small VPS plus a domain, typically under ten dollars a month, plus whatever the email provider charges past its free tier — well under the Publisher plan priced here." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Someone else's operational safety net. If an upgrade goes wrong or email deliverability breaks, there's no support ticket to file — diagnosing and fixing it is entirely on you now." }
+  ]
+}

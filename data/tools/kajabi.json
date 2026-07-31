@@ -1,0 +1,43 @@
+{
+  "slug": "kajabi",
+  "name": "Kajabi",
+  "domains": [
+    "kajabi.com"
+  ],
+  "category": "creator-commerce",
+  "subcategory": "all-in-one creator business",
+  "pricing": {
+    "amount": 179,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "flat-monthly",
+    "source": "https://www.kajabi.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "all-in-one workflow/payments",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Moodle",
+      "url": "https://github.com/moodle/moodle"
+    }
+  ],
+  "relatedSlugs": [
+    "buffer",
+    "invoice-ninja",
+    "ghost-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

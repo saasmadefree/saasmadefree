@@ -1,0 +1,20 @@
+{
+  "tagline": "AI voice generation, cloning, dubbing, and text-to-speech.",
+  "verdictSummary": "A personal text-to-speech tool running a local open-source model is a real weekend build, and it runs entirely offline with no API key. What it cannot responsibly attempt is convincing voice cloning: matching a specific person's voice needs both a much larger model and the consent and safety controls that make cloning something other than a liability.",
+  "coreLoopDIY": "A local text-to-speech tool: paste or batch-process text through an open-source model running on your own machine, save the audio.",
+  "whatYouLose": [
+    "ElevenLabs' voice quality and range",
+    "multilingual dubbing",
+    "safety and consent controls around cloning real voices",
+    "continuous model updates"
+  ],
+  "whyPeopleStillPay": "People pay for voices that sound convincingly human and for the licensing and safety work that makes commercial use of a cloned voice defensible — not for text-to-speech itself, which has solid free alternatives.",
+  "notes": "A 'no' with a genuinely useful fallback: local open-source TTS covers a lot of personal use; cloning specifically should stay off the table.",
+  "prompt": "Build a personal text-to-speech tool around an open-source model that runs locally on CPU (Piper or Kokoro are both good starting points) — paste text or point it at a folder of text files, pick a voice preset, get back audio files, with no API key and no network call required for the core loop. Save every generation with a sidecar text file recording the exact input and the voice used, so nothing is orphaned later. Add an optional cloud fallback: if an API key for a hosted TTS provider is present in the environment, offer it as a higher-quality alternative for a given generation; if the key is missing, skip that option entirely rather than erroring, and the local model keeps working exactly as before.\n\nDo not attempt voice cloning of a specific person, real or fictional — that needs consent, licensing, and safety controls this project cannot provide, and it's exactly the part that should not be a personal weekend build. Be plain in the README about the quality gap against a commercial voice model; local TTS is usable, not indistinguishable from a paid one.",
+  "faq": [
+    { "q": "Can I bring over voices or audio I generated with ElevenLabs?", "a": "The audio files themselves, yes — they're just files. The specific voices are not portable: ElevenLabs' voice models don't export, so a local model gives you a different, less polished voice, not the same one." },
+    { "q": "Will it work on my phone?", "a": "Running the model itself needs real CPU power a phone doesn't have, so this is a desktop or server tool. You could reach a local instance from a phone browser over your own network, but generation happens elsewhere." },
+    { "q": "What does it actually cost to run?", "a": "Nothing, if you stick to the local model — no API key, no hosting fee beyond the machine you already own. The optional cloud fallback costs per character if you turn it on." },
+    { "q": "What's the one thing that genuinely doesn't survive the rebuild?", "a": "Convincing voice cloning. Matching a specific person's voice needs a much larger model plus real consent and safety infrastructure — this build deliberately leaves that out rather than doing it badly." }
+  ]
+}

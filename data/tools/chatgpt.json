@@ -1,0 +1,44 @@
+{
+  "slug": "chatgpt",
+  "name": "ChatGPT",
+  "domains": [
+    "chatgpt.com",
+    "chat.openai.com"
+  ],
+  "category": "ai-assistant",
+  "subcategory": "general AI assistant",
+  "pricing": {
+    "amount": 20,
+    "currency": "USD",
+    "plan": "Plus",
+    "basis": "flat-monthly",
+    "source": "https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "frontier model/platform",
+  "diyTimeEstimate": "more",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Open WebUI",
+      "url": "https://github.com/open-webui/open-webui"
+    }
+  ],
+  "relatedSlugs": [
+    "claude",
+    "grammarly",
+    "gamma"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

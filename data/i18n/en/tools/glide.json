@@ -1,0 +1,20 @@
+{
+  "tagline": "No-code app builder for mobile-style portals and dashboards.",
+  "verdictSummary": "Building the one specific app you actually run on Glide — a data-backed portal with a mobile-friendly layout — is a real multi-day build in plain code. What doesn't come with it is Glide's own visual builder, its live spreadsheet data sync, and the ability to change the app later without touching code.",
+  "coreLoopDIY": "Build the specific portal or dashboard as a normal database-backed web app, laid out to work on a phone screen, instead of rebuilding Glide itself.",
+  "whatYouLose": [
+    "the visual builder",
+    "live two-way data sync with a spreadsheet",
+    "per-user permissions",
+    "native mobile-app publishing"
+  ],
+  "whyPeopleStillPay": "Building one app is easier than becoming the developer for every future change to it — people pay so the app stays editable by someone who isn't a programmer.",
+  "notes": "An important distinction that applies across several entries here: vibecode the app, not the app builder.",
+  "prompt": "Rebuild the one mobile-friendly data app you'd have made in Glide — not a no-code builder, the actual app. Start from a CRUD portal over a single dataset: a list view with search and filters, a detail view, and add/edit forms, laid out to work one-handed on a phone screen. Write a one-off import script that reads whatever spreadsheet the current Glide app is backed by (Glide apps are commonly built on a Google Sheet) and loads it into a real database. Add a simple access model for a small trusted group — a shared secret link is enough for most personal cases — served over HTTPS; skip full user accounts unless the app genuinely needs them. Include a data export endpoint so the data is never locked into this tool either.\n\nDo not build a drag-and-drop builder, per-user permissions, or a native mobile app — when the app itself needs to change, that's now a code change, and that's the actual trade being made here.",
+  "faq": [
+    { "q": "Can I import my existing Glide app's data?", "a": "Yes, if it's backed by a Google Sheet, which is the common case — export the sheet to CSV and import it, or write a small script against the Sheets API. What doesn't come across is Glide's live two-way sync back to that sheet." },
+    { "q": "Will it work on my phone?", "a": "Yes — the whole point of this rebuild is a layout that works one-handed on a phone screen, matching what the Glide app already did." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — often cheaper than Glide's paid tiers once an app has more than a handful of active users." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Editing the app without code. Glide lets a non-developer change screens and logic visually; here, every future change is a code change and a deploy." }
+  ]
+}

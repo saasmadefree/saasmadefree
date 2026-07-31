@@ -1,0 +1,44 @@
+{
+  "slug": "beehiiv",
+  "name": "beehiiv",
+  "domains": [
+    "beehiiv.com"
+  ],
+  "category": "newsletter",
+  "subcategory": "newsletter platform",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Scale",
+    "basis": "flat-monthly",
+    "source": "https://www.beehiiv.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "deliverability/network/monetization",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Ghost",
+      "url": "https://github.com/TryGhost/Ghost"
+    }
+  ],
+  "relatedSlugs": [
+    "kit",
+    "ghost-pro",
+    "ahrefs"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

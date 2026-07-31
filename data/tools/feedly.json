@@ -1,0 +1,43 @@
+{
+  "slug": "feedly",
+  "name": "Feedly",
+  "domains": [
+    "feedly.com"
+  ],
+  "category": "rss-research",
+  "subcategory": "RSS reader",
+  "pricing": {
+    "amount": 7,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://docs.feedly.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "data ingestion/polish",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "FreshRSS",
+      "url": "https://github.com/FreshRSS/FreshRSS"
+    }
+  ],
+  "relatedSlugs": [
+    "ahrefs",
+    "beehiiv",
+    "kit"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

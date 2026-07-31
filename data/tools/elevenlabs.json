@@ -1,0 +1,41 @@
+{
+  "slug": "elevenlabs",
+  "name": "ElevenLabs",
+  "domains": [
+    "elevenlabs.io"
+  ],
+  "category": "ai-audio",
+  "subcategory": "voice generation",
+  "pricing": {
+    "amount": 22,
+    "currency": "USD",
+    "plan": "Creator",
+    "basis": "flat-monthly",
+    "source": "https://elevenlabs.io/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "frontier model/safety/licensing",
+  "diyTimeEstimate": "more",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "OpenVoice",
+      "url": "https://github.com/myshell-ai/OpenVoice"
+    }
+  ],
+  "relatedSlugs": [
+    "chatgpt",
+    "claude",
+    "grammarly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

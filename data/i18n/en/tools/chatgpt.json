@@ -1,0 +1,21 @@
+{
+  "tagline": "General-purpose AI chat assistant for writing, coding, and research.",
+  "verdictSummary": "A chat client wired to a model API — conversation history, file upload into context, a running cost meter — is a real, cheap build for someone who mostly wants text chat. What it cannot do is recreate the frontier model itself, image generation, voice mode, or the constantly updated tool ecosystem ChatGPT ships around it.",
+  "coreLoopDIY": "A chat interface that calls a model API directly, stores conversation history, and shows the running per-conversation cost.",
+  "whatYouLose": [
+    "the frontier model itself and its ongoing improvements",
+    "image generation and voice mode",
+    "the growing tool and plugin ecosystem",
+    "the mobile apps",
+    "memory carried across conversations"
+  ],
+  "whyPeopleStillPay": "People pay for continuous access to a model that keeps getting better, plus the tools built around it — not for a textarea and a send button, which is the easy part to build.",
+  "notes": "An honest 'no' that still leaves room for a genuinely useful, much cheaper wrapper if all you actually use is text chat.",
+  "prompt": "If what you actually use is plain text chat — not voice, image generation, browsing agents, or memory — a thin client on a model API is a real build, and for light use it's often cheaper than a flat monthly fee. Build a chat interface: a streaming reply pane, a model picker that supports both OpenAI and Anthropic (switching between them is one of the real advantages of owning the wrapper), and a conversation sidebar with full-text search. Store every conversation, allow exporting a thread to Markdown, and let a conversation carry an editable system prompt. Support uploading a text file or PDF whose contents go straight into the context window — no vector database needed at personal scale. Show a running cost estimate per conversation and per month, computed from each API response's token usage, so 'is this actually cheaper' has a real number behind it. Read API keys from environment variables, never commit them.\n\nDo not build image generation, voice mode, browsing agents, or persistent memory across conversations — those need infrastructure well beyond an API wrapper, and they're exactly what the subscription is paying for if you use them.",
+  "faq": [
+    { "q": "Can I import my ChatGPT conversation history?", "a": "OpenAI lets you export your full chat history as a structured archive, and that maps reasonably well onto this build's conversation table — a short one-off script converts the export format." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, if you host it somewhere reachable. There's no native app, no push notifications, and no offline mode — it's a browser tab, not a phone app." },
+    { "q": "What does it actually cost to run?", "a": "Hosting is a few dollars a month; API usage for someone who mostly does text chat is often under five dollars a month in tokens — the built-in cost meter shows exactly where you land against the flat subscription fee." },
+    { "q": "What's the one thing that genuinely doesn't survive the rebuild?", "a": "The model keeping up with itself. OpenAI ships new capabilities into ChatGPT continuously; this wrapper only gets better when you notice and manually swap in a newer model — it doesn't improve on its own." }
+  ]
+}

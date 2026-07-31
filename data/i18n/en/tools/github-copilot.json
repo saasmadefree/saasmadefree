@@ -1,0 +1,20 @@
+{
+  "tagline": "AI code completion and chat integrated into your editor and GitHub.",
+  "verdictSummary": "The individual pieces — an open-source in-editor assistant, a model API, a local completion model — are all real and available today. Assembling them into a working setup is a weekend project. What doesn't carry over is Copilot's own low-latency completions tuned specifically for the editor, and its GitHub-native context.",
+  "coreLoopDIY": "Install an open-source in-editor AI extension, connect it to model APIs or a local model, and index the repo for context-aware completions and chat.",
+  "whatYouLose": [
+    "native low-latency completions tuned for the editor",
+    "GitHub-native context and PR features",
+    "model routing handled for you",
+    "managed billing and team controls"
+  ],
+  "whyPeopleStillPay": "Fast, repo-aware completions are available in the editor with defaults that already work — people pay to skip the setup, not because the underlying capability is unavailable elsewhere.",
+  "notes": "Very relevant to this site's own audience; the verdict is nuanced because the product is partly a wrapper, partly a platform.",
+  "prompt": "Do not build or train a model — set up the open-source Continue extension in VS Code (or your editor of choice), configured against models you control. Use a capable model over API for chat and inline edit (key read from an environment variable, never committed), and a small local model served by Ollama for autocomplete, so completions are free and keep working offline, at some cost in speed and quality versus Copilot's own. Deliver a working Continue config with both models wired up and sensible keybindings for inline edit and chat. Turn on Continue's codebase indexing so answers are repo-aware, and document where the index lives and how to rebuild it. Add a small script that pipes `git diff` to the chat model and prints a short pre-commit review, as a rough stand-in for Copilot's PR-review features. Turn off the extension's own telemetry in its config.\n\nDo not build a full editor extension from scratch, GitHub PR-bot automation, or team seat management — those are real platform features, not something to reassemble in a weekend. Note in the README that local autocomplete is slower and less accurate than Copilot's; that gap is the trade for free and private completions.",
+  "faq": [
+    { "q": "Can I bring over my Copilot settings or custom instructions?", "a": "Not directly — Copilot's configuration lives on GitHub's side. Continue reads its own config file, so any custom instructions or preferences need to be re-entered there by hand." },
+    { "q": "Will it work on a laptop with no internet?", "a": "Chat and inline edit still need a connection to reach the model API. The local Ollama-served autocomplete is the one part that works fully offline, which Copilot itself doesn't offer at all." },
+    { "q": "What does it actually cost to run?", "a": "Only API usage for chat and inline edit — Continue and Ollama are both free. Light-to-medium use is often cheaper per month than a flat Copilot seat; heavy daily use can end up costing more." },
+    { "q": "What's the one thing that genuinely doesn't survive the rebuild?", "a": "Speed. Copilot's completions are tuned end-to-end for low latency inside the editor; a local model through Ollama is noticeably slower and less accurate, which you feel on every keystroke." }
+  ]
+}

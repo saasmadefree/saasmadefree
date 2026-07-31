@@ -1,0 +1,45 @@
+{
+  "slug": "kit",
+  "name": "Kit",
+  "domains": [
+    "kit.com",
+    "app.kit.com"
+  ],
+  "category": "newsletter",
+  "subcategory": "creator email marketing",
+  "pricing": {
+    "amount": 39,
+    "currency": "USD",
+    "plan": "Creator",
+    "basis": "usage-based",
+    "source": "https://kit.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "deliverability/growth/integrations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Listmonk",
+      "url": "https://github.com/knadh/listmonk"
+    }
+  ],
+  "relatedSlugs": [
+    "ghost-pro",
+    "beehiiv",
+    "ahrefs"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}
