@@ -36,7 +36,8 @@
     "home-assistant-cloud"
   ],
   "markets": [
-    "en"
+    "en",
+    "fr"
   ],
   "pagePriority": 3,
   "verifiedOneShot": false
