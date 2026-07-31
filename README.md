@@ -72,18 +72,18 @@ The full policy this section summarizes is at [`public/privacy.html`](public/pri
 
 ## Verifying the reproducible build
 
-`npm run build:extension` (`scripts/pack-extension.mjs`) packages `extension/` into `dist/extension.zip` with every file's mode normalized to `0644` and its timestamp fixed, then writes the archive's SHA-256 digest to `dist/extension.zip.sha256`. Two runs from identical source produce a byte-identical archive. [CI proves this on every push](.github/workflows/ci.yml) by building twice and diffing the two ZIPs.
+`npm run build:extension` (`scripts/pack-extension.mjs`) packages `extension/` into `build/extension.zip` with every file's mode normalized to `0644` and its timestamp fixed, then writes the archive's SHA-256 digest to `build/extension.zip.sha256`. Two runs from identical source produce a byte-identical archive. [CI proves this on every push](.github/workflows/ci.yml) by building twice and diffing the two ZIPs.
 
 To check it yourself:
 
 ```
 npm run build                              # regenerates extension/data/index.json from data/
 npm run build:extension
-cp dist/extension.zip /tmp/first.zip
-rm dist/extension.zip
+cp build/extension.zip /tmp/first.zip
+rm build/extension.zip
 npm run build:extension
-cmp /tmp/first.zip dist/extension.zip      # no output = identical
-shasum -a 256 -c dist/extension.zip.sha256 # "OK" = matches the published hash
+cmp /tmp/first.zip build/extension.zip      # no output = identical
+shasum -a 256 -c build/extension.zip.sha256 # "OK" = matches the published hash
 ```
 
 The first line matters: `extension/data/index.json` (the extension's offline snapshot) is generated output, committed so the extension has something to read before its first network refresh. If it ever drifts from what `data/` actually contains, the SHA-256 you compute here won't match the one CI published — not because of tampering, but because you packed a stale snapshot. CI guards against the snapshot itself going stale by running `git diff --exit-code` right after `npm run build`; running the same command yourself before packing keeps your local check honest too.

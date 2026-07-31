@@ -1,6 +1,6 @@
 # Chrome Web Store listing — SaaS Made Free
 
-Text ready to paste into the Chrome Web Store developer dashboard. Fields marked `TODO(owner)` are not decided yet — do not invent a value for them, and do not submit until they're filled in.
+Text ready to paste into the Chrome Web Store developer dashboard.
 
 ## Single purpose
 
@@ -50,4 +50,4 @@ Used only when the user clicks to send a prompt to an agent that has no URL- or 
 
 - **Privacy policy:** https://saasmadefree.com/privacy.html
 - **Repository:** https://github.com/saasmadefree/saasmadefree
-- **Support contact:** `TODO(owner)` — no contact address has been decided yet. The same placeholder exists in `public/privacy.html`. Do not submit to the Chrome Web Store until both are filled in with a real, monitored address.
+- **Support contact:** `privacy@saasmadefree.com` — forwarded to a monitored inbox. The same address appears in `public/privacy.html`.

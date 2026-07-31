@@ -22,16 +22,16 @@ jobs:
       - name: Vérifier la reproductibilité de l'extension
         run: |
           npm run build:extension
-          cp dist/extension.zip /tmp/first.zip
-          rm dist/extension.zip
+          cp build/extension.zip /tmp/first.zip
+          rm build/extension.zip
           npm run build:extension
-          cmp /tmp/first.zip dist/extension.zip
+          cmp /tmp/first.zip build/extension.zip
       - uses: actions/upload-artifact@v4
         with:
           name: extension
           path: |
-            dist/extension.zip
-            dist/extension.zip.sha256
+            build/extension.zip
+            build/extension.zip.sha256
 
   worker:
     runs-on: ubuntu-latest

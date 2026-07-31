@@ -3,7 +3,9 @@ import { mkdirSync, writeFileSync, readFileSync, rmSync, chmodSync } from 'node:
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 
-const OUT_DIR = 'dist';
+// Volontairement hors de dist/ : dist/ est le dossier publié sur Pages, et une
+// archive de build n'a rien à faire sur le site public.
+const OUT_DIR = 'build';
 const ZIP_PATH = `${OUT_DIR}/extension.zip`;
 const FIXED_MTIME = '202601010000.00';
 const FIXED_MODE = 0o644;
