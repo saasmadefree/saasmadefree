@@ -1,4 +1,5 @@
 import { LANGS } from './load-data.mjs';
+import { MONTHLY_BASES } from './site-format.mjs';
 
 export const SITE_ORIGIN = 'https://saasmadefree.com';
 export const VOTE_ENDPOINT = 'https://votes.saasmadefree.com/api/v1/vote';
@@ -80,4 +81,50 @@ export function langsForCategory(tools, categorySlug) {
     }
   }
   return LANGS.filter((lang) => present.has(lang));
+}
+
+/**
+ * Les cinq chiffres du bandeau "figures" de l'accueil — voir la règle
+ * d'honnêteté du projet : chacun doit être substantiable par ce dépôt, pas
+ * une estimation. `totalMonthlyUsd` ne somme que les fiches en USD dont
+ * `pricing.basis` est vraiment mensuel (voir MONTHLY_BASES) : le catalogue
+ * contient une poignée de fiches en EUR et une en paiement unique, qu'on ne
+ * peut pas additionner honnêtement dans un même total sans fausser le sens
+ * du chiffre.
+ */
+export function catalogueFigures(tools, langs, promptCount) {
+  const categories = new Set();
+  let totalMonthlyUsd = 0;
+  for (const tool of tools.values()) {
+    categories.add(tool.category);
+    if (tool.pricing.currency === 'USD' && MONTHLY_BASES.has(tool.pricing.basis)) {
+      totalMonthlyUsd += tool.pricing.amount;
+    }
+  }
+  return {
+    toolsPublished: tools.size,
+    categories: categories.size,
+    languages: langs.length,
+    totalMonthlyUsd,
+    prompts: promptCount,
+  };
+}
+
+/**
+ * La "dépense mensuelle détruite" affichée dans le bandeau-ticker : le prix
+ * mensuel de chaque outil multiplié par son nombre de votes, sommé — jamais
+ * inventé. Renvoie `null` quand le service de vote n'a pas répondu au build
+ * (voir fetchVoteCounts) : l'appelant doit alors afficher le bandeau sans le
+ * chiffre plutôt que d'y mettre un zéro qui se ferait passer pour une donnée.
+ * Comme catalogueFigures, ne somme que les fiches en USD à base mensuelle.
+ */
+export function mrrDestroyed(tools, voteCounts) {
+  if (!voteCounts) return null;
+  let total = 0;
+  for (const tool of tools.values()) {
+    if (tool.pricing.currency !== 'USD' || !MONTHLY_BASES.has(tool.pricing.basis)) continue;
+    const count = Object.prototype.hasOwnProperty.call(voteCounts, tool.slug) ? voteCounts[tool.slug] : 0;
+    total += tool.pricing.amount * count;
+  }
+  return total;
 }

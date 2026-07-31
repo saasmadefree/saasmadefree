@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   formatMoney, formatMonthlyPrice, formatDate, interpolate, pluralize,
+  formatMoneyDigits, monthlySuffix, MONTHLY_BASES,
 } from '../scripts/lib/site-format.mjs';
 
 describe('formatMoney', () => {
@@ -65,5 +66,36 @@ describe('pluralize', () => {
     expect(pluralize(0, 'fr', singular, plural)).toBe('0 vote');
     expect(pluralize(1, 'fr', singular, plural)).toBe('1 vote');
     expect(pluralize(2, 'fr', singular, plural)).toBe('2 votes');
+  });
+});
+
+describe('MONTHLY_BASES', () => {
+  it('contient les quatre codes récurrents mensuels, jamais one-time', () => {
+    expect([...MONTHLY_BASES].sort()).toEqual(
+      ['annual-effective-monthly', 'flat-monthly', 'per-seat-monthly', 'usage-based'].sort()
+    );
+    expect(MONTHLY_BASES.has('one-time')).toBe(false);
+  });
+});
+
+describe('monthlySuffix', () => {
+  it('connaît en et fr, retombe sur /mo pour une langue inconnue', () => {
+    expect(monthlySuffix('en')).toBe('/mo');
+    expect(monthlySuffix('fr')).toBe('/mois');
+    expect(monthlySuffix('xx')).toBe('/mo');
+  });
+});
+
+describe('formatMoneyDigits', () => {
+  it('découpe le montant arrondi en un caractère par case, symbole compris', () => {
+    expect(formatMoneyDigits(47, 'USD', 'en')).toEqual(['$', '4', '7']);
+  });
+
+  it('arrondit au lieu de garder les décimales', () => {
+    expect(formatMoneyDigits(47.6, 'USD', 'en')).toEqual(['$', '4', '8']);
+  });
+
+  it('inclut les séparateurs de milliers comme cases à part entière', () => {
+    expect(formatMoneyDigits(3065, 'USD', 'en')).toEqual(['$', '3', ',', '0', '6', '5']);
   });
 });

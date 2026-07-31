@@ -5,7 +5,7 @@ import { renderToolTable } from './site-table.mjs';
 import { organizationJsonLd, itemListJsonLd, breadcrumbJsonLd } from './site-seo.mjs';
 
 export function renderCategoryPage({
-  lang, path, categorySlug, categories, toolViews, voteCounts, ui, alternates, xDefaultPath, homePath,
+  lang, path, categorySlug, categories, toolViews, voteCounts, favicons, ui, alternates, xDefaultPath, homePath,
 }) {
   const s = ui.site;
   const label = categoryLabel(categories, categorySlug, lang);
@@ -18,7 +18,7 @@ export function renderCategoryPage({
     { label, href: path },
   ];
 
-  const table = renderToolTable(toolViews, { lang, ui, categories, voteCounts });
+  const table = renderToolTable(toolViews, { lang, ui, categories, voteCounts, favicons });
 
   const main = `    ${renderBreadcrumb(breadcrumbItems)}
     <h1>${escapeHtml(heading)}</h1>

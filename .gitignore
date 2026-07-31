@@ -7,3 +7,4 @@ worker/src/slugs.generated.mjs
 .DS_Store
 docs/superpowers/
 build/
+.cache/

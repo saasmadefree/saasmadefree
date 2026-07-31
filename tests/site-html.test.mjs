@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { escapeHtml, jsonLdScript, languageName, renderBreadcrumb } from '../scripts/lib/site-html.mjs';
+import { escapeHtml, jsonLdScript, languageName, renderBreadcrumb, verdictBadge } from '../scripts/lib/site-html.mjs';
 
 describe('escapeHtml', () => {
   it('échappe les cinq caractères sensibles', () => {
@@ -44,5 +44,19 @@ describe('renderBreadcrumb', () => {
     expect(html).toContain('<a href="/en/">Directory</a>');
     expect(html).toContain('<span aria-current="page">Notion</span>');
     expect(html).not.toContain('<a href="/en/tools/notion">Notion</a>');
+  });
+});
+
+describe('verdictBadge', () => {
+  it('porte la classe du verdict et le texte échappé', () => {
+    expect(verdictBadge('yes', 'Yes')).toBe('<span class="badge yes">Yes</span>');
+  });
+
+  it('accepte un modificateur optionnel pour la variante agrandie', () => {
+    expect(verdictBadge('kinda', 'Partly', 'badge-lg')).toBe('<span class="badge kinda badge-lg">Partly</span>');
+  });
+
+  it('échappe le texte du label', () => {
+    expect(verdictBadge('no', '<script>')).toBe('<span class="badge no">&lt;script&gt;</span>');
   });
 });

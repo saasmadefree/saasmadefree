@@ -7,12 +7,14 @@ import { join, dirname } from 'node:path';
 import { loadData } from './lib/load-data.mjs';
 import {
   SITE_ORIGIN, fetchVoteCounts, siteLanguages, toolsForLang, sortTools,
-  categoriesForLang, langsForCategory,
+  categoriesForLang, langsForCategory, catalogueFigures, mrrDestroyed,
 } from './lib/site-data.mjs';
+import { fetchFavicons } from './lib/site-favicons.mjs';
 import { SITE_CSS } from './lib/site-styles.mjs';
 import { buildSitemap } from './lib/site-seo.mjs';
 import { renderHomePage } from './lib/site-page-home.mjs';
 import { renderCategoryPage } from './lib/site-page-category.mjs';
+import { renderCategoriesIndexPage } from './lib/site-page-categories-index.mjs';
 import { renderToolPage } from './lib/site-page-tool.mjs';
 import { renderRootPage } from './lib/site-page-root.mjs';
 
@@ -48,7 +50,7 @@ function voteCountFor(voteCounts, slug) {
 
 async function main() {
   const data = await loadData(process.cwd());
-  const { tools, i18n, ui, categories } = data;
+  const { tools, i18n, ui, categories, agents } = data;
 
   const voteCounts = await fetchVoteCounts();
   if (voteCounts) {
@@ -57,10 +59,31 @@ async function main() {
     console.log('Service de vote injoignable au build — tri sur pagePriority, aucun compteur affiché.');
   }
 
+  // Icônes des outils, récupérées une fois au build et mises en cache sous un
+  // dossier ignoré par git (voir .gitignore) : une reconstruction locale ne
+  // refait jamais la requête réseau, et un échec de récupération ne casse
+  // jamais le build — voir scripts/lib/site-favicons.mjs.
+  const { bySlug: favicons, stats: faviconStats } = await fetchFavicons(tools, {
+    cacheDir: join('.cache', 'favicons'),
+    outDir: join(OUT, 'assets', 'favicons'),
+  });
+  console.log(
+    `Icônes : ${faviconStats.fetched} récupérée(s), ${faviconStats.cached} depuis le cache, ` +
+    `${faviconStats.placeholder} en repli sur ${faviconStats.total} outil(s).`
+  );
+
   const langs = siteLanguages(tools);
   if (langs.length === 0) {
     throw new Error("Aucune langue n'est déclarée par une fiche data/tools/*.json — rien à générer.");
   }
+
+  // Chiffres réels du catalogue (bandeau "figures" de l'accueil) et dépense
+  // mensuelle représentée par les votes enregistrés (bandeau-ticker) — voir
+  // la règle d'honnêteté du projet : jamais un chiffre inventé, et `null`
+  // plutôt qu'un zéro qui se ferait passer pour une donnée quand le service
+  // de vote n'a pas répondu.
+  const figures = catalogueFigures(tools, langs, i18n.size);
+  const mrrTotal = mrrDestroyed(tools, voteCounts);
 
   const sitemapPages = [{ path: '/' }, { path: '/privacy' }];
 
@@ -95,11 +118,26 @@ async function main() {
     await writeText(
       join(OUT, lang, 'index.html'),
       renderHomePage({
-        lang, path: homePath, toolViews, categorySlugs, categories, voteCounts,
+        lang, path: homePath, toolViews, categorySlugs, categories, voteCounts, favicons, figures, mrrTotal,
         ui: langUi, alternates: homeAlt, xDefaultPath: homeXDefault,
       })
     );
     sitemapPages.push({ path: homePath });
+
+    // Page "toutes les catégories" — cible du dernier chip de l'accueil.
+    const allCategoriesPath = `${homePath}categories/`;
+    const allCategoriesAlt = langs.map((l) => ({ lang: l, path: `/${l}/categories/` }));
+    const countsBySlug = Object.fromEntries(
+      categorySlugs.map((slug) => [slug, toolViews.filter((t) => t.category === slug).length])
+    );
+    await writeText(
+      join(OUT, lang, 'categories', 'index.html'),
+      renderCategoriesIndexPage({
+        lang, path: allCategoriesPath, categorySlugs, categories, countsBySlug,
+        ui: langUi, alternates: allCategoriesAlt, xDefaultPath: xDefaultOf(allCategoriesAlt), homePath,
+      })
+    );
+    sitemapPages.push({ path: allCategoriesPath });
 
     // Catégories
     for (const categorySlug of categorySlugs) {
@@ -110,7 +148,7 @@ async function main() {
       await writeText(
         join(OUT, lang, 'categories', categorySlug, 'index.html'),
         renderCategoryPage({
-          lang, path: catPath, categorySlug, categories, toolViews: catToolViews, voteCounts,
+          lang, path: catPath, categorySlug, categories, toolViews: catToolViews, voteCounts, favicons,
           ui: langUi, alternates: catAlt, xDefaultPath: xDefaultOf(catAlt), homePath,
         })
       );
@@ -126,7 +164,11 @@ async function main() {
       const relatedTools = tool.relatedSlugs
         .map((slug) => tools.get(slug))
         .filter((related) => related && related.markets.includes(lang))
-        .map((related) => ({ slug: related.slug, name: related.name, verdict: related.verdict, path: `/${lang}/tools/${related.slug}` }));
+        .map((related) => ({
+          slug: related.slug, name: related.name, verdict: related.verdict,
+          pricing: related.pricing, category: related.category,
+          path: `/${lang}/tools/${related.slug}`,
+        }));
 
       await writeText(
         join(OUT, lang, 'tools', tool.slug, 'index.html'),
@@ -134,7 +176,7 @@ async function main() {
           lang, path: toolPath, tool, i18nEntry, categories,
           ui: langUi, alternates: toolAlt, xDefaultPath: xDefaultOf(toolAlt), homePath,
           categoryPath: `/${lang}/categories/${tool.category}`,
-          relatedTools, voteCount: voteCountFor(voteCounts, tool.slug),
+          relatedTools, voteCount: voteCountFor(voteCounts, tool.slug), favicons, agents,
         })
       );
       sitemapPages.push({ path: toolPath, lastmod: tool.pricing.checkedOn });

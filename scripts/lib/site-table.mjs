@@ -1,13 +1,19 @@
-import { escapeHtml } from './site-html.mjs';
+import { escapeHtml, verdictBadge } from './site-html.mjs';
 import { categoryLabel, categoryEmoji } from './site-data.mjs';
 import { formatMonthlyPrice, pluralize } from './site-format.mjs';
+import { PLACEHOLDER_PATH } from './site-favicons.mjs';
 
 /**
  * Table de directory partagée par la page d'accueil (avec recherche/filtre) et
  * les pages de catégorie (sans). Chaque `tool` doit déjà porter `tagline` et
  * `path` (voir buildToolViews dans build-site.mjs).
+ *
+ * Chaque ligne porte aussi `data-favicon`, `data-verdict` et `data-search` :
+ * c'est la même source de données que consomme le panneau de recherche en
+ * JavaScript (scripts/assets/site.js) — on ne veut jamais émettre une
+ * deuxième copie du catalogue dans la page pour ce panneau.
  */
-export function renderToolTable(tools, { lang, ui, categories, voteCounts }) {
+export function renderToolTable(tools, { lang, ui, categories, voteCounts, favicons = {} }) {
   const singularTpl = ui.site.tool.voteCountOne;
   const pluralTpl = ui.site.tool.voteCountOther;
 
@@ -17,6 +23,7 @@ export function renderToolTable(tools, { lang, ui, categories, voteCounts }) {
       const emoji = categoryEmoji(categories, tool.category);
       const price = formatMonthlyPrice(tool.pricing, lang);
       const verdict = ui.site.verdicts[tool.verdict];
+      const favicon = favicons[tool.slug] ?? PLACEHOLDER_PATH;
       const knownZero = voteCounts && !Object.prototype.hasOwnProperty.call(voteCounts, tool.slug);
       // count === null signifie : le service de vote n'a pas répondu au moment
       // du build. Ce n'est pas la même chose qu'un slug absent de la réponse
@@ -30,12 +37,12 @@ export function renderToolTable(tools, { lang, ui, categories, voteCounts }) {
         : escapeHtml(pluralize(count, lang, singularTpl, pluralTpl));
       const votesAttr = count === null ? '' : ` data-votes="${count}"`;
 
-      return `          <tr data-slug="${tool.slug}" data-category="${tool.category}" data-priority="${tool.pagePriority}"${votesAttr} data-search="${escapeHtml(searchText)}">
+      return `          <tr data-slug="${tool.slug}" data-category="${tool.category}" data-verdict="${tool.verdict}" data-priority="${tool.pagePriority}"${votesAttr} data-favicon="${escapeHtml(favicon)}" data-search="${escapeHtml(searchText)}">
             <td class="rank" aria-hidden="true"></td>
             <th scope="row"><a href="${tool.path}">${escapeHtml(tool.name)}</a></th>
             <td class="cat">${emoji ? `${emoji} ` : ''}${escapeHtml(catLabel)}</td>
             <td class="price">${escapeHtml(price)}</td>
-            <td><span class="badge ${tool.verdict}">${escapeHtml(verdict.label)}</span></td>
+            <td>${verdictBadge(tool.verdict, verdict.label)}</td>
             <td class="votes" data-vote-cell data-vote-slug="${tool.slug}">${voteCell}</td>
           </tr>`;
     })

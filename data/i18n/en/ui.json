@@ -6,6 +6,12 @@
     "usage-based": "Usage-based",
     "one-time": "One-time payment"
   },
+  "diyTimeEstimate": {
+    "one-sitting": "One sitting",
+    "weekend": "A weekend",
+    "week": "A week",
+    "more": "More than a week"
+  },
   "requirements": {
     "anthropic-api-key": "Anthropic API key",
     "openai-api-key": "OpenAI API key",
@@ -29,6 +35,11 @@
     "skipToContent": "Skip to content",
     "languageSwitcherLabel": "Language",
     "directoryLabel": "Directory",
+    "nav": {
+      "submitTool": "Submit a tool",
+      "source": "Source",
+      "github": "GitHub"
+    },
     "footer": {
       "source": "Source on GitHub",
       "privacy": "Privacy"
@@ -69,21 +80,46 @@
       "colVotes": "Votes",
       "noResults": "No tools match that search.",
       "heroQuestion": "Can a prompt replace {blank}?",
-      "browseHeading": "Browse by category"
+      "browseHeading": "Browse by category",
+      "allChip": "All",
+      "allCategoriesChip": "All categories →",
+      "searchClearLabel": "Clear search",
+      "searchResultsLabel": "Search results",
+      "searchViewAllTemplate": "↓ All {count} matches in the directory",
+      "tickerAriaLabel": "Catalogue prices, scrolling",
+      "mrrLabel": "Monthly spend represented by votes recorded so far",
+      "mrrSrTemplate": "{amount} a month represented by votes recorded so far",
+      "mrrUnavailable": "Live figure unavailable right now.",
+      "figuresAriaLabel": "Catalogue numbers",
+      "figureToolsPublished": "Tools published",
+      "figureCategories": "Categories",
+      "figureLanguages": "Languages",
+      "figureTotalPrice": "Total monthly price of the catalogue (USD)",
+      "figurePrompts": "Prompts written",
+      "rankNote": "Ranked by votes recorded so far, then by how ready each entry is.",
+      "verdictFilterAriaLabel": "Filter by verdict"
     },
     "tool": {
       "titleTemplate": "Can a coding agent replace {name}? — SaaS Made Free",
       "metaDescriptionTemplate": "Can a coding agent replace {name}? The verdict, the real price, and what you'd lose.",
+      "h1Template": "Can a prompt replace {name}?",
       "verdictHeading": "Verdict",
       "priceHeading": "Price",
       "priceSourceLabel": "Source",
       "priceCheckedLabel": "Checked on",
+      "yearCostLabel": "Per year",
+      "yearCostNote": "Current monthly price × 12 — not a guaranteed saving.",
+      "buildTimeLabel": "Build time",
+      "categoryMetaLabel": "Category",
+      "votesMetaLabel": "Votes",
       "whatYouLoseHeading": "What you lose",
-      "whyPeopleStillPayHeading": "Why people still pay",
+      "whyPeopleStillPayHeadingTemplate": "Why people still pay: {moat}",
       "promptHeading": "The prompt",
       "copyButton": "Copy prompt",
       "copiedButton": "Copied",
       "copyFailed": "Couldn't copy automatically — select the text above instead.",
+      "openInAgentTemplate": "Open in {name}",
+      "promptOpenCaption": "Opening prefills the prompt — press enter to run it.",
       "priorArtHeading": "Prior art",
       "licenseLabel": "License",
       "faqHeading": "Questions",
@@ -95,7 +131,9 @@
       "voteUnavailable": "Vote count unavailable right now.",
       "voteThanks": "Thanks — this vote was recorded.",
       "voteAlready": "Already counted from this browser today.",
-      "voteError": "Couldn't reach the vote service. Try again later."
+      "voteError": "Couldn't reach the vote service. Try again later.",
+      "shareOnXLabel": "Share on X",
+      "shareTextTemplate": "Can a prompt replace {name}? The verdict: {verdict}."
     },
     "category": {
       "titleTemplate": "Which {category} tools can a coding agent replace? — SaaS Made Free",
@@ -110,5 +148,12 @@
     },
     "themeToDark": "Dark mode",
     "themeToLight": "Light mode"
+  },
+  "categoriesIndex": {
+    "titleTag": "All categories — SaaS Made Free",
+    "metaDescription": "Every category in the SaaS Made Free directory, with how many tools are published in each.",
+    "heading": "All categories",
+    "toolCountOne": "{count} tool",
+    "toolCountOther": "{count} tools"
   }
 }

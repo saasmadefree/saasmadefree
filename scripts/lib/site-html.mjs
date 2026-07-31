@@ -1,5 +1,8 @@
 import { SITE_ORIGIN } from './site-data.mjs';
 
+export const GITHUB_REPO_URL = 'https://github.com/saasmadefree/saasmadefree';
+export const CONTRIBUTING_URL = `${GITHUB_REPO_URL}/blob/main/CONTRIBUTING.md`;
+
 const ESCAPE_MAP = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 
 export function escapeHtml(value) {
@@ -20,6 +23,15 @@ const LANG_NAMES = {
 };
 export function languageName(lang) {
   return LANG_NAMES[lang] ?? lang;
+}
+
+/** Badge de verdict, partagé par la table de l'accueil, la ligne de titre
+ *  d'une fiche et les cartes "outils proches" — une seule source de vérité
+ *  pour le balisage, un modificateur optionnel (ex. "badge-lg") pour la
+ *  variante agrandie de la fiche outil. */
+export function verdictBadge(verdict, label, extraClass = '') {
+  const cls = ['badge', verdict, extraClass].filter(Boolean).join(' ');
+  return `<span class="${cls}">${escapeHtml(label)}</span>`;
 }
 
 export function renderBreadcrumb(items) {
@@ -101,6 +113,16 @@ export function renderLayout({
     jsonLdBlocks,
   ].filter(Boolean).join('\n');
 
+  const nav = ui.site.nav ?? {};
+  const navLinks = [
+    { href: homeHref, label: ui.site.directoryLabel },
+    { href: CONTRIBUTING_URL, label: nav.submitTool },
+    { href: GITHUB_REPO_URL, label: nav.source },
+  ]
+    .filter((item) => item.label)
+    .map((item) => `<li><a href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a></li>`)
+    .join('');
+
   return `<!doctype html>
 <html lang="${lang}">
 <head>
@@ -111,19 +133,21 @@ ${headLines}
 <div class="page">
   <header class="site-header">
     <a class="brand" href="${escapeHtml(homeHref)}">${escapeHtml(ui.site.brand)}</a>
-    <div class="header-tools">${langSwitcher}
+    <div class="header-tools">
+      <ul class="nav-links">${navLinks}</ul>${langSwitcher}
       <button type="button" id="theme-toggle" class="theme-toggle" hidden
               data-label-dark="${escapeHtml(ui.site.themeToDark ?? 'Dark mode')}"
               data-label-light="${escapeHtml(ui.site.themeToLight ?? 'Light mode')}">
         <span aria-hidden="true" class="theme-icon"></span><span class="theme-text"></span>
       </button>
+      <a class="github-btn" href="${GITHUB_REPO_URL}">${escapeHtml(nav.github ?? 'GitHub')} <span aria-hidden="true">↗</span></a>
     </div>
   </header>
   <main id="main">
 ${main}
   </main>
   <footer class="site-footer">
-    <a href="https://github.com/saasmadefree/saasmadefree">${escapeHtml(ui.site.footer.source)}</a>
+    <a href="${GITHUB_REPO_URL}">${escapeHtml(ui.site.footer.source)}</a>
     <a href="/privacy">${escapeHtml(ui.site.footer.privacy)}</a>
     <a href="mailto:privacy@saasmadefree.com">privacy@saasmadefree.com</a>
   </footer>

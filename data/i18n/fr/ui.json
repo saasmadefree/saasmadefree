@@ -6,6 +6,12 @@
     "usage-based": "Facturation à l'usage",
     "one-time": "Paiement unique"
   },
+  "diyTimeEstimate": {
+    "one-sitting": "En une session",
+    "weekend": "Un week-end",
+    "week": "Une semaine",
+    "more": "Plus d'une semaine"
+  },
   "requirements": {
     "anthropic-api-key": "Clé API Anthropic",
     "openai-api-key": "Clé API OpenAI",
@@ -29,6 +35,11 @@
     "skipToContent": "Aller au contenu",
     "languageSwitcherLabel": "Langue",
     "directoryLabel": "Annuaire",
+    "nav": {
+      "submitTool": "Proposer un outil",
+      "source": "Code source",
+      "github": "GitHub"
+    },
     "footer": {
       "source": "Code source sur GitHub",
       "privacy": "Confidentialité"
@@ -69,21 +80,46 @@
       "colVotes": "Votes",
       "noResults": "Aucun outil ne correspond à cette recherche.",
       "heroQuestion": "Un prompt peut-il remplacer {blank} ?",
-      "browseHeading": "Parcourir par catégorie"
+      "browseHeading": "Parcourir par catégorie",
+      "allChip": "Tous",
+      "allCategoriesChip": "Toutes les catégories →",
+      "searchClearLabel": "Effacer la recherche",
+      "searchResultsLabel": "Résultats de recherche",
+      "searchViewAllTemplate": "↓ Voir les {count} résultats dans l'annuaire",
+      "tickerAriaLabel": "Prix du catalogue, défilement",
+      "mrrLabel": "Dépense mensuelle représentée par les votes enregistrés jusqu'ici",
+      "mrrSrTemplate": "{amount} par mois représentés par les votes enregistrés jusqu'ici",
+      "mrrUnavailable": "Chiffre en direct indisponible pour l'instant.",
+      "figuresAriaLabel": "Chiffres du catalogue",
+      "figureToolsPublished": "Outils publiés",
+      "figureCategories": "Catégories",
+      "figureLanguages": "Langues",
+      "figureTotalPrice": "Prix mensuel total du catalogue (USD)",
+      "figurePrompts": "Prompts écrits",
+      "rankNote": "Classé par votes enregistrés jusqu'ici, puis par degré de préparation de la fiche.",
+      "verdictFilterAriaLabel": "Filtrer par verdict"
     },
     "tool": {
       "titleTemplate": "Un agent IA peut-il remplacer {name} ? — SaaS Made Free",
       "metaDescriptionTemplate": "Un agent IA peut-il remplacer {name} ? Le verdict, le vrai prix, et ce que tu perds.",
+      "h1Template": "Un prompt peut-il remplacer {name} ?",
       "verdictHeading": "Verdict",
       "priceHeading": "Prix",
       "priceSourceLabel": "Source",
       "priceCheckedLabel": "Vérifié le",
+      "yearCostLabel": "Par an",
+      "yearCostNote": "Prix mensuel actuel × 12 — pas une économie garantie.",
+      "buildTimeLabel": "Temps de fabrication",
+      "categoryMetaLabel": "Catégorie",
+      "votesMetaLabel": "Votes",
       "whatYouLoseHeading": "Ce que tu perds",
-      "whyPeopleStillPayHeading": "Pourquoi certains continuent de payer",
+      "whyPeopleStillPayHeadingTemplate": "Pourquoi certains continuent de payer : {moat}",
       "promptHeading": "Le prompt",
       "copyButton": "Copier le prompt",
       "copiedButton": "Copié",
       "copyFailed": "Copie automatique impossible — sélectionne le texte ci-dessus.",
+      "openInAgentTemplate": "Ouvrir dans {name}",
+      "promptOpenCaption": "L'ouverture pré-remplit le prompt — il ne reste qu'à appuyer sur entrée.",
       "priorArtHeading": "Alternatives existantes",
       "licenseLabel": "Licence",
       "faqHeading": "Questions",
@@ -95,7 +131,9 @@
       "voteUnavailable": "Nombre de votes indisponible pour l'instant.",
       "voteThanks": "Merci — ton vote est enregistré.",
       "voteAlready": "Déjà comptabilisé depuis ce navigateur aujourd'hui.",
-      "voteError": "Impossible de joindre le service de vote. Réessaie plus tard."
+      "voteError": "Impossible de joindre le service de vote. Réessaie plus tard.",
+      "shareOnXLabel": "Partager sur X",
+      "shareTextTemplate": "Un prompt peut-il remplacer {name} ? Le verdict : {verdict}."
     },
     "category": {
       "titleTemplate": "Quels outils de {category} un agent IA peut-il remplacer ? — SaaS Made Free",
@@ -110,5 +148,12 @@
     },
     "themeToDark": "Mode sombre",
     "themeToLight": "Mode clair"
+  },
+  "categoriesIndex": {
+    "titleTag": "Toutes les catégories — SaaS Made Free",
+    "metaDescription": "Toutes les catégories de l'annuaire SaaS Made Free, avec le nombre d'outils publiés dans chacune.",
+    "heading": "Toutes les catégories",
+    "toolCountOne": "{count} outil",
+    "toolCountOther": "{count} outils"
   }
 }

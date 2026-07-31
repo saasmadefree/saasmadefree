@@ -2,10 +2,18 @@ import { describe, it, expect, afterEach, vi } from 'vitest';
 import {
   siteLanguages, toolsForLang, sortTools, categoriesForLang, categoryLabel,
   categoryEmoji, langsForCategory, fetchVoteCounts, VOTES_FEED_URL,
+  catalogueFigures, mrrDestroyed,
 } from '../scripts/lib/site-data.mjs';
 
 function tool(slug, over = {}) {
   return { slug, name: slug, category: 'cat1', markets: ['en'], pagePriority: 5, ...over };
+}
+
+function pricedTool(slug, over = {}) {
+  return tool(slug, {
+    pricing: { amount: 10, currency: 'USD', basis: 'flat-monthly' },
+    ...over,
+  });
 }
 
 describe('siteLanguages', () => {
@@ -144,5 +152,53 @@ describe('fetchVoteCounts', () => {
   it("renvoie null si la réponse n'est pas un objet exploitable", async () => {
     vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true, json: async () => [1, 2, 3] })));
     expect(await fetchVoteCounts()).toBeNull();
+  });
+});
+
+describe('catalogueFigures', () => {
+  const tools = new Map([
+    ['a', pricedTool('a', { category: 'cat1', pricing: { amount: 10, currency: 'USD', basis: 'flat-monthly' } })],
+    ['b', pricedTool('b', { category: 'cat2', pricing: { amount: 20, currency: 'USD', basis: 'per-seat-monthly' } })],
+    // basis non mensuel : ne compte pas dans le total.
+    ['c', pricedTool('c', { category: 'cat1', pricing: { amount: 999, currency: 'USD', basis: 'one-time' } })],
+    // devise non-USD : ne compte pas dans le total, pour ne jamais sommer des devises différentes.
+    ['d', pricedTool('d', { category: 'cat3', pricing: { amount: 15, currency: 'EUR', basis: 'flat-monthly' } })],
+  ]);
+
+  it('compte les outils, les catégories distinctes et les prompts fournis', () => {
+    const figures = catalogueFigures(tools, ['en', 'fr'], 42);
+    expect(figures.toolsPublished).toBe(4);
+    expect(figures.categories).toBe(3);
+    expect(figures.languages).toBe(2);
+    expect(figures.prompts).toBe(42);
+  });
+
+  it('ne somme que les fiches en USD à base mensuelle pour le prix total', () => {
+    const figures = catalogueFigures(tools, ['en'], 0);
+    expect(figures.totalMonthlyUsd).toBe(30);
+  });
+});
+
+describe('mrrDestroyed', () => {
+  const tools = new Map([
+    ['a', pricedTool('a', { pricing: { amount: 10, currency: 'USD', basis: 'flat-monthly' } })],
+    ['b', pricedTool('b', { pricing: { amount: 20, currency: 'USD', basis: 'per-seat-monthly' } })],
+    ['c', pricedTool('c', { pricing: { amount: 999, currency: 'USD', basis: 'one-time' } })],
+  ]);
+
+  it('renvoie null sans inventer de zéro quand le service de vote est injoignable', () => {
+    expect(mrrDestroyed(tools, null)).toBeNull();
+  });
+
+  it('multiplie le prix mensuel par le nombre de votes et somme', () => {
+    expect(mrrDestroyed(tools, { a: 3, b: 1 })).toBe(10 * 3 + 20 * 1);
+  });
+
+  it('traite un slug absent de la réponse comme un vrai zéro', () => {
+    expect(mrrDestroyed(tools, { a: 2 })).toBe(20);
+  });
+
+  it('ignore un basis non mensuel même si le slug a des votes', () => {
+    expect(mrrDestroyed(tools, { c: 5 })).toBe(0);
   });
 });
