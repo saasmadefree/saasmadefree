@@ -1,0 +1,32 @@
+{
+  "tagline": "A kanban board where each column can act on cards that enter it.",
+  "verdictSummary": "MeisterTask is a well-made kanban board with one idea worth stealing: automations attached to the column rather than to a rule engine somewhere else. Cards entering \"Review\" get an assignee and a due date because the column says so, and that is both obvious to a new user and genuinely useful. A weekend rebuilds it. The gaps are the mobile apps, the mind-map sibling product, and the hosted polish — none of which is a moat.",
+  "coreLoopDIY": "A kanban board where each column carries its own rules, so moving a card into it assigns, dates, labels or archives it without a separate automation screen.",
+  "whatYouLose": [
+    "the mobile apps and offline board access",
+    "MindMeister integration, turning a mind map into a project",
+    "real-time multiplayer on the same board",
+    "the prebuilt integrations into chat and storage tools",
+    "hosted reliability and backups"
+  ],
+  "whyPeopleStillPay": "Because it is pleasant, fast and does not require a workshop to adopt, which is worth more to a small team than a longer feature list.",
+  "prompt": "Build a kanban board where automation lives on the column, not in a rule engine.\n\nStack: your choice, Postgres, Docker Compose, one command.\n\nBoard model: a Project has ordered Sections (columns); a Section holds ordered Cards. A Card has a title, description, assignee, due date, labels, checklist items, comments and attachments.\n\nSection automations, the point of the build. Each section carries an ordered list of actions, run when a card **enters** it, from a closed set:\n- assign to a specific person, or to nobody\n- set a due date N days from entry, skipping weekends if configured\n- add or remove a label\n- move to the top or bottom of the section\n- post a templated comment\n- archive the card\n\nRules that keep this sane and must be tested: actions run once per entry, in listed order; an action that moves the card to another section does not cascade — the destination's automations do not fire, and the UI warns when you configure one that would; and every automated change is written to the card's activity log labelled as automatic, so a mysterious assignee can be explained.\n\nSection limits: an optional work-in-progress cap per section. Exceeding it does not block the move — it marks the section visibly over capacity, because a hard block just makes people rename things.\n\nCard checklists where completing all items can optionally trigger a move to a named section, which is the second automation people actually want.\n\nAlso: a personal \"assigned to me\" view across all boards sorted by due date, board archive with search, board duplication that copies sections and their automations but not the cards, and CSV export.\n\nWrite tests for automation ordering, for the no-cascade rule, and for board duplication copying automations exactly once.\n\nDo not build mind maps, mobile apps, or real-time multiplayer.",
+  "faq": [
+    {
+      "q": "Why must automations not cascade?",
+      "a": "Because a card that lands in a section which moves it to another section which moves it back is an infinite loop, and the interesting version of that bug only appears in production. Refusing to cascade is simpler to reason about than any loop detector."
+    },
+    {
+      "q": "Why warn instead of block on a work-in-progress cap?",
+      "a": "Because a hard block gets routed around — people create a \"Review 2\" column — and you lose both the signal and the honesty. A visible over-capacity marker keeps the information."
+    },
+    {
+      "q": "What makes column-level automation better than a rule engine?",
+      "a": "Discoverability. The rule is visible where its effect happens, so a new person opening the board understands why the card got a due date. Rule engines end up as a screen nobody reads."
+    },
+    {
+      "q": "Can I get my MeisterTask boards out?",
+      "a": "Projects export as CSV or JSON from the project settings, including sections, cards, checklists and comments. Attachments come out as links, so download them before closing the account."
+    }
+  ]
+}

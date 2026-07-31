@@ -1,0 +1,37 @@
+{
+  "slug": "hubstaff",
+  "name": "Hubstaff",
+  "domains": [
+    "hubstaff.com"
+  ],
+  "category": "time-tracking",
+  "subcategory": "workforce monitoring and payroll",
+  "pricing": {
+    "amount": 4.99,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "annual-effective-monthly",
+    "source": "https://hubstaff.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$4.99 per seat per month on the annual view, which is the toggle the page loads with, and there is a two-seat minimum — so the real floor is $9.98 a month. Month-to-month is higher. Upstream recorded $7."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "payments and workforce compliance",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "relatedSlugs": [
+    "time-doctor",
+    "clockify",
+    "timely"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

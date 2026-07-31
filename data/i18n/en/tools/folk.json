@@ -1,0 +1,32 @@
+{
+  "tagline": "A CRM for people you know, not deals you are closing.",
+  "verdictSummary": "folk is a relationship tool wearing a CRM's clothes: the unit is a person, lists are the organising idea, and the killer question is \"who have I gone quiet on\". All of that is a weekend build over Postgres. The two paid pieces are the browser extension that scrapes a profile into a contact in one click, and the enrichment credits that fill in the email address you did not have. The first you can approximate with a bookmarklet; the second you cannot approximate at all without buying data.",
+  "coreLoopDIY": "Keep one record per person, put them in as many named lists as you like with fields that belong to the list rather than the person, and run a standing \"gone quiet\" query that surfaces anyone you have not touched in ninety days.",
+  "whatYouLose": [
+    "the one-click browser extension that captures a profile from a social or company page",
+    "enrichment — no email address or job title appears that you did not enter",
+    "contact deduplication across imports from several networks",
+    "shared lists with colleagues and per-list permissions",
+    "the mobile apps"
+  ],
+  "whyPeopleStillPay": "Because the value of a relationship CRM is proportional to how little effort it takes to add someone, and the extension plus enrichment is exactly that effort. Thirty dollars a month buys the difference between a list you keep and a list you abandon.",
+  "prompt": "Build a personal relationship CRM where the person is the unit and lists do the organising.\n\nStack: your choice, Postgres, one command to run.\n\nCore model: a Person exists once. Lists are named collections of People. Crucially, custom fields belong to a list, not to the person: a \"Conference 2026\" list can have a \"talk title\" field that the person carries only inside that list. Adding a person to a second list must never copy or duplicate the person record.\n\nEvery Person has: names, emails, phones, links (labelled URLs), a free-text note, and an interactions log. An Interaction is a dated line — met, called, emailed, message — with an optional note. Adding one updates a stored last_interaction_at.\n\nThe screen that justifies the build is \"Gone Quiet\": a saved query over a chosen list showing everyone whose last interaction is older than N days, sorted oldest first, with a one-keypress \"log interaction today\" and a \"snooze for 30 days\" that suppresses them without wiping history.\n\nCapture: a bookmarklet that opens a prefilled new-person form with the page title, URL and selected text. Plus CSV import with a mapping screen, and — this is the part that matters — a fuzzy duplicate check at import time that shows likely matches on name and email before creating anything, letting me merge instead. Merging must keep both records' interactions and list memberships.\n\nExport every list to CSV, and the whole database to a single JSON file.\n\nWrite tests for merge (no interaction may be lost) and for the gone-quiet query at a list boundary.\n\nDo not call any enrichment or data-provider API. A field is either something I typed or something I imported.",
+  "faq": [
+    {
+      "q": "Why put custom fields on the list rather than the person?",
+      "a": "Because context is per-relationship. \"How we met\" belongs to the conference list, \"renewal date\" belongs to the clients list, and forcing both onto the person record is how a contact database turns into a hundred mostly-empty columns."
+    },
+    {
+      "q": "How close can a bookmarklet get to folk's extension?",
+      "a": "It gets you the URL, the page title and whatever you selected, prefilled into a form — maybe fifteen seconds instead of two. What it cannot do is read a profile's structured fields, because that is site-specific scraping that breaks whenever the site changes, which is part of what the subscription is maintaining."
+    },
+    {
+      "q": "What replaces enrichment?",
+      "a": "Nothing, honestly. If you need an email address you do not have, you either ask the person or you buy the data. The build is designed so that an empty field is visibly empty rather than quietly guessed."
+    },
+    {
+      "q": "Does the duplicate check actually work?",
+      "a": "Well enough for personal use: exact email match first, then a normalised-name comparison with a distance threshold, shown for confirmation rather than merged automatically. Anything automatic here eventually merges two real people, and that is unrecoverable."
+    }
+  ]
+}

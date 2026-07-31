@@ -1,0 +1,43 @@
+{
+  "slug": "asana",
+  "name": "Asana",
+  "domains": [
+    "asana.com"
+  ],
+  "category": "project-management",
+  "subcategory": "work management with goals",
+  "pricing": {
+    "amount": 13.49,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "per-seat-monthly",
+    "source": "https://asana.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Month-to-month rate; the same seat is $10.99 billed annually. AI Studio credits are pooled per billing account rather than per seat."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "cross-team visibility",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Plane",
+      "url": "https://github.com/makeplane/plane"
+    }
+  ],
+  "relatedSlugs": [
+    "monday-com",
+    "wrike",
+    "teamwork"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

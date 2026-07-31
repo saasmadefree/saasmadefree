@@ -1,0 +1,43 @@
+{
+  "slug": "smartsheet",
+  "name": "Smartsheet",
+  "domains": [
+    "smartsheet.com"
+  ],
+  "category": "project-management",
+  "subcategory": "spreadsheet with project structure",
+  "pricing": {
+    "amount": 9,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.smartsheet.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "The page prints $9 per member per month against the yearly view and $12 against monthly, in a currency selector that also offers EUR, GBP and a dozen others. Pro covers 1 to 10 members with unlimited free contributors, which is the part of the model that matters."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "spreadsheet familiarity at enterprise scale",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Plane",
+      "url": "https://github.com/makeplane/plane"
+    }
+  ],
+  "relatedSlugs": [
+    "monday-com",
+    "wrike",
+    "clickup"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

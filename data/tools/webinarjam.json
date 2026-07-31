@@ -1,0 +1,44 @@
+{
+  "slug": "webinarjam",
+  "name": "WebinarJam",
+  "domains": [
+    "webinarjam.com"
+  ],
+  "category": "video-meetings",
+  "subcategory": "sales webinars",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://webinarjam.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$49 a month billed monthly for the 100-attendee Starter tier, or $39 a month billed annually. Higher tiers are capacity steps: 500 attendees at $99 monthly, 2,000 at $299. Upstream recorded $49 against the \"Basic\" tier, which is the 500-attendee step."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "live media delivery",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Owncast",
+      "url": "https://github.com/owncast/owncast"
+    }
+  ],
+  "relatedSlugs": [
+    "demio",
+    "crowdcast",
+    "livestorm"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "mega-pro",
+  "name": "MEGA Pro I",
+  "domains": [
+    "mega.io"
+  ],
+  "category": "cloud-storage",
+  "subcategory": "end-to-end encrypted storage",
+  "pricing": {
+    "amount": 8.33,
+    "currency": "EUR",
+    "plan": "Pro I",
+    "basis": "annual-effective-monthly",
+    "source": "https://mega.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Read from the EU, priced in EUR: €8.33 a month charged yearly (€9.92 including VAT) for 3 TB of storage and 36 TB of transfer; €9.99 month-to-month. Upstream recorded $10.99."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "storage and transfer economics",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Send",
+      "url": "https://github.com/timvisee/send"
+    }
+  ],
+  "relatedSlugs": [
+    "proton-drive-plus",
+    "sync-com",
+    "pcloud"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

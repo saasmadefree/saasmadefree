@@ -1,0 +1,32 @@
+{
+  "tagline": "Cloud storage you can play from instead of downloading first.",
+  "verdictSummary": "pCloud's differentiator is that your library is playable: video streams and music plays without a round trip through your download folder. Streaming from your own storage is a solved problem with excellent open-source software, so the software is not the barrier — the storage and the outbound bandwidth are, and they are priced by the gigabyte for you and by the datacentre for them. The prompt below builds the playback half honestly, including the part everyone underestimates: transcoding.",
+  "coreLoopDIY": "Play your library from your own storage: adaptive streaming with transcoding only when the device genuinely cannot handle the file, and a cache so it happens once.",
+  "whatYouLose": [
+    "two terabytes and the transfer allowance to actually stream it",
+    "the mobile and desktop clients",
+    "the lifetime purchase option, which is a real financial product",
+    "file versioning and rewind",
+    "somebody else paying the egress bill"
+  ],
+  "whyPeopleStillPay": "Because streaming is bandwidth, and bandwidth is the one thing in this category that has no clever workaround. The lifetime plan exists because they know the marginal cost of storage falls and yours does not.",
+  "prompt": "Build a media server over your own storage, with an honest transcoding strategy.\n\nStack: your choice plus ffmpeg, object storage or disk, Docker Compose, a domain with TLS. Consider deploying an existing media server and building the analysis around it — say which route you took and why.\n\nLibrary: scan paths, read container and codec metadata with ffprobe, store it. Never re-probe a file whose size and modification time are unchanged; a rescan that re-probes everything is what makes these tools feel slow.\n\nPlayback, and the rule that decides whether this is pleasant or terrible:\n- **Direct play first.** If the client can handle the container, video codec, audio codec and bitrate, stream the original bytes with HTTP range requests. Do not transcode by default; that is the mistake that turns a small server into a CPU fire.\n- **Remux second.** If the codecs are fine but the container is not, repackage without re-encoding. Cheap.\n- **Transcode last**, and say so in the interface, showing why — which codec forced it and what the CPU cost is.\n- Cache transcoded output keyed by source hash plus target profile, so the second play is free. Cap and evict the cache by age and size.\n\nAdaptive streaming: produce HLS with two or three quality levels for transcoded content, so a poor connection steps down instead of buffering. Direct play stays a single stream.\n\nBandwidth reality, first-class: a per-user monthly egress budget, a display of bytes served this month, and an estimate of what it would cost at your provider's published egress rate. Streaming a film is several gigabytes; most people building this have never done that arithmetic.\n\nAlso: resume position per user per item, synchronised across devices; subtitle handling with external files and embedded tracks; and a share link for one item with an expiry and its own bandwidth cap.\n\nWrite tests for the direct-play decision matrix against a table of client capabilities, for cache keys distinguishing quality profiles, and for range requests serving correct byte ranges on a seek.\n\nDo not build a mobile app or a metadata scraper for film artwork.",
+  "faq": [
+    {
+      "q": "Why is direct play the most important optimisation?",
+      "a": "Because transcoding a single 4K stream can saturate a small server's CPU, while direct play is barely more work than serving a file. Getting the capability matching right means most playback costs almost nothing."
+    },
+    {
+      "q": "How much does streaming actually cost in egress?",
+      "a": "A two-hour film at a moderate bitrate is several gigabytes. At typical object-storage egress rates that is cents per view, which is fine for you and unaffordable at pCloud's scale — which is exactly why they price storage the way they do."
+    },
+    {
+      "q": "Is a lifetime storage plan a good deal?",
+      "a": "It is a bet that the company outlives your files. Sometimes it pays off handsomely; it also concentrates the risk, so a lifetime plan is a reason to keep a second, independent backup rather than a reason to relax."
+    },
+    {
+      "q": "Can I export from pCloud easily?",
+      "a": "Yes — it is plain file storage with a desktop client and WebDAV access, so a full copy is a long download rather than a migration. That portability is one of the better things about it."
+    }
+  ]
+}

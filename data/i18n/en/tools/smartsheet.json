@@ -1,0 +1,32 @@
+{
+  "tagline": "A spreadsheet that understands parent rows, dependencies and a Gantt chart.",
+  "verdictSummary": "Smartsheet wins because it looks like Excel to the person who has to use it and understands project structure underneath. That structure — hierarchical rows, predecessors, and a critical path that recalculates — is real computer science, and it is the reason this is a week rather than a weekend. It is still a kinda: the scheduling engine is well-documented, the formats are open, and nothing about it is a network or a dataset you cannot have.",
+  "coreLoopDIY": "A grid where rows nest into parents, dependencies are typed as predecessors, and moving one date recalculates every downstream date and shows the critical path.",
+  "whatYouLose": [
+    "the mobile apps",
+    "unlimited free contributors, which is a licensing model rather than a feature",
+    "the connectors into Jira, Salesforce and the rest",
+    "proofing, approvals and the governance controls enterprises buy it for",
+    "real-time multi-user editing on the same sheet"
+  ],
+  "whyPeopleStillPay": "Because it is the project tool a finance or operations team will actually adopt — it looks like the spreadsheet they already trust — and because the licensing lets a hundred people contribute while ten pay.",
+  "prompt": "Build a project grid with a real scheduling engine underneath it.\n\nStack: your choice, Postgres, Docker Compose. This is a computation problem more than a UI problem; budget accordingly.\n\nSheet model: rows with typed columns (text, number, date, contact, dropdown, checkbox, duration, predecessors), and rows that nest — indenting a row makes it a child of the row above. Parent rows compute rather than store: start is the earliest child start, finish is the latest child finish, duration follows, and percent complete is the duration-weighted mean of children. A parent's dates are never directly editable.\n\nThe scheduling engine:\n- Predecessors are typed: finish-to-start, start-to-start, finish-to-finish, start-to-finish, each with an optional lag in working days, positive or negative.\n- A working-day calendar with configurable weekends and a holiday list. All durations and lags are in working days.\n- Changing any date or duration triggers a forward pass to recompute every downstream row, then a backward pass to compute float. Rows with zero float are the critical path and are highlighted.\n- Circular dependencies are detected and refused at the point of creation, naming the cycle. Do not let a cycle be saved and discovered at recompute time.\n\nGantt view beside the grid, sharing scroll, with dependency arrows drawn and drag-to-reschedule that runs the same engine as typing a date — one code path, tested to produce identical results either way.\n\nAlso: cell-level comments, row attachments, conditional formatting rules, a card view grouped by a dropdown column, and a form that appends a row to the sheet from a public URL with a captcha or a token.\n\nImport and export: XLSX and CSV. The XLSX round trip must preserve hierarchy (as an indent level column) and predecessors (as a text column in the documented format) — losing the structure on export is what makes a project tool a dead end.\n\nWrite tests for the forward and backward passes against a hand-computed network, for all four dependency types with negative lag, for cycle refusal, and for the XLSX round trip preserving indent levels.\n\nDo not build approvals, proofing, or connectors.",
+  "faq": [
+    {
+      "q": "What actually makes this a week?",
+      "a": "The forward and backward passes. Computing dates downstream is straightforward; computing float correctly across four dependency types with negative lag and a holiday calendar is where the days go, and it is also the part that is wrong in most homemade project tools."
+    },
+    {
+      "q": "Why refuse circular dependencies at creation?",
+      "a": "Because discovering them at recompute time means an unusable sheet and an error message pointing at the wrong row. Detecting the cycle when the link is created lets you name the exact path back."
+    },
+    {
+      "q": "Why must parent rows be computed and not editable?",
+      "a": "Because an editable parent date that disagrees with its children is a lie that survives every subsequent recompute. Making it read-only is the single decision that keeps a hierarchical schedule honest."
+    },
+    {
+      "q": "Does Smartsheet export preserve the project structure?",
+      "a": "Partly. Excel and CSV exports carry the values, and the hierarchy comes across as indentation that other tools mostly ignore. Predecessors export as text you can parse, which is why the prompt asks for a documented round-trip format."
+    }
+  ]
+}

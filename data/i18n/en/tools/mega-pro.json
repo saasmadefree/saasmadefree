@@ -1,0 +1,32 @@
+{
+  "tagline": "Encrypted storage where the key lives in the link, not on the server.",
+  "verdictSummary": "The cryptography here is the accessible part: encrypt in the browser, put the key in the URL fragment so it never reaches the server, and the host genuinely cannot read the file. That is a sitting with the Web Crypto API and there is good prior art. What is not accessible is the resource MEGA actually sells with it — three terabytes of storage and thirty-six of transfer for under ten euros — because that is a bandwidth business.",
+  "coreLoopDIY": "Encrypt in the browser before upload and put the key in the URL fragment, so the server stores ciphertext it cannot decrypt and the link alone is the credential.",
+  "whatYouLose": [
+    "terabytes of storage and transfer at consumer prices",
+    "the sync clients and mobile apps",
+    "chat, meetings and the rest of the bundle",
+    "file versioning and a rewind feature",
+    "somebody else absorbing the bandwidth when a link goes viral"
+  ],
+  "whyPeopleStillPay": "Because encrypted storage is cheap to write and expensive to run, and the transfer allowance is the line item that actually costs money.",
+  "prompt": "Build browser-side encrypted file sharing where the server never sees a key.\n\nStack: a small server (any language) plus a browser client using the Web Crypto API only — no custom cryptography, no third-party crypto library, no rolling your own anything. Object storage or disk behind the server. A domain with TLS.\n\nUpload flow:\n1. Generate a random 256-bit key in the browser.\n2. Encrypt the file with AES-GCM, streaming in chunks so a large file never has to fit in memory, with a distinct nonce per chunk derived from a random base and the chunk index.\n3. Encrypt the filename and content type as metadata under the same key.\n4. Upload only ciphertext. The server assigns an id and stores bytes it cannot read.\n5. Produce a link of the form `https://host/d/<id>#<key>`. **The fragment is never sent to the server** — that single property is the whole design, and the README should state it plainly.\n\nDownload: the page loads with no key, reads the fragment in JavaScript, fetches ciphertext, decrypts chunk by chunk to a stream and saves. Show a clear error if the key is missing or wrong rather than a browser exception.\n\nControls, all enforced server-side on the ciphertext because the server cannot inspect content: expiry date, maximum download count, and an optional additional password that is mixed into key derivation in the browser (so the server still learns nothing) rather than checked on the server.\n\nSecurity notes the README must contain, honestly: the link is the credential, so anyone who sees it can read the file, including anyone the recipient forwards it to and anything that logs URLs with fragments; a compromised server can serve modified JavaScript that exfiltrates the key, which is the well-known structural weakness of browser-delivered end-to-end encryption; and this protects against a passive server operator, not against a hostile one.\n\nAbuse controls, because a public upload endpoint is a hosting service for strangers: per-IP rate limits, a maximum size, a total storage cap, and a reporting endpoint. You cannot moderate ciphertext, so you must limit it.\n\nWrite tests for chunked encrypt-decrypt round trips including a file larger than memory, for nonce uniqueness across chunks, and for expiry and download-count enforcement.\n\nDo not build sync clients, and do not invent a cryptographic construction.",
+  "faq": [
+    {
+      "q": "Is the key in the URL fragment actually safe?",
+      "a": "Safe from the server, yes — browsers never transmit the fragment. Not safe from anyone who obtains the link, and not safe from a compromised server that serves malicious JavaScript. It protects against an honest-but-curious host, which is the real threat for most people."
+    },
+    {
+      "q": "Why stream the encryption in chunks?",
+      "a": "Because encrypting a 4 GB file in one operation needs it in memory twice and crashes the tab. Chunked AES-GCM with a per-chunk nonce lets the browser handle files of any size, and it is what makes this usable rather than a demo."
+    },
+    {
+      "q": "What is the honest limitation of end-to-end encryption in a browser?",
+      "a": "The code arrives from the server on every visit, so a hostile or compromised host can hand you a version that leaks the key. Native applications with signed releases avoid this; browser-delivered encryption cannot, and pretending otherwise is dishonest."
+    },
+    {
+      "q": "Why so much emphasis on abuse controls?",
+      "a": "Because a public encrypted upload endpoint is exactly what someone wants for distributing things you would not want to host, and you cannot inspect what you cannot decrypt. Caps and rate limits are the only lever you have."
+    }
+  ]
+}

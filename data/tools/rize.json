@@ -1,0 +1,42 @@
+{
+  "slug": "rize",
+  "name": "Rize",
+  "domains": [
+    "rize.io"
+  ],
+  "category": "time-tracking",
+  "subcategory": "focus metrics and session coaching",
+  "pricing": {
+    "amount": 12.99,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "flat-monthly",
+    "source": "https://rize.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The page states individual plans start at $9.99 a month billed annually or $12.99 billed monthly, ranging to $39.99; team plans are $39.99 a seat. Upstream recorded $16.99, which matches no current tier."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "session detection quality",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "ActivityWatch",
+      "url": "https://github.com/ActivityWatch/activitywatch"
+    }
+  ],
+  "relatedSlugs": [
+    "rescuetime",
+    "memtime",
+    "timely"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

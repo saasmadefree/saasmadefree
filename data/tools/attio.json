@@ -1,0 +1,43 @@
+{
+  "slug": "attio",
+  "name": "Attio",
+  "domains": [
+    "attio.com"
+  ],
+  "category": "crm-sales",
+  "subcategory": "flexible-schema CRM",
+  "pricing": {
+    "amount": 44,
+    "currency": "USD",
+    "plan": "Plus",
+    "basis": "per-seat-monthly",
+    "source": "https://attio.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$44 is the month-to-month rate; billed annually the same seat is $35. The page geo-redirects to /pricing/eur outside the US, where Plus is €31 billed annually."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "schema flexibility and mailbox sync",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Twenty",
+      "url": "https://github.com/twentyhq/twenty"
+    }
+  ],
+  "relatedSlugs": [
+    "pipedrive",
+    "folk",
+    "capsule-crm"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

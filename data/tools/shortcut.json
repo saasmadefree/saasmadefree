@@ -1,0 +1,44 @@
+{
+  "slug": "shortcut",
+  "name": "Shortcut",
+  "domains": [
+    "shortcut.com"
+  ],
+  "category": "project-management",
+  "subcategory": "issue tracking for software teams",
+  "pricing": {
+    "amount": 8.5,
+    "currency": "USD",
+    "plan": "Team",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.shortcut.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "The page prints $8.50 per user per month for Team and $12 for Business; its own FAQ describes metered per-user billing within a yearly cycle, and it does not label the displayed figures as monthly or annual, so the billing period is not fully confirmed."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "git integration and team habit",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Plane",
+      "url": "https://github.com/makeplane/plane"
+    }
+  ],
+  "relatedSlugs": [
+    "meistertask",
+    "trello",
+    "clickup"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

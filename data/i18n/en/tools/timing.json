@@ -1,0 +1,32 @@
+{
+  "tagline": "Mac time tracking that files your day into projects by itself.",
+  "verdictSummary": "Capture what you did, then let readable rules file it: window title contains \"Henderson\" means the Henderson project, this application means admin. Every part of that runs locally with no key and no service, which makes it a yes in a sitting. The confidence is medium because Timing's edge is depth of native capture — which document, which browser tab, which call — and a homemade version sees less than the paid one does.",
+  "coreLoopDIY": "Record activity locally, then apply an ordered list of rules that assign each block to a project automatically, showing which rule matched so a wrong assignment is fixable rather than mysterious.",
+  "whatYouLose": [
+    "depth of capture — the specific document, tab or call, not just the application",
+    "the iOS companion and imported phone-call time",
+    "integrations that pull task names from ClickUp, Linear or a calendar",
+    "a signed, notarised Mac application",
+    "somebody fixing capture when a macOS update changes the permissions"
+  ],
+  "whyPeopleStillPay": "Because rules are only as good as what they can match on, and Timing sees more than a homemade recorder does. Depth of capture is the product; the rule engine is the demo.",
+  "prompt": "Build an automatic time tracker whose rules are readable and auditable.\n\nStack: a local recorder plus a dashboard, SQLite, no network calls. Consider building on an existing open-source capture layer rather than writing OS hooks yourself.\n\nCapture: active application, window title, document path where the OS exposes one, and input activity, run-length compacted.\n\nThe rule engine is the product:\n- A rule has a matcher (application equals, window title contains, title matches a regular expression, document path starts with), a target project, and a position in an ordered list. First match wins.\n- Every assigned block records **which rule matched**, shown in the UI. An unexplained assignment is the thing that makes people stop trusting an automatic tracker.\n- A \"why is this unassigned\" screen lists the biggest unassigned blocks by total time, most first, with a one-click \"create a rule from this window title\" that prefills a sensible matcher.\n- Rule changes are not retroactive by default. Offer an explicit \"re-apply rules to the last N days\" action that shows how many blocks would change before running, because silently rewriting last month's timesheet is a way to lose an invoice dispute.\n\nProjects with a billable flag and an hourly rate, a day timeline, a week summary by project, and CSV export including the matching rule for every row.\n\nManual override: any block can be reassigned by hand, and a manual assignment is never overwritten by a later rule run. Mark it visibly as manual.\n\nPrivacy: pause control showing paused time as paused, per-application title redaction, raw-sample retention window, and a wipe command.\n\nWrite tests for first-match-wins ordering, for manual assignments surviving a rule re-run, and for the retroactive preview counting correctly.\n\nDo not build cloud sync, a mobile app, or third-party task integrations.",
+  "faq": [
+    {
+      "q": "Why show which rule matched?",
+      "a": "Because the failure mode of automatic tracking is a block filed under the wrong project with no explanation, and the user's only recourse is to distrust everything. Naming the rule turns that into a two-second fix."
+    },
+    {
+      "q": "Why are rule changes not retroactive by default?",
+      "a": "Because a timesheet you already invoiced against should not change when you tidy up a rule. The explicit re-apply action, with a preview of how many blocks move, keeps that a decision rather than a side effect."
+    },
+    {
+      "q": "How much capture depth do you actually lose?",
+      "a": "On macOS a homemade recorder reliably gets the application and the window title; it gets the open document only for applications that expose it, and it gets browser tabs only with a browser extension. That gap is most of what the licence buys."
+    },
+    {
+      "q": "Does Timing let me export my history?",
+      "a": "Yes — time entries and projects export as CSV, and the raw activity is in a local database you can read. It is one of the more portable tools here, largely because it never sent your data anywhere in the first place."
+    }
+  ]
+}

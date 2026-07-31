@@ -1,0 +1,32 @@
+{
+  "tagline": "Live video events with registration, chat and a replay archive.",
+  "verdictSummary": "The video is the part you cannot build. Delivering a live stream to a few hundred simultaneous viewers without stuttering means an origin, a CDN and bandwidth priced per gigabyte, and Crowdcast's attendee-based pricing exists precisely because that is its cost. What surrounds the video — a registration page, reminder emails, a replay archive — is a sitting, and it is worth having on its own because it is the half that determines whether anyone shows up.",
+  "coreLoopDIY": "Run the funnel around the event rather than the event: a registration page, a calendar invite, reminder emails at sensible intervals, and a replay archive gated by the same registration.",
+  "whatYouLose": [
+    "the live video itself, and the bandwidth behind it",
+    "live chat and Q&A synchronised with the stream",
+    "attendance analytics tied to the video timeline",
+    "the hosted replay with its own player and CDN",
+    "reliability when four hundred people join at the same minute"
+  ],
+  "whyPeopleStillPay": "Because live video that stutters is worse than no event, and paying per attendee is how you buy the delivery capacity without owning it.",
+  "prompt": "Build the funnel around a live event. The video is handed off to whatever streaming service you already use; this build owns everything else.\n\nStack: your choice, Postgres, Docker Compose, a domain, and a transactional email provider with SPF, DKIM and DMARC configured.\n\nEvent: title, description, start time with an explicit timezone, duration, an optional cap, and a stream URL you paste in later.\n\nRegistration page: name, email, and up to three custom questions you define per event. On submit, store the registration and send a confirmation containing a **personal join link** with a unique token, plus a real `.ics` attachment. Generate the `.ics` yourself and get it right — `DTSTART` in UTC with a `TZID` for display, a stable `UID`, `SEQUENCE` incremented on every change so updates replace rather than duplicate, and a `METHOD:REQUEST`. Test it in Google Calendar, Apple Calendar and Outlook; they disagree, and an invite that duplicates itself is the single most common failure here.\n\nReminders: a schedule per event, defaulting to 24 hours, 1 hour and 10 minutes before, each sent only to registrants who have not already joined. The scheduler must be idempotent — a restart must not resend — and must respect the registrant's timezone when it renders the time.\n\nJoin: the personal link records the join and then redirects to the stream URL. That single record is what makes the whole thing measurable — registrations, joins, and the show-up rate per event and per traffic source, using a `?source=` parameter carried from the registration link.\n\nReplay: after the event, attach a recording URL. The same personal link then serves the replay page, so replay views are attributed to the same person. Optionally require a fresh registration for the replay, and count those separately.\n\nOne report: per event, registrations by source, show-up rate, replay views, and the drop-off between reminder sends.\n\nWrite tests for `.ics` generation across the three calendar clients' expectations, for reminder idempotency after a restart, and for join tokens being single-purpose and unguessable.\n\nDo not stream video, do not build chat, and do not host the recording.",
+  "faq": [
+    {
+      "q": "Why is generating a calendar invite harder than it looks?",
+      "a": "Because the three major clients disagree about timezones, updates and cancellations. Get `UID` and `SEQUENCE` wrong and every change creates a second event on the attendee's calendar, which is worse than sending no invite at all."
+    },
+    {
+      "q": "What does the show-up rate actually tell me?",
+      "a": "Which channel sends people who attend rather than people who register. Registrations flatter every source equally; show-up rate separates them, and it is invisible unless you attribute the join."
+    },
+    {
+      "q": "Where should the video actually go?",
+      "a": "Anywhere that already has delivery capacity — a paid streaming host, or a self-hosted Owncast instance if your audience is small and you understand the bandwidth bill. The point of this build is that the funnel does not care which you pick."
+    },
+    {
+      "q": "Can I export my Crowdcast registrations?",
+      "a": "Yes, registrant and attendance data export as CSV per event. Recordings download individually, so pull those deliberately before cancelling."
+    }
+  ]
+}

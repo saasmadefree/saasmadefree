@@ -1,0 +1,43 @@
+{
+  "slug": "proton-drive-plus",
+  "name": "Proton Drive Plus",
+  "domains": [
+    "drive.proton.me"
+  ],
+  "category": "cloud-storage",
+  "subcategory": "encrypted storage with a threat model",
+  "pricing": {
+    "amount": 3.99,
+    "currency": "EUR",
+    "plan": "Drive Plus",
+    "basis": "annual-effective-monthly",
+    "source": "https://proton.me/drive/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Read from the EU, priced in EUR: €3.99 a month billed at €47.88 for twelve months, against €4.99 month-to-month, for 200 GB. Upstream recorded $4.99, which is the month-to-month figure."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "key management and recovery",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Cryptomator",
+      "url": "https://github.com/cryptomator/cryptomator"
+    }
+  ],
+  "relatedSlugs": [
+    "mega-pro",
+    "sync-com",
+    "icloud-plus"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

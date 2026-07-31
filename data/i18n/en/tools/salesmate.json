@@ -1,0 +1,32 @@
+{
+  "tagline": "CRM, phone system, email sequences and a chatbot in one subscription.",
+  "verdictSummary": "Salesmate bundles four products, and one of them is a phone company. Numbers, minutes, call recording and the carrier registration behind them are not something a personal build acquires; neither is a sending reputation for the sequence half. What is left to build is a planner: the thing that tells you who to contact today and on which channel, and records what happened. That is a sitting, and it is genuinely useful, but it is a notebook next to a switchboard.",
+  "coreLoopDIY": "Plan and record multi-channel outreach without performing it: a daily list of who to contact by which channel, and a log of what happened when you did it yourself.",
+  "whatYouLose": [
+    "the built-in phone system — numbers, calls, recordings and voicemail drop",
+    "sending email sequences from the tool, and the deliverability work behind them",
+    "the website chatbot and the visitor tracking that feeds it",
+    "marketing automation journeys that branch on behaviour",
+    "the mobile apps"
+  ],
+  "whyPeopleStillPay": "Because replacing Salesmate means buying a CRM, a telephony provider, an email sending platform and a chat widget separately, wiring them together, and owning the seams. Twenty-three dollars a seat buys the wiring.",
+  "prompt": "Build a multi-channel outreach planner that never sends anything itself.\n\nThe premise: the sending is done by you, in the tools you already have. This app decides who, when and where, and remembers what happened.\n\nStack: your choice, SQLite is enough, one command to run.\n\nModel: Contact, Sequence, Step, Enrolment, Touch.\n- A Sequence is an ordered list of Steps. A Step has a channel (email, call, LinkedIn message, in-person), a delay in business days from the previous step, and a template body with {{placeholders}}.\n- Enrolling a Contact in a Sequence materialises the schedule.\n- A Touch is what actually happened: date, channel, outcome (sent, connected, no answer, replied, bounced, opted out), and a note.\n\nThe main screen is \"Today\": every enrolment whose next step is due, grouped by channel, so all the calls are together and all the emails are together. For an email step, render the template with the contact's fields filled in and give me a copy button and a mailto: link — I paste and send from my own mailbox. For a call step, show the number and the last three touches.\n\nRecording a Touch advances the enrolment. Recording a reply or an opt-out ends it immediately and, for an opt-out, sets a permanent flag that blocks all future enrolment for that contact with no override in the UI.\n\nBusiness-day arithmetic must respect a configurable weekend and a holiday list, and must never schedule a touch in the past when a sequence is enrolled retroactively.\n\nOne report: per sequence, enrolments, replies, opt-outs and reply rate by step number, so I can see which step in the sequence is actually doing the work.\n\nWrite tests for the business-day scheduler including holidays, and for the opt-out flag surviving re-import of a CSV that contains that contact.\n\nDo not send email, do not connect a telephony provider, do not scrape LinkedIn. This app is a plan and a ledger.",
+  "faq": [
+    {
+      "q": "What is the point of a sequencer that does not send?",
+      "a": "It removes the part that gets people into trouble — automated bulk sending from a domain with no reputation — and keeps the part that actually improves results, which is doing the fourth follow-up at all. Sending forty personal emails by hand is slow; forgetting the fourth touch is expensive."
+    },
+    {
+      "q": "Why is opt-out enforced with no override?",
+      "a": "Because an override always gets used. A permanent, UI-inescapable flag is the only version of a do-not-contact list that survives a CSV re-import six months later, and re-importing is exactly when these mistakes happen."
+    },
+    {
+      "q": "Could I bolt on real sending later?",
+      "a": "Technically yes, and that is where the honest cost appears: your own domain has no sending reputation, so a cold volume of any size lands in spam or gets your mailbox suspended. That is the wall this category runs into, not the code."
+    },
+    {
+      "q": "Does Salesmate export cleanly?",
+      "a": "Contacts, companies, deals and activities export as CSV. Call recordings and the chatbot transcripts do not come along in any usable form, so treat them as belonging to the subscription."
+    }
+  ]
+}

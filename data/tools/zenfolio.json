@@ -1,0 +1,44 @@
+{
+  "slug": "zenfolio",
+  "name": "Zenfolio",
+  "domains": [
+    "zenfolio.com"
+  ],
+  "category": "photography",
+  "subcategory": "photographer site and client galleries",
+  "pricing": {
+    "amount": 9,
+    "currency": "EUR",
+    "plan": "Portfolio",
+    "basis": "flat-monthly",
+    "source": "https://zenfolio.com/plans-pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "Read from the EU, priced in EUR: the page shows Portfolio at \"normally €9/month\" with an annual option, and PortfolioPlus at €20. zenfolio.com/pricing now 404s — the page moved to /plans-pricing/. The monthly-versus-annual distinction is not clearly labelled on the card, hence medium confidence."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "hosted convenience",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "PhotoPrism",
+      "url": "https://github.com/photoprism/photoprism"
+    }
+  ],
+  "relatedSlugs": [
+    "pixieset",
+    "pic-time",
+    "smugmug"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

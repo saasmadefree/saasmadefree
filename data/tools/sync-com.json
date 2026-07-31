@@ -1,0 +1,44 @@
+{
+  "slug": "sync-com",
+  "name": "Sync.com",
+  "domains": [
+    "sync.com"
+  ],
+  "category": "cloud-storage",
+  "subcategory": "zero-knowledge storage with audit",
+  "pricing": {
+    "amount": 6,
+    "currency": "USD",
+    "plan": "Solo Basic",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.sync.com/pricing-individual/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "$6 per month billed annually, $8 billed monthly, both shown against struck-through list prices of $12 and $16 — so this is promotional pricing that may not persist. Upstream recorded $8, which is the month-to-month figure."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "compliance posture",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Nextcloud",
+      "url": "https://github.com/nextcloud/server"
+    }
+  ],
+  "relatedSlugs": [
+    "proton-drive-plus",
+    "mega-pro",
+    "dropbox-plus"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

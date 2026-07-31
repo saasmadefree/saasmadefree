@@ -1,0 +1,32 @@
+{
+  "tagline": "Pay people in a country where you have no company.",
+  "verdictSummary": "Deel's product is a legal structure: registered entities in dozens of countries, employment contracts that hold under local law, tax withheld and filed correctly, and liability absorbed when it is not. None of that is software, and the software you can see is the thin part on top. This is as clear a no as the catalogue contains.",
+  "coreLoopDIY": "Keep the paperwork you are personally responsible for: contractor records, contracts, invoices, payment history, and a per-country checklist of what you still owe.",
+  "whatYouLose": [
+    "entities in countries where you have none",
+    "compliant local employment contracts and their liability cover",
+    "tax withholding and filing on your behalf",
+    "making the payments themselves in local currency",
+    "somebody accountable when a classification is challenged"
+  ],
+  "whyPeopleStillPay": "Because getting worker classification or foreign withholding wrong is expensive and slow to discover, and Deel sells being the one holding that risk.",
+  "prompt": "Build a contractor administration record. It moves no money and gives no advice; it makes sure nothing is missing.\n\nStack: your choice, SQLite is enough, one command to run. The README must open by saying this is a filing system, not payroll, and that classification and withholding rules are jurisdiction-specific and outside its scope.\n\nContractor record: legal name, country of tax residence, entity type (individual or company), tax identifier, bank details stored encrypted at rest, and the contract itself.\n\nContracts: a Markdown template rendered per contractor, versioned. When a rate or a term changes, a new version is created and the old one is kept with its dates. Show the effective version at any past date, because the question is always \"what was agreed in March\".\n\nCompliance checklist per contractor, driven by a small per-country data file **you fill in yourself** from your own advice — the application ships it empty and says why. Items are things like a signed contract on file, a tax form collected, an annual reporting form due, a classification review date. Each has a due date, a document slot and a state. The dashboard is the list of what is overdue.\n\nInvoices: contractors submit or you record them, with period, amount, currency and an attached file. Mark paid with a date, method and reference. Nothing here initiates a payment.\n\nReports: total paid per contractor per calendar year in their currency and yours at the rate on the payment date, which is the figure needed for annual reporting and the one that is painful to reconstruct afterwards; plus documents expiring in the next ninety days.\n\nStore rates used for conversion at the moment of payment. Recomputing historical totals at today's rate produces numbers that do not match anything you filed.\n\nWrite tests for contract version resolution at a past date, for currency totals using the stored historical rate, and for the checklist surfacing an item exactly on its due date.\n\nDo not initiate payments, do not generate tax forms, and do not offer classification guidance.",
+  "faq": [
+    {
+      "q": "What is the actual risk of managing contractors yourself?",
+      "a": "Misclassification. If a contractor is treated as an employee under local law, the hiring company can owe back taxes, social contributions and penalties, sometimes years later. That exposure is what an employer-of-record charges for absorbing."
+    },
+    {
+      "q": "Why store the exchange rate at payment time?",
+      "a": "Because annual reporting uses the rate on the day, and recomputing at today's rate produces totals that reconcile with nothing. It is one extra column and it saves a genuinely awful afternoon."
+    },
+    {
+      "q": "Why ship the country checklist empty?",
+      "a": "Because a prefilled compliance checklist is advice, it will be wrong for someone, and being wrong here is expensive. The structure is the useful part; the contents have to come from your own accountant."
+    },
+    {
+      "q": "Can I get my data out of Deel?",
+      "a": "Contracts, contractor details, invoices and payment history all export, and the API covers more. Do it before you cancel — the historical payment records are the part you will need for filings long after you have stopped using the product."
+    }
+  ]
+}

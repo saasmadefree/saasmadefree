@@ -1,0 +1,36 @@
+{
+  "slug": "zenbusiness",
+  "name": "ZenBusiness",
+  "domains": [
+    "zenbusiness.com"
+  ],
+  "category": "business-admin",
+  "subcategory": "company formation and compliance service",
+  "pricing": {
+    "amount": 16.58,
+    "currency": "USD",
+    "plan": "Worry-Free Compliance",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.zenbusiness.com/pricing-products/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "$199 a year, which is $16.58 a month, for Worry-Free Compliance; registered agent is also $199 a year and Advanced Compliance Protection $299. Formation itself now starts at $0 plus state fees, so the \"Pro\" formation tier upstream recorded no longer maps to a price. zenbusiness.com/pricing redirects to /pricing-products/."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "filings and registered-agent service",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "relatedSlugs": [
+    "doola",
+    "northwest-registered-agent",
+    "rocket-lawyer"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

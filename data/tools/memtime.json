@@ -1,0 +1,42 @@
+{
+  "slug": "memtime",
+  "name": "Memtime",
+  "domains": [
+    "memtime.com"
+  ],
+  "category": "time-tracking",
+  "subcategory": "passive local time capture",
+  "pricing": {
+    "amount": 15,
+    "currency": "EUR",
+    "plan": "Basic",
+    "basis": "per-seat-monthly",
+    "source": "https://www.memtime.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "The page prints several currencies side by side for the same tier — €15, $18, £13 — and offers a lower rate on a two-year commitment. The EUR figure is recorded here; the billing period for the headline rate is not stated explicitly on the card."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "reliable cross-platform capture",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "ActivityWatch",
+      "url": "https://github.com/ActivityWatch/activitywatch"
+    }
+  ],
+  "relatedSlugs": [
+    "rize",
+    "rescuetime",
+    "clockify"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

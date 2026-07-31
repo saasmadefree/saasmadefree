@@ -2655,3 +2655,685 @@ $ npm run stats
 
 `nolt.io/pricing` shows up in the linkcheck failures as a 403 — the same Cloudflare challenge
 that stopped the price being read, not a dead page.
+
+
+## Batch 12 — CRM, sales outreach, first help desks (374 → 399)
+
+First batch of the second half. The remaining pool was recomputed rather than trusted:
+`node scripts/import-upstream.mjs --limit 400 --dry-run` against the 608-entry source and the
+374-tool disk state selects **166** eligible entries, which is the real remainder, not the
+"~168" carried in the handover. They arrive under 16 raw upstream categories and cover all 15
+categories that the taxonomy pass opened and left empty.
+
+### Domain screening, all 166 up front
+
+Every domain in the remaining pool was fetched, not recalled. The extension matcher walks
+hostname labels upward (`extension/lib/domain-match.mjs`), so **an apex listed in `domains[]`
+also claims every subdomain under it** — which is what makes a corporate apex dangerous, and
+what makes a per-tenant apex like `freshdesk.com` the right answer rather than the marketing
+site. Eleven overrides and two exclusions came out of it:
+
+| Slug | Upstream domain | Decision |
+|---|---|---|
+| `zoho-crm` | `zoho.com` | → `crm.zoho.com`. The bare domain is Zoho's whole 50-app suite. Confirmed: `<title>Zoho CRM …</title>`. |
+| `freshdesk` | `freshworks.com` | → `freshdesk.com`. Upstream pointed at the *parent company* (Freshsales, Freshservice, Freshchat all live there). Freshdesk tenants are `<company>.freshdesk.com`, which the label walk covers from the apex. |
+| `chatwoot-cloud` | `chatwoot.com` | → `app.chatwoot.com`. Open-source project site; the `umami.is` precedent. Confirmed. |
+| `youtube-music-premium` | `youtube.com` | → `music.youtube.com`. Confirmed: `<title>YouTube Music</title>`. |
+| `ente-photos` | `ente.io` | → `ente.com` (301). |
+| `harvest` | `harvestapp.com` | → `getharvest.com` (301). |
+| `macrofactor` | `macrofactorapp.com` | → `macrofactor.com` (301). |
+| `timely` | `timelyapp.com` | → `timely.com` (301). |
+| `timeular` | `timeular.com` | → `early.app`. Timeular rebranded to EARLY. |
+| `groove` | `groovehq.com` | → `helply.com`. Groove rebranded to Helply. |
+| `zoom-pro` | `zoom.us` | → `["zoom.com", "zoom.us"]`. The marketing site moved to zoom.com but meetings are still joined on `*.zoom.us`; both are exclusively Zoom. `SLUG_DOMAIN_OVERRIDES` now accepts an array for this case. |
+| `butter` | `butter.us` | **Excluded.** `dig butter.us` returns no A record at all and `dashboard.butter.us` times out. The product is gone; there is no page to cite and no hostname to match. |
+| `goto-meeting` | `goto.com` | **Excluded.** `gotomeeting.com` 301s to `goto.com/meeting` (a path), `global.gotomeeting.com` redirects to `app.goto.com/meetings`, and both `app.goto.com` and `goto.com` are shared by every GoTo product. Same failure mode as `everydollar-premium`. |
+
+`google-workspace-business-starter` was **kept** on `workspace.google.com` after weighing it
+against the `microsoft-365-personal` exclusion. The difference is real: `microsoft.com` is a
+corporate catch-all and the M365 web hostname is shared across unrelated Microsoft products,
+whereas `workspace.google.com` is exclusively Google Workspace and resolves 200 as the
+product's own site. The tier-versus-product mismatch (this entry is the Business Starter tier
+of a bundle) is an editorial problem, not a domain-safety one.
+
+### One exclusion for an unreadable price
+
+`reply-io` — `reply.io/pricing` sits behind a Cloudflare challenge that neither `curl` nor a
+real Chrome session cleared, in three attempts. Unlike `adobe-acrobat-pro`, where independent
+reporting corroborated the figure, nothing here confirms the `$89 "Multichannel"` upstream
+recorded. Batch 11 found 20 of 25 upstream prices stale; an unverifiable upstream figure is
+more likely wrong than right, so it is excluded rather than shipped with a confident-looking
+citation. `crm-sales` lands at 21 tools instead of 22, still far above the floor.
+
+Backfilled from `customer-support`: `intercom`.
+
+### Prices — 18 of 25 were wrong
+
+Same pattern batch 11 found, at the same rate.
+
+| Slug | Upstream | Corrected | What was wrong |
+|---|---|---|---|
+| `attio` | $36 Plus | **$44** Plus | $36 matches no tier; Plus is $44 monthly, $35 annual |
+| `capsule-crm` | $21 Starter | **€15** Starter, annual-effective | numbers are client-side only; read in a browser, geo-priced EUR |
+| `close-crm` | $59 "Startup" | **$19 "Solo"** | the Startup tier no longer exists |
+| `copper-crm` | $29 Basic, per-seat-monthly | $29 Basic, **annual-effective** | the page prints "paid annually" and offers no monthly rate |
+| `folk` | $30 "Premium" | $30 **"Standard"** | $30 is Standard; Premium is $60 monthly |
+| `salesmate` | $29 Basic, per-seat-monthly | **$23** Basic, **annual-effective** | the page's default view is the annual-billed rate |
+| `apollo-io` | $59 Basic, per-seat-monthly | **$49** Basic, **annual-effective** | default view is annual |
+| `clay` | $149 Launch | **$167** Launch, usage-based | Launch is two independent sliders; $167 is the annual-billed floor |
+| `hunter-io` | $49 Starter USD | **€49** Starter | correct number, geo-priced EUR |
+| `instantly` | $37 Growth | **$47** Growth | $37.60 is the annual rate; monthly is $47 |
+| `lemlist` | $69 "Email Pro" | **$55 "Email"** | the Email Pro tier no longer exists |
+| `smartlead` | $39 "Basic" | $39 **"Base"** | tier renamed |
+| `waalaxy` | $43 Pro | **€19** Pro | large drop, and the page is EUR |
+| `woodpecker` | $29 "Cold Email" flat | **€35**, usage-based | it is a slider: €7.00 per 100 contacted prospects, €35 at the default 500 |
+| `front` | $29 Starter, per-seat-monthly | **$25** Starter, **annual-effective** | default view is annual |
+| `gorgias` | $60 "Basic" | **$10 "Starter"**, usage-based | Starter is $10/mo for 50 tickets + $0.40 overage; the old $60 Basic is now $90 |
+| `help-scout` | $25 Standard, per-seat-monthly | $25 Standard, **annual-effective** | the Annual toggle is the active one on load |
+| `pipedrive` | $24 Essential | unchanged, confidence → **low** | see below |
+| `bigin`, `less-annoying-crm`, `zoho-crm`, `streak-crm`, `saleshandy`, `snov-io`, `intercom` | — | confirmed correct | |
+
+**`pipedrive` is this batch's unreadable price.** `pipedrive.com/en/pricing` returns a
+Cloudflare "Attention Required" block to a scripted fetch *and* to a real Chrome session on
+this network. Unlike `reply-io`, the $24 Essential month-to-month figure is long-standing and
+widely published, so it ships at `confidence: low` with the block written into `pricing.notes`
+and named in the entry's own FAQ — the `adobe-acrobat-pro` / `nolt` precedent. It shows up in
+`linkcheck` as a 403, which is the same class as the pre-existing anti-robot failures.
+
+`snov-io` also appears in the linkcheck failures as "fetch failed". That is an undici quirk
+against their TLS stack, not a dead page: `curl -sSI https://snov.io/` returns `HTTP/2 200`,
+and the price was read from the live page.
+
+### Verdicts — four moved, all documented, none for balance
+
+Four entries moved from `no` to `kinda`. Each is argued from the `whatYouLose` list, written
+first:
+
+- **`zoho-crm`.** Upstream marked `close-crm`, `salesmate`, `streak-crm` and `zoho-crm` `no`
+  with no visible shared principle. The first three have one: telephony (Close, Salesmate) and
+  living inside somebody else's DOM (Streak). Zoho CRM Standard has none — for a solo user it
+  is leads, contacts, deals, custom fields and reports, which is exactly the set `pipedrive`
+  and `attio` are already `kinda` for. Keeping it at `no` would have been an inconsistency,
+  not a standard.
+- **`front`, `gorgias`, `intercom`.** A help desk has no network effect, no proprietary data
+  and no compliance moat — mature open-source shared inboxes and messengers exist. What these
+  three genuinely lose is the `kinda` list from CONTRIBUTING almost verbatim: mobile apps,
+  real-time collaboration, and third-party channels behind an approval gate (WhatsApp and SMS
+  for Front, Instagram and TikTok Shop for Gorgias, native SDKs for Intercom). `help-scout`
+  was already `kinda` and stays there.
+
+The ten `sales-outreach` entries stay `no` without argument, because CONTRIBUTING names their
+dependencies explicitly: a sending reputation (`instantly`, `lemlist`, `saleshandy`,
+`smartlead`, `woodpecker`, `snov-io`) and an index you don't have (`apollo-io`, `hunter-io`,
+`clay`). `waalaxy` is `no` for a different reason worth stating: its product is automating a
+platform that forbids automation, and the risk it absorbs — a permanent account restriction —
+is not something a personal build should take on. Its prompt deliberately builds a manual
+tracker over LinkedIn's own data export instead.
+
+Batch mix: 0 `yes` / 11 `kinda` / 14 `no`. Selected by category, not by verdict.
+
+### Editorial — one angle per entry
+
+The upstream drafts in this pool are templated at the category level: all eleven CRMs shipped
+the identical `moatType`, `subcategory`, `priorArt` (Twenty) and prompt skeleton, all ten
+outreach entries shipped Mautic as prior art regardless of product, and every draft carried
+"Recheck price before merge." inside `notes`, a reader-facing field. Every prompt and all 100
+FAQ answers were written from scratch.
+
+*CRM (11):* a runtime-editable schema with a destructive-migration guard (`attio`) — limits
+enforced in code, not documented (`bigin`) — a won opportunity materialises a delivery project
+from a template (`capsule-crm`) — a call queue with one-keypress outcomes and no telephony
+(`close-crm`) — per-record BCC capture so Google is never asked for OAuth (`copper-crm`) —
+custom fields that belong to the list rather than the person, plus a "gone quiet" query
+(`folk`) — CalDAV and CardDAV as the mobile app (`less-annoying-crm`) — an invariant that an
+open deal must carry a scheduled next activity (`pipedrive`) — a multi-channel planner that
+sends nothing (`salesmate`) — a supported Gmail add-on rather than a DOM-injecting extension,
+and honesty about the ceiling that imposes (`streak-crm`) — reports as reviewable SQL views
+behind a read-only role (`zoho-crm`).
+
+*Outreach (10):* facts stored as rows with a source and a half-life, so staleness is visible
+(`apollo-io`) — a bring-your-own-key waterfall runner whose real output is cost per successful
+enrichment (`clay`) — a careful SMTP verifier with a per-domain circuit breaker, and a pattern
+guesser that refuses below three known addresses (`hunter-io`) — ramped, jittered sending
+across mailboxes you own with a tested human-versus-autoresponder reply stop (`instantly`) —
+per-recipient image and microsite generation with first-class empty-field policies (`lemlist`)
+— an SPF lookup counter, DMARC aggregate-report ingestion and a manual placement test
+(`saleshandy`) — a unified reply inbox that classifies by header rule before it spends a token
+(`smartlead`) — a fixed-stage outreach funnel computed from transition rows (`snov-io`) — a
+follow-up queue built from LinkedIn's own data export, with reply rate per template
+(`waalaxy`) — a follow-up engine that creates drafts and has no send button (`woodpecker`).
+
+*Help desks (4):* a status machine with a tested guard that internal comments can never reach
+the customer (`front`) — order context beside the message with capped, audited refund actions
+(`gorgias`) — knowledge base and saved replies as one record, plus an "articles to promote"
+report (`help-scout`) — an AI first responder that must cite a source or hand over
+(`intercom`).
+
+`priorArt` was corrected per entry rather than carried: Twenty for the pipeline CRMs, EspoCRM
+for the two suite-shaped ones, Monica for the two relationship-first ones, SuiteCRM for
+`zoho-crm`, FreeScout for the shared inboxes, Chatwoot for the messenger-shaped desks,
+`check-if-email-exists` for `hunter-io`, `checkdmarc` for `saleshandy`, Mautic for
+`woodpecker`. Seven entries ship with **no** `priorArt` (`apollo-io`, `clay`, `instantly`,
+`lemlist`, `smartlead`, `waalaxy`, `streak-crm`) rather than an invented one — there is no
+open-source contact database, no open-source warm-up network, and no open-source
+Gmail-embedded CRM.
+
+`requirements[]` was reconciled against each rewritten prompt, not the mechanical pass, which
+produced a uniform `hosting` for all eleven CRMs and `domain`+`email-provider` for all ten
+outreach entries. Notable corrections: `copper-crm` gains `domain`+`email-provider` (the BCC
+receiver is the entry's whole idea), `less-annoying-crm` gains `domain` (CalDAV clients refuse
+plain HTTP), `streak-crm` drops `hosting` and gains `oauth-app` (Apps Script hosts itself),
+`clay`/`smartlead`/`intercom` gain `anthropic-api-key`, and `apollo-io`/`waalaxy`/`snov-io`
+drop `email-provider` entirely because their prompts send nothing.
+
+`relatedSlugs` were hand-diversified: the mechanical pass produced `[apollo-io, clay, lemlist]`
+for six outreach entries and `[pipedrive, close-crm, attio]` for seven CRMs. No two entries in
+this batch share a triple.
+
+### Verification
+
+```
+$ npm run validate
+399 fiche(s), 625 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  175 passed (175)
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run build
+Site écrit dans dist/ — 2 langue(s), 625 fiche(s), 71 page(s) de catégorie, 702 URL(s).
+
+$ npm run linkcheck
+523 OK, 26 en échec — pipedrive (403, documented above) and snov-io (undici "fetch failed"
+against a page curl reads as HTTP/2 200); the rest pre-existing.
+
+$ npm run stats
+399 fiche(s) : yes 54 (14 %), kinda 233 (58 %), no 112 (28 %)
+```
+
+
+## Batch 13 — the rest of the help desks, project management, time tracking (399 → 424)
+
+Closes `customer-support` (10), opens `project-management` (10) and fills nine of eleven
+`time-tracking` slots.
+
+### Two more exclusions, both because the product moved
+
+| Slug | Reason |
+|---|---|
+| `groove` | groovehq.com 301-redirects to **helply.com**. Groove relaunched as Helply with a new name, a new positioning and a completely different model: $1 per ticket, minimum 250 tickets a month, minimum $3,000 annual contract, annual billing only. The recorded "$20 Standard per user" tier no longer exists. Importing it under the old slug and name would put "Groove is replaceable" on a page that says Helply — the mismatch the domain-safety rule exists to prevent. Helply is a legitimate future entry under its own slug; it is not this one. |
+| `timeular` | timeular.com redirects to **early.app** after the rebrand to EARLY, and `early.app/pricing` prints **no price at all** — the plan cards carry feature lists and a "Start free trial" button and nothing else, verified in a real Chrome session after scrolling and waiting. Same standing as `dovetail` and `maze`: no number on the page to cite. |
+
+Both are in `MANUAL_EXCLUSIONS` with the reason and the date. `customer-support` lands at 10
+and `time-tracking` at 10, both well above the floor.
+
+### Prices — 15 of 25 were wrong
+
+| Slug | Upstream | Corrected | What was wrong |
+|---|---|---|---|
+| `chatwoot-cloud` | $19 Startups, per-seat-monthly | $19, **annual-effective** | the page says "billed annually" |
+| `freshdesk` | $18 Growth | **$19**, annual-effective | |
+| `livechat` | $24 Starter | **$19**, annual-effective | $19 annual / $25 monthly; upstream matched neither |
+| `tidio` | $29 Starter USD | **€24.17**, annual-effective | geo-priced EUR and the annual view is the default |
+| `zendesk` | $69 "Suite Team" | **$55** Suite Team, annual-effective | the $19 tier on the same page is Support Team, a different product |
+| `clickup` | $10 Unlimited | **$7**, annual-effective | $7 is what the page shows by default |
+| `meistertask` | $15 Pro | **€12.50** Pro | geo-priced EUR, VAT excluded |
+| `monday-com` | $12 "Basic" | **€9** Basic, annual-effective | €12 is Standard; Basic is €9 and the page opens on the annual view |
+| `shortcut` | $10 Team | **$8.50** Team | |
+| `smartsheet` | $12 Pro | **$9**, annual-effective | $9 yearly / $12 monthly |
+| `teamwork` | $13.99 "Deliver" | **$9.99** Deliver | matched no tier |
+| `wrike` | $10 Team, per-seat-monthly | $10, **annual-effective** | the page states it is billed annually |
+| `harvest` | $13.75 "Pro" | **$9 "Teams"** | the Pro tier is gone (Free / Teams / Enterprise), and harvestapp.com/pricing now 404s |
+| `hubstaff` | $7 Starter | **$4.99**, annual-effective | plus a two-seat minimum, so the real floor is $9.98 |
+| `rescuetime` | $12 "Premium" | **$9 "Focus"** | the Premium tier no longer exists |
+| `rize` | $16.99 "Rize" | **$12.99 "Basic"** | matched no tier |
+| `toggl-track` | $10 Starter | **$9**, annual-effective | |
+| `asana`, `basecamp`, `trello`, `crisp`, `clockify`, `time-doctor`, `timely` | — | confirmed correct | |
+
+Four entries carry `confidence: medium` because the page does not label the billing period on
+the plan card and the HTML gives no reliable signal: `meistertask`, `shortcut`, `smartsheet`,
+`toggl-track`, plus `memtime`, whose page prints €15, $18 and £13 side by side for the same
+tier. **The rule applied throughout this batch, stated so it can be checked:** where a page
+offers both a monthly and an annual rate, the figure recorded is the one the page renders by
+default, with the other named in `pricing.notes`. Where the default could not be determined,
+the annual-effective figure is recorded at `medium` confidence with the monthly rate in the
+notes.
+
+### Verdicts
+
+3 `yes` / 20 `kinda` / 2 `no`.
+
+- **`chatwoot-cloud` moved `kinda` → `yes`.** It is the hosted-open-source case the catalogue
+  already carries for `ghost-pro`, `umami-cloud`, `n8n-cloud` and `tolgee-cloud`: Chatwoot is
+  published in full under MIT and the Cloud subscription is somebody else running the same
+  software, so self-hosting is parity rather than approximation. `diyTimeEstimate` moved to
+  `weekend` to match that pattern, exactly as batch 11 did for `ilovepdf-premium`.
+- **`rescuetime` and `rize` stay `yes`.** Both run entirely on the local machine with no API
+  key, no service and no dataset — the literal definition of `yes` in CONTRIBUTING. Both carry
+  `verdictConfidence: medium` for a stated reason: RescueTime ships a maintained classification
+  of hundreds of thousands of sites that yours starts without, and Rize's session-detection
+  thresholds are tuned for you.
+- **`zendesk` moved `no` → `kinda`**, on the same argument made for `front`, `gorgias` and
+  `intercom` in batch 12 — no network effect, no proprietary data, mature open-source
+  equivalents — with voice, the marketplace and the enterprise compliance controls named in
+  `whatYouLose`. This is now a category-wide judgement rather than four separate ones, and it
+  is stated here as such so it can be disagreed with in one place.
+- **`timely` moved `no` → `kinda`.** Its product is local capture plus a model that drafts
+  timesheet entries, and both halves are now available to a personal build with an API key.
+  The gaps that keep it off `yes` are named: the mobile app, which is the only way it sees
+  hours spent away from the machine, and drafting quality tuned on more corrections than yours.
+- **`hubstaff` and `time-doctor` stay `no`**, and for a reason worth stating rather than
+  assuming: their product is observing *other people*. That needs an agent deployed on machines
+  you administer, payroll and HRIS partners billed at $200 per integration, and a defensible
+  legal basis for monitoring that varies by country. Both prompts scope down to measuring
+  yourself and say so, and both deliberately refuse to build screenshots or keystroke capture.
+- The ten `project-management` entries are all `kinda`, unchanged from upstream. Their losses
+  are the CONTRIBUTING `kinda` list almost verbatim — mobile apps, real-time collaboration,
+  integration catalogues — and none of them has a data or network moat.
+
+### Editorial
+
+Upstream templating again at the category level: all ten project-management entries shipped the
+same `moatType`, `subcategory`, prompt skeleton and `priorArt` (Plane), and all eleven
+time-tracking entries shipped Kimai regardless of whether the product tracks projects or
+attention. Every prompt and all 100 FAQ answers rewritten.
+
+*Help desks (6):* deploy the real Chatwoot as an operations runbook, backups included and
+tested (`chatwoot-cloud`) — a visitor page-history timeline with an explicit retention cutoff
+(`crisp`) — an SLA clock in business hours that pauses on the customer and marks a breach
+permanently (`freshdesk`) — the four agent-throughput features that let one person hold six
+chats, sneak peek included (`livechat`) — a three-layer answering strategy where each layer
+knows when to give up (`tidio`) — a customer portal with organisation-level authorisation,
+retention and hard delete (`zendesk`).
+
+*Project management (10):* goal progress computed and never typed, with the stalest contributing
+project named (`asana`) — reply-by-email as a first-class client, quote stripping tested against
+three mail clients (`basecamp`) — one record, four views, with a test that they agree
+(`clickup`) — automations attached to the column with a no-cascade rule (`meistertask`) — typed
+columns and rules that read as one sentence, with mirror columns read-only (`monday-com`) —
+stories moved by git webhooks, burndown from stored snapshots (`shortcut`) — a real forward and
+backward pass with float and a critical path (`smartsheet`) — dated rate resolution so changing
+a rate never reprices last quarter (`teamwork`) — fractional card ordering tested under two
+hundred drags (`trello`) — branching intake forms validated server-side and approvals that never
+auto-approve (`wrike`).
+
+*Time tracking (9):* a gap detector that finds the hours you forgot (`clockify`) — the
+double-billing problem solved with an `invoice_id` set in one transaction (`harvest`) — a
+self-only activity monitor that refuses screenshots and keystrokes (`hubstaff`) — drag across a
+recorded timeline to create an entry, with raw stream and entries stored separately (`memtime`)
+— focus sessions whose hosts-file block is restored even after a crash (`rescuetime`) — two
+numbers and exactly one daily suggestion (`rize`) — a weekly self-report that deliberately has
+no productivity score, and says so in its own footer (`time-doctor`) — a draft-and-correct loop
+with a visible acceptance rate (`timely`) — client-ready reports where rounding happens at
+report time and the difference is printed (`toggl-track`).
+
+`priorArt` corrected per entry: Plane for the trackers, FreeScout for the two ticketing desks,
+Chatwoot for the chat-shaped ones, Kimai for the three timer-and-invoice tools, ActivityWatch
+for the five passive-capture tools (Kimai is a timesheet system and was wrong for all of them).
+`hubstaff` and `time-doctor` ship with no `priorArt` — there is no open-source workforce
+monitoring tool this project would point a reader at.
+
+`requirements[]` reconciled: the import produced a uniform `hosting`+`domain` for the six help
+desks and a bare `database` for all nine time-tracking entries. Corrections include
+`email-provider` added to the four desks that actually receive mail, `oauth-app` for
+`shortcut` (git webhooks need an app), `anthropic-api-key` for `tidio` and `timely`, `domain`
+dropped from the local-only trackers, and `hosting` dropped from `memtime`, `rescuetime`,
+`rize` and `time-doctor` because their prompts run entirely on one machine with no server.
+
+### Verification
+
+```
+$ npm run validate
+424 fiche(s), 650 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  175 passed (175)
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run build
+Site écrit dans dist/ — 2 langue(s), 650 fiche(s), 73 page(s) de catégorie, 729 URL(s).
+
+$ npm run stats
+424 fiche(s) : yes 57 (13 %), kinda 253 (60 %), no 114 (27 %)
+```
+
+
+## Batch 14 — video meetings, monitoring, cloud storage (424 → 449)
+
+Closes `time-tracking` (10), opens `video-meetings` (9), `monitoring` (7) and `cloud-storage`
+(8 of 9).
+
+### One exclusion, and two pricing URLs that were simply wrong
+
+`box-personal-pro` is excluded: `box.com/pricing` and `box.com/pricing/individual` both return
+a Cloudflare interstitial that neither curl nor a real Chrome session cleared, and unlike the
+`pipedrive` case there is no long-standing published figure corroborating the $14 "Personal
+Pro" upstream recorded. The `reply-io` precedent — unreadable *and* uncorroborated means
+excluded, unreadable but corroborated means `confidence: low` with the block written into the
+notes.
+
+Two upstream `pricing.source` URLs turned out to point at something other than a pricing page:
+
+- **`whereby`** — `whereby.com/pricing` is **not a pricing page**. Whereby turns any
+  unrecognised path into a meeting room, so that URL opens a room called "pricing", complete
+  with a name prompt. The real page is `whereby.com/information/meetings/pricing`, and the
+  entry cites that. This is worth flagging as a class: a 200 response is not evidence that a
+  citation is correct.
+- **`webex-meet`** — `webex.com/pricing/index.html` returns an Akamai "Access Denied" both to
+  a script and to a browser; `webex.com/pricing` redirects to the `pricing.webex.com`
+  subdomain, which serves normally. Citation moved there.
+- **`harvest`** (batch 13) was the same shape: `harvestapp.com/pricing` now 404s.
+
+### Prices — 19 of 25 were wrong
+
+| Slug | Upstream | Corrected |
+|---|---|---|
+| `timing` | $11 Professional | **€8**, annual-effective (geo EUR, €10 monthly) |
+| `demio` | $59 Starter | **$45**, annual-effective ($63 monthly) |
+| `livestorm` | $99 Pro, flat-monthly | **€2.50 per attendee**, usage-based — see below |
+| `microsoft-teams-essentials` | $4, per-seat-monthly | $4, **annual-effective** |
+| `webex-meet` | $14.50 Meet | **$12** ($144 a year) |
+| `webinarjam` | $49 "Basic" | $49 **"Starter"** — $49 is the 100-attendee tier, not the 500 |
+| `whereby` | $8.99 Pro | **$10.99** Pro |
+| `zoom-pro` | $15.99 Pro | **€13.33**, annual-effective (geo EUR) |
+| `google-workspace-business-starter` | $7 | **€6.80** (geo EUR) |
+| `axiom` | $25 "Personal" | $25 **"Axiom Cloud"** — Personal is now the free tier |
+| `checkly` | $39 Starter | **$24** |
+| `honeycomb` | $130 Pro | **$150** Pro |
+| `logrocket` | $69 "Team" | **$176 "Core"**, usage-based (slider default) |
+| `pingdom` | $15 | **€16** (geo EUR) |
+| `sentry` | $29 Team | **$26** Team |
+| `backblaze-personal-backup` | $9 | **$8.25** ($99 a year per computer) |
+| `dropbox-plus` | $11.99 Plus | **€9.99** (geo EUR) |
+| `google-one` | $9.99 "Premium 2 TB" | €9.99 **"Google AI Plus (2 TB)"** — tier renamed |
+| `mega-pro` | $10.99 Pro I | **€8.33**, annual-effective (geo EUR) |
+| `pcloud` | $9.99 | **€8.33** (€99.99 a year) |
+| `proton-drive-plus` | $4.99 | **€3.99**, annual-effective |
+| `sync-com` | $8 Solo Basic | **$6**, annual-effective — but see below |
+| `crowdcast`, `datadog`, `icloud-plus` | — | confirmed correct |
+
+**`livestorm` is a judgement call worth stating.** It has moved off monthly pricing entirely:
+Pro is €2.50 per attendee credit, bought as a yearly pack, with no monthly fee published
+anywhere on the page. That is a citable price but it is not a monthly one. Rather than exclude
+a live product for changing its pricing model, the entry records `amount: 2.50` with
+`basis: usage-based` and a `pricing.notes` that says in the first sentence that the figure is
+per attendee rather than per month. Flagged here because a reader skimming the card will see
+"€2.50" and could reasonably misread it.
+
+`sync-com` and `logrocket` carry `confidence: medium`: Sync's figures are printed against
+struck-through list prices, so they are promotional and may not persist, and LogRocket's is
+the default position of a session-volume slider on a page that says the final price depends on
+seats, retention and add-ons. `dropbox-plus`, `pingdom` and `meistertask`-style
+billing-period ambiguity is handled the same way as batch 13.
+
+### Verdicts
+
+1 `yes` / 3 `kinda` / 21 `no`. This batch is `no`-heavy because of what is in it, not because
+of a quota: nine video-conferencing products and eight cloud-storage products are the two
+clearest infrastructure categories in the whole catalogue.
+
+- **All nine `video-meetings` entries stay `no`.** Multi-party real-time video needs media
+  servers and relays near every participant, and the pricing pages say so themselves —
+  Crowdcast bills per live attendee, Livestorm per attendee credit, WebinarJam prices every
+  tier as an attendee capacity step. That is infrastructure, which is the CONTRIBUTING
+  definition of `no`.
+- **All eight `cloud-storage` entries stay `no`**, for the same structural reason: durability
+  and egress are priced by the datacentre. `backblaze-personal-backup` is the clearest case —
+  you cannot rebuild "unlimited".
+- **`pingdom` moved `no` → `kinda`.** Uptime checking has the most mature open-source
+  equivalent in this whole batch, and the DIY version is a weekend. What remains — checks from
+  many countries, and SMS delivery — needs rented hosts and a messaging provider, both
+  available to anyone, so neither is a hard dependency. The prompt makes the one genuinely
+  non-negotiable point the deployment rule rather than a feature: run the monitor somewhere
+  that is not the thing it monitors.
+- `axiom`, `checkly` and `sentry` stay `kinda`, `datadog`, `honeycomb` and `logrocket` stay
+  `no`. `logrocket` staying `no` is consistent with `mouseflow` and `lucky-orange`, already in
+  the catalogue at `no` for the same session-replay reasons.
+- `timing` stays `yes` at `verdictConfidence: medium` — local capture, no key, no service, but
+  a homemade recorder sees less than the native one does.
+
+### Editorial
+
+Upstream shipped one template per category again: all nine video entries carried the same
+`moatType`, `subcategory` and Jitsi prior art, all seven monitoring entries carried Uptime
+Kuma regardless of whether the product is a log store or a session recorder, and all eight
+storage entries carried Nextcloud and `requirements: ["none"]`.
+
+Every `no` entry needed a *different* consolation build, which is where the work went:
+
+*Video (9):* the registration and reminder funnel with `.ics` that survives three calendar
+clients (`crowdcast`) — an automated-webinar player whose "Replay" badge cannot be turned off
+in configuration (`demio`) — permanent room links over a self-hosted conferencing server, with
+TURN named as mandatory (`google-workspace-business-starter`) — an engagement layer of upvoted
+questions, timed polls and presence-derived attendance certificates (`livestorm`) — team chat
+where every message belongs to a named topic (`microsoft-teams-essentials`) — a local
+record-transcribe-extract pipeline where every extracted item carries its timestamp
+(`webex-meet`) — a sales-offer timeline whose expiry is enforced server-side, with fake
+scarcity refused (`webinarjam`) — room access rules enforced when the join token is minted
+(`whereby`) — a meeting-cost analyser over your own calendar that prints the annual cost of
+each recurring series (`zoom-pro`).
+
+*Monitoring (7):* a cost ceiling that drops and counts rather than bills (`axiom`) — checks as
+code, run in CI and as a deploy gate (`checkly`) — one host, one screen, and disk alerts on
+projected time-to-full rather than a percentage (`datadog`) — wide events with a BubbleUp-style
+"what is different about the slow ones", plus a published benchmark of where it stops scaling
+(`honeycomb`) — breadcrumbs instead of video, with masking on by default and tested
+(`logrocket`) — a monitor that must not share fate with what it watches (`pingdom`) — a
+readable, overridable fingerprint and regression detection across releases (`sentry`).
+
+*Storage (8):* a scheduled restore drill that scores itself (`backblaze-personal-backup`) —
+version vectors and keep-both conflicts, with the five filesystem edge cases that lose data
+listed and tested (`dropbox-plus`) — the space report a quota bar never gives you, including
+perceptual-hash near-duplicates (`google-one`) — CalDAV, CardDAV and WebDAV so the iPhone's own
+apps sync against your server (`icloud-plus`) — browser-side encryption with the key in the URL
+fragment, and an honest statement of what that does not protect against (`mega-pro`) — direct
+play first, transcode last, with the egress bill shown (`pcloud`) — a key hierarchy where a
+passphrase change re-wraps one key and touches no ciphertext, plus a threat model at the top of
+the README (`proton-drive-plus`) — a hash-chained, append-only access log you would hand to a
+client (`sync-com`).
+
+`priorArt` corrected per entry rather than carried: Owncast for the three streaming-shaped
+webinar tools, BigBlueButton for Livestorm, LiveKit for Whereby, Jitsi for Google Workspace,
+Zulip for Teams, whisper.cpp for Webex; Quickwit, Uptime Kuma, Prometheus, ClickHouse, rrweb
+and GlitchTip across monitoring; restic, Syncthing, Nextcloud, Send, Jellyfin and Cryptomator
+across storage. `zoom-pro` ships with no `priorArt` — its consolation build is a calendar
+analyser and there is nothing honest to point at.
+
+`requirements[]` was rebuilt: `["none"]` on all eight storage entries was wrong in every case
+(each prompt runs a server), `hosting`+`domain` on all nine video entries was wrong for the
+four whose prompts run locally, and `anthropic-api-key` was added to `webex-meet` for the
+extraction step.
+
+### Verification
+
+```
+$ npm run validate
+449 fiche(s), 675 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  175 passed (175)
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run build
+Site écrit dans dist/ — 2 langue(s), 675 fiche(s), 76 page(s) de catégorie, 757 URL(s).
+
+$ npm run stats
+449 fiche(s) : yes 58 (13 %), kinda 257 (57 %), no 134 (30 %)
+```
+
+
+## Batch 15 — photography and business admin (449 → 471)
+
+**22 entries, not 25**, and the reason is deliberate: after `mylio-photos-plus` was excluded,
+the remaining pool split cleanly into one `cloud-storage` leftover, nine `photography` and
+twelve `business-admin`. Filling the last three slots would have meant opening `job-search`
+with three tools and leaving it there. A category opened and left at three is worse than a
+category left closed, so this batch is short and `job-search` stays untouched.
+
+Closes `cloud-storage` (9) and `business-admin` (12); opens `photography` (9).
+
+### One exclusion
+
+`mylio-photos-plus` — mylio.com/pricing 301-redirects to the homepage, and the homepage renders
+no price anywhere: the plan area is a row of "Free Gift with Purchase" banners with the figures
+appearing only inside a checkout flow. Verified with curl and in a real Chrome session. Same
+standing as `dovetail`, `maze` and `timeular`: nothing to cite.
+
+### Three more stale pricing URLs
+
+The pattern from batch 14 continued. `pic-time.com/pricing` 404s (moved to
+`/pricing/client-delivery-suite`), `zenfolio.com/pricing` 404s (moved to `/plans-pricing/`),
+and `aftershoot.com/pricing` redirects to `account.aftershoot.com`. Two more redirect to a
+different page than the one recorded: `legalzoom.com/attorneys/legal-plans/business.html` →
+`/attorneys/`, and `zenbusiness.com/pricing` → `/pricing-products/`. All five citations were
+repointed.
+
+### Prices — 17 of 22 were wrong
+
+| Slug | Upstream | Corrected |
+|---|---|---|
+| `tresorit` | $13.99 "Personal" | **€9.99 "Personal Essential"** — the plain Personal tier is gone |
+| `aftershoot` | $24.99 "Pro" | **$45 "Complete"** — sold as modules, no Pro tier |
+| `capture-one` | $24 Pro | **€20.50** (geo EUR, annual view) |
+| `ente-photos` | $9.99 "2 TB" | **€19** — $9.99 is the 1 TB rate |
+| `flickr-pro` | $8.25 Pro | **$6.83** ($82 a year) |
+| `pic-time` | $10 Beginner | **$7**, annual-effective |
+| `smugmug` | $15 "Power" | **$20 "Direct"** — the Power tier is gone |
+| `zenfolio` | $9 Portfolio | €9 (currency corrected) |
+| `deel` | $49 "US Payroll" | $49 **"Contractor"** — no US Payroll tier on the page |
+| `homebase` | $24.95 Essentials | **$24**, annual-effective |
+| `remote-com` | $10 "HR Management" | **$29 "Payroll"** — see below |
+| `doola` | $24.75 Starter | **$25** ($300 a year at renewal) |
+| `iubenda` | $6.99 Essentials | **€4.99**, usage-based (pageview quota with overage) |
+| `legalzoom` | $39.99 | **$39.09** ($469 a year) |
+| `rocket-lawyer` | $39.99 "Premium" | **$12.41 "Standard"** — the Premium tier is gone |
+| `zenbusiness` | $16.58 "Pro" | $16.58 **"Worry-Free Compliance"** — formation is now $0 + state fees |
+| `pixieset`, `when-i-work`, `factorial-hr` | — | confirmed correct |
+
+Five entries carry reduced confidence and say why in `pricing.notes`:
+`adobe-lightroom` (**medium** — adobe.com refuses this network entirely, the block already on
+record for `adobe-acrobat-pro` and `adobe-express`; the $11.99 figure is long-standing and
+carried over), `gusto` and `northwest-registered-agent` (**low** — both behind a Cloudflare
+interstitial that a browser session did not clear), `remote-com` and `factorial-hr`
+(**medium** — the page prices products the upstream tier names do not map onto, and Factorial
+advertises "starts at $8 per user" without naming the tier at all), plus `smugmug`, `zenfolio`,
+`ente-photos` and `doola` (**medium** — VAT-inclusive rendering, unlabelled billing period, a
+homepage anchor instead of a pricing page, and a promotional first-year rate respectively).
+
+### Verdicts — four moved, all toward buildable, all argued
+
+- **`ente-photos` `no` → `yes`.** Ente publishes clients and server and documents self-hosting
+  as a supported path, and the official mobile clients accept a custom endpoint. That is the
+  hosted-open-source pattern already applied to `ghost-pro`, `umami-cloud`, `tolgee-cloud` and
+  `chatwoot-cloud`. `verdictConfidence: medium` and `diyTimeEstimate: weekend`, because photos
+  are the least forgiving thing to self-host: the failure mode is a family archive with no
+  second copy, and the prompt is a runbook rather than a build.
+- **`adobe-lightroom` `no` → `kinda`.** A serious open-source raw developer has existed for
+  fifteen years, so "you cannot develop raw files without Adobe" is not true. What is lost is
+  named precisely: AI denoise and masking, the mobile applications, and Adobe's measured camera
+  profiles. Those are the `kinda` list.
+- **`factorial-hr` and `homebase` `no` → `kinda`.** Both were filed with the payroll and
+  employer-of-record products, which are genuinely `no`. Neither *is* payroll: Factorial's core
+  is people, leave and documents, and Homebase's is a rota and a time clock, both a weekend for
+  one site. Their real gap is adoption by staff on phones, which is the mobile-app item in the
+  `kinda` list rather than a moat. `gusto`, `deel` and `remote-com` stay `no` — those three sell
+  licences, filings and money movement.
+- The five legal entries (`doola`, `legalzoom`, `northwest-registered-agent`, `rocket-lawyer`,
+  `zenbusiness`) stay `no` without argument: every one of them is a filing made with a
+  government, an address in a state, or access to a licensed attorney.
+
+Batch mix: 1 `yes` / 8 `kinda` / 13 `no`.
+
+### Editorial
+
+Upstream shipped the same template per category once more, and this batch needed a distinct
+consolation build for each of the thirteen `no` entries — the hardest part of the work.
+
+*Photography (9):* sidecar-based catalogue and sync where edits sync and raws do not
+(`adobe-lightroom`) — grouping and measuring frames while refusing to choose one
+(`aftershoot`) — the tethered-session layer with mirror-before-index and a clean client screen
+(`capture-one`) — a self-hosting runbook with a monthly restore drill and paper key custody
+(`ente-photos`) — a Flickr importer that preserves licences, comments and a redirect map
+(`flickr-pro`) — client galleries with a view log and automatic cold-storage archiving
+(`pic-time`) — a back office where the client's name is typed exactly once, tested end to end
+(`pixieset`) — a static site generator that prints its own storage cost and strips GPS by
+default (`smugmug`) — one photo library with a visibility intersection tested in both
+directions (`zenfolio`).
+
+*Business admin (12):* a contractor file storing exchange rates at payment time (`deel`) — a
+leave engine with the five accrual tests written first (`factorial-hr`) — a payroll *model*
+with a dated rate file and a reconciliation against the real invoice (`gusto`) — server-time
+clock-in and flagged auto clock-outs (`homebase`) — notice periods computed from tenure with
+stale country data flagged (`remote-com`) — atomic shift claiming under concurrency
+(`when-i-work`) — an obligation calendar that ships empty and refuses completion without a
+document (`doola`) — consent that injects nothing before it is given, with a self-audit crawl
+(`iubenda`) — a contract register whose extracted values stay unconfirmed until a human ticks
+them (`legalzoom`) — official mail counted from the date it reached the agent, not the date you
+read it (`northwest-registered-agent`) — versioned document assembly reproducible byte for byte
+(`rocket-lawyer`) — a compliance ledger recording the *consequence* of missing each obligation,
+plus a dissolution checklist (`zenbusiness`).
+
+A deliberate pattern across the legal and compliance entries: every one ships its jurisdiction
+data **empty**, with the README saying why. A prefilled deadline or a prefilled statutory rule
+is advice, it will be wrong for someone, and being wrong there is expensive — an empty calendar
+makes you look it up, a wrong one makes you relax.
+
+`priorArt`: darktable for the two raw developers, PhotoPrism for the four gallery products,
+Ente itself for `ente-photos`, Cryptomator for `tresorit`, Klaro for `iubenda`. Nine entries
+ship with **no** `priorArt` — there is no open-source payroll bureau, employer of record,
+registered agent or attorney network to point a reader at, and inventing one would be worse
+than the gap.
+
+### Verification
+
+```
+$ npm run validate
+471 fiche(s), 697 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  175 passed (175)
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run build
+Site écrit dans dist/ — 2 langue(s), 697 fiche(s), 78 page(s) de catégorie, 781 URL(s).
+
+$ npm run stats
+471 fiche(s) : yes 59 (13 %), kinda 264 (56 %), no 148 (31 %)
+```
+
+### What is left, and which categories are still empty
+
+62 upstream entries remain importable after this batch (166 selected, minus the 7 excluded
+across batches 12–15, minus the 97 imported). **Six** of the fifteen categories the taxonomy
+pass opened are still completely empty, verified by counting `data/tools` against
+`data/categories.json` rather than from memory:
+
+| Category | Entries waiting | Notes |
+|---|---|---|
+| `job-search` | 10 | deliberately left closed rather than opened at 3 |
+| `learning` | 10 | language apps and course platforms |
+| `health-fitness` | 10 | |
+| `travel` | 10 | |
+| `home-family` | 9 | |
+| `media-streaming` | 7 | plus 4 upstream `audio` entries routed to the existing `audio-video` |
+| `translation` | 2 | already has 6 tools, so not empty — these complete it |
+
+An empty category produces no page but is still a promise in `data/categories.json`. If the
+remaining batches are not run, those six should be removed from the taxonomy rather than left
+declared.

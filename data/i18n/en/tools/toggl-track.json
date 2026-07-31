@@ -1,0 +1,32 @@
+{
+  "tagline": "The timer that is already inside every other tool you use.",
+  "verdictSummary": "Toggl's stopwatch is an evening. What the subscription buys is that the stopwatch is everywhere — a browser extension that puts a start button inside a hundred other web apps, plus desktop and mobile clients — and a reporting layer that turns entries into something a client will accept. The rebuild here goes after the reporting half, because that is the part a personal build can genuinely match, and is honest that the capture half is where the money goes.",
+  "coreLoopDIY": "Track time, then produce the artefact that ends the conversation: a client-ready report on a share link, grouped and rounded by rules you set, with the raw durations preserved underneath.",
+  "whatYouLose": [
+    "the browser extension that adds a timer inside other web apps",
+    "the desktop and mobile clients, and the idle-time prompt",
+    "billable rates, team dashboards and project profitability",
+    "calendar integration that turns a meeting into an entry",
+    "the polish of exported reports and their branding"
+  ],
+  "whyPeopleStillPay": "Because time only gets tracked if starting the timer costs nothing, and the extension plus the apps are what make that true. Everything else in Toggl is replaceable; that part is what you are paying for.",
+  "prompt": "Build a time tracker whose strongest feature is the report you hand to a client.\n\nStack: your choice, Postgres, Docker Compose, a domain with TLS for the share links.\n\nTracking basics: Clients, Projects, Tasks, Tags, TimeEntries with start, end, description, billable flag. A running timer, manual entry, duplicate-yesterday, and bulk edit over a selection.\n\nKeyboard-first entry: a global shortcut opens a single input where typing a description, `@project` and `#tag` starts a timer in one line, with fuzzy matching ranked by recent use. This is the closest a self-hosted tool gets to the extension, and it is worth the hour.\n\nThe reporting layer:\n- Group by any two of client, project, task, tag, person, day, with subtotals at each level.\n- Rounding applied **at report time only**, configurable to 5, 6, 15 or 30 minutes, up, down or nearest, with the unrounded total always shown beside it. Never round the stored entry.\n- A rounding-difference line — the gap between raw and rounded — so nobody can accuse the report of hiding it.\n- Share links: a read-only public report on a long random token, with an optional expiry date and an optional revoke. Compare tokens in constant time, do not expose any listing endpoint, and set noindex on the page.\n- Export the same report as CSV and as a print-clean HTML page that produces a decent PDF through the browser.\n- Saved report definitions with a name, re-runnable against a new date range in one click.\n\nDetail worth building: a \"no project\" warning on the report screen that refuses to generate a share link while any entry in the range has no project, since that is the failure that makes a client ask what the missing four hours were.\n\nWrite tests for each rounding mode at exact boundaries, for two-level grouping subtotals summing to the total, and for share-token expiry and revocation.\n\nDo not build a browser extension, mobile apps, or billable rates and profitability — those are the Harvest entry's territory.",
+  "faq": [
+    {
+      "q": "Why show the rounding difference explicitly?",
+      "a": "Because rounding to the nearest fifteen minutes across forty entries can add a few hours to an invoice, and a client who discovers that on their own will assume the worst. Printing the difference makes it a policy instead of a surprise."
+    },
+    {
+      "q": "Can a keyboard shortcut really replace the browser extension?",
+      "a": "For starting and stopping, mostly — one line with fuzzy project matching is fast. What it cannot do is put a start button inside the issue you are already looking at, which is what makes the extension worth paying for."
+    },
+    {
+      "q": "Are public share links safe?",
+      "a": "Only with care. A long random token, constant-time comparison, no listing endpoint, noindex, and an expiry date make them acceptable for a report. Anything shorter or guessable is a client's billing data on the open web."
+    },
+    {
+      "q": "Does Toggl export everything?",
+      "a": "Entries, projects, clients and tags all export as CSV, and the API covers the rest including saved reports. It is one of the cleaner exports in this category, which makes trying a replacement low-risk."
+    }
+  ]
+}

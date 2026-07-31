@@ -1,0 +1,36 @@
+{
+  "slug": "northwest-registered-agent",
+  "name": "Northwest Registered Agent",
+  "domains": [
+    "northwestregisteredagent.com"
+  ],
+  "category": "business-admin",
+  "subcategory": "registered agent service",
+  "pricing": {
+    "amount": 10.42,
+    "currency": "USD",
+    "plan": "Registered Agent",
+    "basis": "annual-effective-monthly",
+    "source": "https://northwestregisteredagent.com/registered-agent",
+    "checkedOn": "2026-07-31",
+    "confidence": "low",
+    "notes": "Not verifiable from here: the site returns a Cloudflare interstitial to both a scripted fetch and a browser session. $10.42 a month is $125 a year, which is the long-standing published rate, but both the figure and the plan name are carried over from the upstream record and should be treated as unconfirmed."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "a physical address and a statutory duty",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "relatedSlugs": [
+    "zenbusiness",
+    "doola",
+    "legalzoom"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

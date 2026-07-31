@@ -1,0 +1,32 @@
+{
+  "tagline": "Mail, storage, documents and Meet at your own domain, for one seat price.",
+  "verdictSummary": "This entry is a bundle, and each piece fails a rebuild for a different reason: business email needs a domain with a sending reputation and somebody to answer when it stops delivering, storage needs durability, and Meet needs media infrastructure. Seven euros a seat is cheap for any one of them. What a personal build can genuinely own is the meeting-room half, because a self-hosted room for a handful of people is real — so that is what the prompt builds, and it says plainly which parts it is not attempting.",
+  "coreLoopDIY": "Own the meeting room: permanent room links on your own domain backed by a self-hosted conferencing server, with calendar invites you generate yourself.",
+  "whatYouLose": [
+    "business email at your domain, and the deliverability behind it",
+    "collaborative documents and spreadsheets with real-time editing",
+    "durable pooled storage and the sync clients for it",
+    "meetings that hold up beyond a handful of participants",
+    "a support contract and an admin console"
+  ],
+  "whyPeopleStillPay": "Because it is four products at the price of a coffee per person, and because business email failing on a Tuesday is a problem you want somebody else to own.",
+  "prompt": "Build the meeting half of a business bundle: permanent, memorable room links on your own domain, over conferencing software you run.\n\nBe explicit in the README about what this is not — it is not email, documents or storage, and each of those is a separate and larger job.\n\nStack: a self-hosted conferencing server (Jitsi Meet is the reference; note in the README that a TURN server is mandatory, not optional, because a meaningful share of participants sit behind NAT that blocks direct connections), plus a small application on your own domain that owns rooms and invites.\n\nRooms: a named, permanent room at meet.yourdomain.tld/name. Each room has an owner, an optional lobby, and an access rule from a fixed set — open to anyone with the link, open only to signed-in members, or knock-to-enter with the owner admitting people. Never generate a room name that is guessable or sequential; an open room with a predictable URL is how strangers wander into a meeting.\n\nInvites: from a room, generate an `.ics` for a one-off or recurring meeting with the room URL in the location and body. Get the details right — UTC `DTSTART` with a `TZID`, a stable `UID`, `SEQUENCE` incremented on edits, `RRULE` for recurrence — and test in Google Calendar, Apple Calendar and Outlook.\n\nCapacity honesty: put the tested participant limit on the room page, measured on your own hardware rather than guessed, and refuse entry past it with a clear message instead of degrading for everyone. Document how you measured it.\n\nOperations, because this is the real cost: a health check that verifies the TURN server actually relays, an alert if it stops, and a README section on the bandwidth a meeting consumes per participant so the hosting bill is not a surprise.\n\nWrite tests for room-name generation being unguessable, for access rules being enforced server-side rather than in the UI, and for `.ics` recurrence and updates.\n\nDo not attempt email, documents, or file storage.",
+  "faq": [
+    {
+      "q": "Why is a TURN server described as mandatory?",
+      "a": "Because without it, participants behind symmetric NAT or a restrictive corporate firewall simply cannot connect, and the failure looks like \"video conferencing is broken\" rather than a missing component. It also carries real bandwidth cost, since relayed media flows through your server."
+    },
+    {
+      "q": "How many participants can a self-hosted room actually hold?",
+      "a": "It depends entirely on your hardware and uplink, which is why the prompt asks you to measure rather than guess. A modest VPS handles a small team meeting; anything approaching a webinar needs infrastructure you should be paying someone else for."
+    },
+    {
+      "q": "Could I replace the email half too?",
+      "a": "You could route mail through a transactional provider on your own domain, but running the mailbox and keeping deliverability healthy is an ongoing job, and getting it wrong means invoices that silently never arrive. That is the single strongest reason this entry is a no."
+    },
+    {
+      "q": "Does Google Workspace let me leave cleanly?",
+      "a": "Reasonably. Takeout exports mail, Drive, Calendar and Contacts per user, and the admin console has a data-export tool for the whole domain. The awkward part is shared drives and permissions, which come out as files without their sharing structure."
+    }
+  ]
+}

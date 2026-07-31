@@ -1,0 +1,44 @@
+{
+  "slug": "hunter-io",
+  "name": "Hunter",
+  "domains": [
+    "hunter.io"
+  ],
+  "category": "crm-sales",
+  "subcategory": "email finding and verification",
+  "pricing": {
+    "amount": 49,
+    "currency": "EUR",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://hunter.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Page is geo-priced: €49 a month billed monthly, €34 a month (€408 a year) billed annually, for 2,000 credits a month. Read from the EU; the same tier is priced in USD elsewhere."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "crawled email index",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "check-if-email-exists",
+      "url": "https://github.com/reacherhq/check-if-email-exists"
+    }
+  ],
+  "relatedSlugs": [
+    "apollo-io",
+    "snov-io",
+    "clay"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

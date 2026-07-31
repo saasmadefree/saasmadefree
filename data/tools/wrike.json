@@ -1,0 +1,44 @@
+{
+  "slug": "wrike",
+  "name": "Wrike",
+  "domains": [
+    "wrike.com"
+  ],
+  "category": "project-management",
+  "subcategory": "work management with request intake",
+  "pricing": {
+    "amount": 10,
+    "currency": "USD",
+    "plan": "Team",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.wrike.com/price/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The page states the amount is \"priced per month and billed on an annual per-user basis\", and that this pricing applies only to purchases made on or after 21 January 2026."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "intake and approval workflow",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Plane",
+      "url": "https://github.com/makeplane/plane"
+    }
+  ],
+  "relatedSlugs": [
+    "asana",
+    "smartsheet",
+    "teamwork"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

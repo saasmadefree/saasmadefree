@@ -1,0 +1,43 @@
+{
+  "slug": "adobe-lightroom",
+  "name": "Adobe Lightroom",
+  "domains": [
+    "lightroom.adobe.com"
+  ],
+  "category": "photography",
+  "subcategory": "raw photo editing and cataloguing",
+  "pricing": {
+    "amount": 11.99,
+    "currency": "USD",
+    "plan": "Lightroom 1 TB",
+    "basis": "flat-monthly",
+    "source": "https://www.adobe.com/creativecloud/photography/compare-plans.html",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "Not verifiable from here: adobe.com refuses every connection from this network, in a scripted fetch and in a real Chrome session alike — the same block already recorded for adobe-acrobat-pro and adobe-express. The $11.99 Lightroom-with-1TB figure is long-standing and widely published, so it is carried over at reduced confidence rather than presented as read."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "camera profiles and cloud sync",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "darktable",
+      "url": "https://github.com/darktable-org/darktable"
+    }
+  ],
+  "relatedSlugs": [
+    "capture-one",
+    "aftershoot",
+    "ente-photos"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

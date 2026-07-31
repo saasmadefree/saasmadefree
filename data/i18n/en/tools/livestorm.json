@@ -1,0 +1,32 @@
+{
+  "tagline": "Browser-based webinars billed by the head rather than by the month.",
+  "verdictSummary": "Livestorm now charges per attendee, which is an honest admission of where its cost sits: delivering live video to each additional person. That is infrastructure, and it is why this is a no. The half worth rebuilding is the engagement layer — polls, upvoted questions, attendance certificates — because it works beside any video source and because it is what turns a broadcast into something people remember attending.",
+  "coreLoopDIY": "Run the engagement layer next to whatever video you use: polls that close on a timer, a question board where the audience upvotes what it wants answered, and attendance certificates issued from real presence data.",
+  "whatYouLose": [
+    "the video delivery, which is what the per-attendee price buys",
+    "the integrated player and its second-by-second analytics",
+    "real-time translated subtitles",
+    "the CRM and marketing-automation integrations",
+    "reliability when hundreds join at once"
+  ],
+  "whyPeopleStillPay": "Because per-attendee pricing means you only pay when the event worked, and because nobody wants to explain to four hundred registrants why the stream froze.",
+  "prompt": "Build the audience-engagement layer for a live session. It sits beside a video you host anywhere and never touches the stream.\n\nStack: your choice with websockets, Postgres, Docker Compose.\n\nA Session has a start time, a duration, and a list of participants who joined via a personal token link.\n\nQuestion board, the centrepiece: anyone can post a question, anyone can upvote, and the presenter view is sorted by votes with answered questions collapsing to the bottom. Two details separate this from a chat window — a per-participant rate limit so one person cannot flood it, and near-duplicate detection at submission time that offers \"this looks like an existing question, upvote it instead?\" rather than creating a fourteenth version of the same thing.\n\nPolls: multiple choice or scale, opened by the presenter with a countdown, closing automatically. Results render live as a bar chart and are frozen once closed. A participant who joins after a poll closed sees the result, not a chance to vote.\n\nPresence: sample each connected participant every thirty seconds and store it. That sample stream is the source for everything below, and it is deliberately coarse — you need attendance, not surveillance.\n\nAttendance certificates: from the presence data, compute each participant's attended minutes, and issue a PDF certificate only to those over a threshold you set, with their name, the session title, the date, the minutes attended and a verification code. Publish a page where the code can be checked. The point is that the certificate is derived from real presence rather than from registration.\n\nOne report: concurrent participants over time, question volume and answer rate, poll response rates, and the attendance distribution.\n\nExport: questions and votes as CSV, presence samples as CSV, certificates as files.\n\nWrite tests for upvote idempotency per participant, for poll closing being irreversible, and for attended-minute computation with a participant who disconnects and rejoins.\n\nDo not stream video and do not build a chat room — the question board is deliberately not a chat.",
+  "faq": [
+    {
+      "q": "Why a question board instead of chat?",
+      "a": "Because chat during a webinar is noise that the presenter cannot act on, and upvoting turns the same audience into a ranked list of what they actually want answered. It is the one interaction pattern that improves a large session rather than distracting from it."
+    },
+    {
+      "q": "Are attendance certificates worth building?",
+      "a": "For anything training-shaped, yes — they are frequently the reason someone stays to the end. Deriving them from presence samples rather than registration is what makes them mean anything."
+    },
+    {
+      "q": "Is presence sampling a privacy problem?",
+      "a": "It is personal data, so say what you collect and keep it briefly. Sampling every thirty seconds is enough for attended-minute totals, which is why the prompt specifies a coarse interval instead of continuous tracking."
+    },
+    {
+      "q": "How does Livestorm's attendee-credit model actually work?",
+      "a": "You buy a yearly pack and spend one credit per unique person per session, live or replay, over twelve months. The same person at two sessions costs two credits; your own team members do not consume credits. If you exhaust the pack, new attendees cannot join until you upgrade."
+    }
+  ]
+}

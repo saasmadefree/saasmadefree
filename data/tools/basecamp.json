@@ -1,0 +1,45 @@
+{
+  "slug": "basecamp",
+  "name": "Basecamp",
+  "domains": [
+    "basecamp.com"
+  ],
+  "category": "project-management",
+  "subcategory": "flat-fee project workspace",
+  "pricing": {
+    "amount": 15,
+    "currency": "USD",
+    "plan": "Plus",
+    "basis": "per-seat-monthly",
+    "source": "https://basecamp.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Billed monthly, employees only — clients and contractors are free. The Pro Unlimited alternative is $299 a month flat for unlimited users. Timesheet, Admin Pro Pack and extra storage are $50 a month each."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "opinionated simplicity and free guests",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Plane",
+      "url": "https://github.com/makeplane/plane"
+    }
+  ],
+  "relatedSlugs": [
+    "teamwork",
+    "meistertask",
+    "trello"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

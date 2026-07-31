@@ -1,0 +1,32 @@
+{
+  "tagline": "Picks the keepers out of three thousand wedding frames.",
+  "verdictSummary": "Culling is a judgement problem dressed as a technical one. Aftershoot's models were trained on how professional photographers actually choose between near-identical frames — which blink matters, which expression wins, when a slightly softer frame is the better picture — and that training set is the product. A personal build can do the mechanical part, and the mechanical part is genuinely useful, but it will not pick the photograph.",
+  "coreLoopDIY": "Do the mechanical half of culling honestly: group near-identical frames, score each on focus and eyes-open, and present the group side by side for you to choose — never choosing for you.",
+  "whatYouLose": [
+    "the trained judgement about which frame is the better photograph",
+    "style-matched automatic editing from your own past edits",
+    "portrait retouching",
+    "the desktop application and its speed on thousands of raws",
+    "anything approaching the accuracy the paid product advertises"
+  ],
+  "whyPeopleStillPay": "Because a wedding is three thousand frames and culling is the least enjoyable day of the job. The models are trained on choices a solo developer has no access to.",
+  "prompt": "Build a culling assistant that groups and measures but refuses to decide.\n\nStack: a local application, SQLite, no network. Read embedded JPEG previews from raw files rather than decoding raws — decoding three thousand raws is the difference between minutes and hours.\n\nGrouping: cluster frames into bursts by capture time gap and visual similarity using a perceptual hash on the preview. A group is a set of near-identical attempts at the same picture, which is the unit a photographer actually chooses within.\n\nPer-frame measurements, all mechanical and all explainable:\n- **Focus**: variance of the Laplacian over the frame, and separately over the detected face region, since a sharp background with a soft face is the frame you throw away.\n- **Eyes**: detect faces and estimate whether eyes are open, reported per face with a confidence, never as a verdict.\n- **Exposure**: clipped highlight and shadow percentages from the histogram.\n- **Composition drift**: how much the framing moved within the group.\n\nThe review interface is the point: one group at a time, frames side by side at a usable size, with the measurements shown as small labels under each. Keyboard only — number keys to rate, space to advance, one key to keep the whole group, one to reject it. The application suggests a default selection based on the measurements and **pre-selects nothing**; the suggestion is a highlight, and moving past it takes one keystroke.\n\nWrite ratings and rejections to sidecar files next to the originals so the raw developer picks them up. Never move or delete a file.\n\nA session can be paused and resumed exactly where it stopped, because culling three thousand frames is not one sitting.\n\nReport per session: frames reviewed, keep rate, time per group, and how often you agreed with the suggestion — that last number tells you honestly whether the mechanical measurements are worth anything for your work.\n\nWrite tests for burst grouping at the time-gap boundary, for focus scoring ranking a known sharp frame above a known soft one, and for resume returning to the exact group.\n\nDo not train a model on your edits, and do not auto-delete anything.",
+  "faq": [
+    {
+      "q": "How close can mechanical scoring get to real culling?",
+      "a": "It reliably removes the obviously unusable — badly out of focus, fully clipped, eyes shut — which is a real fraction of a shoot. It cannot tell you which of four sharp, well-exposed smiles is the picture, and that is most of the work."
+    },
+    {
+      "q": "Why measure focus on the face separately?",
+      "a": "Because whole-frame sharpness scores a picture with a crisp background and a soft subject as good, and that frame is always a reject. Face-region focus is the single most useful measurement in the list."
+    },
+    {
+      "q": "Why track agreement with the suggestion?",
+      "a": "Because it is the only honest evaluation. If you override the suggestion most of the time, the measurements are not helping for your style and you should stop looking at them."
+    },
+    {
+      "q": "Why read the embedded preview instead of the raw?",
+      "a": "Speed. Every raw contains a full-size JPEG the camera generated, and it is good enough for focus and face detection. Decoding raws for culling turns a twenty-minute pass into an afternoon."
+    }
+  ]
+}

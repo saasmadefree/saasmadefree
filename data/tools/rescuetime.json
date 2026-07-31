@@ -1,0 +1,42 @@
+{
+  "slug": "rescuetime",
+  "name": "RescueTime",
+  "domains": [
+    "rescuetime.com"
+  ],
+  "category": "time-tracking",
+  "subcategory": "attention tracking and focus sessions",
+  "pricing": {
+    "amount": 9,
+    "currency": "USD",
+    "plan": "Focus",
+    "basis": "flat-monthly",
+    "source": "https://www.rescuetime.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$9 a month billed monthly; $7 a month on the annual plan ($84 a year). The \"Premium\" tier upstream recorded no longer exists — the individual tiers are now Focus, and Focus with Timesheets at $15 monthly."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "maintained site classification",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "ActivityWatch",
+      "url": "https://github.com/ActivityWatch/activitywatch"
+    }
+  ],
+  "relatedSlugs": [
+    "rize",
+    "memtime",
+    "timely"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

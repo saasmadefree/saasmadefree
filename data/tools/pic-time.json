@@ -1,0 +1,45 @@
+{
+  "slug": "pic-time",
+  "name": "Pic-Time",
+  "domains": [
+    "pic-time.com"
+  ],
+  "category": "photography",
+  "subcategory": "client galleries with a print store",
+  "pricing": {
+    "amount": 7,
+    "currency": "USD",
+    "plan": "Beginner",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.pic-time.com/pricing/client-delivery-suite",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "US$7 a month billed annually, or $8 month-to-month, with 10 GB of photo storage. Upstream recorded $10, and pic-time.com/pricing now 404s — the page moved under /pricing/client-delivery-suite."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "print fulfilment network",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "PhotoPrism",
+      "url": "https://github.com/photoprism/photoprism"
+    }
+  ],
+  "relatedSlugs": [
+    "pixieset",
+    "zenfolio",
+    "smugmug"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

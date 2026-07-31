@@ -1,0 +1,32 @@
+{
+  "tagline": "A shared inbox where every message has one owner and one status.",
+  "verdictSummary": "Front is email with a state machine bolted on, and both halves are ordinary software — mature open-source shared inboxes have existed for years. A weekend gets you assignment, statuses, internal comments and a shared drafts flow. What stops this being a yes is the channel list: WhatsApp needs Meta business verification, SMS needs a carrier and a registered campaign, and both are approval processes rather than code. Email alone also needs a provider and a domain with a reputation.",
+  "coreLoopDIY": "One shared mailbox where every conversation has exactly one assignee and one status, internal comments live beside the thread and can never reach the customer, and a reply moves the state automatically.",
+  "whatYouLose": [
+    "WhatsApp and SMS channels, which need business verification and a carrier",
+    "the mobile apps",
+    "shared drafts with real-time collaborative editing",
+    "the connectors that pull CRM and billing context into the sidebar",
+    "analytics on response and resolution time out of the box"
+  ],
+  "whyPeopleStillPay": "Because a shared inbox is only as good as the number of channels it swallows, and each additional channel is a business relationship rather than an integration. Front sells having already done all of them.",
+  "prompt": "Build a shared inbox whose defining property is that no message is ever in two states at once.\n\nStack: your choice, Postgres, Docker Compose. Receiving mail: use an inbound-email provider that posts a signed webhook, and verify that signature. Sending: SMTP through a transactional provider on a domain you own with SPF, DKIM and DMARC configured — document all three in the README, because without them your replies land in spam.\n\nThe state machine is the product. A Conversation has exactly one assignee (possibly nobody) and exactly one status from: open, snoozed until a timestamp, waiting on customer, closed. Every transition is written to an immutable log with who, when, from and to. Rules the code enforces:\n- Sending a reply sets waiting-on-customer automatically.\n- An inbound message on a waiting-on-customer or snoozed conversation reopens it and clears the snooze.\n- Closing while unassigned is refused; you own what you close.\n\nInternal comments are a separate entity from messages, stored in a different table, rendered in a visually distinct style, and — this is the safety property worth testing — the reply composer physically cannot include them. Write a test that asserts an outbound message body never contains comment text.\n\nAssignment: assign to a person, or take it, with an optional round-robin over available people. An unassigned inbound conversation older than a configurable time appears in a \"nobody owns this\" list on the dashboard.\n\nThreading by Message-ID, In-Reply-To and References, with a same-subject-and-participant fallback for clients that break references. Store raw MIME. Strip remote images and never auto-load them.\n\nCanned replies with {{placeholder}} interpolation, and tags.\n\nOne report: median first-response time and median time to close, per week, computed from the transition log.\n\nWrite tests for every status transition rule above, for the internal-comment leak guard, and for the inbound webhook rejecting an unsigned request.\n\nDo not build WhatsApp, SMS, or a mobile app. State in the README that these are the reasons someone keeps paying.",
+  "faq": [
+    {
+      "q": "Why is \"internal comments cannot leak\" worth a dedicated test?",
+      "a": "Because it is the one bug in this category with real consequences — a colleague's blunt note reaching the customer. Keeping comments in a separate table and asserting the outbound body never contains them costs ten minutes and removes the whole class."
+    },
+    {
+      "q": "How hard is adding WhatsApp later?",
+      "a": "Harder than the rest of this build combined, and mostly not technical: a Meta business account, business verification, a phone number that is not already on WhatsApp, and message templates that need approval before you can start a conversation. That approval path is a large part of what Front sells."
+    },
+    {
+      "q": "Can I use my existing Gmail instead of an inbound provider?",
+      "a": "For one mailbox, yes, via the Gmail API with OAuth. It gets awkward with several mailboxes and with sending on behalf of an alias, which is why the prompt starts from a provider — but the state machine is identical either way."
+    },
+    {
+      "q": "Does Front export my history?",
+      "a": "There is an export of conversations and an API you can page through, so the message archive is retrievable. Assignment history, comments and analytics come out in shapes that are awkward to reimport, so treat the export as an archive rather than a migration."
+    }
+  ]
+}

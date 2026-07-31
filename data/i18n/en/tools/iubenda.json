@@ -1,0 +1,32 @@
+{
+  "tagline": "A cookie banner and a privacy policy that a lawyer keeps up to date.",
+  "verdictSummary": "The banner is a small piece of JavaScript and there is a good open-source one. What iubenda actually sells is legal text drafted and maintained by lawyers across jurisdictions, updated when a regulator or a court changes what is required, generated for the specific services your site uses. That is a subscription to legal work. Writing your own policy from a template is a decision about risk, not a build.",
+  "coreLoopDIY": "Own the technical half properly: consent captured before anything loads, stored with proof, honoured on every subsequent visit — and get the policy text from a lawyer.",
+  "whatYouLose": [
+    "privacy and cookie policy text maintained by lawyers as the law changes",
+    "per-service clauses generated from the tools your site actually uses",
+    "translations of that text into every language you publish in",
+    "the hosted consent database and its records",
+    "someone to point at if a policy is challenged"
+  ],
+  "whyPeopleStillPay": "Because the compliance risk sits in the words, not the widget, and five euros a month for text somebody professionally maintains is cheap against a complaint.",
+  "prompt": "Build a consent manager that is technically correct, and be explicit that the legal text is not its job.\n\nThe README must say, in the first paragraph: this handles consent mechanics; the policy wording must come from a qualified source; nothing here is legal advice.\n\nStack: a small script plus a server with Postgres. A domain with TLS.\n\nThe rule everything else follows from: **nothing non-essential loads before consent**. Scripts are declared in configuration by category (strictly necessary, preferences, statistics, marketing) and are injected only after consent for that category. Never inject and then try to disable — by then the third party has already seen the visitor's IP address, which is the entire thing consent was supposed to prevent.\n\nBanner requirements, each of which is a real obligation in the EU and easy to get wrong:\n- Reject must be as easy as accept — same level, same prominence, same number of clicks. Write a test asserting the two buttons are siblings with equal weight.\n- Granular per-category toggles, all off by default except strictly necessary.\n- No pre-ticked boxes, no dark patterns, no cookie wall.\n- Withdrawing consent must be as easy as giving it: a persistent, reachable control on every page.\n\nProof of consent: store a record with a random identifier (not an account, not an email), the categories accepted, the timestamp, the banner version and the policy version in force at that moment. Versioning is the part people skip and the part that makes the record meaningful — proof of consent to a policy you can no longer reproduce proves nothing. Keep every version.\n\nRe-consent: when the policy version or the script list changes materially, ask again rather than assuming the old consent carries.\n\nA visitor-facing page showing their current choices and letting them change or withdraw, reachable without an account.\n\nSelf-audit: crawl your own pages with a headless browser, once with consent refused, and list every outbound request that happened anyway. That report is the honest test of whether the implementation works, and it usually fails the first time.\n\nWrite tests for no non-essential request occurring before consent, for equal-prominence buttons, for versioned consent records, and for withdrawal taking effect immediately.\n\nDo not generate policy text.",
+  "faq": [
+    {
+      "q": "Why is \"inject after consent\" the whole design?",
+      "a": "Because loading a third-party script and disabling it later has already sent the visitor's IP address and often set cookies. Consent that arrives after the request is not consent, and this is the most common failure in homemade banners."
+    },
+    {
+      "q": "Why version the consent record?",
+      "a": "Because a record saying \"accepted on 3 March\" is worthless if you cannot show what was accepted. Storing the banner and policy version, and keeping every version, is what turns a log line into proof."
+    },
+    {
+      "q": "Is the self-audit crawl really necessary?",
+      "a": "Yes, and it will fail the first time. A tag added by a marketing plugin, a font loaded from a CDN, an embedded video — all fire before consent unless someone checks. The crawl is the only way to know."
+    },
+    {
+      "q": "Can I write my own privacy policy?",
+      "a": "You can, and plenty of small sites do from templates. What you are giving up is that the text is maintained when the law moves and tailored to the services you actually use — which is precisely the subscription."
+    }
+  ]
+}

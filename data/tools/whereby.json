@@ -1,0 +1,43 @@
+{
+  "slug": "whereby",
+  "name": "Whereby",
+  "domains": [
+    "whereby.com"
+  ],
+  "category": "video-meetings",
+  "subcategory": "permanent meeting rooms",
+  "pricing": {
+    "amount": 10.99,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://whereby.com/information/meetings/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$10.99 a month for one host, three room URLs and 100 attendees, on the monthly view; annual billing saves 17%. Prices exclude VAT. Note the URL: whereby.com/pricing is not a pricing page at all — it opens a meeting room named \"pricing\" — so the citation points at the real page under /information/."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "media infrastructure",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "LiveKit",
+      "url": "https://github.com/livekit/livekit"
+    }
+  ],
+  "relatedSlugs": [
+    "google-workspace-business-starter",
+    "zoom-pro",
+    "webex-meet"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

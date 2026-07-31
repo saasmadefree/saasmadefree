@@ -1,0 +1,32 @@
+{
+  "tagline": "Classic ticket queues, SLAs and automations, priced per agent.",
+  "verdictSummary": "Freshdesk is the traditional shape of this category: tickets with priorities, SLA clocks, business hours and escalation rules. All of it is ordinary software and a weekend gets a working version, which is why this is a kinda rather than a no. The gaps are operational rather than technical — sending from a domain with a reputation, staying up, and the day-pass and AI metering that make the paid tier elastic in a way a fixed self-hosted install is not.",
+  "coreLoopDIY": "Run a ticket queue where the SLA clock is real: it starts on the first customer message, pauses when you are waiting on them, and shows time remaining rather than time elapsed.",
+  "whatYouLose": [
+    "the mobile apps and push notifications when an SLA is about to breach",
+    "the Freddy AI copilot and the automated AI agent sessions",
+    "day passes for occasional agents, which is a genuinely good idea",
+    "the marketplace of prebuilt integrations",
+    "hosted uptime on a channel customers use when they are already unhappy"
+  ],
+  "whyPeopleStillPay": "Because SLA enforcement is only worth anything if somebody is woken up when it breaches, and because at nineteen dollars an agent the arithmetic against a self-hosted install plus your own time rarely favours building.",
+  "prompt": "Build a ticketing help desk whose SLA clock is honest.\n\nStack: your choice, Postgres, Docker Compose. Inbound mail via a signed provider webhook, outbound via a transactional provider on a domain you own with SPF, DKIM and DMARC.\n\nTicket model: subject, requester, assignee, status (open, pending, on hold, resolved, closed), priority, and a threaded message list. Threading by Message-ID and References with a subject-plus-sender fallback.\n\nThe SLA engine is the build, and getting it right is the difference between this and a mailbox:\n- Define business hours per weekday plus a holiday list, in a configurable timezone.\n- Define SLA policies matching on priority: a first-response target and a resolution target, in business hours not wall-clock hours.\n- The clock starts on the first inbound message. It pauses whenever the ticket is pending or on hold — that is, when the ball is in the customer's court — and resumes when they reply. It stops on resolve.\n- Every ticket shows time remaining, not time elapsed, and turns visibly urgent below a configurable threshold. A breached ticket is marked permanently: fixing it later must not erase that it breached.\n- Store every pause and resume as a row, so the elapsed calculation can be audited rather than trusted.\n\nAutomations, kept to a readable rule table: on a trigger (created, updated, time elapsed) with conditions on fields, run actions (set priority, assign, add tag, send a templated reply). Rules run in a listed order and the ticket records which rules fired, so a mysterious assignment can be explained.\n\nCanned replies with placeholders, a public status-free knowledge base of articles insertable into replies, and CSV export of tickets with their SLA outcomes.\n\nOne report: SLA attainment by priority per week, and the top five automation rules by fire count.\n\nWrite tests for the business-hours clock across a weekend, across a holiday, and across a daylight-saving change, and for pause and resume producing the same total as a manual calculation.\n\nDo not build mobile apps, an AI agent, or a marketplace.",
+  "faq": [
+    {
+      "q": "Why do business hours make the SLA clock hard?",
+      "a": "Because a four-hour target that starts at 5pm on a Friday is due at 1pm on Monday, and every timezone, holiday and daylight-saving change is a chance to get that wrong. Tests for exactly those three cases are why this is a weekend and not an evening."
+    },
+    {
+      "q": "Why must a breach be permanent?",
+      "a": "Because the point of the record is to learn from it. If resolving a ticket clears its breach flag, your SLA report will always look excellent and always be useless."
+    },
+    {
+      "q": "What is a day pass and why mention it?",
+      "a": "Freshdesk sells $2 single-day agent access, so somebody who touches support twice a month does not need a full seat. It is a pricing idea a self-hosted install does not need to replicate — everyone can just have a login — but it explains why the paid tier is cheaper than the seat count suggests."
+    },
+    {
+      "q": "Can I get my Freshdesk tickets out?",
+      "a": "Yes: the account data export produces tickets, contacts and knowledge-base articles, and the API pages through conversations if you want the threads with attachments. Fetch the attachment URLs before the account closes; they stop resolving afterwards."
+    }
+  ]
+}

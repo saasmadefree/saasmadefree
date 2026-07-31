@@ -1,0 +1,43 @@
+{
+  "slug": "zoho-crm",
+  "name": "Zoho CRM",
+  "domains": [
+    "crm.zoho.com"
+  ],
+  "category": "crm-sales",
+  "subcategory": "CRM with reporting",
+  "pricing": {
+    "amount": 20,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "per-seat-monthly",
+    "source": "https://www.zoho.com/crm/zohocrm-pricing.html",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The page prints \"Starts at $20/user/month\" for Standard on the monthly view; billed annually it is lower. The page also renders INR prices depending on where it is read from."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "suite breadth",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "SuiteCRM",
+      "url": "https://github.com/salesagility/SuiteCRM"
+    }
+  ],
+  "relatedSlugs": [
+    "pipedrive",
+    "salesmate",
+    "bigin"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Unlimited backup for one computer, ninety-nine dollars a year.",
+  "verdictSummary": "You cannot rebuild unlimited. Backblaze sells a flat price for however many terabytes that machine holds, which only works because they own the drives and average across millions of customers; a self-hosted equivalent pays object-storage rates per gigabyte and loses on the first big photo library. What you can build, and what most people who have \"backups\" actually lack, is the part that matters more than the destination: a restore you have tested.",
+  "coreLoopDIY": "Back up to object storage with client-side encryption and deduplication, and make the restore drill a scheduled, scored event rather than a hope.",
+  "whatYouLose": [
+    "unlimited storage at a flat price — you now pay per gigabyte",
+    "the desktop client that keeps running without being thought about",
+    "the restore-by-post hard drive option",
+    "file versioning retained for you without configuration",
+    "somebody else's durability guarantee on the only copy of your photos"
+  ],
+  "whyPeopleStillPay": "Because a flat ninety-nine dollars for every terabyte on the machine is an economic structure only a storage operator can offer, and because a backup you never think about is the only kind that runs.",
+  "prompt": "Build a backup runner whose headline feature is a restore drill you must pass.\n\nStack: a command-line tool plus a small local status page. Use an existing, audited backup engine for the encryption, chunking and deduplication rather than writing your own — say in the README which and why, because homemade backup encryption is how people lose everything twice.\n\nConfiguration: source paths with exclude patterns, an S3-compatible destination, a retention policy in the standard shape (keep N daily, M weekly, K monthly), and a bandwidth cap.\n\nRun: scheduled, incremental, resumable after interruption. Log what changed, how much was uploaded, and how long it took. Fail loudly — a backup that has not completed for a week must be impossible to miss on the status page, in red, with the number of days.\n\n**The restore drill is the point of this build.** On a schedule you set, monthly by default:\n1. Pick a random subset of files across the whole backup, weighted towards recently changed ones.\n2. Restore them to a scratch directory.\n3. Compare against the originals by content hash.\n4. Record a pass or fail with the count checked, the bytes restored and the time taken.\n5. Delete the scratch copy.\nThe status page shows the date of the last successful drill as prominently as the last successful backup, and turns red when it is older than your threshold. A backup with no recent drill is displayed as unverified, not as green.\n\nAlso include a full-restore rehearsal command that reports how long a complete restore would take at your measured download speed, and prints the total cost of the egress at your provider's published rate. Most people have never seen either number and both change decisions.\n\nCost visibility: current stored bytes, monthly storage cost at the configured rate, and the projected cost in twelve months at the current growth rate.\n\nWrite tests for retention pruning keeping exactly the right snapshots, for resume after an interrupted upload, and for the drill correctly failing when a file is corrupted in the destination.\n\nDo not write your own encryption or chunking.",
+  "faq": [
+    {
+      "q": "Why is the restore drill more important than the backup?",
+      "a": "Because untested backups fail at exactly the moment they are needed — a wrong exclude pattern, a corrupted destination, a forgotten passphrase. A monthly automated restore of a random sample converts a belief into a fact."
+    },
+    {
+      "q": "Will self-hosting be cheaper than $99 a year?",
+      "a": "Only if the machine holds less than roughly a terabyte, and less again once you count egress on a real restore. Backblaze's flat price is unbeatable for large drives; per-gigabyte storage wins for a laptop with a modest disk."
+    },
+    {
+      "q": "Why report the cost of a full restore?",
+      "a": "Because egress is where cloud storage bills surprise people, and the day you need everything back is the wrong day to discover the number. Some providers charge nothing for egress and some charge a lot; knowing which you chose is part of having a backup."
+    },
+    {
+      "q": "Is Backblaze Personal Backup really unlimited?",
+      "a": "For the internal and attached drives of that one computer, yes, with no cap. It is per computer rather than per person, and it excludes network drives, which is the limitation people hit first."
+    }
+  ]
+}

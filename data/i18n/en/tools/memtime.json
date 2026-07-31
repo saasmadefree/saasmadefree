@@ -1,0 +1,32 @@
+{
+  "tagline": "Records everything you did offline, so you can fill the timesheet from memory.",
+  "verdictSummary": "Memtime's promise is narrow and good: it records every application, document and email you touched, entirely on your own machine, so that filling a timesheet becomes reading rather than remembering. A working version is a weekend — and a mature open-source equivalent already exists, which is why this is a kinda with a real substitute rather than a no. What you take on is the part Memtime does invisibly: capture that keeps working across three operating systems and every application update.",
+  "coreLoopDIY": "Record locally what you were doing minute by minute, then reconstruct the day: a timeline you drag over to turn a stretch of activity into one timesheet entry with the documents you touched listed underneath.",
+  "whatYouLose": [
+    "capture that keeps working across macOS, Windows and Linux without maintenance",
+    "the deep integrations that push entries into project software",
+    "per-document and per-email granularity inside Office and mail clients",
+    "a signed, notarised desktop application",
+    "support when an OS update breaks the capture permissions"
+  ],
+  "whyPeopleStillPay": "Because capture is boring and fragile, and it must be perfect to be worth anything. An hour missing from Tuesday makes the whole record untrustworthy, and paying makes that somebody else's problem.",
+  "prompt": "Build a local activity recorder whose purpose is reconstructing a timesheet after the fact.\n\nStack: a background recorder plus a local dashboard, SQLite, everything on your own machine with no network calls at all. Consider building on an existing capture layer rather than writing OS hooks from scratch — say in the README which you chose and why.\n\nRecording: every few seconds, the active application, the window title, and whether input occurred. Store the raw stream compactly by writing a row only when something changes, with a duration, rather than one row per sample.\n\nThe reconstruction interface is the product:\n- A day timeline, horizontal, one row per application, coloured blocks sized by duration, zoomable from a whole day down to a minute.\n- **Drag across the timeline to create a timesheet entry** covering that span. The entry form opens with a suggested description built from the most frequent window titles in the selection, and lists every document and application touched so you can see what it was.\n- Entries can overlap the raw stream freely — the raw record is evidence, the entries are your account of it, and the two are stored separately and never overwrite each other.\n- A coverage bar shows how much of the working day is now covered by entries, so finishing is a visible state rather than a guess.\n\nSearch across window titles with a date range, because \"when did I last work on the Henderson file\" is the other question this data answers.\n\nPrivacy: a pause control that shows paused periods as paused; per-application title redaction; automatic deletion of raw samples after a configurable window while keeping the entries; and one command that erases everything.\n\nExport: entries as CSV, and a per-day JSON of the raw stream if you want it.\n\nWrite tests for run-length compaction reproducing the original stream, for drag-selection boundaries at block edges, and for retention removing raw rows while leaving entries intact.\n\nDo not build integrations, cloud sync, or a mobile app.",
+  "faq": [
+    {
+      "q": "Why keep the raw stream and the entries separate?",
+      "a": "Because the raw stream is what happened and the entries are what you are willing to bill. Letting an entry overwrite the record removes your ability to check yourself, which is the only reason to record in the first place."
+    },
+    {
+      "q": "What actually breaks in cross-platform capture?",
+      "a": "Permissions. macOS requires accessibility and screen-recording grants that reset on some updates; Wayland exposes far less than X11; Windows behaves differently for elevated processes. That maintenance is what the licence fee covers."
+    },
+    {
+      "q": "Is a coverage bar not trivial?",
+      "a": "It is trivial and it is the reason the tool gets used. Timesheet work has no natural end, so a visible \"you are at 87% of Tuesday\" is what turns it from an open-ended chore into a task you can finish."
+    },
+    {
+      "q": "Does Memtime send my data anywhere?",
+      "a": "Its own pitch is that it does not — capture stays on the machine. That is also the design followed here, and it is why this build has no network layer at all: adding one would be the only way to make it worse."
+    }
+  ]
+}

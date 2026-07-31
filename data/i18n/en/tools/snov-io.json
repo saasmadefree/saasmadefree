@@ -1,0 +1,32 @@
+{
+  "tagline": "Find addresses, verify them, send the sequence, track the deal — in one tool.",
+  "verdictSummary": "Snov bundles four things and three of them are assets rather than software: an address database, verification at a scale that needs tolerated IPs, and sending with a reputation behind it. The fourth is a small deal tracker, and that is what a personal build can honestly reproduce — the pipeline half, fed by outcomes you record yourself. Buying the bundle for the pipeline would be strange; rebuilding the bundle for the pipeline is a sitting.",
+  "coreLoopDIY": "Track what outreach produced: a lightweight pipeline whose stages are outreach outcomes, fed by the results you record, with per-campaign conversion visible end to end.",
+  "whatYouLose": [
+    "the email address database and the finder built on it",
+    "bulk verification at any useful volume",
+    "the sending engine, warm-up and unlimited follow-ups",
+    "the LinkedIn automation sold as extra account slots",
+    "the browser extension that captures a prospect from a page"
+  ],
+  "whyPeopleStillPay": "Because doing outbound at all needs addresses, verification and a way to send, and buying them in one subscription is much cheaper than assembling three vendors. The CRM at the end is a bonus, not the reason.",
+  "prompt": "Build an outreach-outcome pipeline: a small CRM whose stages are the states a cold prospect actually passes through.\n\nStack: your choice, SQLite is plenty, one command to run.\n\nModel: Campaign, Prospect, Touch, Stage. Stages are fixed and ordered, and that opinion is the design: sourced, contacted, opened conversation, replied, meeting booked, qualified, closed, disqualified. A Prospect belongs to exactly one Campaign and sits at one Stage.\n\nMovement rules: a prospect can only advance one stage at a time, or jump straight to disqualified with a required reason from a fixed list — no reply after full sequence, wrong person, no budget, no need, bad timing, competitor. Store every transition with a timestamp, so the funnel is computed rather than typed.\n\nTouches: date, channel, direction, and a note. Recording an inbound touch prompts to advance the stage, so the pipeline updates as a side effect of logging reality rather than as a separate chore.\n\nThe report that justifies the build: a funnel per campaign showing count and conversion rate at every stage, plus median days between stages, plus a breakdown of disqualification reasons. Two campaigns can be compared side by side. Every number derives from transition rows, not current state.\n\nA second view groups prospects by \"days since last touch\" so nobody is silently abandoned mid-sequence.\n\nImport prospects from CSV with a mapping screen and a duplicate check on email across all campaigns — the same person appearing in two campaigns must be flagged loudly, because that is how you email someone twice with two different pitches.\n\nExport a campaign to CSV including every transition, so the funnel can be recomputed elsewhere.\n\nWrite tests for the one-stage-at-a-time rule, for cross-campaign duplicate detection, and for median-days computation with an unfinished prospect excluded rather than counted as zero.\n\nDo not find email addresses, do not verify them, and do not send anything.",
+  "faq": [
+    {
+      "q": "Why fix the stages instead of letting me configure them?",
+      "a": "Because configurable stages produce funnels that cannot be compared between campaigns, which is the one thing this report exists to do. Fixed stages also stop the pipeline drifting into a to-do list."
+    },
+    {
+      "q": "What is the point of tracking outreach you cannot send?",
+      "a": "Knowing that campaign B replies at four percent and campaign A at one percent is worth more than the sending mechanics, and it is the number almost nobody actually measures. You can send from anywhere; the measurement is what gets lost."
+    },
+    {
+      "q": "Why does the cross-campaign duplicate check matter?",
+      "a": "Because contacting the same person from two campaigns with two different stories is the fastest way to look like a machine, and imports from different sources overlap far more than people expect."
+    },
+    {
+      "q": "Does Snov export cleanly?",
+      "a": "Prospect lists and campaign statistics export as CSV, and the field names are readable. What does not come out is the verification status history, so re-verify anything you intend to keep using."
+    }
+  ]
+}

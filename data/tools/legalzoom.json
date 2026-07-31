@@ -1,0 +1,36 @@
+{
+  "slug": "legalzoom",
+  "name": "LegalZoom",
+  "domains": [
+    "legalzoom.com"
+  ],
+  "category": "business-admin",
+  "subcategory": "legal services subscription",
+  "pricing": {
+    "amount": 39.09,
+    "currency": "USD",
+    "plan": "Business Advisory Plan",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.legalzoom.com/attorneys/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "$39.09 a month billed annually at $469, or $43.17 a month billed every six months at $259. The URL upstream recorded redirects to legalzoom.com/attorneys/, and the plan name is carried over from the upstream record because the current page brands it differently — treat the name as unconfirmed. Document review beyond ten pages is charged separately."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "attorney network",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "relatedSlugs": [
+    "rocket-lawyer",
+    "zenbusiness",
+    "doola"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

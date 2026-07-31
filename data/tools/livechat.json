@@ -1,0 +1,44 @@
+{
+  "slug": "livechat",
+  "name": "LiveChat",
+  "domains": [
+    "livechat.com"
+  ],
+  "category": "customer-support",
+  "subcategory": "live chat for sales and support",
+  "pricing": {
+    "amount": 19,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.livechat.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$19 per person per month billed annually; $25 billed monthly. AI chatbots are a separate product starting at $52 a month."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "agent throughput tooling",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Chatwoot",
+      "url": "https://github.com/chatwoot/chatwoot"
+    }
+  ],
+  "relatedSlugs": [
+    "crisp",
+    "tidio",
+    "intercom"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

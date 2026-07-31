@@ -1,0 +1,36 @@
+{
+  "slug": "aftershoot",
+  "name": "Aftershoot",
+  "domains": [
+    "aftershoot.com"
+  ],
+  "category": "photography",
+  "subcategory": "AI culling and editing",
+  "pricing": {
+    "amount": 45,
+    "currency": "USD",
+    "plan": "Complete",
+    "basis": "annual-effective-monthly",
+    "source": "https://account.aftershoot.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Sold as modules billed yearly: Select $120, Edit $360, Retouch $240, or the Complete bundle at $540 a year (list $720), which is the $45 a month recorded here. The \"Pro\" tier upstream recorded at $24.99 does not exist on the page, and aftershoot.com/pricing redirects to account.aftershoot.com."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "trained culling models",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "relatedSlugs": [
+    "adobe-lightroom",
+    "capture-one",
+    "pixieset"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

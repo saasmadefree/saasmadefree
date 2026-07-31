@@ -1,0 +1,32 @@
+{
+  "tagline": "Tracked hours that turn into an invoice without being retyped.",
+  "verdictSummary": "Harvest is a timer whose reason to exist is the next step: the hours become an invoice, the invoice gets paid, and neither is retyped. The tracking and the invoice document are a weekend. Getting paid is where the third parties arrive — a payment processor to accept a card, and an accounting system to reconcile it — which is why this stays a kinda rather than becoming a yes even though the code is small.",
+  "coreLoopDIY": "Track hours and expenses against a client project, then generate an invoice from the unbilled entries in one step, with the entries marked billed so nothing is ever invoiced twice.",
+  "whatYouLose": [
+    "accepting card payments on the invoice",
+    "the QuickBooks, Xero and Stripe integrations that reconcile what was paid",
+    "the mobile and desktop timers",
+    "automatic payment reminders to the client",
+    "team capacity and utilisation reporting"
+  ],
+  "whyPeopleStillPay": "Because the value is in the last mile — a client clicking pay on the invoice — and that mile runs through a payment processor and an accounting system somebody has to maintain.",
+  "prompt": "Build a time tracker whose output is a correct invoice, with the double-billing problem solved properly.\n\nStack: your choice, Postgres, one command to run.\n\nModel: Client, Project, Task, TimeEntry, Expense, Invoice, InvoiceLine.\n\nBilling correctness is the whole build:\n- A TimeEntry has a billable flag and an `invoice_id` that is null until invoiced. Invoicing selects unbilled billable entries in a date range and sets that id inside one transaction. There is no other way for an entry to become billed.\n- An invoiced entry is immutable. Editing it requires voiding the invoice or writing an adjustment entry, and the UI must explain which.\n- Rates resolve by specificity — person on project, then project, then person, then default — using the rate in force **on the entry's date**. Changing a rate today must never change the value of work already logged. Test this first.\n- Expenses attach to a project with a receipt file, a category, and an optional markup percentage, and flow into the invoice as their own lines.\n\nInvoice document: number from a configurable sequence with no gaps, issue and due dates, client billing details, line items grouped by project, task or person as chosen, subtotal, a tax line with a configurable rate, and a total. Render to PDF. Store the rendered PDF rather than regenerating it — a regenerated invoice can silently differ from the one the client received.\n\nStates: draft, sent, partially paid, paid, void. Payments are recorded manually with a date, amount and method; several payments can settle one invoice. Voiding never deletes: it releases the entries back to unbilled and records who voided it and when.\n\nReports: unbilled hours by client, ageing of unpaid invoices in 30/60/90-day buckets, and revenue by month from invoice dates.\n\nWrite tests for the invoicing transaction being atomic, for an entry never appearing on two invoices under concurrent invoicing, for historical rate resolution, and for void releasing entries exactly once.\n\nDo not integrate a payment processor or an accounting system. Export a CSV your accountant can import.",
+  "faq": [
+    {
+      "q": "Why is double-billing the hard part rather than the PDF?",
+      "a": "Because it is silent. A wrong-looking PDF gets noticed; the same three hours on two invoices does not, until a client notices for you. An `invoice_id` on the entry set inside one transaction is the whole fix, and it needs a test under concurrency."
+    },
+    {
+      "q": "Why store the rendered PDF instead of regenerating it?",
+      "a": "Because your template, your address or your tax rate will change, and regenerating invoice 41 next year would produce a document the client never received. The stored file is the record."
+    },
+    {
+      "q": "Why must invoice numbers have no gaps?",
+      "a": "Because in several jurisdictions a gapless sequence is a legal requirement for invoices, and in all of them a gap is the first thing an accountant asks about. Allocate the number at send, not at draft creation."
+    },
+    {
+      "q": "Can Harvest export everything I need?",
+      "a": "Time entries, expenses, invoices and clients all export as CSV, and the API covers the rest. Invoice PDFs must be downloaded separately — the CSV has the numbers, not the documents you actually sent."
+    }
+  ]
+}

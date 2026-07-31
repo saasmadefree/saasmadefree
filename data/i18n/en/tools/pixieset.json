@@ -1,0 +1,32 @@
+{
+  "tagline": "Galleries, a website and a client CRM under one login.",
+  "verdictSummary": "Pixieset sells the whole photographer's back office in one place, and each piece on its own is ordinary software — which makes this a kinda. The reason people pay is that the pieces know about each other: a booking becomes a gallery becomes an invoice without retyping. A personal build can have that too, and the honest gap is the print store and the mobile apps, plus the ordinary cost of running your own delivery.",
+  "coreLoopDIY": "Wire the pieces together rather than rebuilding each: a booking creates the gallery shell, the gallery notifies the client, and delivery closes the job — one client record all the way through.",
+  "whatYouLose": [
+    "the print store and its fulfilment",
+    "the mobile apps for you and the client",
+    "the hosted website builder with its templates",
+    "email campaign sending included in the plan",
+    "hosted reliability on gallery delivery day"
+  ],
+  "whyPeopleStillPay": "Because the alternative is four tools and a spreadsheet, and every seam between them is a place a wedding gets forgotten. Eight dollars for one login is a rational trade for a one-person business.",
+  "prompt": "Build a photographer's back office where one client record runs from enquiry to delivery, and prove there is no retyping.\n\nStack: your choice, Postgres, object storage, Docker Compose, a domain with TLS, and a transactional email provider.\n\nOne Client record: name, contacts, notes. Everything else attaches to it.\n\nThe pipeline, as one flow rather than four features:\n1. **Enquiry** from a public form on your site, creating the Client and a Job with a date and a type.\n2. **Booking**: the Job gains a contract (a Markdown template rendered with client fields, signed by typed name plus a stored timestamp, IP and a copy of the exact text signed — the last part is what makes it worth anything later) and a deposit recorded manually.\n3. **Shoot day**: a checklist from a template by job type.\n4. **Delivery**: creating the gallery from the Job pre-fills the title, date and client, and sending it emails the client from a template with their name and the gallery link. The gallery's existence is visible on the Job.\n5. **Close**: final payment recorded, files archived to cold storage, and a review request sent after N days.\n\nThe test that proves the design: from enquiry to close, the client's name and email are typed exactly once. Write it as an end-to-end test.\n\nGallery: unguessable URL, password or personal link, responsive images, favourites with a target count, per-photo comments, zip download at a set resolution.\n\nA dashboard that is a work list, not statistics: jobs by stage, anything overdue at its stage, unpaid balances, and galleries expiring this month.\n\nA public site: a few pages and portfolio galleries from the same photo store, server-rendered, no client framework.\n\nWrite tests for the single-entry-of-client-details flow, for contract signing storing the exact rendered text, and for cold-storage archiving with one-command restore.\n\nDo not build a print store or payment processing — link to whatever you already use.",
+  "faq": [
+    {
+      "q": "Why store the exact contract text at signing?",
+      "a": "Because a template changes, and a signature that points at \"the current template\" proves nothing. Storing the rendered text, the typed name, the timestamp and the IP is the minimum that makes a click-signed contract worth having."
+    },
+    {
+      "q": "Is the no-retyping test not trivial?",
+      "a": "It is trivial to write and it is the whole design. Most self-built photographer tools are four separate apps by month three, and the end-to-end test is what stops that happening."
+    },
+    {
+      "q": "Why a work list instead of a dashboard?",
+      "a": "Because a one-person business needs to know what to do today, not what its conversion rate was last quarter. Jobs stuck at a stage and unpaid balances are actionable; charts are not."
+    },
+    {
+      "q": "What does Pixieset actually charge for?",
+      "a": "Storage tiers and email campaign volume, with Studio Manager and the editing suite billed separately from about $12 a month each. The entry tier is 10 GB, which a single wedding can fill."
+    }
+  ]
+}

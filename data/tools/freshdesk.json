@@ -1,0 +1,45 @@
+{
+  "slug": "freshdesk",
+  "name": "Freshdesk",
+  "domains": [
+    "freshdesk.com"
+  ],
+  "category": "customer-support",
+  "subcategory": "ticketing help desk",
+  "pricing": {
+    "amount": 19,
+    "currency": "USD",
+    "plan": "Growth",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.freshworks.com/freshdesk/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$19 per agent per month billed annually. Freddy AI Copilot is a separate $29 per agent per month, AI Agent sessions are $49 per 100, and day passes for occasional agents are $2 each."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "ticketing operations at scale",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "FreeScout",
+      "url": "https://github.com/freescout-help-desk/freescout"
+    }
+  ],
+  "relatedSlugs": [
+    "zendesk",
+    "help-scout",
+    "chatwoot-cloud"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

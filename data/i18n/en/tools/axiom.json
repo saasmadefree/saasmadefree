@@ -1,0 +1,32 @@
+{
+  "tagline": "Send everything, keep it cheap, query it fast.",
+  "verdictSummary": "Storing logs and querying them is a solved problem with excellent open-source pieces, so this is a kinda rather than a no. What takes a week is not ingestion, it is the discipline: schema-on-read over object storage, and a hard cost ceiling that drops data rather than sending you a bill. Axiom's advantage is that its query engine stays fast at volumes where a homemade one falls over, and that it absorbs the surprise months.",
+  "coreLoopDIY": "Ingest structured events to cheap object storage, query them with a real filter-and-aggregate language, and enforce a monthly budget by dropping and telling you rather than by billing.",
+  "whatYouLose": [
+    "query performance at the volumes where it stops being easy",
+    "the managed ingestion endpoint and its client libraries",
+    "the enterprise add-ons — SSO, RBAC, audit log",
+    "somebody else's durability guarantee on your log history",
+    "alerting reliability during the incident you are logging about"
+  ],
+  "whyPeopleStillPay": "Because logs are only worth keeping if you can query them under pressure, and a homemade store is at its slowest exactly when an incident makes it busiest.",
+  "prompt": "Build a log store whose defining feature is a cost ceiling it will actually enforce.\n\nStack: your choice, an S3-compatible object store, and a small query service. Docker Compose for local development. Consider building on an existing search engine designed for object storage rather than writing an index from scratch.\n\nIngestion: an HTTP endpoint accepting newline-delimited JSON with a required timestamp field and arbitrary other fields. Buffer in memory, flush to object storage in columnar files partitioned by dataset and hour. No schema is declared up front; fields are discovered and their types recorded per partition.\n\nQuery: a small language with filter, aggregate, group-by, order and limit over a time range, returning tables. Push predicates down to the partition level so a one-hour query never reads a week of files. Show the bytes scanned with every result — that number is what teaches people to write better queries.\n\nThe budget, which is the point of the build:\n- A monthly ingestion budget in gigabytes and a monthly query budget in bytes scanned, both configured.\n- At 80% of either, a warning appears in the interface and an alert is sent.\n- At 100% of the ingestion budget the behaviour is chosen, not implicit: drop with a counter of what was dropped per dataset, or sample at a stated rate. Never silently accept and bill.\n- Per-dataset retention in days, with expiry deleting objects from storage and not merely hiding rows.\nSay in the README why this is the design: a log pipeline with no ceiling turns one runaway debug statement into a four-figure invoice, and that is the most common expensive accident in observability.\n\nAlerts: a saved query, an interval, and a threshold. Fire to a webhook. Record every evaluation so a missed alert can be investigated.\n\nWrite tests for partition pruning actually reducing bytes scanned, for the budget stopping ingestion at the limit, and for retention deleting objects.\n\nDo not build agents or client libraries for a dozen languages — one documented HTTP endpoint is enough.",
+  "faq": [
+    {
+      "q": "Why put the cost ceiling before the features?",
+      "a": "Because the failure mode of self-hosted logging is not that it stops working, it is a debug line in a hot loop and a storage bill nobody noticed for three weeks. A ceiling that drops and counts is cheaper than any amount of care."
+    },
+    {
+      "q": "Why show bytes scanned on every query?",
+      "a": "Because it is the only feedback that changes behaviour. Once people see that an unbounded time range scans a hundred gigabytes, they start adding time filters without being asked."
+    },
+    {
+      "q": "Is schema-on-read really better here?",
+      "a": "For logs, yes — the fields change whenever someone adds a log line, and a declared schema means either constant migrations or dropped data. Discovering fields per partition costs a little query performance and saves a great deal of friction."
+    },
+    {
+      "q": "What does Axiom actually charge for?",
+      "a": "A $25 monthly platform fee that includes a real allowance — 1 TB loaded, 100 GB-hours queried, 100 GB stored — with usage above that billed on top, plus optional enterprise add-ons. The free Personal tier is smaller but genuinely usable."
+    }
+  ]
+}

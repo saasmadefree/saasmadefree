@@ -1,0 +1,44 @@
+{
+  "slug": "tresorit",
+  "name": "Tresorit",
+  "domains": [
+    "tresorit.com"
+  ],
+  "category": "cloud-storage",
+  "subcategory": "encrypted storage for regulated work",
+  "pricing": {
+    "amount": 9.99,
+    "currency": "EUR",
+    "plan": "Personal Essential",
+    "basis": "flat-monthly",
+    "source": "https://tresorit.com/pricing/personal",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Read from the EU, priced in EUR. The plain \"Personal\" tier upstream recorded no longer exists; the individual tiers are Personal Lite €3.99, Personal Essential €9.99 and Personal Pro €23.99, with 20% off on yearly billing."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "compliance and jurisdiction",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Cryptomator",
+      "url": "https://github.com/cryptomator/cryptomator"
+    }
+  ],
+  "relatedSlugs": [
+    "sync-com",
+    "proton-drive-plus",
+    "mega-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

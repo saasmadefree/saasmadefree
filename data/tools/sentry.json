@@ -1,0 +1,44 @@
+{
+  "slug": "sentry",
+  "name": "Sentry",
+  "domains": [
+    "sentry.io"
+  ],
+  "category": "monitoring",
+  "subcategory": "error tracking",
+  "pricing": {
+    "amount": 26,
+    "currency": "USD",
+    "plan": "Team",
+    "basis": "usage-based",
+    "source": "https://sentry.io/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$26 a month when billed annually with the default pre-paid data allowance; errors, replays, spans and cron monitors are metered separately and additional volume is billed on top. Upstream recorded $29."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "grouping quality and SDK breadth",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "GlitchTip",
+      "url": "https://gitlab.com/glitchtip/glitchtip-backend"
+    }
+  ],
+  "relatedSlugs": [
+    "logrocket",
+    "checkly",
+    "axiom"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

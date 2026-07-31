@@ -1,0 +1,45 @@
+{
+  "slug": "front",
+  "name": "Front",
+  "domains": [
+    "front.com"
+  ],
+  "category": "customer-support",
+  "subcategory": "shared team inbox",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "annual-effective-monthly",
+    "source": "https://front.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The page opens on the annual view: $25 per seat per month, up to ten seats, billed annually. The monthly-billed rate is higher — the toggle advertises a 24% annual saving."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "channel integrations",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "FreeScout",
+      "url": "https://github.com/freescout-help-desk/freescout"
+    }
+  ],
+  "relatedSlugs": [
+    "help-scout",
+    "intercom",
+    "streak-crm"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

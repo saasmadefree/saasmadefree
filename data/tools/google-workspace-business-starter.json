@@ -1,0 +1,43 @@
+{
+  "slug": "google-workspace-business-starter",
+  "name": "Google Workspace Business Starter",
+  "domains": [
+    "workspace.google.com"
+  ],
+  "category": "video-meetings",
+  "subcategory": "business bundle with meetings",
+  "pricing": {
+    "amount": 6.8,
+    "currency": "EUR",
+    "plan": "Business Starter",
+    "basis": "per-seat-monthly",
+    "source": "https://workspace.google.com/pricing.html",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Read from the EU, where the page prices in EUR and states all plans are billed monthly: €6.80 per user per month from 14 November 2026, with a 50% introductory rate of €3.40 for new customers on the first 20 users for 12 months. Business Starter includes 30 GB pooled storage per user and caps at 300 users."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "bundle economics and mail deliverability",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Jitsi Meet",
+      "url": "https://github.com/jitsi/jitsi-meet"
+    }
+  ],
+  "relatedSlugs": [
+    "zoom-pro",
+    "microsoft-teams-essentials",
+    "google-one"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

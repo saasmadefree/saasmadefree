@@ -1,0 +1,32 @@
+{
+  "tagline": "The default enterprise help desk: tickets, help centre, messaging and voice.",
+  "verdictSummary": "For a small team, Zendesk Suite Team is ticketing, a help centre and a messaging channel — all of which are ordinary software, which is why this reads as kinda and not no. What the price is actually buying is everything that surrounds it at size: voice with a real carrier behind it, an app marketplace, and the audit, retention and residency controls a procurement review asks about. A personal build can match the day-to-day and cannot match the questionnaire.",
+  "coreLoopDIY": "Run tickets and a public help centre from one store, with a customer portal where somebody can see and reply to their own past tickets without a support agent forwarding anything.",
+  "whatYouLose": [
+    "the voice channel, which needs a carrier and number provisioning",
+    "the app marketplace and its deep CRM and commerce integrations",
+    "data residency, retention policies and the audit log an enterprise review asks for",
+    "the mobile apps",
+    "workforce management and quality-assurance add-ons"
+  ],
+  "whyPeopleStillPay": "Because Zendesk is the answer that survives a security review, and because once a company has built its reporting and its integrations around it, the switching cost is measured in quarters.",
+  "prompt": "Build a help desk with a real customer portal, not just an inbox with a public form.\n\nStack: your choice, Postgres, Docker Compose. Inbound mail through a signed provider webhook, outbound through a transactional provider on a domain you own with SPF, DKIM and DMARC.\n\nAgent side, kept conventional: tickets with status, priority, assignee, tags, threaded messages, internal notes stored separately from public replies, canned responses, and saved views with filters.\n\nThe customer portal is the part worth the week:\n- Authentication by emailed magic link, no passwords. Links are single-use, expire in fifteen minutes, and are invalidated on use. Rate-limit requests per address.\n- A signed-in customer sees every ticket they submitted, its status, and the full public thread — never internal notes. Write a test asserting an internal note can never appear in the portal response body.\n- They can reply, which appends to the same ticket and notifies the assignee, and attach a file with a type allowlist and a size cap.\n- Organisations: an email domain can be mapped to an organisation, and a designated member can see all tickets from that organisation. This is the feature that separates a portal from a form, and it is where authorisation bugs live — test that a member of organisation A can never load a ticket from organisation B, by direct URL as well as through the list.\n- A public help centre: Markdown articles with categories, full-text search, and each article insertable into an agent reply.\n\nData handling, because it is the honest half of this entry: a configurable retention policy that deletes closed tickets and their attachments after N days, a per-customer export producing everything you hold about them as one JSON file, and a hard-delete that actually removes attachments from storage rather than orphaning them.\n\nOne report: tickets by status and priority per week, median time to first response, and reopen rate.\n\nWrite tests for magic-link single use and expiry, for cross-organisation access being refused, and for hard-delete removing files from disk.\n\nDo not build a voice channel, mobile apps, or a marketplace.",
+  "faq": [
+    {
+      "q": "Why is the customer portal the hard part rather than the inbox?",
+      "a": "Because it is the only part with an authorisation model. An inbox is yours; a portal decides which stranger may see which ticket, and the organisation feature turns one mistake into a data leak between two of your customers."
+    },
+    {
+      "q": "Are magic links safe enough for support tickets?",
+      "a": "For this purpose, yes, and safer than passwords nobody will manage — provided they are single-use, short-lived, rate-limited and invalidated on use. Anything that emails a reusable link is a permanent back door in someone's mailbox."
+    },
+    {
+      "q": "Why build retention and export into a personal help desk?",
+      "a": "Because support tickets accumulate personal data faster than anything else you run, and \"delete everything you have about me\" is a request you may be legally obliged to answer. Building it in on day one is a fraction of the cost of retrofitting it."
+    },
+    {
+      "q": "How hard is leaving Zendesk?",
+      "a": "The data comes out — the API pages through tickets, users, organisations and help-centre articles, and there is a bulk export on request. The expensive part is the integrations and the reports other teams built on top, which is the real switching cost rather than the export itself."
+    }
+  ]
+}

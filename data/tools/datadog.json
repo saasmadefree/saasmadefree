@@ -1,0 +1,43 @@
+{
+  "slug": "datadog",
+  "name": "Datadog",
+  "domains": [
+    "datadoghq.com"
+  ],
+  "category": "monitoring",
+  "subcategory": "infrastructure monitoring at scale",
+  "pricing": {
+    "amount": 15,
+    "currency": "USD",
+    "plan": "Infrastructure Pro",
+    "basis": "usage-based",
+    "source": "https://www.datadoghq.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$15 per host per month billed annually, or $18 month-to-month, with allowances per host (5 workflow executions, 5 containers) and everything else — APM, logs, RUM, security — billed as separate per-host or per-volume products on top. The headline figure is the smallest line on a real bill."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "breadth and integration coverage",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Prometheus",
+      "url": "https://github.com/prometheus/prometheus"
+    }
+  ],
+  "relatedSlugs": [
+    "honeycomb",
+    "axiom",
+    "sentry"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

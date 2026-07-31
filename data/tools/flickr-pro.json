@@ -1,0 +1,44 @@
+{
+  "slug": "flickr-pro",
+  "name": "Flickr Pro",
+  "domains": [
+    "flickr.com"
+  ],
+  "category": "photography",
+  "subcategory": "photo community with unlimited storage",
+  "pricing": {
+    "amount": 6.83,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.flickr.com/account/upgrade/pro",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$82 a year, which is $6.83 a month; $11 month-to-month and $148 for two years ($6.17 a month). Subscriptions are auto-renewing and non-refundable. Upstream recorded $8.25."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "community and archive",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "PhotoPrism",
+      "url": "https://github.com/photoprism/photoprism"
+    }
+  ],
+  "relatedSlugs": [
+    "smugmug",
+    "zenfolio",
+    "ente-photos"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

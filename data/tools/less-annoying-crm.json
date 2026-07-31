@@ -1,0 +1,44 @@
+{
+  "slug": "less-annoying-crm",
+  "name": "Less Annoying CRM",
+  "domains": [
+    "lessannoyingcrm.com"
+  ],
+  "category": "crm-sales",
+  "subcategory": "simple small-business CRM",
+  "pricing": {
+    "amount": 15,
+    "currency": "USD",
+    "plan": "CRM",
+    "basis": "per-seat-monthly",
+    "source": "https://www.lessannoyingcrm.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "One tier, one price: $15 per user per month, everything included, plus applicable tax."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "human support",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Monica",
+      "url": "https://github.com/monicahq/monica"
+    }
+  ],
+  "relatedSlugs": [
+    "bigin",
+    "capsule-crm",
+    "folk"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

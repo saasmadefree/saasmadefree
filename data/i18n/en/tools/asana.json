@@ -1,0 +1,32 @@
+{
+  "tagline": "Tasks that roll up into goals so a manager can see the whole picture.",
+  "verdictSummary": "The task list is the easy half. Asana's real function is the roll-up: a task belongs to a project, a project contributes to a goal, and somebody two levels up reads a single status without asking anyone. Building that honestly — where a goal's progress is computed from the work beneath it rather than typed by an optimist — is a week. What a personal build will not have is the mobile app, real-time multiplayer, and the notification machinery that makes a shared tool actually get used.",
+  "coreLoopDIY": "Track tasks in projects, attach projects to goals, and read one page where each goal's progress is computed from the tasks underneath it, with the stalest contributing project named.",
+  "whatYouLose": [
+    "the mobile apps and the notifications that make a shared tool get used",
+    "real-time collaborative editing and presence",
+    "the integration catalogue into chat, storage and calendars",
+    "AI Studio and the automation credits bundled with it",
+    "workload and capacity views across many people"
+  ],
+  "whyPeopleStillPay": "Because the value only appears when everybody is in it, and getting everybody in requires apps, notifications and a support contract. A self-hosted tracker that two of five people check is worth less than nothing.",
+  "prompt": "Build a work tracker where progress rolls up and cannot be faked.\n\nStack: your choice, Postgres, Docker Compose, one command to start.\n\nHierarchy: Task belongs to a Project; a Project contributes to zero or more Goals with a weight. A Task has an assignee, a due date, a status, and optional subtasks.\n\nThe rule that defines the build: **a Goal's progress is always computed, never entered.** Progress is the weighted mean of its projects' completion, and a project's completion is the share of its tasks closed, counting a task with subtasks by its subtasks. There is no field anywhere for a human to type a percentage. Show the computation on the goal page — which projects, what weight, what each contributed — so a number can be argued with.\n\nThe status page is the deliverable. For each goal: computed progress, the trend since last week from a stored weekly snapshot, and the \"attention\" line — the contributing project with the oldest last-activity timestamp, named explicitly. A goal that is 80% complete and has not moved in three weeks must look worse than one at 40% that moved yesterday.\n\nSnapshots: a weekly job stores every goal's progress so the trend is history rather than a guess. Make it idempotent for the same week.\n\nAlso build: My Tasks across all projects sorted by due date, a project board grouped by status, saved filters, task dependencies with a warning (not a block) when a task starts before its blocker finishes, comments with @mentions writing to a notifications table, and CSV export of tasks and of the goal roll-up.\n\nWrite tests for the roll-up with nested subtasks and zero-task projects, for weight normalisation when weights do not sum to one, and for snapshot idempotency.\n\nDo not build real-time collaboration, mobile apps, or an integration catalogue. Provide one outbound webhook on task status change and stop there.",
+  "faq": [
+    {
+      "q": "Why forbid typing a progress percentage?",
+      "a": "Because a typed percentage is the single most reliable source of false comfort in project tracking. Computing it from closed work means the number is wrong only when the task list is wrong — a problem you can see and fix."
+    },
+    {
+      "q": "What does the \"oldest last-activity\" line actually catch?",
+      "a": "The project that everyone quietly stopped working on. Percentage complete hides it perfectly; time since anything moved does not."
+    },
+    {
+      "q": "Is a week realistic for this?",
+      "a": "For the roll-up, snapshots and status page, yes. The week goes on the hierarchy edge cases — a project in two goals, a goal with no projects, subtasks changing the denominator — which is exactly where a naive implementation reports nonsense."
+    },
+    {
+      "q": "How does data come out of Asana?",
+      "a": "CSV export per project, and JSON for a whole workspace on the paid tiers. Comments and attachments are the awkward parts: attachments come out as URLs that stop resolving once the workspace is gone."
+    }
+  ]
+}

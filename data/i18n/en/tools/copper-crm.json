@@ -1,0 +1,32 @@
+{
+  "tagline": "The CRM that lives where your Gmail already is.",
+  "verdictSummary": "Copper sells one idea: you never leave Gmail, and every message and meeting lands on the right record without being told. A personal build can get most of the way there without asking Google for anything, by using an old trick — a per-record BCC address that receives mail and files it. That is a weekend. What it will not do is capture the mail you forgot to BCC, which is precisely the failure Copper exists to prevent, and it will not put the CRM inside the Gmail window.",
+  "coreLoopDIY": "Give every contact and deal its own private BCC address; anything you copy that address on lands on the record as a threaded, searchable entry, and a browser bookmarklet creates the record from whatever page you are looking at.",
+  "whatYouLose": [
+    "automatic capture — mail you forget to BCC is simply not filed",
+    "the sidebar inside Gmail and Google Calendar",
+    "calendar sync, so meetings never appear on a record on their own",
+    "the mobile apps",
+    "Google Drive file linking on a record"
+  ],
+  "whyPeopleStillPay": "Because \"it just appears\" is the whole product. Copper is bought by teams that already lost a deal to an email nobody logged, and twenty-nine dollars a seat is the price of not having to remember.",
+  "prompt": "Build a CRM that captures email without ever asking Google for OAuth access.\n\nThe mechanism: every record gets a private inbound address. Set up a catch-all mailbox on a domain you own — the README should show this with an inbound-email provider that posts a webhook, and note that self-hosting the receiver is possible but a bigger job. Addresses look like crm+<record-token>@yourdomain.tld. Copy that address on any email and the message is stored against the record.\n\nStack: your choice, Postgres, Docker Compose. The webhook endpoint must verify the provider's signature and reject anything unsigned.\n\nStorage: keep the raw MIME alongside the parsed version. Thread messages by Message-ID, In-Reply-To and References so a reply lands under the original rather than as a new item. Strip and store attachments to local disk with a content hash as the filename, and never render remote images.\n\nRecords: Contact, Company, Opportunity. Each has a timeline that merges emails, notes and stage changes in one chronological list. When a message arrives from an address that matches no contact, park it in an inbox-zero style triage queue where I assign it to a record or discard it in one keypress.\n\nCapture from the browser: ship a bookmarklet that grabs the page title, URL and any selected text, and opens a prefilled \"new contact or note\" form. That is the honest substitute for a browser extension and it takes an hour, not a weekend.\n\nSearch must cover email bodies, not just record fields.\n\nWrite tests for the threading logic and for the signature verification on the inbound webhook — an unauthenticated inbound endpoint is a way to get your CRM filled with someone else's spam.\n\nDo not build Gmail OAuth sync or a Gmail add-on. Be explicit in the README that capture is opt-in per message: if you do not BCC, nothing is recorded.",
+  "faq": [
+    {
+      "q": "Why BCC instead of connecting Gmail properly?",
+      "a": "Because connecting properly means a Google Cloud project, a verified OAuth consent screen with a security review if you ever share it, refresh tokens to babysit, and a Gmail watch subscription that expires every seven days. The BCC address gets you eighty percent of the value in an afternoon, with the honest cost that it only captures what you remember to copy."
+    },
+    {
+      "q": "Is a catch-all address safe to expose?",
+      "a": "The tokens are per-record and random, so guessing one is impractical, but anyone who learns an address can post to that record. Verify the provider signature on every webhook, rate-limit per token, and treat inbound content as untrusted — no remote image loading, no HTML execution."
+    },
+    {
+      "q": "What about the meetings?",
+      "a": "They are the real hole. Copper reads your calendar; this does not. The workaround is to BCC the record on the calendar invite so at least the invitation text is filed, and to accept that recurring internal meetings will never show up."
+    },
+    {
+      "q": "Can I keep using it if I move off Google entirely?",
+      "a": "Yes, and better than Copper — nothing in this design is Google-specific. Any mailbox that can BCC works, which is not true of a CRM built as a Gmail add-on."
+    }
+  ]
+}

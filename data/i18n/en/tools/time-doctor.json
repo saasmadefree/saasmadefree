@@ -1,0 +1,32 @@
+{
+  "tagline": "Screenshots, activity scores and productivity reports across a whole workforce.",
+  "verdictSummary": "This is software bought by an employer to observe employees, and everything that makes it worth buying is organisational rather than technical: an agent deployed and kept alive on machines you administer, payroll and HRIS integrations sold at two hundred dollars each, and a defensible position when someone asks on what basis you are watching people work. None of that is a personal build. What you can build for yourself is a mirror, and the prompt does exactly that and nothing more.",
+  "coreLoopDIY": "Measure your own week and get one honest report about it — where the hours went, how fragmented they were, and how that compares with the last four weeks.",
+  "whatYouLose": [
+    "observing anyone but yourself, which is the product",
+    "screenshots, screen recording and keystroke-pattern analysis",
+    "payroll and HRIS integrations, and the approvals that feed them",
+    "the benchmarks drawn from hundreds of thousands of other users",
+    "a vendor to point at when the works council asks who authorised this"
+  ],
+  "whyPeopleStillPay": "Because a company monitoring distributed staff needs an agent that survives reboots on machines it does not sit in front of, plus a paper trail, plus somebody to hold responsible for both.",
+  "prompt": "Build a weekly self-report from your own activity data. One person, one machine, one page.\n\nBefore anything else, the README must say what this is not: it does not observe other people, and applying anything like it to employees carries consent, notice and proportionality obligations that vary by country and are not solved by writing the code yourself.\n\nStack: a local recorder plus a static report generator, SQLite, no network.\n\nCapture: active application, window title, input activity. No screenshots, no keystrokes, no camera.\n\nThe weekly report is the entire deliverable — one page, generated on a schedule, readable in ninety seconds:\n1. **Hours by category**, against the four-week median, with the change stated in words as well as numbers.\n2. **Fragmentation**: context switches per working hour, and the longest uninterrupted stretch of the week with the day it happened.\n3. **The three biggest changes** from your own four-week baseline, up or down, named specifically — an application, a category, a time of day.\n4. **The unaccounted line**: working hours with no recorded activity, stated plainly rather than absorbed into a category.\n5. **One question**, not a score: something the data raises but cannot answer, such as \"Thursday afternoons dropped to a third of their usual focus time — do you know why?\"\n\nDeliberately absent, and named as absent in the report: a productivity percentage. A single number invites comparison with other people and with an imaginary better version of yourself, and neither is what this data supports. Say so in the report footer.\n\nThe baseline is your own history only. Never compare against a shipped norm.\n\nOutput the report as a static HTML file in a folder, one per week, so the archive is browsable and diffable.\n\nPrivacy: pause control with paused time shown as such, per-application title redaction, raw retention window, wipe command.\n\nWrite tests for baseline computation with fewer than four weeks (it must say so rather than extrapolate), and for the unaccounted-hours calculation across a pause.\n\nDo not add remote reporting, screenshots, or any multi-user capability.",
+  "faq": [
+    {
+      "q": "Why deliberately omit a productivity score?",
+      "a": "Because a single number is the feature that makes these tools corrosive. It compresses a week of context into something comparable, then people optimise the number instead of the work. Categories and fragmentation are actionable; a score is a verdict."
+    },
+    {
+      "q": "What would it take to legitimately monitor a team?",
+      "a": "Notice to the people monitored, a documented lawful basis, proportionality between what you collect and why, retention limits, and in several European countries consultation with employee representatives. The software is the easy part, which is precisely why this entry is a no."
+    },
+    {
+      "q": "Why state unaccounted hours instead of filling them?",
+      "a": "Because filling them is inventing data. Time at a whiteboard, on a call from a phone, or reading on paper is real work with no digital trace, and a report that quietly categorises it has stopped being a record."
+    },
+    {
+      "q": "What does Time Doctor really cost?",
+      "a": "The seat price is the start: screen recording, unusual-activity detection and meeting insights are per-user add-ons, and native payroll or HRIS integrations are $200 per integration per month. The features people buy it for are mostly not in the base tier."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "One price, one tier, and a phone number that a human answers.",
+  "verdictSummary": "The software is small enough to rebuild in a weekend, and that is not an insult — simplicity is the point and it makes the target clear. What you cannot rebuild is the thing the company actually sells: free, unlimited, same-day help from a person who will set the CRM up for you. The rebuild also has to solve getting contacts and the calendar onto your phone, which the paid product does with apps and this does with CalDAV and CardDAV.",
+  "coreLoopDIY": "Keep contacts and companies with a full history, run a simple pipeline, and publish your contacts and tasks over CardDAV and CalDAV so your phone's built-in apps become the mobile client.",
+  "whatYouLose": [
+    "the free, unlimited phone and email support that is the company's actual product",
+    "somebody else importing your spreadsheet and setting up your pipeline for you",
+    "automatic email logging into a contact's history",
+    "the hosted uptime and off-site backups",
+    "shared calendars with colleagues"
+  ],
+  "whyPeopleStillPay": "Because the buyer is often not technical, and fifteen dollars a month buys a person who will answer the phone and fix it. That is a service business, and no self-hosted alternative competes with it.",
+  "prompt": "Build a small-business CRM that is deliberately plain, and make the phone work through open protocols instead of an app.\n\nStack: your choice, Postgres or SQLite, Docker Compose, and a real domain with TLS because CalDAV and CardDAV clients will refuse anything less.\n\nCRM half: Contacts and Companies with a single scrolling history per record (notes, tasks, events, pipeline moves, all in one list, newest first). One configurable pipeline with named stages. Tasks with a due date and an owner. A calendar view of tasks and events. Full-text search across everything, reachable from a keyboard shortcut on every page.\n\nThe interesting half: expose two endpoints.\n- A CardDAV address book, read-write, containing every contact. Editing a contact on the phone must write back to the CRM.\n- A CalDAV calendar, read-write, containing tasks as VTODO and events as VEVENT.\nUse an existing CalDAV/CardDAV server library rather than implementing the protocols by hand, and document exactly which clients you tested against — iOS Contacts and Calendar at minimum, plus one desktop client.\n\nAuthentication: per-device application passwords, listed and revocable in the UI, never the account password.\n\nAdd CSV import with a mapping preview, CSV export, and a nightly SQL dump to a folder with a one-line restore command in the README.\n\nWrite tests for the CardDAV round trip: create a contact in the CRM, read it as vCard, modify it as vCard, and assert the CRM record changed correctly, including a field the vCard format does not natively carry.\n\nDo not build a mobile app, a marketing module, or a reporting suite. The README should state the one thing this cannot replace: there is nobody to call when it breaks.",
+  "faq": [
+    {
+      "q": "Is CalDAV really a substitute for a mobile app?",
+      "a": "For reading and light editing, better than you would expect — your contacts and tasks show up in the apps your phone already has, offline, with no install. For anything CRM-shaped, like moving a deal a stage, you are back in the browser."
+    },
+    {
+      "q": "What is the hardest part of this build?",
+      "a": "The vCard and iCalendar round trip. Both formats lose fields that do not map, and clients disagree about extensions, so the test that modifies a record on the phone side and checks what survived is the one worth writing first."
+    },
+    {
+      "q": "Why does the support matter so much in the verdict?",
+      "a": "Because Less Annoying CRM's customers are frequently the person in a small business who is least comfortable with software. Removing the phone number removes the product for them, even though the code is easy. That is what stops this being a yes."
+    },
+    {
+      "q": "Can I export from Less Annoying CRM cleanly?",
+      "a": "Yes — contacts, companies, pipelines, notes, tasks and events all export to CSV from the account settings, and the field names are readable. It is one of the more painless exports in this category."
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "gusto",
+  "name": "Gusto",
+  "domains": [
+    "gusto.com"
+  ],
+  "category": "business-admin",
+  "subcategory": "US payroll and benefits",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Simple",
+    "basis": "flat-monthly",
+    "source": "https://gusto.com/product/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "low",
+    "notes": "Not verifiable from here: gusto.com returns a Cloudflare interstitial to both a scripted fetch and a real Chrome session. The $49 monthly base for the Simple plan is long-standing and widely published, and there is a per-person charge on top, but both the base and the per-person figure should be treated as unconfirmed."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "tax filing and money movement",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "relatedSlugs": [
+    "deel",
+    "remote-com",
+    "homebase"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

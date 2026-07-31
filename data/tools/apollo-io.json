@@ -1,0 +1,37 @@
+{
+  "slug": "apollo-io",
+  "name": "Apollo",
+  "domains": [
+    "apollo.io"
+  ],
+  "category": "crm-sales",
+  "subcategory": "B2B contact database",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.apollo.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The pricing page opens on the annual view: Basic is $49 per seat per month billed annually, with 30,000 credits per seat per year granted up front. Month-to-month is higher."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "contact database",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "relatedSlugs": [
+    "clay",
+    "hunter-io",
+    "snov-io"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

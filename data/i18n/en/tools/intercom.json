@@ -1,0 +1,32 @@
+{
+  "tagline": "The chat bubble in the corner, plus an AI that answers before a human sees it.",
+  "verdictSummary": "The widget and the inbox behind it are a week of real work — websockets, message persistence, an embed that survives a page navigation — and open-source messengers prove it is tractable. The AI half is buildable too, as retrieval over your own docs, provided you make it refuse rather than invent. What you do not get are the native iOS and Android SDKs, the outbound product-tour suite, and the resolution quality Intercom has tuned on an enormous corpus. That is a substantial gap, not a disqualifying one.",
+  "coreLoopDIY": "An embeddable chat widget backed by your own inbox, where an AI first-responder answers only from your documentation and hands over to a human the moment it cannot cite a source.",
+  "whatYouLose": [
+    "the native iOS and Android messenger SDKs",
+    "product tours, checklists, surveys and the rest of the outbound suite",
+    "Fin's answer quality and the corpus behind it",
+    "the reporting suite and conversation-level quality scoring",
+    "the app store of prebuilt integrations"
+  ],
+  "whyPeopleStillPay": "Because Intercom is where support, onboarding and in-product messaging live in one place, and because Fin resolving a real share of tickets is worth more than the seat price. Per-resolution billing exists because that value is measurable.",
+  "prompt": "Build a customer messenger with an AI first responder that would rather say nothing than guess.\n\nStack: your choice with websockets, Postgres with pgvector, Docker Compose, and a domain with TLS because the widget will be embedded on other origins.\n\nWidget: one script tag, under 30KB, no framework. It renders a launcher and a panel, opens a websocket, and — the part people get wrong — survives a full page navigation by persisting the conversation id and a visitor token in local storage and reconnecting. Works without third-party cookies. Respects prefers-reduced-motion and prefers-color-scheme. Keyboard accessible: focus trapped in the panel while open, Escape closes, and focus returns to the launcher.\n\nServer: conversations, messages, visitors. A visitor is anonymous until identified; support an identify call with a server-signed token so a logged-in user cannot be impersonated by editing local storage. Say clearly in the README why an unsigned identify call is a security hole.\n\nAI first responder over your own docs:\n- Ingest Markdown files or a sitemap, chunk with overlap, embed, store in pgvector.\n- On an incoming question, retrieve the top chunks and call an Anthropic or OpenAI model with a prompt that permits only two outcomes: an answer that quotes and links at least one retrieved source, or the exact string that triggers a handover. If the best retrieval score is below a configurable threshold, skip the model entirely and hand over — cheaper and more honest.\n- Every AI answer renders its sources as links the visitor can open, and a \"this did not help\" button that immediately escalates to the human queue.\n- Cap spend: a per-conversation and per-day token budget that hands over rather than exceeding it.\n\nHuman side: an agent inbox with assignment, statuses, canned replies, and a live view of what the visitor is typing. When a human joins, the AI stops responding in that conversation permanently.\n\nEmail fallback: if nobody answers within a configurable window, collect the visitor's email address and continue the conversation by mail, threading replies back into the same record.\n\nOne report: conversations, share resolved by AI without handover, and handover reasons broken down.\n\nWrite tests for the retrieval threshold handing over, for the AI never emitting an answer without a source link, and for reconnect-after-navigation.\n\nDo not build mobile SDKs, product tours, or outbound campaigns.",
+  "faq": [
+    {
+      "q": "Why force the AI to cite a source?",
+      "a": "Because a support bot that invents a refund policy creates a liability, and because a citation is a cheap, checkable proxy for grounding. Refusing when retrieval is weak also saves the model call entirely, which is the rare case where the safer choice is also the cheaper one."
+    },
+    {
+      "q": "What is genuinely hard about the widget?",
+      "a": "Surviving navigation and living inside someone else's CSS. Both are solved problems — a persisted conversation id and a shadow root — but they are the difference between a demo and something you would put on a real site."
+    },
+    {
+      "q": "Can I match Fin's resolution rate?",
+      "a": "Not out of the box. Retrieval over good documentation gets a meaningful share of repetitive questions, and Intercom's advantage is tuning across an enormous volume of real conversations. The honest framing is that you are building a good deflector, not a replacement agent."
+    },
+    {
+      "q": "How does Intercom's pricing actually add up?",
+      "a": "A seat price plus $0.99 for every conversation Fin resolves, with add-ons for Copilot and the outbound suite billed separately. The per-resolution line is the one that scales with your success, and it is the number to model before switching either way."
+    }
+  ]
+}

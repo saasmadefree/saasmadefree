@@ -1,0 +1,32 @@
+{
+  "tagline": "A searchable database of a few hundred million business contacts.",
+  "verdictSummary": "You are not paying for search boxes, you are paying for the rows behind them: hundreds of millions of contact records, continuously re-verified, assembled from sources a single person has no route to. No amount of code produces that. What a personal build can do is the opposite discipline — hold the prospects you have found yourself, and be strict about where every fact came from and how old it is, which is the thing bought databases are worst at.",
+  "coreLoopDIY": "Keep a prospect database you actually own, where every field records its source and the date it was captured, and anything past its freshness window is visibly marked stale rather than quietly served.",
+  "whatYouLose": [
+    "the contact database itself — nobody appears that you did not find",
+    "search by company size, technology, hiring signal or funding round",
+    "continuous re-verification of email addresses you already hold",
+    "the Chrome extension that pulls a prospect off a company page",
+    "sequences and the sending infrastructure behind them"
+  ],
+  "whyPeopleStillPay": "Because the data is the product, and it is the one part of outbound that genuinely cannot be built. Everything else Apollo sells is a wrapper around having the rows.",
+  "prompt": "Build a prospect database with an obsession about provenance. It contains only what you put in it, and it never lets you forget how old that is.\n\nStack: your choice, Postgres, one command to start.\n\nModel: Company, Person, and Fact. The twist is Fact. Instead of columns on Person, every attribute — email, title, phone, LinkedIn URL, company — is a Fact row with: the attribute name, the value, a source (free text, required, no default), a captured_at date, and a confidence I set from a fixed list. A Person can hold several conflicting Facts for the same attribute at once; the UI shows the newest first with the others collapsed beneath it, and never silently discards the old one.\n\nFreshness: each attribute type has a configurable half-life — emails 180 days, job titles 120, phone numbers 365. Anywhere a value is displayed past its half-life it renders with a visible stale marker and the age in days. Exports include a column with the age of every exported value.\n\nAdd a \"verify\" workflow: mark a Fact as re-checked today, which writes a new Fact rather than editing the old one, so the history of a changing job title is preserved.\n\nSearch and segmentation: filter people and companies on any current Fact value, on staleness, and on tags. Save segments by name. Export a segment to CSV with the provenance columns included, because the point of this build is that the CSV you hand someone is honest.\n\nImport: CSV with a mapping screen that forces you to name a source for the file before it will run. No source, no import.\n\nWrite tests for the freshness computation at boundary dates and for the invariant that verifying never mutates an existing Fact row.\n\nDo not scrape, do not buy or embed any third-party contact dataset, and do not send email. This is a filing cabinet with a good memory.",
+  "faq": [
+    {
+      "q": "Is a prospect database with no data actually useful?",
+      "a": "It is useful for what you already have and keep losing track of: the fifty people you met at two conferences, the leads from your own website, the accounts you researched by hand. That set is small but it is yours, and it stays accurate — which is more than can be said for most rows in a bought database."
+    },
+    {
+      "q": "Why store facts as rows instead of columns?",
+      "a": "Because a contact database's real problem is not storage, it is knowing whether the email address in front of you is from last week or from 2023. Facts with a source and a date make that visible, and keeping the old value means you can see that someone changed jobs."
+    },
+    {
+      "q": "Could I plug in a data provider later?",
+      "a": "You could, and the model is built for it — a provider is just another source name. What you would be buying at that point is the data, which is the honest shape of this market: the software is cheap and the rows are not."
+    },
+    {
+      "q": "What does Apollo let me export?",
+      "a": "Contacts and accounts you have saved to lists export as CSV within your credit and export limits, which are tier-dependent. The searchable universe is not exportable, by design — that is the product."
+    }
+  ]
+}

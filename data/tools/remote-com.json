@@ -1,0 +1,37 @@
+{
+  "slug": "remote-com",
+  "name": "Remote",
+  "domains": [
+    "remote.com"
+  ],
+  "category": "business-admin",
+  "subcategory": "global payroll and employer of record",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Payroll",
+    "basis": "per-seat-monthly",
+    "source": "https://remote.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "Remote sells several products: Payroll at $29 per employee per month, Contractor Management at $29 per contractor, Contractor Management Plus at $99, and Employer of Record at $699 per employee. The \"HR Management\" tier upstream recorded at $10 does not appear as such; the page shows an HR product \"from $39 per month\", so the plan mapping is not fully certain."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "entities and local employment law",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "relatedSlugs": [
+    "deel",
+    "gusto",
+    "factorial-hr"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

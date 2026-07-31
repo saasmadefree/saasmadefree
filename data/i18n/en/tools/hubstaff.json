@@ -1,0 +1,32 @@
+{
+  "tagline": "Time tracking with screenshots, activity scores and payroll attached.",
+  "verdictSummary": "What Hubstaff sells is not a timer, it is a chain that ends in money moving: tracked hours, an activity score, an approved timesheet, and an automatic payment to a contractor in another country. The paying half needs money-transmission partners and the monitoring half needs software installed on machines you administer and a lawful basis to watch people work. Neither belongs in a personal build. The consolation build here monitors exactly one person: you.",
+  "coreLoopDIY": "Measure your own working patterns locally — active application, idle detection, and a focus score — with everything staying on your machine and nobody else able to see it.",
+  "whatYouLose": [
+    "tracking anyone but yourself, which is the entire commercial product",
+    "automatic payments to contractors through payroll partners",
+    "timesheet approval workflows and locked pay periods",
+    "GPS, geofencing and job-site clock-in",
+    "the mobile and desktop apps published and signed by a vendor"
+  ],
+  "whyPeopleStillPay": "Because paying twelve contractors in nine countries from approved timesheets is a compliance and payments problem, not a tracking problem, and Hubstaff has the partners for it.",
+  "prompt": "Build a personal activity monitor. It watches one machine — yours — and nothing leaves it.\n\nBe explicit in the README about scope: this is self-measurement. Deploying anything like it on other people's machines raises consent and employment-law obligations that differ by country and are not a technical matter.\n\nStack: a small desktop agent plus a local web dashboard. Any language with OS-level window APIs; SQLite for storage; everything on localhost with no remote endpoint at all.\n\nThe agent samples every few seconds and records: the active application, the window title, and whether input has occurred since the last sample. It never captures screen content and never records keystrokes — say so in the README and mean it.\n\nDerived measures:\n- **Idle**: no input for longer than a configurable threshold ends the current block. On return, prompt once for what that gap was, with options to discard it, mark it as a break, or assign it to a project.\n- **Sessions**: contiguous activity in one category, with a minimum length so a two-second glance at a browser does not fragment an hour of work.\n- **Context switches per hour**, which is a more honest attention measure than any single focus score.\n- **Categories**: you assign applications and window-title patterns to categories yourself. Ship no default classification — an inherited productivity rating is somebody else's opinion about your work.\n\nPrivacy controls, first-class rather than an afterthought:\n- A pause button that stops sampling entirely, with the paused periods visible as such rather than silently missing.\n- Per-application title redaction: for chosen apps, store only the application name, never the window title.\n- Retention: raw samples are deleted after N days by default, leaving only the aggregates. Make N small.\n- One command that deletes everything.\n\nDashboard: a day timeline, category totals, context switches per hour, and a week-over-week trend. CSV export.\n\nWrite tests for idle detection at the threshold boundary, for session merging with a short interruption, and for retention actually removing raw rows.\n\nDo not add remote reporting, screenshots, keystroke logging, or any way to observe another machine.",
+  "faq": [
+    {
+      "q": "Why refuse screenshots when the paid product has them?",
+      "a": "Because a local screenshot archive is a liability with no upside for self-measurement — it captures passwords, private messages and client data — and because the moment you build it, the tool becomes something you could point at someone else."
+    },
+    {
+      "q": "Why ship no default app classification?",
+      "a": "Because \"productive\" is contextual: a browser is research for one person and procrastination for another, and inheriting a vendor's ratings is how these tools produce numbers that feel unfair. Ten minutes of self-classification is more accurate than any default."
+    },
+    {
+      "q": "Is monitoring employees legal if I build it myself?",
+      "a": "It depends heavily on jurisdiction, and building it yourself removes none of the obligations. In much of Europe, continuous monitoring needs a documented lawful basis, proportionality, and notice to the people monitored. That is why this prompt is scoped to your own machine."
+    },
+    {
+      "q": "What does the two-seat minimum mean in practice?",
+      "a": "That the advertised $4.99 is never the real floor — the cheapest Hubstaff account is two seats, so about $9.98 a month on annual billing, even for a solo user."
+    }
+  ]
+}

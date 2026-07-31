@@ -1,0 +1,43 @@
+{
+  "slug": "teamwork",
+  "name": "Teamwork",
+  "domains": [
+    "teamwork.com"
+  ],
+  "category": "project-management",
+  "subcategory": "client work and billable hours",
+  "pricing": {
+    "amount": 9.99,
+    "currency": "USD",
+    "plan": "Deliver",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.teamwork.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$9.99 per user per month billed yearly, three-user minimum on paid plans. Upstream recorded $13.99, which matches no tier on the current page."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "client-billing workflow",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Plane",
+      "url": "https://github.com/makeplane/plane"
+    }
+  ],
+  "relatedSlugs": [
+    "harvest",
+    "basecamp",
+    "asana"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

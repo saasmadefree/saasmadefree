@@ -1,0 +1,32 @@
+{
+  "tagline": "The rota on everyone's phone, with swaps that sort themselves out.",
+  "verdictSummary": "Two dollars fifty a head is priced against the effort of not doing it, and the software underneath is a weekend. The gap is adoption: this only works if every member of staff has it on their phone and opens it, and an installed app with push notifications is a different thing from a web page they have to remember. Nothing here is a network or a dataset, so kinda is right.",
+  "coreLoopDIY": "Publish the rota once and let it maintain itself: staff see their shifts, offer them up, and pick up cover, with your approval as the only step that needs you.",
+  "whatYouLose": [
+    "the mobile apps and push notifications",
+    "the time clock and its payroll export on the paid tiers",
+    "multi-location scheduling",
+    "availability requests handled entirely in-app by staff",
+    "somebody else keeping it up on a Friday night"
+  ],
+  "whyPeopleStillPay": "Because the whole value is that the rota reaches everyone and changes reach them too, and that requires an app people already have rather than a link you keep resending.",
+  "prompt": "Build a scheduling tool whose distinguishing feature is that shift changes resolve without you.\n\nStack: your choice, Postgres, Docker Compose, a domain with TLS. Mobile-first, keyboard-free, usable on a slow connection.\n\nSchedule: employees with roles and stated availability, shifts with role, start, end and required headcount, published a week at a time.\n\nAvailability: each employee sets recurring availability and one-off exceptions. Assigning someone outside their availability is allowed but warns and records that it was overridden — a hard block just gets worked around by text message.\n\nThe self-service loop, which is the point:\n- **Offer a shift up**: an employee releases a shift into an open pool.\n- **Claim from the pool**: anyone with the right role and matching availability sees it and can claim. Claiming is atomic — two people tapping at the same second must not both get it, and this needs a real transaction, not a check-then-write.\n- **Direct swap**: propose a trade with a named colleague, who accepts or declines.\n- Every resolution needs one manager approval and nothing else. The manager sees a single queue of pending changes with accept and reject.\n- Rules enforced before a claim is offered: not already working that time, not exceeding a weekly hours cap, and a minimum rest gap between shifts.\n\nNotifications: web push where available, email otherwise, for published schedules, changes to your own shifts, and a shift available in the pool you qualify for. Be honest in the README that without a native app this is where a self-hosted version is weakest.\n\nShow, on the schedule, the coverage per role per hour as a small bar, so an understaffed Saturday is visible while it is still a draft.\n\nWrite tests for atomic claiming under concurrency, for the rest-gap and weekly-cap rules blocking a claim, and for availability overrides being recorded.\n\nDo not build a time clock, payroll, or multi-location support.",
+  "faq": [
+    {
+      "q": "Why does atomic claiming matter?",
+      "a": "Because two people claiming the same shift is a guaranteed argument, and a naive check-then-write gets it wrong exactly when the pool is busy. One transaction with a conditional update solves it and needs a test to stay solved."
+    },
+    {
+      "q": "Why warn rather than block on availability?",
+      "a": "Because managers legitimately need to ask someone to work outside their stated availability, and a hard block pushes that conversation into text messages where the schedule cannot see it. Warning and recording keeps it in the system."
+    },
+    {
+      "q": "How much does the lack of an app really cost?",
+      "a": "A lot, honestly. Hourly staff will not check a web page, and web push is inconsistent on iOS. Expect to also send an SMS for anything urgent, which is a real cost the subscription absorbs."
+    },
+    {
+      "q": "What does When I Work cost?",
+      "a": "$2.50 per user per month for a single location, $5 for multi-location, $8 for the top tier — with the time clock and payroll export on the higher tiers rather than the entry one."
+    }
+  ]
+}

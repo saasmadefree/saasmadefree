@@ -1,0 +1,32 @@
+{
+  "tagline": "Twenty years of photographs, and the people who commented on them.",
+  "verdictSummary": "The storage is not the point and neither is the interface. Flickr is an archive with an audience: groups that have been active for fifteen years, comment threads on photographs taken before most social networks existed, and a Creative Commons corpus the rest of the web links to. You cannot rebuild a community by writing software, and the honest DIY is a gallery with nobody in it — which is why the prompt below is about getting your work *out* properly.",
+  "coreLoopDIY": "Own the archive rather than the audience: a self-hosted gallery that ingests a complete Flickr export with its titles, tags, albums, licences and comments preserved and readable.",
+  "whatYouLose": [
+    "the audience — groups, favourites, comments and discovery",
+    "unlimited full-resolution storage",
+    "inbound links and search results that took years to accumulate",
+    "the Creative Commons ecosystem and reuse of your work",
+    "the mobile app"
+  ],
+  "whyPeopleStillPay": "Because the value accumulated over fifteen years lives in other people's attention, and cancelling does not move it anywhere. Seven dollars a month is the rent on a history you cannot take with you.",
+  "prompt": "Build a self-hosted gallery whose first-class feature is faithfully ingesting a Flickr export, including the parts most importers throw away.\n\nStack: your choice, Postgres, object storage or disk, Docker Compose, a domain with TLS. Consider deploying an existing self-hosted photo application and writing the importer against it — say which route you took.\n\nThe importer is the build. A Flickr data export is a set of zip archives: original files in some, and JSON metadata in others. Handle all of it:\n- Titles, descriptions, tags and machine tags.\n- Albums and photostream order.\n- **Licence per photo**, preserved exactly. Someone who released work under Creative Commons has made a commitment, and an importer that drops the licence quietly breaks it.\n- **Comments and favourites**, with the commenter's display name and the date, stored and rendered read-only. They are not yours to edit and they are the part of the archive with the most sentimental value.\n- EXIF, geotags where present, and view counts as a historical figure marked as of the export date rather than a live number.\n- Original filenames, and the Flickr photo id, so an old inbound link can be mapped to the new page.\n\nRedirect map: generate a mapping from Flickr photo ids and album ids to your new URLs, output as a file you can feed to your web server. Fifteen years of inbound links are worth an afternoon.\n\nGallery: albums, tags, a date-based archive, full-text search over titles, descriptions and tags, and a per-photo page showing licence, EXIF and the preserved comments with a clear note that they are archived from Flickr.\n\nSharing: public, unlisted with an unguessable URL, or private, per album and per photo, with the more restrictive setting winning.\n\nIntegrity: verify every file against the export's manifest during import and report anything missing, because partial Flickr exports are common and discovering a gap years later is the bad outcome.\n\nWrite tests for licence preservation across every Creative Commons variant, for comment ordering and attribution, and for the redirect map covering every imported photo.\n\nDo not build social features. There is nobody there.",
+  "faq": [
+    {
+      "q": "Why insist on preserving comments?",
+      "a": "Because they are the part of a fifteen-year archive that cannot be recreated, and they are what makes it a record of a life rather than a folder of files. Most importers drop them because they are awkward, which is exactly why the prompt names them."
+    },
+    {
+      "q": "Why does the licence matter so much?",
+      "a": "Because a Creative Commons release is a promise to everyone who reused the work. Losing that metadata on import means republishing without the terms you granted, which is both discourteous and legally muddled."
+    },
+    {
+      "q": "Is the redirect map really worth it?",
+      "a": "If anyone has ever linked to your photographs — a blog, a forum, Wikipedia — then yes. It is one generated file and it preserves the only thing an archive gains from being old."
+    },
+    {
+      "q": "How complete is a Flickr export?",
+      "a": "Reasonably, but it arrives as many separate zip archives requested over several days, and it is easy to miss one. Verify against the manifest during import; a gap found on import is fixable and a gap found in three years is not."
+    }
+  ]
+}

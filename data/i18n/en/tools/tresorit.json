@@ -1,0 +1,32 @@
+{
+  "tagline": "Encrypted storage sold to people who have to justify their choice.",
+  "verdictSummary": "Tresorit sells to lawyers, clinics and financial firms, and what they are buying is Swiss jurisdiction, published certifications, and a company that will answer a supplier questionnaire. Encryption and device controls are a sitting. Certifications are not something you build, and this is one of the clearest cases in the catalogue where the software is the cheap part.",
+  "coreLoopDIY": "Encrypt client-side, then add the control that regulated work actually needs: an inventory of which device holds which key, and a remote wipe that is recorded rather than assumed.",
+  "whatYouLose": [
+    "certifications and a jurisdiction somebody else stands behind",
+    "the desktop and mobile clients with transparent encryption",
+    "the Gmail and Outlook plugins for encrypted attachments",
+    "support when a client asks a question you cannot answer",
+    "durability guarantees on the storage"
+  ],
+  "whyPeopleStillPay": "Because the buyer has to defend the choice to a regulator or a client, and an answer that ends in \"and here is their certification\" is worth more than better cryptography with no paperwork.",
+  "prompt": "Build encrypted storage with a device inventory, because in regulated work \"who can decrypt this\" is the question that gets asked.\n\nStack: your choice, Postgres, object storage, Docker Compose, a domain with TLS. Client-side encryption with the Web Crypto API and a command-line client; the server holds ciphertext only.\n\nKey model: a random master key wrapped per **device**. Enrolling a device generates a device keypair, and the master key is wrapped to it. A device is named, dated, and listed.\n\nThe device inventory is the build:\n- Every enrolled device: name, platform, enrolment date, last seen, and which files it has decrypted, from an append-only access log.\n- **Revoke a device**: unwrap the master key for every remaining device, generate a *new* master key, re-wrap it to the survivors, and re-encrypt only the file keys — not the file contents. Test that the revoked device can decrypt nothing added afterwards, and that everything else still opens.\n- Be honest about the limit, in the interface and the README: revocation cannot un-see what the device already downloaded. Say so where a user will read it, rather than implying it is a remote wipe.\n\nA local-wipe command the client honours on next contact, recorded in the log as requested, acknowledged or never acknowledged — the third state being the one that matters and the one most tools quietly hide.\n\nSharing: per-recipient links with the file key wrapped to a passphrase they receive out of band, expiry, download limits, and revocation.\n\nAudit: append-only log with a hash chain, exportable as a signed report for a date range.\n\nWrite tests for revocation rotating the master key without re-uploading file contents, for the hash chain detecting tampering, and for the wipe log distinguishing acknowledged from unacknowledged.\n\nDo not claim compliance with anything. State what the system does and let the reader map it.",
+  "faq": [
+    {
+      "q": "Why rotate the master key on revocation instead of just removing the device?",
+      "a": "Because removing a wrap does nothing if the device already extracted the key. Rotating and re-wrapping to the survivors means anything added afterwards is genuinely out of reach, which is the strongest claim the design can honestly make."
+    },
+    {
+      "q": "Why record unacknowledged wipes?",
+      "a": "Because a wipe request that never reached the device is the only case that matters, and a tool showing a green tick for \"wipe sent\" is telling you what you want to hear. Three states — requested, acknowledged, never acknowledged — is the honest model."
+    },
+    {
+      "q": "Can a self-hosted system be compliant?",
+      "a": "It can meet technical requirements. What it cannot produce is third-party attestation, which is usually what a client or auditor is actually asking for. That gap is institutional and it is why this entry is a no."
+    },
+    {
+      "q": "Does Tresorit export cleanly?",
+      "a": "Yes — it is file storage with desktop clients, so a full copy is a sync to a local folder. The audit log and device history are the parts that stay behind, which is worth noting if they are the reason you bought it."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Deliver the gallery, and sell prints from inside it.",
+  "verdictSummary": "The gallery is a weekend: upload, organise, share with a password, let the client download and favourite. What is not a weekend is the shop behind it — thirty labs in different countries, automatic fulfilment, colour-managed printing and somebody to blame when an album arrives damaged. That is a supplier network, and it is the half that turns a delivery tool into revenue. Buildable with a real gap, which is what kinda means.",
+  "coreLoopDIY": "Deliver galleries properly: a password-protected, mobile-first gallery where the client favourites, comments and downloads, and you can see exactly what they looked at.",
+  "whatYouLose": [
+    "the print store and its global lab fulfilment",
+    "automatic sales campaigns and reminder emails to clients",
+    "colour-managed printing and somebody handling a reprint",
+    "the mobile app for the client",
+    "hosted delivery when a gallery goes out to two hundred guests at once"
+  ],
+  "whyPeopleStillPay": "Because print sales are the margin, and building a store means negotiating with labs, handling colour, taking payments and owning every complaint. The gallery is the excuse; the shop is the business.",
+  "prompt": "Build client photo delivery designed around what the client actually does with it.\n\nStack: your choice, Postgres, object storage, Docker Compose, a domain with TLS, and a transactional email provider with SPF, DKIM and DMARC.\n\nGallery: a set of photos, a cover, a title and a date, at an unguessable URL. Access by password or by an emailed personal link. Optional expiry, with a clear \"this gallery expired on <date>, contact the photographer\" page rather than a 404.\n\nDelivery quality is the part that gets judged: generate several sizes on upload, serve responsive images, lazy-load below the fold, and preload the next image in the lightbox. A gallery that stutters on a phone is the impression your client keeps.\n\nClient actions:\n- **Favourites**, with an optional target count set by you and a visible progress indicator, because \"choose 30 for the album\" is the most common instruction in this business.\n- **Comments per photo**, private to you.\n- **Downloads**: per photo or whole album as a zip, at a resolution you set per gallery, with a download log.\n- Sharing a single photo to a social platform with a watermark applied to that copy only.\n\nThe view log is the feature photographers actually want and rarely have: which photos were opened, how long the gallery was viewed, how many unique visitors, and which photos were favourited by whom when several people have links. Aggregate it into one page and email a summary the day after first access.\n\nEmails: gallery ready, a reminder if favourites are incomplete after N days, and an expiry warning. All from your own domain.\n\nStorage discipline: per-gallery archive after a configurable period, moving originals to cold storage and keeping web sizes online, with a one-command restore. Photographers accumulate terabytes and never delete anything.\n\nWrite tests for expiry behaviour, for the zip download of a large album streaming rather than buffering, and for the favourites count enforcing its target without blocking.\n\nDo not build a print store or take payments.",
+  "faq": [
+    {
+      "q": "Why is the view log worth building?",
+      "a": "Because it tells you whether the client actually opened the gallery before you chase them, and which photographs they lingered on. It is the difference between guessing and knowing, and almost no self-built gallery has it."
+    },
+    {
+      "q": "What makes a print store hard rather than tedious?",
+      "a": "Colour management and complaints. Getting a print to match the screen means profiled labs and test prints, and when it does not match, somebody has to reprint at their own cost. That relationship is the product you are not building."
+    },
+    {
+      "q": "Why archive to cold storage automatically?",
+      "a": "Because delivery galleries are read once and then kept forever out of anxiety. Moving originals to cold storage after a few months cuts the bill by an order of magnitude while keeping the gallery viewable."
+    },
+    {
+      "q": "Can I move galleries off Pic-Time?",
+      "a": "Originals download per gallery, and client selections export. Favourites, comments and the view history are the parts that stay behind, which matters most for galleries still in progress — export those before you switch."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "slug": "factorial-hr",
+  "name": "Factorial",
+  "domains": [
+    "factorialhr.com"
+  ],
+  "category": "business-admin",
+  "subcategory": "HR administration",
+  "pricing": {
+    "amount": 8,
+    "currency": "USD",
+    "plan": "Business",
+    "basis": "per-seat-monthly",
+    "source": "https://factorialhr.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "The page advertises \"Factorial starts at $8 per month, per user\" without naming the tier that figure belongs to, and routes everything else to a quote. The plan name is carried over from the upstream record and should be treated as unconfirmed."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "per-country compliance content",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "relatedSlugs": [
+    "homebase",
+    "when-i-work",
+    "deel"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

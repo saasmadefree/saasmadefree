@@ -1,0 +1,37 @@
+{
+  "slug": "streak-crm",
+  "name": "Streak",
+  "domains": [
+    "streak.com"
+  ],
+  "category": "crm-sales",
+  "subcategory": "CRM inside Gmail",
+  "pricing": {
+    "amount": 59,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "per-seat-monthly",
+    "source": "https://www.streak.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$59 per user month-to-month; $49 billed annually."
+  },
+  "verdict": "no",
+  "verdictConfidence": "medium",
+  "moatType": "living inside Gmail",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database",
+    "oauth-app"
+  ],
+  "relatedSlugs": [
+    "copper-crm",
+    "close-crm",
+    "front"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

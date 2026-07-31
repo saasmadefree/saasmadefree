@@ -1,0 +1,38 @@
+{
+  "slug": "instantly",
+  "name": "Instantly",
+  "domains": [
+    "instantly.ai"
+  ],
+  "category": "crm-sales",
+  "subcategory": "cold email sending at scale",
+  "pricing": {
+    "amount": 47,
+    "currency": "USD",
+    "plan": "Growth",
+    "basis": "flat-monthly",
+    "source": "https://instantly.ai/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$47 a month billed monthly, $37.60 billed annually. Instantly sells sending and lead credits as separate plans; this is the sending side."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "sending reputation",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database",
+    "oauth-app"
+  ],
+  "relatedSlugs": [
+    "smartlead",
+    "saleshandy",
+    "woodpecker"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

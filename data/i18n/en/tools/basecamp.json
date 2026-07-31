@@ -1,0 +1,32 @@
+{
+  "tagline": "One page per project holding the messages, the to-dos and the files.",
+  "verdictSummary": "Basecamp is six small tools stapled to one project page, and the staple is the product: a message board, to-dos, docs, a schedule, chat and a check-in, with nothing configurable. Rebuilding it is a week, mostly because email-in and email-out are load-bearing rather than a nicety — Basecamp works for people who never open it. The gaps are the mobile apps and the free-guest model, which is a pricing decision rather than a technical one.",
+  "coreLoopDIY": "One page per project holding messages, to-dos, docs, files and a schedule, where every message can be answered by replying to the notification email without opening the app.",
+  "whatYouLose": [
+    "the iOS and Android apps",
+    "free unlimited clients and contractors, a pricing idea rather than a feature",
+    "Hill Charts, Basecamp's own way of showing whether work is still uncertain",
+    "the hosted uptime and the long-term guarantee about your archive",
+    "the Timesheet and Admin Pro add-ons"
+  ],
+  "whyPeopleStillPay": "Because the constraint is the value: nothing to configure means nothing to argue about, and clients being free means you can invite them without a conversation about seats.",
+  "prompt": "Build a project workspace where email is a first-class client, not a notification channel.\n\nStack: your choice, Postgres, Docker Compose, a domain, and a transactional email provider with a signed inbound webhook.\n\nStructure: a Project has exactly five sections, fixed, not configurable — Messages, To-dos, Docs & Files, Schedule, and Automatic Check-ins. Resist adding a sixth.\n\nMessages: a threaded board. Posting notifies subscribers by email. **Replying to that email posts the reply** — parse the inbound webhook, strip the quoted history with a real quote-stripping routine rather than a naive marker search, match the thread by a token in the reply-to address, and attach any files. Test it against replies from Gmail, Outlook and Apple Mail, whose quoting conventions all differ. This is the feature the whole build turns on.\n\nTo-dos: named lists of items with an assignee and a due date. Completing one notifies whoever is subscribed to the list. No priorities, no statuses beyond done and not done, no custom fields.\n\nDocs & Files: Markdown documents with version history, plus uploads to local disk with a content-hash filename.\n\nSchedule: dated events, and every to-do with a due date appears here automatically.\n\nAutomatic Check-ins: a recurring question on a schedule (\"What did you work on today?\"), sent by email, answerable by replying, with all answers collected on one page per question per day. This is the second feature worth copying and it depends entirely on the email path working.\n\nSubscription model: per person, per section, defaulting to on for anything you create or are assigned. One digest option that batches a day's notifications into a single email.\n\nGuests: a role that sees only the sections marked client-visible, invited by magic link with no password. Test that a guest cannot reach a non-visible section by direct URL.\n\nWrite tests for quote stripping across the three mail clients, for reply-token matching, and for guest visibility.\n\nDo not add custom fields, statuses, or a second project layout. The absence is the product.",
+  "faq": [
+    {
+      "q": "Why is replying-by-email the hard part?",
+      "a": "Because every mail client quotes differently, and getting it wrong means the entire previous thread is appended to every reply. A real quote-stripping routine tested against three clients is a day of work and the difference between usable and embarrassing."
+    },
+    {
+      "q": "What are automatic check-ins for?",
+      "a": "They replace the standup. A question goes out on a schedule, people answer by replying to the email, and the answers collect on one page — nobody has to be in a meeting or even in the app."
+    },
+    {
+      "q": "Is refusing custom fields not just stubbornness?",
+      "a": "It is the reason Basecamp is still recognisable after twenty years. Every configurable field is a conversation about process instead of about work, and a rebuild that adds them has rebuilt a different product."
+    },
+    {
+      "q": "What does Basecamp's pricing actually mean for a small agency?",
+      "a": "Plus bills $15 a month per employee and clients are free, so a five-person agency with forty clients pays for five. The Pro Unlimited flat $299 makes sense somewhere around twenty employees."
+    }
+  ]
+}

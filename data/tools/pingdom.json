@@ -1,0 +1,44 @@
+{
+  "slug": "pingdom",
+  "name": "Pingdom",
+  "domains": [
+    "pingdom.com"
+  ],
+  "category": "monitoring",
+  "subcategory": "uptime and synthetic checks",
+  "pricing": {
+    "amount": 16,
+    "currency": "EUR",
+    "plan": "Synthetic Monitoring",
+    "basis": "usage-based",
+    "source": "https://www.pingdom.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "Read from the EU, where the page prices in EUR: €16 a month for the entry capacity tier (10 uptime checks, 1 advanced check, 50 SMS alerts), €14.33 a month billed yearly. Real User Monitoring is a separate product. Upstream recorded $15."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "global vantage points and alert delivery",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Uptime Kuma",
+      "url": "https://github.com/louislam/uptime-kuma"
+    }
+  ],
+  "relatedSlugs": [
+    "checkly",
+    "datadog",
+    "axiom"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

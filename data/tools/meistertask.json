@@ -1,0 +1,43 @@
+{
+  "slug": "meistertask",
+  "name": "MeisterTask",
+  "domains": [
+    "meistertask.com"
+  ],
+  "category": "project-management",
+  "subcategory": "kanban with section automations",
+  "pricing": {
+    "amount": 12.5,
+    "currency": "EUR",
+    "plan": "Pro",
+    "basis": "per-seat-monthly",
+    "source": "https://www.meistertask.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "The page prints €12.50 per user per month excluding VAT and states that pricing is region-based and may change at checkout. It does not make the annual-versus-monthly distinction explicit in the plan card, so treat the billing period as unconfirmed."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "hosted polish",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Plane",
+      "url": "https://github.com/makeplane/plane"
+    }
+  ],
+  "relatedSlugs": [
+    "trello",
+    "basecamp",
+    "shortcut"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

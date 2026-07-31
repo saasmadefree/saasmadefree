@@ -1,0 +1,44 @@
+{
+  "slug": "microsoft-teams-essentials",
+  "name": "Microsoft Teams Essentials",
+  "domains": [
+    "teams.microsoft.com"
+  ],
+  "category": "video-meetings",
+  "subcategory": "team chat and meetings",
+  "pricing": {
+    "amount": 4,
+    "currency": "USD",
+    "plan": "Microsoft Teams Essentials",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.microsoft.com/en-us/microsoft-teams/compare-microsoft-teams-business-options",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$4.00 per user per month paid yearly, on an auto-renewing annual subscription; 10 GB of cloud storage per user. The URL upstream recorded redirects to this one, and microsoft.com blocks scripted fetches, so this was read in a browser."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "bundle economics and identity",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Zulip",
+      "url": "https://github.com/zulip/zulip"
+    }
+  ],
+  "relatedSlugs": [
+    "google-workspace-business-starter",
+    "zoom-pro",
+    "webex-meet"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

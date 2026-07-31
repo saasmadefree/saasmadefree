@@ -1,0 +1,44 @@
+{
+  "slug": "demio",
+  "name": "Demio",
+  "domains": [
+    "demio.com"
+  ],
+  "category": "video-meetings",
+  "subcategory": "automated and live webinars",
+  "pricing": {
+    "amount": 45,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.demio.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$45 a month for a single host paid yearly; $63 a month paid monthly. Upstream recorded $59, which matches neither."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "live media delivery",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Owncast",
+      "url": "https://github.com/owncast/owncast"
+    }
+  ],
+  "relatedSlugs": [
+    "webinarjam",
+    "crowdcast",
+    "livestorm"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

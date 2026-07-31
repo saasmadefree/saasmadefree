@@ -1,0 +1,32 @@
+{
+  "tagline": "A chat widget where an AI agent answers first and a human picks up the rest.",
+  "verdictSummary": "Tidio sells conversations, not seats: a widget, an AI agent called Lyro that answers from your content, and a flow builder for the scripted cases. The widget and the retrieval answering are a weekend with your own model key. What you are really buying is somebody else absorbing the metering and the tuning — and the honest gap in a DIY build is that a bad answer costs you a customer while a bad answer on Tidio costs them a billable conversation.",
+  "coreLoopDIY": "A widget where an AI answers from your own content when it can cite a source, a small scripted flow handles the two or three predictable questions, and everything else reaches a human.",
+  "whatYouLose": [
+    "Lyro's tuning, and the volume of real conversations behind it",
+    "the visual flow builder, replaced here by a deliberately small rule set",
+    "the mobile apps",
+    "the prebuilt e-commerce integrations for order status and cart recovery",
+    "metered pricing that scales down as well as up"
+  ],
+  "whyPeopleStillPay": "Because paying per resolved conversation aligns the bill with the value, and because tuning an AI agent to answer well is an ongoing job rather than a setup step.",
+  "prompt": "Build a chat widget with a three-layer answering strategy: scripted, retrieved, human. The order matters and each layer must know when to give up.\n\nStack: your choice with websockets, Postgres with pgvector, Docker Compose, a domain with TLS.\n\nLayer 1 — scripted flows, kept tiny. A flow is a decision tree of at most three levels with buttons, not free text. Ship exactly the cases where a script beats a model: order status by number, opening hours, and how to reach a human. If the visitor types free text at any point, abandon the flow immediately rather than repeating the menu — flows that trap people are why chat widgets get closed.\n\nLayer 2 — retrieval answering. Ingest your docs or site, chunk with overlap, embed into pgvector. On a question, retrieve and check the best similarity score against a configurable floor. Below the floor, hand over without calling the model at all. Above it, call the model with a prompt that must either answer with a link to a retrieved source or emit the handover token. Render sources as clickable links under every answer.\n\nLayer 3 — human. A simple agent inbox with assignment and canned replies. Once a human joins a conversation, both automated layers are permanently off for it.\n\nMeasure what matters: for every conversation record which layer resolved it, and whether the visitor pressed \"this did not help\". The report is resolution share by layer and the top ten questions that reached a human, which is the list that tells you what to write next.\n\nCost control: a per-conversation and per-day token budget. Exceeding it hands over rather than truncating an answer mid-sentence.\n\nAfter hours, skip layer 3 and collect an email address, saying so plainly.\n\nWrite tests for the retrieval floor triggering handover, for the model never returning an answer without a source, and for free text aborting a flow.\n\nDo not build a visual flow builder, mobile apps, or e-commerce integrations.",
+  "faq": [
+    {
+      "q": "Why script anything at all if you have retrieval?",
+      "a": "Because \"where is my order\" needs a lookup, not a paragraph, and a button beats typing for the three questions that make up most of the volume. Scripts should cover the deterministic cases and stop there."
+    },
+    {
+      "q": "What is the point of tracking which layer resolved a conversation?",
+      "a": "It is the only honest measure of whether the AI is helping. Without it you will believe the deflection rate the model reports about itself, which is always flattering."
+    },
+    {
+      "q": "How does Tidio's conversation metering work in practice?",
+      "a": "Billable conversations are human-handled chats and tickets; Lyro AI conversations are metered separately, as are Flows visitors. That means a good AI agent lowers one line and raises another, and the plan you need depends on which way your mix moves."
+    },
+    {
+      "q": "Can I export from Tidio?",
+      "a": "Conversations and contacts export from the panel, and there is an API for the archive. The Lyro training material and the flows are configuration rather than data, so plan to rebuild them rather than migrate them."
+    }
+  ]
+}

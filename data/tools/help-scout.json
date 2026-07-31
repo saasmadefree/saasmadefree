@@ -1,0 +1,45 @@
+{
+  "slug": "help-scout",
+  "name": "Help Scout",
+  "domains": [
+    "helpscout.com"
+  ],
+  "category": "customer-support",
+  "subcategory": "help desk with knowledge base",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.helpscout.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The page loads with the Annual toggle active: $25 per user per month on annual billing, 16% below the monthly rate. AI Answers is a separate $0.75 per resolution."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "hosted reliability",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "FreeScout",
+      "url": "https://github.com/freescout-help-desk/freescout"
+    }
+  ],
+  "relatedSlugs": [
+    "front",
+    "gorgias",
+    "intercom"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

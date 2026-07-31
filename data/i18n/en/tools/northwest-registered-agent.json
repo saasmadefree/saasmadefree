@@ -1,0 +1,32 @@
+{
+  "tagline": "Someone in the state who will accept a lawsuit on your behalf.",
+  "verdictSummary": "A registered agent is a person or company with a physical address in the state, available during business hours, legally designated to receive service of process. It is not a software category at all — it is an address and an obligation. The only thing worth building around it is the handling of what arrives, which matters because these documents come with deadlines that start running on delivery.",
+  "coreLoopDIY": "Handle what the agent forwards: every official notice logged the day it arrives, with a deadline computed and a reminder set before the response window closes.",
+  "whatYouLose": [
+    "the address and the person at it — the entire service",
+    "availability during business hours in that state",
+    "same-day scanning and forwarding of official mail",
+    "your home address staying off the public record",
+    "coverage in every state you register in"
+  ],
+  "whyPeopleStillPay": "Because the alternative is your own address on a public register and someone present at it all day, and because missing service of process can produce a default judgment against you.",
+  "prompt": "Build an official-mail register for documents forwarded by a registered agent. The deadlines are the point.\n\nStack: a local application, SQLite, one command. The README must say that response deadlines are jurisdiction-specific, that the deadline rules are yours to configure from your own advice, and that this is a tracker rather than advice.\n\nItem record: received date (the date it arrived at the agent, not the date you read it — that distinction is the whole reason for the tool), sender, authority, document type, entity it concerns, a scan, and a free-text summary.\n\nDeadline rules you configure per document type: a number of days from receipt, counted in calendar or business days, from a rule file you fill in. Ship it empty with a documented shape.\n\nOn logging an item, compute the response deadline and create escalating reminders that do not stop until the item is closed with a response recorded. A service-of-process item should be visually distinct from a routine annual notice and should require an explicit acknowledgement that it has been read.\n\nStatus: received, acknowledged, action taken, closed — each with a date and a note. Overdue items stay permanently marked as having been late.\n\nSearch across summaries and metadata, and a per-entity view of everything received, printable, because that history is what an accountant or a lawyer asks for.\n\nRetention: keep scans for a configurable period with deletion logged. Official correspondence is exactly the category people either delete too early or keep forever without knowing why.\n\nWrite tests for business-day counting across weekends and a configured holiday, for reminders escalating from the received date rather than the logged date, and for the overdue marker surviving closure.\n\nDo not attempt to be a registered agent, and do not interpret any document.",
+  "faq": [
+    {
+      "q": "Why count deadlines from receipt rather than from when I read it?",
+      "a": "Because that is how the law counts. A summons served on your agent starts the clock that day whether or not the email reached you, and building the tracker around the wrong date defeats its only purpose."
+    },
+    {
+      "q": "Can I be my own registered agent?",
+      "a": "In most states yes, if you have a physical street address there and are present during business hours. The practical costs are that the address becomes public record and that you must actually be there — which is why the service exists."
+    },
+    {
+      "q": "What happens if service of process is missed?",
+      "a": "The case can proceed without you and a default judgment can be entered. It is the one category of mail where a week of inattention is genuinely expensive, which is why this build treats it differently from everything else."
+    },
+    {
+      "q": "Why is this entry's price marked low confidence?",
+      "a": "Because the site blocks this network entirely, in a script and in a browser. The $125 a year figure is long-standing and widely published, but nobody here read it off the page, and the entry says so rather than implying otherwise."
+    }
+  ]
+}

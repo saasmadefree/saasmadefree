@@ -1,0 +1,32 @@
+{
+  "tagline": "Issue tracking that closes the ticket when the branch merges.",
+  "verdictSummary": "Shortcut is a tracker for people who live in a terminal, and its one indispensable behaviour is the git loop: a branch name carries the story id, the pull request links itself, and the merge moves the card. That loop is a weekend against a git host's webhooks. What you lose is everything social around it — the mobile app, the integrations, and other people bothering to update it — which is the ordinary reason a self-hosted tracker for a team quietly dies.",
+  "coreLoopDIY": "Stories that move themselves: branch names carry the story id, the webhook links the pull request, and merging into the default branch marks the story done without anyone dragging a card.",
+  "whatYouLose": [
+    "the mobile apps",
+    "the maintained integrations to chat, CI and design tools",
+    "hosted uptime and someone else's backups",
+    "the reporting suite, including burndown and cycle-time dashboards out of the box",
+    "other people using it, which is the real risk of a self-hosted team tracker"
+  ],
+  "whyPeopleStillPay": "Because a tracker is only useful if the whole team updates it, and paying is the cheapest way to make it somebody else's job to keep it running and pleasant enough that they do.",
+  "prompt": "Build an issue tracker whose stories are updated by git, not by hand.\n\nStack: your choice, Postgres, Docker Compose. Connect to your git host with an OAuth app and a webhook — GitHub is the reference; note in the README what changes for GitLab.\n\nModel: Story (id, title, description, type of feature/bug/chore, state, estimate, owner, labels), Epic (a named group of stories with a computed completion), and Iteration (a dated window containing stories).\n\nThe git loop, which is the entire point:\n- Every story exposes a suggested branch name containing its id, copyable in one click, in a documented format like `name/sc-123-short-title`.\n- On a `create` webhook for a branch matching that pattern, move the story to In Progress and record the branch.\n- On a pull-request webhook referencing the id in the branch or title, attach the PR with its state and link, and move the story to In Review.\n- On merge into the default branch, move the story to Done and record the merge commit. On PR close without merge, move it back to In Progress and say why in the activity log.\n- Every automatic transition is logged as automatic, with the webhook event that caused it, so an unexpected state change is traceable.\n- Verify the webhook signature and reject anything unsigned. An open webhook endpoint lets anyone move your stories.\n\nIterations: start and end dates, stories assigned in, and a burndown chart built from stored daily snapshots of remaining estimate rather than recomputed from current state — recomputing gives you a chart that rewrites its own history every time a story is re-estimated.\n\nOne report: cycle time per story from In Progress to Done, as a distribution rather than an average, because the average hides the two stories that took a month.\n\nAlso: a kanban board, keyboard-driven search with a query syntax (`state:`, `owner:`, `label:`, `epic:`), and CSV export.\n\nWrite tests for branch-name parsing including titles with hyphens and numbers, for PR-close reverting the state, for signature rejection, and for burndown snapshots being idempotent per day.\n\nDo not build mobile apps, chat integrations, or a design-tool integration.",
+  "faq": [
+    {
+      "q": "Why build burndown from stored snapshots?",
+      "a": "Because a chart recomputed from current state changes yesterday's history whenever an estimate changes, which makes it worthless for the one thing it is for — noticing that you are not going to finish. A daily snapshot row costs nothing."
+    },
+    {
+      "q": "Why report cycle time as a distribution?",
+      "a": "Because the average is dominated by the many small stories and hides the two that took a month, and those two are the ones worth talking about. A histogram or percentiles tells the truth."
+    },
+    {
+      "q": "What happens if someone forgets the story id in the branch name?",
+      "a": "Nothing automatic, which is correct — the tracker should never guess. Make the suggested branch name one click to copy and the omission becomes rare; guessing from the title produces wrong links, which is worse than none."
+    },
+    {
+      "q": "Does Shortcut export well?",
+      "a": "Yes. The API pages through stories, epics, iterations and comments, and there is a CSV export in the UI. It is one of the more portable trackers in this category."
+    }
+  ]
+}

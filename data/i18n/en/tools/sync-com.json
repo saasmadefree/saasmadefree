@@ -1,0 +1,32 @@
+{
+  "tagline": "Encrypted storage sold on being defensible when a client asks.",
+  "verdictSummary": "Sync.com sells to people who have to answer questions — accountants, clinics, lawyers — and what they are buying is a jurisdiction, a compliance claim and an audit trail somebody else stands behind. Encryption and a share link are a sitting. The record of who opened what, when, from where, kept in a form you would show a regulator, is the buildable half and it is genuinely worth having; the institutional half is not something a personal build produces.",
+  "coreLoopDIY": "Share encrypted files with controls that hold — expiry, download limits, per-recipient links — and keep an access log complete enough to answer \"who opened this and when\" a year later.",
+  "whatYouLose": [
+    "a compliance posture somebody else certifies",
+    "the sync clients and mobile apps",
+    "a chosen jurisdiction and its data-residency guarantees",
+    "support when a client asks a question you cannot answer",
+    "the durability guarantee behind the storage"
+  ],
+  "whyPeopleStillPay": "Because the product is an answer to a question from a client or a regulator, and a self-hosted server with a good log is not the same as a vendor attestation.",
+  "prompt": "Build encrypted file sharing whose distinguishing feature is an access log you would be willing to hand to a client.\n\nStack: your choice, Postgres, object storage, Docker Compose, a domain with TLS. Encrypt client-side with the Web Crypto API; the server stores ciphertext.\n\nSharing model, per recipient rather than per file:\n- A share targets one named recipient with their own link and its own key wrapping, so revoking one recipient does not affect the others and the log can attribute every access to a person.\n- Controls, enforced server-side: expiry date, maximum downloads, optional passphrase mixed into key derivation in the browser, and instant revocation.\n- A revoked link returns a clear \"this link was revoked on <date>\" rather than a 404, because the recipient needs to know it was deliberate.\n\nThe access log is the build:\n- Every event — share created, link opened, download started, download completed, download failed, share revoked, share expired — with timestamp, recipient, share id, IP address and user agent.\n- Append-only. No update or delete path exists in the code, and each row carries a hash chain over the previous row so tampering is detectable. Write the test that verifies the chain and detects a modified row.\n- A per-share timeline view, and a per-recipient view across all shares.\n- Export a signed PDF or CSV report for a date range, which is the artefact somebody actually asks you for.\n- Retention: configurable, with deletion of expired log rows recorded as its own log entry.\n\nPrivacy balance, and state it in the README: you are logging IP addresses and access times about your recipients, which is personal data. Say what you keep, for how long, and why, and make the retention short enough to justify.\n\nNotifications: optionally alert the sender on first open and on download, which is the feature people actually notice.\n\nWrite tests for the hash chain detecting tampering, for revocation taking effect immediately including for an in-flight download, and for per-recipient key wrapping meaning one revocation does not break the others.\n\nDo not build sync clients or a mobile app.",
+  "faq": [
+    {
+      "q": "Why per-recipient links instead of one link per file?",
+      "a": "Because a single link forwarded to four people produces four indistinguishable log entries, and the log is the whole point. Per-recipient wrapping also means revoking one person is a real operation rather than invalidating everyone."
+    },
+    {
+      "q": "Is a hash-chained log overkill for a personal tool?",
+      "a": "It is about thirty lines and it converts \"here is my log\" into \"here is my log and it has not been edited\". If the reason you are building this is to answer a client's question, that difference is the whole value."
+    },
+    {
+      "q": "Am I allowed to log my recipients' IP addresses?",
+      "a": "Generally yes for a legitimate security purpose, but it is personal data: say so, keep it briefly, and delete it on schedule. A log kept forever \"just in case\" is the part that turns a compliance feature into a compliance problem."
+    },
+    {
+      "q": "What does Sync.com actually sell that I cannot build?",
+      "a": "A jurisdiction, third-party attestations, and somebody else's name on the answer. When a client asks who can read their files, \"a vendor with published compliance documentation\" and \"my own server\" are different answers, regardless of which is technically better."
+    }
+  ]
+}

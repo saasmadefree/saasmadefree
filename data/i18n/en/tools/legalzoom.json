@@ -1,0 +1,32 @@
+{
+  "tagline": "A lawyer on retainer, priced like a subscription.",
+  "verdictSummary": "What is being sold is access to licensed attorneys at a flat rate, plus filings only a service company can make. Neither is code. The consolation is a document system that makes the lawyer time you do buy more productive — which is a real saving, because the expensive part of legal work is a professional reading things you could have organised yourself.",
+  "coreLoopDIY": "Get more out of every paid hour: your agreements in one place with their dates, obligations and renewals extracted, so a lawyer reviews the specific clause instead of hunting for the contract.",
+  "whatYouLose": [
+    "attorneys, and the ability to get an answer you can rely on",
+    "business filings made on your behalf",
+    "attorney-drafted document templates",
+    "unlimited document review at a flat rate",
+    "anyone carrying professional liability for the answer"
+  ],
+  "whyPeopleStillPay": "Because at some point a real lawyer has to look at it, and a flat monthly rate makes asking cheap enough that you actually ask before signing rather than afterwards.",
+  "prompt": "Build a contract register that makes bought legal time more productive.\n\nStack: your choice, Postgres, Docker Compose. An Anthropic or OpenAI key is optional and only for extraction assistance. The README must say this organises documents and does not interpret them, and that nothing in it is legal advice.\n\nDocument record: title, counterparty, type, signed date, effective date, and the file. Store the file exactly as received — never rewrite the original.\n\nExtracted fields, entered by you and optionally suggested by a model, each with a page and paragraph reference back into the document so every value can be checked in one click:\n- Term start and end, renewal type (automatic, manual, none) and the notice period to prevent renewal.\n- Termination rights on each side.\n- Payment terms and amounts.\n- Liability cap and indemnities, if any.\n- Governing law and jurisdiction.\n- Confidentiality period.\nA suggested value is visibly marked as unconfirmed until you accept it. Never let a model's guess sit in the register looking like a fact.\n\nThe calendar is the payoff: renewal notice deadlines computed from term end minus notice period, with escalating reminders. An automatically renewing contract you meant to cancel is the most expensive filing error a small company makes, and it is entirely a date problem.\n\nComparison view: the same field across every contract of a type, so an unusual liability cap or a hostile termination clause stands out against your own norm.\n\nAn \"ask the lawyer\" pack: select a contract and the clauses you have questions about, and export a single PDF with the document, the extracted fields and your questions. That pack is what turns a billable hour into an answer instead of a reading session.\n\nA full-text search across every document.\n\nWrite tests for notice-deadline computation across month ends, for suggested values never being treated as confirmed, and for the export pack including the original document unmodified.\n\nDo not generate contracts, and do not have a model answer legal questions.",
+  "faq": [
+    {
+      "q": "Why mark extracted values as unconfirmed?",
+      "a": "Because a model reading a contract is usually right and occasionally confidently wrong about a notice period, and a wrong date in a renewal calendar is worse than no calendar. Requiring a human tick costs seconds and removes the class of error."
+    },
+    {
+      "q": "What is the single most valuable feature here?",
+      "a": "The renewal notice deadline. Auto-renewing contracts you intended to leave are a recurring, avoidable cost for small companies, and it is purely a matter of a date computed from a clause nobody re-reads."
+    },
+    {
+      "q": "Does the \"ask the lawyer\" pack really save money?",
+      "a": "It saves the part of the hour spent finding and reading. Sending the document, the extracted terms and three specific questions gets you an answer rather than an orientation, and that is the difference between one hour and three."
+    },
+    {
+      "q": "What does LegalZoom actually cost?",
+      "a": "$469 a year, or $259 for six months, for the attorney plan, with document review beyond ten pages charged on a flat-rate schedule on top. Business filings are priced separately from the subscription."
+    }
+  ]
+}

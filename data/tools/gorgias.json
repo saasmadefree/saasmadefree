@@ -1,0 +1,46 @@
+{
+  "slug": "gorgias",
+  "name": "Gorgias",
+  "domains": [
+    "gorgias.com"
+  ],
+  "category": "customer-support",
+  "subcategory": "e-commerce help desk",
+  "pricing": {
+    "amount": 10,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "usage-based",
+    "source": "https://www.gorgias.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Starter is $10 a month for the helpdesk with 50 tickets included and $0.40 per ticket beyond that, monthly billing only. The AI Agent is a separate $30 a month line, so the card on the page shows $40 a month combined. The $60 \"Basic\" tier recorded upstream is now $90 a month ($77 billed annually)."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "store integration depth",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "oauth-app",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Chatwoot",
+      "url": "https://github.com/chatwoot/chatwoot"
+    }
+  ],
+  "relatedSlugs": [
+    "help-scout",
+    "front",
+    "intercom"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

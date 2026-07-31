@@ -1,0 +1,32 @@
+{
+  "tagline": "Cold email sequences with warm-up and deliverability tooling attached.",
+  "verdictSummary": "Saleshandy sells sequences, but what keeps customers is the deliverability apparatus: warm-up, inbox placement tests across providers, and the monitoring that tells you when a domain is going bad. The auditing half is genuinely buildable in a sitting — DNS records, blocklist lookups, header analysis — and it is the half worth owning, because it tells you the truth about your own domains. The sending half depends on reputation you do not have and a seed network you cannot assemble.",
+  "coreLoopDIY": "Audit your own sending domains rather than send from them: SPF, DKIM and DMARC parsed and explained, blocklist lookups, and a placement test you run by hand against your own seed accounts.",
+  "whatYouLose": [
+    "automated warm-up across a pool of real mailboxes",
+    "inbox placement testing against seed accounts at every major provider",
+    "the sequence sender and its throttling",
+    "the prospect finder bundled into the plan",
+    "aggregate reputation data across thousands of other senders"
+  ],
+  "whyPeopleStillPay": "Because knowing your DNS is correct is easy and getting mail into an inbox is not, and the gap between the two is filled by warm-up and seed networks that only work at scale.",
+  "prompt": "Build a sending-domain auditor. It examines domains you own and tells you, in plain language, what is wrong.\n\nStack: your choice, Postgres for history, one command to run. All checks are read-only DNS and network lookups.\n\nChecks per domain, each reported with a status and a sentence explaining what it means and what to do:\n- SPF: fetch and parse the record. Count DNS lookups and flag anything at or over the limit of ten, which is the single most common silent failure. Flag +all, missing records, and more than one SPF record.\n- DKIM: for each selector I supply, fetch the key, report the algorithm and key length, and flag anything under 1024 bits.\n- DMARC: parse the record, report the policy, percentage, and whether reporting addresses are set. Flag p=none with a note that it monitors and enforces nothing.\n- MX and A: resolve, and check that the sending host has matching forward and reverse DNS, because missing reverse DNS gets mail refused outright.\n- BIMI and MTA-STS: report presence, no judgement.\n- Blocklists: query a configurable list of public DNSBLs for the sending IPs, with a short timeout and clear handling of a list that is unreachable rather than treating it as clean.\n\nHistory: store every run so a domain's page shows a timeline. Highlight changes since the previous run — a DKIM key that rotated, a DMARC policy that got weaker — because a silent change is what you actually want to be told about.\n\nDMARC report ingestion, second module: accept the aggregate XML reports mailed to your rua address, parse them, and produce one table of source IP, volume, SPF result and DKIM result. That table is where you find out somebody else is sending as you.\n\nPlacement test, manual by design: I register seed addresses I control at several providers, the app generates a test message with a unique token, I send it myself from the domain under test, and I mark in the UI where each one landed. The app then charts placement per provider over time. It never sends the message itself.\n\nWrite tests for the SPF lookup counter against a nested include chain, and for DMARC parsing of a malformed record.\n\nDo not send email, do not implement warm-up. The README should state that correct DNS is necessary and nowhere near sufficient.",
+  "faq": [
+    {
+      "q": "Why does the SPF lookup limit matter more than the record itself?",
+      "a": "Because exceeding ten DNS lookups makes the whole SPF evaluation fail permanently, and the record still looks perfectly reasonable when you read it. Nesting three vendors' includes is enough to break it, and nothing tells you."
+    },
+    {
+      "q": "Is a manual placement test worth the trouble?",
+      "a": "It is the only version you can run honestly. Automated seed testing needs a maintained fleet of real accounts at every provider — accounts that get closed for exactly this use — which is a running cost, not a feature."
+    },
+    {
+      "q": "What do DMARC aggregate reports actually give me?",
+      "a": "A daily list of every IP sending mail claiming to be your domain, with pass and fail results. It is how you discover a forgotten marketing tool, or somebody spoofing you, and it costs one DNS record to switch on."
+    },
+    {
+      "q": "Can this fix bad deliverability?",
+      "a": "It can fix the mechanical causes, which are a real share of the problem and cheap to fix. It cannot fix a cold domain, a bad list or a complaint rate, and those are what the subscription is really selling against."
+    }
+  ]
+}

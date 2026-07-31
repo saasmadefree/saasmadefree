@@ -1,0 +1,45 @@
+{
+  "slug": "copper-crm",
+  "name": "Copper",
+  "domains": [
+    "copper.com"
+  ],
+  "category": "crm-sales",
+  "subcategory": "CRM inside Google Workspace",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.copper.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The page prints \"$29 per seat, per month — paid annually\"; there is no month-to-month rate on it."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "Google Workspace integration",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "EspoCRM",
+      "url": "https://github.com/espocrm/espocrm"
+    }
+  ],
+  "relatedSlugs": [
+    "streak-crm",
+    "folk",
+    "attio"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "clickup",
+  "name": "ClickUp",
+  "domains": [
+    "clickup.com"
+  ],
+  "category": "project-management",
+  "subcategory": "configurable everything-app",
+  "pricing": {
+    "amount": 7,
+    "currency": "USD",
+    "plan": "Unlimited",
+    "basis": "annual-effective-monthly",
+    "source": "https://clickup.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$7 per user per month billed yearly, which is the figure the page shows by default; $10 month-to-month. ClickUp Brain is a separate $9 per user per month and AI credits are $10 per 10,000."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "configurability and migration inertia",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Plane",
+      "url": "https://github.com/makeplane/plane"
+    }
+  ],
+  "relatedSlugs": [
+    "monday-com",
+    "asana",
+    "smartsheet"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

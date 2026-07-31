@@ -1,0 +1,32 @@
+{
+  "tagline": "A pipeline that lives in the Gmail window itself, not in another tab.",
+  "verdictSummary": "Streak's product is a surface it does not own. The pipeline sits in Gmail's own thread list, and the mail merge sends from your own account — both achieved by injecting into an interface Google can change without warning. You can build a supported Google Workspace add-on that shows pipeline state in a sidebar, and that is a sitting's work, but a sidebar is not the thread list. Betting a CRM on continued access to somebody else's DOM is the kind of dependency that makes this a no, however small the code is.",
+  "coreLoopDIY": "A Gmail sidebar add-on that recognises the sender of the open thread, shows and edits their pipeline stage and notes, and stores everything in your own database.",
+  "whatYouLose": [
+    "pipeline columns inside the Gmail thread list, which is the actual product",
+    "mail merge with per-recipient fields and send throttling",
+    "email tracking for opens and link clicks",
+    "shared pipelines and the team activity view",
+    "snippets and send-later inside the compose window"
+  ],
+  "whyPeopleStillPay": "Because salespeople live in their inbox and every CRM that asks them to open a second tab loses. Streak charges for being the one that does not ask.",
+  "prompt": "Build a Gmail sidebar CRM using the supported Google Workspace Add-on API, not a DOM-injecting extension.\n\nWhy that choice matters, and the README should say it: an add-on built with CardService keeps working when Gmail's markup changes, and an extension that reads the thread list does not.\n\nParts:\n1. An Apps Script add-on with a contextual Gmail trigger. When a thread is open it reads the sender address through the add-on API, calls your backend, and renders a card: the contact's name, current stage, last three notes, and buttons to change stage or add a note. Editing writes straight back through your backend.\n2. A small backend — your language of choice, Postgres or SQLite — exposing an authenticated JSON API for lookup-by-email, stage change, and note append. Authenticate the add-on to the backend with a long-lived token stored in Apps Script user properties, and rotate it from a settings card.\n3. A plain web UI on the backend for everything the sidebar is too small for: the board view, bulk edits, CSV import and export.\n\nModel: Contact (email is the identity), Pipeline, Stage, Note. Every stage change stores who, when, from and to.\n\nBecause the add-on runs in Google's sandbox, be explicit about its limits in the README: it cannot see the thread list, cannot modify the compose window beyond the supported compose actions, and has quota limits on script runtime.\n\nWhen the sidebar sees an address with no contact, offer a one-tap \"create contact from this sender\" that pulls the display name from the message.\n\nWrite tests for the backend API, and a manual test checklist for the add-on since Apps Script is awkward to test automatically — that honesty is better than a fake test suite.\n\nDo not build a Chrome extension that scrapes Gmail's interface, and do not implement mail merge or open tracking.",
+  "faq": [
+    {
+      "q": "Why refuse the Chrome extension route when it would look more like Streak?",
+      "a": "Because it is a maintenance liability with a fixed expiry date you do not control. Gmail's markup changes on Google's schedule, and a personal CRM that breaks silently is worse than one that never claimed to be there."
+    },
+    {
+      "q": "Can the add-on show a pipeline column next to each thread?",
+      "a": "No. The Workspace Add-on API gives you a sidebar and a handful of compose actions, and that is the ceiling. This is the concrete reason the verdict here is no rather than kinda."
+    },
+    {
+      "q": "What about the mail merge?",
+      "a": "Left out on purpose. Sending a few hundred messages from a personal Gmail account runs into a hard daily cap and, more importantly, into the deliverability problems that get accounts suspended. If you need volume, that is a job for a proper sending platform, with all the cost that implies."
+    },
+    {
+      "q": "Does Streak let me take my data with me?",
+      "a": "Yes — pipelines export as CSV per pipeline, with boxes, stages and custom fields. The email threads themselves stay in Gmail, which is arguably the correct place for them."
+    }
+  ]
+}

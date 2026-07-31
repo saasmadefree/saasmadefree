@@ -1,0 +1,44 @@
+{
+  "slug": "crisp",
+  "name": "Crisp",
+  "domains": [
+    "crisp.chat"
+  ],
+  "category": "customer-support",
+  "subcategory": "chat-first support inbox",
+  "pricing": {
+    "amount": 45,
+    "currency": "USD",
+    "plan": "Mini",
+    "basis": "per-seat-monthly",
+    "source": "https://crisp.chat/en/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Priced per workspace rather than per agent: $45 a month for the Mini workspace, with additional agents at $10 a month each and $5 of AI credits included."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "channel breadth per workspace",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Chatwoot",
+      "url": "https://github.com/chatwoot/chatwoot"
+    }
+  ],
+  "relatedSlugs": [
+    "tidio",
+    "livechat",
+    "chatwoot-cloud"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

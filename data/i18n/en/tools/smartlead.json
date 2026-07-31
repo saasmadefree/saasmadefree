@@ -1,0 +1,32 @@
+{
+  "tagline": "Unlimited mailboxes, rotation, warm-up and one inbox for all the replies.",
+  "verdictSummary": "Strip out the parts that need infrastructure — the mailbox supply, the rotation at scale, the warm-up pool — and one genuinely valuable piece is left standing: the master inbox, where replies from thirty mailboxes arrive in one place already sorted by intent. That is a sitting to build over IMAP or a provider API and a language model, and it is the half that improves your day. The sending half is reputation, and reputation is not code.",
+  "coreLoopDIY": "Collect replies from every mailbox you own into one triage inbox, classified by intent, so you answer from one screen instead of thirty.",
+  "whatYouLose": [
+    "the sending engine, mailbox rotation and warm-up",
+    "unlimited mailbox connections and the supply of domains behind them",
+    "the deliverability reporting that makes rotation worth having",
+    "the verified-email add-on and its data",
+    "sub-accounts and white labelling for agencies"
+  ],
+  "whyPeopleStillPay": "Because agencies run outbound for many clients at once, and the sending fabric — mailboxes, warm-up, rotation, reporting — is the thing they cannot assemble themselves at that scale.",
+  "prompt": "Build a unified reply inbox across every mailbox you own, with intent classification.\n\nStack: your choice, Postgres, Docker Compose. Connect mailboxes over the Gmail and Microsoft Graph APIs with OAuth where possible and IMAP otherwise; the README should be honest that IMAP with app passwords is simpler and less reliable.\n\nIngestion: poll each mailbox on an interval, store new messages with their headers, and thread them by Message-ID, In-Reply-To and References. Keep the raw MIME. Deduplicate a message that appears in two mailboxes because both were copied.\n\nClassification runs once per new inbound thread and puts it in exactly one bucket: interested, not interested, out of office, referral to someone else, unsubscribe request, bounce, or automated other. Do bounces and auto-responders with header rules first — Auto-Submitted, X-Autoreply, Return-Path patterns, standard DSN formats — because rules are free, deterministic and correct. Only what survives the rules goes to the language model, with a prompt that must return one of the fixed labels and a short quoted justification from the message. Show the justification in the UI so a wrong classification is visible rather than mysterious.\n\nAn unsubscribe request writes a permanent global opt-out that no other screen can undo.\n\nTriage screen: one keyboard-driven list. Move between threads with j and k, reply in place from whichever mailbox originally received the message, archive, or reclassify. Replying must send from the correct mailbox — replying from the wrong address is the failure that makes a unified inbox useless.\n\nBounce handling: parse DSNs for the failed recipient and the status code, and mark the address hard-bounced or soft-bounced. Hard bounces join the permanent suppression list.\n\nOne dashboard: replies by bucket per week, per mailbox, and the bounce rate per mailbox, which is the early warning that a domain is going bad.\n\nWrite tests for the header-rule classifier against a corpus including a DSN, an out-of-office and a real reply, and for reply-from-correct-mailbox.\n\nDo not send campaigns, do not implement warm-up, and do not connect mailboxes you do not own.",
+  "faq": [
+    {
+      "q": "Why classify with rules before the language model?",
+      "a": "Because bounces and out-of-office replies are the bulk of the volume and they identify themselves in headers. Sending them to a model costs money, adds latency and gets them wrong occasionally, which is three losses for no gain."
+    },
+    {
+      "q": "Is replying from the right mailbox really that hard?",
+      "a": "It is easy to build and easy to get wrong, and getting it wrong is fatal — a reply from a different address breaks the thread, confuses the recipient and often bounces. It is called out in the prompt because it is the bug this kind of tool always ships with first."
+    },
+    {
+      "q": "What is the honest value of this without the sending side?",
+      "a": "If you already run outreach from several mailboxes, it is the difference between checking thirty inboxes and checking one. If you do not, it is a mail client with extra steps."
+    },
+    {
+      "q": "Can I take my Smartlead data with me?",
+      "a": "Leads and campaign statistics export as CSV. The mailbox connections, warm-up history and the reputation that goes with them are not portable in any sense — that is the point of the product."
+    }
+  ]
+}

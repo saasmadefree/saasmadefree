@@ -1,0 +1,39 @@
+{
+  "slug": "smartlead",
+  "name": "Smartlead",
+  "domains": [
+    "smartlead.ai"
+  ],
+  "category": "crm-sales",
+  "subcategory": "cold email infrastructure",
+  "pricing": {
+    "amount": 39,
+    "currency": "USD",
+    "plan": "Base",
+    "basis": "flat-monthly",
+    "source": "https://www.smartlead.ai/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "$39 a month billed monthly, $32.50 billed annually. The tier recorded upstream as \"Basic\" is named Base on the current page. Verified prospect emails are a $59 add-on."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "sending infrastructure",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting",
+    "database",
+    "oauth-app"
+  ],
+  "relatedSlugs": [
+    "instantly",
+    "saleshandy",
+    "lemlist"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}
