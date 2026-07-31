@@ -1,0 +1,34 @@
+{
+  "tagline": "AI calendar and task scheduler that auto-plans your workday",
+  "verdictSummary": "You can build an auto-scheduler for your own tasks, but robust calendar conflict handling, integrations, and productized rescheduling take real engineering.",
+  "coreLoopDIY": "Create tasks with duration/deadline/priority, read calendar availability, solve a schedule, and write time blocks back.",
+  "whatYouLose": [
+    "multi-calendar sync",
+    "recurring work rules",
+    "mobile apps",
+    "team scheduling",
+    "polished rescheduling",
+    "support"
+  ],
+  "whyPeopleStillPay": "They pay because the calendar stays organized without manual drag-and-drop.",
+  "notes": "A good 'kinda' because the core algorithm is doable but the product promise is ongoing automation.",
+  "prompt": "Build me a personal task auto-scheduler to replace Motion. Requirements:\n\n- Node + better-sqlite3 + googleapis. Tasks in SQLite: title, duration estimate,\n  deadline, priority, done. A small Express page on localhost:4920 to add and edit\n  tasks, plus a `plan` CLI command.\n- Read my Google Calendar free/busy for the next 14 days (OAuth token cached\n  locally); respect working hours 09:00-18:00 and a lunch block, both set in\n  config.json.\n- The planner is greedy, not clever: earliest deadline first, weighted by priority,\n  packing tasks into free slots in 30-minute increments and splitting anything over\n  90 minutes into chunks.\n- Write the plan back as calendar events with a [plan] prefix. Replanning deletes\n  only [plan] events and relays them, never touching real meetings.\n- Overdue or unschedulable tasks show in red on the web page instead of being\n  silently dropped.\n- A 07:30 node-cron run replans the day and emails me the schedule (SMTP in .env).\n- Single user, local only, no accounts, no telemetry beyond the Google API calls.\n- Out of scope: team scheduling, mobile apps, and meeting-invite handling. It plans\n  my solo work around a calendar it treats as read-only truth.\n- README: the Google Cloud console OAuth setup. Budget an hour for that alone.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}

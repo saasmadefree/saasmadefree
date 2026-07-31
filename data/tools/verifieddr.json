@@ -1,0 +1,36 @@
+{
+  "slug": "verifieddr",
+  "name": "VerifiedDR",
+  "domains": [
+    "verifieddr.com"
+  ],
+  "category": "seo-marketing",
+  "subcategory": "search and AI visibility",
+  "pricing": {
+    "amount": 39,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://verifieddr.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "data access/network/operations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "openai-api-key",
+    "oauth-app"
+  ],
+  "relatedSlugs": [
+    "semrush",
+    "ahrefs",
+    "surfer-seo"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

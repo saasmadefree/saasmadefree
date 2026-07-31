@@ -1,0 +1,42 @@
+{
+  "slug": "replit",
+  "name": "Replit",
+  "domains": [
+    "replit.com"
+  ],
+  "category": "dev-tools",
+  "subcategory": "cloud IDE + app hosting",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Core",
+    "basis": "flat-monthly",
+    "source": "https://replit.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "cloud platform/deployment",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "code-server",
+      "url": "https://github.com/coder/code-server"
+    }
+  ],
+  "relatedSlugs": [
+    "codesandbox",
+    "cursor",
+    "github-copilot"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

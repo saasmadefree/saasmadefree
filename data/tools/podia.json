@@ -1,0 +1,42 @@
+{
+  "slug": "podia",
+  "name": "Podia",
+  "domains": [
+    "podia.com"
+  ],
+  "category": "creator-commerce",
+  "subcategory": "courses/digital products",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Mover",
+    "basis": "flat-monthly",
+    "source": "https://www.podia.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "payments/content hosting/marketing",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Ghost",
+      "url": "https://github.com/TryGhost/Ghost"
+    }
+  ],
+  "relatedSlugs": [
+    "teachable",
+    "kajabi",
+    "invoice-ninja"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

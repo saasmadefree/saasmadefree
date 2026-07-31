@@ -1,0 +1,41 @@
+{
+  "slug": "fathom-hq",
+  "name": "Fathom HQ",
+  "domains": [
+    "fathomhq.com"
+  ],
+  "category": "finance-accounting",
+  "subcategory": "management reporting",
+  "pricing": {
+    "amount": 53,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://www.fathomhq.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "financial integrations/reporting templates",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Metabase",
+      "url": "https://github.com/metabase/metabase"
+    }
+  ],
+  "relatedSlugs": [
+    "invoice-ninja",
+    "quickbooks-online",
+    "freshbooks"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

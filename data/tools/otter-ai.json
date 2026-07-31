@@ -1,0 +1,41 @@
+{
+  "slug": "otter-ai",
+  "name": "Otter.ai",
+  "domains": [
+    "otter.ai"
+  ],
+  "category": "meeting-notes",
+  "subcategory": "meeting transcription + assistant",
+  "pricing": {
+    "amount": 16.99,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://otter.ai/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "integrations/sync/collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "whisperX",
+      "url": "https://github.com/m-bain/whisperX"
+    }
+  ],
+  "relatedSlugs": [
+    "fireflies-ai",
+    "fathom-ai",
+    "granola"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

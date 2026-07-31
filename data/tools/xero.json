@@ -1,0 +1,41 @@
+{
+  "slug": "xero",
+  "name": "Xero",
+  "domains": [
+    "xero.com"
+  ],
+  "category": "finance-accounting",
+  "subcategory": "small-business accounting",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Early",
+    "basis": "flat-monthly",
+    "source": "https://www.xero.com/us/pricing-plans/",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "banking/compliance/accounting ecosystem",
+  "diyTimeEstimate": "more",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Odoo",
+      "url": "https://github.com/odoo/odoo"
+    }
+  ],
+  "relatedSlugs": [
+    "freshbooks",
+    "invoice-ninja",
+    "quickbooks-online"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

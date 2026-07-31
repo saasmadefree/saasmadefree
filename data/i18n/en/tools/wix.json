@@ -1,0 +1,35 @@
+{
+  "tagline": "Website builder with templates, AI tools, ecommerce, bookings, and apps",
+  "verdictSummary": "A custom site is buildable; Wix as a platform includes editor, templates, apps, ecommerce/bookings, hosting, domains, and a huge long-tail feature surface.",
+  "coreLoopDIY": "Build the specific site directly with a framework or static generator and deploy it with forms/bookings/payments as needed.",
+  "whatYouLose": [
+    "drag-and-drop editor",
+    "app marketplace",
+    "ecommerce/bookings",
+    "templates",
+    "hosting/domains",
+    "support",
+    "mobile apps"
+  ],
+  "whyPeopleStillPay": "They pay because one website project tends to become ten maintenance requests.",
+  "notes": "Good to compare with Webflow/Framer and show the DIY site-vs-builder distinction.",
+  "prompt": "Build me a website for my business to replace Wix · the one site I need, not a site builder. Requirements:\n\n- An Astro static site: home, services, about, contact. Copy lives in Markdown and\n  YAML data files so text edits never touch layout code.\n- One mobile-first stylesheet with CSS custom properties for brand colors and type.\n  No CSS framework, no page-builder abstraction.\n- Contact form POSTs to a small Express handler: emails me via SMTP creds in .env\n  and appends to data/messages.jsonl. Honeypot for spam.\n- SEO basics at build time: sitemap.xml, robots.txt, per-page title/meta/OG tags,\n  and a JSON-LD LocalBusiness block with hours and address.\n- npm run build then rsync dist/ to my VPS, served by Caddy with automatic HTTPS.\n- No accounts, no telemetry, no admin panel; content edits are git commits.\n- If I need appointment booking, link to my scheduling tool; do not build a booking\n  engine into this site.\n- Out of scope: drag-and-drop editing, the app marketplace, and ecommerce. If the\n  business needs a real store, that is a Shopify problem, not this build.\n- README: DNS records, Caddy snippet, and exactly which files to edit for common\n  copy changes.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}

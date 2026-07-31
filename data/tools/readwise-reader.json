@@ -1,0 +1,42 @@
+{
+  "slug": "readwise-reader",
+  "name": "Readwise Reader",
+  "domains": [
+    "read.readwise.io"
+  ],
+  "category": "read-it-later",
+  "subcategory": "reader + highlights",
+  "pricing": {
+    "amount": 12.99,
+    "currency": "USD",
+    "plan": "Readwise Full",
+    "basis": "flat-monthly",
+    "source": "https://readwise.io/pricing/reader",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "capture/sync/integrations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "wallabag",
+      "url": "https://github.com/wallabag/wallabag"
+    }
+  ],
+  "relatedSlugs": [
+    "raindrop-io",
+    "feedly",
+    "inoreader"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

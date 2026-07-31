@@ -1,0 +1,43 @@
+{
+  "slug": "squarespace",
+  "name": "Squarespace",
+  "domains": [
+    "squarespace.com"
+  ],
+  "category": "website-builder",
+  "subcategory": "hosted websites",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "flat-monthly",
+    "source": "https://www.squarespace.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "templates/hosting/editor",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "WordPress",
+      "url": "https://github.com/WordPress/wordpress-develop"
+    }
+  ],
+  "relatedSlugs": [
+    "wix",
+    "carrd",
+    "webflow"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

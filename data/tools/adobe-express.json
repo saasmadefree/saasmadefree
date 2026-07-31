@@ -1,0 +1,41 @@
+{
+  "slug": "adobe-express",
+  "name": "Adobe Express",
+  "domains": [
+    "new.express.adobe.com"
+  ],
+  "category": "design",
+  "subcategory": "quick creative editor",
+  "pricing": {
+    "amount": 9.99,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "flat-monthly",
+    "source": "https://www.adobe.com/express/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "licensed assets/ecosystem",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "GrapesJS",
+      "url": "https://github.com/GrapesJS/grapesjs"
+    }
+  ],
+  "relatedSlugs": [
+    "canva",
+    "figma",
+    "thumblifyai"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,35 @@
+{
+  "tagline": "SEO content optimization and AI writing based on SERP analysis",
+  "verdictSummary": "A SERP-scrape-to-content-brief tool is buildable, but reliable SERP data, NLP scoring, editor workflow, AI articles, audits, and integrations create ongoing work.",
+  "coreLoopDIY": "Fetch top SERP pages via API, extract headings/entities/terms, score a draft, and produce brief/editor suggestions.",
+  "whatYouLose": [
+    "SERP data reliability",
+    "scoring model",
+    "editor UX",
+    "AI article workflows",
+    "integrations",
+    "audits",
+    "support"
+  ],
+  "whyPeopleStillPay": "They pay because content optimization needs repeatable data and an editor that writers will use.",
+  "notes": "Great kinda: not impossible, but the core data and scoring need upkeep.",
+  "prompt": "Build me a content-brief and draft-scoring tool to replace Surfer SEO, personal scale. Requirements:\n\n- A Node CLI with two commands: brief \"<keyword>\" and score <draft.md> \"<keyword>\".\n- brief: fetch the top 10 results from Serper.dev (key in .env), download each page,\n  extract title, headings, and body text with cheerio + @mozilla/readability.\n- Compute across the winners: median word count, recurring H2/H3 topics, and the 30\n  most frequent meaningful terms via simple tf-idf. No NLP service.\n- Send that to an LLM (key in .env) to write briefs/<keyword>-YYYY-MM-DD.md: suggested\n  outline, target word count, terms to cover, questions to answer.\n- score: compare my draft against the brief's term list and outline, print a coverage\n  percentage and a table of missing terms in the terminal.\n- Cache every SERP response and fetched page in SQLite (better-sqlite3) so re-runs\n  cost zero API credits.\n- No accounts, no telemetry, everything local except the Serper and LLM calls.\n- Out of scope: a writing editor with live scoring, site audits, and rank tracking.\n  This outputs Markdown briefs, and page scraping will break on some sites · Serper\n  is the one paid dependency, say both in the README.\n- README: where to get the Serper key and the rough API cost per brief.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}

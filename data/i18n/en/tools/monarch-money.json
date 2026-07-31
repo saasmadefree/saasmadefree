@@ -1,0 +1,34 @@
+{
+  "tagline": "Personal finance dashboard for budgeting, transactions, goals, and net worth",
+  "verdictSummary": "A manual finance dashboard is buildable, but high-quality bank aggregation, transaction cleaning, investment data, household collaboration, and mobile sync make it real work.",
+  "coreLoopDIY": "Import transactions from CSV or Plaid, categorize spending, track accounts/goals/net worth, and show monthly reports.",
+  "whatYouLose": [
+    "bank/investment sync",
+    "transaction categorization",
+    "household collaboration",
+    "mobile apps",
+    "support",
+    "data security posture"
+  ],
+  "whyPeopleStillPay": "They pay because personal finance apps are only valuable when data arrives automatically and safely.",
+  "notes": "Good kinda: spreadsheet replacement is yes, bank-sync product is harder.",
+  "prompt": "Build me a CSV-first personal finance dashboard to replace Monarch Money. Requirements:\n\n- Node + Express + better-sqlite3 on localhost:4910, server-rendered pages with\n  Chart.js for the graphs.\n- Import bank and card CSV exports: per-bank column mapping saved after the first\n  import, dedupe on a date+amount+description hash so re-imports are always safe.\n- Rule-based categorization: substring or regex on description sets the category,\n  rules run on import, and a fast keyboard-driven screen clears the leftovers.\n- Monthly budget targets per category with actual-vs-budget bars and overspend\n  flags, plus a cash-flow view by month.\n- An accounts table including manual balances for things without CSVs (pension,\n  property); a net-worth chart built from balance snapshots I enter monthly.\n- A recurring-charge detector: same merchant, similar amount, monthly cadence,\n  listed with annualized cost. That is the subscription-audit view.\n- Everything local in one SQLite file, no bank credentials anywhere, no accounts,\n  no telemetry. Nightly DB copy to backups/, keep 30.\n- Out of scope: automatic bank sync via Plaid, household multi-user, and mobile\n  apps. The monthly CSV ritual is the price of keeping credentials out of this.\n- README: import walkthrough for two example bank CSV formats, backup location.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}

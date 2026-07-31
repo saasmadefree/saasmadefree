@@ -1,0 +1,33 @@
+{
+  "tagline": "Smart calendar scheduling for habits, tasks, breaks, and meetings",
+  "verdictSummary": "A personal auto-blocker is buildable, but two-way calendar sync, scheduling links, team features, and conflict-safe automation are upkeep-heavy.",
+  "coreLoopDIY": "Read free/busy, create flexible calendar holds for tasks/habits, adjust when meetings move, and expose settings.",
+  "whatYouLose": [
+    "team coordination",
+    "smart rescheduling polish",
+    "scheduling links",
+    "calendar edge cases",
+    "uptime"
+  ],
+  "whyPeopleStillPay": "They pay because calendar automation is only valuable if it never makes embarrassing mistakes.",
+  "notes": "Clear case where the product is integrations plus trust, not AI magic.",
+  "prompt": "Build me a personal calendar auto-blocker to replace Reclaim.ai, for one Google\nCalendar, mine. Requirements:\n\n- A Node script on a 30-minute cron (node-cron or plain crontab): googleapis for\n  Calendar, better-sqlite3 for state, config in a YAML file. No web UI.\n- config.yaml defines habits and tasks: name, duration, ideal window (e.g. gym, 60 min,\n  weekdays 16:00-19:00), times per week, and priority.\n- Each run: read free/busy for the next 7 days and place holds for unscheduled habits\n  inside their windows, highest priority first.\n- Tag every event it creates with a marker string in the description; the script may\n  only ever move or delete events carrying that marker.\n- If a meeting lands on a hold, re-place the hold at the next free slot in its window\n  and append the move to a plain-text log.\n- `blocker plan` prints next week's placements as a table before anything is written;\n  `blocker clear` removes every machine-created hold.\n- OAuth client credentials and refresh token in .env; budget an hour for the Google\n  Cloud console, it is genuinely annoying.\n- Out of scope: scheduling links, team coordination, and multi-calendar juggling. Never\n  touch or decline events it did not create.\n- README: Google Cloud console steps, the calendar scopes needed, and the first-run auth\n  flow.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}

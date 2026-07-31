@@ -1,0 +1,42 @@
+{
+  "slug": "sunsama",
+  "name": "Sunsama",
+  "domains": [
+    "sunsama.com"
+  ],
+  "category": "tasks-calendar",
+  "subcategory": "daily planner",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Personal",
+    "basis": "per-seat-monthly",
+    "source": "https://sunsama.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "integrations/workflow design",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Super Productivity",
+      "url": "https://github.com/johannesjo/super-productivity"
+    }
+  ],
+  "relatedSlugs": [
+    "akiflow",
+    "motion",
+    "reclaim-ai"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

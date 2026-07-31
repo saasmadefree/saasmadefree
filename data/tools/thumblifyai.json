@@ -1,0 +1,35 @@
+{
+  "slug": "thumblifyai",
+  "name": "ThumblifyAI",
+  "domains": [
+    "thumblifyai.com"
+  ],
+  "category": "design",
+  "subcategory": "AI thumbnail generation",
+  "pricing": {
+    "amount": 9.99,
+    "currency": "USD",
+    "plan": "Credits",
+    "basis": "usage-based",
+    "source": "https://thumblifyai.com/#pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "AI workflows/prompt systems/domain expertise/creator data",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key"
+  ],
+  "relatedSlugs": [
+    "canva",
+    "figma",
+    "adobe-express"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

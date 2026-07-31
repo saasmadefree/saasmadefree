@@ -1,0 +1,34 @@
+{
+  "tagline": "Mac launcher with extensions, snippets, clipboard history, and AI",
+  "verdictSummary": "A personal launcher command or menubar utility is buildable, but Raycast's native polish, extension ecosystem, sync, AI, and Mac integration take serious product work.",
+  "coreLoopDIY": "Build a command palette with local commands, clipboard history, snippets, and LLM shortcuts.",
+  "whatYouLose": [
+    "extension ecosystem",
+    "store/discovery",
+    "native speed",
+    "cloud sync",
+    "team/shared snippets",
+    "polished AI commands"
+  ],
+  "whyPeopleStillPay": "They pay because the launcher is a daily OS layer; latency and polish matter a lot.",
+  "notes": "Great example of small utility becoming hard because it sits at OS level.",
+  "prompt": "Build me a Mac command palette covering the parts of Raycast Pro I actually use:\nclipboard history, snippets, and AI commands. Requirements:\n\n- An Electron tray app with a global hotkey (alt+space) opening one centered input\n  window; electron-store for settings, better-sqlite3 for data.\n- Clipboard history: watch the clipboard, keep the last 500 text entries with timestamp\n  and source app, fuzzy-search them with fuse.js, Enter pastes the selection.\n- Snippets: a snippets.json of {keyword, expansion}; picking one copies the expansion\n  with {date} and {clipboard} placeholders filled in.\n- AI commands: Fix Grammar, Summarize, and Translate run the current clipboard through\n  an LLM (key in .env) and put the result back on the clipboard with a notification.\n- Custom commands: shell scripts in a commands/ folder appear in the palette by\n  filename; their output is copied or shown.\n- Everything local except the LLM calls; no accounts, no telemetry.\n- Out of scope: an extension store, file search, window management, and cloud sync. Do\n  not chase native launcher speed, this is Electron and that is the tradeoff.\n- README: the macOS accessibility permission needed for paste simulation, and how to\n  change the hotkey.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}

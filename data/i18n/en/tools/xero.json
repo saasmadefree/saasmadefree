@@ -1,0 +1,34 @@
+{
+  "tagline": "Cloud accounting, invoicing, bank reconciliation, payroll add-ons, and reporting",
+  "verdictSummary": "Invoices and reports are buildable, but Xero's real product is bank feeds, accounting workflows, accountant collaboration, compliance expectations, integrations, and trust.",
+  "coreLoopDIY": "Build simple bookkeeping with invoices, expenses, CSV imports, chart of accounts, and reports for personal/internal use.",
+  "whatYouLose": [
+    "bank reconciliation",
+    "accountant workflows",
+    "payroll/tax integrations",
+    "app marketplace",
+    "audit history",
+    "compliance support"
+  ],
+  "whyPeopleStillPay": "They pay because businesses need dependable books, not just a ledger UI.",
+  "notes": "Another structural no due regulatory/financial integrations.",
+  "prompt": "Honest answer: don't. Xero's product is not the ledger UI, it is bank\nfeeds, reconciliation, payroll and tax integrations, and books your accountant\nwill accept. A vibecoded clone of that gambles with your actual finances, and\nthe compliance surface never stops moving.\n\nIf you need real accounting without the subscription, run Odoo or Invoice Ninja\n(links in prior art) and keep the accountant.\n\nIf what you actually need is freelancer-grade bookkeeping, here's the weekend\nversion:\n\n- A local web app (Node + Express + better-sqlite3): income and expense entries\n  with date, amount, category, client, and an attached receipt file.\n- CSV import from my bank's export, plus a rules table (description pattern to\n  category) so repeat transactions auto-categorize.\n- Invoices numbered sequentially, rendered to PDF with pdfkit, one paid/unpaid\n  flag. Nothing more.\n- Reports: quarterly income, expenses by category, and a one-page cash P&L I can\n  print for my accountant.\n- Binds to localhost only, no telemetry; nightly copy of the SQLite file to a\n  dated backup.\n\nWhat you will NOT have: bank feeds, reconciliation, payroll, tax filing, audit\nhistory, or numbers anyone will sign off unchecked. Use it to stay organized\nbetween real tools, not instead of them.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}

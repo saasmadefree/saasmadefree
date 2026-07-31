@@ -1,0 +1,41 @@
+{
+  "slug": "monarch-money",
+  "name": "Monarch Money",
+  "domains": [
+    "monarch.com"
+  ],
+  "category": "personal-finance",
+  "subcategory": "budgeting + net worth",
+  "pricing": {
+    "amount": 14.99,
+    "currency": "USD",
+    "plan": "Core",
+    "basis": "flat-monthly",
+    "source": "https://www.monarch.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "bank data/security/convenience",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Firefly III",
+      "url": "https://github.com/firefly-iii/firefly-iii"
+    }
+  ],
+  "relatedSlugs": [
+    "copilot-money",
+    "ynab",
+    "notion"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

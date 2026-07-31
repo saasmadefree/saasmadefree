@@ -1,0 +1,41 @@
+{
+  "slug": "codesandbox",
+  "name": "CodeSandbox",
+  "domains": [
+    "codesandbox.io"
+  ],
+  "category": "dev-tools",
+  "subcategory": "cloud dev environments",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://codesandbox.io/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "cloud platform/collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "code-server",
+      "url": "https://github.com/coder/code-server"
+    }
+  ],
+  "relatedSlugs": [
+    "cursor",
+    "github-copilot",
+    "linear"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

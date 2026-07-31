@@ -1,0 +1,34 @@
+{
+  "tagline": "Template-based quick editor for social graphics, videos, PDFs, and assets",
+  "verdictSummary": "You can build a quick image editor and template exporter, but Adobe's stock/licensing, PDF/media tooling, brand assets, and Creative Cloud tie-ins are the product.",
+  "coreLoopDIY": "Build a small template editor for images/videos with text overlays, background removal via API, and export.",
+  "whatYouLose": [
+    "Adobe Stock/assets",
+    "PDF/video tooling",
+    "brand kits",
+    "Creative Cloud integration",
+    "mobile apps",
+    "licensing coverage"
+  ],
+  "whyPeopleStillPay": "They pay because the content and export ecosystem is already there.",
+  "notes": "Useful contrast with Canva: same template moat, different ecosystem.",
+  "prompt": "Build me a social graphics generator to replace Adobe Express. Requirements:\n\n- A local web app: Node + Express, templates are plain HTML/CSS files in\n  templates/, rendered to PNG by a headless Playwright screenshot at exact\n  pixel sizes. No frontend framework.\n- Ship 5 starter templates: Instagram square 1080x1080, story 1080x1920,\n  X post 1600x900, YouTube thumbnail 1280x720, and a quote card.\n- The page shows a template picker, one input per text field, an image drop\n  zone, and an accent color picker, with a live preview iframe rendering the\n  same template HTML.\n- Background removal for uploaded photos via rembg running locally, no paid\n  key needed.\n- Brand lives in brand.json: two font files in fonts/, 4 hex colors, a logo\n  path; every template reads from it.\n- Exports save to ~/Graphics/YYYY-MM-DD-<slug>.png plus a JSON sidecar of the\n  field values so any graphic can be re-rendered later.\n- Localhost only, no accounts, no telemetry, my photos never leave the machine.\n- Out of scope: video, PDFs, and stock assets. Adobe's licensed library is\n  the product, I bring my own images.\n- README: setup, installing rembg, and how to add a new template.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}

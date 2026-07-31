@@ -1,0 +1,41 @@
+{
+  "slug": "tella",
+  "name": "Tella",
+  "domains": [
+    "tella.com"
+  ],
+  "category": "screen-recording",
+  "subcategory": "creator screen video",
+  "pricing": {
+    "amount": 13,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://www.tella.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "polish/hosting",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "OBS Studio",
+      "url": "https://github.com/obsproject/obs-studio"
+    }
+  ],
+  "relatedSlugs": [
+    "capcut",
+    "loom",
+    "descript"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

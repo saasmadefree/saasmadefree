@@ -1,0 +1,34 @@
+{
+  "tagline": "Browser IDE with agents, instant apps, hosting, and deployment",
+  "verdictSummary": "A dev container plus code-server plus deployment can replace some value, but Replit's beginner-friendly cloud IDE, agents, secrets, hosting, and zero-setup environment are a platform.",
+  "coreLoopDIY": "Run code-server in a cloud VM, add templates, secrets, git, AI coding extension, and one-click deploy scripts.",
+  "whatYouLose": [
+    "zero-setup browser IDE",
+    "hosted agents",
+    "multiplayer",
+    "templates",
+    "deployments",
+    "education/community workflows"
+  ],
+  "whyPeopleStillPay": "They pay because code runs in the browser immediately without local environment drama.",
+  "notes": "Good 'kinda' because the core is composable but platform polish matters.",
+  "prompt": "Build me a personal cloud dev environment to replace Replit, on a VPS I already have.\nRequirements:\n\n- code-server (VS Code in the browser) behind Caddy with HTTPS and basic auth, installed\n  by one setup script. This is assembly of good parts, not a new IDE.\n- A `dev new <name> --template node|python|static` CLI that copies from a templates/\n  folder (each with .gitignore, README stub, and a run script) into ~/projects/<name>\n  and runs git init.\n- Each project gets a port in projects.json; Caddy routes <name>.dev.mydomain.com to it,\n  so anything I run is instantly viewable at a URL.\n- `dev deploy <name>` commits and restarts the project's systemd user service; `dev logs\n  <name>` tails it.\n- Per-project secrets in <project>/.env, never committed; the template .gitignore\n  enforces it.\n- Nightly tarball of ~/projects to a backups/ folder, keep 7.\n- Reachable only over HTTPS with auth (bind to a VPN interface instead if one exists);\n  no telemetry.\n- Out of scope: multiplayer editing, hosted AI agents, and per-project containers. One\n  VPS, one user, my own projects.\n- README: the wildcard DNS record, Caddy config, and code-server auth setup.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}

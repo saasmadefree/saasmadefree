@@ -1,0 +1,34 @@
+{
+  "tagline": "Privacy-first website analytics without cookies or personal tracking",
+  "verdictSummary": "Pageview analytics, events, dashboards, and exports are very buildable; paid value is hosted privacy posture, reports, reliability, and support.",
+  "coreLoopDIY": "Add JS tracker, record anonymous pageviews/events, aggregate by dimensions, and expose dashboard/API.",
+  "whatYouLose": [
+    "managed hosting",
+    "privacy/legal positioning",
+    "bot filtering",
+    "reports",
+    "uptime",
+    "support"
+  ],
+  "whyPeopleStillPay": "They pay for low-maintenance analytics they can put in a privacy policy with confidence.",
+  "notes": "Another strong yes; helps cluster analytics apps on the site.",
+  "prompt": "Build me privacy-first web analytics to replace Simple Analytics, self-hosted for my own\nsites. Requirements:\n\n- A Node + Express service with better-sqlite3: one /collect endpoint and a dashboard at\n  /dash behind basic auth (password in .env).\n- A tracker snippet under 1 KB of plain JS, no cookies: sends path, referrer, screen\n  width, and a daily-salted hash of IP + user agent for unique counting; the salt\n  rotates daily so nothing is traceable across days.\n- Keep raw hits 30 days; a nightly node-cron job aggregates into daily rollups per site\n  (pageviews, uniques, top pages, top referrers, device split), keeps rollups forever,\n  deletes expired raw hits.\n- Custom events via sa('signup') in the snippet, counted per day.\n- Dashboard per site: a 30-day chart (hand-rolled SVG, no chart library), pages and\n  referrers tables, a date-range picker.\n- Filter obvious bots by user-agent list; ignore my own visits via a localStorage opt-\n  out flag.\n- CSV export per site and month from the dashboard.\n- No cookies and no personal data stored, GDPR-sane by construction.\n- Out of scope: funnels, session replay, and multi-user access. Uptime is on me; the\n  collect endpoint sits behind my existing reverse proxy.\n- README: the snippet to paste and the Caddy or nginx route.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "netlify",
+  "name": "Netlify",
+  "domains": [
+    "netlify.com"
+  ],
+  "category": "hosting",
+  "subcategory": "web hosting + deploy pipeline",
+  "pricing": {
+    "amount": 20,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://www.netlify.com/pricing/",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "hosting/infrastructure",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Coolify",
+      "url": "https://github.com/coollabsio/coolify"
+    }
+  ],
+  "relatedSlugs": [
+    "vercel",
+    "notion",
+    "calendly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

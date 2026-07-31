@@ -1,0 +1,42 @@
+{
+  "slug": "surfer-seo",
+  "name": "Surfer SEO",
+  "domains": [
+    "surferseo.com"
+  ],
+  "category": "seo-marketing",
+  "subcategory": "content optimization",
+  "pricing": {
+    "amount": 99,
+    "currency": "USD",
+    "plan": "Essential/Standard",
+    "basis": "flat-monthly",
+    "source": "https://surferseo.com/pricing/",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "data access/workflow/model wrapper",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "OpenSearch + custom scripts",
+      "url": "not found"
+    }
+  ],
+  "relatedSlugs": [
+    "frase",
+    "ahrefs",
+    "semrush"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,33 @@
+{
+  "tagline": "Search and AI visibility platform with TrueDR, monitoring, and verified partnerships",
+  "verdictSummary": "A personal dashboard for an owned site is a weekend build with Search Console and model APIs, but TrueDR, backlink intelligence, historical monitoring, and the partner marketplace depend on paid data, operations, and a live network.",
+  "coreLoopDIY": "Track one site's search performance and sample buyer-question visibility across model APIs, then rank the pages and queries that need work.",
+  "whatYouLose": [
+    "TrueDR and commercial backlink data",
+    "exact ChatGPT, Perplexity, and Google AI Mode surfaces",
+    "cross-site partner network and marketplace",
+    "managed refresh jobs and alerts",
+    "traffic estimates and competitor data"
+  ],
+  "whyPeopleStillPay": "They pay for verified backlink and traffic data, cross-model checks, historical monitoring, and a partner network without maintaining API integrations and scheduled jobs.",
+  "notes": "A strong kinda: the solo monitoring loop is reachable, but the external data and partner network are the product.",
+  "prompt": "Build me a local search and AI visibility tracker like VerifiedDR for one site. Requirements:\n\n- Use Node 22, Express, better-sqlite3, and server-rendered HTML with a little\n  vanilla JS; bind the app to localhost:4173.\n- A settings page stores one domain, brand aliases, and 20 buyer questions in\n  SQLite; API secrets stay in .env.\n- Connect Google Search Console with OAuth and import clicks, impressions, CTR,\n  and average position for the last 28 days by query and landing page.\n- On demand, ask the 20 questions through OpenAI Responses, Perplexity, and\n  Gemini APIs; store answers, citations, run date, and brand/domain mentions.\n- Show 7-day and 28-day GSC changes, mention rate per model, cited domains, and\n  a history sparkline for every question on the local dashboard.\n- Crawl the sitemap weekly with undici and cheerio; record status, title,\n  canonical, noindex, and broken internal links for every page.\n- Build an action queue: lost mentions first, falling GSC pages second, and\n  broken or noindex pages third; every item links to its evidence.\n- Schedule checks with node-cron, retain raw JSON, and export every run as\n  Markdown plus CSV in ./exports/.\n- No accounts or telemetry. Keep it local except for OAuth and API calls.\n  Skip TrueDR, external backlink data, competitors, and the partner marketplace.\n- README: Google OAuth setup, required keys, API cost estimates, backup and\n  restore commands, and how to run one manual check.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}

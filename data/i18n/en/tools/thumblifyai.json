@@ -1,0 +1,33 @@
+{
+  "tagline": "Create Thumbnails That Make People Click",
+  "verdictSummary": "A basic AI thumbnail generator can be built quickly using existing image models, but recreating ThumblifyAI requires much more than connecting an image API. The product's advantage comes from specialized thumbnail-focused system prompts, AI workflows, creator-focused features, thumbnail inspiration, style matching, AI customization features, and continuous iteration around generating clickable YouTube thumbnails.",
+  "coreLoopDIY": "Generate YouTube thumbnail concepts and images using AI models with custom prompts and creator-focused workflows.",
+  "whatYouLose": [
+    "specialized thumbnail-specific system prompts",
+    "style matching and recreation features",
+    "custom AI training and personalization features",
+    "creator-focused workflow and UI/UX",
+    "thumbnail inspiration system"
+  ],
+  "whyPeopleStillPay": "Creators are not only paying for AI image generation. The biggest value is creating high-quality thumbnails without needing to become prompt experts. ThumblifyAI's tuned prompts and workflows, and generation process are tuned specifically for creating catchy YouTube thumbnails. Users get a faster and more consistent path from video idea to thumbnail instead of spending hours experimenting with prompts, styles, and settings.",
+  "notes": "AI thumbnail maker platform built for YouTube creators.",
+  "prompt": "Build me a personal YouTube thumbnail generator inspired by ThumblifyAI. Requirements:\n\n- Node + Express, one localhost page; no accounts, no telemetry, keys in .env.\n- Input: video title, a face/subject photo upload, and a style picker with 5\n  presets (bold MrBeast-style, minimal tech, tutorial, vlog, gaming).\n- Generation: send the title + style prompt to an image model API (key in\n  .env; support OpenAI Images or Replicate, one flag to choose). Composite\n  the uploaded face onto the generated background with sharp: auto-cutout\n  via an rembg CLI call, drop shadow, rim light.\n- Text layer: the title (or a punchier 3-5 word hook the LLM suggests)\n  rendered with sharp over the composite, thick outline, 2 font choices.\n- Output 1280x720 PNG under 2MB, plus a 3-variant grid so I can pick; save\n  every result to thumbnails/ with the prompt used, so styles are repeatable.\n- A history page of past generations with one-click re-run.\n- Out of scope: accounts, teams, A/B testing against YouTube analytics, and\n  bulk generation. This is one thumbnail at a time for my own channel.\n- README: which API keys I need, rembg install, and rough per-image cost.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "superx",
+  "name": "SuperX",
+  "domains": [
+    "superx.so"
+  ],
+  "category": "social-media",
+  "subcategory": "X growth platform",
+  "pricing": {
+    "amount": 49,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://superx.so/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "proprietary data + platform API costs",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "postiz-app",
+      "url": "https://github.com/gitroomhq/postiz-app"
+    }
+  ],
+  "relatedSlugs": [
+    "typefully",
+    "buffer",
+    "later"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

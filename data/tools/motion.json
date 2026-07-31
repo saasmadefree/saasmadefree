@@ -1,0 +1,43 @@
+{
+  "slug": "motion",
+  "name": "Motion",
+  "domains": [
+    "usemotion.com"
+  ],
+  "category": "tasks-calendar",
+  "subcategory": "AI scheduling",
+  "pricing": {
+    "amount": 34,
+    "currency": "USD",
+    "plan": "Individual",
+    "basis": "flat-monthly",
+    "source": "https://www.usemotion.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "algorithm/integrations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "No maintained direct clone found",
+      "url": "not found"
+    }
+  ],
+  "relatedSlugs": [
+    "reclaim-ai",
+    "akiflow",
+    "sunsama"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

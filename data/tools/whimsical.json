@@ -1,0 +1,41 @@
+{
+  "slug": "whimsical",
+  "name": "Whimsical",
+  "domains": [
+    "whimsical.com"
+  ],
+  "category": "diagrams",
+  "subcategory": "flowcharts + wireframes",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "per-seat-monthly",
+    "source": "https://whimsical.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "polish/collaboration",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Excalidraw",
+      "url": "https://github.com/excalidraw/excalidraw"
+    }
+  ],
+  "relatedSlugs": [
+    "adobe-express",
+    "canva",
+    "figma"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

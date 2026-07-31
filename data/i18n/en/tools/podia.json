@@ -1,0 +1,35 @@
+{
+  "tagline": "Creator platform for courses, digital products, email, and memberships",
+  "verdictSummary": "Selling a few digital downloads or a course is buildable, but Podia bundles checkout, file delivery, courses, email, memberships, affiliates, and support.",
+  "coreLoopDIY": "Build product pages, Stripe checkout, gated downloads/course lessons, customer accounts, and email receipts.",
+  "whatYouLose": [
+    "checkout/product UX",
+    "course hosting",
+    "email marketing",
+    "memberships",
+    "affiliates",
+    "tax/payment details",
+    "support"
+  ],
+  "whyPeopleStillPay": "They pay because commerce plus content delivery has lots of edge cases.",
+  "notes": "Good creator monetization entry where 60% DIY value is realistic.",
+  "prompt": "Build me a small digital-products store to replace Podia, for selling a few downloads,\nnot running a course business. Requirements:\n\n- Node + Express + better-sqlite3, server-rendered pages with nunjucks, deployed on my\n  VPS behind my existing reverse proxy.\n- Products live in products.json: slug, title, price, description, and the file to\n  deliver. Delivered files sit outside the web root.\n- One page per product plus a /store index. The buy button goes straight to Stripe\n  Checkout (keys in .env); no cart, no coupons.\n- Stripe webhook on payment: record the order in SQLite (email, product, amount,\n  timestamp) and email the buyer a download link via Resend or SMTP (creds in .env).\n- Download links are signed tokens that expire after 7 days or 5 uses; an expired link\n  shows a resend-by-email form.\n- An /admin page behind HTTP basic auth: order list and revenue per product.\n- Out of scope: memberships, drip courses, email marketing, and affiliates. Do not build\n  customer accounts, the receipt email is the account.\n- README: Stripe webhook setup with the CLI test command, and a plain note that\n  VAT/sales tax is on me, Stripe Tax exists if it matters.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "wix",
+  "name": "Wix",
+  "domains": [
+    "wix.com"
+  ],
+  "category": "website-builder",
+  "subcategory": "hosted websites",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Core",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.wix.com/plans",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "templates/platform/hosting",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "GrapesJS",
+      "url": "https://github.com/GrapesJS/grapesjs"
+    }
+  ],
+  "relatedSlugs": [
+    "carrd",
+    "webflow",
+    "framer"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

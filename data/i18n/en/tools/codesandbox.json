@@ -1,0 +1,34 @@
+{
+  "tagline": "Cloud development environments and browser-based coding sandboxes",
+  "verdictSummary": "You can self-host a browser IDE, but fast templates, previews, cloud VMs, collaboration, and workflow integrations are the product.",
+  "coreLoopDIY": "Run code-server or dev containers, expose preview URLs, sync git repos, and add templates.",
+  "whatYouLose": [
+    "instant templates",
+    "cloud sandboxes",
+    "preview URLs",
+    "collaboration",
+    "managed infrastructure",
+    "integration polish"
+  ],
+  "whyPeopleStillPay": "They pay to avoid managing dev machines for experiments and previews.",
+  "notes": "Useful for builders deciding whether to roll a cloud IDE stack.",
+  "prompt": "Build me a personal cloud dev environment to replace CodeSandbox.\nRequirements:\n\n- Do not write an IDE. Set up code-server (VS Code in the browser) on my\n  VPS via its official install script, running under systemd, bound to\n  localhost.\n- Access over Tailscale or an SSH tunnel only; no public exposure, built-in\n  password auth switched off. That is the whole security model, keep it\n  that simple.\n- A sandbox CLI: sandbox new <name> --template node|python|static copies a\n  folder from templates/ into ~/sandboxes/<name>, runs its install step,\n  and prints the code-server URL opened to it.\n- Three templates: node (Express hello world + nodemon), python (venv +\n  Flask), static (index.html served with live-server).\n- Previews: each sandbox's dev server gets its own port, reachable through\n  the same tunnel; a tiny index page lists sandboxes and their ports.\n- sandbox rm <name> archives the folder to a tarball before deleting it.\n- No accounts, no telemetry; everything lives on my own server.\n- Out of scope: multi-user collaboration, instant VM forking, and public\n  preview URLs; managed infrastructure is the hosted product.\n- README: install steps, tunnel setup, and how to add a template.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}

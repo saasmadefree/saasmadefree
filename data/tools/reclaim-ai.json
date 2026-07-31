@@ -1,0 +1,42 @@
+{
+  "slug": "reclaim-ai",
+  "name": "Reclaim.ai",
+  "domains": [
+    "reclaim.ai"
+  ],
+  "category": "tasks-calendar",
+  "subcategory": "calendar automation",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "per-seat-monthly",
+    "source": "https://reclaim.ai/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "calendar integration/reliability",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Cal.com",
+      "url": "https://github.com/calcom/cal.com"
+    }
+  ],
+  "relatedSlugs": [
+    "akiflow",
+    "motion",
+    "sunsama"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

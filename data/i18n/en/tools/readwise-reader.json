@@ -1,0 +1,34 @@
+{
+  "tagline": "Read-it-later app with highlights, RSS, PDFs, and spaced review",
+  "verdictSummary": "Saving articles and highlighting is easy; reliable extraction, mobile/offline reading, sync, Kindle/import integrations, RSS/PDF support, and review loops are real work.",
+  "coreLoopDIY": "Build a browser save endpoint, article extractor, reader view, highlights table, export to Markdown, and review emails.",
+  "whatYouLose": [
+    "excellent parsing",
+    "mobile/offline apps",
+    "Kindle integrations",
+    "RSS/PDF workflows",
+    "spaced repetition",
+    "exports"
+  ],
+  "whyPeopleStillPay": "They pay because all reading inputs flow into one durable highlight system.",
+  "notes": "Useful because DIY covers 60% quickly but power users pay for the ingestion web.",
+  "prompt": "Build me a personal read-it-later app to replace Readwise Reader. Requirements:\n\n- A self-hosted web app (VPS or localhost): Node + Express + better-sqlite3, server-\n  rendered with one clean reading column.\n- Save via a bookmarklet POSTing the URL; extract with @mozilla/readability + jsdom and\n  store title, author, site, word count, and cleaned HTML. When extraction fails, keep\n  the bare link with a 'source only' badge instead of mangling it.\n- Reading view: the cleaned article, estimated read time, and select-to-highlight (a\n  little vanilla JS; store the highlight with surrounding context).\n- Library: Inbox, Archive, and per-tag lists; keyboard j/k to move, Enter to open, e to\n  archive.\n- A highlights page grouped by article, plus a nightly node-cron export of all\n  highlights to ~/highlights/YYYY-MM-DD.md so they outlive the app.\n- A daily review email with 5 random old highlights via Resend or SMTP (creds in .env).\n- Full-text search over articles and highlights with SQLite FTS5.\n- No accounts, no telemetry; if hosted, put it behind basic auth and HTTPS.\n- Out of scope: RSS ingestion, PDF/epub parsing, Kindle sync, and mobile apps. The\n  browser is the reader.\n- README: bookmarklet install and SMTP setup.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}

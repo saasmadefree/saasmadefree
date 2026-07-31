@@ -1,0 +1,42 @@
+{
+  "slug": "simple-analytics",
+  "name": "Simple Analytics",
+  "domains": [
+    "simpleanalytics.com"
+  ],
+  "category": "analytics",
+  "subcategory": "privacy web analytics",
+  "pricing": {
+    "amount": 20,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://www.simpleanalytics.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "hosting/compliance positioning",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Umami",
+      "url": "https://github.com/umami-software/umami"
+    }
+  ],
+  "relatedSlugs": [
+    "umami-cloud",
+    "plausible",
+    "bitly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

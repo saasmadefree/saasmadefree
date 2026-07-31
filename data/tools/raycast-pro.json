@@ -1,0 +1,41 @@
+{
+  "slug": "raycast-pro",
+  "name": "Raycast Pro",
+  "domains": [
+    "raycast.com"
+  ],
+  "category": "productivity-utilities",
+  "subcategory": "launcher + AI",
+  "pricing": {
+    "amount": 10,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://www.raycast.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "native integration/ecosystem",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key"
+  ],
+  "priorArt": [
+    {
+      "name": "Ulauncher",
+      "url": "https://github.com/Ulauncher/Ulauncher"
+    }
+  ],
+  "relatedSlugs": [
+    "1password",
+    "bitwarden",
+    "hey-email"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

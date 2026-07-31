@@ -1,0 +1,42 @@
+{
+  "slug": "softr",
+  "name": "Softr",
+  "domains": [
+    "softr.io"
+  ],
+  "category": "no-code-apps",
+  "subcategory": "portal/app builder",
+  "pricing": {
+    "amount": 59,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "flat-monthly",
+    "source": "https://www.softr.io/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "no-code builder/auth/integrations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Budibase",
+      "url": "https://github.com/Budibase/budibase"
+    }
+  ],
+  "relatedSlugs": [
+    "glide",
+    "bubble",
+    "airtable"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

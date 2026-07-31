@@ -1,0 +1,35 @@
+{
+  "tagline": "Hosted website builder for portfolios, businesses, blogs, and stores",
+  "verdictSummary": "A portfolio or marketing site is easy to build, but Squarespace's paid value is templates, editor, hosting, commerce/forms, domains, and support.",
+  "coreLoopDIY": "Generate a static site from templates, add a small CMS, host it, and configure domain/forms.",
+  "whatYouLose": [
+    "template quality",
+    "editor",
+    "hosting",
+    "ecommerce/forms",
+    "domains/email workflows",
+    "mobile-responsive polish",
+    "support"
+  ],
+  "whyPeopleStillPay": "They pay because it removes design, hosting, and maintenance from the website project.",
+  "notes": "Mainstream and useful; verdict depends on site complexity.",
+  "prompt": "Build me a personal website to replace Squarespace: portfolio, blog, and a contact form. Requirements:\n\n- A static site built with Eleventy: home, about, a projects grid, and a blog.\n  Content is Markdown files in content/, front matter for title/date/tags.\n- One layout system: a base template plus Nunjucks partials for header/footer/cards,\n  system font stack, responsive images via @11ty/eleventy-img. No CSS framework.\n- Blog gets tag pages and an RSS feed generated at build time.\n- Contact form POSTs to a tiny Express handler that emails me via SMTP creds in .env\n  and appends each message to data/messages.jsonl. Honeypot field for spam, no captcha.\n- npm run build outputs dist/; npm run deploy rsyncs dist/ to my VPS, served by Caddy\n  with automatic HTTPS. Put the Caddyfile snippet in the README.\n- No accounts, no telemetry, no CMS database. Content lives in git, edits are commits.\n- Out of scope: a drag-and-drop editor, ecommerce, and switchable themes. I edit\n  Markdown and CSS directly, that is the trade.\n- README: DNS records to set, Caddy snippet, SMTP setup for the form handler.",
+  "faq": [
+    {
+      "q": "TODO",
+      "a": "TODO — replace with 4 tool-specific FAQ entries before this file is published (see CONTRIBUTING.md)."
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    },
+    {
+      "q": "TODO",
+      "a": "TODO"
+    }
+  ]
+}
