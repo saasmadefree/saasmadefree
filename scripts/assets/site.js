@@ -223,9 +223,23 @@
       }
 
       // Sous-chaîne, pas préfixe : "gr" doit trouver "Granola" ET "Ideogram".
-      var matches = rows.filter(function (row) {
-        return row.dataset.search.indexOf(q) !== -1;
-      });
+      // Mais l'ordre doit être la pertinence, pas l'alphabet : sans ce
+      // classement, "gra" remontait Canva et GitHub Copilot — qui matchent dans
+      // leur description — au-dessus de Grammarly et Granola.
+      function relevance(row) {
+        var name = row.dataset.name || '';
+        var cat = row.dataset.cat || '';
+        if (name.indexOf(q) === 0) return 0;                       // le nom commence par la saisie
+        if ((' ' + name).indexOf(' ' + q) !== -1) return 1;        // un mot du nom commence par la saisie
+        if (name.indexOf(q) !== -1) return 2;                      // le nom la contient
+        if (cat.indexOf(q) !== -1) return 3;                       // la catégorie la contient
+        return 4;                                                  // ailleurs (sous-titre, description)
+      }
+      var matches = rows
+        .filter(function (row) { return row.dataset.search.indexOf(q) !== -1; })
+        .map(function (row, i) { return { row: row, score: relevance(row), order: i }; })
+        .sort(function (a, b) { return a.score - b.score || a.order - b.order; })
+        .map(function (entry) { return entry.row; });
 
       panel.hidden = false;
       input.setAttribute('aria-expanded', 'true');

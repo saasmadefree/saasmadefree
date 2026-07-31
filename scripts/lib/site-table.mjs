@@ -37,7 +37,7 @@ export function renderToolTable(tools, { lang, ui, categories, voteCounts, favic
         : escapeHtml(pluralize(count, lang, singularTpl, pluralTpl));
       const votesAttr = count === null ? '' : ` data-votes="${count}"`;
 
-      return `          <tr data-slug="${tool.slug}" data-category="${tool.category}" data-verdict="${tool.verdict}" data-priority="${tool.pagePriority}"${votesAttr} data-favicon="${escapeHtml(favicon)}" data-search="${escapeHtml(searchText)}">
+      return `          <tr data-slug="${tool.slug}" data-category="${tool.category}" data-verdict="${tool.verdict}" data-priority="${tool.pagePriority}"${votesAttr} data-favicon="${escapeHtml(favicon)}" data-name="${escapeHtml(tool.name.toLowerCase())}" data-cat="${escapeHtml(catLabel.toLowerCase())}" data-search="${escapeHtml(searchText)}">
             <td class="rank" aria-hidden="true"></td>
             <th scope="row"><a href="${tool.path}"><img class="row-favicon" src="${escapeHtml(favicon)}" alt="" width="20" height="20" loading="lazy" decoding="async">${escapeHtml(tool.name)}</a></th>
             <td class="cat">${emoji ? `${emoji} ` : ''}${escapeHtml(catLabel)}</td>
