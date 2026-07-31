@@ -278,6 +278,18 @@ const SUBJECT_CLUSTERS = [
   ['vercel', 'netlify'],
 ];
 
+// Upstream's own relatedSlugs are occasionally incoherent (semrush -> an
+// accounting tool is a real example hit during import, not hypothetical) —
+// trusting them blindly reproduces that noise whenever the coincidence of
+// batch membership happens to preserve the one bad link. An upstream link is
+// only trusted if it's corroborated: same category, or already paired with
+// this slug in a curated SUBJECT_CLUSTERS entry.
+function upstreamLinkIsCoherent(entry, candidateSlug, pool) {
+  const candidate = pool.get(candidateSlug);
+  if (candidate && candidate.category === entry.category) return true;
+  return SUBJECT_CLUSTERS.some((c) => c.includes(entry.slug) && c.includes(candidateSlug));
+}
+
 function computeRelatedSlugs(entry, pool) {
   const chosen = [];
   const add = (slug) => {
@@ -288,7 +300,9 @@ function computeRelatedSlugs(entry, pool) {
     chosen.push(slug);
   };
 
-  for (const s of entry.relatedSlugs ?? []) add(s);
+  for (const s of entry.relatedSlugs ?? []) {
+    if (upstreamLinkIsCoherent(entry, s, pool)) add(s);
+  }
 
   if (chosen.length < 3) {
     const sameCategory = [...pool.values()]
