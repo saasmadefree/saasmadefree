@@ -1,0 +1,19 @@
+{
+  "tagline": "Héberge des épisodes de podcast et publie un flux RSS valide",
+  "verdictSummary": "Héberger des fichiers audio et générer un flux RSS de podcast conforme aux spécifications, c'est un vrai projet de week-end — le format RSS lui-même est bien documenté. Ce qui ne survit pas : la distribution en un clic de Buzzsprout vers chaque annuaire de podcast, ses analytics par épisode, et des années de bizarreries propres à chaque application de podcast qui ne sont pas dans la spec officielle.",
+  "coreLoopDIY": "Importe le fichier audio d'un épisode, remplis ses métadonnées, et publie un flux RSS de podcast conforme aux spécifications auquel les applications de podcast peuvent s'abonner directement.",
+  "whatYouLose": [
+    "la soumission en un clic à chaque annuaire de podcast",
+    "des analytics détaillées par épisode",
+    "des années de bizarreries RSS propres à chaque application de podcast gérées pour toi",
+    "un lecteur intégrable hébergé et un site web d'épisodes"
+  ],
+  "whyPeopleStillPay": "Générer un RSS valide, c'est facile ; rester compatible avec l'interprétation particulière de la spec de chaque application de podcast, et être listé proprement sur chaque annuaire, c'est le travail de détail accumulé.",
+  "prompt": "Construis un outil d'hébergement de podcast : importe le fichier audio d'un épisode, remplis le titre, la description et le numéro d'épisode, et génère un flux RSS de podcast conforme aux spécifications (suivant le RSS 2.0 standard plus les balises de l'espace de noms iTunes) auquel n'importe quelle application de podcast peut s'abonner. Utilise Next.js/TypeScript avec un stockage sur disque local ou compatible S3 pour les fichiers audio, et génère le XML RSS dynamiquement à partir d'une base de données d'épisodes (SQLite). Sers l'audio de chaque épisode avec une prise en charge correcte des range-requests, nécessaire pour le défilement et la reprise de lecture dans les applications de podcast, et les bons types MIME. Ajoute une simple page web publique de liste d'épisodes avec un lecteur audio HTML5 intégrable. Valide le flux généré contre un validateur RSS de podcast standard pendant le développement, et corrige tout ce qu'il signale — de petites déviations de la spec sont exactement ce qui casse la compatibilité avec certaines applications. Ne construis pas d'automatisation de soumission aux annuaires en un clic, d'analytics détaillées, ni de constructeur de site web de podcast complet — c'est hors périmètre ; tu soumettrais quand même manuellement l'URL de ton flux à Apple Podcasts, Spotify et d'autres une fois, ce que chacun accepte gratuitement. Nécessite un hébergement, un stockage pour les fichiers audio, et un nom de domaine pour l'URL stable du flux.",
+  "faq": [
+    { "q": "Est-ce que les applications de podcast vont vraiment accepter ce flux ?", "a": "S'il se valide contre un validateur RSS de podcast standard et sert l'audio avec une prise en charge correcte des range-requests, oui — ce sont les deux raisons les plus courantes pour lesquelles un flux maison est rejeté ou joue mal." },
+    { "q": "Dois-je quand même soumettre moi-même à Apple Podcasts et Spotify ?", "a": "Oui, une fois chacun — soumettre une URL de flux à chaque annuaire est gratuit et manuel, et cette construction n'automatise pas cette étape unique." },
+    { "q": "Ça me montre des analytics de téléchargement d'épisode ?", "a": "Seulement des comptes basiques de logs d'accès serveur si tu les configures toi-même — rien comme les analytics détaillées par épisode et par plateforme de Buzzsprout." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement, stockage audio et nom de domaine — pour un petit podcast perso, souvent quelques dollars par mois selon la taille des fichiers audio et le volume d'auditeurs." }
+  ]
+}
