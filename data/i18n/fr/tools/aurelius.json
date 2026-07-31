@@ -1,0 +1,32 @@
+{
+  "tagline": "Un espace pour garder ses notes de recherche, pour que les enseignements restent rattachés aux preuves qui les fondent.",
+  "verdictSummary": "La base de données derrière est petite — notes, tags, projets, enseignements, et une table de liens entre eux. Ce que vend Aurelius, c’est une discipline : un enseignement doit citer les citations dont il vient, et l’outil ne te laisse pas oublier de quel entretien vient une affirmation. Cette contrainte se construit en un week-end et vaut le coup d’être construite. La transcription en 180 langues et un référentiel partagé auquel toute une équipe fait confiance, non.",
+  "coreLoopDIY": "Importe des notes et transcriptions d’entretiens, tague des passages, rédige des enseignements qui doivent citer au moins un passage tagué, et cherche dans tout par tag, projet ou expression.",
+  "whatYouLose": [
+    "la transcription en 180 langues, avec séparation des locuteurs",
+    "un référentiel que toute une équipe consulte et considère comme la référence",
+    "le tableau d’analyse visuelle pour les diagrammes d’affinité",
+    "la génération automatique de rapports pour les parties prenantes",
+    "le stockage illimité des enregistrements d’entretiens"
+  ],
+  "whyPeopleStillPay": "Parce qu’un référentiel de recherche ne vaut quelque chose que si d’autres personnes s’en servent. Un chercheur seul avec de bonnes notes n’a pas besoin d’Aurelius ; une équipe qui doit retrouver le résultat de l’an dernier avant de répéter une étude, si.",
+  "prompt": "Construis un référentiel de recherche personnel dont la règle centrale est que chaque enseignement doit citer une preuve.\n\nModèle de données, volontairement réduit : les projets ont des documents, les documents ont des passages, les passages portent des tags, et les enseignements sont liés à des passages. Stocke tout dans Postgres. La seule règle imposée par le schéma : un enseignement sans passage lié ne peut pas être marqué comme publié. Impose-la comme une contrainte, pas comme un avertissement — toute la raison de construire ça plutôt que d’utiliser une appli de notes, c’est que le lien est obligatoire.\n\nL’ingestion se fait via une transcription Markdown ou texte brut par document, plus une date et un intitulé de participant. Découpe en passages selon les limites de paragraphe et conserve les décalages pour qu’un passage pointe toujours vers son emplacement exact dans la source.\n\nLe tagging est d’abord manuel : sélectionner un passage, appliquer un tag. Ajoute ensuite une étape assistée : envoie un document à un LLM et demande-lui de proposer des tags parmi ceux déjà utilisés, sans jamais en inventer de nouveaux, et présente-les comme des suggestions qu’un humain accepte une par une. Un tagueur automatique qui invente son propre vocabulaire détruit la cohérence qui rend le référentiel exploitable par la recherche — c’est le mode d’échec à éviter par conception.\n\nRecherche dans les passages, les tags et les enseignements, en affichant le paragraphe environnant et un lien retour vers le document.\n\nLe résultat est une page par enseignement : l’affirmation, les passages qui la soutiennent en entier, les documents et dates dont ils viennent, et le nombre de participants distincts qui l’ont formulée. Affiche ce nombre bien en évidence — un enseignement soutenu par un seul participant et un autre soutenu par neuf se ressemblent dans un diaporama mais veulent dire des choses complètement différentes.\n\nHors périmètre : la transcription audio, le stockage vidéo, un panel de participants, et les permissions multi-utilisateurs.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux importer mes données Aurelius existantes ?",
+      "a": "Aurelius exporte les projets et les notes, et le texte passe sans problème. Ce qui ne passe pas, c’est la structure de liens entre les enseignements et les preuves qu’ils citent — c’est justement la partie que tu voudrais le plus, et refaire les liens se fait à la main."
+    },
+    {
+      "q": "Est-ce que ça transcrit les entretiens ?",
+      "a": "Non. Fais tourner Whisper séparément sur tes enregistrements, puis injecte les transcriptions comme documents. Séparer la transcription de l’analyse garde le référentiel utile même quand l’enregistrement a été fait ailleurs, complètement en dehors du système."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un petit VPS avec Postgres, environ 10 $ par mois, plus quelques centimes par document si tu utilises le tagging assisté. Le référentiel en lui-même ne coûte rien à conserver."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "Être la mémoire de l’équipe. Un référentiel que personne d’autre ne peut ouvrir n’est qu’un système de notes personnel avec des étapes en plus, et Aurelius justifie son prix précisément quand d’autres personnes viennent y chercher quelque chose."
+    }
+  ]
+}

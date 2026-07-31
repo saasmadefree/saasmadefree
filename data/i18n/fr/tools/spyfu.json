@@ -1,0 +1,19 @@
+{
+  "tagline": "Un traqueur d’écarts de mots-clés qui te compare à un concurrent",
+  "verdictSummary": "Le vrai produit de SpyFu, ce sont des années de données historiques de publicité et de classement sur les domaines d’autres personnes — ce n’est pas quelque chose qu’un script personnel peut créer rétroactivement, seulement à partir d’aujourd’hui, et même alors pas à la profondeur de SpyFu. Ce qui est constructible, c’est un outil d’écart de mots-clés : compare tes classements à ceux d’un concurrent pour une liste de mots-clés partagée et signale où il se classe et pas toi.",
+  "coreLoopDIY": "Interroge une API SERP pour une liste de mots-clés partagée contre ton domaine et celui d’un concurrent, et signale les mots-clés où le concurrent se classe et pas toi.",
+  "whatYouLose": [
+    "des années de données historiques de publicité et de classement",
+    "l’historique des mots-clés PPC et des textes publicitaires concurrents",
+    "la profondeur de la propre base de données de classement de SpyFu",
+    "la comparaison multi-concurrents à grande échelle"
+  ],
+  "whyPeopleStillPay": "N’importe qui peut vérifier les classements d’aujourd’hui ; seule une entreprise qui enregistre des instantanés depuis plus d’une décennie peut te montrer à quoi ressemblait la stratégie publicitaire d’un concurrent il y a deux ans.",
+  "prompt": "Construis un outil d’écart de mots-clés qui compare ton domaine à celui d’un concurrent, pour une liste de mots-clés que tu fournis — pas une base de données de publicités historiques, ce qui n’est pas reproductible de façon réaliste. Utilise la même approche d’API SERP qu’un traqueur de classement personnel (interroge une API SERP payante à l’usage, pas de scraping direct) mais interroge-la pour deux domaines par mot-clé : le tien et celui d’un concurrent nommé. Utilise Python ou Node avec SQLite. Pour chaque mot-clé, stocke les positions de classement des deux domaines (ou « non classé » si en dehors du top 100) et signale les mots-clés où le concurrent se classe et pas toi, ou se classe nettement plus haut. Construis un tableau trié simple de ces mots-clés d’écart comme sortie principale — c’est le résultat actionnable. Ajoute une vue historique basique montrant les changements de position sur les semaines où tu l’as fait tourner, mais sois franc que ça démarre seulement à partir du moment où tu commences à faire tourner l’outil, sans historique rétroactif. Ne construis pas de suivi publicité/PPC, d’historique de textes publicitaires, ni de comparaison multi-concurrents — c’est hors périmètre ; ça compare exactement ton domaine et celui d’un concurrent, à partir de maintenant seulement. Nécessite un hébergement pour une tâche planifiée, une petite base de données, et un abonnement d’API SERP avec son propre coût par requête.",
+  "faq": [
+    { "q": "Est-ce que ça peut me montrer l’historique Google Ads d’un concurrent ?", "a": "Non — ça nécessite des années d’instantanés enregistrés que SpyFu a déjà et qu’un projet personnel ne peut pas créer rétroactivement. Cet outil ne compare que les classements de mots-clés organiques, à partir d’aujourd’hui." },
+    { "q": "Jusqu’où remonte l’historique ?", "a": "Seulement aussi loin que tu as fait tourner l’outil toi-même — il n’y a pas de données antidatées, contrairement à l’archive pluriannuelle de SpyFu." },
+    { "q": "Est-ce que je peux comparer à plusieurs concurrents à la fois ?", "a": "Pas dans ce projet — c’est limité à exactement un domaine concurrent à la fois, pour garder le volume de requêtes d’API SERP, et le coût, gérables." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "L’hébergement pour la tâche planifiée plus l’usage de l’API SERP, qui grimpe avec la taille de ta liste de mots-clés et la fréquence de vérification — prévois quelques dollars par mois pour une liste personnelle modeste." }
+  ]
+}

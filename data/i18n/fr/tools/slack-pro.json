@@ -1,0 +1,19 @@
+{
+  "tagline": "Un chat d’équipe auto-hébergé avec canaux, fils et recherche",
+  "verdictSummary": "Un chat en temps réel basé sur des canaux avec fils et recherche est un vrai projet d’un week-end à une semaine sur une pile web normale — la mécanique n’est pas la partie difficile. Ce qui l’est : la confiance d’une équipe existante qui vit déjà dans Slack, les notifications push mobiles natives, et l’infrastructure de modération et de gestion des abus qui compte dès qu’une communauté grandit au-delà des gens que tu connais personnellement.",
+  "coreLoopDIY": "Héberge un espace de chat privé avec canaux et réponses en fil, livre les messages en temps réel via WebSockets, et garde tout l’historique consultable, pour une équipe qui fait déjà confiance à l’auto-hébergement.",
+  "whatYouLose": [
+    "l’effet de réseau d’une équipe déjà sur Slack",
+    "les applications mobiles natives avec notifications push",
+    "les appels vocaux et vidéo",
+    "la modération d’entreprise, le SSO, et l’outillage de conformité"
+  ],
+  "whyPeopleStillPay": "Le chat lui-même est banalisé ; ce qu’une équipe paie vraiment, c’est de ne pas avoir à être celui qui se fait biper quand la livraison en temps réel casse pour deux cents personnes à la fois, ou qui doit gérer les signalements d’abus personnellement.",
+  "prompt": "Construis un petit chat d’équipe auto-hébergé : canaux, réponses en fil, réactions, et recherche — limité à une équipe à qui tu fais déjà confiance, pas une plateforme communautaire publique. Utilise Next.js/TypeScript avec des WebSockets pour la livraison en direct et Postgres comme stockage durable (chaque message est d’abord écrit dans Postgres ; la livraison WebSocket est une notification par-dessus, pas la source de vérité). Prends en charge les canaux (publics au sein de l’espace de travail, ou sur invitation seule), les réponses en fil attachées à un message parent, les réactions emoji, les @mentions avec une liste de notifications, et les pièces jointes stockées sur disque local ou sur un stockage compatible S3. Ajoute une recherche plein texte sur l’historique des messages en utilisant la recherche intégrée de Postgres. Implémente deux rôles — propriétaire (peut gérer les membres et les canaux) et membre — avec un flux de lien d’invitation plutôt qu’une inscription ouverte. Envoie un digest par email des mentions non lues pour les membres qui ne sont pas actifs en ligne, pour que les notifications ne dépendent pas d’une appli mobile native. Ne construis pas d’appels vocaux ou vidéo, d’applis mobiles natives, ni de fonctionnalités SSO/conformité d’entreprise — c’est hors périmètre ; c’est un chat web uniquement pour une équipe assez petite pour être invitée à la main. Nécessite un hébergement, un domaine, et un fournisseur d’email transactionnel pour le digest — aucun autre service externe requis.",
+  "faq": [
+    { "q": "Est-ce que je peux inviter des gens de la même façon que dans un espace de travail Slack ?", "a": "Oui, via un lien d’invitation qu’un propriétaire génère — il n’y a pas d’inscription ouverte, ni de répertoire d’autres espaces de travail à découvrir, puisque ça n’essaie pas d’être un réseau public." },
+    { "q": "Est-ce que je vais recevoir des notifications push sur mon téléphone ?", "a": "Pas en push natif — le substitut le plus proche ici, c’est le digest par email pour les mentions non lues. De vraies notifications push mobiles ont besoin d’une appli native que ce projet n’inclut pas." },
+    { "q": "Est-ce que ça supporte les appels vocaux ou vidéo ?", "a": "Non, c’est hors périmètre. Associe-le à un lien de planification existant et n’importe quel service de visioconférence pour les appels." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "L’hébergement, un domaine, et une base de données — typiquement quelques dollars par mois pour une petite équipe, sans frais par siège, contre le prix mensuel par utilisateur de Slack Pro." }
+  ]
+}

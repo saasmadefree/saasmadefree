@@ -1,0 +1,32 @@
+{
+  "tagline": "Un tableau public où les utilisateurs postent des demandes de fonctionnalités, votent dessus, et voient ce qui a été livré.",
+  "verdictSummary": "Le tableau n’est pas la partie difficile — Fider en est une implémentation open source qui fait exactement ça. La partie difficile, c’est que la même demande arrive quarante fois sous quarante formulations différentes, et Canny les fusionne sans perdre le nombre de votes ni la liste des demandeurs. La déduplication par embeddings avec une étape de confirmation humaine est un vrai projet de week-end. Ce qui reste hors de portée, c’est l’argument actuel de Canny Pro : récupérer automatiquement le feedback depuis Intercom, Zendesk et Gong.",
+  "coreLoopDIY": "Collecte les demandes sur un tableau public, regroupe automatiquement les quasi-doublons, fusionne-les en un clic en gardant chaque vote et chaque demandeur, et republie les statuts.",
+  "whatYouLose": [
+    "la capture automatique depuis Intercom, Zendesk, Gong et les appels commerciaux",
+    "le lien entre une demande et le revenu des comptes qui la formulent",
+    "les intégrations Jira, Linear et Slack qui bouclent la boucle",
+    "le SSO pour que les votants soient identifiés plutôt que déclarés eux-mêmes",
+    "quelqu’un d’autre qui encaisse le spam sur un tableau public"
+  ],
+  "whyPeopleStillPay": "Parce que le tableau ne fonctionne que s’il est rempli, et il n’est rempli que si le feedback y arrive sans que personne ait à le retaper. Le prix actuel de Canny paie la capture, pas le vote.",
+  "prompt": "Construis un tableau public de demandes de fonctionnalités dont la particularité est la déduplication.\n\nLe tableau lui-même est ordinaire : n’importe qui peut poster un titre et une description, voter une fois par post, et commenter. Les posts portent un statut — ouvert, planifié, en cours, livré, refusé — et la roadmap publique n’est qu’une vue filtrée sur ce champ.\n\nLa partie qui mérite d’être bien construite : quand un nouveau post est soumis, calcule un embedding de son titre et de sa description, compare-le aux posts existants par similarité cosinus, et si quelque chose franchit un seuil, montre à la personne les quasi-doublons avant qu’elle ne soumette, avec un bouton « c’est aussi ma demande » qui vote sur le post existant au lieu d’en créer un nouveau. Dévier le doublon au moment de la soumission est bien plus efficace que fusionner après coup.\n\nPour ceux qui passent quand même, donne à l’admin une action de fusion qui déplace les votes, les commentaires et les demandeurs vers le post survivant, garde les titres fusionnés comme alias pour que la recherche les retrouve encore, et qui soit réversible. Une fusion irréversible sur une mauvaise estimation détruit un signal irrécupérable, donc stocke la fusion comme un lien plutôt que de supprimer la ligne.\n\nEnvoie un email à chaque votant d’une demande quand son statut change, en un seul message groupé plutôt qu’un par post, et toujours avec un lien de désabonnement. Ce bouclage de la boucle est la seule raison pour laquelle les gens postent.\n\nLe spam est la réalité opérationnelle d’un tableau public : limite le débit par IP, exige une confirmation par email avant qu’un post n’apparaisse, et mets en revue les premiers posts des nouveaux venus.\n\nHors périmètre : les intégrations avec des outils de support, l’attribution de revenu, le SSO. Affiche les votes comme des comptages, jamais comme un score de priorité — dès qu’un tableau classe par votes, la roadmap appartient à qui a organisé une campagne.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux importer mon tableau Canny ?",
+      "a": "Canny exporte les posts, les votes et les commentaires en CSV, et le contenu du tableau passe bien. L’historique des fusions, non, donc les doublons déjà fusionnés arrivent comme des posts séparés et tu devras refusionner les cas évidents."
+    },
+    {
+      "q": "Est-ce que ça va récupérer le feedback de ma boîte de support ?",
+      "a": "Non, et c’est le manque principal. Canny Pro se vend en grande partie sur la capture automatique depuis Intercom, Zendesk et les enregistrements d’appels ; ce projet ne contient que ce que quelqu’un tape directement dans le tableau."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un VPS avec Postgres à environ 10 $ par mois, plus quelques dollars par mois d’appels d’embeddings à tout volume réaliste, plus l’email transactionnel qui est gratuit à cette échelle."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "Un tableau rempli. Canny se remplit tout seul depuis les endroits où les clients se plaignent déjà ; un tableau auto-hébergé ne se remplit que si tu vas toi-même y copier-coller des choses, et la plupart s’essoufflent en moins d’un mois."
+    }
+  ]
+}

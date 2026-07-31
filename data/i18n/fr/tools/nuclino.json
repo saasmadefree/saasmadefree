@@ -1,0 +1,19 @@
+{
+  "tagline": "Un wiki d’équipe minimaliste avec une vue tableau visuelle à côté de la liste de pages",
+  "verdictSummary": "Un wiki d’équipe minimaliste avec une vue tableau visuelle — disposer les pages spatialement sur une toile au lieu d’une simple liste linéaire — est un vrai projet de week-end. Ce qui ne survit pas : l’édition multi-utilisateur en temps réel, un problème difficile que ce catalogue a signalé à plusieurs reprises, et des années de finition dans la façon dont le tableau visuel gère des centaines de pages sans devenir encombré.",
+  "coreLoopDIY": "Écris les pages du wiki d’équipe en Markdown, organise-les en collections, et dispose les pages spatialement sur une vue tableau visuelle comme alternative à une liste linéaire, avec repositionnement par glisser-déposer.",
+  "whatYouLose": [
+    "l’édition multi-utilisateur en temps réel",
+    "la finition dans la façon dont la vue tableau monte en charge sur des centaines de pages",
+    "l’historique de versions avec des diffs visuels",
+    "la recherche inter-espaces de travail"
+  ],
+  "whyPeopleStillPay": "Une vue tableau avec des cartes déplaçables est un vrai projet d’interface, mais borné ; l’édition collaborative en temps réel sans conflits, dont un wiki d’équipe a vraiment besoin, est le problème difficile que ce catalogue continue de nommer plutôt que de le résoudre à la légère.",
+  "prompt": "Construis un wiki d’équipe minimaliste avec une vue tableau visuelle comme façon alternative de parcourir les pages, par-dessus un modèle de données fixe plutôt que le vrai moteur collaboratif en temps réel de Nuclino. Utilise Next.js/TypeScript avec Postgres. Prends en charge des pages Markdown organisées en collections nommées, une structure de wiki légère sans imbrication profonde. Construis deux vues par collection : une vue liste standard, et une vue tableau où chaque page est une carte déplaçable positionnée librement sur une toile 2D, avec la position enregistrée par page. Prends en charge les [[liens-wiki]] entre les pages avec les rétroliens affichés en bas de chaque page. Implémente un historique de versions basique : enregistre un instantané à chaque modification, consultable comme une liste de versions passées avec un simple diff texte, pas un diff visuel sophistiqué, entre deux versions quelconques. Ajoute une recherche plein texte sur toutes les pages de l’espace de travail. Ne construis pas d’édition multi-utilisateur en temps réel, la même limitation honnête que les autres fiches d’outils d’équipe de ce catalogue, puisque l’édition concurrente sans conflit est vraiment difficile ; utilise le principe du dernier enregistrement qui gagne avec un avertissement si la page a changé depuis le début de la modification. Nécessite un hébergement et une base de données ; aucune clé d’API externe requise.",
+  "faq": [
+    { "q": "Est-ce que plusieurs personnes peuvent modifier la même page en même temps ?", "a": "Pas en toute sécurité — comme plusieurs autres outils d’équipe de ce catalogue, l’édition collaborative en temps réel sans conflit est signalée comme vraiment difficile plutôt que tentée à la légère. Ce projet t’avertit si la page a changé depuis que tu as commencé à la modifier, plutôt que d’écraser silencieusement." },
+    { "q": "À quoi sert vraiment la vue tableau ?", "a": "Disposer les pages spatialement, par thème ou par relation, comme alternative à la navigation dans une liste plate — utile pour voir visuellement comment les pages d’un projet se rapportent les unes aux autres." },
+    { "q": "Est-ce que ça a des diffs visuels entre les versions ?", "a": "Un simple diff texte, pas la comparaison plus visuelle de Nuclino — suffisant pour voir ce qui a changé, mais moins soigné." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "L’hébergement et une base de données — typiquement quelques dollars par mois pour une petite équipe, sans frais par siège." }
+  ]
+}

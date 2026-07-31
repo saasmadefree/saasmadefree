@@ -1,0 +1,32 @@
+{
+  "tagline": "La localisation pour les équipes produit, construite autour du fait de montrer aux traducteurs où chaque chaîne apparaît.",
+  "verdictSummary": "La moitié base de données de Lokalise est la même que celle de n’importe quelle autre plateforme de traduction, et tout aussi constructible. Son vrai facteur différenciant, c’est le contexte : une capture d’écran liée à chaque clé, pour qu’un traducteur voie que cette chaîne est un bouton de 80 pixels de large et pas un paragraphe. Ça se construit aussi, et le faire correctement — capturer les écrans en CI et faire correspondre automatiquement les chaînes aux zones — c’est le week-end. Le workflow d’entreprise autour, non.",
+  "coreLoopDIY": "Garde les clés et les traductions dans une base de données, attache une zone de capture d’écran à chaque clé, et montre aux traducteurs la capture d’écran avec leur chaîne mise en évidence à sa place.",
+  "whatYouLose": [
+    "la capture d’écran automatique depuis un outil de design ou un pipeline CI",
+    "les branches, les chaînes de relecture et les workflows d’approbation pour les grandes équipes",
+    "les SDK qui livrent les traductions par-dessus le réseau vers les applications mobiles",
+    "les vérifications qualité sur des dizaines de formats de fichiers",
+    "le SSO, les journaux d’audit et l’administration entreprise"
+  ],
+  "whyPeopleStillPay": "Parce qu’à l’échelle d’une équipe, la localisation est un problème de processus, pas un problème de stockage. Qui approuve, qu’est-ce qui bloque une release, quelles chaînes manquent pour le lancement allemand — c’est le workflow qui coûte de l’argent, et il ne se justifie qu’avec plusieurs personnes dedans.",
+  "prompt": "Construis un éditeur de traduction où chaque clé porte une capture d’écran.\n\nClés, langues et traductions dans une base de données, importées depuis et exportées vers les fichiers JSON ou .strings de ton projet.\n\nLe système de contexte est le point central. Une capture d’écran est importée avec un manifeste listant quelles clés y apparaissent et à quels rectangles de pixels. Dans l’éditeur, traduire une clé affiche la capture avec ce rectangle en surbrillance et le reste assombri. Un traducteur qui voit la chaîne à sa place prend des décisions différentes et meilleures qu’un traducteur qui lit une liste, et cette seule fonctionnalité explique la majeure partie de la valeur de Lokalise.\n\nGénère le manifeste plutôt que de le saisir : ajoute une version debug de ton appli qui enveloppe chaque chaîne localisée d’un marqueur, capture les écrans avec Playwright en CI, et extrait les positions des marqueurs depuis le DOM. Une correspondance manuelle de captures d’écran se périme en une seule release, donc si ce n’est pas automatisé, ça ne vaut pas la peine d’être construit.\n\nStocke la largeur en pixels rendue de chaque zone de chaîne et avertis quand une traduction dépasse de plus de 30 % la longueur de la source. L’allemand et le finnois débordent régulièrement des mises en page conçues pour l’anglais, et le repérer dans l’éditeur coûte bien moins cher qu’un rapport de bug.\n\nAjoute les vérifications qui attrapent les vraies casses : les décalages de placeholders entre la source et la traduction, les balises déséquilibrées dans les chaînes contenant du balisage, et les clés manquantes par langue avant une release.\n\nRéexporte vers les fichiers du projet avec un test d’aller-retour identique au bit près, et fais échouer le build sur les clés manquantes par langue plutôt que de retomber silencieusement sur l’anglais.\n\nHors périmètre : les mises à jour mobiles par-dessus le réseau, les branches, les workflows d’approbation et les permissions.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux importer mon projet Lokalise ?",
+      "a": "Les clés et traductions s’exportent par langue et se chargent proprement. Les captures d’écran et leurs correspondances de clés sont la partie précieuse et ne s’exportent pas de façon utile, donc le contexte doit être régénéré — c’est pour ça que le prompt l’automatise."
+    },
+    {
+      "q": "Est-ce que j’ai besoin du pipeline de captures d’écran pour commencer ?",
+      "a": "Non, mais sans lui, ce n’est qu’une table de chaînes de plus, et la table de chaînes est la partie que tu pourrais obtenir gratuitement avec Weblate. Les captures d’écran sont la raison de construire plutôt que d’installer."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un VPS avec Postgres et du stockage objet pour les captures d’écran, environ 10 à 15 $ par mois. La tâche CI de capture d’écran tourne sur des runners que tu payes déjà."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "Le processus de release. Lokalise est acheté pour qu’un lancement soit bloqué par de l’allemand manquant plutôt que découvert par un utilisateur allemand, et cette barrière est autant organisationnelle que technique."
+    }
+  ]
+}

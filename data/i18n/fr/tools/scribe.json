@@ -1,0 +1,19 @@
+{
+  "tagline": "Transforme automatiquement une session navigateur enregistrée en guide étape par étape",
+  "verdictSummary": "Capturer automatiquement chaque clic comme une étape numérotée avec une capture d’écran et une instruction auto-générée — le vrai tour de Scribe — est un vrai projet de week-end en utilisant une extension navigateur qui écoute les événements de clic et capture une capture d’écran à chacun. Ce qui ne survit pas : la finition de Scribe dans la formulation des instructions auto-générées, et sa capture d’appli de bureau au-delà du seul navigateur.",
+  "coreLoopDIY": "Enregistre une session navigateur en capturant une capture d’écran et une description simple à chaque clic, et assemble la séquence en un guide étape par étape numéroté automatiquement, modifiable après coup.",
+  "whatYouLose": [
+    "la capture d’appli de bureau au-delà du navigateur",
+    "la formulation soignée des instructions auto-générées",
+    "les bibliothèques de guides partagées en équipe avec des analyses d’usage",
+    "l’export en un clic vers de nombreux formats de document"
+  ],
+  "whyPeopleStillPay": "Capturer une capture d’écran par clic est la partie facile ; écrire une instruction claire et correctement formulée pour ce qui vient de se passer, automatiquement et fiablement à travers l’interface de n’importe quel site web, est la partie de langage naturel plus difficile.",
+  "prompt": "Construis une extension navigateur qui transforme un workflow enregistré en un guide étape par étape automatiquement. Utilise une extension Chrome (Manifest V3) qui, une fois l’enregistrement activé, écoute les événements de clic sur la page et, pour chaque clic, capture une capture d’écran de l’onglet visible et une description basique de l’élément cliqué — son texte visible ou son aria-label, enveloppé dans un modèle générique comme « Clique sur [texte de l’élément] ». Assemble les étapes capturées en une liste ordonnée avec des captures d’écran, modifiable après coup — l’utilisateur peut réécrire n’importe quelle instruction auto-générée, réordonner, ou supprimer des étapes. Dessine une boîte de surbrillance simple sur chaque capture d’écran autour de l’élément cliqué, avec un réglage pour une capture recadrée ou pleine page. Exporte le guide terminé comme un fichier HTML autonome ou un PDF avec des images intégrées. Stocke les guides localement dans le stockage du navigateur, avec une vue de bibliothèque simple. Ne construis pas de capture d’appli de bureau au-delà du navigateur, de bibliothèque d’équipe hébergée avec des liens de partage, ni de formulation auto-générée plus sophistiquée que le modèle basique décrit — peaufiner ce langage est vraiment un travail de langage naturel difficile, et ce projet est franc sur le fait qu’il produit un brouillon, pas un guide terminé. Aucune clé d’API ni compte requis.",
+  "faq": [
+    { "q": "Est-ce que les instructions se lisent aussi naturellement que celles de Scribe ?", "a": "Non — ce projet génère une description modélisée basique par clic, pensée comme un brouillon modifiable, pas la formulation auto-générée plus soignée de Scribe, qui est du vrai travail de langage naturel." },
+    { "q": "Est-ce que ça peut capturer en dehors du navigateur, comme dans une appli de bureau ?", "a": "Non — c’est uniquement une extension navigateur. La capture d’appli de bureau de Scribe est une surface d’ingénierie séparée et plus vaste que ce projet ne couvre pas." },
+    { "q": "Est-ce que je peux partager un guide avec mon équipe via un lien ?", "a": "Pas dans ce projet — les guides s’exportent comme un fichier autonome que tu partagerais manuellement, plutôt qu’un lien partagé hébergé et toujours à jour." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien — c’est une extension navigateur sans backend, donc il n’y a aucun coût d’hébergement ni abonnement impliqué." }
+  ]
+}

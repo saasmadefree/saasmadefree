@@ -1,0 +1,33 @@
+{
+  "tagline": "Toutes les opérations PDF du quotidien sous forme de page web, sans les limites du plan gratuit.",
+  "verdictSummary": "Ce qu’achète Premium, c’est la suppression des limites — des fichiers plus gros, plus de tâches par jour, aucune attente. Les opérations elles-mêmes sont exactement celles que Stirling PDF implémente déjà, et l’auto-héberger fixe ces limites à ce que ta propre machine peut encaisser. C’est un cas de déploiement d’open source plutôt qu’une construction depuis zéro, donc c’est un vrai week-end sans aucun écart dans ce que fait l’outil.",
+  "coreLoopDIY": "Fais tourner Stirling PDF sur ton propre serveur derrière une connexion, avec la limite de taille de fichier, la concurrence et la durée de rétention réglées par toi plutôt que par un plan.",
+  "whatYouLose": [
+    "les applications iOS et Android",
+    "l’application de bureau",
+    "l’usage à la volée sans compte, depuis n’importe quelle machine",
+    "la conversion Word et PowerPoint avec la fidélité d’iLovePDF sur des mises en page complexes",
+    "quelqu’un d’autre qui le garde en marche"
+  ],
+  "whyPeopleStillPay": "Parce que c’est là quand tu en as besoin, sur un ordinateur emprunté, sans serveur qu’il aurait fallu configurer six mois plus tôt. Sept dollars suppriment une limite que tu atteins deux fois par an, ce qui est un prix juste pour ne pas avoir à y penser.",
+  "notes": "Un oui vraiment honnête : le substitut n’est pas une approximation, c’est le même jeu d’opérations qui tourne sur du matériel que tu contrôles.",
+  "prompt": "Déploie Stirling PDF pour toi-même et rends-le utilisable par exactement une personne.\n\nFais-le tourner avec Docker Compose derrière Caddy, qui gère automatiquement le certificat de ton domaine. Place une authentification HTTP basique ou un proxy d’authentification devant le tout — une boîte à outils PDF ouverte sur l’internet public devient le service gratuit de conversion de fichiers de quelqu’un d’autre en moins d’une semaine.\n\nFixe les trois limites que Premium vend réellement, et fixe-les d’après ton propre matériel plutôt qu’en copiant un plan : taille maximale d’import, nombre maximal de tâches simultanées, et combien de temps les fichiers de sortie vivent avant qu’une tâche de nettoyage ne les supprime. Écris ces trois chiffres sur la page de connexion pour toujours savoir ce qu’ils sont.\n\nAjoute une tâche cron de nettoyage qui supprime les fichiers traités plus vieux que la rétention choisie, et fais-la supprimer sur un planning plutôt qu’à l’accès — une tâche qui ne tourne que lorsque quelqu’un visite laisse des fichiers indéfiniment sur le disque pour un outil utilisé une fois par mois.\n\nDonne assez de mémoire à LibreOffice. La conversion Office vers PDF est l’opération qui échoue en premier sur une petite instance, et elle échoue en produisant un document vide ou tronqué plutôt qu’une erreur, ce qui est bien pire.\n\nHors périmètre : les applications mobiles, une version de bureau, et les comptes multi-utilisateurs. Vérifie en convertissant un document scanné de 40 Mo, un diaporama avec des polices intégrées, et un tableur, et en vérifiant que chaque sortie s’ouvre correctement.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux toujours l’utiliser depuis mon téléphone ?",
+      "a": "Via le navigateur, oui — l’interface de Stirling PDF fonctionne sur un écran de téléphone. Ce que tu perds, c’est l’application native : pas d’intégration au menu de partage, pas de file d’attente hors ligne, et pas de flux appareil photo vers PDF scanné."
+    },
+    {
+      "q": "Est-ce que la conversion Word est aussi bonne ?",
+      "a": "Pour les documents textuels, oui — les deux côtés utilisent LibreOffice ou quelque chose de similaire. Sur des mises en page fortement formatées avec colonnes, zones de texte et polices intégrées, le résultat d’iLovePDF est généralement plus net, et c’est le seul endroit où tu remarqueras une différence."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Environ 5 à 10 $ par mois pour un VPS avec assez de mémoire pour LibreOffice, plus un domaine. En dessous de l’abonnement, mais pas gratuit, et c’est toi qui le redémarres."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "Être disponible depuis n’importe quelle machine sans préparation. iLovePDF marche depuis un ordinateur emprunté dans un aéroport ; ton serveur marche si tu l’as configuré, si tu l’as maintenu à jour, et si tu te souviens du mot de passe."
+    }
+  ]
+}

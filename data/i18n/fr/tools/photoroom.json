@@ -1,0 +1,19 @@
+{
+  "tagline": "Retire les arrière-plans en local avec un modèle de segmentation ouvert",
+  "verdictSummary": "La suppression d’arrière-plan en elle-même est un problème ouvert et résolu — les modèles de la famille u2net qui tournent en local font un vrai bon travail en une session. Ce qui est plus difficile à simuler : le système de modèles par lot de PhotoRoom pour une photographie produit cohérente (le même arrière-plan, la même ombre, le même recadrage sur des centaines de références) et son appli de capture mobile.",
+  "coreLoopDIY": "Fais passer une image importée par un modèle de suppression d’arrière-plan local, compose-la sur une couleur unie ou un arrière-plan préréglé choisi, et exporte par lot un dossier d’images de la même façon.",
+  "whatYouLose": [
+    "l’appli de capture mobile",
+    "la grande bibliothèque de modèles et les kits de marque",
+    "l’API par lot pour les catalogues e-commerce à grande échelle",
+    "les arrière-plans générés par IA au-delà des couleurs unies"
+  ],
+  "whyPeopleStillPay": "Les vendeurs paient pour la cohérence en volume — appliquer le même recadrage, la même ombre et le même arrière-plan sur mille photos produit sans toucher à chacune à la main, plus une appli mobile conçue pour prendre des photos sur le lieu de vente.",
+  "prompt": "Construis un outil local de suppression d’arrière-plan et de composition par lot. Utilise Python avec `rembg` (u2net) pour la segmentation, en tournant entièrement sur la machine de l’utilisateur — pas d’API cloud. Accepte un dossier d’images, retire l’arrière-plan de chacune avec rembg, et compose le résultat sur une couleur unie ou un petit ensemble de dégradés préréglés choisis par l’utilisateur, avec une taille de canevas de sortie cohérente et un recadrage centré et marge sur tout le lot. Fournis une interface web simple (FastAPI plus une page HTML simple suffit) pour glisser un dossier, prévisualiser quelques résultats avant de valider, ajuster la marge et l’arrière-plan par lot, puis lancer tout le dossier. Exporte en PNG (transparent) ou en JPEG composé, nommé pour correspondre aux fichiers d’entrée. Ne construis pas d’appli mobile, de place de marché de modèles, ni d’arrière-plans générés par IA (plutôt que unis/dégradés) — c’est hors périmètre. Aucune clé d’API ni compte requis ; ça tourne entièrement hors ligne une fois les poids du modèle de rembg téléchargés une fois.",
+  "faq": [
+    { "q": "Est-ce que la suppression d’arrière-plan est aussi bonne que celle de PhotoRoom ?", "a": "Proche, pour la plupart des photos produit sur fond uni. C’est nettement moins bon sur les détails fins comme les cheveux ou la fourrure, où le modèle affiné de PhotoRoom garde encore un avantage." },
+    { "q": "Est-ce que je peux traiter des centaines d’images d’un coup ?", "a": "Oui — c’est vraiment le but de ce projet, contrairement à beaucoup d’outils de suppression d’arrière-plan à image unique. Pointe-le vers un dossier et il traite chaque fichier de la même façon." },
+    { "q": "Est-ce que ça marche sur mon téléphone ?", "a": "Non — c’est un outil de bureau/local, pas une appli mobile. Le flux de capture mobile de PhotoRoom est l’une des vraies choses que tu perds." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien au-delà de ta propre électricité — rembg tourne sur CPU (plus lent) ou GPU (plus rapide) en local, sans frais par image." }
+  ]
+}

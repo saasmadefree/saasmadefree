@@ -1,0 +1,32 @@
+{
+  "tagline": "Là où les équipes produit gardent chaque demande, la notent, et défendent la roadmap qui en résulte.",
+  "verdictSummary": "Productboard n’est pas une base de données d’idées de fonctionnalités ; c’est un dispositif qui tranche les débats. Sa valeur, c’est qu’un modèle de score, les preuves derrière chaque élément, la roadmap et le gestionnaire de tickets sont tous d’accord, et qu’une partie prenante qui n’est pas d’accord peut se voir montrer pourquoi. Reconstruire le score est un week-end. Reconstruire l’accord entre quatre systèmes, et l’habitude organisationnelle de s’en servir, n’est pas quelque chose qu’atteint un projet personnel.",
+  "coreLoopDIY": "Note les fonctionnalités candidates par rapport à des critères explicites et pondérés, garde les preuves attachées à chaque score, et montre comment le classement change quand les poids changent.",
+  "whatYouLose": [
+    "la synchro bidirectionnelle avec Jira et Linear qui garde la livraison et le plan en phase",
+    "les enseignements capturés automatiquement depuis les outils de support et les appels commerciaux",
+    "les roadmaps de portefeuille sur plusieurs produits et équipes",
+    "les vues partagées que les parties prenantes ouvrent au lieu de demander",
+    "la gestion des objections qui vient du fait que tout le monde regarde les mêmes scores"
+  ],
+  "whyPeopleStillPay": "Parce que la priorisation est un problème politique avant d’être technique. Ce qui est acheté, c’est un endroit neutre où l’arbitrage est visible par tout le monde, et un tableur sur l’ordinateur d’une personne ne porte pas cette autorité.",
+  "prompt": "Construis un modèle de priorisation que tu peux défendre, plutôt qu’un outil de roadmap.\n\nLes candidats sont des lignes. Chacune a un nom, une courte description, et un score par critère — portée, confiance, effort, adéquation stratégique, et tout ce sur quoi vous vous disputez réellement. Les critères ont des poids qui vivent dans un seul fichier de configuration. Le score composite est calculé, jamais tapé.\n\nLa fonctionnalité qui vaut la peine d’être construite : la sensibilité. Pour le classement actuel, montre quel poids de critère devrait changer, et de combien, pour que l’élément en tête soit déplacé. Les débats de priorisation sont presque toujours des désaccords sur les poids déguisés en désaccords sur les éléments, et mettre un chiffre dessus les termine plus vite que n’importe quel graphique.\n\nChaque score a besoin d’une note qui l’explique, et un élément dont les scores n’ont pas de notes est marqué comme non étayé et exclu du classement publié. Sinon, les suppositions et les estimations documentées se ressemblent à l’identique dans une liste triée.\n\nLie chaque candidat à des preuves — URL de demandes, citations, références de tickets — et affiche le nombre de sources distinctes à côté du score, parce qu’un client bruyant et douze clients silencieux produisent sinon la même ligne.\n\nPublie une page en lecture seule avec le classement actuel, les poids en vigueur, et la date de leur dernier changement. Garde chaque version précédente des poids, pour que « on a dépriorisé ça en mars » ait une réponse.\n\nHors périmètre : la synchro avec un gestionnaire de tickets, la capture automatique depuis les outils de support, les portefeuilles multi-équipes, et les permissions. Exporte en CSV pour que le score puisse passer dans quoi que l’équipe utilise vraiment.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux importer mes données Productboard ?",
+      "a": "Les fonctionnalités et les notes s’exportent en CSV et se chargent. Les liens enseignement-vers-fonctionnalité, les mises en page de roadmap et toute synchro Jira, non, et ces liens sont la partie qui a demandé le plus de travail à construire."
+    },
+    {
+      "q": "Est-ce que ça synchronise avec Jira ou Linear ?",
+      "a": "Non. Cette synchro est la chose la plus précieuse que fait Productboard et la plus difficile à garder correcte — les statuts dérivent, les éléments se scindent, et une synchro qui marche à moitié est pire que pas de synchro du tout. Ce projet s’arrête à un classement que tu exportes."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Presque rien : un petit VPS ou même un processus local avec SQLite, à 5 $ par mois ou moins. Il n’y a aucun appel d’API et aucun stockage de taille significative."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "L’autorité. Productboard fonctionne parce que tout le monde l’accepte comme l’endroit où la décision a été prise ; un outil de score qu’une seule personne fait tourner est une opinion avec de l’arithmétique attachée."
+    }
+  ]
+}

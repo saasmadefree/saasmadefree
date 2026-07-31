@@ -1,0 +1,32 @@
+{
+  "tagline": "Un éditeur PDF de bureau pour les gens dont les documents n’ont pas le droit de quitter la machine.",
+  "verdictSummary": "L’argument de Foxit face aux boîtes à outils web, c’est que rien n’est envoyé en ligne. Cette contrainte est justement la partie du produit qu’un projet personnel peut reproduire à l’identique, et ça oriente la version DIY vers quelque chose de précis : un pipeline local en ligne de commande avec un dossier surveillé, pas un onglet de navigateur de plus. Ce que tu perds, c’est l’éditeur interactif — cliquer sur un paragraphe et le retaper.",
+  "coreLoopDIY": "Dépose des fichiers dans un dossier surveillé sur ta propre machine et laisse un pipeline local appliquer une recette nommée — OCR, compression, découpage, conversion — en écrivant les résultats à côté de l’entrée, sans que rien ne quitte jamais le disque.",
+  "whatYouLose": [
+    "cliquer dans un paragraphe et le retaper, avec remise en page",
+    "les applications natives Windows et macOS et leur intégration au système",
+    "les enveloppes Foxit eSign incluses avec PDF Editor+",
+    "les applications mobiles",
+    "la sortie conforme PDF/A et accessibilité"
+  ],
+  "whyPeopleStillPay": "Parce que dans les bureaux réglementés, « le fichier n’a jamais quitté cet ordinateur » est une exigence que quelqu’un doit valider, et c’est une licence de bureau commerciale avec un contrat de support qui se fait valider. Un script satisfait l’exigence mais pas le processus d’achat.",
+  "prompt": "Construis un pipeline PDF local et hors ligne qui ne fait jamais aucune requête réseau.\n\nIl surveille un dossier. Tout PDF déposé dans un sous-dossier portant le nom d’une recette se voit appliquer cette recette, et le résultat est écrit dans un dossier de sortie accompagné d’un petit rapport JSON. Livre quatre recettes pour commencer : ocr (Tesseract, en conservant la couche image d’origine et en ajoutant une couche de texte en dessous), compress (Ghostscript, avec la qualité cible indiquée dans la recette plutôt que devinée), split (par plage de pages ou par chaque occurrence d’un signet), et to-docx (LibreOffice en mode headless).\n\nRends la garantie hors ligne réelle plutôt qu’implicite : fais tourner tout le pipeline dans un conteneur sans accès réseau, et ajoute un test qui vérifie que le processus ne fait aucune connexion sortante pendant le traitement d’un document. Une promesse du type « tes fichiers ne quittent jamais ta machine » ne vaut rien tant que rien ne l’applique.\n\nLe rapport par fichier liste le hash d’entrée, la recette, la durée de chaque étape, le hash de sortie, et tout avertissement qui mérite d’être vu — des polices qui n’ont pas pu être intégrées, une page dont l’OCR a mal scoré, un taux de compression si élevé qu’il a probablement tout détruit. Affiche les avertissements bien en évidence ; la dégradation silencieuse d’un document scanné est le mode d’échec qui coûte du vrai travail aux gens.\n\nDonne-lui une interface graphique locale minimale seulement si tu en veux une : une seule fenêtre qui montre la file d’attente et permet d’ouvrir le dossier de sortie. Rien de plus.\n\nHors périmètre : l’édition de texte interactive, la conception de formulaires, la signature électronique, et tout composant hébergé en ligne.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux ouvrir des documents édités dans Foxit ?",
+      "a": "Oui — Foxit écrit des PDF standards. Rien ne se reporte de la couche propre à Foxit : les recettes enregistrées, les connexions au stockage cloud, et toute enveloppe eSign en cours."
+    },
+    {
+      "q": "Est-ce que ça marche sur mon téléphone ?",
+      "a": "Non. C’est un dossier surveillé sur un ordinateur, et c’est justement le principe — la contrainte de conception, c’est que les documents restent sur une seule machine que tu contrôles."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Rien. Tesseract, Ghostscript et LibreOffice sont gratuits, et ça tourne sur du matériel que tu possèdes déjà. C’est tout l’argument pour le construire plutôt que le louer."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "Modifier le texte sur place. Foxit te laisse cliquer sur une ligne d’un contrat et la retaper ; ce pipeline transforme des documents entiers et ne touche jamais à un paragraphe."
+    }
+  ]
+}

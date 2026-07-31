@@ -1,0 +1,32 @@
+{
+  "tagline": "Des demandes de fonctionnalités extraites des outils de support et classées selon le revenu qui les demande.",
+  "verdictSummary": "L’idée de Savio, c’est qu’une demande de fonctionnalité ne veut rien dire sans savoir qui l’a demandée et combien elle paie. Relier le feedback au revenu du compte est un petit morceau de code et un classement vraiment meilleur que le compte de votes. Le travail est partout ailleurs : un connecteur par outil de support et CRM, chacun avec sa propre authentification, pagination et limites de débit, et chacun cassant selon son propre calendrier.",
+  "coreLoopDIY": "Collecte les demandes avec le compte demandeur attaché, relie-les à un chiffre de revenu par compte, et classe par revenu en jeu plutôt que par nombre de votes.",
+  "whatYouLose": [
+    "les connecteurs prêts à l’emploi pour Intercom, Zendesk, Help Scout, HubSpot et Slack",
+    "ces connecteurs maintenus fonctionnels quand un éditeur change son API",
+    "l’extension navigateur qui dépose une demande où que tu la lises",
+    "les pages de feedback par client qu’un chargé de compte peut ouvrir en appel",
+    "la notification automatique des demandeurs quand quelque chose est livré"
+  ],
+  "whyPeopleStillPay": "Parce que la valeur n’apparaît qu’une fois les données complètes, et la complétude est ce qu’achètent les intégrations. Un classement construit sur le tiers des demandes dont tu t’es souvenu de les noter est pire que pas de classement du tout, parce qu’il a l’air autoritaire.",
+  "prompt": "Construis un traqueur de demandes de fonctionnalités qui classe par revenu plutôt que par votes.\n\nTrois tables : comptes (nom, revenu mensuel, plan, date de renouvellement), demandes (titre, description, statut), et sollicitations (quel compte a demandé quelle fonctionnalité, quand, et un lien vers où ça a été dit). La table de sollicitations est toute la conception — une demande n’est pas un objet avec un compte de votes, c’est un ensemble de sollicitations venant de comptes nommés.\n\nClasse par revenu en jeu : la somme du revenu mensuel des comptes qui ont demandé. Affiche à côté le nombre brut de comptes et la part du plus gros compte, parce qu’un gros client et quinze petits produisent le même total et veulent dire des choses entièrement différentes sur le produit.\n\nReçois délibérément de façon générique : un point de terminaison webhook unique qui prend un titre, un corps, un identifiant de compte et une URL source. Puis écris de fins adaptateurs — un workflow Zapier ou n8n, une adresse email, un bookmarklet — qui y postent. Les adaptateurs vers des éditeurs précis sont ce qui pourrit ; un contrat entrant stable avec des adaptateurs jetables devant lui est ce qui survit.\n\nSynchronise les comptes et le revenu depuis une source que tu as déjà — Stripe est le choix honnête pour la plupart des gens, puisque c’est là que l’argent est réellement — via une tâche nocturne. Stocke la date de récupération à côté du chiffre et affiche-la dans l’interface, parce qu’un revenu périmé produit silencieusement un classement faux avec assurance, ce qui est l’échec spécifique que cet outil invite.\n\nDonne à chaque compte une page listant tout ce qu’il a jamais demandé et le statut de chacun, pour qu’une conversation de renouvellement puisse être préparée en trente secondes.\n\nHors périmètre : les connecteurs spécifiques à des éditeurs, un tableau de vote public, une extension navigateur, et toute notification vers les clients finaux.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux importer mes données Savio ?",
+      "a": "Les demandes et les clients qui leur sont attachés s’exportent en CSV et se chargent. Les connexions en direct vers Intercom, HubSpot et le reste ne se transfèrent pas du tout — tu reconstruis la réception depuis le webhook générique."
+    },
+    {
+      "q": "Est-ce que je dois connecter un CRM ?",
+      "a": "Non, mais le classement ne vaut que ce que valent les chiffres de revenu. Stripe suffit généralement et c’est une seule API. Un tableur maintenu à la main marche aussi, jusqu’à ce qu’il devienne périmé de trois mois sans que personne ne le remarque."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un petit VPS avec Postgres à environ 10 $ par mois. La synchro de revenu nocturne est une poignée d’appels d’API et ne coûte rien."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "La capture qui se produit sans effort. Savio justifie son prix en faisant entrer les demandes d’où qu’elles aient été dites ; un webhook que tu dois te souvenir de déclencher collecte un échantillon biaisé et le classe avec une fausse précision."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Un tableau de feedback, un changelog et un support par chat en direct, vendus en un seul abonnement.",
+  "verdictSummary": "Featurebase regroupe trois choses habituellement achetées séparément, et le regroupement est le produit. Chaque partie est modeste individuellement — un tableau, un changelog, une boîte de réception — mais construire les trois et les garder cohérents, c’est là que passe le week-end. Le projet personnel honnête choisit la boucle qui les relie : un élément livré écrit automatiquement l’entrée de changelog et notifie tous ceux qui l’avaient demandé.",
+  "coreLoopDIY": "Fais tourner un tableau où les demandes sont collectées et votées, et quand une demande est marquée comme livrée, génère automatiquement l’entrée de changelog à partir d’elle et notifie chaque votant.",
+  "whatYouLose": [
+    "le widget de chat en direct et la boîte de réception de support unifiée",
+    "l’agent IA qui répond aux questions de support courantes",
+    "les workflows d’équipe par siège, l’assignation et les SLA",
+    "l’application mobile pour répondre aux conversations",
+    "le support multilingue sur le tableau et le centre d’aide"
+  ],
+  "whyPeopleStillPay": "Parce que ça fusionne deux prestataires en un seul. Une petite équipe qui paie séparément pour une boîte de support et un outil de feedback compare l’ensemble du pack à l’un ou l’autre pris isolément, et à cette comparaison-là, c’est bon marché.",
+  "prompt": "Construis un tableau de feedback dont le changelog s’écrit tout seul.\n\nCommence par le tableau : posts, votes, commentaires, statuts, une vue roadmap publique. Rien d’inhabituel.\n\nLa boucle qui compte : quand un post passe à livré, il devient une entrée de changelog. Prends le titre du post, le commit ou la note de version liée si tu en fournis une, et rédige l’entrée avec un LLM — puis exige qu’un humain l’édite et l’approuve avant publication. Ne publie jamais de notes de version générées sans relecture ; un changelog est une promesse sur ce que fait un produit, et une ligne hallucinée dedans est pire que pas de changelog du tout.\n\nÀ la publication, notifie tous ceux qui ont voté sur ce post, en un seul digest par personne et par semaine plutôt qu’un email par élément livré. Inclus ce pour quoi ils ont voté et ce que ça fait maintenant. C’est toute la raison pour laquelle cette boucle vaut la peine d’être automatisée : les gens qui ont demandé sont les gens qui doivent être informés.\n\nConstruis le changelog comme une page publique et un flux RSS. Le RSS, c’est quatre lignes de code, et ça permet au changelog d’être consommé par d’autres outils sans intégration.\n\nAjoute un petit widget intégrable — une balise script qui ouvre le tableau en overlay sur ton propre site. Scope son CSS pour qu’il ne puisse ni hériter ni faire fuiter les styles de la page hôte, et transmets l’identifiant de l’utilisateur courant pour que les votes soient attribués plutôt qu’anonymes.\n\nHors périmètre, volontairement : le chat en direct, une boîte de réception de support, l’assignation de tickets et les SLA. Un support client est un produit plus vaste que tout ce qui précède réuni, et un support à moitié fait est pire que pas de support du tout — les messages arrivent et personne n’est responsable d’y répondre.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux importer mes données Featurebase ?",
+      "a": "Les posts, votes et commentaires s’exportent et peuvent être chargés. Les conversations de support sont la partie délicate : elles portent des pièces jointes et un fil de discussion qu’aucun import générique ne reconstruira, donc la plupart des gens les archivent et repartent de zéro."
+    },
+    {
+      "q": "Est-ce que ça remplace la moitié support client ?",
+      "a": "Non. C’est uniquement le tableau et le changelog. Si la boîte de support est la raison pour laquelle tu payes, ce projet ne remplace peut-être qu’un tiers de ce que tu utilises."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un VPS avec Postgres à environ 10 $ par mois, plus quelques centimes par brouillon de changelog généré. Il n’y a aucun coût par résolution parce qu’il n’y a pas d’agent IA qui répond à qui que ce soit."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "Un seul prestataire pour les deux jobs. Reconstruire le tableau est facile ; la raison pour laquelle Featurebase est acheté, c’est qu’il gère aussi le côté support, et cette moitié-là n’est pas dans le périmètre ici."
+    }
+  ]
+}

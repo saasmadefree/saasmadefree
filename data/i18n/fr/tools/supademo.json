@@ -1,0 +1,19 @@
+{
+  "tagline": "Une démo interactive verrouillée par lead, construite sur le schéma Arcade de ce catalogue",
+  "verdictSummary": "Une démo interactive, en réutilisant la mécanique de clic-à-travers façon Arcade de ce catalogue, verrouillée derrière un formulaire de capture de lead avant que le spectateur puisse continuer — le vrai angle orienté vente de Supademo — est un vrai projet de week-end qui superpose un simple verrou sur ce schéma existant. Ce qui ne survit pas : la voix off générée par IA de Supademo et ses intégrations CRM pour les leads capturés.",
+  "coreLoopDIY": "Capture une démo interactive de clic-à-travers en utilisant la mécanique façon Arcade de ce catalogue, et exige qu’un visiteur soumette son email avant que la démo ne devienne visible, en stockant les leads capturés avec quelle démo ils ont vue.",
+  "whatYouLose": [
+    "la narration en voix off générée par IA",
+    "les intégrations CRM pour les leads capturés",
+    "les analyses de spectateurs sur le décrochage par étape",
+    "les bibliothèques de démos partagées en équipe"
+  ],
+  "whyPeopleStillPay": "Un verrou de capture de lead est un simple formulaire ; la narration générée par IA et faire passer les leads capturés directement dans les outils CRM que les équipes commerciales utilisent réellement, c’est le travail permanent d’intégration et de finition.",
+  "prompt": "Construis un outil de démo interactive verrouillée par lead, en combinant la capture de clic-à-travers façon Arcade de ce catalogue avec un formulaire de capture de lead — le vrai angle orienté vente de Supademo. Utilise la même mécanique de capture par extension Chrome que la fiche Arcade, une capture d’écran plus un point chaud par clic, rejouée comme une visite guidée interactive. Ajoute un verrou : avant qu’un visiteur ne puisse commencer à cliquer à travers la démo, montre un formulaire simple demandant son email, et optionnellement son nom et son entreprise, stocke la soumission dans SQLite taguée avec quelle démo il est sur le point de voir, et seulement alors révèle la relecture interactive. Notifie le propriétaire de la démo des nouveaux leads via un fournisseur d’email transactionnel. Ajoute un compte de vues et un compte de complétion basiques par démo, a-t-il atteint l’étape finale, comme analyses simples, sans granularité de décrochage par étape. Ne construis pas de voix off générée par IA, d’intégrations CRM, ni de bibliothèques partagées en équipe — c’est hors périmètre ; c’est une version verrouillée par lead de la mécanique de démo interactive, rien de plus. Nécessite un domaine et un fournisseur d’email transactionnel ; aucun autre service externe requis.",
+  "faq": [
+    { "q": "En quoi c’est différent du projet Arcade de ce catalogue ?", "a": "La même mécanique sous-jacente de clic-à-travers interactif, avec un verrou de capture de lead par email ajouté avant que la démo ne devienne visible — une couche orientée vente par-dessus la même idée centrale." },
+    { "q": "Est-ce que ça a une narration IA comme Supademo ?", "a": "Non — c’est une fonctionnalité séparée (la fiche Guidde de ce catalogue couvre les guides vidéo narrés en utilisant du TTS local, une idée liée mais différente) qui n’est pas incluse ici." },
+    { "q": "Où vont les leads capturés ?", "a": "Stockés dans ta propre base de données, avec une notification par email par nouveau lead — il n’y a aucune intégration CRM qui les fait passer automatiquement quelque part." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Un domaine plus le plan gratuit d’un fournisseur d’email transactionnel — typiquement rien de plus que ce que tu payes déjà pour le domaine." }
+  ]
+}

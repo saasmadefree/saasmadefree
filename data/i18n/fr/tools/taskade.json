@@ -1,0 +1,19 @@
+{
+  "tagline": "Un plan infiniment imbriqué où chaque ligne peut être une tâche ou une note",
+  "verdictSummary": "Un plan infiniment imbriqué où chaque ligne peut être une tâche, une note, ou une sous-liste repliable — la véritable interface centrale de Taskade, plus proche du modèle de plan de Workflowy qu’une liste de tâches traditionnelle — est un vrai projet d’une session. Ce qui ne survit pas : les agents IA de Taskade qui peuvent exécuter de façon autonome des étapes d’un flux de travail, et son édition collaborative en temps réel.",
+  "coreLoopDIY": "Maintiens un plan à puces infiniment imbriqué où chaque ligne peut être marquée comme tâche avec une case à cocher ou laissée en texte simple, repliable à n’importe quel niveau, avec une navigation d’abord au clavier.",
+  "whatYouLose": [
+    "les agents IA qui exécutent de façon autonome des étapes de flux de travail",
+    "l’édition collaborative en temps réel",
+    "une grande bibliothèque de modèles de structures de plan préconstruites",
+    "la synchro entre appareils"
+  ],
+  "whyPeopleStillPay": "Un plan imbriqué avec cases à cocher est un projet d’interface borné et réalisable ; des agents IA capables d’exécuter réellement et fiablement des étapes d’un flux de travail, plus la collaboration en temps réel, sont l’ingénierie continue bien plus difficile.",
+  "prompt": "Construis un éditeur de plan infiniment imbriqué, plus proche du modèle de Workflowy qu’une liste de tâches traditionnelle — la véritable interface centrale de Taskade. Utilise Tauri avec SQLite. Implémente un plan continu unique par document : chaque ligne est un nœud avec des enfants optionnels, repliable et dépliable, avec une édition d’abord au clavier — Tab pour indenter une ligne sous la précédente, Maj+Tab pour désindenter, Entrée pour créer une ligne sœur, un raccourci pour replier ou déplier les enfants de la ligne courante. Laisse n’importe quelle ligne être marquée comme tâche avec une case à cocher, la barrer quand elle est cochée, ou rester un simple nœud de plan — pas de « mode tâche » séparé, les tâches et les notes vivent dans le même plan. Prends en charge une vue zoom : cliquer sur une ligne pour ne voir que cette ligne et ses enfants comme un sous-document focalisé, puis dézoomer. Ajoute une recherche plein texte sur tout le plan, sautant directement à l’emplacement de la ligne correspondante et le développant. Ne construis pas d’agents IA qui exécutent des étapes de flux de travail, d’édition collaborative en temps réel, ni de synchro entre appareils — c’est hors périmètre ; c’est un outil de plan mono-utilisateur, mono-appareil, rien de plus. Nécessite une base de données locale ; aucune clé API externe requise.",
+  "faq": [
+    { "q": "Est-ce une liste de tâches ou une appli de notes ?", "a": "Les deux à la fois, délibérément — n’importe quelle ligne du plan peut être une tâche à cocher ou du texte simple, sans mode séparé entre lesquels basculer, ce qui est plus proche du modèle réel de Taskade qu’une liste de tâches dédiée." },
+    { "q": "Est-ce qu’il a des agents IA qui accomplissent les tâches à ma place ?", "a": "Non — c’est une fonctionnalité réelle et séparée que Taskade a construite, impliquant d’exécuter fiablement des étapes de flux de travail de façon autonome, ce qui est hors périmètre ici." },
+    { "q": "Est-ce que je peux me concentrer sur une seule branche du plan ?", "a": "Oui — cliquer sur une ligne zoome dessus comme un sous-document focalisé montrant juste cette ligne et ses enfants, puis tu dézoomes vers le plan complet." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien — c’est une appli locale sans backend, donc aucun coût d’hébergement ni abonnement." }
+  ]
+}

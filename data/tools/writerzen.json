@@ -29,7 +29,8 @@
     "keysearch"
   ],
   "markets": [
-    "en"
+    "en",
+    "fr"
   ],
   "pagePriority": 3,
   "verifiedOneShot": false

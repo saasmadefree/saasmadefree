@@ -1,0 +1,32 @@
+{
+  "tagline": "Traduis des chaînes en alt-cliquant dessus dans ton application en cours d’exécution, au lieu de chasser des clés.",
+  "verdictSummary": "Tolgee Cloud, c’est de l’hébergement pour un logiciel sous licence Apache et publié intégralement. L’auto-héberger te donne tout le produit — l’éditeur en contexte, les SDK, la plateforme — sans qu’aucune fonctionnalité soit retirée, ce qui le place carrément dans la catégorie déploie-la-vraie-chose aux côtés des autres offres cloud open source de ce catalogue. Le travail, c’est un fichier Docker Compose, une base de données et un certificat, pas une reconstruction.",
+  "coreLoopDIY": "Fais tourner la plateforme Tolgee sur ton propre serveur, pointe le SDK de ton application dessus, et traduis les chaînes en alt-cliquant dessus dans l’appli en cours d’exécution.",
+  "whatYouLose": [
+    "les sauvegardes, mises à jour et disponibilité comme travail de quelqu’un d’autre",
+    "le point de diffusion de contenu hébergé qui sert les traductions mondialement",
+    "les crédits de traduction IA inclus",
+    "le support avec un temps de réponse garanti"
+  ],
+  "whyPeopleStillPay": "Parce que c’est la base de données de localisation d’un produit en production, et quand elle tombe, l’application soit revient aux clés soit échoue. Payer pour une disponibilité que tu n’as pas construite est un échange rationnel à presque toute taille d’équipe.",
+  "notes": "Même forme que les autres fiches cloud open source de ce catalogue : logiciel identique, l’abonnement achète l’exploitation.",
+  "prompt": "Auto-héberge la plateforme Tolgee pour un projet.\n\nFais-la tourner avec Docker Compose : le serveur Tolgee, Postgres, et Caddy devant pour les certificats automatiques sur ton propre domaine. Utilise l’image officielle et ne change rien à l’application — l’intérêt de cet exercice est que le logiciel est déjà le produit.\n\nLes deux décisions qui comptent sont opérationnelles.\n\nD’abord, les sauvegardes. La base de données de traduction est l’état qu’il serait douloureux de perdre, et elle est petite. Mets en place un pg_dump nocturne vers un stockage objet avec une politique de rétention, puis restaure réellement l’un d’eux dans une base de données de test et confirme que le projet s’ouvre. Une sauvegarde que personne n’a restaurée est une hypothèse.\n\nEnsuite, comment ton application obtient les traductions à l’exécution. Deux options honnêtes : le SDK qui interroge ton serveur, ce qui veut dire que ton appli dépend de ce serveur qui doit être en ligne, ou exporter les traductions au moment du build vers des fichiers statiques, ce qui supprime la dépendance à l’exécution mais renonce aux mises à jour en direct. Choisis délibérément et note laquelle tu as choisie, parce que découvrir la réponse pendant une panne est le mauvais moment.\n\nMets en place l’éditeur en contexte uniquement dans ton build de développement — la superposition d’édition par alt-clic est la raison de faire tourner Tolgee, et elle ne devrait jamais partir en production.\n\nAjoute l’étape d’export dans la CI pour qu’une release porte toujours un instantané des traductions, quelle que soit l’option d’exécution choisie.\n\nHors périmètre : modifier la plateforme, et construire quoi que ce soit que Tolgee fournit déjà.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux déplacer mon projet Tolgee Cloud vers mon propre serveur ?",
+      "a": "Oui, et c’est la migration la plus propre de la catégorie : c’est le même logiciel. Exporte le projet depuis Cloud et importe-le dans ton instance, puis repointe le SDK vers ton hébergement."
+    },
+    {
+      "q": "Est-ce que je perds des fonctionnalités en m’auto-hébergeant ?",
+      "a": "Pas l’éditeur en contexte, les SDK ni la plateforme. Ce qui n’est pas inclus, c’est le point de diffusion de contenu hébergé, les crédits de traduction IA groupés, et le support."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un VPS avec quelques gigaoctets de mémoire pour la JVM et Postgres, environ 10 à 15 dollars par mois, plus un domaine et quelques centimes de stockage de sauvegarde."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "Que quelqu’un d’autre soit éveillé. Si ton application récupère les traductions à l’exécution et que ton serveur est en panne, tes utilisateurs voient des clés — c’est pourquoi le prompt te fait choisir cette dépendance délibérément."
+    }
+  ]
+}

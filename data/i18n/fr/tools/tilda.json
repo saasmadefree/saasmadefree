@@ -1,0 +1,19 @@
+{
+  "tagline": "Un constructeur de pages par blocs axé sur des mises en page éditoriales façon magazine",
+  "verdictSummary": "Un constructeur de pages par blocs axé sur des mises en page éditoriales façon magazine — des blocs de contenu préconçus comme un gros titre, une grille de photos, une citation mise en avant, assemblés en séquence — est un vrai projet allant d’une session à un week-end, et c’est honnêtement la même mécanique centrale que les autres constructeurs de sites par sections de ce catalogue. Ce qui ne survit pas : la bibliothèque spécifique de designs de blocs éditoriaux soignés de Tilda et ses fonctionnalités intégrées de blog/CMS pour la publication continue.",
+  "coreLoopDIY": "Assemble une page à partir d’une bibliothèque de blocs de contenu éditoriaux préconçus — titre, grille de photos, citation mise en avant, corps d’article — en séquence, et publie-la comme une page statique.",
+  "whatYouLose": [
+    "une bibliothèque soignée de designs de blocs éditoriaux",
+    "les fonctionnalités intégrées de blog et CMS pour la publication continue",
+    "l’hébergement géré et le CDN",
+    "les modules complémentaires e-commerce et abonnement"
+  ],
+  "whyPeopleStillPay": "Assembler des blocs en séquence est simple ; concevoir une bibliothèque de blocs qui a vraiment l’air bien ensemble, de façon cohérente, quel que soit le contenu que quelqu’un y dépose, est un vrai travail de design continu.",
+  "prompt": "Construis un constructeur de pages par blocs axé sur des mises en page éditoriales, utilisant la même mécanique d’assemblage par sections que les autres fiches de constructeurs de sites de ce catalogue mais avec une bibliothèque de blocs spécifiquement façon magazine : un bloc gros titre, un bloc grille de photos, un bloc citation mise en avant, un bloc corps d’article avec style de lettrine, et un bloc signature/date. Utilise Next.js/TypeScript avec génération statique. Laisse l’utilisateur assembler une page en ajoutant des blocs en séquence, en éditant le contenu de chaque bloc directement, et en réorganisant par glisser-déposer, stocké comme du JSON décrivant la séquence de blocs. Rends les pages publiées de façon statique pour un chargement rapide et un bon SEO. Ajoute une page de liste d’articles simple qui se génère automatiquement à partir de toutes les pages publiées taguées comme articles, fonctionnant comme un index de blog léger. Publie sur un sous-domaine par défaut, avec des instructions pour connecter un domaine personnalisé. Ne construis pas de fonctionnalités e-commerce, d’abonnement ou de paywall, ni une grande place de marché de modèles — c’est hors périmètre ; c’est un constructeur de mise en page éditoriale ciblé, rien de plus. Nécessite un hébergement, et un domaine si tu en veux un au-delà du sous-domaine par défaut.",
+  "faq": [
+    { "q": "En quoi est-ce différent des autres constructeurs de sites de ce catalogue ?", "a": "Surtout dans l’orientation design de la bibliothèque de blocs, des mises en page éditoriales comme des citations mises en avant et des corps d’articles avec lettrines, plutôt que des sections génériques de site professionnel comme des tableaux de tarifs. La mécanique d’assemblage par blocs sous-jacente est le même schéma." },
+    { "q": "Est-ce qu’il a un blog intégré ?", "a": "Un léger — les pages taguées comme articles alimentent automatiquement un index de liste d’articles, ce qui couvre la publication continue basique sans CMS complet." },
+    { "q": "Est-ce que je peux vendre des produits ou verrouiller du contenu derrière un abonnement ?", "a": "Non — les fonctionnalités e-commerce et abonnement sont hors périmètre. C’est un outil de publication de contenu, pas une plateforme de commerce." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "L’hébergement, et un domaine optionnel — typiquement quelques dollars par mois ou moins." }
+  ]
+}

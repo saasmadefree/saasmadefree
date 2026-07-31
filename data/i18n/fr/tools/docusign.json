@@ -1,0 +1,33 @@
+{
+  "tagline": "La signature que tout le monde accepte, à cause du dossier de preuves derrière plutôt que du dessin sur la page.",
+  "verdictSummary": "Dessiner une signature sur un PDF, c’est l’affaire d’un après-midi. Ce que vend Docusign, c’est le dossier en dessous : qui a ouvert l’enveloppe, depuis quelle adresse, ce qui lui a été montré, ce à quoi elle a consenti, quand chaque événement a eu lieu, et un sceau inviolable sur le tout. Cet artefact ne vaut quelque chose que parce que les contreparties, les tribunaux et les auditeurs le reconnaissent déjà. On ne peut pas auto-héberger la reconnaissance.",
+  "coreLoopDIY": "Envoie un document pour signature via un lien à usage unique, enregistre chaque événement qui s’y rapporte, et produis un PDF signé avec une page de certificat ajoutée listant les hashs, horodatages et texte de consentement.",
+  "whatYouLose": [
+    "une signature que l’équipe juridique d’une contrepartie acceptera sans discuter",
+    "la vérification d’identité — contrôle de pièce d’identité, authentification par questions de sécurité, codes SMS",
+    "les signatures électroniques qualifiées au sens du règlement eIDAS, et le prestataire de services de confiance derrière",
+    "la délivrabilité de l’invitation à signer depuis un domaine que personne ne bloque",
+    "les plus de 1 000 intégrations qui lancent des enveloppes depuis Salesforce, Workday ou un CRM"
+  ],
+  "whyPeopleStillPay": "Parce que la valeur réside dans le fait que l’autre partie l’accepte. Une enveloppe Docusign conclut un accord sans coup de fil pour savoir si la signature compte ; une enveloppe maison déclenche ce coup de fil à chaque fois.",
+  "notes": "Documenso est une véritable implémentation open source de la mécanique. Ce qu’elle ne peut pas te livrer, c’est la reconnaissance.",
+  "prompt": "Construis un outil personnel de demande de signature dont le vrai livrable est le dossier de preuves, pas l’image de la signature.\n\nLa boucle centrale : choisis un PDF, place des champs signature et date pour un ou plusieurs signataires, et envoie à chaque signataire un lien à usage unique. Quand un signataire ouvre le lien, affiche le document entier, exige une case de consentement explicite dont le texte est stocké mot pour mot, capture la signature, et enregistre un événement.\n\nLe journal d’événements est le produit. En ajout seul, jamais modifiable, une ligne par événement, chacune portant : le type d’événement (envoyé, ouvert, consulté jusqu’à la dernière page, consenti, signé, refusé, rejeté), le hash du document à ce moment, l’identifiant du signataire, l’IP source, le user-agent, et un horodatage UTC venant du serveur plutôt que du navigateur. Quand tous les signataires ont terminé, génère le PDF final avec une page de certificat ajoutée qui imprime le journal complet et le SHA-256 du document original et du document final, puis scelle-le pour que toute modification ultérieure invalide le hash.\n\nEnvoie les invitations via un fournisseur d’email transactionnel avec SPF, DKIM et DMARC configurés sur ton propre domaine, et stocke les webhooks de livraison et de rejet du fournisseur comme événements. Une invitation à signer qui atterrit dans les spams est une signature ratée, et tu ne le sauras que si tu l’enregistres.\n\nHors périmètre, et dis-le dans l’interface : la vérification d’identité sous toute forme, les signatures électroniques qualifiées ou avancées, et toute formulation qui suggère que le résultat équivaut juridiquement à une enveloppe Docusign. C’est un enregistrement de ce qui s’est passé, ce qui est utile et honnête ; ce n’est pas un service de confiance.\n\nÉcris un test qui modifie un octet d’un document terminé et vérifie que le contrôle du sceau échoue.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux importer l’historique de mes enveloppes Docusign ?",
+      "a": "Tu peux télécharger les documents terminés et leurs certificats en PDF et les archiver. L’état des enveloppes, les modèles et le routage des destinataires ne s’exportent dans aucun format qu’un autre outil peut lire."
+    },
+    {
+      "q": "Est-ce qu’une signature obtenue avec ça tiendrait juridiquement ?",
+      "a": "Au regard des règlements ESIGN et eIDAS, une signature électronique simple peut être valide, et un bon journal de preuves aide. Mais la validité se décide après un litige, et la valeur de Docusign, c’est que le litige ne démarre généralement pas. Considère que c’est correct pour des validations internes, et risqué pour tout ce que tu détesterais devoir défendre."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un petit VPS à environ 5 $ par mois plus un plan d’email transactionnel — gratuit à faible volume chez la plupart des fournisseurs, quelques dollars par mois au-delà. Configurer SPF, DKIM et DMARC sur ton domaine est le vrai coût, et c’est du temps plutôt que de l’argent."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "L’acceptation. Tout ce qui est technique ici se construit ; la raison pour laquelle les gens paient, c’est que l’autre partie fait déjà confiance à l’enveloppe, et ce n’est pas une fonctionnalité qu’on peut implémenter."
+    }
+  ]
+}

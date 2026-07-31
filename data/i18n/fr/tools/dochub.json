@@ -1,0 +1,32 @@
+{
+  "tagline": "Remplis des formulaires PDF, annote-les, et récupère une signature qui n’a pas besoin de tenir devant un tribunal.",
+  "verdictSummary": "La partie intéressante de DocHub, ce n’est pas la signature, ce sont les champs de formulaire. Un formulaire PDF est une structure AcroForm avec des champs nommés, et lire, remplir et aplatir ça est un problème déjà résolu avec pypdf. Construis ça et tu as l’essentiel de DocHub. Ce qui reste hors de portée, c’est l’intégration Google Drive et Gmail qui met DocHub à un clic de là où les documents vivent déjà.",
+  "coreLoopDIY": "Ouvre un PDF, détecte ses champs AcroForm, remplis-les depuis un formulaire dans le navigateur, dépose une image de signature là où il n’y a pas de champ, et aplatis le résultat dans un nouveau fichier en gardant l’original intact.",
+  "whatYouLose": [
+    "les intégrations Google Drive, Gmail et Workspace",
+    "envoyer un document à quelqu’un d’autre pour signature, avec des relances",
+    "toute piste de preuve qu’une contrepartie accepterait",
+    "les applications mobiles",
+    "les modèles et dossiers partagés au sein d’une équipe"
+  ],
+  "whyPeopleStillPay": "Parce que DocHub vit à l’intérieur de Gmail et Drive. Le document arrive en pièce jointe, et il est rempli, signé et renvoyé sans jamais être téléchargé — cette proximité est le produit, et l’auto-héberger remet le fichier sur ton disque.",
+  "prompt": "Construis un remplisseur de formulaires PDF personnel.\n\nLa boucle centrale : importe un PDF, et s’il contient un AcroForm, lis les noms de champs, types et positions de page avec pypdf et affiche un formulaire HTML qui les reproduit. Remplis les champs depuis ce formulaire, puis écris une copie aplatie — flux d’apparence générés, champs qui ne sont plus modifiables — dans un nouveau fichier. Ne modifie jamais l’original importé ; stocke-le en lecture seule et garde chaque sortie comme un fichier versionné séparé à côté.\n\nQuand le PDF n’a pas d’AcroForm, bascule en mode placement : affiche la page comme une image, laisse l’utilisateur glisser des zones de texte, des coches et une image de signature dessus, et estampe-les dans un nouveau PDF aux coordonnées données. Stocke les placements en JSON indexés par le hash du document pour que rouvrir le même document les restaure.\n\nLa capture de signature est un canevas de dessin qui produit un PNG transparent, stocké une fois et réutilisable. Sois explicite dans l’interface : ceci estampe l’image d’une signature dans un document et ne produit aucune preuve de qui l’a dessinée ni quand.\n\nHors périmètre : envoyer un document à un tiers pour signature, les emails de relance, la vérification d’identité, et toute affirmation que le résultat est une signature électronique qualifiée ou juridiquement contraignante. Ces éléments demandent une piste de preuve que ce projet ne produit pas, et les proposer sans en avoir une est pire que de ne pas les proposer du tout.\n\nTeste avec un vrai formulaire administratif qui utilise des champs AcroForm et un autre qui est un scan plat.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux récupérer mes modèles DocHub enregistrés ?",
+      "a": "Les documents eux-mêmes s’exportent comme des PDF ordinaires et s’ouvrent sans problème. Les correspondances de champs et les modèles réutilisables, non — DocHub les stocke dans son propre format, et tu devras replacer les champs une fois par document à la première utilisation."
+    },
+    {
+      "q": "Est-ce que je peux envoyer un document à quelqu’un d’autre pour signature ?",
+      "a": "Non, et c’est une limite volontaire. Envoyer à une contrepartie implique son identité, son enregistrement de consentement et un accusé de réception, ce qui est un projet différent et bien plus vaste. Ceci remplit et signe des documents qui restent chez toi."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Rien si ça tourne sur ta propre machine. Sur un petit VPS, environ 5 $ par mois. pypdf et les bibliothèques de rendu sont gratuites et il n’y a aucun coût par document."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "La proximité avec Gmail et Drive. Le vrai tour de force de DocHub, c’est que la pièce jointe ne quitte jamais Google — tu l’ouvres, tu la remplis, et tu la renvoies. Ici, chaque document, c’est un téléchargement et un import."
+    }
+  ]
+}

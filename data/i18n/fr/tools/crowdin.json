@@ -1,0 +1,32 @@
+{
+  "tagline": "Là où les chaînes source, les traducteurs et ton dépôt se rencontrent, pour une centaine de formats de fichiers.",
+  "verdictSummary": "Pour ton propre projet, la gestion des traductions, c’est une petite base de données et une intégration git — et Weblate en est une implémentation open source mature que tu peux auto-héberger dès aujourd’hui. Ce que Crowdin vend en plus, c’est l’étendue : des parseurs pour une centaine de formats de fichiers qui font l’aller-retour sans détruire les commentaires ni l’ordre, et une place de marché de prestataires qui feront la traduction. Ni l’un ni l’autre ne se construit vraiment ; l’un, tu le restreins, l’autre, tu le remplaces par une personne.",
+  "coreLoopDIY": "Extrais les chaînes source de ton dépôt vers une base de données, traduis-les dans un éditeur web, et réécris-les sous forme de commit qui ne change que les valeurs traduites.",
+  "whatYouLose": [
+    "des parseurs pour une centaine de formats de fichiers auxquels tu n’as pas encore pensé",
+    "la place de marché de prestataires et la commande de traduction professionnelle depuis l’outil",
+    "la mémoire de traduction partagée entre projets et la prétraduction qui en découle",
+    "les intégrations avec Figma, les outils de design et les fournisseurs de CI",
+    "les captures d’écran en contexte qui montrent aux traducteurs où atterrit une chaîne"
+  ],
+  "whyPeopleStillPay": "Parce que c’est au niveau des formats de fichiers que la localisation casse réellement. Un .xliff qui perd ses notes ou un fichier .strings qui se réordonne à l’écriture produit un diff que personne ne peut relire, et les parseurs sont la partie qui a pris des années.",
+  "prompt": "Construis un gestionnaire de traductions pour les deux ou trois formats de fichiers que tu utilises réellement.\n\nChoisis-les explicitement — JSON avec clés imbriquées, gettext .po, et un troisième — et écris un parseur et un sérialiseur pour chacun. Le sérialiseur est la moitié difficile et celle à tester en premier : parse un fichier, sérialise-le sans modification, et vérifie l’égalité octet par octet. Si un aller-retour n’est pas identique au bit près, chaque commit de traduction transporte du bruit de formatage et les relecteurs arrêtent de les lire.\n\nSynchronise avec git plutôt qu’avec une API : récupère les fichiers source sur un planning, compare-les aux chaînes en base, et ajoute les nouvelles clés comme non traduites. Marque les chaînes dont le texte source a changé comme à revoir plutôt que de garder silencieusement l’ancienne traduction — une traduction périmée d’une source modifiée est le bug qui arrive jusqu’aux utilisateurs.\n\nL’éditeur affiche la clé, la source, les traductions existantes dans d’autres langues pour le contexte, et le fichier et la ligne d’où elle vient. Ajoute la traduction automatique uniquement comme suggestion, clairement identifiée, jamais enregistrée comme valeur sans qu’un humain ne l’accepte.\n\nRéécris sous forme d’un commit par langue sur une branche, en ne touchant que les positions de valeurs. Ne laisse jamais l’écrivain réordonner les clés, réécrire les guillemets ou retirer les commentaires — que le diff git reste relisible est tout le contrat entre cet outil et les développeurs qui doivent le merger.\n\nStocke une mémoire de traduction sous forme de correspondance exacte plus similarité par embeddings sur les paires précédentes, et propose les correspondances à 90 % et plus.\n\nHors périmètre : les formats que tu n’utilises pas, une place de marché de prestataires, et les intégrations avec des outils de design.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux importer mon projet Crowdin ?",
+      "a": "Oui pour les chaînes elles-mêmes : exporte les traductions par langue et charge-les indexées par identifiant de chaîne. La mémoire de traduction, les glossaires et l’historique d’approbation ne s’exportent pas dans un format qu’un autre outil peut lire."
+    },
+    {
+      "q": "Et si j’ai besoin d’un format que tu n’as pas construit ?",
+      "a": "Tu écris le parseur, et le test d’aller-retour te dit s’il fonctionne. C’est l’échange honnête : les cent formats de Crowdin, ce sont cent problèmes déjà résolus, et chacun dont tu as besoin est une journée que tu dois y consacrer."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un petit VPS avec Postgres à environ 10 $ par mois, plus quelques dollars par mois d’appels de traduction automatique à l’échelle d’un projet. Envisage plutôt d’auto-héberger Weblate avant de construire ça."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "Commander une traduction. Crowdin te permet d’acheter une traduction professionnelle sans quitter l’outil ; ici, ça devient un email, une facture et un copier-coller aux deux bouts."
+    }
+  ]
+}

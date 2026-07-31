@@ -1,0 +1,19 @@
+{
+  "tagline": "Tâches, un minuteur Pomodoro, et un suivi d’habitudes réunis dans une seule appli",
+  "verdictSummary": "Une liste de tâches avec dates d’échéance, récurrence basique, et un minuteur Pomodoro intégré plus un suivi d’habitudes simple — le véritable ensemble de TickTick, au-delà de la simple gestion de tâches déjà couverte par la fiche Todoist de ce catalogue — est un vrai projet d’une session. Ce qui ne survit pas : la synchro en temps réel entre appareils et le raffinement de l’intégration calendrier peaufiné pendant des années.",
+  "coreLoopDIY": "Gère les tâches avec dates d’échéance et récurrence simple, fais tourner un minuteur de concentration façon Pomodoro lié à une tâche sélectionnée, et suis la complétion quotidienne d’habitudes dans la même appli.",
+  "whatYouLose": [
+    "la synchro en temps réel entre appareils",
+    "le raffinement de l’intégration calendrier",
+    "les listes de tâches partagées collaboratives",
+    "des années de gestion de cas particuliers pour les tâches récurrentes"
+  ],
+  "whyPeopleStillPay": "Une liste de tâches et un minuteur sont simples ; les garder parfaitement synchronisés entre chaque appareil que tu possèdes, instantanément, pendant des années, c’est le travail d’infrastructure sous l’ensemble.",
+  "prompt": "Construis un gestionnaire de tâches réunissant trois choses que TickTick combine réellement, au-delà de la simple gestion de tâches : une liste de tâches avec dates d’échéance et récurrence, un minuteur de concentration façon Pomodoro, et un suivi d’habitudes quotidien simple. Utilise une approche local-first — Tauri avec SQLite, ou une simple appli web si l’usage multi-appareil compte plus que le mode hors-ligne d’abord — puisque la synchro multi-appareil en temps réel est explicitement hors périmètre. Implémente les tâches avec dates d’échéance, priorité, et règles de récurrence basiques (quotidienne, hebdomadaire, tous les N jours). Construis un minuteur Pomodoro qui peut être lié à une tâche spécifique — démarre une session de concentration de 25 minutes contre une tâche choisie, et enregistre les sessions terminées par tâche. Ajoute un suivi d’habitudes simple : des habitudes nommées avec une case à cocher quotidienne, et un compteur de séries. Montre les trois — les tâches du jour, un minuteur actif optionnel, et les habitudes du jour — sur une seule vue quotidienne combinée, puisque cette vue groupée est le véritable intérêt, pas trois applis séparées. Ne construis pas de synchro multi-appareil en temps réel, d’intégration calendrier, ni de listes de tâches partagées ou collaboratives — c’est hors périmètre ; c’est un outil mono-appareil, mono-utilisateur. Nécessite une base de données locale ; aucune clé API externe requise.",
+  "faq": [
+    { "q": "Est-ce que ça synchronise entre mon téléphone et mon ordinateur ?", "a": "Pas dans ce projet — c’est explicitement hors périmètre. Chaque appareil ferait tourner sa propre copie locale indépendante, ce qui est un vrai recul par rapport à la synchro entre appareils de TickTick." },
+    { "q": "Est-ce que le minuteur Pomodoro est vraiment lié à des tâches spécifiques ?", "a": "Oui — les sessions sont attachées à une tâche choisie, et les sessions terminées sont enregistrées par tâche, correspondant à la propre approche groupée de TickTick plutôt que d’être une appli de minuteur séparée et déconnectée." },
+    { "q": "Est-ce que je peux partager une liste de tâches avec quelqu’un d’autre ?", "a": "Non — c’est un outil mono-utilisateur, mono-appareil sans fonctionnalité de collaboration." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien au-delà de le faire tourner en local — il n’y a pas d’abonnement, puisque c’est un outil mono-appareil sans backend à héberger." }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Une boîte à outils PDF qui te donne aussi un abonnement Sign.com illimité dans la même facture.",
+  "verdictSummary": "La moitié boîte à outils est la même qu’iLovePDF et Sejda, et l’auto-hébergement la couvre complètement. Ce qui fait de celle-ci un « en partie » plutôt qu’un oui, c’est la seconde moitié : Pro inclut du Sign.com Premium illimité, qui est un vrai produit de signature électronique avec une piste de preuve, et c’est la partie qu’un projet personnel ne reproduit pas. L’autre chose qui vaut le coup d’être volée, c’est l’enchaînement — compresser puis OCR puis scinder, comme une seule recette enregistrée.",
+  "coreLoopDIY": "Auto-héberge la boîte à outils et ajoute une couche de recettes par-dessus : nomme une séquence d’opérations une fois, puis fais passer des documents à travers comme une seule étape.",
+  "whatYouLose": [
+    "l’abonnement Sign.com Premium inclus et sa preuve de signature",
+    "les applications mobiles et leur caméra de document",
+    "les connecteurs Google Drive et Dropbox",
+    "la fidélité de conversion sur des mises en page Office complexes",
+    "l’usage depuis une machine où rien n’est installé"
+  ],
+  "whyPeopleStillPay": "Parce que deux abonnements arrivent en un seul. Quelqu’un qui a besoin à la fois d’outils PDF et de signatures compare ça à l’achat d’un produit de signature seul, et à cette comparaison, la boîte à outils est effectivement gratuite.",
+  "prompt": "Construis une couche de recettes par-dessus une boîte à outils PDF auto-hébergée.\n\nDéploie Stirling PDF derrière Caddy avec authentification. Puis construis la pièce qu’il n’a pas : des recettes nommées qui enchaînent des opérations.\n\nUne recette est un petit fichier YAML — une liste ordonnée d’opérations avec leurs paramètres. La recette archive pourrait être : OCR, puis compresser à une qualité nommée, puis renommer selon un motif utilisant la date du document. La recette partage pourrait être : retirer les métadonnées, aplatir les champs de formulaire, filigraner. L’enchaînement est tout l’enjeu, parce que faire trois opérations à la main à travers trois pages séparées, c’est la friction que les outils payants retirent.\n\nFais tourner les recettes via une vraie file de tâches plutôt qu’un gestionnaire de requêtes. L’OCR et la compression enchaînés sur un gros scan prennent des minutes, et une requête qui expire à mi-chemin laisse un fichier intermédiaire et aucun résultat. La file devrait pouvoir reprendre, et chaque tâche devrait montrer à quelle étape elle en est.\n\nRends l’échec lisible par étape : si l’OCR réussit et que la compression corrompt la sortie, le rapport de tâche devrait le dire exactement et garder le fichier d’avant compression. Échoue en avançant avec le dernier bon artefact plutôt que d’abandonner le travail.\n\nRetire les métadonnées par défaut sur toute recette qui produit un fichier pour quelqu’un d’autre, et dis-le — les noms d’auteur, le logiciel d’édition et les chemins de fichier fuient des PDF constamment et personne ne s’y attend.\n\nHors périmètre : la signature électronique sous toute forme, les applications mobiles, les connecteurs de stockage cloud. Si tu as besoin de signatures, c’est un projet séparé avec une réponse honnête séparée sur ce que ça vaut.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux importer des fichiers de mon compte Smallpdf ?",
+      "a": "Les documents se téléchargent normalement. Rien d’autre ne se transporte : Smallpdf stocke ton historique d’outils et toute enveloppe Sign.com de son côté, et il n’y a aucun export qu’un autre outil lit."
+    },
+    {
+      "q": "Et la moitié signature ?",
+      "a": "Elle n’est pas dans ce projet, délibérément. Smallpdf Pro inclut Sign.com Premium, et le reproduire demande une piste de preuve, une livraison depuis un domaine qui n’est pas bloqué, et une contrepartie qui accepte le résultat — un projet bien plus vaste que la boîte à outils."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un VPS avec de la place pour LibreOffice et un worker de file, environ 10 $ par mois, plus un domaine. Tous les logiciels sont gratuits."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "Le second abonnement. Si tu paies Smallpdf surtout pour la signature illimitée, auto-héberger la boîte à outils t’économise très peu et te coûte la chose que tu achetais réellement."
+    }
+  ]
+}
