@@ -1,0 +1,44 @@
+{
+  "slug": "drip",
+  "name": "Drip",
+  "domains": [
+    "drip.com"
+  ],
+  "category": "newsletter",
+  "subcategory": "email newsletters and creator publishing",
+  "pricing": {
+    "amount": 39,
+    "currency": "USD",
+    "plan": "Email marketing",
+    "basis": "flat-monthly",
+    "source": "https://drip.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "deliverability, growth network, and integrations",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Listmonk",
+      "url": "https://github.com/knadh/listmonk"
+    }
+  ],
+  "relatedSlugs": [
+    "activecampaign",
+    "mailchimp",
+    "mara"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

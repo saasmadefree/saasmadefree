@@ -1,0 +1,20 @@
+{
+  "tagline": "Generate and compare several marketing-copy variants for a defined audience and tone.",
+  "verdictSummary": "Filling out an audience-and-tone brief, generating several copy variants side by side with an LLM, and letting a human pick the best one is a real weekend build, not a sitting — the retrieval and prompt-tuning work to make variants genuinely differ rather than read as the same sentence reworded takes real iteration. What Anyword actually sells beyond that loop is predictive performance scoring trained on ad-platform outcome data no self-hosted build has access to.",
+  "coreLoopDIY": "Fill in an audience, objective, and tone brief, generate five to ten short copy variants from an LLM in one pass, and compare them side by side with manual edit and save controls.",
+  "whatYouLose": [
+    "predictive performance scores trained on real ad-platform click and conversion data",
+    "brand-voice models fine-tuned on a company's own past copy",
+    "direct integrations that push winning variants into ad platforms",
+    "a large library of proven copy templates by format and industry",
+    "team review and approval workflows"
+  ],
+  "whyPeopleStillPay": "People pay for Anyword because generating variants is the easy part — knowing which one will actually perform before spending ad budget on it needs a model trained on real outcome data across thousands of campaigns, which a personal build has no access to. The subscription buys that prediction, not just the copy.",
+  "prompt": "Build a personal marketing-copy generator: a brief form and a side-by-side variant comparison view, backed by an LLM API. Stack: a Node.js web app, SQLite for briefs and generated copy, Anthropic and OpenAI APIs (support both — a marketing-copy tool benefits from comparing outputs across providers).\n\nCore loop: the user fills a brief — audience description, objective (e.g. \"drive signups\"), tone, and a short list of claims that must not be made (compliance guardrails). Submitting it generates 5–10 short copy variants in one request, shown side by side with word count and a manual edit box for each. The user can star favorites, tweak wording inline, and save a final set to a local library grouped by campaign. No live performance data is available, so there is no scoring — variants are compared by eye, not by predicted click-through rate.\n\nRequires an Anthropic or OpenAI API key; without one, the brief form and saved library still work, but generation is disabled with a clear message. Cost per batch of variants is small — a few cents per request at typical model pricing.\n\nDo not build: predictive performance scoring (there's no outcome data to train it on), direct publishing integrations to ad platforms, or brand-voice fine-tuning on a company's past copy corpus — that needs a training pipeline well beyond a personal tool's scope. State plainly that variant selection here is a human judgment call, not a data-backed prediction.",
+  "faq": [
+    { "q": "Can I import my existing Anyword campaigns?", "a": "Anyword doesn't offer a full export of your brand-voice training data or performance history, so you'd start the local library fresh — though any saved copy variants you've kept elsewhere paste in easily." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, though writing a detailed brief and comparing variants side by side is a lot more comfortable on a larger screen." },
+    { "q": "What does it cost to run?", "a": "A batch of 5–10 variants costs a few cents in API usage at typical Claude or GPT pricing. Hosting the small web app itself is a few dollars a month, or free if it runs locally." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Predicted performance. Anyword scores each variant against real ad-platform outcome data before you spend a cent on it; here you're picking by eye, which means the first real signal on which version actually works comes only after you've already run it." }
+  ]
+}

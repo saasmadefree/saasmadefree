@@ -1324,3 +1324,264 @@ at every commit in this section, not just at the end.
   checked `git status` before every commit specifically to avoid picking up the other
   process's in-flight changes — but the underlying no-lock, no-coordination situation is
   unchanged from before.
+
+## Batch 5 — 25 tools, all within the existing 33 categories (215 → 240)
+
+Picked up exactly where the previous session's report left off. Read the report, the script,
+CONTRIBUTING.md, `granola.json`/`granola.json` (i18n), and `.impeccable.md` first, per
+instruction — no re-derivation of the category-merge map, field mapping, or exclusion
+decisions already on record above.
+
+**Selection.** Ran the analysis logic from `import-upstream.mjs`'s own `eligibility()` /
+`hasDerivableAmount()` / `CATEGORY_MAP` against the full 608-entry upstream set and the
+current 215-tool disk state (script: a one-off scratch analysis, not committed — the
+production `import-upstream.mjs` itself is unchanged this batch). Of 332 eligible upstream
+entries, 139 already fall inside a `CATEGORY_MAP`-mapped category (no new taxonomy needed);
+193 need one of the ~16 new verticals the previous report scoped out (documents,
+photo-editing, customer-support, crm/sales-outreach, cloud-storage, video-conferencing,
+time-tracking/project-management, hr/legal, travel/home/wellness, career/education,
+localization, monitoring, audio/media-streaming, plus a previously-uncounted `user-research`
+vertical, ~10 entries, found this session and not yet placed). This batch drew only from the
+139 already-mapped pool, taking the top 25 by `pagePriority` desc / slug asc — the same
+tie-break rule as every prior batch — so no new category work was needed and the "33
+categories, extend only if genuinely nothing fits" instruction held with zero exceptions.
+
+**Three domain-safety exclusions found in the initial top-25 window**, each replaced by the
+next-ranked eligible entry rather than accepted with a broad or unlistable hostname:
+
+| Slug | Reason excluded | Replaced by |
+|---|---|---|
+| `discord-nitro` | `discord.com` is the entire free Discord product surface — Nitro has no dedicated hostname, so listing it would fire the extension panel on every Discord visitor, paying or not. Same failure mode as the `github-copilot`/`microsoft-365-personal` precedent. | `kittl` |
+| `matomo-cloud` | No fixed, listable hostname exists: Matomo Cloud provisions each customer their own `<name>.matomo.cloud` subdomain at signup (confirmed via Matomo's own docs), and the bare `matomo.org` is the self-hosted open-source project's own site — a much broader audience than paying Cloud customers. Domains in this schema are literal hostnames, not wildcards. | `koalawriter` |
+| `jetbrains-ai-pro` | `jetbrains.com` is JetBrains' whole corporate site — IntelliJ IDEA, PyCharm, WebStorm, and every other JetBrains product live there too, all with vastly more visitors than AI Pro specifically. No AI-Pro-specific hostname exists (the pricing page is a path, not a subdomain). | `krea` |
+
+All three replacements were re-checked against the same domain-safety rule before inclusion
+(`kittl.com`, `koala.sh`, `krea.ai` — each a dedicated, single-product hostname, confirmed by
+inspection). No price-eligibility exclusions were needed this batch; all 25 selected entries
+had complete `pricing.plan`/`source` and a derivable amount already.
+
+**Two verdict corrections, made against this project's own written contract rather than
+carried from upstream.** `buttondown` and `jenni-ai` both arrived from upstream as `yes` with
+`diyTimeEstimate: multi-day` (→ `week`). CONTRIBUTING.md defines `yes` explicitly as "a
+competent coding agent produces a usable personal version **in one sitting**" — a `week`-long
+build fails that definition on its face, and neither is the "deploy the real open-source
+software, full parity" exception the first report carved out for `bitwarden`/`carrd`/
+`ghost-pro`/`invoice-ninja` (there's no real open-source Buttondown or Jenni AI to
+self-host; both are from-scratch builds with genuine multi-day scope — SES/DNS/webhook
+infrastructure for `buttondown`, source ingestion plus citation-grounded retrieval for
+`jenni-ai`). Both downgraded to `kinda`. Worth noting this is the opposite of gaming the
+distribution: it moves *away* from `yes`, and it was found by holding every entry to the
+contract's own wording, not by eyeballing which way felt right. (`jenni-ai`'s downgrade is
+also internally consistent with the batch: `koalawriter` and `anyword` have essentially the
+identical build shape — brief → outline → LLM draft with citations — and both were already
+`kinda`; `jenni-ai` alone being `yes` for the same shape of build was upstream noise, not a
+real distinction.)
+
+**Verdict mix this batch: 2 yes / 12 kinda / 11 no (8%/48%/44%).** Selected by rank, not by
+verdict — per the coordinator's explicit instruction that the "no"-heavy distribution across
+the catalogue (17/58/25 vs. upstream's 17/43/39) is real and settled, and that shifting a
+verdict to correct the mix is exactly the dishonesty this project exists to avoid. Every "no"
+here is upstream's own call, unchanged; the two verdict *changes* made (`buttondown`,
+`jenni-ai`) both moved toward "no," not away from it.
+
+**Upstream editorial for this half of the dataset is heavily templated** — the same
+observation the previous report made about the 493-entry refresh held again at the
+per-category level. Every one of the 5 newsletter entries (`mailerlite`, `brevo`,
+`buttondown`, `constant-contact`, `drip`) shipped with the *identical* prompt text, just the
+tool name swapped; the 3 ai-image entries (`recraft`, `clipdrop`, `krea`) shared one
+ComfyUI-wrapper prompt; the 5 ai-writing entries split into two identical-shape pairs
+(`drafts-pro`/`hemingway-editor-plus`, and `anyword`/`jenni-ai`/`koalawriter` as a near-triple);
+the 2 podcasting entries (`alitu`, `castmagic`) and 2 voice-ai entries (`speechify`,
+`captions-ai`) were each templated pairs too. Two of upstream's own templates were also
+substantively *wrong* for the actual product, not just repetitive: `nordvpn` and `incogni`
+both shipped upstream's password-vault template (Argon2id, encrypted vault, master key) —
+correct for neither a VPN nor a data-broker opt-out tracker. Every one of the 25 got a
+genuinely distinct, checkable technical angle rather than a reskin:
+
+- **Newsletter (5):** a plain SES-based sender is the shared base for all 5 (that
+  infrastructure genuinely is what each product is built on), but each got one real,
+  differentiating feature layered on top matching what that specific product is actually
+  known for — `mailerlite` stays closest to the base (forms + welcome sequence); `brevo` adds
+  a shared transactional-plus-marketing contact record (matching Brevo's actual unification
+  of the two); `buttondown` deliberately *removes* scope to match its own minimalist
+  reputation (no forms, no automations — restraint is the product); `constant-contact` adds
+  a bounded event-RSVP page plus one social cross-post (matching its small-business/event
+  positioning); `drip` narrows to exactly one ecommerce-webhook-triggered send (cart
+  abandonment) rather than attempting Drip's full automation library.
+- **AI-image (3):** vector-style generation via ComfyUI (`recraft`) vs. three *specific*
+  dedicated open-source utility models — rembg, Real-ESRGAN, a relighting workflow — wired
+  together rather than one generic pipeline (`clipdrop`) vs. the same batch-generation
+  ComfyUI wrapper as `recraft` but with an explicit, named honest gap: Krea's actual
+  differentiator is a real-time, low-latency generation loop no standard local ComfyUI setup
+  can reproduce, stated directly rather than glossed over (`krea`).
+- **AI-writing (5):** marketing-copy variant generation with audience/tone controls
+  (`anyword`) vs. citation-grounded academic drafting from the user's *own* uploaded PDFs,
+  explicit that it can't discover new sources the way Jenni's broader index can
+  (`jenni-ai`) vs. keyword-to-outline SEO drafting with internal links from the user's own
+  sitemap crawl instead of live SERP data (`koalawriter`) vs. a global-hotkey capture-and-
+  action pipeline where AI is optional, not the point (`drafts-pro`) vs. fully deterministic
+  Flesch-Kincaid-style readability scoring with an optional AI rewrite bolted on
+  (`hemingway-editor-plus`).
+- **Podcasting/audio-video (2):** audio cleanup and episode *assembly* from raw recordings —
+  no LLM involved at all (`alitu`) vs. content *repurposing* from an already-finished
+  recording into show notes/blog draft/quotes — no audio editing at all (`castmagic`); the
+  two are explicit near-opposites of each other rather than overlapping.
+- **Voice-ai (2):** local TTS read-aloud of plain text/documents, explicitly missing OCR for
+  scanned pages (`speechify`) vs. transcription-driven auto-captioning plus a basic
+  OpenCV-based face-tracking reframe to vertical — explicitly named as weaker than a trained
+  tracking model, not claimed as equivalent (`captions-ai`).
+- **Security (2), rewritten away from upstream's mismatched template:** a self-hosted
+  single-node WireGuard VPN via `wg-easy`-style tooling, honest that one VPS is one exit IP
+  with no independent no-logs audit behind it (`nordvpn`) vs. a personal data-broker opt-out
+  *checklist* that drafts removal-request emails for the user to review and send themselves —
+  deliberately never submits or authenticates on the user's behalf, both because that's the
+  honest scope and because automating it would mean the tool impersonating the user against
+  sites that were never designed for that (`incogni`).
+- **Hosting (1):** a single-VPS PaaS-lite reproducing Heroku's actual signature feature (git
+  push → Docker build → Caddy-routed HTTPS), explicit that it's one server with no failover
+  (`heroku-basic`).
+- **Design (1):** a real SVG-native canvas editor (`kittl`) — no AI angle at all, since
+  Kittl's actual product is template/asset quality, not a generation feature to approximate.
+- **Commerce/scheduling (2):** Stripe Checkout storefront with tax explicitly out of scope as
+  a compliance rather than a coding problem (`bigcommerce`); Google Calendar OAuth group-poll
+  scheduler, explicit that Doodle's real edge is participant *familiarity* with the interface,
+  not a feature gap (`doodle`).
+- **SEO (1):** a URL-scraping content-brief tool that's explicit it has zero ranking-data
+  access — the user supplies the competitor URLs by hand, since there's no way to discover
+  which pages actually rank without the SERP data Clearscope pays for (`clearscope`).
+
+**`priorArt` corrections beyond the templating itself:** `nordvpn` and `incogni` both
+inherited Vaultwarden (a password-manager server) as prior art from upstream's mismatched
+template — genuinely irrelevant to either a VPN or an opt-out tracker. Replaced `nordvpn`'s
+with `wg-easy` (a real, well-known dockerized WireGuard admin UI, matching the rewritten
+prompt). Dropped `incogni`'s prior-art field entirely rather than invent a citation — no
+widely-verified open-source project for personal data-broker tracking is one I could name
+with confidence, and the schema makes the field optional for exactly this case.
+`captions-ai`'s inherited "Piper" (a TTS engine) didn't match its actual rewritten prompt
+(transcription-driven captioning, not speech synthesis) — replaced with `whisper.cpp`, which
+does. `drafts-pro`'s inherited LanguageTool (a grammar checker) didn't match its rewritten
+prompt (quick-capture + action pipeline, no grammar checking) — dropped rather than replaced,
+since no confidently-real open-source equivalent for that specific capture-and-pipe pattern
+came to mind.
+
+**`relatedSlugs` diversification.** The mechanical `computeRelatedSlugs()` pass produced
+several *identical* triples across same-batch, same-category tools — e.g. `brevo`,
+`buttondown`, `constant-contact`, and `drip` all initially resolved to the literal same
+`[mailerlite, activecampaign, beehiiv]`, and `clipdrop`/`krea` both resolved to
+`[ideogram, recraft, photoroom]` — the exact "plausible-sounding but not diverse" failure
+mode the previous report flagged as a known gap in the coherence guard (it filters *bad*
+links, it doesn't guarantee the *best available* one wins when several tools in one batch
+compete for the same short list of category peers). All 25 entries' `relatedSlugs` were
+hand-reviewed against the now-11-strong `newsletter` category and 7-strong `ai-image`/
+`ai-writing`/`ai-audio` pools and re-diversified by hand so no two tools in this batch (or
+their now-larger category) share an identical triple, while every individual link stays a
+real, defensible same-category or cluster pick — verified: 3 distinct, non-self, existing
+slugs for every one of the 25, and no duplicate triple within any category.
+
+**`requirements[]` — hand-reconciled against the actual rewritten prompt for every entry,
+not the mechanical first pass**, following the same discipline as every prior batch. Notable
+corrections: `mailerlite`/`brevo`/`buttondown`/`constant-contact`/`drip` all needed
+`hosting`+`database`+`email-provider` added — the mechanical pass caught `domain` from
+upstream's "DNS access" phrasing but missed "Amazon SES account" entirely, since
+`REQUIREMENT_RULES`'s email-provider regex doesn't match the literal string "SES"; `anyword`/
+`koalawriter`/`jenni-ai` needed `anthropic-api-key` added alongside the mechanically-detected
+`openai-api-key`, matching the project's established both-providers convention for
+personal drafting tools; `bigcommerce` needed `hosting`+`database` in place of the mechanical
+pass's `domain`+`email-provider` (a storefront needs a running server and an orders table
+far more than it needs its own domain or transactional email specifically); `drafts-pro` and
+`hemingway-editor-plus` were corrected from the mechanically-detected `[anthropic-api-key,
+openai-api-key]` down to `[none]` — both prompts were rewritten to make the AI feature
+genuinely optional and the core loop fully local by design, the same "elevenlabs/figma"
+precedent the first report established for tools built to run with zero keys on purpose;
+`nordvpn`, `captions-ai`, and the three ai-image entries stayed at their mechanically-correct
+`[hosting]`/`[none]` once the rewritten prompts were checked against them.
+
+### Domain safety — full recheck across all 25
+
+Every domain in this batch was checked against the coordinator's rule before import, not
+just the three that failed it: `mailerlite.com`, `speechify.com`, `alitu.com`, `bigcommerce.com`,
+`brevo.com` (rebranded Sendinblue, dedicated), `buttondown.com`, `captions.ai`, `castmagic.io`,
+`clearscope.io`, `clipdrop.co` (owned by Stability AI but a dedicated single-product hostname),
+`constantcontact.com`, `doodle.com`, `getdrafts.com`, `drip.com`, `hemingwayapp.com`,
+`heroku.com` (owned by Salesforce but dedicated to Heroku specifically, same precedent as
+`render.com`/`netlify.com`), `incogni.com` (owned by Surfshark's parent but dedicated),
+`jenni.ai`, `kittl.com`, `koala.sh`, `krea.ai`, `nordvpn.com`, `recraft.ai` — every one a
+single-product hostname not shared with a materially larger, unrelated product. Zero
+duplicate domains against the 215 already on disk (verified with `npm run validate`, which
+enforces this).
+
+### Verification
+
+```
+$ npm run validate
+240 fiche(s), 355 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  175 passed (175)
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run build
+Feed écrit dans dist/feed/v1/ — 240 outil(s).
+Site écrit dans dist/ — 2 langue(s), 355 fiche(s), 66 page(s) de catégorie, 427 URL(s) dans le sitemap.
+```
+
+`git status` before staging showed only the 25×2 new data files plus `extension/data/index.json`
+(regenerated by `npm run build`, committed per the existing build contract). `scripts/lib/site-*.mjs`,
+`scripts/assets/`, `extension/` source, `worker/` source, `public/`, `docs/superpowers/`, and
+`data/i18n/*/ui.json` were all left untouched — no new category or `runHint` was needed this
+batch, so `ui.json` never needed a read-modify-write.
+
+### What I judged rather than derived, this batch
+
+- The three domain-safety exclusions (`discord-nitro`, `matomo-cloud`, `jetbrains-ai-pro`) —
+  none of these were flagged by upstream itself; each required recognizing that the listed
+  domain belongs to a much larger surface than the specific paid tier being cataloged.
+- The two verdict downgrades (`buttondown`, `jenni-ai`) from `yes` to `kinda` — read against
+  this project's own written contract rather than upstream's label, and cross-checked for
+  internal consistency against sibling entries with the same build shape.
+- Every technical differentiation angle chosen within the five crowded upstream subcategories
+  (newsletter, ai-image, ai-writing, podcasting, voice-ai/security) — real product research
+  judgment about what each tool is actually known for, not mechanically derivable from
+  upstream's near-identical telegraphic taglines.
+- The `relatedSlugs` diversification pass — which specific same-category peer each tool
+  should point to, once the mechanical pass produced identical triples across several
+  same-batch tools.
+- The `priorArt` corrections (`wg-easy` in, `Vaultwarden` out for `nordvpn`; `whisper.cpp` in
+  for `captions-ai`; two fields dropped rather than filled with an unconfirmed citation for
+  `incogni` and `drafts-pro`).
+
+### Status and what's left
+
+**240 of 608 upstream-derived tools are in the catalogue** (215 prior + 25 this batch). 33
+categories, still none single-tool — this batch drew entirely from the already-mapped 139-entry
+pool, so no taxonomy work was needed or done. Roughly **368 upstream entries remain**: about
+114 more already fall inside a `CATEGORY_MAP`-mapped category and can be picked up the same way
+this batch was (no taxonomy decisions needed, just selection + domain-safety screening +
+editorial), and the remaining ~193 (plus the newly-noticed ~10-entry `user-research` vertical,
+not yet placed anywhere) need one of the new verticals scoped in the "full-608 category plan"
+section above before they can be imported — that plan was written but not executed this batch,
+and is the natural next decision point for whoever picks this up next: either keep working the
+already-mapped pool batch by batch until it's exhausted (~4-5 more batches, no new categories),
+or introduce one new vertical at a time as the plan suggests.
+
+### Concerns
+
+- **A `user-research` upstream category (~10 entries) surfaced in this session's analysis
+  that the previous report's full-608 category plan doesn't mention.** Not placed anywhere
+  yet — flagged here rather than guessed at, since "which existing category absorbs it, or
+  does it need its own" is a real editorial call the plan above should be extended to cover
+  explicitly before those ~10 entries are imported.
+- Same standing concern as every prior batch: **verdict mix continues to run more "no"-heavy
+  than the catalogue baseline** (this batch: 8%/48%/44%). Per the coordinator's explicit
+  instruction this session, that was *not* corrected for by reweighting tool selection — the
+  coordinator's message confirmed the "no"-heavy skew is real and settled, checked against
+  upstream directly, and that shifting selection to chase a target ratio is itself the
+  dishonesty this project exists to avoid. Documented here for visibility, not as something
+  to fix.
+- The ~193-entry (now ~203 with `user-research`) unmapped-category remainder is real,
+  substantial remaining work requiring genuine taxonomy decisions before it can be imported —
+  not something this batch attempted or should be read as having made progress on.

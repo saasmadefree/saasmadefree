@@ -1,0 +1,20 @@
+{
+  "tagline": "Send both marketing campaigns and transactional email (receipts, confirmations) from one contact record.",
+  "verdictSummary": "A shared SES sending pipeline for both marketing campaigns and transactional messages, unified under one contact profile, is a genuine weekend-to-week build — the DNS authentication and bounce/complaint handling take real setup time regardless of which type of email is being sent. Brevo's differentiator over a plain newsletter tool is exactly that unification, plus SMS as a second channel this build doesn't attempt.",
+  "coreLoopDIY": "Send transactional email through a simple API any app can call (order confirmations, password resets) and marketing campaigns through a composer, both logged against the same contact record so one profile shows a subscriber's full message history.",
+  "whatYouLose": [
+    "SMS and WhatsApp as additional send channels",
+    "a visual automation workflow builder spanning both transactional and marketing triggers",
+    "deliverability infrastructure shared across Brevo's full sending volume",
+    "a CRM layer with deal and pipeline tracking on top of contacts",
+    "commerce and CMS integrations that auto-populate transactional templates"
+  ],
+  "whyPeopleStillPay": "People pay for Brevo because keeping transactional and marketing email on separate systems means a subscriber's order-confirmation history and their newsletter engagement never talk to each other. Brevo's actual value is that unification, backed by shared-IP deliverability that a fresh SES domain has to earn from zero.",
+  "prompt": "Build a personal email platform with two send paths sharing one contact record: a transactional API for other apps to call, and a campaign composer for newsletters. Stack: Next.js, PostgreSQL, Amazon SES.\n\nCore loop: expose a simple authenticated API endpoint (`POST /send`) that any other app or script can call with a template name and variables, for one-off transactional messages like order confirmations or password resets — sent immediately, logged against the recipient's contact record. Separately, a campaign composer lets the operator write a Markdown newsletter, sent to the confirmed subscriber list the same way as a plain newsletter tool (double opt-in, SES bounce/complaint webhooks, suppression list). The key difference from a pure newsletter tool: every contact's page shows both their transactional message history and their campaign engagement in one place, so \"did this customer get their receipt\" and \"did this subscriber open the last newsletter\" are answered from the same screen.\n\nRequires an AWS account with SES access, a verified sending domain with SPF/DKIM records, and PostgreSQL. Without SES configured, both the transactional API and the campaign composer queue messages but don't send, with a clear status shown per message.\n\nDo not build: SMS or WhatsApp sending (a different infrastructure entirely), a visual automation builder, or CRM-style deal tracking — this unifies two email types under one contact, nothing more.",
+  "faq": [
+    { "q": "Can I import my existing Brevo contacts and templates?", "a": "Brevo exports contacts to CSV with consent status, which imports cleanly. Transactional templates would need to be recreated by hand, since Brevo's template format isn't portable." },
+    { "q": "Will it work on my phone?", "a": "The transactional API works from any client, including a phone-based app calling it. Composing and reviewing campaigns is a web-interface job better suited to a larger screen." },
+    { "q": "What does it cost to run?", "a": "SES pricing is about $0.10 per 1,000 emails for both send types combined. The app itself costs a few dollars a month to host — no separate transactional-versus-marketing pricing tiers to track." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "SMS. Brevo's real differentiator beyond email is a second channel for time-sensitive messages people actually read fast; adding SMS here means a whole separate provider integration (Twilio or similar) this build deliberately leaves out." }
+  ]
+}

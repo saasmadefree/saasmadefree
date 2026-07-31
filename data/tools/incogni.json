@@ -1,0 +1,35 @@
+{
+  "slug": "incogni",
+  "name": "Incogni",
+  "domains": [
+    "incogni.com"
+  ],
+  "category": "security",
+  "subcategory": "passwords, privacy and private networking",
+  "pricing": {
+    "amount": 14.98,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "flat-monthly",
+    "source": "https://incogni.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "security assurance, infrastructure, and trust",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "relatedSlugs": [
+    "deleteme",
+    "nordvpn",
+    "nordpass"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

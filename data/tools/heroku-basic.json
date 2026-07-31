@@ -1,0 +1,42 @@
+{
+  "slug": "heroku-basic",
+  "name": "Heroku",
+  "domains": [
+    "heroku.com"
+  ],
+  "category": "hosting",
+  "subcategory": "application hosting and backend platforms",
+  "pricing": {
+    "amount": 7,
+    "currency": "USD",
+    "plan": "Basic Dyno",
+    "basis": "usage-based",
+    "source": "https://heroku.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "infrastructure scale, operations, and reliability",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Coolify",
+      "url": "https://github.com/coollabsio/coolify"
+    }
+  ],
+  "relatedSlugs": [
+    "railway",
+    "render",
+    "netlify"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

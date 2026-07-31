@@ -1,0 +1,20 @@
+{
+  "tagline": "Write a Markdown newsletter and send it to a small list — nothing else.",
+  "verdictSummary": "Buttondown's whole pitch is doing less than the other newsletter tools, and a deliberately minimal DIY version — one Markdown editor, one send button, one public archive, no forms, no automations, no landing pages — matches that ambition. It's still a real weekend-to-week build, not a sitting one: SES domain verification, SPF/DKIM records, and bounce/complaint webhook handling take genuine setup time no matter how small the feature set is.",
+  "coreLoopDIY": "Write an issue in Markdown, send it to a confirmed subscriber list through Amazon SES, and publish it to a plain, chronological public archive — with nothing else competing for attention in the interface.",
+  "whatYouLose": [
+    "a hosted product with zero setup, versus configuring SES and DNS yourself",
+    "Buttondown's own sending reputation, built over years of low-complaint sending",
+    "a lightweight but real automation for welcome sequences on signup",
+    "one-click subscriber import and export tooling",
+    "a support team when a delivery issue needs a human, not a log file"
+  ],
+  "whyPeopleStillPay": "People pay for Buttondown specifically because it's the newsletter tool that resists adding features — the value is that restraint plus zero setup, not a long feature list. A self-hosted version can match the restraint, but it can't skip the DNS and deliverability setup Buttondown already did once for every customer.",
+  "prompt": "Build the smallest possible personal newsletter tool: write in Markdown, send through Amazon SES, publish a plain archive. Stack: Next.js, PostgreSQL, Amazon SES. Resist adding features — the whole point of this build is fewer moving parts than a full marketing-email platform, not more.\n\nCore loop: a single Markdown editor with a live preview is the entire composing experience — no drag-and-drop blocks, no template gallery. On send, the issue goes to the confirmed subscriber list (double opt-in on signup, one-click unsubscribe on every message) through SES, with bounce and complaint webhooks automatically suppressing bad addresses. Every sent issue appears on a plain, reverse-chronological public archive page with no styling decisions beyond readable typography. That's the entire feature set.\n\nRequires an AWS account with SES access, a verified sending domain with SPF/DKIM DNS records, and PostgreSQL for subscriber and issue storage. Without SES configured, drafting and archive browsing still work; sending is disabled with a clear message.\n\nDo not build: a landing-page or forms designer, a visual automation builder, subscriber segmentation and tagging beyond a single list, or a template gallery — every one of those is a legitimate feature for a different tool, but adding any of them here defeats the actual point of rebuilding Buttondown instead of MailerLite.",
+  "faq": [
+    { "q": "Can I import my existing Buttondown subscribers?", "a": "Yes — Buttondown exports subscribers to CSV with their status, which imports directly. You'll still need to verify a fresh sending domain in SES before your first send, since reputation doesn't transfer." },
+    { "q": "Will it work on my phone?", "a": "As a web page, the archive reads fine on mobile. Writing an issue in a Markdown editor is doable on a phone but genuinely more comfortable on a keyboard." },
+    { "q": "What does it cost to run?", "a": "SES costs about $0.10 per 1,000 emails — a few cents per issue for most small lists. Hosting the app itself runs a few dollars a month." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Zero setup. Buttondown's whole appeal is that the minimalism extends to onboarding too — sign up and send in minutes. Here, minutes become hours: verifying a domain, adding DNS records, and waiting for SES production access before the first real send goes out." }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "tagline": "Auto-generate burned-in captions for short videos and crop them to vertical with basic face tracking.",
+  "verdictSummary": "Transcribing a video locally with Whisper, burning styled captions onto it with ffmpeg, and cropping to a vertical 9:16 frame using basic face detection to keep the speaker centered is a genuine consolation build — a real one-sitting project that produces a usable captioned clip. It approximates Captions' reframe with a much simpler face-tracking heuristic, not the trained model that keeps a shot framed through fast motion and multiple speakers.",
+  "coreLoopDIY": "Transcribe a local video with Whisper, generate word-level caption timing, burn styled captions into the frame with ffmpeg, and crop to a vertical frame using face detection to keep whoever's speaking roughly centered.",
+  "whatYouLose": [
+    "a trained reframe model that tracks speakers reliably through fast cuts and multiple people in frame",
+    "a phone-native mobile app for recording and captioning on the go",
+    "a licensed catalog of AI avatar presenters",
+    "cloud rendering, so exports don't queue behind your own machine",
+    "caption style presets tuned and tested across thousands of videos"
+  ],
+  "whyPeopleStillPay": "People pay for Captions because a simple face-detection heuristic loses track of the subject the moment there's fast motion, a hand gesture blocking the face, or more than one person talking — Captions' model was trained specifically to keep tracking through exactly those cases. The subscription buys that reliability under real recording conditions, not just captions and a crop.",
+  "prompt": "Build a local video-captioning tool: transcribe, burn in styled captions, and crop to vertical with basic face tracking. Stack: Python, ffmpeg for all video processing, whisper.cpp for local transcription, OpenCV for face detection. No cloud API required.\n\nCore loop: the user drops in a local video file. Transcribe it with whisper.cpp to get word-level timestamps, then generate an ASS subtitle track with styled, word-by-word highlighted captions and burn it into the video with ffmpeg. Separately, run OpenCV's face detector on sampled frames, smooth the detected face position across time, and compute a vertical 9:16 crop window that follows it — falling back to a fixed center crop for stretches with no detected face. Export the final captioned, cropped video as a single file.\n\nThis needs no API key — whisper.cpp and OpenCV both run fully offline. A GPU speeds up transcription but isn't required for typical short-clip lengths.\n\nDo not build: a trained face/subject-tracking model (this uses off-the-shelf OpenCV detection, explicitly weaker under fast motion or multiple speakers — say so in the UI when confidence is low), AI avatar presenters, or a mobile app. If OpenCV loses the face for more than a couple of seconds, fall back to center crop rather than guessing.",
+  "faq": [
+    { "q": "Can I import my existing Captions projects?", "a": "No — Captions' project files and caption styles are internal to their app. You'd start from your raw video files and reapply your preferred caption look once as a reusable template." },
+    { "q": "Will it work on my phone?", "a": "No — ffmpeg processing and face detection need more compute than a typical phone browser provides. You'd record on your phone, then run this on a computer to process." },
+    { "q": "What does it cost to run?", "a": "Nothing per video — whisper.cpp and OpenCV both run locally with no per-minute charge. The only cost is the compute time itself, which is free if it's your own machine." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Reliable tracking through motion. Captions' model keeps the crop centered on a moving, gesturing speaker or switches correctly between multiple people talking; the OpenCV-based heuristic here loses the face regularly under exactly those conditions and just holds a static crop until it reacquires it." }
+  ]
+}

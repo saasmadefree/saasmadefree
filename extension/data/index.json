@@ -69,6 +69,13 @@
     "currency": "USD",
     "url": "/en/tools/akiflow"
   },
+  "alitu.com": {
+    "slug": "alitu",
+    "verdict": "kinda",
+    "amount": 38,
+    "currency": "USD",
+    "url": "/en/tools/alitu"
+  },
   "amazingmarvin.com": {
     "slug": "amazing-marvin",
     "verdict": "yes",
@@ -96,6 +103,13 @@
     "amount": 8.25,
     "currency": "USD",
     "url": "/en/tools/anytype"
+  },
+  "anyword.com": {
+    "slug": "anyword",
+    "verdict": "kinda",
+    "amount": 49,
+    "currency": "USD",
+    "url": "/en/tools/anyword"
   },
   "about.appsheet.com": {
     "slug": "appsheet",
@@ -153,6 +167,13 @@
     "currency": "USD",
     "url": "/en/tools/beehiiv"
   },
+  "bigcommerce.com": {
+    "slug": "bigcommerce",
+    "verdict": "no",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/bigcommerce"
+  },
   "bitly.com": {
     "slug": "bitly",
     "verdict": "yes",
@@ -181,6 +202,13 @@
     "currency": "USD",
     "url": "/en/tools/bolt-new"
   },
+  "brevo.com": {
+    "slug": "brevo",
+    "verdict": "kinda",
+    "amount": 9,
+    "currency": "USD",
+    "url": "/en/tools/brevo"
+  },
   "bubble.io": {
     "slug": "bubble",
     "verdict": "kinda",
@@ -194,6 +222,13 @@
     "amount": 6,
     "currency": "USD",
     "url": "/en/tools/buffer"
+  },
+  "buttondown.com": {
+    "slug": "buttondown",
+    "verdict": "kinda",
+    "amount": 9,
+    "currency": "USD",
+    "url": "/en/tools/buttondown"
   },
   "buzzsprout.com": {
     "slug": "buzzsprout",
@@ -237,6 +272,13 @@
     "currency": "USD",
     "url": "/en/tools/capcut"
   },
+  "captions.ai": {
+    "slug": "captions-ai",
+    "verdict": "no",
+    "amount": 9.99,
+    "currency": "USD",
+    "url": "/en/tools/captions-ai"
+  },
   "carrd.co": {
     "slug": "carrd",
     "verdict": "yes",
@@ -250,6 +292,13 @@
     "amount": 100,
     "currency": "USD",
     "url": "/en/tools/caspio"
+  },
+  "castmagic.io": {
+    "slug": "castmagic",
+    "verdict": "kinda",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/castmagic"
   },
   "chatgpt.com": {
     "slug": "chatgpt",
@@ -286,6 +335,20 @@
     "currency": "USD",
     "url": "/en/tools/cleanmymac"
   },
+  "clearscope.io": {
+    "slug": "clearscope",
+    "verdict": "no",
+    "amount": 189,
+    "currency": "USD",
+    "url": "/en/tools/clearscope"
+  },
+  "clipdrop.co": {
+    "slug": "clipdrop",
+    "verdict": "kinda",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/clipdrop"
+  },
   "getclockwise.com": {
     "slug": "clockwise",
     "verdict": "no",
@@ -306,6 +369,13 @@
     "amount": 12,
     "currency": "USD",
     "url": "/en/tools/codesandbox"
+  },
+  "constantcontact.com": {
+    "slug": "constant-contact",
+    "verdict": "kinda",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/constant-contact"
   },
   "copilot.money": {
     "slug": "copilot-money",
@@ -355,6 +425,27 @@
     "amount": 24,
     "currency": "USD",
     "url": "/en/tools/descript"
+  },
+  "doodle.com": {
+    "slug": "doodle",
+    "verdict": "kinda",
+    "amount": 14.95,
+    "currency": "USD",
+    "url": "/en/tools/doodle"
+  },
+  "getdrafts.com": {
+    "slug": "drafts-pro",
+    "verdict": "yes",
+    "amount": 1.67,
+    "currency": "USD",
+    "url": "/en/tools/drafts-pro"
+  },
+  "drip.com": {
+    "slug": "drip",
+    "verdict": "no",
+    "amount": 39,
+    "currency": "USD",
+    "url": "/en/tools/drip"
   },
   "duda.co": {
     "slug": "duda",
@@ -587,6 +678,20 @@
     "currency": "USD",
     "url": "/en/tools/heartbeat-community"
   },
+  "hemingwayapp.com": {
+    "slug": "hemingway-editor-plus",
+    "verdict": "yes",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/hemingway-editor-plus"
+  },
+  "heroku.com": {
+    "slug": "heroku-basic",
+    "verdict": "no",
+    "amount": 7,
+    "currency": "USD",
+    "url": "/en/tools/heroku-basic"
+  },
   "hey.com": {
     "slug": "hey-email",
     "verdict": "no",
@@ -636,6 +741,13 @@
     "currency": "USD",
     "url": "/en/tools/ifttt"
   },
+  "incogni.com": {
+    "slug": "incogni",
+    "verdict": "no",
+    "amount": 14.98,
+    "currency": "USD",
+    "url": "/en/tools/incogni"
+  },
   "inoreader.com": {
     "slug": "inoreader",
     "verdict": "yes",
@@ -671,6 +783,13 @@
     "currency": "USD",
     "url": "/en/tools/jasper"
   },
+  "jenni.ai": {
+    "slug": "jenni-ai",
+    "verdict": "kinda",
+    "amount": 20,
+    "currency": "USD",
+    "url": "/en/tools/jenni-ai"
+  },
   "jotform.com": {
     "slug": "jotform",
     "verdict": "kinda",
@@ -699,12 +818,33 @@
     "currency": "USD",
     "url": "/en/tools/kit"
   },
+  "kittl.com": {
+    "slug": "kittl",
+    "verdict": "kinda",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/kittl"
+  },
   "knack.com": {
     "slug": "knack",
     "verdict": "kinda",
     "amount": 59,
     "currency": "USD",
     "url": "/en/tools/knack"
+  },
+  "koala.sh": {
+    "slug": "koalawriter",
+    "verdict": "kinda",
+    "amount": 9,
+    "currency": "USD",
+    "url": "/en/tools/koalawriter"
+  },
+  "krea.ai": {
+    "slug": "krea",
+    "verdict": "no",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/krea"
   },
   "krisp.ai": {
     "slug": "krisp",
@@ -782,6 +922,13 @@
     "amount": 20,
     "currency": "USD",
     "url": "/en/tools/mailchimp"
+  },
+  "mailerlite.com": {
+    "slug": "mailerlite",
+    "verdict": "kinda",
+    "amount": 10,
+    "currency": "USD",
+    "url": "/en/tools/mailerlite"
   },
   "make.com": {
     "slug": "make",
@@ -929,6 +1076,13 @@
     "amount": 4.99,
     "currency": "USD",
     "url": "/en/tools/nordpass"
+  },
+  "nordvpn.com": {
+    "slug": "nordvpn",
+    "verdict": "no",
+    "amount": 12.99,
+    "currency": "USD",
+    "url": "/en/tools/nordvpn"
   },
   "nuclino.com": {
     "slug": "nuclino",
@@ -1105,6 +1259,13 @@
     "currency": "USD",
     "url": "/en/tools/reclaim-ai"
   },
+  "recraft.ai": {
+    "slug": "recraft",
+    "verdict": "no",
+    "amount": 12,
+    "currency": "USD",
+    "url": "/en/tools/recraft"
+  },
   "relay.app": {
     "slug": "relay-app",
     "verdict": "kinda",
@@ -1189,6 +1350,13 @@
     "currency": "USD",
     "url": "/en/tools/semrush"
   },
+  "setapp.com": {
+    "slug": "setapp",
+    "verdict": "no",
+    "amount": 9.99,
+    "currency": "USD",
+    "url": "/en/tools/setapp"
+  },
   "shopify.com": {
     "slug": "shopify",
     "verdict": "no",
@@ -1230,6 +1398,13 @@
     "amount": 59,
     "currency": "USD",
     "url": "/en/tools/softr"
+  },
+  "speechify.com": {
+    "slug": "speechify",
+    "verdict": "no",
+    "amount": 11.58,
+    "currency": "USD",
+    "url": "/en/tools/speechify"
   },
   "spyfu.com": {
     "slug": "spyfu",

@@ -1,0 +1,20 @@
+{
+  "tagline": "Clean up podcast audio and assemble a finished episode from intro, main track, and outro.",
+  "verdictSummary": "Trimming silence, normalizing loudness, and stitching an intro, main recording, and outro into one exportable episode is a real, working loop — but getting the audio-processing chain (noise gating, level matching across segments, fade timing) genuinely reliable across different recordings takes a weekend of tuning, not a sitting. What's missing entirely is Alitu's hosting and directory distribution.",
+  "coreLoopDIY": "Upload a raw recording plus intro and outro clips, run automated silence trimming and loudness normalization to -16 LUFS, assemble the segments on a simple timeline with crossfades, and export a finished MP3 with a generated transcript.",
+  "whatYouLose": [
+    "one-click podcast hosting and RSS feed generation",
+    "distribution to Spotify, Apple Podcasts, and other directories",
+    "a licensed royalty-free music library for intros and outros",
+    "advanced mastering tuned per-voice rather than one fixed normalization target",
+    "support when an export doesn't sound right and you don't know why"
+  ],
+  "whyPeopleStillPay": "People pay for Alitu because cleaning up one episode is buildable, but doing it reliably across dozens of episodes with different microphones, rooms, and voices — without ever second-guessing whether this week's export actually sounds right — is the part that takes real audio engineering, not just an ffmpeg command.",
+  "prompt": "Build a local podcast episode assembler: upload raw audio segments, clean them up automatically, and export a finished, ready-to-upload episode file. Stack: Python, FastAPI, ffmpeg for all audio processing, SQLite for episode metadata. No cloud audio API — all processing runs locally through ffmpeg filters.\n\nCore loop: the user uploads a main recording plus optional intro and outro clips, keeping originals untouched in a read-only folder. Processing runs silence trimming, loudness normalization to -16 LUFS (the common podcast target), a light noise gate, and crossfades between segments, writing results as a new file rather than overwriting the source. A simple two-track timeline view lets the user reorder segments and preview before export. On export, generate a local transcript (via whisper.cpp) alongside the final MP3 and WAV, plus a JSON manifest recording every processing parameter used, so a run can be reproduced or adjusted.\n\nThis needs no external API key — whisper.cpp runs the transcript locally, and all audio processing is ffmpeg. If skipped, transcription is simply blank and the episode still exports fine.\n\nDo not build: podcast hosting, RSS feed generation, or directory submission — those require a public server and ongoing bandwidth this tool doesn't provide. Do not build a licensed music library; the user supplies their own intro/outro clips. Do not build remote multi-track recording — this assembles audio that already exists, it doesn't capture it.",
+  "faq": [
+    { "q": "Can I import my existing Alitu projects?", "a": "No — Alitu's project files and processing settings are internal to their app. You'd start with your raw recordings and re-create your normalization and fade preferences once, then reuse them for future episodes." },
+    { "q": "Will it work on my phone?", "a": "No — audio processing through ffmpeg needs real compute and file access this build assumes a desktop or server has. You'd record on your phone if you want, then process on a computer." },
+    { "q": "What does it cost to run?", "a": "Nothing per episode — ffmpeg and whisper.cpp both run locally with no per-minute charge. The only cost is wherever you host the app itself, or nothing if it just runs on your own machine." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Distribution. Alitu's real endpoint is a live RSS feed that Spotify and Apple Podcasts pull from automatically; this build hands you a finished MP3 file, and getting it in front of listeners is still a separate hosting step you'd have to solve yourself." }
+  ]
+}

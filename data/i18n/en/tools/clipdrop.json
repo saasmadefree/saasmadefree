@@ -1,0 +1,20 @@
+{
+  "tagline": "Remove backgrounds, upscale, and relight local images with a set of dedicated open-source models.",
+  "verdictSummary": "Background removal, upscaling, and basic relighting each already have solid dedicated open-source models (rembg, Real-ESRGAN, and a relighting ComfyUI workflow) that run locally with no cloud dependency — wiring them into one simple upload-and-process interface is a genuine one-sitting build. What's missing is Clipdrop's polish: one unified tool instead of three separate local models, and a mobile app.",
+  "coreLoopDIY": "Upload a local image, pick an operation (background removal, upscale, or relight), run it through the matching dedicated local model, and download the result — each operation using a purpose-built model rather than one general image-generation pipeline.",
+  "whatYouLose": [
+    "one unified tool instead of switching between three separate local models",
+    "a mobile app for on-the-go editing",
+    "consistently fast processing without waiting on your own hardware",
+    "Stability AI's specific fine-tuning tuned across millions of real user images",
+    "API access for other apps to call these operations programmatically at scale"
+  ],
+  "whyPeopleStillPay": "People pay for Clipdrop because it packages several genuinely different specialized models behind one simple interface and fast hosted inference, so there's no juggling three separate tools or waiting on local GPU queues. The subscription buys that unification and speed, not capabilities that don't otherwise exist in open source.",
+  "prompt": "Build a local image-utility tool: background removal, upscaling, and relighting, each using a dedicated open-source model. Stack: Python, FastAPI, rembg for background removal, Real-ESRGAN for upscaling, a ComfyUI relighting workflow for the third operation, a small React frontend.\n\nCore loop: the user uploads a local image and picks one operation. Background removal runs through rembg (a purpose-built segmentation model, not a general diffusion model) and returns a transparent PNG. Upscaling runs through Real-ESRGAN for 2x or 4x resolution increase. Relighting routes through a local ComfyUI instance running a relighting-specific workflow, since this operation genuinely needs a diffusion model rather than a lightweight specialized one. Every result is saved locally with the operation and settings used recorded alongside it.\n\nrembg and Real-ESRGAN run on modest hardware, including CPU-only for smaller images; relighting benefits from a GPU the way any diffusion workflow does. No cloud API key is required for any of the three operations.\n\nDo not build: a unified single-model pipeline that handles all three tasks (that's Clipdrop's actual engineering achievement, not something three off-the-shelf open models replicate), a mobile app, or a public API for other services to call — this is a personal local tool, not an inference service for others.",
+  "faq": [
+    { "q": "Can I import my existing Clipdrop projects?", "a": "There's nothing to import — Clipdrop operations are one-shot transformations on images you upload each time, not saved projects, so you'd just re-run your images through the local equivalent." },
+    { "q": "Will it work on my phone?", "a": "Only as a client to a machine running the backend elsewhere — rembg and Real-ESRGAN need real compute, and relighting needs a GPU, neither of which a phone reliably provides." },
+    { "q": "What does it cost to run?", "a": "Nothing per image if you own the hardware. A cloud GPU for the relighting step, if you don't have one locally, runs roughly $0.50–$2 per hour of actual use." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Speed and unification. Clipdrop's hosted inference returns results in seconds regardless of your own hardware, and all three operations live behind one interface; here, relighting in particular can be slow on modest hardware, and you're managing three separate model pipelines instead of one." }
+  ]
+}

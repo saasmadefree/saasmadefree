@@ -1,0 +1,41 @@
+{
+  "slug": "castmagic",
+  "name": "Castmagic",
+  "domains": [
+    "castmagic.io"
+  ],
+  "category": "audio-video",
+  "subcategory": "podcast recording, cleanup and publishing",
+  "pricing": {
+    "amount": 39,
+    "currency": "USD",
+    "plan": "Hobby",
+    "basis": "flat-monthly",
+    "source": "https://castmagic.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "audio infrastructure, distribution, and production polish",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key"
+  ],
+  "priorArt": [
+    {
+      "name": "Audacity",
+      "url": "https://github.com/audacity/audacity"
+    }
+  ],
+  "relatedSlugs": [
+    "alitu",
+    "descript",
+    "buzzsprout"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

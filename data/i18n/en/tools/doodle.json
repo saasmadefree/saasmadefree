@@ -1,0 +1,20 @@
+{
+  "tagline": "Post a group availability poll, let participants pick a slot, and book it onto your Google Calendar.",
+  "verdictSummary": "Reading one Google Calendar for busy/free times, letting participants vote on proposed slots, and creating a calendar event from the winning slot is a real weekend-to-week build — Google Calendar OAuth, race-condition-safe booking, and reminder emails are genuine, non-trivial setup, not a sitting's work. Doodle's actual differentiator over a single-organizer booking tool is the group-poll shape: many participants voting on many proposed times at once, not one visitor picking from one host's open slots.",
+  "coreLoopDIY": "Propose a set of candidate time slots, share a link where each participant marks which slots work for them, then convert the slot with the best overlap into a Google Calendar event and email everyone the confirmation.",
+  "whatYouLose": [
+    "support for calendars beyond Google (Outlook, iCloud)",
+    "participant familiarity — most people have used Doodle before and know exactly what to click",
+    "team routing across multiple organizers",
+    "payment collection for paid group sessions",
+    "years of timezone and daylight-saving edge-case handling"
+  ],
+  "whyPeopleStillPay": "People pay for Doodle because a missed invite or a poll that silently breaks across timezones costs more in wasted coordination than the subscription ever does, and Doodle has already hit and fixed those edge cases across years of real use. The recurring cost buys that reliability and the fact that most participants already recognize the interface, not the polling mechanic itself.",
+  "prompt": "Build a personal group-scheduling poll: propose slots, collect votes, and book the winner to Google Calendar. Stack: Next.js, PostgreSQL, Google Calendar OAuth, Resend for email.\n\nCore loop: the organizer connects their Google Calendar via OAuth (refresh token stored encrypted) and proposes a set of candidate time slots for an event. A shareable link lets each participant — no account needed, just a name and email — mark which of the proposed slots work for them, with times shown converted to their browser's detected timezone. Once the organizer is satisfied with responses, they pick the slot with the best overlap (shown as a simple grid of who's available when) and the tool creates a Google Calendar event and emails every participant a confirmation with the final time in their own timezone.\n\nRequires Google Calendar OAuth credentials (a Google Cloud project with the Calendar API enabled), PostgreSQL for poll and response storage, and a transactional email provider for confirmations. This is fundamentally a hosted web app — it needs somewhere running to serve the poll links and handle the OAuth callback.\n\nDo not build: support for Outlook or iCloud calendars (each needs its own OAuth flow and API, doubling the integration surface for a personal tool), team round-robin routing across multiple organizers, or payment collection — a single organizer's own calendar, one event at a time, is the honest scope here.",
+  "faq": [
+    { "q": "Can I import my existing Doodle polls?", "a": "No — Doodle doesn't offer an export of poll structure or response history in a format this build can read. Past polls would need to be recreated manually if you still need the record." },
+    { "q": "Will it work on my phone?", "a": "Voting on a poll works fine from a phone browser link. Connecting Google Calendar via OAuth and managing polls as the organizer is a bit more comfortable on desktop but works either way." },
+    { "q": "What does it cost to run?", "a": "Google Calendar API calls are free at personal-use volume. Resend's free tier covers a small number of confirmation emails; hosting the app itself runs a few dollars a month." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Participant familiarity. Doodle is so widely used that most people already know exactly how to fill out the grid without instructions; a homegrown poll link, however functional, is unfamiliar, and that friction shows up as fewer people actually voting." }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "recraft",
+  "name": "Recraft",
+  "domains": [
+    "recraft.ai"
+  ],
+  "category": "ai-image",
+  "subcategory": "AI image and video generation",
+  "pricing": {
+    "amount": 12,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://recraft.ai/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "frontier models, compute, and data",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "ComfyUI",
+      "url": "https://github.com/comfyanonymous/ComfyUI"
+    }
+  ],
+  "relatedSlugs": [
+    "ideogram",
+    "leonardo-ai",
+    "midjourney"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,20 @@
+{
+  "tagline": "Build one focused menu-bar launcher with quick app-switching and text snippets — not the 240-app bundle.",
+  "verdictSummary": "Setapp is a subscription to roughly 240 separate Mac apps, and no single build replaces a bundle. What a DIY build can honestly replace is one category from that bundle — a quick app launcher with global-hotkey search and text-snippet expansion, the single most commonly used slice of what Setapp subscribers actually reach for day to day.",
+  "coreLoopDIY": "Press a global hotkey to open a searchable command window, launch or switch to an app by typing its name, and expand saved text snippets by typing a short trigger anywhere on the system.",
+  "whatYouLose": [
+    "the other roughly 239 apps in the bundle — window managers, disk cleaners, PDF tools, and more, each a separate build",
+    "years of macOS-version compatibility fixes shipped automatically",
+    "cross-device sync of settings and snippets",
+    "commercial support when a system update breaks something",
+    "one subscription instead of maintaining several small tools yourself"
+  ],
+  "whyPeopleStillPay": "People pay for Setapp because it isn't one utility — it's insurance against needing any of 240 of them and having each one kept working through every macOS update, at a fraction of what buying them individually would cost. Rebuilding one category yourself is realistic; matching the whole bundle means becoming your own maintainer for dozens of small, separately-breaking tools.",
+  "prompt": "Build one native macOS menu-bar utility: a global-hotkey launcher with app search and text-snippet expansion. Stack: Swift 6, SwiftUI with AppKit where the menu-bar APIs require it, SQLite for snippets. Do not attempt to replicate Setapp's other ~239 apps — this is one utility, not a bundle.\n\nCore loop: a global hotkey opens a floating, searchable command window. Typing filters running and installed apps by name; pressing Enter switches to or launches the selected app. Separately, the same window supports defining short-trigger text snippets (e.g. typing `;addr` anywhere on the system expands to a saved address) using macOS's Accessibility APIs to detect and replace text as it's typed. Settings and snippets are stored in a local SQLite file with import/export.\n\nRequest Accessibility and Input Monitoring permissions only when the user first tries to use snippet expansion, with a plain-language explanation of why each is needed before the system prompt appears. Everything runs locally with no account and no network calls.\n\nDo not build: a plugin marketplace, a disk cleaner, a window manager, or any of Setapp's other bundled categories — pick this one utility and make it solid rather than sketching many. Do not add cloud sync or a subscription account; ship a working uninstall path and document exactly what the two permissions are used for.",
+  "faq": [
+    { "q": "Can I import my existing Setapp app list or settings?", "a": "No — Setapp doesn't export a settings file, and there's nothing to import since this build replaces one utility category, not the specific apps you used inside the bundle." },
+    { "q": "Will it work on my phone?", "a": "No, this is a macOS-only menu-bar tool built on Accessibility APIs that don't exist on iOS. There's no mobile equivalent to build toward." },
+    { "q": "What does it cost to run?", "a": "Nothing — it's a local app with no account, no API key, and no server. The only cost is the one-time effort of building and code-signing it yourself." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The other 239 apps. Setapp's real value is that any new need — a PDF editor, a disk analyzer, a window snapper — is already in the subscription; here, each one you actually want is a separate build from scratch." }
+  ]
+}

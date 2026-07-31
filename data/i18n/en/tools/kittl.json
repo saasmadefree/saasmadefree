@@ -1,0 +1,20 @@
+{
+  "tagline": "Compose typography-heavy posters and labels on a local SVG canvas and export print-ready PDFs.",
+  "verdictSummary": "An SVG-native canvas with text, shapes, layers, and a handful of starter layouts — saved locally and exported to clean, print-ready PDF or SVG — is a real weekend-to-week build, since a genuinely usable canvas editor (selection, alignment, snapping, undo/redo) takes real iteration to feel solid, even without any AI features. Kittl's actual edge is a large library of professional templates, fonts, and vector effects built by a design team, not the canvas mechanics themselves.",
+  "coreLoopDIY": "Compose text, shapes, and images on a fixed-size SVG canvas with alignment and snapping, save projects locally with autosave and undo, and export the result as a clean SVG or print-ready PDF without rasterizing text.",
+  "whatYouLose": [
+    "a large library of professionally designed templates and starter layouts",
+    "a curated font library with commercial-use licensing already cleared",
+    "specialized vector effects (distortion, textures, 3D text) built by a design team",
+    "real-time multiplayer editing",
+    "merchandise mockup generation for previewing designs on products"
+  ],
+  "whyPeopleStillPay": "People pay for Kittl because a blank canvas with drawing tools isn't the hard part — a library of genuinely good templates and effects that make an amateur design look professional is, and that's design work done by a team over years, not something a canvas editor generates on its own.",
+  "prompt": "Build a local SVG poster and label editor: canvas composition, layers, and clean print-ready export. Stack: Next.js, React, TypeScript, native SVG for the canvas (not a canvas-element bitmap approach — text needs to stay real, selectable SVG text), IndexedDB for local project storage.\n\nCore loop: a fixed-size SVG canvas supports adding and arranging text, rectangles, circles, images, and groups, with zoom, pan, multi-select, alignment guides, and snapping to a grid or other elements. Each element sits in an ordered layer list. Undo/redo and autosave are non-negotiable for a design tool — losing work is the single worst failure mode. Include 4–5 solid starter layouts (not dozens) covering common poster and label proportions, built by hand rather than generated, as a genuine head start rather than filler. Export renders the canvas to SVG directly (preserving real text, not rasterized) and to print-ready PDF, warning clearly if a used font isn't embedded or available.\n\nEverything runs client-side with no account and no server — projects save to IndexedDB, with explicit export/import of a portable project JSON file for backup or transfer between machines. No API key is needed for any of this.\n\nDo not build: real-time multiplayer editing, a template marketplace, AI-generated layouts, or merchandise mockup rendering — each is a legitimate feature, but a solid, reliable canvas with a handful of real starter layouts is already the honest scope for a personal build.",
+  "faq": [
+    { "q": "Can I import my existing Kittl projects?", "a": "Kittl exports finished designs as SVG or PDF, which import as a flattened image rather than editable layers — Kittl doesn't hand back its internal project format, so past projects would need to be recreated from scratch here." },
+    { "q": "Will it work on my phone?", "a": "A precise SVG canvas with alignment and snapping is genuinely difficult to use well with touch input at small screen sizes — this is realistically a desktop tool, same as most serious design software." },
+    { "q": "What does it cost to run?", "a": "Nothing — it's a fully client-side app with no account, no API, and no server cost beyond hosting the static site itself." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Template quality. Kittl's actual value is that even a design novice can start from a genuinely good template and end up with something that looks professional; a homegrown editor with five starter layouts gets you a working canvas, not the design taste baked into a real template library." }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "tagline": "Read articles, PDFs, and pasted text aloud using a local text-to-speech engine.",
+  "verdictSummary": "Feeding text to a local TTS engine and playing the result back with adjustable speed is a genuine one-sitting build. What it can't match is the reason people pay for Speechify specifically: a catalog of natural-sounding licensed voices, OCR that reads scanned or photographed pages, and a mobile app that keeps your place across a phone, tablet, and desktop.",
+  "coreLoopDIY": "Paste text or upload a plain document, generate speech with a local TTS model, and play it back with speed and voice controls while the read-along text highlights in sync.",
+  "whatYouLose": [
+    "OCR that reads text out of scanned pages, photos, and image-based PDFs",
+    "a catalog of licensed, natural-sounding premium voices",
+    "cross-device sync that resumes the same document where you left off",
+    "a mobile app with offline downloads",
+    "browser and PDF-reader extensions that grab a page's text automatically"
+  ],
+  "whyPeopleStillPay": "People pay for Speechify because most of what they want to listen to isn't clean plain text — it's a scanned textbook page, a photographed sign, or a PDF with a broken layout, and turning that into readable text reliably is what OCR and document parsing actually do. The recurring cost buys that parsing plus voices tuned for long-form listening, not just a text box that produces sound.",
+  "prompt": "Build a local read-aloud tool: paste or import plain text, generate speech with a local TTS engine, and play it back with a synced highlighted transcript. Stack: Python, FastAPI, a local TTS model (Piper or Kokoro), ffmpeg for audio assembly. Do not build OCR, a browser extension, or an account system.\n\nCore loop: the user pastes text or drops in a `.txt`/`.md` file. The backend synthesizes speech locally with Piper, chunked by sentence so playback can start before the whole document finishes generating, and returns timestamped word boundaries so the frontend can highlight the currently-spoken word as it plays. Playback controls include speed (0.5x–3x, matching how Speechify users actually listen — most listen faster than 1x) and voice selection from whatever Piper voice models the user has downloaded. Save a simple library of imported documents with resume position, stored locally.\n\nEverything runs offline once Piper's voice models are downloaded — no API key, no account, no per-word cost. State this plainly: unlike Speechify, there's no way to read a photographed page or scanned PDF here without adding a separate OCR step first, which is explicitly out of scope.\n\nDo not build: OCR or image-to-text extraction, a browser extension that auto-grabs article text from any webpage, a mobile app, or licensed celebrity/premium voice packs — ship with whatever open Piper voices are freely redistributable, and say so.",
+  "faq": [
+    { "q": "Can I import my existing Speechify library?", "a": "No — Speechify's documents and listening history live in their app and aren't exportable to plain text automatically. You'd re-add documents one at a time going forward." },
+    { "q": "Will it work on my phone?", "a": "Only through a browser pointed at wherever the backend runs — there's no native app, no offline downloads, and no automatic resume across devices." },
+    { "q": "What does it cost to run?", "a": "Nothing per document — Piper runs fully offline once its voice models are downloaded once. The only cost is running the small backend server, a few dollars a month if hosted, or free if it just runs on your own machine." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "OCR. Most of what people actually feed Speechify — scanned pages, photographed textbooks, messy PDFs — needs text extracted from an image first, and that's a separate, harder problem this build doesn't attempt to solve." }
+  ]
+}

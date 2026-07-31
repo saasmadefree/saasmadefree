@@ -1,0 +1,20 @@
+{
+  "tagline": "Send newsletters, run a welcome sequence, and publish signup forms for a small list.",
+  "verdictSummary": "Collecting subscribers, sending a Markdown campaign through Amazon SES, and publishing a public archive is a genuine build, but not a one-sitting one — DNS authentication, bounce and complaint handling, and unsubscribe compliance take a real weekend-to-week project. What MailerLite adds on top of that working loop is a drag-and-drop landing-page and forms builder, and years of shared sending reputation that gets a first campaign into the inbox instead of spam.",
+  "coreLoopDIY": "Collect subscribers through a signup form with double opt-in, compose a campaign in Markdown, send it through Amazon SES with bounce and complaint webhooks that auto-suppress bad addresses, and publish a public archive of past issues.",
+  "whatYouLose": [
+    "the drag-and-drop landing-page and pop-up form builder",
+    "a library of pre-built, tested email templates",
+    "MailerLite's shared sending reputation with Gmail and Outlook",
+    "a visual automation builder with branching conditions",
+    "one-click integrations with e-commerce platforms"
+  ],
+  "whyPeopleStillPay": "People pay for MailerLite because a brand-new sending domain starts with zero reputation with inbox providers. MailerLite's shared infrastructure already has years of it, so a first campaign lands in the inbox instead of spam while a self-hosted sender is still building that trust.",
+  "prompt": "Build a personal newsletter sender: a signup form, a Markdown campaign composer, and Amazon SES for delivery. Stack: a Node.js web app, PostgreSQL for subscribers and campaigns, SES for sending — do not substitute another mail provider, the bounce/complaint webhook handling below is written for SES specifically.\n\nCore loop: a visitor submits a signup form, gets a double opt-in confirmation email, and is stored with a consent timestamp. The operator writes a campaign in Markdown, previews the rendered HTML and plain-text versions, and sends it to the confirmed list in batches through SES. SES bounce and complaint webhooks automatically suppress bad addresses so the list stays clean. Every past campaign is published on a public, dated archive page with an unsubscribe link on every message.\n\nSES is required, not optional: verify a sending domain in SES, add the SPF and DKIM DNS records SES gives you, and request production access (SES starts new accounts in a sandbox that only sends to verified addresses). Without a verified domain, the app should still run — drafting, previewing, and managing subscribers all work locally — but the send button stays disabled with a clear message pointing at what's missing.\n\nDo not build: a drag-and-drop landing-page or pop-up form designer (a single embeddable HTML form is enough), a visual automation builder with branching logic, or a template marketplace. Deliverability tuning — warming up a new domain, watching complaint rates — is the operator's job; say so directly rather than pretending the code handles it.",
+  "faq": [
+    { "q": "Can I import my existing MailerLite subscriber list?", "a": "MailerLite exports subscribers to CSV with their consent status. Importing that CSV into the DIY database is a five-minute job — the slower part is verifying a fresh sending domain in SES before your first send." },
+    { "q": "Will it work on my phone?", "a": "There's no app. You'd manage campaigns from the same web interface in a phone browser, with no push notifications for opens or clicks." },
+    { "q": "What does it cost to run?", "a": "SES charges about $0.10 per 1,000 emails, so a few thousand subscribers costs cents per campaign. The real recurring cost is hosting the app itself — a few dollars a month on a small server." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Inbox placement on day one. MailerLite's shared sending infrastructure has years of reputation with Gmail and Outlook; a brand-new SES domain has none, and earning that trust takes weeks of consistent, low-complaint sending — no amount of code shortcuts it." }
+  ]
+}

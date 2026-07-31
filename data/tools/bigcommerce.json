@@ -1,0 +1,42 @@
+{
+  "slug": "bigcommerce",
+  "name": "BigCommerce",
+  "domains": [
+    "bigcommerce.com"
+  ],
+  "category": "creator-commerce",
+  "subcategory": "digital products, courses and memberships",
+  "pricing": {
+    "amount": 39,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "flat-monthly",
+    "source": "https://bigcommerce.com/essentials/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "payments, tax, distribution, and operations",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Medusa",
+      "url": "https://github.com/medusajs/medusa"
+    }
+  ],
+  "relatedSlugs": [
+    "shopify",
+    "teachable",
+    "podia"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

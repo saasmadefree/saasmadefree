@@ -1,0 +1,42 @@
+{
+  "slug": "koalawriter",
+  "name": "KoalaWriter",
+  "domains": [
+    "koala.sh"
+  ],
+  "category": "ai-writing",
+  "subcategory": "AI drafting, research and content optimization",
+  "pricing": {
+    "amount": 9,
+    "currency": "USD",
+    "plan": "Essentials",
+    "basis": "flat-monthly",
+    "source": "https://koala.sh/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "workflow, data, and model tuning",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key"
+  ],
+  "priorArt": [
+    {
+      "name": "Open WebUI",
+      "url": "https://github.com/open-webui/open-webui"
+    }
+  ],
+  "relatedSlugs": [
+    "writesonic",
+    "anyword",
+    "quillbot"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

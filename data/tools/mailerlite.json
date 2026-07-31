@@ -1,0 +1,44 @@
+{
+  "slug": "mailerlite",
+  "name": "MailerLite",
+  "domains": [
+    "mailerlite.com"
+  ],
+  "category": "newsletter",
+  "subcategory": "email newsletters and creator publishing",
+  "pricing": {
+    "amount": 10,
+    "currency": "USD",
+    "plan": "Growing Business",
+    "basis": "flat-monthly",
+    "source": "https://mailerlite.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "deliverability, growth network, and integrations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Listmonk",
+      "url": "https://github.com/knadh/listmonk"
+    }
+  ],
+  "relatedSlugs": [
+    "beehiiv",
+    "kit",
+    "activecampaign"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

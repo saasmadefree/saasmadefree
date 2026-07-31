@@ -1,0 +1,20 @@
+{
+  "tagline": "Sell a small catalog of products or digital files through your own storefront and Stripe Checkout.",
+  "verdictSummary": "A product catalog, Stripe-hosted checkout, and gated file delivery after payment is a real, working store — and it's realistically a one-sitting build, since Stripe Checkout does the hardest part (card handling, PCI compliance) for you. What's missing is everything BigCommerce operates behind the scenes: tax calculation and remittance across jurisdictions, marketplace channels, and fraud tooling tuned across millions of transactions.",
+  "coreLoopDIY": "Define products with prices and files or lesson content, send buyers to Stripe-hosted Checkout, verify the payment webhook, and grant time-limited download or lesson access on success.",
+  "whatYouLose": [
+    "automatic sales tax calculation and remittance across states and countries",
+    "listing products on Amazon, eBay, and other marketplace channels from one dashboard",
+    "fraud detection tuned across BigCommerce's full transaction volume",
+    "built-in abandoned-cart recovery and marketing automation",
+    "24/7 support when a payment or delivery issue needs a human"
+  ],
+  "whyPeopleStillPay": "People pay for BigCommerce because tax is the actual hard part of selling online — correctly calculating and remitting sales tax across every jurisdiction a buyer might be in is a compliance problem, not a coding problem, and getting it wrong has real legal consequences. The subscription buys that compliance layer plus fraud and marketplace tooling, not just a shopping cart.",
+  "prompt": "Build a personal storefront: a product catalog, Stripe-hosted Checkout, and gated delivery of digital files or lesson access after payment. Stack: Next.js, PostgreSQL, Stripe Checkout and webhooks, S3-compatible storage for files.\n\nCore loop: the operator defines products with a name, price, and either an attached file or lesson content, plus optional coupon codes. A buyer clicks purchase, is sent to Stripe's hosted Checkout page (so card data never touches your server), and on a verified `checkout.session.completed` webhook — checked against Stripe's signature and an idempotency key so a retried webhook can't double-grant access — the buyer's email is added as a customer with a signed, time-limited download or lesson-access URL. A refund or chargeback webhook revokes access. Keep an append-only order log for support and dispute handling.\n\nRequires a Stripe account (test mode is free to build against) and S3-compatible storage for files. Sales tax is explicitly the operator's own responsibility — Stripe Tax can be enabled for a per-transaction fee, or the operator handles it manually; this build does not calculate or remit tax itself.\n\nDo not build: multi-channel marketplace listings, fraud scoring beyond what Stripe already provides, abandoned-cart email sequences, or course/community features like discussion forums and certificates — those are separate products, not this one's scope.",
+  "faq": [
+    { "q": "Can I import my existing BigCommerce catalog?", "a": "BigCommerce exports products to CSV, and importing that into a matching schema is straightforward — the harder part is re-uploading digital files to your own storage, since BigCommerce doesn't hand those over in the export." },
+    { "q": "Will it work on my phone?", "a": "As a responsive storefront, yes — Stripe Checkout itself is mobile-optimized. Managing the product catalog and orders from a phone is workable but not built for it." },
+    { "q": "What does it cost to run?", "a": "Stripe takes its standard processing fee (around 2.9% + 30¢ per transaction) either way. Beyond that, hosting and storage run a few dollars a month — no separate platform fee like BigCommerce's monthly plan." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Tax compliance. BigCommerce calculates and can remit sales tax across jurisdictions automatically; here, that's either a paid Stripe Tax add-on or the operator's own legal responsibility to get right, and getting it wrong isn't a bug, it's a liability." }
+  ]
+}

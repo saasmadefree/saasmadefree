@@ -1,0 +1,41 @@
+{
+  "slug": "clearscope",
+  "name": "Clearscope",
+  "domains": [
+    "clearscope.io"
+  ],
+  "category": "seo-marketing",
+  "subcategory": "technical audits and on-page optimization",
+  "pricing": {
+    "amount": 189,
+    "currency": "USD",
+    "plan": "Essentials",
+    "basis": "flat-monthly",
+    "source": "https://clearscope.io/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "crawl scale, rule depth, and operational polish",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "SEOnaut",
+      "url": "https://github.com/stjudewashere/seonaut"
+    }
+  ],
+  "relatedSlugs": [
+    "screaming-frog-seo-spider",
+    "ahrefs",
+    "semrush"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}
