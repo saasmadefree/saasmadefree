@@ -445,9 +445,12 @@ coexistence: read immediately before every write, treat the editor's "file chang
 you last read it" error as a hard stop-and-recheck signal rather than something to retry
 past, and verify contents after every collision instead of assuming which side won. That
 combination held for the rest of the import. The end state: **all 125 upstream entries are
-now accounted for** — 4 pre-existing hand-curated entries, 10 permanently excluded (listed
-below, unchanged from earlier reasoning), and **111 imported** across batches 1–5. 116 tools
-total in `data/tools/`.
+now accounted for** — 3 excluded by slug collision with a hand-curated entry (`notion`,
+`calendly`, `typeform`), 10 more excluded below (9 by incomplete upstream pricing, 1 by
+domain collision — `obsidian-sync`), and **112 imported** across batches 1–5. Plus the 4
+hand-curated entries themselves: **116 tools total** in `data/tools/` (verified directly:
+`ls data/tools | wc -l`), not 115 or 116-minus-a-rounding-error — the arithmetic is
+125 − 3 − 10 = 112 imported, + 4 curated = 116.
 
 ### Batches 3, 4, 5 — composition
 
