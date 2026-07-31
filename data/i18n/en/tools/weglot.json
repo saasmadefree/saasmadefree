@@ -1,0 +1,32 @@
+{
+  "tagline": "Adds translated versions of an existing website without touching its code.",
+  "verdictSummary": "Same shape as Linguise, already in this catalogue at the same verdict: a reverse proxy that rewrites a page into another language, caches the result, lets you override individual strings and emits correct hreflang. All four halves are a weekend for one site you control. The machine translation behind it is an API key, which this catalogue treats as a listed requirement rather than a moat. What Weglot sells beyond that is installing on a site you do not control and serving it from an edge network.",
+  "coreLoopDIY": "Put a translating proxy in front of your own site, cache each translated page, keep an override table for the strings the machine gets wrong, and serve correct hreflang tags.",
+  "whatYouLose": [
+    "installing on a platform you cannot deploy code to, via a plugin or a script tag",
+    "a global edge network, so translated pages are fast everywhere",
+    "automatic detection of new content across a large site",
+    "the visual editor where a non-developer fixes a string in place",
+    "someone else absorbing the cost when a redesign breaks the extraction"
+  ],
+  "whyPeopleStillPay": "For an agency shipping a client site on a platform they do not host, a script tag that produces five working languages by Friday is worth far more than a proxy nobody on the team can maintain.",
+  "prompt": "Build a translating reverse proxy for a single website you control.\n\nRequests arrive on a locale-prefixed path — /fr/about — and the proxy fetches the source page, translates the visible text, caches the result and serves it. Translation goes through a machine translation API with a key, or a self-hosted LibreTranslate instance for a site where cost matters more than fluency.\n\nExtraction is the part that decides whether this works. Parse HTML properly and walk text nodes, never regex the markup. Skip script, style, code and pre blocks entirely. Preserve inline markup inside a translated sentence by replacing each inline element with a numbered placeholder before translation and restoring it after — and write the test for that first, because a link that migrates to the wrong word is the failure mode people notice. Translate the title, meta description and image alt text too.\n\nCache per URL and per locale, keyed by a hash of the extracted source strings, so a page that has not changed is never retranslated. Store the cache in SQLite with the source hash, and add a management page listing every string with its translation and an override field. Overrides win over the machine output permanently and are what makes the system usable after week one — product names, tone, the phrase your industry uses.\n\nEmit hreflang alternates on every page, including a self-reference and x-default, and add each locale to the sitemap. Getting this wrong is how a translated site ends up competing with itself in search.\n\nDo not build a JavaScript widget that translates in the browser. Client-side translation is invisible to crawlers, which is most of the reason to translate a site at all.",
+  "faq": [
+    {
+      "q": "Can I move my Weglot translations across?",
+      "a": "Yes. Weglot exports your translations, including manual edits, as CSV per language pair. Those rows are exactly what your override table wants, so the human corrections — the expensive part — transfer cleanly."
+    },
+    {
+      "q": "Will search engines index the translated pages?",
+      "a": "They will if the translation happens server-side, each locale has its own URL, and the hreflang tags are right. All three are in the build for that reason; miss any one and you have a site nobody finds."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A small VPS plus machine translation charged per character on first translation only — a fully cached ten-thousand-word site is a few dollars once and pennies thereafter. Self-hosted LibreTranslate makes it free at some cost in fluency."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Working on a site you do not host. Weglot's script tag translates a Squarespace or Wix site nobody can deploy code to; a reverse proxy needs control of the domain and somewhere to run."
+    }
+  ]
+}

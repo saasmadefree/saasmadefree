@@ -1,0 +1,32 @@
+{
+  "tagline": "Translation management with a translation memory and vendor workflow.",
+  "verdictSummary": "Two mature open-source translation platforms exist and cover the core honestly, which puts Transifex in the same place as Crowdin and Lokalise in this catalogue: buildable, with real gaps. The gaps are the connector catalogue — Git, Figma, Zendesk, Salesforce, a dozen more — and the agency workflow where a paid vendor picks up a job inside the tool. Both are integration surface, not a moat.",
+  "coreLoopDIY": "Self-host a translation platform, point it at your repository, and let translators work in a web editor while translated files land back in git.",
+  "whatYouLose": [
+    "the connector catalogue, and someone else maintaining it against upstream API changes",
+    "ordering professional translation from inside the tool",
+    "the AI word allowance bundled into the paid tiers",
+    "enterprise single sign-on and audit trails",
+    "support when a file format parses wrongly at two in the morning"
+  ],
+  "whyPeopleStillPay": "A team shipping in twelve languages needs the pipeline to be someone else's problem, and the cost of a broken connector during a release is larger than the invoice.",
+  "prompt": "Deploy a self-hosted translation management platform and wire it to one repository properly. This is a deployment and integration task, not a from-scratch build — Weblate and Tolgee both implement the core well, and reimplementing translation memory and file-format parsers is months of work with a worse result.\n\nRun the platform under Docker Compose with PostgreSQL and Redis, behind a reverse proxy with TLS. Put the database and the file store on a volume you back up, and test a restore before you invite anyone.\n\nWire it to git with a service account and a dedicated branch. Source strings flow in on every push to that branch; translations flow back as commits, never as direct writes to your default branch. Review them like any other change.\n\nSpend the remaining effort on the round trip, which is where these setups actually fail. Write a test that takes one file per format you use, pushes it through the platform untouched, pulls it back, and asserts byte equality. Plural forms, placeholders and escaped characters are what break, and they break silently — a placeholder mangled in a locale you do not read ships to production and nobody notices for a month.\n\nAdd machine translation as a suggestion source with a key, never as an auto-apply. Mark machine-suggested strings with a flag that survives export, so an unreviewed suggestion cannot be mistaken for a human translation.\n\nDo not build a connector for every tool your team uses. Pick the one repository that matters and make it correct.",
+  "faq": [
+    {
+      "q": "Can I migrate my Transifex projects?",
+      "a": "Yes, and reasonably cleanly. Transifex exports source and translated files per resource through its API, and the open-source platforms import the same formats. What does not transfer is the translation memory in a directly loadable shape — export it as TMX and import that separately, expecting some loss of metadata."
+    },
+    {
+      "q": "Which platform should I pick?",
+      "a": "Weblate if the workflow is git-first and you have many file formats; Tolgee if you want in-context editing in a web app and a smaller surface to operate. Both are actively maintained, and both are already in this catalogue for that reason."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A small VPS with 4 GB of RAM handles a personal or small-team project, so roughly twenty dollars a month with backups. Machine translation is metered separately and is usually cents."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Ordering a translation. Transifex lets you send a job to a vendor without leaving the tool; self-hosted, you find the agency, email the files, and paste the result back."
+    }
+  ]
+}

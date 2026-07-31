@@ -1,0 +1,48 @@
+{
+  "slug": "lingq-premium",
+  "name": "LingQ Premium",
+  "domains": [
+    "lingq.com"
+  ],
+  "category": "learning",
+  "subcategory": "reading-based vocabulary tracking",
+  "pricing": {
+    "amount": 14.99,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/lingq-learn-languages/id379385811",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "lingq.com publishes no reachable pricing page — /en/pricing/ and /en/pricing-and-plans/ both 404. Read from the App Store listing, whose subscription section states LingQ Premium (Monthly) $14.99, (6 Months) $80.99 and (12 Months) $119.99; Premium Plus is $29.99 monthly."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "content library and dictionary integrations",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Anki",
+      "url": "https://github.com/ankitects/anki",
+      "license": "AGPL-3.0"
+    },
+    {
+      "name": "Yomitan",
+      "url": "https://github.com/yomidevs/yomitan",
+      "license": "GPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "babbel",
+    "brilliant",
+    "duolingo-super"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

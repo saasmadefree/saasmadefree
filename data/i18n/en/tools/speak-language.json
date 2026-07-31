@@ -1,0 +1,32 @@
+{
+  "tagline": "Spoken conversation practice with an AI tutor.",
+  "verdictSummary": "This one has moved. Speak's core loop — you talk, it understands, it answers in the target language and corrects you — is now assembled from a speech-to-text model, a language model and a voice, all of which are ordinary API calls. That makes it a weekend rather than an impossibility, and the verdict moves off `no` for that reason. What stays behind is the curriculum: Speak decides what you practise and when, and a chat window that will talk about anything is a worse teacher than one with a plan.",
+  "coreLoopDIY": "Hold a spoken conversation in your target language with a model, get corrections logged rather than thrown away, and review your own recurring errors afterwards.",
+  "whatYouLose": [
+    "a designed curriculum, so every session has a point",
+    "pronunciation feedback tuned on learner speech rather than generic recognition",
+    "the mobile app, where spoken practice actually happens",
+    "latency low enough that the conversation feels like one",
+    "lessons and progress that work without a connection"
+  ],
+  "whyPeopleStillPay": "Speaking practice fails on friction, and an app that opens to a lesson chosen for you beats a terminal that asks what you would like to talk about.",
+  "prompt": "Build a spoken conversation partner for a language you are learning, with the corrections treated as the real output.\n\nThe loop: record from the microphone, transcribe with a speech-to-text model, send the transcript plus a short conversation history to a language model, and speak the reply with a text-to-speech voice for the target language. Push-to-talk, not voice activity detection — turn-taking detection is a rabbit hole and a key is a key.\n\nThe system prompt does two jobs and they must stay separate. It replies naturally in the target language at a level you configure, and it emits a structured correction block — a JSON array of `{original, corrected, kind, note}` — for anything you said that a native speaker would not. Parse that block out of the response and store it; never read it aloud. A tutor that interrupts every sentence to correct you stops the conversation, which is the one thing you are trying to have.\n\nGive each session a topic and a goal chosen before it starts, from a list you wrote — order food, describe your week, disagree politely. Print the goal at the top and have the model steer towards it. Without that the model drifts into pleasant, useless small talk within four turns.\n\nAfterwards, produce a session review: the transcript, the corrections grouped by kind, and your talking-time ratio. Track corrections across sessions and show the ten most frequent, which is the report that actually makes you better.\n\nStore audio and transcripts locally in dated folders.\n\nDo not claim to score pronunciation. Transcription confidence is not a pronunciation score, and presenting it as one invents a number.",
+  "faq": [
+    {
+      "q": "Can I bring anything over from Speak?",
+      "a": "No — there is no export of your sessions or your error history. Your correction log starts on the first conversation you have with your own build."
+    },
+    {
+      "q": "How good is the latency?",
+      "a": "With separate transcription, generation and speech calls, expect a couple of seconds between your turn and the reply. Realtime speech-to-speech APIs cut that to well under a second at a higher price per minute; both are worth trying, and the slower one is fine for a language you are still assembling sentences in."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A half-hour conversation costs a few tens of cents through separate speech and text calls, more through a realtime speech model. Daily practice lands well under the subscription, which is the point."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Someone deciding what today's lesson is. Speak opens on a chosen scenario at your level; your build opens on a blank prompt, and choosing what to practise is work you now do."
+    }
+  ]
+}

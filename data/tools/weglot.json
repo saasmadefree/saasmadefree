@@ -1,0 +1,50 @@
+{
+  "slug": "weglot",
+  "name": "Weglot",
+  "domains": [
+    "weglot.com"
+  ],
+  "category": "translation",
+  "subcategory": "website translation proxy",
+  "pricing": {
+    "amount": 17,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://www.weglot.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The page prints $17/month and €15/month side by side for the Starter tier, plus $170/year. Tiers are word-quota based: Starter covers 10,000 unique words and one language."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "install-anywhere and edge serving",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "LibreTranslate",
+      "url": "https://github.com/LibreTranslate/LibreTranslate",
+      "license": "AGPL-3.0"
+    },
+    {
+      "name": "Weblate",
+      "url": "https://github.com/WeblateOrg/weblate",
+      "license": "GPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "transifex",
+    "linguise",
+    "deepl-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "busuu-premium",
+  "name": "Busuu Premium",
+  "domains": [
+    "busuu.com"
+  ],
+  "category": "learning",
+  "subcategory": "language course with native-speaker corrections",
+  "pricing": {
+    "amount": 6.99,
+    "currency": "EUR",
+    "plan": "Premium",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.busuu.com/products/en",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "busuu.com/premium redirects to /products/en. The card shows €6.99/month on the 12-month plan, billed €83.88, struck through from a €167.88 list price under a \"SAVE 50%\" banner — so €13.99/month is the undiscounted rate and €6.99 is promotional. Premium Plus is €8.42/month on the same promotion. Geo-priced in EUR."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "course content and native-speaker network",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Anki",
+      "url": "https://github.com/ankitects/anki",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "babbel",
+    "speak-language",
+    "elsa-speak"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

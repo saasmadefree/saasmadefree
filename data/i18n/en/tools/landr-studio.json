@@ -1,0 +1,32 @@
+{
+  "tagline": "AI mastering plus distribution to streaming platforms.",
+  "verdictSummary": "The mastering half is genuinely approachable — reference-based mastering is a published technique with a good open-source implementation. The distribution half is not code at all: getting a track onto Spotify and Apple Music means an agreement with each platform, an ISRC registry membership, royalty accounting and takedown handling. That is a licensing business, and it is why this is a `no` regardless of how good the audio processing gets.",
+  "coreLoopDIY": "Master your own mixes against a reference track you already like, locally, with a loudness report you can check against each platform's target.",
+  "whatYouLose": [
+    "distribution to Spotify, Apple Music and every other platform",
+    "ISRC issuing and royalty collection",
+    "the sample and plugin catalogue bundled into Studio",
+    "streaming statistics and payout reporting",
+    "takedown handling when someone else claims your track"
+  ],
+  "whyPeopleStillPay": "Nobody can put your record on Spotify by writing software; the whole point of a distributor is the contract you cannot sign yourself.",
+  "prompt": "Build a local reference mastering tool.\n\nInput is your mix and a reference track you want it to sit alongside. Use Matchering to match the reference's frequency balance and loudness, then produce three outputs at different targets: streaming (-14 LUFS integrated), a louder club master, and a true-peak-safe -1 dBTP version for lossy encoding.\n\nThe report matters as much as the audio. For each output print integrated LUFS, short-term maximum, loudness range, true peak measured with 4x oversampling, and stereo correlation. Add a check against each platform's published normalisation target and say plainly what will happen — a master at -6 LUFS is not louder on Spotify, it is quieter and more distorted, and the tool should say that in a sentence rather than leave you to know it.\n\nBuild a null test into the workflow: render the processed file, invert it against the source, and report the residual level. An unexpectedly loud residual means the chain did something you did not ask for.\n\nAdd a batch mode over an album folder that masters every track against the same reference and reports the loudness spread across the record, since inconsistency between tracks is what makes a home-made album sound home-made.\n\nDo not build anything that uploads to a streaming platform. There is no public ingestion API for individuals; distribution runs through licensed partners, and the honest answer is to pay one.",
+  "faq": [
+    {
+      "q": "Can I move my catalogue off LANDR?",
+      "a": "Your audio files are yours, but the distribution is not portable in a meaningful sense: switching distributors means taking releases down and delivering them again elsewhere, which resets release dates and can lose playlist placement. Read the terms on the ISRCs before doing it."
+    },
+    {
+      "q": "Is reference mastering as good as their AI master?",
+      "a": "For a mix that is already in decent shape, it is close and sometimes better, because you choose the reference. For a mix with real problems, neither helps — mastering does not fix a muddy low end."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. Matchering is a Python library, processing is local, and a track masters in seconds on a laptop."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Release day. LANDR delivers to every platform, registers the codes and collects the money; a mastering script gives you a very good WAV file and nowhere to send it."
+    }
+  ]
+}

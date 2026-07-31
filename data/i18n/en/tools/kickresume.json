@@ -1,0 +1,31 @@
+{
+  "tagline": "Matching resume, cover letter and personal website from one profile.",
+  "verdictSummary": "Kickresume's genuinely good idea is that the resume, the cover letter and the personal site are three renderings of one profile, so a job title corrected in one place is corrected everywhere. That idea is a sitting to implement and survives the rebuild completely. The forty templates and the tone of the AI writer do not.",
+  "coreLoopDIY": "Keep one profile file, and build three targets from it: a PDF resume, a cover letter addressed to a specific company, and a static personal site you can deploy anywhere.",
+  "whatYouLose": [
+    "forty resume and forty cover-letter templates",
+    "seven personal-website designs with hosting included",
+    "the AI writer's phrasing, tuned on a large corpus of accepted resumes",
+    "the iOS and Android apps"
+  ],
+  "whyPeopleStillPay": "Three consistent artefacts with no build step and no command line, for the price of two coffees a month during the six weeks a search actually lasts.",
+  "prompt": "Build a one-profile, three-target career document generator.\n\nThe single source of truth is `profile.json` — basics, experience, education, skills, projects. Everything else is a renderer over it.\n\nTarget one, the resume: HTML plus a print stylesheet rendered to PDF by headless Chromium.\n\nTarget two, the cover letter: a template with named slots for the company, the role and three body paragraphs, rendered to a PDF that uses the same typeface and margins as the resume so the pair looks deliberate. Store one letter file per application, keyed by company, alongside the profile.\n\nTarget three, the personal site: a static HTML page built from the same profile, with a `--redact` flag that omits phone number and street address, because a public page and a PDF you email to one recruiter are not the same document. Ship it as plain files with no build server.\n\nWrite one test that renders all three from a fixture profile and asserts that the job titles and date ranges are byte-identical across them. That test is the whole value of the design — the failure it catches is the one that actually happens, where you fix a date on the resume and forget the site.\n\nWith an LLM API key, add a drafting step for the cover letter only: given the profile, a job description and the three or four points you want to make, it produces a first draft you then edit. Do not let it touch the resume — a fabricated bullet on a CV is a different category of problem from a clumsy sentence in a letter.\n\nDo not build hosting. The site is static files; put them wherever you already put static files.",
+  "faq": [
+    {
+      "q": "Can I move my Kickresume documents over?",
+      "a": "Export each document as PDF for reference, then transcribe the content into `profile.json` once. Kickresume has no structured export, so this is retyping — about half an hour for a full career, after which every future document is generated rather than re-edited."
+    },
+    {
+      "q": "How do I keep the personal site up to date?",
+      "a": "Rebuild and redeploy it whenever the profile changes. Wire it into whatever already deploys your static files, and the site stops being a thing you remember to update."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing for the documents. The personal site costs whatever your static host charges, which for one page is usually zero. Cover-letter drafting costs about a cent per letter."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The designs. Kickresume's templates were made by people who look at resumes all day; yours will be two layouts that you tuned until they stopped looking wrong, which is not the same thing."
+    }
+  ]
+}

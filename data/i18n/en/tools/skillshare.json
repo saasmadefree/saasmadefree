@@ -1,0 +1,32 @@
+{
+  "tagline": "Subscription library of creative classes taught by practitioners.",
+  "verdictSummary": "Skillshare is a two-sided marketplace: thousands of teachers publish because the audience is there, and the audience subscribes because the classes are. Neither side exists without the other, and a video player with a progress bar does not begin to substitute. This is the clearest network-effect no in the category.",
+  "coreLoopDIY": "Keep a study plan over free and purchased course material you already have access to, with progress, notes and finished project files in one place.",
+  "whatYouLose": [
+    "the catalogue — thousands of classes across design, illustration, film and business",
+    "teachers who publish there because that is where the students are",
+    "class projects with feedback from other students",
+    "offline downloads and the mobile apps",
+    "discovery: finding a good class on a subject you cannot yet name"
+  ],
+  "whyPeopleStillPay": "One class that changes how you work pays for the year, and you cannot know in advance which one it is — which is exactly what a catalogue subscription is for.",
+  "prompt": "Build a study tracker for video and reading courses you already have access to, aimed at the problem of starting many and finishing none.\n\nA course record holds a title, a source URL or local path, a list of lessons with durations, and a project you intend to produce. Lessons are marked done with a date. Import lesson lists from a YouTube playlist URL, a local folder of video files, or a pasted list.\n\nThe number that changes behaviour is time-to-finish, so compute and display it: at your actual pace over the last four weeks, when will this course be done? A course whose answer is \"March 2029\" is not a course you are taking, and seeing that written down is the point of the tool.\n\nEnforce one rule: at most three courses in progress. Starting a fourth requires explicitly archiving one, with a reason. Archived courses stay listed with the reason visible, so the pattern in your own abandonment is legible.\n\nNotes are Markdown per lesson, with a timestamp field so a note can point at a moment in a video. The project deliverable is a folder path and a done flag, because a course without an artefact at the end is entertainment.\n\nBuild one report: hours watched versus projects finished, monthly. It is an uncomfortable ratio and it is the honest one.\n\nDo not scrape or download subscription video. Track material you have a right to, and let the tool hold links rather than files for anything hosted elsewhere.",
+  "faq": [
+    {
+      "q": "Can I bring my Skillshare progress across?",
+      "a": "No — there is no export of watched classes or saved lists, so you would re-enter the handful of courses you were partway through. For anything you have not started, cancelling loses nothing you had."
+    },
+    {
+      "q": "Where does the course material come from?",
+      "a": "Anything you already have access to: free YouTube series, courses you bought outright, university open courseware, PDFs. The tracker holds links and progress, not content."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. It is SQLite and a small web app on your own machine."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Discovery. Skillshare surfaces a class on a technique you did not know had a name, and a tracker over material you already chose can only ever organise what you already knew to look for."
+    }
+  ]
+}

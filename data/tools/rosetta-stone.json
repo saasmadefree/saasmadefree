@@ -1,0 +1,43 @@
+{
+  "slug": "rosetta-stone",
+  "name": "Rosetta Stone",
+  "domains": [
+    "rosettastone.com"
+  ],
+  "category": "learning",
+  "subcategory": "immersion language course",
+  "pricing": {
+    "amount": 19.99,
+    "currency": "EUR",
+    "plan": "Monthly",
+    "basis": "flat-monthly",
+    "source": "https://www.rosettastone.com/buy",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "The URL geo-redirects to eu.rosettastone.com/buy from this network and prices in EUR. The page opens on the Monthly card at €19.99/month; the Yearly card is €13.25/month, billed €159.00 a year."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "course content and speech engine",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Anki",
+      "url": "https://github.com/ankitects/anki",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "pimsleur",
+    "babbel",
+    "elsa-speak"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Interactive courses in maths, science and computer science.",
+  "verdictSummary": "Every Brilliant lesson is a small hand-built interactive: a slider that moves a curve, a puzzle whose wrong answers each get their own explanation. That is authored work, one screen at a time, by people who know both the subject and how learners get it wrong. The software around it is unremarkable; the thing you would be rebuilding is a publishing house.",
+  "coreLoopDIY": "Keep a practice log of problems you work through from books and open courseware, with your own worked solutions and a schedule that brings back the ones you got wrong.",
+  "whatYouLose": [
+    "thousands of authored lessons across maths, science and computer science",
+    "interactive widgets built one per concept",
+    "wrong-answer explanations written for the specific mistake you made",
+    "a sequence that assumes what you learned two lessons ago",
+    "the mobile apps and offline access"
+  ],
+  "whyPeopleStillPay": "Being walked through an idea by someone who anticipated your specific confusion is worth far more than another problem set, and there is no way to generate that.",
+  "prompt": "Build a practice log for working through mathematics and science problems from books and open courseware.\n\nA problem record holds the source (book, chapter, number), a statement in Markdown with LaTeX, your worked solution, the date, a self-assessed difficulty and an outcome of solved, solved with a hint, or failed.\n\nRender maths properly with KaTeX. A tool for this subject that cannot show an integral is not usable, so make that the first thing that works.\n\nSchedule reviews with FSRS over the failed and hinted problems only — successfully solved problems come back rarely, failures come back soon. Reviewing means attempting again from the statement with your previous solution hidden until you commit an answer. Store attempts as an append-only history so you can look back at what you tried in March.\n\nBuild two reports. The first groups failures by the topic tag you assigned, so a cluster is visible rather than felt. The second lists the problems you have solved twice with a hint and never once without, which is the specific pattern that feels like progress and is not.\n\nEverything is local files plus SQLite. Statements you enter yourself; do not scrape a paid course.\n\nDo not have a model generate practice problems. Unverified generated maths problems have wrong answers often enough to be actively harmful when the whole point is that you cannot yet tell.",
+  "faq": [
+    {
+      "q": "Can I bring my Brilliant history across?",
+      "a": "No. Brilliant exposes no export of completed lessons or attempts, so the log starts empty. What you can carry across is the list of topics you were partway through, and continue them from a textbook."
+    },
+    {
+      "q": "Where do the problems come from?",
+      "a": "You type them, from books you own or from open courseware that permits it. That is slower and it is also the honest answer: this build is a log and a scheduler, not a source of content."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. KaTeX and SQLite are local, and there is no API key anywhere in the design."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The explanation waiting behind a wrong answer. Brilliant tells you why the mistake you just made is tempting; your log records that you made it."
+    }
+  ]
+}

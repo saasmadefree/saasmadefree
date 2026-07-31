@@ -1,0 +1,48 @@
+{
+  "slug": "kickresume",
+  "name": "Kickresume",
+  "domains": [
+    "kickresume.com"
+  ],
+  "category": "job-search",
+  "subcategory": "resume, cover letter and personal site builder",
+  "pricing": {
+    "amount": 24,
+    "currency": "EUR",
+    "plan": "Premium Monthly",
+    "basis": "flat-monthly",
+    "source": "https://www.kickresume.com/en/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "kickresume.com/pricing redirects to a countdown-timered 20%-off page. The €19.20 shown on the Monthly card is the first month only — the card itself says \"Pay €19.20 for the first month\" against a €24/month list rate, which is what is recorded here. Yearly lists at €8/month (€6.40 for the first year). Geo-priced in EUR from this network."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "template library and AI writing",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key"
+  ],
+  "priorArt": [
+    {
+      "name": "JSON Resume",
+      "url": "https://github.com/jsonresume/resume-cli",
+      "license": "MIT"
+    },
+    {
+      "name": "Reactive Resume",
+      "url": "https://github.com/AmruthPillai/Reactive-Resume",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "enhancv",
+    "novoresume",
+    "careerflow"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

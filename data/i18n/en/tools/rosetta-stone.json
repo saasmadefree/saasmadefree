@@ -1,0 +1,32 @@
+{
+  "tagline": "Image-and-audio immersion courses with speech scoring.",
+  "verdictSummary": "Rosetta Stone teaches without translation, which means every concept needs a photograph unambiguous enough to carry a meaning on its own, in every language, plus recorded audio and a speech engine tuned to accept learner accents. The photography alone is a licensing operation. The software is a slideshow with a microphone.",
+  "coreLoopDIY": "Drill picture-to-word association from an image set you assemble, with your own recordings for the audio half.",
+  "whatYouLose": [
+    "a licensed photo library chosen so each image means one thing",
+    "the twenty-five language courses and their sequencing",
+    "TruAccent speech scoring, tuned to learner pronunciation",
+    "live tutoring sessions included with the subscription",
+    "the mobile apps and downloadable lessons"
+  ],
+  "whyPeopleStillPay": "Learning without a translation step genuinely works for some people, and it only works when the images are unambiguous — which is the expensive part they have already paid for.",
+  "prompt": "Build a picture-association drill for vocabulary, and treat image selection as the hard part rather than an implementation detail.\n\nAn item is one image, one target-language word or phrase, and optional audio. Sessions show four images and play or print one phrase; you pick the matching image. Reverse the direction on later reviews: one image, four phrases.\n\nThe design problem is ambiguity. An image meant to teach \"running\" that shows a person on a beach at sunset teaches four things at once. So build an authoring check into the import step: for each candidate item, the tool shows the image with the three distractors it would pair it with and asks you to confirm that only one is right. Items you cannot confirm go to a review pile instead of into the deck.\n\nSource images from an openly licensed set — Openverse and Wikimedia Commons both allow it — and store the licence and attribution with every item. Print an attributions page from that data, because a deck you built from other people's photographs needs to carry its credits.\n\nSchedule with FSRS over items.\n\nFor the speaking half, record yourself and play it back beside a reference recording if you have one. Do not score it. Accepting or rejecting learner pronunciation needs a model trained for exactly that, and a homemade threshold over a generic recogniser produces a number that means nothing — say so in the interface.",
+  "faq": [
+    {
+      "q": "Can I import anything from Rosetta Stone?",
+      "a": "No. There is no export of progress or vocabulary, and the images are licensed to them. Your deck is built from openly licensed images and starts empty."
+    },
+    {
+      "q": "How many items does this need to be useful?",
+      "a": "A few hundred before it feels like a course rather than a quiz, and each one needs an image you have checked for ambiguity. Budget an evening per hundred items — that is the honest measure of what the subscription is replacing."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. Images are downloaded once, the scheduler is local, and no key is involved."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Trusting the picture. Rosetta Stone's images were chosen and shot so a beginner cannot misread them, and a deck assembled from stock photography is ambiguous in ways you will only discover after learning the wrong word."
+    }
+  ]
+}

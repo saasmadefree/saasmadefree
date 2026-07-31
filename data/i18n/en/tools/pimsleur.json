@@ -1,0 +1,31 @@
+{
+  "tagline": "Half-hour audio lessons built on graduated-interval recall.",
+  "verdictSummary": "Pimsleur is fifty-one languages of professionally recorded audio, scripted around a specific recall schedule, with native voices and a producer in the room. The method is published and the scheduling is arithmetic; the recordings are the asset, and they cost a studio and a linguist per language. Nothing about that is code.",
+  "coreLoopDIY": "Run an audio-only recall drill over recordings you own or made, with prompts spaced on an expanding schedule and no screen involved.",
+  "whatYouLose": [
+    "fifty-one languages of studio-recorded lessons",
+    "scripts written around the recall schedule rather than dropped into it",
+    "native speakers, directed, at consistent audio quality",
+    "the mobile app with downloads for offline listening"
+  ],
+  "whyPeopleStillPay": "Thirty minutes of audio that works while you drive, made by people who have been refining this exact format since the 1960s.",
+  "prompt": "Build an audio-first recall drill you can run without looking at a screen.\n\nA drill item is a prompt audio file, a response audio file and a pause length. A session plays prompt, waits the pause, plays the response, and moves on. There is no interface during a session — only audio — because the whole point is that it works while walking or driving.\n\nScheduling follows the graduated-interval idea rather than an app-style queue: an item first heard today comes back a few seconds later, then a minute, then five, then in a later session, then several sessions on. Implement it as an explicit list of intervals in a config file so you can tune it, and store per-item position in that list.\n\nSince there is no screen, grading is implicit: sessions are generated ahead of time as a single audio file per session, built with ffmpeg by concatenating clips and silences. That way a session is a file you can put on a phone, a watch or a car stereo with no app at all.\n\nRecording is a small side tool: type a phrase pair, record both sides, save them with the pair. Recording your own target-language audio is only useful if you already speak it well; otherwise use audio you have licence to use, and say in the README where yours came from.\n\nDo not use text-to-speech for the target language unless you have listened to it critically in that language. Synthetic voices are convincing in English and frequently wrong elsewhere, and a drill that rehearses wrong prosody several hundred times is worse than no drill.",
+  "faq": [
+    {
+      "q": "Can I use my Pimsleur lessons in this?",
+      "a": "No. The recordings are licensed for playback in their app, not for re-cutting into your own drills, and this build takes no position other than: use audio you have the right to use."
+    },
+    {
+      "q": "Where do I get target-language audio?",
+      "a": "Openly licensed sources exist — LibriVox recordings, Common Voice clips, and Tatoeba's audio for many languages. Quality varies, which is exactly the gap between this and a studio production."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. ffmpeg is free, the sessions are files, and there is no service in the loop."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The script. Pimsleur's lessons are written so that each new phrase reuses what you learned four minutes ago; assembling your own clips gives you the schedule without the writing that made it work."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "novoresume",
+  "name": "Novorésumé",
+  "domains": [
+    "novoresume.com"
+  ],
+  "category": "job-search",
+  "subcategory": "one-page resume builder",
+  "pricing": {
+    "amount": 19.99,
+    "currency": "EUR",
+    "plan": "Premium — 1 month",
+    "basis": "one-time",
+    "source": "https://novoresume.com/page/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Novorésumé does not sell subscriptions — the page states \"Pay once. No recurring billing.\" and \"There Is No Automatic Subscription.\" Premium is a one-off payment for a fixed access period: €19.99 for one month, €39.99 for three months, €139.99 for a year. Geo-priced in EUR from this network."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "layout constraints and templates",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "RenderCV",
+      "url": "https://github.com/rendercv/rendercv",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "enhancv",
+    "kickresume",
+    "rezi"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

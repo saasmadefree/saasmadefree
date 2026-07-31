@@ -1,0 +1,43 @@
+{
+  "slug": "huntr",
+  "name": "Huntr",
+  "domains": [
+    "huntr.co"
+  ],
+  "category": "job-search",
+  "subcategory": "application pipeline board",
+  "pricing": {
+    "amount": 40,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://huntr.co/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The page opens on the monthly rate. Same tier billed less often: $30/month paid $90 every three months, $26.66/month paid $160 every six months."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "polish and job-board coverage",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Reactive Resume",
+      "url": "https://github.com/AmruthPillai/Reactive-Resume",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "careerflow",
+    "rezi",
+    "kickresume"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

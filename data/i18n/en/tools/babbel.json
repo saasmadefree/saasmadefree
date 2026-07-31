@@ -1,0 +1,32 @@
+{
+  "tagline": "Dialogue-based language lessons written by linguists.",
+  "verdictSummary": "What Babbel sells is a curriculum: thousands of short lessons, sequenced by people who teach languages for a living, with dialogues recorded by native speakers and grammar introduced in a deliberate order. None of that is code. A personal spaced-repetition app is a sitting to build and genuinely useful, but it starts empty and you are the one who has to fill it.",
+  "coreLoopDIY": "Add the words and phrases you actually meet, review them on a spaced schedule, and track which ones keep failing.",
+  "whatYouLose": [
+    "the entire course — thousands of sequenced lessons across fourteen languages",
+    "dialogues recorded by native speakers, with the audio licensed for reuse",
+    "grammar explanations placed exactly where a learner needs them",
+    "speech recognition scoring your pronunciation",
+    "the apps, with lessons available offline"
+  ],
+  "whyPeopleStillPay": "Someone deciding what you should learn next, in what order, is most of what a language course is — and building that yourself is a career, not a weekend.",
+  "prompt": "Build a personal spaced-repetition trainer for the language you are learning, designed around material you meet in real life rather than a supplied curriculum.\n\nA card is a source sentence, a target sentence, a note field and an optional audio file. Cards are added three ways: typed directly, pasted as a block of tab-separated lines, or clipped from a text you are reading by selecting a sentence.\n\nScheduling uses FSRS rather than a hand-rolled interval scheme — the algorithm is published and open source, and a naive \"double the interval on success\" scheme is measurably worse. Store every review as a row with the grade and the timestamp, so the schedule can be recomputed from scratch if you change parameters.\n\nThe review screen shows the target sentence with one word blanked and the source sentence as the prompt, grading on a four-point scale. Audio, if present, plays before the answer is revealed, never after.\n\nBuild the leech report and make it prominent: cards failed more than N times, listed with their full history. In a self-made deck, a leech almost always means a badly written card rather than a hard word, and the right action is to rewrite or delete it. A trainer that never surfaces its own bad cards quietly teaches you to hate it.\n\nStore everything in SQLite in a directory you control, with audio as files beside the database.\n\nDo not generate a curriculum. A model can invent plausible A1 dialogues all day, and none of them are graded, sequenced or checked by anyone who teaches the language.",
+  "faq": [
+    {
+      "q": "Can I import my Babbel progress?",
+      "a": "No. Babbel has no export of your vocabulary or review history — progress lives inside their course and does not come out. You start this deck empty, which is the honest cost of the swap."
+    },
+    {
+      "q": "Will it work on my phone?",
+      "a": "Not as written. If you want reviews on a phone without building an app, put your cards in Anki instead and use its existing mobile clients — this build makes sense when you want the schema and the reports to be yours."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. It is a local database and a local UI, with no key and no service."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Knowing what to study next. Babbel answers that for you every time you open it; your trainer only reviews what you already thought to add, which means it can never teach you a word you have not met."
+    }
+  ]
+}

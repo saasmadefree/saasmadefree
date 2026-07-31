@@ -1,0 +1,31 @@
+{
+  "tagline": "Splits a song into stems and slows it down for practice.",
+  "verdictSummary": "This is a verdict change, and the reason is that the model gap closed. Source separation used to be the moat; Demucs is published, maintained and good enough that separating a track locally gives results a musician practising in a bedroom will not distinguish from the paid one. Tempo, key and chord detection are equally available. What Moises still owns is the phone in your hands at rehearsal, and cloud processing that returns a track in seconds rather than minutes.",
+  "coreLoopDIY": "Drop a song in, get vocals, drums, bass and other as separate files, and practise against a mix you control at a tempo you choose.",
+  "whatYouLose": [
+    "the mobile app, which is where practice actually happens",
+    "processing in seconds on their hardware instead of minutes on yours",
+    "a shared library synced across devices and bandmates",
+    "the setlist and rehearsal features built around the separated tracks"
+  ],
+  "whyPeopleStillPay": "Six dollars a month for a working phone app beats a Python environment you have to keep alive, especially when the alternative is a laptop on a music stand.",
+  "prompt": "Build a local practice tool for musicians around source separation.\n\nSeparation runs through Demucs — do not attempt to train or implement a separator. Take an audio file, produce vocals, drums, bass and other as separate WAVs into a folder named after the track, and cache them so a song is separated once.\n\nThe practice interface is the actual product: a mixer with one fader and a mute per stem, so removing the guitar to play along is one click. Add independent tempo and pitch control using a phase vocoder — slowing a passage to 70% without shifting pitch, or transposing to fit your instrument, are the two things a practising musician wants most.\n\nAdd a loop bar: drag to select a region, loop it, and let a keyboard shortcut nudge the boundaries by a beat. Practising a four-bar fill means playing it forty times, so getting the loop points comfortable matters more than any audio feature here.\n\nDetect key and tempo with Essentia and print them, but display them as estimates rather than facts — automatic key detection is wrong often enough on real recordings that presenting it as certain will confuse someone practising.\n\nSave a per-song state file with your fader positions, loop points and tempo setting, so reopening a song resumes the practice session rather than resetting it.\n\nDo not build chord transcription. Chord recognition on dense mixes is unreliable, and a wrong chord chart is worse than no chart when you are learning a song by ear anyway.",
+  "faq": [
+    {
+      "q": "Can I export anything from Moises?",
+      "a": "Separated stems can be downloaded on the paid tiers, so grab those before cancelling. Setlists and per-song settings do not export, and they are the part you would rebuild."
+    },
+    {
+      "q": "How long does separation take on a laptop?",
+      "a": "With the standard Demucs model, roughly one to three minutes per song on a recent CPU and well under a minute with a GPU. It is a one-off cost per song since results are cached."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing beyond electricity — no key, no service, and models are a one-off download of a few hundred megabytes."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Practising away from your desk. A laptop running a Python process is not what you want on a music stand at rehearsal, and Moises is an app on the phone already in your pocket."
+    }
+  ]
+}

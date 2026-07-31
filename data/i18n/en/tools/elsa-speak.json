@@ -1,0 +1,31 @@
+{
+  "tagline": "Scores your English pronunciation sound by sound.",
+  "verdictSummary": "ELSA reports which phoneme you got wrong, not just whether you were understood, and that requires a model trained on a large corpus of non-native speech labelled by phoneticians. Speech recognition is available to anyone now; labelled learner speech is not, and without it the best a personal build can do is tell you whether a recogniser heard the right word.",
+  "coreLoopDIY": "Record yourself reading a sentence, transcribe it locally, and see which words a recogniser failed to hear — a blunt but real signal about what is not landing.",
+  "whatYouLose": [
+    "per-phoneme scoring, which is the entire product",
+    "targeted drills chosen from your own error profile",
+    "the curriculum of sentences graded by difficulty",
+    "the mobile app and its recording workflow"
+  ],
+  "whyPeopleStillPay": "Being told that your /θ/ is landing as /s/ is actionable in a way that \"the computer misheard you\" never is, and no open model produces that judgement.",
+  "prompt": "Build a local pronunciation practice loop for a language you are learning, and be precise about what it can and cannot tell you.\n\nThe loop: display a target sentence, record from the microphone, transcribe locally with whisper.cpp, and compare the transcript to the target with a word-level alignment. Show each word coloured by whether it was recognised, substituted or dropped, and keep the audio file beside the attempt so you can listen back.\n\nBe honest in the interface about what this measures. A word the recogniser missed is evidence that something is off; a word it caught is not evidence that you said it well, because recognisers are trained to be forgiving of accent. Put that sentence in the UI, not in a README, because the temptation to read the output as a pronunciation score is strong and wrong.\n\nRun each attempt through the recogniser three times with different temperature settings and report agreement across runs. A word that is transcribed differently on each pass is genuinely unclear in your recording — that instability is a better signal than any single transcript.\n\nBuild the error report over time: words dropped or substituted most often across all your attempts, with links to the recordings. That list is what you take to a tutor.\n\nDo not compute a phoneme-level score. Forced alignment tools exist and will happily produce numbers, but calibrating them against native speech is the actual research problem here, and an uncalibrated score is a confident number about nothing.",
+  "faq": [
+    {
+      "q": "Can I get my ELSA history out?",
+      "a": "No. ELSA exposes no export of your recordings or your per-sound scores, so the practice history stays inside the app. Your own log starts empty and grows from your recordings."
+    },
+    {
+      "q": "Does whisper.cpp run fast enough on a laptop?",
+      "a": "For single sentences, yes. A small or medium model transcribes a few seconds of audio in well under a second on modern hardware, and the whole loop stays offline."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. Local model, local audio, no key. Model weights are a one-off download of a few hundred megabytes."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Being told which sound was wrong. Your version can say a word did not land; ELSA says the vowel was too far forward, and that is the difference between knowing you have a problem and knowing how to fix it."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "rezi",
+  "name": "Rezi",
+  "domains": [
+    "rezi.ai"
+  ],
+  "category": "job-search",
+  "subcategory": "resume scoring and keyword targeting",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://www.rezi.ai/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The same page also sells a $149 one-time Lifetime plan with the Pro feature set, and an Enterprise tier at $99/month per 200 users."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "scoring model and AI writing",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key"
+  ],
+  "priorArt": [
+    {
+      "name": "Reactive Resume",
+      "url": "https://github.com/AmruthPillai/Reactive-Resume",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "enhancv",
+    "huntr",
+    "novoresume"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

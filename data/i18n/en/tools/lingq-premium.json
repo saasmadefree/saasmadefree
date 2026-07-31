@@ -1,0 +1,32 @@
+{
+  "tagline": "Read real texts, click unknown words, watch your known-word count grow.",
+  "verdictSummary": "LingQ is the one entry in this category whose content is meant to be yours: the method is importing texts you care about and marking words by status. That mechanic — tokenise, colour by status, click to look up, count what you know — is a weekend. What the subscription adds is the imported library, the dictionaries wired in per language, and clients that work on a phone during a commute.",
+  "coreLoopDIY": "Import any text, see every word coloured by whether you know it, click unknown ones to look them up and save them, and track your known-word count over time.",
+  "whatYouLose": [
+    "the library of imported lessons with matched audio",
+    "dictionary lookups wired up per language, including community definitions",
+    "the mobile apps, where most reading actually happens",
+    "tutors and conversation sessions bought with points",
+    "browser and video importers that handle awkward sources"
+  ],
+  "whyPeopleStillPay": "Fifteen dollars buys a method that already works on a phone with dictionaries in place, and the setup you avoid is exactly the setup this build asks for.",
+  "prompt": "Build a reading tool that tracks word knowledge across everything you read in a target language.\n\nImport plain text, EPUB and subtitle files. Tokenise with a real tokeniser for the language rather than splitting on spaces — this matters enormously outside western European languages and quietly matters inside them too, for contractions and clitics. Lemmatise where a lemmatiser exists, and store both surface form and lemma.\n\nEvery token gets a status: unknown, learning with a level from one to four, known, or ignored (names, numbers). Status is stored per lemma and applies everywhere, so a word you learned in one book is already coloured in the next. Render the text with each word coloured by status; clicking one opens a definition pane and sets its status.\n\nDefinitions come from an offline dictionary file you supply. Wiktionary extracts are published in machine-readable form under a free licence for most major languages — parse one into SQLite at import time rather than calling an online dictionary on every click.\n\nThe number that makes the method work is known words over time, so store a daily snapshot and plot it. Add a per-text statistic shown before you start reading: percentage of tokens already known. Below about ninety-five percent, reading is decoding rather than reading, and knowing that in advance changes what you pick.\n\nSaved words export to Anki-compatible TSV with the sentence they came from, so review happens in a tool that already has mobile clients.\n\nDo not build audio alignment between a text and a recording. Getting it right needs forced alignment and careful handling of mismatched editions, and it is a project of its own.",
+  "faq": [
+    {
+      "q": "Can I import my LingQ words?",
+      "a": "Yes, and this is the rare good case: LingQ exports your saved words with their status and context sentence as CSV. Map status to your own scale and import directly — your known-word count carries over, which is the number the whole method runs on."
+    },
+    {
+      "q": "Will it work on my phone?",
+      "a": "Only through a mobile browser if you host it. Reading is the part of language learning that most naturally happens on a phone, so this is the gap you will feel; exporting saved words to Anki covers the review half at least."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing beyond hosting if you want it away from your desk. Dictionary data is a one-off download, and there is no API in the loop."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Material at your level, ready to open. LingQ's library is graded and comes with audio; your version is only as good as the texts you can find and are able to read."
+    }
+  ]
+}

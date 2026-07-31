@@ -1,0 +1,43 @@
+{
+  "slug": "pimsleur",
+  "name": "Pimsleur",
+  "domains": [
+    "pimsleur.com"
+  ],
+  "category": "learning",
+  "subcategory": "audio language courses",
+  "pricing": {
+    "amount": 20.99,
+    "currency": "USD",
+    "plan": "All Access",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/pimsleur-language-learning/id1405735469",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "pimsleur.com/subscriptions redirects to the homepage, which advertises courses \"starting at only $150\" rather than a subscription rate. Read from the App Store listing: All Access Subscription $20.99, All Access Annual $164.99, single-language Premium $19.99."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "recorded course content",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Anki",
+      "url": "https://github.com/ankitects/anki",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "rosetta-stone",
+    "babbel",
+    "elsa-speak"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

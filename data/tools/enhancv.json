@@ -1,0 +1,48 @@
+{
+  "slug": "enhancv",
+  "name": "Enhancv",
+  "domains": [
+    "enhancv.com"
+  ],
+  "category": "job-search",
+  "subcategory": "designed resume builder",
+  "pricing": {
+    "amount": 19.5,
+    "currency": "EUR",
+    "plan": "Pro Quarterly",
+    "basis": "annual-effective-monthly",
+    "source": "https://enhancv.com/pricing/",
+    "checkedOn": "2026-07-31",
+    "confidence": "low",
+    "notes": "FLAGGED. enhancv.com/pricing is geo-priced in EUR from this network and opens on the Pro Quarterly card: €58.51 billed every three months, i.e. €19.50/month, discounted 32% from €86.28. Clicking the Pro Monthly tab did not repaint the card in a scripted browser session, so the month-to-month rate could not be read. Our basis list has no quarterly code, so this records the effective monthly cost of a non-monthly billing period. The page title advertises \"starting from $16.50\"."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "template design and layout engine",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key"
+  ],
+  "priorArt": [
+    {
+      "name": "Reactive Resume",
+      "url": "https://github.com/AmruthPillai/Reactive-Resume",
+      "license": "MIT"
+    },
+    {
+      "name": "RenderCV",
+      "url": "https://github.com/rendercv/rendercv",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "kickresume",
+    "novoresume",
+    "rezi"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

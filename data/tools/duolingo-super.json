@@ -1,0 +1,43 @@
+{
+  "slug": "duolingo-super",
+  "name": "Duolingo Super",
+  "domains": [
+    "duolingo.com"
+  ],
+  "category": "learning",
+  "subcategory": "gamified language course",
+  "pricing": {
+    "amount": 12.99,
+    "currency": "USD",
+    "plan": "Super",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/duolingo-language-lessons/id570060128",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "duolingo.com/super is a marketing page that prints no price — the plan cards list features only, and the figures appear after signup. Read from the App Store listing, which lists Super Duolingo at $12.99 monthly alongside annual SKUs at $83.99, $95.99 and $119.99."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "course content and habit design",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Anki",
+      "url": "https://github.com/ankitects/anki",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "babbel",
+    "busuu-premium",
+    "brilliant"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}
