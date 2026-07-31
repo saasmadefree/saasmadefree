@@ -1,0 +1,19 @@
+{
+  "tagline": "Capture un flux navigateur et laisse les spectateurs cliquer dedans de façon interactive",
+  "verdictSummary": "Capturer un flux navigateur comme une série de captures d'écran avec des zones cliquables — pour qu'un spectateur clique à travers une relecture interactive au lieu de regarder une vidéo passive — c'est un vrai projet de week-end, en réutilisant l'approche de capture Scribe de ce catalogue comme point de départ. Ce qui ne survit pas : le poli d'Arcade dans la précision de détection automatique des zones cliquables et ses analytics sur la façon dont les spectateurs cliquent vraiment à travers une démo partagée.",
+  "coreLoopDIY": "Capture un workflow navigateur comme une séquence de captures d'écran pleine page avec une zone marquant l'endroit où l'utilisateur a cliqué sur chacune, et laisse un spectateur cliquer à travers la séquence de façon interactive plutôt que de regarder une vidéo passive.",
+  "whatYouLose": [
+    "la précision soignée de la détection automatique des zones cliquables",
+    "les analytics de clic des spectateurs",
+    "les bibliothèques de démos partagées en équipe",
+    "le branding personnalisé sur les démos partagées"
+  ],
+  "whyPeopleStillPay": "Capturer des captures d'écran avec les coordonnées de clic, c'est simple ; rendre la détection des zones cliquables fiable sur l'interface de n'importe quel site, et donner aux équipes des analytics sur la façon dont les prospects cliquent vraiment à travers une démo partagée, c'est le travail produit continu.",
+  "prompt": "Construis un outil de capture de démo interactive, en étendant l'approche de capture Scribe de ce catalogue avec une relecture cliquable au lieu d'un guide statique. Utilise une extension Chrome (Manifest V3) qui, pendant l'enregistrement, capture une capture d'écran pleine page à chaque clic avec les coordonnées et la taille de l'élément cliqué sur la page, construisant une séquence de paires capture-plus-zone. À l'export, génère une page HTML autonome qui rejoue la séquence : montre la première capture avec une zone cliquable pulsante à l'endroit du clic enregistré, et passe à la capture suivante seulement quand le spectateur clique cette zone — un parcours interactif, pas une vidéo passive. Prends en charge l'ajout d'une courte légende texte à chaque étape, modifiable après capture. Exporte comme un seul fichier HTML avec les images embarquées, portable, aucun serveur requis pour le visionner, ou optionnellement héberge-le toi-même pour un lien partageable. Ne construis pas de réglage de précision automatique des zones cliquables au-delà d'une simple capture de coordonnées, d'analytics de spectateurs, ni de bibliothèques partagées en équipe — c'est hors périmètre ; ceci produit une démo interactive par capture, visionnable de façon autonome. Aucune clé API ni compte requis.",
+  "faq": [
+    { "q": "En quoi c'est différent d'une vidéo d'enregistrement d'écran ?", "a": "Le spectateur clique lui-même à travers, étape par étape, plutôt que de regarder une vidéo passive — chaque étape montre une zone à l'endroit où le clic original a eu lieu, et avance quand le spectateur clique dessus aussi." },
+    { "q": "Est-ce que ça me montre des analytics sur la façon dont les gens cliquent à travers ma démo ?", "a": "Non — c'est hors périmètre. Tu obtiens la démo interactive elle-même, mais pas de données sur la façon dont les spectateurs interagissent vraiment avec." },
+    { "q": "Puis-je la partager sans rien héberger ?", "a": "Oui — elle s'exporte comme un seul fichier HTML autonome avec les images embarquées, visionnable en ouvrant le fichier directement, aucun serveur requis." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien — c'est une extension navigateur avec export local, donc aucun coût d'hébergement sauf si tu choisis d'héberger toi-même le fichier exporté pour un lien partageable." }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "Des notes comme des objets typés — une Personne, un Livre, un Projet — pas juste des pages",
+  "verdictSummary": "Un système de notes où chaque page est un « objet » typé — une Personne, un Livre, un Projet — avec des propriétés structurées spécifiques à son type, c'est un vrai projet de week-end à une semaine une fois qu'on accepte un petit ensemble fixe de types d'objets plutôt que le système de types entièrement personnalisable de Capacities. Ce qui ne survit pas : les types d'objets personnalisés définis par l'utilisateur avec leurs propres schémas de propriétés, et la synchro en temps réel entre appareils.",
+  "coreLoopDIY": "Crée des notes comme des objets typés depuis un petit ensemble fixe de types, chacun avec des propriétés structurées spécifiques à son type, et parcours ou filtre les objets par type et valeur de propriété.",
+  "whatYouLose": [
+    "des types d'objets personnalisés définissables par l'utilisateur avec leurs propres schémas",
+    "la synchro en temps réel entre appareils",
+    "un graphe visuel de relations entre objets",
+    "l'extraction de propriétés assistée par IA"
+  ],
+  "whyPeopleStillPay": "Quelques types d'objets codés en dur, c'est un week-end ; laisser les utilisateurs définir des nouveaux types arbitraires avec leurs propres schémas de propriétés, de façon sûre et flexible, c'est une conception produit généralisée sensiblement plus dure.",
+  "prompt": "Construis un système de notes où les pages sont des objets typés, pas des documents libres — la vraie idée distinctive de Capacities. Utilise Next.js/TypeScript avec Postgres. Implémente un petit ensemble fixe de types d'objets pour commencer : Personne, Livre, Projet, Note, chacun avec son propre schéma de propriétés structuré — une Personne a un nom, un email et des tags ; un Livre a un titre, un auteur, une note et un statut. Créer un nouvel objet nécessite de choisir d'abord un type, puis de remplir les champs spécifiques à ce type, plus un corps Markdown libre pour tout le reste. Construis une liste parcourable et filtrable par type, comme tous les Livres filtrables par statut, et une simple recherche sur tous les objets peu importe le type. Prends en charge le lien d'un objet à un autre, comme un Projet lié à plusieurs Personnes, avec le lien montré des deux côtés. Ne construis pas de designer de type accessible à l'utilisateur pour des types personnalisés arbitraires, de synchro multi-appareils en temps réel, ni de fonctionnalité d'extraction de propriétés assistée par IA — c'est hors périmètre ; ceci livre un ensemble fixe et utile de types plutôt qu'un système de types entièrement généralisé. Nécessite un hébergement et une base de données ; aucune clé API externe requise.",
+  "faq": [
+    { "q": "Puis-je créer mes propres types d'objets personnalisés, comme dans Capacities ?", "a": "Pas dans cette version — elle livre un ensemble fixe : Personne, Livre, Projet, Note. Laisser les utilisateurs définir de nouveaux types arbitraires avec leurs propres schémas, c'est une vraie conception produit généralisée plus dure que ce prompt ne tente pas." },
+    { "q": "En quoi c'est différent d'une application de notes basée sur des tags ?", "a": "Chaque page a un type avec des champs structurés spécifiques, pas juste du texte libre avec des tags — un objet Livre a un champ de note, pas juste un tag, ce qui change comment tu peux filtrer et parcourir." },
+    { "q": "Ça synchronise entre mes appareils en temps réel ?", "a": "Non — c'est hors périmètre. Ceci tourne comme une application web hébergée à laquelle tu accéderais depuis n'importe quel appareil, mais sans gestion de conflit multi-appareils en temps réel." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données — généralement quelques dollars par mois, puisqu'aucune API externe n'est nécessaire pour cette construction." }
+  ]
+}

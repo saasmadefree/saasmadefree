@@ -1,0 +1,19 @@
+{
+  "tagline": "Un formulaire qui remplit un template PDF avec les réponses soumises automatiquement",
+  "verdictSummary": "Remplir un template PDF avec les données de formulaire soumises automatiquement — le vrai angle d'automatisation documentaire de Formstack — c'est un vrai projet de week-end en utilisant une bibliothèque existante de remplissage de formulaire PDF. Ce qui ne survit pas : la grande bibliothèque de templates de Formstack et son intégration de signature électronique.",
+  "coreLoopDIY": "Publie un formulaire, et à la soumission, remplis automatiquement les champs d'un template PDF préchargé avec les réponses soumises, générant un document complété prêt au téléchargement.",
+  "whatYouLose": [
+    "une grande bibliothèque de templates de documents préconstruits",
+    "l'intégration de signature électronique",
+    "le routage de workflow et les approbations avancées",
+    "les attestations de conformité entreprise"
+  ],
+  "whyPeopleStillPay": "Remplir un template PDF, c'est un appel de bibliothèque ; une grande bibliothèque de templates plus une intégration de signature électronique et un routage d'approbation pour de vrais documents d'entreprise, c'est le produit continu bien plus large.",
+  "prompt": "Construis un outil de formulaire qui remplit un template PDF avec les réponses soumises automatiquement — le vrai angle d'automatisation documentaire de Formstack. Utilise Next.js/TypeScript avec SQLite, et une bibliothèque de remplissage de formulaire PDF comme pdf-lib, qui peut remplir des champs de formulaire PDF existants de façon programmatique. Laisse le créateur de formulaire importer un PDF qui a déjà des champs de formulaire remplissables, créés dans n'importe quel éditeur PDF, et faire correspondre chaque champ à une question dans le constructeur de formulaire. Prends en charge les types de champs standards (texte, sélection, date, signature-comme-nom-tapé) dans le constructeur de formulaire lui-même. À la soumission, remplis les champs PDF mappés avec les réponses soumises en utilisant pdf-lib, et génère un PDF complété et téléchargeable — stocke-le à côté des données de soumission brutes dans SQLite. Envoie au propriétaire du formulaire, et optionnellement au soumissionnaire, le PDF généré via un fournisseur d'emailing transactionnel. Ne construis pas de grande bibliothèque de templates, de vraie intégration de signature électronique (vérifiée cryptographiquement), ni de workflows de routage d'approbation — c'est hors périmètre ; un nom tapé dans un champ de signature n'est pas une signature électronique légalement vérifiée, et le README devrait le dire clairement. Nécessite un nom de domaine et un fournisseur d'emailing transactionnel ; aucun autre service externe requis.",
+  "faq": [
+    { "q": "Ça génère une signature électronique juridiquement contraignante ?", "a": "Non — un nom tapé dans un champ de signature n'est pas vérifié cryptographiquement comme le sont les vrais services de signature électronique. Si tu as besoin de signatures juridiquement contraignantes, c'est une vraie raison d'utiliser un outil de signature électronique dédié." },
+    { "q": "Puis-je utiliser n'importe quel PDF comme template ?", "a": "Il doit s'agir d'un PDF avec de vrais champs de formulaire remplissables déjà définis, créés dans un éditeur PDF — cette construction remplit des champs existants, elle ne les ajoute pas à un PDF plat." },
+    { "q": "Combien de templates de documents ça prend en charge ?", "a": "Autant que tu en importes et mappes toi-même — il n'y a pas de bibliothèque préconstruite comme celle de Formstack, qui représente un vrai contenu accumulé." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Un nom de domaine plus le palier gratuit d'un fournisseur d'emailing transactionnel — généralement rien de plus que ce que tu paies déjà pour le domaine." }
+  ]
+}
