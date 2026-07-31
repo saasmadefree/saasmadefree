@@ -1,0 +1,32 @@
+{
+  "tagline": "Une licence PDF unique couvrant le navigateur, l’appli de bureau et le téléphone, avec le même document sur les trois.",
+  "verdictSummary": "La Document Suite de Xodo est tarifée sur l’étendue : web, bureau et mobile dans un seul abonnement. Une boîte à outils web auto-hébergée couvre bien l’un de ces trois et mal les deux autres, donc le projet personnel honnête arrête de prétendre synchroniser et fait plutôt d’un dossier la seule source de vérité, accessible de partout. Ça fonctionne, et c’est visiblement moins que trois applications natives.",
+  "coreLoopDIY": "Garde chaque document dans un seul dossier sur une machine que tu contrôles, accède-y depuis n’importe quel appareil via un navigateur, et laisse un outil de synchro de fichiers existant gérer les copies hors ligne.",
+  "whatYouLose": [
+    "les applications natives iOS et Android et l’accès hors ligne sur un téléphone",
+    "l’application de bureau et son intégration d’association de fichiers",
+    "une vraie synchro avec gestion de conflits sur trois plateformes",
+    "les annotations qui te suivent entre appareils en plein milieu d’un document",
+    "le scanner de documents dans l’appli mobile"
+  ],
+  "whyPeopleStillPay": "Parce que le même document vraiment présent sur trois appareils est un problème de synchro, et la synchro est la partie qui prend des années à une équipe et casse de façons qu’une seule personne ne corrige jamais complètement.",
+  "prompt": "Construis un hub PDF à dossier unique accessible depuis chaque appareil que tu possèdes.\n\nUn répertoire est la source de vérité. Sers-le via HTTPS derrière une authentification, avec un visualiseur PDF.js, une recherche plein texte sur le texte extrait, et les opérations quotidiennes — fusionner, scinder, pivoter, compresser, OCR — appliquées côté serveur.\n\nNe construis pas de synchro. Mets le dossier dans Syncthing ou un lecteur cloud existant et laisse ça gérer la réplication ; puis rends l’outil correct sous l’hypothèse que les fichiers peuvent changer en dessous de lui. Ça veut dire : indexer par hash de contenu plutôt que par chemin, réindexer sur une surveillance du système de fichiers plutôt que sur un minuteur, et ne jamais garder un fichier ouvert à travers une requête.\n\nExtrais le texte une fois par document à l’ingestion, stocke-le dans SQLite avec FTS5, et fais de la recherche la porte d’entrée. Un dossier de 2 000 PDF est inutilisable sans ça et agréable avec, et c’est la fonctionnalité qui rend un hub navigateur vraiment meilleur que trois applis.\n\nFais fonctionner honnêtement le cas du téléphone : un visualiseur responsive, un téléversement depuis la pellicule photo, et une déclaration claire qu’il n’y a pas de copie hors ligne. Ne construis pas un service worker qui met en cache quelques documents et appelle ça un support hors ligne — un hors ligne partiel qui rate silencieusement le document dont tu as besoin est pire que pas de hors ligne du tout.\n\nStocke les annotations dans du JSON annexe indexé par hash de contenu, à côté du fichier, pour que l’outil de synchro les transporte avec le document.\n\nHors périmètre : les applications natives, la numérisation mobile avec détection de bords, et un protocole de synchro maison.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux transférer mes documents Xodo ?",
+      "a": "Oui — copie les fichiers dans le dossier et ils sont indexés. Les annotations faites dans Xodo sont écrites dans les PDF comme des annotations standards, donc elles survivent ; tout ce que Xodo gardait dans son propre cloud non."
+    },
+    {
+      "q": "Est-ce que ça marchera hors ligne sur mon téléphone ?",
+      "a": "Non. C’est un hub navigateur au-dessus d’un dossier sur un serveur, et sans signal il n’y a rien à lire. Si la lecture hors ligne sur un téléphone est la raison pour laquelle tu payes, ce projet ne la remplace pas."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Environ 5 à 10 dollars par mois pour un VPS plus un domaine, ou rien sur une machine à la maison accessible via un tunnel. L’index de recherche et le visualiseur sont gratuits."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "Trois vraies applications. Tout l’argument de vente de Xodo, c’est que le même document se comporte nativement sur web, bureau et téléphone ; ici il se comporte bien dans un navigateur et de façon adéquate dans un autre."
+    }
+  ]
+}

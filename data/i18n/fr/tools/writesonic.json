@@ -1,0 +1,19 @@
+{
+  "tagline": "Génère des brouillons de texte marketing avec ta propre clé API LLM",
+  "verdictSummary": "Un générateur de texte marketing câblé à ta propre clé API LLM est un vrai projet de week-end — des modèles de prompt pour du texte publicitaire, des descriptions de produit et des plans d’article de blog ne sont que des prompts structurés. Ce qui ne survit pas : les modèles ajustés finement de Writesonic pour des formats de texte spécifiques, ses flux de travail de contenu intégrés au SEO, et ses vérifications intégrées de plagiat et de détection d’IA.",
+  "coreLoopDIY": "Remplis un modèle structuré — produit, audience, ton, format — pour un type de texte choisi, envoie-le à une API LLM, et génère plusieurs variantes de brouillon parmi lesquelles choisir.",
+  "whatYouLose": [
+    "les modèles ajustés finement pour des formats de texte spécifiques",
+    "les flux de travail de contenu intégrés au SEO",
+    "les vérifications intégrées de plagiat et de détection d’IA",
+    "la collaboration d’équipe et la mémoire de voix de marque à travers un espace de travail"
+  ],
+  "whyPeopleStillPay": "Un modèle de prompt est facile à copier ; garder la voix de marque de toute une équipe cohérente à travers des dizaines de modèles, plus des vérifications de conformité comme la détection de plagiat, est le travail de produit continu.",
+  "prompt": "Construis un générateur de texte marketing câblé à ta propre clé API LLM — Claude ou GPT, lue depuis ANTHROPIC_API_KEY ou OPENAI_API_KEY. Utilise Next.js/TypeScript. Crée un petit ensemble de modèles structurés (description de produit, titre publicitaire plus corps, plan d’article de blog, légende sociale) où l’utilisateur remplit des champs produit et audience plutôt que d’écrire un prompt libre à chaque fois — cette structure est l’essentiel de ce qu’un outil de texte ajoute réellement par rapport à une interface de chat brute. Génère 3-5 variantes par requête et laisse l’utilisateur sauvegarder ses favoris dans une bibliothèque locale, étiquetée par type de modèle. Ajoute un réglage simple de voix de marque, un court paragraphe décrivant le ton et le style, qui est préfixé à chaque requête de génération, pour que la sortie reste cohérente à travers les sessions sans avoir à la ré-expliquer à chaque fois. Stocke tout dans SQLite. Ne construis pas de vérification de plagiat ou de détection d’IA, d’intégration de mots-clés SEO, ni d’espaces de travail d’équipe multi-utilisateurs — c’est hors périmètre. Nécessite une clé API Anthropic ou OpenAI ; sans clé, l’appli tourne quand même mais la génération est désactivée avec un message de configuration clair.",
+  "faq": [
+    { "q": "Quels modèles inclut-il ?", "a": "Un ensemble petit et délibérément limité — descriptions de produit, texte publicitaire, plans d’article de blog, et légendes sociales — plutôt que les dizaines de formats spécialisés de Writesonic, dont chacun représente un vrai travail d’ingénierie de prompt que ce projet ne reproduit pas." },
+    { "q": "Est-ce qu’il vérifie le plagiat ou la détectabilité IA ?", "a": "Non — ces vérifications sont hors périmètre. Si ça compte pour ton usage, passe la sortie par un outil dédié séparé." },
+    { "q": "Est-ce que mon équipe peut partager un réglage de voix de marque ?", "a": "Pas dans ce projet — le réglage de voix de marque est local à ta propre instance, pas une fonctionnalité d’espace de travail d’équipe partagé." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Juste l’usage par token de ton fournisseur de modèle — pour des sessions de génération de texte typiques, c’est généralement une fraction d’un siège mensuel Writesonic, même si un usage quotidien intensif s’accumule." }
+  ]
+}

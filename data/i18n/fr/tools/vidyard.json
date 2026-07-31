@@ -1,0 +1,19 @@
+{
+  "tagline": "Enregistre un message vidéo personnel avec un lien suivi unique par destinataire",
+  "verdictSummary": "Enregistrer un rapide message vidéo personnel et suivre si un destinataire précis l’a vraiment regardé — le véritable angle prospection commerciale de Vidyard — est un vrai projet de week-end utilisant l’enregistrement vidéo navigateur standard et le suivi de vue. Ce qui ne survit pas : l’hébergement vidéo à grande échelle de Vidyard, ses intégrations CRM, et l’analytique sur exactement quelle portion de la vidéo chaque spectateur a regardée.",
+  "coreLoopDIY": "Enregistre un court message vidéo dans le navigateur avec l’API MediaRecorder, génère un lien partageable unique par destinataire, et suis si ce lien précis a été ouvert et la vidéo lue.",
+  "whatYouLose": [
+    "l’infrastructure vidéo hébergée et la diffusion CDN à grande échelle",
+    "les intégrations CRM",
+    "l’analytique granulaire du temps de visionnage par spectateur",
+    "les vignettes vidéo personnalisées avec le nom du destinataire superposé"
+  ],
+  "whyPeopleStillPay": "Enregistrer et héberger une vidéo est simple ; livrer de la vidéo de façon fiable à grande échelle, s’intégrer aux outils CRM dans lesquels vivent les équipes commerciales, et montrer exactement jusqu’où chacun des centaines de destinataires a regardé, c’est le travail d’infrastructure continu.",
+  "prompt": "Construis un outil de messagerie vidéo personnelle pour la prospection commerciale : enregistre une vidéo rapide dans le navigateur, génère un lien unique par destinataire, et suis s’ils l’ont regardée. Utilise un enregistreur basé navigateur, l’API MediaRecorder, pour capturer la webcam et/ou l’écran directement dans le navigateur, téléverse-la vers ton propre stockage, disque local ou compatible S3, à l’arrêt. Génère un lien partageable unique par envoi, pas seulement par vidéo, puisque la même vidéo peut être envoyée à plusieurs destinataires qui obtiennent chacun leur propre lien suivi, en utilisant un UUID. Quand un destinataire ouvre son lien, enregistre un horodatage « vu », et utilise l’événement timeupdate du lecteur vidéo pour suivre approximativement combien de la vidéo a été lue, un simple pourcentage, pas une analytique précise à l’image près. Montre à l’expéditeur un tableau de bord des envois avec le statut vu/pas-vu et un pourcentage de visionnage approximatif. Ne construis pas de diffusion vidéo à l’échelle CDN, d’intégrations CRM, ni de génération de vignettes personnalisées — c’est hors périmètre ; c’est un outil personnel pour envoyer une poignée de messages vidéo suivis, pas une infrastructure pour le volume d’une équipe commerciale. Nécessite un hébergement, un stockage pour les fichiers vidéo, et un domaine pour les liens suivis ; aucun autre service externe requis.",
+  "faq": [
+    { "q": "Est-ce que je peux envoyer la même vidéo à plusieurs personnes et suivre chacune séparément ?", "a": "Oui — chaque envoi obtient son propre lien unique, donc tu peux savoir exactement quel destinataire a regardé, même si le fichier vidéo sous-jacent est partagé." },
+    { "q": "Quelle est la précision du suivi de temps de visionnage ?", "a": "Approximative — un simple pourcentage basé sur la position de lecture du lecteur vidéo, pas l’analytique plus granulaire à la seconde près de Vidyard." },
+    { "q": "Est-ce que ça gérera l’envoi de vidéos à des centaines de prospects ?", "a": "Pas bien — ceci est dimensionné comme un outil personnel pour une poignée d’envois suivis, pas une infrastructure construite pour le volume d’une équipe commerciale. Le stockage et la diffusion vidéo à grande échelle sont un vrai travail d’infrastructure." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement, stockage vidéo, et un domaine — les coûts évoluent avec la quantité de vidéo que tu stockes et le nombre de personnes qui la regardent, mais restent modestes à l’échelle personnelle." }
+  ]
+}
