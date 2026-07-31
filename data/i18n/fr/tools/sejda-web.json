@@ -1,0 +1,31 @@
+{
+  "tagline": "Les mêmes opérations PDF que tout le monde, vendues sur la suppression de tes fichiers cinq heures plus tard.",
+  "verdictSummary": "Sejda se joue sur la rétention : les fichiers sont supprimés après quelques heures et le plan gratuit est limité en pages et en tâches plutôt qu’en harcèlement. Auto-héberger Stirling PDF te donne les opérations d’emblée, et ça transforme la promesse de rétention en quelque chose que tu peux vérifier plutôt que lire. Ça fait de ça un cas de déploiement d’open source plutôt qu’une reconstruction, et il ne reste aucun écart fonctionnel.",
+  "coreLoopDIY": "Fais tourner Stirling PDF sur ta propre machine avec une horloge de suppression que tu règles et peux surveiller, pour que la promesse de confidentialité soit une tâche cron que tu possèdes plutôt qu’une phrase dans une politique.",
+  "whatYouLose": [
+    "l’application Sejda Desktop",
+    "l’usage depuis n’importe quelle machine sans configuration ni compte",
+    "le fait que les limites d’OCR et de traitement soient le problème de quelqu’un d’autre",
+    "la disponibilité garantie quand tu en as besoin une fois par trimestre"
+  ],
+  "whyPeopleStillPay": "Parce que c’est la promesse de confidentialité qui est vendue, et l’acheter à une entreprise avec une politique demande moins de travail que de faire tourner un serveur. La plupart des gens qui bénéficieraient de l’auto-hébergement ne le feront pas, et Sejda est honnêtement tarifé pour eux.",
+  "prompt": "Déploie une boîte à outils PDF pour toi-même dont la politique de rétention est appliquée plutôt que promise.\n\nFais tourner Stirling PDF avec Docker Compose derrière Caddy pour du HTTPS automatique sur ton propre domaine, avec une authentification devant toute la surface.\n\nLa partie qui vaut la peine d’être construite toi-même, c’est l’horloge de suppression. Monte le répertoire de travail comme un tmpfs pour que les fichiers intermédiaires vivent en mémoire et disparaissent au redémarrage, et fais tourner un balayeur toutes les cinq minutes qui supprime tout ce qui est plus vieux que la fenêtre de rétention que tu as choisie. Affiche la fenêtre et l’âge du plus vieux fichier sur la page d’accueil. Une promesse de rétention que tu ne peux pas voir est indiscernable de l’absence de politique de rétention du tout, ce qui est exactement la chose vendue ici.\n\nÉcris un test pour le balayeur : crée un fichier avec une date de modification au-delà de la fenêtre, lance le balayeur, vérifie que le fichier a disparu. C’est le seul morceau de logique où un échec silencieux veut dire des documents assis sur un disque pendant des mois.\n\nDésactive tout défaut qui téléphone maison, et vérifie que le conteneur ne fait aucune connexion sortante pendant le traitement, pour que « rien ne quitte ce serveur » soit une propriété que tu as vérifiée plutôt que supposée.\n\nFixe la limite d’import d’après ton propre matériel et mets le chiffre sur la page de connexion.\n\nHors périmètre : une application de bureau, des applications mobiles, des comptes pour d’autres personnes. Vérifie en traitant un gros document scanné et en confirmant que la sortie et les intermédiaires ont tous deux disparu une fois la fenêtre expirée.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux continuer à l’utiliser depuis une machine qui n’est pas la mienne ?",
+      "a": "Oui, via le navigateur, mais tu dois te connecter — et c’est l’échange. Sejda marche depuis un ordinateur portable emprunté sans aucun compte, ce qui est une vraie commodité que tu abandonnes."
+    },
+    {
+      "q": "Est-ce que ça tourne hors ligne ?",
+      "a": "Sur un ordinateur portable, oui : fais tourner le même fichier Compose en local et ça marche sans réseau du tout, ce qui est plus fort que ce que peut offrir n’importe quel outil hébergé. Sur un VPS, évidemment non."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Environ 5 à 10 $ par mois pour un VPS plus un domaine, ou rien sur du matériel que tu as déjà. Il n’y a aucun coût par fichier ni limite de pages au-delà de ce que peut faire la machine."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "Que quelqu’un d’autre le garde en marche. Sejda est là le jour où tu en as besoin ; ton serveur est là si tu l’as patché, payé, et si le disque ne s’est pas rempli."
+    }
+  ]
+}
