@@ -1,0 +1,32 @@
+{
+  "tagline": "Un suivi automatique qui te dit quand ta concentration est vraiment bonne.",
+  "verdictSummary": "Rize transforme la capture passive en deux chiffres sur lesquels une personne peut agir : la durée de tes plages ininterrompues, et à quelle heure de la journée tu es le plus affûté. Les deux sont des calculs sur des données que tu as déjà sur ta propre machine, sans service, sans clé et sans jeu de données derrière — donc c’est un « oui », en une session. Ce qu’achète l’abonnement, c’est du vernis et le réglage des seuils de détection de session, ce qui est réel mais n’est pas une dépendance.",
+  "coreLoopDIY": "Détecte automatiquement les sessions de travail à partir de ta propre activité, mesure combien de temps tu restes ininterrompu et à quel moment de la journée ça se produit, et obtiens une recommandation précise plutôt qu’un tableau de bord.",
+  "whatYouLose": [
+    "les seuils de détection de session réglés, que tu possèdes maintenant",
+    "l’application native polie et sa présence en barre de menu",
+    "l’intégration calendrier qui étiquette une session avec la réunion qui l’a percutée",
+    "le suivi multi-appareils",
+    "les rappels de pause pilotés par le propre modèle de fatigue de l’éditeur"
+  ],
+  "whyPeopleStillPay": "Parce que la valeur réside dans le fait que les seuils soient justes sans avoir à être bidouillés, et parce qu’un outil qui insiste ne fonctionne que s’il n’est pas modifiable à 15h quand il t’agace.",
+  "prompt": "Construis un traqueur de qualité de concentration. La sortie n’est pas un tableau de bord, c’est deux chiffres et une suggestion.\n\nStack : un enregistreur local plus un tableau de bord, SQLite, pas de réseau. Appuie-toi sur une couche de capture open source existante si tu peux.\n\nÀ partir du flux d’activité brut, dérive des sessions :\n- Une session démarre quand l’activité dans une catégorie persiste au-delà d’une durée minimale.\n- Un basculement vers une catégorie différente plus court qu’une tolérance configurable est une interruption — elle est comptée mais ne termine pas la session, ce qui rend cette mesure significative. Un basculement plus long la termine.\n- Stocke par session : catégorie, début, fin, et le nombre d’interruptions.\n\nLes deux chiffres :\n1. Plage médiane ininterrompue — la durée médiane d’activité dans les sessions entre les interruptions. Médiane, pas moyenne, parce qu’un dimanche de quatre heures ruine une moyenne.\n2. Fenêtre de concentration maximale — regroupe les quatre dernières semaines de temps de session par heure de la journée, pondère par la longueur de plage ininterrompue, et nomme la fenêtre de deux heures qui obtient le meilleur score.\n\nLa suggestion quotidienne, exactement une, choisie par un petit ensemble de règles explicites que tu peux lire dans le code — par exemple : si le taux d’interruption d’aujourd’hui est au-dessus de la médiane sur quatre semaines, nomme l’application qui a causé le plus d’interruptions ; si la fenêtre maximale contenait des réunions, dis-le et nomme les heures de réunion ; si aucune session n’a atteint la durée minimale de toute la journée, dis-le clairement. N’en génère jamais plus d’une, et n’en génère jamais une vague.\n\nSuivi des pauses : détecte les trous au-dessus d’un seuil comme des pauses, montre les pauses prises par heure de travail, et signale une journée avec une longue plage continue et aucune pause plutôt que de la féliciter.\n\nTableau de bord : les sessions d’aujourd’hui comme une chronologie avec les interruptions marquées, les deux chiffres avec leur tendance sur quatre semaines, et la suggestion en haut.\n\nVie privée : contrôle pause, rédaction de titre par application, fenêtre de rétention brute, commande d’effacement.\n\nÉcris des tests pour interruption-versus-fin-de-session à la limite de tolérance, pour le calcul de médiane sur un compte pair, et pour le calcul de fenêtre maximale avec moins de quatre semaines de données (il doit refuser de répondre plutôt que deviner).\n\nNe construis ni intégration calendrier, ni synchro cloud, ni vue d’équipe.",
+  "faq": [
+    {
+      "q": "Pourquoi la médiane plutôt que la moyenne du temps ininterrompu ?",
+      "a": "Parce que la distribution est fortement asymétrique — une poignée de longues plages et beaucoup de courtes — et la moyenne te flatte exactement les semaines où tu étais le plus dispersé. La médiane bouge quand ta journée ordinaire change, ce qui est ce que tu veux voir."
+    },
+    {
+      "q": "Pourquoi une seule suggestion par jour ?",
+      "a": "Parce qu’une liste de cinq, c’est un tableau de bord, et les tableaux de bord se font survoler. Une phrase précise nommant une application ou une heure est quelque chose sur lequel tu peux agir avant le déjeuner."
+    },
+    {
+      "q": "Qu’est-ce qui rend le réglage des seuils plus dur qu’il n’y paraît ?",
+      "a": "La tolérance d’interruption. Trop courte et chaque coup d’œil à une fenêtre de chat termine une session, donc rien n’a jamais l’air concentré ; trop longue et un détour de vingt minutes compte comme du travail profond. Attends-toi à l’ajuster pendant une semaine, et cet ajustement, c’est exactement ce qu’un outil payant a fait pour toi."
+    },
+    {
+      "q": "Pourquoi refuser de calculer la fenêtre maximale avec peu de données ?",
+      "a": "Parce que deux jours de données nommeront une heure avec assurance, tu y croiras, et ce sera du bruit. Refuser de répondre tant qu’il n’y a pas assez d’historique, c’est la différence entre une mesure et un horoscope."
+    }
+  ]
+}

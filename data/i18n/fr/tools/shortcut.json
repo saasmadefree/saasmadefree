@@ -1,0 +1,32 @@
+{
+  "tagline": "Suivi de tickets qui ferme le ticket quand la branche est mergée.",
+  "verdictSummary": "Shortcut est un tracker pour les gens qui vivent dans un terminal, et son unique comportement indispensable, c’est la boucle git : un nom de branche porte l’identifiant de la story, la pull request se lie elle-même, et le merge déplace la carte. Cette boucle, c’est un week-end contre les webhooks d’un hébergeur git. Ce que tu perds, c’est tout le social autour — l’application mobile, les intégrations, et le fait que d’autres personnes se donnent la peine de le mettre à jour — ce qui est la raison ordinaire pour laquelle un tracker auto-hébergé pour une équipe meurt silencieusement.",
+  "coreLoopDIY": "Des stories qui se déplacent toutes seules : les noms de branche portent l’identifiant de la story, le webhook lie la pull request, et merger dans la branche par défaut marque la story faite sans que personne ne fasse glisser une carte.",
+  "whatYouLose": [
+    "les applications mobiles",
+    "les intégrations maintenues vers le chat, la CI et les outils de design",
+    "la disponibilité hébergée et les sauvegardes de quelqu’un d’autre",
+    "la suite de reporting, y compris les tableaux de bord de burndown et de temps de cycle prêts à l’emploi",
+    "que d’autres personnes l’utilisent, le vrai risque d’un tracker d’équipe auto-hébergé"
+  ],
+  "whyPeopleStillPay": "Parce qu’un tracker n’est utile que si toute l’équipe le met à jour, et payer est le moyen le moins cher de faire de son maintien en fonctionnement, et d’un niveau d’agrément suffisant pour qu’on le fasse, le travail de quelqu’un d’autre.",
+  "prompt": "Construis un tracker de tickets dont les stories sont mises à jour par git, pas à la main.\n\nStack : ton choix, Postgres, Docker Compose. Connecte-toi à ton hébergeur git avec une application OAuth et un webhook — GitHub est la référence ; note dans le README ce qui change pour GitLab.\n\nModèle : Story (id, titre, description, type feature/bug/tâche, état, estimation, responsable, étiquettes), Epic (un groupe nommé de stories avec une complétion calculée), et Itération (une fenêtre datée contenant des stories).\n\nLa boucle git, qui est tout l’intérêt :\n- Chaque story expose un nom de branche suggéré contenant son id, copiable en un clic, dans un format documenté comme nom/sc-123-titre-court.\n- Sur un webhook de création pour une branche correspondant à ce motif, déplace la story vers En cours et enregistre la branche.\n- Sur un webhook de pull request référençant l’id dans la branche ou le titre, attache la PR avec son état et son lien, et déplace la story vers En révision.\n- Au merge dans la branche par défaut, déplace la story vers Fait et enregistre le commit de merge. À la fermeture d’une PR sans merge, remets-la En cours et dis pourquoi dans le journal d’activité.\n- Chaque transition automatique est journalisée comme automatique, avec l’événement webhook qui l’a causée, pour qu’un changement d’état inattendu soit traçable.\n- Vérifie la signature du webhook et rejette tout ce qui n’est pas signé. Un point d’entrée webhook ouvert laisse n’importe qui déplacer tes stories.\n\nItérations : dates de début et de fin, stories assignées dedans, et un graphique de burndown construit à partir d’instantanés quotidiens stockés de l’estimation restante plutôt que recalculé depuis l’état actuel — recalculer te donne un graphique qui réécrit sa propre histoire chaque fois qu’une story est réestimée.\n\nUn rapport : temps de cycle par story de En cours à Fait, comme une distribution plutôt qu’une moyenne, parce que la moyenne cache les deux stories qui ont pris un mois.\n\nAjoute aussi : un tableau kanban, une recherche pilotée au clavier avec une syntaxe de requête (state:, owner:, label:, epic:), et un export CSV.\n\nÉcris des tests pour l’analyse de nom de branche incluant des titres avec des traits d’union et des chiffres, pour la fermeture de PR qui inverse l’état, pour le rejet de signature, et pour les instantanés de burndown idempotents par jour.\n\nNe construis ni applications mobiles, ni intégrations de chat, ni intégration d’outil de design.",
+  "faq": [
+    {
+      "q": "Pourquoi construire le burndown à partir d’instantanés stockés ?",
+      "a": "Parce qu’un graphique recalculé depuis l’état actuel change l’historique d’hier chaque fois qu’une estimation change, ce qui le rend sans valeur pour la seule chose à laquelle il sert — remarquer que tu ne vas pas finir. Une ligne d’instantané quotidien ne coûte rien."
+    },
+    {
+      "q": "Pourquoi rapporter le temps de cycle comme une distribution ?",
+      "a": "Parce que la moyenne est dominée par les nombreuses petites stories et cache les deux qui ont pris un mois, et ces deux-là sont celles qui valent la peine d’en parler. Un histogramme ou des percentiles disent la vérité."
+    },
+    {
+      "q": "Que se passe-t-il si quelqu’un oublie l’id de la story dans le nom de branche ?",
+      "a": "Rien d’automatique, ce qui est correct — le tracker ne devrait jamais deviner. Fais en sorte que le nom de branche suggéré se copie en un clic et l’omission devient rare ; deviner depuis le titre produit de mauvais liens, ce qui est pire que pas de lien du tout."
+    },
+    {
+      "q": "Shortcut exporte-t-il bien ?",
+      "a": "Oui. L’API parcourt les stories, epics, itérations et commentaires, et il y a un export CSV dans l’interface. C’est l’un des trackers les plus portables de cette catégorie."
+    }
+  ]
+}

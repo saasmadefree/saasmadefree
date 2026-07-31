@@ -1,0 +1,32 @@
+{
+  "tagline": "Trouve des adresses, vérifie-les, envoie la séquence, suis le deal — dans un seul outil.",
+  "verdictSummary": "Snov regroupe quatre choses, et trois d’entre elles sont des actifs plutôt que du logiciel : une base d’adresses, une vérification à une échelle qui demande des IP tolérées, et un envoi avec une réputation derrière. La quatrième, c’est un petit traqueur de deals, et c’est ce qu’un projet perso peut honnêtement reproduire — la moitié pipeline, alimentée par les résultats que tu enregistres toi-même. Acheter le bundle pour le pipeline serait étrange ; reconstruire le bundle pour le pipeline, c’est le travail d’une session.",
+  "coreLoopDIY": "Suis ce qu’a produit la prospection : un pipeline léger dont les étapes sont des résultats de prospection, alimenté par les résultats que tu enregistres, avec une conversion par campagne visible de bout en bout.",
+  "whatYouLose": [
+    "la base de données d’adresses email et le chercheur construit dessus",
+    "la vérification en masse à un volume utile",
+    "le moteur d’envoi, le préchauffage et les relances illimitées",
+    "l’automatisation LinkedIn vendue comme des emplacements de compte supplémentaires",
+    "l’extension navigateur qui capture un prospect depuis une page"
+  ],
+  "whyPeopleStillPay": "Parce que faire de la prospection sortante tout court demande des adresses, une vérification et un moyen d’envoyer, et les acheter dans un seul abonnement est bien moins cher que d’assembler trois fournisseurs. Le CRM à la fin est un bonus, pas la raison.",
+  "prompt": "Construis un pipeline de résultats de prospection : un petit CRM dont les étapes sont les états qu’un prospect froid traverse vraiment.\n\nStack : ton choix, SQLite suffit largement, une seule commande pour lancer.\n\nModèle : Campagne, Prospect, Contact-établi, Étape. Les étapes sont fixes et ordonnées, et ce parti pris, c’est la conception : sourcé, contacté, conversation ouverte, a répondu, rendez-vous pris, qualifié, fermé, disqualifié. Un Prospect appartient à exactement une Campagne et se trouve à une Étape.\n\nRègles de mouvement : un prospect ne peut avancer que d’une étape à la fois, ou sauter directement vers disqualifié avec un motif requis parmi une liste fixe — pas de réponse après la séquence complète, mauvaise personne, pas de budget, pas de besoin, mauvais timing, concurrent. Stocke chaque transition avec un horodatage, pour que l’entonnoir soit calculé plutôt que saisi.\n\nContacts établis : date, canal, direction, et une note. Enregistrer un contact établi entrant propose d’avancer l’étape, pour que le pipeline se mette à jour comme effet secondaire de la journalisation de la réalité plutôt que comme une corvée séparée.\n\nLe rapport qui justifie ce projet : un entonnoir par campagne montrant le compte et le taux de conversion à chaque étape, plus le nombre médian de jours entre les étapes, plus une répartition des motifs de disqualification. Deux campagnes peuvent être comparées côte à côte. Chaque chiffre dérive des lignes de transition, pas de l’état actuel.\n\nUne seconde vue groupe les prospects par « jours depuis le dernier contact » pour que personne ne soit abandonné silencieusement en milieu de séquence.\n\nImporte les prospects depuis un CSV avec un écran de mapping et une vérification de doublons sur l’email à travers toutes les campagnes — la même personne apparaissant dans deux campagnes doit être signalée bruyamment, parce que c’est comme ça que tu emails quelqu’un deux fois avec deux argumentaires différents.\n\nExporte une campagne en CSV incluant chaque transition, pour que l’entonnoir puisse être recalculé ailleurs.\n\nÉcris des tests pour la règle une-étape-à-la-fois, pour la détection de doublons inter-campagnes, et pour le calcul de jours médians avec un prospect non terminé exclu plutôt que compté comme zéro.\n\nNe trouve pas d’adresses email, ne les vérifie pas, et n’envoie rien.",
+  "faq": [
+    {
+      "q": "Pourquoi fixer les étapes plutôt que me laisser les configurer ?",
+      "a": "Parce que des étapes configurables produisent des entonnoirs qui ne peuvent pas être comparés entre campagnes, ce qui est la seule chose pour laquelle ce rapport existe. Des étapes fixes empêchent aussi le pipeline de dériver en liste de tâches."
+    },
+    {
+      "q": "Quel est l’intérêt de suivre une prospection que tu ne peux pas envoyer ?",
+      "a": "Savoir que la campagne B répond à quatre pour cent et la campagne A à un pour cent vaut plus que la mécanique d’envoi, et c’est le chiffre que presque personne ne mesure vraiment. Tu peux envoyer depuis n’importe où ; c’est la mesure qui se perd."
+    },
+    {
+      "q": "Pourquoi la vérification de doublons inter-campagnes compte-t-elle ?",
+      "a": "Parce que contacter la même personne depuis deux campagnes avec deux histoires différentes est la façon la plus rapide de ressembler à une machine, et les imports de sources différentes se chevauchent bien plus que les gens ne s’y attendent."
+    },
+    {
+      "q": "Snov exporte-t-il proprement ?",
+      "a": "Les listes de prospects et les statistiques de campagne s’exportent en CSV, et les noms de champs sont lisibles. Ce qui ne ressort pas, c’est l’historique de statut de vérification, donc revérifie tout ce que tu comptes continuer à utiliser."
+    }
+  ]
+}

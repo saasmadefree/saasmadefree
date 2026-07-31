@@ -1,0 +1,32 @@
+{
+  "tagline": "Dix mille crashs réduits aux quatre bugs qui les ont causés.",
+  "verdictSummary": "Le point d’entrée qui reçoit une erreur, c’est un après-midi. Le produit, c’est le regroupement : transformer cent mille événements en une poignée de tickets, garder le même bug dans le même ticket à travers les releases, et remarquer quand un bug corrigé revient. C’est un week-end pour construire ça passablement et longtemps pour le construire aussi bien que Sentry, ce qui en fait un « en partie » plutôt qu’un « oui » — et il existe un serveur open source compatible si tu préfères déployer plutôt que construire.",
+  "coreLoopDIY": "Reçois les erreurs, regroupe-les par une empreinte que tu peux lire et remplacer, suis quelle release a introduit et corrigé chacune, et fais du bruit quand un ticket résolu réapparaît.",
+  "whatYouLose": [
+    "des SDK pour des dizaines de langages et frameworks, maintenus",
+    "une qualité de regroupement réglée sur un corpus énorme de vraies stacks",
+    "le replay de session, le traçage et le profilage sur les mêmes événements",
+    "une ingestion qui reste en ligne pendant ton propre incident",
+    "les intégrations qui ouvrent un ticket et lient le commit"
+  ],
+  "whyPeopleStillPay": "Parce qu’un mauvais regroupement rend un tracker d’erreurs inutile — un bug éparpillé sur quarante tickets, ou quarante bugs réduits à un seul — et le regroupement est la partie difficile à bien faire et invisible quand ça marche.",
+  "prompt": "Construis un tracker d’erreurs où le regroupement est la fonctionnalité et l’empreinte est lisible.\n\nStack : ton choix, Postgres, Docker Compose, un domaine avec TLS.\n\nIngestion : un point d’entrée HTTP par projet avec une clé, acceptant une charge utile de type d’exception, message, frames de stack, release, environnement, et des tags et contexte arbitraires. Limite le débit par projet et laisse tomber avec un compteur plutôt que de mettre en file sans limite.\n\nEmpreinte, le cœur du projet, et elle doit être inspectable :\n1. Normalise la stack — retire les chemins absolus vers une forme relative au dépôt, retire les numéros de ligne des frames hors de ton propre code, replie les frames consécutives d’un même paquet tiers en une seule.\n2. Prends les N meilleures frames dans-l’application, dans l’ordre.\n3. Hache ces frames plus le type d’exception. Pas le message : les messages contiennent des identifiants, des valeurs et des horodatages, et les hacher crée un ticket par occurrence, l’erreur classique.\n4. Montre les frames exactes qui ont produit l’empreinte sur la page du ticket, et permets un remplacement manuel — fusionner deux tickets, ou en scinder un par une clé additionnelle — enregistré et réversible.\n\nReleases : chaque événement porte une release. Un ticket enregistre la release de première apparition et la release de dernière apparition. Marquer un ticket comme résolu enregistre la release où il a été résolu, et un événement arrivant d’une release plus tardive le rouvre comme une régression, signalée distinctement d’un nouveau ticket. Ce signal de régression est de loin la chose la plus précieuse qu’un tracker d’erreurs produit, et il a besoin de la plomberie de releases pour fonctionner tout court.\n\nPage de ticket : compte dans le temps, utilisateurs affectés, distributions de tags (navigateur, version, environnement) avec la plus déséquilibrée mise en évidence, la stack complète du dernier événement avec résolution de source map ou de symboles appliquée à l’ingestion, et le fil d’Ariane si le client en a envoyé un.\n\nAlertes : un nouveau ticket, ou un ticket qui dépasse un seuil de taux, ou une régression. Livre vers un webhook. N’alerte pas sur chaque événement.\n\nRétention avec suppression réelle, et un quota par projet qui laisse tomber et compte.\n\nÉcris des tests pour la stabilité d’empreinte à travers une release qui déplace les numéros de ligne, pour le contenu du message qui n’affecte jamais l’empreinte, pour la détection de régression à travers l’ordre des releases, et pour la fusion et la scission qui sont réversibles.\n\nNe construis ni replay de session, ni traçage, ni SDK pour plus d’un langage.",
+  "faq": [
+    {
+      "q": "Pourquoi exclure le message de l’empreinte ?",
+      "a": "Parce que les messages intègrent des identifiants d’enregistrement, des valeurs et des horodatages, donc les hacher produit un ticket par occurrence et le tracker devient une visionneuse de logs. Type plus frames normalisées, c’est ce qui transforme dix mille événements en quatre bugs."
+    },
+    {
+      "q": "Pourquoi la détection de régression a-t-elle besoin du suivi de releases ?",
+      "a": "« Résolu » ne signifie quelque chose que relativement à une version. Sans releases, un vieil événement qui arrive au compte-gouttes rouvre le ticket et tout le monde apprend à ignorer le signal ; avec elles, une réouverture signifie que le correctif a vraiment cassé."
+    },
+    {
+      "q": "Ne devrais-je pas simplement déployer un tracker d’erreurs existant ?",
+      "a": "Pour la plupart des gens, oui — un serveur open source compatible Sentry existe et accepte les SDK officiels, ce qui est une grosse avance. Construis celui-ci si tu veux que le regroupement soit quelque chose que tu peux lire et changer."
+    },
+    {
+      "q": "Comment fonctionne le tarif de Sentry ?",
+      "a": "Un prix de plan plus un volume compté : erreurs, replays de session, spans de traçage et moniteurs cron sont chacun comptés séparément contre un quota prépayé, avec le dépassement facturé en plus. Le prix du plan, c’est le plancher, pas la facture."
+    }
+  ]
+}

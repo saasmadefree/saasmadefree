@@ -1,0 +1,32 @@
+{
+  "tagline": "CRM, système téléphonique, séquences email et un chatbot dans un seul abonnement.",
+  "verdictSummary": "Salesmate regroupe quatre produits, et l’un d’eux est une entreprise de téléphonie. Numéros, minutes, enregistrement d’appels et l’enregistrement opérateur derrière ne sont pas quelque chose qu’un projet perso peut acquérir ; pas plus qu’une réputation d’envoi pour la moitié séquences. Ce qui reste à construire, c’est un planificateur : la chose qui te dit qui contacter aujourd’hui et sur quel canal, et enregistre ce qui s’est passé. C’est le travail d’une session, et c’est vraiment utile, mais c’est un carnet à côté d’un standard téléphonique.",
+  "coreLoopDIY": "Planifie et enregistre une prospection multicanal sans l’exécuter : une liste quotidienne de qui contacter par quel canal, et un journal de ce qui s’est passé quand tu l’as fait toi-même.",
+  "whatYouLose": [
+    "le système téléphonique intégré — numéros, appels, enregistrements et dépôt de messagerie vocale",
+    "l’envoi de séquences email depuis l’outil, et le travail de délivrabilité derrière",
+    "le chatbot de site web et le suivi de visiteurs qui l’alimente",
+    "les parcours de marketing automation qui bifurquent selon le comportement",
+    "les applications mobiles"
+  ],
+  "whyPeopleStillPay": "Parce que remplacer Salesmate signifie acheter un CRM, un fournisseur de téléphonie, une plateforme d’envoi d’email et un widget de chat séparément, les câbler ensemble, et porter les coutures. Vingt-trois dollars par siège achètent le câblage.",
+  "prompt": "Construis un planificateur de prospection multicanal qui n’envoie jamais rien lui-même.\n\nLa prémisse : l’envoi est fait par toi, dans les outils que tu as déjà. Cette application décide qui, quand et où, et se souvient de ce qui s’est passé.\n\nStack : ton choix, SQLite suffit, une seule commande pour lancer.\n\nModèle : Contact, Séquence, Étape, Inscription, Contact-établi.\n- Une Séquence est une liste ordonnée d’Étapes. Une Étape a un canal (email, appel, message LinkedIn, en personne), un délai en jours ouvrés depuis l’étape précédente, et un corps de modèle avec {{espaces réservés}}.\n- Inscrire un Contact dans une Séquence matérialise le planning.\n- Un Contact-établi, c’est ce qui s’est vraiment passé : date, canal, résultat (envoyé, connecté, pas de réponse, a répondu, rebondi, s’est désabonné), et une note.\n\nL’écran principal, c’est « Aujourd’hui » : chaque inscription dont la prochaine étape est due, groupée par canal, pour que tous les appels soient ensemble et tous les emails ensemble. Pour une étape email, rends le modèle avec les champs du contact remplis et donne-moi un bouton de copie et un lien mailto: — je colle et envoie depuis ma propre boîte mail. Pour une étape appel, montre le numéro et les trois derniers contacts établis.\n\nEnregistrer un Contact-établi fait avancer l’inscription. Enregistrer une réponse ou un désabonnement la termine immédiatement et, pour un désabonnement, fixe un indicateur permanent qui bloque toute future inscription de ce contact sans possibilité de contournement dans l’interface.\n\nL’arithmétique en jours ouvrés doit respecter un week-end configurable et une liste de jours fériés, et ne doit jamais planifier un contact dans le passé quand une séquence est inscrite rétroactivement.\n\nUn rapport : par séquence, inscriptions, réponses, désabonnements et taux de réponse par numéro d’étape, pour que je puisse voir quelle étape de la séquence fait vraiment le travail.\n\nÉcris des tests pour le planificateur en jours ouvrés incluant les jours fériés, et pour l’indicateur de désabonnement qui survit à la réimportation d’un CSV contenant ce contact.\n\nN’envoie pas d’email, ne connecte pas de fournisseur de téléphonie, ne scrape pas LinkedIn. Cette application est un plan et un registre.",
+  "faq": [
+    {
+      "q": "Quel est l’intérêt d’un séquenceur qui n’envoie pas ?",
+      "a": "Il retire la partie qui attire des ennuis — l’envoi en masse automatisé depuis un domaine sans réputation — et garde la partie qui améliore vraiment les résultats, à savoir faire le quatrième suivi tout court. Envoyer quarante emails personnels à la main est lent ; oublier le quatrième contact est coûteux."
+    },
+    {
+      "q": "Pourquoi le désabonnement est-il imposé sans possibilité de contournement ?",
+      "a": "Parce qu’un contournement finit toujours par être utilisé. Un indicateur permanent, impossible à esquiver dans l’interface, est la seule version d’une liste à-ne-pas-contacter qui survit à une réimportation CSV six mois plus tard, et réimporter, c’est exactement quand ces erreurs arrivent."
+    },
+    {
+      "q": "Pourrais-je greffer un vrai envoi plus tard ?",
+      "a": "Techniquement oui, et c’est là qu’apparaît le coût honnête : ton propre domaine n’a aucune réputation d’envoi, donc un volume froid de n’importe quelle taille atterrit en spam ou fait suspendre ta boîte mail. C’est le mur contre lequel bute cette catégorie, pas le code."
+    },
+    {
+      "q": "Salesmate exporte-t-il proprement ?",
+      "a": "Contacts, entreprises, deals et activités s’exportent en CSV. Les enregistrements d’appels et les transcriptions du chatbot ne suivent sous aucune forme utilisable, donc considère-les comme appartenant à l’abonnement."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Un tableau kanban où chaque colonne peut agir sur les cartes qui y entrent.",
+  "verdictSummary": "MeisterTask est un tableau kanban bien fait avec une idée qui vaut le coup d’être volée : des automatisations attachées à la colonne plutôt qu’à un moteur de règles ailleurs. Les cartes qui entrent dans « Révision » reçoivent un assigné et une date d’échéance parce que la colonne le dit, et c’est à la fois évident pour un nouvel utilisateur et vraiment utile. Un week-end le reconstruit. Les manques sont les applications mobiles, le produit jumeau de carte mentale, et le vernis hébergé — rien de tout ça n’est une barrière défensive.",
+  "coreLoopDIY": "Un tableau kanban où chaque colonne porte ses propres règles, pour que déplacer une carte dedans l’assigne, la date, l’étiquette ou l’archive sans écran d’automatisation séparé.",
+  "whatYouLose": [
+    "les applications mobiles et l’accès au tableau hors ligne",
+    "l’intégration MindMeister, qui transforme une carte mentale en projet",
+    "le multi-utilisateur en temps réel sur le même tableau",
+    "les intégrations prêtes à l’emploi vers les outils de chat et de stockage",
+    "la fiabilité hébergée et les sauvegardes"
+  ],
+  "whyPeopleStillPay": "Parce que c’est agréable, rapide et n’a pas besoin d’un atelier pour être adopté, ce qui vaut plus pour une petite équipe qu’une liste de fonctionnalités plus longue.",
+  "prompt": "Construis un tableau kanban où l’automatisation vit sur la colonne, pas dans un moteur de règles.\n\nStack : ton choix, Postgres, Docker Compose, une commande.\n\nModèle de tableau : un Projet a des Sections ordonnées (colonnes) ; une Section contient des Cartes ordonnées. Une Carte a un titre, une description, un assigné, une date d’échéance, des étiquettes, des éléments de checklist, des commentaires et des pièces jointes.\n\nAutomatisations de section, le cœur du projet. Chaque section porte une liste ordonnée d’actions, exécutées quand une carte y entre, parmi un ensemble fermé :\n- assigner à une personne spécifique, ou à personne\n- fixer une date d’échéance N jours après l’entrée, en sautant les week-ends si configuré\n- ajouter ou retirer une étiquette\n- déplacer en haut ou en bas de la section\n- poster un commentaire type\n- archiver la carte\n\nRègles qui gardent ça sain et doivent être testées : les actions s’exécutent une fois par entrée, dans l’ordre listé ; une action qui déplace la carte vers une autre section ne se propage pas — les automatisations de la destination ne se déclenchent pas, et l’interface avertit quand tu en configures une qui le ferait ; et chaque changement automatisé est écrit dans le journal d’activité de la carte étiqueté comme automatique, pour qu’un assigné mystérieux puisse être expliqué.\n\nLimites de section : un plafond de travail en cours optionnel par section. Le dépasser ne bloque pas le déplacement — ça marque la section visiblement en surcapacité, parce qu’un blocage strict fait juste que les gens renomment les choses.\n\nChecklists de carte où compléter tous les éléments peut optionnellement déclencher un déplacement vers une section nommée, la deuxième automatisation que les gens veulent vraiment.\n\nAjoute aussi : une vue personnelle « assigné à moi » sur tous les tableaux triée par date d’échéance, une archive de tableaux avec recherche, une duplication de tableau qui copie les sections et leurs automatisations mais pas les cartes, et un export CSV.\n\nÉcris des tests pour l’ordre des automatisations, pour la règle de non-propagation, et pour la duplication de tableau qui copie les automatisations exactement une fois.\n\nNe construis ni cartes mentales, ni applications mobiles, ni multi-utilisateur en temps réel.",
+  "faq": [
+    {
+      "q": "Pourquoi les automatisations ne doivent-elles pas se propager ?",
+      "a": "Parce qu’une carte qui atterrit dans une section qui la déplace vers une autre section qui la ramène en arrière est une boucle infinie, et la version intéressante de ce bug n’apparaît qu’en production. Refuser la propagation est plus simple à raisonner que n’importe quel détecteur de boucle."
+    },
+    {
+      "q": "Pourquoi avertir plutôt que bloquer sur un plafond de travail en cours ?",
+      "a": "Parce qu’un blocage strict se fait contourner — les gens créent une colonne « Révision 2 » — et tu perds à la fois le signal et l’honnêteté. Un marqueur de surcapacité visible garde l’information."
+    },
+    {
+      "q": "Qu’est-ce qui rend l’automatisation au niveau colonne meilleure qu’un moteur de règles ?",
+      "a": "La découvrabilité. La règle est visible là où son effet se produit, donc une nouvelle personne qui ouvre le tableau comprend pourquoi la carte a reçu une date d’échéance. Les moteurs de règles finissent en écran que personne ne lit."
+    },
+    {
+      "q": "Puis-je récupérer mes tableaux MeisterTask ?",
+      "a": "Les projets s’exportent en CSV ou JSON depuis les réglages du projet, y compris sections, cartes, checklists et commentaires. Les pièces jointes ressortent comme des liens, donc télécharge-les avant de fermer le compte."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Boîtes mail illimitées, rotation, préchauffage et une seule boîte pour toutes les réponses.",
+  "verdictSummary": "Retire les parties qui demandent de l’infrastructure — l’approvisionnement en boîtes mail, la rotation à l’échelle, le pool de préchauffage — et il reste une pièce vraiment précieuse : la boîte de réception maîtresse, où les réponses de trente boîtes mail arrivent au même endroit déjà triées par intention. C’est le travail d’une session à construire sur IMAP ou une API de fournisseur et un modèle de langage, et c’est la moitié qui améliore ta journée. La moitié envoi, c’est de la réputation, et la réputation, ce n’est pas du code.",
+  "coreLoopDIY": "Rassemble les réponses de chaque boîte mail que tu possèdes dans une seule boîte de tri, classées par intention, pour que tu répondes depuis un seul écran au lieu de trente.",
+  "whatYouLose": [
+    "le moteur d’envoi, la rotation de boîtes mail et le préchauffage",
+    "les connexions de boîtes mail illimitées et l’approvisionnement en domaines derrière",
+    "le reporting de délivrabilité qui rend la rotation intéressante",
+    "le module complémentaire d’emails vérifiés et ses données",
+    "les sous-comptes et le marquage blanc pour les agences"
+  ],
+  "whyPeopleStillPay": "Parce que les agences font tourner de la prospection sortante pour beaucoup de clients à la fois, et le tissu d’envoi — boîtes mail, préchauffage, rotation, reporting — c’est ce qu’elles ne peuvent pas assembler elles-mêmes à cette échelle.",
+  "prompt": "Construis une boîte de réponses unifiée à travers chaque boîte mail que tu possèdes, avec classification d’intention.\n\nStack : ton choix, Postgres, Docker Compose. Connecte les boîtes mail via les API Gmail et Microsoft Graph avec OAuth quand c’est possible et IMAP sinon ; le README devrait être honnête sur le fait qu’IMAP avec des mots de passe d’application est plus simple et moins fiable.\n\nIngestion : interroge chaque boîte mail à un intervalle, stocke les nouveaux messages avec leurs en-têtes, et regroupe-les en fils par Message-ID, In-Reply-To et References. Garde le MIME brut. Déduplique un message qui apparaît dans deux boîtes parce que les deux ont été mises en copie.\n\nLa classification tourne une fois par nouveau fil entrant et le place dans exactement un panier : intéressé, pas intéressé, absence du bureau, référence à quelqu’un d’autre, demande de désabonnement, rebond, ou automatique autre. Fais d’abord les rebonds et répondeurs automatiques avec des règles d’en-tête — Auto-Submitted, X-Autoreply, motifs Return-Path, formats DSN standards — parce que les règles sont gratuites, déterministes et correctes. Seul ce qui survit aux règles va vers le modèle de langage, avec un prompt qui doit retourner un des labels fixes et une courte justification citée du message. Montre la justification dans l’interface pour qu’une mauvaise classification soit visible plutôt que mystérieuse.\n\nUne demande de désabonnement écrit un opt-out global permanent qu’aucun autre écran ne peut annuler.\n\nÉcran de triage : une seule liste pilotée au clavier. Déplace-toi entre les fils avec j et k, réponds sur place depuis la boîte mail qui a reçu le message à l’origine, archive, ou reclasse. Répondre doit envoyer depuis la bonne boîte mail — répondre depuis la mauvaise adresse, c’est l’échec qui rend une boîte unifiée inutile.\n\nGestion des rebonds : analyse les DSN pour le destinataire en échec et le code de statut, et marque l’adresse en rebond dur ou souple. Les rebonds durs rejoignent la liste de suppression permanente.\n\nUn tableau de bord : réponses par panier et par semaine, par boîte mail, et le taux de rebond par boîte mail, l’alerte précoce qu’un domaine se dégrade.\n\nÉcris des tests pour le classificateur par règles d’en-tête contre un corpus incluant un DSN, une absence du bureau et une vraie réponse, et pour la réponse-depuis-la-bonne-boîte.\n\nN’envoie pas de campagnes, n’implémente pas de préchauffage, et ne connecte pas de boîtes mail que tu ne possèdes pas.",
+  "faq": [
+    {
+      "q": "Pourquoi classer avec des règles avant le modèle de langage ?",
+      "a": "Parce que les rebonds et les réponses d’absence du bureau représentent l’essentiel du volume et s’identifient eux-mêmes dans les en-têtes. Les envoyer vers un modèle coûte de l’argent, ajoute de la latence et se trompe occasionnellement, ce qui fait trois pertes pour aucun gain."
+    },
+    {
+      "q": "Répondre depuis la bonne boîte mail, est-ce vraiment si dur ?",
+      "a": "C’est facile à construire et facile à rater, et le rater est fatal — une réponse depuis une adresse différente casse le fil, embrouille le destinataire et rebondit souvent. C’est cité dans le prompt parce que c’est le bug avec lequel ce genre d’outil est toujours livré en premier."
+    },
+    {
+      "q": "Quelle est la valeur honnête de ceci sans la partie envoi ?",
+      "a": "Si tu fais déjà de la prospection depuis plusieurs boîtes mail, c’est la différence entre vérifier trente boîtes de réception et en vérifier une. Sinon, c’est un client mail avec des étapes en plus."
+    },
+    {
+      "q": "Puis-je emporter mes données Smartlead ?",
+      "a": "Les leads et les statistiques de campagne s’exportent en CSV. Les connexions de boîtes mail, l’historique de préchauffage et la réputation qui va avec ne sont portables en aucun sens — c’est tout l’intérêt du produit."
+    }
+  ]
+}

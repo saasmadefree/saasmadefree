@@ -1,0 +1,32 @@
+{
+  "tagline": "Un stockage chiffré où la clé vit dans le lien, pas sur le serveur.",
+  "verdictSummary": "La cryptographie ici est la partie accessible : chiffre dans le navigateur, mets la clé dans le fragment d’URL pour qu’elle n’atteigne jamais le serveur, et l’hébergeur ne peut vraiment pas lire le fichier. C’est le travail d’une session avec la Web Crypto API, et il existe de bons précédents. Ce qui n’est pas accessible, c’est la ressource que MEGA vend vraiment avec ça — trois téraoctets de stockage et trente-six de transfert pour moins de dix euros — parce que c’est un métier de bande passante.",
+  "coreLoopDIY": "Chiffre dans le navigateur avant l’envoi et mets la clé dans le fragment d’URL, pour que le serveur stocke du texte chiffré qu’il ne peut pas déchiffrer et que le lien seul soit l’identifiant.",
+  "whatYouLose": [
+    "des téraoctets de stockage et de transfert à prix grand public",
+    "les clients de synchro et les applications mobiles",
+    "le chat, les réunions et le reste du bundle",
+    "le versionnement de fichiers et une fonction de retour en arrière",
+    "quelqu’un d’autre qui absorbe la bande passante quand un lien devient viral"
+  ],
+  "whyPeopleStillPay": "Parce que le stockage chiffré est bon marché à écrire et coûteux à faire tourner, et le quota de transfert est la ligne qui coûte vraiment de l’argent.",
+  "prompt": "Construis un partage de fichiers chiffré côté navigateur où le serveur ne voit jamais de clé.\n\nStack : un petit serveur (n’importe quel langage) plus un client navigateur utilisant uniquement la Web Crypto API — pas de cryptographie maison, pas de bibliothèque crypto tierce, pas de bricolage. Stockage d’objets ou disque derrière le serveur. Un domaine avec TLS.\n\nFlux d’upload :\n1. Génère une clé aléatoire de 256 bits dans le navigateur.\n2. Chiffre le fichier avec AES-GCM, en streaming par morceaux pour qu’un gros fichier n’ait jamais besoin de tenir en mémoire, avec un nonce distinct par morceau dérivé d’une base aléatoire et de l’index du morceau.\n3. Chiffre le nom de fichier et le type de contenu comme métadonnées sous la même clé.\n4. N’envoie que du texte chiffré. Le serveur assigne un id et stocke des octets qu’il ne peut pas lire.\n5. Produis un lien de la forme https://host/d/<id>#<clé>. Le fragment n’est jamais envoyé au serveur — cette seule propriété est toute la conception, et le README doit le dire clairement.\n\nTéléchargement : la page charge sans clé, lit le fragment en JavaScript, récupère le texte chiffré, déchiffre morceau par morceau vers un flux et enregistre. Montre une erreur claire si la clé manque ou est fausse plutôt qu’une exception de navigateur.\n\nContrôles, tous imposés côté serveur sur le texte chiffré parce que le serveur ne peut pas inspecter le contenu : date d’expiration, nombre maximal de téléchargements, et un mot de passe additionnel optionnel mélangé dans la dérivation de clé dans le navigateur (pour que le serveur n’apprenne toujours rien) plutôt que vérifié côté serveur.\n\nNotes de sécurité que le README doit contenir, honnêtement : le lien est l’identifiant, donc quiconque le voit peut lire le fichier, y compris quiconque le destinataire le transfère et tout ce qui journalise les URL avec fragments ; un serveur compromis peut servir du JavaScript modifié qui exfiltre la clé, ce qui est la faiblesse structurelle bien connue du chiffrement de bout en bout livré par navigateur ; et ceci protège contre un opérateur de serveur passif, pas contre un opérateur hostile.\n\nContrôles d’abus, parce qu’un point d’entrée d’upload public est un service d’hébergement pour des inconnus : limites de débit par IP, une taille maximale, un plafond de stockage total, et un point d’entrée de signalement. Tu ne peux pas modérer du texte chiffré, donc tu dois le limiter.\n\nÉcris des tests pour les allers-retours chiffrement-déchiffrement par morceaux incluant un fichier plus grand que la mémoire, pour l’unicité des nonces à travers les morceaux, et pour l’application de l’expiration et du compte de téléchargements.\n\nNe construis pas de clients de synchro, et n’invente pas de construction cryptographique.",
+  "faq": [
+    {
+      "q": "La clé dans le fragment d’URL est-elle vraiment sûre ?",
+      "a": "Sûre vis-à-vis du serveur, oui — les navigateurs ne transmettent jamais le fragment. Pas sûre vis-à-vis de quiconque obtient le lien, ni d’un serveur compromis qui sert du JavaScript malveillant. Ça protège contre un hébergeur honnête-mais-curieux, ce qui est la vraie menace pour la plupart des gens."
+    },
+    {
+      "q": "Pourquoi chiffrer en streaming par morceaux ?",
+      "a": "Parce que chiffrer un fichier de 4 Go en une seule opération le demande deux fois en mémoire et fait planter l’onglet. AES-GCM par morceaux avec un nonce par morceau permet au navigateur de gérer des fichiers de n’importe quelle taille, et c’est ce qui rend ça utilisable plutôt qu’une démo."
+    },
+    {
+      "q": "Quelle est la limite honnête du chiffrement de bout en bout dans un navigateur ?",
+      "a": "Le code arrive depuis le serveur à chaque visite, donc un hébergeur hostile ou compromis peut te remettre une version qui fuite la clé. Les applications natives avec des versions signées évitent ça ; le chiffrement livré par navigateur ne le peut pas, et prétendre le contraire est malhonnête."
+    },
+    {
+      "q": "Pourquoi tant d’insistance sur les contrôles d’abus ?",
+      "a": "Parce qu’un point d’entrée d’upload chiffré public est exactement ce que quelqu’un veut pour distribuer des choses que tu ne voudrais pas héberger, et tu ne peux pas inspecter ce que tu ne peux pas déchiffrer. Les plafonds et limites de débit sont le seul levier que tu as."
+    }
+  ]
+}

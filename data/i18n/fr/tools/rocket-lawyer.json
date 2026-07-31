@@ -1,0 +1,32 @@
+{
+  "tagline": "Remplis un document juridique, puis fais-le regarder par un avocat.",
+  "verdictSummary": "L’interview qui transforme des questions en document fini est un problème d’interface résolu — un arbre de décision sur un modèle. Les modèles eux-mêmes, c’est le produit : rédigés par des avocats, maintenus par État, et adossés à un vrai avocat que tu peux consulter. Le projet de consolation est vraiment utile pour les documents que tu écris encore et encore, et il est honnête sur le fait que les mots doivent bien venir de quelque part.",
+  "coreLoopDIY": "Transforme des documents que tu as déjà fait relire en interviews réutilisables : réponds à des questions, obtiens un document rempli, et garde un enregistrement exact de ce qui a été généré et quand.",
+  "whatYouLose": [
+    "la bibliothèque de modèles rédigés par des avocats tenue à jour par État",
+    "un avocat qui relira le document fini",
+    "les variations propres à chaque État maintenues à mesure que la loi change",
+    "le service de signature électronique inclus dans le plan",
+    "les dépôts d’entreprise et le service de registered agent"
+  ],
+  "whyPeopleStillPay": "Parce qu’un modèle vaut ce que vaut son auteur, et un générateur de documents avec personne derrière les mots est un outil de mise en forme.",
+  "prompt": "Construis un moteur d’assemblage de documents. Il remplit des modèles que tu fournis ; il n’écrit aucun texte juridique.\n\nLe README doit dire clairement : les modèles sont à fournir toi-même depuis une source en laquelle tu as confiance, et ce logiciel n’a absolument aucune connaissance juridique.\n\nStack : ton choix, Postgres, Docker Compose.\n\nModèle : un document Markdown avec des {{variables}} et des blocs conditionnels ({{#if}}), plus un jeu de questions déclaré — chaque question avec un type (texte, nombre, date, choix, oui/non), un texte d’aide, et des conditions optionnelles contrôlant quand elle est posée.\n\nInterview : une question par écran, retour et avance, progression affichée, réponses sauvegardées au fur et à mesure pour qu’une longue interview puisse être reprise. Saute les questions dont les conditions ne sont pas remplies, et ne pose jamais le même fait deux fois à travers un ensemble de documents.\n\nValidation avant génération : refuse de générer tant qu’une variable requise n’est pas remplie, et liste exactement lesquelles. Un document avec {{clientName}} imprimé dedans, c’est le mode d’échec de tout outil d’assemblage fait maison.\n\nLa génération produit un PDF et stocke un enregistrement contenant la version du modèle, chaque réponse, l’horodatage et la sortie rendue. Les modèles sont versionnés et jamais édités sur place — un document généré l’an dernier doit être reproductible octet pour octet.\n\nEnsembles de documents : un groupe de modèles partageant un jeu de réponses, pour qu’une lettre de mission, un cahier des charges et une facture soient produits depuis une seule interview.\n\nSignature, gardée délibérément modeste et honnêtement étiquetée : nom tapé plus horodatage stocké, adresse IP, et une copie du texte exact rendu signé. Indique dans l’interface que c’est une simple signature électronique et que certains documents en demandent plus.\n\nUne vue de bibliothèque des documents générés par contrepartie et par modèle, avec recherche plein texte.\n\nÉcris des tests pour les questions conditionnelles qui ne sont pas posées quand leur condition n’est pas remplie, pour la génération qui refuse sur des variables requises non remplies, et pour la régénération d’un document vieux d’un an depuis ses réponses stockées qui produit une sortie identique.\n\nN’inclus ni ne génère de modèles juridiques.",
+  "faq": [
+    {
+      "q": "D’où viennent les modèles ?",
+      "a": "D’un avocat, ou de documents que tu as déjà fait relire. C’est la réponse honnête, et c’est pourquoi c’est un « non » : le moteur est la partie facile et les mots sont le produit."
+    },
+    {
+      "q": "Pourquoi versionner les modèles plutôt que les éditer ?",
+      "a": "Parce qu’un document que tu as généré l’an dernier doit être reproductible, et éditer sur place fait de l’enregistrement une fiction. Le versionnement te permet aussi de voir quels contrats ont été produits à partir de la clause que tu as améliorée depuis."
+    },
+    {
+      "q": "Une signature à nom tapé vaut-elle quelque chose ?",
+      "a": "Pour des documents à faible enjeu entre parties consentantes, souvent oui, à condition de stocker le texte exact signé, l’heure et l’IP. Pour tout ce où l’exécution compte, utilise un vrai service de signature — et l’interface devrait dire lequel tu obtiens."
+    },
+    {
+      "q": "Comment Rocket Lawyer est-il tarifé ?",
+      "a": "149 $, 249 $ ou 349 $ par an pour les trois paliers d’adhésion, avec les dépôts facturés séparément — 99 $ plus les frais d’État pour une entité après la première, 70 $ pour un EIN, 125 $ par an pour le registered agent. L’adhésion, c’est la remise, pas le coût total."
+    }
+  ]
+}

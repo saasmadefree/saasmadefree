@@ -1,0 +1,32 @@
+{
+  "tagline": "Un tableur qui comprend les lignes parentes, les dépendances et un diagramme de Gantt.",
+  "verdictSummary": "Smartsheet gagne parce que ça ressemble à Excel pour la personne qui doit l’utiliser et comprend la structure de projet en dessous. Cette structure — lignes hiérarchiques, prédécesseurs, et un chemin critique qui se recalcule — c’est de la vraie informatique fondamentale, et c’est la raison pour laquelle c’est une semaine plutôt qu’un week-end. Ça reste un « en partie » : le moteur de planification est bien documenté, les formats sont ouverts, et rien là-dedans n’est un réseau ou un jeu de données que tu ne peux pas avoir.",
+  "coreLoopDIY": "Une grille où les lignes s’imbriquent en parents, les dépendances sont typées comme des prédécesseurs, et déplacer une date recalcule chaque date en aval et montre le chemin critique.",
+  "whatYouLose": [
+    "les applications mobiles",
+    "les contributeurs gratuits illimités, un modèle de licence plutôt qu’une fonctionnalité",
+    "les connecteurs vers Jira, Salesforce et le reste",
+    "l’épreuvage, les approbations et les contrôles de gouvernance pour lesquels les entreprises l’achètent",
+    "l’édition multi-utilisateur en temps réel sur la même feuille"
+  ],
+  "whyPeopleStillPay": "Parce que c’est l’outil de projet qu’une équipe finance ou opérations adoptera vraiment — ça ressemble au tableur auquel elle fait déjà confiance — et parce que la licence permet à cent personnes de contribuer pendant que dix paient.",
+  "prompt": "Construis une grille de projet avec un vrai moteur de planification en dessous.\n\nStack : ton choix, Postgres, Docker Compose. C’est plus un problème de calcul qu’un problème d’interface ; budgète en conséquence.\n\nModèle de feuille : des lignes avec des colonnes typées (texte, nombre, date, contact, liste déroulante, case à cocher, durée, prédécesseurs), et des lignes qui s’imbriquent — indenter une ligne en fait un enfant de la ligne au-dessus. Les lignes parentes calculent plutôt que stockent : le début est le début le plus tôt des enfants, la fin est la fin la plus tardive des enfants, la durée suit, et le pourcentage complet est la moyenne pondérée par durée des enfants. Les dates d’un parent ne sont jamais directement modifiables.\n\nLe moteur de planification :\n- Les prédécesseurs sont typés : fin-vers-début, début-vers-début, fin-vers-fin, début-vers-fin, chacun avec un décalage optionnel en jours ouvrés, positif ou négatif.\n- Un calendrier de jours ouvrés avec des week-ends configurables et une liste de jours fériés. Toutes les durées et décalages sont en jours ouvrés.\n- Changer n’importe quelle date ou durée déclenche une passe avant pour recalculer chaque ligne en aval, puis une passe arrière pour calculer la marge. Les lignes à marge zéro sont le chemin critique et sont mises en évidence.\n- Les dépendances circulaires sont détectées et refusées au moment de la création, en nommant le cycle. Ne laisse pas un cycle être sauvegardé et découvert au moment du recalcul.\n\nVue Gantt à côté de la grille, avec un défilement partagé, avec des flèches de dépendance tracées et un glisser-pour-replanifier qui fait tourner le même moteur que taper une date — un seul chemin de code, testé pour produire des résultats identiques dans les deux cas.\n\nAjoute aussi : des commentaires au niveau cellule, des pièces jointes de ligne, des règles de mise en forme conditionnelle, une vue carte groupée par une colonne liste déroulante, et un formulaire qui ajoute une ligne à la feuille depuis une URL publique avec un captcha ou un token.\n\nImport et export : XLSX et CSV. L’aller-retour XLSX doit préserver la hiérarchie (comme une colonne de niveau d’indentation) et les prédécesseurs (comme une colonne texte dans le format documenté) — perdre la structure à l’export, c’est ce qui transforme un outil de projet en cul-de-sac.\n\nÉcris des tests pour les passes avant et arrière contre un réseau calculé à la main, pour les quatre types de dépendance avec un décalage négatif, pour le refus de cycle, et pour l’aller-retour XLSX qui préserve les niveaux d’indentation.\n\nNe construis ni approbations, ni épreuvage, ni connecteurs.",
+  "faq": [
+    {
+      "q": "Qu’est-ce qui fait vraiment que c’est une semaine ?",
+      "a": "Les passes avant et arrière. Calculer les dates en aval est simple ; calculer la marge correctement à travers quatre types de dépendance avec un décalage négatif et un calendrier de jours fériés, c’est là que partent les jours, et c’est aussi la partie qui est fausse dans la plupart des outils de projet faits maison."
+    },
+    {
+      "q": "Pourquoi refuser les dépendances circulaires à la création ?",
+      "a": "Parce que les découvrir au moment du recalcul signifie une feuille inutilisable et un message d’erreur qui pointe vers la mauvaise ligne. Détecter le cycle quand le lien est créé te permet de nommer le chemin exact de retour."
+    },
+    {
+      "q": "Pourquoi les lignes parentes doivent-elles être calculées et non modifiables ?",
+      "a": "Parce qu’une date parente modifiable qui contredit ses enfants est un mensonge qui survit à chaque recalcul suivant. La rendre en lecture seule est la seule décision qui garde un planning hiérarchique honnête."
+    },
+    {
+      "q": "L’export Smartsheet préserve-t-il la structure de projet ?",
+      "a": "En partie. Les exports Excel et CSV portent les valeurs, et la hiérarchie passe comme une indentation que d’autres outils ignorent la plupart du temps. Les prédécesseurs s’exportent en texte que tu peux analyser, ce qui est pourquoi le prompt demande un format d’aller-retour documenté."
+    }
+  ]
+}

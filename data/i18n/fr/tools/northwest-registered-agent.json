@@ -1,0 +1,32 @@
+{
+  "tagline": "Quelqu’un dans l’État qui acceptera une poursuite judiciaire en ton nom.",
+  "verdictSummary": "Un registered agent est une personne ou une entreprise avec une adresse physique dans l’État, disponible pendant les heures ouvrées, légalement désignée pour recevoir une signification judiciaire. Ce n’est pas du tout une catégorie logicielle — c’est une adresse et une obligation. La seule chose qui vaut la peine d’être construite autour, c’est le traitement de ce qui arrive, ce qui compte parce que ces documents viennent avec des échéances qui commencent à courir dès la livraison.",
+  "coreLoopDIY": "Traite ce que l’agent transmet : chaque avis officiel journalisé le jour où il arrive, avec une échéance calculée et un rappel posé avant que la fenêtre de réponse ne se ferme.",
+  "whatYouLose": [
+    "l’adresse et la personne qui s’y trouve — le service entier",
+    "la disponibilité pendant les heures ouvrées dans cet État",
+    "la numérisation et la transmission le jour même du courrier officiel",
+    "ton adresse personnelle qui reste hors du registre public",
+    "la couverture dans chaque État où tu t’enregistres"
+  ],
+  "whyPeopleStillPay": "Parce que l’alternative, c’est ta propre adresse sur un registre public et quelqu’un présent toute la journée, et parce que rater une signification judiciaire peut produire un jugement par défaut contre toi.",
+  "prompt": "Construis un registre de courrier officiel pour les documents transmis par un registered agent. Les échéances, c’est tout l’intérêt.\n\nStack : une application locale, SQLite, une seule commande. Le README doit dire que les échéances de réponse sont propres à chaque juridiction, que les règles d’échéance sont à configurer toi-même à partir de tes propres conseils, et que ceci est un traqueur plutôt qu’un conseil.\n\nFiche d’élément : date de réception (la date où c’est arrivé chez l’agent, pas la date où tu l’as lu — cette distinction est toute la raison d’être de l’outil), expéditeur, autorité, type de document, entité concernée, une numérisation, et un résumé en texte libre.\n\nRègles d’échéance que tu configures par type de document : un nombre de jours depuis la réception, compté en jours calendaires ou ouvrés, depuis un fichier de règles que tu remplis. Livre-le vide avec une forme documentée.\n\nEn journalisant un élément, calcule l’échéance de réponse et crée des rappels escaladés qui ne s’arrêtent pas tant que l’élément n’est pas fermé avec une réponse enregistrée. Un élément de signification judiciaire devrait être visuellement distinct d’un avis annuel de routine et devrait exiger un accusé de lecture explicite.\n\nStatut : reçu, accusé de réception, action prise, fermé — chacun avec une date et une note. Les éléments en retard restent marqués en permanence comme ayant été en retard.\n\nRecherche à travers les résumés et métadonnées, et une vue par entité de tout ce qui a été reçu, imprimable, parce que cet historique, c’est ce qu’un comptable ou un avocat demande.\n\nRétention : garde les numérisations pour une période configurable avec la suppression journalisée. La correspondance officielle est exactement la catégorie que les gens suppriment soit trop tôt, soit gardent pour toujours sans savoir pourquoi.\n\nÉcris des tests pour le comptage en jours ouvrés à travers des week-ends et un jour férié configuré, pour les rappels qui escaladent depuis la date de réception plutôt que la date de journalisation, et pour le marqueur de retard qui survit à la fermeture.\n\nNe tente pas d’être un registered agent, et n’interprète aucun document.",
+  "faq": [
+    {
+      "q": "Pourquoi compter les échéances depuis la réception plutôt que depuis le moment où je le lis ?",
+      "a": "Parce que c’est comme ça que la loi compte. Une assignation signifiée à ton agent démarre l’horloge ce jour-là, que l’email t’ait atteint ou non, et construire le traqueur autour de la mauvaise date défait son seul but."
+    },
+    {
+      "q": "Puis-je être mon propre registered agent ?",
+      "a": "Dans la plupart des États, oui, si tu y as une adresse physique de rue et es présent pendant les heures ouvrées. Les coûts pratiques, c’est que l’adresse devient un registre public et que tu dois vraiment être là — ce qui est pourquoi le service existe."
+    },
+    {
+      "q": "Que se passe-t-il si une signification judiciaire est manquée ?",
+      "a": "L’affaire peut avancer sans toi et un jugement par défaut peut être rendu. C’est la seule catégorie de courrier où une semaine d’inattention coûte vraiment cher, ce qui est pourquoi ce projet la traite différemment de tout le reste."
+    },
+    {
+      "q": "Pourquoi le prix de cette fiche est-il marqué à confiance basse ?",
+      "a": "Parce que le site bloque entièrement ce réseau, en script comme en navigateur. Le chiffre de 125 $ par an est ancien et largement publié, mais personne ici ne l’a lu directement sur la page, et la fiche le dit plutôt que de suggérer le contraire."
+    }
+  ]
+}

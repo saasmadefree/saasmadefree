@@ -1,0 +1,32 @@
+{
+  "tagline": "Le site est-il en ligne, et est-ce que quelqu’un le sait à trois heures du matin ?",
+  "verdictSummary": "Le contrôle de disponibilité, c’est la chose la plus auto-hébergeable de toute cette catégorie — un équivalent open source mature existe depuis des années et un week-end t’en donne un bon. C’est donc un « en partie », pas un « non ». Mais les deux choses que tu ne dois pas simuler méritent d’être nommées : le contrôleur doit vivre quelque part qui n’est pas ton infrastructure, sinon il meurt avec ce qu’il surveille, et l’alerte doit arriver sur un canal qui fonctionne quand internet ne fonctionne pas, ce qui veut dire un fournisseur SMS et un vrai téléphone.",
+  "coreLoopDIY": "Contrôle depuis un hôte qui n’est délibérément pas le tien, alerte sur un canal qui fonctionne quand ton infrastructure ne fonctionne pas, et publie une page de statut qui reste en ligne quand le site ne l’est pas.",
+  "whatYouLose": [
+    "des contrôles depuis de nombreux pays à la fois, et les pannes régionales que seuls eux voient",
+    "les alertes SMS et vocales incluses plutôt qu’assemblées via un fournisseur",
+    "le monitoring d’utilisateurs réels sur le même tableau de bord",
+    "des contrôles de transaction enregistrés sans écrire de code",
+    "quelqu’un d’autre qui garantit que l’alerte a été livrée"
+  ],
+  "whyPeopleStillPay": "Parce que le produit entier, c’est un téléphone qui sonne à 3h du matin, et la valeur tient entièrement dans le fait que cette sonnerie soit fiable et indépendante de tout ce que tu fais tourner.",
+  "prompt": "Construis un monitoring de disponibilité dont la première règle de conception est qu’il ne doit pas partager le sort de ce qu’il surveille.\n\nStack : ton choix, SQLite suffit, Docker Compose. Le README doit s’ouvrir avec la règle de déploiement : fais tourner ça sur un fournisseur différent, dans une région différente, de l’infrastructure qu’il surveille, et dis pourquoi.\n\nContrôles : HTTP avec un statut attendu et une correspondance de corps optionnelle, port TCP, enregistrement DNS qui se résout vers une valeur attendue, expiration de certificat TLS en jours, et un point d’entrée heartbeat pour les tâches cron qui alerte quand une tâche ne se signale pas à temps.\n\nFais tourner chacun selon son intervalle, stocke chaque résultat avec le temps de réponse, et exige N échecs consécutifs avant qu’un incident ne s’ouvre — configurable par contrôle, deux par défaut, parce qu’un seul échec, c’est généralement le réseau.\n\nIncidents : s’ouvrent au seuil d’échec, se ferment à la récupération, en stockant le début, la fin et chaque résultat entre les deux. Calcule le pourcentage de disponibilité à partir des incidents plutôt que du compte d’échantillons bruts, ce qui rend un chiffre mensuel défendable.\n\nAlertes, avec une politique d’escalade : première notification vers un webhook, et après M minutes toujours en échec, escalade vers SMS via un fournisseur dont tu fournis les identifiants. Envoie toujours une notification de rétablissement. Déduplique pour qu’un incident envoie une alerte par canal et par étape d’escalade, et journalise chaque tentative de livraison avec la réponse du fournisseur — une alerte que tu crois avoir été envoyée et qui ne l’a pas été, c’est le pire échec possible de cet outil.\n\nAuto-contrôle : le moniteur envoie son propre heartbeat vers un service externe gratuit, pour que la chose qui surveille tout soit elle-même surveillée. Dis dans le README que ce n’est pas optionnel.\n\nPage de statut : rendu statique régénéré après chaque contrôle, publié sur un hébergement séparé à la fois du moniteur et du site surveillé. Montre 90 jours de statut quotidien, l’état actuel, et les incidents ouverts avec une chronologie.\n\nLes fenêtres de maintenance suspendent les alertes mais enregistrent quand même les résultats, marqués comme tels, pour que le chiffre de disponibilité puisse être calculé des deux façons.\n\nÉcris des tests pour le seuil d’échecs consécutifs, pour la disponibilité calculée à travers un incident qui traverse minuit, pour la déduplication d’alertes, et pour les fenêtres de maintenance qui suspendent la notification mais pas l’enregistrement.\n\nNe construis ni monitoring d’utilisateurs réels, ni éditeur de transaction enregistré par navigateur.",
+  "faq": [
+    {
+      "q": "Pourquoi l’endroit où tu le fais tourner est-il la première règle de conception ?",
+      "a": "Parce qu’un moniteur sur le même serveur que le site rapporte le site comme en ligne jusqu’à ce que les deux tombent ensemble, silencieusement. C’est l’erreur qui rend le monitoring de disponibilité auto-hébergé sans valeur, et c’est entièrement une décision de déploiement."
+    },
+    {
+      "q": "Ai-je vraiment besoin de SMS ?",
+      "a": "Si le but est d’être réveillé, oui. Les notifications push dépendent d’une application, d’un téléphone avec signal et données, et d’un service que tu ne contrôles pas ; le SMS se dégrade mieux. Ça coûte quelques centimes par message via n’importe quel fournisseur, et c’est la partie que les outils payants regroupent."
+    },
+    {
+      "q": "Que rate vraiment un emplacement unique ?",
+      "a": "Les problèmes réseau régionaux, les mauvaises configurations de CDN et les problèmes DNS qui affectent certains pays et pas d’autres — une vraie classe de pannes où ton contrôle unique dit que tout va bien. Louer deux hôtes bon marché dans des régions différentes réduit considérablement ça."
+    },
+    {
+      "q": "Pourquoi calculer la disponibilité à partir des incidents plutôt que des échantillons ?",
+      "a": "Parce que les pourcentages basés sur des échantillons changent de sens quand tu changes l’intervalle de contrôle, et ils ne peuvent pas exprimer une panne d’une fraction de minute. Des incidents avec un début et une fin donnent un chiffre que tu peux défendre dans une conversation de niveau de service."
+    }
+  ]
+}

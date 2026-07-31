@@ -1,0 +1,32 @@
+{
+  "tagline": "Chat, appels et réunions pour une petite entreprise à quatre dollars par tête.",
+  "verdictSummary": "À quatre dollars par utilisateur, c’est tarifé pour être moins cher que d’y réfléchir, et ça regroupe chat, stockage, et des réunions qui tiennent. La moitié réunion est de l’infrastructure média et la moitié identité est un annuaire que d’autres logiciels professionnels s’attendent à trouver — ni l’une ni l’autre n’est un projet perso. La moitié chat en est vraiment un, et elle vaut la peine d’être bien construite, parce que ce dont la plupart des petites équipes ont vraiment besoin de Teams, c’est une conversation qu’elles peuvent retrouver six mois plus tard.",
+  "coreLoopDIY": "Fais tourner un chat d’équipe que tu peux vraiment chercher : des conversations organisées en fils par sujet plutôt qu’un fleuve défilant, avec une politique de rétention que tu fixes et une recherche plein texte qui retrouve la décision six mois plus tard.",
+  "whatYouLose": [
+    "réunions, appels et partage d’écran",
+    "l’annuaire d’identité que d’autres logiciels professionnels s’attendent à trouver",
+    "les applications mobiles et desktop avec des notifications fiables",
+    "le stockage de fichiers et la co-édition dans les documents Office",
+    "l’accès invité pour des personnes hors de ton organisation"
+  ],
+  "whyPeopleStillPay": "Parce que quatre dollars achètent chat, réunions et stockage qu’une petite entreprise assemblerait autrement à partir de trois fournisseurs, et parce que c’est déjà installé sur l’ordinateur de tout le monde.",
+  "prompt": "Construis un chat d’équipe organisé par sujet, pas par temps.\n\nStack : ton choix avec websockets, Postgres, Docker Compose, un domaine avec TLS.\n\nLa décision structurelle : un message appartient à un sujet à l’intérieur d’un canal, et un sujet est créé par quiconque démarre la conversation, avec un nom. Lire un canal signifie lire une liste de sujets avec des compteurs de non lus, pas faire défiler un fleuve fusionné de messages. C’est le seul choix de conception qui rend un chat consultable un an plus tard, et il doit être imposé — il n’y a aucun moyen de poster dans un canal sans nommer un sujet, même si en choisir un existant prend une touche.\n\nMessages : Markdown, modification et suppression avec un marqueur d’édition, réactions, @mentions qui écrivent dans une table de notifications, et pièces jointes vers le disque local avec un nom de fichier en hash de contenu et une liste blanche de types.\n\nLa recherche doit être vraiment bonne ou la conception ne sert à rien : plein texte sur les corps de messages avec Postgres, filtrable par canal, sujet, expéditeur et plage de dates, avec le terme correspondant surligné et trois messages de contexte environnant. La recherche doit inclure les noms de sujets, puisqu’un sujet bien nommé est souvent toute la réponse.\n\nRétention : une politique par canal en jours, illimitée par défaut mais facile à fixer, qui supprime les messages et leurs pièces jointes du disque. Montre la politique dans l’en-tête du canal pour que personne ne soit surpris. Un canal marqué comme journal de décisions peut être exempté explicitement.\n\nÉtat de lecture par utilisateur et par sujet, pour qu’un badge non lu signifie quelque chose. Tout-marquer-lu au niveau canal.\n\nExport : un canal entier en JSON, et en Markdown lisible avec un fichier par sujet — ce second format, c’est ce qui rend une archive utile après que tu arrêtes de faire tourner le serveur.\n\nÉcris des tests pour l’exactitude de l’état de lecture avec des posts concurrents, pour la rétention qui supprime les pièces jointes du disque et pas seulement les lignes, et pour la recherche qui retourne le bon contexte aux limites de message.\n\nNe construis ni appels voix ou vidéo, ni partage d’écran, ni application mobile.",
+  "faq": [
+    {
+      "q": "Pourquoi forcer chaque message dans un sujet nommé ?",
+      "a": "Parce qu’un chat sans sujet devient introuvable en quelques semaines — la décision est là quelque part, dans un fleuve de messages, sans poignée. Nommer le sujet coûte une touche et fait la différence entre un journal de chat et un enregistrement."
+    },
+    {
+      "q": "Un chat sans réunions est-il vraiment utile ?",
+      "a": "Pour une petite équipe, oui : la réunion peut se tenir n’importe où, et ce que tu ne peux pas sous-traiter, c’est l’enregistrement écrit. Ce projet fait délibérément la moitié durable et laisse la moitié éphémère à n’importe quel outil de visioconférence que tu as déjà."
+    },
+    {
+      "q": "Pourquoi exporter en Markdown en plus de JSON ?",
+      "a": "Parce que JSON, c’est pour importer quelque part, et Markdown, c’est pour lire dans cinq ans sans aucun logiciel. Une archive que tu ne peux pas ouvrir sans faire tourner un serveur n’est pas une archive."
+    },
+    {
+      "q": "Que contient vraiment Teams Essentials ?",
+      "a": "Chat, appels et réunions vidéo avec enregistrements et transcriptions, plus 10 Go de stockage par utilisateur, sur un abonnement annuel à renouvellement automatique. Ça n’inclut pas les applications desktop Office — c’est le palier Business Basic et au-delà."
+    }
+  ]
+}

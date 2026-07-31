@@ -1,0 +1,32 @@
+{
+  "tagline": "Séquences d’email froid avec préchauffage et outillage de délivrabilité attachés.",
+  "verdictSummary": "Saleshandy vend des séquences, mais ce qui garde les clients, c’est l’appareil de délivrabilité : préchauffage, tests de placement en boîte de réception à travers les fournisseurs, et le monitoring qui te dit quand un domaine se dégrade. La moitié audit est vraiment constructible en une session — enregistrements DNS, recherches de listes noires, analyse d’en-têtes — et c’est la moitié qui vaut la peine d’être possédée, parce qu’elle te dit la vérité sur tes propres domaines. La moitié envoi dépend d’une réputation que tu n’as pas et d’un réseau de comptes témoins que tu ne peux pas assembler.",
+  "coreLoopDIY": "Audite tes propres domaines d’envoi plutôt que d’envoyer depuis eux : SPF, DKIM et DMARC analysés et expliqués, recherches de listes noires, et un test de placement que tu fais tourner à la main contre tes propres comptes témoins.",
+  "whatYouLose": [
+    "le préchauffage automatisé à travers un pool de vraies boîtes mail",
+    "les tests de placement en boîte de réception contre des comptes témoins chez chaque grand fournisseur",
+    "l’envoyeur de séquences et sa limitation de débit",
+    "le chercheur de prospects inclus dans le plan",
+    "les données de réputation agrégées à travers des milliers d’autres expéditeurs"
+  ],
+  "whyPeopleStillPay": "Parce que savoir que ton DNS est correct est facile et faire arriver du courrier dans une boîte de réception ne l’est pas, et l’écart entre les deux est comblé par le préchauffage et des réseaux de comptes témoins qui ne fonctionnent qu’à l’échelle.",
+  "prompt": "Construis un auditeur de domaine d’envoi. Il examine des domaines que tu possèdes et te dit, en langage simple, ce qui ne va pas.\n\nStack : ton choix, Postgres pour l’historique, une seule commande pour lancer. Tous les contrôles sont des recherches DNS et réseau en lecture seule.\n\nContrôles par domaine, chacun rapporté avec un statut et une phrase expliquant ce que ça signifie et quoi faire :\n- SPF : récupère et analyse l’enregistrement. Compte les recherches DNS et signale tout ce qui est à ou au-dessus de la limite de dix, l’échec silencieux le plus courant. Signale +all, les enregistrements manquants, et plus d’un enregistrement SPF.\n- DKIM : pour chaque sélecteur que je fournis, récupère la clé, rapporte l’algorithme et la longueur de clé, et signale tout ce qui est sous 1024 bits.\n- DMARC : analyse l’enregistrement, rapporte la politique, le pourcentage, et si des adresses de reporting sont fixées. Signale p=none avec une note indiquant que ça ne surveille et n’impose rien.\n- MX et A : résous, et vérifie que l’hôte d’envoi a un DNS direct et inverse correspondants, parce qu’un DNS inversé manquant fait carrément refuser le courrier.\n- BIMI et MTA-STS : rapporte la présence, sans jugement.\n- Listes noires : interroge une liste configurable de DNSBL publiques pour les IP d’envoi, avec un court timeout et une gestion claire d’une liste inaccessible plutôt que de la traiter comme propre.\n\nHistorique : stocke chaque exécution pour que la page d’un domaine montre une chronologie. Mets en évidence les changements depuis l’exécution précédente — une clé DKIM qui a tourné, une politique DMARC qui s’est affaiblie — parce qu’un changement silencieux, c’est exactement ce dont tu veux être informé.\n\nIngestion de rapports DMARC, second module : accepte les rapports XML agrégés envoyés à ton adresse rua, analyse-les, et produis une table de source IP, volume, résultat SPF et résultat DKIM. Cette table, c’est là où tu découvres que quelqu’un d’autre envoie en se faisant passer pour toi.\n\nTest de placement, manuel par conception : j’enregistre des adresses témoins que je contrôle chez plusieurs fournisseurs, l’application génère un message de test avec un token unique, je l’envoie moi-même depuis le domaine testé, et je marque dans l’interface où chacun a atterri. L’application trace ensuite le placement par fournisseur dans le temps. Elle n’envoie jamais le message elle-même.\n\nÉcris des tests pour le compteur de recherches SPF contre une chaîne d’includes imbriqués, et pour l’analyse DMARC d’un enregistrement malformé.\n\nN’envoie pas d’email, n’implémente pas de préchauffage. Le README devrait indiquer qu’un DNS correct est nécessaire et loin d’être suffisant.",
+  "faq": [
+    {
+      "q": "Pourquoi la limite de recherches SPF compte-t-elle plus que l’enregistrement lui-même ?",
+      "a": "Parce que dépasser dix recherches DNS fait échouer toute l’évaluation SPF en permanence, et l’enregistrement a toujours l’air parfaitement raisonnable quand tu le lis. Imbriquer les includes de trois fournisseurs suffit à le casser, et rien ne te le dit."
+    },
+    {
+      "q": "Un test de placement manuel vaut-il la peine ?",
+      "a": "C’est la seule version que tu peux faire tourner honnêtement. Le test automatisé par comptes témoins demande une flotte maintenue de vrais comptes chez chaque fournisseur — des comptes qui se font fermer exactement pour cet usage — ce qui est un coût récurrent, pas une fonctionnalité."
+    },
+    {
+      "q": "Que donnent vraiment les rapports agrégés DMARC ?",
+      "a": "Une liste quotidienne de chaque IP qui envoie du courrier en prétendant être ton domaine, avec des résultats de réussite et d’échec. C’est comme ça que tu découvres un outil marketing oublié, ou quelqu’un qui usurpe ton identité, et ça coûte un seul enregistrement DNS à activer."
+    },
+    {
+      "q": "Ceci peut-il réparer une mauvaise délivrabilité ?",
+      "a": "Ça peut réparer les causes mécaniques, qui représentent une vraie part du problème et sont bon marché à réparer. Ça ne peut pas réparer un domaine froid, une mauvaise liste ou un taux de plainte, et c’est ça que l’abonnement vend vraiment de résoudre."
+    }
+  ]
+}

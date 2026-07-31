@@ -1,0 +1,32 @@
+{
+  "tagline": "Des tableaux colorés qui sont en fait des tableurs avec des types et des automatisations.",
+  "verdictSummary": "Sous la couleur, monday.com est un tableur typé : chaque colonne a un comportement, et les automatisations se lisent comme des phrases. Reconstruire le cœur à colonnes typées avec un constructeur de règles, c’est une semaine, et c’est une semaine vraiment utile parce que le résultat est la forme dont la plupart des petites équipes ont vraiment besoin. Les manques sont les applications mobiles, la collaboration en temps réel et la galerie de modèles — de la mécanique d’adoption, pas une barrière défensive.",
+  "coreLoopDIY": "Des tableaux de lignes et de colonnes typées, avec des automatisations écrites comme des phrases lisibles — quand un statut passe à fait, notifie le responsable et déplace l’élément vers un groupe.",
+  "whatYouLose": [
+    "les applications mobiles et les notifications push",
+    "l’édition multi-utilisateur en temps réel sur le même tableau",
+    "la galerie de modèles, la façon dont la plupart des équipes démarrent",
+    "la marketplace d’applications et ses intégrations profondes",
+    "les crédits IA et les assistants qu’ils alimentent"
+  ],
+  "whyPeopleStillPay": "Parce que monday.com est acheté par des gens qui ne vont rien construire, et les modèles plus l’onboarding, c’est ce qui fait qu’un département entier utilise le même tableau en une semaine.",
+  "prompt": "Construis une plateforme de tableaux à colonnes typées avec un constructeur d’automatisation qui se lit comme de l’anglais.\n\nStack : ton choix, Postgres, Docker Compose.\n\nModèle de tableau : un Tableau a des Groupes (sections de lignes) et des Colonnes. Chaque Colonne a un type parmi un ensemble fermé, et le type possède son comportement — rendu, édition, tri, filtre et agrégation : texte, texte long, nombre, statut (options nommées avec des couleurs), date, période (début et fin), personne, case à cocher, liste déroulante, lien, fichier, formule, miroir (une valeur lue depuis un élément lié sur un autre tableau), et dépendance.\n\nLignes de synthèse : chaque groupe et le pied du tableau montrent un agrégat par colonne choisi selon le type de colonne — somme ou moyenne pour les nombres, une barre de distribution pour le statut, le plus tôt et le plus tard pour les dates, un compte de cochés pour la case à cocher.\n\nLe constructeur d’automatisation est le facteur différenciant, et sa contrainte est qu’une règle doit se lire comme une phrase : Quand [déclencheur], [condition], alors [action].\n- Déclencheurs : le statut passe à X ; une date arrive ; un élément est créé ; une colonne change ; à chaque période.\n- Conditions : optionnelles, une comparaison sur une colonne.\n- Actions : notifier une personne ; fixer la valeur d’une colonne ; déplacer vers un groupe ; créer un élément sur un autre tableau ; archiver.\nRends chaque règle configurée comme cette phrase dans l’interface. Exécute les règles une fois par événement déclencheur, journalise chaque exécution avec le résultat, et plafonne la profondeur de chaîne à trois avec une erreur visible plutôt qu’un arrêt silencieux — la récursion est le mode d’échec de tout moteur de règles.\n\nVues sur le même tableau : table (par défaut), kanban groupé par n’importe quelle colonne statut, calendrier par une colonne date, et frise chronologique par une colonne période.\n\nRelations inter-tableaux : une colonne lien pointant vers des éléments sur un autre tableau, et une colonne miroir lisant une des valeurs de l’élément lié. Les miroirs sont en lecture seule et ne doivent jamais être modifiables via le miroir, ce qui est le bug avec lequel cette fonctionnalité est toujours livrée.\n\nÉcris des tests pour le plafonnement de la profondeur de chaîne, pour l’application de la lecture seule des miroirs, et pour les agrégats de groupe avec des valeurs vides et nulles.\n\nNe construis ni galerie de modèles, ni applications mobiles, ni collaboration en temps réel.",
+  "faq": [
+    {
+      "q": "Pourquoi insister pour que l’automatisation se lise comme une phrase ?",
+      "a": "Parce que c’est la contrainte qui garde un constructeur de règles utilisable par des non-développeurs, et c’est en grande partie pourquoi monday.com est adopté par des équipes qui n’ouvriraient jamais un outil de workflow. Dès que les règles arrêtent de se lire comme des phrases, tu as construit un langage de script avec un pire éditeur."
+    },
+    {
+      "q": "Qu’est-ce qu’une colonne miroir, et pourquoi est-elle dangereuse ?",
+      "a": "Elle montre une valeur qui vit sur un élément lié sur un autre tableau. Elle est dangereuse parce que la rendre modifiable crée deux sources de vérité pour une seule valeur, et réconcilier ça n’est pas un bug que tu corriges, c’est un bug avec lequel tu vis."
+    },
+    {
+      "q": "Pourquoi plafonner la profondeur de chaîne d’automatisation ?",
+      "a": "Parce qu’une règle A qui déclenche une règle B qui déclenche une règle A est trivialement facile à configurer par accident, et un moteur sans plafond enverra avec plaisir quatre cents notifications avant que quiconque ne le remarque. Une erreur visible à la profondeur trois vaut mieux qu’un arrêt silencieux que personne ne peut déboguer."
+    },
+    {
+      "q": "Comment monday.com facture-t-il vraiment ?",
+      "a": "Par siège, en blocs, avec un minimum de trois sièges, et le prix affiché par défaut est l’annuel — le tarif mensuel est environ 18 % plus cher. Les fonctionnalités IA sont comptées en crédits en plus du prix de siège."
+    }
+  ]
+}

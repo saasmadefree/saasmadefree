@@ -1,0 +1,32 @@
+{
+  "tagline": "Galeries, un site web et un CRM client sous un seul identifiant.",
+  "verdictSummary": "Pixieset vend tout le back-office du photographe en un seul endroit, et chaque pièce prise isolément est du logiciel ordinaire — ce qui en fait un « en partie ». La raison pour laquelle les gens paient, c’est que les pièces se connaissent entre elles : une réservation devient une galerie devient une facture sans retaper. Un projet perso peut avoir ça aussi, et le vrai manque, c’est la boutique de tirages et les applications mobiles, plus le coût ordinaire de faire tourner ta propre livraison.",
+  "coreLoopDIY": "Câble les pièces ensemble plutôt que de reconstruire chacune : une réservation crée la coquille de galerie, la galerie notifie le client, et la livraison ferme le dossier — une seule fiche client de bout en bout.",
+  "whatYouLose": [
+    "la boutique de tirages et son exécution",
+    "les applications mobiles pour toi et le client",
+    "le constructeur de site web hébergé avec ses modèles",
+    "l’envoi de campagnes email inclus dans le plan",
+    "la fiabilité hébergée le jour de livraison d’une galerie"
+  ],
+  "whyPeopleStillPay": "Parce que l’alternative, c’est quatre outils et un tableur, et chaque couture entre eux est un endroit où un mariage se fait oublier. Huit dollars pour un seul identifiant, c’est un échange rationnel pour une entreprise d’une personne.",
+  "prompt": "Construis un back-office de photographe où une seule fiche client court de la demande à la livraison, et prouve qu’il n’y a pas de retape.\n\nStack : ton choix, Postgres, stockage d’objets, Docker Compose, un domaine avec TLS, et un fournisseur d’email transactionnel.\n\nUne fiche Client : nom, contacts, notes. Tout le reste s’y attache.\n\nLe pipeline, comme un seul flux plutôt que quatre fonctionnalités :\n1. Demande depuis un formulaire public sur ton site, créant le Client et un Dossier avec une date et un type.\n2. Réservation : le Dossier reçoit un contrat (un modèle Markdown rendu avec les champs du client, signé par un nom tapé plus un horodatage stocké, une IP et une copie du texte exact signé — cette dernière partie, c’est ce qui lui donne de la valeur plus tard) et un acompte enregistré manuellement.\n3. Jour de shooting : une checklist depuis un modèle par type de dossier.\n4. Livraison : créer la galerie depuis le Dossier préremplit le titre, la date et le client, et l’envoyer envoie un email au client depuis un modèle avec son nom et le lien de galerie. L’existence de la galerie est visible sur le Dossier.\n5. Clôture : paiement final enregistré, fichiers archivés vers du stockage froid, et une demande d’avis envoyée après N jours.\n\nLe test qui prouve la conception : de la demande à la clôture, le nom et l’email du client sont tapés exactement une fois. Écris-le comme un test de bout en bout.\n\nGalerie : URL impossible à deviner, mot de passe ou lien personnel, images adaptatives, favoris avec un nombre cible, commentaires par photo, téléchargement zip à une résolution fixée.\n\nUn tableau de bord qui est une liste de travail, pas des statistiques : dossiers par étape, tout ce qui est en retard à son étape, soldes impayés, et galeries qui expirent ce mois-ci.\n\nUn site public : quelques pages et des galeries de portfolio depuis le même stockage photo, rendu côté serveur, pas de framework client.\n\nÉcris des tests pour le flux de saisie unique des coordonnées client, pour la signature de contrat qui stocke le texte exact rendu, et pour l’archivage vers stockage froid avec une restauration en une commande.\n\nNe construis ni boutique de tirages, ni traitement de paiements — mets un lien vers ce que tu utilises déjà.",
+  "faq": [
+    {
+      "q": "Pourquoi stocker le texte exact du contrat à la signature ?",
+      "a": "Parce qu’un modèle change, et une signature qui pointe vers « le modèle actuel » ne prouve rien. Stocker le texte rendu, le nom tapé, l’horodatage et l’IP, c’est le minimum qui rend un contrat signé en un clic digne d’être eu."
+    },
+    {
+      "q": "Le test de non-retape, n’est-il pas trivial ?",
+      "a": "Il est trivial à écrire et c’est toute la conception. La plupart des outils de photographe faits maison deviennent quatre applications séparées au bout de trois mois, et le test de bout en bout, c’est ce qui empêche ça d’arriver."
+    },
+    {
+      "q": "Pourquoi une liste de travail plutôt qu’un tableau de bord ?",
+      "a": "Parce qu’une entreprise d’une personne a besoin de savoir quoi faire aujourd’hui, pas quel était son taux de conversion le trimestre dernier. Les dossiers bloqués à une étape et les soldes impayés sont exploitables ; les graphiques ne le sont pas."
+    },
+    {
+      "q": "Que facture vraiment Pixieset ?",
+      "a": "Des paliers de stockage et un volume de campagnes email, avec Studio Manager et la suite d’édition facturés séparément à partir d’environ 12 $ par mois chacun. Le palier d’entrée est de 10 Go, qu’un seul mariage peut remplir."
+    }
+  ]
+}

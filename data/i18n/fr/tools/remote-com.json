@@ -1,0 +1,32 @@
+{
+  "tagline": "Emploie quelqu’un à l’étranger sans y ouvrir d’entreprise.",
+  "verdictSummary": "Un « employer of record » est une entreprise qui emploie légalement ta personne dans un pays où tu n’as aucune présence, et porte les obligations qui vont avec — contrats, préavis, avantages statutaires, règles de licenciement qui diffèrent énormément selon la juridiction. Il n’existe aucun substitut logiciel au fait d’être un employeur légal. C’est un « non » sans réserve intéressante.",
+  "coreLoopDIY": "Garde le dossier d’emploi international dont tu es responsable de toute façon : obligations par pays, préavis, droits statutaires et expiration de documents, au même endroit avec des dates.",
+  "whatYouLose": [
+    "l’entité légale qui emploie la personne",
+    "des contrats locaux conformes, des préavis et des avantages statutaires",
+    "la paie, la retenue et la déclaration dans chaque pays",
+    "la responsabilité lors d’un licenciement, où se trouve le vrai coût",
+    "les avantages locaux, l’assurance et l’inscription à la retraite"
+  ],
+  "whyPeopleStillPay": "Parce qu’employer une seule personne à l’étranger sans entité est soit impossible, soit lent et coûteux, et l’alternative — le classer à tort comme prestataire — est l’erreur qui produit une réclamation des années plus tard.",
+  "prompt": "Construis un dossier d’emploi international. Il enregistre les obligations et les dates ; il n’emploie personne et ne conseille sur rien.\n\nStack : ton choix, SQLite suffit. Le README doit dire que le droit du travail est propre à chaque juridiction, que les données pays sont à remplir toi-même à partir de tes propres conseils, et que cet outil livre ces données vides exprès.\n\nFiche personne : nom, pays de travail, pays de résidence fiscale, date de début, type de contrat, entité employeuse (la tienne, un employer of record, ou aucune), et le fichier de contrat.\n\nProfil pays, maintenu par toi, un fichier par pays, portant les champs dont tu as vraiment besoin de te souvenir : préavis statutaire selon l’ancienneté, limites de période d’essai, congés payés minimums, jours fériés, bases de l’indemnité maladie statutaire, avantages obligatoires, et exigences de licenciement. Chaque champ porte une note de source et une date de dernière révision — un enregistrement de conformité sans provenance est pire que pas d’enregistrement du tout, parce qu’on lui fait confiance.\n\nVues dérivées :\n- Préavis aujourd’hui par personne, calculé depuis l’ancienneté contre son profil pays, puisque ça change à mesure qu’elle reste et personne ne le recalcule avant la semaine difficile.\n- Documents qui expirent dans quatre-vingt-dix jours — permis de travail, visas, certificats.\n- Profils pays non révisés depuis douze mois, signalés, parce que des règles périmées sont le mode d’échec de ce genre de dossier.\n- Coût par personne et par mois : salaire plus cotisations employeur plus tous frais d’employer of record, en devise locale et en devise de reporting à un taux stocké.\n\nChecklist de départ générée depuis le profil pays : préavis donné et accusé de réception, composantes de la dernière paie, congés accumulés soldés, équipement rendu, accès révoqué, documents conservés pour la période indiquée. Chaque élément daté et coché.\n\nÉcris des tests pour le calcul de préavis à travers une limite d’ancienneté, pour l’indicateur de révision périmée à exactement douze mois, et pour les totaux de coûts utilisant des taux historiques stockés.\n\nNe calcule pas de paie, ne génère pas de contrats, et n’offre aucun conseil juridique.",
+  "faq": [
+    {
+      "q": "Pourquoi ne pas simplement embaucher des gens comme prestataires à l’étranger ?",
+      "a": "Parce que si la relation ressemble à de l’emploi au regard du droit local — horaires fixes, ton équipement, pas d’autres clients — les autorités peuvent la requalifier, et la facture des arriérés de cotisations et des pénalités retombe sur toi. Ce risque, c’est ce qu’un employer of record existe pour absorber."
+    },
+    {
+      "q": "Pourquoi calculer le préavis plutôt que le stocker ?",
+      "a": "Parce qu’il dépend généralement de l’ancienneté et change donc silencieusement. La semaine où tu en as besoin est la semaine où tu es le moins capable de le rechercher calmement."
+    },
+    {
+      "q": "Pourquoi signaler les données pays périmées ?",
+      "a": "Parce que les règles d’emploi changent et un dossier qui a l’air fiable est plus dangereux qu’un dossier vide. Une date « dernière révision » visible fait de la péremption un fait plutôt qu’une supposition."
+    },
+    {
+      "q": "Comment Remote est-il tarifé ?",
+      "a": "Par produit : 29 $ par employé et par mois pour la paie, 29 $ par prestataire pour la gestion de prestataires, 99 $ pour le palier plus, et 699 $ par employé pour l’employer of record. La ligne EOR est celle qui reflète le vrai service juridique."
+    }
+  ]
+}
