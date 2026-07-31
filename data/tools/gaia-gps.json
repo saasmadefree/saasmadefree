@@ -1,0 +1,49 @@
+{
+  "slug": "gaia-gps",
+  "name": "Gaia GPS",
+  "domains": [
+    "gaiagps.com"
+  ],
+  "category": "travel",
+  "subcategory": "offline topographic maps and navigation",
+  "pricing": {
+    "amount": 4.99,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "annual-effective-monthly",
+    "source": "https://apps.apple.com/us/app/gaia-gps-mobile-trail-maps/id1201979492",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "gaiagps.com/premium redirects to /outsideplus/, which renders no price. Read from the App Store listing: Gaia GPS Premium $59.90 (annual, i.e. $4.99/month) and Gaia GPS Premium with Outside+ $89.90."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "licensed map layer catalogue",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "OsmAnd",
+      "url": "https://github.com/osmandapp/OsmAnd",
+      "license": "GPL-3.0"
+    },
+    {
+      "name": "Organic Maps",
+      "url": "https://github.com/organicmaps/organicmaps",
+      "license": "Apache-2.0"
+    }
+  ],
+  "relatedSlugs": [
+    "alltrails-plus",
+    "komoot-premium",
+    "roadtrippers"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

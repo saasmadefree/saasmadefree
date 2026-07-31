@@ -1,0 +1,39 @@
+{
+  "slug": "tripit-pro",
+  "name": "TripIt Pro",
+  "domains": [
+    "tripit.com"
+  ],
+  "category": "travel",
+  "subcategory": "itinerary assembly from confirmation emails",
+  "pricing": {
+    "amount": 4.08,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "annual-effective-monthly",
+    "source": "https://apps.apple.com/us/app/tripit-travel-planner/id311035142",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "tripit.com/web/free-vs-pro/ compares features but prints no price. Read from the App Store listing, whose subscription text states TripIt Pro \"will be good for 1 year, and automatically renew each year at $48.99\" — i.e. $4.08/month."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "parser breadth and live travel data",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting",
+    "database",
+    "email-provider"
+  ],
+  "relatedSlugs": [
+    "wanderlog-pro",
+    "flighty-pro",
+    "point-me"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

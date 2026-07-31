@@ -1,0 +1,48 @@
+{
+  "slug": "moises",
+  "name": "Moises",
+  "domains": [
+    "moises.ai"
+  ],
+  "category": "audio-video",
+  "subcategory": "stem separation and practice tools",
+  "pricing": {
+    "amount": 5.99,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/moises-the-musicians-app/id1515796612",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "moises.ai/pricing and /plans both redirect to the homepage, which shows no plan price. Read from the App Store listing: Moises Premium Monthly $5.99, Yearly $39.99; Moises Pro Monthly $29.99."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "app polish and cloud processing",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Demucs",
+      "url": "https://github.com/adefossez/demucs",
+      "license": "MIT"
+    },
+    {
+      "name": "Essentia",
+      "url": "https://github.com/MTG/essentia",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "splice",
+    "landr-studio",
+    "soundtrap"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

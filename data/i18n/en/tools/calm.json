@@ -1,0 +1,33 @@
+{
+  "tagline": "Guided meditations, sleep stories and music for winding down.",
+  "verdictSummary": "Calm is a recording studio with an app attached. The sleep stories are read by actors under contract, the meditations are written and voiced by teachers, and the music is licensed. A player with a timer is an afternoon; the thousand hours of audio that make people open it are not something you write.",
+  "coreLoopDIY": "Run a local audio player built around a session — a timer, interval bells, a chosen track and a log of what you actually did.",
+  "whatYouLose": [
+    "the catalogue: hundreds of guided meditations and sleep stories",
+    "narration by professional voices, recorded and mixed properly",
+    "licensed music, which you cannot legally substitute with a playlist you own",
+    "daily programmes that sequence sessions over weeks",
+    "the mobile apps with offline downloads and Apple Watch support"
+  ],
+  "whyPeopleStillPay": "At two in the morning nobody wants to choose a track — they want the same voice that worked last week, and that voice is under contract to Calm.",
+  "notes": "The build below is deliberately modest: a session timer is genuinely useful, and pretending it substitutes for the catalogue would be dishonest.",
+  "prompt": "Build a meditation session runner around audio you already have the right to play.\n\nA session is a definition in a small YAML file: a warm-up silence, an optional guidance track, a body of silence with interval bells at chosen minutes, and a closing bell. The runner plays it and nothing else — no feed, no streak, no notifications.\n\nThe part worth building carefully is the bell. Use a recorded singing-bowl or bell sample with a natural decay rather than a synthesised tone, fade it in over 40 ms to avoid a click, and never truncate the tail when the next phase starts. A harsh bell at the end of twenty quiet minutes undoes the twenty minutes.\n\nAfter each session, append a line to a plain-text log: date, session name, duration completed, and an optional one-line note. Completed means completed — a session ended early is logged as ended early, with the elapsed time. The log is the only record and it stays readable in a text editor forever.\n\nAdd one report: sessions per week over the last year as a simple chart, and the current and longest run of consecutive days. Print the honest version — \"practised on 14 of the last 30 days\" — rather than a streak that resets to zero and makes you feel worse.\n\nFor sleep, add a fade-out mode: play a chosen track and ramp the volume to silence over a configured number of minutes, then stop cleanly.\n\nDo not generate guided meditation scripts with a language model and read them with synthetic speech. The voice is the product here, and a synthetic one narrating generated text is worse than silence.",
+  "faq": [
+    {
+      "q": "Can I export my Calm history?",
+      "a": "No. Calm exposes no export of your session history or your favourites, so the log starts on the day you build this. Note down the handful of sessions you return to before cancelling — you will not get the list back."
+    },
+    {
+      "q": "Where does the audio come from?",
+      "a": "Silence works better than most people expect, and interval bells are the traditional form. For guided sessions, Medito publishes a free, openly funded library, and several teachers release recordings under Creative Commons licences. Music from a streaming service is not usable — the licence covers listening, not embedding in an app."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. It is a local player over local files, with no account and no service."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The voice you fall asleep to. That is a specific person recorded in a specific studio, and no amount of code produces another one."
+    }
+  ]
+}

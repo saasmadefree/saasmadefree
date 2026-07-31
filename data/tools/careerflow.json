@@ -1,0 +1,44 @@
+{
+  "slug": "careerflow",
+  "name": "Careerflow",
+  "domains": [
+    "careerflow.ai"
+  ],
+  "category": "job-search",
+  "subcategory": "job capture extension + application tracker",
+  "pricing": {
+    "amount": 23.99,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "flat-monthly",
+    "source": "https://www.careerflow.ai/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "careerflow.ai/pricing 404s and app.careerflow.ai/pricing redirects to a login wall; the plan table lives on the homepage. It offers four billing periods for the same Premium tier — $8.99/week, $23.99/month, $18.33/month billed quarterly ($54.99), $14.41/month billed yearly ($172.99). The monthly figure is recorded."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "browser extension coverage",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "anthropic-api-key",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Reactive Resume",
+      "url": "https://github.com/AmruthPillai/Reactive-Resume",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "huntr",
+    "rezi",
+    "enhancv"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Finds which loyalty programme can book a given flight with points.",
+  "verdictSummary": "The search interface is trivial. The index behind it is not: award availability lives inside each airline's own booking system, is only visible programme by programme, changes constantly, and is protected by every anti-automation measure the industry has. Point.me's product is having that data continuously, and there is no legitimate route to it for one person.",
+  "coreLoopDIY": "Track your own points balances, model what a redemption is worth, and keep a searchable record of the transfer partners and ratios you actually use.",
+  "whatYouLose": [
+    "live award availability, which is the entire product",
+    "coverage across dozens of programmes at once, in one search",
+    "award pricing in points for each programme on a given route",
+    "transfer bonuses and partner routings surfaced automatically",
+    "the concierge booking service the higher tier includes"
+  ],
+  "whyPeopleStillPay": "Checking one route across fifteen programmes by hand takes an evening, and Point.me does it in a search box because they already have the data.",
+  "prompt": "Build a points and redemption ledger — the half of award travel that does not need anyone else's index.\n\nTrack balances: one row per programme with the balance, the date you last checked, and an expiry date where the programme has one. Expiry is the field that actually costs people money, so surface it: a dashboard sorted by days until expiry, with the activity required to reset each clock.\n\nModel transfers. Store transfer partners as a graph — from a flexible currency to an airline or hotel programme, with the ratio and any transfer time — and answer \"what can these 60,000 points become?\" by walking it. Ratios change, so store an effective date on every edge and show the age of the data beside every answer.\n\nBuild the valuation tool, which is the part that changes decisions. For a redemption you are considering, record the points required, the cash fare for the same flight, and the taxes and fees. Compute cents per point and compare it against the baseline value you set for that currency. Keep every evaluation, redeemed or not, so after a year you can see whether your own rules of thumb hold.\n\nAdd a redemption log: what you booked, what it cost in points and cash, and what the cash fare was — a record most people keep in their head and misremember in their favour.\n\nDo not attempt to scrape award availability. Every airline booking engine treats automation as an attack, accounts get closed for it, and the data would be stale within the hour anyway.",
+  "faq": [
+    {
+      "q": "Can I export anything from Point.me?",
+      "a": "There is nothing accumulated to export — you search, you book, the search is gone. Your balances and transfer notes were always yours to keep elsewhere, which is what this build formalises."
+    },
+    {
+      "q": "Can I automate balance updates?",
+      "a": "Reliably, no. A few programmes have partner APIs, none of which are open to individuals. Manual entry with a \"last checked\" date is the honest design, and the dashboard should show staleness rather than pretend to be live."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. It is a small database and a few pages, with no external call in the loop."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The search. Knowing which of fifteen programmes has two business-class seats on a Tuesday in March is the product, and no ledger produces it."
+    }
+  ]
+}

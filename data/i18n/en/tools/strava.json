@@ -1,0 +1,32 @@
+{
+  "tagline": "Records rides and runs, and ranks them against everyone else's.",
+  "verdictSummary": "Recording a GPS track is a solved problem and self-hosted activity trackers exist. Strava is not that. Its product is segments with leaderboards, kudos from people you know, clubs, and a global heatmap built from billions of uploaded activities — every one of which requires other people. A private tracker with a leaderboard of one is not a smaller version of Strava, it is a different thing.",
+  "coreLoopDIY": "Import your own GPS files, keep a searchable history with the training numbers that matter, and compare a route against your own previous attempts.",
+  "whatYouLose": [
+    "segments and leaderboards, which need everyone else's data",
+    "kudos, comments, clubs and the group rides that come out of them",
+    "the global heatmap, built from aggregate activity and genuinely useful for route finding",
+    "live tracking that friends and family can watch",
+    "automatic upload from a watch or head unit, and the partner integrations that feed it"
+  ],
+  "whyPeopleStillPay": "The whole point is other people. Twelve dollars buys a leaderboard you can lose on, and there is no way to write that.",
+  "prompt": "Build a personal activity archive over GPX and FIT files, with your own history as the only thing you compare against.\n\nImport GPX and FIT — a device exports both, and FIT carries heart rate and power that GPX often drops. Parse to a track of points with time, position, elevation, heart rate and power, and store the summary in SQLite with the original file kept untouched beside it. Never treat your database as the master copy of the file.\n\nCompute the summaries properly, because this is where naive implementations quietly lie. Moving time needs a speed threshold with hysteresis, or a coffee stop counts as slow riding. Elevation gain from raw GPS altitude is nonsense — smooth it and apply a minimum-gain threshold, and say in the interface which method you used, since two tools will otherwise disagree by hundreds of metres on the same ride.\n\nBuild the one comparison that does not need anybody else: define a personal segment by drawing a start and end point, then find every activity whose track passes near both in order, and list your times. That is Strava's best feature reduced to what one person's data can support, and it is genuinely motivating.\n\nAdd a training load view — weekly duration and, if power or heart rate is present, a stress score — and a map of everywhere you have been, built by overlaying all your tracks. A personal heatmap of your own riding is a good substitute for exactly one of the features you gave up.\n\nDo not build kudos, followers or a feed. A social network with one member is a diary with extra steps.",
+  "faq": [
+    {
+      "q": "Can I get my Strava history out?",
+      "a": "Yes, fully. Strava's bulk export delivers every activity file plus a CSV index, and that archive is complete enough to rebuild your entire history locally. Request it before cancelling — it takes a few hours to prepare."
+    },
+    {
+      "q": "How do activities get in without Strava?",
+      "a": "Most watches and head units export FIT files over USB or through their own manufacturer app. Some sync directly to a folder. That step is manual, and it is the friction Strava removed."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A small VPS if you want it reachable from anywhere, so a few dollars a month, or nothing on a machine at home. Map tiles from a public OpenStreetMap service are free within their usage policy."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Being third on the climb. Segments only exist because thousands of other riders uploaded the same road, and no amount of personal data reconstructs a leaderboard."
+    }
+  ]
+}

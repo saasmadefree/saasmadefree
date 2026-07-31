@@ -1,0 +1,37 @@
+{
+  "slug": "wanderlog-pro",
+  "name": "Wanderlog Pro",
+  "domains": [
+    "wanderlog.com"
+  ],
+  "category": "travel",
+  "subcategory": "collaborative trip itinerary planning",
+  "pricing": {
+    "amount": 5.99,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/wanderlog-travel-planner/id1476732439",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "wanderlog.com/pro renders no plan price to a scripted fetch. Read from the App Store listing: Wanderlog Pro Monthly Plan $5.99 and Annual Plan $39.99, alongside older annual SKUs at $31.99, $49.99 and $59.99."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "real-time collaboration and place data",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "relatedSlugs": [
+    "tripit-pro",
+    "roadtrippers",
+    "komoot-premium"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

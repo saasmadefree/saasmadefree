@@ -1,0 +1,50 @@
+{
+  "slug": "transifex",
+  "name": "Transifex",
+  "domains": [
+    "transifex.com"
+  ],
+  "category": "translation",
+  "subcategory": "translation management platform",
+  "pricing": {
+    "amount": 135,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.transifex.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The page opens on the annual view: Starter \"from $135/mo, billed annually\". The Monthly toggle shows $160/mo for the same tier. Both figures step up with the word-count slider — $135 is the floor, at 50k words."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "integration catalogue and vendor workflow",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Weblate",
+      "url": "https://github.com/WeblateOrg/weblate",
+      "license": "GPL-3.0"
+    },
+    {
+      "name": "Tolgee",
+      "url": "https://github.com/tolgee/tolgee-platform",
+      "license": "Apache-2.0"
+    }
+  ],
+  "relatedSlugs": [
+    "weglot",
+    "crowdin",
+    "lokalise"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

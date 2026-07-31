@@ -1,0 +1,31 @@
+{
+  "tagline": "Kanban board for tracking job applications end to end.",
+  "verdictSummary": "Underneath the resume tools and the extension, Huntr is a board with five columns and a notes field, and at forty dollars a month it is one of the clearest one-sitting rebuilds in this catalogue. The version you write can do one thing Huntr cannot: answer questions about your own search, because you control the schema and every stage change is a row you can query.",
+  "coreLoopDIY": "Record each application once, move it through stages as things happen, and query your own history — response rate by source, median days to first reply, applications gone quiet.",
+  "whatYouLose": [
+    "one-click saving from job boards you have not configured",
+    "the mobile app for updating a stage from a phone",
+    "the built-in resume builder and tailoring tools",
+    "reminders delivered by email or push rather than by you opening the app"
+  ],
+  "whyPeopleStillPay": "A job search is stressful and short, and paying forty dollars for two months rather than building anything is a rational trade when the alternative competes with the actual applications.",
+  "prompt": "Build a job-search tracker whose real output is statistics about your own search.\n\nSchema first. An `application` row holds company, role, source, posting URL, salary range if published and the date you found it. A separate `event` table holds one row per state change: `{application_id, stage, occurred_at, note}`. The current stage is derived from the latest event, never stored on the application. This is the decision that makes the rest work.\n\nThe board is a simple five-column view — found, applied, screening, interview, closed — where dragging a card writes an event. Closing a card asks for one of a fixed set of outcomes: rejected, withdrawn, offer declined, offer accepted, ghosted. \"Ghosted\" is set automatically by a nightly job when an applied-or-later application has had no event for 30 days, and it is the outcome most searches actually produce, so make it a first-class value rather than a blank.\n\nThen build the report page, which is the point: applications per week; response rate per source; median days from applied to first human contact; the conversion rate between each pair of adjacent stages; and a list of applications gone quiet with the number of days beside each. All of it is SQL over the event table.\n\nCapture is manual: a form with company, role and URL, plus a paste box for the description. Do not build a browser extension for arbitrary job boards in this build — see the Careerflow entry for why that is a separate project with its own maintenance bill.\n\nDo not add automated follow-up emails. A templated nudge sent by a script reads exactly like what it is.",
+  "faq": [
+    {
+      "q": "Can I import my Huntr board?",
+      "a": "Huntr exports to CSV. Each row becomes one application plus one event at whatever stage it currently sits in, dated the export day. You lose the history of how it got there, because Huntr's export gives you the current state rather than the transitions — which is precisely the data this build exists to keep."
+    },
+    {
+      "q": "Will it work on my phone?",
+      "a": "Only if you host it somewhere and open it in a mobile browser. There is no app and no offline mode, so updating a stage from a train platform is the thing you will miss first."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing on your own machine. On a small VPS with a domain, about five dollars a month — an eighth of the Pro plan, though you are now also the person who patches it."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Saving a job in one click from a board you stumbled onto. Every application in your version starts with you pasting a URL, and during a heavy week that friction is real."
+    }
+  ]
+}

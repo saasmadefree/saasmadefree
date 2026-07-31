@@ -1,0 +1,37 @@
+{
+  "slug": "point-me",
+  "name": "Point.me",
+  "domains": [
+    "point.me"
+  ],
+  "category": "travel",
+  "subcategory": "award flight search across loyalty programmes",
+  "pricing": {
+    "amount": 10.75,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.point.me/our-services/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "point.me/pricing, /membership and /join all 404; the \"Pricing\" link in the site nav points at /our-services/, which redirects to the current plan page. Standard is $129 a year (list $144), i.e. $10.75/month as the page itself states; Premium is $260 a year."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "award availability index",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "relatedSlugs": [
+    "seats-aero-pro",
+    "going-premium",
+    "flighty-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

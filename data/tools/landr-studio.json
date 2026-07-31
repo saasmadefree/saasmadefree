@@ -1,0 +1,43 @@
+{
+  "slug": "landr-studio",
+  "name": "LANDR Studio",
+  "domains": [
+    "landr.com"
+  ],
+  "category": "audio-video",
+  "subcategory": "AI mastering and music distribution",
+  "pricing": {
+    "amount": 8.25,
+    "currency": "USD",
+    "plan": "LANDR Studio",
+    "basis": "flat-monthly",
+    "source": "https://www.landr.com/",
+    "checkedOn": "2026-07-31",
+    "confidence": "low",
+    "notes": "FLAGGED. landr.com/pricing lists no plan prices at all — it is a product overview page. The only figure on the site is the homepage line \"LANDR Studio ... Starting at USD $8.25/month\", which names no billing period; the App Store lists Studio Mobile at $12.99 monthly and $69.00 yearly. Recorded as the vendor's own \"starting at\" figure and needs a human check."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "distribution agreements and rights administration",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Matchering",
+      "url": "https://github.com/sergree/matchering",
+      "license": "GPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "moises",
+    "splice",
+    "riverside"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

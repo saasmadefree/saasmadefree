@@ -1,0 +1,31 @@
+{
+  "tagline": "Saves recipes from anywhere and cooks from them hands-free.",
+  "verdictSummary": "A recipe is a title, an ingredient list, a set of steps and a source URL. Storing that, importing it from a web page and displaying it while you cook is one of the smallest genuine builds in this catalogue — no key, no service, no dataset, nothing you cannot run entirely on your own machine. What you give up is a very well-made native app.",
+  "coreLoopDIY": "Paste a recipe URL, get a clean structured recipe stored locally, and cook from a screen that scales quantities and does not fall asleep.",
+  "whatYouLose": [
+    "the native apps across iPhone, iPad, Mac and Watch",
+    "iCloud sync between your own devices with no server to run",
+    "recipe scanning from a photograph of a cookbook page",
+    "the polish: timers detected in steps, hands-free step advance, SharePlay"
+  ],
+  "whyPeopleStillPay": "Two dollars a month for something that opens instantly on the iPad propped against the flour bag, with no server and no maintenance.",
+  "prompt": "Build a local recipe manager where import quality is the thing you optimise.\n\nImport from a URL. The right approach is not scraping layouts: most recipe sites publish schema.org `Recipe` structured data as JSON-LD, and reading that gives you title, ingredients, steps, yield, times and an image, correctly, from thousands of sites at once. Fall back to a readability pass plus a language model only when the structured data is absent, and mark those imports as needing review.\n\nParse ingredient lines into quantity, unit and item, keeping the original string alongside. Scaling a recipe is the feature this unlocks and the parse must be conservative: a line it cannot parse stays as text and simply does not scale, rather than being scaled wrongly. \"Salt to taste\" multiplied by three is the failure people notice.\n\nThe cooking view is the product. Steps one at a time in large type, a wake lock so the screen stays on, a scale control at the top, and any duration mentioned in a step turned into a tappable timer. Nothing else on the screen.\n\nStore recipes as Markdown files with YAML front matter in a folder, indexed into SQLite for search. Files first means your recipes outlive the app, sync through any folder-syncing tool you already use, and diff in git.\n\nAdd full-text search across ingredients, so \"what can I make with the aubergine\" is answerable.\n\nDo not build a social feed or public recipe sharing. Export a recipe as a file or a printable page and stop there.",
+  "faq": [
+    {
+      "q": "Can I import my Crouton recipes?",
+      "a": "Yes. Crouton exports recipes in the open `.crumb` format and also supports standard recipe JSON, both of which map straight onto this schema. It is one of the more portable apps in this category."
+    },
+    {
+      "q": "How well does URL import actually work?",
+      "a": "Very well on sites that publish structured data, which is most large recipe sites, because search engines require it. Personal blogs are hit and miss, and that is what the review flag is for."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. Files on disk, an index beside them, and no API in the loop unless you add the fallback importer."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Photographing a page from a cookbook and getting a recipe out. That is on-device text recognition wired into a native app, and a web build cannot match it."
+    }
+  ]
+}

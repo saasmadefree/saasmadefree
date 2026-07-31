@@ -1,0 +1,32 @@
+{
+  "tagline": "Subscription access to ebooks, audiobooks and magazines.",
+  "verdictSummary": "Everand is a licensing arrangement with publishers, priced as a subscription with a monthly title allowance. Its software is a reader and a player, both of which have good open equivalents. The reason it is a `no` is unchanged by that: a reader with no books is a filing cabinet.",
+  "coreLoopDIY": "Run a personal library server over the ebooks and audiobooks you own, with reading progress that follows you between devices.",
+  "whatYouLose": [
+    "the catalogue of licensed books, audiobooks and magazines",
+    "the monthly title allowance and the browse-anything model",
+    "reading a book you had not heard of at no marginal cost",
+    "the apps with offline access on phones and tablets",
+    "publisher-supplied metadata, covers and series ordering"
+  ],
+  "whyPeopleStillPay": "Twelve dollars a month to try a book you would never have bought, and abandoning it at chapter three costs nothing.",
+  "prompt": "Build a personal library server over books you own, treating metadata as the difference between a folder and a library.\n\nRun Kavita for ebooks and comics, and Audiobookshelf for audiobooks. Both are actively maintained, both have mobile clients, and both handle reading progress server-side.\n\nThe work worth doing is the ingest pipeline. Every incoming file gets identified against an open metadata source — Open Library for books — and stored with a stable identifier, series name and number, publication date and cover. A library where half the series have no ordering is one you stop browsing.\n\nNormalise formats on import: convert to EPUB for anything the reader handles poorly, keep the original alongside, and record which is the source of truth. Never modify an original in place.\n\nBuild the deduplication pass, because personal libraries accumulate the same book three times from three sources. Match on identifier where present and on normalised title-plus-author where not, and present candidates for a human decision rather than deleting anything automatically.\n\nAdd a reading log: what you started, what you finished, what you abandoned and where. Abandonment data is the honest and most interesting part — most subscription reading is abandoned, and knowing your own rate changes what you start.\n\nWire in your public library. Most library systems expose their catalogue and your loans, and a page showing what you have borrowed alongside what you own is a genuinely better answer than either alone.\n\nDo not strip DRM. Buy from DRM-free sellers, borrow from libraries, and use public-domain sources; the pipeline stays clean and so does the legal position.",
+  "faq": [
+    {
+      "q": "Can I export anything from Everand?",
+      "a": "Your notes, highlights and saved lists can be extracted from the reader interface, and are worth taking. The books are licensed for the duration of the subscription and end with it."
+    },
+    {
+      "q": "Where do the books come from?",
+      "a": "Purchases from DRM-free sellers, public-domain archives, and your public library — most of which lend ebooks and audiobooks through their own apps, free, and are the closest honest equivalent to a subscription."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A small server and a disk. Ebooks are tiny; audiobooks are the storage cost, at a few hundred megabytes each."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Starting a book on a whim. A subscription makes the fourth book of the month free; a library makes it a purchase decision, and you will read less."
+    }
+  ]
+}

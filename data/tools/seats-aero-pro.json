@@ -1,0 +1,37 @@
+{
+  "slug": "seats-aero-pro",
+  "name": "Seats.aero",
+  "domains": [
+    "seats.aero"
+  ],
+  "category": "travel",
+  "subcategory": "award seat availability search",
+  "pricing": {
+    "amount": 9.99,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://seats.aero/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "seats.aero/pro returns a Cloudflare challenge to scripted requests and to a real browser session from this network. The homepage states the price directly: \"a seats.aero PRO account unlocks up to a year of availability on all routes, advanced filters, SMS alerts, and more. Only $9.99/mo.\" The site config also carries a $99.99 yearly rate."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "continuously refreshed availability index",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "relatedSlugs": [
+    "point-me",
+    "going-premium",
+    "flighty-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

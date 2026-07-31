@@ -1,0 +1,32 @@
+{
+  "tagline": "Family calendar, lists, messages and location in one app.",
+  "verdictSummary": "The calendar, lists and shared notes are the same weekend build as Cozi. Location sharing is not: continuous background positioning from a phone, with geofence alerts that fire when a child reaches school, needs a native app with the right background permissions, and a browser cannot do it in any way you would rely on.",
+  "coreLoopDIY": "Run a shared calendar and shared lists for the household, and use the phone platform's own location sharing rather than building one.",
+  "whatYouLose": [
+    "background location sharing and arrival alerts",
+    "the messaging thread the family already has open",
+    "the mobile apps and the widgets that make the family check them",
+    "photo albums and shared family memories in the same place",
+    "a single install that covers all of it"
+  ],
+  "whyPeopleStillPay": "Knowing the teenager got to football is worth eight dollars a month on its own, and it is the one part of this that no self-hosted setup delivers.",
+  "prompt": "Build the household coordination half of a family organiser, and deliberately leave location to the phone platform.\n\nCalendar: run CalDAV as described in the Cozi entry, so events land in everyone's existing calendar app.\n\nLists: a shared web app with a shopping list, a to-do list per person, and a household notes page. Offline-first with a service worker, merged with per-field timestamps as in the AnyList entry.\n\nThe piece worth building carefully is the household dashboard: one page, readable on a wall-mounted tablet or a phone, showing today's calendar, whose turn it is for the recurring chores, the shopping list and any pinned note. Auto-refreshing, no login on the trusted device, large type. This is what makes a family tool used rather than installed, and it is one page.\n\nAdd a recurring responsibility rota: a chore, a list of people, a cadence, and a rule that rotates. Print who is up next and log completions, so \"it is not my turn\" has an answer.\n\nFor location, do not build anything. Both major phone platforms have family location sharing built in, free, with better battery behaviour and better permission handling than any third-party implementation. Write the setup instructions into your family page and be explicit that this is the right call rather than a gap you failed to close.\n\nDo not build a messaging feature. The family already has one and will not move to yours.",
+  "faq": [
+    {
+      "q": "Can I export my FamilyWall data?",
+      "a": "Its calendar can be exported as ICS and there is a data download under privacy settings; lists and messages come out in an unstructured form that needs a script. Do the export before cancelling, since accounts are removed after a grace period."
+    },
+    {
+      "q": "Is platform location sharing really equivalent?",
+      "a": "For \"where is everyone\" it is better — it is built into the operating system, uses less battery and asks for permission properly. What it does not do is arrival alerts tied to your own places, which is the feature FamilyWall adds on top."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A VPS and a domain, so about five to seven dollars a month against eight for the subscription. The saving is marginal; the reason to build is that the calendar and lists become standard formats you own."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The arrival alert. A geofence that fires when a phone reaches school is a native background capability, and everything else in this project is a web page."
+    }
+  ]
+}

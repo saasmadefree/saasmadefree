@@ -3337,3 +3337,334 @@ pass opened are still completely empty, verified by counting `data/tools` agains
 An empty category produces no page but is still a promise in `data/categories.json`. If the
 remaining batches are not run, those six should be removed from the taxonomy rather than left
 declared.
+
+
+## Lots 16–18 — the last 62 upstream entries, and the six empty categories (471 → 529)
+
+The import is finished. **Zero upstream entries remain importable**: a
+`--limit 20 --dry-run` against the 608-entry source and the 529-tool disk state now
+selects nothing. All 51 declared categories hold at least six tools, so **none had to be
+removed** from `data/categories.json`.
+
+The remaining pool was recounted from the source rather than trusted from the handover,
+and came to 62 — the same number batch 15 predicted, distributed as:
+
+| Target category | Upstream value | Eligible | Imported | Excluded |
+|---|---|---|---|---|
+| `job-search` | `career` | 10 | 6 | 4 |
+| `learning` | `education` | 10 | 10 | 0 |
+| `health-fitness` | `wellness` | 10 | 10 | 0 |
+| `travel` | `travel` | 10 | 10 | 0 |
+| `home-family` | `home` | 9 | 9 | 0 |
+| `media-streaming` | `audio`, minus the production half | 7 | 7 | 0 |
+| `audio-video` (existing) | `audio`, production half | 4 | 4 | 0 |
+| `translation` (existing) | `localization` | 2 | 2 | 0 |
+
+58 imported across three commits: `f72652a` (lot 16, 22 entries — job-search, learning,
+translation, audio-video), `dec3fe5` (lot 17, 20 — health-fitness, travel), `010d2e8`
+(lot 18, 16 — home-family, media-streaming). The lots are 22, 20 and 16 rather than 25 on
+purpose: each one closes whole categories, so `relatedSlugs` resolve inside their own
+category instead of reaching across a lot boundary, and every commit is internally
+consistent.
+
+### Four exclusions, all in `job-search`
+
+| Slug | Reason |
+|---|---|
+| `final-round-ai` | finalroundai.com/pricing 301s to the homepage; /pricing-plans and /plans 404. The only figure anywhere on the site is an FAQ sentence, "paid subscriptions starting at $25 per month", naming no tier. The recorded "$99 Pro" plan appears nowhere. |
+| `jobscan` | jobscan.co/pricing returns a Cloudflare interstitial that neither curl nor a real Chrome session cleared, after a 15-second wait and two attempts. Unlike `pipedrive`, nothing independent corroborates the recorded $49.95. |
+| `resume-worded` | /pricing, /pricing.php and /upgrade all 404; /pro redirects to a login wall; the homepage prints no plan price. |
+| `teal-plus` | tealhq.com/pricing returns Cloudflare's "Attention Required!" to curl and to a browser session alike. |
+
+All four are in `MANUAL_EXCLUSIONS` with the reason and the date, so a future `--limit`
+run cannot pick them back up. `job-search` lands at 6 — above the floor the batch-15 note
+set, so the category opens rather than being dropped.
+
+### Prices — 40 of 58 were wrong, and 21 products publish no price on the web at all
+
+This is the highest defect rate of any batch, and it has a structural cause the earlier
+batches did not hit: consumer subscription apps largely do not publish prices on their
+websites. The figure lives behind a signup funnel or inside the app, and the marketing
+page carries feature lists and a download button.
+
+Where the vendor site prints no number, the citation is the **App Store listing**,
+following the precedent already in the catalogue for `airmail`, `structured` and
+`goodlinks`. Twenty-one entries cite one. That is a real weakening of citation quality and
+it is named here rather than hidden: an App Store in-app-purchase list does not always
+label billing periods, and where the developer's own description text states the rate —
+Calm, Headspace, Strong, MacroFactor, Mealime, FamilyWall, TripIt, Everand — confidence is
+`high`; where only the SKU list exists, it is `medium`.
+
+| Slug | Upstream | Corrected | What happened |
+|---|---|---|---|
+| `spotify-premium` | $11.99 | **$12.99** | US rate; the unprefixed page served €8.99 from this network |
+| `apple-music` | $10.99 | **$11.99** | plan cards and footnotes say $11.99; a stale FAQ on the same page still says $10.99 |
+| `tidal` | $10.99 | **$13.99** | |
+| `soundcloud-go-plus` | $10.99 "Go plus" | **$14.99 "Go+"** | tier renamed and repriced |
+| `youtube-music-premium` | $10.99 | **€7.99** | geo-priced; `gl=US` did not move it off EUR |
+| `everand` | $11.99 "Everand" | $11.99 **"Standard"** | tier named |
+| `splice` | $12.99 "Sounds Plus" | $12.99 **"Sounds+"** | renamed |
+| `soundtrap` | $13.99 "Music Makers Premium" | **€13.69 "Music Production"** | the upstream tier name is a section heading, not a plan |
+| `moises` | $3.99 annual-equiv | **$5.99** flat-monthly | |
+| `landr-studio` | $19.99 "Studio Standard" | **$8.25 "LANDR Studio"** | see flags below |
+| `babbel` | $14.95 | **$17.99** | 1-month plan; the 12-month plan is $107.99 ($9.00/mo) |
+| `brilliant` | $24.99 | **€25** | geo EUR; annual €13.75/mo |
+| `busuu-premium` | $13.95 | **€6.99** annual-effective | 50% promotion on the 12-month plan; list €13.99/mo |
+| `elsa-speak` | $19.99 | $19.99 confirmed | /en/elsa-premium now 404s |
+| `pimsleur` | $20.95 | **$20.99** | |
+| `rosetta-stone` | $15.99 | **€19.99** | geo-redirects to eu.rosettastone.com |
+| `skillshare` | $13.99 | **$14.00** annual-effective | $167.99/yr |
+| `speak-language` | $19.99 | **$17.99** | |
+| `careerflow` | $23.99 | $23.99 confirmed | /pricing 404s; the plan table is on the homepage |
+| `enhancv` | $24.99 | **€19.50** | see flags |
+| `huntr` | $40 | $40 confirmed | quarterly $30/mo, biannual $26.66/mo |
+| `kickresume` | $19 | **€24** | /pricing redirects to a 20%-off page; €19.20 is the first month only |
+| `novoresume` | $19.99 monthly | **€19.99 one-time** | "Pay once. No recurring billing." — basis corrected to `one-time` |
+| `calm` | $14.99 | $14.99 confirmed | calm.com denies all access from this network |
+| `cronometer-gold` | $9.99 | **$10.99** | page opens on the Monthly toggle; yearly is $4.99/mo |
+| `fitbod` | $15.99 | **$9.99** | $15.99 is marked "(Legacy Pricing)" |
+| `freeletics` | $11.99 | **€8.32** | see flags |
+| `headspace` | $12.99 | $12.99 confirmed | |
+| `hevy-pro` | $2.99 annual-equiv | $2.99 **flat-monthly** | basis corrected |
+| `macrofactor` | $11.99 | $11.99 confirmed | |
+| `myfitnesspal-premium` | $19.99 | $19.99 confirmed | vendor page is EUR and mixes Premium with Premium+ |
+| `strava` | $11.99 | $11.99 confirmed | vendor page served €4.17/mo annual from the EU |
+| `strong-pro` | $4.99 | $4.99 confirmed | |
+| `alltrails-plus` | $3 | $3.00 confirmed | |
+| `flighty-pro` | $4.08 "Pro" | **$4.99 "Unlimited"** | tier renamed and repriced |
+| `gaia-gps` | $4.99 | $4.99 confirmed | /premium redirects to /outsideplus/, which prints nothing |
+| `going-premium` | $4.08 | $4.08 confirmed | /membership 404s |
+| `komoot-premium` | $5 | $5.00 confirmed | |
+| `point-me` | $10.75 | $10.75 confirmed | /pricing 404s; the nav's "Pricing" link goes to /our-services/ |
+| `roadtrippers` | $3 "Premium" | **$5.00 "Premium"** | $35.99/yr is Basic; Premium is $59.99/yr. /plus now redirects to /membership/ |
+| `seats-aero-pro` | $9.99 | $9.99 confirmed | /pro is bot-blocked; the homepage states the price |
+| `tripit-pro` | $4.08 | $4.08 confirmed | |
+| `wanderlog-pro` | $5.99 | $5.99 confirmed | |
+| `anylist-complete` | $0.83 | $0.83 confirmed | |
+| `cozi-gold` | $3.25 | $3.25 confirmed | |
+| `crouton` | $1.99 "Crouton Plus" | **$1.99 "Discover"** | see flags |
+| `familywall-premium` | $4.99 | **$7.99** | |
+| `home-assistant-cloud` | $7.5 USD | **$6.50 USD** | the page prices per region; $7.50 was the EU figure carrying a USD label |
+| `mealime-pro` | $2.99 | $2.99 confirmed | |
+| `pestle` | $1.99 flat-monthly | **$2.08 annual-effective** | the page shows $24.99/yr by default |
+| `plan-to-eat` | $5.95 | **$4.08** | $49/yr; no monthly rate published |
+| `tody` | $4.99 | **$0.83** | "Premium from 9.99$/year" |
+| `transifex` | $135 flat-monthly | $135 **annual-effective** | page opens on the annual view; monthly is $160 |
+| `weglot` | $17 | $17 confirmed | |
+| `audible-premium-plus` | $14.95 | $14.95 confirmed | the tier is now labelled "Premium" |
+
+### Five entries ship flagged rather than confident
+
+- **`crouton`** (`low`) — crouton.app publishes no pricing page. The App Store lists
+  "Discover Monthly $1.99", "Discover Yearly $14.99" and "Crouton Plus $24.99" with no
+  period on the Plus SKUs. The one explicitly monthly figure is recorded; the tier
+  upstream named is the $24.99 SKU of unknown period.
+- **`fitbod`** (`low`) — the App Store list mixes current SKUs with several marked
+  "(Legacy Pricing)" and labels no billing periods.
+- **`freeletics`** (`low`) — the page prices **per week** and opens on a Lifetime tab. The
+  12-month tab shows €1.92/week; €8.32/month is our arithmetic, stated as such in the
+  notes. Our `basis` list has no weekly code.
+- **`enhancv`** (`low`) — geo-priced EUR, opens on a **quarterly** card (€58.51 per three
+  months, i.e. €19.50/month, 32% off €86.28), and clicking the Pro Monthly tab did not
+  repaint it in a scripted browser session. Recorded as the effective monthly cost of a
+  non-monthly period, which our enum cannot express properly.
+- **`landr-studio`** (`low`) — landr.com/pricing lists **no plan prices at all**; it is a
+  product overview page. The only figure on the site is a homepage line, "Starting at USD
+  $8.25/month", with no billing period.
+
+`novoresume` is a different shape worth naming: it is not a subscription. The page says
+"Pay once. No recurring billing." and sells fixed access periods, so it is the catalogue's
+first meaningful use of `basis: one-time` outside a software licence.
+
+### Domain safety
+
+Every one of the 62 domains was fetched and its page title read, rather than recalled.
+Three already carried a `SLUG_DOMAIN_OVERRIDES` entry from earlier batches and were
+re-confirmed: `apple-music` → `music.apple.com` (apple.com is claimed by `icloud-plus`),
+`youtube-music-premium` → `music.youtube.com`, `macrofactor` → `macrofactor.com`. No new
+override was needed: every other domain returned a title naming the product itself. Two
+were checked with particular care — `home-assistant-cloud` on `nabucasa.com`, which is the
+company but sells exactly one product, and `spotify.com`, which redirects to
+`open.spotify.com` and is exclusively Spotify. Zero domain collisions with the existing
+471.
+
+### Verdicts — nine moved, each argued, none for balance
+
+Toward buildable:
+
+- **`speak-language` `no` → `kinda`.** Its loop is speech-to-text, a model and a voice —
+  three API calls in 2026. The verdict has to follow that. What stays behind is the
+  curriculum, and the entry says so.
+- **`transifex` and `weglot` `no` → `kinda`.** Consistency, not novelty: `crowdin`,
+  `lokalise` and `poeditor` are already `kinda` at `weekend`, and `linguise` — the same
+  reverse-proxy product as Weglot — was moved to `kinda` in batch 11 with an argument that
+  applies unchanged here.
+- **`moises` `no` → `kinda`.** The model gap closed. Demucs is published and good enough
+  that a musician practising at home will not distinguish the stems. `splice` stays `no`
+  beside it because its moat is a licence, not a model.
+- **`myfitnesspal-premium` `no` → `kinda`.** The standing argument was "an index you do not
+  have", and Open Food Facts now exists with millions of barcode-indexed products. The
+  remaining gap — North American coverage and restaurant items — is real and named, but it
+  is a coverage gap, not an unavailable index.
+- **`gaia-gps` `no` → `kinda`.** Offline vector maps over open data are a solved problem
+  with excellent open implementations; what is licensed is the layer catalogue.
+  `komoot-premium` stays `no` next to it because its differentiator is community
+  Highlights, which is a network.
+- **`tripit-pro` `no` → `kinda`.** Parsing thousands of confirmation-email formats used to
+  require a team; a model with a schema does it now. Pro's alerting stays behind a live
+  data feed and is named as the gap.
+- **`mealime-pro` `no` → `kinda`.** The planner machinery is a weekend and Mealie covers
+  most of it. What it does not cover is Mealime's own recipes, which is why this stops at
+  `kinda` and does not reach `yes`.
+
+Away from buildable:
+
+- **`careerflow` `yes` → `kinda`.** Its product is an extension that recognises and fills
+  hundreds of applicant tracking systems. A home-made one covers the three sites you use
+  and breaks on redesign.
+- **`anylist-complete` and `cozi-gold` `yes` → `kinda`.** Both are multi-user real-time
+  sync with offline merges, which CONTRIBUTING lists as a `kinda` gap explicitly.
+  `hevy-pro` and `strong-pro` stay `yes` beside them for a stated reason: they are
+  single-user, and an offline-first progressive web app genuinely covers them.
+
+Batch mix across the 58: 12 `yes`, 21 `kinda`, 25 `no`. Per category, as
+yes/kinda/no: `job-search` 5/1/0, `learning` 0/2/8, `health-fitness` 2/4/4, `travel`
+0/3/7, `home-family` 4/5/0, `media-streaming` 0/0/7. The `job-search` and `home-family`
+skews are real and defensible — a resume is a document rendered from data, and a recipe
+manager is a folder with an index — and the `media-streaming` sweep is exactly what the
+coordinator predicted for this category: seven licensing walls with no software content at
+all.
+
+### Editorial
+
+Upstream ships one template per category here, more aggressively than in any earlier pool:
+all ten `career` entries carry the same `subcategory`, the same `requirements` and the same
+Reactive Resume prior art regardless of product; all ten `wellness` entries carry wger; all
+ten `travel` entries carry Wanderer. Every `subcategory`, every prompt and all 232 FAQ
+answers were rewritten.
+
+The hard part was `media-streaming`, where the honest verdict is identical seven times and
+the consolation build must not be. The seven angles: library tagging, MusicBrainz matching
+and ReplayGain as the thing that makes a home collection listenable (`apple-music`) — a
+listening-history archive built from the vendor's own export, with skip rate as the real
+taste signal (`spotify-premium`) — a *verified* bit-perfect playback chain with a spectral
+audit for lossy files in lossless containers (`tidal`) — a neutral playlist format with an
+ISRC matcher and a missing-tracks report (`youtube-music-premium`) — following artists at
+source and buying direct, with a "supported this year" figure (`soundcloud-go-plus`) —
+chapters and cross-device position, the two details that decide whether a self-hosted
+audiobook server replaces the app (`audible-premium-plus`) — a personal library wired to
+your public library's lending catalogue (`everand`).
+
+`priorArt` was rebuilt per entry rather than carried: Anki for the language and study
+trainers, Whisper for the two speech entries, Reactive Resume, RenderCV and JSON Resume
+across the resume builders, wger for the workout loggers, Open Food Facts for the three
+nutrition trackers, Medito for the two meditation entries, Wanderer for Strava and
+AllTrails, OsmAnd and Organic Maps for Gaia, GraphHopper for komoot, Navidrome and beets
+for the music entries, Audiobookshelf and Kavita for the book ones, Mealie and Grocy for
+the household ones, Demucs and Essentia for Moises, Matchering for LANDR, Freesound for
+Splice, Ardour and LMMS for Soundtrap. **Nine entries ship with no `priorArt` at all** —
+`flighty-pro`, `going-premium`, `point-me`, `seats-aero-pro`, `tripit-pro`,
+`wanderlog-pro`, `roadtrippers`, `skillshare` and `freeletics` — because there is no
+open-source award-availability index, aviation data feed, curated place database or class
+marketplace to point a reader at, and inventing one is worse than the gap.
+
+`requirements[]` was reconciled against each finished prompt rather than the mechanical
+pass, which produced `["none"]` for 44 of the 58. Corrections were the rule rather than the
+exception: every entry whose prompt runs a server gained `hosting`, every entry with a
+store gained `database`, `anthropic-api-key` was added where a prompt genuinely depends on
+a model (`careerflow`, `enhancv`, `kickresume`, `pestle`, `rezi`, `tripit-pro`),
+`openai-api-key` for `speak-language` whose prompt names a realtime speech API,
+`email-provider` for `going-premium` and `tripit-pro`, and `domain` for the entries that
+terminate TLS themselves.
+
+`relatedSlugs` were hand-diversified after generation. The mechanical pass produced five
+identical `[tripit-pro, wanderlog-pro, alltrails-plus]` triples in `travel` and five
+identical `[strava, myfitnesspal-premium, macrofactor]` triples in `health-fitness`. **No
+two entries in these three lots share a triple**, and two deliberate cross-category links
+were kept because they are genuinely the closest neighbours: `strava` → `komoot-premium,
+alltrails-plus, hevy-pro`, and `everand` → `audible-premium-plus, tidal, spotify-premium`.
+
+### Verification
+
+```
+$ npm run validate
+529 fiche(s), 903 traduction(s), 5 agent(s) — tout est valide.
+
+$ npx vitest run
+ Test Files  12 passed (12)
+      Tests  175 passed (175)
+
+$ npm run build
+Feed écrit dans dist/feed/v1/ — 529 outil(s).
+Site écrit dans dist/ — 2 langue(s), 903 fiche(s), 87 page(s) de catégorie, 996 URL(s).
+
+$ cd worker && npx vitest run
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+
+$ npm run stats
+529 fiche(s) : yes 70 (13 %), kinda 283 (53 %), no 176 (33 %)
+
+$ npm run linkcheck -- --deep
+701 OK, 28 en échec, 77 à relire.
+```
+
+**Zero new dead links.** All 28 failures are pre-existing anti-robot responses
+(403/401/402/429/timeout) on entries from earlier batches. Of the 77 `--deep` warnings,
+exactly five belong to these lots — `brilliant.org/subscribe/`, `busuu.com/products/en`,
+`freeletics.com/en/training/coach/get/`, `soundtrap.com/pricing` and `todyapp.com/` — and
+all five are the false positive the script's own comment describes: a price grid rendered
+in JavaScript. Each was read in a real browser session and the figure is in the entry's
+`pricing.notes`.
+
+### What I judged rather than derived
+
+- **Citing App Store listings for 21 entries.** The alternative was excluding a third of
+  the remaining pool, because consumer apps largely do not publish prices on the web. The
+  precedent existed (`airmail`, `structured`, `goodlinks`) but not at this scale, and it is
+  a genuine step down in citation quality.
+- **Lot sizes of 22, 20 and 16 instead of 25.** Category-coherent lots keep `relatedSlugs`
+  inside their own category and make each commit self-contained.
+- **`freeletics` at €8.32.** The vendor prices per week; the monthly figure is our
+  division. Flagged in the notes, `confidence: low`.
+- **`enhancv` recorded on a quarterly plan as `annual-effective-monthly`.** The enum has no
+  quarterly code and the alternative was mislabelling it `flat-monthly`.
+- **`kickresume` at €24 rather than the €19.20 the page displays largest.** €19.20 is
+  explicitly the first month only. Recording the displayed figure would have understated
+  the recurring price by 20%, which the catalogue's default-view rule is not meant to
+  produce.
+- **`plan-to-eat` as `yes` while `mealime-pro` is `kinda`.** Plan to Eat ships no recipes —
+  you import your own, by design — so Mealie is a parity substitute rather than an
+  approximation, the same shape as `ilovepdf-premium` and Stirling PDF. Mealime's recipes
+  *are* its product.
+- **`hevy-pro` and `strong-pro` kept at `yes` while `anylist-complete` and `cozi-gold`
+  moved to `kinda`.** The line is single-user versus multi-user real-time sync, and it is
+  stated in each entry.
+
+### Concerns, and one `relatedSlugs` to repoint
+
+- **`relatedSlugs` on early entries are stale at catalogue scale.** Roughly thirty
+  pre-existing fiches still carry batch-1-era fallback triples that cross categories even
+  though three or more same-category peers now exist — `feedly` → `ahrefs, beehiiv, kit`,
+  `hey-email` → `1password, bitwarden, github-copilot`, `granola` → `chatgpt, claude,
+  grammarly`, `elevenlabs` → `chatgpt, claude, grammarly` are the clearest. **Not
+  touched**, per instruction, and none is wrong so much as outdated.
+- **One to repoint specifically because of these lots:** `capcut` (`audio-video`) points at
+  `granola` and `fireflies-ai`, both `meeting-notes` — the same defect class batch 3 fixed
+  for `miro` and `evernote`. `audio-video` now holds `moises`, `splice`, `soundtrap` and
+  `landr-studio` as same-category candidates, so the fix is available where it was not
+  before. Reported, not made.
+- **Twenty-one App Store citations will age differently from vendor pages.** Apple rewrites
+  in-app-purchase lists without notice and does not date them. A future link sweep should
+  treat these as a distinct class.
+- **`youtube-music-premium` is recorded in EUR** because `gl=US` and `hl=en` both failed to
+  move it. It is the only entry in these lots where the geo could not be defeated and the
+  product is global.
+- **`home-assistant-cloud` remains filed under the reader's mental model** rather than the
+  build's, as the taxonomy section already flagged: the rebuild is a Tailscale install and
+  a reverse proxy, which is a `hosting` story.
+
+### Status
+
+All 608 upstream entries are now accounted for. `--limit N --dry-run` selects zero eligible
+candidates. **Nothing remains to import.**

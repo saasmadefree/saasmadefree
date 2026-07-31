@@ -1,0 +1,31 @@
+{
+  "tagline": "Resume builder that scores your draft and targets it at a job ad.",
+  "verdictSummary": "The Rezi Score is a number produced by rules — bullets that start with a verb, bullets that carry a figure, sections present, length. Rules you can read are worth more than a number you cannot, and writing them yourself takes a sitting. What you give up is the drafting quality of a model tuned on resumes that actually got interviews, and the human review Pro includes once a month.",
+  "coreLoopDIY": "Score your own resume against rules you can read and change, see exactly which line lost each point, and diff its wording against a specific job ad.",
+  "whatYouLose": [
+    "a monthly review by a human recruiter, which is part of the Pro plan",
+    "phrasing suggestions from a model trained on resumes that led to interviews",
+    "the template library and the hosted editor",
+    "a score benchmarked against other applicants rather than against rules"
+  ],
+  "whyPeopleStillPay": "A score you did not have to define, plus someone qualified reading the result once a month, is a genuinely different product from a linter you wrote yourself.",
+  "prompt": "Build a resume linter whose rules are readable and whose score is explainable.\n\nInput is a resume as structured data — reuse the JSON Resume shape rather than inventing one. Output is a score out of 100 and, for every point deducted, the exact line responsible and the rule that fired.\n\nStart with rules that are checkable rather than tasteful, each in its own file with a weight and a one-sentence rationale: every bullet opens with a past-tense action verb; at least sixty percent of bullets contain a number, a percentage or a currency amount; no bullet exceeds two rendered lines; no first-person pronouns; no duplicated opening verb within a section; every role has a date range with no unexplained gap over six months; required sections present. Weights live in one config file, so disagreeing with the scoring means editing a number, not the code.\n\nThe report is the product. Print the score, then a list where each row is: the deduction, the rule name, the offending text, and the rationale. Never emit a bare number.\n\nThen add targeting. Given a job description, extract its significant terms — nouns and noun phrases, minus a stop list — and print three columns: terms present in your resume, terms absent, and terms present but only in a section a skim would miss. Absent is a prompt to think, not an instruction to insert; say so in the output, because keyword stuffing is exactly how a resume stops reading like a person wrote it.\n\nWith an LLM API key, add a per-bullet rewrite that must preserve every number in the original and is shown as a diff. Assert that in a test: a rewrite that drops or changes a figure fails.\n\nDo not build a template gallery or a PDF renderer here — this tool reads a resume and judges it, and stays small by not also producing one.",
+  "faq": [
+    {
+      "q": "Can I score the resume I already have?",
+      "a": "Yes, once it is in the JSON Resume shape. If all you have is a PDF, run it through `pdftotext` and paste the sections in — twenty minutes, and reading your own resume as flat text is itself informative about what a parser sees."
+    },
+    {
+      "q": "Is this score comparable to Rezi's?",
+      "a": "No. Rezi's number is calibrated against their own corpus; yours is calibrated against rules you wrote. Treat it as a linter that tells you which lines are weak, not as a percentile among applicants."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "The linter and the keyword diff cost nothing — they are local text processing. Bullet rewrites cost a fraction of a cent each."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The human review. Rezi Pro includes a monthly pass by a person who reads resumes professionally, and no set of rules substitutes for someone telling you that your best achievement is buried in the fourth bullet of your second job."
+    }
+  ]
+}

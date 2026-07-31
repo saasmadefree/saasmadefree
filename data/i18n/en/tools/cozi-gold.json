@@ -1,0 +1,32 @@
+{
+  "tagline": "One colour-coded calendar for the whole family, on every phone.",
+  "verdictSummary": "The calendar itself is a solved problem: CalDAV is a mature standard, self-hosted servers are small and reliable, and every phone speaks it natively — which is a genuine advantage over a home-made app, since the family sees events in the calendar they already use. What Gold adds beyond that is the month view, birthday tracking and reminders, and those are a weekend. The gap is the same as every household tool: getting four people to set up an account.",
+  "coreLoopDIY": "Run a CalDAV server, subscribe every family phone to a shared calendar, and colour events by person in the apps they already use.",
+  "whatYouLose": [
+    "setup that takes one person on one phone rather than four",
+    "the shopping and to-do lists sharing the same app as the calendar",
+    "the daily agenda email Cozi sends every morning",
+    "the mobile app, widgets and reminder notifications tuned for families",
+    "someone else running the server on the day the calendar has to work"
+  ],
+  "whyPeopleStillPay": "Thirty-nine dollars a year so that nobody in the house has to type a server URL into a settings screen, and so the school run does not depend on your uptime.",
+  "prompt": "Set up a shared family calendar on CalDAV, then build the small layer that makes it feel like a product rather than a protocol.\n\nRun Radicale behind a reverse proxy with TLS and per-person accounts. Create one shared calendar with write access for everyone, plus one private calendar per person. Every mainstream phone subscribes to CalDAV natively, which is the whole reason to build on it — events land in the calendar app your family already opens.\n\nThe layer worth writing is the daily digest. A scheduled job reads the shared calendar, and each morning sends one email or message per person with today's events, tomorrow's events, and anything they are responsible for. Cozi's agenda email is genuinely its most-used feature and it is fifty lines of code over an ICS feed.\n\nAdd birthdays and recurring household dates as their own calendar, generated from a plain data file with names and dates, so a person's birthday is one line rather than a recurrence rule you edit yearly.\n\nWrite the family setup page: a single page on your domain with a QR code and a one-tap subscription link per person, plus screenshots for iOS and Android. Setup friction is the actual failure mode of this project, and treating it as a first-class deliverable is the difference between a calendar the family uses and one you use alone.\n\nBack the server up nightly and test a restore. A family calendar that loses March is worse than no shared calendar.\n\nDo not write your own calendar client. The one on the phone is better than anything you will build, and it is already installed.",
+  "faq": [
+    {
+      "q": "Can I export my Cozi calendar?",
+      "a": "Cozi offers an ICS feed of your family calendar, which you can subscribe to once and then import into your own server. Do it before cancelling — it is the only route out, and the lists and recipes do not come with it."
+    },
+    {
+      "q": "Does everyone need to be technical?",
+      "a": "No, and the design assumes they are not: they tap a link once and the events appear in their normal calendar app. You are the only person who ever sees the server."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A small VPS and a domain, so roughly five to seven dollars a month — more than Cozi Gold. The reason to do it is that the data is yours and lives in an open format, not that it saves money."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Not being the administrator. When the calendar breaks on a Tuesday morning, Cozi has a support team and your family has you."
+    }
+  ]
+}

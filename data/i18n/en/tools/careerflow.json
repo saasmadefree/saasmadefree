@@ -1,0 +1,33 @@
+{
+  "tagline": "Chrome extension that captures job postings and autofills applications.",
+  "verdictSummary": "The tracker behind Careerflow is a small database and a board, and a personal version is a weekend. What is not a weekend is the part people actually pay for: an extension that recognises the posting layout of hundreds of job boards and applicant tracking systems, and fills their forms. A home-made extension covers the three or four sites you personally use and breaks whenever one of them ships a redesign.",
+  "coreLoopDIY": "Click a button on any job posting; a browser extension reads the title, company, location and description into a local database, and a board tracks each application through applied, screening, interview and closed.",
+  "whatYouLose": [
+    "form autofill across hundreds of applicant tracking systems",
+    "posting extraction that keeps working when a job board redesigns",
+    "LinkedIn profile scoring against a large sample of profiles",
+    "mock interview practice with recorded feedback",
+    "the mobile app"
+  ],
+  "whyPeopleStillPay": "Applying to fifty jobs means retyping the same twelve fields fifty times, and Careerflow removes that specific hour of tedium on sites you did not have to configure first.",
+  "notes": "The interesting engineering here is not the tracker, it is keeping a scraper alive against sites that do not want to be scraped.",
+  "prompt": "Build a personal job-application tracker with two halves.\n\nThe first half is a browser extension with one button. On a job posting, it extracts title, company, location, salary if present, the posting URL and the full description text, and POSTs them to a local server. Extraction rules live in a plain JSON file — one entry per hostname, each holding CSS selectors for the fields — plus a generic fallback that reads JSON-LD `JobPosting` structured data, which a surprising number of boards publish. When neither works, the extension stores the raw page text and marks the record `needs-review` rather than saving empty fields.\n\nThe second half is a local web app over SQLite: a board with the stages applied, screening, interview, offer and closed; a card per application; and a notes field. Stage changes are stored as dated events, not as a mutable column, so the board can answer \"how long did I sit in screening at each company\" without extra bookkeeping. Add a follow-up view listing every application with no event for N days.\n\nOptionally, with an LLM API key, add one action: paste your resume once, and for a selected posting produce a bullet-by-bullet rewrite suggestion with the original text shown alongside. Never rewrite the stored resume automatically — output a diff a human accepts or rejects.\n\nDo not build form autofill for arbitrary application forms. Filling somebody else's multi-page ATS reliably is the vendor's whole product, and a half-working autofill that silently submits a wrong field is worse than typing.",
+  "faq": [
+    {
+      "q": "Can I import the applications I already tracked in Careerflow?",
+      "a": "Careerflow exports your job list as CSV, and the importer for this build is a short script: map the columns to title, company, URL, stage and date, and insert one stage event per row. What does not survive is per-posting extension metadata, because it never existed outside their extension."
+    },
+    {
+      "q": "Will the extension keep working?",
+      "a": "For the boards you wrote selectors for, until they change their markup — usually months, sometimes weeks. The JSON-LD fallback is far more stable, so prefer boards that publish structured data. This is the honest running cost of the DIY version: about ten minutes of selector maintenance whenever a site you use redesigns."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing beyond your own machine if you keep it local. The LLM rewrite step costs a fraction of a cent per posting, so a hundred tailored applications is well under a dollar."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Applying to a job you found in the wild without configuring anything first. Careerflow works on sites you have never visited; your version works on sites you taught it about."
+    }
+  ]
+}

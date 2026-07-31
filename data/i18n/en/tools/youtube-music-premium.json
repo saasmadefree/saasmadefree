@@ -1,0 +1,32 @@
+{
+  "tagline": "Music streaming layered on YouTube, including everything uploaded there.",
+  "verdictSummary": "This one has two catalogues stacked. The first is the licensed music catalogue every service has. The second is everything else on YouTube — the live sets, the fan uploads, the obscure remaster nobody licensed — which exists because a billion people upload to it. The subscription is also partly a toggle on somebody else's platform, turning off ads and enabling background play, and a toggle cannot be rebuilt at all.",
+  "coreLoopDIY": "Keep your playlists as portable data you own, and play what you own from your own server.",
+  "whatYouLose": [
+    "the licensed catalogue and the far larger uploaded one behind it",
+    "ad-free playback and background play across YouTube itself",
+    "the live performances and fan uploads that exist nowhere else",
+    "downloads for offline playback in the app",
+    "playback on speakers, TVs and cars that speak the platform natively"
+  ],
+  "whyPeopleStillPay": "Eight euros removes ads from the video platform you already use all day and unlocks background playback, and no amount of self-hosting touches either.",
+  "prompt": "Build a playlist archive that outlives whichever streaming service you use, and stream your own collection beside it.\n\nThe problem this solves is real: playlists are the only thing you create on a streaming service, and they are the thing you lose. So the tool's job is to hold them as portable data.\n\nDefine one neutral playlist format: a JSON file per playlist, with an ordered list of entries carrying artist, title, album, duration, an ISRC where you can obtain one, and the source service and id it came from. ISRC is the field that makes matching across services work rather than nearly work.\n\nWrite importers for the export formats each service offers, and a matcher that resolves each entry against your local library by ISRC first, then by normalised artist and title with duration within a tolerance. Report per playlist: matched locally, matched but a different version, and missing. That third list is the honest picture of what a subscription is holding for you.\n\nExport back out to M3U for local players and to CSV for whatever comes next.\n\nAdd a change log: re-import the same playlist later, diff it against the stored version, and record additions and removals with dates. Streaming playlists change under you — tracks are removed when licences lapse — and the diff is the only way to notice.\n\nFor playback of what you own, run Navidrome as described in the Apple Music entry.\n\nDo not download from the platform. It breaches the terms, the tooling breaks constantly, and this build is about owning the structure of your listening rather than taking the files.",
+  "faq": [
+    {
+      "q": "Can I export my YouTube Music playlists?",
+      "a": "Yes, through Google Takeout, which delivers your playlists and library as CSV. It is one of the more complete exports available and it is the right first step before cancelling."
+    },
+    {
+      "q": "Does the missing-tracks report actually help?",
+      "a": "It is the most useful thing in the build. Running it tells you exactly how much of your favourite playlist you do not own, which turns an abstract dependency into a buying list."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing for the archive — it is JSON files and a matcher. The music server costs storage and a small machine."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The fan upload. A twelve-minute live version from 1974 that someone put on YouTube is not for sale anywhere, and no library can hold what nobody sells."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "One-page resume builder sold as a one-off payment, not a subscription.",
+  "verdictSummary": "Novorésumé is unusual twice over: it charges once instead of monthly, and its product is a constraint rather than a feature list — everything is pushed towards one dense, readable page. The constraint is the interesting part to rebuild, because a generator that refuses to produce a second page forces the editing decisions a recruiter would otherwise make for you.",
+  "coreLoopDIY": "Write your resume as data, render it to a single page, and let the build fail when the content no longer fits so you have to cut something.",
+  "whatYouLose": [
+    "the template catalogue and its colour and typeface presets",
+    "the in-browser editor with live preview",
+    "matching cover-letter designs",
+    "someone else keeping the file for you between job searches"
+  ],
+  "whyPeopleStillPay": "Twenty euros once, with no subscription to remember to cancel, is an honest price for a document most people need for six weeks every four years.",
+  "notes": "Worth noting because it breaks the pattern of this catalogue: there is no recurring charge to escape here, only a workflow to own.",
+  "prompt": "Build a resume generator whose defining rule is that the output is exactly one page.\n\nContent lives in a single YAML or JSON file. Rendering goes through an HTML template and a print stylesheet to a one-page PDF via headless Chromium.\n\nThe rule is enforced, not suggested. After rendering, count the pages: more than one is a build failure, and the error message must name the last entry that fitted and the first that did not, so the next action is obvious. Write that test first, with a fixture that is deliberately three bullets too long.\n\nGive the author two levers before cutting content, both explicit in the data file rather than hidden in CSS: a `density` value that scales leading and margins within a bounded range, and a per-entry `bullets: N` cap that keeps only the first N bullets of an entry in the rendered output while leaving the rest in the file. Print a short report after each build — page fill percentage, and how many bullets each cap is currently hiding — so you can see how close to the edge you are.\n\nAdd a plain-text export produced from the same data, not scraped from the PDF, for the application forms that ask you to paste your resume into a textarea.\n\nDo not build a live in-browser editor, and do not add a second-page escape hatch. The moment two pages are allowed, the constraint stops doing its job.",
+  "faq": [
+    {
+      "q": "Can I import my Novorésumé document?",
+      "a": "There is no structured export, so you retype the content into the data file once. It takes twenty minutes and it is the last migration this document will ever need."
+    },
+    {
+      "q": "Is one page actually right for everyone?",
+      "a": "No, and the tool should not pretend otherwise — academic CVs and senior technical roles in some markets expect more. This build is deliberately opinionated for the common case; if your field expects three pages, raise the page limit in one constant and lose the constraint that made it interesting."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. There is no server, no key and no account — it is a script and a file on your machine."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Seeing the layout react as you type. Novorésumé's live preview makes the fit problem visible continuously; your version tells you about it once, at build time, after the fact."
+    }
+  ]
+}

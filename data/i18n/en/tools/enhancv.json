@@ -1,0 +1,32 @@
+{
+  "tagline": "Resume builder with designed templates and an ATS check.",
+  "verdictSummary": "A resume is a small structured document rendered through a stylesheet. Keeping the content in one JSON file and rendering it to PDF through a print stylesheet is a sitting, and it removes the single worst failure of every hosted builder: your CV living in somebody else's database in a format you cannot get out. What you are buying instead is a designer's eye applied to forty layouts, and a warning when a layout quietly breaks.",
+  "coreLoopDIY": "Keep your resume as one JSON file, render it to PDF through a chosen HTML template, and check the rendered text against a job description for missing keywords.",
+  "whatYouLose": [
+    "forty professionally designed templates",
+    "phrasing benchmarks drawn from millions of other resumes",
+    "real-time collaboration and recruiter-shared links",
+    "the hosted editor your less technical friends can use"
+  ],
+  "whyPeopleStillPay": "Most people do not want to own a build pipeline for a document they touch twice a year, and a template that a designer already made look calm is worth more than the hour it saves.",
+  "notes": "The genuinely useful part to steal is the overflow check: silent page overflow is how a good resume becomes a bad one.",
+  "prompt": "Build a resume generator where the content is data and the design is a template.\n\nStore the resume as a single JSON file: basics, one array per section, and each entry holding a date range, a title, an organisation and bullet strings. Render it to PDF through an HTML template and a print stylesheet — headless Chromium is enough, no PDF library needed.\n\nThe part that must be built properly is the fit check. After rendering, measure the content: if any section spills past a page boundary mid-entry, or if the document exceeds the page count declared in the JSON, fail the build with a message naming the entry that overflowed. A resume builder that silently pushes your last job onto a third page is the bug that matters here, so write the test for it first — a fixture resume that is deliberately one bullet too long must fail.\n\nShip two templates that differ structurally, not just in colour: a single-column chronological one and a two-column one with a sidebar. Both read the same JSON with no per-template fields.\n\nAdd a keyword check: paste a job description, and the tool prints which of its significant terms do not appear anywhere in the rendered resume text, with each one shown in the sentence it came from so you can judge whether it is worth adding. Optionally, with an LLM API key, offer a rewrite of one selected bullet at a time, shown as a diff you accept or reject — never a whole-document rewrite.\n\nDo not build a WYSIWYG editor. Editing JSON in your own editor is the point; a drag-and-drop canvas is weeks of work and the thing you were trying to escape.",
+  "faq": [
+    {
+      "q": "Can I get my existing Enhancv resume into this?",
+      "a": "Export it as PDF, then retype it into the JSON once. That sounds like a step backwards and takes about twenty minutes, but it is the last time you ever have to: from then on the content is a file you own and diff in git."
+    },
+    {
+      "q": "Will the PDF actually pass applicant tracking systems?",
+      "a": "Text rendered by headless Chromium extracts cleanly, which is the part that matters. Avoid the two things that genuinely break parsers — text inside images, and multi-column layouts where reading order does not match visual order. Run `pdftotext` on your output and read it; if it reads sensibly, a parser will manage."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. It is a script on your machine. The optional bullet rewrite costs a fraction of a cent per call."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The design work. You get two templates you wrote; Enhancv gives you forty that a designer spent a week each on, and choosing between them is a real part of the product."
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "slug": "macrofactor",
+  "name": "MacroFactor",
+  "domains": [
+    "macrofactor.com"
+  ],
+  "category": "health-fitness",
+  "subcategory": "adaptive calorie and macro coaching",
+  "pricing": {
+    "amount": 11.99,
+    "currency": "USD",
+    "plan": "MacroFactor",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/macrofactor-macro-tracker/id1553503471",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "macrofactor.com/pricing 404s and the homepage prints no figure. Read from the App Store listing, whose developer text states three options: $11.99/month, $47.99/half year, $71.99/year (equal to $5.99 a month)."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "expenditure model and food database",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "database",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Open Food Facts",
+      "url": "https://github.com/openfoodfacts/openfoodfacts-server",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "cronometer-gold",
+    "myfitnesspal-premium",
+    "hevy-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

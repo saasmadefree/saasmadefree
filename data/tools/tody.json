@@ -1,0 +1,43 @@
+{
+  "slug": "tody",
+  "name": "Tody",
+  "domains": [
+    "todyapp.com"
+  ],
+  "category": "home-family",
+  "subcategory": "cleaning schedule with task decay",
+  "pricing": {
+    "amount": 0.83,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "annual-effective-monthly",
+    "source": "https://todyapp.com/",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "todyapp.com/premium 404s; the homepage plan block states \"Premium from 9.99$ /year\", i.e. $0.83/month, and the word \"from\" is the vendor's. The App Store lists the tiers behind it: Premium Solo $9.99, Premium+ Duo $24.99, Premium+ Family $39.99, Premium+ Team $79.99."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "app polish and household sync",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Grocy",
+      "url": "https://github.com/grocy/grocy",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "cozi-gold",
+    "familywall-premium",
+    "home-assistant-cloud"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

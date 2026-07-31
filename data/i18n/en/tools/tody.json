@@ -1,0 +1,31 @@
+{
+  "tagline": "Cleaning tasks that get more urgent the longer you leave them.",
+  "verdictSummary": "Tody's idea is one good mechanic: a task is not due or not due, it decays continuously from clean towards dirty at a rate you set, so the app always answers \"what most needs doing right now\" instead of showing an overdue list you learn to ignore. Implementing that is arithmetic over a last-done timestamp — a sitting, with no key, no service and nothing to reproduce.",
+  "coreLoopDIY": "Keep a list of household tasks with an interval each, and see them sorted continuously by how overdue they are, not by whether they crossed a line.",
+  "whatYouLose": [
+    "the mobile apps, which is where you mark a task done, standing in the room",
+    "sync between everyone in the house, which is the paid tier",
+    "the visual room-by-room layout that makes it feel like a game",
+    "the starter task library, so you begin from an empty list"
+  ],
+  "whyPeopleStillPay": "Ten dollars a year for something already on the phone in your pocket when you notice the bathroom, and nothing to run.",
+  "prompt": "Build a household task tracker around continuous decay rather than due dates.\n\nA task has a name, a room, an interval in days, and a last-done timestamp. Its state is a single number: days since last done, divided by the interval. Below 1.0 it is fine; above, it is overdue by that factor. Everything the tool does is a sort on that number.\n\nThe main screen is one list, ordered by that ratio descending, with a colour ramp rather than a binary badge. Nothing is ever \"overdue\" in a way that accumulates guilt — a task at 3.2 is simply above a task at 1.4, and doing it resets it. That difference in framing is the entire reason this design works where a to-do list does not.\n\nMarking done is one tap and writes a completion row. Never delete history: the completion log is what lets the tool suggest a better interval, by comparing how often you actually do a task with the interval you claimed.\n\nAdd a \"I have twenty minutes\" view: given a duration you enter, pick the highest-ratio tasks whose estimated durations fit, and show them as a short list. That single feature is what turns a tracker into something used on a Saturday morning.\n\nAdd room filtering and a per-room summary, since cleaning happens by room rather than by priority.\n\nRun it as an offline-first progressive web app with local storage, syncing when it can reach your server. If more than one person uses it, merge by last-write-wins on the completion timestamp — completions are idempotent enough that this is genuinely fine.\n\nDo not add streaks or a score. A cleaning app that makes you feel bad about a bad week gets deleted during the bad week.",
+  "faq": [
+    {
+      "q": "Can I import my Tody tasks?",
+      "a": "No — Tody has no export, so the task list is retyped. It is twenty minutes for a normal house, and writing the list yourself is arguably the useful part."
+    },
+    {
+      "q": "How do I pick the intervals?",
+      "a": "Guess, then let the completion log correct you. After two months, compare each task's median actual gap against its configured interval and adjust — the guessed number matters much less than having the history to fix it with."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing locally. A few dollars a month if you host it so several phones can share one list, which is more than the subscription."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Marking it done in the moment. Tody is on the phone in your hand when you notice the skirting boards, and a web app you have to remember to open catches the tasks you think about rather than the ones you see."
+    }
+  ]
+}

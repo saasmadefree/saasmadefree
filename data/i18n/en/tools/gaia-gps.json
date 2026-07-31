@@ -1,0 +1,32 @@
+{
+  "tagline": "Downloadable topographic maps for navigating without a signal.",
+  "verdictSummary": "Unusually for this category, the core here is not other people's data — it is map rendering and offline storage, both of which have excellent open implementations and free underlying data. That makes it buildable, with two honest gaps: the licensed layers Gaia resells, and the fact that the polished open alternatives are apps you install rather than something you host. What you are paying for is the layer catalogue, not the navigation.",
+  "coreLoopDIY": "Download vector map tiles for a region, navigate offline against them, and record your track without any connection.",
+  "whatYouLose": [
+    "the licensed layers — National Geographic Trails Illustrated, high-resolution satellite, proprietary land-ownership data",
+    "layer switching across dozens of curated basemaps in one place",
+    "the mobile apps with route planning, waypoint sync and CalTopo-style overlays",
+    "snow depth, wildfire and weather overlays sourced under agreement",
+    "Outside+ content bundled with the higher tier"
+  ],
+  "whyPeopleStillPay": "Public land boundaries and a good topo layer for the exact valley you are standing in, downloaded in one tap, is the difference between a map and a hobby.",
+  "prompt": "Build an offline-first map and track recorder over open data.\n\nBasemap: use OpenStreetMap-derived vector tiles. Download a region as a single PMTiles archive, which is one file you can host statically or carry on a device, and render with a client-side vector map library. Vector rather than raster matters here: the same file gives you every zoom level at a fraction of the size, and styling is a stylesheet rather than a re-render.\n\nAdd a terrain layer from an open digital elevation model, rendered as hillshade and contour lines. Contours are what make a topographic map useful, and generating them from open elevation data is a well-trodden path.\n\nOffline is a hard requirement, not a mode. The app must load, render, locate and record with the radio off — test that literally, in airplane mode, before adding any feature. Store the recorded track in IndexedDB with a write every few seconds and a wake lock so a locked screen does not stop the recording.\n\nWaypoints, routes and tracks all import and export as GPX, since that is what every other tool speaks.\n\nBuild the coverage screen: which regions you have downloaded, how much space each takes, and when it was last refreshed. Discovering at a trailhead that your download stopped at the valley entrance is the failure this prevents.\n\nDo not resell or redistribute licensed layers. Satellite imagery and proprietary topo sets have terms; use open data or pay a provider directly and keep the key yours.",
+  "faq": [
+    {
+      "q": "Can I export my Gaia data?",
+      "a": "Yes. Gaia exports tracks, routes and waypoints as GPX or KML, individually or by folder, and those import straight into this build. Downloaded map layers stay behind — they are licensed content, not your files."
+    },
+    {
+      "q": "Is OpenStreetMap good enough for backcountry navigation?",
+      "a": "For trails and paths in Europe, generally yes and often better than commercial data. In North American wilderness it varies enormously by region. Compare it against a known area before you rely on it somewhere unfamiliar."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Storage and nothing else. A large region as vector tiles is a few hundred megabytes; hosting the file costs pennies, or nothing if it lives on the device."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The layer list. Gaia's catalogue is dozens of maps somebody licensed and stitched together, and your build has exactly the layers you built yourself."
+    }
+  ]
+}

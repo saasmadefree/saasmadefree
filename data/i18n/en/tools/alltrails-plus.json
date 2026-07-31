@@ -1,0 +1,32 @@
+{
+  "tagline": "Curated trail guides with reviews, photos and current conditions.",
+  "verdictSummary": "The software is a map and a GPX player. The value is a curated database of several hundred thousand trails, each with a written description, recent photographs and — the part nothing else has — reviews from people who walked it last weekend and mention the washed-out bridge. That is a decade of contributions from millions of hikers, and it is why this is not a software problem.",
+  "coreLoopDIY": "Keep your own library of routes with offline maps, record what you walk, and write your own notes on conditions.",
+  "whatYouLose": [
+    "the trail database itself, with descriptions, distances and difficulty",
+    "recent reviews and photographs, which is how you learn a trail is impassable",
+    "trail conditions after storms, updated by people who were just there",
+    "offline map downloads packaged per park, and the Plus navigation features",
+    "the mobile apps, live share and wrong-turn alerts"
+  ],
+  "whyPeopleStillPay": "Thirty-six dollars a year to know before you drive two hours that the trailhead parking is closed and the creek crossing is waist deep.",
+  "prompt": "Build a personal trail library over open map data and your own recorded tracks.\n\nRoutes come from three sources: GPX files you have collected, tracks you recorded yourself, and OpenStreetMap paths tagged as trails, which you can query with Overpass for a bounding box and convert to routes. Store each route with a name, the geometry, computed distance, elevation gain and a difficulty you assign yourself.\n\nOffline maps are the feature that makes it usable in the field. Download vector tiles for the regions you care about, store them locally, and render with a client-side map library so nothing needs a connection at the trailhead. Do this before any other polish — a hiking tool that needs signal is a tool you cannot use where you hike.\n\nThe part that substitutes for reviews is your own condition log: after each walk, a dated note per route with free text and a photo. After three seasons that is genuinely better than a stranger's review for the trails you return to, and completely absent for the ones you have not walked. Say that plainly in the interface.\n\nRecording is a GPX logger with a wake lock so the screen sleeping does not stop the track, and periodic writes to storage so a crash costs a minute rather than a walk.\n\nAdd elevation profiles computed from an open digital elevation model rather than from GPS altitude, which is unusable for anything but rough vertical movement.\n\nDo not scrape AllTrails. The trail data and reviews are theirs, and a scraper is both a licence problem and a fragile foundation for a tool you want to work in five years.",
+  "faq": [
+    {
+      "q": "Can I export my AllTrails lists?",
+      "a": "Partially. Individual routes download as GPX, and completed activities export from your profile, but there is no single archive of your saved lists — expect to download the routes you care about one by one before cancelling."
+    },
+    {
+      "q": "Where do trails come from without their database?",
+      "a": "OpenStreetMap has extensive path coverage in most of Europe and patchy but improving coverage elsewhere, and it is free to use. What it does not have is a description telling you the second half is scree."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Tile storage is the only real cost: a region's worth of vector tiles is a few hundred megabytes on your phone. Hosting is a few dollars a month if you want it reachable away from home."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Discovering a trail. Your library holds routes you already knew about; AllTrails answers \"what is good within an hour of here\", and that answer is made of other people."
+    }
+  ]
+}

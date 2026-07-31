@@ -1,0 +1,32 @@
+{
+  "tagline": "Subscription library of royalty-free samples, loops and presets.",
+  "verdictSummary": "What Splice sells is permission. Millions of sounds, each one commissioned or licensed from its creator, cleared for use in music you release commercially, with the paperwork already done. The software around it is a search box and a download queue. There is no version of writing code that produces a legal right to use somebody else's recording.",
+  "coreLoopDIY": "Organise the samples you already own or recorded into a searchable, tagged library that knows the licence attached to every file.",
+  "whatYouLose": [
+    "the catalogue itself — millions of cleared, royalty-free sounds",
+    "clearance: the right to release music containing them",
+    "new packs added continuously by working producers",
+    "rent-to-own access to commercial plugins",
+    "in-DAW browsing and preview at your project tempo"
+  ],
+  "whyPeopleStillPay": "Thirteen dollars a month for sounds you are allowed to release is not a software price, it is a licence fee, and the alternative is negotiating with every sample owner yourself.",
+  "prompt": "Build a sample library manager over sounds you already have the right to use, with licence tracking as a first-class field rather than an afterthought.\n\nScan a folder tree of audio files and build a SQLite index. For each file store path, duration, sample rate, detected BPM and key, and — this is the field that matters — the licence, taken from a `LICENSE` or `README` file found in the pack folder, or set by hand. A file with no known licence is indexed with licence `unknown` and is visually flagged everywhere it appears.\n\nSearch by tempo range, key, duration and free text over path and tags. Preview plays the file, and pitch-and-tempo-shifts it to a project tempo and key you set at the top of the window, because auditioning a loop at the wrong tempo tells you nothing.\n\nBuild the release check, which is the actual reason to keep licence data: given a project folder, list every sample the project references, group by licence, and print exactly what you must do before releasing — attribution required, non-commercial only, cleared, or unknown. Unknown appearing in that list is the answer to a question people usually only ask after a track is out.\n\nAdd similarity search using an audio fingerprint over a spectral summary, so \"more like this kick\" works without any tagging effort.\n\nDo not scrape or re-host a subscription catalogue. Samples downloaded under a subscription are usually licensed to you personally, and building a tool that redistributes them is the fastest way to turn a hobby into a legal problem.",
+  "faq": [
+    {
+      "q": "Do the Splice samples I already downloaded stay usable if I cancel?",
+      "a": "Read your own terms rather than trusting a summary — Splice has generally treated downloaded sounds as licensed to you permanently, but the terms are the authority and they change. Index them with that licence recorded so future you can check."
+    },
+    {
+      "q": "Where do freely licensed samples come from?",
+      "a": "Freesound is the largest source, with per-file Creative Commons licences that the importer should read and store, since some require attribution and some forbid commercial use. Recording your own is the other half, and it is where a personal library gets interesting."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. It is a local index over files you already have, and analysis runs once per file."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Finding a sound that did not exist until this month. Splice's catalogue grows every week with material made by producers for producers, and a folder of your own recordings does not."
+    }
+  ]
+}

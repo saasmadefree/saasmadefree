@@ -1,0 +1,36 @@
+{
+  "slug": "skillshare",
+  "name": "Skillshare",
+  "domains": [
+    "skillshare.com"
+  ],
+  "category": "learning",
+  "subcategory": "creative class catalogue",
+  "pricing": {
+    "amount": 14,
+    "currency": "USD",
+    "plan": "Annual Membership",
+    "basis": "annual-effective-monthly",
+    "source": "https://apps.apple.com/us/app/skillshare-creativity-classes/id916819843",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "skillshare.com/en/membership redirects to a signup funnel that shows no price before account creation. Read from the App Store listing: Skillshare Annual Membership $167.99 ($14.00/month) and Skillshare Monthly Membership $49.99; Premium Membership SKUs are also listed at $31.99 monthly / $169.99 annual."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "teacher network and class catalogue",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "relatedSlugs": [
+    "brilliant",
+    "lingq-premium",
+    "duolingo-super"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

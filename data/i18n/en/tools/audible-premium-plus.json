@@ -1,0 +1,32 @@
+{
+  "tagline": "Monthly credits for audiobooks, plus an included listening catalogue.",
+  "verdictSummary": "An audiobook is a performance: a narrator hired, directed and recorded over days, licensed from a publisher. Audible commissions a great many of them exclusively. The player around that is a well-solved problem with an excellent open-source implementation — which is worth running, and which plays only the books you have bought.",
+  "coreLoopDIY": "Run an audiobook server over books you own, with chapters, position sync across devices and sleep timers.",
+  "whatYouLose": [
+    "the catalogue, including titles Audible commissioned exclusively",
+    "a monthly credit, which is the pricing mechanism as much as the library",
+    "Whispersync between the audiobook and the ebook",
+    "narration you cannot obtain any other way for exclusive titles",
+    "the apps, including car and speaker integrations"
+  ],
+  "whyPeopleStillPay": "A credit buys a fifteen-hour performance for less than the hardback, and for exclusives there is no other seller at all.",
+  "prompt": "Deploy an audiobook library server for books you own, and get the two details right that decide whether it replaces the app.\n\nRun Audiobookshelf under Docker with a volume for your audio and one for its database. It handles multi-file books, metadata lookup, cover art and users, and it has mobile clients — reimplementing this is a month of work for a worse result.\n\nDetail one: chapters. Many audiobooks arrive as one long file or as arbitrarily split parts, and a player without chapters is unusable for anything you listen to over three weeks. Write an ingest step that reads embedded chapter metadata where present, and where it is absent, splits on the supplied cue file or generates chapters at file boundaries. Verify a long book by hand before trusting the pipeline.\n\nDetail two: position sync. Listening happens on a phone in the car and then on a speaker at home, and a position that does not follow is the failure that sends people back to the app. Audiobookshelf syncs server-side; test it explicitly by playing on one device, pausing, and resuming on another.\n\nAdd a sleep timer with a fade-out and an \"end of chapter\" mode, since falling asleep to a book is most of what audiobooks are for.\n\nOrganise the library with one folder per author per book, tagged from an open metadata source, and keep the original files untouched.\n\nDo not strip DRM from purchased audiobooks. Buy from sellers who deliver open files — several major audiobook shops do — and the pipeline stays simple and legal.",
+  "faq": [
+    {
+      "q": "Can I keep my Audible books if I cancel?",
+      "a": "Books bought with credits remain in your account and playable in their app, but they are delivered in Audible's own format. Audible has published a library export in some regions; check what yours offers before cancelling, and prefer DRM-free sellers for anything you buy from now on."
+    },
+    {
+      "q": "Where do DRM-free audiobooks come from?",
+      "a": "Several shops sell open MP3 or M4B files directly, many publishers sell direct, and LibriVox offers public-domain recordings for free. Public libraries lend audiobooks too, through apps rather than files."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Storage and a small server. An audiobook is roughly 300 MB, so a few hundred books fit on a cheap disk."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The exclusives. When Audible commissions the only recording of a book, there is no shop that sells it to you as a file, and the server has nothing to play."
+    }
+  ]
+}

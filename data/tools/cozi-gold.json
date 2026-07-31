@@ -1,0 +1,44 @@
+{
+  "slug": "cozi-gold",
+  "name": "Cozi Gold",
+  "domains": [
+    "cozi.com"
+  ],
+  "category": "home-family",
+  "subcategory": "shared family calendar",
+  "pricing": {
+    "amount": 3.25,
+    "currency": "USD",
+    "plan": "Gold",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.cozi.com/cozi-gold/",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "The page states Cozi Gold is \"available on the web or via in-app purchase for $39\" a year, i.e. $3.25/month."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "household adoption and sync",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain"
+  ],
+  "priorArt": [
+    {
+      "name": "Radicale",
+      "url": "https://github.com/Kozea/Radicale",
+      "license": "GPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "familywall-premium",
+    "anylist-complete",
+    "tody"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

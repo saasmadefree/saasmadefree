@@ -1,0 +1,43 @@
+{
+  "slug": "splice",
+  "name": "Splice",
+  "domains": [
+    "splice.com"
+  ],
+  "category": "audio-video",
+  "subcategory": "royalty-free sample subscription",
+  "pricing": {
+    "amount": 12.99,
+    "currency": "USD",
+    "plan": "Sounds+",
+    "basis": "flat-monthly",
+    "source": "https://splice.com/plans",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Tier renamed since upstream recorded it — \"Sounds Plus\" is now \"Sounds+\", at $12.99/month for 100 credits. Creator is $19.99/month (200 credits, currently $4.99 for a first month) and Creator+ $39.99/month."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "licensed sample catalogue",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Freesound",
+      "url": "https://github.com/MTG/freesound",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "moises",
+    "soundtrap",
+    "landr-studio"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

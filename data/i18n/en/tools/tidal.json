@@ -1,0 +1,32 @@
+{
+  "tagline": "Streaming with lossless and high-resolution audio as the point.",
+  "verdictSummary": "Same licensing wall as every other streaming service, with one difference worth taking seriously: TIDAL's customers care about the signal path. That half — bit-perfect playback, correct gain handling, gapless transitions, no hidden resampling — is entirely yours to control at home, and a properly configured local setup beats any streaming service on it. The catalogue is still not yours.",
+  "coreLoopDIY": "Play your own lossless files through a signal path you control end to end, with nothing resampling or normalising behind your back.",
+  "whatYouLose": [
+    "the lossless catalogue, which is the reason to subscribe",
+    "high-resolution masters you would otherwise have to buy individually",
+    "the editorial and credits data, which is unusually good",
+    "connected playback on devices that speak the service natively",
+    "discovery, and hearing a new record the week it lands"
+  ],
+  "whyPeopleStillPay": "Fourteen dollars a month for a lossless catalogue costs less than one high-resolution album purchase, and buying the same music outright would take a decade of that budget.",
+  "prompt": "Build a verified bit-perfect playback chain for a local lossless library, and prove it rather than assume it.\n\nServe the library with Navidrome for browsing and remote clients, but the audio path is the project.\n\nOn the playback machine, configure the output device for exclusive access so the operating system mixer does not resample or apply effects. Verify with a test file at a sample rate that differs from the system default and confirm the device reports the file's rate, not the default. Write down the verification procedure; it is the thing that makes the claim meaningful.\n\nImplement gapless playback properly. A live album or a continuous mix with a gap between tracks is the most audible failure in home audio, and it comes from decoder buffering rather than the files. Test with a known gapless album and listen to the joins.\n\nHandle gain correctly. Compute ReplayGain per track and per album at ingest, apply album gain when playing an album and track gain when shuffling, and never apply any other normalisation. Expose the applied gain in the interface so nothing is happening invisibly.\n\nBuild a library audit: for every album, the actual sample rate, bit depth and codec, plus a spectral check flagging files whose frequency content stops well below what their format claims — the reliable signature of a lossy file transcoded into a lossless container. Anyone who has bought high-resolution downloads from more than one shop has some of these.\n\nDo not upsample. Playing 44.1 kHz material at 192 kHz adds no information and the honest interface says so.",
+  "faq": [
+    {
+      "q": "Can I export my TIDAL library?",
+      "a": "Playlists and favourites export through third-party tools that match on artist and title. The tracks are licensed and do not come with you."
+    },
+    {
+      "q": "Where do lossless files come from?",
+      "a": "CDs you rip yourself, which is still the cheapest path to a large lossless collection, and download shops that sell FLAC directly, including many artists on Bandcamp."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Storage: lossless is roughly ten times the size of a streaming cache, so a serious collection is several terabytes. The software is free."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Breadth at that quality. Your chain may be technically better than theirs, and it plays a few thousand albums instead of a hundred million."
+    }
+  ]
+}

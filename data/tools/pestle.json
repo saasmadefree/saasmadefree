@@ -1,0 +1,44 @@
+{
+  "slug": "pestle",
+  "name": "Pestle",
+  "domains": [
+    "pestlechef.app"
+  ],
+  "category": "home-family",
+  "subcategory": "recipe capture from social media",
+  "pricing": {
+    "amount": 2.08,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "annual-effective-monthly",
+    "source": "https://pestlechef.app/pro",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "The page shows only the yearly rate by default — Pestle Pro $24.99/year, i.e. $2.08/month — with Monthly and Lifetime tabs it does not price in the server-rendered view. The App Store listing gives the monthly SKU at $2.99 and lifetime at $39.99–$49.99."
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "extraction from awkward sources",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Mealie",
+      "url": "https://github.com/mealie-recipes/mealie",
+      "license": "AGPL-3.0"
+    }
+  ],
+  "relatedSlugs": [
+    "crouton",
+    "plan-to-eat",
+    "mealime-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

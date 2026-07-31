@@ -1,0 +1,48 @@
+{
+  "slug": "soundtrap",
+  "name": "Soundtrap",
+  "domains": [
+    "soundtrap.com"
+  ],
+  "category": "audio-video",
+  "subcategory": "browser DAW with collaboration",
+  "pricing": {
+    "amount": 13.69,
+    "currency": "EUR",
+    "plan": "Music Production",
+    "basis": "annual-effective-monthly",
+    "source": "https://www.soundtrap.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "Geo-priced in EUR and served in French from this network. The page opens on the annual view: Music Production €13.69/month, €164.28 billed yearly. Sound Starter is €9.59/month and Production & Vocals €16.59/month on the same view. \"Music Makers Premium\" is a section heading on that page, not a tier."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "real-time collaboration and licensed loop library",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Ardour",
+      "url": "https://github.com/Ardour/ardour",
+      "license": "GPL-2.0"
+    },
+    {
+      "name": "LMMS",
+      "url": "https://github.com/LMMS/lmms",
+      "license": "GPL-2.0"
+    }
+  ],
+  "relatedSlugs": [
+    "moises",
+    "splice",
+    "landr-studio"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

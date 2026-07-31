@@ -1,0 +1,32 @@
+{
+  "tagline": "Calorie counter built on a very large crowd-sourced food database.",
+  "verdictSummary": "This one moves off `no`, and the reason is Open Food Facts. The usual argument — MyFitnessPal owns an index you cannot rebuild — was true when there was no open barcode-indexed food database, and there now is one with millions of products. Their database is still bigger and their app is still faster, but \"an index you do not have\" is no longer accurate, and the verdict has to follow the facts rather than the habit.",
+  "coreLoopDIY": "Log meals against an open barcode-indexed food database, set macro targets, and see the daily and weekly totals.",
+  "whatYouLose": [
+    "database coverage in North America, where the open alternatives are thinnest",
+    "restaurant and chain menu items, which crowd-sourcing captured and open data mostly has not",
+    "the mobile app, barcode scanning and meal-photo logging",
+    "integrations with the fitness apps and scales that already write into it",
+    "the Premium extras: macros per meal, food analysis, custom goals by day"
+  ],
+  "whyPeopleStillPay": "Two decades of people typing in the food in front of them produced a database that finds a supermarket sandwich on the first search, and coverage is the only feature that matters in a calorie counter.",
+  "prompt": "Build a calorie and macro logger over open food data, and make database coverage the thing you measure.\n\nImport the Open Food Facts export filtered to your country, plus USDA FoodData Central for whole foods, into SQLite with a full-text index over product and brand names. Normalise everything to per-100 g at import.\n\nLogging is search, quantity, done, with a recents list, a favourites list and saved meals — a saved meal is a named set of foods and quantities logged in one action, and it is how a repetitive breakfast stops costing thirty seconds a day.\n\nBuild a coverage report and look at it honestly after a fortnight: the count of foods you had to enter by hand because search found nothing. That number tells you whether the open database works where you shop, and it is the deciding fact for whether this build replaces the subscription or merely resembles it. Make hand entry cheap — name, per-100 g macros, save — and offer to submit new products back to Open Food Facts, since the coverage gap only closes if people fill it.\n\nDaily view: energy and the three macros against targets, with the remainder for the day. Weekly view: the average, which is the number that actually corresponds to how bodies work, and the day-to-day spread.\n\nBarcode scanning in the browser using the device camera and a barcode library is worth the afternoon it costs — it is the single biggest determinant of whether anyone keeps logging.\n\nDo not copy MyFitnessPal's database. Its contents are user-contributed but the compilation is theirs, and scraping it is both a licence problem and a data-quality one, since a large share of its entries are wrong.",
+  "faq": [
+    {
+      "q": "Can I export my MyFitnessPal history?",
+      "a": "Premium subscribers can export daily diary data as CSV; on the free tier the export is limited. Do it before cancelling, because the diary is the one thing there is no way to recover afterwards."
+    },
+    {
+      "q": "Will the open database find my food?",
+      "a": "In Europe, usually — Open Food Facts is strongest there. In the United States coverage is noticeably thinner for packaged goods and very thin for restaurant items. Run the coverage report for two weeks before deciding; it is a factual question about where you shop, not an opinion."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing beyond disk and hosting. The country-filtered Open Food Facts export is a few hundred megabytes and refreshes monthly."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Finding a chain restaurant meal. Somebody entered that burrito into MyFitnessPal in 2014 and it is still there; open databases index groceries, not menus."
+    }
+  ]
+}

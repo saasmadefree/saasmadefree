@@ -1,0 +1,33 @@
+{
+  "tagline": "Streaming access to essentially all recorded music, with recommendations.",
+  "verdictSummary": "Two things are being sold and neither is code. The first is a licence to a catalogue owned by other people. The second is recommendation quality built from hundreds of millions of listeners, which is a data advantage no single library can approach. A self-hosted server plays what you own, and its recommendations are as good as your own taste already is.",
+  "coreLoopDIY": "Stream your own music collection to every device, with playlists and listening history you own.",
+  "whatYouLose": [
+    "the catalogue, and every new release the week it appears",
+    "recommendations built from what hundreds of millions of people listen to next",
+    "Discover Weekly and the algorithmic playlists that come from it",
+    "podcasts, and playback on speakers, cars and consoles",
+    "shared playlists that people outside your household can open"
+  ],
+  "whyPeopleStillPay": "Thirteen dollars a month is less than one album, for all of them, and a recommendation engine that occasionally knows your taste better than you do.",
+  "notes": "The one genuinely rebuildable half is the listening history: Spotify's own data export is complete, and a personal statistics tool over it outlasts the subscription.",
+  "prompt": "Build a listening-history archive and analysis tool, and stream your own collection alongside it.\n\nFor playback, run Navidrome over your music folder and use existing Subsonic clients — see the Apple Music entry for the ingest pipeline that makes that library usable.\n\nThe part worth writing is the history. Spotify's extended streaming history export gives you every play you have ever made, with timestamps, track, artist, milliseconds played and whether you skipped. Import it into SQLite with a proper schema and it becomes the most interesting dataset you own about yourself.\n\nBuild the reports that no annual wrap-up gives you: skip rate per artist, which is a far better measure of taste than play count; the tracks you played obsessively for two weeks and never again; listening by hour of day and day of week; the artists you have played every year for five years; and first-play dates, so you can see when something entered your life.\n\nThen close the loop with the local library. For each of your top artists, report whether you own anything by them. That list is a buying list, and it is the practical output of the whole exercise — the music you actually listen to, that you would lose the day the subscription stops.\n\nKeep scrobbling forward: Navidrome can report plays to a scrobbling service or to your own endpoint, so the history continues in the same schema after you cancel.\n\nDo not attempt to download from the streaming service. It breaches the terms, the tooling is a moving target, and it is not what this build is for.",
+  "faq": [
+    {
+      "q": "Can I export my Spotify data?",
+      "a": "Yes, and unusually completely. The extended streaming history covers your entire listening life and arrives as JSON within a few weeks of requesting it. Playlists export through the API or third-party tools. Request the history before cancelling — it is the one thing you cannot recreate."
+    },
+    {
+      "q": "Can I keep my playlists?",
+      "a": "The track lists, yes — several tools export them to CSV, matching on artist and title. Whether you can play them depends entirely on what you own, which is exactly the point the export makes uncomfortably clear."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Storage for the collection plus a small always-on machine. The analysis is SQLite over a few hundred thousand rows and runs instantly."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Discover Weekly. It works because tens of millions of people listened to something next, and no amount of local analysis reproduces a recommendation drawn from a crowd."
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "tagline": "Remote access, voice assistants and speech for a Home Assistant install.",
+  "verdictSummary": "The remote-access half is genuinely replaceable and the replacement is better in some ways: a mesh VPN or a reverse proxy gives you an encrypted route to your own hub with no relay in the middle. The half you cannot rebuild is the integrations with Alexa and Google Assistant, because being a skill on those platforms requires an approved developer relationship, not code. The subscription is also how the project funds itself, which is worth stating plainly.",
+  "coreLoopDIY": "Reach your own Home Assistant from anywhere over a private network or your own domain, with TLS you control and no third party in the path.",
+  "whatYouLose": [
+    "Alexa and Google Assistant integration, which needs an approved skill on each platform",
+    "cloud speech-to-text and text-to-speech for the voice assistant",
+    "webhooks reachable from services that cannot see your network",
+    "the two-click setup, replaced by DNS, certificates and a VPN to maintain",
+    "funding the open-source project you rely on"
+  ],
+  "whyPeopleStillPay": "Six dollars fifty a month is the cheapest way to keep Home Assistant being developed, and the people who write it are the ones running the relay.",
+  "notes": "Filed under the reader's mental model — the household subscription — though the rebuild is really a hosting task. Flagged in the taxonomy notes for the same reason.",
+  "prompt": "Replace the remote-access half of a Home Assistant Cloud subscription, and be honest about the half you cannot.\n\nStart with the private option, because it is the one most people should choose: install Tailscale on the machine running Home Assistant and on every phone that needs it. The hub becomes reachable at a stable private address from anywhere, with no port forwarded, no certificate to renew and no public surface at all. For a single household this is a twenty-minute job and it is strictly safer than exposing the hub.\n\nIf something outside your network genuinely needs to reach it — a webhook from a service, a guest without your VPN — then and only then expose it: a subdomain, DNS pointing at your address, a reverse proxy terminating TLS with automatic certificates, and Home Assistant configured to trust that proxy. Put the hub behind authentication, enable multi-factor, and rate-limit the login endpoint. An unauthenticated home automation hub on the public internet controls the locks.\n\nWrite the runbook, because this is the part that decides whether it still works in a year: what to do when the certificate fails to renew, what to do when your address changes, and how to check from outside that the whole path works. Add a monthly external check from a host that is not on your network — a request that must return the login page — and alert when it does not.\n\nFor voice, use a local pipeline: a self-hosted speech-to-text and text-to-speech engine driving the built-in assistant. It works, it is private, and it is measurably worse at recognising a request shouted from the kitchen than the cloud one.\n\nDo not attempt to build your own Alexa or Google Assistant integration. It requires an approved skill under each platform's developer terms, and it is a partnership rather than a technical task.",
+  "faq": [
+    {
+      "q": "Do I lose anything in my Home Assistant setup by cancelling?",
+      "a": "Nothing local. Every automation, integration and dashboard is on your own machine and unaffected. What stops working is remote access through their relay, the voice assistant integrations, and cloud speech."
+    },
+    {
+      "q": "Is exposing Home Assistant to the internet safe?",
+      "a": "Less safe than a VPN, always. If you must, terminate TLS at a proxy, require multi-factor authentication, keep the installation updated, and accept that you have taken on a security responsibility that was previously somebody else's."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Tailscale is free for personal use. A domain is about ten to fifteen dollars a year, and certificates are free. So under two dollars a month, against six fifty — but the six fifty also pays for the software."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Saying \"turn off the lights\" to a speaker you already own. That integration is a commercial relationship with Amazon and Google, and no amount of self-hosting produces it."
+    }
+  ]
+}

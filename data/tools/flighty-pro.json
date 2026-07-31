@@ -1,0 +1,37 @@
+{
+  "slug": "flighty-pro",
+  "name": "Flighty Pro",
+  "domains": [
+    "flighty.com"
+  ],
+  "category": "travel",
+  "subcategory": "live flight tracking and delay alerts",
+  "pricing": {
+    "amount": 4.99,
+    "currency": "USD",
+    "plan": "Unlimited",
+    "basis": "annual-effective-monthly",
+    "source": "https://flighty.com/pricing",
+    "checkedOn": "2026-07-31",
+    "confidence": "high",
+    "notes": "Tier renamed since upstream recorded it — the plan is now \"Unlimited\" at $4.99/month, $59.99 billed annually. The same page offers Pay-As-You-Go at $4.99/week and a $299 lifetime purchase."
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "licensed live aviation data feeds",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "relatedSlugs": [
+    "tripit-pro",
+    "going-premium",
+    "seats-aero-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

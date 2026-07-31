@@ -1,0 +1,32 @@
+{
+  "tagline": "Generates each workout from what you trained and how recovered you are.",
+  "verdictSummary": "Fitbod's product is a decision: given your history, your equipment and which muscles are still sore, what should today be? The logic behind that is published training theory — volume per muscle group, recovery windows, progressive overload — and implementing a defensible version is a weekend. What you cannot easily reproduce is the exercise library with demonstrations and correct muscle mappings, and the calibration that comes from watching millions of sessions.",
+  "coreLoopDIY": "Log your sets, and let a rule set you can read propose the next session from recent volume per muscle group and how long each has had to recover.",
+  "whatYouLose": [
+    "the exercise library with animations and correct primary and secondary muscle mappings",
+    "generation calibrated against a very large body of real training data",
+    "the mobile app and Apple Watch logging between sets",
+    "Health and Strava integrations",
+    "gym equipment presets, so a hotel gym is one tap rather than a config edit"
+  ],
+  "whyPeopleStillPay": "Deciding what to do is the part people skip, and an app that opens on a ready session gets you under the bar on the days you would otherwise go home.",
+  "prompt": "Build a workout generator whose rules are visible and arguable.\n\nData model: an exercise has a name, an equipment requirement, a primary muscle group and a list of secondary ones, with a contribution weight for each. A set is exercise, reps, weight, RPE if you record it, and a timestamp. That is all the state there is.\n\nGeneration runs on a scoring pass you can read in one screen. For each muscle group compute the volume of the last seven days, weighting secondary contributions at their listed fraction. Compute hours since it was last worked. Score each group by how far its weekly volume sits below the target you configured, gated by a minimum recovery window per group — larger groups get longer. Then pick exercises covering the top-scoring groups, filtered by the equipment available today.\n\nEvery generated session must be explainable. Print, beside each exercise, why it was chosen: which group it serves, that group's current weekly volume against target, and hours since it was last trained. An opaque generator is indistinguishable from a random one, and after two weeks you stop trusting it.\n\nProgression is a separate, simple rule: if the last session at a given exercise hit every set at the top of its rep range, raise the load by the smallest increment your gym's plates allow; if it missed the bottom of the range twice running, lower it. Put the increments in config, per exercise, because a 2.5 kg jump on a lateral raise is not the same decision as on a squat.\n\nAdd a per-muscle weekly volume chart, since the whole model rests on that number and you should be able to see it.\n\nDo not build form checking from video, and do not add a deload algorithm without a way to override it — a program that insists you rest on the one week you feel good is a program you delete.",
+  "faq": [
+    {
+      "q": "Can I import my Fitbod logs?",
+      "a": "Yes. Fitbod exports your workout history as CSV from the app settings, and the columns map onto exercise, sets, reps and weight directly. Its internal muscle-fatigue state does not export, but that recomputes from the same history in a few seconds."
+    },
+    {
+      "q": "Where do the exercise definitions come from?",
+      "a": "wger publishes an openly licensed exercise database with muscle mappings and images, which is the right starting point. Expect to correct a few mappings for the movements you actually use — that curation is a real part of what the subscription buys."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing beyond hosting if you want it on your phone. The generation is arithmetic over a small SQLite database."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Calibration. Your recovery windows and volume targets are numbers you picked from reading; Fitbod's are tuned against an enormous amount of observed training, and that difference shows up over months rather than in the first session."
+    }
+  ]
+}

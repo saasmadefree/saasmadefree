@@ -1,0 +1,32 @@
+{
+  "tagline": "Ad-free Duolingo with unlimited hearts and a practice hub.",
+  "verdictSummary": "Super does not add a product, it removes friction from one: no ads, no running out of hearts, unlimited retries. The thing you would have to rebuild is not those toggles but the course underneath them — hundreds of skill trees, each a sequenced curriculum with exercise generation, audio and error handling per language. That is thousands of person-years of authored content plus the most carefully tuned habit loop in consumer software.",
+  "coreLoopDIY": "Run a short daily drill over your own sentence bank, with a streak you can see and no mechanic that stops you practising.",
+  "whatYouLose": [
+    "the courses themselves — over a hundred language pairs, sequenced and voiced",
+    "exercise generation that produces new items from the same material",
+    "the streak, leagues and friend quests that make people show up daily",
+    "speaking and listening exercises with speech recognition",
+    "the mobile apps and offline lessons"
+  ],
+  "whyPeopleStillPay": "Duolingo's real product is that you open it every day, and a hand-made drill without leagues, streak freezes or a green owl does not compete with that on the third Tuesday of a difficult month.",
+  "prompt": "Build a daily drill trainer for a language, over a sentence bank you own.\n\nThe bank is a plain file: source sentence, target sentence, tags. Fill it from graded readers, subtitle files for shows you have watched, or sentences you collected — not from a paid course.\n\nA session is fixed at ten items and must end. Generate exercise types mechanically from each pair: translate source to target; fill a blank where one content word is removed; and reorder a shuffled word bank into the target sentence. Grade translation with a normalised comparison that ignores punctuation, capitalisation and accents-versus-no-accents, and shows a character diff on failure — exact string matching makes the tool feel hostile within a day.\n\nTrack a streak and print it, but design the mechanics in the opposite direction from the app: never block practice, never charge for retries, and never break the streak silently. Show \"practised on N of the last 30 days\" beside it, which is the honest number.\n\nSchedule with FSRS over items, not sessions, so a session is drawn from what is actually due.\n\nAdd audio only if you have licensed or self-recorded files; leave text-to-speech out unless you have checked that the voice pronounces your target language correctly, because a wrong model teaches wrong pronunciation confidently.\n\nDo not build leagues, gems or a shop. Without other people they are decoration, and imitating a mechanic whose whole function is social pressure produces something faintly sad.",
+  "faq": [
+    {
+      "q": "Can I export my Duolingo vocabulary?",
+      "a": "Not in any supported way — the words-learned list is not exportable, and the endpoints that once served it are gone. Your sentence bank starts from scratch, which in practice means starting from a graded reader or a subtitle file."
+    },
+    {
+      "q": "Where do sentences come from?",
+      "a": "Tatoeba is the usual answer: a large, openly licensed collection of sentences with translations, from which you can pull a few thousand pairs for most major languages. Subtitles from shows you own work well too, because you already have context for them."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing. It is local, with no key and no service, and it works on a plane."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Showing up. Duolingo's course is good and its retention design is better, and a self-built drill has neither the sequencing nor the pull that gets you to day two hundred."
+    }
+  ]
+}

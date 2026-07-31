@@ -1,0 +1,43 @@
+{
+  "slug": "speak-language",
+  "name": "Speak",
+  "domains": [
+    "speak.com"
+  ],
+  "category": "learning",
+  "subcategory": "AI conversation tutor",
+  "pricing": {
+    "amount": 17.99,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "flat-monthly",
+    "source": "https://apps.apple.com/us/app/speak-language-learning/id1286609883",
+    "checkedOn": "2026-07-31",
+    "confidence": "medium",
+    "notes": "speak.com/pricing, /plans and /en/pricing all 404 and the homepage prints no plan price. Read from the App Store listing: Monthly Premium $17.99, Annual Premium $83.99; Premium Plus / Pro is $39.99 monthly."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "curriculum and speech feedback",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "openai-api-key"
+  ],
+  "priorArt": [
+    {
+      "name": "Whisper",
+      "url": "https://github.com/openai/whisper",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "elsa-speak",
+    "busuu-premium",
+    "lingq-premium"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

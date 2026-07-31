@@ -1,0 +1,32 @@
+{
+  "tagline": "Day-by-day trip planner that several people can edit at once.",
+  "verdictSummary": "A trip itinerary is a list of places with dates, and the useful computation — travel time between consecutive stops, whether a day is overpacked — is a routing call and some arithmetic. That is a weekend. The two gaps are the standard ones: several people editing the same plan while messaging each other about it, and place data with hours, photos and ratings, which comes from a commercial maps API you now pay for directly.",
+  "coreLoopDIY": "Build a day-by-day plan of places, see travel time between each pair automatically, and export it to a map and a calendar.",
+  "whatYouLose": [
+    "real-time collaborative editing, which is how couples and groups actually plan",
+    "place data with opening hours, photographs and ratings out of the box",
+    "importing a whole itinerary from a saved map list in one click",
+    "offline access to the plan and its maps on the road",
+    "the mobile apps and shared expense tracking"
+  ],
+  "whyPeopleStillPay": "Six dollars a month so that two people in two cities can rearrange the same Tuesday without sending each other screenshots.",
+  "prompt": "Build a day-by-day trip planner where travel time between stops is computed rather than guessed.\n\nData model: a trip has dates and a base location; a day has an ordered list of stops; a stop has a place, a planned arrival, a duration and notes. Places are stored once per trip and reused, with coordinates, an address and your own notes.\n\nThe computation that makes it worth using: between consecutive stops on a day, call a routing engine for travel time by the mode you set for that leg, and lay the day out as a timeline. When the stops plus the travel plus the durations exceed the hours you said you would be out, flag the day as overpacked and show by how much. That single number is the thing people get wrong when planning a holiday, every time.\n\nAdd opening-hours awareness: store hours per place, either typed in or from the OpenStreetMap opening-hours tag, and warn when a planned arrival falls outside them or within thirty minutes of closing.\n\nImport places from a GeoJSON export or a pasted list of names to geocode. Export the trip as GeoJSON, as `.ics` with one event per stop, and as a printable day sheet.\n\nFor collaboration, do the honest simple version rather than the hard one: the trip file lives in a shared git repository or a synced folder, edits are made by one person at a time, and the tool shows a diff of what changed since you last looked. It is worse than concurrent editing and it does not lose anyone's work.\n\nDo not build live multi-user editing on a first pass. Concurrent editing with ordering and offline clients is a genuinely hard problem, and a half-working version loses the plan someone spent an evening making.",
+  "faq": [
+    {
+      "q": "Can I export my Wanderlog trips?",
+      "a": "Partly. Wanderlog exports an itinerary to a calendar and to a printable view, and place lists can be extracted from the shared view. There is no clean structured export, so expect to rebuild anything complicated by hand."
+    },
+    {
+      "q": "Where does place data come from?",
+      "a": "OpenStreetMap through Nominatim and Overpass covers coordinates, addresses and opening hours for a great many places, free within its usage policy. Photographs and ratings do not exist there — for those you would pay a commercial maps API directly, which is one of the costs Wanderlog absorbs."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A few dollars a month for hosting. Routing against a self-hosted engine or a free-tier API is effectively free at trip-planning volumes."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Planning together. The moment two people want to move the same afternoon around while talking about it, a shared file with a diff view is visibly the wrong tool."
+    }
+  ]
+}

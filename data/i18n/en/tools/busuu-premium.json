@@ -1,0 +1,31 @@
+{
+  "tagline": "Language lessons where native speakers correct your written exercises.",
+  "verdictSummary": "Busuu has the one moat in this category that is not just content: a community of native speakers who correct each other's writing, and it only works because it is large and reciprocal. You cannot build a network of people. A model can flag your grammar, and that is genuinely useful, but it is a different thing from a Spanish speaker telling you that what you wrote is correct and nobody says it.",
+  "coreLoopDIY": "Write short pieces in the language you are learning, get automated grammar feedback, and keep every correction as a searchable record of your own recurring mistakes.",
+  "whatYouLose": [
+    "corrections from native speakers, the reason Busuu exists",
+    "the graded course and its CEFR-aligned progression",
+    "official McGraw Hill Education level certificates",
+    "speech recognition and the mobile apps"
+  ],
+  "whyPeopleStillPay": "Someone who actually speaks the language reading your paragraph and telling you it is stiff is feedback no checker produces, and it arrives within hours.",
+  "prompt": "Build a writing practice log for a language you are learning, where the value accumulates in the corrections rather than in the exercises.\n\nThe loop: pick or write a prompt, write a short piece in the target language, and submit it. Run it through LanguageTool, which is open source and self-hostable, and store every suggestion as a structured record — rule id, category, the span it matched, and whether you accepted it.\n\nThe report is the point, and it is built on that accepted/rejected flag. Group your accepted corrections by rule id and show the top ten by frequency, each with three examples from your own writing. After a month this is a precise, personal list of the mistakes you actually make, which no course can give you because no course sees your output.\n\nAdd a rejected-corrections view too. Checkers are wrong often, especially about word order and register, and a rule you have rejected five times should be muted rather than argued with every time.\n\nKeep pieces as dated Markdown files with the corrections stored beside them in SQLite, so the writing stays readable without the app.\n\nDo not simulate a native speaker with a model in this build. An LLM will confidently rewrite idiomatic text into textbook text, and if you cannot yet tell the difference you will learn the wrong lesson. If you add a model at all, restrict it to answering \"is this natural?\" with a yes or no and a one-sentence reason, and label the answer as machine-generated wherever it appears.",
+  "faq": [
+    {
+      "q": "Can I export my Busuu vocabulary and corrections?",
+      "a": "Busuu offers no export of your vocabulary list or the corrections you received, so nothing transfers. If you have received good corrections, copy the ones worth keeping into your log by hand before you cancel."
+    },
+    {
+      "q": "Is LanguageTool good enough for the language I am learning?",
+      "a": "It depends heavily on the language. English, German, French, Spanish and Portuguese are well covered; smaller languages have thin rule sets. Check the rule count for yours before building, because a checker with fifty rules will not produce a useful error report."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing if you run LanguageTool locally, which is a single Java process. Their hosted API has a free tier with rate limits that a personal writing habit will not reach."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "A human reading what you wrote. Busuu's corrections come from people who know that your sentence is grammatical and still wrong, and there is no local substitute for that."
+    }
+  ]
+}

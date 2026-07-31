@@ -1,0 +1,32 @@
+{
+  "tagline": "Music-making studio in the browser with live collaboration.",
+  "verdictSummary": "Mature open-source digital audio workstations exist and outclass Soundtrap on recording, editing and mixing. Two things do not carry over. The first is real-time collaboration — two people editing the same session while talking to each other — which is the classic gap in this catalogue and is genuinely hard. The second is the loop and instrument library, which is licensed content, not software.",
+  "coreLoopDIY": "Record and arrange multitrack audio and MIDI locally in a full desktop workstation, and share sessions as files rather than as a live document.",
+  "whatYouLose": [
+    "two people editing the same session at the same time",
+    "thousands of licensed loops and one-shots cleared for release",
+    "running in a browser on a school Chromebook with nothing installed",
+    "the project living in the cloud, reachable from any machine",
+    "built-in podcast publishing to Spotify"
+  ],
+  "whyPeopleStillPay": "For a classroom or a band spread across three cities, the collaboration and the zero-install browser session are the product, and a local workstation replaces neither.",
+  "prompt": "Set up a local music production workflow around an open-source digital audio workstation, and solve the collaboration half with version control rather than pretending to solve it live.\n\nInstall Ardour for audio-led work or LMMS for pattern-led production. Do not build a workstation.\n\nThe project that is worth writing is the session-sharing layer. Put each project in a git repository with git-lfs for audio, and write a small tool that: prepares a session for sharing by consolidating every referenced sample into the project folder (the classic failure is a session that opens with missing files on someone else's machine); records the plugin list with versions into a manifest; and refuses to commit if any plugin is not in a shared, agreed list.\n\nAdd a bounce-on-commit hook that renders a stereo mixdown to an `exports/` folder named after the commit. That gives every collaborator a listenable version of every revision without opening the project, which is most of what real-time collaboration is actually used for.\n\nFor loops, build a tagged local sample library over material you have licensed or recorded: a folder scanner that reads BPM and key from filenames or detects them, writes them into a SQLite index, and offers search by tempo range and key. Store the licence for each pack in the index, so \"can I release this?\" has an answer.\n\nDo not implement live collaborative editing. Conflict-free concurrent editing of a timeline with audio is a research-grade problem and a half-working version loses takes.",
+  "faq": [
+    {
+      "q": "Can I get my Soundtrap projects out?",
+      "a": "Only as audio. Soundtrap exports mixdowns and, on paid tiers, individual track stems — but not a project file any other workstation can open. Export stems for anything you care about before cancelling, then rebuild the arrangement locally."
+    },
+    {
+      "q": "Can I still work from a Chromebook?",
+      "a": "Not with this setup. Ardour and LMMS are desktop applications; if a locked-down machine is the constraint, Soundtrap solves a problem the local workflow does not."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing for the software. Audio in git-lfs on a hosted remote costs storage — a few dollars a month for a handful of projects, or nothing on a drive you already back up."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Two people in the same session at once. Commits and bounces are a good asynchronous substitute, and they are not the same as hearing someone move your fader while you talk about it."
+    }
+  ]
+}

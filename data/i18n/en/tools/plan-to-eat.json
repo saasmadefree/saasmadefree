@@ -1,0 +1,32 @@
+{
+  "tagline": "Meal planner and shopping list built around recipes you supply.",
+  "verdictSummary": "Plan to Eat brings no recipes of its own — you import them, which is the explicit model. That makes it the one entry in this category where a self-hosted equivalent is a real substitute rather than an approximation: Mealie implements recipe storage, web import, meal planning and generated shopping lists, and it is published in full. This is the hosted-open-source case the catalogue already records for Ghost Pro and Chatwoot, so it is a `yes` at a weekend rather than a sitting.",
+  "coreLoopDIY": "Deploy a self-hosted meal planner, import your recipes into it, plan the week on a calendar and generate the shopping list from the plan.",
+  "whatYouLose": [
+    "someone else running it, backing it up and upgrading it",
+    "the polished mobile apps with offline shopping lists",
+    "their recipe importer, maintained against sites that change",
+    "sharing a plan with family members who will not learn a new login",
+    "support when an import produces a mangled ingredient list"
+  ],
+  "whyPeopleStillPay": "Forty-nine dollars a year is less than a weekend, and the self-hosted version means you are the person who notices the backup stopped running.",
+  "prompt": "Deploy a self-hosted meal planner properly, and treat the migration and the backups as the real work.\n\nRun Mealie under Docker Compose with PostgreSQL, behind a reverse proxy with TLS. Give it a volume for the database and one for recipe images, and put both in your backup path.\n\nMigrate first, before customising anything. Export your recipes from Plan to Eat as their recipe file, and import them. Then check a sample by hand: ingredient parsing, yields and image links are the three things that come across wrongly, and finding out after a month of planning is worse than an hour now.\n\nSet up the shopping list flow end to end and use it for one real shop before deciding you are done. Plan a week, generate the list, sort it by aisle using the label system, and open it on a phone in the shop. That test surfaces every gap that matters — offline behaviour, checkbox size, whether the list is readable one-handed.\n\nBackups: a nightly database dump plus the image volume to storage off the machine, with a restore rehearsed once. A meal planner losing your recipe collection is losing years of accumulated cooking, and it is the only genuinely irreplaceable thing in the system.\n\nAdd the small thing the hosted product does not: a scheduled job that emails the week's plan and shopping list every Saturday morning, which turns a tool you must remember to open into one that arrives.\n\nDo not rewrite Mealie. Recipe parsing, unit handling and shopping-list merging are each deceptively fiddly, and reimplementing them yields a worse version of software you already have.",
+  "faq": [
+    {
+      "q": "Can I move my Plan to Eat recipes?",
+      "a": "Yes. Plan to Eat exports your full recipe collection, and Mealie imports standard recipe formats. Check ingredient parsing on a sample afterwards — that is where the losses hide."
+    },
+    {
+      "q": "Why a weekend rather than a sitting?",
+      "a": "Because deploying, migrating, backing up and rehearsing a restore is genuine work, even though no code is written. This is the same pattern the catalogue records for other hosted-open-source entries."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "A small VPS at roughly five to ten dollars a month plus a domain, so slightly more than the subscription. The reason to do it is control of the recipe collection, not price."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "The mobile app. Mealie has a good progressive web app, and it is still not an app store install that a family member will accept without a conversation."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Food logging that tracks 84 micronutrients, not just calories.",
+  "verdictSummary": "Cronometer's reputation rests on a curated database with full micronutrient profiles, and the largest such dataset — the USDA's FoodData Central — is public domain and downloadable. That removes the \"index you do not have\" argument and puts this squarely in buildable territory. What remains is real: barcode coverage for packaged products, the wearable and glucose-monitor integrations, and a phone app that works at a restaurant table.",
+  "coreLoopDIY": "Log what you eat against a local copy of a public nutrition database, and see the full micronutrient picture rather than four macros.",
+  "whatYouLose": [
+    "barcode scanning with reliable coverage of packaged products",
+    "integrations with wearables, scales and continuous glucose monitors",
+    "the curated verified-source database, which is cleaner than the raw public data",
+    "the mobile apps, where logging actually happens",
+    "recipe import and the food-group grouping features Gold adds"
+  ],
+  "whyPeopleStillPay": "Logging only works if it is frictionless, and a barcode scan that finds the exact yoghurt in your fridge is the difference between logging for a year and logging for a week.",
+  "prompt": "Build a nutrition logger over a local copy of a public food database, with micronutrients as the point rather than an extra.\n\nImport USDA FoodData Central — the Foundation Foods and SR Legacy sets, which are public domain — into SQLite, and optionally the Open Food Facts export for packaged products with barcodes. Normalise nutrients to a common unit per 100 g at import, because mixing per-serving and per-100 g rows is the bug that quietly makes every total wrong.\n\nLogging is: search, pick a food, enter an amount in grams or a listed portion, done. Keep a recents list and a favourites list, since real eating is repetitive and search is the slow part.\n\nThe daily view shows energy and macros at the top, then every micronutrient with a bar against a reference intake you configured — age, sex, and whichever reference set you choose, stored in a file so the assumptions are visible. Nutrients with no data in the source rows are shown as \"no data\", never as zero. That distinction matters: a food with an unmeasured vitamin is not a food with none of it, and conflating them makes a log actively misleading.\n\nRecipes are foods composed of foods, with a yield weight so a portion of a bake is computed rather than guessed.\n\nAdd a weekly report of the nutrients that came in furthest under their reference, with the three foods you ate most that are best placed to fix each.\n\nDo not build barcode scanning against a scraped database, and do not attempt to enter packaged foods by hand at scale — use Open Food Facts, contribute back the products you add, and accept that coverage varies by country.",
+  "faq": [
+    {
+      "q": "Can I import my Cronometer history?",
+      "a": "Yes, and this is a good case: Cronometer exports servings, daily nutrition and biometrics as CSV from account settings. Map its food names onto your own database rows by hand for the twenty foods you eat constantly, and import the rest as free-text entries with the recorded nutrient totals."
+    },
+    {
+      "q": "How good is the public database really?",
+      "a": "For whole foods, excellent — FoodData Central is where most commercial databases start. For packaged products it depends on your country: Open Food Facts is strong in Europe and patchier in North America, and that gap is the main reason to keep paying."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Nothing but disk. The USDA import is a few hundred megabytes; Open Food Facts is several gigabytes if you take the whole thing, and you can filter it to your country first."
+    },
+    {
+      "q": "What is the one thing that does not survive the rebuild?",
+      "a": "Scanning a barcode and getting the right answer. That is one action versus thirty seconds of searching, repeated four times a day, and it is what decides whether anyone keeps logging."
+    }
+  ]
+}
