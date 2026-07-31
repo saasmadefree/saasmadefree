@@ -52,6 +52,28 @@ describe('validateAll', () => {
     expect(validateAll(makeData(), validators, TODAY)).toEqual([]);
   });
 
+  it('refuse un marqueur de gabarit resté dans une FAQ', () => {
+    const data = makeData();
+    data.i18n.get('en/a').faq[2] = { q: 'TODO', a: 'TODO — à réécrire' };
+    const out = validateAll(data, validators, TODAY).join(' ');
+    expect(out).toContain('faq[2].q');
+    expect(out).toContain('TODO');
+  });
+
+  it('refuse un marqueur de gabarit dans un champ éditorial simple', () => {
+    const data = makeData();
+    data.i18n.get('en/a').whyPeopleStillPay = 'TBD';
+    expect(validateAll(data, validators, TODAY).join(' ')).toContain('whyPeopleStillPay');
+  });
+
+  it("n'attrape pas les mots légitimes qui ressemblent à un marqueur", () => {
+    const data = makeData();
+    // "todo" en minuscules est du vocabulaire courant du catalogue (Todoist,
+    // TickTick, "todo list") : le garde-fou ne doit pas le confondre.
+    data.i18n.get('en/a').coreLoopDIY = 'gérer une todo list, comme Todoist, sans compte';
+    expect(validateAll(data, validators, TODAY)).toEqual([]);
+  });
+
   it('signale un relatedSlug inexistant', () => {
     const data = makeData();
     data.tools.get('a').relatedSlugs = ['b', 'c', 'fantome'];

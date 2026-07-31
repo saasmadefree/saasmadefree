@@ -14,6 +14,37 @@ export function extractVars(template) {
   return [...String(template).matchAll(/\{([^}]*)\}/g)].map((m) => m[1]);
 }
 
+// Les fiches sont d'abord générées sous forme de gabarit, puis réécrites à la
+// main. Rien n'empêchait jusqu'ici un gabarit non réécrit d'être commité : la
+// CI passait et le site publiait "TODO" comme si c'était une vraie question de
+// FAQ. Un annuaire qui affiche son échafaudage comme du contenu perd la seule
+// chose qu'il vend, la fiabilité de ce qu'il affirme.
+//
+// Volontairement sensible à la casse et borné par \b : "todo list", "Todoist"
+// ou "à faire" sont des contenus légitimes ici, "TODO" seul ne l'est jamais.
+const PLACEHOLDER_UPPER = /\b(TODO|TBD|FIXME|XXX|PLACEHOLDER)\b/;
+const PLACEHOLDER_ANY_CASE = /lorem ipsum|à compléter|a completer/i;
+
+function findPlaceholders(entry, path, errors) {
+  const walk = (value, field) => {
+    if (typeof value === 'string') {
+      const hit = PLACEHOLDER_UPPER.exec(value) ?? PLACEHOLDER_ANY_CASE.exec(value);
+      if (hit) {
+        errors.push(`${path} : ${field} contient un marqueur de gabarit "${hit[0]}"`);
+      }
+      return;
+    }
+    if (Array.isArray(value)) {
+      value.forEach((item, i) => walk(item, `${field}[${i}]`));
+      return;
+    }
+    if (value && typeof value === 'object') {
+      for (const [key, item] of Object.entries(value)) walk(item, `${field}.${key}`);
+    }
+  };
+  for (const [field, value] of Object.entries(entry)) walk(value, field);
+}
+
 function daysBetween(fromIso, toIso) {
   const from = Date.parse(`${fromIso}T00:00:00Z`);
   const to = Date.parse(`${toIso}T00:00:00Z`);
@@ -94,6 +125,7 @@ export function validateAll(data, validators, today) {
     if (!tools.has(entrySlug)) {
       errors.push(`${path} : aucune fiche data/tools/${entrySlug}.json`);
     }
+    findPlaceholders(entry, path, errors);
   }
 
   const seenAgentIds = new Set();
