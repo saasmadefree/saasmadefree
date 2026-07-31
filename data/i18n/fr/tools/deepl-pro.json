@@ -1,0 +1,33 @@
+{
+  "tagline": "De la traduction automatique que les gens paient parce que le résultat se lit comme s’il avait été écrit par une personne.",
+  "verdictSummary": "Tout ce qui entoure DeepL est trivial — une zone de texte, un import de document, une table de glossaire. Le produit, c’est le modèle, et le modèle est la seule chose hors de portée. Tu peux auto-héberger LibreTranslate et obtenir des traductions exploitables pour un grand nombre d’usages, et tu remarqueras la différence immédiatement sur tout ce qui contient une expression idiomatique, un registre particulier ou une longue phrase. C’est un non, pas parce que le code est difficile, mais parce que ce n’est pas le code qui est vendu.",
+  "coreLoopDIY": "Fais tourner LibreTranslate en local derrière une petite interface avec ton propre glossaire appliqué avant et après, et accepte un résultat correct plutôt que bon.",
+  "whatYouLose": [
+    "la qualité de traduction qui est toute la raison de payer",
+    "la traduction de documents qui préserve la mise en forme .docx et .pptx",
+    "la garantie contractuelle que ton texte n’est pas utilisé pour l’entraînement",
+    "l’extension navigateur, et les applications de bureau et mobile",
+    "l’API avec un SDK maintenu et un niveau de service garanti"
+  ],
+  "whyPeopleStillPay": "Parce qu’une traduction qui se lit naturellement vaut son prix dès la première fois qu’elle t’évite de réécrire une page à la main, et aucun modèle auto-hébergé n’égale actuellement ça sur les paires de langues européennes.",
+  "notes": "Classé en non sur une lecture honnête du contrat : la version DIY dépend soit d’un modèle que tu ne peux pas entraîner, soit d’une API que tu dois louer.",
+  "prompt": "Construis un outil de traduction local par-dessus LibreTranslate, et conçois-le en partant du principe que le modèle est médiocre.\n\nFais tourner LibreTranslate dans Docker avec les paires de langues dont tu as besoin. Place devant une petite interface avec trois choses qu’il n’a pas.\n\nD’abord, un glossaire appliqué comme une substitution stricte avant et après la traduction : tes noms de produit, noms de fonctionnalités et termes techniques remplacés par des placeholders à l’entrée et restaurés à la sortie, pour que le modèle n’ait jamais l’occasion de les traduire. Cette seule fonctionnalité comble la majeure partie de l’écart visible entre une sortie auto-hébergée et un service payant sur du texte produit.\n\nEnsuite, une file de relecture plutôt qu’une page de résultat. Chaque traduction arrive comme un brouillon avec la source à côté, et rien n’est marqué comme terminé tant qu’un humain n’a pas confirmé. Traite la sortie de la machine comme un premier jet, pas comme une réponse — le mode d’échec d’un traducteur suffisamment bon, c’est une phrase confiante qui veut dire quelque chose de légèrement différent.\n\nEnfin, une mémoire des paires confirmées. Les correspondances exactes sont réutilisées telles quelles ; les correspondances proches sont proposées comme suggestions. Au bout de quelques centaines de confirmations, ça bat le modèle brut sur ton propre contenu répétitif, qui représente la majorité du volume.\n\nLa traduction de documents s’arrête au texte brut, au Markdown et au HTML, où la structure est inspectable. Ne t’attaque pas au .docx ni au .pptx : préserver la mise en page à travers un aller-retour est un projet à part entière et produit des fichiers cassés si c’est fait à la légère.\n\nHors périmètre : entraîner ou affiner un modèle, une API pour d’autres personnes, et toute promesse sur la qualité.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux importer mes glossaires DeepL ?",
+      "a": "Oui — les glossaires DeepL s’exportent en paires TSV et se chargent directement dans la table de substitution. C’est vraiment la partie la plus portable du produit."
+    },
+    {
+      "q": "À quel point le résultat est-il moins bon ?",
+      "a": "Sur des phrases factuelles courtes entre grandes langues européennes, c’est assez proche. Sur tout ce qui contient une expression idiomatique, un registre formel ou des propositions subordonnées, c’est nettement moins bon, et la différence saute aux yeux d’un lecteur natif dès le premier paragraphe."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Rien par mot, mais LibreTranslate veut quelques gigaoctets de mémoire et est lent sur CPU. Un VPS qui le fait tourner confortablement coûte 15 à 20 $ par mois, ce qui est plus que le plan Individual."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "La qualité. Toutes les autres parties de DeepL se construisent en un week-end ; la raison pour laquelle les gens paient, c’est justement la partie que tu ne peux pas construire."
+    }
+  ]
+}

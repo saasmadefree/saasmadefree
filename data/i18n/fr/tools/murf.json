@@ -1,0 +1,19 @@
+{
+  "tagline": "Génère une narration voix off en local avec un modèle TTS ouvert",
+  "verdictSummary": "Une narration texte-vers-parole avec une voix au son naturel est un vrai projet d’une session en utilisant un modèle TTS ouvert existant — la qualité s’est assez améliorée pour être exploitable sur beaucoup de vrais travaux de voix off. Ce qui ne survit pas : la grande bibliothèque de voix triées sur le volet de Murf avec des contrôles fins d’émotion et de rythme, et son workflow d’édition collaborative en équipe.",
+  "coreLoopDIY": "Génère l’audio de narration à partir d’un texte de script tapé ou collé en utilisant un modèle TTS local, avec des contrôles basiques de rythme et de pause, et exporte un fichier audio propre.",
+  "whatYouLose": [
+    "une grande bibliothèque de voix triées sur le volet",
+    "des contrôles fins d’émotion et d’emphase",
+    "la collaboration en équipe sur les scripts et les voix off",
+    "une bibliothèque de musiques et d’effets sonores libres de droits"
+  ],
+  "whyPeopleStillPay": "Les modèles TTS ouverts sonnent bien ; une grande bibliothèque de voix distinctes et sous licence avec un contrôle émotionnel fin, et un workflow conçu pour des équipes qui produisent du contenu au quotidien, c’est le travail produit plus difficile et permanent.",
+  "prompt": "Construis un outil de voix off texte-vers-parole local. Utilise un modèle TTS ouvert local (Coqui TTS, Piper, ou un projet maintenu similaire) qui tourne entièrement sur la machine de l’utilisateur — pas d’API cloud. Fournis un éditeur de script où l’utilisateur tape ou colle du texte, avec un balisage en ligne simple pour les pauses (par exemple un marqueur de pause entre crochets) et un réglage de rythme par phrase. Prends en charge une poignée de voix installées, celles fournies avec le modèle TTS choisi ou vers lesquelles il peut pointer, avec un bouton d’aperçu par phrase avant de lancer un rendu complet. Rends le script entier dans un seul fichier WAV ou MP3, et exporte aussi des clips par phrase pour les cas où une seule ligne doit être réenregistrée après une modification du script. Ajoute une passe basique de normalisation du volume pour que la narration exportée ait un volume cohérent. Ne construis pas de grande bibliothèque de voix sous licence, de balisage d’émotion fin au-delà du rythme et des pauses, ni de fonctionnalités de collaboration en équipe — c’est hors périmètre ; ceci est un outil de narration local mono-utilisateur. Aucune clé API ni compte requis.",
+  "faq": [
+    { "q": "Est-ce que les voix sonneront aussi naturelles que celles de Murf ?", "a": "Raisonnablement proche pour beaucoup de voix TTS ouvertes aujourd’hui, même si la bibliothèque triée sur le volet de Murf devance encore généralement les modèles ouverts sur le naturel et la variété de voix distinctes." },
+    { "q": "Est-ce que je peux contrôler l’émotion, genre « excité » ou « sérieux » ?", "a": "Seulement indirectement, via le balisage de rythme et de pause — il n’y a pas de contrôle d’émotion dédié comme chez Murf, qui est un vrai travail produit délibéré que ce projet ne tente pas." },
+    { "q": "Est-ce que plusieurs personnes peuvent travailler sur le même script ?", "a": "Non — c’est un outil local mono-utilisateur, sans projet partagé ni fonctionnalité de collaboration." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien au-delà de ton propre ordinateur — les modèles TTS locaux tournent sur CPU (plus lent) ou GPU (plus rapide) sans frais par mot ni par minute." }
+  ]
+}

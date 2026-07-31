@@ -1,0 +1,32 @@
+{
+  "tagline": "Un tableau d’idées, une roadmap, un changelog et un widget d’annonces que tu déposes dans ton propre produit.",
+  "verdictSummary": "La source amont classait ça en oui, et ça ne survit pas à l’écriture des pertes. Le tableau est facile ; le produit, c’est le widget — une balise script qui s’ouvre sur la page de quelqu’un d’autre, dans sa feuille de style, sous sa politique de sécurité de contenu, en sachant qui est l’utilisateur connecté. Bien faire ça sur quatre surfaces (idées, roadmap, changelog, annonces) est un solide week-end, pas une session.",
+  "coreLoopDIY": "Héberge un tableau avec une roadmap publique et un changelog, et intègre le tout dans ton propre produit via une seule balise script qui identifie l’utilisateur connecté.",
+  "whatYouLose": [
+    "le widget testé sur des milliers de sites hôtes et leurs règles CSP",
+    "les sondages et les annonces ciblées vers des segments d’utilisateurs",
+    "le tableau hébergé sur ton propre sous-domaine avec un certificat géré pour toi",
+    "la modération et la gestion du spam sur un tableau public",
+    "les intégrations qui poussent les idées vers un gestionnaire de tickets"
+  ],
+  "whyPeopleStillPay": "Parce qu’un widget intégré est le genre de chose qui marche partout jusqu’au jour où ça casse, et ça casse alors à l’intérieur du produit d’un client. Payer pour ça signifie que quelqu’un d’autre porte la responsabilité de cette catégorie de bugs.",
+  "prompt": "Construis un widget de feedback intégrable, et traite l’intégration comme la partie difficile.\n\nLe backend est un tableau : idées, votes, commentaires, statuts, une vue roadmap dérivée du statut, et un changelog des éléments livrés.\n\nLe widget est une balise script sur la page hôte. Fais-le tourner dans un shadow DOM pour qu’aucune feuille de style hôte ne puisse y accéder et que rien de ce que tu livres ne fuite — ce n’est pas facultatif, c’est l’unique différence entre un widget qui marche sur n’importe quel site et un widget qui s’affiche différemment sur chacun. Charge-le paresseusement, après que la page hôte est devenue interactive, et garde le script initial sous les 10 Ko avec le reste récupéré à l’ouverture.\n\nIdentifie l’utilisateur en faisant passer par l’hôte un jeton signé — un identifiant et un HMAC dessus avec un secret partagé — plutôt qu’un email en clair. Sans signature, n’importe qui peut voter en se faisant passer pour n’importe qui, et les décomptes de votes sur un widget non signé ne veulent rien dire.\n\nDocumente la politique de sécurité de contenu dont l’hôte a besoin (ton connect-src et ton frame-src) et échoue bruyamment avec un message console nommant la directive manquante quand une requête est bloquée. Un widget qui ne fait silencieusement rien sous une CSP stricte est le ticket de support que tu recevras le plus souvent.\n\nConstruis la roadmap et le changelog à la fois comme des pages classiques rendues côté serveur et comme des vues widget, pour que les deux soient indexables et liables en dehors du produit.\n\nHors périmètre : les sondages, les annonces segmentées, et les intégrations vers un gestionnaire de tickets. Teste le widget sur une page avec une feuille de style de reset agressive et une CSP stricte avant de le considérer terminé.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux importer mes idées Frill ?",
+      "a": "Frill exporte les idées, les votes et les commentaires, et ils se chargent proprement. La configuration du widget — couleurs, placement, quelles surfaces sont activées — est propre à chaque prestataire et se reconfigure entièrement à zéro."
+    },
+    {
+      "q": "Est-ce que le widget marchera dans mon appli ?",
+      "a": "Oui, si tu peux ajouter une balise script et régler deux directives CSP. Le shadow DOM gère les collisions de style. Ce que tu n’as pas, c’est l’expérience de Frill de tous les environnements hôtes bizarres qu’ils ont déjà rencontrés."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un VPS avec Postgres à environ 10 $ par mois, un domaine, et l’email qui est gratuit à ce volume. Il n’y a aucune limite par idée, alors que le plan Startup plafonne à 50."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "La certitude que ça s’affiche correctement partout. Ton widget est testé sur ton site ; celui de Frill est testé sur des milliers de sites, et cette différence ne se révèle qu’en production, sur la page de quelqu’un d’autre."
+    }
+  ]
+}

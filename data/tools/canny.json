@@ -39,7 +39,8 @@
     "productboard"
   ],
   "markets": [
-    "en"
+    "en",
+    "fr"
   ],
   "pagePriority": 5,
   "verifiedOneShot": false

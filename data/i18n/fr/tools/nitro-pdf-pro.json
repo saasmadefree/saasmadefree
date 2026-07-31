@@ -1,0 +1,32 @@
+{
+  "tagline": "De l’édition PDF vendue sur la propreté de sa conversion vers et depuis Word, Excel et PowerPoint.",
+  "verdictSummary": "L’argument de Nitro, c’est la fidélité de conversion — tu récupères le fichier Word et il est toujours correctement mis en page. LibreOffice fait le même travail à peut-être quatre-vingts pour cent de la qualité, et le projet personnel honnête n’est pas un meilleur convertisseur mais un harnais qui te dit quand la conversion a mal tourné avant que tu ne l’envoies à quelqu’un. Les enveloppes eSign incluses sont un produit séparé avec une réponse séparée.",
+  "coreLoopDIY": "Convertis avec LibreOffice en mode headless, puis fais l’aller-retour du résultat vers le PDF et note à quel point il s’est éloigné de l’original, pour qu’une mauvaise conversion soit attrapée par l’outil plutôt que par le destinataire.",
+  "whatYouLose": [
+    "la fidélité de conversion sur les mises en page multi-colonnes, les zones de texte et les polices intégrées",
+    "l’application de bureau Windows et son intégration au ruban Office",
+    "les enveloppes Nitro eSign et leur piste d’audit",
+    "le portail d’administration et la gestion des licences par siège",
+    "un contrat de support quand une conversion se trompe sur un document qui compte"
+  ],
+  "whyPeopleStillPay": "Parce que le livrable est généralement le fichier modifiable de quelqu’un d’autre. Une conversion qui est correcte à quatre-vingts pour cent veut dire une heure de correction manuelle par document, et à tout volume réel, cette heure coûte plus cher que la licence.",
+  "prompt": "Construis un harnais de conversion PDF qui note sa propre sortie.\n\nLa boucle centrale : convertis un PDF en DOCX, XLSX ou PPTX avec LibreOffice en mode headless, puis reconvertis immédiatement le résultat en PDF et compare-le à l’original. Rasterise les deux à 150 dpi, calcule un score de similarité structurelle par page, et stocke-le avec la sortie.\n\nAffiche le score, ne le cache pas. Au-dessus d’un seuil que tu choisis, marque la conversion comme propre. En dessous, marque la page et montre les deux rendus côte à côte pour que l’écart soit visible — un tableau qui a perdu ses bordures, un titre qui a changé de police, une zone de texte qui a bougé. Le but de l’outil est de savoir avant d’envoyer, pas de convertir mieux que ne peut le faire LibreOffice.\n\nEnregistre aussi les signaux d’échec spécifiques qui prédisent une mauvaise conversion avant qu’elle ne s’exécute : des polices référencées mais non intégrées, des pages avec plus de deux colonnes de texte, des pages scannées sans couche de texte, et des formulaires. Affiche-les comme des avertissements à l’import.\n\nGarde chaque original immuable, écris les sorties dans de nouveaux fichiers, et stocke le score, les avertissements et les deux hashs dans une petite base SQLite pour pouvoir revenir sur quels documents ont mal converti et pourquoi.\n\nHors périmètre : écrire ton propre convertisseur PDF vers Office, la signature électronique, et toute tentative de corriger automatiquement une mauvaise conversion. La réparation automatique d’une mise en page que le convertisseur a déjà mal lue produit des documents faux d’une manière que personne ne remarque.\n\nValide sur un contrat avec des clauses numérotées, un état financier avec des cellules de tableau fusionnées, et un diaporama.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux importer mes fichiers Nitro ?",
+      "a": "Nitro édite des PDF et des fichiers Office ordinaires, donc les documents eux-mêmes ne posent pas de problème. Rien ne se reporte du portail d’administration Nitro, et toute enveloppe eSign en cours doit être finalisée dans Nitro."
+    },
+    {
+      "q": "Est-ce que les fichiers Word seront aussi propres ?",
+      "a": "Non, et l’outil est conçu pour l’admettre. LibreOffice gère bien le texte simple et peine sur les colonnes, les zones de texte et les polices non intégrées. L’étape de notation existe pour que tu le découvres avant ton client."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un VPS avec quelques gigaoctets de mémoire, environ 10 $ par mois, parce que LibreOffice et l’étape de rasterisation ont tous deux besoin de marge. Tous les logiciels sont gratuits."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "La qualité de conversion elle-même. Tout ici mesure la fidélité honnêtement ; rien ne l’améliore, et sur les documents où la fidélité compte le plus, Nitro reste meilleur."
+    }
+  ]
+}

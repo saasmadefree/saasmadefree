@@ -1,0 +1,33 @@
+{
+  "tagline": "L’éditeur PDF auquel tous les autres se comparent, plus la sortie de conformité qu’aucun autre ne produit.",
+  "verdictSummary": "Acrobat, c’est deux produits sur une seule facture. Le premier est une boîte à outils — fusionner, scinder, compresser, OCR, convertir — et l’open source la couvre entièrement. Le second modifie le texte d’un PDF rédigé par quelqu’un d’autre, en conservant les polices d’origine et une remise en page correcte, et produit du PDF/UA balisé et du PDF/A validé. Cette seconde moitié représente des décennies de travail sur la composition typographique et les normes, et aucun projet personnel ne s’en approche.",
+  "coreLoopDIY": "Héberge toi-même Stirling PDF pour les opérations du quotidien, garde chaque fichier original intact, et écris chaque opération dans une nouvelle sortie versionnée plutôt que de modifier sur place.",
+  "whatYouLose": [
+    "modifier le texte d’un PDF que tu n’as pas rédigé, en conservant les polices et la remise en page",
+    "une sortie PDF/UA balisée qui passe un vérificateur d’accessibilité",
+    "une sortie PDF/A d’archivage qui passe un validateur de conformité",
+    "Acrobat Sign et la piste d’audit qui va avec",
+    "les extensions Microsoft Office, Outlook et navigateur"
+  ],
+  "whyPeopleStillPay": "Parce que dans beaucoup de métiers, le livrable n’est pas « un PDF » mais « un PDF qui passe le contrôle » — un audit d’accessibilité, un dépôt d’archives, un formulaire d’un régulateur. Acrobat est l’outil sur la sortie duquel ces contrôles ont été calibrés.",
+  "notes": "La moitié « boîte à outils » est vraiment remplaçable. Ça vaut le coup de séparer les deux avant de décider qu’on a besoin de l’abonnement.",
+  "prompt": "Construis un atelier PDF auto-hébergé pour un usage personnel.\n\nDéploie Stirling PDF derrière un reverse proxy avec authentification HTTP basique, et place devant une petite surcouche qui fait trois choses que Stirling ne fait pas : elle conserve une copie immuable de chaque original importé dans un stockage adressé par contenu, indexé par SHA-256 ; elle écrit chaque opération dans un nouveau fichier plutôt que d’écraser l’existant ; et elle enregistre une ligne de journal en ajout seul par opération, avec le hash d’entrée, l’opération et ses paramètres, le hash de sortie et un horodatage.\n\nPrends en charge les opérations que tu utilises réellement : fusionner, scinder, réordonner, pivoter, compresser, filigraner, caviarder, faire de l’OCR avec Tesseract, et convertir Office vers PDF via LibreOffice en mode headless.\n\nAjoute une étape de conformité que la plupart des outils sautent : après chaque opération, lance veraPDF sur la sortie et stocke le verdict à côté. Quand le fichier n’est pas un PDF/A ou un PDF/UA valide, dis-le clairement sur la page de résultat. Ne qualifie jamais une sortie d’« archivable » ou d’« accessible » simplement parce qu’elle a été produite — seulement parce que le validateur l’a validée.\n\nHors périmètre, volontairement : modifier le texte existant, générer une structure PDF/UA balisée, la signature électronique, et tout compte cloud. Modifier le texte d’un PDF mis en page par quelqu’un d’autre est un problème de substitution de police et de remise en page, pas une fonctionnalité qu’on ajoute au passage, et un projet qui prétend le contraire produit des documents qui s’affichent de travers sur l’écran de quelqu’un d’autre.\n\nTermine en faisant tourner les opérations de bout en bout sur un document scanné, un formulaire et un diaporama, et imprime le journal.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux ouvrir mes fichiers Acrobat existants avec ça ?",
+      "a": "Oui — ce sont des PDF ordinaires, et rien ici ne change ça. Ce qui ne suit pas, c’est tout ce qui est stocké dans un compte cloud Acrobat : les commentaires de relecture partagés, les modèles Sign enregistrés, et les liens de stockage Document Cloud."
+    },
+    {
+      "q": "L’OCR sera-t-il aussi bon que celui d’Acrobat ?",
+      "a": "Sur des scans propres à 300 dpi de texte imprimé, Tesseract est assez proche pour que tu ne remarques pas la différence. Sur des photos de téléphone à faible contraste, des pages de travers, des tableaux et de l’écriture manuscrite, c’est nettement moins bon, et tu finiras par rescanner des documents que tu aurais autrefois simplement donnés à Acrobat."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un petit VPS, environ 5 $ par mois, ou rien du tout si tu le fais tourner sur une machine que tu possèdes déjà. Stirling PDF, Tesseract, LibreOffice et veraPDF sont tous gratuits et tout tourne en local — il n’y a aucun coût par document."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "Une sortie de conformité que tu peux défendre. Si quelqu’un exige un PDF balisé et accessible, ou une archive PDF/A-2b, ce projet peut te dire que ton fichier n’en est pas un — mais il ne peut pas en produire un."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "S’installe sur n’importe quel site et sert des versions traduites automatiquement sur leurs propres URL indexables.",
+  "verdictSummary": "Ce que vend Linguise, ce n’est pas la traduction, c’est la plomberie : des pages traduites vivant sur de vraies URL avec des balises hreflang correctes pour que les moteurs de recherche les indexent, le tout sans toucher au CMS. Cette plomberie, c’est un reverse proxy traducteur avec un cache et une table de corrections — un vrai week-end pour un site que tu contrôles. L’installation en une ligne dans n’importe quel CMS, et le réseau de périphérie qui la sert, voilà ce que tu perds.",
+  "coreLoopDIY": "Place un proxy traducteur devant ton propre site, mets en cache chaque page traduite, sers-la sous un préfixe de langue avec un hreflang correct, et garde une table de corrections manuelles qui l’emportent toujours.",
+  "whatYouLose": [
+    "s’installer sur n’importe quel CMS sans toucher au code du site",
+    "la mise en cache en périphérie près du visiteur plutôt que sur un seul serveur",
+    "l’éditeur visuel pour corriger les traductions directement sur la page",
+    "la gestion automatique du contenu dynamique et des applications monopages",
+    "quelqu’un d’autre qui absorbe une facture de traduction automatique qui grimpe avec le trafic"
+  ],
+  "whyPeopleStillPay": "Parce que c’est un plug-in plutôt qu’un changement d’architecture. Un proxy devant ton site est un morceau d’infrastructure que quelqu’un doit posséder, et pour la plupart des propriétaires de site, quinze dollars coûte bien moins cher que de devenir cette personne.",
+  "prompt": "Construis un reverse proxy traducteur pour un site que tu contrôles.\n\nLes requêtes vers /fr/... ou /de/... récupèrent la page correspondante depuis l’origine, traduisent le texte visible, et servent le résultat. Tout le reste passe sans être touché.\n\nParse avec un vrai parseur HTML et traduis uniquement les nœuds de texte. Ne fais jamais de regex sur le balisage : les attributs, les scripts en ligne et les blocs JSON-LD se retrouvent massacrés, et l’échec est invisible jusqu’à ce qu’une page cesse de s’afficher. Saute entièrement le contenu des balises script, style, code et pre, et saute tout élément portant un attribut translate=\"no\".\n\nRéécris les liens dans la page traduite pour que les URL internes gardent le préfixe de langue et que les externes n’en gardent pas. Émets des balises hreflang pour chaque langue y compris x-default, et une canonique qui pointe vers l’URL traduite plutôt que vers la source. Se tromper sur le hreflang est la façon précise dont cette catégorie d’outil échoue : les pages se font indexer, puis traiter comme des doublons, et le trafic n’arrive jamais.\n\nMets en cache agressivement, indexé par le hash du contenu de la page d’origine et la langue cible, pour qu’une page inchangée ne soit jamais retraduite. C’est ce qui garde la facture de traduction sous contrôle, et ça vaut le coup de le construire avant la traduction elle-même.\n\nUne table de corrections l’emporte sur tout : une correspondance par URL et par chaîne de traductions corrigées, appliquée après la passe automatique. Les noms de produit, les appels à l’action et les formulations légales en ont tous besoin, et un outil sans chemin de correction se fait abandonner à la première fois qu’il traduit mal un prix.\n\nHors périmètre : un éditeur visuel sur la page, les applications rendues côté client, et le support multi-sites. Vérifie en consultant une page traduite dans l’outil d’inspection d’URL d’un moteur de recherche plutôt qu’à l’œil.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux récupérer mes corrections de traduction Linguise ?",
+      "a": "Linguise stocke les corrections manuelles dans son tableau de bord et les exporte ; elles se transposent raisonnablement bien vers la table de corrections. La correspondance est par URL et par chaîne, donc une restructuration du site depuis les corrections implique d’en refaire une partie."
+    },
+    {
+      "q": "Est-ce que les pages traduites seront indexées ?",
+      "a": "Elles peuvent l’être, si les balises hreflang, les canoniques et les entrées de sitemap sont toutes correctes et cohérentes. C’est la partie difficile, et la raison pour laquelle elle apparaît trois fois dans le prompt — la plupart des versions maison échouent là plutôt qu’à la traduction."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un petit VPS à 5-10 $ par mois plus les appels de traduction automatique. Avec la mise en cache par hash de contenu, un site stable de quelques centaines de pages coûte quelques dollars une fois et presque rien ensuite."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "Ne pas posséder de proxy. Tout ce que voit un visiteur passe désormais par du code que tu as écrit, donc quand ça casse, c’est ton site qui tombe, pas seulement tes traductions."
+    }
+  ]
+}
