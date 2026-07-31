@@ -21,7 +21,7 @@
 //
 // Usage:
 //   node scripts/import-upstream.mjs --source <dir-of-upstream-apps> --limit 25
-//   node scripts/import-upstream.mjs --source <dir> --slugs notion,airtable
+//   node scripts/import-upstream.mjs --source <dir> --slugs baserow-cloud,airtable
 //   node scripts/import-upstream.mjs --source <dir> --limit 25 --dry-run
 //
 // Node 22+, ESM, no dependency beyond what the repo already has.
@@ -144,7 +144,7 @@ function mapDiyTime(value, slug) {
 // keyword rules. A requirement string can trip more than one rule (e.g.
 // "domain/HTTPS" implies both domain and hosting). Generic "LLM API" /
 // "LLM API key" mentions with no vendor named default to anthropic-api-key,
-// matching this project's own convention (see data/i18n/en/tools/notion.json)
+// matching this project's own convention (see data/i18n/en/tools/v0.json)
 // — documented as a judgement call in docs/import-report.md, and reconciled
 // by hand against whatever the rewritten prompt actually specifies.
 // ---------------------------------------------------------------------------

@@ -720,27 +720,6 @@
     "currency": "USD",
     "url": "/en/tools/nordpass"
   },
-  "notion.so": {
-    "slug": "notion",
-    "verdict": "kinda",
-    "amount": 10,
-    "currency": "USD",
-    "url": "/en/tools/notion"
-  },
-  "notion.com": {
-    "slug": "notion",
-    "verdict": "kinda",
-    "amount": 10,
-    "currency": "USD",
-    "url": "/en/tools/notion"
-  },
-  "app.notion.so": {
-    "slug": "notion",
-    "verdict": "kinda",
-    "amount": 10,
-    "currency": "USD",
-    "url": "/en/tools/notion"
-  },
   "obsidian.md": {
     "slug": "obsidian",
     "verdict": "yes",

@@ -1,7 +1,9 @@
 {
   "slug": "calendly",
   "name": "Calendly",
-  "domains": ["calendly.com"],
+  "domains": [
+    "calendly.com"
+  ],
   "category": "scheduling",
   "subcategory": "scheduling + booking pages",
   "pricing": {
@@ -17,12 +19,27 @@
   "verdictConfidence": "medium",
   "moatType": "integrations",
   "diyTimeEstimate": "weekend",
-  "requirements": ["hosting", "oauth-app", "database"],
-  "priorArt": [
-    { "name": "Cal.diy", "url": "https://cal.diy", "license": "MIT" }
+  "requirements": [
+    "hosting",
+    "oauth-app",
+    "database"
   ],
-  "relatedSlugs": ["meetergo", "savvycal", "notion"],
-  "markets": ["en", "fr"],
+  "priorArt": [
+    {
+      "name": "Cal.diy",
+      "url": "https://cal.diy",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "meetergo",
+    "savvycal",
+    "cal-com-teams"
+  ],
+  "markets": [
+    "en",
+    "fr"
+  ],
   "pagePriority": 8,
   "verifiedOneShot": false
 }
