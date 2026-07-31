@@ -2384,3 +2384,123 @@ and `typedream` (the last three flagged below).
 - No `verdict` was changed. Two look worth revisiting on the new numbers: `swell-ai` (`kinda`,
   priced from $17 → $29) and `hemingway-editor-plus` (`yes` at what is now $25/mo, 2.5× the
   recorded price). Reporting, not acting.
+
+## Taxonomy for the last 193 — 18 new categories (2026-07-31)
+
+The mapped-category pool was exhausted at batch 10. What was left is everything upstream
+filed under a category `CATEGORY_MAP` deliberately refused to guess at. Recounted from the
+source rather than trusted from the previous section's estimate:
+
+```
+608 upstream entries
+− 348 already on disk
+−   9 MANUAL_EXCLUSIONS (notion, readwise, google-ai-pro, microsoft-365-personal,
+       discord-nitro, matomo-cloud, jetbrains-ai-pro, everydollar-premium,
+       digitalocean-app-platform)
+−  56 no citable price (9 null plan/source + 47 no derivable amount)
+−   1 domain already claimed (obsidian-sync → obsidian.md)
+−   1 typedream — deleted from the catalogue on 2026-07-31 for being a dead product,
+       which freed its slug; added to MANUAL_EXCLUSIONS so no --limit run re-imports it
+= 193 to place
+```
+
+The earlier report's "~203" was an estimate made before the link sweep; **193** is the
+counted figure.
+
+### The 18 categories, and the three merges
+
+193 entries arrive under 20 raw upstream category values. Two pairs were merged, one raw
+value was split, and the rest map 1:1 — 18 new categories, 33 → **51**. Every one holds at
+least 7 tools; the existing 33 average 10.6 and run from 2 to 24, so these sit inside the
+shape the catalogue already has rather than stretching it.
+
+| New category | Tools | From upstream | Emoji |
+|---|---|---|---|
+| `crm-sales` | 22 | `crm` (11) + `sales-outreach` (11) | 🤝 |
+| `business-admin` | 12 | `hr` (6) + `legal` (6) | 🏛️ |
+| `documents` | 11 | `documents` | 📄 |
+| `customer-support` | 11 | `customer-support` | 💬 |
+| `time-tracking` | 11 | `time-tracking` | ⏱️ |
+| `video-meetings` | 11 | `video-conferencing` | 📹 |
+| `project-management` | 10 | `project-management` | 🗂️ |
+| `photography` | 10 | `photo-editing` | 📷 |
+| `travel` | 10 | `travel` | 🧭 |
+| `user-research` | 10 | `user-research` | 🔍 |
+| `learning` | 10 | `education` | 📚 |
+| `cloud-storage` | 10 | `cloud-storage` | 💾 |
+| `health-fitness` | 10 | `wellness` | 🏃 |
+| `job-search` | 10 | `career` | 💼 |
+| `home-family` | 9 | `home` | 🏡 |
+| `translation` | 8 | `localization` | 🌐 |
+| `monitoring` | 7 | `monitoring` | 📡 |
+| `media-streaming` | 7 | `audio`, minus 4 production tools | 🎧 |
+
+Plus **4 entries routed into the existing `audio-video`** rather than a category of their
+own: `landr-studio`, `moises`, `soundtrap`, `splice`. Upstream's `audio` bucket is two
+different products under one label — things you listen to, and things you make music with.
+The production half belongs next to the podcast/video production tools already in
+`audio-video`; only the listening half needed a new home. Implemented as
+`SLUG_CATEGORY_OVERRIDES` in `scripts/import-upstream.mjs`, checked before `CATEGORY_MAP`.
+
+### Where I merged, and where I refused to
+
+**`crm` + `sales-outreach` → `crm-sales` (close call, merged).** Two 11-tool categories were
+available and both clear the floor. Merged anyway because the product boundary genuinely
+isn't there: Apollo is a contact database *and* a sequencer, Close is a CRM with calling and
+sequences built in, Streak is a CRM living inside Gmail's compose window, Instantly and
+Smartlead both added a pipeline view. Splitting would have forced a per-tool ruling on
+several products that sit on both sides, and the reader is one person doing one job — find
+someone, write to them, remember what happened.
+
+**`hr` + `legal` → `business-admin` (close call, merged).** Six and six. Both clear the floor
+only just, and both are the same purchase for the same buyer: the paperwork a company has to
+file to exist and to pay people. Gusto and Deel sell payroll tax filing; ZenBusiness, doola
+and Northwest sell incorporation and registered-agent filing. One 12-tool page is a better
+page than two thin ones, and the verdict story is identical across all twelve — the moat is a
+licence and a liability, not code.
+
+**`project-management` + `time-tracking` — refused.** The obvious symmetric merge, and the
+previous report's own plan folded both into `tasks`. I did neither. Asana, Wrike, Smartsheet
+and monday.com are multi-user delivery platforms with permissions, portfolios and workload
+views; Toggl, Harvest and Clockify are timers that produce an invoice line. Different job,
+different buyer, and a completely different DIY story — a personal timer is a one-sitting
+build, a team delivery platform is not. Folding either into `tasks` (12 personal to-do and
+calendar apps) would have buried Todoist under ClickUp.
+
+**`travel` / `home-family` / `health-fitness` / `learning` / `job-search` — refused the
+`lifestyle` and `career-education` mega-merges** the earlier plan sketched. Each of the five
+independently clears the floor by roughly 2×, and the merged versions (30 and 20 tools) would
+have been junk drawers: a page holding Strava, TripIt, Mealime, Calm and Gaia GPS answers no
+question anyone actually asks. The floor exists to stop 2-tool pages, not to force unrelated
+products together.
+
+**`monitoring` (7) — kept separate from `dev-tools`, narrowly.** Sentry, Datadog and Checkly
+are bought by developers, and `dev-tools` would have absorbed them without looking wrong.
+Kept apart because `dev-tools` is about writing code and this is about code already running —
+the same line the catalogue already draws by having `hosting` as its own category. The
+smallest of the eighteen, and the one I would revisit first if the floor were raised.
+
+**`media-streaming` (7) — kept separate from `audio-video`.** Consuming music and audiobooks
+is not producing audio. Folding Spotify into the category that holds Descript and Riverside
+would misdescribe both.
+
+**`translation` (8) — kept separate from `dev-tools`.** The earlier plan folded localization
+into `dev-tools`. Crowdin, Lokalise, POEditor, Tolgee and Transifex are genuinely developer
+i18n tooling and would have fitted; DeepL Pro, Weglot and Linguise are not developer tools at
+all, and splitting an 8-tool group across two categories to save one category is the wrong
+trade.
+
+**`photography` (10) — one category, not two.** It splits cleanly into editing/culling
+(Lightroom, Capture One, Aftershoot, Mylio, Ente) and client galleries (Pixieset, Pic-Time,
+SmugMug, Zenfolio, Flickr Pro), five and five. Left as one: both halves are bought by the
+same photographer, and two categories sitting exactly on the floor is the outcome the floor
+exists to prevent.
+
+### One placement I am not sure about
+
+`home-assistant-cloud` sits in `home-family` because that is the reader's context — it is the
+subscription a smart-home owner pays for. But the product is a TLS tunnel plus remote access
+and cloud speech for a self-hosted hub, and its DIY replacement is a reverse proxy or
+Tailscale, which is a `hosting` story. Filed under the reader's mental model rather than the
+build's; flagged here rather than smoothed over.
+

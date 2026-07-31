@@ -291,6 +291,7 @@ const MANUAL_EXCLUSIONS = new Map([
   ['matomo-cloud', 'no fixed, listable hostname exists: Matomo Cloud provisions each customer their own <name>.matomo.cloud subdomain at signup, and the bare matomo.org is the self-hosted open-source project\'s own site — a far broader audience than paying Cloud customers. domains[] holds literal hostnames, not wildcards. Decided during batch 5.'],
   ['jetbrains-ai-pro', 'no product-specific hostname exists: jetbrains.com is JetBrains\' whole corporate site (IntelliJ IDEA, PyCharm, WebStorm and every other product live there, all with far more traffic than AI Pro), and the AI Pro pricing page is a path, not a subdomain. Decided during batch 5.'],
   ['everydollar-premium', 'no product-specific hostname exists: everydollar.com 301-redirects to ramseysolutions.com/money/everydollar (verified), app.everydollar.com does not resolve, and ramseysolutions.com is Ramsey Solutions\' entire company site — books, courses, the radio show, insurance referrals — of which EveryDollar is one product among many. Same domain-safety failure mode as microsoft-365-personal.'],
+  ['typedream', 'removed from the catalogue on 2026-07-31 (commit ade4f5b): typedream.com 404s down to its root, the product was acquired by beehiiv and is no longer sold, and the recorded $15 "Launch" price is unverifiable because nobody can subscribe to it. Deleting the fiche freed the slug, so without this entry a future --limit run would import the dead product straight back in — the same footgun the notion exclusion exists for.'],
   ['digitalocean-app-platform', 'no confirmed product-specific hostname exists: the App Platform dashboard lives at a path (cloud.digitalocean.com/apps) on the control panel shared by every DigitalOcean product (Droplets, Kubernetes, Spaces, ...), and the bare digitalocean.com is the whole company\'s marketing site. Same domain-safety failure mode as microsoft-365-personal — excluded rather than firing on unrelated DigitalOcean traffic.'],
 ]);
 
@@ -510,9 +511,50 @@ const CATEGORY_MAP = new Map([
   ['link-in-bio', 'social-media'],
   ['qr-codes', 'productivity-utilities'],
   ['og-images', 'design'], ['screenshots', 'design'],
+  // --- the 18 verticals opened for the final ~193 entries (see
+  // docs/import-report.md, "Taxonomy for the last 193"). Each one is a real
+  // new category in data/categories.json with an emoji and all 7 labels.
+  ['documents', 'documents'],
+  ['crm', 'crm-sales'], ['sales-outreach', 'crm-sales'],
+  ['customer-support', 'customer-support'],
+  ['project-management', 'project-management'],
+  ['time-tracking', 'time-tracking'],
+  ['video-conferencing', 'video-meetings'],
+  ['cloud-storage', 'cloud-storage'],
+  ['monitoring', 'monitoring'],
+  ['localization', 'translation'],
+  ['user-research', 'user-research'],
+  ['photo-editing', 'photography'],
+  ['hr', 'business-admin'], ['legal', 'business-admin'],
+  ['career', 'job-search'],
+  ['education', 'learning'],
+  ['wellness', 'health-fitness'],
+  ['travel', 'travel'],
+  ['home', 'home-family'],
+  // upstream's "audio" bucket is two different things under one label:
+  // subscriptions you listen to, and tools you make music with. The default
+  // is the listening half; the four production tools are redirected per slug
+  // by SLUG_CATEGORY_OVERRIDES below.
+  ['audio', 'media-streaming'],
+]);
+
+// Per-slug category override, checked before CATEGORY_MAP. Needed when one
+// raw upstream category genuinely covers two of our verticals and the split
+// is a per-product judgement, not a rename. See docs/import-report.md.
+const SLUG_CATEGORY_OVERRIDES = new Map([
+  // upstream "audio" — these four are music *production* tools (mastering and
+  // distribution, stem separation, a browser DAW, a sample library), not
+  // listening subscriptions. They belong with the podcast/video production
+  // tools in audio-video, not in media-streaming.
+  ['landr-studio', 'audio-video'],
+  ['moises', 'audio-video'],
+  ['soundtrap', 'audio-video'],
+  ['splice', 'audio-video'],
 ]);
 
 function mapCategory(category, slug) {
+  const override = SLUG_CATEGORY_OVERRIDES.get(slug);
+  if (override) return override;
   const target = CATEGORY_MAP.get(category);
   if (!target) {
     throw new Error(

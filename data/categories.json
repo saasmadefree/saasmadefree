@@ -394,5 +394,221 @@
       "pt": "Ler mais tarde e RSS",
       "nl": "Later lezen en RSS"
     }
+  },
+  "documents": {
+    "emoji": "📄",
+    "label": {
+      "en": "PDF & documents",
+      "fr": "PDF et documents",
+      "es": "PDF y documentos",
+      "de": "PDF & Dokumente",
+      "it": "PDF e documenti",
+      "pt": "PDF e documentos",
+      "nl": "PDF en documenten"
+    }
+  },
+  "crm-sales": {
+    "emoji": "🤝",
+    "label": {
+      "en": "CRM & sales outreach",
+      "fr": "CRM et prospection",
+      "es": "CRM y prospección",
+      "de": "CRM & Vertrieb",
+      "it": "CRM e prospezione",
+      "pt": "CRM e prospeção",
+      "nl": "CRM en sales"
+    }
+  },
+  "customer-support": {
+    "emoji": "💬",
+    "label": {
+      "en": "Customer support",
+      "fr": "Support client",
+      "es": "Atención al cliente",
+      "de": "Kundensupport",
+      "it": "Assistenza clienti",
+      "pt": "Suporte ao cliente",
+      "nl": "Klantenservice"
+    }
+  },
+  "project-management": {
+    "emoji": "🗂️",
+    "label": {
+      "en": "Project management",
+      "fr": "Gestion de projet",
+      "es": "Gestión de proyectos",
+      "de": "Projektmanagement",
+      "it": "Gestione progetti",
+      "pt": "Gestão de projetos",
+      "nl": "Projectmanagement"
+    }
+  },
+  "time-tracking": {
+    "emoji": "⏱️",
+    "label": {
+      "en": "Time tracking",
+      "fr": "Suivi du temps",
+      "es": "Control del tiempo",
+      "de": "Zeiterfassung",
+      "it": "Monitoraggio del tempo",
+      "pt": "Controlo de tempo",
+      "nl": "Tijdregistratie"
+    }
+  },
+  "video-meetings": {
+    "emoji": "📹",
+    "label": {
+      "en": "Video meetings & webinars",
+      "fr": "Visioconférence et webinaires",
+      "es": "Videollamadas y seminarios web",
+      "de": "Videokonferenzen & Webinare",
+      "it": "Videoconferenze e webinar",
+      "pt": "Videoconferência e webinars",
+      "nl": "Videovergaderen en webinars"
+    }
+  },
+  "cloud-storage": {
+    "emoji": "💾",
+    "label": {
+      "en": "Cloud storage & backup",
+      "fr": "Stockage et sauvegarde",
+      "es": "Almacenamiento y copias de seguridad",
+      "de": "Cloud-Speicher & Backup",
+      "it": "Archiviazione e backup",
+      "pt": "Armazenamento e backup",
+      "nl": "Cloudopslag en back-up"
+    }
+  },
+  "monitoring": {
+    "emoji": "📡",
+    "label": {
+      "en": "Monitoring & observability",
+      "fr": "Supervision et observabilité",
+      "es": "Monitorización y observabilidad",
+      "de": "Monitoring & Observability",
+      "it": "Monitoraggio e osservabilità",
+      "pt": "Monitorização e observabilidade",
+      "nl": "Monitoring en observability"
+    }
+  },
+  "translation": {
+    "emoji": "🌐",
+    "label": {
+      "en": "Translation & localization",
+      "fr": "Traduction et localisation",
+      "es": "Traducción y localización",
+      "de": "Übersetzung & Lokalisierung",
+      "it": "Traduzione e localizzazione",
+      "pt": "Tradução e localização",
+      "nl": "Vertaling en lokalisatie"
+    }
+  },
+  "user-research": {
+    "emoji": "🔍",
+    "label": {
+      "en": "User research & feedback",
+      "fr": "Recherche utilisateur et feedback",
+      "es": "Investigación de usuarios y feedback",
+      "de": "Nutzerforschung & Feedback",
+      "it": "Ricerca utenti e feedback",
+      "pt": "Pesquisa de utilizadores e feedback",
+      "nl": "Gebruikersonderzoek en feedback"
+    }
+  },
+  "photography": {
+    "emoji": "📷",
+    "label": {
+      "en": "Photography",
+      "fr": "Photographie",
+      "es": "Fotografía",
+      "de": "Fotografie",
+      "it": "Fotografia",
+      "pt": "Fotografia",
+      "nl": "Fotografie"
+    }
+  },
+  "business-admin": {
+    "emoji": "🏛️",
+    "label": {
+      "en": "Legal, HR & payroll",
+      "fr": "Juridique, RH et paie",
+      "es": "Legal, RR. HH. y nóminas",
+      "de": "Recht, HR & Lohnabrechnung",
+      "it": "Legale, HR e buste paga",
+      "pt": "Jurídico, RH e salários",
+      "nl": "Juridisch, HR en loonadministratie"
+    }
+  },
+  "job-search": {
+    "emoji": "💼",
+    "label": {
+      "en": "Résumés & job search",
+      "fr": "CV et recherche d'emploi",
+      "es": "Currículums y búsqueda de empleo",
+      "de": "Lebenslauf & Jobsuche",
+      "it": "CV e ricerca di lavoro",
+      "pt": "Currículos e procura de emprego",
+      "nl": "Cv's en werk zoeken"
+    }
+  },
+  "learning": {
+    "emoji": "📚",
+    "label": {
+      "en": "Learning & languages",
+      "fr": "Apprentissage et langues",
+      "es": "Aprendizaje e idiomas",
+      "de": "Lernen & Sprachen",
+      "it": "Apprendimento e lingue",
+      "pt": "Aprendizagem e línguas",
+      "nl": "Leren en talen"
+    }
+  },
+  "health-fitness": {
+    "emoji": "🏃",
+    "label": {
+      "en": "Health & fitness",
+      "fr": "Santé et sport",
+      "es": "Salud y deporte",
+      "de": "Gesundheit & Fitness",
+      "it": "Salute e fitness",
+      "pt": "Saúde e fitness",
+      "nl": "Gezondheid en fitness"
+    }
+  },
+  "travel": {
+    "emoji": "🧭",
+    "label": {
+      "en": "Travel & outdoors",
+      "fr": "Voyage et plein air",
+      "es": "Viajes y aire libre",
+      "de": "Reisen & Outdoor",
+      "it": "Viaggi e outdoor",
+      "pt": "Viagens e ar livre",
+      "nl": "Reizen en outdoor"
+    }
+  },
+  "home-family": {
+    "emoji": "🏡",
+    "label": {
+      "en": "Home & family",
+      "fr": "Maison et famille",
+      "es": "Hogar y familia",
+      "de": "Haushalt & Familie",
+      "it": "Casa e famiglia",
+      "pt": "Casa e família",
+      "nl": "Huis en gezin"
+    }
+  },
+  "media-streaming": {
+    "emoji": "🎧",
+    "label": {
+      "en": "Music & audiobooks",
+      "fr": "Musique et livres audio",
+      "es": "Música y audiolibros",
+      "de": "Musik & Hörbücher",
+      "it": "Musica e audiolibri",
+      "pt": "Música e audiolivros",
+      "nl": "Muziek en luisterboeken"
+    }
   }
 }
