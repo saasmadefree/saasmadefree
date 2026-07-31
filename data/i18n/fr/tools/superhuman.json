@@ -1,0 +1,19 @@
+{
+  "tagline": "Construis un client email rapide, d’abord au clavier, par-dessus une boîte mail que tu as déjà",
+  "verdictSummary": "Un client IMAP rapide et piloté au clavier avec recherche locale et une boîte de réception réactive est un vrai projet de week-end — les raccourcis, la recherche en une fraction de seconde, même un report correct sont tous atteignables. Ce qui ne l’est pas : le vrai produit de Superhuman, qui est moins le client et davantage l’habitude entraînée des réponses rédigées par IA, le suivi des accusés de lecture, et surtout une expérience d’accueil sur-mesure que le prix paie en grande partie.",
+  "coreLoopDIY": "Connecte une boîte mail IMAP/SMTP existante, indexe les messages en local pour une recherche instantanée, et pilote toute la boîte de réception — lire, archiver, reporter, répondre — depuis le clavier.",
+  "whatYouLose": [
+    "les réponses rédigées par IA calibrées sur ton écriture",
+    "le suivi des accusés de lecture",
+    "les appels d’accueil et le support sur-mesure",
+    "la synchro instantanée entre appareils"
+  ],
+  "whyPeopleStillPay": "Les gens ne paient pas vraiment pour des raccourcis clavier — ça se copie en un week-end. Ils paient pour que quelqu’un d’autre ait déjà résolu les bizarreries infinies de fournisseurs d’IMAP, et pour une équipe de support qui décroche un appel quand quelque chose casse.",
+  "prompt": "Construis un client email de bureau léger centré sur la vitesse au clavier, connecté à une boîte mail que tu possèdes déjà — ça n’inclut pas l’hébergement de courrier. Utilise Tauri ou Electron avec un index SQLite local. Connecte-toi via IMAP et SMTP avec un identifiant/mot de passe ou un mot de passe spécifique à l’application — aucun enregistrement d’application OAuth nécessaire. Au premier lancement, fais une synchro complète des en-têtes, puis continue de synchroniser de façon incrémentale avec IMAP IDLE ou une interrogation courte. Construis une interface d’abord au clavier : j/k pour se déplacer entre les messages, e pour archiver, r pour répondre, une palette de commandes globale (Cmd+K) pour la recherche et les actions, et une fonctionnalité de report qui refait surface un message à un moment choisi en le déplaçant vers un état local « reporté », pas côté serveur. Indexe les en-têtes et les corps en local avec la recherche plein texte de SQLite pour que la recherche fonctionne instantanément et hors ligne. Rends le HTML email dans un bac à sable verrouillé et bloque les images distantes par défaut. Envoie des messages multiparties avec pièces jointes et garde une copie locale de chaque brouillon. Ne construis pas de réponses rédigées par IA, de suivi d’accusés de lecture, ni de support multi-comptes — c’est hors périmètre ; c’est un client mono-compte, d’abord au clavier, rien de plus. Aucune clé d’API externe requise ; seulement les identifiants de boîte mail que tu as déjà.",
+  "faq": [
+    { "q": "Est-ce que ça peut remplacer entièrement Gmail ou Outlook, ou juste le client ?", "a": "Juste le client — il se connecte à n’importe quelle boîte mail que tu as déjà via IMAP/SMTP. Tu as toujours besoin d’un endroit où ton courrier vit réellement." },
+    { "q": "Est-ce que je vais avoir des réponses rédigées par IA comme celles de Superhuman ?", "a": "Pas nativement — c’est explicitement hors périmètre ici. Tu pourrais câbler toi-même une API de LLM pour des suggestions de brouillon, mais le projet central ne l’inclut pas." },
+    { "q": "Est-ce que la recherche fonctionne hors ligne ?", "a": "Oui, une fois la synchro initiale terminée — tout est indexé en local dans SQLite, donc la recherche ne dépend pas de ta connexion." },
+    { "q": "Quelle est la vraie différence de coût ?", "a": "Les 40 $ par siège et par mois de Superhuman achètent les fonctionnalités IA et l’accueil sur-mesure par-dessus une boîte mail que tu payes probablement déjà ailleurs. Ce projet ne coûte rien de plus que cette boîte mail existante." }
+  ]
+}

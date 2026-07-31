@@ -1,0 +1,19 @@
+{
+  "tagline": "Transforme un diaporama et un script en vidéo de formation narrée",
+  "verdictSummary": "Le cas d’usage réel le plus courant de Synthesia — transformer un script ou un diaporama en vidéo de formation narrée avec un présentateur avatar — est réalisable dans un projet local ciblé : génère la narration avec du TTS local, superpose-la sur tes propres diapositives, et ajoute un petit clip d’avatar local dans un coin. Ce qui ne survit pas : la bibliothèque de présentateurs photoréalistes sous licence de Synthesia et le redoublage multilingue instantané de la même vidéo.",
+  "coreLoopDIY": "Génère l’audio de narration à partir d’un script avec un modèle TTS local, synchronise-le avec un diaporama en une vidéo minutée, et superpose un petit clip local de tête parlante d’un avatar choisi dans un coin.",
+  "whatYouLose": [
+    "une bibliothèque sous licence de présentateurs photoréalistes",
+    "le redoublage multilingue instantané de vidéos existantes",
+    "la gestion de marque et de modèles d’entreprise à grande échelle",
+    "l’hébergement vidéo et les analyses de niveau entreprise"
+  ],
+  "whyPeopleStillPay": "Le format vidéo est copiable ; une bibliothèque de ressemblances de présentateurs sous licence et consentement, et la capacité de redoubler la même vidéo en vingt langues du jour au lendemain, n’est pas quelque chose qu’une seule personne peut construire ou licencier seule.",
+  "prompt": "Construis un générateur de vidéos narrées à partir de diapositives, en calquant le cas d’usage de formation d’entreprise le plus courant de Synthesia plutôt que son ensemble complet de fonctionnalités. Utilise Python avec un modèle TTS local (Coqui TTS ou Piper) pour générer l’audio de narration à partir d’un script par diapositive. Accepte un diaporama sous forme d’images (export depuis PowerPoint, Google Slides ou Keynote en PNG) ou des diapositives Markdown converties en images. Ajuste la durée d’affichage de chaque diapositive à la longueur de sa narration, et rends la séquence en MP4 avec ffmpeg. En option, superpose un petit clip de tête parlante, généré avec un modèle de synchronisation labiale local utilisant la même approche que la fiche HeyGen de ce catalogue, dans un coin de la vidéo à partir d’une seule photo source, pour que ça ne ressemble pas à un simple diaporama. Fournis une interface web simple pour téléverser des diapositives, écrire le texte de narration par diapositive, prévisualiser et exporter. Ne construis pas de bibliothèque de présentateurs sous licence, de redoublage automatique multilingue, ni d’hébergement vidéo et d’analyses de niveau entreprise — c’est hors périmètre. Aucune clé API nécessaire si les modèles TTS et de synchronisation labiale tournent en local.",
+  "faq": [
+    { "q": "Est-ce que je peux choisir dans une bibliothèque de présentateurs IA comme celle de Synthesia ?", "a": "Non — ce projet n’anime qu’une seule photo que tu fournis par vidéo. Une bibliothèque de présentateurs photoréalistes sous licence n’est pas quelque chose qu’un projet personnel peut reproduire ou licencier." },
+    { "q": "Est-ce que je peux redoubler la même vidéo dans une autre langue instantanément ?", "a": "Pas automatiquement — tu regénérerais la narration dans la voix TTS d’une autre langue et tu re-rendrais. Le redoublage en un clic sur toute une bibliothèque vidéo de Synthesia est de la vraie infrastructure que ce projet n’a pas." },
+    { "q": "Est-ce que ça a besoin de mes propres diapositives ?", "a": "Oui — exporte d’abord ton diaporama en images. Cet outil minute et narre des diapositives existantes ; il ne les conçoit pas pour toi." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Gratuit si tu fais tourner les modèles TTS et de synchronisation labiale en local sur ton propre matériel ; sinon un coût modeste de location de GPU, sans frais par minute de vidéo." }
+  ]
+}
