@@ -1,0 +1,19 @@
+{
+  "tagline": "Historique de presse-papiers chiffré et local pour macOS",
+  "verdictSummary": "Un gestionnaire d’historique de presse-papiers — garder les N dernières choses copiées, avec recherche, épingler celles qu’on réutilise — est un petit projet bien délimité d’une session sur macOS. Ce qui est vraiment plus difficile à reproduire : la synchro iCloud entre appareils, les aperçus riches pour chaque type de contenu, et des années de gestion de cas limites pour les applis au comportement de presse-papiers inhabituel.",
+  "coreLoopDIY": "Interroge le presse-papiers système pour détecter les changements, stocke chaque nouvelle entrée de presse-papiers en local avec un horodatage et l’appli source, et fais apparaître un historique consultable et épinglable via un raccourci clavier global.",
+  "whatYouLose": [
+    "la synchro iCloud entre Mac, iPhone et iPad",
+    "les aperçus riches pour chaque type de fichier et de couleur",
+    "des années de correctifs pour les bizarreries de presse-papiers propres à chaque appli",
+    "les tableaux d’épingles partagés en équipe"
+  ],
+  "whyPeopleStillPay": "La boucle d’historique de presse-papiers elle-même est simple ; ce qui est difficile à simuler, c’est la finition sur tout ce que quelqu’un pourrait copier, et le fait que ça marche simplement à l’identique sur chaque appareil Apple.",
+  "prompt": "Construis un gestionnaire d’historique de presse-papiers dans la barre de menus macOS. Interroge le compteur de changements de NSPasteboard (ou utilise une boucle d’interrogation légère) pour détecter un nouveau contenu de presse-papiers, et stocke chaque entrée — texte, image, ou référence de fichier — en local dans SQLite avec un horodatage, le nom de l’appli source, et le type de contenu. Affiche l’historique via un raccourci clavier global (ex. Cmd+Shift+V) comme une liste consultable et navigable au clavier ; appuyer sur entrée recopie l’entrée sélectionnée dans le presse-papiers. Prends en charge l’épinglage d’entrées vers un tableau d’épingles persistant qui survit à l’expiration de l’historique, et un réglage d’expiration (ex. suppression automatique des entrées en texte brut après N jours, conservation indéfinie des entrées épinglées). Chiffre la base de données SQLite locale au repos en utilisant une clé conservée dans le trousseau macOS. Ajoute un volet d’aperçu basique pour le texte et les images. Ne construis pas de synchro iCloud, de support multi-appareils, ni de système de plugins pour des gestionnaires de format tiers — c’est hors périmètre. Aucun compte ni clé d’API requis ; tout est local.",
+  "faq": [
+    { "q": "Est-ce que mon historique de presse-papiers est privé ?", "a": "Il reste local et chiffré au repos avec une clé du trousseau macOS — rien n’est envoyé nulle part, puisqu’il n’y a pas de fonctionnalité de synchro dans ce projet pour l’envoyer par là." },
+    { "q": "Est-ce que ça va capturer les mots de passe que je copie depuis un gestionnaire de mots de passe ?", "a": "Oui, par défaut, puisque ça surveille le presse-papiers système sans distinction — ajoute ton gestionnaire de mots de passe à une liste d’exclusion, ou efface manuellement les entrées sensibles, puisque la détection automatique n’est pas intégrée ici." },
+    { "q": "Est-ce que ça synchronise entre mon Mac et mon iPhone ?", "a": "Non — c’est la principale chose que ce projet abandonne. La synchro iCloud entre appareils de Paste est de la vraie ingénierie que ce prompt ne tente pas." },
+    { "q": "Jusqu’où remonte l’historique ?", "a": "Aussi loin que le permettent ton réglage de rétention configuré et l’espace disque — il n’y a pas de plafond strict au-delà de ce que tu définis, contrairement à certains gestionnaires de presse-papiers avec des limites d’historique fixes." }
+  ]
+}

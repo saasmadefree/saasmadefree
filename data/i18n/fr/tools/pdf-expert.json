@@ -1,0 +1,32 @@
+{
+  "tagline": "Un lecteur et annotateur natif rapide pour les gens qui vivent dans de longs PDF sur un Mac et un iPad.",
+  "verdictSummary": "La source amont classait ça comme un projet d’une session, ce qui ne survit pas à la confrontation avec ce pour quoi les gens l’achètent réellement : ouvrir un manuel technique de 900 pages instantanément, l’annoter avec un Pencil, et retrouver cette annotation sur l’autre appareil une heure plus tard. Un projet web peut gérer les annotations et la recherche ; il ne peut pas gérer la performance de rendu native ni le Pencil, et c’est l’essentiel du produit.",
+  "coreLoopDIY": "Lis des PDF dans le navigateur avec une visionneuse rapide, garde les surlignages et notes dans un fichier annexe à côté de chaque document, et cherche dans toutes les annotations que tu as jamais faites.",
+  "whatYouLose": [
+    "la vitesse de rendu native sur de très gros documents",
+    "l’annotation à l’Apple Pencil et le rejet de la paume sur iPad",
+    "la synchro iCloud des documents et annotations entre Mac, iPhone et iPad",
+    "le menu de partage système et l’intégration avec Fichiers",
+    "la lecture hors ligne avec toute la bibliothèque sur l’appareil"
+  ],
+  "whyPeopleStillPay": "Parce que ça ne bégaie jamais. Un lecteur qui hésite à la page 700 d’un manuel se fait abandonner en moins d’une semaine, et l’argent achète un travail de rendu qu’un projet personnel ne fait pas.",
+  "prompt": "Construis une bibliothèque de lecture PDF personnelle qui garde les annotations en dehors du fichier.\n\nPointe-la vers un dossier de PDF. Rends les pages avec PDF.js et virtualise la liste de pages pour qu’un document de 900 pages s’ouvre en moins d’une seconde et défile sans charger chaque page — fais ça en premier, parce que si le lecteur est lent, rien d’autre dans l’outil n’a d’importance.\n\nStocke les annotations comme un fichier JSON annexe à côté de chaque PDF, nommé d’après le SHA-256 du document plutôt que son nom de fichier, pour que renommer ou déplacer le fichier n’orpheline pas les notes. Chaque annotation enregistre la page, un rectangle normalisé, le type (surlignage, soulignement, note), la couleur, le texte de la note et le texte exact sous la sélection. N’écris jamais dans le PDF lui-même.\n\nConstruis une chose que le format annexe rend facile et que les applis payantes rendent difficile : rechercher dans toutes les annotations de toute la bibliothèque à la fois, avec la phrase environnante et un lien retour vers la page. Une bibliothèque de surlignages qu’on ne peut pas rechercher est une bibliothèque qu’on ne relit jamais.\n\nAjoute un export qui produit un fichier Markdown par document — les surlignages dans l’ordre des pages, chacun avec sa note et une référence de page — pour que la lecture ait une sortie.\n\nLa synchro, c’est un dossier que tu synchronises déjà : mets les PDF et leurs fichiers annexes dans le même répertoire et laisse Syncthing ou iCloud Drive les déplacer. Ne construis pas de protocole de synchro ; le principe du dernier qui écrit qui gagne sur un fichier JSON est une réponse acceptable pour une personne et une mauvaise pour quelqu’un d’autre.\n\nHors périmètre : une appli native, la saisie au stylet, et l’édition du PDF.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux récupérer mes annotations PDF Expert existantes ?",
+      "a": "Partiellement. PDF Expert écrit des annotations PDF standards dans le fichier, donc un script ponctuel avec pypdf peut extraire les surlignages et notes existants vers des fichiers annexes. Tout ce qui n’est pas une annotation standard — les dessins au Pencil en particulier — passe comme une image ou pas du tout."
+    },
+    {
+      "q": "Est-ce que ça marche sur mon iPad ?",
+      "a": "Dans Safari, pour la lecture et le surlignage de texte. L’annotation au Pencil ne marchera pas correctement : le rejet de paume et la pression sont des fonctionnalités d’appli native, et un canevas web en est une pâle imitation."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Rien. C’est une visionneuse statique par-dessus un dossier local et ça peut tourner entièrement sur ta propre machine, avec ta synchro de fichiers existante qui fait la synchro."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "Le Pencil. Si tu annotes sur un iPad à la main, aucun projet navigateur ne le remplacera, et ça vaut le coup d’être honnête là-dessus avant de passer un week-end dessus."
+    }
+  ]
+}

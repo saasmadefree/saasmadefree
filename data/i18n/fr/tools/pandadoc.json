@@ -1,0 +1,32 @@
+{
+  "tagline": "Des propositions et devis assemblés à partir de blocs réutilisables, chiffrés, envoyés, signés et suivis.",
+  "verdictSummary": "Assembler une proposition à partir de blocs de contenu et d’un tableau de tarification est vraiment l’affaire d’un week-end — c’est un problème de templating avec un tableur au milieu. Deux choses autour ne le sont pas. La signature à la fin porte le même problème de preuve que Docusign, et la raison pour laquelle PandaDoc est acheté tout court, c’est que les données de l’affaire sortent d’un CRM et que le document signé y retourne. Retire les deux et tu as un joli générateur de documents que personne ne payait.",
+  "coreLoopDIY": "Remplis un modèle de proposition à partir d’une ligne de tes propres données, construis le tableau de tarification à partir des lignes de facturation, rends un PDF, et envoie-le avec un lien qui te dit quand il a été ouvert.",
+  "whatYouLose": [
+    "la synchro bidirectionnelle avec Salesforce, HubSpot et Pipedrive qui démarre et clôture la fiche de l’affaire",
+    "une signature que l’équipe achats de l’acheteur accepte sans discuter",
+    "l’encaissement de paiement dans le document au moment de la signature",
+    "les analyses de consultation par section qui montrent où l’acheteur a arrêté de lire",
+    "les workflows d’approbation et la tarification verrouillée qui empêchent un commercial de faire une remise au-delà de son autorité"
+  ],
+  "whyPeopleStillPay": "Parce qu’il se situe entre le CRM et l’argent. La proposition est générée depuis l’opportunité, la signature la clôture, et la fiche se met à jour elle-même — cette boucle est ce qu’achète une équipe commerciale, et le document n’en est que la partie visible.",
+  "prompt": "Construis un générateur de propositions pour une personne qui vend son propre travail.\n\nLa boucle centrale : une proposition est un fichier YAML nommant un modèle, un client, et une liste de lignes de facturation. Chaque ligne a une description, une quantité, un prix unitaire et une remise optionnelle. Rends-le en HTML avec un moteur de templating, puis en PDF, avec le tableau de tarification calculé à partir des lignes plutôt que tapé — une proposition où le total est en désaccord avec les lignes est l’échec qui coûte de l’argent réel, donc calcule-le une fois et vérifie l’arithmétique dans un test.\n\nLes blocs de contenu vivent comme des fichiers Markdown séparés — périmètre, conditions, calendrier, à propos — et le YAML liste lesquels inclure et dans quel ordre. Changer une condition une fois devrait la changer dans chaque proposition générée après et dans aucune générée avant, donc enregistre les versions de blocs utilisées dans la sortie.\n\nEnvoie en générant un lien unique par destinataire plutôt qu’en attachant le PDF. Journalise un événement quand le lien est ouvert, avec un horodatage et jusqu’où la personne a fait défiler la page. C’est un signal bien plus faible que les analyses par section de PandaDoc, et ça vaut quand même la peine de l’avoir : savoir qu’une proposition n’a jamais été ouverte change la relance.\n\nL’acceptation est un nom tapé plus une case de consentement, enregistrée avec un horodatage, l’IP et le hash du document, et contresignée dans un PDF final. Indique clairement dans l’interface que ceci enregistre un accord et n’est pas une signature électronique qualifiée.\n\nHors périmètre : l’intégration CRM, l’encaissement de paiement, les chaînes d’approbation, et l’édition multi-utilisateur. La gestion de devise est une décision, prise une fois : stocke les montants comme des unités mineures entières et formate au moment du rendu.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux importer mes modèles PandaDoc ?",
+      "a": "Pas de façon utile. Tu peux exporter un document terminé en PDF, mais les modèles PandaDoc sont une structure de blocs dans son propre format, et les reconstruire comme des blocs Markdown est une passe manuelle — une heure ou deux pour une poignée de modèles."
+    },
+    {
+      "q": "Est-ce que le client peut payer depuis le document ?",
+      "a": "Non. Prendre un paiement implique un processeur de paiement, un compte marchand et la gestion des échecs et des remboursements, et c’est un projet entièrement séparé. Ceci s’arrête à une proposition acceptée ; la facture est un outil différent."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un petit VPS à environ 5 $ par mois plus l’email transactionnel, qui est gratuit au volume qu’envoie une seule personne. Aucun coût par document ou par signature."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "La boucle de retour vers le CRM. PandaDoc justifie son prix quand l’opportunité génère la proposition et que la signature met à jour l’opportunité ; un générateur autonome te fait retaper les deux bouts."
+    }
+  ]
+}
