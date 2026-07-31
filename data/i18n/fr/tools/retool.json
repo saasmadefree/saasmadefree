@@ -1,0 +1,19 @@
+{
+  "tagline": "Un constructeur d’outils internes auto-hébergé pour une base de données de confiance",
+  "verdictSummary": "Un constructeur CRUD piloté par le schéma — générer des vues liste/détail/édition et deux ou trois permissions par rôle à partir d’un schéma de base de données — est un vrai projet de week-end pour les besoins internes d’une petite équipe. Ce qui ne survit pas : les centaines de connecteurs préconstruits de Retool, sa bibliothèque de composants visuelle en glisser-déposer, et des années de cas limites dans la gestion des permissions et du déploiement pour de plus grandes équipes.",
+  "coreLoopDIY": "Pointe vers une base de données de confiance, génère des vues CRUD — liste, détail, création, édition — à partir de son schéma, et verrouille l’accès en lecture/écriture avec deux ou trois rôles fixes.",
+  "whatYouLose": [
+    "des centaines de connecteurs préconstruits",
+    "un constructeur d’interface visuel en glisser-déposer",
+    "les builds d’applications mobiles natives",
+    "la granularité de permissions de niveau entreprise"
+  ],
+  "whyPeopleStillPay": "Les écrans CRUD générés sont la partie facile ; rester fiable à mesure que les connecteurs, les permissions et le schéma sous-jacent dérivent tous au fil des années est ce qu’une équipe paie réellement pour ne pas avoir à posséder.",
+  "prompt": "Construis un générateur d’outils internes auto-hébergé limité à une connexion de base de données, pas une plateforme low-code générale. Utilise Next.js/TypeScript avec un pilote Postgres (ou la vraie base de données de ton équipe). Au démarrage, introspecte le schéma de la base de données connectée et génère automatiquement : une vue liste par table (paginée, triable, filtrable), une vue détail/édition avec des saisies adaptées au type, et un formulaire de création. Implémente exactement deux rôles — admin (lecture/écriture complète) et membre (lecture seule, ou lecture/écriture sur une liste blanche explicite par table) — appliqués côté serveur, pas seulement cachés dans l’interface. Ajoute un journal d’activité simple enregistrant qui a changé quelle ligne et quand. Prends en charge un connecteur d’API REST (un point de terminaison externe nommé avec une clé d’API stockée côté serveur) dont la réponse peut être mappée vers une vue de table en lecture seule, pour le cas courant d’intégrer une source de données externe. Ne construis pas d’éditeur visuel glisser-déposer, de place de marché de connecteurs, ni de builds d’applications mobiles natives — l’interface, ce sont les écrans CRUD auto-générés décrits ci-dessus, rien de plus personnalisable. Nécessite un hébergement et un accès à la base de données que tu pointes ; aucun autre service externe requis à moins de câbler le connecteur REST optionnel.",
+  "faq": [
+    { "q": "Est-ce que des coéquipiers non techniques peuvent personnaliser la mise en page ?", "a": "Pas vraiment — il n’y a pas d’éditeur glisser-déposer ici. La mise en page vient des vues de schéma auto-générées, ce qui est un vrai recul par rapport au constructeur visuel de Retool." },
+    { "q": "À combien de sources de données est-ce que ça peut se connecter ?", "a": "La base de données unique vers laquelle il est pointé, plus optionnellement un connecteur d’API REST. Les centaines de connecteurs préconstruits de Retool sont exactement ce que ce projet ne tente pas de reproduire." },
+    { "q": "Est-ce que c’est sûr d’exposer ça à toute mon équipe ?", "a": "Seulement avec une vraie réflexion sur le modèle à deux rôles — il est intentionnellement simple. Si tu as besoin d’une granularité de permissions par table et par champ, c’est l’une des choses que tu abandonnes." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "L’hébergement plus ce que coûte la base de données elle-même — typiquement quelques dollars par mois pour l’outil interne d’une petite équipe, sans frais par siège." }
+  ]
+}

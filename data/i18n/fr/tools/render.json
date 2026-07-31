@@ -1,0 +1,19 @@
+{
+  "tagline": "Une plateforme auto-hébergée sur un seul serveur pour un service conteneurisé",
+  "verdictSummary": "Déployer un service web conteneurisé avec du TLS automatique et des contrôles de santé, c’est le même cœur constructible que décrit déjà la fiche Railway de ce catalogue — Render et Railway se ressemblent assez pour que le projet honnête soit le même schéma de PaaS sur un seul serveur, pas un second, différent. Ce qui ne survit ni dans un cas ni dans l’autre : l’infrastructure multi-régions gérée et quelqu’un d’autre d’astreinte quand une machine tombe.",
+  "coreLoopDIY": "Accepte un dépôt Git ou une image de conteneur, construis-le et fais-le tourner dans Docker sur un serveur, route un domaine vers lui avec du HTTPS automatique, et garde des journaux et des contrôles de santé basiques — la même boucle centrale que la fiche Railway de ce catalogue.",
+  "whatYouLose": [
+    "l’infrastructure multi-régions gérée",
+    "le provisionnement de base de données en un clic",
+    "la mise à l’échelle automatique sous charge",
+    "quelqu’un d’autre d’astreinte pour les incidents d’infrastructure"
+  ],
+  "whyPeopleStillPay": "Un bouton de déploiement est facile à simuler ; être l’équipe qui se fait biper quand un data center a une mauvaise nuit, c’est le vrai produit, comme pour n’importe quel PaaS géré.",
+  "prompt": "Construis le même PaaS sur un seul serveur que décrit la fiche Railway de ce catalogue — la vraie forme de Render (accepter un dépôt ou une image, construire avec Docker, router avec du HTTPS automatique, vérifier la santé avant de basculer le trafic) est assez proche de celle de Railway pour que la réimplémenter comme un second système, conçu différemment, serait du travail malhonnête pour occuper le temps. Utilise Docker Compose avec Caddy comme reverse proxy pour du TLS Let's Encrypt automatique. Construis un petit service de plan de contrôle qui surveille les nouveaux commits ou les déclencheurs de redéploiement manuel, construit l’image, vérifie la santé du nouveau conteneur avant de router le trafic vers lui avec un échange bleu-vert, et garde les dernières images pour un retour arrière instantané. Stocke les variables d’environnement chiffrées au repos, injectées au démarrage du conteneur. Diffuse des journaux de build et d’exécution bornés par appli via un tableau de bord minimal, avec des actions de redémarrage, retour arrière, et redéploiement. Ajoute une alerte basique au niveau de l’hôte sur le disque et la mémoire. Ne construis pas d’infrastructure multi-régions, de mise à l’échelle automatique, ni de provisionnement de base de données géré — ceci tourne sur un serveur, et cette limitation doit figurer dans le README, pas cachée. Nécessite un serveur (un VPS modeste suffit pour quelques petites applis) et un domaine qui pointe dessus.",
+  "faq": [
+    { "q": "Est-ce que c’est différent du projet Railway de ce catalogue ?", "a": "Pas fondamentalement — Render et Railway résolvent le même problème de la même façon, donc ce projet réutilise délibérément ce schéma plutôt que d’en inventer un second artificiellement différent." },
+    { "q": "Que se passe-t-il si le serveur tombe ?", "a": "Tout ce qui tourne dessus tombe avec lui — il n’y a pas de basculement automatique, le vrai compromis pour se passer de l’infrastructure multi-régions gérée." },
+    { "q": "Est-ce que ça supporte les bases de données nativement ?", "a": "Tu peux déployer un conteneur de base de données de la même façon que n’importe quelle autre appli, mais il n’y a pas de base de données gérée en un clic avec sauvegardes automatiques — c’est à toi de le faire." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Ce que coûtent ton VPS et ton domaine — souvent moins de 10 $ par mois au total pour une poignée de petites applis, contre la facturation à l’usage de Render." }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Une simple table de chaînes avec une API, tarifée selon le nombre de chaînes que tu as.",
+  "verdictSummary": "POEditor est l’outil le moins tranché de cette catégorie : chaînes, langues, contributeurs, une API, et un prix qui grimpe avec le nombre de chaînes. Ce dernier point est la raison d’envisager de le remplacer — le code que tu écrirais est petit, et ce que tu arrêtes de payer, c’est un compteur. Ce que tu continues de payer ailleurs, c’est le côté contributeurs : inviter des traducteurs qui ne sont pas développeurs et leur donner un endroit agréable où travailler.",
+  "coreLoopDIY": "Garde chaque chaîne et traduction dans une table unique avec une API stable, synchronise dans les deux sens avec ton dépôt, et donne aux traducteurs non développeurs un éditeur simple sans aucune trace de git.",
+  "whatYouLose": [
+    "l’import et l’export sur une longue liste de formats de fichiers",
+    "commander une traduction humaine ou automatique depuis l’outil",
+    "la gestion des contributeurs, les invitations et les permissions par langue",
+    "les intégrations avec GitHub, GitLab et Bitbucket maintenues fonctionnelles pour toi",
+    "ne pas avoir à penser au nombre de chaînes"
+  ],
+  "whyPeopleStillPay": "Parce que les traducteurs ne sont généralement pas des ingénieurs. Un endroit où ils peuvent se connecter et taper, sans dépôt ni pull request, est l’essentiel de ce qu’achète l’abonnement, et c’est la partie qu’un projet personnel a tendance à sauter.",
+  "prompt": "Construis une table de chaînes pour un projet avec des traducteurs extérieurs.\n\nSchéma : termes (clé, texte source, note de contexte, formes plurielles), langues, et traductions. Une API REST stable par-dessus — lister les termes pour une langue, mettre à jour une traduction, exporter une langue comme fichier — parce que tout le reste de ce projet est un client de cette API.\n\nSynchro git dans les deux sens : importe les chaînes source depuis le dépôt sur un planning, et exporte les traductions en retour comme une branche et une pull request plutôt qu’un push direct. Une pull request veut dire qu’un humain relit le diff avant qu’il ne fusionne, ce qui est le garde-fou qui te permet de donner un accès en écriture à l’éditeur aux traducteurs sans leur donner un accès en écriture à la base de code.\n\nL’éditeur est fait pour des gens qui n’ont jamais utilisé git. Une chaîne à la fois, la source au-dessus, la note de contexte à côté, les formes plurielles comme des boîtes séparées quand la langue en a besoin, et un raccourci clavier pour enregistrer et avancer. Rien sur les branches, les commits ou les fichiers. C’est là que les outils payants gagnent leur argent et là où les outils maison échouent généralement — un traducteur qui doit penser à l’outillage traduit moins.\n\nAjoute deux vérifications à l’enregistrement : les placeholders présents dans la source doivent apparaître dans la traduction, et les formes plurielles requises par la langue cible doivent toutes être remplies. Rejette sur la première, avertis sur la seconde.\n\nLes invitations sont un lien signé par langue, expirant, sans création de compte. Chaque compte que tu exiges est un traducteur que tu perds.\n\nHors périmètre : les formats de fichiers au-delà des deux ou trois que tu utilises, la commande de traduction automatique, et une mémoire de traduction.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux importer mon projet POEditor ?",
+      "a": "Oui — POEditor exporte par langue dans des formats standards, et son API liste les termes avec leurs notes de contexte et leurs pluriels. C’est l’une des migrations les plus propres de la catégorie."
+    },
+    {
+      "q": "Et la limite de chaînes ?",
+      "a": "Il n’y en a pas, ce qui est le principal argument financier pour le construire. Ton coût, c’est un serveur, et ça lui est égal que tu aies 3 000 chaînes ou 30 000."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un petit VPS avec Postgres à environ 10 $ par mois, fixe. Aucun coût par chaîne ou par langue."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "La couverture des formats. POEditor lit une longue liste de formats, et le jour où tu as besoin d’un XML Android avec des pluriels ou d’un .xliff venant d’un prestataire, c’est un parseur que tu écris plutôt qu’un élément de menu."
+    }
+  ]
+}

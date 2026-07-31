@@ -1,0 +1,32 @@
+{
+  "tagline": "Une boîte de support pour les équipes qui vivent déjà dans Linear, avec chaque conversation attachée à un ticket.",
+  "verdictSummary": "Toute la décision de conception de Productlane, c’est que le gestionnaire de tickets est la source de vérité et que le support en est une vue. C’est une idée réelle et inhabituellement propre, et c’est aussi ce qui rend le projet personnel abordable : tu n’écris pas un support client, tu écris une synchro. C’est dans la synchro que vit la difficulté — deux systèmes, deux ensembles d’état, et des conflits qui se résolvent mal en silence.",
+  "coreLoopDIY": "Transforme les emails entrants en fils de discussion, attache chaque fil à un ticket dans ton gestionnaire, et garde le statut dans une seule direction pour que les deux systèmes ne puissent jamais être en désaccord.",
+  "whatYouLose": [
+    "le widget de chat en direct et la messagerie intégrée à l’appli",
+    "l’intégration Linear maintenue, gardée fonctionnelle à travers leurs changements d’API",
+    "les fonctionnalités de boîte de réception d’équipe partagée : assignation, report, notes internes à grande échelle",
+    "le portail client où les utilisateurs voient leurs propres tickets",
+    "le suivi et le reporting des SLA"
+  ],
+  "whyPeopleStillPay": "Parce que garder un outil de support et un gestionnaire de tickets en accord est un travail de maintenance qui ne se termine jamais. L’API change, un cas limite apparaît, et quelqu’un doit s’en soucier. Ce quelqu’un, c’est ce qu’achète le prix par siège.",
+  "prompt": "Construis une boîte de support par email qui traite ton gestionnaire de tickets comme la source de vérité.\n\nRéception : une adresse fourre-tout livrée par webhook depuis ton fournisseur d’email. Regroupe en fils via les en-têtes References et In-Reply-To, avec un repli sur un jeton dans l’adresse de réponse — ne regroupe jamais uniquement sur la ligne de sujet, parce que deux clients qui écrivent « Bug » deviennent une seule conversation et quelqu’un lit la mauvaise réponse.\n\nChaque fil peut être lié à exactement un ticket dans ton gestionnaire, créé depuis le fil ou attaché à un ticket existant. Synchronise dans une seule direction : le gestionnaire possède le statut, cette boîte de réception le reflète. La synchro à sens unique est une contrainte délibérée qui élimine toute la catégorie de bugs de conflit, et le coût — tu changes le statut dans le gestionnaire, pas ici — est faible.\n\nInterroge l’API du gestionnaire sur un planning et réconcilie, plutôt que de dépendre uniquement des webhooks. Les webhooks se font manquer, et un outil de support qui montre un statut périmé, c’est comme ça qu’un client se fait dire que quelque chose est livré alors que ce n’est pas le cas.\n\nQuand un ticket se ferme, rédige une réponse pour chaque fil qui lui est attaché et garde-la en attente pour qu’un humain l’envoie. Ne l’envoie jamais automatiquement : que le correctif soit arrivé et que le problème spécifique du client soit résolu ne sont pas la même affirmation.\n\nLes réponses partent via ton fournisseur avec des en-têtes de fil corrects pour qu’elles atterrissent dans la conversation existante plutôt que d’en démarrer une nouvelle, et depuis un domaine avec SPF, DKIM et DMARC configurés.\n\nHors périmètre : le chat en direct, un portail client, l’assignation et les SLA, et tout chemin d’écriture vers le gestionnaire au-delà de la création et la liaison de tickets.",
+  "faq": [
+    {
+      "q": "Est-ce que je peux importer mes conversations Productlane ?",
+      "a": "L’export te donne le texte des messages ; ce qui ne voyage pas, c’est le lien entre chaque conversation et son ticket Linear, ce qui est la partie autour de laquelle tout l’outil est organisé. La plupart des gens relient à la main les fils encore ouverts et archivent le reste."
+    },
+    {
+      "q": "Est-ce que ça marche avec autre chose que Linear ?",
+      "a": "Oui — la synchro est à sens unique et touche quatre points de terminaison, donc GitHub Issues ou Jira marchent à peu près aussi bien. Productlane lui-même est façonné pour Linear, ce qui est précisément pourquoi un projet générique est faisable ici."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Un VPS avec Postgres à environ 10 $ par mois plus l’email transactionnel, qui coûte quelques dollars à faible volume. Les appels à l’API du gestionnaire sont gratuits dans les limites de débit normales."
+    },
+    {
+      "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
+      "a": "Quelqu’un qui maintient l’intégration. Les gestionnaires de tickets changent leurs API, et une synchro maintenue par une seule personne casse silencieusement un mardi ; le vrai travail du produit payant, c’est de le remarquer avant toi."
+    }
+  ]
+}
