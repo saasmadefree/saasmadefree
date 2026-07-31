@@ -280,6 +280,8 @@ const SLUG_DOMAIN_OVERRIDES = new Map([
 const MANUAL_EXCLUSIONS = new Map([
   ['google-ai-pro', 'same product as our existing "gemini" entry — "Google AI Pro" is the 2026 rebrand of Gemini Advanced, and gemini.json\'s pricing.plan is already literally "Google AI Pro" at the same $19.99. A second entry would be a duplicate page for one subscription, not two.'],
   ['microsoft-365-personal', 'no confirmed product-specific hostname exists: the pricing page lives at a path on the huge microsoft.com corporate domain, and the web-app hostname (m365.cloud.microsoft) is shared across every Microsoft 365 tier, not this one. Excluded per the domain-safety rule rather than firing on unrelated Microsoft traffic.'],
+  ['readwise', 'same underlying subscription as our existing "readwise-reader" entry — upstream\'s own data has both "readwise" and "readwise-reader" on the identical domain (readwise.io) with the identical pricing.plan ("Readwise Full"). It\'s already blocked by the domain-collision check via DOMAIN_OVERRIDES, but is listed here explicitly so the reason is documented rather than looking like an ordinary domain clash.'],
+  ['notion', 'deliberately removed from the catalogue by owner decision (see docs/import-report.md) — was previously hand-curated data/tools/notion.json, deleted along with its i18n files and 27 relatedSlugs repointed. Without this entry, "slug already present" no longer blocks upstream\'s own notion.json from being re-imported by a future --limit run, so it\'s excluded here explicitly. Do not re-add without a new owner decision.'],
 ]);
 
 function buildDomains(entry) {
