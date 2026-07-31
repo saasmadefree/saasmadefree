@@ -1,0 +1,32 @@
+{
+  "tagline": "Une bannière de cookies et une politique de confidentialité qu’un avocat tient à jour.",
+  "verdictSummary": "La bannière est un petit bout de JavaScript et il en existe une bonne version open source. Ce que vend vraiment iubenda, c’est un texte juridique rédigé et maintenu par des avocats à travers les juridictions, mis à jour quand un régulateur ou un tribunal change ce qui est exigé, généré pour les services spécifiques que ton site utilise. C’est un abonnement à du travail juridique. Écrire ta propre politique à partir d’un modèle est une décision sur le risque, pas un projet à construire.",
+  "coreLoopDIY": "Possède correctement la moitié technique : le consentement capturé avant que quoi que ce soit ne charge, stocké avec une preuve, honoré à chaque visite suivante — et obtiens le texte de la politique auprès d’un avocat.",
+  "whatYouLose": [
+    "le texte de politique de confidentialité et de cookies maintenu par des avocats à mesure que la loi change",
+    "les clauses par service générées à partir des outils que ton site utilise réellement",
+    "les traductions de ce texte dans chaque langue dans laquelle tu publies",
+    "la base de consentements hébergée et ses enregistrements",
+    "quelqu’un à désigner si une politique est contestée"
+  ],
+  "whyPeopleStillPay": "Parce que le risque de conformité se situe dans les mots, pas dans le widget, et cinq euros par mois pour un texte que quelqu’un maintient professionnellement, c’est bon marché face à une plainte.",
+  "prompt": "Construis un gestionnaire de consentement techniquement correct, et sois explicite sur le fait que le texte juridique n’est pas son travail.\n\nLe README doit dire, dans le premier paragraphe : ceci gère la mécanique du consentement ; le texte de la politique doit venir d’une source qualifiée ; rien ici n’est un conseil juridique.\n\nStack : un petit script plus un serveur avec Postgres. Un domaine avec TLS.\n\nLa règle dont tout le reste découle : rien de non essentiel ne charge avant le consentement. Les scripts sont déclarés en configuration par catégorie (strictement nécessaire, préférences, statistiques, marketing) et ne sont injectés qu’après consentement pour cette catégorie. N’injecte jamais puis n’essaie de désactiver après coup — à ce moment-là, le tiers a déjà vu l’adresse IP du visiteur, ce qui est exactement ce que le consentement était censé empêcher.\n\nExigences de bannière, chacune une vraie obligation dans l’UE et facile à mal faire :\n- Refuser doit être aussi facile qu’accepter — même niveau, même mise en avant, même nombre de clics. Écris un test qui vérifie que les deux boutons sont des frères de même poids.\n- Bascules granulaires par catégorie, toutes désactivées par défaut sauf strictement nécessaire.\n- Pas de cases précochées, pas de dark patterns, pas de cookie wall.\n- Retirer le consentement doit être aussi facile que le donner : un contrôle persistant et accessible sur chaque page.\n\nPreuve de consentement : stocke un enregistrement avec un identifiant aléatoire (pas un compte, pas un email), les catégories acceptées, l’horodatage, la version de la bannière et la version de la politique en vigueur à ce moment-là. Le versionnement est la partie que les gens sautent et la partie qui rend l’enregistrement significatif — une preuve de consentement à une politique que tu ne peux plus reproduire ne prouve rien. Garde chaque version.\n\nRe-consentement : quand la version de la politique ou la liste de scripts change de façon significative, redemande plutôt que de supposer que l’ancien consentement tient toujours.\n\nUne page côté visiteur montrant ses choix actuels et lui permettant de les changer ou de les retirer, accessible sans compte.\n\nAuto-audit : crawle tes propres pages avec un navigateur headless, une fois avec le consentement refusé, et liste chaque requête sortante qui a quand même eu lieu. Ce rapport est le test honnête de savoir si l’implémentation fonctionne, et il échoue généralement la première fois.\n\nÉcris des tests pour l’absence de requête non essentielle avant le consentement, pour l’égalité de mise en avant des boutons, pour les enregistrements de consentement versionnés, et pour le retrait qui prend effet immédiatement.\n\nNe génère pas de texte de politique.",
+  "faq": [
+    {
+      "q": "Pourquoi « injecter après consentement » est-il toute la conception ?",
+      "a": "Parce que charger un script tiers et le désactiver plus tard a déjà envoyé l’adresse IP du visiteur et souvent posé des cookies. Un consentement qui arrive après la requête n’est pas un consentement, et c’est l’échec le plus courant des bannières faites maison."
+    },
+    {
+      "q": "Pourquoi versionner l’enregistrement de consentement ?",
+      "a": "Parce qu’un enregistrement disant « accepté le 3 mars » ne vaut rien si tu ne peux pas montrer ce qui a été accepté. Stocker la version de la bannière et de la politique, et garder chaque version, c’est ce qui transforme une ligne de log en preuve."
+    },
+    {
+      "q": "Le crawl d’auto-audit est-il vraiment nécessaire ?",
+      "a": "Oui, et il échouera la première fois. Un tag ajouté par un plugin marketing, une police chargée depuis un CDN, une vidéo intégrée — tout ça se déclenche avant le consentement à moins que quelqu’un ne vérifie. Le crawl est le seul moyen de le savoir."
+    },
+    {
+      "q": "Puis-je écrire ma propre politique de confidentialité ?",
+      "a": "Tu peux, et beaucoup de petits sites le font à partir de modèles. Ce à quoi tu renonces, c’est que le texte soit maintenu quand la loi bouge et adapté aux services que tu utilises réellement — ce qui est précisément l’abonnement."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Un stockage déjà à l’intérieur du téléphone, invisible jusqu’à ce qu’il se remplisse.",
+  "verdictSummary": "iCloud+ n’est pas vraiment un produit de stockage, c’est une fonctionnalité du système d’exploitation avec une facture : sauvegardes d’appareil, photothèque, synchro du trousseau et Private Relay, tous câblés dans des endroits qu’aucun tiers ne peut atteindre. Cette intégration n’est pas quelque chose que du code remplace. Ce qu’un projet perso peut faire, c’est rencontrer le téléphone là où il est, à travers les protocoles ouverts que les propres applications d’Apple parlent déjà, et faire arriver contacts, calendriers et fichiers sur l’appareil sans application.",
+  "coreLoopDIY": "Sers tes propres contacts, calendriers et fichiers via CalDAV, CardDAV et WebDAV pour que les applications intégrées du téléphone se synchronisent contre ton serveur sans rien installer.",
+  "whatYouLose": [
+    "la sauvegarde complète de l’appareil et la restauration sur un nouveau téléphone",
+    "la photothèque avec sa synchro, son partage et sa recherche sur l’appareil",
+    "la synchro du trousseau et des mots de passe entre appareils",
+    "Private Relay et Masquer mon e-mail",
+    "l’invisibilité — ça marche sans que personne ne configure quoi que ce soit"
+  ],
+  "whyPeopleStillPay": "Parce que c’est déjà activé et ça restaure un téléphone perdu en une étape. Dix dollars pour les photos de la famille et la capacité de sortir d’une boutique avec un appareil de remplacement fonctionnel, ce n’est pas une vente difficile.",
+  "prompt": "Construis un serveur personnel avec lequel le téléphone sait déjà parler. Pas d’application, pas d’installation — juste des protocoles ouverts.\n\nStack : ton choix, Postgres, Docker Compose, et un vrai domaine avec un TLS valide, parce que les clients Apple refusent tout le reste. Utilise des bibliothèques serveur CalDAV, CardDAV et WebDAV existantes plutôt que d’implémenter les protocoles à la main.\n\nTrois points d’entrée :\n1. CardDAV — contacts, lecture-écriture, avec un aller-retour vCard qui préserve les photos et les champs personnalisés. Modifier un contact sur le téléphone doit réécrire correctement.\n2. CalDAV — calendriers, lecture-écriture, avec récurrence, exceptions, alarmes et fuseaux horaires. La récurrence, c’est là que ces implémentations cassent ; teste une série hebdomadaire avec deux occurrences modifiées et une suppression.\n3. WebDAV — fichiers, montable depuis le Finder macOS et accessible depuis l’application Fichiers d’iOS.\n\nLa découverte compte plus qu’il n’y paraît : implémente les redirections .well-known/caldav et .well-known/carddav et le flux de découverte d’URL principale, pour qu’un utilisateur tape une adresse de serveur et un mot de passe d’application plutôt que cinq URL. La moitié de la difficulté perçue d’auto-héberger ça, c’est la découverte qui ne fonctionne pas.\n\nAuthentification : des mots de passe d’application par appareil, listés, nommés et révocables individuellement, jamais le mot de passe du compte. Un téléphone perdu devrait pouvoir être coupé en un clic.\n\nUne interface web simple pour les mêmes données, pour que contacts et calendriers soient aussi modifiables depuis un navigateur desktop.\n\nSois explicite dans le README sur ce qui est délibérément absent : la sauvegarde d’appareil, la photothèque, et la synchro du trousseau ne sont pas des protocoles ouverts et ne sont pas tentées.\n\nÉcris des tests pour l’aller-retour vCard incluant une photo et un champ personnalisé, pour la récurrence CalDAV avec des occurrences modifiées et supprimées, et pour un mot de passe d’application révoqué qui échoue immédiatement.\n\nNe tente ni sauvegarde d’appareil, ni synchro de photothèque, ni synchro de mots de passe.",
+  "faq": [
+    {
+      "q": "Les applications intégrées d’Apple se synchronisent-elles vraiment contre un serveur tiers ?",
+      "a": "Oui — Contacts et Calendrier parlent CardDAV et CalDAV nativement, et Fichiers parle WebDAV. Ajoute le compte dans les réglages et il se comporte comme n’importe quel autre. C’est toute la raison pour laquelle ce projet vaut la peine."
+    },
+    {
+      "q": "Qu’est-ce qui casse le plus souvent ?",
+      "a": "La découverte et la récurrence. La découverte parce que les clients attendent des redirections well-known spécifiques, et la récurrence parce qu’un événement récurrent avec des occurrences modifiées et supprimées a une représentation délicate que beaucoup de serveurs ratent subtilement."
+    },
+    {
+      "q": "Pourquoi des mots de passe d’application par appareil ?",
+      "a": "Parce qu’un téléphone stocke l’identifiant en permanence, et perdre le téléphone ne devrait pas signifier changer le mot de passe sur tous les autres appareils. Des identifiants nommés et révocables individuellement font de ça un seul clic."
+    },
+    {
+      "q": "Comment récupérer mes données d’iCloud ?",
+      "a": "Le portail de confidentialité d’Apple exporte contacts, calendriers, photos et fichiers Drive. Les sauvegardes d’appareil sont l’exception — elles ne sont exportables sous aucune forme utilisable, ce qui est précisément pourquoi cette moitié du produit n’est pas reconstructible."
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "tagline": "Une boîte partagée où chaque message a un seul propriétaire et un seul statut.",
+  "verdictSummary": "Front, c’est de l’email avec une machine à états greffée dessus, et les deux moitiés sont du logiciel ordinaire — des boîtes partagées open source matures existent depuis des années. Un week-end te donne l’assignation, les statuts, les commentaires internes et un flux de brouillons partagés. Ce qui empêche ça d’être un « oui », c’est la liste de canaux : WhatsApp demande une vérification d’entreprise Meta, SMS demande un opérateur et une campagne enregistrée, et les deux sont des processus d’approbation plutôt que du code. L’email seul demande aussi un fournisseur et un domaine avec une réputation.",
+  "coreLoopDIY": "Une boîte partagée où chaque conversation a exactement un assigné et un statut, les commentaires internes vivent à côté du fil et ne peuvent jamais atteindre le client, et une réponse fait avancer l’état automatiquement.",
+  "whatYouLose": [
+    "les canaux WhatsApp et SMS, qui demandent une vérification d’entreprise et un opérateur",
+    "les applications mobiles",
+    "les brouillons partagés avec édition collaborative en temps réel",
+    "les connecteurs qui remontent le contexte CRM et facturation dans la barre latérale",
+    "les statistiques de temps de réponse et de résolution prêtes à l’emploi"
+  ],
+  "whyPeopleStillPay": "Parce qu’une boîte partagée ne vaut que le nombre de canaux qu’elle avale, et chaque canal supplémentaire est une relation d’affaires plutôt qu’une intégration. Front vend le fait d’avoir déjà fait tout ce travail.",
+  "prompt": "Construis une boîte partagée dont la propriété fondamentale est qu’aucun message n’est jamais dans deux états à la fois.\n\nStack : ton choix, Postgres, Docker Compose. Réception du courrier : utilise un fournisseur d’email entrant qui poste un webhook signé, et vérifie cette signature. Envoi : SMTP via un fournisseur transactionnel sur un domaine que tu possèdes avec SPF, DKIM et DMARC configurés — documente les trois dans le README, parce que sans eux tes réponses atterrissent en spam.\n\nLa machine à états, c’est le produit. Une Conversation a exactement un assigné (éventuellement personne) et exactement un statut parmi : ouvert, reporté jusqu’à un horodatage, en attente du client, fermé. Chaque transition est écrite dans un journal immuable avec qui, quand, de quoi et vers quoi. Règles que le code impose :\n- Envoyer une réponse passe automatiquement le statut à en-attente-du-client.\n- Un message entrant sur une conversation en-attente-du-client ou reportée la rouvre et efface le report.\n- Fermer sans être assigné est refusé ; tu possèdes ce que tu fermes.\n\nLes commentaires internes sont une entité séparée des messages, stockée dans une table différente, rendue dans un style visuellement distinct, et — c’est la propriété de sécurité qui mérite d’être testée — l’éditeur de réponse ne peut physiquement pas les inclure. Écris un test qui vérifie que le corps d’un message sortant ne contient jamais de texte de commentaire.\n\nAssignation : assigne à une personne, ou prends-le, avec un round-robin optionnel sur les personnes disponibles. Une conversation entrante non assignée plus ancienne qu’un délai configurable apparaît dans une liste « personne ne possède ça » sur le tableau de bord.\n\nMise en fil par Message-ID, In-Reply-To et References, avec un repli sujet-plus-participant identique pour les clients qui cassent les références. Stocke le MIME brut. Retire les images distantes et ne les charge jamais automatiquement.\n\nRéponses prêtes avec interpolation {{espace-réservé}}, et tags.\n\nUn rapport : temps médian de première réponse et temps médian de fermeture, par semaine, calculé à partir du journal de transitions.\n\nÉcris des tests pour chaque règle de transition de statut ci-dessus, pour la protection contre la fuite de commentaires internes, et pour le webhook entrant qui rejette une requête non signée.\n\nNe construis ni WhatsApp, ni SMS, ni application mobile. Indique dans le README que ce sont les raisons pour lesquelles quelqu’un continue de payer.",
+  "faq": [
+    {
+      "q": "Pourquoi « les commentaires internes ne peuvent pas fuiter » mérite-t-il un test dédié ?",
+      "a": "Parce que c’est le seul bug de cette catégorie avec de vraies conséquences — une note brute d’un collègue qui atteint le client. Garder les commentaires dans une table séparée et vérifier que le corps sortant ne les contient jamais coûte dix minutes et supprime toute la classe de bugs."
+    },
+    {
+      "q": "À quel point est-ce dur d’ajouter WhatsApp plus tard ?",
+      "a": "Plus dur que tout le reste de ce projet combiné, et surtout pas technique : un compte entreprise Meta, une vérification d’entreprise, un numéro de téléphone qui n’est pas déjà sur WhatsApp, et des modèles de message qui demandent une approbation avant de pouvoir démarrer une conversation. Ce chemin d’approbation est une grosse partie de ce que vend Front."
+    },
+    {
+      "q": "Puis-je utiliser mon Gmail existant plutôt qu’un fournisseur entrant ?",
+      "a": "Pour une seule boîte mail, oui, via l’API Gmail avec OAuth. Ça devient délicat avec plusieurs boîtes et pour envoyer au nom d’un alias, ce qui est pourquoi le prompt part d’un fournisseur — mais la machine à états est identique dans les deux cas."
+    },
+    {
+      "q": "Front exporte-t-il mon historique ?",
+      "a": "Il existe un export des conversations et une API que tu peux parcourir, donc l’archive de messages est récupérable. L’historique d’assignation, les commentaires et les statistiques sortent sous des formes difficiles à réimporter, donc traite l’export comme une archive plutôt qu’une migration."
+    }
+  ]
+}

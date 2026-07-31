@@ -1,0 +1,32 @@
+{
+  "tagline": "L’administration RH dont une entreprise en croissance a soudain besoin d’un coup.",
+  "verdictSummary": "Retire la paie et ce qui reste, c’est une base de personnes, des soldes de congés, des documents et un organigramme — du logiciel ordinaire, et un week-end pour une petite entreprise, ce qui en fait un « en partie » plutôt qu’un « non ». Ce que tu prends en charge, c’est la partie ennuyeuse et propre à chaque juridiction : des règles d’acquisition de congés qui varient selon le pays et le contrat, des obligations de conservation de documents, et l’accès mobile qui décide si quelqu’un pose vraiment ses congés dedans.",
+  "coreLoopDIY": "Fais tourner le registre RH honnêtement : personnes, contrats, documents, et un système de congés dont les règles d’acquisition sont écrites et testables plutôt qu’approximées.",
+  "whatYouLose": [
+    "la paie et ses déclarations propres à chaque pays",
+    "les applications mobiles, et donc l’adoption réelle",
+    "les modèles de documents de conformité maintenus par pays",
+    "les modules d’évaluation de performance et de recrutement",
+    "quelqu’un d’autre qui détient les données personnelles de tes employés"
+  ],
+  "whyPeopleStillPay": "Parce que l’administration RH n’est le travail de personne jusqu’à ce qu’elle devienne le problème de tout le monde, et huit dollars par tête, c’est moins que les heures qu’un fondateur passe à valider des congés dans un tableur.",
+  "prompt": "Construis un registre RH dont le moteur de congés est correct plutôt qu’à peu près correct.\n\nStack : ton choix, Postgres, Docker Compose, un domaine avec TLS, et un fournisseur d’email transactionnel.\n\nPersonnes : détails personnels, début et fin d’emploi, type de contrat, régime de travail (quels jours, combien d’heures), manager, et équipe. Les contrats sont versionnés avec des dates d’effet ; changer un régime de travail en juin ne doit pas réécrire janvier.\n\nLe moteur de congés, qui est tout le projet :\n- Types de congés que tu définis — annuel, maladie, parental, sans solde — chacun avec ses propres règles.\n- Acquisition : un taux par période, proratisé selon le régime de travail et la date de début dans la période, avec un plafond de report configurable et une date d’expiration pour les jours reportés.\n- Les demandes sont en jours ouvrés selon le régime de cette personne, donc un employé à quatre jours par semaine qui prend une quinzaine utilise huit jours, pas dix, et un jour férié dans la plage ne compte pas. Les jours fériés viennent d’un calendrier que tu maintiens par site.\n- Solde à n’importe quelle date, calculé plutôt que stocké, montrant acquis, pris, réservé et restant, avec le calcul visible pour qu’un litige puisse se régler d’un coup d’œil.\n- Approbation par le manager, avec un motif de refus, et un email aux deux parties.\n- Un calendrier d’équipe montrant qui est absent, et un avertissement quand approuver laisserait une équipe sous un minimum que tu fixes.\n\nÉcris d’abord les tests pour ça : acquisition pour un arrivant en cours d’année, report qui expire, une demande de demi-journée, une demande qui chevauche un jour férié, et un changement de régime de travail au milieu d’une demande.\n\nDocuments : par personne, avec un type, une expiration si pertinente, et une période de rétention après laquelle ils sont supprimés avec la suppression journalisée. Alerte sur les documents qui expirent dans les trente jours.\n\nOrganigramme dérivé du champ manager, pas maintenu séparément.\n\nProtection des données, parce que c’est la base de données la plus sensible qu’une petite entreprise fait tourner : accès basé sur les rôles où les managers ne voient que leurs subordonnés, un journal d’audit de qui a consulté la fiche de qui, et un export par personne produisant tout ce qui est détenu sur elle.\n\nNe construis ni paie, ni recrutement, ni évaluations de performance.",
+  "faq": [
+    {
+      "q": "Pourquoi l’acquisition de congés est-elle plus dure qu’il n’y paraît ?",
+      "a": "Les régimes à temps partiel, les arrivants en cours d’année, l’expiration des reports, les jours fériés qui diffèrent selon le bureau, et les demi-journées. Chacun est simple isolément et ils se combinent, ce qui est pourquoi le prompt demande ces cinq tests avant tout le reste."
+    },
+    {
+      "q": "Pourquoi compter les congés en jours ouvrés de la personne ?",
+      "a": "Parce que compter en jours calendaires surfacture discrètement le personnel à temps partiel, et c’est de loin le bug le plus courant des systèmes de congés faits maison. Quelqu’un le remarque en moins d’un an et la confiance dans les chiffres s’évapore."
+    },
+    {
+      "q": "Pourquoi journaliser qui a consulté une fiche ?",
+      "a": "Parce qu’une base RH contient les salaires, les absences liées à la santé et les adresses personnelles, et « qui a regardé ça » est la question posée après un incident. C’est une table peu coûteuse et c’est ce qui rend le modèle d’accès réel."
+    },
+    {
+      "q": "Le tarif de Factorial est-il clair ?",
+      "a": "Seulement en partie. La page annonce « à partir de 8 $ par utilisateur et par mois » et renvoie tout le reste vers un devis sans préciser ce qu’inclut le palier à 8 $, ce qui est pourquoi le prix de cette fiche est enregistré avec une confiance réduite."
+    }
+  ]
+}

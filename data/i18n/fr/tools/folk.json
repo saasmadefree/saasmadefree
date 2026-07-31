@@ -1,0 +1,32 @@
+{
+  "tagline": "Un CRM pour les gens que tu connais, pas pour les deals que tu closes.",
+  "verdictSummary": "folk est un outil relationnel déguisé en CRM : l’unité, c’est la personne, les listes sont l’idée organisatrice, et la question qui tue, c’est « à qui ai-je arrêté de parler ». Tout ça, c’est un projet de week-end sur Postgres. Les deux morceaux payants, ce sont l’extension navigateur qui récupère un profil en contact en un clic, et les crédits d’enrichissement qui remplissent l’adresse email que tu n’avais pas. Le premier, tu peux l’approcher avec un bookmarklet ; le second, tu ne peux pas l’approcher du tout sans acheter de la donnée.",
+  "coreLoopDIY": "Garde une fiche par personne, mets-les dans autant de listes nommées que tu veux avec des champs qui appartiennent à la liste plutôt qu’à la personne, et fais tourner une requête permanente « silence radio » qui fait ressortir tous ceux que tu n’as pas contactés depuis quatre-vingt-dix jours.",
+  "whatYouLose": [
+    "l’extension navigateur en un clic qui capture un profil depuis une page sociale ou d’entreprise",
+    "l’enrichissement — aucune adresse email ni poste n’apparaît que tu n’aies toi-même saisi",
+    "la déduplication de contacts à travers des imports depuis plusieurs réseaux",
+    "les listes partagées avec des collègues et les permissions par liste",
+    "les applications mobiles"
+  ],
+  "whyPeopleStillPay": "Parce que la valeur d’un CRM relationnel est proportionnelle à l’effort minimal qu’il faut pour ajouter quelqu’un, et l’extension plus l’enrichissement, c’est exactement cet effort. Trente dollars par mois achètent la différence entre une liste que tu tiens et une liste que tu abandonnes.",
+  "prompt": "Construis un CRM relationnel personnel où la personne est l’unité et les listes font l’organisation.\n\nStack : ton choix, Postgres, une seule commande pour lancer.\n\nModèle central : une Personne existe une seule fois. Les Listes sont des collections nommées de Personnes. Point crucial, les champs personnalisés appartiennent à une liste, pas à la personne : une liste « Conférence 2026 » peut avoir un champ « titre de la présentation » que la personne ne porte qu’à l’intérieur de cette liste. Ajouter une personne à une deuxième liste ne doit jamais copier ni dupliquer la fiche personne.\n\nChaque Personne a : des noms, des emails, des téléphones, des liens (URL étiquetées), une note en texte libre, et un journal d’interactions. Une Interaction est une ligne datée — rencontré, appelé, email, message — avec une note optionnelle. En ajouter une met à jour un champ last_interaction_at stocké.\n\nL’écran qui justifie le projet, c’est « Silence radio » : une requête enregistrée sur une liste choisie montrant tout le monde dont la dernière interaction remonte à plus de N jours, triée de la plus ancienne à la plus récente, avec un « journaliser une interaction aujourd’hui » en une touche et un « reporter de 30 jours » qui les masque sans effacer l’historique.\n\nCapture : un bookmarklet qui ouvre un formulaire nouvelle-personne préempli avec le titre de la page, l’URL et le texte sélectionné. Plus un import CSV avec un écran de mapping, et — c’est la partie qui compte — une vérification de doublons approximative au moment de l’import qui montre les correspondances probables sur le nom et l’email avant de créer quoi que ce soit, en me laissant fusionner à la place. La fusion doit garder les interactions et les appartenances aux listes des deux fiches.\n\nExporte chaque liste en CSV, et toute la base de données dans un seul fichier JSON.\n\nÉcris des tests pour la fusion (aucune interaction ne doit être perdue) et pour la requête « silence radio » à une limite de liste.\n\nN’appelle aucune API d’enrichissement ou de fournisseur de données. Un champ, c’est soit quelque chose que j’ai tapé, soit quelque chose que j’ai importé.",
+  "faq": [
+    {
+      "q": "Pourquoi mettre les champs personnalisés sur la liste plutôt que sur la personne ?",
+      "a": "Parce que le contexte est propre à chaque relation. « Comment on s’est rencontrés » appartient à la liste conférence, « date de renouvellement » appartient à la liste clients, et forcer les deux sur la fiche personne, c’est comme ça qu’une base de contacts se transforme en cent colonnes presque toujours vides."
+    },
+    {
+      "q": "Un bookmarklet peut-il s’approcher de l’extension de folk ?",
+      "a": "Il te donne l’URL, le titre de la page et ce que tu as sélectionné, préempli dans un formulaire — peut-être quinze secondes au lieu de deux. Ce qu’il ne peut pas faire, c’est lire les champs structurés d’un profil, parce que ça, c’est du scraping propre à chaque site qui casse dès que le site change, ce qui fait partie de ce que l’abonnement maintient."
+    },
+    {
+      "q": "Qu’est-ce qui remplace l’enrichissement ?",
+      "a": "Rien, honnêtement. Si tu as besoin d’une adresse email que tu n’as pas, soit tu la demandes à la personne, soit tu achètes la donnée. Le projet est conçu pour qu’un champ vide soit visiblement vide plutôt que discrètement deviné."
+    },
+    {
+      "q": "La vérification de doublons fonctionne-t-elle vraiment ?",
+      "a": "Assez bien pour un usage personnel : d’abord une correspondance exacte d’email, puis une comparaison de noms normalisés avec un seuil de distance, montrée pour confirmation plutôt que fusionnée automatiquement. Tout ce qui est automatique ici finit par fusionner deux vraies personnes, et c’est irrécupérable."
+    }
+  ]
+}

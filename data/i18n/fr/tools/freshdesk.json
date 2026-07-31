@@ -1,0 +1,32 @@
+{
+  "tagline": "Files de tickets classiques, SLA et automatisations, tarifées par agent.",
+  "verdictSummary": "Freshdesk, c’est la forme traditionnelle de cette catégorie : des tickets avec priorités, des horloges SLA, des heures ouvrées et des règles d’escalade. Tout ça, c’est du logiciel ordinaire et un week-end donne une version fonctionnelle, ce qui en fait un « en partie » plutôt qu’un « non ». Les manques sont opérationnels plutôt que techniques — envoyer depuis un domaine avec une réputation, rester en ligne, et le pass journalier et le comptage d’IA qui rendent le plan payant élastique d’une façon qu’une installation auto-hébergée fixe ne l’est pas.",
+  "coreLoopDIY": "Fais tourner une file de tickets où l’horloge SLA est réelle : elle démarre au premier message client, se met en pause quand tu attends une réponse, et montre le temps restant plutôt que le temps écoulé.",
+  "whatYouLose": [
+    "les applications mobiles et les notifications push quand un SLA est sur le point d’être dépassé",
+    "le copilote IA Freddy et les sessions d’agent IA automatisées",
+    "les pass journaliers pour les agents occasionnels, une vraie bonne idée",
+    "la marketplace d’intégrations prêtes à l’emploi",
+    "la disponibilité hébergée sur un canal que les clients utilisent quand ils sont déjà mécontents"
+  ],
+  "whyPeopleStillPay": "Parce que faire respecter un SLA ne vaut quelque chose que si quelqu’un est réveillé quand il est dépassé, et parce qu’à dix-neuf dollars par agent, le calcul contre une installation auto-hébergée plus ton propre temps favorise rarement la construction.",
+  "prompt": "Construis un help desk à tickets dont l’horloge SLA est honnête.\n\nStack : ton choix, Postgres, Docker Compose. Courrier entrant via un webhook de fournisseur signé, sortant via un fournisseur transactionnel sur un domaine que tu possèdes avec SPF, DKIM et DMARC.\n\nModèle de ticket : sujet, demandeur, assigné, statut (ouvert, en attente, en pause, résolu, fermé), priorité, et une liste de messages en fil. Mise en fil par Message-ID et References avec un repli sujet-plus-expéditeur.\n\nLe moteur SLA, c’est le projet, et bien le faire, c’est la différence entre ça et une boîte mail :\n- Définis des heures ouvrées par jour de semaine plus une liste de jours fériés, dans un fuseau horaire configurable.\n- Définis des politiques SLA qui correspondent à la priorité : une cible de première réponse et une cible de résolution, en heures ouvrées, pas en heures d’horloge murale.\n- L’horloge démarre au premier message entrant. Elle se met en pause chaque fois que le ticket est en attente ou en pause — c’est-à-dire quand la balle est dans le camp du client — et reprend quand il répond. Elle s’arrête à la résolution.\n- Chaque ticket montre le temps restant, pas le temps écoulé, et devient visiblement urgent sous un seuil configurable. Un ticket dépassé est marqué en permanence : le résoudre plus tard ne doit pas effacer le fait qu’il a été dépassé.\n- Stocke chaque pause et reprise comme une ligne, pour que le calcul écoulé puisse être audité plutôt que cru sur parole.\n\nAutomatisations, gardées dans une table de règles lisible : sur un déclencheur (créé, mis à jour, temps écoulé) avec des conditions sur des champs, exécute des actions (fixer la priorité, assigner, ajouter un tag, envoyer une réponse type). Les règles s’exécutent dans un ordre listé et le ticket enregistre quelles règles se sont déclenchées, pour qu’une assignation mystérieuse puisse être expliquée.\n\nRéponses prêtes avec des espaces réservés, une base de connaissances publique sans statut d’articles insérables dans les réponses, et export CSV des tickets avec leurs résultats SLA.\n\nUn rapport : taux de respect du SLA par priorité et par semaine, et les cinq meilleures règles d’automatisation par nombre de déclenchements.\n\nÉcris des tests pour l’horloge en heures ouvrées à travers un week-end, à travers un jour férié, et à travers un changement d’heure d’été, et pour la pause et la reprise produisant le même total qu’un calcul manuel.\n\nNe construis ni applications mobiles, ni agent IA, ni marketplace.",
+  "faq": [
+    {
+      "q": "Pourquoi les heures ouvrées rendent-elles l’horloge SLA difficile ?",
+      "a": "Parce qu’une cible de quatre heures qui démarre à 17h un vendredi est due à 13h le lundi, et chaque fuseau horaire, jour férié et changement d’heure d’été est une occasion de se tromper. Des tests pour exactement ces trois cas expliquent pourquoi c’est un week-end et pas une soirée."
+    },
+    {
+      "q": "Pourquoi un dépassement doit-il être permanent ?",
+      "a": "Parce que l’intérêt de l’enregistrement, c’est d’en tirer des leçons. Si résoudre un ticket efface son indicateur de dépassement, ton rapport SLA aura toujours l’air excellent et sera toujours inutile."
+    },
+    {
+      "q": "Qu’est-ce qu’un pass journalier, et pourquoi le mentionner ?",
+      "a": "Freshdesk vend un accès agent d’une journée à 2 $, donc quelqu’un qui touche au support deux fois par mois n’a pas besoin d’un siège complet. C’est une idée tarifaire qu’une installation auto-hébergée n’a pas besoin de reproduire — tout le monde peut simplement avoir un identifiant — mais ça explique pourquoi le plan payant est moins cher que le nombre de sièges ne le suggère."
+    },
+    {
+      "q": "Puis-je récupérer mes tickets Freshdesk ?",
+      "a": "Oui : l’export de données du compte produit tickets, contacts et articles de la base de connaissances, et l’API parcourt les conversations si tu veux les fils avec pièces jointes. Récupère les URL des pièces jointes avant la fermeture du compte ; elles cessent de fonctionner après."
+    }
+  ]
+}

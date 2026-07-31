@@ -1,0 +1,32 @@
+{
+  "tagline": "De l’email froid avec une image personnalisée ou une landing page pour chaque destinataire.",
+  "verdictSummary": "L’astuce signature — une capture d’écran ou une image avec le nom de l’entreprise du destinataire incrusté dedans, et une landing page qui s’adresse à lui par son nom — c’est le travail d’une session avec un navigateur headless et une bibliothèque d’images. Cette partie se reconstruit vraiment. Le reste de lemlist, c’est lemwarm, un réseau de milliers de vraies boîtes mail qui se préchauffent mutuellement, et ça, c’est un effet de réseau auquel tu ne peux pas te joindre en écrivant du code. La personnalisation sans délivrabilité, c’est une lettre magnifiquement adressée dans un dossier spam.",
+  "coreLoopDIY": "Génère l’artefact personnalisé plutôt que la campagne : une image ou un micro-site d’une page par destinataire, rendu depuis un modèle et des données fusionnées, prêt à joindre à un courrier que tu envoies toi-même.",
+  "whatYouLose": [
+    "lemwarm, le réseau de préchauffage partagé à travers des milliers de vraies boîtes mail",
+    "l’envoi, la planification et les opérations de délivrabilité derrière",
+    "la base de leads et les recherches de numéros de téléphone vendues en crédits",
+    "les étapes multicanal qui mélangent email avec LinkedIn et appels",
+    "le reporting de placement en boîte de réception à travers les fournisseurs"
+  ],
+  "whyPeopleStillPay": "Parce que la personnalisation ne paie que si le message est lu, et être lu est un problème de délivrabilité que lemwarm existe pour résoudre. Le générateur d’image, c’est la démo ; le réseau de préchauffage, c’est le produit.",
+  "prompt": "Construis un générateur d’artefacts personnalisés pour la prospection. Il produit des images et des micro-sites d’une page ; il n’envoie jamais rien.\n\nStack : ton choix, plus un navigateur headless (Playwright ou Puppeteer) et Postgres. Une seule commande via Docker Compose, et le README doit noter que l’image du navigateur est volumineuse.\n\nLes modèles sont du HTML avec des espaces réservés {{champ}} et une sortie déclarée : image ou page.\n\nSortie image : rends le modèle à une taille fixe et exporte en PNG. Supporte deux modes de composition qui couvrent la plupart des usages réels.\n1. Superposition : place du texte et un logo à des coordonnées sur une image de fond, avec une largeur maximale par champ pour qu’un long nom d’entreprise rétrécisse ou passe à la ligne au lieu de déborder. Bien faire ça, c’est l’essentiel du travail.\n2. Capture d’écran : charge une URL tirée de la ligne du destinataire, attends l’inactivité réseau avec un timeout, ferme optionnellement les bannières de cookies avec une liste de sélecteurs configurable, et capture la fenêtre d’affichage avec une annotation optionnelle dessinée par-dessus.\n\nSortie page : rends vers un fichier HTML statique sous un token aléatoire par destinataire, écrit dans un dossier que n’importe quel serveur web peut servir. Pas de JavaScript dans la sortie, pas de traçage, pas d’analytics — une page qui téléphone à la maison va à l’encontre du but recherché.\n\nLot : prends un CSV, génère un artefact par ligne, et écris un CSV de sortie avec les colonnes originales plus un chemin local ou une URL. Rends ça reprenable — une relance saute les lignes dont l’artefact existe déjà — et plafonne la concurrence, parce qu’un navigateur headless dévorera avec plaisir tous les cœurs que tu as.\n\nAjoute un écran de prévisualisation qui rend trois lignes échantillon du CSV avant de t’engager sur tout le fichier, puisque les bugs de modèle ne sont visibles que sur de vraies données. Inclus un échantillon délibérément gênant : un très long nom d’entreprise, un nom avec des accents, et un champ vide.\n\nLa gestion des champs vides est une décision de premier rang : par espace réservé, choisis ignorer-la-ligne, utiliser-un-repli, ou échouer-le-lot. Ne rends jamais « Salut {{firstName}} » littéralement.\n\nÉcris des tests pour l’ajustement du texte à la largeur maximale et pour les politiques de champs vides.\n\nN’envoie pas d’email, ne connecte pas de boîte mail, et n’implémente ni suivi d’ouverture ni suivi de clic.",
+  "faq": [
+    {
+      "q": "L’imagerie personnalisée fait-elle vraiment monter les réponses ?",
+      "a": "Elle attire l’attention quand elle est spécifique et se fait ignorer quand c’est un modèle avec un nom collé dedans. La variante capture-de-leur-propre-site tend à mieux marcher qu’une superposition de logo, parce qu’elle prouve que tu as regardé."
+    },
+    {
+      "q": "Pourquoi générer des pages statiques sans traçage ?",
+      "a": "Parce qu’une page qui charge des analytics tiers est plus lente, plus facile à filtrer et, si tu envoies des emails à des gens en Europe, entraîne des obligations de consentement dans une prospection froide que tu ne peux probablement pas justifier. Une page statique avec un token aléatoire suffit."
+    },
+    {
+      "q": "Comment est-ce que j’envoie vraiment ces éléments ?",
+      "a": "Depuis ta propre boîte mail, en petit nombre, à la main ou avec le planificateur décrit dans la fiche Instantly. Le générateur d’artefacts est délibérément découplé pour qu’il ne puisse pas devenir un envoyeur en masse par accident."
+    },
+    {
+      "q": "Puis-je exporter mes campagnes lemlist ?",
+      "a": "Les leads et les statistiques de campagne s’exportent en CSV. Les modèles, les images et l’historique lemwarm ne te suivent pas, donc si un modèle d’image particulier fonctionne bien, reconstruis-le à partir de la sortie rendue avant d’annuler."
+    }
+  ]
+}

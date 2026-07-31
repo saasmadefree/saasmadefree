@@ -1,0 +1,32 @@
+{
+  "tagline": "Chat en direct conçu autour de la vitesse à laquelle un agent peut gérer six conversations.",
+  "verdictSummary": "LiveChat n’est pas vraiment une entreprise de widgets, c’est une entreprise de productivité d’agent : aperçu furtif de message, réponses prêtes sur une commande slash, et une limite de concurrence qui empêche qu’on refile douze chats à une seule personne. Reconstruire ça, c’est un week-end, et le résultat est vraiment utilisable. Ce qui reste derrière, c’est l’application mobile, la marketplace, et le produit chatbot vendu séparément — rien de tout ça n’est une barrière défensive, tout ça est du travail que tu porterais ensuite toi-même.",
+  "coreLoopDIY": "Réponds à plusieurs chats à la fois sans perdre le fil : une file avec un plafond de concurrence par agent, des réponses prêtes en commande slash, et un aperçu de ce que le visiteur tape avant qu’il n’envoie.",
+  "whatYouLose": [
+    "les applications desktop et mobile, et les notifications quand tu n’es pas sur l’onglet",
+    "le produit chatbot, que LiveChat vend séparément de toute façon",
+    "la marketplace d’intégrations prêtes à l’emploi et de relais de tickets",
+    "la fiabilité hébergée pendant un pic de trafic",
+    "la suite de reporting et le scoring de performance d’agent"
+  ],
+  "whyPeopleStillPay": "Parce que le chat est un problème d’effectif, et les outils qui permettent à une personne de tenir six conversations sans en perdre aucune, c’est ce qu’achète vraiment le prix du siège.",
+  "prompt": "Construis un système de chat en direct conçu autour d’un agent qui gère plusieurs conversations à la fois.\n\nStack : ton choix avec websockets, Postgres, Docker Compose, un domaine avec TLS.\n\nWidget visiteur : shadow DOM, léger, se reconnecte après navigation, persiste un token de visiteur dans le stockage local, fonctionne sans cookies tiers, accessible au clavier.\n\nLa console d’agent, c’est le produit. Construis ces quatre choses correctement :\n1. Plafond de concurrence. Chaque agent fixe un nombre maximal de chats actifs. Le routage ne le dépasse jamais. Quand chaque agent est à capacité, les nouveaux visiteurs obtiennent une position de file explicite et une attente estimée, pas le silence.\n2. Aperçu furtif. Diffuse la frappe en cours du visiteur vers l’agent avant qu’il n’appuie sur envoyer, limité à environ quatre mises à jour par seconde. C’est la seule fonctionnalité qui change la vitesse de travail d’un agent, et c’est quelques lignes sur le même websocket.\n3. Réponses prêtes sur une commande slash. Taper / ouvre une liste filtrée en temps réel ; en sélectionner une insère le texte avec les espaces réservés déjà interpolés. Classe selon la fréquence d’usage propre de l’agent, pas alphabétiquement.\n4. Une mise en page multi-conversations. Une barre latérale de chats actifs montrant chacun un badge non lu et un temps-depuis-la-dernière-réponse-agent qui passe au rouge au-delà d’un seuil, pour que celui que tu négliges soit évident.\n\nRoutage : round-robin parmi les agents sous leur plafond, avec un transfert manuel qui porte l’historique complet et ajoute une ligne système nommant qui a transféré à qui.\n\nHors heures : en dehors des heures de bureau configurées, le widget collecte un message et une adresse email, et le dit clairement.\n\nUn rapport : chats par agent et par jour, première réponse médiane, durée de chat médiane, et maximum de chats concurrents atteint.\n\nÉcris des tests pour le plafond de concurrence sous des arrivées simultanées, pour la position de file qui se met à jour à mesure que les agents se libèrent, et pour le transfert qui préserve l’historique.\n\nNe construis ni chatbot, ni applications mobiles, ni marketplace d’intégrations.",
+  "faq": [
+    {
+      "q": "L’aperçu furtif, n’est-ce pas flippant ?",
+      "a": "C’est la chose qui manque le plus aux agents quand ils quittent LiveChat, et c’est standard dans cette catégorie — mais ça devrait être divulgué. Dis-le dans le message d’accueil du chat ou ta notice de confidentialité ; une fonctionnalité qui surprend les gens quand ils l’apprennent est une fonctionnalité que tu devrais leur annoncer."
+    },
+    {
+      "q": "Pourquoi le plafond de concurrence compte-t-il autant ?",
+      "a": "Parce qu’un routage non borné produit le pire résultat possible : chaque visiteur reçoit un agent lent et distrait, au lieu que certains aient un agent rapide et les autres une position de file honnête. Le plafond, c’est ce qui transforme le chat de chaotique en gérable."
+    },
+    {
+      "q": "Que demande la position de file ?",
+      "a": "Juste de compter. La partie difficile, c’est d’être honnête quand l’estimation est mauvaise — mieux vaut dire « 3 personnes avant toi » sans estimation de temps que promettre deux minutes et en prendre douze."
+    },
+    {
+      "q": "LiveChat exporte-t-il mes transcriptions ?",
+      "a": "Oui, les archives s’exportent en CSV ou via l’API, y compris les tags et les évaluations. Les pièces jointes sont des URL qui cessent de fonctionner après la fermeture du compte, donc récupère-les en premier."
+    }
+  ]
+}

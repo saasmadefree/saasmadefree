@@ -1,0 +1,32 @@
+{
+  "tagline": "Un prix, un seul palier, et un numéro de téléphone auquel un humain répond.",
+  "verdictSummary": "Le logiciel est assez petit pour être reconstruit en un week-end, et ce n’est pas une insulte — la simplicité, c’est le sujet, et ça rend la cible claire. Ce que tu ne peux pas reconstruire, c’est ce que l’entreprise vend vraiment : une aide gratuite, illimitée, le jour même, d’une personne qui configurera le CRM à ta place. La reconstruction doit aussi résoudre l’arrivée des contacts et du calendrier sur ton téléphone, ce que le produit payant fait avec des applications et ceci fait avec CalDAV et CardDAV.",
+  "coreLoopDIY": "Garde des contacts et des entreprises avec un historique complet, fais tourner un pipeline simple, et publie tes contacts et tâches via CardDAV et CalDAV pour que les applications intégrées de ton téléphone deviennent le client mobile.",
+  "whatYouLose": [
+    "le support téléphone et email gratuit et illimité qui est le vrai produit de l’entreprise",
+    "quelqu’un d’autre qui importe ton tableur et configure ton pipeline à ta place",
+    "la journalisation automatique des emails dans l’historique d’un contact",
+    "la disponibilité hébergée et les sauvegardes hors site",
+    "les calendriers partagés avec des collègues"
+  ],
+  "whyPeopleStillPay": "Parce que l’acheteur n’est souvent pas technique, et quinze dollars par mois achètent une personne qui répondra au téléphone et réglera le problème. C’est un métier de service, et aucune alternative auto-hébergée ne rivalise avec ça.",
+  "prompt": "Construis un CRM pour petite entreprise délibérément simple, et fais fonctionner le téléphone via des protocoles ouverts plutôt qu’une application.\n\nStack : ton choix, Postgres ou SQLite, Docker Compose, et un vrai domaine avec TLS parce que les clients CalDAV et CardDAV refuseront tout le reste.\n\nMoitié CRM : Contacts et Entreprises avec un historique défilant unique par fiche (notes, tâches, événements, mouvements de pipeline, tout dans une liste, le plus récent d’abord). Un pipeline configurable avec des étapes nommées. Des tâches avec une date d’échéance et un responsable. Une vue calendrier des tâches et événements. Recherche plein texte sur tout, accessible via un raccourci clavier sur chaque page.\n\nLa moitié intéressante : expose deux points d’entrée.\n- Un carnet d’adresses CardDAV, lecture-écriture, contenant chaque contact. Modifier un contact sur le téléphone doit réécrire vers le CRM.\n- Un calendrier CalDAV, lecture-écriture, contenant les tâches en VTODO et les événements en VEVENT.\nUtilise une bibliothèque serveur CalDAV/CardDAV existante plutôt que d’implémenter les protocoles à la main, et documente exactement contre quels clients tu as testé — Contacts et Calendrier iOS au minimum, plus un client desktop.\n\nAuthentification : des mots de passe d’application par appareil, listés et révocables dans l’interface, jamais le mot de passe du compte.\n\nAjoute un import CSV avec une prévisualisation de mapping, un export CSV, et un dump SQL nocturne vers un dossier avec une commande de restauration en une ligne dans le README.\n\nÉcris des tests pour l’aller-retour CardDAV : crée un contact dans le CRM, lis-le en vCard, modifie-le en vCard, et vérifie que la fiche CRM a changé correctement, y compris un champ que le format vCard ne porte pas nativement.\n\nNe construis ni application mobile, ni module marketing, ni suite de reporting. Le README devrait indiquer la seule chose que ceci ne peut pas remplacer : il n’y a personne à appeler quand ça casse.",
+  "faq": [
+    {
+      "q": "CalDAV est-il vraiment un substitut à une application mobile ?",
+      "a": "Pour lire et éditer légèrement, mieux que tu ne t’y attendrais — tes contacts et tâches apparaissent dans les applications que ton téléphone a déjà, hors ligne, sans installation. Pour tout ce qui a une forme CRM, comme déplacer un deal d’une étape, tu retournes dans le navigateur."
+    },
+    {
+      "q": "Quelle est la partie la plus dure de ce projet ?",
+      "a": "L’aller-retour vCard et iCalendar. Les deux formats perdent des champs qui ne correspondent pas, et les clients ne s’accordent pas sur les extensions, donc le test qui modifie une fiche côté téléphone et vérifie ce qui a survécu est celui qui vaut la peine d’être écrit en premier."
+    },
+    {
+      "q": "Pourquoi le support compte-t-il autant dans le verdict ?",
+      "a": "Parce que les clients de Less Annoying CRM sont fréquemment la personne dans une petite entreprise la moins à l’aise avec le logiciel. Retirer le numéro de téléphone retire le produit pour eux, même si le code est facile. C’est ce qui empêche ça d’être un « oui »."
+    },
+    {
+      "q": "Puis-je exporter proprement depuis Less Annoying CRM ?",
+      "a": "Oui — contacts, entreprises, pipelines, notes, tâches et événements s’exportent tous en CSV depuis les réglages du compte, et les noms de champs sont lisibles. C’est l’un des exports les moins pénibles de cette catégorie."
+    }
+  ]
+}
