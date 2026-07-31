@@ -1,0 +1,20 @@
+{
+  "tagline": "Cours interactifs de maths, sciences et informatique.",
+  "verdictSummary": "Chaque leçon Brilliant est un petit interactif fait main : un curseur qui déplace une courbe, un puzzle dont chaque mauvaise réponse a sa propre explication. C’est du travail d’auteur, écran par écran, par des gens qui connaissent à la fois le sujet et la façon dont les apprenants se trompent. Le logiciel autour est banal ; ce que tu reconstruirais, c’est une maison d’édition.",
+  "coreLoopDIY": "Tiens un journal de pratique des problèmes que tu résous dans des livres et des cours ouverts, avec tes propres solutions rédigées et un calendrier qui ramène ceux que tu as ratés.",
+  "whatYouLose": [
+    "des milliers de leçons rédigées en maths, sciences et informatique",
+    "des widgets interactifs construits un par concept",
+    "des explications de mauvaises réponses écrites pour l’erreur précise que tu as commise",
+    "une séquence qui suppose ce que tu as appris deux leçons plus tôt",
+    "les applications mobiles et l’accès hors ligne"
+  ],
+  "whyPeopleStillPay": "Être guidé à travers une idée par quelqu’un qui a anticipé ta confusion précise vaut bien plus qu’une série d’exercices de plus, et il n’y a aucun moyen de générer ça.",
+  "prompt": "Construis un journal de pratique pour travailler des problèmes de mathématiques et de sciences issus de livres et de cours ouverts.\n\nUne fiche de problème contient la source (livre, chapitre, numéro), un énoncé en Markdown avec LaTeX, ta solution rédigée, la date, une difficulté auto-évaluée et un résultat parmi résolu, résolu avec un indice, ou échoué.\n\nAffiche les maths correctement avec KaTeX. Un outil pour ce sujet qui ne peut pas montrer une intégrale n’est pas utilisable, donc fais-en la première chose qui fonctionne.\n\nPlanifie les révisions avec FSRS uniquement sur les problèmes échoués et ceux résolus avec indice — les problèmes résolus avec succès reviennent rarement, les échecs reviennent vite. Réviser veut dire retenter depuis l’énoncé avec ta solution précédente cachée jusqu’à ce que tu valides une réponse. Stocke les tentatives comme un historique en ajout seul pour pouvoir regarder en arrière ce que tu as essayé en mars.\n\nConstruis deux rapports. Le premier regroupe les échecs par le tag de sujet que tu as assigné, pour qu’un amas devienne visible plutôt que ressenti. Le second liste les problèmes que tu as résolus deux fois avec un indice et jamais une seule fois sans, ce qui est le schéma précis qui ressemble à un progrès et n’en est pas un.\n\nTout est en fichiers locaux plus SQLite. Tu tapes les énoncés toi-même ; ne scrape pas un cours payant.\n\nNe fais pas générer des problèmes de pratique par un modèle. Des problèmes de maths générés et non vérifiés ont des réponses fausses assez souvent pour être activement nuisibles quand tout l’enjeu est que tu ne peux pas encore faire la différence.",
+  "faq": [
+    { "q": "Puis-je récupérer mon historique Brilliant ?", "a": "Non. Brilliant n’expose aucun export des leçons terminées ni des tentatives, donc le journal démarre vide. Ce que tu peux récupérer, c’est la liste des sujets où tu t’étais arrêté, et les continuer avec un manuel." },
+    { "q": "D’où viennent les problèmes ?", "a": "Tu les tapes, depuis des livres que tu possèdes ou des cours ouverts qui l’autorisent. C’est plus lent et c’est aussi la réponse honnête : ce projet est un journal et un planificateur, pas une source de contenu." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien. KaTeX et SQLite sont locaux, et il n’y a aucune clé API dans la conception." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "L’explication qui attend derrière une mauvaise réponse. Brilliant te dit pourquoi l’erreur que tu viens de faire est tentante ; ton journal enregistre juste que tu l’as faite." }
+  ]
+}
