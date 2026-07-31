@@ -68,7 +68,7 @@ If the hostname does match a tracked tool, it **writes** exactly one thing: its 
 
 We will not claim "no DOM access" here — that would be false, since writing the panel is itself a DOM write, and the code is public. The precise claim, and the only one made anywhere in this project, is: **reads only the hostname, writes only its own isolated element.**
 
-The full policy this section summarizes is at [`public/privacy.html`](public/privacy.html) (published at `saasmadefree.com/privacy.html`).
+The full policy this section summarizes is at [`public/privacy.html`](public/privacy.html) (published at `saasmadefree.com/privacy`).
 
 ## Verifying the reproducible build
 

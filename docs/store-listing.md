@@ -48,6 +48,6 @@ Used only when the user clicks to send a prompt to an agent that has no URL- or 
 
 ## Links
 
-- **Privacy policy:** https://saasmadefree.com/privacy.html
+- **Privacy policy:** https://saasmadefree.com/privacy
 - **Repository:** https://github.com/saasmadefree/saasmadefree
 - **Support contact:** `privacy@saasmadefree.com` — forwarded to a monitored inbox. The same address appears in `public/privacy.html`.
