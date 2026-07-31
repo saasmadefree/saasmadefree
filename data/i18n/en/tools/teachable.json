@@ -1,0 +1,21 @@
+{
+  "tagline": "Online course platform: lessons, student access, and payments.",
+  "verdictSummary": "A single-course sales-and-delivery site — a landing page, checkout, magic-link login, gated video lessons, progress tracking — is a real, contained weekend-plus build for one course. What doesn't come with it is Teachable's breadth: multiple courses, affiliates, certificates, upsells, and everything else that makes it a full course business platform rather than one product page.",
+  "coreLoopDIY": "A landing page with checkout, magic-link login for buyers, and gated Markdown lessons with a per-student progress tracker.",
+  "whatYouLose": [
+    "support for multiple courses and a catalog",
+    "affiliate programs",
+    "certificates, upsells, and coupon logic",
+    "dedicated mobile apps",
+    "customer support infrastructure"
+  ],
+  "whyPeopleStillPay": "A course business needs checkout, access control, progress tracking, and support to all just work together — people pay to avoid stitching and maintaining that themselves.",
+  "notes": "Course platforms are tempting to DIY because the core loop looks simple; the full business surface underneath is genuinely deep, which is why this lands at 'kinda' rather than 'yes'.",
+  "prompt": "Build a single-course sales-and-delivery site, scoped to exactly one course. Course content lives as Markdown files organized into modules and lessons, each optionally pointing at a video file. A public landing page shows the course outline and price, with a buy button going straight to a hosted checkout. A webhook from the payment processor marks the buyer's email as enrolled. Login is by magic link only — enter your email, receive a signed sign-in link — no passwords, no OAuth. Gate lesson pages by enrollment, and serve video through short-lived signed URLs so a direct link expires rather than staying shareable forever. Track progress with a mark-complete button per lesson and a progress bar per module, stored per student.\n\nDo not build support for multiple courses, affiliates, certificates, upsells, or coupon logic — this sells and delivers exactly one course. Payment receipts come from the payment processor directly; don't build invoicing or tax logic yourself. Note plainly in the README that a small VPS handles a modest audience fine, but a real launch with a large audience needs dedicated video hosting, not files served off a general-purpose server.",
+  "faq": [
+    { "q": "Can I import my existing Teachable course?", "a": "The lesson content, largely yes — copy your videos and written material into the Markdown lesson structure. Student enrollment and progress history don't transfer, since they're tied to Teachable's own billing and tracking." },
+    { "q": "Will it work on my phone?", "a": "The landing page and lesson viewer are both responsive, so browsing and watching work fine on a phone. There's no dedicated mobile app or offline video download." },
+    { "q": "What does it cost to run?", "a": "Hosting, a domain, and a database, typically a few dollars a month, plus standard payment-processing fees on sales — no monthly platform fee beyond that until real video-hosting costs kick in at scale." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Running more than one course as a real business. This build is genuinely good at selling and delivering a single course; the moment there's a second course, a coupon, or an affiliate to manage, you're back to building platform features by hand." }
+  ]
+}

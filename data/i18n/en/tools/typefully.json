@@ -1,0 +1,20 @@
+{
+  "tagline": "Writing, scheduling, and analytics for X and LinkedIn threads.",
+  "verdictSummary": "A distraction-free thread composer with a posting queue is a real weekend build. The catch isn't the code — it's that X's own API pricing for posting access costs more than Typefully's subscription, which makes the honest DIY version cheaper to build but not necessarily cheaper to run.",
+  "coreLoopDIY": "A thread composer with live character counts per post, a scheduling queue, and posting through the X API.",
+  "whatYouLose": [
+    "analytics on published posts",
+    "AI rewrite suggestions",
+    "multi-account and team features",
+    "a posting path that doesn't depend on X's own paid API tier"
+  ],
+  "whyPeopleStillPay": "The composer itself is the easy part — people pay so posting just works without them having to deal with X's API pricing and policy changes directly.",
+  "notes": "The honest catch here isn't code, it's a paywall: X's write-access API tier costs more than Typefully's subscription. Say so plainly rather than hiding it.",
+  "prompt": "Build a distraction-free thread composer: split a long draft into individual posts, show a live character count per post, support drag-to-reorder, and autosave every draft to a database. Add a scheduling queue where a post either takes the next open slot from a small set of configured posting times or gets pinned to an exact time; show the queue grouped by day. A background job publishes due posts and records a sent/failed status per item. Post through the X API — be explicit in the README that X's free API tier is read-only, and posting requires a paid tier that costs more than most social-scheduling subscriptions; that's the actual moat here, not the code. Add a 'copy thread to clipboard' fallback plus a browser notification at the scheduled time, so the tool is still useful for someone unwilling to pay X for API access — they just post manually when notified.\n\nDo not build analytics on published posts or AI rewrite suggestions — those need either a data pipeline that reads back post performance or an LLM integration, both real scope beyond a composer and queue.",
+  "faq": [
+    { "q": "Can I import my existing Typefully drafts and queue?", "a": "Not automatically — there's no structured export for drafts. Recreating a queue is usually quick since most people only have a handful of scheduled posts at any time." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, for browsing the queue and reading drafts. Composing a long thread is realistically a desktop task, and the browser notification fallback needs the tab open." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — but the real cost is X's paid API tier if you want automatic posting, which this build can't make cheaper, only optional." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Posting without paying X directly. Typefully absorbs that API cost into its subscription; a self-hosted composer either pays the same API fee itself or falls back to manual copy-paste posting." }
+  ]
+}

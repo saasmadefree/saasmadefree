@@ -1,0 +1,51 @@
+{
+  "slug": "bitly",
+  "name": "Bitly",
+  "domains": [
+    "bitly.com"
+  ],
+  "category": "analytics",
+  "subcategory": "link shortening + click analytics",
+  "pricing": {
+    "amount": 35,
+    "currency": "USD",
+    "plan": "Growth",
+    "basis": "flat-monthly",
+    "source": "https://bitly.com/pages/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "link permanence",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Dub",
+      "url": "https://github.com/dubinc/dub"
+    },
+    {
+      "name": "Shlink",
+      "url": "https://github.com/shlinkio/shlink"
+    },
+    {
+      "name": "YOURLS",
+      "url": "https://github.com/YOURLS/YOURLS"
+    }
+  ],
+  "relatedSlugs": [
+    "plausible",
+    "umami-cloud",
+    "notion"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,20 @@
+{
+  "tagline": "Short links, branded back-halves, QR codes, and click analytics.",
+  "verdictSummary": "A slug, a lookup, a redirect, and a row in a table — the whole job runs comfortably on a free-tier edge platform, and QR codes are one library call. The thing actually being bought is that bit.ly resolves links created in 2012 and will presumably still resolve them in 2032, which is an institutional promise, not a technical one. That promise is worth something on packaging or in print; it is worth nothing in this week's newsletter.",
+  "coreLoopDIY": "Map a short slug to a destination, redirect to it, log the click with device and rough location, and render a QR code for any link.",
+  "whatYouLose": [
+    "links that outlive your own infrastructure — a domain you stop renewing takes every link with it",
+    "bundled QR code management and campaign grouping",
+    "city-level and device-level analytics rollups without building them yourself",
+    "an SLA and someone to call"
+  ],
+  "whyPeopleStillPay": "Bitly's actual product is a promise about the future: that a link printed on a box in 2019 still resolves today. No amount of code buys that, only an institution that intends to keep existing. Teams also pay for shared workspaces and an audit trail, and marketing departments pay because the alternative is asking engineering for a redirect and waiting two weeks.",
+  "notes": "You are not paying for the redirect — you are paying for the promise that it still works in ten years.",
+  "prompt": "Build a link shortener with click analytics and QR codes: a redirect endpoint that looks up a short slug, redirects to its destination, and logs the click (timestamp, rough location, device type, referer) without slowing the redirect down — the lookup and the log write should never block each other. Slugs default to a short random string, but support a custom back-half, and creating one that already exists should fail loudly rather than silently overwrite it. Generate a QR code for any link, cached rather than regenerated on every request. Support an optional expiry date or click cap per link, after which it redirects to a fallback URL instead of erroring. Build a small password-protected admin view listing links with their click counts, plus a rough breakdown by country and device. An edge platform with a key-value store for the slug lookup and a small database for the click log is a clean fit for this and runs comfortably on a free tier — but the specific stack matters less than keeping the redirect itself fast and never dependent on the analytics write completing first.\n\nDo not build landing pages, campaign grouping, or an SLA — the actual thing a link shortener sells isn't a technical feature, it's the operator's intent to keep the domain and the redirect working for years. Be explicit in the README that these links only outlive the domain they're hosted on: letting that domain lapse breaks every link it ever issued, at once.",
+  "faq": [
+    { "q": "Can I import my existing Bitly links?", "a": "Bitly can export your links via their API, and that maps directly onto a slug-to-destination table like this one. What doesn't come across is click history before the migration — new clicks start logging from day one on your own infrastructure." },
+    { "q": "Will it work on my phone?", "a": "The admin view for checking link stats renders fine on a phone browser. Creating and sharing links works the same way on any device, since it's just a URL." },
+    { "q": "What does it cost to run?", "a": "Close to nothing on a free tier for personal-scale traffic, plus whatever a domain already costs — genuinely one of the cheapest entries here to actually run." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The institutional promise. Bitly's real product is the expectation that a link printed on packaging in 2019 still resolves today; a self-hosted shortener only keeps that promise for as long as you personally keep renewing the domain and keeping the lights on." }
+  ]
+}

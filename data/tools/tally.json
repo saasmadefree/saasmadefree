@@ -1,0 +1,42 @@
+{
+  "slug": "tally",
+  "name": "Tally",
+  "domains": [
+    "tally.so"
+  ],
+  "category": "forms",
+  "subcategory": "form builder",
+  "pricing": {
+    "amount": 29,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "per-seat-monthly",
+    "source": "https://tally.so/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "polish/integrations",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Formbricks",
+      "url": "https://github.com/formbricks/formbricks"
+    }
+  ],
+  "relatedSlugs": [
+    "typeform",
+    "bubble",
+    "glide"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

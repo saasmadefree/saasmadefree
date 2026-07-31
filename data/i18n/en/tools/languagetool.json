@@ -1,0 +1,20 @@
+{
+  "tagline": "Grammar and style checker with premium suggestions and browser extensions.",
+  "verdictSummary": "Because LanguageTool's own checking engine is open source, this is a genuine yes: run the real engine locally instead of writing a grammar checker from scratch. What the Premium subscription buys beyond that is a larger proprietary rule set, hosted convenience, and cross-device setup you'd otherwise do yourself.",
+  "coreLoopDIY": "Run the open-source LanguageTool engine locally, with a small page for checking pasted text and a CLI for checking files.",
+  "whatYouLose": [
+    "the larger premium rule set",
+    "hosted convenience across devices",
+    "browser extension integration",
+    "team and admin controls"
+  ],
+  "whyPeopleStillPay": "People pay for hosted convenience and the larger premium rule set, not because the underlying grammar engine is otherwise unavailable — it's the same open-source engine either way.",
+  "notes": "A rare, clean yes where the prior art is the product's own open core.",
+  "prompt": "Do not write a grammar checker — run the real, open-source LanguageTool engine locally (it ships as a self-contained server started with one command). Build a small local page: paste text, see issues underlined with an explanation on hover, click a suggestion to apply it. Add a command-line mode that checks a file and exits non-zero on any issue, so it can run as a git pre-commit hook on documentation. Support a personal dictionary file of names and jargon that should never be flagged. Add an optional LLM rewrite pane (key from the environment) that takes a paragraph plus LanguageTool's own findings and returns a rewritten version shown as a diff against the original — skip this feature entirely, cleanly, when no key is configured; the core grammar checking works with zero API keys and no network connection.\n\nDo not build a browser extension or attempt to reproduce LanguageTool Premium's larger proprietary rule set — the open rule set is what's actually available to self-host, and that's an honest, real gap versus the paid tier, not something to paper over.",
+  "faq": [
+    { "q": "Can I bring over anything from my LanguageTool Premium account?", "a": "Not really — Premium's extra rule set and any saved preferences don't export. Your personal dictionary of ignored words is quick to rebuild by hand." },
+    { "q": "Will it work on my phone?", "a": "As a page you paste text into, yes if you host it reachable on your network — but there's no browser extension and no inline checking inside other apps, so it's a destination, not a layer over your phone's keyboard." },
+    { "q": "What does it cost to run?", "a": "Nothing for the core checker — it runs on your own machine with no hosting fee. The optional LLM rewrite feature costs a small amount per use if you turn it on." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The premium rule set. LanguageTool Premium catches a meaningfully larger set of style and consistency issues than the open engine — that gap is real, not just convenience." }
+  ]
+}

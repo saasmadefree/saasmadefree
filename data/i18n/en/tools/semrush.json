@@ -1,0 +1,21 @@
+{
+  "tagline": "SEO, PPC, and competitive research toolkit built on large web datasets.",
+  "verdictSummary": "A small rank tracker and technical site auditor for a domain you own is a real build. What can't be reproduced is Semrush's actual product: keyword, backlink, competitor, and SERP data collected from crawling the web at scale over years — no personal script recreates a dataset like that.",
+  "coreLoopDIY": "A scheduled tracker for your own keywords via a SERP API, a technical crawl of your own site, and your own Search Console data pulled in alongside it.",
+  "whatYouLose": [
+    "the keyword and backlink database",
+    "competitor intelligence on domains you don't own",
+    "PPC and SERP historical data",
+    "AI-search visibility data",
+    "data freshness at scale"
+  ],
+  "whyPeopleStillPay": "People pay for market and competitive data that a solo builder cannot cheaply or legally recreate — the dashboards are the easy part, the dataset behind them is not.",
+  "notes": "An important 'no': naming the data moat plainly here keeps the rest of the catalogue honest about what a personal build can and can't reproduce.",
+  "prompt": "Build a rank and site-health tracker limited to domains you actually own — not a general SEO platform. A scheduled job that checks a chosen list of keywords against a real SERP API (there are several with an affordable tier; do not scrape Google's results pages directly) and stores position and ranking URL per day, with a simple report showing movement over time. Pull your own click and impression data for free from the Google Search Console API for properties you control. Run a technical crawl limited to your own domain flagging broken links, missing or duplicate titles and descriptions, redirect chains, and slow pages. Send a summary report only when something actually moved — a meaningful position swing, new broken links — rather than a constant stream of noise.\n\nDo not attempt competitor keyword gaps, a backlink database, or traffic estimates for sites you don't own — none of that data can be self-collected without crawling the entire web continuously, which is exactly the infrastructure the subscription pays for.",
+  "faq": [
+    { "q": "Can I import my existing Semrush data — tracked keywords, competitor research?", "a": "Your tracked keyword list, yes, that's just a text file you maintain yourself. Historical keyword and backlink data cannot be exported or rebuilt; it only exists inside Semrush's own crawl and licensed datasets." },
+    { "q": "Will it work on my phone?", "a": "The report is a simple web page, so checking it on a phone works, but there's no app and no alerting beyond the scheduled email summary." },
+    { "q": "What does it actually cost to run?", "a": "A SERP API's affordable tier plus hosting, typically a small monthly cost well under Semrush's own pricing — Search Console access itself is free." },
+    { "q": "What's the one thing that genuinely doesn't survive the rebuild?", "a": "Anyone else's site. You can track and audit your own domain thoroughly; you cannot see a competitor's keyword gaps or backlink profile — that visibility only exists because Semrush already crawled it, continuously, for years." }
+  ]
+}

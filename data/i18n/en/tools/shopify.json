@@ -1,0 +1,21 @@
+{
+  "tagline": "Hosted ecommerce platform for stores, payments, and checkout.",
+  "verdictSummary": "A small personal storefront — a product catalog, a cart, checkout handed off entirely to a payment processor — is a real build for someone selling a handful of items. What shouldn't be attempted is anything that touches trust at checkout: fraud handling, tax and shipping integrations, and the app ecosystem that makes Shopify a real business platform, not a store template.",
+  "coreLoopDIY": "A small catalog and cart, with checkout handed off entirely to a hosted payment processor so card data never touches your own server.",
+  "whatYouLose": [
+    "Shopify's trusted checkout and fraud/risk handling",
+    "the app marketplace",
+    "built-in shipping and tax integrations",
+    "point-of-sale",
+    "real scale"
+  ],
+  "whyPeopleStillPay": "An ecommerce failure — a broken cart, a declined-but-charged card, a fraud loss — costs real revenue and trust; people pay so that risk is someone else's job.",
+  "notes": "A valuable 'no': the app isn't just product pages and a cart, and pretending otherwise would understate what actually breaks at real volume.",
+  "prompt": "Build a small personal storefront for a handful of products: a catalog with images, price, and stock count, a cart kept in a session, and checkout handed off entirely to a hosted payment processor's checkout page — never touch card data on your own server, that's non-negotiable. A webhook from the payment processor records the order, decrements stock, and emails both you and the buyer a confirmation. A simple admin view behind authentication: an order list and a mark-shipped action that emails the buyer, optionally with a tracking number. Flat shipping rates per region from a config file; a sold-out product stays visible but can't be bought.\n\nDo not build discount engines, multi-currency support, point-of-sale, or tax automation — turn on your payment processor's own tax feature if you need it, don't build your own. Do not build customer accounts. If volume actually grows, the honest move is migrating to a real platform (Shopify or an open-source alternative like Medusa), not scaling this further — and the README should say so plainly, along with the fact that you are now, personally, the fraud department.",
+  "faq": [
+    { "q": "Can I import my existing Shopify products and orders?", "a": "Products, yes — Shopify exports a product CSV that maps reasonably well onto a simple catalog. Order history generally doesn't need to migrate, since it's historical record, not something the new store needs to operate." },
+    { "q": "Will it work on my phone?", "a": "The storefront is a normal responsive page, so customers buying from a phone works fine. The admin view is usable in a pinch but is built for a desktop screen." },
+    { "q": "What does it cost to run?", "a": "Hosting, a domain, and a database, typically a few dollars a month, plus standard payment-processing fees per sale — no monthly platform fee at all beyond that." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Trust at checkout, and someone else absorbing fraud risk. Shopify's checkout is recognized and trusted by shoppers, and its risk systems catch a meaningful share of fraudulent orders before they cost you money; a personal storefront has neither, and a single bad chargeback costs more than months of the subscription." }
+  ]
+}

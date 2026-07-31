@@ -1,0 +1,20 @@
+{
+  "tagline": "Workflow automation connecting apps and APIs.",
+  "verdictSummary": "Because n8n itself is open source, this is a real yes: self-host the actual software instead of a clone of it. What the Cloud plan was paying for is hosting, backups, and scaling — the workflow engine you'd be running is identical either way.",
+  "coreLoopDIY": "Self-host the open-source n8n workflow engine behind HTTPS, with your own backup and update routine.",
+  "whatYouLose": [
+    "managed hosting and scaling",
+    "backups handled for you",
+    "email support",
+    "day-to-day operational burden being someone else's job"
+  ],
+  "whyPeopleStillPay": "People pay to avoid maintaining an automation server that real business workflows quietly depend on — not because n8n itself is hard to run.",
+  "notes": "A clean example of 'yes, but hosting and ops become your job' — worth naming as its own pattern since several entries in this catalogue share it.",
+  "prompt": "Do not build an automation tool — deploy the real, open-source n8n. Run it via Docker Compose on a small VPS with a persistent volume for its data directory; SQLite storage is fine at personal scale, no need for a separate database server. Bind n8n to localhost and expose it through your existing reverse proxy on an HTTPS subdomain, relying on n8n's own login for access control. Set its encryption key explicitly as an environment variable and back that key up separately from everything else — losing it makes every stored credential permanently unreadable, which is worth stating loudly in the README. Set the webhook URL environment variable to your public subdomain so external services can actually trigger your workflows. Set up a nightly backup that exports workflows and credentials through n8n's own CLI and copies the data volume elsewhere, and an update script that pins a specific version, backs up first, then pulls and restarts — never update to an untagged latest build blindly. Import one or two starter workflows as a smoke test that the whole pipeline works end to end.\n\nDo not build multi-user team features or high-availability scaling — this is one person's automation box, not a platform. Ops is the actual thing being taken on here; the README should say so plainly.",
+  "faq": [
+    { "q": "Can I migrate my existing n8n Cloud workflows?", "a": "Yes — n8n's export/import works identically whether the workflow was built on Cloud or self-hosted, since it's the same underlying software either way." },
+    { "q": "Will it work on my phone?", "a": "The editor itself, poorly — building or editing a workflow visually needs a larger screen. Workflows that are already running keep running regardless of what device you're on." },
+    { "q": "What does it cost to run?", "a": "A small VPS plus a domain, typically under ten dollars a month — often less than the Cloud plan once a workflow count grows, though you're now the one keeping it online." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Scaling without thinking about it. n8n Cloud absorbs traffic spikes and storage growth automatically; a single VPS has a ceiling, and hitting it means manually resizing the server yourself." }
+  ]
+}

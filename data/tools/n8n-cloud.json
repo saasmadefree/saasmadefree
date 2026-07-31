@@ -1,0 +1,43 @@
+{
+  "slug": "n8n-cloud",
+  "name": "n8n Cloud",
+  "domains": [
+    "n8n.io"
+  ],
+  "category": "automation",
+  "subcategory": "workflow automation",
+  "pricing": {
+    "amount": 24,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://n8n.io/pricing/",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "open-source core/hosting",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "n8n",
+      "url": "https://github.com/n8n-io/n8n"
+    }
+  ],
+  "relatedSlugs": [
+    "plausible",
+    "zapier",
+    "notion"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

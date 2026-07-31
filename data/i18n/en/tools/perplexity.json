@@ -1,0 +1,20 @@
+{
+  "tagline": "AI search engine that answers questions with cited sources.",
+  "verdictSummary": "A retrieval-plus-LLM answer engine — search the web, extract readable text from top results, ask a model to answer only from those excerpts with citations — is a real weekend build on top of existing search and model APIs. What doesn't come with it is Perplexity's search quality, source ranking, and the speed and polish of a dedicated product.",
+  "coreLoopDIY": "Search the web through a search API, extract readable text from the top results, and ask a model to answer strictly from those excerpts with numbered citations.",
+  "whatYouLose": [
+    "Perplexity's own search ranking and quality tuning",
+    "mobile and browser-extension surfaces",
+    "publisher partnerships and integrations",
+    "response speed at scale"
+  ],
+  "whyPeopleStillPay": "Answers arrive fast, with sources already assembled, and without having to build the query yourself — people pay for that speed and polish, not because retrieval-plus-LLM is a novel technique.",
+  "notes": "A nuanced 'kinda': there's real open-source prior art for the pattern, but the underlying search API's quality is what actually limits how good the answers get.",
+  "prompt": "Build a personal answer engine that wraps real search and model APIs rather than reimplementing either. For each question: query a real search API (several offer a usable free tier), fetch the top handful of results, extract the readable text from each page, and pass the question plus numbered excerpts to a model (Claude or GPT, key from the environment) with strict instructions to answer only from the given excerpts and cite each claim as [1], [2], and so on. Render citations as clickable footnotes with the full source list under every answer — if a page fails to fetch or its text can't be extracted, drop it silently rather than ever citing something that wasn't actually read. Keep follow-up questions in the same thread, with prior questions and answers carried forward as context. Store threads in a database with a sidebar listing past threads by their first question.\n\nDo not build your own web index or crawler, model routing across providers, or mobile apps — retrieval quality here tracks the search API directly, and that's the honest trade for not running Perplexity's own infrastructure.",
+  "faq": [
+    { "q": "Can I import my Perplexity thread history?", "a": "Not in a structured way — Perplexity doesn't offer a bulk export of past threads. Anything worth keeping would need to be copied over by hand." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, if hosted somewhere reachable. There's no dedicated mobile app and no browser extension for quick lookups from other apps." },
+    { "q": "What does it cost to run?", "a": "Search API usage plus model API usage per question — most search APIs have a free tier covering light personal use, after which it's a small amount per query." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Search quality at Perplexity's level. Answers here are only as good as the underlying search API's results — Perplexity has invested specifically in ranking and source quality, which a general-purpose search API doesn't match out of the box." }
+  ]
+}

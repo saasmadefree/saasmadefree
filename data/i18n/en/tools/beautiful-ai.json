@@ -1,0 +1,21 @@
+{
+  "tagline": "Presentation builder with smart templates and auto-formatting.",
+  "verdictSummary": "A Markdown-to-slides CLI with a handful of fixed layouts and an optional AI-drafted starting outline is a real week-long build. What doesn't come with it is Beautiful.ai's actual product: a layout engine that automatically re-flows any slide's design as you edit content, so a slide never looks unbalanced.",
+  "coreLoopDIY": "Write slides in Markdown, render them through a handful of fixed layouts with a live preview, and export to PDF.",
+  "whatYouLose": [
+    "the self-adjusting smart-template layout engine",
+    "a shared brand template library",
+    "PowerPoint import/export compatibility",
+    "real-time collaboration",
+    "viewer analytics"
+  ],
+  "whyPeopleStillPay": "People pay so a slide stays visually balanced automatically as its content changes — that adaptive layout engine, not slide creation itself, is the hard, ongoing engineering behind the product.",
+  "notes": "Slide-generation demos are easy; the actual editing polish that keeps a slide looking designed as you type is what's sticky here.",
+  "prompt": "Build a Markdown-based slide deck tool: decks are plain Markdown files, with a line marking each new slide and an optional line for speaker notes. Support a small fixed set of layouts (title, bullet list, big number/stat, image-and-text two-column), each defined by its own editable CSS file rather than baked into the tool. Add a live-reload local preview server and a PDF export command. When a slide's content overflows its layout, step the text size down once automatically and print a warning naming the affected slide, rather than silently clipping content. Support a small brand config — two fonts, a handful of colors, a logo placement — applied to every slide. Add one optional feature: given a rough outline of notes, call an LLM API to draft a starter deck in the same Markdown format for you to edit — skip this entirely, with no error, if no API key is configured; the rest of the tool works with zero API keys.\n\nDo not attempt to build an auto-layout engine that re-balances a slide's design as content changes, PowerPoint export, or real-time collaboration — the self-adjusting layout behavior specifically is real, ongoing product engineering, not something a fixed set of CSS layouts replicates.",
+  "faq": [
+    { "q": "Can I import my existing Beautiful.ai decks?", "a": "Not directly — Beautiful.ai exports to PDF and PPTX, which are fine for reference but not editable here. Bringing a deck in means rewriting its content as Markdown by hand, or using the optional AI outline feature as a starting point." },
+    { "q": "Will it work on my phone?", "a": "Viewing an exported PDF, yes. Writing or editing a deck is a text-editor and command-line workflow, which isn't realistically a phone task." },
+    { "q": "What does it cost to run?", "a": "Hosting for the local preview server is close to free; the optional AI-drafted outline costs a small amount per deck in API usage, and skipping that feature costs nothing at all." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Self-adjusting layouts. Beautiful.ai automatically re-balances a slide's design as you add or remove content; this build uses a small set of fixed layouts that need a manual nudge — a font-size step-down and a warning — when content overflows." }
+  ]
+}

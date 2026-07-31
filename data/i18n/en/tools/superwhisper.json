@@ -1,0 +1,20 @@
+{
+  "tagline": "AI dictation for Mac: turns speech into text anywhere.",
+  "verdictSummary": "A push-to-talk dictation tool — hold a hotkey, transcribe locally with Whisper, paste into whatever's focused — is a genuinely small, well-scoped build for one person on macOS. This is about as clean a yes as this catalogue has: the primitives are all mature and free.",
+  "coreLoopDIY": "A menu-bar app that records while a hotkey is held, transcribes locally with Whisper, and pastes the result into the active field.",
+  "whatYouLose": [
+    "the polished native macOS UX",
+    "per-app dictation presets",
+    "custom vocabulary and profile tuning",
+    "support if something breaks"
+  ],
+  "whyPeopleStillPay": "People pay for the low-friction, invisible menu-bar experience and per-app tuning — not because speech-to-text itself is hard to get running locally.",
+  "notes": "Strong yes and very on-brand here: small utility, obvious mature primitives, real subscription fatigue.",
+  "prompt": "Build a push-to-talk dictation tool for macOS: a global hotkey (held down) records the microphone, released stops it; a menu bar icon shows idle/recording/transcribing state. Transcribe the recording locally with whisper.cpp running fully offline — no cloud speech API needed for the core loop. Paste the transcript into whatever field currently has focus, then restore whatever was previously on the clipboard. Add an optional second hotkey for a 'cleanup' pass: send the transcript to an LLM API (key from the environment) to fix punctuation and drop filler words before pasting — if no key is configured, this mode just falls back to a plain paste of the raw transcript. Keep a rolling log of recent transcripts, appended to a dated file, with the audio deleted right after transcription rather than kept.\n\nDo not build per-app presets or custom vocabulary tuning — one good general-purpose mode, well executed, covers the actual use case. Everything runs locally except the optional cleanup API call.",
+  "faq": [
+    { "q": "Can I bring over anything from Superwhisper?", "a": "Not really — Superwhisper doesn't export dictation history or custom vocabulary in a portable format. This build starts its own transcript log from scratch." },
+    { "q": "Will it work on my phone?", "a": "No — this is a macOS menu-bar utility tied to system-wide hotkeys and clipboard access, both desktop-only concepts. There's no mobile equivalent here." },
+    { "q": "What does it actually cost to run?", "a": "Nothing for the core dictation loop — whisper.cpp runs locally for free. The optional cleanup pass costs a small amount of LLM API usage only when you use that hotkey." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Per-app tuning. Superwhisper can adapt its vocabulary and behavior per application; this build has one general mode everywhere, which is simpler but less sharp in specialized contexts like code or medical dictation." }
+  ]
+}

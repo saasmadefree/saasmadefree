@@ -1,0 +1,41 @@
+{
+  "slug": "superwhisper",
+  "name": "Superwhisper",
+  "domains": [
+    "superwhisper.com"
+  ],
+  "category": "voice-dictation",
+  "subcategory": "local dictation",
+  "pricing": {
+    "amount": 8.49,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://superwhisper.com/docs/get-started/sw-pro",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "polish/native integration",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key"
+  ],
+  "priorArt": [
+    {
+      "name": "whisper.cpp",
+      "url": "https://github.com/ggml-org/whisper.cpp"
+    }
+  ],
+  "relatedSlugs": [
+    "granola",
+    "notion",
+    "calendly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

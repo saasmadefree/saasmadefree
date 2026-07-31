@@ -1,0 +1,21 @@
+{
+  "tagline": "Notion-style form builder with a generous free tier.",
+  "verdictSummary": "A form builder — a field editor, public form pages, stored responses, CSV export — is a classic weekend build, and one of the cleanest yes entries here: there's enough mature prior art that this isn't even a hard weekend.",
+  "coreLoopDIY": "An admin editor for building forms field by field, a public page per form that validates and stores responses, with CSV export and optional email/webhook notifications.",
+  "whatYouLose": [
+    "the polished visual form editor",
+    "partial-submission saving",
+    "custom domains",
+    "third-party integrations beyond a webhook",
+    "team workspaces"
+  ],
+  "whyPeopleStillPay": "People pay for low-friction form creation, removing the free-tier branding, and integrations that plug straight into other tools — not because a working form is hard to build.",
+  "notes": "One of the cleanest yes products in the catalogue, with enough prior art to make this genuinely actionable, not just theoretically buildable.",
+  "prompt": "Build a personal form builder: an admin view (behind simple authentication, no need for full user accounts) for creating forms field by field — text, textarea, email, select, checkbox, file upload — with required flags and reordering. Each form gets its own public page with a clean single-column layout, client- and server-side validation, and basic spam defenses (a honeypot field plus a simple per-IP rate limit). Store every response in a database, with file uploads saved to disk under a size cap. Per form, support two optional notifications: email yourself on each new response, and POST the response as JSON to a webhook URL. An admin view per form: a sortable response table with CSV export.\n\nDo not build partial-submission saving, conditional field logic, payment collection, or team workspaces — and skip a template gallery entirely; a form you built yourself is its own template. This is a personal tool, not a forms platform.",
+  "faq": [
+    { "q": "Can I import my existing Tally forms?", "a": "Not automatically — Tally doesn't offer a structured export of form definitions. Response data does export as CSV, so past submissions are safe; the form structure itself needs to be rebuilt, which for most forms is a few minutes of clicking." },
+    { "q": "Will it work on my phone?", "a": "Yes for filling out a form — the public pages are fully responsive. The admin editor is usable on a phone but is built with a desktop layout in mind." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — file uploads are the only thing that meaningfully grows storage costs over time." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Partial-submission recovery. Tally can save someone's progress on a long form if they leave and come back; this build only stores a completed submission, so an abandoned form is simply gone." }
+  ]
+}

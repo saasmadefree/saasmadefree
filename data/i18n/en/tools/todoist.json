@@ -1,0 +1,21 @@
+{
+  "tagline": "Cross-platform task manager for projects, reminders, and recurring tasks.",
+  "verdictSummary": "A personal task manager — projects, recurring due dates, natural-language quick-add, reminders — is a real one-sitting build over a local database. What's harder to match is Todoist's polish: native apps on every platform, reliable push notifications, and years of small UX refinements that make capture fast.",
+  "coreLoopDIY": "A task manager with projects, recurring due dates, natural-language quick-add, and push reminders to your phone.",
+  "whatYouLose": [
+    "native mobile and desktop apps",
+    "built-in collaboration on shared projects",
+    "offline sync across devices",
+    "third-party integrations",
+    "years of UX polish around fast capture"
+  ],
+  "whyPeopleStillPay": "Task capture has to be instant everywhere and reminders can't be missed — people pay for native apps and dependable notifications, not for the task list itself.",
+  "notes": "A strong yes — the data model is simple; the real product is capture speed and polish, and feature creep is the main risk in a DIY version.",
+  "prompt": "Build a personal task manager: projects, priorities, due dates, and recurring tasks (stored as a recurrence rule, not a fixed date) in a real database, with a fast natural-language quick-add — 'call Sam tomorrow 4pm #home p2' should set the due date, project, and priority from one line. Build Today and Upcoming views, with overdue tasks pinned at the top. Add a background job that checks for due tasks and sends a push notification to your phone through a lightweight push service (ntfy is a good option — no account needed, just a topic name), plus a daily digest of the day's list. Add a one-line CLI for quick capture from a terminal, since fast capture is the actual point.\n\nDo not build native mobile or desktop apps, real-time collaboration on shared projects, or cross-device offline sync — those are genuinely deep engineering, not a weekend feature. Push notifications through a phone-side app for the notification service are the honest substitute for a native mobile app here, not a replacement for one.",
+  "faq": [
+    { "q": "Can I import my existing Todoist tasks?", "a": "Yes — Todoist exports your tasks and projects to CSV, and that maps cleanly onto this build's schema. Recurring-task rules and labels need a small amount of manual cleanup after import." },
+    { "q": "Will it work on my phone?", "a": "For reminders, yes — push notifications reach your phone through the notification service. For actually managing tasks, no: there's no mobile app, so adding or editing tasks means the web page or the CLI." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month; the push notification service used here is free for personal use." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Multi-device reliability without thinking about it. Todoist syncs instantly across every device and never drops a reminder; a personal build is one server you maintain, and an outage means a missed reminder." }
+  ]
+}

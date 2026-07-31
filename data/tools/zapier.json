@@ -1,0 +1,42 @@
+{
+  "slug": "zapier",
+  "name": "Zapier",
+  "domains": [
+    "zapier.com"
+  ],
+  "category": "automation",
+  "subcategory": "workflow automation",
+  "pricing": {
+    "amount": 29.99,
+    "currency": "USD",
+    "plan": "Professional/Starter",
+    "basis": "flat-monthly",
+    "source": "https://zapier.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "integration network/reliability",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "n8n",
+      "url": "https://github.com/n8n-io/n8n"
+    }
+  ],
+  "relatedSlugs": [
+    "n8n-cloud",
+    "notion",
+    "calendly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

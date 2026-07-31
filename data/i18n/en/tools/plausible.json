@@ -1,0 +1,20 @@
+{
+  "tagline": "Privacy-friendly website analytics without cookies.",
+  "verdictSummary": "A lightweight pageview tracker — a small script, an ingest endpoint, a dashboard of visitors and top pages — is a real weekend build, and Plausible's own code is open source. What separates a personal build from the paid product is the same thing that separates it from self-hosting the real Plausible: bot filtering tuned over years, and fast queries once traffic gets real.",
+  "coreLoopDIY": "A small tracking script, an ingest endpoint that filters obvious bots, and a dashboard showing visitors, top pages, referrers, and countries.",
+  "whatYouLose": [
+    "bot filtering tuned over years of abuse patterns",
+    "fast aggregate queries at real scale",
+    "email reports and goal/funnel tracking",
+    "GDPR compliance research already done"
+  ],
+  "whyPeopleStillPay": "Analytics has to be boring and reliable — people pay so pageview counting never becomes their problem, and so the privacy and compliance homework is already done.",
+  "notes": "Both the script and the dashboard are a real weekend build, and Plausible itself is open source — self-hosting the actual project is the honest move once traffic gets serious.",
+  "prompt": "Build a small, cookie-free analytics tracker for a personal site: a tracking script under 2KB that sends a pageview beacon (path, referrer, screen size) with no cookies and no persistent visitor ID — compute a daily-rotating visitor hash server-side from the IP, user-agent, and a secret salt, and never store the raw IP. An ingest endpoint that does basic bot filtering by user-agent and writes events to a database. A password-protected dashboard showing unique visitors, pageviews, top pages, top referrers, and country breakdown for today/7-day/30-day windows, with a simple visitors-per-day chart. Support multiple sites via a site ID in the script. Compute a session's end after a period of inactivity and derive a bounce rate from that.\n\nDo not build a full events/goals system or team accounts — those are real product surface. And be honest about scale: this tracker is sized for a personal site's traffic, not a business one. Once traffic gets real, the actual open-source Plausible project is self-hostable and already solves bot filtering and query performance at scale — that's the honest move past a certain point, not a bigger version of this script.",
+  "faq": [
+    { "q": "Can I import my existing Plausible stats?", "a": "Plausible can export your stats as CSV, which gives you historical numbers to reference, but there's no way to import that history into this build's own database — it starts counting from zero going forward." },
+    { "q": "Will it work on my phone?", "a": "The dashboard is a responsive web page, so viewing your stats on a phone works fine. There's no mobile app, but analytics dashboards rarely need one." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — the tracking script itself is nearly free to run at personal-site traffic levels." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Bot filtering that's actually good. Distinguishing real visitors from the constant background noise of scrapers and bots is a cat-and-mouse game refined over years; a personal script's filtering will be cruder, and your numbers will be noisier for it." }
+  ]
+}

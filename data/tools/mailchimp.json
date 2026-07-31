@@ -1,0 +1,44 @@
+{
+  "slug": "mailchimp",
+  "name": "Mailchimp",
+  "domains": [
+    "mailchimp.com"
+  ],
+  "category": "newsletter",
+  "subcategory": "email marketing",
+  "pricing": {
+    "amount": 20,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "usage-based",
+    "source": "https://mailchimp.com/pricing/marketing/",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "deliverability/compliance/integrations",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Mautic",
+      "url": "https://github.com/mautic/mautic"
+    }
+  ],
+  "relatedSlugs": [
+    "ghost-pro",
+    "shopify",
+    "beehiiv"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

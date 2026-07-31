@@ -1,0 +1,41 @@
+{
+  "slug": "midjourney",
+  "name": "Midjourney",
+  "domains": [
+    "midjourney.com"
+  ],
+  "category": "ai-image",
+  "subcategory": "image generation",
+  "pricing": {
+    "amount": 10,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "flat-monthly",
+    "source": "https://docs.midjourney.com/hc/en-us/articles/27870484040333-Comparing-Midjourney-Plans",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "frontier model/compute/community",
+  "diyTimeEstimate": "more",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "ComfyUI",
+      "url": "https://github.com/comfyanonymous/ComfyUI"
+    }
+  ],
+  "relatedSlugs": [
+    "runway",
+    "elevenlabs",
+    "chatgpt"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

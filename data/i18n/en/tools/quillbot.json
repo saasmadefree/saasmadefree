@@ -1,0 +1,20 @@
+{
+  "tagline": "AI paraphrasing, summarizing, and grammar checking.",
+  "verdictSummary": "A paraphrase-and-grammar tool wrapping an LLM plus a local grammar engine is a one-sitting build — QuillBot's actual value is almost entirely wrapper polish (browser and Word extensions, saved history, purpose-built modes), not a capability that's hard to reproduce.",
+  "coreLoopDIY": "A page with an input and output pane: paraphrase and summarize through an LLM, grammar-check through a local open-source engine, with every run saved to a searchable history.",
+  "whatYouLose": [
+    "browser and Word extensions that work inline where you're already writing",
+    "dedicated plagiarism and AI-detection workflows",
+    "years of UX polish on rewrite modes",
+    "account sync across devices"
+  ],
+  "whyPeopleStillPay": "People pay because it's already installed where they write, with purpose-built buttons for each mode — not because paraphrasing text is a hard problem to solve.",
+  "notes": "A strong yes: this is wrapper-heavy in exactly the way that makes cancellation easy once the DIY version exists.",
+  "prompt": "Build a small local tool with one text box in, one output pane, and buttons for a few fixed modes: paraphrase, summarize, and a couple of tone rewrites (more formal, shorter). Paraphrase, summarize, and tone modes call an LLM API with a fixed instruction per mode and stream the response. Grammar checking runs through a local open-source grammar engine (LanguageTool, self-hosted) rather than the LLM — grammar is a solved problem and shouldn't cost API tokens. Show a word-level diff between input and output so a rewrite's changes are visible at a glance. Save every run (mode, input, output, timestamp) to a database with a history view you can copy back out of.\n\nDo not build browser or word-processor extensions, or plagiarism/AI-detection features — those need real platform integration work and separate detection models respectively, and neither is what makes the core paraphrase-and-grammar loop useful. This lives in one tab, and that's the honest trade against a tool that's installed everywhere you type.",
+  "faq": [
+    { "q": "Can I import my QuillBot history?", "a": "No — QuillBot doesn't offer an export of your saved rewrite history, so past work stays there. Everything from this build forward is saved locally in your own database." },
+    { "q": "Will it work on my phone?", "a": "As a page with a text box, yes, technically — but there's no browser extension or Word integration, so on mobile specifically you'd be copying text in and out manually, which is a real downgrade." },
+    { "q": "What does it cost to run?", "a": "Hosting for the small server plus LLM API usage per paraphrase or summary call — grammar checking itself is free, since it runs on a local open-source engine with no API cost." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Being where you already write. QuillBot's extensions work inline in your browser or Word; this build is a separate tab you copy text into and out of, every time." }
+  ]
+}

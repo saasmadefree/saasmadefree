@@ -1,0 +1,21 @@
+{
+  "tagline": "Visual website builder and CMS for marketing sites.",
+  "verdictSummary": "A block-based static site generator — content as Markdown and YAML, a design-tokens file for consistent styling, a working contact form — is a real, if unglamorous, weekend build. What doesn't come with it is Webflow's actual product: a visual designer with pixel-level control, animations, and a workflow a non-developer can use to make changes without touching a file.",
+  "coreLoopDIY": "A static site generator where a page is a YAML file listing content blocks, styled from one shared design-tokens file, with blog-style content as Markdown.",
+  "whatYouLose": [
+    "the visual drag-and-drop designer",
+    "built-in animations",
+    "a client-friendly editing workflow for non-developers",
+    "a templates and component marketplace",
+    "hosted forms"
+  ],
+  "whyPeopleStillPay": "A designer can ship and maintain a production site without engineering every component themselves — the value is the visual workflow, not any single page it produces.",
+  "notes": "A strong 'kinda': there's real prior art for the pieces, but the polish and non-developer editing workflow is the actual moat.",
+  "prompt": "Build a static site generator (Eleventy is a solid choice) where a page is defined as a YAML file listing content blocks in order — hero, feature grid, testimonial, pricing table, FAQ, call-to-action, footer — each block rendered from its own template partial, so building a new page means editing YAML, not HTML. Add a lightweight 'CMS' with no actual CMS: blog posts and case studies as Markdown files with front matter, with listing and detail pages generated automatically at build time. Put all colors, type scale, and spacing into one design-tokens file so a full restyle touches exactly one place. Make every block responsive by default, tested at both a small phone width and a wide desktop width. Wire the contact form to post to a small server endpoint that emails the submission through a real email service. Generate a sitemap and per-page meta and social preview tags automatically at build time.\n\nDo not build a visual drag-and-drop designer or a non-developer editing workflow — those are Webflow's actual product. If visual, no-code editing genuinely matters, the honest move is self-hosting an existing open-source visual builder rather than writing one from scratch.",
+  "faq": [
+    { "q": "Can I import my existing Webflow site?", "a": "Not structurally — Webflow doesn't export to a format this build can read. In practice this means rebuilding pages as YAML block lists and copying over the actual content and images, which is real work but not a blank start." },
+    { "q": "Will it work on my phone?", "a": "The published site, yes — every block is built responsive by default. Editing content is a YAML, Markdown, and git workflow, which isn't a phone task." },
+    { "q": "What does it cost to run?", "a": "Static hosting is often free or a couple of dollars a month, since there's no database — noticeably cheaper to run than to design and maintain." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Visual, non-developer editing. Every future content or layout change here goes through YAML, Markdown, and a deploy; a designer or client who isn't comfortable with that workflow loses the ability to make changes themselves." }
+  ]
+}

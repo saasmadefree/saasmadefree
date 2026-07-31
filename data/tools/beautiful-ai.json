@@ -1,0 +1,42 @@
+{
+  "slug": "beautiful-ai",
+  "name": "Beautiful.ai",
+  "domains": [
+    "beautiful.ai"
+  ],
+  "category": "presentations",
+  "subcategory": "smart slide design",
+  "pricing": {
+    "amount": 45,
+    "currency": "USD",
+    "plan": "Pro monthly",
+    "basis": "flat-monthly",
+    "source": "https://www.beautiful.ai/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "templates/editor depth/collaboration",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "reveal.js",
+      "url": "https://github.com/hakimel/reveal.js"
+    }
+  ],
+  "relatedSlugs": [
+    "quillbot",
+    "grammarly",
+    "gamma"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

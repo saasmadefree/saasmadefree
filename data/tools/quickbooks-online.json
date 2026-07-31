@@ -1,0 +1,41 @@
+{
+  "slug": "quickbooks-online",
+  "name": "QuickBooks Online",
+  "domains": [
+    "quickbooks.intuit.com"
+  ],
+  "category": "finance-accounting",
+  "subcategory": "small-business accounting",
+  "pricing": {
+    "amount": 38,
+    "currency": "USD",
+    "plan": "Simple Start",
+    "basis": "flat-monthly",
+    "source": "https://quickbooks.intuit.com/pricing/",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "banking/compliance/accounting ecosystem",
+  "diyTimeEstimate": "more",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Akaunting",
+      "url": "https://github.com/akaunting/akaunting"
+    }
+  ],
+  "relatedSlugs": [
+    "invoice-ninja",
+    "kajabi",
+    "ghost-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

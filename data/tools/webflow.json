@@ -1,0 +1,42 @@
+{
+  "slug": "webflow",
+  "name": "Webflow",
+  "domains": [
+    "webflow.com"
+  ],
+  "category": "website-builder",
+  "subcategory": "visual website builder",
+  "pricing": {
+    "amount": 25,
+    "currency": "USD",
+    "plan": "Basic site",
+    "basis": "flat-monthly",
+    "source": "https://webflow.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "editor/CMS/hosting",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "email-provider"
+  ],
+  "priorArt": [
+    {
+      "name": "Webstudio",
+      "url": "https://github.com/webstudio-is/webstudio"
+    }
+  ],
+  "relatedSlugs": [
+    "carrd",
+    "airtable",
+    "bubble"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

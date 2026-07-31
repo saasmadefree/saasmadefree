@@ -1,0 +1,20 @@
+{
+  "tagline": "Open-source, privacy-friendly website analytics.",
+  "verdictSummary": "Because Umami itself is open source, this is a real yes: deploy the actual software instead of writing analytics code. What the cloud subscription was paying for is hosting, upgrades, and never having to look at a server — the software you'd be running is identical either way.",
+  "coreLoopDIY": "Self-host the open-source Umami analytics platform behind HTTPS, with the tracking script added to your own sites.",
+  "whatYouLose": [
+    "managed hosting and uptime",
+    "automatic upgrades",
+    "backups handled for you",
+    "someone else's on-call if the collector goes down"
+  ],
+  "whyPeopleStillPay": "Analytics isn't worth waking up at 2am to fix — people pay so uptime and upgrades are someone else's responsibility, not because self-hosting the software is hard.",
+  "notes": "A clean yes and a good example of hosted-open-source economics: the subscription is genuinely just infrastructure, not the software.",
+  "prompt": "Do not write analytics software — deploy the real, open-source Umami. Run it via Docker Compose on a small VPS: the official Umami image plus Postgres, both with persistent volumes. Put a reverse proxy in front for automatic HTTPS on a subdomain of your choice, with Umami itself bound to localhost. Add the tracking script tag to your sites and confirm pageviews arrive; create one custom event to prove the event pipeline works end to end. Set up a nightly database backup job with a documented restore command next to it, and a small update script that pulls the new image, restarts, and prints the release notes URL so you can check for breaking changes before upgrading.\n\nDo not modify Umami's own code or build a custom dashboard on top of it — deploying the existing software is the whole job here. Change the admin password immediately after first login; be plain in the README that uptime and upgrades are now your responsibility.",
+  "faq": [
+    { "q": "Can I migrate my existing Umami Cloud data over?", "a": "Yes — Umami supports exporting and importing its own data, and since this runs the identical open-source software, your dashboards and event definitions carry over unchanged." },
+    { "q": "Will it work on my phone?", "a": "The dashboard itself, yes, exactly as before — it's the same web app either way. There's nothing mobile-specific to lose here." },
+    { "q": "What does it cost to run?", "a": "A small VPS plus a domain, typically under ten dollars a month, plus a bit more once traffic volume grows the database — often close to what the Cloud plan already costs, so the case here is control, not necessarily savings." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Someone else's on-call. If the collector goes down or an upgrade breaks something, there's no support ticket — you're the one who notices and fixes it." }
+  ]
+}

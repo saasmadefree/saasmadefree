@@ -1,0 +1,20 @@
+{
+  "tagline": "No-code automation platform connecting thousands of apps.",
+  "verdictSummary": "A handful of personal automations — this webhook triggers that API call — is a real weekend build, running as plain code instead of a visual flow. What doesn't come with it is Zapier's actual product: a catalog of thousands of pre-built, maintained integrations, most of which need OAuth flows this build deliberately does not attempt.",
+  "coreLoopDIY": "A small automation runner: each pipeline is a scheduled job or a webhook handler that calls a couple of APIs directly, with every run logged and retried on failure.",
+  "whatYouLose": [
+    "the pre-built integration catalog for thousands of apps",
+    "OAuth connections maintained on your behalf",
+    "a visual no-code builder",
+    "run history and retries handled for you"
+  ],
+  "whyPeopleStillPay": "Every new app connection Zapier offers is already built, authenticated, and kept working as that app's API changes — people pay to skip writing and maintaining that integration code themselves.",
+  "notes": "A structural 'kinda': any single automation is an easy build, but Zapier the integration network is not.",
+  "prompt": "Build a personal automation runner for the handful of pipelines you actually use — not a general integration platform. Each pipeline is plain code: a trigger (a cron schedule or a webhook endpoint with a per-pipeline secret token) and a handler that calls the APIs it needs directly. Log every run to a database — pipeline name, trigger payload, status, duration, error — and retry a failed run a few times with backoff before giving up; notify yourself after the final failure. Build a small admin page showing recent runs with their status and a way to inspect or re-run one. Adding a new pipeline should mean writing a short script, not hunting for a pre-built connector.\n\nDo not build OAuth flows for third-party apps, or any kind of integration catalog or visual builder — restrict pipelines to services with simple token-based API keys, stored in the environment and never committed. A service that only offers OAuth is genuinely more setup work per integration; that ongoing maintenance across thousands of apps, not any single automation, is what the subscription buys.",
+  "faq": [
+    { "q": "Can I import my existing Zaps?", "a": "Not automatically — Zapier's visual flows don't export to code. Each Zap you actually rely on becomes a short script you write by hand, which for most personal automations is a handful of pipelines, not hundreds." },
+    { "q": "Will it work on my phone?", "a": "The admin page for checking run history works in a phone browser, but pipelines themselves run unattended on a server — there's nothing to interact with on mobile day to day, which is roughly how Zapier works too." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month, regardless of how many pipelines you run — no per-task pricing tiers to think about." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "OAuth-based integrations. Any service that requires signing in with your account instead of a plain API key is out of scope here; that's most of Zapier's most popular app connections, and building each one by hand would cost real time per app." }
+  ]
+}

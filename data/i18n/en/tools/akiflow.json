@@ -1,0 +1,20 @@
+{
+  "tagline": "Command-center planner merging tasks, calendar, and time blocking.",
+  "verdictSummary": "A capture inbox and a drag-to-schedule time-blocking calendar is a real multi-day build. What doesn't come with a personal clone is two-way sync: pulling tasks in from a dozen different tools and pushing changes back out to a live calendar, kept working as each of those APIs changes — that ongoing integration upkeep is the actual product.",
+  "coreLoopDIY": "A capture inbox for quick tasks, dragged onto a calendar grid to create time blocks, with your real calendar shown as a read-only overlay.",
+  "whatYouLose": [
+    "pulling tasks in automatically from other task apps",
+    "two-way calendar sync",
+    "native mobile and desktop apps",
+    "someone keeping up with each integration's API changes"
+  ],
+  "whyPeopleStillPay": "People pay to stop switching between separate task apps and calendars — the value is one interface for both, kept working automatically as the underlying services change.",
+  "notes": "Expensive enough to make DIY tempting; the integration upkeep it takes to do two-way sync properly is what keeps this a 'kinda' rather than a 'yes'.",
+  "prompt": "Build a daily planner with time blocking: a quick-capture inbox (one text box, enter a task, done) and a calendar grid you drag inbox tasks onto to create time blocks — dragging to move or resize a block, and completing a block also completes its linked task. Show your real calendar behind the grid as a read-only overlay, read from your calendar's private ICS feed URL (most calendar providers expose one in their sharing settings) — this needs no OAuth setup at all. Roll unfinished blocks over to the next day's inbox each morning, with a counter tracking how many times a task has been rescheduled, so chronically-avoided tasks stay visible instead of quietly vanishing.\n\nDo not build two-way calendar sync (creating or editing events on the real calendar from this app) or pulling tasks in automatically from other task tools — that needs OAuth with each provider plus ongoing handling of sync conflicts as their APIs change, which is real, continuous maintenance work, not a one-time build. A read-only calendar overlay plus manual task capture is the honest scope here.",
+  "faq": [
+    { "q": "Can I import my existing Akiflow tasks?", "a": "Akiflow lets you export your tasks, and that maps reasonably well onto a simple task table here — expect a short one-off script to convert the export, not a one-click import. Your connected calendars and integrations don't carry over; you'd re-add your calendar's ICS feed URL by hand." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, for checking today's plan or dropping a quick task in the inbox. There's no dedicated mobile app with Akiflow's own gesture-driven scheduling." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — no per-integration or per-seat pricing to think about." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Two-way sync. This build can show your calendar and let you plan around it, but it can't create or move events on the real calendar, or pull tasks in automatically from other apps — that live, two-way connection is Akiflow's actual product." }
+  ]
+}

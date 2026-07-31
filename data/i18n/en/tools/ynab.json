@@ -1,0 +1,21 @@
+{
+  "tagline": "Zero-based budgeting app with bank sync and hands-on money coaching.",
+  "verdictSummary": "A zero-based budget — assign every dollar to a category, track spending against it, roll unspent balances forward — is a real weekend build over a small database, and the open-source Actual Budget already proves the approach works. What doesn't come with a personal clone is automatic bank sync: money data has to arrive by CSV import instead of a live bank connection.",
+  "coreLoopDIY": "A monthly budget grid where every dollar of income gets assigned to a category, transactions are entered or imported from a bank CSV, and unspent balances roll over to the next month.",
+  "whatYouLose": [
+    "automatic bank account syncing",
+    "the mobile apps",
+    "YNAB's own budgeting course and support",
+    "shared and family budgets",
+    "polished spending reports"
+  ],
+  "whyPeopleStillPay": "People pay for the habit as much as the software — automatic bank sync and a built-in method make the discipline of assigning every dollar easier to actually keep up with than a weekly CSV import would be.",
+  "notes": "One of the strongest consumer 'yes' entries here, helped by Actual Budget already proving the open-source version works.",
+  "prompt": "Build a zero-based budgeting app: accounts and categories, grouped (e.g. 'Bills', 'Fun money'), where every dollar of income has to be assigned to a category before it counts as budgeted — show a running 'to be assigned' total that turns visibly negative if you over-assign. A monthly grid per category: assigned, spent, and available, with unspent balances rolling forward into the next month automatically. Transactions get entered by hand or imported from a bank's CSV export, with payee-to-category memory so repeat payees auto-fill next time. Add a reconcile flow: enter your real bank balance, and the app shows the difference against your recorded transactions so you can find what's missing. Keep simple reports: spending by category per month, net worth over time. Back up the database file on a schedule, since it's the only copy of your financial history.\n\nDo not build automatic bank account syncing — that needs a paid data-aggregation service and handling your actual bank credentials, which is real infrastructure and a real trust liability, not a personal weekend project. A CSV import habit, done weekly, is the honest trade for not paying for that connection.",
+  "faq": [
+    { "q": "Can I import my existing YNAB data?", "a": "YNAB can export your budget and transaction history, and that maps reasonably well onto a simple accounts/categories/transactions schema like this one — expect to write a short one-off script to convert the export format, not a one-click import." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, for checking balances or entering a transaction. There's no dedicated mobile app with YNAB's own polish — for most people that's a real, daily-use gap." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — the only recurring cost, since there's no bank-sync service to pay for." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Automatic bank sync. Every transaction has to be entered by hand or imported from a CSV; the moment that habit slips, the budget goes stale in a way YNAB's live bank connection never would." }
+  ]
+}

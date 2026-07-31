@@ -1,0 +1,47 @@
+{
+  "slug": "plausible",
+  "name": "Plausible",
+  "domains": [
+    "plausible.io"
+  ],
+  "category": "analytics",
+  "subcategory": "privacy web analytics",
+  "pricing": {
+    "amount": 9,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://plausible.io/",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "open-source core/hosting",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "plausible/analytics",
+      "url": "https://github.com/plausible/analytics"
+    },
+    {
+      "name": "umami",
+      "url": "https://github.com/umami-software/umami"
+    }
+  ],
+  "relatedSlugs": [
+    "umami-cloud",
+    "bitly",
+    "notion"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

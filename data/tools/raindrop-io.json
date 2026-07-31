@@ -1,0 +1,42 @@
+{
+  "slug": "raindrop-io",
+  "name": "Raindrop.io",
+  "domains": [
+    "raindrop.io"
+  ],
+  "category": "bookmarks",
+  "subcategory": "bookmark manager",
+  "pricing": {
+    "amount": 3,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://raindrop.io/pro",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "polish/cross-platform",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "linkwarden",
+      "url": "https://github.com/linkwarden/linkwarden"
+    }
+  ],
+  "relatedSlugs": [
+    "feedly",
+    "todoist",
+    "notion"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

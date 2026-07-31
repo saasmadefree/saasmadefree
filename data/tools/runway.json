@@ -1,0 +1,42 @@
+{
+  "slug": "runway",
+  "name": "Runway",
+  "domains": [
+    "runwayml.com"
+  ],
+  "category": "ai-video",
+  "subcategory": "generative video",
+  "pricing": {
+    "amount": 15,
+    "currency": "USD",
+    "plan": "Standard",
+    "basis": "flat-monthly",
+    "source": "https://runwayml.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "frontier model/compute",
+  "diyTimeEstimate": "more",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "diffusers",
+      "url": "https://github.com/huggingface/diffusers"
+    }
+  ],
+  "relatedSlugs": [
+    "elevenlabs",
+    "chatgpt",
+    "claude"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

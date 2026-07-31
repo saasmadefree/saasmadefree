@@ -1,0 +1,43 @@
+{
+  "slug": "umami-cloud",
+  "name": "Umami Cloud",
+  "domains": [
+    "cloud.umami.is"
+  ],
+  "category": "analytics",
+  "subcategory": "privacy web analytics",
+  "pricing": {
+    "amount": 9,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "flat-monthly",
+    "source": "https://umami.is/docs/cloud",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "open-source core/hosting",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "domain",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Umami",
+      "url": "https://github.com/umami-software/umami"
+    }
+  ],
+  "relatedSlugs": [
+    "github-copilot",
+    "plausible",
+    "bitly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

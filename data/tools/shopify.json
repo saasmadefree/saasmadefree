@@ -1,0 +1,42 @@
+{
+  "slug": "shopify",
+  "name": "Shopify",
+  "domains": [
+    "shopify.com"
+  ],
+  "category": "commerce",
+  "subcategory": "online store platform",
+  "pricing": {
+    "amount": 39,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "flat-monthly",
+    "source": "https://www.shopify.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "payments/marketplace/compliance",
+  "diyTimeEstimate": "more",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Medusa",
+      "url": "https://github.com/medusajs/medusa"
+    }
+  ],
+  "relatedSlugs": [
+    "teachable",
+    "kajabi",
+    "notion"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

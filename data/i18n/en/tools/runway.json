@@ -1,0 +1,20 @@
+{
+  "tagline": "Generative AI video creation and editing tools.",
+  "verdictSummary": "A thin workbench over a hosted video-generation API — a prompt box, a model picker, a gallery of past generations — is a real afternoon build for someone who generates occasionally. What can't be rebuilt is the actual product: the video-generation model itself, the compute behind it, and the continuous research that keeps improving it.",
+  "coreLoopDIY": "A prompt box and model picker that calls a hosted video-generation API, downloads the result, and tracks spend per generation in a local gallery.",
+  "whatYouLose": [
+    "the frontier video-generation model and its continuous improvement",
+    "dedicated inference compute",
+    "an editing timeline and inpainting tools",
+    "commercial usage-rights workflows"
+  ],
+  "whyPeopleStillPay": "Generative video quality and the inference infrastructure behind it are the actual product — a wrapper around someone else's API doesn't change who's doing the hard part.",
+  "notes": "An important 'no' for this whole frontier-model category: no amount of wrapper code substitutes for the model itself.",
+  "prompt": "Build a thin personal workbench over a hosted video-generation API: a prompt box, a model picker, and a gallery of past generations. Submit a generation job to a video-model API provider (pick one and stick to it — several offer current open or licensed video models), poll until it completes, download the result, and record the prompt, model, parameters, cost, and file path in a local database. Support image-to-video by letting an uploaded still be passed as the starting frame. Show a running month-to-date spend total computed from each job's real cost, so casual use stays honest about what it's actually costing.\n\nDo not build an editing timeline, inpainting, or anything real-time — those are genuine additional product surface, not a missing feature here. Be plain with yourself about what this is: you're renting access to someone else's model, not owning one, and both quality and price shift whenever the underlying model list does.",
+  "faq": [
+    { "q": "Can I import my existing Runway generations?", "a": "The video files themselves, yes, if you've downloaded them — they're just files. Runway doesn't export prompt/generation metadata in a structured format, so that history doesn't carry over." },
+    { "q": "Will it work on my phone?", "a": "As a page with a prompt box, technically yes if hosted somewhere reachable, but generation and review are much more workable on a larger screen — treat this as a desktop tool." },
+    { "q": "What does it actually cost to run?", "a": "Hosting is a few dollars a month; the real cost is per-generation API usage, which the built-in spend tracker shows you directly — casual, occasional use is often cheaper than a flat subscription, frequent use usually isn't." },
+    { "q": "What's the one thing that genuinely doesn't survive the rebuild?", "a": "The model. Video generation quality improves from continuous, expensive research this project can't replicate — a wrapper only ever gets as good as whichever API it's calling, on that provider's schedule, not your own." }
+  ]
+}

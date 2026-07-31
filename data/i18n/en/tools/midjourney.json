@@ -1,0 +1,21 @@
+{
+  "tagline": "Text-to-image generation known for high-quality aesthetic output.",
+  "verdictSummary": "You can build a private studio wrapping open image models, but Midjourney's actual product is the model itself — years of proprietary aesthetic tuning that no personal project can reproduce, whether run locally or through a hosted API.",
+  "coreLoopDIY": "A local image-generation studio: a prompt box, a gallery of results, wired to either a local open model or a hosted API you choose.",
+  "whatYouLose": [
+    "Midjourney's proprietary model and its distinctive aesthetic tuning",
+    "style consistency across a session",
+    "content moderation",
+    "the compute scale behind fast generation",
+    "the community and gallery discovery layer"
+  ],
+  "whyPeopleStillPay": "People pay for the model and its taste, not for the prompt box around it — the visual style Midjourney produces is the product, and no wrapper reproduces a model it doesn't have access to.",
+  "notes": "One of the clearest frontier-model moat cases in this catalogue: state it plainly rather than pretending a wrapper closes the gap.",
+  "prompt": "Build a private image-generation studio: a prompt box, a 'generate 4' button, and a gallery grid of results. Wire the backend to whichever engine is actually available — a local model (Flux or SDXL through a tool like ComfyUI) if there's a capable GPU, otherwise a hosted image API (key from the environment) — behind the same UI either way. Save every generated image with a sidecar file recording the exact prompt, seed, model, and settings used, so any result is reproducible later. Add search over past prompts, a favorites view, and a one-click re-run with the same seed or a small variation. Support a small set of reusable style presets (prompt prefixes and suffixes) as a rough, personal substitute for a consistent visual style.\n\nDo not attempt to train or fine-tune a model, and do not try to match Midjourney's specific look — that aesthetic is the product being replaced, not something a wrapper can borrow. Say so plainly in the README: this trades Midjourney's taste layer for control and privacy, not for equivalent output.",
+  "faq": [
+    { "q": "Can I bring over my Midjourney generations?", "a": "The images themselves, yes — they're just files you can download. The prompts and generation settings aren't portable in a structured way, since Midjourney doesn't offer a bulk export of that metadata." },
+    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, for browsing the gallery and typing a prompt. Actually generating images needs either a real GPU or a hosted API call happening somewhere else, not on the phone itself." },
+    { "q": "What does it cost to run?", "a": "Free if you have a capable GPU and run a local model. Using a hosted image API instead costs a small amount per image, which adds up with volume but is easy to track since it's metered per call." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The specific look. Midjourney's aesthetic comes from years of proprietary model tuning; open models produce genuinely good images, but not images that look like Midjourney's, no matter how the prompts are engineered." }
+  ]
+}

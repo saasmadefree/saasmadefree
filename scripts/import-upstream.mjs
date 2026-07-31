@@ -84,9 +84,15 @@ const DIY_TIME_MAP = new Map([
 ]);
 
 const DIY_TIME_OVERRIDES = new Map([
-  // Filled in by hand, per slug, the day those specific upstream entries are
-  // actually imported — see docs/import-report.md for why this can't be a
-  // mechanical rule.
+  // "one sitting (dictation only), multi-week with call capture" — the DIY
+  // prompt scopes down to the dictation loop (upstream's own "one sitting"
+  // half); call-capture/CRM matching is out of scope, named explicitly in
+  // whatYouLose rather than attempted. See docs/import-report.md.
+  ['superscribe', 'one-sitting'],
+  // "one sitting for the dashboard, a weekend-plus for native app polish" —
+  // upstream's own coreLoopDIY *is* the dashboard half ("one sitting");
+  // native-app polish is a nice-to-have beyond that core loop, not it.
+  ['uncircle', 'one-sitting'],
 ]);
 
 function mapDiyTime(value, slug) {
@@ -183,43 +189,100 @@ const EXTRA_DOMAINS = new Map([
   ['chatgpt.com', ['chat.openai.com']], // confirmed: 308-redirects to chatgpt.com
 ]);
 
+// domains[] — replace the bare upstream domain entirely when it would be a
+// hostname shared with a much larger, unrelated product. The extension
+// matcher works on hostnames only, so a product living at a path or a shared
+// apex domain of a bigger platform needs a narrower, product-specific
+// hostname instead — or gets skipped rather than firing wrongly on unrelated
+// traffic. Each override below was confirmed by fetching it (see
+// docs/import-report.md), not guessed from naming convention.
+const DOMAIN_OVERRIDES = new Map([
+  // github-copilot: github.com is GitHub itself (every repo/issue/PR) —
+  // fixed upstream of this script, kept here as the documented precedent.
+  ['github.com', 'githubcopilot.com'],
+  // adobe.com is Adobe's entire corporate site (Photoshop, Acrobat, Creative
+  // Cloud, ...) — Adobe Express has its own confirmed hostname.
+  ['adobe.com', 'new.express.adobe.com'],
+  // umami.is is the open-source project's own site (self-hosters land there
+  // too) — the paid hosted product is confirmed to live at cloud.umami.is.
+  ['umami.is', 'cloud.umami.is'],
+  // readwise.io covers Readwise's original highlights product too — Reader
+  // is confirmed to live at its own read.readwise.io hostname.
+  ['readwise.io', 'read.readwise.io'],
+]);
+
 function buildDomains(entry) {
-  const bare = normalizeDomain(entry.domain);
+  const upstreamBare = normalizeDomain(entry.domain);
+  const bare = DOMAIN_OVERRIDES.get(upstreamBare) ?? upstreamBare;
   return [bare, ...(EXTRA_DOMAINS.get(bare) ?? [])];
 }
 
 // ---------------------------------------------------------------------------
-// relatedSlugs — exactly three, distinct, never self, and (for a partial
-// import like this one) restricted to slugs actually present in this run's
-// batch, since that's the only set guaranteed to exist in data/tools/ once
-// this run finishes. Three passes, in order:
-//   1. upstream's own relatedSlugs, kept where they land inside the batch
-//   2. same category, within the batch, ranked by pagePriority then slug
+// relatedSlugs — exactly three, distinct, never self, and restricted to
+// slugs actually guaranteed to exist in data/tools/ once this run finishes:
+// that's the union of everything already on disk (prior batches, and the
+// four hand-curated entries) plus this run's own batch. As the catalogue
+// grows, most entries resolve at pass 2 (same category) — pass 3 is the
+// fallback for genuinely thin categories, not the common case. Four passes:
+//   1. upstream's own relatedSlugs, kept where they land inside the pool
+//   2. same category, within the pool, ranked by pagePriority then slug
 //   3. curated subject-adjacency clusters (a human judgement call — see
 //      docs/import-report.md), which cross category lines on purpose
-//   4. last resort: anything else in the batch, deterministic order
+//   4. last resort: anything else in the pool, deterministic order
 // ---------------------------------------------------------------------------
 const SUBJECT_CLUSTERS = [
   // AI-powered subscriptions (assistants, writing, audio, coding agents)
   ['chatgpt', 'claude', 'grammarly', 'gamma', 'elevenlabs', 'granola', 'cursor',
-    'github-copilot', 'perplexity', 'gemini'],
+    'github-copilot', 'perplexity', 'gemini', 'quillbot', 'jasper', 'midjourney',
+    'runway', 'krisp'],
   // no-code / build-without-code
-  ['bubble', 'glide', 'airtable', 'carrd', 'bannerbear', 'tally', 'coda'],
+  ['bubble', 'glide', 'airtable', 'carrd', 'bannerbear', 'tally', 'coda', 'softr',
+    'webflow', 'framer'],
   // content, audience and growth
-  ['ahrefs', 'beehiiv', 'kit', 'buffer', 'ghost-pro', 'feedly', 'mailchimp', 'semrush'],
+  ['ahrefs', 'beehiiv', 'kit', 'buffer', 'ghost-pro', 'feedly', 'mailchimp', 'semrush',
+    'surfer-seo', 'frase', 'typefully', 'later', 'postiz', 'post-bridge', 'superx'],
   // visual / design
-  ['canva', 'figma', 'gamma', 'carrd', 'adobe-express', 'whimsical'],
+  ['canva', 'figma', 'gamma', 'carrd', 'adobe-express', 'whimsical', 'sleek',
+    'beautiful-ai'],
   // security and day-to-day utility for developers/solopreneurs
-  ['1password', 'bitwarden', 'hey-email', 'github-copilot', 'cursor', 'dashlane'],
+  ['1password', 'bitwarden', 'hey-email', 'github-copilot', 'cursor', 'dashlane',
+    'raycast-pro'],
   // running a one-person business (billing, courses, site, email)
-  ['invoice-ninja', 'kajabi', 'ghost-pro', 'carrd', 'kit'],
+  ['invoice-ninja', 'kajabi', 'ghost-pro', 'carrd', 'kit', 'podia', 'teachable',
+    'freshbooks', 'xero', 'quickbooks-online'],
+  // tasks, calendar and personal organization
+  ['todoist', 'sunsama', 'motion', 'akiflow', 'reclaim-ai', 'meetergo', 'savvycal'],
+  // meeting notes and transcription
+  ['granola', 'otter-ai', 'fireflies-ai', 'fathom-ai', 'tldv', 'superwhisper',
+    'superscribe'],
+  // analytics and site measurement
+  ['plausible', 'umami-cloud', 'simple-analytics', 'fathom-analytics', 'bitly',
+    'lnkflow'],
+  // automation and integration plumbing
+  ['zapier', 'make', 'ifttt', 'n8n-cloud'],
+  // dev tools
+  ['cursor', 'github-copilot', 'replit', 'codesandbox', 'linear', 'uncircle', 'wabery'],
+  // personal finance
+  ['ynab', 'monarch-money', 'copilot-money'],
+  // screen/video recording and editing
+  ['loom', 'tella', 'descript', 'capcut'],
+  // read-it-later, bookmarks, RSS
+  ['readwise-reader', 'raindrop-io', 'inoreader', 'feedly'],
+  // community platforms
+  ['circle', 'mighty-networks'],
+  // whiteboards and diagramming
+  ['miro', 'whimsical'],
+  // website builders
+  ['carrd', 'webflow', 'framer', 'squarespace', 'wix'],
+  // hosting
+  ['vercel', 'netlify'],
 ];
 
-function computeRelatedSlugs(entry, batchBySlug) {
+function computeRelatedSlugs(entry, pool) {
   const chosen = [];
   const add = (slug) => {
     if (!slug || slug === entry.slug) return;
-    if (!batchBySlug.has(slug)) return;
+    if (!pool.has(slug)) return;
     if (chosen.includes(slug)) return;
     if (chosen.length >= 3) return;
     chosen.push(slug);
@@ -228,7 +291,7 @@ function computeRelatedSlugs(entry, batchBySlug) {
   for (const s of entry.relatedSlugs ?? []) add(s);
 
   if (chosen.length < 3) {
-    const sameCategory = [...batchBySlug.values()]
+    const sameCategory = [...pool.values()]
       .filter((o) => o.category === entry.category && o.slug !== entry.slug)
       .sort((a, b) => (b.pagePriority - a.pagePriority) || a.slug.localeCompare(b.slug));
     for (const o of sameCategory) add(o.slug);
@@ -243,7 +306,7 @@ function computeRelatedSlugs(entry, batchBySlug) {
   }
 
   if (chosen.length < 3) {
-    const rest = [...batchBySlug.values()]
+    const rest = [...pool.values()]
       .filter((o) => o.slug !== entry.slug)
       .sort((a, b) => (b.pagePriority - a.pagePriority) || a.slug.localeCompare(b.slug));
     for (const o of rest) add(o.slug);
@@ -281,7 +344,8 @@ function eligibility(entry, existing) {
   if (existing.tools.has(entry.slug)) {
     return { ok: false, reason: 'slug already present in data/tools (existing curated entry)' };
   }
-  const bare = normalizeDomain(entry.domain);
+  const upstreamBare = normalizeDomain(entry.domain);
+  const bare = DOMAIN_OVERRIDES.get(upstreamBare) ?? upstreamBare;
   if (existing.domains.has(bare)) {
     return { ok: false, reason: `domain "${bare}" already claimed by an existing entry` };
   }
@@ -297,7 +361,7 @@ function eligibility(entry, existing) {
 // ---------------------------------------------------------------------------
 // the two halves
 // ---------------------------------------------------------------------------
-function buildToolFact(entry, batchBySlug) {
+function buildToolFact(entry, pool) {
   const fact = {
     slug: entry.slug,
     name: entry.name,
@@ -326,7 +390,7 @@ function buildToolFact(entry, batchBySlug) {
       return item;
     });
   }
-  fact.relatedSlugs = computeRelatedSlugs(entry, batchBySlug);
+  fact.relatedSlugs = computeRelatedSlugs(entry, pool);
   fact.markets = ['en'];
   fact.pagePriority = entry.pagePriority;
   fact.verifiedOneShot = entry.verifiedOneShot;
@@ -424,7 +488,13 @@ async function main() {
     }
   }
 
-  const batchBySlug = new Map(selected.map((e) => [e.slug, e]));
+  // relatedSlugs pool: everything already on disk (prior batches, hand-
+  // curated entries) plus this run's own selection — the union guaranteed to
+  // exist in data/tools/ once this run finishes. Existing tools already have
+  // {slug, category, pagePriority}; upstream entries use the same field
+  // names, so no reshaping is needed.
+  const pool = new Map(existing.tools);
+  for (const e of selected) pool.set(e.slug, e);
   const domainsSeen = new Set(existing.domains);
 
   let wroteFacts = 0;
@@ -445,7 +515,7 @@ async function main() {
         console.log(`! ${entry.slug} : ignoré (${check.reason}).`);
         skippedFacts += 1;
       } else {
-        const fact = buildToolFact(entry, batchBySlug);
+        const fact = buildToolFact(entry, pool);
         const collided = fact.domains.filter((d) => domainsSeen.has(normalizeDomain(d)));
         if (collided.length) {
           console.log(`! ${entry.slug} : ignoré (domaine(s) déjà revendiqué(s) dans ce lot : ${collided.join(', ')}).`);

@@ -1,0 +1,42 @@
+{
+  "slug": "semrush",
+  "name": "Semrush",
+  "domains": [
+    "semrush.com"
+  ],
+  "category": "seo-marketing",
+  "subcategory": "SEO/content/competitive intelligence",
+  "pricing": {
+    "amount": 139.95,
+    "currency": "USD",
+    "plan": "SEO Pro",
+    "basis": "flat-monthly",
+    "source": "https://www.semrush.com/pricing/seo-ai-search/",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "proprietary data/crawler scale",
+  "diyTimeEstimate": "more",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "SEO Macroscope",
+      "url": "https://github.com/smac89/SEO-Macroscope"
+    }
+  ],
+  "relatedSlugs": [
+    "quickbooks-online",
+    "ahrefs",
+    "beehiiv"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "ynab",
+  "name": "YNAB",
+  "domains": [
+    "ynab.com"
+  ],
+  "category": "personal-finance",
+  "subcategory": "budgeting",
+  "pricing": {
+    "amount": 14.99,
+    "currency": "USD",
+    "plan": "Monthly Plan",
+    "basis": "flat-monthly",
+    "source": "https://www.ynab.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "bank data/convenience/habit system",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Actual Budget",
+      "url": "https://github.com/actualbudget/actual"
+    }
+  ],
+  "relatedSlugs": [
+    "notion",
+    "calendly",
+    "typeform"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

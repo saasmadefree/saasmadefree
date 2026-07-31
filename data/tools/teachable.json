@@ -1,0 +1,41 @@
+{
+  "slug": "teachable",
+  "name": "Teachable",
+  "domains": [
+    "teachable.com"
+  ],
+  "category": "creator-commerce",
+  "subcategory": "online courses",
+  "pricing": {
+    "amount": 39,
+    "currency": "USD",
+    "plan": "Starter",
+    "basis": "flat-monthly",
+    "source": "https://www.teachable.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "payments/content hosting/mobile distribution",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Moodle",
+      "url": "https://github.com/moodle/moodle"
+    }
+  ],
+  "relatedSlugs": [
+    "kajabi",
+    "invoice-ninja",
+    "ghost-pro"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

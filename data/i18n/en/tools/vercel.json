@@ -1,0 +1,21 @@
+{
+  "tagline": "Frontend cloud for deploying web apps from Git.",
+  "verdictSummary": "A git-push deploy pipeline to your own server — build on push, zero-downtime restart, instant rollback — is a real, if unglamorous, weekend build. What doesn't come with it is Vercel's actual product: a global edge network, automatic preview deployments for every branch, and deep framework-specific optimizations a single VPS can't replicate.",
+  "coreLoopDIY": "A git-push deploy pipeline to your own server: build on push, atomic release swap, and one-command rollback.",
+  "whatYouLose": [
+    "a global edge and CDN network",
+    "automatic preview deployments per branch",
+    "autoscaling under traffic spikes",
+    "built-in observability",
+    "deep framework-specific integration"
+  ],
+  "whyPeopleStillPay": "Deploys and previews are boring infrastructure that must never break — people pay so that reliability is someone else's job, not because a deploy script is hard to write.",
+  "notes": "A core infrastructure entry: the DIY version is real and works, but it isn't 'free' once your own on-call time is counted.",
+  "prompt": "Build a git-push deploy pipeline for your own server. Each app gets a bare git repository with a post-receive hook: on push, check out the new commit to a timestamped release directory, run the project's install and build commands, health-check the new process, then atomically swap a 'current' symlink to it and restart the service — a failed build or health check must leave the live release completely untouched. Add a rollback command that re-points the symlink to the previous release and restarts, in well under the time a real incident allows. Add a command that scaffolds a new app's repository, service definition, and reverse-proxy config in one step, wiring up automatic HTTPS on its domain. Keep the last handful of releases on disk so rollback always has somewhere to go. Store each app's secrets in one file per app, symlinked into every release, never committed to the repository.\n\nDo not build per-branch preview deployments, a global edge network, autoscaling, or a web dashboard — those need infrastructure spanning multiple regions and are real, ongoing platform engineering, not a script. Be honest in the README that you are now the platform team: budget real time for the first incident.",
+  "faq": [
+    { "q": "Can I migrate my existing Vercel projects?", "a": "The application code, yes — most frameworks deploy to a normal server with only minor changes. What doesn't come across are Vercel-specific features like edge middleware and image optimization, which need separate, imperfect replacements." },
+    { "q": "Will it work on my phone?", "a": "There's nothing mobile-specific here — deployment is a git push from your development machine, the same as before, and the sites it deploys work on phones exactly as they did on Vercel." },
+    { "q": "What does it cost to run?", "a": "One small-to-medium VPS, typically ten to twenty dollars a month depending on traffic, plus a domain — no separate charge per deployment or per preview." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Preview deployments. Every pull request getting its own live URL automatically is genuinely platform-level work — this build deploys the main branch only, and testing a branch means deploying it by hand somewhere else." }
+  ]
+}

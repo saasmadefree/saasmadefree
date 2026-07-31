@@ -1,0 +1,42 @@
+{
+  "slug": "akiflow",
+  "name": "Akiflow",
+  "domains": [
+    "akiflow.com"
+  ],
+  "category": "tasks-calendar",
+  "subcategory": "unified tasks + calendar",
+  "pricing": {
+    "amount": 34,
+    "currency": "USD",
+    "plan": "Pro Monthly",
+    "basis": "flat-monthly",
+    "source": "https://akiflow.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "integrations/sync",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Super Productivity",
+      "url": "https://github.com/johannesjo/super-productivity"
+    }
+  ],
+  "relatedSlugs": [
+    "calendly",
+    "todoist",
+    "notion"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 4,
+  "verifiedOneShot": false
+}

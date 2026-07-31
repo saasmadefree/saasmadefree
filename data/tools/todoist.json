@@ -1,0 +1,42 @@
+{
+  "slug": "todoist",
+  "name": "Todoist",
+  "domains": [
+    "todoist.com"
+  ],
+  "category": "tasks",
+  "subcategory": "task manager",
+  "pricing": {
+    "amount": 7,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://todoist.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "sync/polish",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "Vikunja",
+      "url": "https://github.com/go-vikunja/vikunja"
+    }
+  ],
+  "relatedSlugs": [
+    "akiflow",
+    "notion",
+    "calendly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

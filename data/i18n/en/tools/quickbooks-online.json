@@ -1,0 +1,21 @@
+{
+  "tagline": "Small-business accounting: invoicing, expenses, payroll, and tax workflows.",
+  "verdictSummary": "A safe personal slice — client invoices, expense tracking from a bank CSV, a basic profit-and-loss report — is a real, contained build for someone who just invoices a few clients. What genuinely should not be rebuilt is anything the actual books or taxes depend on: reconciliation, payroll, and the audit trail an accountant needs to trust the numbers.",
+  "coreLoopDIY": "Local invoicing and expense tracking: client invoices exported to PDF, bank CSV import with rule-based categorization, and a basic cash-basis profit-and-loss report.",
+  "whatYouLose": [
+    "live bank feeds",
+    "the reconciliation workflow an accountant relies on",
+    "payroll and tax filing",
+    "an audit trail",
+    "QuickBooks' whole accountant-facing ecosystem"
+  ],
+  "whyPeopleStillPay": "Accounting mistakes and tax problems cost far more than the subscription — people pay so the numbers their accountant and the tax authority both trust are never something they DIY'd.",
+  "notes": "An honest 'no' with a real, narrow exception: personal invoicing and expense tracking for someone with simple needs, kept clearly separate from anything the actual books depend on.",
+  "prompt": "Build a small personal invoicing and expense tracker — explicitly not accounting software. Client records, line-item invoices with a PDF export, and a way to mark an invoice paid by hand. For expenses: import your bank's CSV export, run each transaction through a rule table that auto-categorizes repeat payees, and let the rest be categorized by hand. Generate a basic cash-basis profit-and-loss report and a per-quarter summary, plus a CSV export of everything so it can be handed to an actual accountant. Keep everything local, bound to your own machine — the books never leave it, and there's no hosting or account to configure.\n\nDo not build bank feeds, reconciliation, payroll, or anything that touches tax filing — those are exactly the parts where a mistake is expensive, and this tool should say so plainly in its own README rather than pretending to be accounting software. This is bookkeeping-lite for someone with a handful of clients, not a books-of-record system.",
+  "faq": [
+    { "q": "Can I import my existing QuickBooks data?", "a": "Not directly — QuickBooks' export formats don't map cleanly onto a much simpler schema like this one. Your bank transactions import fine as CSV, but client and invoice history would need to be re-entered by hand." },
+    { "q": "Will it work on my phone?", "a": "The admin pages render on a phone browser for a quick look, but this is a desktop tool by design — invoice creation and expense categorization are easier with a keyboard." },
+    { "q": "What does it cost to run?", "a": "Nothing beyond the machine you already own — no hosting, no API key, no subscription, since everything stays local." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Trust. An accountant or a tax authority trusts QuickBooks' numbers because of reconciliation, audit trails, and bank-feed accuracy; a personal spreadsheet-with-extra-steps doesn't carry that same trust, and shouldn't be asked to." }
+  ]
+}

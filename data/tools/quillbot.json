@@ -1,0 +1,42 @@
+{
+  "slug": "quillbot",
+  "name": "QuillBot",
+  "domains": [
+    "quillbot.com"
+  ],
+  "category": "ai-writing",
+  "subcategory": "paraphrasing + grammar",
+  "pricing": {
+    "amount": 19.95,
+    "currency": "USD",
+    "plan": "Premium",
+    "basis": "flat-monthly",
+    "source": "https://quillbot.com/upgrade",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "polish/extensions",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "LanguageTool",
+      "url": "https://github.com/languagetool-org/languagetool"
+    }
+  ],
+  "relatedSlugs": [
+    "grammarly",
+    "languagetool",
+    "canva"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

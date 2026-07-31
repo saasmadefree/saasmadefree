@@ -1,0 +1,43 @@
+{
+  "slug": "perplexity",
+  "name": "Perplexity",
+  "domains": [
+    "perplexity.ai"
+  ],
+  "category": "ai-search",
+  "subcategory": "answer engine",
+  "pricing": {
+    "amount": 20,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "flat-monthly",
+    "source": "https://www.perplexity.ai/pro",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "medium",
+  "moatType": "search/data/model routing",
+  "diyTimeEstimate": "week",
+  "requirements": [
+    "anthropic-api-key",
+    "openai-api-key",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "Perplexica",
+      "url": "https://github.com/ItzCrazyKns/Perplexica"
+    }
+  ],
+  "relatedSlugs": [
+    "gamma",
+    "beautiful-ai",
+    "chatgpt"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

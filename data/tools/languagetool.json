@@ -1,0 +1,42 @@
+{
+  "slug": "languagetool",
+  "name": "LanguageTool",
+  "domains": [
+    "languagetool.org"
+  ],
+  "category": "ai-writing",
+  "subcategory": "grammar checker",
+  "pricing": {
+    "amount": 19.9,
+    "currency": "EUR",
+    "plan": "Premium Monthly",
+    "basis": "flat-monthly",
+    "source": "https://languagetool.org/premium",
+    "checkedOn": "2026-07-30",
+    "confidence": "high"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "high",
+  "moatType": "open-source core/hosted convenience",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "anthropic-api-key",
+    "hosting"
+  ],
+  "priorArt": [
+    {
+      "name": "LanguageTool",
+      "url": "https://github.com/languagetool-org/languagetool"
+    }
+  ],
+  "relatedSlugs": [
+    "canva",
+    "figma",
+    "grammarly"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,20 @@
+{
+  "tagline": "Visual bookmark manager for saving, tagging, and searching links.",
+  "verdictSummary": "A personal bookmark manager — save via a bookmarklet, tag freely, full-text search across saved pages — is a genuinely tractable weekend-scale build, and one of the cleanest yes entries here: bookmarking is a well-understood problem with mature open-source prior art already.",
+  "coreLoopDIY": "A bookmarklet that saves a page's URL and metadata, stores the readable article text for search, and supports free-form tagging with full-text search across everything saved.",
+  "whatYouLose": [
+    "a native mobile app",
+    "years of browser-extension polish",
+    "permanent page archiving beyond text",
+    "shared team collections"
+  ],
+  "whyPeopleStillPay": "Bookmarks are boring right up until search, mobile access, and extension reliability actually matter — people pay so all three just work without maintenance.",
+  "notes": "A strong yes with real, mature prior art — this is a well-solved personal-tooling problem.",
+  "prompt": "Build a personal bookmark manager: a bookmarklet (or simple browser action) that sends the current page's URL to a save endpoint, which fetches the page, extracts the title, description, and preview image, and stores the readable article text (using a library like Mozilla's Readability) so search actually finds content, not just titles. Support free-form tags on each bookmark with tag autocomplete from what you've already used, plus an optional note. Build full-text search across title, note, and archived article text, filterable by tag, newest first. Run a periodic check that re-visits saved links and flags ones that now 404. Support importing a standard browser bookmarks export on day one, and exporting everything back out (JSON or CSV) so nothing is ever trapped.\n\nDo not build a mobile app or full visual page-snapshot archiving — the extracted article text is the archive here, not a screenshot of the page, and that's a deliberate simplification, not an oversight. No shared team collections either; this is a personal tool.",
+  "faq": [
+    { "q": "Can I import my existing Raindrop.io bookmarks?", "a": "Yes — Raindrop exports a standard bookmarks HTML file, and importing that format on first run is exactly what this build expects." },
+    { "q": "Will it work on my phone?", "a": "The list and search are usable from a phone browser, but there's no native mobile app and no share-sheet integration for quickly saving a link from another app." },
+    { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month — the whole archive is a single database file, so storage costs stay small even with years of bookmarks." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Saving from anywhere instantly. Raindrop's polished mobile apps and share-sheet integration make saving a link a one-tap reflex; this build's bookmarklet works, but it's a more deliberate, desktop-first action." }
+  ]
+}

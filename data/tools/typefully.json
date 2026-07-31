@@ -1,0 +1,43 @@
+{
+  "slug": "typefully",
+  "name": "Typefully",
+  "domains": [
+    "typefully.com"
+  ],
+  "category": "social-media",
+  "subcategory": "thread writing + scheduling",
+  "pricing": {
+    "amount": 12.5,
+    "currency": "USD",
+    "plan": "Creator",
+    "basis": "annual-effective-monthly",
+    "source": "https://typefully.com/pricing",
+    "checkedOn": "2026-07-30",
+    "confidence": "medium"
+  },
+  "verdict": "yes",
+  "verdictConfidence": "medium",
+  "moatType": "social API/polish",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "hosting",
+    "database",
+    "oauth-app"
+  ],
+  "priorArt": [
+    {
+      "name": "Postiz",
+      "url": "https://github.com/gitroomhq/postiz-app"
+    }
+  ],
+  "relatedSlugs": [
+    "beehiiv",
+    "kit",
+    "mailchimp"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}

@@ -1,0 +1,21 @@
+{
+  "tagline": "Email marketing platform with campaigns, automations, and analytics.",
+  "verdictSummary": "A small-list campaign sender — contacts, segments, a Markdown-to-HTML composer, compliant unsubscribe handling — is a real weekend build. What doesn't come with it is Mailchimp's actual moat: inbox deliverability earned over years of sending reputation, which no amount of personal engineering can shortcut.",
+  "coreLoopDIY": "A contact list with tags and segments, a Markdown campaign composer, and sends through a transactional email API with compliant unsubscribe handling built in.",
+  "whatYouLose": [
+    "deliverability backed by an established sending reputation",
+    "the drag-and-drop template editor",
+    "visual automation journeys",
+    "e-commerce integrations",
+    "dedicated support"
+  ],
+  "whyPeopleStillPay": "Email is business-critical, and deliverability problems are expensive to diagnose and fix — people pay so inbox placement is someone else's ongoing responsibility.",
+  "notes": "A classic hidden-moat example: the sending UI is easy to rebuild; inbox placement cannot be hand-waved.",
+  "prompt": "Build a small-list email campaign tool: contacts with tags and custom fields, CSV import and export, and segments defined as saved filters (has a given tag, joined after a date, opened the last campaign). Write campaigns in Markdown, rendered into one clean single-column HTML email with an automatically generated plain-text alternative. Send through a real transactional email API (Amazon SES or similar) with throttling and a per-recipient status; wire up bounce and complaint webhooks to automatically suppress those addresses going forward. Bake compliance in rather than bolting it on: an unsubscribe link and your postal address in every footer, a List-Unsubscribe header, and double opt-in on the public signup form. Make open tracking a per-campaign toggle, off by default. Show a campaign report with sent, bounced, and unsubscribed counts.\n\nDo not build a drag-and-drop template editor, visual automation journeys, or e-commerce integrations — those are real, separate products. Be blunt in the README: inbox placement is earned through sending behavior over time, not configured. Document SPF, DKIM, and DMARC setup, and warm up sending volume gradually on a new domain.",
+  "faq": [
+    { "q": "Can I import my existing Mailchimp audience?", "a": "Yes — Mailchimp exports your contacts, tags, and custom fields to CSV, which imports directly here. Automation journeys and templates don't transfer; that logic has to be rebuilt from scratch." },
+    { "q": "Will it work on my phone?", "a": "The admin view is a plain web page, usable on a phone for a quick check, but the composer isn't optimized for a small screen and there's no dedicated app." },
+    { "q": "What does it cost to run?", "a": "Hosting, a domain, and a database, typically a few dollars a month, plus per-email sending costs on the transactional API — often well under Mailchimp's tiered pricing at small list sizes." },
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Sending reputation. Mailchimp's shared and dedicated IPs carry years of established trust with inbox providers; a brand-new sending domain starts at zero and has to earn that trust the same slow way, regardless of how good the code is." }
+  ]
+}
