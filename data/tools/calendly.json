@@ -8,7 +8,7 @@
     "amount": 12,
     "currency": "USD",
     "plan": "Standard",
-    "basis": "monthly per user",
+    "basis": "per-seat-monthly",
     "source": "https://calendly.com/pricing",
     "checkedOn": "2026-07-30",
     "confidence": "high"

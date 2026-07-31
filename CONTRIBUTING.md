@@ -42,7 +42,9 @@ data/i18n/<lang>/tools/<slug>.json      # editorial, one file per language in `m
 | `pagePriority` | integer, 0–10 | weight used by the site build for internal linking and ordering |
 | `verifiedOneShot` | boolean | whether someone actually ran the prompt end to end and it produced a working result on the first try |
 
-`pricing` is itself an object: `amount` (number ≥ 0), `currency` (ISO 4217, e.g. `"USD"`), `plan` (the plan's name), `basis` (e.g. `"monthly per user"`), `source` (a URL), `checkedOn` (`YYYY-MM-DD` — CI rejects anything older than 180 days, because a stale price undermines the credibility the whole site depends on), `confidence` (`high` \| `medium` \| `low`), and an optional `notes`.
+`pricing` is itself an object: `amount` (number ≥ 0), `currency` (ISO 4217, e.g. `"USD"`), `plan` (the plan's name), `basis` (closed list, see below), `source` (a URL), `checkedOn` (`YYYY-MM-DD` — CI rejects anything older than 180 days, because a stale price undermines the credibility the whole site depends on), `confidence` (`high` \| `medium` \| `low`), and an optional `notes`.
+
+`pricing.basis` is a closed list, for the same reason `requirements[]` is: it's language-neutral data, and free text in it would print in English on every non-English page. The five codes: `flat-monthly` (a flat monthly fee, no per-seat or usage component), `per-seat-monthly` (per user, seat, member, workspace, channel or similar recurring unit, billed monthly), `annual-effective-monthly` (billed yearly, shown here as the effective monthly cost), `usage-based` (pay-as-you-go, credits, or a capacity tier), `one-time` (a single payment, not recurring). Every code used here must already have a translated label in all seven `data/i18n/<lang>/ui.json`, under `pricingBasis.<code>` — CI rejects a PR that introduces a code without it. Anything a code can't express — "at 1,000 subscribers," "3 active programs and 25k sends" — belongs in the editorial (`verdictSummary` or the FAQ), not in this field.
 
 ### `data/i18n/<lang>/tools/<slug>.json` — field by field
 

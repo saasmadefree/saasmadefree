@@ -1,4 +1,11 @@
 {
+  "pricingBasis": {
+    "flat-monthly": "Vast maandbedrag",
+    "per-seat-monthly": "Maandelijks per gebruiker",
+    "annual-effective-monthly": "Jaarlijks gefactureerd, prijs per maand",
+    "usage-based": "Op basis van gebruik",
+    "one-time": "Eenmalige betaling"
+  },
   "requirements": {
     "anthropic-api-key": "Anthropic API-sleutel",
     "openai-api-key": "OpenAI API-sleutel",

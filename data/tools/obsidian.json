@@ -8,7 +8,7 @@
     "amount": 4,
     "currency": "USD",
     "plan": "Sync",
-    "basis": "monthly per user",
+    "basis": "per-seat-monthly",
     "source": "https://obsidian.md/sync",
     "checkedOn": "2026-07-30",
     "confidence": "high"

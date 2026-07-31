@@ -21,8 +21,8 @@ describe('formatMoney', () => {
 });
 
 describe('formatMonthlyPrice', () => {
-  it('ajoute le suffixe mensuel localisé quand basis contient "monthly"', () => {
-    const pricing = { amount: 12, currency: 'USD', basis: 'monthly per user' };
+  it('ajoute le suffixe mensuel localisé pour un code basis mensuel récurrent', () => {
+    const pricing = { amount: 12, currency: 'USD', basis: 'per-seat-monthly' };
     expect(formatMonthlyPrice(pricing, 'en')).toMatch(/\/mo$/);
     expect(formatMonthlyPrice(pricing, 'fr')).toMatch(/\/mois$/);
   });

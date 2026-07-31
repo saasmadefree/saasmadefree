@@ -1,4 +1,11 @@
 {
+  "pricingBasis": {
+    "flat-monthly": "Monatliche Pauschale",
+    "per-seat-monthly": "Monatlich pro Nutzer",
+    "annual-effective-monthly": "Jährlich abgerechnet, monatlicher Gegenwert",
+    "usage-based": "Nutzungsabhängig",
+    "one-time": "Einmalzahlung"
+  },
   "requirements": {
     "anthropic-api-key": "Anthropic-API-Schlüssel",
     "openai-api-key": "OpenAI-API-Schlüssel",

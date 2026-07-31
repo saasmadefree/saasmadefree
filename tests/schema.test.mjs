@@ -9,7 +9,7 @@ const validTool = {
   domains: ['notion.so', 'notion.com'],
   category: 'docs-and-wiki',
   pricing: {
-    amount: 10, currency: 'USD', plan: 'Plus', basis: 'monthly per user',
+    amount: 10, currency: 'USD', plan: 'Plus', basis: 'per-seat-monthly',
     source: 'https://www.notion.com/pricing', checkedOn: '2026-07-30', confidence: 'high',
   },
   verdict: 'kinda',

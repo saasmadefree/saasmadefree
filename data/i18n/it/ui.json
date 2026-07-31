@@ -1,4 +1,11 @@
 {
+  "pricingBasis": {
+    "flat-monthly": "Tariffa mensile fissa",
+    "per-seat-monthly": "Mensile per utente",
+    "annual-effective-monthly": "Fatturato annualmente, prezzo mensile equivalente",
+    "usage-based": "In base all'utilizzo",
+    "one-time": "Pagamento una tantum"
+  },
   "requirements": {
     "anthropic-api-key": "Chiave API Anthropic",
     "openai-api-key": "Chiave API OpenAI",

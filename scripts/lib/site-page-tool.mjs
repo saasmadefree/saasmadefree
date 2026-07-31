@@ -35,6 +35,7 @@ export function renderToolPage({
   const price = formatMonthlyPrice(tool.pricing, lang);
   const checkedOn = formatDate(tool.pricing.checkedOn, lang);
   const sourceLabel = sourceHost(tool.pricing.source);
+  const basisLabel = ui.pricingBasis?.[tool.pricing.basis] ?? tool.pricing.basis;
 
   const whatYouLose = i18nEntry.whatYouLose
     .map((item) => `          <li>${escapeHtml(item)}</li>`)
@@ -94,7 +95,7 @@ ${relatedTools
 
     <section aria-labelledby="price-heading">
       <h2 id="price-heading">${escapeHtml(t.priceHeading)}</h2>
-      <p>${escapeHtml(price)} — ${escapeHtml(tool.pricing.plan)}, ${escapeHtml(tool.pricing.basis)}</p>
+      <p>${escapeHtml(price)} — ${escapeHtml(tool.pricing.plan)}, ${escapeHtml(basisLabel)}</p>
       <p class="status">${escapeHtml(t.priceSourceLabel)}: <a href="${escapeHtml(tool.pricing.source)}">${escapeHtml(sourceLabel)}</a> · ${escapeHtml(t.priceCheckedLabel)} ${escapeHtml(checkedOn)}</p>
     </section>
 

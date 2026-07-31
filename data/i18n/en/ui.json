@@ -1,4 +1,11 @@
 {
+  "pricingBasis": {
+    "flat-monthly": "Flat monthly fee",
+    "per-seat-monthly": "Monthly per seat",
+    "annual-effective-monthly": "Billed yearly, shown per month",
+    "usage-based": "Usage-based",
+    "one-time": "One-time payment"
+  },
   "requirements": {
     "anthropic-api-key": "Anthropic API key",
     "openai-api-key": "OpenAI API key",

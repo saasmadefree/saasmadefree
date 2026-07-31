@@ -8,7 +8,7 @@ const TODAY = '2026-07-30';
 function makeTool(slug, over = {}) {
   return {
     slug, name: slug, domains: [`${slug}.com`], category: 'docs-and-wiki',
-    pricing: { amount: 10, currency: 'USD', plan: 'Pro', basis: 'monthly per user',
+    pricing: { amount: 10, currency: 'USD', plan: 'Pro', basis: 'per-seat-monthly',
       source: 'https://example.com/pricing', checkedOn: '2026-07-01', confidence: 'high' },
     verdict: 'kinda', verdictConfidence: 'medium', moatType: 'collaboration',
     diyTimeEstimate: 'weekend', requirements: ['hosting'],
@@ -36,6 +36,7 @@ function makeData(over = {}) {
   const i18n = new Map(['a', 'b', 'c', 'd'].map((s) => [`en/${s}`, makeI18n()]));
   const ui = new Map([['en', {
     requirements: { hosting: 'Hosting' },
+    pricingBasis: { 'per-seat-monthly': 'Monthly per seat' },
     runHints: { clipboard: 'Paste it' },
   }]]);
   const agents = [{
@@ -92,6 +93,12 @@ describe('validateAll', () => {
     const data = makeData();
     data.tools.get('a').requirements = ['database'];
     expect(validateAll(data, validators, TODAY).join(' ')).toContain('database');
+  });
+
+  it('signale un code pricingBasis sans traduction', () => {
+    const data = makeData();
+    data.tools.get('a').pricing.basis = 'usage-based';
+    expect(validateAll(data, validators, TODAY).join(' ')).toContain('pricingBasis.usage-based');
   });
 
   it('signale un runHint sans traduction', () => {

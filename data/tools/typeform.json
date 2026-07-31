@@ -8,7 +8,7 @@
     "amount": 25,
     "currency": "USD",
     "plan": "Basic",
-    "basis": "monthly per user",
+    "basis": "per-seat-monthly",
     "source": "https://www.typeform.com/pricing",
     "checkedOn": "2026-07-30",
     "confidence": "high"

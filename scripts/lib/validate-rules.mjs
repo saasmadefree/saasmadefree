@@ -61,6 +61,12 @@ export function validateAll(data, validators, today) {
         }
       }
     }
+    for (const lang of LANGS) {
+      const table = ui.get(lang);
+      if (table && !table.pricingBasis?.[tool.pricing.basis]) {
+        errors.push(`data/i18n/${lang}/ui.json : traduction manquante pour pricingBasis.${tool.pricing.basis}`);
+      }
+    }
   }
 
   const seenDomains = new Map();

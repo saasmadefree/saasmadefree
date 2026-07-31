@@ -5,7 +5,7 @@ const notion = {
   slug: 'notion', name: 'Notion',
   domains: ['notion.so', 'www.notion.com', 'app.notion.so'],
   category: 'docs-and-wiki',
-  pricing: { amount: 10, currency: 'USD', plan: 'Plus', basis: 'monthly per user',
+  pricing: { amount: 10, currency: 'USD', plan: 'Plus', basis: 'per-seat-monthly',
     source: 'https://example.com', checkedOn: '2026-07-30', confidence: 'high' },
   verdict: 'kinda', verdictConfidence: 'medium', moatType: 'collaboration',
   diyTimeEstimate: 'weekend', requirements: ['hosting'],
