@@ -2,18 +2,20 @@
   "slug": "magnific-ai",
   "name": "Magnific AI",
   "domains": [
-    "magnific.ai"
+    "magnific.ai",
+    "magnific.com"
   ],
   "category": "ai-image",
   "subcategory": "AI image and video generation",
   "pricing": {
-    "amount": 39,
-    "currency": "USD",
-    "plan": "Pro",
+    "amount": 16,
+    "currency": "EUR",
+    "plan": "Premium",
     "basis": "flat-monthly",
-    "source": "https://magnific.ai/pricing",
+    "source": "https://www.magnific.com/pricing",
     "checkedOn": "2026-07-31",
-    "confidence": "high"
+    "confidence": "medium",
+    "notes": "magnific.ai now redirects to magnific.com, which Freepik has rebranded as Magnific (title: \"Magnific (formerly Freepik)\"). The standalone $39 upscaler plan no longer exists; Premium is the entry paid tier of the combined suite. Page served in the EU shows €16/month (€12/month billed annually)."
   },
   "verdict": "no",
   "verdictConfidence": "high",

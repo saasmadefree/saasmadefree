@@ -11,9 +11,9 @@
     "currency": "USD",
     "plan": "Pro",
     "basis": "flat-monthly",
-    "source": "https://create.vista.com/pricing",
+    "source": "https://create.vista.com/plans/",
     "checkedOn": "2026-07-31",
-    "confidence": "medium"
+    "confidence": "high"
   },
   "verdict": "kinda",
   "verdictConfidence": "medium",

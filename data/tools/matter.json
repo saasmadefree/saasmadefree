@@ -2,18 +2,19 @@
   "slug": "matter",
   "name": "Matter",
   "domains": [
-    "hq.getmatter.com"
+    "getmatter.com"
   ],
   "category": "read-it-later",
   "subcategory": "read-later, bookmarks and RSS",
   "pricing": {
-    "amount": 5,
+    "amount": 6.67,
     "currency": "USD",
     "plan": "Matter Premium",
     "basis": "annual-effective-monthly",
-    "source": "https://hq.getmatter.com/pricing",
+    "source": "https://apps.apple.com/us/app/matter-reading-app/id1501592184",
     "checkedOn": "2026-07-31",
-    "confidence": "medium"
+    "confidence": "low",
+    "notes": "getmatter.com publishes no pricing page. App Store lists several concurrent SKUs (Premium Annual $79.99, Premium Monthly $7.99 and $14.99); $79.99/year taken as the current Premium annual rate. Needs a human check."
   },
   "verdict": "kinda",
   "verdictConfidence": "medium",

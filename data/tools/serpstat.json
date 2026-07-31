@@ -11,9 +11,9 @@
     "currency": "USD",
     "plan": "Individual",
     "basis": "flat-monthly",
-    "source": "https://serpstat.com/pricing",
+    "source": "https://serpstat.com/page/pricing-plans/",
     "checkedOn": "2026-07-31",
-    "confidence": "medium"
+    "confidence": "high"
   },
   "verdict": "no",
   "verdictConfidence": "high",

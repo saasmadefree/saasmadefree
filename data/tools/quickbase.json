@@ -11,9 +11,10 @@
     "currency": "USD",
     "plan": "Team",
     "basis": "per-seat-monthly",
-    "source": "https://quickbase.com/pricing",
+    "source": "https://www.quickbase.com/plans-and-pricing",
     "checkedOn": "2026-07-31",
-    "confidence": "medium"
+    "confidence": "high",
+    "notes": "Quickbase publishes only an annually-priced rate (\"Starts at $35 per user, per month, priced annually\"); there is no public month-to-month price."
   },
   "verdict": "no",
   "verdictConfidence": "high",

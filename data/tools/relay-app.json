@@ -11,9 +11,10 @@
     "currency": "USD",
     "plan": "Professional",
     "basis": "flat-monthly",
-    "source": "https://relay.app/pricing",
+    "source": "https://relay.app/",
     "checkedOn": "2026-07-31",
-    "confidence": "medium"
+    "confidence": "low",
+    "notes": "FLAGGED: Relay.app is shutting down (free accounts 2026-08-15, paid 2026-09-14). New signups and upgrades were switched off on 2026-07-16 and the pricing page has been removed; relay.app/ now serves only the wind-down notice. $19 is the last known Professional rate and can no longer be verified."
   },
   "verdict": "kinda",
   "verdictConfidence": "medium",

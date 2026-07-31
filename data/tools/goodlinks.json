@@ -7,13 +7,14 @@
   "category": "read-it-later",
   "subcategory": "read-later, bookmarks and RSS",
   "pricing": {
-    "amount": 0.83,
+    "amount": 0.42,
     "currency": "USD",
     "plan": "Premium",
     "basis": "annual-effective-monthly",
-    "source": "https://goodlinks.app/premium",
+    "source": "https://apps.apple.com/us/app/goodlinks/id1474335294",
     "checkedOn": "2026-07-31",
-    "confidence": "medium"
+    "confidence": "medium",
+    "notes": "App is a $9.99 one-time purchase; GoodLinks Premium is the $4.99/year 'Annual Feature Upgrade' in-app subscription. goodlinks.app/help/premium/ explains the model but states no price."
   },
   "verdict": "yes",
   "verdictConfidence": "high",

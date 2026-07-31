@@ -9,11 +9,12 @@
   "pricing": {
     "amount": 2.99,
     "currency": "USD",
-    "plan": "Pro",
+    "plan": "Structured Pro",
     "basis": "flat-monthly",
-    "source": "https://structured.app/pricing",
+    "source": "https://apps.apple.com/us/app/structured-daily-planner-todo/id1499198946",
     "checkedOn": "2026-07-31",
-    "confidence": "medium"
+    "confidence": "low",
+    "notes": "FLAGGED: structured.app publishes no pricing page and the App Store lists two concurrent monthly SKUs (Structured Pro Monthly $2.99 and $6.99) plus Yearly $9.99/$29.99 and Lifetime $99.99. $2.99 kept as the previously recorded figure; needs a human check."
   },
   "verdict": "yes",
   "verdictConfidence": "high",

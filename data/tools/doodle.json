@@ -7,13 +7,13 @@
   "category": "scheduling",
   "subcategory": "booking links and calendar automation",
   "pricing": {
-    "amount": 14.95,
+    "amount": 15,
     "currency": "USD",
     "plan": "Pro",
-    "basis": "flat-monthly",
-    "source": "https://doodle.com/en/pricing",
+    "basis": "per-seat-monthly",
+    "source": "https://doodle.com/en/premium",
     "checkedOn": "2026-07-31",
-    "confidence": "medium"
+    "confidence": "high"
   },
   "verdict": "kinda",
   "verdictConfidence": "medium",
