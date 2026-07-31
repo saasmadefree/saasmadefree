@@ -148,7 +148,13 @@
       "continueLink": "Continuer vers l'annuaire"
     },
     "themeToDark": "Mode sombre",
-    "themeToLight": "Mode clair"
+    "themeToLight": "Mode clair",
+    "notFound": {
+      "titleTag": "Page introuvable — SaaS Made Free",
+      "metaDescription": "Cette page n’existe pas. Parcourez l’annuaire des abonnements SaaS qu’un agent de code peut remplacer.",
+      "heading": "Cette page n’existe pas",
+      "body": "L’outil a peut-être été retiré du catalogue, ou l’adresse est incorrecte."
+    }
   },
   "categoriesIndex": {
     "titleTag": "Toutes les catégories — SaaS Made Free",

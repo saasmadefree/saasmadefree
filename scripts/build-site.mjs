@@ -17,6 +17,7 @@ import { renderCategoryPage } from './lib/site-page-category.mjs';
 import { renderCategoriesIndexPage } from './lib/site-page-categories-index.mjs';
 import { renderToolPage } from './lib/site-page-tool.mjs';
 import { renderRootPage } from './lib/site-page-root.mjs';
+import { render404Page } from './lib/site-page-404.mjs';
 
 const OUT = 'dist';
 
@@ -116,6 +117,12 @@ async function main() {
     join(OUT, 'index.html'),
     renderRootPage({ ui: rootUi, enPath, otherLangs: langs.filter((l) => `/${l}/` !== enPath) })
   );
+
+  // ---- 404 ---------------------------------------------------------------
+  // Cloudflare Pages sert ce fichier, avec un vrai statut 404, pour toute URL
+  // sans fichier correspondant. Sans lui, Pages renvoyait la page racine en
+  // 200 pour n'importe quel chemin — voir scripts/lib/site-page-404.mjs.
+  await writeText(join(OUT, '404.html'), render404Page({ ui: rootUi, enPath, langs }));
 
   // ---- par langue : accueil, fiches, catégories --------------------------
   const homeAlt = homeAlternates(langs);

@@ -148,7 +148,13 @@
       "continueLink": "Continue to the directory"
     },
     "themeToDark": "Dark mode",
-    "themeToLight": "Light mode"
+    "themeToLight": "Light mode",
+    "notFound": {
+      "titleTag": "Page not found — SaaS Made Free",
+      "metaDescription": "This page does not exist. Browse the directory of SaaS subscriptions a coding agent can replace.",
+      "heading": "This page does not exist",
+      "body": "The tool may have been removed from the catalogue, or the address is wrong."
+    }
   },
   "categoriesIndex": {
     "titleTag": "All categories — SaaS Made Free",
