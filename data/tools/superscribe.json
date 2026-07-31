@@ -46,7 +46,8 @@
     "granola"
   ],
   "markets": [
-    "en"
+    "en",
+    "fr"
   ],
   "pagePriority": 2,
   "verifiedOneShot": false

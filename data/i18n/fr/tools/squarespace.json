@@ -1,0 +1,21 @@
+{
+  "tagline": "Créateur de site web hébergé pour portfolios, entreprises, blogs et boutiques.",
+  "verdictSummary": "Un site personnel portfolio-et-blog — des pages statiques générées depuis du Markdown, un formulaire de contact fonctionnel, un flux RSS — c'est un vrai projet de week-end avec d'excellentes performances par défaut. Ce qui ne vient pas avec, c'est le vrai produit de Squarespace : un éditeur visuel en glisser-déposer, une large bibliothèque de modèles, et de l'e-commerce intégré.",
+  "coreLoopDIY": "Un site statique généré depuis du contenu Markdown, avec un système de mise en page partagé, un formulaire de contact fonctionnel, et un flux RSS, déployé comme de simples fichiers.",
+  "whatYouLose": [
+    "un éditeur visuel en glisser-déposer",
+    "une large bibliothèque de modèles organisée",
+    "l'e-commerce et les outils de réservation intégrés",
+    "l'hébergement géré et les workflows de domaine",
+    "le support"
+  ],
+  "whyPeopleStillPay": "Les gens paient parce que ça retire entièrement le design, l'hébergement et la maintenance d'un projet de site web — pas parce qu'un site portfolio est techniquement difficile à construire.",
+  "notes": "Une fiche grand public où le verdict honnête dépend vraiment de la part de complexité du site qui tient à la boutique et à l'éditeur, par rapport au simple contenu.",
+  "prompt": "Construis un site web personnel — accueil, à propos, une grille de projets, et un blog — comme un site statique généré depuis des fichiers de contenu Markdown avec un en-tête pour le titre, la date et les tags. Utilise un seul système de mise en page partagé (un modèle de base plus des partiels réutilisables pour l'en-tête, le pied de page et les cartes de contenu) pour qu'une refonte touche un seul endroit, pas chaque page. Génère les pages de tags du blog et un flux RSS au moment du build. Ajoute un formulaire de contact fonctionnel qui poste vers un petit endpoint serveur, t'envoie le message par email, et le journalise en secours, avec un champ honeypot plutôt qu'un captcha. Génère de simples fichiers statiques, déployables sur n'importe quel hébergeur statique ou un petit VPS derrière un reverse proxy avec HTTPS automatique.\n\nNe construis pas d'éditeur en glisser-déposer, d'e-commerce, ni de thèmes interchangeables — éditer directement le Markdown et le CSS, c'est le compromis pour posséder entièrement le tout.",
+  "faq": [
+    { "q": "Puis-je exporter mon site Squarespace existant ?", "a": "Squarespace offre un export de contenu limité, principalement les articles de blog dans un format compatible WordPress, ce qui est un point de départ raisonnable — la mise en page, le design, et toute page de boutique ou de réservation doivent être reconstruits depuis zéro." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Le site publié lui-même est pleinement responsive. Éditer le contenu veut dire éditer des fichiers Markdown, ce qui est une tâche de desktop, pas de téléphone — c'est le compromis face au propre éditeur adapté au mobile de Squarespace." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "L'hébergement statique est souvent gratuit ou à quelques dollars par mois, plus un domaine — vraiment bon marché puisqu'il n'y a ni base de données ni travail serveur par visite." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "L'éditeur visuel. Chaque futur changement de mise en page ici veut dire éditer du code et redéployer, pas glisser un bloc dans un navigateur — un vrai compromis continu pour un propriétaire de site non technique." }
+  ]
+}

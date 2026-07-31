@@ -1,0 +1,21 @@
+{
+  "tagline": "Planificateur quotidien qui rassemble tâches et calendrier dans un planning centré.",
+  "verdictSummary": "Un tableau de bord de planification quotidienne solo — une superposition de calendrier en lecture seule à côté d'une liste de tâches, glisser des tâches dans aujourd'hui, un rituel de clôture en fin de journée — c'est un vrai projet de week-end. Ce qui ne vient pas avec, c'est la vraie étendue de Sunsama : des intégrations avec un large éventail d'outils de tâches, une synchro de calendrier bidirectionnelle, et des années de design d'interaction créateur d'habitude.",
+  "coreLoopDIY": "Une vue de planification quotidienne montrant ton calendrier comme une chronologie en lecture seule à côté de la liste de tâches du jour, avec un flux de clôture en fin de journée qui reporte les tâches non terminées ou les abandonne délibérément.",
+  "whatYouLose": [
+    "les intégrations avec un large éventail d'outils de tâches externes",
+    "la synchro de calendrier bidirectionnelle",
+    "des années de design UX soigné pour le rituel quotidien",
+    "les applications mobiles",
+    "les statistiques de planification"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour une habitude de planification qui survit à travers tous les outils qu'ils utilisent, pas pour une nouvelle liste de tâches — l'étendue des intégrations et le design du rituel sont le vrai produit.",
+  "notes": "Une bonne cible à prix élevé où la réponse n'est pas un « oui » trivial, précisément parce que les intégrations comptent ici.",
+  "prompt": "Construis un planificateur quotidien solo : une vue Aujourd'hui montrant ton calendrier comme une chronologie en lecture seule, tirée via son API, à côté de la liste de tâches du jour. Les tâches ont un titre, une estimation de temps, un tag de projet, et un indicateur terminé ; une boîte d'ajout rapide et un panneau d'arriéré te laissent glisser des tâches non planifiées dans aujourd'hui. Affiche les minutes planifiées face à un budget quotidien configurable, virant visiblement au rouge en cas de surplanification. Construis un flux de clôture en fin de journée : passe en revue chaque tâche non terminée avec une seule action pour la reporter à demain, l'envoyer dans l'arriéré, ou l'abandonner, puis affiche un simple résumé planifié-versus-réel. Garde un historique jour par jour pour qu'une vue hebdomadaire puisse montrer la tendance planifié-versus-fait de la semaine passée.\n\nNe construis pas d'intégrations avec d'autres outils de tâches, d'écriture bidirectionnelle sur le calendrier, ni d'applications mobiles — le calendrier ici est une vérité en lecture seule, jamais écrit dessus, et c'est le périmètre honnête et complet pour un outil de planification personnel.",
+  "faq": [
+    { "q": "Puis-je importer mon historique Sunsama existant ?", "a": "Pas automatiquement — Sunsama n'offre pas d'export structuré de ton historique de planification. Repartir à zéro à partir d'aujourd'hui est l'option réaliste plutôt que de reporter les jours passés." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "En tant que page web responsive, oui, pour une vérification rapide, mais le workflow de planification en glisser-déposer est vraiment conçu pour un plus grand écran — il n'y a pas d'application mobile dédiée." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement, typiquement quelques dollars par mois — l'API de calendrier elle-même est gratuite à des volumes d'usage personnels." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "L'étendue des intégrations. Sunsama fait remonter les tâches d'un large éventail d'autres outils pour que tu planifies depuis un seul endroit ; cette version ne montre que ton calendrier et sa propre liste de tâches, et tout ce que tu utilises d'autre reste un onglet séparé." }
+  ]
+}

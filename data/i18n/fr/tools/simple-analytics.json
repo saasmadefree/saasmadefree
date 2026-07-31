@@ -1,0 +1,21 @@
+{
+  "tagline": "Statistiques web axées vie privée, sans cookies ni suivi personnel.",
+  "verdictSummary": "Un suivi de pages vues sans cookies avec des totaux quotidiens et un tableau de bord simple, c'est un vrai projet de week-end — le schéma est maintenant bien établi à travers plusieurs fiches de ce catalogue. Ce qu'achète surtout l'abonnement, c'est un positionnement vie privée hébergé, une fiabilité gérée, et le support de quelqu'un d'autre.",
+  "coreLoopDIY": "Un petit script de suivi qui envoie des balises de page vue sans cookies, agrégées chaque nuit en totaux quotidiens affichés sur un tableau de bord par site.",
+  "whatYouLose": [
+    "l'hébergement géré et la garantie de disponibilité",
+    "un positionnement vie privée et juridique déjà prêt",
+    "un filtrage de bots réglé dans le temps",
+    "les rapports planifiés",
+    "le support dédié"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour une mesure d'audience à faible entretien qu'ils peuvent citer avec confiance dans une politique de confidentialité — pas parce que compter des pages vues sans cookies est techniquement difficile.",
+  "notes": "Encore un « oui » solide, et fait partie d'un vrai cluster de produits d'analyse clonables dans ce catalogue.",
+  "prompt": "Construis un service d'analyse axé vie privée pour tes propres sites : un script de suivi de moins d'un kilo-octet, sans cookies, qui envoie le chemin, la source de trafic et la largeur d'écran, plus un hash salé quotidiennement de l'IP et du user-agent pour le comptage de visiteurs uniques — le sel tourne chaque jour pour que rien ne soit traçable d'un jour à l'autre. Garde les visites brutes sur une courte fenêtre, puis agrège-les chaque nuit en totaux quotidiens permanents par site (pages vues, uniques, pages les plus vues, sources principales, répartition par appareil) et supprime les données brutes expirées. Prends en charge des événements personnalisés simples déclenchés depuis le snippet de suivi. Construis un tableau de bord par site derrière une authentification basique : un graphique de tendance, des tables de pages et de sources, et un sélecteur de plage de dates. Filtre les bots évidents par user-agent, et prends en charge un indicateur d'exclusion pour que tes propres visites ne soient pas comptées. Ajoute un export CSV par site et par mois.\n\nNe construis pas de tunnels, de replay de session, ni d'accès multi-utilisateurs — c'est un outil personnel, à opérateur unique. La disponibilité est désormais ta responsabilité ; il n'y a pas d'infrastructure gérée derrière.",
+  "faq": [
+    { "q": "Puis-je importer mes données Simple Analytics existantes ?", "a": "Simple Analytics peut exporter tes stats en CSV pour référence, mais il n'y a aucun moyen d'importer cet historique dans les propres totaux de cette version — elle recommence à compter à zéro à partir du jour où tu changes le script de suivi." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Le tableau de bord est une page responsive, adaptée pour consulter les stats sur téléphone. Il n'y a pas d'app dédiée, mais un tableau de bord d'analyse simple en a rarement besoin." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données, typiquement quelques dollars par mois — vraiment bon marché, puisque les données d'analyse agrégées restent petites." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Un positionnement vie privée déjà prêt. Simple Analytics entretient sa propre documentation juridique et de conformité que tu peux montrer si on te le demande ; un script auto-hébergé est fonctionnellement similaire dans ce qu'il collecte mais ne porte aucun de ce cadrage entretenu." }
+  ]
+}

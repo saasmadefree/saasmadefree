@@ -1,0 +1,21 @@
+{
+  "tagline": "Enregistrement d'écran et caméra simple pour des vidéos asynchrones soignées.",
+  "verdictSummary": "Un enregistreur avec une étape de découpe et une page de partage hébergée — capturer écran et webcam ensemble, découper la partie utile, publier sur une URL propre — c'est un vrai projet de week-end sur des API d'enregistrement de navigateur et ffmpeg. Ce qui ne vient pas avec, c'est la vraie finition de Tella : de belles mises en page préréglées, des modèles, et le partage d'équipe.",
+  "coreLoopDIY": "Un enregistreur basé navigateur qui capture écran et webcam ensemble, une simple étape de découpe, et une publication en un clic vers une page de partage hébergée.",
+  "whatYouLose": [
+    "de belles mises en page préréglées",
+    "les modèles",
+    "la finition d'extension de navigateur et d'app native",
+    "le partage d'équipe",
+    "l'hébergement vidéo géré et fiable"
+  ],
+  "whyPeopleStillPay": "Les gens veulent une vidéo qui a l'air bien sans corvées d'édition ni de déploiement — ils paient pour cette finition et cette commodité, pas parce que capturer un écran est difficile.",
+  "notes": "Une cible plus atteignable que Loom dans ce catalogue : un bon « oui, mais tu perds la finition ».",
+  "prompt": "Construis un enregistreur d'écran basé navigateur : capture écran et webcam ensemble (webcam en petite superposition circulaire), enregistrés directement dans le navigateur. Après l'enregistrement, ajoute une simple étape de découpe — définis des points d'entrée et de sortie sur une timeline basique, prévisualise, puis rends la vidéo finale avec ffmpeg. Publie en un clic : uploade la vidéo rendue vers ton propre serveur, qui la sert sur une URL propre et non répertoriée avec un lecteur simple, un titre, et ton nom — rien d'autre sur la page. Extrais une image d'affiche pour les aperçus de lien, et suis un compteur de vues basique. Garde l'enregistrement original et le résultat rendu organisés par date et titre.\n\nNe construis pas de modèles de mise en page, d'effets de zoom ou de panoramique, ni de bibliothèque d'équipe — c'est un enregistreur avec une étape de découpe, pas un éditeur, et c'est une limite de périmètre délibérée et honnête.",
+  "faq": [
+    { "q": "Puis-je importer mes enregistrements Tella existants ?", "a": "Oui, si tu les as téléchargés — Tella permet d'exporter tes vidéos, et elles fonctionnent comme fichiers source ici. Les pages de partage, les compteurs de vues, et tout historique de bibliothèque d'équipe restent dans Tella." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Regarder un enregistrement partagé fonctionne bien dans un navigateur mobile. L'enregistrement lui-même repose sur des API de capture d'écran desktop, donc c'est un outil desktop pour créer des vidéos." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et stockage pour tes propres vidéos, typiquement quelques dollars par mois à volume personnel, augmentant avec la quantité que tu gardes." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La finition. Les mises en page préréglées et les modèles de Tella donnent à un enregistrement un air soigné sans aucun effort ; ici, ce que tu enregistres, c'est ce que tu obtiens, découpé mais pas stylisé." }
+  ]
+}

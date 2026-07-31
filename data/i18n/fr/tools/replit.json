@@ -1,0 +1,20 @@
+{
+  "tagline": "Environnement de code dans le navigateur avec agents IA, hébergement et déploiement instantané.",
+  "verdictSummary": "Un éditeur de code dans le navigateur tournant sur ton propre serveur, avec une URL instantanée par projet, c'est un vrai projet de week-end assemblé à partir de briques open source existantes. Ce qui ne vient pas avec, c'est le vrai produit de Replit : un environnement vraiment sans configuration, des agents IA hébergés, et l'édition multi-utilisateurs en temps réel.",
+  "coreLoopDIY": "Un éditeur de code dans le navigateur tournant sur ton propre serveur, avec chaque projet amorcé depuis un modèle et instantanément accessible sur son propre sous-domaine.",
+  "whatYouLose": [
+    "un environnement vraiment sans configuration, sans serveur à maintenir toi-même",
+    "les agents de code IA hébergés",
+    "l'édition multi-utilisateurs en temps réel",
+    "un écosystème de modèles et de communauté"
+  ],
+  "whyPeopleStillPay": "Du code qui tourne immédiatement dans le navigateur, sans les drames d'un environnement local, c'est ce que les gens paient réellement — pas l'éditeur de code en lui-même, qui est open source.",
+  "notes": "Un bon « en partie » : le cœur est réellement composable à partir de briques existantes, mais c'est la finition de plateforme qui porte le vrai produit.",
+  "prompt": "Construis un environnement de développement cloud personnel sur un serveur que tu as déjà : fais tourner un éditeur de code open source dans le navigateur (VS Code dans le navigateur est le choix naturel) derrière HTTPS avec une authentification basique — c'est un assemblage de bonnes briques existantes, pas un nouvel éditeur. Construis une petite CLI qui amorce un nouveau projet depuis un dossier modèle (chacun avec son propre gitignore, ébauche de README, et script de lancement), avec chaque projet assigné à son propre port et accessible automatiquement sur son propre sous-domaine. Ajoute une commande de déploiement qui redémarre le service d'un projet et une commande de logs qui suit sa sortie. Garde les secrets dans un fichier d'environnement par projet jamais commité. Prends une sauvegarde planifiée de tous les projets vers une archive.\n\nNe construis pas d'édition multi-utilisateurs en temps réel, d'agents IA hébergés, ni de conteneurs par projet — un serveur pour les propres projets d'une personne, c'est le périmètre honnête et complet, et c'est un produit vraiment différent d'une plateforme pensée pour accueillir des débutants sans aucune configuration.",
+  "faq": [
+    { "q": "Puis-je récupérer mes projets Replit existants ?", "a": "Oui pour le code — clone ou télécharge les fichiers du repl et dépose-les dans un nouveau dossier de projet ici. Les propres secrets hébergés de Replit, les déploiements toujours actifs, et les sessions multi-utilisateurs ne se reportent pas." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Un éditeur dans le navigateur se charge techniquement sur un navigateur mobile, mais coder réellement sur un écran tactile est vraiment inconfortable — c'est en pratique un outil de laptop ou de desktop." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Un VPS et un domaine, typiquement moins de dix dollars par mois, faisant tourner autant de projets personnels qu'il peut en contenir — pas de tarification par projet." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Zéro configuration. Tout l'intérêt de Replit, c'est qu'un débutant peut commencer à coder sans rien installer ni rien configurer ; cette version demande d'avoir déjà un serveur, ce qui est exactement la configuration que Replit existe pour éviter." }
+  ]
+}

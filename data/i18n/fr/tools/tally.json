@@ -1,0 +1,21 @@
+{
+  "tagline": "Créateur de formulaires façon Notion avec un palier gratuit généreux.",
+  "verdictSummary": "Un créateur de formulaires — un éditeur de champs, des pages de formulaire publiques, des réponses stockées, export CSV — c'est un projet de week-end classique, et l'une des fiches « oui » les plus nettes ici : il y a assez d'antécédents matures pour que ce ne soit même pas un week-end difficile.",
+  "coreLoopDIY": "Un éditeur admin pour construire des formulaires champ par champ, une page publique par formulaire qui valide et stocke les réponses, avec export CSV et notifications email/webhook optionnelles.",
+  "whatYouLose": [
+    "l'éditeur de formulaire visuel abouti",
+    "la sauvegarde des soumissions partielles",
+    "les domaines personnalisés",
+    "les intégrations tierces au-delà d'un webhook",
+    "les espaces de travail d'équipe"
+  ],
+  "whyPeopleStillPay": "Les gens paient pour une création de formulaire sans friction, retirer la marque du palier gratuit, et des intégrations qui se branchent directement à d'autres outils — pas parce qu'un formulaire fonctionnel est difficile à construire.",
+  "notes": "Un des produits « oui » les plus nets du catalogue, avec assez d'antécédents pour que ce soit réellement actionnable, pas juste théoriquement constructible.",
+  "prompt": "Construis un créateur de formulaires personnel : une vue admin (derrière une authentification simple, pas besoin de vrais comptes utilisateurs) pour créer des formulaires champ par champ — texte, zone de texte, email, sélection, case à cocher, upload de fichier — avec des indicateurs de champ requis et un réordonnancement. Chaque formulaire a sa propre page publique avec une mise en page propre en une colonne, une validation côté client et serveur, et des défenses anti-spam basiques (un champ honeypot plus une limite de fréquence par IP simple). Stocke chaque réponse dans une base de données, avec les uploads de fichiers enregistrés sur disque sous un plafond de taille. Par formulaire, prends en charge deux notifications optionnelles : t'envoyer un email à chaque nouvelle réponse, et poster la réponse en JSON vers une URL de webhook. Une vue admin par formulaire : une table de réponses triable avec export CSV.\n\nNe construis pas de sauvegarde de soumission partielle, de logique de champ conditionnelle, d'encaissement de paiement, ni d'espaces de travail d'équipe — et saute entièrement une galerie de modèles ; un formulaire que tu as construit toi-même est son propre modèle. C'est un outil personnel, pas une plateforme de formulaires.",
+  "faq": [
+    { "q": "Puis-je importer mes formulaires Tally existants ?", "a": "Pas automatiquement — Tally n'offre pas d'export structuré des définitions de formulaire. Les données de réponse s'exportent bien en CSV, donc les soumissions passées sont sûres ; la structure du formulaire elle-même doit être reconstruite, ce qui pour la plupart des formulaires prend quelques minutes de clics." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "Oui pour remplir un formulaire — les pages publiques sont pleinement responsives. L'éditeur admin est utilisable sur téléphone mais conçu en pensant à une mise en page desktop." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement et base de données, typiquement quelques dollars par mois — les uploads de fichiers sont la seule chose qui fait vraiment grossir les coûts de stockage avec le temps." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La récupération de soumission partielle. Tally peut sauvegarder la progression de quelqu'un sur un long formulaire s'il part et revient ; cette version ne stocke qu'une soumission complète, donc un formulaire abandonné est simplement perdu." }
+  ]
+}

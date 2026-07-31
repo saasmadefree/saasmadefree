@@ -1,0 +1,21 @@
+{
+  "tagline": "Plateforme de formations en ligne : leçons, accès élèves et paiements.",
+  "verdictSummary": "Un site de vente et de livraison pour une seule formation — une landing page, un checkout, une connexion par lien magique, des leçons vidéo verrouillées, un suivi de progression — c'est un vrai projet contenu de plus d'un week-end pour une formation. Ce qui ne vient pas avec, c'est l'étendue de Teachable : plusieurs formations, des affiliés, des certificats, des upsells, et tout ce qui en fait une vraie plateforme d'activité de formation plutôt qu'une page produit.",
+  "coreLoopDIY": "Une landing page avec checkout, connexion par lien magique pour les acheteurs, et des leçons Markdown verrouillées avec un suivi de progression par élève.",
+  "whatYouLose": [
+    "le support de plusieurs formations et un catalogue",
+    "les programmes d'affiliation",
+    "les certificats, upsells et la logique de coupons",
+    "les applications mobiles dédiées",
+    "l'infrastructure de support client"
+  ],
+  "whyPeopleStillPay": "Une activité de formation a besoin que le checkout, le contrôle d'accès, le suivi de progression et le support fonctionnent tous ensemble — les gens paient pour éviter d'assembler et de maintenir ça eux-mêmes.",
+  "notes": "Les plateformes de formation sont tentantes en DIY parce que la boucle centrale a l'air simple ; la surface métier complète en dessous est vraiment profonde, c'est pourquoi ça atterrit sur « en partie » plutôt que « oui ».",
+  "prompt": "Construis un site de vente et de livraison pour une seule formation, limité à exactement une formation. Le contenu de la formation vit comme des fichiers Markdown organisés en modules et leçons, chacun pointant optionnellement vers un fichier vidéo. Une landing page publique montre le plan et le prix de la formation, avec un bouton d'achat qui va directement vers un checkout hébergé. Un webhook du prestataire de paiement marque l'email de l'acheteur comme inscrit. La connexion se fait uniquement par lien magique — entrer son email, recevoir un lien de connexion signé — pas de mots de passe, pas d'OAuth. Verrouille les pages de leçon par inscription, et sers la vidéo via des URL signées à courte durée de vie pour qu'un lien direct expire plutôt que de rester partageable pour toujours. Suis la progression avec un bouton marquer-terminé par leçon et une barre de progression par module, stockée par élève.\n\nNe construis pas le support de plusieurs formations, d'affiliés, de certificats, d'upsells, ni de logique de coupons — ceci vend et livre exactement une formation. Les reçus de paiement viennent directement du prestataire de paiement ; ne construis pas de facturation ou de logique fiscale toi-même. Note clairement dans le README qu'un petit VPS gère bien une audience modeste, mais qu'un vrai lancement avec une large audience demande un hébergement vidéo dédié, pas des fichiers servis depuis un serveur généraliste.",
+  "faq": [
+    { "q": "Puis-je importer ma formation Teachable existante ?", "a": "Le contenu des leçons, largement oui — copie tes vidéos et ton matériel écrit dans la structure de leçons Markdown. L'inscription des élèves et l'historique de progression ne se transfèrent pas, puisqu'ils sont liés à la propre facturation et au propre suivi de Teachable." },
+    { "q": "Ça marche sur mon téléphone ?", "a": "La landing page et le lecteur de leçons sont tous deux responsives, donc parcourir et regarder fonctionnent bien sur téléphone. Il n'y a ni application mobile dédiée ni téléchargement vidéo hors ligne." },
+    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement, domaine et base de données, typiquement quelques dollars par mois, plus des frais standards de traitement de paiement sur les ventes — aucun frais de plateforme mensuel au-delà de ça, jusqu'à ce que les vrais coûts d'hébergement vidéo entrent en jeu à grande échelle." },
+    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Faire tourner plus d'une formation comme une vraie activité. Cette version est vraiment bonne pour vendre et livrer une seule formation ; dès qu'il y a une deuxième formation, un coupon, ou un affilié à gérer, il faut revenir à construire des fonctionnalités de plateforme à la main." }
+  ]
+}
