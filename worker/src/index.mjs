@@ -100,7 +100,14 @@ async function handle(request, env) {
     // D1) — contrairement à la route de vote, où un tel échec peut rester
     // visible en 500.
     try {
-      if (!(await overRateLimit(env, ipHash, now))) {
+      // Le beacon a son propre seau de rate-limit : 30 vues/min ne doivent
+      // jamais faire échouer un vote légitime. Même table `rate`, même
+      // ip_hash de base (identique au hachage des votes), mais préfixé pour
+      // que les deux compteurs (b:<hash> pour le beacon, <hash> pour le vote)
+      // restent indépendants. `ipHash` sans préfixe reste inchangé pour
+      // `uniques`, qui doit garder l'identité visiteur du schéma de hachage
+      // des votes.
+      if (!(await overRateLimit(env, 'b:' + ipHash, now))) {
         await recordBeacon(env, body, ipHash, day);
       }
     } catch { /* fail-open */ }

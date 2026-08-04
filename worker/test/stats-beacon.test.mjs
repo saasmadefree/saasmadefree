@@ -154,3 +154,31 @@ describe('POST /api/v1/stats/beacon — gestion des erreurs D1', () => {
     expect(res.headers.get('access-control-allow-origin')).toBe('*');
   });
 });
+
+describe('POST /api/v1/stats/beacon — seau de rate-limit indépendant du vote', () => {
+  it("trente-et-une vues d'une même IP ne bloquent pas un vote légitime de cette IP", async () => {
+    const ip = '198.51.100.9';
+    for (let i = 0; i < 31; i++) {
+      const res = await beacon({ type: 'view', path: '/en/', lang: 'en', ref: 'none' }, ip);
+      expect(res.status).toBe(204);
+    }
+    // Côté beacon, le seau `b:<hash>` a bien plafonné les écritures (déjà
+    // couvert par « rate limit » ci-dessus ; vérifié ici au passage car c'est
+    // la même séquence qui produit l'assertion suivante).
+    const hit = await env.DB.prepare('SELECT n FROM hits').first();
+    expect(hit.n).toBeLessThanOrEqual(30);
+
+    // Côté vote, le seau `<hash>` (sans préfixe) n'a reçu aucune écriture du
+    // beacon : un premier vote de cette même IP doit donc être compté.
+    const voteRequest = new Request('https://votes.test/api/v1/vote', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'cf-connecting-ip': ip },
+      body: JSON.stringify({ slug: 'obsidian' }),
+    });
+    const ctx = createExecutionContext();
+    const voteRes = await worker.fetch(voteRequest, env, ctx);
+    await waitOnExecutionContext(ctx);
+    expect(voteRes.status).toBe(200);
+    expect(await voteRes.json()).toMatchObject({ counted: true });
+  });
+});
