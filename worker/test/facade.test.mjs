@@ -42,21 +42,31 @@ beforeEach(async () => {
 });
 
 async function hitPage(ua, { path = '/en/tools/notion', body = '<html>page</html>', testEnv = env } = {}) {
-  vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response(body));
+  // La façade doit faire un passthrough exact : on vérifie que fetch() reçoit
+  // bien la même requête (même URL), pas seulement qu'un 200 quelconque
+  // ressort — sinon un test verrait passer une implémentation qui ignorerait
+  // `request` et appellerait fetch() sur une URL en dur.
+  const fetchSpy = vi.spyOn(globalThis, 'fetch').mockImplementation(async (req) => {
+    if (req.url !== `https://saasmadefree.com${path}`) {
+      throw new Error(`fetch appelé avec une URL inattendue : ${req.url}`);
+    }
+    return new Response(body);
+  });
   const request = new Request(`https://saasmadefree.com${path}`, {
     headers: ua ? { 'user-agent': ua } : {},
   });
   const ctx = createExecutionContext();
   const response = await worker.fetch(request, testEnv, ctx);
   await waitOnExecutionContext(ctx);
-  return response;
+  return { response, fetchSpy };
 }
 
 describe('façade saasmadefree.com', () => {
-  it('sert la page et compte un crawler IA', async () => {
-    const res = await hitPage('Mozilla/5.0; compatible; GPTBot/1.2; +https://openai.com/gptbot');
+  it('sert la page, passe la requête telle quelle à fetch(), et compte un crawler IA', async () => {
+    const { response: res, fetchSpy } = await hitPage('Mozilla/5.0; compatible; GPTBot/1.2; +https://openai.com/gptbot');
     expect(res.status).toBe(200);
     expect(await res.text()).toBe('<html>page</html>');
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
     const row = await env.DB.prepare('SELECT * FROM crawlers').first();
     expect(row).toMatchObject({ bot: 'gptbot', source: 'edge-worker', n: 1 });
   });
@@ -69,7 +79,7 @@ describe('façade saasmadefree.com', () => {
   });
 
   it("sert la page sans écrire pour un navigateur humain", async () => {
-    const res = await hitPage('Mozilla/5.0 (Macintosh) Chrome/126.0 Safari/537.36');
+    const { response: res } = await hitPage('Mozilla/5.0 (Macintosh) Chrome/126.0 Safari/537.36');
     expect(res.status).toBe(200);
     const count = await env.DB.prepare('SELECT COUNT(*) AS c FROM crawlers').first();
     expect(count.c).toBe(0);
@@ -77,14 +87,14 @@ describe('façade saasmadefree.com', () => {
 
   it('fail-open : sert la page même si la table crawlers a disparu', async () => {
     await env.DB.exec('DROP TABLE crawlers');
-    const res = await hitPage('GPTBot/1.2');
+    const { response: res } = await hitPage('GPTBot/1.2');
     expect(res.status).toBe(200);
     expect(await res.text()).toBe('<html>page</html>');
   });
 
   it('fail-open : sert la page même sans VOTE_SALT', async () => {
     // Un env sans sel : la façade ne doit pas passer par le contrôle VOTE_SALT.
-    const res = await hitPage('ClaudeBot/1.0', {
+    const { response: res } = await hitPage('ClaudeBot/1.0', {
       path: '/fr/',
       body: 'ok',
       testEnv: { DB: env.DB, ALLOWED_ORIGIN: '*' },
