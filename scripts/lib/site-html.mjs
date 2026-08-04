@@ -135,33 +135,37 @@ ${headLines}
 </head>
 <body>
 <a class="skip-link" href="#main">${escapeHtml(ui.site.skipToContent)}</a>
-<div class="page">
-  <header class="site-header">
-    <div class="header-left">
-      <a class="brand" href="${escapeHtml(homeHref)}">${escapeHtml(ui.site.brand)}</a>
-      <ul class="nav-links">${navLinks}</ul>
-    </div>
-    <div class="header-groups">
-      <div class="header-controls">${langSwitcher}
-        <button type="button" id="theme-toggle" class="theme-toggle" hidden
-                aria-label="${themeToggleLabel}"
-                data-label-dark="${escapeHtml(ui.site.themeToDark ?? 'Dark mode')}"
-                data-label-light="${escapeHtml(ui.site.themeToLight ?? 'Light mode')}">
-          <span aria-hidden="true" class="theme-icon"></span>
-        </button>
-        <a class="github-btn" href="${GITHUB_REPO_URL}">${escapeHtml(nav.github ?? 'GitHub')} <span aria-hidden="true">↗</span></a>
-      </div>
-    </div>
-  </header>
-  <main id="main">
+<div class="shell">
+  <div class="col-main">
+    <div class="page">
+      <header class="site-header">
+        <div class="header-left">
+          <a class="brand" href="${escapeHtml(homeHref)}">${escapeHtml(ui.site.brand)}</a>
+          <ul class="nav-links">${navLinks}</ul>
+        </div>
+        <div class="header-groups">
+          <div class="header-controls">${langSwitcher}
+            <button type="button" id="theme-toggle" class="theme-toggle" hidden
+                    aria-label="${themeToggleLabel}"
+                    data-label-dark="${escapeHtml(ui.site.themeToDark ?? 'Dark mode')}"
+                    data-label-light="${escapeHtml(ui.site.themeToLight ?? 'Light mode')}">
+              <span aria-hidden="true" class="theme-icon"></span>
+            </button>
+            <a class="github-btn" href="${GITHUB_REPO_URL}">${escapeHtml(nav.github ?? 'GitHub')} <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </header>
+      <main id="main">
 ${main}
-  </main>
-  <footer class="site-footer">
-    <a href="${GITHUB_REPO_URL}">${escapeHtml(ui.site.footer.source)}</a>
-    <a href="/privacy">${escapeHtml(ui.site.footer.privacy)}</a>
-    <a href="mailto:privacy@saasmadefree.com">privacy@saasmadefree.com</a>
-    <a class="credit" href="https://github.com/canivibecodeit/canivibecodeit" rel="noopener">${escapeHtml(ui.site.footer.credit ?? "")}</a>
-  </footer>
+      </main>
+      <footer class="site-footer">
+        <a href="${GITHUB_REPO_URL}">${escapeHtml(ui.site.footer.source)}</a>
+        <a href="/privacy">${escapeHtml(ui.site.footer.privacy)}</a>
+        <a href="mailto:privacy@saasmadefree.com">privacy@saasmadefree.com</a>
+        <a class="credit" href="https://github.com/canivibecodeit/canivibecodeit" rel="noopener">${escapeHtml(ui.site.footer.credit ?? "")}</a>
+      </footer>
+    </div>
+  </div>
 </div>
 <script src="/assets/site.js" defer></script>
 </body>

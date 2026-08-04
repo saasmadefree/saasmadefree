@@ -34,9 +34,15 @@ html{-webkit-text-size-adjust:100%}
 body{
   margin:0; background:var(--paper); color:var(--ink);
   font:400 15px/1.6 var(--mono);
-  padding:clamp(1.25rem,4vw,2.5rem) clamp(1rem,5vw,2.5rem);
+  padding:clamp(1.25rem,4vw,2.5rem) 0;
 }
-.page{max-width:62rem;margin:0 auto}
+/* Le padding horizontal vit ici et non plus sur body : .col-main doit occuper
+   toute la largeur de la fenêtre pour que 100cqw vaille exactement 100vw quand
+   aucun rail n'est affiché. 67rem = 62rem de texte + 2 × 2.5rem de padding, ce
+   qui reproduit la mesure actuelle au pixel près sur grand écran. */
+.page{max-width:67rem;margin:0 auto;padding-inline:clamp(1rem,5vw,2.5rem)}
+.shell{display:grid;grid-template-columns:1fr;justify-content:center}
+.col-main{container-type:inline-size;min-width:0}
 a{color:inherit;text-underline-offset:.18em;text-decoration-thickness:.06em}
 a:hover{text-decoration-thickness:.14em}
 :focus-visible{outline:2px solid var(--focus);outline-offset:.2em}
@@ -178,12 +184,13 @@ input[type=search]::-webkit-search-cancel-button{display:none}
 .verdict-chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 1rem}
 
 /* ---------- bandeau-ticker et bandeau de chiffres, pleine largeur ---------- */
-/* Sortent volontairement du conteneur .page (max-width:62rem) pour occuper
-   toute la largeur de la fenêtre, avec leur propre fond et des filets
-   horizontaux — la technique classique du "full-bleed" par marges négatives
-   calculées sur 50vw, sans dépendre de la largeur de la barre de défilement. */
+/* Sortent volontairement du conteneur .page pour occuper toute la largeur de la
+   piste centrale, avec leur propre fond et des filets horizontaux. Le débord est
+   ancré sur .col-main (container-type:inline-size) et non sur la fenêtre : sans
+   rails, .col-main occupe toute la fenêtre et 100cqw vaut 100vw ; avec rails, le
+   bandeau s'arrête à la gouttière au lieu de passer dessous. */
 .ticker-band,.figures-band{
-  width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+  width:100cqw;margin-left:calc(50% - 50cqw);margin-right:calc(50% - 50cqw);
   background:color-mix(in srgb,var(--ink) 4%,var(--paper));
   border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
   padding:1.5rem 0;margin-top:clamp(1.75rem,4vh,2.5rem);margin-bottom:clamp(1.75rem,4vh,2.5rem)}
