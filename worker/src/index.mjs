@@ -1,6 +1,6 @@
 import { dayKey, hashIp } from './hash.mjs';
 import { SLUGS } from './slugs.generated.mjs';
-import { recordBeacon } from './stats.mjs';
+import { recordBeacon, buildStatsPayload } from './stats.mjs';
 
 const RATE_LIMIT_PER_MINUTE = 30;
 const RATE_RETENTION_MINUTES = 2;
@@ -75,6 +75,12 @@ async function handle(request, env) {
   // silencieuse produire des lignes irréversiblement compromises.
   if (!env.VOTE_SALT) {
     return json({ error: 'misconfigured' }, 500, env);
+  }
+
+  // Lecture publique des stats (spec §8) : une seule forme, cacheable 60 s à
+  // l'edge — c'est le « refreshed every minute » de la page /stats.
+  if (url.pathname === '/api/v1/stats' && request.method === 'GET') {
+    return json(await buildStatsPayload(env, new Date()), 200, env, 'public, max-age=60');
   }
 
   // Beacon d'audience (spec §3) : toujours 204, y compris sur entrée invalide
