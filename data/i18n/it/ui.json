@@ -6,6 +6,12 @@
     "usage-based": "In base all'utilizzo",
     "one-time": "Pagamento una tantum"
   },
+  "diyTimeEstimate": {
+    "one-sitting": "Una seduta",
+    "weekend": "Un fine settimana",
+    "week": "Una settimana",
+    "more": "Più di una settimana"
+  },
   "requirements": {
     "anthropic-api-key": "Chiave API Anthropic",
     "openai-api-key": "Chiave API OpenAI",
@@ -23,5 +29,169 @@
     "cli-paste": "Prompt copiato. Avvia claude nel tuo terminale e incollalo.",
     "clipboard": "Prompt copiato. Incollalo nel tuo agente.",
     "not-yet": "Nessun trasferimento del prompt ancora disponibile per questo agente."
+  },
+  "site": {
+    "brand": "SaaS Made Free",
+    "skipToContent": "Vai al contenuto",
+    "languageSwitcherLabel": "Lingua",
+    "directoryLabel": "Directory",
+    "nav": {
+      "submitTool": "Invia uno strumento",
+      "source": "Codice sorgente",
+      "github": "GitHub"
+    },
+    "footer": {
+      "source": "Codice sorgente su GitHub",
+      "privacy": "Privacy",
+      "credit": "Catalogo basato su canivibecodeit",
+      "stats": "Statistiche"
+    },
+    "verdicts": {
+      "yes": {
+        "label": "Sì",
+        "desc": "Sostituiscilo oggi. Non si perde niente di importante."
+      },
+      "kinda": {
+        "label": "Quasi",
+        "desc": "Ricostruibile in un fine settimana, ma rinunci a cose come l'app mobile, la sincronizzazione o le integrazioni. La scheda te lo dirà."
+      },
+      "no": {
+        "label": "No",
+        "desc": "Continua a pagare. Il valore è la rete, i dati o la conformità — nessun prompt può sostituire quello."
+      }
+    },
+    "home": {
+      "titleTag": "SaaS Made Free — quali abbonamenti sono a un prompt di distanza?",
+      "metaDescription": "Quali dei tuoi abbonamenti SaaS a pagamento potrebbero essere ricostruiti da un agente di codice — e quali dovresti onestamente continuare a pagare?",
+      "heroLine1": "Alcuni SaaS sono un business.",
+      "heroLine2": "Alcuni sono solo un prompt.",
+      "lede": "Una directory aperta del software che paghi ogni mese, e se un agente di codice potrebbe ricostruire una versione che possiedi. Un prompt per strumento, scritto per essere passato direttamente a Claude, Cursor o ChatGPT.",
+      "verdictsHeading": "Tre verdetti",
+      "tallyOne": "{count} strumento pubblicato finora. Il catalogo viene scritto, una voce verificata alla volta.",
+      "tallyOther": "{count} strumenti pubblicati finora. Il catalogo viene scritto, una voce verificata alla volta.",
+      "searchLabel": "Cerca nella directory",
+      "searchPlaceholder": "Cerca per nome o categoria",
+      "categoryFilterLabel": "Filtra per categoria",
+      "categoryFilterAll": "Tutte le categorie",
+      "listHeading": "La directory",
+      "listCaption": "Ogni strumento pubblicato finora, ordinato per voti.",
+      "colName": "Strumento",
+      "colCategory": "Categoria",
+      "colPrice": "Prezzo mensile",
+      "colVerdict": "Verdetto",
+      "colVotes": "Voti",
+      "noResults": "Nessuno strumento corrisponde a questa ricerca.",
+      "heroQuestion": "Può un prompt sostituire {blank}?",
+      "browseHeading": "Naviga per categoria",
+      "allChip": "Tutti",
+      "allCategoriesChip": "Tutte le categorie →",
+      "searchClearLabel": "Cancella ricerca",
+      "searchResultsLabel": "Risultati di ricerca",
+      "searchViewAllTemplate": "↓ Tutti i {count} risultati nella directory",
+      "tickerAriaLabel": "Prezzi del catalogo, scorrimento",
+      "mrrLabel": "Spesa mensile rappresentata dai voti registrati finora",
+      "mrrSrTemplate": "{amount} al mese rappresentati dai voti registrati finora",
+      "mrrUnavailable": "Figura in tempo reale non disponibile al momento.",
+      "figuresAriaLabel": "Numeri del catalogo",
+      "figureToolsPublished": "Strumenti pubblicati",
+      "figureCategories": "Categorie",
+      "figureLanguages": "Lingue",
+      "figureTotalPrice": "Prezzo mensile totale del catalogo (USD)",
+      "figurePrompts": "Prompt scritti",
+      "rankNote": "Classificato per voti registrati finora, poi per quanto pronta è ogni voce.",
+      "verdictFilterAriaLabel": "Filtra per verdetto"
+    },
+    "stats": {
+      "title": "Statistiche pubbliche",
+      "metaDescription": "Le analytics first-party di SaaS Made Free in diretta: pagine viste, citazioni e crawler IA, prompt copiati e voti — pubblicate alla luce del sole.",
+      "intro": "Analytics first-party, auto-interrogate e pubblicate di proposito. Niente cookie, niente terze parti, aggiornate ogni minuto. Tutto ciò che viene raccolto è su questa pagina — non esiste un pannello privato.",
+      "liveUnavailable": "Le statistiche in diretta non rispondono al momento. Le cifre del catalogo qui sotto restano esatte; i contatori torneranno a breve.",
+      "viewsToday": "Visualizzazioni oggi",
+      "peakDay": "Giorno record",
+      "visitorDays": "Visitatori-giorno · 7 g",
+      "visitorDaysNote": "Visitatori unici giornalieri sommati su 7 giorni. I nostri hash IP con sale giornaliero non possono essere collegati tra giorni — di proposito — quindi un visitatore che torna conta una volta al giorno.",
+      "promptsCopied": "Prompt copiati · 7 g",
+      "views14d": "Pagine viste · ultimi 14 giorni",
+      "citedByAi": "Citato dalle IA",
+      "aiVisitors": "Visitatori inviati dagli assistenti IA",
+      "aiVisitorsNote": "Persone arrivate qui da una risposta di un'IA — la cosa più vicina a una vera citazione.",
+      "d7": "7 giorni",
+      "d30": "30 giorni",
+      "crawlers": "Crawler IA che leggono questo sito",
+      "crawlersNote": "Contati due volte, di proposito: dal nostro Worker davanti alle pagine (edge) e dall'API analytics di Cloudflare (cf). Due fonti che si controllano a vicenda.",
+      "lastSeen": "ultimo passaggio",
+      "noneYet": "Ancora niente.",
+      "topPages": "Pagine più viste · 7 g",
+      "viewsByLang": "Visualizzazioni per lingua · 7 g",
+      "copiesByAgent": "Copie per agente · 7 g",
+      "topPrompts": "Prompt più copiati · 7 g",
+      "votesTitle": "Voti",
+      "votesTotal": "{count} voti registrati in totale",
+      "topVoted": "Strumenti più votati",
+      "catalogueTitle": "Il catalogo in cifre",
+      "catalogueTools": "{count} strumenti pubblicati"
+    },
+    "tool": {
+      "titleTemplate": "Può un agente di codice sostituire {name}? — SaaS Made Free",
+      "metaDescriptionTemplate": "Può un agente di codice sostituire {name}? Il verdetto, il prezzo reale, e cosa perdi.",
+      "h1Template": "Può un prompt sostituire {name}?",
+      "verdictHeading": "Verdetto",
+      "priceHeading": "Prezzo",
+      "priceSourceLabel": "Fonte",
+      "priceCheckedLabel": "Controllato il",
+      "yearCostLabel": "Per anno",
+      "yearCostNote": "Prezzo mensile attuale × 12 — non un risparmio garantito.",
+      "buildTimeLabel": "Tempo di costruzione",
+      "categoryMetaLabel": "Categoria",
+      "votesMetaLabel": "Voti",
+      "whatYouLoseHeading": "Cosa perdi",
+      "whyPeopleStillPayHeadingTemplate": "Perché la gente continua a pagare: {moat}",
+      "promptHeading": "Il prompt",
+      "copyButton": "Copia prompt",
+      "copiedButton": "Copiato",
+      "copyFailed": "Non è stato possibile copiare automaticamente — seleziona il testo sopra.",
+      "openInAgentTemplate": "Apri in {name}",
+      "promptOpenCaption": "L'apertura precompila il prompt — premi invio per eseguirlo.",
+      "priorArtHeading": "Arte precedente",
+      "licenseLabel": "Licenza",
+      "faqHeading": "Domande",
+      "relatedHeading": "Strumenti correlati",
+      "voteHeading": "L'hai già ricostruito da solo?",
+      "voteButton": "Registra il mio voto",
+      "voteCountOne": "{count} voto",
+      "voteCountOther": "{count} voti",
+      "voteUnavailable": "Conteggio voti non disponibile al momento.",
+      "voteThanks": "Grazie — questo voto è stato registrato.",
+      "voteAlready": "Già contato da questo browser oggi.",
+      "voteError": "Non riuscito a raggiungere il servizio di voto. Riprova più tardi.",
+      "shareOnXLabel": "Condividi su X",
+      "shareTextTemplate": "Può un prompt sostituire {name}? Il verdetto: {verdict}."
+    },
+    "category": {
+      "titleTemplate": "Quali strumenti {category} può sostituire un agente di codice? — SaaS Made Free",
+      "metaDescriptionTemplate": "Quali strumenti {category} può sostituire un agente di codice, e quali dovresti continuare a pagare?",
+      "heading": "Strumenti in {category}"
+    },
+    "root": {
+      "titleTag": "SaaS Made Free",
+      "metaDescription": "Una directory aperta degli abbonamenti SaaS che un agente di codice potrebbe ricostruire.",
+      "redirecting": "Ti stiamo portando alla directory italiana.",
+      "continueLink": "Continua alla directory"
+    },
+    "themeToDark": "Modalità scura",
+    "themeToLight": "Modalità chiara",
+    "notFound": {
+      "titleTag": "Pagina non trovata — SaaS Made Free",
+      "metaDescription": "Questa pagina non esiste. Sfoglia la directory degli abbonamenti SaaS che un agente di codice può sostituire.",
+      "heading": "Questa pagina non esiste",
+      "body": "Lo strumento potrebbe essere stato rimosso dal catalogo, oppure l'indirizzo è sbagliato."
+    }
+  },
+  "categoriesIndex": {
+    "titleTag": "Tutte le categorie — SaaS Made Free",
+    "metaDescription": "Ogni categoria nella directory SaaS Made Free, con quanti strumenti sono pubblicati in ognuna.",
+    "heading": "Tutte le categorie",
+    "toolCountOne": "{count} strumento",
+    "toolCountOther": "{count} strumenti"
   }
 }

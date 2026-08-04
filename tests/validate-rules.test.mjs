@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { compileValidators } from '../scripts/lib/load-data.mjs';
+import { compileValidators, loadData } from '../scripts/lib/load-data.mjs';
 import { validateAll } from '../scripts/lib/validate-rules.mjs';
 
 const validators = compileValidators('schema');
@@ -38,6 +38,10 @@ function makeData(over = {}) {
     requirements: { hosting: 'Hosting' },
     pricingBasis: { 'per-seat-monthly': 'Monthly per seat' },
     runHints: { clipboard: 'Paste it' },
+    site: {
+      stats: { viewsToday: 'Views today' },
+      footer: { stats: 'Stats' },
+    },
   }]]);
   const agents = [{
     id: 'clipboard-only', name: 'Autre agent', kind: 'clipboard', template: null,
@@ -134,5 +138,31 @@ describe('validateAll', () => {
     data.agents[0].kind = 'url';
     data.agents[0].template = null;
     expect(validateAll(data, validators, TODAY).join(' ')).toContain('template');
+  });
+});
+
+describe('site.stats — parité des clés entre langues', () => {
+  it('accepte les données réelles du repo', async () => {
+    const data = await loadData(process.cwd());
+    const errors = validateAll(data, validators, new Date().toISOString().slice(0, 10));
+    expect(errors.filter((e) => e.includes('site.stats'))).toEqual([]);
+  });
+
+  it('signale une clé manquante dans une langue', async () => {
+    const data = await loadData(process.cwd());
+    const fr = structuredClone(data.ui.get('fr'));
+    delete fr.site.stats.viewsToday;
+    data.ui.set('fr', fr);
+    const errors = validateAll(data, validators, new Date().toISOString().slice(0, 10));
+    expect(errors.some((e) => e.includes('fr/ui.json') && e.includes('site.stats.viewsToday'))).toBe(true);
+  });
+
+  it('signale un footer.stats manquant', async () => {
+    const data = await loadData(process.cwd());
+    const de = structuredClone(data.ui.get('de'));
+    delete de.site.footer.stats;
+    data.ui.set('de', de);
+    const errors = validateAll(data, validators, new Date().toISOString().slice(0, 10));
+    expect(errors.some((e) => e.includes('de/ui.json') && e.includes('footer.stats'))).toBe(true);
   });
 });

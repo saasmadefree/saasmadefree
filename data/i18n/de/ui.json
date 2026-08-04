@@ -6,6 +6,12 @@
     "usage-based": "Nutzungsabhängig",
     "one-time": "Einmalzahlung"
   },
+  "diyTimeEstimate": {
+    "one-sitting": "An einem Stück",
+    "weekend": "Ein Wochenende",
+    "week": "Eine Woche",
+    "more": "Mehr als eine Woche"
+  },
   "requirements": {
     "anthropic-api-key": "Anthropic-API-Schlüssel",
     "openai-api-key": "OpenAI-API-Schlüssel",
@@ -23,5 +29,169 @@
     "cli-paste": "Prompt kopiert. Starte claude in deinem Terminal und füge ihn ein.",
     "clipboard": "Prompt kopiert. Füge ihn in deinen Agenten ein.",
     "not-yet": "Für diesen Agenten gibt es noch keine Prompt-Übergabe."
+  },
+  "site": {
+    "brand": "SaaS Made Free",
+    "skipToContent": "Zum Inhalt springen",
+    "languageSwitcherLabel": "Sprache",
+    "directoryLabel": "Verzeichnis",
+    "nav": {
+      "submitTool": "Ein Tool einreichen",
+      "source": "Quellcode",
+      "github": "GitHub"
+    },
+    "footer": {
+      "source": "Quellcode auf GitHub",
+      "privacy": "Datenschutz",
+      "credit": "Katalog basierend auf canivibecodeit",
+      "stats": "Statistiken"
+    },
+    "verdicts": {
+      "yes": {
+        "label": "Ja",
+        "desc": "Ersetze es heute. Nichts Wichtiges geht verloren."
+      },
+      "kinda": {
+        "label": "Fast",
+        "desc": "Wiederherstellbar an einem Wochenende, aber du gibst Dinge wie die mobile App, die Synchronisierung oder die Integrationen auf. Der Eintrag sagt dir, welche."
+      },
+      "no": {
+        "label": "Nein",
+        "desc": "Zahle weiter. Der Wert ist das Netzwerk, die Daten oder die Compliance — kein Prompt ersetzt das."
+      }
+    },
+    "home": {
+      "titleTag": "SaaS Made Free — welche Abos sind nur einen Prompt entfernt?",
+      "metaDescription": "Welche deiner bezahlten SaaS-Abos könnten von einem Code-Agent wiederhergestellt werden — und welche solltest du ehrlich weiter bezahlen?",
+      "heroLine1": "Manche SaaS sind ein Geschäft.",
+      "heroLine2": "Manche sind nur ein Prompt.",
+      "lede": "Ein offenes Verzeichnis der Software, die du jeden Monat bezahlst, und ob ein Code-Agent eine Version, die du besitzt, wiederhergestellen könnte. Ein Prompt pro Tool, geschrieben, um ihn direkt an Claude, Cursor oder ChatGPT zu übergeben.",
+      "verdictsHeading": "Drei Urteile",
+      "tallyOne": "{count} Tool bisher veröffentlicht. Der Katalog wird geschrieben, ein verifikter Eintrag nach dem anderen.",
+      "tallyOther": "{count} Tools bisher veröffentlicht. Der Katalog wird geschrieben, ein verifikter Eintrag nach dem anderen.",
+      "searchLabel": "Im Verzeichnis suchen",
+      "searchPlaceholder": "Nach Name oder Kategorie suchen",
+      "categoryFilterLabel": "Nach Kategorie filtern",
+      "categoryFilterAll": "Alle Kategorien",
+      "listHeading": "Das Verzeichnis",
+      "listCaption": "Jedes bisher veröffentlichte Tool, nach Stimmen sortiert.",
+      "colName": "Tool",
+      "colCategory": "Kategorie",
+      "colPrice": "Monatlicher Preis",
+      "colVerdict": "Urteil",
+      "colVotes": "Stimmen",
+      "noResults": "Kein Tool entspricht dieser Suche.",
+      "heroQuestion": "Kann ein Prompt {blank} ersetzen?",
+      "browseHeading": "Nach Kategorie stöbern",
+      "allChip": "Alle",
+      "allCategoriesChip": "Alle Kategorien →",
+      "searchClearLabel": "Suche löschen",
+      "searchResultsLabel": "Suchergebnisse",
+      "searchViewAllTemplate": "↓ Alle {count} Treffer im Verzeichnis",
+      "tickerAriaLabel": "Katalogpreise, Scrollen",
+      "mrrLabel": "Monatliche Ausgaben, dargestellt durch die bisher erfassten Stimmen",
+      "mrrSrTemplate": "{amount} pro Monat dargestellt durch die bisher erfassten Stimmen",
+      "mrrUnavailable": "Live-Zahl gerade nicht verfügbar.",
+      "figuresAriaLabel": "Katalogzahlen",
+      "figureToolsPublished": "Tools veröffentlicht",
+      "figureCategories": "Kategorien",
+      "figureLanguages": "Sprachen",
+      "figureTotalPrice": "Gesamtmonatspreis des Katalogs (USD)",
+      "figurePrompts": "Prompts geschrieben",
+      "rankNote": "Sortiert nach bisher erfassten Stimmen, dann nach Reife jedes Eintrags.",
+      "verdictFilterAriaLabel": "Nach Urteil filtern"
+    },
+    "stats": {
+      "title": "Öffentliche Statistiken",
+      "metaDescription": "Die First-Party-Analytics von SaaS Made Free live: Seitenaufrufe, KI-Zitate und -Crawler, kopierte Prompts und Stimmen — offen veröffentlicht.",
+      "intro": "First-Party-Analytics, selbst abgefragt und absichtlich veröffentlicht. Keine Cookies, keine Drittanbieter, jede Minute aktualisiert. Alles Erfasste steht auf dieser Seite — ein privates Dashboard gibt es nicht.",
+      "liveUnavailable": "Die Live-Statistiken sind gerade nicht erreichbar. Die Katalogzahlen unten stimmen weiterhin; die Zähler sind bald zurück.",
+      "viewsToday": "Aufrufe heute",
+      "peakDay": "Bester Tag",
+      "visitorDays": "Besuchertage · 7 T",
+      "visitorDaysNote": "Tägliche eindeutige Besucher, über 7 Tage summiert. Unsere täglich gesalzenen IP-Hashes lassen sich nicht über Tage hinweg verknüpfen — mit Absicht — ein wiederkehrender Besucher zählt also einmal pro Tag.",
+      "promptsCopied": "Kopierte Prompts · 7 T",
+      "views14d": "Seitenaufrufe · letzte 14 Tage",
+      "citedByAi": "Von KI zitiert",
+      "aiVisitors": "Von KI-Assistenten geschickte Besucher",
+      "aiVisitorsNote": "Menschen, die aus einer KI-Antwort hierher geklickt haben — das Nächste an einem echten Zitat.",
+      "d7": "7 Tage",
+      "d30": "30 Tage",
+      "crawlers": "KI-Crawler, die diese Seite lesen",
+      "crawlersNote": "Absichtlich doppelt gezählt: von unserem eigenen Worker vor den Seiten (edge) und von Cloudflares Analytics-API (cf). Zwei Quellen, die einander prüfen.",
+      "lastSeen": "zuletzt gesehen",
+      "noneYet": "Noch nichts.",
+      "topPages": "Meistgesehene Seiten · 7 T",
+      "viewsByLang": "Aufrufe nach Sprache · 7 T",
+      "copiesByAgent": "Kopien nach Agent · 7 T",
+      "topPrompts": "Meistkopierte Prompts · 7 T",
+      "votesTitle": "Stimmen",
+      "votesTotal": "{count} Stimmen insgesamt",
+      "topVoted": "Meistgewählte Tools",
+      "catalogueTitle": "Der Katalog in Zahlen",
+      "catalogueTools": "{count} veröffentlichte Tools"
+    },
+    "tool": {
+      "titleTemplate": "Kann ein Code-Agent {name} ersetzen? — SaaS Made Free",
+      "metaDescriptionTemplate": "Kann ein Code-Agent {name} ersetzen? Das Urteil, der echte Preis, und was du verlierst.",
+      "h1Template": "Kann ein Prompt {name} ersetzen?",
+      "verdictHeading": "Urteil",
+      "priceHeading": "Preis",
+      "priceSourceLabel": "Quelle",
+      "priceCheckedLabel": "Überprüft am",
+      "yearCostLabel": "Pro Jahr",
+      "yearCostNote": "Aktueller Monatspreis × 12 — nicht garantierte Ersparnisse.",
+      "buildTimeLabel": "Bauzeit",
+      "categoryMetaLabel": "Kategorie",
+      "votesMetaLabel": "Stimmen",
+      "whatYouLoseHeading": "Was du verlierst",
+      "whyPeopleStillPayHeadingTemplate": "Warum Menschen noch zahlen: {moat}",
+      "promptHeading": "Der Prompt",
+      "copyButton": "Prompt kopieren",
+      "copiedButton": "Kopiert",
+      "copyFailed": "Automatisches Kopieren nicht möglich — wähle stattdessen den Text oben aus.",
+      "openInAgentTemplate": "In {name} öffnen",
+      "promptOpenCaption": "Öffnen füllt den Prompt vorab aus — drücke Enter zum Ausführen.",
+      "priorArtHeading": "Vorherige Arbeiten",
+      "licenseLabel": "Lizenz",
+      "faqHeading": "Fragen",
+      "relatedHeading": "Verwandte Tools",
+      "voteHeading": "Hast du das bereits selbst gebaut?",
+      "voteButton": "Meine Stimme abgeben",
+      "voteCountOne": "{count} Stimme",
+      "voteCountOther": "{count} Stimmen",
+      "voteUnavailable": "Stimmenzahl gerade nicht verfügbar.",
+      "voteThanks": "Danke — diese Stimme wurde erfasst.",
+      "voteAlready": "Heute bereits von diesem Browser gezählt.",
+      "voteError": "Konnte den Abstimmungsdienst nicht erreichen. Versuche es später erneut.",
+      "shareOnXLabel": "Auf X teilen",
+      "shareTextTemplate": "Kann ein Prompt {name} ersetzen? Das Urteil: {verdict}."
+    },
+    "category": {
+      "titleTemplate": "Welche {category}-Tools kann ein Code-Agent ersetzen? — SaaS Made Free",
+      "metaDescriptionTemplate": "Welche {category}-Tools kann ein Code-Agent ersetzen, und welche solltest du weiter bezahlen?",
+      "heading": "Tools in {category}"
+    },
+    "root": {
+      "titleTag": "SaaS Made Free",
+      "metaDescription": "Ein offenes Verzeichnis der SaaS-Abos, die ein Code-Agent für dich wiederhergestellen könnte.",
+      "redirecting": "Nimmt dich zum deutschen Verzeichnis.",
+      "continueLink": "Zum Verzeichnis"
+    },
+    "themeToDark": "Dunkler Modus",
+    "themeToLight": "Heller Modus",
+    "notFound": {
+      "titleTag": "Seite nicht gefunden — SaaS Made Free",
+      "metaDescription": "Diese Seite existiert nicht. Durchsuche das Verzeichnis der SaaS-Abos, die ein Code-Agent ersetzen kann.",
+      "heading": "Diese Seite existiert nicht",
+      "body": "Das Tool wurde möglicherweise aus dem Katalog entfernt, oder die Adresse ist falsch."
+    }
+  },
+  "categoriesIndex": {
+    "titleTag": "Alle Kategorien — SaaS Made Free",
+    "metaDescription": "Jede Kategorie im SaaS Made Free-Verzeichnis, mit wie vielen Tools jeweils veröffentlicht sind.",
+    "heading": "Alle Kategorien",
+    "toolCountOne": "{count} Tool",
+    "toolCountOther": "{count} Tools"
   }
 }
