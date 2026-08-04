@@ -75,4 +75,15 @@ describe("nextPriceUsd", () => {
     expect(nextPriceUsd('rail', 8)).toBe(null);
     expect(nextPriceUsd('tape', 10)).toBe(null);
   });
+
+  it("lève une erreur sur un kind inconnu", () => {
+    expect(() => nextPriceUsd('Rail', 0)).toThrow();
+    expect(() => nextPriceUsd('unknown', 0)).toThrow();
+    expect(() => nextPriceUsd(undefined, 0)).toThrow();
+  });
+
+  it("rend null pour un occupiedCount négatif", () => {
+    expect(nextPriceUsd('rail', -1)).toBe(null);
+    expect(nextPriceUsd('tape', -5)).toBe(null);
+  });
 });

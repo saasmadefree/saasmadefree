@@ -47,8 +47,17 @@ export function selectSponsors(placements, today) {
  * Rend `null` quand l'inventaire est plein : l'appelant doit alors afficher
  * "complet" plutôt qu'un montant, jamais un zéro qui se ferait passer pour un
  * prix (principe 3 de .impeccable.md).
+ *
+ * Lève une erreur si `kind` n'est ni 'rail' ni 'tape' : silence sur un `kind`
+ * inconnu serait une dégradation silencieuse des prix (ex. rail quoté au prix tape).
  */
 export function nextPriceUsd(kind, occupiedCount) {
+  if (kind !== 'rail' && kind !== 'tape') {
+    throw new Error(`nextPriceUsd: kind doit être 'rail' ou 'tape', reçu ${JSON.stringify(kind)}`);
+  }
+  if (occupiedCount < 0) {
+    return null;
+  }
   const ladder = kind === 'rail' ? RAIL_LADDER_USD : TAPE_LADDER_USD;
   return occupiedCount < ladder.length ? ladder[occupiedCount] : null;
 }
