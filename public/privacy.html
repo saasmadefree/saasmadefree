@@ -133,6 +133,20 @@
   address without that key.
 </p>
 
+<h2>Site analytics</h2>
+<p>The website (not the extension) counts its audience itself, first-party, and publishes
+everything it collects on <a href="https://saasmadefree.com/en/stats/">the public stats page</a>.
+There is no private dashboard: what you see there is all we have.</p>
+<p>What is counted, per day: page views (path and language), prompt copies and the agent
+chosen, visits from AI assistants and search engines, and visits from known AI crawlers
+(bot name only). Daily unique visitors use the same protection as votes: a SHA-256 hash of
+your IP address with a server-held secret and the current date — irreversible, and not
+linkable from one day to the next. Rows in that table are deleted after 45 days.</p>
+<p>What is never collected: cookies, persistent identifiers, full referrer URLs (the
+browser reduces the referrer to a short label such as "chatgpt" before anything is sent),
+raw user-agent strings, or IP addresses in clear. The beacon only runs on
+saasmadefree.com and sends nothing from previews or local copies.</p>
+
 <h2>What we don't do</h2>
 <ul>
   <li>No cookies.</li>

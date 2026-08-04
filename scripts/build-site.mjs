@@ -242,6 +242,11 @@ async function main() {
   await cp(join('scripts', 'assets', 'stats.js'), join(OUT, 'assets', 'stats.js'));
   await writeText(join(OUT, 'assets', 'beacon.js'), renderBeaconScript());
   await writeText(join(OUT, 'sitemap.xml'), buildSitemap(sitemapPages));
+  // cleanOutDir() a effacé dist/ APRÈS que build-feed y a copié public/ :
+  // sans cette recopie, dist/privacy.html n'existait jamais en fin de build
+  // complet (le /privacy de production a servi des 404 à cause de ça).
+  // La recopie vit ici, dans le script qui nettoie, pour survivre au nettoyage.
+  await cp('public', OUT, { recursive: true, force: true });
 
   console.log(
     `Site écrit dans ${OUT}/ — ${langs.length} langue(s), ${toolPageCount} fiche(s), ` +
