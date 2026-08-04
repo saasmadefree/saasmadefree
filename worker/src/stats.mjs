@@ -142,6 +142,57 @@ export async function buildStatsPayload(env, now) {
   };
 }
 
+const UNIQUES_RETENTION_DAYS = 45;
+
+export async function purgeUniques(env, now) {
+  const cutoff = daysBack(now, UNIQUES_RETENTION_DAYS);
+  try {
+    await env.DB.prepare('DELETE FROM uniques WHERE day < ?').bind(cutoff).run();
+  } catch { /* best-effort, comme pruneRate */ }
+}
+
+// Cron quotidien (spec §5) : source `cloudflare-api`, en validation croisée de
+// la façade. Sur plan gratuit le filtre se fait par user-agent — même liste
+// que la façade (AI_BOTS), donc B ne découvre pas de bots inconnus, il valide
+// les volumes vus par l'edge. Idempotent : SET n = excluded.n, pas n + n.
+export async function runScheduled(env, now) {
+  await purgeUniques(env, now);
+  if (!env.CF_API_TOKEN || !env.CF_ZONE_TAG) return;
+  try {
+    const day = daysBack(now, 1); // la journée UTC pleine précédente
+    const or = AI_BOTS.map((b) => `{userAgent_like: "%${b.ua}%"}`).join(', ');
+    const query = `{ viewer { zones(filter: {zoneTag: "${env.CF_ZONE_TAG}"}) {
+      httpRequestsAdaptiveGroups(limit: 5000, filter: {
+        datetime_geq: "${day}T00:00:00Z", datetime_lt: "${daysBack(now, 0)}T00:00:00Z",
+        OR: [${or}]
+      }) { count dimensions { userAgent } } } } }`;
+    const response = await fetch('https://api.cloudflare.com/client/v4/graphql', {
+      method: 'POST',
+      headers: {
+        authorization: `Bearer ${env.CF_API_TOKEN}`,
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({ query }),
+    });
+    if (!response.ok) return;
+    const payload = await response.json();
+    const groups = payload?.data?.viewer?.zones?.[0]?.httpRequestsAdaptiveGroups ?? [];
+    const totals = new Map();
+    for (const group of groups) {
+      const bot = matchAiBot(group?.dimensions?.userAgent ?? '');
+      if (!bot) continue;
+      totals.set(bot.bot, (totals.get(bot.bot) ?? 0) + (group.count ?? 0));
+    }
+    if (totals.size === 0) return;
+    await env.DB.batch([...totals].map(([bot, n]) =>
+      env.DB.prepare(
+        `INSERT INTO crawlers (day, bot, source, n) VALUES (?, ?, 'cloudflare-api', ?)
+         ON CONFLICT(day, bot, source) DO UPDATE SET n = excluded.n`
+      ).bind(day, bot, n)
+    ));
+  } catch { /* fail-quiet : les lignes cloudflare-api seront simplement absentes */ }
+}
+
 // Façade des pages HTML de l'apex (spec §4). Les crawlers IA n'exécutent pas
 // de JavaScript : c'est ici, et seulement ici, qu'on les voit. Fail-open
 // absolu : le comptage vit dans waitUntil derrière un try/catch — un échec

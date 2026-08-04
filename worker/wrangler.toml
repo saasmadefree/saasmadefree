@@ -21,5 +21,12 @@ binding = "DB"
 database_name = "saasmadefree"
 database_id = "04c15852-ddc2-4a16-86d4-8c9e5a11b138"
 
+[triggers]
+# 02:10 UTC : la journée UTC précédente est close, l'API GraphQL l'a indexée.
+crons = ["10 2 * * *"]
+
 [vars]
 ALLOWED_ORIGIN = "*"
+# Zone ID de saasmadefree.com (dashboard Cloudflare → Overview → API).
+# CF_API_TOKEN est un secret (npx wrangler secret put CF_API_TOKEN), jamais ici.
+CF_ZONE_TAG = ""

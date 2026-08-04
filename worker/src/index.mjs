@@ -1,6 +1,6 @@
 import { dayKey, hashIp } from './hash.mjs';
 import { SLUGS } from './slugs.generated.mjs';
-import { recordBeacon, buildStatsPayload, serveFacade } from './stats.mjs';
+import { recordBeacon, buildStatsPayload, serveFacade, runScheduled } from './stats.mjs';
 
 const RATE_LIMIT_PER_MINUTE = 30;
 const RATE_RETENTION_MINUTES = 2;
@@ -171,5 +171,11 @@ export default {
     } catch {
       return json({ error: 'internal_error' }, 500, env);
     }
+  },
+
+  async scheduled(controller, env, ctx) {
+    // Fail-quiet : un cron qui lève serait re-tenté par la plateforme sans
+    // que personne ne le voie ; on préfère journaliser l'absence de données.
+    try { await runScheduled(env, new Date()); } catch { /* rien */ }
   },
 };
