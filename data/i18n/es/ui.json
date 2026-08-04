@@ -6,12 +6,6 @@
     "usage-based": "Según el uso",
     "one-time": "Pago único"
   },
-  "diyTimeEstimate": {
-    "one-sitting": "En una sentada",
-    "weekend": "Un fin de semana",
-    "week": "Una semana",
-    "more": "Más de una semana"
-  },
   "requirements": {
     "anthropic-api-key": "Clave de API de Anthropic",
     "openai-api-key": "Clave de API de OpenAI",
@@ -31,75 +25,8 @@
     "not-yet": "Todavía no hay transferencia de prompt para este agente."
   },
   "site": {
-    "brand": "SaaS Made Free",
-    "skipToContent": "Ir al contenido",
-    "languageSwitcherLabel": "Idioma",
-    "directoryLabel": "Directorio",
-    "nav": {
-      "submitTool": "Enviar una herramienta",
-      "source": "Código fuente",
-      "github": "GitHub"
-    },
     "footer": {
-      "source": "Código fuente en GitHub",
-      "privacy": "Privacidad",
-      "credit": "Catálogo basado en canivibecodeit",
       "stats": "Estadísticas"
-    },
-    "verdicts": {
-      "yes": {
-        "label": "Sí",
-        "desc": "Reemplazalo hoy. No se pierde nada importante."
-      },
-      "kinda": {
-        "label": "Casi",
-        "desc": "Se puede reconstruir en un fin de semana, pero pierdes cosas como la aplicación móvil, la sincronización o las integraciones. La entrada te dice cuál."
-      },
-      "no": {
-        "label": "No",
-        "desc": "Sigue pagando. El valor es la red, los datos o el cumplimiento — ningún prompt puede reemplazar eso."
-      }
-    },
-    "home": {
-      "titleTag": "SaaS Made Free — ¿cuáles de tus suscripciones están a un prompt de distancia?",
-      "metaDescription": "¿Cuáles de tus suscripciones de SaaS podrían reconstruirse con un agente IA — y cuáles deberías seguir pagando honestamente?",
-      "heroLine1": "Algunos SaaS son un negocio.",
-      "heroLine2": "Algunos son solo un prompt.",
-      "lede": "Un directorio abierto del software que pagas cada mes, y si un agente IA podría reconstruir una versión que posees. Un prompt por herramienta, escrito para pasarlo directamente a Claude, Cursor o ChatGPT.",
-      "verdictsHeading": "Tres veredictos",
-      "tallyOne": "{count} herramienta publicada hasta ahora. El catálogo se escribe, una entrada verificada a la vez.",
-      "tallyOther": "{count} herramientas publicadas hasta ahora. El catálogo se escribe, una entrada verificada a la vez.",
-      "searchLabel": "Buscar en el directorio",
-      "searchPlaceholder": "Buscar por nombre o categoría",
-      "categoryFilterLabel": "Filtrar por categoría",
-      "categoryFilterAll": "Todas las categorías",
-      "listHeading": "El directorio",
-      "listCaption": "Cada herramienta publicada hasta ahora, ordenada por votos.",
-      "colName": "Herramienta",
-      "colCategory": "Categoría",
-      "colPrice": "Precio mensual",
-      "colVerdict": "Veredicto",
-      "colVotes": "Votos",
-      "noResults": "Ninguna herramienta coincide con esa búsqueda.",
-      "heroQuestion": "¿Puede un prompt reemplazar {blank}?",
-      "browseHeading": "Navegar por categoría",
-      "allChip": "Todos",
-      "allCategoriesChip": "Todas las categorías →",
-      "searchClearLabel": "Limpiar búsqueda",
-      "searchResultsLabel": "Resultados de búsqueda",
-      "searchViewAllTemplate": "↓ Ver las {count} coincidencias en el directorio",
-      "tickerAriaLabel": "Precios del catálogo, desplazamiento",
-      "mrrLabel": "Gasto mensual representado por votos registrados hasta ahora",
-      "mrrSrTemplate": "{amount} al mes representados por votos registrados hasta ahora",
-      "mrrUnavailable": "Figura en tiempo real no disponible ahora mismo.",
-      "figuresAriaLabel": "Números del catálogo",
-      "figureToolsPublished": "Herramientas publicadas",
-      "figureCategories": "Categorías",
-      "figureLanguages": "Idiomas",
-      "figureTotalPrice": "Precio mensual total del catálogo (USD)",
-      "figurePrompts": "Prompts escritos",
-      "rankNote": "Clasificado por votos registrados hasta ahora, luego por qué tan lista está cada entrada.",
-      "verdictFilterAriaLabel": "Filtrar por veredicto"
     },
     "stats": {
       "title": "Estadísticas públicas",
@@ -130,68 +57,6 @@
       "topVoted": "Herramientas más votadas",
       "catalogueTitle": "El catálogo en cifras",
       "catalogueTools": "{count} herramientas publicadas"
-    },
-    "tool": {
-      "titleTemplate": "¿Puede un agente IA reemplazar {name}? — SaaS Made Free",
-      "metaDescriptionTemplate": "¿Puede un agente IA reemplazar {name}? El veredicto, el precio real, y qué pierdes.",
-      "h1Template": "¿Puede un prompt reemplazar {name}?",
-      "verdictHeading": "Veredicto",
-      "priceHeading": "Precio",
-      "priceSourceLabel": "Fuente",
-      "priceCheckedLabel": "Verificado el",
-      "yearCostLabel": "Por año",
-      "yearCostNote": "Precio mensual actual × 12 — no es un ahorro garantizado.",
-      "buildTimeLabel": "Tiempo de construcción",
-      "categoryMetaLabel": "Categoría",
-      "votesMetaLabel": "Votos",
-      "whatYouLoseHeading": "Lo que pierdes",
-      "whyPeopleStillPayHeadingTemplate": "Por qué la gente sigue pagando: {moat}",
-      "promptHeading": "El prompt",
-      "copyButton": "Copiar prompt",
-      "copiedButton": "Copiado",
-      "copyFailed": "No se pudo copiar automáticamente — selecciona el texto arriba en su lugar.",
-      "openInAgentTemplate": "Abrir en {name}",
-      "promptOpenCaption": "Abrir rellena previamente el prompt — presiona enter para ejecutarlo.",
-      "priorArtHeading": "Arte anterior",
-      "licenseLabel": "Licencia",
-      "faqHeading": "Preguntas",
-      "relatedHeading": "Herramientas relacionadas",
-      "voteHeading": "¿Ya lo has reconstruido tú mismo?",
-      "voteButton": "Registrar mi voto",
-      "voteCountOne": "{count} voto",
-      "voteCountOther": "{count} votos",
-      "voteUnavailable": "Recuento de votos no disponible ahora mismo.",
-      "voteThanks": "Gracias — este voto fue registrado.",
-      "voteAlready": "Ya contado desde este navegador hoy.",
-      "voteError": "No se pudo alcanzar el servicio de votación. Intenta más tarde.",
-      "shareOnXLabel": "Compartir en X",
-      "shareTextTemplate": "¿Puede un prompt reemplazar {name}? El veredicto: {verdict}."
-    },
-    "category": {
-      "titleTemplate": "¿Cuáles de las herramientas de {category} puede reemplazar un agente IA? — SaaS Made Free",
-      "metaDescriptionTemplate": "¿Cuáles de las herramientas de {category} puede reemplazar un agente IA, y cuáles deberías seguir pagando?",
-      "heading": "Herramientas en {category}"
-    },
-    "root": {
-      "titleTag": "SaaS Made Free",
-      "metaDescription": "Un directorio abierto de las suscripciones de SaaS que un agente IA podría reconstruir.",
-      "redirecting": "Te llevamos al directorio en español.",
-      "continueLink": "Continuar al directorio"
-    },
-    "themeToDark": "Modo oscuro",
-    "themeToLight": "Modo claro",
-    "notFound": {
-      "titleTag": "Página no encontrada — SaaS Made Free",
-      "metaDescription": "Esta página no existe. Examina el directorio de suscripciones de SaaS que un agente IA puede reemplazar.",
-      "heading": "Esta página no existe",
-      "body": "La herramienta puede haber sido eliminada del catálogo, o la dirección es incorrecta."
     }
-  },
-  "categoriesIndex": {
-    "titleTag": "Todas las categorías — SaaS Made Free",
-    "metaDescription": "Cada categoría en el directorio SaaS Made Free, con cuántas herramientas se publican en cada una.",
-    "heading": "Todas las categorías",
-    "toolCountOne": "{count} herramienta",
-    "toolCountOther": "{count} herramientas"
   }
 }

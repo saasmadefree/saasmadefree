@@ -6,12 +6,6 @@
     "usage-based": "Op basis van gebruik",
     "one-time": "Eenmalige betaling"
   },
-  "diyTimeEstimate": {
-    "one-sitting": "In een keer",
-    "weekend": "Een weekend",
-    "week": "Een week",
-    "more": "Meer dan een week"
-  },
   "requirements": {
     "anthropic-api-key": "Anthropic API-sleutel",
     "openai-api-key": "OpenAI API-sleutel",
@@ -31,75 +25,8 @@
     "not-yet": "Nog geen prompt-overdracht voor deze agent."
   },
   "site": {
-    "brand": "SaaS Made Free",
-    "skipToContent": "Naar inhoud gaan",
-    "languageSwitcherLabel": "Taal",
-    "directoryLabel": "Adresboek",
-    "nav": {
-      "submitTool": "Een tool indienen",
-      "source": "Broncode",
-      "github": "GitHub"
-    },
     "footer": {
-      "source": "Broncode op GitHub",
-      "privacy": "Privacy",
-      "credit": "Catalogus gebaseerd op canivibecodeit",
       "stats": "Statistieken"
-    },
-    "verdicts": {
-      "yes": {
-        "label": "Ja",
-        "desc": "Vervang het vandaag. Niets belangrijks gaat verloren."
-      },
-      "kinda": {
-        "label": "Bijna",
-        "desc": "Opbouwbaar in een weekend, maar je geeft dingen zoals de mobiele app, synchronisatie of integraties op. De vermelding vertelt je welk."
-      },
-      "no": {
-        "label": "Nee",
-        "desc": "Blijf betalen. De waarde is het netwerk, de gegevens of de compliance — geen prompt vervangt dat."
-      }
-    },
-    "home": {
-      "titleTag": "SaaS Made Free — welke abonnementen zijn slechts een prompt verwijderd?",
-      "metaDescription": "Welke van je betaalde SaaS-abonnementen zouden door een code-agent opnieuw kunnen worden gemaakt — en welke zou je eerlijk gezegd blijven betalen?",
-      "heroLine1": "Sommige SaaS is een bedrijf.",
-      "heroLine2": "Sommige zijn gewoon een prompt.",
-      "lede": "Een open adresboek van de software die je elke maand betaalt, en of een code-agent een versie die je bezit, opnieuw zou kunnen maken. Eén prompt per tool, geschreven om rechtstreeks aan Claude, Cursor of ChatGPT te geven.",
-      "verdictsHeading": "Drie vonnissen",
-      "tallyOne": "{count} tool tot nu toe gepubliceerd. De catalogus wordt geschreven, één geverifieerde vermelding tegelijk.",
-      "tallyOther": "{count} tools tot nu toe gepubliceerd. De catalogus wordt geschreven, één geverifieerde vermelding tegelijk.",
-      "searchLabel": "Zoeken in het adresboek",
-      "searchPlaceholder": "Zoeken op naam of categorie",
-      "categoryFilterLabel": "Filteren op categorie",
-      "categoryFilterAll": "Alle categorieën",
-      "listHeading": "Het adresboek",
-      "listCaption": "Elke tot nu toe gepubliceerde tool, gesorteerd op stemmen.",
-      "colName": "Tool",
-      "colCategory": "Categorie",
-      "colPrice": "Maandelijkse prijs",
-      "colVerdict": "Vonnis",
-      "colVotes": "Stemmen",
-      "noResults": "Geen tools komen overeen met die zoekopdracht.",
-      "heroQuestion": "Kan een prompt {blank} vervangen?",
-      "browseHeading": "Bladeren op categorie",
-      "allChip": "Alle",
-      "allCategoriesChip": "Alle categorieën →",
-      "searchClearLabel": "Zoekopdracht wissen",
-      "searchResultsLabel": "Zoekresultaten",
-      "searchViewAllTemplate": "↓ Alle {count} resultaten in het adresboek",
-      "tickerAriaLabel": "Catalogusprijzen, scrollen",
-      "mrrLabel": "Maandelijkse uitgaven vertegenwoordigd door tot nu toe geregistreerde stemmen",
-      "mrrSrTemplate": "{amount} per maand vertegenwoordigd door tot nu toe geregistreerde stemmen",
-      "mrrUnavailable": "Live-cijfer momenteel niet beschikbaar.",
-      "figuresAriaLabel": "Cataloguscijfers",
-      "figureToolsPublished": "Tools gepubliceerd",
-      "figureCategories": "Categorieën",
-      "figureLanguages": "Talen",
-      "figureTotalPrice": "Totale maandelijkse prijs van de catalogus (USD)",
-      "figurePrompts": "Geschreven prompts",
-      "rankNote": "Gerangschikt op tot nu toe geregistreerde stemmen, dan op hoe klaar elke vermelding is.",
-      "verdictFilterAriaLabel": "Filteren op vonnis"
     },
     "stats": {
       "title": "Openbare statistieken",
@@ -130,68 +57,6 @@
       "topVoted": "Meest gestemde tools",
       "catalogueTitle": "De catalogus in cijfers",
       "catalogueTools": "{count} gepubliceerde tools"
-    },
-    "tool": {
-      "titleTemplate": "Kan een code-agent {name} vervangen? — SaaS Made Free",
-      "metaDescriptionTemplate": "Kan een code-agent {name} vervangen? Het vonnis, de echte prijs, en wat je verliest.",
-      "h1Template": "Kan een prompt {name} vervangen?",
-      "verdictHeading": "Vonnis",
-      "priceHeading": "Prijs",
-      "priceSourceLabel": "Bron",
-      "priceCheckedLabel": "Gecontroleerd op",
-      "yearCostLabel": "Per jaar",
-      "yearCostNote": "Huidige maandelijkse prijs × 12 — geen gegarandeerde besparing.",
-      "buildTimeLabel": "Bouwtime",
-      "categoryMetaLabel": "Categorie",
-      "votesMetaLabel": "Stemmen",
-      "whatYouLoseHeading": "Wat je verliest",
-      "whyPeopleStillPayHeadingTemplate": "Waarom mensen nog steeds betalen: {moat}",
-      "promptHeading": "De prompt",
-      "copyButton": "Kopieer prompt",
-      "copiedButton": "Gekopieerd",
-      "copyFailed": "Kon niet automatisch kopiëren — selecteer de bovenstaande tekst in plaats daarvan.",
-      "openInAgentTemplate": "Openen in {name}",
-      "promptOpenCaption": "Openen vult de prompt vooraf in — druk op enter om uit te voeren.",
-      "priorArtHeading": "Vorig werk",
-      "licenseLabel": "Licentie",
-      "faqHeading": "Vragen",
-      "relatedHeading": "Gerelateerde tools",
-      "voteHeading": "Heb je dit al zelf opnieuw gemaakt?",
-      "voteButton": "Mijn stem registreren",
-      "voteCountOne": "{count} stem",
-      "voteCountOther": "{count} stemmen",
-      "voteUnavailable": "Stemsaldo momenteel niet beschikbaar.",
-      "voteThanks": "Dank je — deze stem is geregistreerd.",
-      "voteAlready": "Vandaag al geteld van deze browser.",
-      "voteError": "Kon de stemmingservice niet bereiken. Probeer het later opnieuw.",
-      "shareOnXLabel": "Delen op X",
-      "shareTextTemplate": "Kan een prompt {name} vervangen? Het vonnis: {verdict}."
-    },
-    "category": {
-      "titleTemplate": "Welke {category}-tools kan een code-agent vervangen? — SaaS Made Free",
-      "metaDescriptionTemplate": "Welke {category}-tools kan een code-agent vervangen, en welke zou je blijven betalen?",
-      "heading": "Tools in {category}"
-    },
-    "root": {
-      "titleTag": "SaaS Made Free",
-      "metaDescription": "Een open adresboek van de SaaS-abonnementen die een code-agent voor je zou kunnen opnieuw maken.",
-      "redirecting": "Je naar het Nederlandse adresboek nemen.",
-      "continueLink": "Doorgaan naar adresboek"
-    },
-    "themeToDark": "Donker modus",
-    "themeToLight": "Licht modus",
-    "notFound": {
-      "titleTag": "Pagina niet gevonden — SaaS Made Free",
-      "metaDescription": "Deze pagina bestaat niet. Blader door het adresboek van SaaS-abonnementen die een code-agent kan vervangen.",
-      "heading": "Deze pagina bestaat niet",
-      "body": "De tool kan uit de catalogus zijn verwijderd, of het adres is verkeerd."
     }
-  },
-  "categoriesIndex": {
-    "titleTag": "Alle categorieën — SaaS Made Free",
-    "metaDescription": "Elke categorie in het adresboek SaaS Made Free, met hoeveel tools in elk worden gepubliceerd.",
-    "heading": "Alle categorieën",
-    "toolCountOne": "{count} tool",
-    "toolCountOther": "{count} tools"
   }
 }
