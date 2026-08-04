@@ -1,6 +1,6 @@
 import { dayKey, hashIp } from './hash.mjs';
 import { SLUGS } from './slugs.generated.mjs';
-import { recordBeacon, buildStatsPayload } from './stats.mjs';
+import { recordBeacon, buildStatsPayload, serveFacade } from './stats.mjs';
 
 const RATE_LIMIT_PER_MINUTE = 30;
 const RATE_RETENTION_MINUTES = 2;
@@ -158,8 +158,15 @@ export default {
   // disparaîtrait sans que personne ne soit prévenu. Le `await` est
   // nécessaire : sans lui, une promesse rejetée serait renvoyée telle
   // quelle au lieu d'être levée, et ce `catch` ne s'exécuterait jamais.
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     try {
+      // Les routes zone de l'apex (pages HTML du site) passent par la façade
+      // crawlers — avant tout contrôle de configuration : la façade n'utilise
+      // ni VOTE_SALT ni la moindre donnée personnelle, et doit servir les
+      // pages même si le worker est mal configuré.
+      if (new URL(request.url).hostname === 'saasmadefree.com') {
+        return await serveFacade(request, env, ctx);
+      }
       return await handle(request, env);
     } catch {
       return json({ error: 'internal_error' }, 500, env);

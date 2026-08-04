@@ -1,8 +1,9 @@
 // Enregistrement des événements du beacon (spec §3) et, plus loin dans ce
 // fichier au fil des tâches, lecture agrégée, façade crawlers et cron.
-import { AI_REFERRER_LABELS, REFERRER_LABELS, AI_BOTS } from './ai-bots.mjs';
+import { AI_REFERRER_LABELS, REFERRER_LABELS, AI_BOTS, matchAiBot } from './ai-bots.mjs';
 import { SLUGS } from './slugs.generated.mjs';
 import { AGENT_IDS, SITE_LANGS } from './agents.generated.mjs';
+import { dayKey } from './hash.mjs';
 
 const BEACON_TYPES = new Set(['view', 'copy', 'open_agent']);
 // Un chemin de page du site : la racine, ou /<lang>[/…] en kebab minuscule.
@@ -139,4 +140,25 @@ export async function buildStatsPayload(env, now) {
     langs7d: langs.map((r) => ({ lang: r.lang, views: r.v })),
     votes: { total: votesTotal[0].v, top: votesTop.map((r) => ({ slug: r.slug, n: r.v })) },
   };
+}
+
+// Façade des pages HTML de l'apex (spec §4). Les crawlers IA n'exécutent pas
+// de JavaScript : c'est ici, et seulement ici, qu'on les voit. Fail-open
+// absolu : le comptage vit dans waitUntil derrière un try/catch — un échec
+// D1 ou un UA exotique ne doit ni casser ni ralentir la page servie. La
+// sous-requête fetch(request) part vers l'origine (Pages) sans re-déclencher
+// ce worker : c'est le comportement documenté des routes zone.
+export function serveFacade(request, env, ctx) {
+  try {
+    const bot = matchAiBot(request.headers.get('user-agent') ?? '');
+    if (bot) {
+      ctx.waitUntil(
+        env.DB.prepare(
+          `INSERT INTO crawlers (day, bot, source, n) VALUES (?, ?, 'edge-worker', 1)
+           ON CONFLICT(day, bot, source) DO UPDATE SET n = n + 1`
+        ).bind(dayKey(new Date()), bot.bot).run().catch(() => {})
+      );
+    }
+  } catch { /* fail-open : jamais au détriment de la page */ }
+  return fetch(request);
 }

@@ -2,6 +2,20 @@ name = "saasmadefree-votes"
 main = "src/index.mjs"
 compatibility_date = "2026-07-01"
 
+# Façade crawlers IA (spec §4) : uniquement les pages HTML de l'apex — les
+# assets restent servis directement par Pages. Le domaine votes.saasmadefree.com
+# (API) est un Custom Domain configuré côté dashboard ; ces routes s'y ajoutent.
+routes = [
+  { pattern = "saasmadefree.com/", zone_name = "saasmadefree.com" },
+  { pattern = "saasmadefree.com/de/*", zone_name = "saasmadefree.com" },
+  { pattern = "saasmadefree.com/en/*", zone_name = "saasmadefree.com" },
+  { pattern = "saasmadefree.com/es/*", zone_name = "saasmadefree.com" },
+  { pattern = "saasmadefree.com/fr/*", zone_name = "saasmadefree.com" },
+  { pattern = "saasmadefree.com/it/*", zone_name = "saasmadefree.com" },
+  { pattern = "saasmadefree.com/nl/*", zone_name = "saasmadefree.com" },
+  { pattern = "saasmadefree.com/pt/*", zone_name = "saasmadefree.com" },
+]
+
 [[d1_databases]]
 binding = "DB"
 database_name = "saasmadefree"
