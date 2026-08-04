@@ -16,6 +16,7 @@ import { renderHomePage } from './lib/site-page-home.mjs';
 import { renderCategoryPage } from './lib/site-page-category.mjs';
 import { renderCategoriesIndexPage } from './lib/site-page-categories-index.mjs';
 import { renderToolPage } from './lib/site-page-tool.mjs';
+import { renderStatsPage } from './lib/site-page-stats.mjs';
 import { renderRootPage } from './lib/site-page-root.mjs';
 import { render404Page } from './lib/site-page-404.mjs';
 import { renderBeaconScript } from './lib/site-beacon.mjs';
@@ -131,6 +132,12 @@ async function main() {
   let toolPageCount = 0;
   let categoryPageCount = 0;
 
+  // Répartition des verdicts sur tout le catalogue — voir site-page-stats.mjs,
+  // bloc « catalogue en chiffres » : un seul calcul, partagé par toutes les
+  // langues, jamais recopié à la main.
+  const verdictCounts = { yes: 0, kinda: 0, no: 0 };
+  for (const tool of tools.values()) verdictCounts[tool.verdict] += 1;
+
   for (const lang of langs) {
     const langUi = ui.get(lang);
     if (!langUi?.site) {
@@ -170,6 +177,19 @@ async function main() {
       })
     );
     sitemapPages.push({ path: allCategoriesPath });
+
+    // Page stats — coquille build-time, chiffres vivants côté client.
+    const statsPath = `${homePath}stats/`;
+    const statsAlt = langs.map((l) => ({ lang: l, path: `/${l}/stats/` }));
+    await writeText(
+      join(OUT, lang, 'stats', 'index.html'),
+      renderStatsPage({
+        lang, path: statsPath, ui: langUi, alternates: statsAlt,
+        xDefaultPath: xDefaultOf(statsAlt), homePath,
+        toolCount: tools.size, verdictCounts,
+      })
+    );
+    sitemapPages.push({ path: statsPath });
 
     // Catégories
     for (const categorySlug of categorySlugs) {
@@ -219,6 +239,7 @@ async function main() {
   // ---- artefacts partagés -------------------------------------------------
   await writeText(join(OUT, 'assets', 'site.css'), SITE_CSS);
   await cp(join('scripts', 'assets', 'site.js'), join(OUT, 'assets', 'site.js'));
+  await cp(join('scripts', 'assets', 'stats.js'), join(OUT, 'assets', 'stats.js'));
   await writeText(join(OUT, 'assets', 'beacon.js'), renderBeaconScript());
   await writeText(join(OUT, 'sitemap.xml'), buildSitemap(sitemapPages));
 

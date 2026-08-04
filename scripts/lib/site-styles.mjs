@@ -392,4 +392,28 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
   .r{opacity:0;transform:translateY(.35rem);animation:rise .5s cubic-bezier(.16,1,.3,1) forwards}
   @keyframes rise{to{opacity:1;transform:none}}
 }
+
+/* ---------- page stats ---------- */
+.stats-page{max-width:var(--wide);margin:0 auto}
+.stats-intro{color:var(--muted);max-width:var(--measure)}
+.stats-error{color:var(--no);font-weight:600}
+.stat-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:.8rem;margin:1.6rem 0}
+.stat-tile{background:var(--card);border:1px solid var(--rule);border-radius:.5em;padding:1rem;display:flex;flex-direction:column;gap:.2rem}
+.stat-value{font-size:1.9rem;font-weight:800;font-family:var(--sans);letter-spacing:-.02em}
+.stat-label{color:var(--muted);font-size:.82rem}
+.stat-note{color:var(--muted);font-size:.72rem;line-height:1.4}
+.stats-section{margin:2rem 0}
+.stats-note{color:var(--muted);font-size:.85rem;max-width:var(--measure)}
+#views-chart{width:100%;height:auto;background:var(--card);border:1px solid var(--rule);border-radius:.5em}
+.bar-list,.crawler-list{display:flex;flex-direction:column;gap:.35rem}
+.bar-row{display:grid;grid-template-columns:minmax(8rem,14rem) 1fr auto;gap:.6rem;align-items:center;font-size:.85rem}
+.bar-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-track{background:color-mix(in srgb,var(--ink) 7%,transparent);border-radius:999px;height:.55rem;overflow:hidden}
+.bar-fill{display:block;height:100%;background:var(--accent);border-radius:999px}
+.bar-fill.yes{background:var(--yes)}.bar-fill.kinda{background:var(--kinda)}.bar-fill.no{background:var(--no)}
+.bar-value{color:var(--muted);font-variant-numeric:tabular-nums}
+.crawler-row{display:grid;grid-template-columns:minmax(9rem,16rem) 1fr auto;gap:.6rem;align-items:baseline;font-size:.85rem;border-bottom:1px dashed var(--rule);padding:.3rem 0}
+.crawler-vendor{color:var(--muted);font-size:.75rem;margin-left:.4rem}
+.crawler-counts{color:var(--muted);font-variant-numeric:tabular-nums}
+.stats-empty{color:var(--muted);font-style:italic}
 `;
