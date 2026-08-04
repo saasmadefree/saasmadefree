@@ -62,13 +62,20 @@ function periodsOverlap(a, b) {
 }
 
 function validateSponsors(sponsors, validators, publishedLangs, errors) {
-  const placements = sponsors?.placements ?? [];
-  if (!validators.sponsors({ placements })) {
+  // `sponsors` absent (clé manquante dans `data`, jamais le cas via
+  // loadData() qui retombe déjà sur { placements: [] } en cas d'ENOENT) est
+  // traité comme un fichier vide. Au-delà de ça, on valide l'objet tel qu'il
+  // a été lu — pas une reconstruction — pour que les garanties du schéma sur
+  // la racine (clé "placements" exacte, pas de champ parasite) puissent
+  // réellement se déclencher.
+  const root = sponsors ?? { placements: [] };
+  if (!validators.sponsors(root)) {
     for (const e of validators.sponsors.errors) {
       errors.push(`data/sponsors.json ${e.instancePath || '/'} ${e.message}`);
     }
     return;
   }
+  const placements = root.placements;
 
   placements.forEach((placement, i) => {
     const at = `data/sponsors.json[${i}] (${placement.slot})`;

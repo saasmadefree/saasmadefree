@@ -14,6 +14,16 @@ function data(placements) {
   };
 }
 
+// Variante pour les tests de racine malformée : contrôle direct du contenu
+// de `sponsors`, sans passer par la forme `{ placements }` que `data()` impose.
+function dataWithSponsorsRoot(sponsorsRoot) {
+  return {
+    tools: new Map(), i18n: new Map(), agents: [],
+    ui: new Map([['en', { site: {} }], ['fr', { site: {} }]]),
+    sponsors: sponsorsRoot,
+  };
+}
+
 const OK = {
   slot: 'L1', name: 'Postiz', domain: 'postiz.com', url: 'https://postiz.com/',
   tagline: { en: 'Schedule your posts', fr: 'Programme tes posts' },
@@ -59,5 +69,27 @@ describe('règles sponsors', () => {
   it('refuse une tagline manquante dans une langue publiée', () => {
     const errors = validateAll(data([{ ...OK, tagline: { en: 'Only english' } }]), validators, today);
     expect(errors.join('\n')).toContain('fr');
+  });
+
+  it('considère deux périodes qui se touchent comme un chevauchement (bornes incluses)', () => {
+    // Le endsOn de OK et le startsOn du voisin tombent sur le même jour :
+    // c'est un chevauchement, pas une passation propre. Verrouille la
+    // sémantique inclusive de periodsOverlap contre une future régression
+    // silencieuse (ex. un `<=` remplacé par `<` sans test pour le voir).
+    const adjacent = { ...OK, startsOn: OK.endsOn, endsOn: '2026-10-04' };
+    const errors = validateAll(data([OK, adjacent]), validators, today);
+    expect(errors.join('\n')).toContain('slot "L1"');
+  });
+});
+
+describe('racine sponsors malformée', () => {
+  it('refuse une clé "placement" au singulier à la racine (faute de frappe)', () => {
+    const errors = validateAll(dataWithSponsorsRoot({ placement: [OK] }), validators, today);
+    expect(errors.length).toBeGreaterThan(0);
+  });
+
+  it('refuse un champ parasite à la racine de sponsors.json', () => {
+    const errors = validateAll(dataWithSponsorsRoot({ placements: [], extraStrayField: 42 }), validators, today);
+    expect(errors.length).toBeGreaterThan(0);
   });
 });
