@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { buildIndex, buildToolRecord, buildSlugList } from '../scripts/lib/feed.mjs';
+import { buildIndex, buildToolRecord, buildSlugList, buildAgentIdList } from '../scripts/lib/feed.mjs';
 
 const notion = {
   slug: 'notion', name: 'Notion',
@@ -63,5 +63,12 @@ describe('buildSlugList', () => {
   it('renvoie les slugs triés', () => {
     const tools = new Map([['zulip', {}], ['airtable', {}], ['notion', {}]]);
     expect(buildSlugList(tools)).toEqual(['airtable', 'notion', 'zulip']);
+  });
+});
+
+describe('buildAgentIdList', () => {
+  it('extrait les ids triés', () => {
+    const agents = [{ id: 'cursor' }, { id: 'claude-code-web' }];
+    expect(buildAgentIdList(agents)).toEqual(['claude-code-web', 'cursor']);
   });
 });

@@ -2,7 +2,7 @@ import { mkdir, writeFile, cp } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { loadData, compileValidators, LANGS } from './lib/load-data.mjs';
 import { validateAll } from './lib/validate-rules.mjs';
-import { buildIndex, buildToolRecord, buildSlugList, FEED_VERSION } from './lib/feed.mjs';
+import { buildIndex, buildToolRecord, buildSlugList, buildAgentIdList, FEED_VERSION } from './lib/feed.mjs';
 
 const OUT = 'dist';
 
@@ -43,6 +43,14 @@ await mkdir(join('worker', 'src'), { recursive: true });
 await writeFile(
   join('worker', 'src', 'slugs.generated.mjs'),
   `// Généré par scripts/build-feed.mjs — ne pas modifier à la main.\nexport const SLUGS = new Set(${JSON.stringify(buildSlugList(data.tools))});\n`,
+  'utf8'
+);
+
+await writeFile(
+  join('worker', 'src', 'agents.generated.mjs'),
+  `// Généré par scripts/build-feed.mjs — ne pas modifier à la main.\n` +
+  `export const AGENT_IDS = new Set(${JSON.stringify(buildAgentIdList(data.agents))});\n` +
+  `export const SITE_LANGS = new Set(${JSON.stringify([...LANGS].sort())});\n`,
   'utf8'
 );
 
