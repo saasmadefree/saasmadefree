@@ -18,6 +18,7 @@ import { renderCategoriesIndexPage } from './lib/site-page-categories-index.mjs'
 import { renderToolPage } from './lib/site-page-tool.mjs';
 import { renderRootPage } from './lib/site-page-root.mjs';
 import { render404Page } from './lib/site-page-404.mjs';
+import { renderBeaconScript } from './lib/site-beacon.mjs';
 
 const OUT = 'dist';
 
@@ -218,6 +219,7 @@ async function main() {
   // ---- artefacts partagés -------------------------------------------------
   await writeText(join(OUT, 'assets', 'site.css'), SITE_CSS);
   await cp(join('scripts', 'assets', 'site.js'), join(OUT, 'assets', 'site.js'));
+  await writeText(join(OUT, 'assets', 'beacon.js'), renderBeaconScript());
   await writeText(join(OUT, 'sitemap.xml'), buildSitemap(sitemapPages));
 
   console.log(

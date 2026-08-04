@@ -164,6 +164,7 @@ ${main}
   </footer>
 </div>
 <script src="/assets/site.js" defer></script>
+<script src="/assets/beacon.js" defer></script>
 </body>
 </html>
 `;
