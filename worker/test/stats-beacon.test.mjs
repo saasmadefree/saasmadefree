@@ -140,3 +140,17 @@ describe('POST /api/v1/stats/beacon — rate limit', () => {
     expect(hit.n).toBeLessThanOrEqual(30);
   });
 });
+
+describe('POST /api/v1/stats/beacon — gestion des erreurs D1', () => {
+  it('répond quand même 204 avec CORS si le limiteur de débit échoue (table rate absente)', async () => {
+    // Même principe que vote.test.mjs ("gestion des erreurs D1") : on
+    // supprime la table `rate`, utilisée par overRateLimit avant même
+    // d'atteindre recordBeacon, pour forcer une vraie erreur D1 (pas une
+    // simulation). Le contrat fail-open du beacon ne tolère aucune
+    // exception, contrairement à la route de vote.
+    await env.DB.exec('DROP TABLE rate');
+    const res = await beacon({ type: 'view', path: '/en/', lang: 'en', ref: 'none' });
+    expect(res.status).toBe(204);
+    expect(res.headers.get('access-control-allow-origin')).toBe('*');
+  });
+});

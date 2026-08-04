@@ -88,9 +88,16 @@ async function handle(request, env) {
     const day = dayKey(now);
     const ip = request.headers.get('cf-connecting-ip') ?? '0.0.0.0';
     const ipHash = await hashIp(ip, env.VOTE_SALT, day);
-    if (!(await overRateLimit(env, ipHash, now))) {
-      try { await recordBeacon(env, body, ipHash, day); } catch { /* fail-open */ }
-    }
+    // Le try/catch englobe aussi overRateLimit (et donc la purge de `rate`) :
+    // le contrat fail-open ("toujours 204") ne souffre aucune exception, y
+    // compris si le limiteur lui-même échoue (table `rate` absente, panne
+    // D1) — contrairement à la route de vote, où un tel échec peut rester
+    // visible en 500.
+    try {
+      if (!(await overRateLimit(env, ipHash, now))) {
+        await recordBeacon(env, body, ipHash, day);
+      }
+    } catch { /* fail-open */ }
     return json({}, 204, env);
   }
 
