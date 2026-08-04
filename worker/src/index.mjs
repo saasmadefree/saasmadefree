@@ -1,5 +1,6 @@
 import { dayKey, hashIp } from './hash.mjs';
 import { SLUGS } from './slugs.generated.mjs';
+import { recordBeacon } from './stats.mjs';
 
 const RATE_LIMIT_PER_MINUTE = 30;
 const RATE_RETENTION_MINUTES = 2;
@@ -74,6 +75,23 @@ async function handle(request, env) {
   // silencieuse produire des lignes irréversiblement compromises.
   if (!env.VOTE_SALT) {
     return json({ error: 'misconfigured' }, 500, env);
+  }
+
+  // Beacon d'audience (spec §3) : toujours 204, y compris sur entrée invalide
+  // ou erreur D1 — un compteur d'audience n'a pas le droit d'avoir un avis
+  // visible. Le rate limiting réutilise la table `rate` des votes.
+  if (url.pathname === '/api/v1/stats/beacon') {
+    if (request.method !== 'POST') return json({ error: 'method_not_allowed' }, 405, env);
+    let body = null;
+    try { body = await request.json(); } catch { /* corps illisible : ignoré */ }
+    const now = new Date();
+    const day = dayKey(now);
+    const ip = request.headers.get('cf-connecting-ip') ?? '0.0.0.0';
+    const ipHash = await hashIp(ip, env.VOTE_SALT, day);
+    if (!(await overRateLimit(env, ipHash, now))) {
+      try { await recordBeacon(env, body, ipHash, day); } catch { /* fail-open */ }
+    }
+    return json({}, 204, env);
   }
 
   const isCountsRoute = url.pathname === '/api/v1/votes' || url.pathname === '/feed/v1/votes.json';
