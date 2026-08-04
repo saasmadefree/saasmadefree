@@ -51,6 +51,55 @@ function daysBetween(fromIso, toIso) {
   return Math.round((to - from) / 86400000);
 }
 
+/**
+ * Deux placements peuvent partager un slot tant que leurs périodes ne se
+ * croisent pas : l'historique des sponsors passés reste dans le fichier, et
+ * c'est ce qui permet de vérifier après coup ce qui a été affiché et quand.
+ * Seul un chevauchement est une erreur.
+ */
+function periodsOverlap(a, b) {
+  return a.startsOn <= b.endsOn && b.startsOn <= a.endsOn;
+}
+
+function validateSponsors(sponsors, validators, publishedLangs, errors) {
+  const placements = sponsors?.placements ?? [];
+  if (!validators.sponsors({ placements })) {
+    for (const e of validators.sponsors.errors) {
+      errors.push(`data/sponsors.json ${e.instancePath || '/'} ${e.message}`);
+    }
+    return;
+  }
+
+  placements.forEach((placement, i) => {
+    const at = `data/sponsors.json[${i}] (${placement.slot})`;
+
+    if (placement.endsOn <= placement.startsOn) {
+      errors.push(`${at} : endsOn "${placement.endsOn}" doit être postérieur à startsOn "${placement.startsOn}"`);
+    }
+
+    if (normalizeDomain(placement.domain) !== placement.domain) {
+      errors.push(`${at} : domaine à normaliser, écrire "${normalizeDomain(placement.domain)}"`);
+    }
+
+    for (const lang of publishedLangs) {
+      if (!placement.tagline[lang]) {
+        errors.push(`${at} : tagline manquante en "${lang}" — le sponsor disparaîtrait de ce site sans avertissement`);
+      }
+    }
+  });
+
+  for (let i = 0; i < placements.length; i += 1) {
+    for (let j = i + 1; j < placements.length; j += 1) {
+      if (placements[i].slot === placements[j].slot && periodsOverlap(placements[i], placements[j])) {
+        errors.push(
+          `data/sponsors.json : deux placements se chevauchent sur le slot "${placements[i].slot}" ` +
+          `(index ${i} et ${j})`
+        );
+      }
+    }
+  }
+}
+
 export function validateAll(data, validators, today) {
   const errors = [];
   const { tools, i18n, ui, agents } = data;
@@ -158,6 +207,11 @@ export function validateAll(data, validators, today) {
       }
     }
   }
+
+  // Langues réellement publiées : celles dont un ui.json porte un bloc "site".
+  // On n'exige pas les sept, seulement celles que le site sert vraiment.
+  const publishedLangs = LANGS.filter((lang) => ui.get(lang)?.site);
+  validateSponsors(data.sponsors, validators, publishedLangs, errors);
 
   return errors;
 }

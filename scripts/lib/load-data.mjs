@@ -28,6 +28,7 @@ export function compileValidators(schemaDir) {
     tool: ajv.compile(load('tool.schema.json')),
     toolI18n: ajv.compile(load('tool-i18n.schema.json')),
     agent: ajv.compile(load('agent.schema.json')),
+    sponsors: ajv.compile(load('sponsors.schema.json')),
   };
 }
 
@@ -58,5 +59,13 @@ export async function loadData(rootDir) {
   const agents = await readJson(join(dataDir, 'agents.json'));
   const categories = await readJson(join(dataDir, 'categories.json'));
 
-  return { tools, i18n, ui, agents, categories };
+  // Fichier optionnel : un dépôt fraîchement cloné sans sponsors doit builder.
+  let sponsors = { placements: [] };
+  try {
+    sponsors = await readJson(join(dataDir, 'sponsors.json'));
+  } catch (err) {
+    if (err.code !== 'ENOENT') throw err;
+  }
+
+  return { tools, i18n, ui, agents, categories, sponsors };
 }
