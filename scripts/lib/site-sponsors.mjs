@@ -6,6 +6,10 @@
 // clair parce qu'elles sont publiées telles quelles sur /sponsor, et qu'un
 // lecteur doit pouvoir vérifier le prix qu'on lui annonce.
 
+import { escapeHtml } from './site-html.mjs';
+import { PLACEHOLDER_PATH } from './site-favicons.mjs';
+import { normalizeDomain } from './validate-rules.mjs';
+
 export const RAIL_SLOTS = ['L1', 'L2', 'L3', 'L4', 'R1', 'R2', 'R3', 'R4'];
 export const RAIL_LEFT_SLOTS = ['L1', 'L2', 'L3', 'L4'];
 export const RAIL_RIGHT_SLOTS = ['R1', 'R2', 'R3', 'R4'];
@@ -62,9 +66,6 @@ export function nextPriceUsd(kind, occupiedCount) {
   return occupiedCount < ladder.length ? ladder[occupiedCount] : null;
 }
 
-import { escapeHtml } from './site-html.mjs';
-import { PLACEHOLDER_PATH } from './site-favicons.mjs';
-
 /** Un lien sponsor est toujours tracé côté annonceur, jamais côté site : le
  *  projet n'a aucune analytics (principe 4), donc les UTM sont le seul moyen
  *  pour lui de mesurer ce qu'il achète. */
@@ -74,6 +75,20 @@ function sponsorHrefFor(placement) {
   url.searchParams.set('utm_medium', 'referral');
   url.searchParams.set('utm_campaign', `sponsor_${placement.slot}`);
   return url.toString();
+}
+
+/**
+ * Icône auto-hébergée du sponsor, ou l'icône de repli neutre partagée.
+ *
+ * La table `favicons` est construite par fetchFavicons() et indexée par
+ * `normalizeDomain(domaine)` : la lire avec le domaine brut du placement
+ * ferait retomber silencieusement sur le repli dès qu'un opérateur écrit
+ * "www.exemple.com" ou "Exemple.com". `npm run validate` refuse ces formes,
+ * mais `npm run build` ne lance pas la validation — la normalisation doit
+ * donc être faite ici aussi, au point de lecture.
+ */
+function sponsorIcon(ctx, placement) {
+  return ctx.favicons[normalizeDomain(placement.domain)] ?? PLACEHOLDER_PATH;
 }
 
 /**
@@ -106,7 +121,7 @@ function renderCard(slot, ctx, price) {
       + `<span class="sp-open-label">${escapeHtml(s.openLabel)}</span>${body}`
       + `<span class="sp-cta">${escapeHtml(s.bookCta)} →</span></a>`;
   }
-  const icon = ctx.favicons[placement.domain] ?? PLACEHOLDER_PATH;
+  const icon = sponsorIcon(ctx, placement);
   // Décision explicite du propriétaire du site (2026-08-06) : aucun marqueur
   // de sponsoring, ni visible ni dans rel — donc pas de "sponsored" ici. On
   // garde noopener car target="_blank" l'exige pour des raisons de sécurité
@@ -144,7 +159,7 @@ function renderTapeItem(slot, ctx, price, { hidden = false } = {}) {
     const body = price === null ? escapeHtml(s.fullLabel) : `${escapeHtml(s.openLabel)} — $${price}`;
     return `<a class="sp-tape-item open" data-slot="${slot}" href="${escapeHtml(ctx.sponsorHref)}"${hiddenAttrs}>${body}</a>`;
   }
-  const icon = ctx.favicons[placement.domain] ?? PLACEHOLDER_PATH;
+  const icon = sponsorIcon(ctx, placement);
   // Même décision assumée que dans renderCard : pas de "sponsored", noopener
   // conservé pour la sécurité de target="_blank" uniquement.
   return `<a class="sp-tape-item live" data-slot="${slot}" href="${escapeHtml(sponsorHrefFor(placement))}"`

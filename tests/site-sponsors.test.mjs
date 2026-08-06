@@ -6,6 +6,7 @@ import {
 } from '../scripts/lib/site-sponsors.mjs';
 import { sponsorContext, renderRail, renderTape, renderRailFallback } from '../scripts/lib/site-sponsors.mjs';
 import { renderSponsorPage } from '../scripts/lib/site-page-sponsor.mjs';
+import { PLACEHOLDER_PATH } from '../scripts/lib/site-favicons.mjs';
 
 const P = (slot, startsOn, endsOn, domain = 'postiz.com') => ({
   slot, name: 'Postiz', domain, url: `https://${domain}/`,
@@ -133,6 +134,23 @@ describe('carte de rail occupée', () => {
   it('sert l’icône depuis le site, jamais depuis un tiers', () => {
     expect(html()).toContain('src="/assets/favicons/postiz.com.png"');
     expect(html()).not.toContain('https://www.google.com');
+  });
+
+  // La table d'icônes est indexée par domaine normalisé (fetchFavicons) :
+  // lue avec le domaine brut, un "www." ou une majuscule retombait en silence
+  // sur l'icône de repli. `npm run validate` refuse ces formes, mais
+  // `npm run build` ne lance pas la validation.
+  it('retrouve l’icône même si le domaine du placement n’est pas normalisé', () => {
+    const favicons = { 'postiz.com': '/assets/favicons/postiz.com.png' };
+    for (const domain of ['www.postiz.com', 'Postiz.com', 'postiz.com.']) {
+      const card = renderRail('left', ctx([{ ...LIVE, domain }], favicons));
+      expect(card, domain).toContain('src="/assets/favicons/postiz.com.png"');
+      expect(card, domain).not.toContain(PLACEHOLDER_PATH);
+    }
+  });
+
+  it('retombe sur l’icône de repli quand le domaine n’a pas été résolu', () => {
+    expect(renderRail('left', ctx([LIVE], {}))).toContain(`src="${PLACEHOLDER_PATH}"`);
   });
 
   it('affiche la tagline de la langue rendue', () => {
