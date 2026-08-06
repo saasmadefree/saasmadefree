@@ -23,16 +23,5 @@
     "cli-paste": "Prompt gekopieerd. Start claude in je terminal en plak het.",
     "clipboard": "Prompt gekopieerd. Plak het in je agent.",
     "not-yet": "Nog geen prompt-overdracht voor deze agent."
-  },
-  "site": {
-    "sponsor": {
-      "heading": "Sponsors",
-      "openLabel": "Vrije plek",
-      "perDays": "/ 30 dagen",
-      "bookCta": "Boeken",
-      "fullLabel": "Vol",
-      "railAriaLabel": "Sponsors",
-      "tapeAriaLabel": "Sponsors, doorlopend"
-    }
   }
 }

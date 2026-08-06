@@ -23,16 +23,5 @@
     "cli-paste": "Prompt copiado. Ejecuta claude en tu terminal y pégalo.",
     "clipboard": "Prompt copiado. Pégalo en tu agente.",
     "not-yet": "Todavía no hay transferencia de prompt para este agente."
-  },
-  "site": {
-    "sponsor": {
-      "heading": "Patrocinadores",
-      "openLabel": "Espacio libre",
-      "perDays": "/ 30 días",
-      "bookCta": "Reservar",
-      "fullLabel": "Completo",
-      "railAriaLabel": "Patrocinadores",
-      "tapeAriaLabel": "Patrocinadores, en desplazamiento"
-    }
   }
 }
