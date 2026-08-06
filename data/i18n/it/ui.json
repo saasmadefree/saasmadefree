@@ -23,5 +23,16 @@
     "cli-paste": "Prompt copiato. Avvia claude nel tuo terminale e incollalo.",
     "clipboard": "Prompt copiato. Incollalo nel tuo agente.",
     "not-yet": "Nessun trasferimento del prompt ancora disponibile per questo agente."
+  },
+  "site": {
+    "sponsor": {
+      "heading": "Sponsor",
+      "openLabel": "Posto libero",
+      "perDays": "/ 30 giorni",
+      "bookCta": "Prenota",
+      "fullLabel": "Esaurito",
+      "railAriaLabel": "Sponsor",
+      "tapeAriaLabel": "Sponsor, scorrimento"
+    }
   }
 }

@@ -23,5 +23,16 @@
     "cli-paste": "Prompt kopiert. Starte claude in deinem Terminal und füge ihn ein.",
     "clipboard": "Prompt kopiert. Füge ihn in deinen Agenten ein.",
     "not-yet": "Für diesen Agenten gibt es noch keine Prompt-Übergabe."
+  },
+  "site": {
+    "sponsor": {
+      "heading": "Sponsoren",
+      "openLabel": "Platz frei",
+      "perDays": "/ 30 Tage",
+      "bookCta": "Buchen",
+      "fullLabel": "Belegt",
+      "railAriaLabel": "Sponsoren",
+      "tapeAriaLabel": "Sponsoren, Laufschrift"
+    }
   }
 }
