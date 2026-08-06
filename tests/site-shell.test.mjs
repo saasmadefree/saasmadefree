@@ -70,30 +70,42 @@ const ctx = sponsorContext({
 });
 
 describe('insertion des sponsors dans la coquille', () => {
-  const withSponsors = () => renderLayout({
+  const withSponsors = (main = '<h1>Hi</h1>') => renderLayout({
     lang: 'en', path: '/en/', title: 'T', description: 'D',
-    main: '<h1>Hi</h1>', ui: sponsorUi, homeHref: '/en/',
+    main, ui: sponsorUi, homeHref: '/en/',
     sponsorSlots: renderSponsorSlots(ctx),
   });
+
+  // Le bandeau du bas doit fermer .shell AVANT de commencer : à l'intérieur,
+  // sa pleine largeur passerait sous les rails.
+  //
+  // L'ancre est structurelle, et c'est le troisième essai. Les deux premiers
+  // se réduisaient à un « existe quelque part » :
+  //  - '</div>\n</div>' n'apparaît jamais dans le gabarit, donc l'assertion
+  //    valait toBeGreaterThan(-1) ;
+  //  - "\n</div>\n" (censé être l'unique </div> non indenté) dérive dès que le
+  //    `main` injecté — donc n'importe quelle vraie page — contient lui-même
+  //    un </div> en début de ligne : l'ancre se déplace À L'INTÉRIEUR de main
+  //    et l'assertion redevient vacante. Le gabarit ne tenait que parce que
+  //    la fixture avait un main d'une seule ligne.
+  // Seule la séquence complète « fin du dernier rail, fermeture de .shell,
+  // ouverture du bandeau du bas » ne peut pas se produire ailleurs.
+  const SHELL_CLOSE_THEN_BOTTOM_TAPE =
+    /<\/aside>\s*<\/div>\s*<div class="sponsor-tape sp-bottom"/;
 
   it('place les bandeaux hors de .shell, sinon ils passeraient sous les rails', () => {
     const html = withSponsors();
     expect(html.indexOf('sponsor-tape sp-top')).toBeLessThan(html.indexOf('<div class="shell">'));
-    // '</div>\n</div>' n'apparaît jamais dans le gabarit (chaque </div> est
-    // suivi d'un </div> indenté, pas en début de ligne) : ancrée dessus,
-    // l'assertion se réduisait à toBeGreaterThan(-1) et restait verte même si
-    // sp.tapeBottom finissait à l'intérieur de .shell.
-    // lastIndexOf('class="sp-rail') n'est pas un meilleur repère : si
-    // sp.tapeBottom était déplacé juste après sp.railRight — toujours à
-    // l'intérieur de .shell — son index resterait quand même après celui du
-    // dernier rail, et l'assertion resterait verte à tort (vérifié en cassant
-    // volontairement le gabarit, voir le rapport de tâche).
-    // Le seul repère fiable est la fermeture de .shell elle-même : c'est
-    // l'unique "</div>" du gabarit qui n'est pas indenté (tous les autres
-    // sont imbriqués), donc l'unique occurrence littérale de "\n</div>\n".
-    const shellClose = html.indexOf('\n</div>\n', html.indexOf('<div class="shell">'));
-    expect(shellClose).toBeGreaterThan(-1);
-    expect(html.indexOf('sponsor-tape sp-bottom')).toBeGreaterThan(shellClose);
+    expect(html).toMatch(SHELL_CLOSE_THEN_BOTTOM_TAPE);
+  });
+
+  // Le point exact sur lequel l'ancre précédente cédait : un `main` réaliste
+  // porte des </div> en début de ligne (sections, grilles, encarts).
+  it('garde l’ancre valide avec un main qui contient lui-même un </div> non indenté', () => {
+    const html = withSponsors('<div class="realistic">\n<p>x</p>\n</div>\n<div class="other">\n</div>');
+    expect(html.split('\n</div>\n').length - 1).toBeGreaterThan(1);
+    expect(html).toMatch(SHELL_CLOSE_THEN_BOTTOM_TAPE);
+    expect(html.match(new RegExp(SHELL_CLOSE_THEN_BOTTOM_TAPE, 'g'))).toHaveLength(1);
   });
 
   it('rend exactement deux rails', () => {

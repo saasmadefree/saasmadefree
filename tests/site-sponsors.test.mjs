@@ -218,6 +218,51 @@ describe('bandeau défilant', () => {
     expect(html).not.toMatch(/\$\d/);
   });
 
+  // renderTapeItem construit son propre `rel` indépendamment de renderCard :
+  // le verrou « aucun marqueur de sponsoring » ne couvrait que le chemin
+  // rail/carte, donc une réintroduction de rel="sponsored" côté bandeau
+  // serait passée sans qu'aucun test ne bouge.
+  describe('place occupée — mêmes garanties que la carte de rail', () => {
+    const html = () => renderTape(
+      'top',
+      ctx([{ ...LIVE, slot: 'T01' }], { 'postiz.com': '/assets/favicons/postiz.com.png' })
+    );
+
+    it('ne porte aucun marqueur de sponsoring', () => {
+      expect(html()).not.toContain('sponsored');
+      expect(html()).not.toContain('>Sponsor<');
+    });
+
+    it('ouvre le lien en sécurité (noopener) dans un nouvel onglet', () => {
+      expect(html()).toContain('rel="noopener"');
+      expect(html()).toContain('target="_blank"');
+    });
+
+    it('porte les UTM du slot', () => {
+      expect(html()).toContain('utm_source=saasmadefree');
+      expect(html()).toContain('utm_campaign=sponsor_T01');
+    });
+
+    it('sert l’icône depuis le site, jamais depuis un tiers', () => {
+      expect(html()).toContain('src="/assets/favicons/postiz.com.png"');
+      expect(html()).not.toContain('https://www.google.com');
+    });
+
+    it('retrouve l’icône même si le domaine du placement n’est pas normalisé', () => {
+      const favicons = { 'postiz.com': '/assets/favicons/postiz.com.png' };
+      const tape = renderTape('top', ctx([{ ...LIVE, slot: 'T01', domain: 'www.Postiz.com' }], favicons));
+      expect(tape).toContain('src="/assets/favicons/postiz.com.png"');
+      expect(tape).not.toContain(PLACEHOLDER_PATH);
+    });
+
+    it('neutralise le HTML injecté dans un nom de sponsor', () => {
+      const hostile = { ...LIVE, slot: 'T01', name: '<img src=x onerror=alert(1)>' };
+      const tape = renderTape('top', ctx([hostile]));
+      expect(tape).not.toContain('<img src=x');
+      expect(tape).toContain('&lt;img');
+    });
+  });
+
   it('retire la moitié dupliquée de l’arbre d’accessibilité et du focus clavier', () => {
     const html = renderTape('top', ctx([{ ...LIVE, slot: 'T01' }]));
     const secondOccurrence = html.indexOf('data-slot="T01"', html.indexOf('data-slot="T01"') + 1);
