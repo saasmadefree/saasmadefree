@@ -479,4 +479,31 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
      remplacé le wrapper .sp-tape-dup initialement prévu. */
   .sp-tape-item[inert]{display:none}
 }
+
+/* ---------- page /sponsor ---------- */
+/* Même filet neutre que le reste de la feuille : aucune couleur saturée ici
+   non plus, le badge de verdict garde le vert/ambre/rouge pour lui seul. */
+.sp-figures{list-style:none;margin:1rem 0 0;padding:0;display:flex;flex-wrap:wrap;
+  gap:.5rem 1.75rem;font-size:.85rem;color:var(--muted)}
+.sp-figures strong{color:var(--ink);font-weight:800;font-variant-numeric:tabular-nums}
+
+.sp-inv{list-style:none;margin:0 0 1.4rem;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.sp-inv-item{display:inline-flex;align-items:center;gap:.4em;padding:.3em .7em;
+  border:1px solid var(--rule);border-radius:.35em;background:var(--card);font-size:.78rem}
+.sp-inv-item.open{border-style:dashed}
+.sp-inv-slot{font-family:var(--mono);font-weight:700;color:var(--ink)}
+.sp-inv-state{font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+
+/* .sp-ladder réutilise les règles génériques de \`table\`/\`caption\`/\`th,td\`
+   définies plus haut (bordures de cellule, en-tête en petites capitales) —
+   seules largeur et enveloppe sont propres à ce tableau compact à deux
+   colonnes, qui n'a pas besoin des 40rem prévus pour la liste principale. */
+.sp-ladder{min-width:0;width:100%;border:1px solid var(--rule);border-radius:.5em;background:var(--card)}
+.sp-ladder td:last-child,.sp-ladder th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+
+.sp-contact{display:inline-flex;align-items:center;gap:.4em;font-size:.9rem;font-weight:700;
+  padding:.6em 1.1em;border:1px solid var(--ink);border-radius:.35em;
+  background:var(--ink);color:var(--paper);text-decoration:none}
+@media (prefers-reduced-motion:no-preference){.sp-contact{transition:opacity .15s ease}}
+.sp-contact:hover{opacity:.85}
 `;

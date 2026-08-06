@@ -15,6 +15,7 @@ import { buildSitemap } from './lib/site-seo.mjs';
 import { renderHomePage } from './lib/site-page-home.mjs';
 import { renderCategoryPage } from './lib/site-page-category.mjs';
 import { renderCategoriesIndexPage } from './lib/site-page-categories-index.mjs';
+import { renderSponsorPage } from './lib/site-page-sponsor.mjs';
 import { renderToolPage } from './lib/site-page-tool.mjs';
 import { renderRootPage } from './lib/site-page-root.mjs';
 import { render404Page } from './lib/site-page-404.mjs';
@@ -199,6 +200,22 @@ async function main() {
       })
     );
     sitemapPages.push({ path: allCategoriesPath });
+
+    // Page /sponsor — la page qui vend les emplacements. Elle porte elle
+    // aussi ses rails et ses bandeaux (sponsorSlots) : ce n'est pas une
+    // exception au reste du site. sponsorCtx (le contexte, pas le balisage
+    // déjà rendu) lui sert en plus à savoir quel slot de l'inventaire est pris.
+    const sponsorPath = `/${lang}/sponsor`;
+    const sponsorAlt = langs.map((l) => ({ lang: l, path: `/${l}/sponsor` }));
+    await writeText(
+      join(OUT, lang, 'sponsor', 'index.html'),
+      renderSponsorPage({
+        lang, path: sponsorPath, ui: langUi, alternates: sponsorAlt,
+        xDefaultPath: xDefaultOf(sponsorAlt), homePath,
+        sponsors: sponsorCtx, sponsorSlots, figures,
+      })
+    );
+    sitemapPages.push({ path: sponsorPath });
 
     // Catégories
     for (const categorySlug of categorySlugs) {

@@ -38,7 +38,8 @@
     "nav": {
       "submitTool": "Submit a tool",
       "source": "Source",
-      "github": "GitHub"
+      "github": "GitHub",
+      "sponsor": "Sponsor"
     },
     "footer": {
       "source": "Source on GitHub",
@@ -162,7 +163,36 @@
       "bookCta": "Book it",
       "fullLabel": "Sold out",
       "railAriaLabel": "Sponsors",
-      "tapeAriaLabel": "Sponsors, scrolling"
+      "tapeAriaLabel": "Sponsors, scrolling",
+      "takenLabel": "Taken",
+      "railHeading": "Side blocks",
+      "tapeTopHeading": "Top scrolling band",
+      "tapeBottomHeading": "Bottom scrolling band",
+      "ladderRailHeading": "Side blocks",
+      "ladderTapeHeading": "Scrolling places",
+      "ladderRankColumn": "Slots taken",
+      "ladderPriceColumn": "Next slot",
+      "titleTag": "Sponsor SaaS Made Free",
+      "metaDescription": "Eight side slots and twenty scrolling places on a directory read by people about to cancel a subscription.",
+      "h1": "Sponsor SaaS Made Free",
+      "lede": "People land here to cancel something. That makes it a strange and very good place to be the thing they keep.",
+      "noAnalyticsHeading": "What we cannot tell you",
+      "noAnalyticsBody": "This site runs no analytics — no tracking pixel, no third-party script, nothing. So we have no traffic number to sell you, and we are not going to invent one. Everything below is computed from the catalogue itself, at build time.",
+      "inventoryHeading": "The inventory",
+      "ladderHeading": "The price ladder",
+      "ladderBody": "The price rises as slots fill. Each step is the price of the next slot to be taken. A slot that expires frees up and the price steps back down.",
+      "lockHeading": "Locking three months",
+      "lockBody": "Three months costs three times today's price. There is no discount — what you buy is the price, before it moves.",
+      "howHeading": "How it works",
+      "howSteps": [
+        "Pick an open slot and pay.",
+        "Send a display name, a domain and one line of description.",
+        "Manual approval within 48 hours. Refused means refunded in full."
+      ],
+      "noReportingNote": "There is no impression or click reporting, because that would be analytics. Your link carries its own UTM parameters — measure it on your side.",
+      "transparencyHeading": "What sponsoring does not buy",
+      "transparencyBody": "A sponsor never buys a verdict. A sponsored tool listed in the catalogue keeps exactly the verdict its data earns it, including \"keep paying\".",
+      "contactCta": "Ask about a slot"
     }
   },
   "categoriesIndex": {

@@ -118,6 +118,7 @@ export function renderLayout({
   const navLinks = [
     { href: homeHref, label: ui.site.directoryLabel },
     { href: CONTRIBUTING_URL, label: nav.submitTool },
+    { href: `/${lang}/sponsor`, label: nav.sponsor },
     { href: GITHUB_REPO_URL, label: nav.source },
   ]
     .filter((item) => item.label)

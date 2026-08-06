@@ -5,6 +5,7 @@ import {
   selectSponsors, nextPriceUsd,
 } from '../scripts/lib/site-sponsors.mjs';
 import { sponsorContext, renderRail, renderTape, renderRailFallback } from '../scripts/lib/site-sponsors.mjs';
+import { renderSponsorPage } from '../scripts/lib/site-page-sponsor.mjs';
 
 const P = (slot, startsOn, endsOn, domain = 'postiz.com') => ({
   slot, name: 'Postiz', domain, url: `https://${domain}/`,
@@ -200,5 +201,90 @@ describe('repli petits écrans', () => {
     for (const slot of ['L1', 'L4', 'R1', 'R4']) {
       expect(html).toContain(`data-slot="${slot}"`);
     }
+  });
+});
+
+// Table complète, définie localement (pas d'import croisé entre fichiers de
+// test) : porte tout ce que renderSponsorPage/renderLayout traversent, sinon
+// le test échoue sur un `undefined` sans rapport avec ce qu'il vérifie.
+const fullUi = {
+  site: {
+    brand: 'SaaS Made Free',
+    skipToContent: 'Skip to content',
+    languageSwitcherLabel: 'Language',
+    directoryLabel: 'Directory',
+    nav: { submitTool: 'Submit a tool', source: 'Source', github: 'GitHub', sponsor: 'Sponsor' },
+    footer: { source: 'Source on GitHub', privacy: 'Privacy', credit: 'Catalogue based on canivibecodeit' },
+    home: {
+      figureToolsPublished: 'Tools published',
+      figureCategories: 'Categories',
+      figureLanguages: 'Languages',
+      figureTotalPrice: 'Total monthly price of the catalogue (USD)',
+    },
+    sponsor: {
+      heading: 'Sponsors', openLabel: 'Open slot', perDays: '/ 30 days', bookCta: 'Book it',
+      fullLabel: 'Sold out', railAriaLabel: 'Sponsors', tapeAriaLabel: 'Sponsors, scrolling',
+      takenLabel: 'Taken',
+      railHeading: 'Side blocks',
+      tapeTopHeading: 'Top scrolling band',
+      tapeBottomHeading: 'Bottom scrolling band',
+      ladderRailHeading: 'Side blocks',
+      ladderTapeHeading: 'Scrolling places',
+      ladderRankColumn: 'Slots taken',
+      ladderPriceColumn: 'Next slot',
+      titleTag: 'Sponsor SaaS Made Free',
+      metaDescription: 'Eight side slots and twenty scrolling places on a directory read by people about to cancel a subscription.',
+      h1: 'Sponsor SaaS Made Free',
+      lede: 'People land here to cancel something. That makes it a strange and very good place to be the thing they keep.',
+      noAnalyticsHeading: 'What we cannot tell you',
+      noAnalyticsBody: 'This site runs no analytics — no tracking pixel, no third-party script, nothing. So we have no traffic number to sell you, and we are not going to invent one. Everything below is computed from the catalogue itself, at build time.',
+      inventoryHeading: 'The inventory',
+      ladderHeading: 'The price ladder',
+      ladderBody: 'The price rises as slots fill. Each step is the price of the next slot to be taken. A slot that expires frees up and the price steps back down.',
+      lockHeading: 'Locking three months',
+      lockBody: "Three months costs three times today's price. There is no discount — what you buy is the price, before it moves.",
+      howHeading: 'How it works',
+      howSteps: [
+        'Pick an open slot and pay.',
+        'Send a display name, a domain and one line of description.',
+        'Manual approval within 48 hours. Refused means refunded in full.',
+      ],
+      noReportingNote: 'There is no impression or click reporting, because that would be analytics. Your link carries its own UTM parameters — measure it on your side.',
+      transparencyHeading: 'What sponsoring does not buy',
+      transparencyBody: 'A sponsor never buys a verdict. A sponsored tool listed in the catalogue keeps exactly the verdict its data earns it, including "keep paying".',
+      contactCta: 'Ask about a slot',
+    },
+  },
+};
+
+describe('page /sponsor', () => {
+  const page = () => renderSponsorPage({
+    lang: 'fr', path: '/fr/sponsor', ui: fullUi, alternates: [], xDefaultPath: null,
+    homePath: '/fr/', sponsors: ctx([]), sponsorSlots: null,
+    // Forme exacte retournée par catalogueFigures() dans site-data.mjs.
+    figures: { toolsPublished: 529, categories: 51, languages: 2, totalMonthlyUsd: 11760.18, prompts: 529 },
+  });
+
+  it('publie les deux échelles de prix en clair', () => {
+    const html = page();
+    expect(html).toContain('149');
+    expect(html).toContain('1800');
+    expect(html).toContain('900');
+  });
+
+  it('dit explicitement qu’il n’y a aucun chiffre de trafic', () => {
+    expect(page()).toContain('analytics');
+  });
+
+  it('affiche les chiffres calculés du catalogue', () => {
+    expect(page()).toContain('529');
+  });
+
+  it('porte la clause de non-influence sur les verdicts', () => {
+    expect(page().toLowerCase()).toContain('verdict');
+  });
+
+  it('n’a qu’un seul h1', () => {
+    expect(page().split('<h1').length - 1).toBe(1);
   });
 });

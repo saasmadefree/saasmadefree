@@ -38,7 +38,8 @@
     "nav": {
       "submitTool": "Proposer un outil",
       "source": "Code source",
-      "github": "GitHub"
+      "github": "GitHub",
+      "sponsor": "Sponsor"
     },
     "footer": {
       "source": "Code source sur GitHub",
@@ -162,7 +163,36 @@
       "bookCta": "Réserver",
       "fullLabel": "Complet",
       "railAriaLabel": "Sponsors",
-      "tapeAriaLabel": "Sponsors, défilant"
+      "tapeAriaLabel": "Sponsors, défilant",
+      "takenLabel": "Pris",
+      "railHeading": "Blocs latéraux",
+      "tapeTopHeading": "Bandeau défilant du haut",
+      "tapeBottomHeading": "Bandeau défilant du bas",
+      "ladderRailHeading": "Blocs latéraux",
+      "ladderTapeHeading": "Places défilantes",
+      "ladderRankColumn": "Slots pris",
+      "ladderPriceColumn": "Prochain slot",
+      "titleTag": "Sponsoriser SaaS Made Free",
+      "metaDescription": "Huit blocs latéraux et vingt places défilantes sur un annuaire lu par des gens sur le point d’annuler un abonnement.",
+      "h1": "Sponsoriser SaaS Made Free",
+      "lede": "Les visiteurs arrivent ici pour annuler quelque chose. Ça fait de cet endroit un lieu étrange, et très bon, pour être la chose qu’ils gardent.",
+      "noAnalyticsHeading": "Ce qu’on ne peut pas te dire",
+      "noAnalyticsBody": "Ce site ne fait tourner aucun outil de mesure d’audience — pas de pixel de suivi, pas de script tiers, rien. On n’a donc aucun chiffre de trafic à te vendre, et on n’en inventera pas. Tout ce qui suit est calculé à partir du catalogue lui-même, au moment du build.",
+      "inventoryHeading": "L’inventaire",
+      "ladderHeading": "Le barème de prix",
+      "ladderBody": "Le prix monte à mesure que les slots se remplissent. Chaque marche est le prix du prochain slot à être pris. Un slot qui expire se libère, et le prix redescend d’une marche.",
+      "lockHeading": "Bloquer trois mois",
+      "lockBody": "Trois mois coûtent trois fois le prix du jour. Il n’y a aucune remise : ce que tu achètes, c’est le prix, avant qu’il ne bouge.",
+      "howHeading": "Comment ça marche",
+      "howSteps": [
+        "Choisis un slot libre et paie.",
+        "Envoie un nom d’affichage, un domaine et une ligne de description.",
+        "Validation manuelle sous 48 heures. Refusé veut dire remboursé en totalité."
+      ],
+      "noReportingNote": "Il n’y a aucun rapport d’impressions ou de clics, parce que ce serait de la mesure d’audience. Ton lien porte ses propres paramètres UTM — mesure-le de ton côté.",
+      "transparencyHeading": "Ce que le sponsoring n’achète pas",
+      "transparencyBody": "Un sponsor n’achète jamais un verdict. Un outil sponsorisé listé dans le catalogue garde exactement le verdict que ses données lui valent, y compris « Continue de payer ».",
+      "contactCta": "Demander un slot"
     }
   },
   "categoriesIndex": {
