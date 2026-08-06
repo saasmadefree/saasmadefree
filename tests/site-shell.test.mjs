@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { renderLayout } from '../scripts/lib/site-html.mjs';
 import { SITE_CSS } from '../scripts/lib/site-styles.mjs';
+import { sponsorContext, renderSponsorSlots } from '../scripts/lib/site-sponsors.mjs';
 
 const ui = {
   site: {
@@ -48,5 +49,47 @@ describe('débord pleine largeur', () => {
 
   it('déplace le padding horizontal de body vers .page, sinon 100cqw < 100vw', () => {
     expect(SITE_CSS).toMatch(/\.page\{[^}]*padding-inline/);
+  });
+});
+
+const sponsorUi = {
+  site: {
+    ...ui.site,
+    sponsor: {
+      label: 'Sponsor', heading: 'Sponsors', openLabel: 'Open', perDays: '/ 30 days',
+      bookCta: 'Book', fullLabel: 'Full', railAriaLabel: 'Sponsors', tapeAriaLabel: 'Sponsors',
+    },
+  },
+};
+
+const ctx = sponsorContext({
+  placements: [], today: '2026-08-10', lang: 'en', ui: sponsorUi, sponsorHref: '/en/sponsor',
+});
+
+describe('insertion des sponsors dans la coquille', () => {
+  const withSponsors = () => renderLayout({
+    lang: 'en', path: '/en/', title: 'T', description: 'D',
+    main: '<h1>Hi</h1>', ui: sponsorUi, homeHref: '/en/',
+    sponsorSlots: renderSponsorSlots(ctx),
+  });
+
+  it('place les bandeaux hors de .shell, sinon ils passeraient sous les rails', () => {
+    const html = withSponsors();
+    expect(html.indexOf('sponsor-tape sp-top')).toBeLessThan(html.indexOf('<div class="shell">'));
+    expect(html.indexOf('sponsor-tape sp-bottom')).toBeGreaterThan(html.indexOf('</div>\n</div>'));
+  });
+
+  it('rend exactement deux rails', () => {
+    expect(withSponsors().split('class="sp-rail').length - 1).toBe(2);
+  });
+
+  it('place les rails après .col-main dans le DOM pour l’ordre de lecture', () => {
+    const html = withSponsors();
+    expect(html.indexOf('class="col-main"')).toBeLessThan(html.indexOf('class="sp-rail'));
+  });
+
+  it('n’émet aucun balisage sponsor sans contexte', () => {
+    expect(layout()).not.toContain('sp-rail');
+    expect(layout()).not.toContain('sponsor-tape');
   });
 });

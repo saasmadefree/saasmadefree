@@ -75,10 +75,11 @@ function renderLangSwitcher(alternates, currentLang, ui) {
  * @param {object} opts.ui - table de traduction (doit contenir ui.site)
  * @param {string} opts.homeHref - lien de la marque dans l'en-tête
  * @param {string} [opts.extraHead] - balises additionnelles insérées dans <head>
+ * @param {{tapeTop:string,tapeBottom:string,railLeft:string,railRight:string,fallback:string}|null} [opts.sponsorSlots] - balisage sponsor déjà rendu par renderSponsorSlots(), ou null pour aucun
  */
 export function renderLayout({
   lang, path, title, description, alternates = [], xDefaultPath = null,
-  jsonLd = [], main, ui, homeHref, extraHead = '',
+  jsonLd = [], main, ui, homeHref, extraHead = '', sponsorSlots = null,
 }) {
   const canonical = `${SITE_ORIGIN}${path}`;
   const hreflangLinks = alternates
@@ -128,6 +129,16 @@ export function renderLayout({
   // progressive), donc ce libellé initial n'est jamais lu sans thème actif.
   const themeToggleLabel = escapeHtml(ui.site.themeToDark ?? 'Dark mode');
 
+  // Balisage sponsor déjà rendu par site-sponsors.mjs et passé tel quel : ce
+  // module ne connaît ni les slots, ni les prix, ni les placements. C'est ce
+  // qui évite un cycle d'imports entre site-html.mjs et site-sponsors.mjs.
+  //
+  // Les rails sont écrits APRÈS .col-main dans le DOM et replacés par
+  // grid-column : un lecteur d'écran et la tabulation atteignent ainsi le
+  // contenu avant les sponsors. Les bandeaux sont frères de .shell — placés à
+  // l'intérieur, leur pleine largeur passerait sous les rails.
+  const sp = sponsorSlots ?? { tapeTop: '', tapeBottom: '', railLeft: '', railRight: '', fallback: '' };
+
   return `<!doctype html>
 <html lang="${lang}">
 <head>
@@ -135,6 +146,7 @@ ${headLines}
 </head>
 <body>
 <a class="skip-link" href="#main">${escapeHtml(ui.site.skipToContent)}</a>
+${sp.tapeTop}
 <div class="shell">
   <div class="col-main">
     <div class="page">
@@ -164,9 +176,13 @@ ${main}
         <a href="mailto:privacy@saasmadefree.com">privacy@saasmadefree.com</a>
         <a class="credit" href="https://github.com/canivibecodeit/canivibecodeit" rel="noopener">${escapeHtml(ui.site.footer.credit ?? "")}</a>
       </footer>
+      ${sp.fallback}
     </div>
   </div>
+  ${sp.railLeft}
+  ${sp.railRight}
 </div>
+${sp.tapeBottom}
 <script src="/assets/site.js" defer></script>
 </body>
 </html>

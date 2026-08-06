@@ -92,7 +92,7 @@ function renderMetaRow(tool, lang, ui, categories, voteCount, categoryPath) {
 
 export function renderToolPage({
   lang, path, tool, i18nEntry, categories, ui, alternates, xDefaultPath, homePath,
-  categoryPath, relatedTools, voteCount, favicons, agents,
+  categoryPath, relatedTools, voteCount, favicons, agents, sponsorSlots,
 }) {
   const s = ui.site;
   const t = s.tool;
@@ -266,5 +266,6 @@ ${relatedSection}
     main,
     ui,
     homeHref: homePath,
+    sponsorSlots,
   });
 }

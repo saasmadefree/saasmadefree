@@ -50,7 +50,7 @@ function renderFigures(figures, lang, h) {
 
 export function renderHomePage({
   lang, path, toolViews, topCategorySlugs, categories, voteCounts, favicons, figures, mrrTotal,
-  ui, alternates, xDefaultPath,
+  ui, alternates, xDefaultPath, sponsorSlots,
 }) {
   const s = ui.site;
   const h = s.home;
@@ -152,5 +152,6 @@ ${table}
     main,
     ui,
     homeHref: path,
+    sponsorSlots,
   });
 }

@@ -6,6 +6,7 @@ import { organizationJsonLd, itemListJsonLd, breadcrumbJsonLd } from './site-seo
 
 export function renderCategoryPage({
   lang, path, categorySlug, categories, toolViews, voteCounts, favicons, ui, alternates, xDefaultPath, homePath,
+  sponsorSlots,
 }) {
   const s = ui.site;
   const label = categoryLabel(categories, categorySlug, lang);
@@ -39,5 +40,6 @@ ${table}`;
     main,
     ui,
     homeHref: homePath,
+    sponsorSlots,
   });
 }

@@ -18,6 +18,7 @@ import { renderCategoriesIndexPage } from './lib/site-page-categories-index.mjs'
 import { renderToolPage } from './lib/site-page-tool.mjs';
 import { renderRootPage } from './lib/site-page-root.mjs';
 import { render404Page } from './lib/site-page-404.mjs';
+import { sponsorContext, renderSponsorSlots } from './lib/site-sponsors.mjs';
 
 const OUT = 'dist';
 
@@ -74,6 +75,11 @@ async function main() {
   const { tools, i18n, ui, categories, agents } = data;
 
   await cleanOutDir();
+
+  // Date du build : c'est elle qui décide qu'un placement est actif. Un
+  // placement échu disparaît donc au prochain build, sans aucune action —
+  // d'où le build planifié quotidien (voir le plan 2).
+  const today = new Date().toISOString().slice(0, 10);
 
   const voteCounts = await fetchVoteCounts();
   if (voteCounts) {
@@ -139,6 +145,17 @@ async function main() {
       );
     }
 
+    // Table d'icônes vide jusqu'à la tâche 7 : renderCard retombe alors sur
+    // PLACEHOLDER_PATH, donc les cartes s'affichent déjà correctement.
+    //
+    // Le contexte est gardé en plus du balisage : la page /sponsor (tâche 8) a
+    // besoin de savoir quels slots sont pris pour son tableau d'inventaire.
+    const sponsorCtx = sponsorContext({
+      placements: data.sponsors.placements, today, lang, ui: langUi,
+      favicons: {}, sponsorHref: `/${lang}/sponsor`,
+    });
+    const sponsorSlots = renderSponsorSlots(sponsorCtx);
+
     const toolViews = buildToolViews(tools, i18n, lang, voteCounts);
     const categorySlugs = categoriesForLang(tools, lang);
     const topCategorySlugs = topCategoriesByCount(tools, lang, HOME_TOP_CATEGORIES);
@@ -150,7 +167,7 @@ async function main() {
       join(OUT, lang, 'index.html'),
       renderHomePage({
         lang, path: homePath, toolViews, topCategorySlugs, categories, voteCounts, favicons, figures, mrrTotal,
-        ui: langUi, alternates: homeAlt, xDefaultPath: homeXDefault,
+        ui: langUi, alternates: homeAlt, xDefaultPath: homeXDefault, sponsorSlots,
       })
     );
     sitemapPages.push({ path: homePath });
@@ -165,7 +182,7 @@ async function main() {
       join(OUT, lang, 'categories', 'index.html'),
       renderCategoriesIndexPage({
         lang, path: allCategoriesPath, categorySlugs, categories, countsBySlug,
-        ui: langUi, alternates: allCategoriesAlt, xDefaultPath: xDefaultOf(allCategoriesAlt), homePath,
+        ui: langUi, alternates: allCategoriesAlt, xDefaultPath: xDefaultOf(allCategoriesAlt), homePath, sponsorSlots,
       })
     );
     sitemapPages.push({ path: allCategoriesPath });
@@ -180,7 +197,7 @@ async function main() {
         join(OUT, lang, 'categories', categorySlug, 'index.html'),
         renderCategoryPage({
           lang, path: catPath, categorySlug, categories, toolViews: catToolViews, voteCounts, favicons,
-          ui: langUi, alternates: catAlt, xDefaultPath: xDefaultOf(catAlt), homePath,
+          ui: langUi, alternates: catAlt, xDefaultPath: xDefaultOf(catAlt), homePath, sponsorSlots,
         })
       );
       sitemapPages.push({ path: catPath });
@@ -207,7 +224,7 @@ async function main() {
           lang, path: toolPath, tool, i18nEntry, categories,
           ui: langUi, alternates: toolAlt, xDefaultPath: xDefaultOf(toolAlt), homePath,
           categoryPath: `/${lang}/categories/${tool.category}`,
-          relatedTools, voteCount: voteCountFor(voteCounts, tool.slug), favicons, agents,
+          relatedTools, voteCount: voteCountFor(voteCounts, tool.slug), favicons, agents, sponsorSlots,
         })
       );
       sitemapPages.push({ path: toolPath, lastmod: tool.pricing.checkedOn });

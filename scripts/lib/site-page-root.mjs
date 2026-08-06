@@ -18,6 +18,9 @@ export function renderRootPage({ ui, enPath, otherLangs }) {
     <p><a href="${enPath}">${escapeHtml(r.continueLink)}</a></p>
     ${otherLinks ? `<p>${otherLinks}</p>` : ''}`;
 
+  // Volontairement sans sponsors : un annonceur ne paie pas pour une page
+  // d'erreur ni pour un stub de redirection. renderLayout laisse `sponsorSlots`
+  // à null par défaut, il suffit de ne pas le passer.
   return renderLayout({
     lang: 'en',
     path: '/',

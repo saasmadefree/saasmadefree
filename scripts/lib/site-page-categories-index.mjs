@@ -11,6 +11,7 @@ import { organizationJsonLd, breadcrumbJsonLd } from './site-seo.mjs';
  */
 export function renderCategoriesIndexPage({
   lang, path, categorySlugs, categories, countsBySlug, ui, alternates, xDefaultPath, homePath,
+  sponsorSlots,
 }) {
   const s = ui.site;
   const c = ui.categoriesIndex;
@@ -52,5 +53,6 @@ ${items}
     main,
     ui,
     homeHref: homePath,
+    sponsorSlots,
   });
 }
