@@ -134,16 +134,24 @@ function renderCard(slot, ctx, price) {
     + `<span class="sp-tagline">${escapeHtml(placement.tagline[ctx.lang] ?? '')}</span></a>`;
 }
 
+// Décision du propriétaire du site (2026-08-06, étendue le jour même) : le mot
+// "Sponsors" n'apparaît nulle part dans le balisage des emplacements — ni en
+// titre visible, ni en nom accessible. La décision de ne poser aucun marqueur
+// de sponsoring couvre toutes ses occurrences, pas seulement rel="sponsored".
+//
+// Les rails restent des <aside> : un repère complémentaire sans nom
+// accessible reste valide, et la perte de navigabilité (un lecteur d'écran ne
+// distingue pas les deux repères dans sa liste) a été acceptée explicitement.
+// Ne pas réintroduire d'aria-label par réflexe — un test le verrouille.
 export function renderRail(side, ctx) {
   const slots = side === 'left' ? RAIL_LEFT_SLOTS : RAIL_RIGHT_SLOTS;
   const cards = slots.map((slot) => renderCard(slot, ctx, ctx.prices.rail)).join('');
-  return `<aside class="sp-rail sp-${side}" aria-label="${escapeHtml(ctx.strings.railAriaLabel)}">${cards}</aside>`;
+  return `<aside class="sp-rail sp-${side}">${cards}</aside>`;
 }
 
 export function renderRailFallback(ctx) {
   const cards = RAIL_SLOTS.map((slot) => renderCard(slot, ctx, ctx.prices.rail)).join('');
-  return `<aside class="sp-fallback" aria-label="${escapeHtml(ctx.strings.railAriaLabel)}">`
-    + `<h2 class="sp-fallback-h">${escapeHtml(ctx.strings.heading)}</h2>`
+  return `<aside class="sp-fallback">`
     + `<div class="sp-fallback-grid">${cards}</div></aside>`;
 }
 
@@ -178,7 +186,11 @@ export function renderTape(position, ctx) {
   // seconde moitié prend exactement la place de la première et la boucle ne
   // saute pas. Même technique que le bandeau de prix déjà en place. La seconde
   // moitié est marquée aria-hidden/inert item par item (voir renderTapeItem).
-  return `<div class="sponsor-tape sp-${position}" aria-label="${escapeHtml(ctx.strings.tapeAriaLabel)}">`
+  //
+  // Aucun aria-label ici non plus : même décision de propriétaire que pour les
+  // rails, et de toute façon aria-label sur un <div> nu est interdit par la
+  // spec (name-prohibited) — les technologies d'assistance l'ignoraient déjà.
+  return `<div class="sponsor-tape sp-${position}">`
     + `<div class="sp-tape-marquee"><div class="sp-tape-track">${items}${hiddenItems}</div></div></div>`;
 }
 

@@ -408,9 +408,10 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
 /* Par défaut les rails sont masqués et le repli affiché : c'est l'état des
    petits écrans, donc celui de la majorité du trafic. */
 .sp-rail{display:none}
+/* Le repli n'a plus de titre (décision du propriétaire : le mot "Sponsors"
+   n'apparaît nulle part) — le filet supérieur suffit à le détacher du pied de
+   page. La règle .sp-fallback-h est partie avec le <h2>. */
 .sp-fallback{margin:clamp(2rem,5vh,3rem) 0 0;border-top:1px solid var(--rule);padding-top:1.2rem}
-.sp-fallback-h{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--muted);font-weight:700;margin:0 0 .8rem}
 .sp-fallback-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem}
 @media (max-width:26rem){.sp-fallback-grid{grid-template-columns:1fr}}
 

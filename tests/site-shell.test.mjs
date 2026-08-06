@@ -59,8 +59,8 @@ const sponsorUi = {
   site: {
     ...ui.site,
     sponsor: {
-      heading: 'Sponsors', openLabel: 'Open', perDays: '/ 30 days',
-      bookCta: 'Book', fullLabel: 'Full', railAriaLabel: 'Sponsors', tapeAriaLabel: 'Sponsors',
+      openLabel: 'Open', perDays: '/ 30 days',
+      bookCta: 'Book', fullLabel: 'Full',
     },
   },
 };

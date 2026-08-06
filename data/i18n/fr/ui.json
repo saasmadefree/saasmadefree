@@ -157,13 +157,10 @@
       "body": "L’outil a peut-être été retiré du catalogue, ou l’adresse est incorrecte."
     },
     "sponsor": {
-      "heading": "Sponsors",
       "openLabel": "Slot libre",
       "perDays": "/ 30 jours",
       "bookCta": "Réserver",
       "fullLabel": "Complet",
-      "railAriaLabel": "Sponsors",
-      "tapeAriaLabel": "Sponsors, défilant",
       "takenLabel": "Pris",
       "railHeading": "Blocs latéraux",
       "tapeTopHeading": "Bandeau défilant du haut",

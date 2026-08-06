@@ -4,7 +4,9 @@ import {
   RAIL_LADDER_USD, TAPE_LADDER_USD,
   selectSponsors, nextPriceUsd,
 } from '../scripts/lib/site-sponsors.mjs';
-import { sponsorContext, renderRail, renderTape, renderRailFallback } from '../scripts/lib/site-sponsors.mjs';
+import {
+  sponsorContext, renderRail, renderTape, renderRailFallback, renderSponsorSlots,
+} from '../scripts/lib/site-sponsors.mjs';
 import { renderSponsorPage } from '../scripts/lib/site-page-sponsor.mjs';
 import { PLACEHOLDER_PATH } from '../scripts/lib/site-favicons.mjs';
 
@@ -94,9 +96,8 @@ describe("nextPriceUsd", () => {
 const ui = {
   site: {
     sponsor: {
-      heading: 'Sponsors', openLabel: 'Slot libre',
+      openLabel: 'Slot libre',
       perDays: '/ 30 jours', bookCta: 'Réserver', fullLabel: 'Complet',
-      railAriaLabel: 'Sponsors', tapeAriaLabel: 'Sponsors, défilant',
     },
   },
 };
@@ -220,6 +221,60 @@ describe('repli petits écrans', () => {
       expect(html).toContain(`data-slot="${slot}"`);
     }
   });
+
+  it('ne porte plus de titre — le mot « Sponsors » a été retiré partout', () => {
+    expect(renderRailFallback(ctx([]))).not.toContain('<h2');
+  });
+});
+
+// Décision du propriétaire du site (2026-08-06, étendue le jour même) : la
+// règle « aucun marqueur de sponsoring » couvre TOUTES les occurrences du mot,
+// pas seulement rel="sponsored". Le mot ne doit donc apparaître ni en texte
+// visible, ni en nom accessible, dans aucun emplacement.
+//
+// Volontairement restreint aux fonctions de rendu des emplacements : la page
+// /sponsor porte légitimement le mot dans son <h1>, sa prose et son lien de
+// navigation, et l'URL des emplacements pointe sur elle (/fr/sponsor), tout
+// comme les UTM (utm_campaign=sponsor_L1) — ce sont des attributs, jamais du
+// texte lu.
+describe('aucune mention « Sponsor » dans le balisage des emplacements', () => {
+  // Ce qu'un lecteur voit : on retire les balises, il ne reste que le texte.
+  const visibleText = (html) => html.replace(/<[^>]+>/g, ' ');
+  // Ce qu'une technologie d'assistance annonce en plus du texte.
+  const accessibleNames = (html) =>
+    [...html.matchAll(/\s(?:aria-label|aria-labelledby|title|alt)="([^"]*)"/g)]
+      .map((m) => m[1]).join(' ');
+
+  const favicons = { 'postiz.com': '/assets/favicons/postiz.com.png' };
+  const free = ctx([]);
+  const busy = ctx(
+    [LIVE, { ...LIVE, slot: 'T01' }, { ...LIVE, slot: 'B01' }],
+    favicons
+  );
+  const slots = renderSponsorSlots(busy);
+
+  const cases = [
+    ['rail gauche libre', renderRail('left', free)],
+    ['rail droit libre', renderRail('right', free)],
+    ['rail gauche occupé', renderRail('left', busy)],
+    ['repli libre', renderRailFallback(free)],
+    ['repli occupé', renderRailFallback(busy)],
+    ['bandeau haut libre', renderTape('top', free)],
+    ['bandeau haut occupé', renderTape('top', busy)],
+    ['bandeau bas occupé', renderTape('bottom', busy)],
+    ...Object.entries(slots).map(([key, html]) => [`renderSponsorSlots.${key}`, html]),
+  ];
+
+  for (const [label, html] of cases) {
+    it(`${label} : aucun « Sponsor » lu ni annoncé`, () => {
+      expect(visibleText(html)).not.toMatch(/sponsor/i);
+      expect(accessibleNames(html)).not.toMatch(/sponsor/i);
+    });
+  }
+
+  it('ne pose plus aucun nom accessible sur les conteneurs', () => {
+    for (const [, html] of cases) expect(html).not.toContain('aria-label');
+  });
 });
 
 // Table complète, définie localement (pas d'import croisé entre fichiers de
@@ -240,8 +295,8 @@ const fullUi = {
       figureTotalPrice: 'Total monthly price of the catalogue (USD)',
     },
     sponsor: {
-      heading: 'Sponsors', openLabel: 'Open slot', perDays: '/ 30 days', bookCta: 'Book it',
-      fullLabel: 'Sold out', railAriaLabel: 'Sponsors', tapeAriaLabel: 'Sponsors, scrolling',
+      openLabel: 'Open slot', perDays: '/ 30 days', bookCta: 'Book it',
+      fullLabel: 'Sold out',
       takenLabel: 'Taken',
       railHeading: 'Side blocks',
       tapeTopHeading: 'Top scrolling band',

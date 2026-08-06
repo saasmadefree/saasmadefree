@@ -157,13 +157,10 @@
       "body": "The tool may have been removed from the catalogue, or the address is wrong."
     },
     "sponsor": {
-      "heading": "Sponsors",
       "openLabel": "Open slot",
       "perDays": "/ 30 days",
       "bookCta": "Book it",
       "fullLabel": "Sold out",
-      "railAriaLabel": "Sponsors",
-      "tapeAriaLabel": "Sponsors, scrolling",
       "takenLabel": "Taken",
       "railHeading": "Side blocks",
       "tapeTopHeading": "Top scrolling band",
