@@ -67,5 +67,26 @@ export async function loadData(rootDir) {
     if (err.code !== 'ENOENT') throw err;
   }
 
+  // Un fichier présent mais mal formé doit casser le build, pas le vider en
+  // silence. Scénario réel : un opérateur ajoute un placement payé et écrit
+  // "placement" au singulier à la racine. Avec un `?? []` en aval, le build
+  // se terminait normalement et publiait les vingt-huit slots comme libres —
+  // alors que le sponsor a payé. `npm run validate` l'attrape, mais
+  // `npm run build` ne lance pas la validation, et le hook de déploiement
+  // quotidien prévu pour la phase commerce ne passera pas par la CI.
+  //
+  // L'absence du fichier reste légitime et donne toujours { placements: [] }.
+  if (!Array.isArray(sponsors?.placements)) {
+    // On nomme les clés lues plutôt que le contenu : c'est ce qui rend la
+    // faute de frappe évidente, et ça reste borné même sur un gros fichier.
+    const found = sponsors && typeof sponsors === 'object'
+      ? `clés lues à la racine : ${JSON.stringify(Object.keys(sponsors))}`
+      : `racine lue : ${JSON.stringify(sponsors)}`;
+    throw new Error(
+      `data/sponsors.json : la racine doit porter une clé "placements" contenant un tableau (${found}). ` +
+      'Sans elle, tous les emplacements seraient publiés comme libres, sponsors payants compris.'
+    );
+  }
+
   return { tools, i18n, ui, agents, categories, sponsors };
 }

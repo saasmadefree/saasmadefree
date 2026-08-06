@@ -1,5 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { compileValidators } from '../scripts/lib/load-data.mjs';
+import { mkdtemp, mkdir, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { compileValidators, loadData } from '../scripts/lib/load-data.mjs';
 import { validateAll } from '../scripts/lib/validate-rules.mjs';
 
 const validators = compileValidators('schema');
@@ -54,6 +57,28 @@ describe('schéma sponsors', () => {
     // un slug ne peut jamais en contenir (pattern ^[a-z0-9][a-z0-9-]{0,63}$).
     expect(validators.sponsors({ placements: [{ ...OK, domain: 'notion' }] })).toBe(false);
   });
+
+  // La borne haute de la tagline est ce qui garantit que la carte de rail ne
+  // casse pas en allemand (spec §5) : au-delà, le texte déborde de la piste
+  // de 9rem. Elle n'était vérifiée par aucun test — donc rien n'empêchait de
+  // la relever « juste un peu » en croyant que c'était un chiffre arbitraire.
+  const tagline = (n) => ({ en: 'a'.repeat(n), fr: 'b'.repeat(n) });
+
+  it('accepte une tagline de 80 caractères, refuse 81', () => {
+    expect(validators.sponsors({ placements: [{ ...OK, tagline: tagline(80) }] })).toBe(true);
+    expect(validators.sponsors({ placements: [{ ...OK, tagline: tagline(81) }] })).toBe(false);
+  });
+
+  it('refuse une tagline vide — un slot payé sans texte n’est pas un slot rendu', () => {
+    expect(validators.sponsors({ placements: [{ ...OK, tagline: { en: '', fr: 'ok' } }] })).toBe(false);
+  });
+
+  // Borne citée par le commentaire de .sp-card dans site-styles.mjs : c'est
+  // elle qui fixe le pire cas de mot unique que la carte doit savoir couper.
+  it('accepte un nom de 32 caractères, refuse 33', () => {
+    expect(validators.sponsors({ placements: [{ ...OK, name: 'W'.repeat(32) }] })).toBe(true);
+    expect(validators.sponsors({ placements: [{ ...OK, name: 'W'.repeat(33) }] })).toBe(false);
+  });
 });
 
 describe('règles sponsors', () => {
@@ -89,6 +114,54 @@ describe('règles sponsors', () => {
     const adjacent = { ...OK, startsOn: OK.endsOn, endsOn: '2026-10-04' };
     const errors = validateAll(data([OK, adjacent]), validators, today);
     expect(errors.join('\n')).toContain('slot "L1"');
+  });
+});
+
+// Dépôt minimal : loadData() lit aussi agents.json et categories.json, qui
+// n'ont pas de repli ENOENT. Les dossiers tools/ et i18n/ absents donnent déjà
+// des listes vides.
+async function fixture(sponsorsJson) {
+  const root = await mkdtemp(join(tmpdir(), 'smf-loaddata-'));
+  await mkdir(join(root, 'data'), { recursive: true });
+  await writeFile(join(root, 'data', 'agents.json'), '[]', 'utf8');
+  await writeFile(join(root, 'data', 'categories.json'), '[]', 'utf8');
+  if (sponsorsJson !== undefined) {
+    await writeFile(join(root, 'data', 'sponsors.json'), sponsorsJson, 'utf8');
+  }
+  return root;
+}
+
+// `npm run validate` attrape une racine malformée, mais `npm run build` ne
+// lance pas la validation — et le hook de déploiement quotidien prévu pour la
+// phase commerce ne passera pas par la CI. Un `placements ?? []` en aval
+// transformait donc une erreur de données en silence : le build se terminait
+// normalement et publiait tous les emplacements comme libres, alors qu'un
+// sponsor a payé.
+describe('loadData — racine sponsors.json', () => {
+  it('échoue bruyamment sur une clé "placement" au singulier', async () => {
+    const root = await fixture(JSON.stringify({ placement: [OK] }));
+    await expect(loadData(root)).rejects.toThrow(/data\/sponsors\.json.*placements/s);
+  });
+
+  it('nomme les clés réellement lues, pour rendre la faute de frappe évidente', async () => {
+    const root = await fixture(JSON.stringify({ placement: [OK] }));
+    await expect(loadData(root)).rejects.toThrow(/"placement"/);
+  });
+
+  it('échoue aussi quand "placements" n’est pas un tableau', async () => {
+    const root = await fixture(JSON.stringify({ placements: { L1: OK } }));
+    await expect(loadData(root)).rejects.toThrow(/tableau/);
+  });
+
+  it('accepte toujours un dépôt sans data/sponsors.json — le fichier reste optionnel', async () => {
+    const root = await fixture(undefined);
+    await expect(loadData(root)).resolves.toMatchObject({ sponsors: { placements: [] } });
+  });
+
+  it('accepte un fichier vide et bien formé', async () => {
+    const root = await fixture(JSON.stringify({ placements: [] }));
+    const data = await loadData(root);
+    expect(data.sponsors.placements).toEqual([]);
   });
 });
 
