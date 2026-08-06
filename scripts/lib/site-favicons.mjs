@@ -62,21 +62,29 @@ async function fetchFaviconBytes(domain, timeoutMs, fetchImpl) {
  * @param {string} opts.outDir - dossier de sortie public (ex. dist/assets/favicons)
  * @param {number} [opts.timeoutMs]
  * @param {typeof fetch} [opts.fetchImpl] - injectable pour les tests
- * @returns {Promise<{bySlug: Record<string,string>, stats: {total:number, cached:number, fetched:number, placeholder:number}}>}
+ * @param {string[]} [opts.extraDomains] - domaines hors catalogue (les sponsors, sans fiche ni slug)
+ * @returns {Promise<{bySlug: Record<string,string>, byDomain: Record<string,string>, stats: {total:number, cached:number, fetched:number, placeholder:number}}>}
  */
-export async function fetchFavicons(tools, { cacheDir, outDir, timeoutMs = 8000, fetchImpl = globalThis.fetch }) {
+export async function fetchFavicons(
+  tools,
+  { cacheDir, outDir, timeoutMs = 8000, fetchImpl = globalThis.fetch, extraDomains = [] }
+) {
   await mkdir(cacheDir, { recursive: true });
   await mkdir(outDir, { recursive: true });
   await writeFile(join(outDir, '_placeholder.svg'), PLACEHOLDER_SVG, 'utf8');
 
   const bySlug = {};
+  const byDomain = {};
   const stats = { total: 0, cached: 0, fetched: 0, placeholder: 0 };
 
-  for (const tool of tools.values()) {
-    stats.total += 1;
-    const domain = normalizeDomain(tool.domains[0]);
-    const cachePath = join(cacheDir, `${domain}.png`);
+  // Un domaine n'est résolu qu'une fois par build, même s'il sert à la fois une
+  // fiche et un sponsor. Le cache disque l'évitait déjà d'un build à l'autre ;
+  // cette table l'évite à l'intérieur d'un même build.
+  const bytesByDomain = new Map();
 
+  async function bytesFor(domain) {
+    if (bytesByDomain.has(domain)) return bytesByDomain.get(domain);
+    const cachePath = join(cacheDir, `${domain}.png`);
     let bytes = await readFileSafe(cachePath);
     if (bytes) {
       stats.cached += 1;
@@ -87,7 +95,13 @@ export async function fetchFavicons(tools, { cacheDir, outDir, timeoutMs = 8000,
         stats.fetched += 1;
       }
     }
+    bytesByDomain.set(domain, bytes);
+    return bytes;
+  }
 
+  for (const tool of tools.values()) {
+    stats.total += 1;
+    const bytes = await bytesFor(normalizeDomain(tool.domains[0]));
     if (bytes) {
       await writeFile(join(outDir, `${tool.slug}.png`), bytes);
       bySlug[tool.slug] = `/assets/favicons/${tool.slug}.png`;
@@ -97,5 +111,22 @@ export async function fetchFavicons(tools, { cacheDir, outDir, timeoutMs = 8000,
     }
   }
 
-  return { bySlug, stats };
+  // Domaines hors catalogue (les sponsors) : indexés par domaine et non par
+  // slug, puisqu'ils n'ont pas de fiche. Le nom de fichier reprend le domaine,
+  // déjà unique et normalisé. Un sponsor qui est aussi un outil du catalogue
+  // ne déclenche donc aucun téléchargement supplémentaire.
+  for (const raw of extraDomains) {
+    const domain = normalizeDomain(raw);
+    stats.total += 1;
+    const bytes = await bytesFor(domain);
+    if (bytes) {
+      await writeFile(join(outDir, `${domain}.png`), bytes);
+      byDomain[domain] = `/assets/favicons/${domain}.png`;
+    } else {
+      stats.placeholder += 1;
+      byDomain[domain] = PLACEHOLDER_PATH;
+    }
+  }
+
+  return { bySlug, byDomain, stats };
 }

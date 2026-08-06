@@ -18,7 +18,7 @@ import { renderCategoriesIndexPage } from './lib/site-page-categories-index.mjs'
 import { renderToolPage } from './lib/site-page-tool.mjs';
 import { renderRootPage } from './lib/site-page-root.mjs';
 import { render404Page } from './lib/site-page-404.mjs';
-import { sponsorContext, renderSponsorSlots } from './lib/site-sponsors.mjs';
+import { sponsorContext, renderSponsorSlots, selectSponsors } from './lib/site-sponsors.mjs';
 
 const OUT = 'dist';
 
@@ -88,17 +88,23 @@ async function main() {
     console.log('Service de vote injoignable au build — tri sur pagePriority, aucun compteur affiché.');
   }
 
-  // Icônes des outils, récupérées une fois au build et mises en cache sous un
-  // dossier ignoré par git (voir .gitignore) : une reconstruction locale ne
-  // refait jamais la requête réseau, et un échec de récupération ne casse
-  // jamais le build — voir scripts/lib/site-favicons.mjs.
-  const { bySlug: favicons, stats: faviconStats } = await fetchFavicons(tools, {
+  // Domaines des sponsors actifs au jour du build (`today` ci-dessus) : ils
+  // n'ont pas de fiche catalogue, donc pas de slug — fetchFavicons les indexe
+  // par domaine (extraDomains / byDomain) plutôt que par slug (bySlug).
+  const { domains: sponsorDomains } = selectSponsors(data.sponsors.placements, today);
+
+  // Icônes des outils et des sponsors, récupérées une fois au build et mises
+  // en cache sous un dossier ignoré par git (voir .gitignore) : une
+  // reconstruction locale ne refait jamais la requête réseau, et un échec de
+  // récupération ne casse jamais le build — voir scripts/lib/site-favicons.mjs.
+  const { bySlug: favicons, byDomain: sponsorFavicons, stats: faviconStats } = await fetchFavicons(tools, {
     cacheDir: join('.cache', 'favicons'),
     outDir: join(OUT, 'assets', 'favicons'),
+    extraDomains: sponsorDomains,
   });
   console.log(
     `Icônes : ${faviconStats.fetched} récupérée(s), ${faviconStats.cached} depuis le cache, ` +
-    `${faviconStats.placeholder} en repli sur ${faviconStats.total} outil(s).`
+    `${faviconStats.placeholder} en repli sur ${faviconStats.total} outil(s)/sponsor(s).`
   );
 
   const langs = siteLanguages(tools);
@@ -145,14 +151,16 @@ async function main() {
       );
     }
 
-    // Table d'icônes vide jusqu'à la tâche 7 : renderCard retombe alors sur
-    // PLACEHOLDER_PATH, donc les cartes s'affichent déjà correctement.
+    // Icônes des sponsors, indexées par domaine (sponsorFavicons, calculé plus
+    // haut) : un sponsor n'a pas de fiche catalogue, donc pas de slug. Un
+    // domaine dont la récupération a échoué retombe sur PLACEHOLDER_PATH —
+    // voir renderCard/renderTapeItem dans site-sponsors.mjs.
     //
     // Le contexte est gardé en plus du balisage : la page /sponsor (tâche 8) a
     // besoin de savoir quels slots sont pris pour son tableau d'inventaire.
     const sponsorCtx = sponsorContext({
       placements: data.sponsors.placements, today, lang, ui: langUi,
-      favicons: {}, sponsorHref: `/${lang}/sponsor`,
+      favicons: sponsorFavicons, sponsorHref: `/${lang}/sponsor`,
     });
     const sponsorSlots = renderSponsorSlots(sponsorCtx);
 

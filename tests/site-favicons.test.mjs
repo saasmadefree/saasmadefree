@@ -109,4 +109,15 @@ describe('fetchFavicons', () => {
     });
     expect(bySlug.a).toBe(PLACEHOLDER_PATH);
   });
+
+  it('télécharge aussi les domaines hors catalogue et les indexe par domaine', async () => {
+    const root = await tempDir();
+    const { byDomain } = await fetchFavicons(new Map(), {
+      cacheDir: join(root, 'cache'),
+      outDir: join(root, 'out'),
+      extraDomains: ['postiz.com'],
+      fetchImpl: async () => pngResponse(),
+    });
+    expect(byDomain['postiz.com']).toBe('/assets/favicons/postiz.com.png');
+  });
 });
