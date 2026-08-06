@@ -434,9 +434,17 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
   .sp-fallback{display:none}
 }
 
+/* overflow-wrap:anywhere n'est pas décoratif. Le schéma autorise un nom de
+   32 caractères ; la piste minimale d'un rail fait 9rem, soit une boîte de
+   contenu d'environ 116px — une quinzaine de caractères. Un nom de marque en
+   un seul mot de 32 caractères (un composé allemand est le cas évident)
+   n'offre aucune occasion de coupure : il débordait de la carte, et comme
+   .sp-rail pose overflow-y:auto son overflow-x calculé passe à auto — le rail
+   gagnait une barre de défilement horizontale et le nom était tronqué. Même
+   arithmétique dans la grille à deux colonnes du repli à 390px. */
 .sp-card{display:flex;flex-direction:column;gap:.35rem;flex:1 1 0;min-height:6.5rem;
   padding:.7rem .8rem;border:1px solid var(--rule);border-radius:.4rem;
-  background:var(--card);text-decoration:none;font-size:.8rem}
+  background:var(--card);text-decoration:none;font-size:.8rem;overflow-wrap:anywhere}
 .sp-card.open{border-style:dashed;background:none;justify-content:center;text-align:center}
 .sp-icon{border-radius:.25rem}
 .sp-name{font-weight:700;color:var(--ink)}

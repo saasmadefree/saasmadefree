@@ -152,6 +152,15 @@ describe('CSS des sponsors', () => {
     expect(SITE_CSS).toMatch(/\.sp-rail\{[^}]*display:none/);
   });
 
+  // Le schéma autorise un `name` de 32 caractères ; la piste minimale d'un
+  // rail fait 9rem (≈ 116px de contenu, une quinzaine de caractères). Sans
+  // occasion de coupure, un mot unique de 32 caractères débordait de la carte
+  // et faisait apparaître une barre de défilement horizontale sur le rail
+  // (overflow-y:auto force overflow-x à auto).
+  it('coupe un mot unique trop long plutôt que de faire déborder la carte', () => {
+    expect(SITE_CSS).toMatch(/\.sp-card\{[^}]*overflow-wrap:anywhere/);
+  });
+
   it('coupe le défilement du bandeau en mouvement réduit', () => {
     expect(SITE_CSS).toContain('prefers-reduced-motion');
     expect(SITE_CSS).toMatch(/\.sp-tape-track\{[^}]*flex-wrap:wrap/);
