@@ -82,6 +82,10 @@ export async function fetchFavicons(
   // cette table l'évite à l'intérieur d'un même build.
   const bytesByDomain = new Map();
 
+  // cached/fetched/placeholder comptent des domaines résolus, pas des entités :
+  // incrémentés une seule fois ici, derrière la garde de mémoïsation, pour
+  // qu'un domaine partagé par un outil et un sponsor (ou par plusieurs outils)
+  // ne soit jamais compté deux fois — y compris quand la résolution échoue.
   async function bytesFor(domain) {
     if (bytesByDomain.has(domain)) return bytesByDomain.get(domain);
     const cachePath = join(cacheDir, `${domain}.png`);
@@ -93,12 +97,17 @@ export async function fetchFavicons(
       if (bytes) {
         await writeFile(cachePath, bytes);
         stats.fetched += 1;
+      } else {
+        stats.placeholder += 1;
       }
     }
     bytesByDomain.set(domain, bytes);
     return bytes;
   }
 
+  // total compte des entités (un outil, un domaine de sponsor), pas des
+  // domaines : deux entités qui partagent un domaine comptent chacune pour 1
+  // dans total, même si bytesFor ne les résout qu'une fois.
   for (const tool of tools.values()) {
     stats.total += 1;
     const bytes = await bytesFor(normalizeDomain(tool.domains[0]));
@@ -106,7 +115,6 @@ export async function fetchFavicons(
       await writeFile(join(outDir, `${tool.slug}.png`), bytes);
       bySlug[tool.slug] = `/assets/favicons/${tool.slug}.png`;
     } else {
-      stats.placeholder += 1;
       bySlug[tool.slug] = PLACEHOLDER_PATH;
     }
   }
@@ -123,7 +131,6 @@ export async function fetchFavicons(
       await writeFile(join(outDir, `${domain}.png`), bytes);
       byDomain[domain] = `/assets/favicons/${domain}.png`;
     } else {
-      stats.placeholder += 1;
       byDomain[domain] = PLACEHOLDER_PATH;
     }
   }

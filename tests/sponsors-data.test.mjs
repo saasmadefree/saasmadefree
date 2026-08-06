@@ -44,6 +44,16 @@ describe('schéma sponsors', () => {
   it('rejette une URL non https', () => {
     expect(validators.sponsors({ placements: [{ ...OK, url: 'http://postiz.com/' }] })).toBe(false);
   });
+
+  it('rejette un domaine sans point — collision possible avec un slug d\'outil, même charset', () => {
+    // "notion" est à la fois un hostname valide (format: "hostname" ne
+    // requiert pas de point) et un slug de fiche existant : sans cette
+    // contrainte, un sponsor mal saisi écraserait silencieusement l'icône
+    // de la fiche sur le disque (les deux boucles de fetchFavicons écrivent
+    // dans le même outDir). Un vrai domaine de sponsor a toujours un point ;
+    // un slug ne peut jamais en contenir (pattern ^[a-z0-9][a-z0-9-]{0,63}$).
+    expect(validators.sponsors({ placements: [{ ...OK, domain: 'notion' }] })).toBe(false);
+  });
 });
 
 describe('règles sponsors', () => {

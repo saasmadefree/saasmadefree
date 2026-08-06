@@ -102,9 +102,14 @@ async function main() {
     outDir: join(OUT, 'assets', 'favicons'),
     extraDomains: sponsorDomains,
   });
+  // fetched/cached/placeholder comptent des domaines résolus (dédupliqués :
+  // un domaine partagé par un outil et un sponsor n'est compté qu'une fois),
+  // alors que total compte des entités (un outil, un domaine de sponsor) —
+  // les trois premiers ne s'additionnent donc pas forcément à total dès qu'un
+  // domaine est partagé. D'où la phrase séparée plutôt que "P en repli sur N".
   console.log(
-    `Icônes : ${faviconStats.fetched} récupérée(s), ${faviconStats.cached} depuis le cache, ` +
-    `${faviconStats.placeholder} en repli sur ${faviconStats.total} outil(s)/sponsor(s).`
+    `Icônes : ${faviconStats.fetched} domaine(s) récupéré(s), ${faviconStats.cached} depuis le cache, ` +
+    `${faviconStats.placeholder} en repli — ${faviconStats.total} outil(s)/sponsor(s) au total.`
   );
 
   const langs = siteLanguages(tools);

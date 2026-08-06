@@ -112,12 +112,29 @@ describe('fetchFavicons', () => {
 
   it('télécharge aussi les domaines hors catalogue et les indexe par domaine', async () => {
     const root = await tempDir();
-    const { byDomain } = await fetchFavicons(new Map(), {
+    const { byDomain, stats } = await fetchFavicons(new Map(), {
       cacheDir: join(root, 'cache'),
       outDir: join(root, 'out'),
       extraDomains: ['postiz.com'],
       fetchImpl: async () => pngResponse(),
     });
     expect(byDomain['postiz.com']).toBe('/assets/favicons/postiz.com.png');
+    expect(stats).toEqual({ total: 1, cached: 0, fetched: 1, placeholder: 0 });
+  });
+
+  it("ne compte le repli qu'une fois pour un domaine partagé par un outil et un sponsor dont la récupération échoue", async () => {
+    const root = await tempDir();
+    const tools = new Map([['a', tool('a', 'fail.com')]]);
+    let calls = 0;
+    const { bySlug, byDomain, stats } = await fetchFavicons(tools, {
+      cacheDir: join(root, 'cache'),
+      outDir: join(root, 'out'),
+      extraDomains: ['fail.com'],
+      fetchImpl: async () => { calls += 1; throw new Error('offline'); },
+    });
+    expect(calls).toBe(1);
+    expect(bySlug.a).toBe(PLACEHOLDER_PATH);
+    expect(byDomain['fail.com']).toBe(PLACEHOLDER_PATH);
+    expect(stats).toEqual({ total: 2, cached: 0, fetched: 0, placeholder: 1 });
   });
 });
