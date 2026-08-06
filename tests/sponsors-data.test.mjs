@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { mkdtemp, mkdir, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -104,6 +104,43 @@ describe('règles sponsors', () => {
   it('refuse une tagline manquante dans une langue publiée', () => {
     const errors = validateAll(data([{ ...OK, tagline: { en: 'Only english' } }]), validators, today);
     expect(errors.join('\n')).toContain('fr');
+  });
+
+  // Spec §5 : un placement expiré ne fait JAMAIS échouer le build. Il est
+  // filtré au rendu et son slot repasse en libre. Un site qui casse tout seul
+  // un dimanche parce qu'un sponsoring est arrivé à échéance serait un défaut,
+  // pas une sécurité. L'avertissement, lui, dit à l'exploitant qu'un slot
+  // vient de se libérer.
+  describe('placement expiré', () => {
+    const expired = { ...OK, startsOn: '2026-06-01', endsOn: '2026-06-30' };
+
+    it('n’est pas une erreur', () => {
+      expect(validateAll(data([expired]), validators, today)).toEqual([]);
+    });
+
+    it('émet un avertissement nommant le slot et la date d’échéance', () => {
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+      try {
+        validateAll(data([expired]), validators, today);
+        const said = warn.mock.calls.map((args) => args.join(' ')).join('\n');
+        expect(said).toContain('L1');
+        expect(said).toContain('2026-06-30');
+        expect(said.toLowerCase()).toContain('avertissement');
+      } finally {
+        warn.mockRestore();
+      }
+    });
+
+    it('ne dit rien pour un placement encore en cours ou à venir', () => {
+      const future = { ...OK, startsOn: '2026-09-01', endsOn: '2026-09-30' };
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+      try {
+        validateAll(data([OK, future]), validators, today);
+        expect(warn).not.toHaveBeenCalled();
+      } finally {
+        warn.mockRestore();
+      }
+    });
   });
 
   it('considère deux périodes qui se touchent comme un chevauchement (bornes incluses)', () => {

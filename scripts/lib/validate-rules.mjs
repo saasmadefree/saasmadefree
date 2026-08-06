@@ -3,6 +3,19 @@ import { LANGS } from './load-data.mjs';
 export const ALLOWED_VARS = new Set(['prompt', 'prompt_url', 'lang', 'slug']);
 const MAX_PRICE_AGE_DAYS = 180;
 
+/**
+ * Seul canal d'avertissement du module.
+ *
+ * Un avertissement ne rejoint jamais le tableau d'erreurs : `validateAll`
+ * continue de rendre exactement la liste des problèmes bloquants, et
+ * `scripts/validate.mjs` sort toujours en 0 quand il n'y a que des
+ * avertissements. C'est la distinction que demande la spec §5 pour les
+ * placements échus.
+ */
+function warn(message) {
+  console.warn(`avertissement — ${message}`);
+}
+
 export function normalizeDomain(domain) {
   let d = String(domain).trim().toLowerCase();
   if (d.endsWith('.')) d = d.slice(0, -1);
@@ -61,7 +74,7 @@ function periodsOverlap(a, b) {
   return a.startsOn <= b.endsOn && b.startsOn <= a.endsOn;
 }
 
-function validateSponsors(sponsors, validators, publishedLangs, errors) {
+function validateSponsors(sponsors, validators, publishedLangs, today, errors) {
   // `sponsors` absent (clé manquante dans `data`, jamais le cas via
   // loadData() qui retombe déjà sur { placements: [] } en cas d'ENOENT) est
   // traité comme un fichier vide. Au-delà de ça, on valide l'objet tel qu'il
@@ -92,6 +105,19 @@ function validateSponsors(sponsors, validators, publishedLangs, errors) {
       if (!placement.tagline[lang]) {
         errors.push(`${at} : tagline manquante en "${lang}" — le sponsor disparaîtrait de ce site sans avertissement`);
       }
+    }
+
+    // Avertissement, jamais une erreur (spec §5) : un placement échu est
+    // simplement filtré au rendu et son slot repasse en libre. Faire échouer
+    // le build pour ça casserait le site tout seul un dimanche parce qu'un
+    // sponsoring est arrivé à échéance — ce serait un défaut, pas une
+    // sécurité. Le signaler reste utile : c'est ce qui dit à l'exploitant
+    // qu'une ligne est devenue de l'historique et qu'un slot s'est libéré.
+    if (placement.endsOn < today) {
+      warn(
+        `${at} : placement expiré le ${placement.endsOn} — le slot est repassé en libre. ` +
+        'Ce n\'est pas une erreur : la ligne reste dans le fichier comme historique.'
+      );
     }
   });
 
@@ -218,7 +244,7 @@ export function validateAll(data, validators, today) {
   // Langues réellement publiées : celles dont un ui.json porte un bloc "site".
   // On n'exige pas les sept, seulement celles que le site sert vraiment.
   const publishedLangs = LANGS.filter((lang) => ui.get(lang)?.site);
-  validateSponsors(data.sponsors, validators, publishedLangs, errors);
+  validateSponsors(data.sponsors, validators, publishedLangs, today, errors);
 
   return errors;
 }
