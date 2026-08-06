@@ -156,4 +156,8 @@ describe('CSS des sponsors', () => {
     expect(SITE_CSS).toContain('prefers-reduced-motion');
     expect(SITE_CSS).toMatch(/\.sp-tape-track\{[^}]*flex-wrap:wrap/);
   });
+
+  it('masque la moitié dupliquée en mouvement réduit — sans quoi chaque sponsor apparaît deux fois', () => {
+    expect(SITE_CSS).toMatch(/\.sp-tape-item\[inert\]\{[^}]*display:none/);
+  });
 });

@@ -453,7 +453,12 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
 .sp-tape-track{display:inline-flex;gap:0;white-space:nowrap}
 .sp-tape-item{display:inline-flex;align-items:center;gap:.4rem;padding:.25em 1rem;
   border-right:1px solid var(--rule);font-size:.78rem;color:var(--muted);text-decoration:none}
-.sp-tape-item .sp-tape-tagline{color:var(--muted);opacity:.8}
+/* Pas d'opacity ici : empilée sur --muted (déjà proche du plancher AA contre
+   le fond du bandeau), elle faisait passer la tagline sous 4,5:1 dans les
+   deux thèmes (3,26:1 clair / 4,39:1 sombre). --muted seul suffit à la rendre
+   plus discrète que le nom tout en restant lisible — voir le rapport de
+   tâche pour les ratios recalculés. */
+.sp-tape-item .sp-tape-tagline{color:var(--muted)}
 .sp-tape-item.live span:first-of-type{color:var(--ink);font-weight:700}
 @media (prefers-reduced-motion:no-preference){
   .sp-tape-track{animation:sp-tape-scroll 120s linear infinite}
