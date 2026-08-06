@@ -443,7 +443,7 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
 .sp-tagline{color:var(--muted);line-height:1.35}
 .sp-open-label{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
 .sp-price{font-size:1.15rem;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
-.sp-per,.sp-full{color:var(--muted);font-size:.72rem}
+.sp-per{color:var(--muted);font-size:.72rem}
 .sp-cta{color:var(--ink);text-decoration:underline;font-size:.72rem}
 
 /* Bandeaux : frères de .shell, donc pleine largeur sans aucune technique de

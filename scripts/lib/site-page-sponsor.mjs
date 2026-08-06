@@ -10,14 +10,20 @@ export const SPONSOR_EMAIL = 'sponsor@saasmadefree.com';
 
 /** Une ligne par marche : la n-ième ligne donne le prix du slot suivant quand
  *  n slots sont déjà pris. Le barème est publié parce qu'on vend une rareté —
- *  annoncer un prix qui monte sans montrer la règle serait invérifiable. */
-function ladderTable(ladder, heading, s) {
+ *  annoncer un prix qui monte sans montrer la règle serait invérifiable.
+ *
+ *  Les montants passent par formatMoney, comme le total du catalogue vingt
+ *  lignes plus bas : un "$1259" brut se lit comme une année sur une page
+ *  française. L'en-tête de la colonne des prix porte la période (perDays, la
+ *  chaîne déjà affichée sur les cartes) — sans elle le tableau annonçait un
+ *  montant sans dire ce qu'il achète. */
+function ladderTable(ladder, heading, s, lang) {
   const rows = ladder
-    .map((price, i) => `<tr><td>${escapeHtml(i)}</td><td>$${escapeHtml(price)}</td></tr>`)
+    .map((price, i) => `<tr><td>${escapeHtml(i)}</td><td>${escapeHtml(formatMoney(price, 'USD', lang))}</td></tr>`)
     .join('\n          ');
   return `      <table class="sp-ladder">
         <caption>${escapeHtml(heading)}</caption>
-        <thead><tr><th scope="col">${escapeHtml(s.ladderRankColumn)}</th><th scope="col">${escapeHtml(s.ladderPriceColumn)}</th></tr></thead>
+        <thead><tr><th scope="col">${escapeHtml(s.ladderRankColumn)}</th><th scope="col">${escapeHtml(s.ladderPriceColumn)} ${escapeHtml(s.perDays)}</th></tr></thead>
         <tbody>
           ${rows}
         </tbody>
@@ -102,8 +108,8 @@ ${inventoryList(TAPE_BOTTOM_SLOTS, sponsors, s)}
       <h2>${escapeHtml(s.ladderHeading)}</h2>
       <p>${escapeHtml(s.ladderBody)}</p>
       <div class="two-col">
-${ladderTable(RAIL_LADDER_USD, s.ladderRailHeading, s)}
-${ladderTable(TAPE_LADDER_USD, s.ladderTapeHeading, s)}
+${ladderTable(RAIL_LADDER_USD, s.ladderRailHeading, s, lang)}
+${ladderTable(TAPE_LADDER_USD, s.ladderTapeHeading, s, lang)}
       </div>
       <h3>${escapeHtml(s.lockHeading)}</h3>
       <p>${escapeHtml(s.lockBody)}</p>

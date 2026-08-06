@@ -9,6 +9,7 @@
 import { escapeHtml } from './site-html.mjs';
 import { PLACEHOLDER_PATH } from './site-favicons.mjs';
 import { normalizeDomain } from './validate-rules.mjs';
+import { formatMoney } from './site-format.mjs';
 
 export const RAIL_SLOTS = ['L1', 'L2', 'L3', 'L4', 'R1', 'R2', 'R3', 'R4'];
 export const RAIL_LEFT_SLOTS = ['L1', 'L2', 'L3', 'L4'];
@@ -48,9 +49,12 @@ export function selectSponsors(placements, today) {
 /**
  * Prix du prochain slot d'un inventaire, en dollars.
  *
- * Rend `null` quand l'inventaire est plein : l'appelant doit alors afficher
- * "complet" plutôt qu'un montant, jamais un zéro qui se ferait passer pour un
- * prix (principe 3 de .impeccable.md).
+ * Rend `null` quand l'inventaire est plein — jamais un zéro qui se ferait
+ * passer pour un prix (principe 3 de .impeccable.md). Aucun rendu n'observe
+ * ce `null` : un inventaire plein n'a plus aucun slot libre à afficher, donc
+ * les cartes et les places prennent toutes la branche "occupé". L'invariant
+ * tient tant qu'il y a exactement une marche de barème par slot, ce que
+ * verrouille le test "a une marche de prix par slot".
  *
  * Lève une erreur si `kind` n'est ni 'rail' ni 'tape' : silence sur un `kind`
  * inconnu serait une dégradation silencieuse des prix (ex. rail quoté au prix tape).
@@ -114,11 +118,14 @@ function renderCard(slot, ctx, price) {
   const s = ctx.strings;
   const placement = ctx.bySlot.get(slot);
   if (!placement) {
-    const body = price === null
-      ? `<span class="sp-full">${escapeHtml(s.fullLabel)}</span>`
-      : `<span class="sp-price">$${price}</span><span class="sp-per">${escapeHtml(s.perDays)}</span>`;
+    // `price` n'est jamais null ici — voir l'invariant documenté sur
+    // nextPriceUsd. Le montant passe par formatMoney comme tous les autres
+    // chiffres du site : "$1259" sur une page française se lit comme une
+    // année, et l'accueil affiche déjà "11 760,18 $US" pour le catalogue.
+    const money = escapeHtml(formatMoney(price, 'USD', ctx.lang));
     return `<a class="sp-card open" data-slot="${slot}" href="${escapeHtml(ctx.sponsorHref)}">`
-      + `<span class="sp-open-label">${escapeHtml(s.openLabel)}</span>${body}`
+      + `<span class="sp-open-label">${escapeHtml(s.openLabel)}</span>`
+      + `<span class="sp-price">${money}</span><span class="sp-per">${escapeHtml(s.perDays)}</span>`
       + `<span class="sp-cta">${escapeHtml(s.bookCta)} →</span></a>`;
   }
   const icon = sponsorIcon(ctx, placement);
@@ -164,7 +171,8 @@ function renderTapeItem(slot, ctx, price, { hidden = false } = {}) {
   // clavier tabulerait quand même à travers vingt liens fantômes.
   const hiddenAttrs = hidden ? ' aria-hidden="true" inert' : '';
   if (!placement) {
-    const body = price === null ? escapeHtml(s.fullLabel) : `${escapeHtml(s.openLabel)} — $${price}`;
+    // Même invariant et même formatage monétaire que renderCard.
+    const body = `${escapeHtml(s.openLabel)} — ${escapeHtml(formatMoney(price, 'USD', ctx.lang))}`;
     return `<a class="sp-tape-item open" data-slot="${slot}" href="${escapeHtml(ctx.sponsorHref)}"${hiddenAttrs}>${body}</a>`;
   }
   const icon = sponsorIcon(ctx, placement);

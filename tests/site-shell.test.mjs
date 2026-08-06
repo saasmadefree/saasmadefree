@@ -60,7 +60,7 @@ const sponsorUi = {
     ...ui.site,
     sponsor: {
       openLabel: 'Open', perDays: '/ 30 days',
-      bookCta: 'Book', fullLabel: 'Full',
+      bookCta: 'Book',
     },
   },
 };
@@ -159,5 +159,14 @@ describe('CSS des sponsors', () => {
 
   it('masque la moitié dupliquée en mouvement réduit — sans quoi chaque sponsor apparaît deux fois', () => {
     expect(SITE_CSS).toMatch(/\.sp-tape-item\[inert\]\{[^}]*display:none/);
+  });
+
+  // L'état "complet" ne peut pas se produire : un inventaire plein n'a plus
+  // aucun slot libre à rendre, donc la branche qui affichait .sp-full était
+  // morte. Les deux classes qui n'existent plus dans le balisage n'ont plus à
+  // exister dans la feuille non plus.
+  it('ne porte plus les classes du balisage supprimé', () => {
+    expect(SITE_CSS).not.toContain('.sp-full');
+    expect(SITE_CSS).not.toContain('.sp-fallback-h{');
   });
 });

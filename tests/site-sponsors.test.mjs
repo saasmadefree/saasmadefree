@@ -9,6 +9,12 @@ import {
 } from '../scripts/lib/site-sponsors.mjs';
 import { renderSponsorPage } from '../scripts/lib/site-page-sponsor.mjs';
 import { PLACEHOLDER_PATH } from '../scripts/lib/site-favicons.mjs';
+import { escapeHtml } from '../scripts/lib/site-html.mjs';
+import { formatMoney } from '../scripts/lib/site-format.mjs';
+
+/** Le prix tel qu'il doit apparaître dans le HTML rendu : même formateur que
+ *  le reste du site, jamais une chaîne retapée à la main dans le test. */
+const usd = (amount, lang) => escapeHtml(formatMoney(amount, 'USD', lang));
 
 const P = (slot, startsOn, endsOn, domain = 'postiz.com') => ({
   slot, name: 'Postiz', domain, url: `https://${domain}/`,
@@ -97,7 +103,7 @@ const ui = {
   site: {
     sponsor: {
       openLabel: 'Slot libre',
-      perDays: '/ 30 jours', bookCta: 'Réserver', fullLabel: 'Complet',
+      perDays: '/ 30 jours', bookCta: 'Réserver',
     },
   },
 };
@@ -161,15 +167,22 @@ describe('carte de rail occupée', () => {
 });
 
 describe('carte de rail libre', () => {
-  it('affiche le prix du jour et pointe vers /sponsor', () => {
+  // Le contexte est rendu en `fr` : le prix doit sortir formaté par
+  // formatMoney ("149 $US"), jamais en "$149" — sur une page française, un
+  // "$1259" brut se lit comme une année.
+  it('affiche le prix du jour, formaté par le formateur du projet', () => {
     const html = renderRail('left', ctx([]));
-    expect(html).toContain('149');
+    expect(html).toContain(`<span class="sp-price">${usd(RAIL_LADDER_USD[0], 'fr')}</span>`);
     expect(html).toContain('href="/fr/sponsor"');
+  });
+
+  it('n’écrit jamais le sigil monétaire à la main', () => {
+    expect(renderRail('left', ctx([]))).not.toMatch(/\$\d/);
   });
 
   it('monte d’une marche quand un rail est déjà pris', () => {
     // L1 occupé → le prochain rail libre coûte la 2e marche.
-    expect(renderRail('left', ctx([LIVE]))).toContain('219');
+    expect(renderRail('left', ctx([LIVE]))).toContain(usd(RAIL_LADDER_USD[1], 'fr'));
   });
 
   it('rend un bloc par slot du côté demandé, jamais ceux de l’autre', () => {
@@ -197,6 +210,12 @@ describe('bandeau défilant', () => {
 
   it('reste lisible sans défilement — la piste porte le texte, pas une image', () => {
     expect(renderTape('top', ctx([{ ...LIVE, slot: 'T01' }]))).toContain('Postiz');
+  });
+
+  it('formate le prix d’une place libre comme partout ailleurs', () => {
+    const html = renderTape('top', ctx([]));
+    expect(html).toContain(usd(TAPE_LADDER_USD[0], 'fr'));
+    expect(html).not.toMatch(/\$\d/);
   });
 
   it('retire la moitié dupliquée de l’arbre d’accessibilité et du focus clavier', () => {
@@ -296,7 +315,6 @@ const fullUi = {
     },
     sponsor: {
       openLabel: 'Open slot', perDays: '/ 30 days', bookCta: 'Book it',
-      fullLabel: 'Sold out',
       takenLabel: 'Taken',
       railHeading: 'Side blocks',
       tapeTopHeading: 'Top scrolling band',
@@ -338,11 +356,32 @@ describe('page /sponsor', () => {
     figures: { toolsPublished: 529, categories: 51, languages: 2, totalMonthlyUsd: 11760.18, prompts: 529 },
   });
 
-  it('publie les deux échelles de prix en clair', () => {
+  // La page est rendue en `fr` : le barème publié doit correspondre marche
+  // par marche à RAIL_LADDER_USD/TAPE_LADDER_USD, formaté par formatMoney.
+  // Les montants attendus sont dérivés des tableaux exportés, jamais retapés
+  // dans le test — sinon le test ne prouverait plus que ce qui est publié est
+  // bien ce qui est vendu.
+  it('publie les deux échelles de prix en clair, marche par marche', () => {
     const html = page();
-    expect(html).toContain('149');
-    expect(html).toContain('1800');
-    expect(html).toContain('900');
+    for (const [ladder, name] of [[RAIL_LADDER_USD, 'rail'], [TAPE_LADDER_USD, 'tape']]) {
+      ladder.forEach((price, rank) => {
+        expect(html, `${name}[${rank}]`).toContain(
+          `<tr><td>${rank}</td><td>${usd(price, 'fr')}</td></tr>`
+        );
+      });
+    }
+  });
+
+  it('n’écrit aucun montant avec un sigil monétaire posé à la main', () => {
+    expect(page()).not.toMatch(/<td>\$\d/);
+  });
+
+  // Les cartes disent "/ 30 jours" ; le tableau n'annonçait qu'un montant nu.
+  // La période vient de la chaîne i18n déjà utilisée par les cartes.
+  it('dit dans quelle période s’entend le prix du barème', () => {
+    expect(page()).toContain(
+      `<th scope="col">${fullUi.site.sponsor.ladderPriceColumn} ${fullUi.site.sponsor.perDays}</th>`
+    );
   });
 
   it('dit explicitement qu’il n’y a aucun chiffre de trafic', () => {
