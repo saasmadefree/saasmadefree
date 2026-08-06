@@ -173,6 +173,7 @@ ${main}
       </main>
       <footer class="site-footer">
         <a href="${GITHUB_REPO_URL}">${escapeHtml(ui.site.footer.source)}</a>
+        <a href="/${lang}/stats/">${escapeHtml(ui.site.footer.stats)}</a>
         <a href="/privacy">${escapeHtml(ui.site.footer.privacy)}</a>
         <a href="mailto:privacy@saasmadefree.com">privacy@saasmadefree.com</a>
         <a class="credit" href="https://github.com/canivibecodeit/canivibecodeit" rel="noopener">${escapeHtml(ui.site.footer.credit ?? "")}</a>
@@ -185,6 +186,7 @@ ${main}
 </div>
 ${sp.tapeBottom}
 <script src="/assets/site.js" defer></script>
+<script src="/assets/beacon.js" defer></script>
 </body>
 </html>
 `;

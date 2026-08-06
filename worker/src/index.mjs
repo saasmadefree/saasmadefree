@@ -1,5 +1,6 @@
 import { dayKey, hashIp } from './hash.mjs';
 import { SLUGS } from './slugs.generated.mjs';
+import { recordBeacon, buildStatsPayload, serveFacade, runScheduled } from './stats.mjs';
 
 const RATE_LIMIT_PER_MINUTE = 30;
 const RATE_RETENTION_MINUTES = 2;
@@ -76,6 +77,43 @@ async function handle(request, env) {
     return json({ error: 'misconfigured' }, 500, env);
   }
 
+  // Lecture publique des stats (spec §8) : une seule forme, cacheable 60 s à
+  // l'edge — c'est le « refreshed every minute » de la page /stats.
+  if (url.pathname === '/api/v1/stats' && request.method === 'GET') {
+    return json(await buildStatsPayload(env, new Date()), 200, env, 'public, max-age=60');
+  }
+
+  // Beacon d'audience (spec §3) : toujours 204, y compris sur entrée invalide
+  // ou erreur D1 — un compteur d'audience n'a pas le droit d'avoir un avis
+  // visible. Le rate limiting réutilise la table `rate` des votes.
+  if (url.pathname === '/api/v1/stats/beacon') {
+    if (request.method !== 'POST') return json({ error: 'method_not_allowed' }, 405, env);
+    let body = null;
+    try { body = await request.json(); } catch { /* corps illisible : ignoré */ }
+    const now = new Date();
+    const day = dayKey(now);
+    const ip = request.headers.get('cf-connecting-ip') ?? '0.0.0.0';
+    const ipHash = await hashIp(ip, env.VOTE_SALT, day);
+    // Le try/catch englobe aussi overRateLimit (et donc la purge de `rate`) :
+    // le contrat fail-open ("toujours 204") ne souffre aucune exception, y
+    // compris si le limiteur lui-même échoue (table `rate` absente, panne
+    // D1) — contrairement à la route de vote, où un tel échec peut rester
+    // visible en 500.
+    try {
+      // Le beacon a son propre seau de rate-limit : 30 vues/min ne doivent
+      // jamais faire échouer un vote légitime. Même table `rate`, même
+      // ip_hash de base (identique au hachage des votes), mais préfixé pour
+      // que les deux compteurs (b:<hash> pour le beacon, <hash> pour le vote)
+      // restent indépendants. `ipHash` sans préfixe reste inchangé pour
+      // `uniques`, qui doit garder l'identité visiteur du schéma de hachage
+      // des votes.
+      if (!(await overRateLimit(env, 'b:' + ipHash, now))) {
+        await recordBeacon(env, body, ipHash, day);
+      }
+    } catch { /* fail-open */ }
+    return json({}, 204, env);
+  }
+
   const isCountsRoute = url.pathname === '/api/v1/votes' || url.pathname === '/feed/v1/votes.json';
   if (isCountsRoute && request.method === 'GET') {
     const { results } = await env.DB.prepare(
@@ -127,11 +165,24 @@ export default {
   // disparaîtrait sans que personne ne soit prévenu. Le `await` est
   // nécessaire : sans lui, une promesse rejetée serait renvoyée telle
   // quelle au lieu d'être levée, et ce `catch` ne s'exécuterait jamais.
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     try {
+      // Les routes zone de l'apex (pages HTML du site) passent par la façade
+      // crawlers — avant tout contrôle de configuration : la façade n'utilise
+      // ni VOTE_SALT ni la moindre donnée personnelle, et doit servir les
+      // pages même si le worker est mal configuré.
+      if (new URL(request.url).hostname === 'saasmadefree.com') {
+        return await serveFacade(request, env, ctx);
+      }
       return await handle(request, env);
     } catch {
       return json({ error: 'internal_error' }, 500, env);
     }
+  },
+
+  async scheduled(controller, env, ctx) {
+    // Fail-quiet : un cron qui lève serait re-tenté par la plateforme sans
+    // que personne ne le voie ; on préfère journaliser l'absence de données.
+    try { await runScheduled(env, new Date()); } catch { /* rien */ }
   },
 };

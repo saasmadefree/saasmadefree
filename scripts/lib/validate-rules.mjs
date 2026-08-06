@@ -241,9 +241,41 @@ export function validateAll(data, validators, today) {
     }
   }
 
-  // Langues réellement publiées : celles dont un ui.json porte un bloc "site".
-  // On n'exige pas les sept, seulement celles que le site sert vraiment.
-  const publishedLangs = LANGS.filter((lang) => ui.get(lang)?.site);
+  // Bloc site.stats : la page /stats existe dans chaque langue publiée, donc
+  // chaque langue doit porter exactement les clés de en — pas une de plus
+  // (clé morte), pas une de moins (libellé anglais qui fuit dans une page fr).
+  const enStats = ui.get('en')?.site?.stats;
+  if (!enStats) {
+    errors.push('data/i18n/en/ui.json : bloc site.stats manquant');
+  } else {
+    const expected = new Set(Object.keys(enStats));
+    for (const [lang, table] of ui) {
+      if (lang === 'en') continue;
+      const stats = table?.site?.stats ?? {};
+      for (const key of expected) {
+        if (!(key in stats)) errors.push(`data/i18n/${lang}/ui.json : traduction manquante pour site.stats.${key}`);
+      }
+      for (const key of Object.keys(stats)) {
+        if (!expected.has(key)) errors.push(`data/i18n/${lang}/ui.json : clé site.stats.${key} absente de en — clé morte ou faute de frappe`);
+      }
+    }
+  }
+  for (const [lang, table] of ui) {
+    if (typeof table?.site?.footer?.stats !== 'string') {
+      errors.push(`data/i18n/${lang}/ui.json : traduction manquante pour site.footer.stats`);
+    }
+  }
+
+  // Langues réellement publiées : celles qu'au moins une fiche déclare dans ses
+  // markets — la même source que siteLanguages() côté build.
+  //
+  // Cette liste se déduisait de la présence d'un bloc "site" dans le ui.json.
+  // Ce raccourci est devenu faux le jour où /stats a donné un bloc site.stats
+  // aux sept locales : les sept seraient passées pour publiées, et un sponsor
+  // aurait dû fournir une tagline en néerlandais pour que le build passe.
+  const publishedLangs = LANGS.filter(
+    (lang) => [...tools.values()].some((tool) => tool.markets?.includes(lang))
+  );
   validateSponsors(data.sponsors, validators, publishedLangs, today, errors);
 
   return errors;

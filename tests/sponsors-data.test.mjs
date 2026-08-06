@@ -7,24 +7,39 @@ import { validateAll } from '../scripts/lib/validate-rules.mjs';
 
 const validators = compileValidators('schema');
 
-// Jeu de données minimal : validateAll parcourt aussi outils, i18n et agents,
-// qu'on laisse vides pour n'observer que les erreurs sponsors.
-function data(placements) {
+// Jeu de données minimal. `validateAll` valide plusieurs domaines à la fois
+// (outils, i18n, agents, stats, sponsors) ; ces tests n'observent que les
+// erreurs sponsors, d'où le filtre `sponsorErrors` plus bas. Sans lui, ils
+// échoueraient dès qu'une règle sans rapport est ajoutée ailleurs — et pire,
+// pourraient passer pour la mauvaise raison en trouvant leur sous-chaîne dans
+// le message d'une autre règle.
+//
+// La fiche factice n'est pas décorative : `publishedLangs` se déduit des
+// `markets` des fiches, donc sans elle aucune langue ne compterait comme
+// publiée et la règle « tagline manquante » ne se déclencherait jamais.
+const FAKE_TOOLS = new Map([['x', { slug: 'x', markets: ['en', 'fr'] }]]);
+
+function baseData(sponsors) {
   return {
-    tools: new Map(), i18n: new Map(), agents: [],
+    tools: FAKE_TOOLS, i18n: new Map(), agents: [],
     ui: new Map([['en', { site: {} }], ['fr', { site: {} }]]),
-    sponsors: { placements },
+    sponsors,
   };
+}
+
+function data(placements) {
+  return baseData({ placements });
 }
 
 // Variante pour les tests de racine malformée : contrôle direct du contenu
 // de `sponsors`, sans passer par la forme `{ placements }` que `data()` impose.
 function dataWithSponsorsRoot(sponsorsRoot) {
-  return {
-    tools: new Map(), i18n: new Map(), agents: [],
-    ui: new Map([['en', { site: {} }], ['fr', { site: {} }]]),
-    sponsors: sponsorsRoot,
-  };
+  return baseData(sponsorsRoot);
+}
+
+/** Les seules erreurs que ces tests jugent : celles qui nomment data/sponsors.json. */
+function sponsorErrors(dataset) {
+  return validateAll(dataset, validators, today).filter((e) => e.includes('sponsors.json'));
 }
 
 const OK = {
@@ -83,26 +98,26 @@ describe('schéma sponsors', () => {
 
 describe('règles sponsors', () => {
   it('ne signale rien pour un placement valide', () => {
-    expect(validateAll(data([OK]), validators, today)).toEqual([]);
+    expect(sponsorErrors(data([OK]))).toEqual([]);
   });
 
   it('refuse deux placements actifs sur le même slot', () => {
-    const errors = validateAll(data([OK, { ...OK, name: 'Autre', domain: 'autre.com' }]), validators, today);
+    const errors = sponsorErrors(data([OK, { ...OK, name: 'Autre', domain: 'autre.com' }]));
     expect(errors.join('\n')).toContain('slot "L1"');
   });
 
   it('accepte deux placements sur le même slot si leurs périodes ne se croisent pas', () => {
     const passe = { ...OK, startsOn: '2026-06-01', endsOn: '2026-06-30' };
-    expect(validateAll(data([OK, passe]), validators, today)).toEqual([]);
+    expect(sponsorErrors(data([OK, passe]))).toEqual([]);
   });
 
   it('refuse endsOn antérieur à startsOn', () => {
-    const errors = validateAll(data([{ ...OK, endsOn: '2026-08-01' }]), validators, today);
+    const errors = sponsorErrors(data([{ ...OK, endsOn: '2026-08-01' }]));
     expect(errors.join('\n')).toContain('endsOn');
   });
 
   it('refuse une tagline manquante dans une langue publiée', () => {
-    const errors = validateAll(data([{ ...OK, tagline: { en: 'Only english' } }]), validators, today);
+    const errors = sponsorErrors(data([{ ...OK, tagline: { en: 'Only english' } }]));
     expect(errors.join('\n')).toContain('fr');
   });
 
@@ -115,13 +130,13 @@ describe('règles sponsors', () => {
     const expired = { ...OK, startsOn: '2026-06-01', endsOn: '2026-06-30' };
 
     it('n’est pas une erreur', () => {
-      expect(validateAll(data([expired]), validators, today)).toEqual([]);
+      expect(sponsorErrors(data([expired]))).toEqual([]);
     });
 
     it('émet un avertissement nommant le slot et la date d’échéance', () => {
       const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
       try {
-        validateAll(data([expired]), validators, today);
+        sponsorErrors(data([expired]));
         const said = warn.mock.calls.map((args) => args.join(' ')).join('\n');
         expect(said).toContain('L1');
         expect(said).toContain('2026-06-30');
@@ -149,7 +164,7 @@ describe('règles sponsors', () => {
     // sémantique inclusive de periodsOverlap contre une future régression
     // silencieuse (ex. un `<=` remplacé par `<` sans test pour le voir).
     const adjacent = { ...OK, startsOn: OK.endsOn, endsOn: '2026-10-04' };
-    const errors = validateAll(data([OK, adjacent]), validators, today);
+    const errors = sponsorErrors(data([OK, adjacent]));
     expect(errors.join('\n')).toContain('slot "L1"');
   });
 });
@@ -204,12 +219,12 @@ describe('loadData — racine sponsors.json', () => {
 
 describe('racine sponsors malformée', () => {
   it('refuse une clé "placement" au singulier à la racine (faute de frappe)', () => {
-    const errors = validateAll(dataWithSponsorsRoot({ placement: [OK] }), validators, today);
+    const errors = sponsorErrors(dataWithSponsorsRoot({ placement: [OK] }));
     expect(errors.length).toBeGreaterThan(0);
   });
 
   it('refuse un champ parasite à la racine de sponsors.json', () => {
-    const errors = validateAll(dataWithSponsorsRoot({ placements: [], extraStrayField: 42 }), validators, today);
+    const errors = sponsorErrors(dataWithSponsorsRoot({ placements: [], extraStrayField: 42 }));
     expect(errors.length).toBeGreaterThan(0);
   });
 });

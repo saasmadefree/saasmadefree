@@ -4,6 +4,7 @@ import { MONTHLY_BASES } from './site-format.mjs';
 export const SITE_ORIGIN = 'https://saasmadefree.com';
 export const VOTE_ENDPOINT = 'https://votes.saasmadefree.com/api/v1/vote';
 export const VOTES_FEED_URL = 'https://votes.saasmadefree.com/feed/v1/votes.json';
+export const STATS_API_URL = 'https://votes.saasmadefree.com/api/v1/stats';
 
 // Le build essaie une seule fois de récupérer les compteurs réels au moment
 // de générer les pages, pour que le tri "par votes" et l'affichage initial

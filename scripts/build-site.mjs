@@ -2,7 +2,7 @@
 // dist/, à partir des mêmes données que le feed (scripts/build-feed.mjs, qui
 // doit avoir tourné juste avant — voir npm run build). Aucune dépendance,
 // aucun framework : uniquement du Node ESM qui écrit du HTML/CSS/JS brut.
-import { mkdir, writeFile, cp, rm } from 'node:fs/promises';
+import { mkdir, writeFile, cp } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { loadData } from './lib/load-data.mjs';
 import {
@@ -17,26 +17,19 @@ import { renderCategoryPage } from './lib/site-page-category.mjs';
 import { renderCategoriesIndexPage } from './lib/site-page-categories-index.mjs';
 import { renderSponsorPage } from './lib/site-page-sponsor.mjs';
 import { renderToolPage } from './lib/site-page-tool.mjs';
+import { renderStatsPage } from './lib/site-page-stats.mjs';
 import { renderRootPage } from './lib/site-page-root.mjs';
 import { render404Page } from './lib/site-page-404.mjs';
 import { sponsorContext, renderSponsorSlots, selectSponsors } from './lib/site-sponsors.mjs';
+import { renderBeaconScript } from './lib/site-beacon.mjs';
 
 const OUT = 'dist';
 
-/**
- * Vide dist/ avant d'écrire.
- *
- * Sans ça, le build n'ajoute et n'écrase jamais : une fiche retirée du
- * catalogue garde sa page indéfiniment, avec son ancien prix. Notion, retiré
- * sur demande, est ainsi resté publié et servi en 200 pendant des jours — la
- * suppression n'avait jamais atteint le site, et rien ne le signalait.
- *
- * Le cache des favicons vit dans .cache/, hors de dist/ : le nettoyage ne
- * coûte donc aucun téléchargement.
- */
-async function cleanOutDir() {
-  await rm(OUT, { recursive: true, force: true });
-}
+// Le nettoyage de dist/ vit dans build-feed.mjs, PREMIER maillon de
+// `npm run build` : nettoyer ici, en deuxième position, effaçait le feed et
+// le public/ écrits juste avant (404 sur /privacy en production). La garantie
+// « une fiche retirée disparaît du site » tient tant que le site se construit
+// via `npm run build` — jamais en lançant build-site seul.
 // L'accueil ne montre que les catégories les plus peuplées, avec un chip
 // "Toutes les catégories →" vers la liste complète (/{lang}/categories/) —
 // voir docs/design-fixes-report.md. Recalculé à chaque build (jamais une
@@ -75,12 +68,11 @@ async function main() {
   const data = await loadData(process.cwd());
   const { tools, i18n, ui, categories, agents } = data;
 
-  await cleanOutDir();
-
   // Date du build : c'est elle qui décide qu'un placement est actif. Un
   // placement échu disparaît donc au prochain build, sans aucune action —
   // d'où le build planifié quotidien (voir le plan 2).
   const today = new Date().toISOString().slice(0, 10);
+
 
   const voteCounts = await fetchVoteCounts();
   if (voteCounts) {
@@ -148,12 +140,25 @@ async function main() {
   let toolPageCount = 0;
   let categoryPageCount = 0;
 
+  // Répartition des verdicts sur tout le catalogue — voir site-page-stats.mjs,
+  // bloc « catalogue en chiffres » : un seul calcul, partagé par toutes les
+  // langues, jamais recopié à la main.
+  const verdictCounts = { yes: 0, kinda: 0, no: 0 };
+  for (const tool of tools.values()) verdictCounts[tool.verdict] += 1;
+
   for (const lang of langs) {
     const langUi = ui.get(lang);
-    if (!langUi?.site) {
+    // On teste `site.brand` et non la simple présence de `site` : depuis que la
+    // page /stats existe dans les sept langues, les sept ui.json portent un bloc
+    // `site` — réduit à { footer, stats } pour les cinq non publiées. Tester la
+    // présence du bloc laissait donc passer une locale incomplète, et le build
+    // cassait plus loin sur un `ui.site.skipToContent` indéfini, avec une
+    // TypeError opaque au lieu du message qui dit quoi faire. `brand` est la
+    // sentinelle : elle n'existe que dans un bloc site complet.
+    if (!langUi?.site?.brand) {
       throw new Error(
-        `data/i18n/${lang}/ui.json ne porte pas de bloc "site" — impossible de générer les pages en ${lang}. ` +
-        'Ajouter les chaînes du site (voir data/i18n/en/ui.json) avant de déclarer cette langue dans markets.'
+        `data/i18n/${lang}/ui.json ne porte pas les chaînes du site — impossible de générer les pages en ${lang}. ` +
+        'Ajouter le bloc "site" complet (voir data/i18n/en/ui.json) avant de déclarer cette langue dans markets.'
       );
     }
 
@@ -217,6 +222,19 @@ async function main() {
     );
     sitemapPages.push({ path: sponsorPath });
 
+    // Page stats — coquille build-time, chiffres vivants côté client.
+    const statsPath = `${homePath}stats/`;
+    const statsAlt = langs.map((l) => ({ lang: l, path: `/${l}/stats/` }));
+    await writeText(
+      join(OUT, lang, 'stats', 'index.html'),
+      renderStatsPage({
+        lang, path: statsPath, ui: langUi, alternates: statsAlt,
+        xDefaultPath: xDefaultOf(statsAlt), homePath,
+        toolCount: tools.size, verdictCounts,
+      })
+    );
+    sitemapPages.push({ path: statsPath });
+
     // Catégories
     for (const categorySlug of categorySlugs) {
       const catLangs = langsForCategory(tools, categorySlug);
@@ -265,8 +283,9 @@ async function main() {
   // ---- artefacts partagés -------------------------------------------------
   await writeText(join(OUT, 'assets', 'site.css'), SITE_CSS);
   await cp(join('scripts', 'assets', 'site.js'), join(OUT, 'assets', 'site.js'));
+  await cp(join('scripts', 'assets', 'stats.js'), join(OUT, 'assets', 'stats.js'));
+  await writeText(join(OUT, 'assets', 'beacon.js'), renderBeaconScript());
   await writeText(join(OUT, 'sitemap.xml'), buildSitemap(sitemapPages));
-
   console.log(
     `Site écrit dans ${OUT}/ — ${langs.length} langue(s), ${toolPageCount} fiche(s), ` +
     `${categoryPageCount} page(s) de catégorie, ${sitemapPages.length} URL(s) dans le sitemap (${SITE_ORIGIN}).`

@@ -1,8 +1,8 @@
-import { mkdir, writeFile, cp } from 'node:fs/promises';
+import { mkdir, writeFile, cp, rm } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { loadData, compileValidators, LANGS } from './lib/load-data.mjs';
 import { validateAll } from './lib/validate-rules.mjs';
-import { buildIndex, buildToolRecord, buildSlugList, FEED_VERSION } from './lib/feed.mjs';
+import { buildIndex, buildToolRecord, buildSlugList, buildAgentIdList, FEED_VERSION } from './lib/feed.mjs';
 
 const OUT = 'dist';
 
@@ -18,6 +18,18 @@ if (errors.length > 0) {
   console.error('Build interrompu : les données ne sont pas valides. Lancer `npm run validate`.');
   process.exit(1);
 }
+
+// Vide dist/ avant d'écrire — ici, dans le PREMIER maillon de `npm run build`,
+// pour que tout ce que la chaîne écrit ensuite (feed, public/, site) survive.
+// Sans nettoyage, le build n'ajoute et n'écrase jamais : une fiche retirée du
+// catalogue garde sa page indéfiniment, avec son ancien prix (Notion, retiré
+// sur demande, est ainsi resté publié et servi en 200 pendant des jours). Ce
+// nettoyage a longtemps vécu dans build-site.mjs, en DEUXIÈME position : il
+// effaçait alors le feed et le public/ que ce script venait d'écrire — c'est
+// ce qui a servi des 404 sur /privacy en production. Il vit désormais ici,
+// après la validation (des données invalides ne doivent pas vider dist/), et
+// build-site ne nettoie plus rien.
+await rm(OUT, { recursive: true, force: true });
 
 const feedRoot = join(OUT, 'feed', FEED_VERSION);
 
@@ -43,6 +55,14 @@ await mkdir(join('worker', 'src'), { recursive: true });
 await writeFile(
   join('worker', 'src', 'slugs.generated.mjs'),
   `// Généré par scripts/build-feed.mjs — ne pas modifier à la main.\nexport const SLUGS = new Set(${JSON.stringify(buildSlugList(data.tools))});\n`,
+  'utf8'
+);
+
+await writeFile(
+  join('worker', 'src', 'agents.generated.mjs'),
+  `// Généré par scripts/build-feed.mjs — ne pas modifier à la main.\n` +
+  `export const AGENT_IDS = new Set(${JSON.stringify(buildAgentIdList(data.agents))});\n` +
+  `export const SITE_LANGS = new Set(${JSON.stringify([...LANGS].sort())});\n`,
   'utf8'
 );
 

@@ -2,10 +2,31 @@ name = "saasmadefree-votes"
 main = "src/index.mjs"
 compatibility_date = "2026-07-01"
 
+# Façade crawlers IA (spec §4) : uniquement les pages HTML de l'apex — les
+# assets restent servis directement par Pages. Le domaine votes.saasmadefree.com
+# (API) est un Custom Domain configuré côté dashboard ; ces routes s'y ajoutent.
+routes = [
+  { pattern = "saasmadefree.com/", zone_name = "saasmadefree.com" },
+  { pattern = "saasmadefree.com/de/*", zone_name = "saasmadefree.com" },
+  { pattern = "saasmadefree.com/en/*", zone_name = "saasmadefree.com" },
+  { pattern = "saasmadefree.com/es/*", zone_name = "saasmadefree.com" },
+  { pattern = "saasmadefree.com/fr/*", zone_name = "saasmadefree.com" },
+  { pattern = "saasmadefree.com/it/*", zone_name = "saasmadefree.com" },
+  { pattern = "saasmadefree.com/nl/*", zone_name = "saasmadefree.com" },
+  { pattern = "saasmadefree.com/pt/*", zone_name = "saasmadefree.com" },
+]
+
 [[d1_databases]]
 binding = "DB"
 database_name = "saasmadefree"
 database_id = "04c15852-ddc2-4a16-86d4-8c9e5a11b138"
 
+[triggers]
+# 02:10 UTC : la journée UTC précédente est close, l'API GraphQL l'a indexée.
+crons = ["10 2 * * *"]
+
 [vars]
 ALLOWED_ORIGIN = "*"
+# Zone ID de saasmadefree.com (dashboard Cloudflare → Overview → API).
+# CF_API_TOKEN est un secret (npx wrangler secret put CF_API_TOKEN), jamais ici.
+CF_ZONE_TAG = "107ac3aefd0954a4b2ea49cbb3cc807f"

@@ -134,15 +134,36 @@ describe('insertion des sponsors dans la coquille', () => {
 // corrigée dans cette tâche — ce test la verrouille pour de bon.
 const PUBLISHED_SITE_LANGS = new Set(['en', 'fr']);
 
-describe('bloc "site" des locales — publié en entier, jamais par fragments', () => {
+// Cet invariant a été réécrit lors de l'intégration de la page /stats.
+//
+// Il vérifiait auparavant qu'une locale non publiée n'a aucun bloc `site`, ce
+// qui protégeait le garde-fou `!langUi?.site` de build-site.mjs. Mais /stats
+// existe dans les sept langues et leur a donné à toutes un bloc `site` réduit
+// à { footer, stats } — le garde-fou passait donc désormais pour n'importe
+// quelle locale, et le build cassait plus loin sur une clé indéfinie.
+//
+// Ce qu'on verrouille maintenant est la propriété qui compte vraiment : seules
+// les langues réellement publiées portent un bloc `site` COMPLET, et la
+// sentinelle du garde-fou (`site.brand`) est ce qui les distingue.
+describe('bloc "site" des locales — complet seulement pour les langues publiées', () => {
   for (const lang of LANGS) {
-    const shouldHaveSite = PUBLISHED_SITE_LANGS.has(lang);
-    it(`${lang}/ui.json ${shouldHaveSite ? 'porte' : 'ne porte pas'} de bloc "site"`, () => {
-      const raw = readFileSync(join('data', 'i18n', lang, 'ui.json'), 'utf8');
-      const langUi = JSON.parse(raw);
-      expect(Object.prototype.hasOwnProperty.call(langUi, 'site')).toBe(shouldHaveSite);
+    const published = PUBLISHED_SITE_LANGS.has(lang);
+    it(`${lang}/ui.json ${published ? 'porte' : 'ne porte pas'} un bloc "site" complet`, () => {
+      const langUi = JSON.parse(readFileSync(join('data', 'i18n', lang, 'ui.json'), 'utf8'));
+      expect(Boolean(langUi.site?.brand)).toBe(published);
     });
   }
+
+  it('une locale non publiée ne porte que les clés partagées par toutes', () => {
+    // Les cinq non publiées n'existent dans le ui.json que pour /stats et le
+    // pied de page. Toute autre clé y serait morte — et masquerait le fait que
+    // la langue n'est pas prête à être servie.
+    for (const lang of LANGS) {
+      if (PUBLISHED_SITE_LANGS.has(lang)) continue;
+      const langUi = JSON.parse(readFileSync(join('data', 'i18n', lang, 'ui.json'), 'utf8'));
+      expect(Object.keys(langUi.site ?? {}).sort()).toEqual(['footer', 'stats']);
+    }
+  });
 });
 
 describe('CSS des sponsors', () => {

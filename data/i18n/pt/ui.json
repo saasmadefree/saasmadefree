@@ -23,5 +23,40 @@
     "cli-paste": "Prompt copiado. Execute claude no seu terminal e cole-o.",
     "clipboard": "Prompt copiado. Cole-o no seu agente.",
     "not-yet": "Ainda não há transferência de prompt para este agente."
+  },
+  "site": {
+    "footer": {
+      "stats": "Estatísticas"
+    },
+    "stats": {
+      "title": "Estatísticas públicas",
+      "metaDescription": "As analytics first-party do SaaS Made Free em direto: páginas vistas, citações e crawlers de IA, prompts copiados e votos — publicadas às claras.",
+      "intro": "Analytics first-party, autoconsultadas e publicadas de propósito. Sem cookies, sem terceiros, atualizadas a cada minuto. Tudo o que é recolhido está nesta página — não existe painel privado.",
+      "liveUnavailable": "As estatísticas em direto estão inacessíveis neste momento. Os números do catálogo abaixo continuam exatos; os contadores voltam em breve.",
+      "viewsToday": "Visualizações hoje",
+      "peakDay": "Melhor dia",
+      "visitorDays": "Visitantes-dia · 7 d",
+      "visitorDaysNote": "Visitantes únicos diários somados ao longo de 7 dias. Os nossos hashes de IP com sal diário não podem ser ligados entre dias — de propósito — por isso um visitante que volta conta uma vez por dia.",
+      "promptsCopied": "Prompts copiados · 7 d",
+      "views14d": "Páginas vistas · últimos 14 dias",
+      "citedByAi": "Citado pelas IA",
+      "aiVisitors": "Visitantes enviados por assistentes de IA",
+      "aiVisitorsNote": "Pessoas que chegaram aqui a partir de uma resposta de IA — o mais próximo de uma citação real.",
+      "d7": "7 dias",
+      "d30": "30 dias",
+      "crawlers": "Crawlers de IA que leem este site",
+      "crawlersNote": "Contados duas vezes, de propósito: pelo nosso próprio Worker à frente das páginas (edge) e pela API de analytics da Cloudflare (cf). Duas fontes que se vigiam.",
+      "lastSeen": "última passagem",
+      "noneYet": "Nada ainda.",
+      "topPages": "Páginas mais vistas · 7 d",
+      "viewsByLang": "Visualizações por idioma · 7 d",
+      "copiesByAgent": "Cópias por agente · 7 d",
+      "topPrompts": "Prompts mais copiados · 7 d",
+      "votesTitle": "Votos",
+      "votesTotal": "{count} votos registados no total",
+      "topVoted": "Ferramentas mais votadas",
+      "catalogueTitle": "O catálogo em números",
+      "catalogueTools": "{count} ferramentas publicadas"
+    }
   }
 }

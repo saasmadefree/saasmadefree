@@ -35,6 +35,14 @@ four say *keep paying*. Leading with that instead of a blanket promise is what k
 reading like an affiliate site — and it's the part developers will check against the data
 before they trust anything else here.
 
+## Public stats
+
+The site counts its own audience — first-party, cookieless, no third parties — and
+publishes every number it collects at [saasmadefree.com/en/stats](https://saasmadefree.com/en/stats/),
+including which AI crawlers read the site and which AI assistants send visitors. The
+collection code is `scripts/lib/site-beacon.mjs` (client) and `worker/src/stats.mjs`
+(server); the privacy commitments are in [`public/privacy.html`](public/privacy.html).
+
 ## Running it
 
 ```

@@ -51,3 +51,7 @@ export function buildToolRecord(tool, i18nEntry, lang) {
 export function buildSlugList(tools) {
   return [...tools.keys()].sort();
 }
+
+export function buildAgentIdList(agents) {
+  return agents.map((agent) => agent.id).sort();
+}

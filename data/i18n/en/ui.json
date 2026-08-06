@@ -44,7 +44,8 @@
     "footer": {
       "source": "Source on GitHub",
       "privacy": "Privacy",
-      "credit": "Catalogue based on canivibecodeit"
+      "credit": "Catalogue based on canivibecodeit",
+      "stats": "Stats"
     },
     "verdicts": {
       "yes": {
@@ -100,6 +101,36 @@
       "figurePrompts": "Prompts written",
       "rankNote": "Ranked by votes recorded so far, then by how ready each entry is.",
       "verdictFilterAriaLabel": "Filter by verdict"
+    },
+    "stats": {
+      "title": "Public stats",
+      "metaDescription": "Live first-party analytics for SaaS Made Free: page views, AI citations and crawlers, prompt copies and votes — published in the open.",
+      "intro": "First-party analytics, self-queried and published on purpose. No cookies, no third-party trackers, refreshed every minute. Everything collected is on this page — there is no private dashboard.",
+      "liveUnavailable": "Live stats are unreachable right now. The catalogue figures below are still exact; the live counters will be back shortly.",
+      "viewsToday": "Views today",
+      "peakDay": "Best day",
+      "visitorDays": "Visitor-days · 7d",
+      "visitorDaysNote": "Daily unique visitors summed over 7 days. Our daily-salted IP hashes cannot be linked across days — by design — so a returning visitor counts once per day.",
+      "promptsCopied": "Prompts copied · 7d",
+      "views14d": "Page views · last 14 days",
+      "citedByAi": "Cited by AI",
+      "aiVisitors": "Visitors sent by AI assistants",
+      "aiVisitorsNote": "Humans who clicked through to this site from an AI answer — the closest thing to a real citation.",
+      "d7": "7 days",
+      "d30": "30 days",
+      "crawlers": "AI crawlers reading this site",
+      "crawlersNote": "Counted twice on purpose: by our own Worker in front of the pages (edge) and by Cloudflare's analytics API (cf). Two sources keep each other honest.",
+      "lastSeen": "last seen",
+      "noneYet": "Nothing yet.",
+      "topPages": "Top pages · 7d",
+      "viewsByLang": "Views by language · 7d",
+      "copiesByAgent": "Copies by agent · 7d",
+      "topPrompts": "Most-copied prompts · 7d",
+      "votesTitle": "Votes",
+      "votesTotal": "{count} votes recorded overall",
+      "topVoted": "Most-voted tools",
+      "catalogueTitle": "The catalogue in numbers",
+      "catalogueTools": "{count} tools published"
     },
     "tool": {
       "titleTemplate": "Can a coding agent replace {name}? — SaaS Made Free",

@@ -44,7 +44,8 @@
     "footer": {
       "source": "Code source sur GitHub",
       "privacy": "Confidentialité",
-      "credit": "Catalogue fondé sur canivibecodeit"
+      "credit": "Catalogue fondé sur canivibecodeit",
+      "stats": "Stats"
     },
     "verdicts": {
       "yes": {
@@ -100,6 +101,36 @@
       "figurePrompts": "Prompts écrits",
       "rankNote": "Classé par votes enregistrés jusqu’ici, puis par degré de préparation de la fiche.",
       "verdictFilterAriaLabel": "Filtrer par verdict"
+    },
+    "stats": {
+      "title": "Stats publiques",
+      "metaDescription": "Les analytics first-party de SaaS Made Free en direct : pages vues, citations et crawlers IA, prompts copiés et votes — publiés au grand jour.",
+      "intro": "Des analytics first-party, auto-interrogées et publiées volontairement. Pas de cookies, pas de tiers, rafraîchies chaque minute. Tout ce qui est collecté est sur cette page — il n'existe pas de tableau de bord privé.",
+      "liveUnavailable": "Les stats en direct sont injoignables pour le moment. Les chiffres du catalogue ci-dessous restent exacts ; les compteurs reviendront sous peu.",
+      "viewsToday": "Vues aujourd'hui",
+      "peakDay": "Record en un jour",
+      "visitorDays": "Visiteurs-jours · 7 j",
+      "visitorDaysNote": "Visiteurs uniques quotidiens additionnés sur 7 jours. Nos hachages d'IP salés par jour ne peuvent pas être recoupés d'un jour à l'autre — c'est voulu — donc un visiteur qui revient compte une fois par jour.",
+      "promptsCopied": "Prompts copiés · 7 j",
+      "views14d": "Pages vues · 14 derniers jours",
+      "citedByAi": "Cité par les IA",
+      "aiVisitors": "Visiteurs envoyés par les assistants IA",
+      "aiVisitorsNote": "Des humains arrivés ici depuis une réponse d'IA — ce qui se rapproche le plus d'une vraie citation.",
+      "d7": "7 jours",
+      "d30": "30 jours",
+      "crawlers": "Crawlers IA qui lisent ce site",
+      "crawlersNote": "Comptés deux fois, exprès : par notre propre Worker devant les pages (edge) et par l'API analytics de Cloudflare (cf). Deux sources qui se surveillent.",
+      "lastSeen": "dernier passage",
+      "noneYet": "Rien pour l'instant.",
+      "topPages": "Pages les plus vues · 7 j",
+      "viewsByLang": "Vues par langue · 7 j",
+      "copiesByAgent": "Copies par agent · 7 j",
+      "topPrompts": "Prompts les plus copiés · 7 j",
+      "votesTitle": "Votes",
+      "votesTotal": "{count} votes enregistrés au total",
+      "topVoted": "Outils les plus votés",
+      "catalogueTitle": "Le catalogue en chiffres",
+      "catalogueTools": "{count} outils publiés"
     },
     "tool": {
       "titleTemplate": "Un agent IA peut-il remplacer {name} ? — SaaS Made Free",

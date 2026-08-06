@@ -23,5 +23,40 @@
     "cli-paste": "Prompt gekopieerd. Start claude in je terminal en plak het.",
     "clipboard": "Prompt gekopieerd. Plak het in je agent.",
     "not-yet": "Nog geen prompt-overdracht voor deze agent."
+  },
+  "site": {
+    "footer": {
+      "stats": "Statistieken"
+    },
+    "stats": {
+      "title": "Openbare statistieken",
+      "metaDescription": "De first-party analytics van SaaS Made Free, live: paginaweergaven, AI-citaten en -crawlers, gekopieerde prompts en stemmen — openlijk gepubliceerd.",
+      "intro": "First-party analytics, zelf opgevraagd en bewust gepubliceerd. Geen cookies, geen derde partijen, elke minuut ververst. Alles wat verzameld wordt staat op deze pagina — een privédashboard bestaat niet.",
+      "liveUnavailable": "De live statistieken zijn momenteel onbereikbaar. De cataloguscijfers hieronder kloppen nog steeds; de tellers zijn zo terug.",
+      "viewsToday": "Weergaven vandaag",
+      "peakDay": "Beste dag",
+      "visitorDays": "Bezoekersdagen · 7 d",
+      "visitorDaysNote": "Dagelijkse unieke bezoekers, opgeteld over 7 dagen. Onze dagelijks gezouten IP-hashes zijn niet over dagen heen te koppelen — bewust — dus een terugkerende bezoeker telt één keer per dag.",
+      "promptsCopied": "Gekopieerde prompts · 7 d",
+      "views14d": "Paginaweergaven · laatste 14 dagen",
+      "citedByAi": "Geciteerd door AI",
+      "aiVisitors": "Bezoekers gestuurd door AI-assistenten",
+      "aiVisitorsNote": "Mensen die vanuit een AI-antwoord hierheen klikten — het dichtst bij een echt citaat.",
+      "d7": "7 dagen",
+      "d30": "30 dagen",
+      "crawlers": "AI-crawlers die deze site lezen",
+      "crawlersNote": "Bewust dubbel geteld: door onze eigen Worker vóór de pagina's (edge) en door Cloudflares analytics-API (cf). Twee bronnen die elkaar scherp houden.",
+      "lastSeen": "laatst gezien",
+      "noneYet": "Nog niets.",
+      "topPages": "Meest bekeken pagina's · 7 d",
+      "viewsByLang": "Weergaven per taal · 7 d",
+      "copiesByAgent": "Kopieën per agent · 7 d",
+      "topPrompts": "Meest gekopieerde prompts · 7 d",
+      "votesTitle": "Stemmen",
+      "votesTotal": "{count} stemmen in totaal",
+      "topVoted": "Meest gestemde tools",
+      "catalogueTitle": "De catalogus in cijfers",
+      "catalogueTools": "{count} gepubliceerde tools"
+    }
   }
 }

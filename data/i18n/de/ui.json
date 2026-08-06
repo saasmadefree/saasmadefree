@@ -23,5 +23,40 @@
     "cli-paste": "Prompt kopiert. Starte claude in deinem Terminal und füge ihn ein.",
     "clipboard": "Prompt kopiert. Füge ihn in deinen Agenten ein.",
     "not-yet": "Für diesen Agenten gibt es noch keine Prompt-Übergabe."
+  },
+  "site": {
+    "footer": {
+      "stats": "Statistiken"
+    },
+    "stats": {
+      "title": "Öffentliche Statistiken",
+      "metaDescription": "Die First-Party-Analytics von SaaS Made Free live: Seitenaufrufe, KI-Zitate und -Crawler, kopierte Prompts und Stimmen — offen veröffentlicht.",
+      "intro": "First-Party-Analytics, selbst abgefragt und absichtlich veröffentlicht. Keine Cookies, keine Drittanbieter, jede Minute aktualisiert. Alles Erfasste steht auf dieser Seite — ein privates Dashboard gibt es nicht.",
+      "liveUnavailable": "Die Live-Statistiken sind gerade nicht erreichbar. Die Katalogzahlen unten stimmen weiterhin; die Zähler sind bald zurück.",
+      "viewsToday": "Aufrufe heute",
+      "peakDay": "Bester Tag",
+      "visitorDays": "Besuchertage · 7 T",
+      "visitorDaysNote": "Tägliche eindeutige Besucher, über 7 Tage summiert. Unsere täglich gesalzenen IP-Hashes lassen sich nicht über Tage hinweg verknüpfen — mit Absicht — ein wiederkehrender Besucher zählt also einmal pro Tag.",
+      "promptsCopied": "Kopierte Prompts · 7 T",
+      "views14d": "Seitenaufrufe · letzte 14 Tage",
+      "citedByAi": "Von KI zitiert",
+      "aiVisitors": "Von KI-Assistenten geschickte Besucher",
+      "aiVisitorsNote": "Menschen, die aus einer KI-Antwort hierher geklickt haben — das Nächste an einem echten Zitat.",
+      "d7": "7 Tage",
+      "d30": "30 Tage",
+      "crawlers": "KI-Crawler, die diese Seite lesen",
+      "crawlersNote": "Absichtlich doppelt gezählt: von unserem eigenen Worker vor den Seiten (edge) und von Cloudflares Analytics-API (cf). Zwei Quellen, die einander prüfen.",
+      "lastSeen": "zuletzt gesehen",
+      "noneYet": "Noch nichts.",
+      "topPages": "Meistgesehene Seiten · 7 T",
+      "viewsByLang": "Aufrufe nach Sprache · 7 T",
+      "copiesByAgent": "Kopien nach Agent · 7 T",
+      "topPrompts": "Meistkopierte Prompts · 7 T",
+      "votesTitle": "Stimmen",
+      "votesTotal": "{count} Stimmen insgesamt",
+      "topVoted": "Meistgewählte Tools",
+      "catalogueTitle": "Der Katalog in Zahlen",
+      "catalogueTools": "{count} veröffentlichte Tools"
+    }
   }
 }
