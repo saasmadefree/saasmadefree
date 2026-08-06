@@ -92,7 +92,7 @@ describe("nextPriceUsd", () => {
 const ui = {
   site: {
     sponsor: {
-      label: 'Sponsor', heading: 'Sponsors', openLabel: 'Slot libre',
+      heading: 'Sponsors', openLabel: 'Slot libre',
       perDays: '/ 30 jours', bookCta: 'Réserver', fullLabel: 'Complet',
       railAriaLabel: 'Sponsors', tapeAriaLabel: 'Sponsors, défilant',
     },
@@ -112,8 +112,8 @@ const LIVE = {
 describe('carte de rail occupée', () => {
   const html = () => renderRail('left', ctx([LIVE], { 'postiz.com': '/assets/favicons/postiz.com.png' }));
 
-  it('marque le lien comme sponsorisé et sûr', () => {
-    expect(html()).toContain('rel="sponsored noopener"');
+  it('ouvre le lien en sécurité (noopener) dans un nouvel onglet', () => {
+    expect(html()).toContain('rel="noopener"');
     expect(html()).toContain('target="_blank"');
   });
 
@@ -122,8 +122,11 @@ describe('carte de rail occupée', () => {
     expect(html()).toContain('utm_campaign=sponsor_L1');
   });
 
-  it('affiche la mention Sponsor en clair, pas seulement dans rel', () => {
-    expect(html()).toContain('>Sponsor<');
+  // Décision explicite du propriétaire du site (2026-08-06) : aucun marqueur
+  // de sponsoring, ni visible ni dans rel.
+  it('ne porte aucun marqueur de sponsoring', () => {
+    expect(html()).not.toContain('sponsored');
+    expect(html()).not.toContain('>Sponsor<');
   });
 
   it('sert l’icône depuis le site, jamais depuis un tiers', () => {

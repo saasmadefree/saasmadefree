@@ -107,12 +107,16 @@ function renderCard(slot, ctx, price) {
       + `<span class="sp-cta">${escapeHtml(s.bookCta)} →</span></a>`;
   }
   const icon = ctx.favicons[placement.domain] ?? PLACEHOLDER_PATH;
+  // Décision explicite du propriétaire du site (2026-08-06) : aucun marqueur
+  // de sponsoring, ni visible ni dans rel — donc pas de "sponsored" ici. On
+  // garde noopener car target="_blank" l'exige pour des raisons de sécurité
+  // (empêcher la page ouverte d'accéder à window.opener), rien à voir avec le
+  // SEO. Ce n'est pas un oubli : ne pas réintroduire "sponsored" par réflexe.
   return `<a class="sp-card live" data-slot="${slot}" href="${escapeHtml(sponsorHrefFor(placement))}"`
-    + ` target="_blank" rel="sponsored noopener">`
+    + ` target="_blank" rel="noopener">`
     + `<img class="sp-icon" src="${escapeHtml(icon)}" alt="" width="32" height="32" loading="lazy">`
     + `<span class="sp-name">${escapeHtml(placement.name)}</span>`
-    + `<span class="sp-tagline">${escapeHtml(placement.tagline[ctx.lang] ?? '')}</span>`
-    + `<span class="sp-label">${escapeHtml(s.label)}</span></a>`;
+    + `<span class="sp-tagline">${escapeHtml(placement.tagline[ctx.lang] ?? '')}</span></a>`;
 }
 
 export function renderRail(side, ctx) {
@@ -141,8 +145,10 @@ function renderTapeItem(slot, ctx, price, { hidden = false } = {}) {
     return `<a class="sp-tape-item open" data-slot="${slot}" href="${escapeHtml(ctx.sponsorHref)}"${hiddenAttrs}>${body}</a>`;
   }
   const icon = ctx.favicons[placement.domain] ?? PLACEHOLDER_PATH;
+  // Même décision assumée que dans renderCard : pas de "sponsored", noopener
+  // conservé pour la sécurité de target="_blank" uniquement.
   return `<a class="sp-tape-item live" data-slot="${slot}" href="${escapeHtml(sponsorHrefFor(placement))}"`
-    + ` target="_blank" rel="sponsored noopener"${hiddenAttrs}>`
+    + ` target="_blank" rel="noopener"${hiddenAttrs}>`
     + `<img src="${escapeHtml(icon)}" alt="" width="18" height="18" loading="lazy">`
     + `<span>${escapeHtml(placement.name)}</span>`
     + `<span class="sp-tape-tagline">${escapeHtml(placement.tagline[ctx.lang] ?? '')}</span></a>`;
