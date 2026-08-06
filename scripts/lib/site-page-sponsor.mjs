@@ -1,6 +1,6 @@
 import { escapeHtml, renderLayout, renderBreadcrumb } from './site-html.mjs';
 import { organizationJsonLd, breadcrumbJsonLd } from './site-seo.mjs';
-import { formatMoney } from './site-format.mjs';
+import { formatMoney, interpolate } from './site-format.mjs';
 import {
   RAIL_SLOTS, TAPE_TOP_SLOTS, TAPE_BOTTOM_SLOTS,
   RAIL_LADDER_USD, TAPE_LADDER_USD,
@@ -13,7 +13,7 @@ export const SPONSOR_EMAIL = 'sponsor@saasmadefree.com';
  *  annoncer un prix qui monte sans montrer la règle serait invérifiable. */
 function ladderTable(ladder, heading, s) {
   const rows = ladder
-    .map((price, i) => `<tr><td>${i}</td><td>$${price}</td></tr>`)
+    .map((price, i) => `<tr><td>${escapeHtml(i)}</td><td>$${escapeHtml(price)}</td></tr>`)
     .join('\n          ');
   return `      <table class="sp-ladder">
         <caption>${escapeHtml(heading)}</caption>
@@ -29,7 +29,7 @@ function inventoryList(slots, sponsors, s) {
     .map((slot) => {
       const taken = sponsors.bySlot.has(slot);
       return `        <li class="sp-inv-item ${taken ? 'taken' : 'open'}">`
-        + `<span class="sp-inv-slot">${slot}</span> `
+        + `<span class="sp-inv-slot">${escapeHtml(slot)}</span> `
         + `<span class="sp-inv-state">${escapeHtml(taken ? s.takenLabel : s.openLabel)}</span></li>`;
     })
     .join('\n');
@@ -52,6 +52,11 @@ export function renderSponsorPage({
 }) {
   const site = ui.site;
   const s = site.sponsor;
+  // Même motif que renderFigures dans site-page-home.mjs : un chiffre du
+  // catalogue passe par Intl.NumberFormat avant d'être affiché, sinon
+  // l'accueil et cette page divergeraient (ex. "1 234" contre "1234") le
+  // jour où toolsPublished franchit 1 000.
+  const n = (value) => new Intl.NumberFormat(lang).format(value);
 
   const breadcrumbItems = [
     { label: site.directoryLabel, href: homePath },
@@ -59,6 +64,14 @@ export function renderSponsorPage({
   ];
 
   const steps = s.howSteps.map((step) => `        <li>${escapeHtml(step)}</li>`).join('\n');
+
+  // La meta description annonce la taille de l'inventaire ("8 blocs, 20
+  // places") : ces deux comptes sont dérivés des constantes exportées par
+  // site-sponsors.mjs, jamais écrits en dur dans ui.json — sinon la phrase
+  // mentirait en silence le jour où l'inventaire change de forme.
+  const railCount = RAIL_SLOTS.length;
+  const tapeCount = TAPE_TOP_SLOTS.length + TAPE_BOTTOM_SLOTS.length;
+  const description = interpolate(s.metaDescription, { railCount, tapeCount });
 
   const main = `    ${renderBreadcrumb(breadcrumbItems)}
     <h1>${escapeHtml(s.h1)}</h1>
@@ -68,9 +81,9 @@ export function renderSponsorPage({
       <h2>${escapeHtml(s.noAnalyticsHeading)}</h2>
       <p>${escapeHtml(s.noAnalyticsBody)}</p>
       <ul class="sp-figures">
-        <li><strong>${figures.toolsPublished}</strong> ${escapeHtml(site.home.figureToolsPublished)}</li>
-        <li><strong>${figures.categories}</strong> ${escapeHtml(site.home.figureCategories)}</li>
-        <li><strong>${figures.languages}</strong> ${escapeHtml(site.home.figureLanguages)}</li>
+        <li><strong>${escapeHtml(n(figures.toolsPublished))}</strong> ${escapeHtml(site.home.figureToolsPublished)}</li>
+        <li><strong>${escapeHtml(n(figures.categories))}</strong> ${escapeHtml(site.home.figureCategories)}</li>
+        <li><strong>${escapeHtml(n(figures.languages))}</strong> ${escapeHtml(site.home.figureLanguages)}</li>
         <li><strong>${escapeHtml(formatMoney(figures.totalMonthlyUsd, 'USD', lang))}</strong> ${escapeHtml(site.home.figureTotalPrice)}</li>
       </ul>
     </section>
@@ -115,7 +128,7 @@ ${steps}
     lang,
     path,
     title: s.titleTag,
-    description: s.metaDescription,
+    description,
     alternates,
     xDefaultPath,
     jsonLd: [organizationJsonLd(), breadcrumbJsonLd(breadcrumbItems)],

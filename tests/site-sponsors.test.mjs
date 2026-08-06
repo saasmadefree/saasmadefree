@@ -233,9 +233,9 @@ const fullUi = {
       ladderRankColumn: 'Slots taken',
       ladderPriceColumn: 'Next slot',
       titleTag: 'Sponsor SaaS Made Free',
-      metaDescription: 'Eight side slots and twenty scrolling places on a directory read by people about to cancel a subscription.',
+      metaDescription: '{railCount} side slots and {tapeCount} scrolling places on a directory read by people about to cancel a subscription.',
       h1: 'Sponsor SaaS Made Free',
-      lede: 'People land here to cancel something. That makes it a strange and very good place to be the thing they keep.',
+      lede: 'People land here to cancel something. What that means for a sponsor is for you to judge.',
       noAnalyticsHeading: 'What we cannot tell you',
       noAnalyticsBody: 'This site runs no analytics — no tracking pixel, no third-party script, nothing. So we have no traffic number to sell you, and we are not going to invent one. Everything below is computed from the catalogue itself, at build time.',
       inventoryHeading: 'The inventory',
@@ -287,4 +287,15 @@ describe('page /sponsor', () => {
   it('n’a qu’un seul h1', () => {
     expect(page().split('<h1').length - 1).toBe(1);
   });
+
+  // Verrou du round de revue : la meta description annonce la taille de
+  // l'inventaire, calculée depuis RAIL_SLOTS/TAPE_TOP_SLOTS/TAPE_BOTTOM_SLOTS
+  // — jamais depuis un "8"/"20" écrit en dur dans ui.json, qui mentirait en
+  // silence le jour où l'inventaire change de forme.
+  it('interpole le nombre de blocs et de places dans la meta description, jamais en dur', () => {
+    expect(page()).toContain(
+      '<meta name="description" content="8 side slots and 20 scrolling places on a directory read by people about to cancel a subscription.">'
+    );
+  });
+
 });
