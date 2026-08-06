@@ -29,4 +29,4 @@ crons = ["10 2 * * *"]
 ALLOWED_ORIGIN = "*"
 # Zone ID de saasmadefree.com (dashboard Cloudflare → Overview → API).
 # CF_API_TOKEN est un secret (npx wrangler secret put CF_API_TOKEN), jamais ici.
-CF_ZONE_TAG = ""
+CF_ZONE_TAG = "107ac3aefd0954a4b2ea49cbb3cc807f"
