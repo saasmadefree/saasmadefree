@@ -132,3 +132,28 @@ describe('bloc "site" des locales — publié en entier, jamais par fragments', 
     });
   }
 });
+
+describe('CSS des sponsors', () => {
+  it('utilise sticky et jamais fixed — un rail fixe ne réserverait aucune place', () => {
+    expect(SITE_CSS).toMatch(/\.sp-rail\{[^}]*position:sticky/);
+    expect(SITE_CSS).not.toMatch(/\.sp-rail\{[^}]*position:fixed/);
+  });
+
+  it('pose align-self:start, sans quoi le collage n’a jamais lieu', () => {
+    expect(SITE_CSS).toMatch(/\.sp-rail\{[^}]*align-self:start/);
+  });
+
+  it('déclare trois pistes de grille au-delà du seuil', () => {
+    expect(SITE_CSS).toContain('@media (min-width:84rem)');
+    expect(SITE_CSS).toMatch(/grid-template-columns:minmax\(9rem,13rem\)/);
+  });
+
+  it('masque le repli quand les rails sont visibles, et l’inverse', () => {
+    expect(SITE_CSS).toMatch(/\.sp-rail\{[^}]*display:none/);
+  });
+
+  it('coupe le défilement du bandeau en mouvement réduit', () => {
+    expect(SITE_CSS).toContain('prefers-reduced-motion');
+    expect(SITE_CSS).toMatch(/\.sp-tape-track\{[^}]*flex-wrap:wrap/);
+  });
+});

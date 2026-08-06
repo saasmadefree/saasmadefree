@@ -399,4 +399,79 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
   .r{opacity:0;transform:translateY(.35rem);animation:rise .5s cubic-bezier(.16,1,.3,1) forwards}
   @keyframes rise{to{opacity:1;transform:none}}
 }
+
+/* ---------- emplacements sponsors ---------- */
+/* Aucune couleur saturée ici : le vert/ambre/rouge appartient au verdict et à
+   lui seul (principe 1). Un bloc sponsor est du papier, de l'encre, un filet —
+   c'est aussi ce qui l'empêche de ressembler à une bannière publicitaire. */
+
+/* Par défaut les rails sont masqués et le repli affiché : c'est l'état des
+   petits écrans, donc celui de la majorité du trafic. */
+.sp-rail{display:none}
+.sp-fallback{margin:clamp(2rem,5vh,3rem) 0 0;border-top:1px solid var(--rule);padding-top:1.2rem}
+.sp-fallback-h{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;margin:0 0 .8rem}
+.sp-fallback-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem}
+@media (max-width:26rem){.sp-fallback-grid{grid-template-columns:1fr}}
+
+@media (min-width:84rem){
+  /* 84rem = 62rem de texte + 2 × 9rem de rail minimum + les gouttières. Les
+     pistes sont élastiques : elles grandissent jusqu'à 13rem au lieu de laisser
+     un vide sur les grands écrans. */
+  .shell{grid-template-columns:minmax(9rem,13rem) minmax(0,74rem) minmax(9rem,13rem);
+    column-gap:1.75rem}
+  .col-main{grid-column:2}
+  .sp-left{grid-column:1;grid-row:1}
+  .sp-right{grid-column:3;grid-row:1}
+  /* sticky et non fixed : le rail reste une piste de grille, donc il continue
+     de réserver sa place et le contenu ne passe jamais dessous. align-self est
+     obligatoire — sans lui la piste s'étire sur toute la hauteur de la grille
+     et rien ne colle jamais. */
+  .sp-rail{display:flex;flex-direction:column;gap:.75rem;
+    position:sticky;top:1rem;align-self:start;
+    max-height:calc(100dvh - 2rem);overflow-y:auto;overscroll-behavior:contain}
+  .sp-fallback{display:none}
+}
+
+.sp-card{display:flex;flex-direction:column;gap:.35rem;flex:1 1 0;min-height:6.5rem;
+  padding:.7rem .8rem;border:1px solid var(--rule);border-radius:.4rem;
+  background:var(--card);text-decoration:none;font-size:.8rem}
+.sp-card.open{border-style:dashed;background:none;justify-content:center;text-align:center}
+.sp-icon{border-radius:.25rem}
+.sp-name{font-weight:700;color:var(--ink)}
+.sp-tagline{color:var(--muted);line-height:1.35}
+.sp-open-label{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.sp-price{font-size:1.15rem;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
+.sp-per,.sp-full{color:var(--muted);font-size:.72rem}
+.sp-cta{color:var(--ink);text-decoration:underline;font-size:.72rem}
+
+/* Bandeaux : frères de .shell, donc pleine largeur sans aucune technique de
+   débord, et sans jamais croiser les rails. */
+.sponsor-tape{width:100%;background:color-mix(in srgb,var(--ink) 4%,var(--paper));
+  border-block:1px solid var(--rule);padding:.5rem 0;overflow:hidden}
+.sp-tape-marquee{overflow:hidden;width:100%}
+.sp-tape-track{display:inline-flex;gap:0;white-space:nowrap}
+.sp-tape-item{display:inline-flex;align-items:center;gap:.4rem;padding:.25em 1rem;
+  border-right:1px solid var(--rule);font-size:.78rem;color:var(--muted);text-decoration:none}
+.sp-tape-item .sp-tape-tagline{color:var(--muted);opacity:.8}
+.sp-tape-item.live span:first-of-type{color:var(--ink);font-weight:700}
+@media (prefers-reduced-motion:no-preference){
+  .sp-tape-track{animation:sp-tape-scroll 120s linear infinite}
+}
+@keyframes sp-tape-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* En mouvement réduit, la piste ne défile pas : elle se replie sur plusieurs
+   lignes et reste entièrement lisible. Un sponsor payant ne doit pas disparaître
+   pour ces lecteurs — c'est une obligation contractuelle autant qu'une exigence
+   d'accessibilité. */
+@media (prefers-reduced-motion:reduce){
+  .sp-tape-track{flex-wrap:wrap;white-space:normal;animation:none}
+  .sp-tape-marquee{overflow:visible}
+  /* La moitié dupliquée n'existe que pour boucler l'animation. Repliée en
+     mouvement réduit, elle ferait apparaître chaque sponsor deux fois — on la
+     retire donc du rendu. Le sélecteur vise l'attribut porté par chaque lien
+     (voir renderTapeItem dans site-sponsors.mjs), puisqu'aucun élément
+     n'englobe la seconde moitié : c'est cet attribut, individuel, qui a
+     remplacé le wrapper .sp-tape-dup initialement prévu. */
+  .sp-tape-item[inert]{display:none}
+}
 `;
