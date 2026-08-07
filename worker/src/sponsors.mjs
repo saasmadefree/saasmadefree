@@ -12,6 +12,21 @@ export const SELLABLE_MONTHS = new Set([1, 3]);
 // repart à la vente : sinon un panier abandonné bloquerait l'inventaire.
 export const RESERVATION_MINUTES = 30;
 
+/**
+ * Erreur métier porteuse d'un code machine. Les routes traduisent trois
+ * échecs distincts (slot inconnu, durée non vendue, inventaire plein) en
+ * statuts HTTP différents : elles doivent s'appuyer sur `code`, jamais sur
+ * `message`. Le message reste en français et destiné à un humain — le
+ * reformuler ou le traduire ne doit rien casser.
+ */
+export class SponsorError extends Error {
+  constructor(code, message) {
+    super(message);
+    this.name = 'SponsorError';
+    this.code = code;
+  }
+}
+
 const RAIL = new Set(RAIL_SLOTS);
 const TOP = new Set(TAPE_TOP_SLOTS);
 const BOTTOM = new Set(TAPE_BOTTOM_SLOTS);
@@ -32,7 +47,7 @@ function bucketOf(slot) {
 
 export function ladderIndexFor(slot, paidCounts) {
   const bucket = bucketOf(slot);
-  if (!bucket) throw new Error(`slot inconnu "${slot}"`);
+  if (!bucket) throw new SponsorError('unknown_slot', `slot inconnu "${slot}"`);
   return paidCounts[bucket] ?? 0;
 }
 
@@ -47,11 +62,15 @@ export function ladderIndexFor(slot, paidCounts) {
  */
 export function priceCentsFor(slot, months, paidCounts) {
   const kind = kindOf(slot);
-  if (!kind) throw new Error(`slot inconnu "${slot}"`);
-  if (!SELLABLE_MONTHS.has(months)) throw new Error(`durée non vendue : ${months}`);
+  if (!kind) throw new SponsorError('unknown_slot', `slot inconnu "${slot}"`);
+  if (!SELLABLE_MONTHS.has(months)) {
+    throw new SponsorError('unsold_duration', `durée non vendue : ${months}`);
+  }
   const ladder = kind === 'rail' ? RAIL_LADDER_USD : TAPE_LADDER_USD;
   const index = ladderIndexFor(slot, paidCounts);
-  if (index >= ladder.length) throw new Error(`inventaire plein pour "${slot}"`);
+  if (index >= ladder.length) {
+    throw new SponsorError('inventory_full', `inventaire plein pour "${slot}"`);
+  }
   return ladder[index] * 100 * months;
 }
 
