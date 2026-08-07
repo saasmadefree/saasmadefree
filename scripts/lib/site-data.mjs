@@ -30,6 +30,31 @@ export async function fetchVoteCounts(timeoutMs = 6000) {
   }
 }
 
+// Même discipline que fetchVoteCounts ci-dessus, appliquée aux chiffres
+// d'audience publiés par le Worker (voir worker/src/stats.mjs,
+// buildStatsPayload) : une seule tentative au moment du build, jamais de
+// zéro inventé si le service ne répond pas. Utilisé par la page /sponsor
+// (site-page-sponsor.mjs) pour montrer de vrais chiffres d'audience — sur un
+// site dont le principe est de ne jamais afficher un nombre invérifiable, un
+// service injoignable doit produire l'absence de chiffre, pas un zéro qui se
+// ferait passer pour une donnée.
+export async function fetchStats(timeoutMs = 6000) {
+  if (typeof fetch !== 'function') return null;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch(STATS_API_URL, { signal: controller.signal });
+    if (!res.ok) return null;
+    const body = await res.json();
+    if (!body || typeof body !== 'object' || Array.isArray(body)) return null;
+    return body;
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 /** Langues pour lesquelles au moins une fiche déclare des pages (ordre canonique LANGS). */
 export function siteLanguages(tools) {
   const present = new Set();

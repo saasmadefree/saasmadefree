@@ -2,7 +2,7 @@ import { describe, it, expect, afterEach, vi } from 'vitest';
 import {
   siteLanguages, toolsForLang, sortTools, categoriesForLang, categoryLabel,
   categoryEmoji, langsForCategory, fetchVoteCounts, VOTES_FEED_URL,
-  catalogueFigures, mrrDestroyed,
+  catalogueFigures, mrrDestroyed, fetchStats, STATS_API_URL,
 } from '../scripts/lib/site-data.mjs';
 
 function tool(slug, over = {}) {
@@ -152,6 +152,39 @@ describe('fetchVoteCounts', () => {
   it("renvoie null si la réponse n'est pas un objet exploitable", async () => {
     vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true, json: async () => [1, 2, 3] })));
     expect(await fetchVoteCounts()).toBeNull();
+  });
+});
+
+// Même discipline que fetchVoteCounts : une seule tentative au build, jamais
+// de zéro inventé quand le service d'analytics ne répond pas — voir la règle
+// d'honnêteté du projet, appliquée ici à la page /sponsor.
+describe('fetchStats', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it("renvoie le payload quand le service d'analytics répond", async () => {
+    const payload = { visitors7d: 23, views14d: [], copies7d: { total: 0 }, crawlers7d: [] };
+    vi.stubGlobal('fetch', vi.fn(async (url) => {
+      expect(url).toBe(STATS_API_URL);
+      return { ok: true, json: async () => payload };
+    }));
+    expect(await fetchStats()).toEqual(payload);
+  });
+
+  it('renvoie null sans lever quand la requête échoue', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => { throw new Error('offline'); }));
+    expect(await fetchStats()).toBeNull();
+  });
+
+  it('renvoie null sur un statut HTTP non ok, plutôt que des chiffres partiels', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => ({ ok: false, json: async () => ({}) })));
+    expect(await fetchStats()).toBeNull();
+  });
+
+  it("renvoie null si la réponse n'est pas un objet exploitable", async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true, json: async () => [1, 2, 3] })));
+    expect(await fetchStats()).toBeNull();
   });
 });
 
