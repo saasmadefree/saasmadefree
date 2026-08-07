@@ -21,7 +21,10 @@ CREATE TABLE IF NOT EXISTS sponsor_orders (
   name         TEXT,
   domain       TEXT,
   tagline      TEXT,
-  status       TEXT NOT NULL,        -- 'pending' | 'paid' | 'approved' | 'refunded'
+  -- Écrits par le webhook : 'paid' (encaissé ET emplacement attribué) ou
+  -- 'unassigned' (encaissé sans emplacement — à trancher à la main, c'est la
+  -- requête à surveiller). 'refunded' se pose à la main après remboursement.
+  status       TEXT NOT NULL,
   created_at   TEXT NOT NULL
 );
 

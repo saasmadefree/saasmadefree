@@ -69,16 +69,24 @@ export async function createCheckoutSession(
   env, { slot, months, amountCents, successUrl, cancelUrl, expiresAt, holdId }
 ) {
   // `expires_at` est exigé, pas optionnel : sans lui Stripe donne 24 heures de
-  // vie à la session, alors que la réservation du slot dure une demi-heure.
-  // Une session qui survit à sa réservation, c'est un lien de paiement encore
-  // valide sur un emplacement déjà relâché — donc un encaissement sans
-  // contrepartie. Le plancher de Stripe est de 30 minutes (voir
-  // CHECKOUT_MINUTES côté sponsors.mjs).
+  // vie à la session, bien au-delà de la réservation du slot. Une session qui
+  // survit à sa réservation, c'est un lien de paiement encore valide sur un
+  // emplacement déjà relâché — donc un encaissement sans contrepartie. Le
+  // plancher de Stripe est de 30 minutes (voir CHECKOUT_MINUTES et
+  // RESERVATION_MINUTES côté sponsors.mjs).
   if (!Number.isFinite(expiresAt)) {
     throw new Error('createCheckoutSession : expires_at manquant');
   }
   const form = new URLSearchParams();
   form.set('mode', 'payment');
+  // Épinglé à la carte, volontairement. Laissé libre, l'ensemble des moyens de
+  // paiement se règle dans le tableau de bord Stripe : activer un jour un
+  // moyen asynchrone (SEPA, Bacs, Klarna, boleto…) ferait arriver le paiement
+  // par `checkout.session.async_payment_succeeded`, un événement que ce worker
+  // ignore — argent encaissé, aucune commande, aucun slot, pas même une trace
+  // `unassigned`. Une ligne ici évite une perte silencieuse que déclencherait
+  // un futur clic dans une interface, très loin de ce code.
+  form.set('payment_method_types[0]', 'card');
   form.set('success_url', successUrl);
   form.set('cancel_url', cancelUrl);
   form.set('expires_at', String(Math.floor(expiresAt)));

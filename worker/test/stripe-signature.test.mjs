@@ -106,6 +106,11 @@ describe('createCheckoutSession', () => {
     // La session doit mourir avec la réservation, pas 24 h plus tard (défaut
     // de Stripe) : sinon le lien reste payable sur un slot déjà relâché.
     expect(body.get('expires_at')).toBe(String(EXPIRES_AT));
+    // Carte seulement : un moyen de paiement asynchrone activé un jour dans le
+    // tableau de bord ferait arriver l'encaissement par
+    // `checkout.session.async_payment_succeeded`, que ce worker ignore — donc
+    // de l'argent reçu sans commande ni slot, et sans même une trace.
+    expect(body.get('payment_method_types[0]')).toBe('card');
     // L'identifiant de réservation fait l'aller-retour : c'est lui qui, dans
     // le webhook, désigne la réservation à honorer.
     expect(body.get('metadata[hold]')).toBe('h:abc123:11111111-2222-3333-4444-555555555555');
