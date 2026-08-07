@@ -501,6 +501,17 @@ describe('page /sponsor', () => {
       for (const value of [STATS_PAYLOAD.visitors7d, VIEWS_14D_TOTAL, STATS_PAYLOAD.copies7d.total, STATS_PAYLOAD.crawlers7d.length]) {
         expect(html).not.toContain(`<strong>${value}</strong>`);
       }
+      // Verrou plus général que les quatre valeurs ci-dessus (revue du
+      // round 2) : une régression qui remplacerait la branche null par une
+      // liste de zéros passerait le test précédent sans passer celui-ci —
+      // aucun <strong> (la convention .sp-figures pour un chiffre) ne doit
+      // apparaître dans le bloc audience lui-même, qui va de la fin de
+      // l'intro au début du lien vers /stats.
+      const start = html.indexOf(fullUi.site.sponsor.measuredIntro) + fullUi.site.sponsor.measuredIntro.length;
+      const end = html.indexOf(fullUi.site.sponsor.statsLinkCta);
+      expect(start).toBeGreaterThan(-1);
+      expect(end).toBeGreaterThan(start);
+      expect(html.slice(start, end)).not.toContain('<strong>');
     });
 
     it('porte un lien vers la page /stats de la langue rendue, quel que soit l’état du payload', () => {
@@ -528,6 +539,80 @@ describe('page /sponsor', () => {
       const values = [...section.matchAll(/<strong>([^<]+)<\/strong>/g)].map((m) => m[1]);
       expect(values).toHaveLength(4);
       for (const value of values) expect(allowed.has(value), `valeur inattendue : ${value}`).toBe(true);
+    });
+  });
+
+  // Round de revue 2 : `stats` traverse une frontière HTTP (fetchStats ne
+  // vérifie que « c'est un objet », comme fetchVoteCounts) — un payload
+  // présent mais incomplet est donc un cas réel, même si le Worker actuel ne
+  // le produit pas aujourd'hui. Chaque cas du tableau du reviewer, plus les
+  // deux cas « tableau vide » qui doivent continuer à rendre un vrai 0.
+  describe('section « ce qu’on mesure » — payload partiel', () => {
+    function omit(key) {
+      const copy = { ...STATS_PAYLOAD };
+      delete copy[key];
+      return copy;
+    }
+
+    it('visitors7d absent : ne plante pas, n’affiche pas ce chiffre, garde les trois autres', () => {
+      const stats = omit('visitors7d');
+      expect(() => page({ stats })).not.toThrow();
+      const html = page({ stats });
+      expect(html).not.toContain('NaN');
+      expect(html).not.toContain(fullUi.site.stats.visitorDays);
+      expect(html).toContain(`<strong>${n(VIEWS_14D_TOTAL, 'fr')}</strong> ${fullUi.site.stats.views14d}`);
+      expect(html).toContain(`<strong>${n(STATS_PAYLOAD.copies7d.total, 'fr')}</strong> ${fullUi.site.stats.promptsCopied}`);
+      expect(html).toContain(`<strong>${n(STATS_PAYLOAD.crawlers7d.length, 'fr')}</strong> ${fullUi.site.stats.crawlers}`);
+    });
+
+    it('views14d absent : ne plante pas (pas de TypeError sur reduce), n’affiche pas ce chiffre, garde les trois autres', () => {
+      const stats = omit('views14d');
+      expect(() => page({ stats })).not.toThrow();
+      const html = page({ stats });
+      expect(html).not.toContain('NaN');
+      expect(html).not.toContain(fullUi.site.stats.views14d);
+      expect(html).toContain(`<strong>${n(STATS_PAYLOAD.visitors7d, 'fr')}</strong> ${fullUi.site.stats.visitorDays}`);
+      expect(html).toContain(`<strong>${n(STATS_PAYLOAD.copies7d.total, 'fr')}</strong> ${fullUi.site.stats.promptsCopied}`);
+      expect(html).toContain(`<strong>${n(STATS_PAYLOAD.crawlers7d.length, 'fr')}</strong> ${fullUi.site.stats.crawlers}`);
+    });
+
+    it('copies7d.total absent : n’affiche pas de NaN, n’affiche pas ce chiffre, garde les trois autres', () => {
+      const stats = { ...STATS_PAYLOAD, copies7d: { byAgent: [], topPrompts: [] } };
+      expect(() => page({ stats })).not.toThrow();
+      const html = page({ stats });
+      expect(html).not.toContain('NaN');
+      expect(html).not.toContain(fullUi.site.stats.promptsCopied);
+      expect(html).toContain(`<strong>${n(STATS_PAYLOAD.visitors7d, 'fr')}</strong> ${fullUi.site.stats.visitorDays}`);
+      expect(html).toContain(`<strong>${n(VIEWS_14D_TOTAL, 'fr')}</strong> ${fullUi.site.stats.views14d}`);
+      expect(html).toContain(`<strong>${n(STATS_PAYLOAD.crawlers7d.length, 'fr')}</strong> ${fullUi.site.stats.crawlers}`);
+    });
+
+    it('crawlers7d absent : ne plante pas (pas de TypeError sur length), n’affiche pas ce chiffre, garde les trois autres', () => {
+      const stats = omit('crawlers7d');
+      expect(() => page({ stats })).not.toThrow();
+      const html = page({ stats });
+      expect(html).not.toContain('NaN');
+      expect(html).not.toContain(fullUi.site.stats.crawlers);
+      expect(html).toContain(`<strong>${n(STATS_PAYLOAD.visitors7d, 'fr')}</strong> ${fullUi.site.stats.visitorDays}`);
+      expect(html).toContain(`<strong>${n(VIEWS_14D_TOTAL, 'fr')}</strong> ${fullUi.site.stats.views14d}`);
+      expect(html).toContain(`<strong>${n(STATS_PAYLOAD.copies7d.total, 'fr')}</strong> ${fullUi.site.stats.promptsCopied}`);
+    });
+
+    // « Absent » ≠ « vide » : un tableau vide est une vraie mesure (0 vue, 0
+    // crawler distinct) et doit s'afficher comme tel — seul le champ absent
+    // fait disparaître son chiffre.
+    it('views14d et crawlers7d vides ([]) : affichent bien 0, un vrai chiffre', () => {
+      const stats = { ...STATS_PAYLOAD, views14d: [], crawlers7d: [] };
+      const html = page({ stats });
+      expect(html).toContain(`<strong>${n(0, 'fr')}</strong> ${fullUi.site.stats.views14d}`);
+      expect(html).toContain(`<strong>${n(0, 'fr')}</strong> ${fullUi.site.stats.crawlers}`);
+    });
+
+    it('retombe sur le même message que le payload null quand plus aucun chiffre n’est calculable', () => {
+      const html = page({ stats: {} });
+      expect(html).not.toContain('NaN');
+      expect(html).toContain(fullUi.site.sponsor.statsUnavailableNote);
+      expect(html).toContain('href="/fr/stats/"');
     });
   });
 
