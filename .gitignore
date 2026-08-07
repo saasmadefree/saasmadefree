@@ -4,6 +4,7 @@ node_modules/
 dist/
 worker/src/slugs.generated.mjs
 worker/src/agents.generated.mjs
+worker/src/sponsor-inventory.generated.mjs
 .wrangler/
 .DS_Store
 docs/superpowers/
