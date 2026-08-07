@@ -5,7 +5,7 @@ import {
   SELLABLE_MONTHS, CHECKOUT_MINUTES, MAX_HOLDS_PER_VISITOR,
   SLOT_ASSIGNED, SLOT_RETRY,
   kindOf, priceCentsFor, paidCounts, ensureSlots, releaseExpiredReservations,
-  readSlots, checkoutUrls, holdIdFor, countHolds, reserveSlot, releaseSlot,
+  readSlots, checkoutUrls, holdIdFor, holdsOf, reserveSlot, releaseSlot,
   assignPaidSlot, recordOrder,
 } from './sponsors.mjs';
 import { createCheckoutSession, verifyStripeSignature, customFieldValue } from './stripe.mjs';
@@ -128,7 +128,13 @@ async function handleSponsorCheckout(request, env) {
   // demande ni compte ni paiement. Le comptage vient APRÈS la libération des
   // réservations mortes, sinon un acheteur légitime paierait pour ses propres
   // paniers abandonnés.
-  if (await countHolds(env, ipHash) >= MAX_HOLDS_PER_VISITOR) {
+  //
+  // Le plafond ne s'applique PAS à un emplacement que le visiteur détient
+  // déjà : sinon il barrerait la route à la reprise de sa propre réservation
+  // et rendrait un 429 sur son propre slot, ce qui ramènerait le problème que
+  // la reprise vient de corriger.
+  const holds = await holdsOf(env, ipHash);
+  if (!holds.slots.has(slot) && holds.count >= MAX_HOLDS_PER_VISITOR) {
     return json({ error: 'too_many_reservations' }, 429, env);
   }
 

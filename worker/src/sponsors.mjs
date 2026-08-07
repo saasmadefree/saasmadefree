@@ -167,19 +167,27 @@ export function holderOf(sessionId) {
 }
 
 /**
- * Nombre de slots actuellement tenus par ce visiteur. On relit les lignes
- * `reserved` (28 au maximum) et on compte en mémoire : un `LIKE` sur un
- * préfixe fabriqué à la main serait moins lisible pour aucun gain à cette
- * taille.
+ * Slots actuellement tenus par ce visiteur : `{ count, slots }`. On relit les
+ * lignes `reserved` (28 au maximum) et on trie en mémoire — à cette taille, un
+ * comptage SQL n'achèterait rien qu'une requête moins lisible.
+ *
+ * Rendre l'ensemble des slots, et pas seulement leur nombre, sert au plafond :
+ * il ne doit pas se déclencher quand le visiteur redemande un emplacement
+ * qu'il détient déjà, sinon il fermerait la porte devant la reprise et
+ * rendrait un 429 sur son propre slot.
  *
  * À appeler APRÈS releaseExpiredReservations, sinon des réservations mortes
  * compteraient contre un acheteur légitime.
  */
-export async function countHolds(env, ipHash) {
+export async function holdsOf(env, ipHash) {
   const { results } = await env.DB.prepare(
-    "SELECT session_id FROM sponsor_slots WHERE status = 'reserved'"
+    "SELECT slot, session_id FROM sponsor_slots WHERE status = 'reserved'"
   ).all();
-  return results.filter((row) => holderOf(row.session_id) === ipHash).length;
+  const slots = new Set();
+  for (const row of results) {
+    if (holderOf(row.session_id) === ipHash) slots.add(row.slot);
+  }
+  return { count: slots.size, slots };
 }
 
 /**
@@ -257,11 +265,18 @@ function addMonths(date, months) {
  *   récupère quand même son emplacement (la fenêtre de rejeu de Stripe est de
  *   quelques jours, très en deçà du mois minimum vendu — un slot libéré par
  *   l'expiration ne peut donc pas être repris par un vieil événement) ;
- * - `status = 'reserved' AND session_id = ?` : c'est bien NOTRE réservation,
- *   reconnue à son identifiant de réservation (`holdId`), pas à celui de la
- *   session Stripe — la réservation naît avant que Stripe n'ait répondu ;
+ * - `status = 'reserved'` et la ligne appartient au payeur — soit exactement la
+ *   réservation qui a ouvert la session (`session_id = holdId`), soit une
+ *   réservation du MÊME détenteur. Cette seconde branche est indispensable
+ *   depuis qu'un visiteur peut reprendre sa propre réservation : reprendre
+ *   remplace l'identifiant dans la ligne, mais n'expire pas la session Stripe
+ *   déjà créée (`cancel_url` ne l'expire pas, elle vit ses CHECKOUT_MINUTES).
+ *   Sans elle, payer par l'ancien onglet donnait un encaissement sans
+ *   emplacement — même slot, même visiteur, aucune ambiguïté à lever ;
  * - un slot déjà `paid` ne bouge pas — ni par rejeu du même événement, ni par
  *   un événement portant sur un slot vendu entre-temps à quelqu'un d'autre.
+ *   Un vrai double paiement du même visiteur reste donc `unassigned` pour la
+ *   seconde session, ce qui est le comportement voulu.
  *
  * Une fois attribué, le slot porte l'identifiant de la session Stripe : c'est
  * lui qui relie la ligne à la commande encaissée.
@@ -271,13 +286,22 @@ function addMonths(date, months) {
 export async function markSlotPaid(env, slot, holdId, sessionId, months, now) {
   const startsOn = dayKey(now);
   const endsOn = dayKey(addMonths(now, months));
+  // Même comparaison exacte que dans reserveSlot : `hashIp` rend toujours 64
+  // caractères hexadécimaux, donc le préfixe fait exactement 67 caractères et
+  // aucun hachage ne peut être le préfixe strict d'un autre.
+  const holder = holderOf(holdId);
+  const prefix = holder === null ? null : `h:${holder}:`;
   const res = await env.DB.prepare(
     `UPDATE sponsor_slots
         SET status = 'paid', session_id = ?, reserved_until = NULL,
             starts_on = ?, ends_on = ?
       WHERE slot = ?
-        AND (status = 'open' OR (status = 'reserved' AND session_id = ?))`
-  ).bind(sessionId, startsOn, endsOn, slot, holdId).run();
+        AND (status = 'open'
+             OR (status = 'reserved'
+                 AND (session_id = ?
+                      OR (? IS NOT NULL
+                          AND substr(session_id, 1, length(?)) = ?))))`
+  ).bind(sessionId, startsOn, endsOn, slot, holdId, prefix, prefix, prefix).run();
   return (res.meta?.changes ?? 0) > 0;
 }
 
