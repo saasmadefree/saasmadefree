@@ -1,6 +1,12 @@
 import { dayKey, hashIp } from './hash.mjs';
 import { SLUGS } from './slugs.generated.mjs';
 import { recordBeacon, buildStatsPayload, serveFacade, runScheduled } from './stats.mjs';
+import {
+  SELLABLE_MONTHS, kindOf, priceCentsFor, paidCounts, ensureSlots,
+  releaseExpiredReservations, readSlots, reserveSlot, releaseSlot, attachSession,
+  markSlotPaid,
+} from './sponsors.mjs';
+import { createCheckoutSession, verifyStripeSignature } from './stripe.mjs';
 
 const RATE_LIMIT_PER_MINUTE = 30;
 const RATE_RETENTION_MINUTES = 2;
@@ -53,6 +59,195 @@ async function overRateLimit(env, ipHash, now) {
      RETURNING n`
   ).bind(ipHash, minute).first();
   return (row?.n ?? 0) > RATE_LIMIT_PER_MINUTE;
+}
+
+// Les trois échecs métier de sponsors.mjs se traduisent en statuts distincts.
+// La correspondance porte sur le CODE, jamais sur le message : celui-ci est
+// écrit en français pour un humain et doit pouvoir être reformulé sans rien
+// casser. Un code absent de cette table est un bug, pas un cas prévu : il
+// remonte au filet global et sort en 500 plutôt que d'être traduit au hasard.
+const SPONSOR_ERROR_STATUS = {
+  unknown_slot: 400,
+  unsold_duration: 400,
+  inventory_full: 409,
+};
+
+/** Valeur d'un `custom_field` du formulaire Stripe, ou null s'il manque. */
+function customFieldValue(session, key) {
+  const field = (session?.custom_fields ?? []).find((f) => f?.key === key);
+  return field?.text?.value ?? null;
+}
+
+/**
+ * POST /api/v1/sponsors/checkout — ouvre une session de paiement.
+ *
+ * Le corps ne porte que `slot`, `months` et `expectedPriceCents`. Tout autre
+ * champ est ignoré : le montant facturé est recalculé ici, depuis les barèmes
+ * générés et l'état de la base. Un `amountCents` glissé dans le corps ne
+ * change donc rien.
+ */
+async function handleSponsorCheckout(request, env) {
+  if (request.method !== 'POST') return json({ error: 'method_not_allowed' }, 405, env);
+
+  // Même patron que VOTE_SALT : un secret absent est une panne, pas une
+  // dégradation silencieuse. Encaisser à moitié serait pire que refuser.
+  if (!env.STRIPE_SECRET_KEY || !env.STRIPE_WEBHOOK_SECRET) {
+    return json({ error: 'misconfigured' }, 500, env);
+  }
+
+  // ALLOWED_ORIGIN vaut "*", ce qui convient à une lecture publique mais pas
+  // à une route qui déclenche un paiement. Comparaison stricte, donc fermée
+  // par défaut : en-tête absent ou SPONSOR_ORIGIN non déployé → refus.
+  if (request.headers.get('origin') !== env.SPONSOR_ORIGIN) {
+    return json({ error: 'forbidden_origin' }, 403, env);
+  }
+
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: 'invalid_json' }, 400, env);
+  }
+  const slot = body?.slot;
+  const months = body?.months;
+  const expectedPriceCents = body?.expectedPriceCents;
+
+  const now = new Date();
+  const ip = request.headers.get('cf-connecting-ip') ?? '0.0.0.0';
+  const ipHash = await hashIp(ip, env.VOTE_SALT, dayKey(now));
+  // Seau dédié ('s:'), comme le beacon utilise 'b:' : un abus de checkout ne
+  // doit jamais consommer le quota de vote d'un visiteur légitime.
+  if (await overRateLimit(env, 's:' + ipHash, now)) {
+    return json({ error: 'rate_limited' }, 429, env);
+  }
+
+  await ensureSlots(env);
+  await releaseExpiredReservations(env, now);
+
+  let priceCents;
+  try {
+    priceCents = priceCentsFor(slot, months, await paidCounts(env));
+  } catch (err) {
+    const status = SPONSOR_ERROR_STATUS[err?.code];
+    if (!status) throw err;
+    return json({ error: err.code }, status, env);
+  }
+
+  // `expectedPriceCents` ne facture rien : il sert uniquement à détecter une
+  // dérive entre le prix affiché à l'acheteur et le prix du moment (un autre
+  // slot vendu entre-temps fait monter le barème). Différent — ou absent —
+  // on refuse en rendant le vrai montant, et aucune session n'est créée.
+  if (expectedPriceCents !== priceCents) {
+    return json({ error: 'price_changed', priceCents, currency: 'USD' }, 409, env);
+  }
+
+  // Réserver AVANT de créer la session. L'inverse laisserait une session
+  // payable sur un slot que quelqu'un d'autre vient de prendre. La
+  // réservation naît sous un nom provisoire — Stripe n'a pas encore rendu
+  // d'identifiant — remplacé juste après par celui de la session.
+  const holdId = `hold_${crypto.randomUUID()}`;
+  if (!(await reserveSlot(env, slot, holdId, now))) {
+    return json({ error: 'slot_taken' }, 409, env);
+  }
+
+  let session;
+  try {
+    session = await createCheckoutSession(env, {
+      slot,
+      months,
+      amountCents: priceCents,
+      successUrl: `${env.SPONSOR_ORIGIN}/sponsor/?paid=1`,
+      cancelUrl: `${env.SPONSOR_ORIGIN}/sponsor/`,
+    });
+  } catch {
+    // Aucune session créée : le slot ne doit pas rester bloqué 30 minutes
+    // pour une panne qui n'est pas celle de l'acheteur.
+    await releaseSlot(env, slot, holdId);
+    return json({ error: 'stripe_unavailable' }, 502, env);
+  }
+
+  await attachSession(env, slot, holdId, session.id);
+  return json({ url: session.url }, 200, env);
+}
+
+/**
+ * POST /api/v1/sponsors/webhook — seule preuve de paiement.
+ *
+ * Jamais la redirection `success_url`, qu'un visiteur peut atteindre à la
+ * main sans avoir rien payé.
+ */
+async function handleSponsorWebhook(request, env) {
+  if (request.method !== 'POST') return json({ error: 'method_not_allowed' }, 405, env);
+  if (!env.STRIPE_SECRET_KEY || !env.STRIPE_WEBHOOK_SECRET) {
+    return json({ error: 'misconfigured' }, 500, env);
+  }
+
+  // Corps BRUT, avant tout JSON.parse : la signature porte sur les octets
+  // exacts reçus, et re-sérialiser un objet parsé ne redonnerait pas la même
+  // chaîne — une requête légitime serait rejetée.
+  const raw = await request.text();
+  const now = new Date();
+  const signature = request.headers.get('stripe-signature');
+  if (!(await verifyStripeSignature(raw, signature, env.STRIPE_WEBHOOK_SECRET, now))) {
+    return json({ error: 'bad_signature' }, 400, env);
+  }
+
+  let event;
+  try {
+    event = JSON.parse(raw);
+  } catch {
+    return json({ error: 'invalid_json' }, 400, env);
+  }
+
+  // Tout autre événement est acquitté en 200 : répondre en erreur ferait
+  // re-tenter Stripe en boucle sur un message qu'on ne traitera jamais.
+  if (event?.type !== 'checkout.session.completed') {
+    return json({ received: true }, 200, env);
+  }
+  const session = event?.data?.object;
+  // « completed » ne veut pas dire encaissé : certains moyens de paiement se
+  // règlent en différé. Le slot n'est attribué qu'une fois l'argent reçu.
+  if (session?.payment_status !== 'paid') {
+    return json({ received: true, pending: true }, 200, env);
+  }
+
+  const slot = session.metadata?.slot;
+  const months = Number(session.metadata?.months);
+  const sessionId = session.id;
+  // Métadonnées inexploitables : on refuse bruyamment plutôt que d'écrire une
+  // commande fausse. L'événement reste visible en échec dans le tableau de
+  // bord Stripe, ce qu'un 200 silencieux ne permettrait pas.
+  if (!kindOf(slot) || !SELLABLE_MONTHS.has(months) || typeof sessionId !== 'string') {
+    return json({ error: 'invalid_event' }, 400, env);
+  }
+
+  // Idempotence : Stripe rejoue ses événements. `session_id` est clé primaire
+  // et l'insertion est OR IGNORE, donc un rejeu ne peut pas créer une seconde
+  // commande. La commande est écrite AVANT l'attribution du slot : si le
+  // second appel échouait, un rejeu le rattraperait ; l'inverse laisserait un
+  // encaissement sans trace.
+  await env.DB.prepare(
+    `INSERT OR IGNORE INTO sponsor_orders
+       (session_id, slot, months, amount_cents, currency, email, name, domain,
+        tagline, status, created_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'paid', ?)`
+  ).bind(
+    sessionId,
+    slot,
+    months,
+    Number(session.amount_total ?? 0),
+    session.currency ?? 'usd',
+    session.customer_details?.email ?? null,
+    customFieldValue(session, 'sponsor_name'),
+    customFieldValue(session, 'sponsor_domain'),
+    customFieldValue(session, 'sponsor_tagline'),
+    now.toISOString()
+  ).run();
+
+  // La ligne du slot peut ne pas exister si aucune route ne l'a encore créée.
+  await ensureSlots(env);
+  await markSlotPaid(env, slot, sessionId, months, now);
+  return json({ received: true }, 200, env);
 }
 
 async function countFor(env, slug) {
@@ -123,6 +318,17 @@ async function handle(request, env) {
     for (const row of results) counts[row.slug] = row.c;
     return json(counts, 200, env, 'public, max-age=3600');
   }
+
+  // Routes sponsors (spec §10). Chemins comparés en égalité stricte, jamais
+  // en préfixe : le worker sert aussi de façade devant les pages HTML du site,
+  // et une route d'API n'a pas le droit de happer une page comme /en/sponsor/.
+  if (url.pathname === '/api/v1/sponsors/slots') {
+    if (request.method !== 'GET') return json({ error: 'method_not_allowed' }, 405, env);
+    // Lecture publique, sans secret : c'est ce que la page /sponsor rafraîchit.
+    return json(await readSlots(env, new Date()), 200, env, 'public, max-age=60');
+  }
+  if (url.pathname === '/api/v1/sponsors/checkout') return handleSponsorCheckout(request, env);
+  if (url.pathname === '/api/v1/sponsors/webhook') return handleSponsorWebhook(request, env);
 
   if (url.pathname !== '/api/v1/vote') return json({ error: 'not_found' }, 404, env);
   if (request.method !== 'POST') return json({ error: 'method_not_allowed' }, 405, env);

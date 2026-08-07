@@ -2,6 +2,7 @@ import {
   RAIL_SLOTS, TAPE_TOP_SLOTS, TAPE_BOTTOM_SLOTS,
   RAIL_LADDER_USD, TAPE_LADDER_USD, ALL_SLOTS,
 } from './sponsor-inventory.generated.mjs';
+import { dayKey } from './hash.mjs';
 
 // Durées vendues. Trois mois coûte trois fois le prix du jour, sans remise :
 // ce qu'on vend n'est pas un rabais, c'est le verrouillage du tarif avant
@@ -94,6 +95,90 @@ export async function releaseExpiredReservations(env, now) {
        WHERE status = 'reserved' AND reserved_until < ?`
     ).bind(now.toISOString()).run();
   } catch { /* best-effort */ }
+}
+
+/**
+ * Réserve un slot. `UPDATE … WHERE slot = ? AND status = 'open'` est la
+ * garde : D1 sérialise l'instruction, donc deux acheteurs simultanés sur L1 ne
+ * peuvent pas gagner tous les deux, sans transaction explicite. Zéro ligne
+ * modifiée = le slot vient d'être pris.
+ */
+export async function reserveSlot(env, slot, sessionId, now) {
+  const until = new Date(now.getTime() + RESERVATION_MINUTES * 60_000).toISOString();
+  const res = await env.DB.prepare(
+    `UPDATE sponsor_slots SET status = 'reserved', session_id = ?, reserved_until = ?
+     WHERE slot = ? AND status = 'open'`
+  ).bind(sessionId, until, slot).run();
+  return (res.meta?.changes ?? 0) > 0;
+}
+
+/**
+ * Relibère une réservation qu'on vient de poser. Appelée quand la création de
+ * la session Stripe échoue : sans elle, un incident chez Stripe bloquerait le
+ * slot 30 minutes pour rien. `session_id = ?` garantit qu'on ne libère que sa
+ * propre réservation, jamais celle d'un autre acheteur.
+ */
+export async function releaseSlot(env, slot, sessionId) {
+  const res = await env.DB.prepare(
+    `UPDATE sponsor_slots SET status = 'open', session_id = NULL, reserved_until = NULL
+     WHERE slot = ? AND status = 'reserved' AND session_id = ?`
+  ).bind(slot, sessionId).run();
+  return (res.meta?.changes ?? 0) > 0;
+}
+
+/**
+ * Remplace l'identifiant temporaire de réservation par celui de la session
+ * Stripe. C'est ce qui permettra au webhook de reconnaître SA réservation :
+ * le slot est tenu avant que Stripe n'ait rendu d'identifiant, donc la
+ * réservation naît forcément sous un nom provisoire.
+ */
+export async function attachSession(env, slot, holdId, sessionId) {
+  const res = await env.DB.prepare(
+    `UPDATE sponsor_slots SET session_id = ?
+     WHERE slot = ? AND status = 'reserved' AND session_id = ?`
+  ).bind(sessionId, slot, holdId).run();
+  return (res.meta?.changes ?? 0) > 0;
+}
+
+/**
+ * Ajoute des mois à une date, en UTC. Un mois court déborde (31 janvier + 1
+ * mois = 3 mars) : le débordement joue toujours en faveur de l'acheteur, qui
+ * garde son emplacement quelques jours de plus — jamais l'inverse.
+ */
+function addMonths(date, months) {
+  const out = new Date(date.getTime());
+  out.setUTCMonth(out.getUTCMonth() + months);
+  return out;
+}
+
+/**
+ * Conclut la vente : le slot passe `paid` pour `months` mois. Bornes incluses,
+ * comme la sélection côté site (`endsOn < today` exclut) et comme l'expiration
+ * au cron — sinon un sponsor perdrait sa dernière journée d'un côté et pas de
+ * l'autre.
+ *
+ * La garde `WHERE` est la protection contre le rejeu et le vol :
+ * - `status = 'open'` : la réservation avait expiré, l'acheteur qui a payé
+ *   récupère quand même son emplacement (la fenêtre de rejeu de Stripe est de
+ *   quelques jours, très en deçà du mois minimum vendu — un slot libéré par
+ *   l'expiration ne peut donc pas être repris par un vieil événement) ;
+ * - `status = 'reserved' AND session_id = ?` : c'est bien notre réservation ;
+ * - un slot déjà `paid` ne bouge pas — ni par rejeu du même événement, ni par
+ *   un événement portant sur un slot vendu entre-temps à quelqu'un d'autre.
+ *
+ * Rend `true` si le slot a été attribué.
+ */
+export async function markSlotPaid(env, slot, sessionId, months, now) {
+  const startsOn = dayKey(now);
+  const endsOn = dayKey(addMonths(now, months));
+  const res = await env.DB.prepare(
+    `UPDATE sponsor_slots
+        SET status = 'paid', session_id = ?, reserved_until = NULL,
+            starts_on = ?, ends_on = ?
+      WHERE slot = ?
+        AND (status = 'open' OR (status = 'reserved' AND session_id = ?))`
+  ).bind(sessionId, startsOn, endsOn, slot, sessionId).run();
+  return (res.meta?.changes ?? 0) > 0;
 }
 
 /** Nombre de slots `paid` par compartiment de barème. */

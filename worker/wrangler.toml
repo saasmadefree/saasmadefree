@@ -27,6 +27,12 @@ crons = ["10 2 * * *"]
 
 [vars]
 ALLOWED_ORIGIN = "*"
+# Origine autorisée à ouvrir un checkout sponsor. "*" convient aux lectures
+# publiques (votes, stats) mais pas à une route qui crée une session de
+# paiement : on la restreint au site. STRIPE_SECRET_KEY et
+# STRIPE_WEBHOOK_SECRET sont des secrets wrangler (npx wrangler secret put),
+# jamais ici — le dépôt est public.
+SPONSOR_ORIGIN = "https://saasmadefree.com"
 # Zone ID de saasmadefree.com (dashboard Cloudflare → Overview → API).
 # CF_API_TOKEN est un secret (npx wrangler secret put CF_API_TOKEN), jamais ici.
 CF_ZONE_TAG = "107ac3aefd0954a4b2ea49cbb3cc807f"
