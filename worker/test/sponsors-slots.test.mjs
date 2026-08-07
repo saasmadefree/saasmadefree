@@ -101,6 +101,21 @@ describe('readSlots', () => {
     expect(out.B01.priceCents).toBe(7500);
   });
 
+  it('repasse open une réservation sans échéance — sinon elle bloquerait à jamais', async () => {
+    // Inatteignable aujourd'hui (reserveSlot pose toujours une échéance), mais
+    // une comparaison SQL avec NULL n'est jamais vraie : sans garde explicite,
+    // une telle ligne — import, reprise manuelle — ne serait plus jamais
+    // libérée par personne.
+    await ensureSlots(env);
+    await env.DB.prepare(
+      "UPDATE sponsor_slots SET status = 'reserved', session_id = 'h:abc:1', reserved_until = NULL WHERE slot = 'L1'"
+    ).run();
+
+    const out = await readSlots(env, new Date());
+
+    expect(out.L1.status).toBe('open');
+  });
+
   it('un slot réservé ne fait pas monter le prix', async () => {
     await ensureSlots(env);
     await env.DB.prepare(

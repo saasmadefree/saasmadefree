@@ -52,6 +52,8 @@ async function call(request, overrides = {}) {
 const SECRETS = { STRIPE_SECRET_KEY: 'sk_test_abc', STRIPE_WEBHOOK_SECRET: 'whsec_test' };
 const ORIGIN = 'https://saasmadefree.com';
 const SESSION = { id: 'cs_test_123', url: 'https://checkout.stripe.com/c/pay/cs_test_123' };
+// Identifiant de réservation de la forme produite par `holdIdFor` : `h:<hash>:<uuid>`.
+const HOLD = 'h:0123456789abcdef:11111111-2222-3333-4444-555555555555';
 
 function checkoutRequest(body, { origin = ORIGIN, ip = '203.0.113.7' } = {}) {
   return new Request('https://votes.test/api/v1/sponsors/checkout', {
@@ -102,7 +104,7 @@ function completedEvent(overrides = {}) {
         payment_status: 'paid',
         amount_total: 14900,
         currency: 'usd',
-        metadata: { slot: 'L1', months: '1' },
+        metadata: { slot: 'L1', months: '1', hold: HOLD },
         customer_details: { email: 'acheteur@example.com' },
         custom_fields: [
           { key: 'sponsor_name', text: { value: 'Acme' } },
@@ -129,12 +131,19 @@ async function postWebhook(payload, { secret = 'whsec_test', skew = 0, header = 
   return call(request, SECRETS);
 }
 
-/** Place L1 en réservé au nom d'une session, comme le ferait un checkout. */
-async function reserveL1(sessionId = 'cs_test_123') {
+/** Place L1 en réservé au nom d'une réservation, comme le ferait un checkout. */
+async function reserveL1(holdId = HOLD, { expiredSince = null } = {}) {
+  const until = expiredSince
+    ? new Date(Date.now() - expiredSince).toISOString()
+    : new Date(Date.now() + 600_000).toISOString();
   await env.DB.prepare(
     `INSERT INTO sponsor_slots (slot, kind, status, session_id, reserved_until)
      VALUES ('L1', 'rail', 'reserved', ?, ?)`
-  ).bind(sessionId, new Date(Date.now() + 600_000).toISOString()).run();
+  ).bind(holdId, until).run();
+}
+
+async function orderRow(sessionId = 'cs_test_123') {
+  return env.DB.prepare('SELECT * FROM sponsor_orders WHERE session_id = ?').bind(sessionId).first();
 }
 
 // ============================================================== GET /slots ==
@@ -304,15 +313,34 @@ describe('POST /api/v1/sponsors/checkout — le prix ne vient jamais du client',
 });
 
 describe('POST /api/v1/sponsors/checkout — réservation', () => {
-  it('réserve le slot et y attache la session Stripe', async () => {
-    mockStripe();
+  it('réserve le slot sous un identifiant de réservation qui voyage par Stripe', async () => {
+    const fetchSpy = mockStripe();
     const res = await call(checkoutRequest({ slot: 'L1', months: 1, expectedPriceCents: 14900 }), SECRETS);
     expect(res.status).toBe(200);
 
     const row = await slotRow('L1');
     expect(row.status).toBe('reserved');
-    expect(row.session_id).toBe('cs_test_123_1');
+    expect(row.session_id).toMatch(/^h:[0-9a-f]{64}:/);
     expect(new Date(row.reserved_until).getTime()).toBeGreaterThan(Date.now());
+
+    // Le même identifiant part dans les métadonnées : c'est lui qui reviendra
+    // dans le webhook désigner la réservation à honorer.
+    expect(stripeBodyOf(fetchSpy).get('metadata[hold]')).toBe(row.session_id);
+  });
+
+  it('demande à Stripe une session qui expire avant la réservation', async () => {
+    const fetchSpy = mockStripe();
+    const before = Date.now();
+    await call(checkoutRequest({ slot: 'L1', months: 1, expectedPriceCents: 14900 }), SECRETS);
+
+    const expiresAt = Number(stripeBodyOf(fetchSpy).get('expires_at'));
+    // Plancher de Stripe : au moins 30 minutes après la création, sinon l'API
+    // refuse la session. On demande donc un peu plus.
+    expect(expiresAt).toBeGreaterThan(Math.floor(before / 1000) + 30 * 60);
+
+    // Et surtout : la session doit mourir AVANT la réservation, jamais après.
+    const reservedUntil = new Date((await slotRow('L1')).reserved_until).getTime() / 1000;
+    expect(expiresAt).toBeLessThan(reservedUntil);
   });
 
   it('deux acheteurs simultanés sur L1 : un seul aboutit, l’autre reçoit 409 slot_taken', async () => {
@@ -335,8 +363,12 @@ describe('POST /api/v1/sponsors/checkout — réservation', () => {
     expect(count.c).toBe(1);
   });
 
-  it('relibère le slot immédiatement si Stripe refuse de créer la session', async () => {
+  it('relibère le slot immédiatement si Stripe refuse de créer la session, et journalise la cause', async () => {
     mockStripe({ status: 402 });
+    // Le 502 aplatit toutes les pannes Stripe en un seul message : sans cette
+    // trace, une clé API révoquée serait indiscernable d'une panne de Stripe.
+    const logSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
     const res = await call(checkoutRequest({ slot: 'L1', months: 1, expectedPriceCents: 14900 }), SECRETS);
 
     expect(res.status).toBe(502);
@@ -345,6 +377,75 @@ describe('POST /api/v1/sponsors/checkout — réservation', () => {
     expect(row.status).toBe('open');
     expect(row.session_id).toBe(null);
     expect(row.reserved_until).toBe(null);
+
+    expect(logSpy).toHaveBeenCalledTimes(1);
+    const [message, err] = logSpy.mock.calls[0];
+    expect(message).toContain('Stripe');
+    expect(String(err?.message ?? err)).toContain('402');
+  });
+});
+
+describe('POST /api/v1/sponsors/checkout — page de retour', () => {
+  it('renvoie l’acheteur vers la page qui existe dans SA langue', async () => {
+    const fetchSpy = mockStripe();
+    await call(checkoutRequest({ slot: 'L1', months: 1, expectedPriceCents: 14900, lang: 'fr' }), SECRETS);
+
+    const sent = stripeBodyOf(fetchSpy);
+    expect(sent.get('success_url')).toBe('https://saasmadefree.com/fr/sponsor?paid=1');
+    expect(sent.get('cancel_url')).toBe('https://saasmadefree.com/fr/sponsor');
+  });
+
+  it('retombe sur l’anglais plutôt que de fabriquer une URL morte', async () => {
+    const fetchSpy = mockStripe();
+    // Langue absente, inconnue, ou franchement hostile : jamais de destination
+    // choisie par l'appelant, jamais de page inexistante.
+    for (const lang of [undefined, 'xx', '../../evil', 'https://evil.example', 42]) {
+      await env.DB.prepare("UPDATE sponsor_slots SET status = 'open', session_id = NULL, reserved_until = NULL").run();
+      fetchSpy.mockClear();
+      await call(checkoutRequest({ slot: 'L1', months: 1, expectedPriceCents: 14900, lang }), SECRETS);
+
+      const sent = stripeBodyOf(fetchSpy);
+      expect(sent.get('success_url')).toBe('https://saasmadefree.com/en/sponsor?paid=1');
+      expect(sent.get('cancel_url')).toBe('https://saasmadefree.com/en/sponsor');
+    }
+  });
+});
+
+describe('POST /api/v1/sponsors/checkout — plafond de réservations', () => {
+  const body = (slot) => ({ slot, months: 1, expectedPriceCents: slot.startsWith('L') || slot.startsWith('R') ? 14900 : 7500 });
+
+  it('refuse une troisième réservation simultanée du même visiteur', async () => {
+    mockStripe();
+    expect((await call(checkoutRequest(body('L1')), SECRETS)).status).toBe(200);
+    expect((await call(checkoutRequest(body('L2')), SECRETS)).status).toBe(200);
+
+    const res = await call(checkoutRequest(body('L3')), SECRETS);
+    expect(res.status).toBe(429);
+    expect((await res.json()).error).toBe('too_many_reservations');
+    // Le troisième slot n'a pas été touché : le refus arrive avant la réservation.
+    expect((await slotRow('L3')).status).toBe('open');
+  });
+
+  it('ne pénalise pas un autre visiteur', async () => {
+    mockStripe();
+    await call(checkoutRequest(body('L1'), { ip: '203.0.113.7' }), SECRETS);
+    await call(checkoutRequest(body('L2'), { ip: '203.0.113.7' }), SECRETS);
+
+    const res = await call(checkoutRequest(body('L3'), { ip: '198.51.100.4' }), SECRETS);
+    expect(res.status).toBe(200);
+  });
+
+  it('ne compte pas les réservations mortes contre un acheteur légitime', async () => {
+    mockStripe();
+    await call(checkoutRequest(body('L1')), SECRETS);
+    await call(checkoutRequest(body('L2')), SECRETS);
+    // Les deux paniers sont abandonnés : leur échéance est passée.
+    await env.DB.prepare(
+      "UPDATE sponsor_slots SET reserved_until = ? WHERE status = 'reserved'"
+    ).bind(new Date(Date.now() - 60_000).toISOString()).run();
+
+    const res = await call(checkoutRequest(body('L3')), SECRETS);
+    expect(res.status).toBe(200);
   });
 });
 
@@ -495,19 +596,70 @@ describe('POST /api/v1/sponsors/webhook — encaissement', () => {
     expect(orders.c).toBe(0);
   });
 
-  it('n’écrase pas un slot déjà vendu à quelqu’un d’autre', async () => {
+  it('n’écrase pas un slot déjà vendu à quelqu’un d’autre, et ne fait pas passer la commande pour honorée', async () => {
     await env.DB.prepare(
       "INSERT INTO sponsor_slots (slot, kind, status, session_id) VALUES ('L1', 'rail', 'paid', 'cs_autre')"
     ).run();
     const res = await postWebhook(JSON.stringify(completedEvent()));
 
-    // La commande est enregistrée (l'argent est encaissé, il faut une trace),
-    // mais le slot reste à son propriétaire : un humain tranche.
+    // L'argent est encaissé : il faut une trace. Mais le slot reste à son
+    // propriétaire, et la commande ne ment pas sur ce qui s'est passé —
+    // sinon rien ne distinguerait ce cas d'une vente honorée.
     expect(res.status).toBe(200);
-    const slot = await slotRow('L1');
-    expect(slot.session_id).toBe('cs_autre');
-    const order = await env.DB.prepare('SELECT session_id FROM sponsor_orders').first();
-    expect(order.session_id).toBe('cs_test_123');
+    expect((await slotRow('L1')).session_id).toBe('cs_autre');
+    expect(await orderRow()).toMatchObject({ session_id: 'cs_test_123', status: 'unassigned' });
+  });
+
+  it('refuse aussi un slot réservé par quelqu’un d’autre, réservation encore vivante', async () => {
+    await reserveL1('h:unautrevisiteur:99999999-9999-9999-9999-999999999999');
+    const res = await postWebhook(JSON.stringify(completedEvent()));
+
+    // Réservation vivante : retenter ne la libérerait pas. On acquitte, et un
+    // humain tranche sur la commande `unassigned`.
+    expect(res.status).toBe(200);
+    expect((await slotRow('L1')).status).toBe('reserved');
+    expect((await orderRow()).status).toBe('unassigned');
+  });
+
+  it('réessayable quand aucune réservation vivante ne bloque : ça se répare tout seul', async () => {
+    // Réservation d'un autre visiteur, déjà échue mais pas encore balayée —
+    // exactement ce que produit une session Stripe qui survit à sa
+    // réservation. Personne ne détient plus le slot, donc l'attribution n'est
+    // pas perdue : elle est reportée.
+    await reserveL1('h:unautrevisiteur:99999999-9999-9999-9999-999999999999', { expiredSince: 60_000 });
+
+    const deferred = await postWebhook(JSON.stringify(completedEvent()));
+    expect(deferred.status).toBe(503);
+    expect((await deferred.json()).error).toBe('slot_assignment_deferred');
+    // La commande existe déjà, marquée non honorée : l'argent n'est jamais
+    // encaissé sans trace, même quand l'attribution est reportée.
+    expect((await orderRow()).status).toBe('unassigned');
+
+    // Stripe retente ; entre-temps la réservation morte a été balayée.
+    await env.DB.prepare(
+      "UPDATE sponsor_slots SET status = 'open', session_id = NULL, reserved_until = NULL WHERE slot = 'L1'"
+    ).run();
+    const retry = await postWebhook(JSON.stringify(completedEvent()));
+
+    expect(retry.status).toBe(200);
+    expect((await slotRow('L1')).status).toBe('paid');
+    // Et la commande est corrigée : `unassigned` ne doit pas rester à vie.
+    expect((await orderRow()).status).toBe('paid');
+    const orders = await env.DB.prepare('SELECT COUNT(*) AS c FROM sponsor_orders').first();
+    expect(orders.c).toBe(1);
+  });
+
+  it('honore un paiement dont la réservation avait expiré, si personne ne l’a repris', async () => {
+    // Le cas nominal du décalage session/réservation : la réservation a été
+    // balayée, le slot est libre, l'acheteur qui a payé le récupère.
+    await env.DB.prepare(
+      "INSERT INTO sponsor_slots (slot, kind, status) VALUES ('L1', 'rail', 'open')"
+    ).run();
+    const res = await postWebhook(JSON.stringify(completedEvent()));
+
+    expect(res.status).toBe(200);
+    expect((await slotRow('L1')).status).toBe('paid');
+    expect((await orderRow()).status).toBe('paid');
   });
 });
 

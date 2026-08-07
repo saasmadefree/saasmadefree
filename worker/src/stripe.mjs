@@ -65,14 +65,31 @@ export async function verifyStripeSignature(payload, header, secret, now, tolera
  * domaine, une ligne) dans le formulaire de Stripe lui-même : aucune page de
  * formulaire à écrire de notre côté, et la créa arrive signée dans le webhook.
  */
-export async function createCheckoutSession(env, { slot, months, amountCents, successUrl, cancelUrl }) {
+export async function createCheckoutSession(
+  env, { slot, months, amountCents, successUrl, cancelUrl, expiresAt, holdId }
+) {
+  // `expires_at` est exigé, pas optionnel : sans lui Stripe donne 24 heures de
+  // vie à la session, alors que la réservation du slot dure une demi-heure.
+  // Une session qui survit à sa réservation, c'est un lien de paiement encore
+  // valide sur un emplacement déjà relâché — donc un encaissement sans
+  // contrepartie. Le plancher de Stripe est de 30 minutes (voir
+  // CHECKOUT_MINUTES côté sponsors.mjs).
+  if (!Number.isFinite(expiresAt)) {
+    throw new Error('createCheckoutSession : expires_at manquant');
+  }
   const form = new URLSearchParams();
   form.set('mode', 'payment');
   form.set('success_url', successUrl);
   form.set('cancel_url', cancelUrl);
+  form.set('expires_at', String(Math.floor(expiresAt)));
   form.set('client_reference_id', slot);
   form.set('metadata[slot]', slot);
   form.set('metadata[months]', String(months));
+  // L'identifiant de réservation fait l'aller-retour par Stripe : c'est lui
+  // qui, dans le webhook, désigne la réservation à honorer. Il évite d'avoir à
+  // réécrire la ligne du slot juste après la création de la session — une
+  // écriture de plus, donc une fenêtre de plus où tout peut s'arrêter.
+  if (holdId) form.set('metadata[hold]', holdId);
   form.set('line_items[0][quantity]', '1');
   form.set('line_items[0][price_data][currency]', 'usd');
   form.set('line_items[0][price_data][unit_amount]', String(amountCents));
@@ -103,4 +120,14 @@ export async function createCheckoutSession(env, { slot, months, amountCents, su
   if (!res.ok) throw new Error(`stripe ${res.status}`);
   const session = await res.json();
   return { id: session.id, url: session.url };
+}
+
+/**
+ * Valeur d'un `custom_field` d'une session Checkout, ou null s'il manque.
+ * Encode une forme de charge utile Stripe (`[{ key, text: { value } }]`), donc
+ * vit ici et pas dans le routage.
+ */
+export function customFieldValue(session, key) {
+  const field = (session?.custom_fields ?? []).find((f) => f?.key === key);
+  return field?.text?.value ?? null;
 }

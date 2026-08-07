@@ -2,11 +2,13 @@ import { dayKey, hashIp } from './hash.mjs';
 import { SLUGS } from './slugs.generated.mjs';
 import { recordBeacon, buildStatsPayload, serveFacade, runScheduled } from './stats.mjs';
 import {
-  SELLABLE_MONTHS, kindOf, priceCentsFor, paidCounts, ensureSlots,
-  releaseExpiredReservations, readSlots, reserveSlot, releaseSlot, attachSession,
-  markSlotPaid,
+  SELLABLE_MONTHS, CHECKOUT_MINUTES, MAX_HOLDS_PER_VISITOR,
+  SLOT_ASSIGNED, SLOT_RETRY,
+  kindOf, priceCentsFor, paidCounts, ensureSlots, releaseExpiredReservations,
+  readSlots, checkoutUrls, holdIdFor, countHolds, reserveSlot, releaseSlot,
+  assignPaidSlot, recordOrder,
 } from './sponsors.mjs';
-import { createCheckoutSession, verifyStripeSignature } from './stripe.mjs';
+import { createCheckoutSession, verifyStripeSignature, customFieldValue } from './stripe.mjs';
 
 const RATE_LIMIT_PER_MINUTE = 30;
 const RATE_RETENTION_MINUTES = 2;
@@ -72,19 +74,14 @@ const SPONSOR_ERROR_STATUS = {
   inventory_full: 409,
 };
 
-/** Valeur d'un `custom_field` du formulaire Stripe, ou null s'il manque. */
-function customFieldValue(session, key) {
-  const field = (session?.custom_fields ?? []).find((f) => f?.key === key);
-  return field?.text?.value ?? null;
-}
-
 /**
  * POST /api/v1/sponsors/checkout — ouvre une session de paiement.
  *
- * Le corps ne porte que `slot`, `months` et `expectedPriceCents`. Tout autre
- * champ est ignoré : le montant facturé est recalculé ici, depuis les barèmes
- * générés et l'état de la base. Un `amountCents` glissé dans le corps ne
- * change donc rien.
+ * Le corps ne porte que `slot`, `months`, `expectedPriceCents` et `lang`. Tout
+ * autre champ est ignoré : le montant facturé est recalculé ici, depuis les
+ * barèmes générés et l'état de la base. Un `amountCents` glissé dans le corps
+ * ne change donc rien. `lang` ne choisit qu'une page de retour, et seulement
+ * parmi les langues du site.
  */
 async function handleSponsorCheckout(request, env) {
   if (request.method !== 'POST') return json({ error: 'method_not_allowed' }, 405, env);
@@ -111,6 +108,7 @@ async function handleSponsorCheckout(request, env) {
   const slot = body?.slot;
   const months = body?.months;
   const expectedPriceCents = body?.expectedPriceCents;
+  const lang = body?.lang;
 
   const now = new Date();
   const ip = request.headers.get('cf-connecting-ip') ?? '0.0.0.0';
@@ -123,6 +121,16 @@ async function handleSponsorCheckout(request, env) {
 
   await ensureSlots(env);
   await releaseExpiredReservations(env, now);
+
+  // Plafond de réservations simultanées. Le rate limit à la minute ne protège
+  // rien ici : 28 requêtes suffisent à geler tout l'inventaire, soit 3 % du
+  // budget d'une seule IP, et rien ne coûte à l'attaquant puisque réserver ne
+  // demande ni compte ni paiement. Le comptage vient APRÈS la libération des
+  // réservations mortes, sinon un acheteur légitime paierait pour ses propres
+  // paniers abandonnés.
+  if (await countHolds(env, ipHash) >= MAX_HOLDS_PER_VISITOR) {
+    return json({ error: 'too_many_reservations' }, 429, env);
+  }
 
   let priceCents;
   try {
@@ -142,10 +150,12 @@ async function handleSponsorCheckout(request, env) {
   }
 
   // Réserver AVANT de créer la session. L'inverse laisserait une session
-  // payable sur un slot que quelqu'un d'autre vient de prendre. La
-  // réservation naît sous un nom provisoire — Stripe n'a pas encore rendu
-  // d'identifiant — remplacé juste après par celui de la session.
-  const holdId = `hold_${crypto.randomUUID()}`;
+  // payable sur un slot que quelqu'un d'autre vient de prendre. L'identifiant
+  // de réservation reste dans la ligne jusqu'au paiement : il voyage par les
+  // métadonnées Stripe et revient dans le webhook, ce qui évite une seconde
+  // écriture juste après la création de la session — et la fenêtre de panne
+  // qui va avec.
+  const holdId = holdIdFor(ipHash);
   if (!(await reserveSlot(env, slot, holdId, now))) {
     return json({ error: 'slot_taken' }, 409, env);
   }
@@ -156,17 +166,22 @@ async function handleSponsorCheckout(request, env) {
       slot,
       months,
       amountCents: priceCents,
-      successUrl: `${env.SPONSOR_ORIGIN}/sponsor/?paid=1`,
-      cancelUrl: `${env.SPONSOR_ORIGIN}/sponsor/`,
+      ...checkoutUrls(env.SPONSOR_ORIGIN, lang),
+      // La session doit mourir avant la réservation, jamais après.
+      expiresAt: Math.floor(now.getTime() / 1000) + CHECKOUT_MINUTES * 60,
+      holdId,
     });
-  } catch {
-    // Aucune session créée : le slot ne doit pas rester bloqué 30 minutes
+  } catch (err) {
+    // Journalisé avant d'être aplati en 502 : sans cette ligne, une clé API
+    // révoquée et une panne de Stripe deviennent le même message, et la
+    // première est indiagnosticable depuis la réponse.
+    console.error('sponsors: création de session Stripe impossible', err);
+    // Aucune session créée : le slot ne doit pas rester bloqué une demi-heure
     // pour une panne qui n'est pas celle de l'acheteur.
     await releaseSlot(env, slot, holdId);
     return json({ error: 'stripe_unavailable' }, 502, env);
   }
 
-  await attachSession(env, slot, holdId, session.id);
   return json({ url: session.url }, 200, env);
 }
 
@@ -221,32 +236,40 @@ async function handleSponsorWebhook(request, env) {
     return json({ error: 'invalid_event' }, 400, env);
   }
 
-  // Idempotence : Stripe rejoue ses événements. `session_id` est clé primaire
-  // et l'insertion est OR IGNORE, donc un rejeu ne peut pas créer une seconde
-  // commande. La commande est écrite AVANT l'attribution du slot : si le
-  // second appel échouait, un rejeu le rattraperait ; l'inverse laisserait un
-  // encaissement sans trace.
-  await env.DB.prepare(
-    `INSERT OR IGNORE INTO sponsor_orders
-       (session_id, slot, months, amount_cents, currency, email, name, domain,
-        tagline, status, created_at)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'paid', ?)`
-  ).bind(
-    sessionId,
-    slot,
-    months,
-    Number(session.amount_total ?? 0),
-    session.currency ?? 'usd',
-    session.customer_details?.email ?? null,
-    customFieldValue(session, 'sponsor_name'),
-    customFieldValue(session, 'sponsor_domain'),
-    customFieldValue(session, 'sponsor_tagline'),
-    now.toISOString()
-  ).run();
+  // L'identifiant de réservation revient par les métadonnées. Absent (session
+  // antérieure au déploiement, métadonnées tronquées), une chaîne vide ne
+  // correspond à aucune réservation : seule la branche `open` pourra jouer.
+  const holdId = typeof session.metadata?.hold === 'string' ? session.metadata.hold : '';
 
   // La ligne du slot peut ne pas exister si aucune route ne l'a encore créée.
   await ensureSlots(env);
-  await markSlotPaid(env, slot, sessionId, months, now);
+  const verdict = await assignPaidSlot(env, { slot, holdId, sessionId, months, now });
+
+  // La commande est enregistrée dans TOUS les cas, y compris quand le slot n'a
+  // pas pu être attribué : l'argent est encaissé, il faut une trace. Son
+  // statut dit lequel des deux s'est produit — jamais `paid` par défaut.
+  await recordOrder(env, {
+    sessionId,
+    slot,
+    months,
+    amountCents: Number(session.amount_total ?? 0),
+    currency: session.currency ?? 'usd',
+    email: session.customer_details?.email ?? null,
+    name: customFieldValue(session, 'sponsor_name'),
+    domain: customFieldValue(session, 'sponsor_domain'),
+    tagline: customFieldValue(session, 'sponsor_tagline'),
+    status: verdict === SLOT_ASSIGNED ? 'paid' : 'unassigned',
+    createdAt: now.toISOString(),
+  });
+
+  if (verdict === SLOT_RETRY) {
+    // Réessayable, et c'est tout l'intérêt : Stripe retente pendant trois
+    // jours. D'ici là, la réservation morte qui bloque le slot aura été
+    // balayée et la branche `open` passera. Ça se répare tout seul.
+    return json({ error: 'slot_assignment_deferred' }, 503, env);
+  }
+  // SLOT_CONFLICT : l'état est cohérent et stable, retenter n'y changerait
+  // rien. On acquitte, et la commande `unassigned` attend un humain.
   return json({ received: true }, 200, env);
 }
 

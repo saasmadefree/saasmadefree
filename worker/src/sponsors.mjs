@@ -9,9 +9,55 @@ import { dayKey } from './hash.mjs';
 // qu'il monte.
 export const SELLABLE_MONTHS = new Set([1, 3]);
 
-// Une réservation tient le temps d'une session Stripe. Au-delà, le slot
-// repart à la vente : sinon un panier abandonné bloquerait l'inventaire.
-export const RESERVATION_MINUTES = 30;
+// Durée de vie demandée à Stripe pour une session de paiement (`expires_at`).
+// Stripe impose un plancher de 30 minutes et le valide contre SA propre
+// horloge, au moment où il traite la requête : demander pile 30 minutes serait
+// refusé pour quelques centaines de millisecondes de latence réseau. On
+// demande 32, la première valeur qui tient sans compter sur la chance.
+export const CHECKOUT_MINUTES = 32;
+
+// Une réservation tient le temps d'une session Stripe, et un peu plus. Au-delà,
+// le slot repart à la vente : sinon un panier abandonné bloquerait
+// l'inventaire. L'écart avec CHECKOUT_MINUTES n'est pas décoratif : la session
+// ne doit JAMAIS survivre à la réservation, sinon un lien de paiement encore
+// valide pointe sur un slot déjà relâché, et l'acheteur paie pour rien.
+export const RESERVATION_MINUTES = CHECKOUT_MINUTES + 3;
+
+// Plafond de réservations simultanées par visiteur. Réserver ne coûte rien et
+// n'exige aucun compte : sans plafond, ~28 requêtes suffisent à rendre tout
+// l'inventaire indisponible sans payer un centime, indéfiniment. Deux couvrent
+// largement un acheteur légitime (un achat en cours, une hésitation) ; trois
+// n'arrivent pas.
+export const MAX_HOLDS_PER_VISITOR = 2;
+
+// Langues RÉELLEMENT PUBLIÉES par le build. Ce n'est pas `LANGS`
+// (scripts/lib/load-data.mjs), qui énumère les langues possibles : le site ne
+// génère `dist/<lang>/sponsor/` que pour les langues qui ont du contenu
+// (`siteLanguages()`, dérivé des `markets` des outils). Une langue listée ici
+// mais non publiée renverrait l'acheteur sur une 404 juste après l'avoir
+// débité — exactement ce qu'on corrige.
+//
+// Liste courte et volontairement écrite à la main : la dérive est interdite
+// par tests/sponsor-checkout-urls.test.mjs, qui la compare aux langues que le
+// build produit vraiment. Le jour où une langue s'ajoute, ce test devient
+// rouge et nomme la correction à faire.
+export const SITE_LANGS = new Set(['en', 'fr']);
+export const DEFAULT_LANG = 'en';
+
+/**
+ * URLs de retour de la session Stripe.
+ *
+ * Le site est entièrement préfixé par langue (`dist/<lang>/sponsor/`) et n'a
+ * aucune page `/sponsor` à la racine : y renvoyer l'acheteur après paiement lui
+ * servirait une 404, ce qui se lit comme un paiement échoué. Une langue
+ * inconnue — ou hostile — retombe sur l'anglais plutôt que de fabriquer une
+ * URL morte ou de laisser un tiers choisir la destination.
+ */
+export function checkoutUrls(origin, lang) {
+  const safe = SITE_LANGS.has(lang) ? lang : DEFAULT_LANG;
+  const page = `${origin}/${safe}/sponsor`;
+  return { successUrl: `${page}?paid=1`, cancelUrl: page };
+}
 
 /**
  * Erreur métier porteuse d'un code machine. Les routes traduisent trois
@@ -90,11 +136,50 @@ export async function ensureSlots(env) {
  */
 export async function releaseExpiredReservations(env, now) {
   try {
+    // `reserved_until IS NULL` fait partie de la garde : une ligne `reserved`
+    // sans échéance est aujourd'hui inatteignable (reserveSlot en pose
+    // toujours une), mais rien ne l'empêche demain — un import, une reprise
+    // manuelle — et elle resterait alors bloquée à jamais, puisqu'une
+    // comparaison SQL avec NULL n'est jamais vraie.
     await env.DB.prepare(
       `UPDATE sponsor_slots SET status = 'open', session_id = NULL, reserved_until = NULL
-       WHERE status = 'reserved' AND reserved_until < ?`
+       WHERE status = 'reserved' AND (reserved_until IS NULL OR reserved_until < ?)`
     ).bind(now.toISOString()).run();
   } catch { /* best-effort */ }
+}
+
+/**
+ * Identifiant d'une réservation. Il porte le hachage d'IP du visiteur, ce qui
+ * permet de compter ses réservations en cours sans ajouter de colonne ni de
+ * migration. Il vit dans `session_id` jusqu'au paiement : le webhook le
+ * retrouve dans les métadonnées de la session Stripe, et c'est lui — pas
+ * l'identifiant Stripe — qui identifie la réservation à honorer.
+ */
+export function holdIdFor(ipHash) {
+  return `h:${ipHash}:${crypto.randomUUID()}`;
+}
+
+/** Hachage d'IP porté par un identifiant de réservation, sinon null. */
+export function holderOf(sessionId) {
+  if (typeof sessionId !== 'string') return null;
+  const parts = sessionId.split(':');
+  return parts.length === 3 && parts[0] === 'h' && parts[1] !== '' ? parts[1] : null;
+}
+
+/**
+ * Nombre de slots actuellement tenus par ce visiteur. On relit les lignes
+ * `reserved` (28 au maximum) et on compte en mémoire : un `LIKE` sur un
+ * préfixe fabriqué à la main serait moins lisible pour aucun gain à cette
+ * taille.
+ *
+ * À appeler APRÈS releaseExpiredReservations, sinon des réservations mortes
+ * compteraient contre un acheteur légitime.
+ */
+export async function countHolds(env, ipHash) {
+  const { results } = await env.DB.prepare(
+    "SELECT session_id FROM sponsor_slots WHERE status = 'reserved'"
+  ).all();
+  return results.filter((row) => holderOf(row.session_id) === ipHash).length;
 }
 
 /**
@@ -127,20 +212,6 @@ export async function releaseSlot(env, slot, sessionId) {
 }
 
 /**
- * Remplace l'identifiant temporaire de réservation par celui de la session
- * Stripe. C'est ce qui permettra au webhook de reconnaître SA réservation :
- * le slot est tenu avant que Stripe n'ait rendu d'identifiant, donc la
- * réservation naît forcément sous un nom provisoire.
- */
-export async function attachSession(env, slot, holdId, sessionId) {
-  const res = await env.DB.prepare(
-    `UPDATE sponsor_slots SET session_id = ?
-     WHERE slot = ? AND status = 'reserved' AND session_id = ?`
-  ).bind(sessionId, slot, holdId).run();
-  return (res.meta?.changes ?? 0) > 0;
-}
-
-/**
  * Ajoute des mois à une date, en UTC. Un mois court déborde (31 janvier + 1
  * mois = 3 mars) : le débordement joue toujours en faveur de l'acheteur, qui
  * garde son emplacement quelques jours de plus — jamais l'inverse.
@@ -162,13 +233,18 @@ function addMonths(date, months) {
  *   récupère quand même son emplacement (la fenêtre de rejeu de Stripe est de
  *   quelques jours, très en deçà du mois minimum vendu — un slot libéré par
  *   l'expiration ne peut donc pas être repris par un vieil événement) ;
- * - `status = 'reserved' AND session_id = ?` : c'est bien notre réservation ;
+ * - `status = 'reserved' AND session_id = ?` : c'est bien NOTRE réservation,
+ *   reconnue à son identifiant de réservation (`holdId`), pas à celui de la
+ *   session Stripe — la réservation naît avant que Stripe n'ait répondu ;
  * - un slot déjà `paid` ne bouge pas — ni par rejeu du même événement, ni par
  *   un événement portant sur un slot vendu entre-temps à quelqu'un d'autre.
  *
+ * Une fois attribué, le slot porte l'identifiant de la session Stripe : c'est
+ * lui qui relie la ligne à la commande encaissée.
+ *
  * Rend `true` si le slot a été attribué.
  */
-export async function markSlotPaid(env, slot, sessionId, months, now) {
+export async function markSlotPaid(env, slot, holdId, sessionId, months, now) {
   const startsOn = dayKey(now);
   const endsOn = dayKey(addMonths(now, months));
   const res = await env.DB.prepare(
@@ -177,8 +253,77 @@ export async function markSlotPaid(env, slot, sessionId, months, now) {
             starts_on = ?, ends_on = ?
       WHERE slot = ?
         AND (status = 'open' OR (status = 'reserved' AND session_id = ?))`
-  ).bind(sessionId, startsOn, endsOn, slot, sessionId).run();
+  ).bind(sessionId, startsOn, endsOn, slot, holdId).run();
   return (res.meta?.changes ?? 0) > 0;
+}
+
+// Verdicts d'attribution. Ils pilotent deux choses que le webhook ne doit pas
+// confondre : le statut écrit dans la commande, et le code HTTP rendu à Stripe.
+export const SLOT_ASSIGNED = 'assigned';
+export const SLOT_CONFLICT = 'conflict';
+export const SLOT_RETRY = 'retry';
+
+/**
+ * Attribue le slot à une session payée, et surtout : dit POURQUOI ça a échoué
+ * quand ça échoue. `markSlotPaid` peut légitimement ne toucher aucune ligne, et
+ * traiter ce cas comme un succès produirait l'anomalie la plus coûteuse du
+ * système — de l'argent encaissé, une commande marquée `paid`, aucun
+ * emplacement attribué, et aucun signal.
+ *
+ * - `SLOT_ASSIGNED` : attribué, ou déjà attribué à cette même session (rejeu
+ *   d'un événement déjà honoré — Stripe rejoue, ça doit converger) ;
+ * - `SLOT_CONFLICT` : quelqu'un d'autre le détient valablement. Réessayer ne
+ *   le libérera pas ; c'est un remboursement qu'un humain doit trancher ;
+ * - `SLOT_RETRY` : personne ne le détient valablement (réservation morte pas
+ *   encore balayée). Le prochain essai de Stripe passera par la branche
+ *   `open` — ça se répare tout seul, à condition de répondre un statut
+ *   réessayable.
+ */
+export async function assignPaidSlot(env, { slot, holdId, sessionId, months, now }) {
+  if (await markSlotPaid(env, slot, holdId, sessionId, months, now)) return SLOT_ASSIGNED;
+
+  const row = await env.DB.prepare(
+    'SELECT status, session_id, reserved_until FROM sponsor_slots WHERE slot = ?'
+  ).bind(slot).first();
+
+  if (row?.status === 'paid' && row.session_id === sessionId) return SLOT_ASSIGNED;
+  if (row?.status === 'paid') return SLOT_CONFLICT;
+  // Une réservation échue ne « détient » plus rien : elle sera balayée, et
+  // l'essai suivant gagnera. Seule une réservation encore vivante est un vrai
+  // conflit.
+  if (row?.status === 'reserved' && row.reserved_until && row.reserved_until > now.toISOString()) {
+    return SLOT_CONFLICT;
+  }
+  return SLOT_RETRY;
+}
+
+/**
+ * Enregistre la commande. Idempotent par la clé primaire `session_id` : Stripe
+ * rejoue ses événements, un rejeu ne doit pas créer une seconde commande.
+ *
+ * `status` vaut `paid` quand l'emplacement a bien été attribué, `unassigned`
+ * sinon — pour qu'un `WHERE status = 'unassigned'` retrouve en une requête tout
+ * ce qui a été encaissé sans être honoré. Un rejeu qui aboutit là où le premier
+ * essai avait échoué corrige le statut : `INSERT OR IGNORE` ne met pas à jour
+ * la ligne existante. La correction ne va que dans un sens, jamais de `paid`
+ * vers `unassigned`.
+ */
+export async function recordOrder(env, order) {
+  await env.DB.prepare(
+    `INSERT OR IGNORE INTO sponsor_orders
+       (session_id, slot, months, amount_cents, currency, email, name, domain,
+        tagline, status, created_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+  ).bind(
+    order.sessionId, order.slot, order.months, order.amountCents, order.currency,
+    order.email, order.name, order.domain, order.tagline, order.status, order.createdAt
+  ).run();
+
+  if (order.status === 'paid') {
+    await env.DB.prepare(
+      "UPDATE sponsor_orders SET status = 'paid' WHERE session_id = ? AND status = 'unassigned'"
+    ).bind(order.sessionId).run();
+  }
 }
 
 /** Nombre de slots `paid` par compartiment de barème. */
