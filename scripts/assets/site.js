@@ -7,12 +7,13 @@
 // <agent>" sont déjà des liens <a> qui naviguent correctement, et les
 // questions/réponses sont déjà ouvrables au clavier via <details>. Ce script
 // n'ajoute que : le volet de suggestions de recherche, le filtre par verdict,
-// la copie en un clic, la copie automatique avant d'ouvrir un agent, et le
-// vote en direct.
+// la copie en un clic, la copie automatique avant d'ouvrir un agent, le
+// vote en direct, et sur /sponsor seulement le rafraîchissement de
+// l'inventaire (statut + prix, voir enhanceSponsorInventory).
 //
-// Seules requêtes réseau faites par ce fichier : le service de vote de ce
-// même projet (votes.saasmadefree.com, décrit dans README.md). Rien d'autre,
-// aucune tierce partie.
+// Seules requêtes réseau faites par ce fichier : le Worker de ce même projet
+// (votes.saasmadefree.com, décrit dans README.md — vote, puis disponibilité
+// des emplacements sponsors). Rien d'autre, aucune tierce partie.
 (function () {
   'use strict';
 
@@ -464,10 +465,82 @@
     });
   }
 
+  // Rafraîchit le tableau d'inventaire de /sponsor (statut + prix) une fois
+  // le HTML chargé, sans jamais toucher aux autres pages : le sélecteur ne
+  // trouve son point d'ancrage que sur /sponsor (voir renderSponsorPage dans
+  // scripts/lib/site-page-sponsor.mjs), donc cette fonction ne fait rien
+  // ailleurs. La page est déjà complète et correcte sans elle (principe 5,
+  // .impeccable.md) : ceci ne fait que réduire la fenêtre où l'état cuit au
+  // build a pu devenir légèrement périmé (un paiement encaissé, un slot
+  // libéré par le cron, entre le build et la visite).
+  //
+  // Aucun décalage de mise en page : les chiffres passent par le même
+  // font-variant-numeric:tabular-nums que .sp-price (voir site-styles.mjs),
+  // et un échec réseau ne modifie rien ni ne journalise d'erreur visible —
+  // l'état déjà rendu reste affiché tel quel.
+  function enhanceSponsorInventory() {
+    var section = document.querySelector('[data-sponsor-slots-endpoint]');
+    if (!section) return;
+    var endpoint = section.getAttribute('data-sponsor-slots-endpoint');
+    if (!endpoint) return;
+
+    var openLabel = section.getAttribute('data-sponsor-open-label') || '';
+    var takenLabel = section.getAttribute('data-sponsor-taken-label') || '';
+    var lang = document.documentElement.lang || 'en';
+    var LIVE_STATUSES = { open: true, reserved: true, paid: true };
+
+    fetch(endpoint)
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (body) {
+        if (!body || typeof body !== 'object') return;
+
+        var items = section.querySelectorAll('.sp-inv-item[data-slot]');
+        for (var i = 0; i < items.length; i++) {
+          var item = items[i];
+          var entry = body[item.dataset.slot];
+          // Même garde que liveSlotState côté build : un slot absent de la
+          // charge utile, ou d'une forme inattendue, ne touche pas à cet
+          // élément — il garde l'état déjà rendu plutôt que d'être effacé.
+          if (!entry || typeof entry !== 'object' || !LIVE_STATUSES[entry.status]) continue;
+
+          var taken = entry.status !== 'open';
+          item.classList.toggle('taken', taken);
+          item.classList.toggle('open', !taken);
+
+          var stateEl = item.querySelector('.sp-inv-state');
+          if (stateEl) stateEl.textContent = taken ? takenLabel : openLabel;
+
+          var priceEl = item.querySelector('.sp-inv-price');
+          var priceCents = entry.priceCents;
+          var hasPrice = !taken && typeof priceCents === 'number' && isFinite(priceCents) && entry.currency === 'USD';
+
+          if (hasPrice) {
+            var amount = priceCents / 100;
+            var formatted = new Intl.NumberFormat(lang, {
+              style: 'currency',
+              currency: 'USD',
+              minimumFractionDigits: Math.round(amount) === amount ? 0 : 2,
+              maximumFractionDigits: Math.round(amount) === amount ? 0 : 2,
+            }).format(amount);
+            if (!priceEl) {
+              priceEl = document.createElement('span');
+              priceEl.className = 'sp-inv-price';
+              item.appendChild(priceEl);
+            }
+            priceEl.textContent = formatted;
+          } else if (priceEl) {
+            priceEl.parentNode.removeChild(priceEl);
+          }
+        }
+      })
+      .catch(function () {}); // échec silencieux : l'état cuit au build reste affiché
+  }
+
   enhanceHome();
   enhanceSearchCombo();
   enhanceThemeToggle();
   enhanceCopyButton();
   enhanceAgentButtons();
   enhanceVote();
+  enhanceSponsorInventory();
 })();

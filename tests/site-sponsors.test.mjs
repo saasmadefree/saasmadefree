@@ -11,6 +11,7 @@ import { renderSponsorPage } from '../scripts/lib/site-page-sponsor.mjs';
 import { PLACEHOLDER_PATH } from '../scripts/lib/site-favicons.mjs';
 import { escapeHtml } from '../scripts/lib/site-html.mjs';
 import { formatMoney } from '../scripts/lib/site-format.mjs';
+import { SPONSOR_SLOTS_API_URL } from '../scripts/lib/site-data.mjs';
 
 /** Le prix tel qu'il doit apparaître dans le HTML rendu : même formateur que
  *  le reste du site, jamais une chaîne retapée à la main dans le test. */
@@ -441,13 +442,22 @@ const STATS_PAYLOAD = {
 const VIEWS_14D_TOTAL = STATS_PAYLOAD.views14d.reduce((sum, d) => sum + d.views, 0);
 
 describe('page /sponsor', () => {
-  const page = ({ stats = null } = {}) => renderSponsorPage({
+  const page = ({ stats = null, sponsors = ctx([]), liveSlots = null } = {}) => renderSponsorPage({
     lang: 'fr', path: '/fr/sponsor', ui: fullUi, alternates: [], xDefaultPath: null,
-    homePath: '/fr/', sponsors: ctx([]), sponsorSlots: null,
+    homePath: '/fr/', sponsors, sponsorSlots: null,
     // Forme exacte retournée par catalogueFigures() dans site-data.mjs.
     figures: { toolsPublished: 529, categories: 51, languages: 2, totalMonthlyUsd: 11760.18, prompts: 529 },
-    stats,
+    stats, liveSlots,
   });
+
+  // Isole le <li> d'un slot donné dans le HTML rendu, pour vérifier son état
+  // (pris/libre) et son prix sans dépendre de la position exacte dans la page.
+  const itemFor = (html, slot) => {
+    const m = html.match(new RegExp(`<li class="sp-inv-item[^>]*data-slot="${slot}">.*?</li>`, 's'));
+    if (!m) throw new Error(`aucun <li> trouvé pour le slot ${slot}`);
+    return m[0];
+  };
+  const hasClass = (li, cls) => li.includes(`class="sp-inv-item ${cls}"`);
 
   // La page est rendue en `fr` : le barème publié doit correspondre marche
   // par marche à RAIL_LADDER_USD/TAPE_LADDER_USD, formaté par formatMoney.
@@ -632,6 +642,97 @@ describe('page /sponsor', () => {
     expect(page()).toContain(
       '<meta name="description" content="8 side slots and 20 scrolling places on a directory read by people about to cancel a subscription.">'
     );
+  });
+
+  // Tâche 6 : le paiement est encaissé côté Worker avant que la créa ne soit
+  // commitée dans data/sponsors.json — pendant cette fenêtre, l'inventaire ne
+  // doit pas afficher un slot payé comme libre. La charge utile lue au build
+  // (fetchSponsorSlots, voir site-data.mjs) est donc la source de vérité
+  // quand elle répond ; data/sponsors.json ne sert que de repli.
+  describe('inventaire — disponibilité en direct', () => {
+    it('marque un slot pris quand la charge utile dit "paid", même si data/sponsors.json ne le connaît pas encore', () => {
+      const html = page({
+        sponsors: ctx([]), // data/sponsors.json : L1 encore inconnu (créa pas commitée)
+        liveSlots: { L1: { status: 'paid', endsOn: '2026-09-10' } },
+      });
+      const li = itemFor(html, 'L1');
+      expect(hasClass(li, 'taken')).toBe(true);
+      expect(li).toContain(fullUi.site.sponsor.takenLabel);
+      // Un slot pris ne porte aucun emplacement de prix, même vide — rien à
+      // annoncer pour un emplacement déjà vendu.
+      expect(li).not.toContain('sp-inv-price');
+    });
+
+    it('affiche le prix d’un slot libre lu depuis la charge utile, formaté comme le reste du site', () => {
+      const html = page({ liveSlots: { L1: { status: 'open', priceCents: 21900, currency: 'USD' } } });
+      const li = itemFor(html, 'L1');
+      expect(hasClass(li, 'open')).toBe(true);
+      expect(li).toContain(usd(219, 'fr'));
+    });
+
+    it('retombe sur l’état déduit de data/sponsors.json quand la charge utile est null, sans inventer de prix', () => {
+      const html = page({ sponsors: ctx([LIVE]), liveSlots: null });
+      const l1 = itemFor(html, 'L1');
+      expect(hasClass(l1, 'taken')).toBe(true); // LIVE occupe L1 dans data/sponsors.json
+      // Chaque slot libre porte un emplacement de prix (voir la doc
+      // d'inventoryList — c'est ce qui permet au rafraîchissement client de
+      // ne jamais avoir à insérer de nœud), mais aucun n'est rempli : le
+      // repli ne calcule jamais de prix par lui-même.
+      const start = html.indexOf(fullUi.site.sponsor.inventoryHeading);
+      const end = html.indexOf(fullUi.site.sponsor.ladderHeading);
+      const prices = [...html.slice(start, end).matchAll(/<span class="sp-inv-price">([^<]*)<\/span>/g)];
+      expect(prices.length).toBeGreaterThan(0); // des slots libres existent (tous, ici)
+      for (const [, content] of prices) expect(content).toBe('');
+    });
+
+    it('porte un attribut de données pointant vers l’API, pour que site.js rafraîchisse le bloc', () => {
+      expect(page()).toContain(`data-sponsor-slots-endpoint="${SPONSOR_SLOTS_API_URL}"`);
+    });
+  });
+
+  // Round de revue (voir audienceFigures) : `liveSlots` traverse une
+  // frontière HTTP, un payload présent mais partiel ou mal formé est donc un
+  // cas réel. Chaque champ absent ou du mauvais type ne doit dégrader que sa
+  // propre valeur — jamais planter le build, jamais afficher NaN, jamais
+  // inventer un prix.
+  describe('inventaire — charge utile partielle ou malformée', () => {
+    it('un slot absent de la charge utile retombe sur data/sponsors.json pour ce seul slot', () => {
+      const html = page({
+        sponsors: ctx([LIVE]), // LIVE occupe L1 côté data/sponsors.json
+        liveSlots: { R1: { status: 'paid', endsOn: '2026-09-01' } }, // L1 absent de la charge utile
+      });
+      expect(hasClass(itemFor(html, 'L1'), 'taken')).toBe(true); // repli sur data/sponsors.json
+      expect(hasClass(itemFor(html, 'R1'), 'taken')).toBe(true); // vient de la charge utile
+    });
+
+    it('un statut inconnu dans la charge utile ne plante pas et retombe sur data/sponsors.json', () => {
+      expect(() => page({ liveSlots: { L1: { status: 'weird' } } })).not.toThrow();
+      const html = page({ sponsors: ctx([]), liveSlots: { L1: { status: 'weird' } } });
+      expect(hasClass(itemFor(html, 'L1'), 'open')).toBe(true); // ctx([]) : L1 libre côté data/sponsors.json
+    });
+
+    it('un priceCents non numérique n’affiche aucun prix et n’écrit pas NaN', () => {
+      const html = page({ liveSlots: { L1: { status: 'open', priceCents: '219', currency: 'USD' } } });
+      expect(html).not.toContain('NaN');
+      expect(itemFor(html, 'L1')).toContain('<span class="sp-inv-price"></span>');
+    });
+
+    it('une devise différente de USD n’affiche aucun prix plutôt que de mal l’étiqueter', () => {
+      const html = page({ liveSlots: { L1: { status: 'open', priceCents: 21900, currency: 'EUR' } } });
+      expect(itemFor(html, 'L1')).toContain('<span class="sp-inv-price"></span>');
+    });
+
+    it('une entrée qui n’est pas un objet retombe sur data/sponsors.json sans planter', () => {
+      expect(() => page({ liveSlots: { L1: 'paid' } })).not.toThrow();
+      const html = page({ sponsors: ctx([]), liveSlots: { L1: 'paid' } });
+      expect(hasClass(itemFor(html, 'L1'), 'open')).toBe(true);
+    });
+
+    it('une charge utile qui n’est pas un objet exploitable (tableau) retombe entièrement sur data/sponsors.json', () => {
+      expect(() => page({ liveSlots: ['not', 'an', 'object'] })).not.toThrow();
+      const html = page({ sponsors: ctx([LIVE]), liveSlots: ['not', 'an', 'object'] });
+      expect(hasClass(itemFor(html, 'L1'), 'taken')).toBe(true);
+    });
   });
 
 });

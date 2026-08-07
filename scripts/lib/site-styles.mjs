@@ -502,6 +502,10 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
 .sp-inv-item.open{border-style:dashed}
 .sp-inv-slot{font-family:var(--mono);font-weight:700;color:var(--ink)}
 .sp-inv-state{font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+/* Même traitement numérique que .sp-price : les chiffres restent alignés
+   quand le rafraîchissement client (site.js) remplace un montant par un
+   autre, aucune couleur saturée. */
+.sp-inv-price{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
 
 /* .sp-ladder réutilise les règles génériques de \`table\`/\`caption\`/\`th,td\`
    définies plus haut (bordures de cellule, en-tête en petites capitales) —

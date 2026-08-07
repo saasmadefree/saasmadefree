@@ -6,7 +6,7 @@ import { mkdir, writeFile, cp } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { loadData } from './lib/load-data.mjs';
 import {
-  SITE_ORIGIN, fetchVoteCounts, fetchStats, siteLanguages, toolsForLang, sortTools,
+  SITE_ORIGIN, fetchVoteCounts, fetchStats, fetchSponsorSlots, siteLanguages, toolsForLang, sortTools,
   categoriesForLang, topCategoriesByCount, langsForCategory, catalogueFigures, mrrDestroyed,
 } from './lib/site-data.mjs';
 import { fetchFavicons } from './lib/site-favicons.mjs';
@@ -89,6 +89,19 @@ async function main() {
     console.log(`Chiffres d'audience récupérés en direct (visiteurs-jours 7 j : ${stats.visitors7d}).`);
   } else {
     console.log("Service d'analytics injoignable au build — page /sponsor sans chiffre d'audience.");
+  }
+
+  // Disponibilité en direct des emplacements sponsors (page /sponsor,
+  // tableau d'inventaire) — même discipline que voteCounts/stats ci-dessus :
+  // un paiement encaissé côté Worker peut précéder de plusieurs minutes le
+  // commit de la créa dans data/sponsors.json, et l'inventaire doit refléter
+  // le paiement pendant cette fenêtre plutôt que de vendre le même slot deux
+  // fois à un rang de prix trop bas.
+  const sponsorSlotsLive = await fetchSponsorSlots();
+  if (sponsorSlotsLive) {
+    console.log(`Disponibilité des emplacements sponsors récupérée en direct pour ${Object.keys(sponsorSlotsLive).length} slot(s).`);
+  } else {
+    console.log('Service de disponibilité sponsors injoignable au build — inventaire /sponsor replié sur data/sponsors.json.');
   }
 
   // Domaines des sponsors actifs au jour du build (`today` ci-dessus) : ils
@@ -227,7 +240,7 @@ async function main() {
       renderSponsorPage({
         lang, path: sponsorPath, ui: langUi, alternates: sponsorAlt,
         xDefaultPath: xDefaultOf(sponsorAlt), homePath,
-        sponsors: sponsorCtx, sponsorSlots, figures, stats,
+        sponsors: sponsorCtx, sponsorSlots, figures, stats, liveSlots: sponsorSlotsLive,
       })
     );
     sitemapPages.push({ path: sponsorPath });

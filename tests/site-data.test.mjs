@@ -3,6 +3,7 @@ import {
   siteLanguages, toolsForLang, sortTools, categoriesForLang, categoryLabel,
   categoryEmoji, langsForCategory, fetchVoteCounts, VOTES_FEED_URL,
   catalogueFigures, mrrDestroyed, fetchStats, STATS_API_URL,
+  fetchSponsorSlots, SPONSOR_SLOTS_API_URL,
 } from '../scripts/lib/site-data.mjs';
 
 function tool(slug, over = {}) {
@@ -185,6 +186,39 @@ describe('fetchStats', () => {
   it("renvoie null si la réponse n'est pas un objet exploitable", async () => {
     vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true, json: async () => [1, 2, 3] })));
     expect(await fetchStats()).toBeNull();
+  });
+});
+
+// Même discipline que fetchVoteCounts/fetchStats : une seule tentative au
+// build, jamais un état inventé quand le Worker ne répond pas — voir la
+// tâche 6 (disponibilité en direct sur /sponsor).
+describe('fetchSponsorSlots', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('renvoie la charge utile quand le Worker répond', async () => {
+    const payload = { L1: { status: 'open', priceCents: 14900, currency: 'USD' } };
+    vi.stubGlobal('fetch', vi.fn(async (url) => {
+      expect(url).toBe(SPONSOR_SLOTS_API_URL);
+      return { ok: true, json: async () => payload };
+    }));
+    expect(await fetchSponsorSlots()).toEqual(payload);
+  });
+
+  it('renvoie null sans lever quand la requête échoue', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => { throw new Error('offline'); }));
+    expect(await fetchSponsorSlots()).toBeNull();
+  });
+
+  it('renvoie null sur un statut HTTP non ok, plutôt qu’un inventaire partiel', async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => ({ ok: false, json: async () => ({}) })));
+    expect(await fetchSponsorSlots()).toBeNull();
+  });
+
+  it("renvoie null si la réponse n'est pas un objet exploitable", async () => {
+    vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true, json: async () => [1, 2, 3] })));
+    expect(await fetchSponsorSlots()).toBeNull();
   });
 });
 

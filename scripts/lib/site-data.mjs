@@ -5,6 +5,7 @@ export const SITE_ORIGIN = 'https://saasmadefree.com';
 export const VOTE_ENDPOINT = 'https://votes.saasmadefree.com/api/v1/vote';
 export const VOTES_FEED_URL = 'https://votes.saasmadefree.com/feed/v1/votes.json';
 export const STATS_API_URL = 'https://votes.saasmadefree.com/api/v1/stats';
+export const SPONSOR_SLOTS_API_URL = 'https://votes.saasmadefree.com/api/v1/sponsors/slots';
 
 // Le build essaie une seule fois de récupérer les compteurs réels au moment
 // de générer les pages, pour que le tri "par votes" et l'affichage initial
@@ -44,6 +45,31 @@ export async function fetchStats(timeoutMs = 6000) {
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const res = await fetch(STATS_API_URL, { signal: controller.signal });
+    if (!res.ok) return null;
+    const body = await res.json();
+    if (!body || typeof body !== 'object' || Array.isArray(body)) return null;
+    return body;
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// Même discipline que fetchVoteCounts/fetchStats ci-dessus, appliquée à la
+// disponibilité des emplacements sponsors (voir worker/src/sponsors.mjs,
+// readSlots) : une seule tentative au moment du build, jamais un statut ou un
+// prix inventé si le service ne répond pas. Utilisé par la page /sponsor
+// (site-page-sponsor.mjs) pour que l'inventaire reflète un paiement encaissé
+// même quand data/sponsors.json ne le sait pas encore (créa pas commitée) —
+// un service injoignable doit produire `null` (repli sur data/sponsors.json),
+// jamais un état partiel qui se ferait passer pour la réalité du Worker.
+export async function fetchSponsorSlots(timeoutMs = 6000) {
+  if (typeof fetch !== 'function') return null;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch(SPONSOR_SLOTS_API_URL, { signal: controller.signal });
     if (!res.ok) return null;
     const body = await res.json();
     if (!body || typeof body !== 'object' || Array.isArray(body)) return null;
