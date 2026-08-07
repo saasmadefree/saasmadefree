@@ -6,7 +6,7 @@ import { mkdir, writeFile, cp } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { loadData } from './lib/load-data.mjs';
 import {
-  SITE_ORIGIN, fetchVoteCounts, siteLanguages, toolsForLang, sortTools,
+  SITE_ORIGIN, fetchVoteCounts, fetchStats, siteLanguages, toolsForLang, sortTools,
   categoriesForLang, topCategoriesByCount, langsForCategory, catalogueFigures, mrrDestroyed,
 } from './lib/site-data.mjs';
 import { fetchFavicons } from './lib/site-favicons.mjs';
@@ -79,6 +79,16 @@ async function main() {
     console.log(`Compteurs de votes récupérés en direct pour ${Object.keys(voteCounts).length} slug(s).`);
   } else {
     console.log('Service de vote injoignable au build — tri sur pagePriority, aucun compteur affiché.');
+  }
+
+  // Chiffres d'audience (page /sponsor, section « ce qu'on mesure ») — même
+  // discipline que voteCounts ci-dessus : null si le service ne répond pas,
+  // jamais un zéro qui se ferait passer pour une donnée.
+  const stats = await fetchStats();
+  if (stats) {
+    console.log(`Chiffres d'audience récupérés en direct (visiteurs-jours 7 j : ${stats.visitors7d}).`);
+  } else {
+    console.log("Service d'analytics injoignable au build — page /sponsor sans chiffre d'audience.");
   }
 
   // Domaines des sponsors actifs au jour du build (`today` ci-dessus) : ils
@@ -217,7 +227,7 @@ async function main() {
       renderSponsorPage({
         lang, path: sponsorPath, ui: langUi, alternates: sponsorAlt,
         xDefaultPath: xDefaultOf(sponsorAlt), homePath,
-        sponsors: sponsorCtx, sponsorSlots, figures,
+        sponsors: sponsorCtx, sponsorSlots, figures, stats,
       })
     );
     sitemapPages.push({ path: sponsorPath });

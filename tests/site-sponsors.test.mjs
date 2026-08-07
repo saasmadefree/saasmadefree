@@ -16,6 +16,10 @@ import { formatMoney } from '../scripts/lib/site-format.mjs';
  *  le reste du site, jamais une chaîne retapée à la main dans le test. */
 const usd = (amount, lang) => escapeHtml(formatMoney(amount, 'USD', lang));
 
+/** Un chiffre d'audience tel qu'il doit apparaître : même Intl.NumberFormat
+ *  que renderSponsorPage, jamais une chaîne retapée à la main. */
+const n = (value, lang) => escapeHtml(new Intl.NumberFormat(lang).format(value));
+
 const P = (slot, startsOn, endsOn, domain = 'postiz.com') => ({
   slot, name: 'Postiz', domain, url: `https://${domain}/`,
   tagline: { en: 'Schedule', fr: 'Programme' }, startsOn, endsOn,
@@ -358,6 +362,15 @@ const fullUi = {
       figureLanguages: 'Languages',
       figureTotalPrice: 'Total monthly price of the catalogue (USD)',
     },
+    // Sous-ensemble utilisé par renderSponsorPage pour la section « ce qu'on
+    // mesure » : mêmes libellés que la page /stats (site.stats), jamais une
+    // traduction parallèle — voir renderStatsPage.
+    stats: {
+      visitorDays: 'Visitor-days · 7d',
+      views14d: 'Page views · last 14 days',
+      promptsCopied: 'Prompts copied · 7d',
+      crawlers: 'AI crawlers reading this site',
+    },
     sponsor: {
       openLabel: 'Open slot', perDays: '/ 30 days', bookCta: 'Book it',
       takenLabel: 'Taken',
@@ -372,8 +385,11 @@ const fullUi = {
       metaDescription: '{railCount} side slots and {tapeCount} scrolling places on a directory read by people about to cancel a subscription.',
       h1: 'Sponsor SaaS Made Free',
       lede: 'People land here to cancel something. What that means for a sponsor is for you to judge.',
-      noAnalyticsHeading: 'What we cannot tell you',
-      noAnalyticsBody: 'This site runs no analytics — no tracking pixel, no third-party script, nothing. So we have no traffic number to sell you, and we are not going to invent one. Everything below is computed from the catalogue itself, at build time.',
+      measuredHeading: 'What we measure',
+      measuredIntro: 'This site runs its own analytics: a beacon on every page, logged by a Cloudflare Worker, nothing sold as a private dashboard. The figures below are read from that data, not typed by hand.',
+      statsLinkCta: 'See the full figures on the public stats page',
+      statsUnavailableNote: 'The analytics service did not answer when this page was built, so no figure is shown here. The same data is public, live, on the stats page.',
+      catalogueFiguresNote: 'The catalogue itself, read from the same build:',
       inventoryHeading: 'The inventory',
       ladderHeading: 'The price ladder',
       ladderBody: 'The price rises as slots fill. Each step is the price of the next slot to be taken. A slot that expires frees up and the price steps back down.',
@@ -393,12 +409,44 @@ const fullUi = {
   },
 };
 
+// Forme exacte retournée par buildStatsPayload() côté worker (worker/src/stats.mjs) —
+// seuls les champs que renderSponsorPage lit sont renseignés avec de vraies valeurs,
+// le reste avec la forme vide pour ne pas mentir sur ce qui est testé.
+const STATS_PAYLOAD = {
+  generatedAt: '2026-08-10T00:00:00.000Z',
+  today: { views: 12, visitors: 5 },
+  peak: { day: '2026-08-09', views: 40 },
+  views14d: [
+    { day: '2026-08-03', views: 10 },
+    { day: '2026-08-04', views: 8 },
+    { day: '2026-08-05', views: 6 },
+  ],
+  visitors7d: 23,
+  copies7d: { total: 17, byAgent: [], topPrompts: [] },
+  aiReferrals: { d7: [], d30: [] },
+  // Trois entrées, exprès : le nombre de bots distincts (3) ne doit coïncider
+  // avec aucune des valeurs de `figures` utilisées par ces mêmes tests
+  // (529, 51, 2, 11760.18) — sinon un test « aucune fuite de chiffre » se
+  // vérifierait par accident plutôt que par construction.
+  crawlers7d: [
+    { bot: 'gptbot', label: 'GPTBot', vendor: 'OpenAI', edge: 3, cf: 1, lastSeen: '2026-08-09' },
+    { bot: 'claudebot', label: 'ClaudeBot', vendor: 'Anthropic', edge: 2, cf: 0, lastSeen: '2026-08-08' },
+    { bot: 'perplexitybot', label: 'PerplexityBot', vendor: 'Perplexity', edge: 1, cf: 0, lastSeen: '2026-08-07' },
+  ],
+  votes: { total: 40, top: [] },
+};
+// Somme attendue de views14d — calculée ici depuis le même tableau que le
+// payload, jamais retapée, pour que le test ne prouve rien d'autre que ce que
+// renderSponsorPage doit calculer lui-même.
+const VIEWS_14D_TOTAL = STATS_PAYLOAD.views14d.reduce((sum, d) => sum + d.views, 0);
+
 describe('page /sponsor', () => {
-  const page = () => renderSponsorPage({
+  const page = ({ stats = null } = {}) => renderSponsorPage({
     lang: 'fr', path: '/fr/sponsor', ui: fullUi, alternates: [], xDefaultPath: null,
     homePath: '/fr/', sponsors: ctx([]), sponsorSlots: null,
     // Forme exacte retournée par catalogueFigures() dans site-data.mjs.
     figures: { toolsPublished: 529, categories: 51, languages: 2, totalMonthlyUsd: 11760.18, prompts: 529 },
+    stats,
   });
 
   // La page est rendue en `fr` : le barème publié doit correspondre marche
@@ -429,12 +477,58 @@ describe('page /sponsor', () => {
     );
   });
 
-  it('dit explicitement qu’il n’y a aucun chiffre de trafic', () => {
-    expect(page()).toContain('analytics');
-  });
-
   it('affiche les chiffres calculés du catalogue', () => {
     expect(page()).toContain('529');
+  });
+
+  // Le site a désormais de vraies analytics (beacon, page /stats, Worker) :
+  // la page /sponsor doit le dire et montrer les chiffres du payload — jamais
+  // "aucune analytics", qui serait faux depuis la page voisine /stats.
+  describe('section « ce qu’on mesure »', () => {
+    it('affiche les chiffres d’audience lus du payload, formatés comme le reste du site', () => {
+      const html = page({ stats: STATS_PAYLOAD });
+      expect(html).toContain(`<strong>${n(STATS_PAYLOAD.visitors7d, 'fr')}</strong> ${fullUi.site.stats.visitorDays}`);
+      expect(html).toContain(`<strong>${n(VIEWS_14D_TOTAL, 'fr')}</strong> ${fullUi.site.stats.views14d}`);
+      expect(html).toContain(`<strong>${n(STATS_PAYLOAD.copies7d.total, 'fr')}</strong> ${fullUi.site.stats.promptsCopied}`);
+      expect(html).toContain(`<strong>${n(STATS_PAYLOAD.crawlers7d.length, 'fr')}</strong> ${fullUi.site.stats.crawlers}`);
+    });
+
+    it('n’affiche aucun chiffre d’audience et un message honnête quand le payload est indisponible', () => {
+      const html = page({ stats: null });
+      expect(html).toContain(fullUi.site.sponsor.statsUnavailableNote);
+      // Aucune des valeurs du payload de test ne doit apparaître : ni en
+      // "chiffre inventé", ni fuité d'un autre test par erreur d'état partagé.
+      for (const value of [STATS_PAYLOAD.visitors7d, VIEWS_14D_TOTAL, STATS_PAYLOAD.copies7d.total, STATS_PAYLOAD.crawlers7d.length]) {
+        expect(html).not.toContain(`<strong>${value}</strong>`);
+      }
+    });
+
+    it('porte un lien vers la page /stats de la langue rendue, quel que soit l’état du payload', () => {
+      expect(page({ stats: STATS_PAYLOAD })).toContain('href="/fr/stats/"');
+      expect(page({ stats: null })).toContain('href="/fr/stats/"');
+    });
+
+    // Principe 3 de .impeccable.md : un nombre qui ne peut pas être calculé
+    // n'est pas affiché. On isole le texte de la section et on vérifie que
+    // chaque valeur affichée en <strong> (la convention du site pour un
+    // chiffre — voir .sp-figures) est bien dérivée du payload. On ne scanne
+    // pas tous les chiffres de la section : les libellés repris de
+    // site.stats portent légitimement des indicateurs de fenêtre ("7d", "14
+    // derniers jours") qui sont du texte traduit, pas des chiffres affichés.
+    it('n’écrit aucun chiffre en dur dans la section — chaque valeur affichée vient du payload', () => {
+      const html = page({ stats: STATS_PAYLOAD });
+      const start = html.indexOf(fullUi.site.sponsor.measuredHeading);
+      const end = html.indexOf(fullUi.site.sponsor.catalogueFiguresNote);
+      expect(start).toBeGreaterThan(-1);
+      expect(end).toBeGreaterThan(start);
+      const section = html.slice(start, end);
+      const allowed = new Set([
+        STATS_PAYLOAD.visitors7d, VIEWS_14D_TOTAL, STATS_PAYLOAD.copies7d.total, STATS_PAYLOAD.crawlers7d.length,
+      ].map(String));
+      const values = [...section.matchAll(/<strong>([^<]+)<\/strong>/g)].map((m) => m[1]);
+      expect(values).toHaveLength(4);
+      for (const value of values) expect(allowed.has(value), `valeur inattendue : ${value}`).toBe(true);
+    });
   });
 
   it('porte la clause de non-influence sur les verdicts', () => {

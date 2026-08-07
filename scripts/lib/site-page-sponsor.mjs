@@ -30,6 +30,27 @@ function ladderTable(ladder, heading, s, lang) {
       </table>`;
 }
 
+/** Les chiffres d'audience de la section « ce qu'on mesure », lus du payload
+ *  de l'API stats (STATS_API_URL, voir site-data.mjs::fetchStats) — jamais
+ *  ailleurs. Les libellés viennent de ui.site.stats : ce sont ceux déjà
+ *  publiés sur /stats (site-page-stats.mjs), pas une traduction parallèle.
+ *  N'est appelée que quand `stats` n'est pas null — voir renderSponsorPage. */
+function audienceFigures(stats, statsUi, n) {
+  const views14dTotal = stats.views14d.reduce((sum, day) => sum + day.views, 0);
+  const items = [
+    [stats.visitors7d, statsUi.visitorDays],
+    [views14dTotal, statsUi.views14d],
+    [stats.copies7d.total, statsUi.promptsCopied],
+    [stats.crawlers7d.length, statsUi.crawlers],
+  ];
+  const rows = items
+    .map(([value, label]) => `<li><strong>${escapeHtml(n(value))}</strong> ${escapeHtml(label)}</li>`)
+    .join('\n        ');
+  return `      <ul class="sp-figures">
+        ${rows}
+      </ul>`;
+}
+
 function inventoryList(slots, sponsors, s) {
   const items = slots
     .map((slot) => {
@@ -45,16 +66,22 @@ function inventoryList(slots, sponsors, s) {
 /**
  * La page qui vend les emplacements.
  *
- * Elle n'affiche aucun chiffre d'audience : le site n'a pas d'analytics
- * (principe 4 de .impeccable.md), donc aucun trafic n'est mesurable, et le
- * principe 3 interdit d'afficher un nombre qu'on ne peut pas calculer. Tout ce
- * qu'elle montre est lu du catalogue au moment du build.
+ * Le site fait tourner ses propres analytics (beacon, page /stats publique,
+ * Worker) — la section « ce qu'on mesure » le dit et montre de vrais chiffres
+ * d'audience, lus de `stats` (le payload de STATS_API_URL, voir
+ * site-data.mjs::fetchStats). Le principe 3 de .impeccable.md interdit
+ * d'afficher un nombre qu'on ne peut pas calculer : si le service n'a pas
+ * répondu au build, `stats` vaut null et aucun chiffre d'audience n'est
+ * affiché — jamais un zéro qui se ferait passer pour une donnée. Le lien vers
+ * /{lang}/stats/ reste affiché dans tous les cas : c'est l'argument de vente
+ * réel, on ne demande pas qu'on croie un chiffre tapé, on publie la donnée.
  *
- * Les libellés des chiffres sont ceux de l'accueil (ui.site.home.figure*) :
- * une seule traduction pour une seule notion, dans les sept locales.
+ * Les chiffres du catalogue (toolsPublished, etc.) restent affichés en plus,
+ * avec les libellés de l'accueil (ui.site.home.figure*) : une seule
+ * traduction pour une seule notion, dans les sept locales.
  */
 export function renderSponsorPage({
-  lang, path, ui, alternates, xDefaultPath, homePath, sponsors, sponsorSlots, figures,
+  lang, path, ui, alternates, xDefaultPath, homePath, sponsors, sponsorSlots, figures, stats = null,
 }) {
   const site = ui.site;
   const s = site.sponsor;
@@ -63,6 +90,13 @@ export function renderSponsorPage({
   // l'accueil et cette page divergeraient (ex. "1 234" contre "1234") le
   // jour où toolsPublished franchit 1 000.
   const n = (value) => new Intl.NumberFormat(lang).format(value);
+
+  // La page /stats existe dans chaque langue (voir build-site.mjs) au même
+  // chemin que celui construit là-bas : /{lang}/stats/.
+  const statsPath = `${homePath}stats/`;
+  const audienceBlock = stats
+    ? audienceFigures(stats, site.stats, n)
+    : `      <p>${escapeHtml(s.statsUnavailableNote)}</p>`;
 
   const breadcrumbItems = [
     { label: site.directoryLabel, href: homePath },
@@ -84,8 +118,11 @@ export function renderSponsorPage({
     <p class="lede">${escapeHtml(s.lede)}</p>
 
     <section>
-      <h2>${escapeHtml(s.noAnalyticsHeading)}</h2>
-      <p>${escapeHtml(s.noAnalyticsBody)}</p>
+      <h2>${escapeHtml(s.measuredHeading)}</h2>
+      <p>${escapeHtml(s.measuredIntro)}</p>
+${audienceBlock}
+      <p><a href="${statsPath}">${escapeHtml(s.statsLinkCta)} →</a></p>
+      <p>${escapeHtml(s.catalogueFiguresNote)}</p>
       <ul class="sp-figures">
         <li><strong>${escapeHtml(n(figures.toolsPublished))}</strong> ${escapeHtml(site.home.figureToolsPublished)}</li>
         <li><strong>${escapeHtml(n(figures.categories))}</strong> ${escapeHtml(site.home.figureCategories)}</li>
