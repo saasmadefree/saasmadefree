@@ -183,25 +183,49 @@ export async function countHolds(env, ipHash) {
 }
 
 /**
- * Réserve un slot. `UPDATE … WHERE slot = ? AND status = 'open'` est la
- * garde : D1 sérialise l'instruction, donc deux acheteurs simultanés sur L1 ne
- * peuvent pas gagner tous les deux, sans transaction explicite. Zéro ligne
- * modifiée = le slot vient d'être pris.
+ * Réserve un slot. Le `WHERE` est la garde de concurrence : D1 sérialise
+ * l'instruction, donc deux acheteurs simultanés sur L1 ne peuvent pas gagner
+ * tous les deux, sans transaction explicite. Zéro ligne modifiée = le slot
+ * vient d'être pris.
+ *
+ * Deux cas passent, et deux seulement :
+ * - le slot est libre ;
+ * - il est réservé par CE MÊME visiteur, reconnu au hachage d'IP porté par
+ *   l'identifiant de réservation. Sans cette branche, revenir en arrière
+ *   depuis Stripe (`cancel_url`) puis recliquer le même emplacement rendrait
+ *   un `slot_taken` sur sa propre réservation, pendant 35 minutes — et
+ *   quelques hésitations suffiraient à se fermer tout l'inventaire via le
+ *   plafond de réservations.
+ *
+ * La comparaison se fait sur le préfixe `h:<hachage>:` en SQL, dans la même
+ * instruction : la sortir en lecture préalable rouvrirait la fenêtre de course
+ * que cette garde existe précisément pour fermer. `substr`/`length` plutôt que
+ * `LIKE` pour qu'aucun caractère de la valeur ne puisse être interprété comme
+ * un motif.
  */
 export async function reserveSlot(env, slot, sessionId, now) {
   const until = new Date(now.getTime() + RESERVATION_MINUTES * 60_000).toISOString();
+  // `null` quand l'identifiant n'est pas de la forme attendue : la branche de
+  // reprise est alors désactivée, et seule un slot libre passe.
+  const holder = holderOf(sessionId);
+  const prefix = holder === null ? null : `h:${holder}:`;
   const res = await env.DB.prepare(
     `UPDATE sponsor_slots SET status = 'reserved', session_id = ?, reserved_until = ?
-     WHERE slot = ? AND status = 'open'`
-  ).bind(sessionId, until, slot).run();
+      WHERE slot = ?
+        AND (status = 'open'
+             OR (? IS NOT NULL
+                 AND status = 'reserved'
+                 AND substr(session_id, 1, length(?)) = ?))`
+  ).bind(sessionId, until, slot, prefix, prefix, prefix).run();
   return (res.meta?.changes ?? 0) > 0;
 }
 
 /**
  * Relibère une réservation qu'on vient de poser. Appelée quand la création de
  * la session Stripe échoue : sans elle, un incident chez Stripe bloquerait le
- * slot 30 minutes pour rien. `session_id = ?` garantit qu'on ne libère que sa
- * propre réservation, jamais celle d'un autre acheteur.
+ * slot le temps d'une réservation entière (RESERVATION_MINUTES) pour rien.
+ * `session_id = ?` garantit qu'on ne libère que sa propre réservation, jamais
+ * celle d'un autre acheteur.
  */
 export async function releaseSlot(env, slot, sessionId) {
   const res = await env.DB.prepare(

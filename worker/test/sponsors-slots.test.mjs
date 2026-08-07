@@ -4,7 +4,9 @@ import MIGRATION_INIT from '../migrations/0001_init.sql?raw';
 import MIGRATION_STATS from '../migrations/0003_stats.sql?raw';
 import MIGRATION_SPONSORS from '../migrations/0004_sponsors.sql?raw';
 import worker from '../src/index.mjs';
-import { ensureSlots, readSlots } from '../src/sponsors.mjs';
+import {
+  ensureSlots, readSlots, assignPaidSlot, SLOT_ASSIGNED, SLOT_CONFLICT, SLOT_RETRY,
+} from '../src/sponsors.mjs';
 
 // Identique à stats-read.test.mjs, avec un complément : 0004_sponsors.sql ne
 // se contente pas d'un bloc de commentaires en tête de fichier, il porte
@@ -125,5 +127,59 @@ describe('readSlots', () => {
     const out = await readSlots(env, new Date());
 
     expect(out.T02.priceCents).toBe(7500);
+  });
+});
+
+// assignPaidSlot — testé directement, parce que le verdict SLOT_RETRY n'est
+// plus atteignable par la route depuis que le webhook balaie lui-même les
+// réservations mortes (constat N1). Il subsiste pour ce que le balayage ne
+// couvre pas : celui-ci est best-effort et avale ses erreurs, donc une panne
+// D1 passagère peut laisser une ligne morte en place. La branche doit rester
+// vérifiée là où elle est atteignable.
+describe('assignPaidSlot', () => {
+  const now = new Date();
+  const HOLD = 'h:abcdef:11111111-1111-1111-1111-111111111111';
+  const AUTRE = 'h:999999:22222222-2222-2222-2222-222222222222';
+
+  async function seed(sql, ...binds) {
+    await ensureSlots(env);
+    await env.DB.prepare(sql).bind(...binds).run();
+  }
+
+  it('attribue quand le slot est tenu par cette réservation', async () => {
+    await seed(
+      "UPDATE sponsor_slots SET status = 'reserved', session_id = ?, reserved_until = ? WHERE slot = 'L1'",
+      HOLD, new Date(Date.now() + 600_000).toISOString()
+    );
+    const verdict = await assignPaidSlot(env, { slot: 'L1', holdId: HOLD, sessionId: 'cs_1', months: 1, now });
+    expect(verdict).toBe(SLOT_ASSIGNED);
+  });
+
+  it('attribue au rejeu d’un événement déjà honoré', async () => {
+    await seed("UPDATE sponsor_slots SET status = 'paid', session_id = 'cs_1' WHERE slot = 'L1'");
+    const verdict = await assignPaidSlot(env, { slot: 'L1', holdId: HOLD, sessionId: 'cs_1', months: 1, now });
+    expect(verdict).toBe(SLOT_ASSIGNED);
+  });
+
+  it('conflit quand un autre le détient valablement', async () => {
+    await seed("UPDATE sponsor_slots SET status = 'paid', session_id = 'cs_autre' WHERE slot = 'L1'");
+    expect(await assignPaidSlot(env, { slot: 'L1', holdId: HOLD, sessionId: 'cs_1', months: 1, now }))
+      .toBe(SLOT_CONFLICT);
+
+    await seed(
+      "UPDATE sponsor_slots SET status = 'reserved', session_id = ?, reserved_until = ? WHERE slot = 'L2'",
+      AUTRE, new Date(Date.now() + 600_000).toISOString()
+    );
+    expect(await assignPaidSlot(env, { slot: 'L2', holdId: HOLD, sessionId: 'cs_1', months: 1, now }))
+      .toBe(SLOT_CONFLICT);
+  });
+
+  it('réessayable quand une réservation morte n’a pas été balayée', async () => {
+    await seed(
+      "UPDATE sponsor_slots SET status = 'reserved', session_id = ?, reserved_until = ? WHERE slot = 'L1'",
+      AUTRE, new Date(Date.now() - 60_000).toISOString()
+    );
+    expect(await assignPaidSlot(env, { slot: 'L1', holdId: HOLD, sessionId: 'cs_1', months: 1, now }))
+      .toBe(SLOT_RETRY);
   });
 });

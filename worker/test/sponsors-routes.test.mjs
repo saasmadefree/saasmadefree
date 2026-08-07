@@ -363,6 +363,45 @@ describe('POST /api/v1/sponsors/checkout — réservation', () => {
     expect(count.c).toBe(1);
   });
 
+  it('laisse un visiteur reprendre SA propre réservation, sans slot_taken trompeur', async () => {
+    mockStripe();
+    const body = { slot: 'L1', months: 1, expectedPriceCents: 14900 };
+
+    expect((await call(checkoutRequest(body), SECRETS)).status).toBe(200);
+    const premier = (await slotRow('L1')).session_id;
+
+    // L'acheteur revient de Stripe par cancel_url et reclique le même
+    // emplacement. Sans reprise, il se verrait refuser son propre slot
+    // pendant toute la durée de la réservation.
+    const res = await call(checkoutRequest(body), SECRETS);
+    expect(res.status).toBe(200);
+
+    const row = await slotRow('L1');
+    expect(row.status).toBe('reserved');
+    expect(row.session_id).not.toBe(premier); // nouvelle session, même détenteur
+    expect(row.session_id).toMatch(/^h:[0-9a-f]{64}:/);
+
+    // Et la reprise ne consomme pas le plafond : il n'y a toujours qu'une
+    // réservation à son nom, donc deux autres emplacements restent ouverts.
+    expect((await call(checkoutRequest({ ...body, slot: 'L2' }), SECRETS)).status).toBe(200);
+    expect((await call(checkoutRequest({ ...body, slot: 'L3' }), SECRETS)).status).toBe(429);
+  });
+
+  it('refuse toujours la réservation d’un AUTRE visiteur', async () => {
+    mockStripe();
+    const body = { slot: 'L1', months: 1, expectedPriceCents: 14900 };
+
+    expect((await call(checkoutRequest(body, { ip: '203.0.113.7' }), SECRETS)).status).toBe(200);
+    const tenu = (await slotRow('L1')).session_id;
+
+    const res = await call(checkoutRequest(body, { ip: '198.51.100.4' }), SECRETS);
+
+    expect(res.status).toBe(409);
+    expect((await res.json()).error).toBe('slot_taken');
+    // La réservation du premier n'a pas bougé d'un octet.
+    expect((await slotRow('L1')).session_id).toBe(tenu);
+  });
+
   it('relibère le slot immédiatement si Stripe refuse de créer la session, et journalise la cause', async () => {
     mockStripe({ status: 402 });
     // Le 502 aplatit toutes les pannes Stripe en un seul message : sans cette
@@ -621,32 +660,35 @@ describe('POST /api/v1/sponsors/webhook — encaissement', () => {
     expect((await orderRow()).status).toBe('unassigned');
   });
 
-  it('réessayable quand aucune réservation vivante ne bloque : ça se répare tout seul', async () => {
-    // Réservation d'un autre visiteur, déjà échue mais pas encore balayée —
-    // exactement ce que produit une session Stripe qui survit à sa
-    // réservation. Personne ne détient plus le slot, donc l'attribution n'est
-    // pas perdue : elle est reportée.
+  it('attribue dès la première livraison quand une réservation morte bloquait le slot', async () => {
+    // Réservation échue mais pas encore balayée — exactement ce que produit un
+    // paiement arrivé après l'expiration de sa réservation. Le webhook doit
+    // balayer lui-même : personne d'autre ne le fera. `GET /slots` et le
+    // checkout balaient, mais rien ne garantit qu'ils soient appelés, et le
+    // cron ne balaie pas. Sans ce balayage, l'événement repartirait en 503 à
+    // CHAQUE tentative pendant trois jours, jusqu'à désactivation du point de
+    // terminaison — ce qui ferait perdre toutes les ventes suivantes.
     await reserveL1('h:unautrevisiteur:99999999-9999-9999-9999-999999999999', { expiredSince: 60_000 });
 
-    const deferred = await postWebhook(JSON.stringify(completedEvent()));
-    expect(deferred.status).toBe(503);
-    expect((await deferred.json()).error).toBe('slot_assignment_deferred');
-    // La commande existe déjà, marquée non honorée : l'argent n'est jamais
-    // encaissé sans trace, même quand l'attribution est reportée.
-    expect((await orderRow()).status).toBe('unassigned');
+    const res = await postWebhook(JSON.stringify(completedEvent()));
 
-    // Stripe retente ; entre-temps la réservation morte a été balayée.
-    await env.DB.prepare(
-      "UPDATE sponsor_slots SET status = 'open', session_id = NULL, reserved_until = NULL WHERE slot = 'L1'"
-    ).run();
-    const retry = await postWebhook(JSON.stringify(completedEvent()));
-
-    expect(retry.status).toBe(200);
+    expect(res.status).toBe(200);
     expect((await slotRow('L1')).status).toBe('paid');
-    // Et la commande est corrigée : `unassigned` ne doit pas rester à vie.
     expect((await orderRow()).status).toBe('paid');
     const orders = await env.DB.prepare('SELECT COUNT(*) AS c FROM sponsor_orders').first();
     expect(orders.c).toBe(1);
+  });
+
+  it('balaie aussi une réservation d’un tiers restée sans échéance', async () => {
+    // Détenteur différent de celui de l'événement : la seule voie vers
+    // l'attribution est le balayage, pas la reconnaissance de la réservation.
+    await reserveL1('h:unautrevisiteur:99999999-9999-9999-9999-999999999999');
+    await env.DB.prepare("UPDATE sponsor_slots SET reserved_until = NULL WHERE slot = 'L1'").run();
+
+    const res = await postWebhook(JSON.stringify(completedEvent()));
+
+    expect(res.status).toBe(200);
+    expect((await slotRow('L1')).status).toBe('paid');
   });
 
   it('honore un paiement dont la réservation avait expiré, si personne ne l’a repris', async () => {

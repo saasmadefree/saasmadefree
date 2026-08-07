@@ -176,8 +176,8 @@ async function handleSponsorCheckout(request, env) {
     // révoquée et une panne de Stripe deviennent le même message, et la
     // première est indiagnosticable depuis la réponse.
     console.error('sponsors: création de session Stripe impossible', err);
-    // Aucune session créée : le slot ne doit pas rester bloqué une demi-heure
-    // pour une panne qui n'est pas celle de l'acheteur.
+    // Aucune session créée : le slot ne doit pas rester bloqué le temps d'une
+    // réservation entière pour une panne qui n'est pas celle de l'acheteur.
     await releaseSlot(env, slot, holdId);
     return json({ error: 'stripe_unavailable' }, 502, env);
   }
@@ -243,11 +243,26 @@ async function handleSponsorWebhook(request, env) {
 
   // La ligne du slot peut ne pas exister si aucune route ne l'a encore créée.
   await ensureSlots(env);
+  // Balayage des réservations mortes AVANT d'attribuer. Sans lui, le webhook
+  // dépendrait d'un balayage fait ailleurs — or seuls `GET /slots` et le
+  // checkout le font, et rien n'appelle encore `/slots` (c'est la tâche 6).
+  // Un paiement arrivé après l'expiration de sa propre réservation resterait
+  // alors bloqué en SLOT_RETRY à CHAQUE tentative, pendant les trois jours de
+  // relance, jusqu'à ce que Stripe désactive le point de terminaison — et ce
+  // ne seraient plus les ventes de cet événement qui seraient perdues, mais
+  // toutes les suivantes. Ici, le cas se résout dès la première livraison.
+  await releaseExpiredReservations(env, now);
   const verdict = await assignPaidSlot(env, { slot, holdId, sessionId, months, now });
 
-  // La commande est enregistrée dans TOUS les cas, y compris quand le slot n'a
-  // pas pu être attribué : l'argent est encaissé, il faut une trace. Son
-  // statut dit lequel des deux s'est produit — jamais `paid` par défaut.
+  // L'attribution vient AVANT l'enregistrement parce que c'est elle qui
+  // détermine le statut de la commande : l'inverse écrirait un statut avant de
+  // savoir s'il est vrai. L'ordre est sûr parce que rien ne se perd si le
+  // second appel échoue — Stripe rejoue, `assignPaidSlot` rendra alors
+  // SLOT_ASSIGNED (le slot porte déjà cette session) et la commande sera
+  // écrite au second passage. La commande est enregistrée dans TOUS les cas,
+  // y compris quand le slot n'a pas pu être attribué : l'argent est encaissé,
+  // il faut une trace. Son statut dit lequel des deux s'est produit — jamais
+  // `paid` par défaut.
   await recordOrder(env, {
     sessionId,
     slot,
@@ -263,9 +278,12 @@ async function handleSponsorWebhook(request, env) {
   });
 
   if (verdict === SLOT_RETRY) {
-    // Réessayable, et c'est tout l'intérêt : Stripe retente pendant trois
-    // jours. D'ici là, la réservation morte qui bloque le slot aura été
-    // balayée et la branche `open` passera. Ça se répare tout seul.
+    // Chemin quasi inatteignable depuis que le balayage a lieu juste au-dessus
+    // (une réservation morte n'en est plus une au moment de l'attribution). Il
+    // reste pour ce que le balayage ne couvre pas : il est best-effort et
+    // avale ses erreurs, donc une panne D1 passagère peut laisser la ligne en
+    // place. Réessayable est alors la bonne réponse — Stripe retente pendant
+    // trois jours, et la tentative suivante passera par la branche `open`.
     return json({ error: 'slot_assignment_deferred' }, 503, env);
   }
   // SLOT_CONFLICT : l'état est cohérent et stable, retenter n'y changerait
