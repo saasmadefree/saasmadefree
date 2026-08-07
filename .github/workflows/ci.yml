@@ -2,6 +2,11 @@ name: CI
 on:
   push: { branches: [main] }
   pull_request:
+  schedule:
+    # Après le cron du Worker (02:10 UTC, expireSlots) : le slot est déjà
+    # libéré en base quand la page se reconstruit, donc l'état commercial et
+    # la page publiée s'accordent dans la même nuit.
+    - cron: '17 3 * * *'
 
 jobs:
   data-and-code:
@@ -53,3 +58,19 @@ jobs:
       - name: Tests du worker
         working-directory: worker
         run: npx vitest run
+
+  # Reconstruit le site (spec tâche 5) : le Worker libère les slots sponsors
+  # expirés en base à 02:10 UTC, mais les placements sont du HTML statique
+  # généré depuis data/sponsors.json — ils ne changent qu'à un build. Sans ce
+  # job, un sponsor expiré resterait affiché indéfiniment pendant que la base
+  # le montre déjà vendable. `if` restreint ce job au déclenchement planifié :
+  # ni un push ni une pull request ne doivent republier le site en production.
+  rebuild:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Déclencher la reconstruction Pages
+        # Pas de secret configuré = échec bruyant et volontaire : une
+        # expiration qui ne se voit jamais sur le site est pire qu'un job
+        # rouge que personne n'a demandé.
+        run: curl -fsS -X POST "${{ secrets.CF_PAGES_DEPLOY_HOOK }}"

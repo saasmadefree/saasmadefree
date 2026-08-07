@@ -388,6 +388,31 @@ export async function paidCounts(env) {
 }
 
 /**
+ * Libère les slots dont la période est passée. Bornes incluses : un slot dont
+ * `ends_on` est aujourd'hui court encore, exactement comme la sélection côté
+ * site (`selectSponsors`, scripts/lib/site-sponsors.mjs) — sinon un sponsor
+ * perdrait sa dernière journée d'un côté et pas de l'autre.
+ *
+ * Remet aussi `session_id`, `starts_on` et `ends_on` à NULL : un slot libéré
+ * doit repartir à la vente sans porter de trace de son ancien occupant, ni
+ * de résidu qui ferait échouer les gardes de `reserveSlot`/`markSlotPaid`
+ * (qui comparent `session_id`).
+ *
+ * Idempotent : une fois le statut repassé à `open`, la ligne ne correspond
+ * plus au `WHERE status = 'paid'` et un second passage ne la touche pas.
+ * N'avale pas ses erreurs — c'est à l'appelant (le cron, `scheduled` dans
+ * index.mjs) d'appliquer le contrat fail-quiet, comme il le fait déjà pour
+ * `runScheduled`.
+ */
+export async function expireSlots(env, today) {
+  const res = await env.DB.prepare(
+    `UPDATE sponsor_slots SET status = 'open', session_id = NULL, starts_on = NULL, ends_on = NULL
+     WHERE status = 'paid' AND ends_on IS NOT NULL AND ends_on < ?`
+  ).bind(today).run();
+  return res.meta?.changes ?? 0;
+}
+
+/**
  * Charge utile de GET /api/v1/sponsors/slots.
  *
  * Un slot libre porte son prix du jour ; un slot pris porte sa date de fin et

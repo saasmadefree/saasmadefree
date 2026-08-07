@@ -6,7 +6,7 @@ import {
   SLOT_ASSIGNED, SLOT_RETRY,
   kindOf, priceCentsFor, paidCounts, ensureSlots, releaseExpiredReservations,
   readSlots, checkoutUrls, holdIdFor, holdsOf, reserveSlot, releaseSlot,
-  assignPaidSlot, recordOrder,
+  assignPaidSlot, recordOrder, expireSlots,
 } from './sponsors.mjs';
 import { createCheckoutSession, verifyStripeSignature, customFieldValue } from './stripe.mjs';
 
@@ -434,8 +434,15 @@ export default {
   },
 
   async scheduled(controller, env, ctx) {
-    // Fail-quiet : un cron qui lève serait re-tenté par la plateforme sans
-    // que personne ne le voie ; on préfère journaliser l'absence de données.
-    try { await runScheduled(env, new Date()); } catch { /* rien */ }
+    const now = new Date();
+    // Deux travaux indépendants dans le même passage, chacun sous son propre
+    // filet fail-quiet : un cron qui lève serait re-tenté par la plateforme
+    // sans que personne ne le voie, donc on préfère journaliser l'absence de
+    // données. Les try/catch sont séparés, pas un seul englobant — sinon une
+    // panne D1 pendant l'expiration des slots sponsors empêcherait le travail
+    // crawlers de tourner (et réciproquement), alors que les deux jobs
+    // n'ont rien à voir l'un avec l'autre.
+    try { await expireSlots(env, dayKey(now)); } catch { /* rien */ }
+    try { await runScheduled(env, now); } catch { /* rien */ }
   },
 };
