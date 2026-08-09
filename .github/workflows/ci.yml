@@ -9,7 +9,14 @@ on:
     - cron: '17 3 * * *'
 
 jobs:
+  # Code et données ensemble : ce job ne tourne que sur push/PR, jamais sur le
+  # planning nocturne. Sans ce `if`, `npm run validate` peut virer rouge à
+  # 3h17 du matin sans qu'aucun commit n'y soit pour rien (un prix a
+  # simplement dépassé MAX_PRICE_AGE_DAYS) — mélangé aux vrais échecs de code,
+  # ce rouge-là entraîne à ignorer la CI. Voir le job `data-freshness` pour ce
+  # signal, isolé.
   data-and-code:
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -38,7 +45,10 @@ jobs:
             build/extension.zip
             build/extension.zip.sha256
 
+  # Même raison que `data-and-code` ci-dessus : jamais sur le planning
+  # nocturne, seulement sur push/PR.
   worker:
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -58,6 +68,24 @@ jobs:
       - name: Tests du worker
         working-directory: worker
         run: npx vitest run
+
+  # Fraîcheur des données, seule : ce job ne tourne que sur le planning
+  # nocturne, jamais sur push/PR. Il ne fait tourner ni les tests ni le build,
+  # seulement `npm run validate` — un rouge ici veut dire une seule chose,
+  # qu'un prix n'a pas été revérifié depuis plus de MAX_PRICE_AGE_DAYS
+  # (scripts/lib/validate-rules.mjs), jamais un bug de code introduit par un
+  # commit. En le séparant de `data-and-code`, le rouge dû au seul passage du
+  # temps n'entraîne plus à ignorer un rouge causé par un vrai commit.
+  data-freshness:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22', cache: npm }
+      - run: npm ci
+      - name: Valider les données
+        run: npm run validate
 
   # Reconstruit le site (spec tâche 5) : le Worker libère les slots sponsors
   # expirés en base à 02:10 UTC, mais les placements sont du HTML statique
