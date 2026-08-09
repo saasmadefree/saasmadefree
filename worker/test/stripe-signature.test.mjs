@@ -37,6 +37,26 @@ describe('verifyStripeSignature', () => {
     expect(await verifyStripeSignature(PAYLOAD, header, SECRET, now)).toBe(false);
   });
 
+  it('refuse aussi un horodatage dans le futur au-delà de la tolérance — la garde est symétrique', async () => {
+    // La tolérance doit jouer dans les deux sens : un `Math.abs(...)` remplacé
+    // par un contrôle à sens unique (seulement « trop vieux ») laisserait
+    // passer une signature datée loin dans le futur.
+    const future = t + 3600;
+    const header = `t=${future},v1=${await sign(PAYLOAD, SECRET, future)}`;
+    expect(await verifyStripeSignature(PAYLOAD, header, SECRET, now)).toBe(false);
+  });
+
+  it('découpe l’en-tête sur le premier "=" seulement, pas sur tous', async () => {
+    // Un timestamp corrompu par un "=" surnuméraire (`t=<t>=bogus`) doit
+    // rester une seule valeur non numérique et donc échouer le parse. Une
+    // regression qui découperait sur CHAQUE "=" ne garderait que le segment
+    // entre le premier et le second "=" — ici `<t>` redeviendrait un
+    // timestamp valide, et la signature (calculée pour ce même `t`) serait
+    // acceptée à tort.
+    const header = `t=${t}=bogus,v1=${await sign(PAYLOAD, SECRET, t)}`;
+    expect(await verifyStripeSignature(PAYLOAD, header, SECRET, now)).toBe(false);
+  });
+
   it('refuse un en-tête absent, vide ou malformé', async () => {
     for (const header of [null, '', 'garbage', 't=abc,v1=zz', `t=${t}`]) {
       expect(await verifyStripeSignature(PAYLOAD, header, SECRET, now)).toBe(false);
