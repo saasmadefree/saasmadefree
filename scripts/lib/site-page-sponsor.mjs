@@ -99,28 +99,45 @@ const LIVE_STATUSES = new Set(['open', 'reserved', 'paid']);
  * champ absent ou du mauvais type ne fait retomber QUE ce slot sur
  * data/sponsors.json, sans jamais planter ni inventer un prix.
  *
+ * La précédence entre les deux sources est VOLONTAIREMENT à sens unique : la
+ * charge utile peut PROMOUVOIR un slot vers « pris » que data/sponsors.json
+ * ignore encore (paiement encaissé, créa pas commitée — la raison d'être de
+ * cette tâche), mais elle ne doit JAMAIS pouvoir rouvrir un slot que
+ * data/sponsors.json sait occupé. Sans cette garde, un sponsor commité à la
+ * main (donc toujours `open` côté D1, puisque Stripe n'y a jamais touché)
+ * réapparaîtrait à la vente dans le tableau alors même que sa carte s'affiche
+ * sur le rail — la page se contredirait elle-même. `sponsors.bySlot` est
+ * donc TOUJOURS consulté, y compris quand la charge utile répond ;
+ * `entry.status` ne peut que faire passer `taken` de faux à vrai, jamais
+ * l'inverse.
+ *
  * - un slot `reserved` compte comme pris : quelqu'un est en train de payer,
  *   l'afficher libre laisserait un second acheteur cliquer sur un
  *   emplacement déjà engagé ;
- * - le prix n'est repris que pour un slot que la charge utile dit elle-même
- *   `open`, avec un `priceCents` fini et une devise `USD` (la seule que
- *   formatMoney reçoit ailleurs sur cette page) — sinon aucun prix n'est
- *   affiché, jamais un prix mal étiqueté ou un NaN.
+ * - le prix n'est affiché que pour un slot réellement libre après cette
+ *   règle (ni la charge utile ni data/sponsors.json ne le disent occupé),
+ *   avec un `priceCents` fini et une devise `USD` (la seule que formatMoney
+ *   reçoit ailleurs sur cette page) — sinon aucun prix n'est affiché, jamais
+ *   un prix mal étiqueté ou un NaN.
  */
 function liveSlotState(slot, sponsors, liveSlots) {
+  const localTaken = sponsors.bySlot.has(slot);
   const entry = liveSlots && typeof liveSlots === 'object' && !Array.isArray(liveSlots)
     ? liveSlots[slot]
     : undefined;
-  if (entry && typeof entry === 'object' && !Array.isArray(entry) && LIVE_STATUSES.has(entry.status)) {
-    const taken = entry.status !== 'open';
-    const priceCents = !taken && isRealNumber(entry.priceCents) && entry.currency === 'USD'
-      ? entry.priceCents
-      : null;
-    return { taken, priceCents };
+
+  if (!(entry && typeof entry === 'object' && !Array.isArray(entry) && LIVE_STATUSES.has(entry.status))) {
+    // Repli : l'état déduit de data/sponsors.json, sans jamais inventer de
+    // prix (ce fichier ne porte aucune information de tarif par slot).
+    return { taken: localTaken, priceCents: null };
   }
-  // Repli : l'état déduit de data/sponsors.json, sans jamais inventer de prix
-  // (ce fichier ne porte aucune information de tarif par slot).
-  return { taken: sponsors.bySlot.has(slot), priceCents: null };
+
+  const liveTaken = entry.status !== 'open';
+  const taken = liveTaken || localTaken; // promotion à sens unique, voir la doc ci-dessus
+  if (taken) return { taken: true, priceCents: null };
+
+  const priceCents = isRealNumber(entry.priceCents) && entry.currency === 'USD' ? entry.priceCents : null;
+  return { taken: false, priceCents };
 }
 
 function inventoryList(slots, sponsors, s, liveSlots, lang) {

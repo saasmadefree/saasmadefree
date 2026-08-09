@@ -503,7 +503,16 @@
           // élément — il garde l'état déjà rendu plutôt que d'être effacé.
           if (!entry || typeof entry !== 'object' || !LIVE_STATUSES[entry.status]) continue;
 
-          var taken = entry.status !== 'open';
+          // Même précédence à sens unique que liveSlotState côté build : la
+          // classe déjà posée par le serveur reflète data/sponsors.json (et
+          // toute promotion déjà appliquée au build) — la charge utile ne
+          // peut que faire passer ce slot à "pris", jamais le rouvrir. Sans
+          // ce garde-fou, un sponsor commité à la main (donc toujours "open"
+          // côté D1, Stripe ne l'ayant jamais touché) serait remis en vente
+          // ici alors que sa carte s'affiche déjà sur le rail.
+          var wasTaken = item.classList.contains('taken');
+          var liveTaken = entry.status !== 'open';
+          var taken = liveTaken || wasTaken;
           item.classList.toggle('taken', taken);
           item.classList.toggle('open', !taken);
 

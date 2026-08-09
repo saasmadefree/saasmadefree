@@ -504,8 +504,13 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
 .sp-inv-state{font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
 /* Même traitement numérique que .sp-price : les chiffres restent alignés
    quand le rafraîchissement client (site.js) remplace un montant par un
-   autre, aucune couleur saturée. */
-.sp-inv-price{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+   autre, aucune couleur saturée. min-width fige la largeur du badge sur le
+   montant le plus long jamais affiché ("1 800 $US"/"1 259 $US", 9
+   caractères — voir RAIL_LADDER_USD en fr) : sans elle, le badge s'élargit
+   d'un cran quand le rafraîchissement client remplit un span vide. Un enfant
+   de .sp-inv-item (display:inline-flex) est un flex item, donc min-width
+   s'applique même si <span> reste inline par défaut. */
+.sp-inv-price{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;min-width:9ch}
 
 /* .sp-ladder réutilise les règles génériques de \`table\`/\`caption\`/\`th,td\`
    définies plus haut (bordures de cellule, en-tête en petites capitales) —

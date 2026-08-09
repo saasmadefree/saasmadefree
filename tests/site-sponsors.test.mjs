@@ -663,6 +663,26 @@ describe('page /sponsor', () => {
       expect(li).not.toContain('sp-inv-price');
     });
 
+    // Round de revue : la promotion vers « pris » est UNIDIRECTIONNELLE. La
+    // charge utile peut déclarer pris un slot que data/sponsors.json ignore
+    // encore (test ci-dessus), mais l'inverse est interdit — elle ne doit
+    // jamais pouvoir rouvrir un slot que data/sponsors.json sait occupé. Sans
+    // cette garde, un sponsor commité à la main (donc toujours `open` côté
+    // D1, puisque Stripe n'y touche jamais) se retrouverait remis en vente à
+    // 219 $ dans le tableau alors que sa carte s'affiche déjà sur le rail —
+    // la page se contredit elle-même.
+    it('un slot que data/sponsors.json sait occupé reste "pris" même si la charge utile le dit "open"', () => {
+      const html = page({
+        sponsors: ctx([LIVE]), // L1 occupé côté data/sponsors.json (carte affichée sur le rail)
+        liveSlots: { L1: { status: 'open', priceCents: 21900, currency: 'USD' } },
+      });
+      const li = itemFor(html, 'L1');
+      expect(hasClass(li, 'taken')).toBe(true);
+      expect(li).toContain(fullUi.site.sponsor.takenLabel);
+      expect(li).not.toContain('sp-inv-price');
+      expect(li).not.toContain(usd(219, 'fr'));
+    });
+
     it('affiche le prix d’un slot libre lu depuis la charge utile, formaté comme le reste du site', () => {
       const html = page({ liveSlots: { L1: { status: 'open', priceCents: 21900, currency: 'USD' } } });
       const li = itemFor(html, 'L1');
