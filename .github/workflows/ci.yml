@@ -25,12 +25,23 @@ jobs:
       - run: npm ci
       - name: Valider les données
         run: npm run validate
-      - name: Tests unitaires
-        run: npx vitest run
+      # Le build AVANT les tests, pour la même raison que dans le job `worker`
+      # ci-dessous : `worker/src/sponsor-inventory.generated.mjs` est produit
+      # par scripts/build-feed.mjs et ignoré par git (voir .gitignore), et deux
+      # tests racine le chargent dès la collecte —
+      # tests/sponsor-inventory-generated.test.mjs directement,
+      # tests/sponsor-checkout-urls.test.mjs via worker/src/sponsors.mjs. Sur
+      # une copie fraîche du dépôt, les lancer d'abord fait échouer ces deux
+      # fichiers entiers ("Cannot find module") ; en local ça passe seulement
+      # parce qu'un build précédent a laissé le fichier derrière lui.
       - name: Construire le feed
         run: npm run build
+      # Reste immédiatement après le build : c'est le build qu'on vérifie
+      # reproductible, pas l'état de l'arbre après les tests.
       - name: Vérifier que le build ne laisse rien de non commité
         run: git diff --exit-code
+      - name: Tests unitaires
+        run: npx vitest run
       - name: Vérifier la reproductibilité de l'extension
         run: |
           npm run build:extension
