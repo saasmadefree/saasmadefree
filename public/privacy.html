@@ -54,7 +54,7 @@
 <body>
 
 <h1>Privacy Policy — SaaS Made Free browser extension</h1>
-<p class="updated">Last updated: 2026-07-30</p>
+<p class="updated">Last updated: 2026-08-10</p>
 
 <div class="box">
   <strong>Short version:</strong> this extension reads the address (hostname) of the
@@ -147,12 +147,47 @@ browser reduces the referrer to a short label such as “chatgpt” before anyth
 raw user-agent strings, or IP addresses in clear. The beacon only runs on
 saasmadefree.com and sends nothing from previews or local copies.</p>
 
+<h2>Buying a sponsor slot</h2>
+<p>The website sells advertising slots. Buying one is the only thing on this site or in this
+extension that collects personal data about you. Reading the directory, copying a prompt, or
+voting never does.</p>
+<p><strong>The payment happens on Stripe, not here.</strong> Clicking to buy a slot sends you
+to Stripe's own checkout page, on their domain. Card numbers are typed there and never reach
+our servers — we never see them, and we could not store them if we wanted to. Stripe is a
+payment processor working on our behalf, not a buyer of data. What they collect on their page
+is covered by <a href="https://stripe.com/privacy" rel="noopener">Stripe's privacy policy</a>.</p>
+<p>Stripe's form asks for four things, and passes all four back to us once the payment
+succeeds:</p>
+<ul>
+  <li><strong>An email address.</strong> This is the only one we keep private. It is how we
+  tell you the slot was approved, refused, or refunded. It is never published, never used for
+  a newsletter, and never given to anyone else.</li>
+  <li><strong>A display name, a domain, and one line of description.</strong> These three are
+  the advertisement itself — you are paying for them to be published on this site. They go
+  through a manual review, are committed to the public repository like every other piece of
+  content here, and then appear in the slot you bought.</li>
+</ul>
+<p>What we store on our side, in our own database (Cloudflare D1, the same one behind the
+public stats page): the Stripe session identifier, the slot, the number of months, the amount
+and currency, the date, the order's status, and the four fields above. Nothing else. There is
+no account and no password — buying a slot does not create a login.</p>
+<p>While a slot is being paid for, its row also holds a hash of your IP address, built exactly
+like the one used for votes: SHA-256 of the address, the day, and a server-held secret that is
+never published. It caps how many slots one visitor can hold at once. It is erased the moment
+the payment goes through, or when the reservation expires about 35 minutes later.</p>
+<p><strong>How long.</strong> An order row is the record of a sale, so it is not deleted on a
+timer the way the analytics rows are (45 days). If you want yours removed, write to the
+address at the bottom of this page and we will delete everything we are not required to keep
+as an accounting record — starting with your email address.</p>
+
 <h2>What we don't do</h2>
 <ul>
   <li>No cookies.</li>
   <li>No trackers or analytics of any kind inside the extension.</li>
-  <li>No account, sign-in, or persistent identifier tied to you.</li>
-  <li>No selling, renting, or sharing of any data with third parties.</li>
+  <li>No account, sign-in, or persistent identifier tied to you — including when you buy a slot.</li>
+  <li>No selling or renting of data, to anyone, ever. Nothing is shared with a third party
+  except what a payment requires: buying a sponsor slot sends you to Stripe, our payment
+  processor, as described above. No advertiser, no data broker, no analytics vendor.</li>
   <li>No reading of page content, form fields, or cookies belonging to other sites.</li>
   <li>No modification of anything already on a page — the only thing ever written is our own isolated panel, described above.</li>
 </ul>
