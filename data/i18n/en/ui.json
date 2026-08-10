@@ -215,14 +215,30 @@
       "lockBody": "Three months costs three times today's price. There is no discount — what you buy is the price, before it moves.",
       "howHeading": "How it works",
       "howSteps": [
-        "Pick an open slot and pay.",
-        "Send a display name, a domain and one line of description.",
-        "Manual approval within 48 hours. Refused means refunded in full."
+        "Pick an open slot and a duration, one month or three. Payment goes through Stripe.",
+        "Stripe's own form asks for a display name, a domain and one line of description. That is all we collect.",
+        "Manual approval within 48 hours. A refused placement is refunded in full and the slot goes back on sale."
       ],
       "noReportingNote": "There is no impression or click reporting, because that would be analytics. Your link carries its own UTM parameters — measure it on your side.",
       "transparencyHeading": "What sponsoring does not buy",
       "transparencyBody": "A sponsor never buys a verdict. A sponsored tool listed in the catalogue keeps exactly the verdict its data earns it, including \"keep paying\".",
-      "contactCta": "Ask about a slot"
+      "contactCta": "Ask about a slot",
+      "buyDurationLegend": "Duration",
+      "buyDurationOne": "One month",
+      "buyDurationThree": "Three months",
+      "buyDurationNoteOne": "You are billed the price shown.",
+      "buyDurationNoteThree": "You are billed three times the price shown. The rate is locked for the three months.",
+      "buyNoScriptNote": "Paying from this page needs JavaScript. Without it, write to {email} and the slot is opened by hand.",
+      "buyPending": "{slot} — opening the payment page.",
+      "buyErrorSlotTaken": "{slot} — this slot was taken while you were reading. Nothing has been charged, and the inventory above is up to date.",
+      "buyErrorPriceChanged": "{slot} — the price is now {price}, not the amount this page was built with. Nothing has been charged. Click again to pay {price}.",
+      "buyErrorRateLimited": "{slot} — too many requests from this connection. Wait a minute, then try again.",
+      "buyErrorTooManyReservations": "{slot} — you already hold the maximum number of slots at once. Finish one payment, or wait for those holds to lapse.",
+      "buyErrorInventoryFull": "{slot} — every slot in this block is sold. There is nothing left to buy here.",
+      "buyErrorUnavailable": "{slot} — payment is not available from this page right now. Write to us and the slot is opened by hand.",
+      "buyErrorStripe": "{slot} — the payment provider did not answer. Nothing has been charged. Try again in a few minutes.",
+      "buyError": "{slot} — the request did not go through. Nothing has been charged. Try again, or write to us.",
+      "paidReturnNote": "You are back from the payment page. If the payment went through, Stripe sends the receipt by email; this page cannot confirm it. Approval is manual, and a refused placement is refunded in full."
     }
   },
   "categoriesIndex": {

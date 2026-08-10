@@ -5,9 +5,63 @@ import {
   RAIL_SLOTS, TAPE_TOP_SLOTS, TAPE_BOTTOM_SLOTS,
   RAIL_LADDER_USD, TAPE_LADDER_USD,
 } from './site-sponsors.mjs';
-import { SPONSOR_SLOTS_API_URL } from './site-data.mjs';
+import { SPONSOR_SLOTS_API_URL, SPONSOR_CHECKOUT_API_URL } from './site-data.mjs';
 
 export const SPONSOR_EMAIL = 'sponsor@saasmadefree.com';
+
+/**
+ * Message montré à l'acheteur pour chaque code d'erreur que
+ * `POST /api/v1/sponsors/checkout` sait rendre (worker/src/index.mjs,
+ * handleSponsorCheckout). La table est volontairement EXHAUSTIVE, y compris
+ * pour les codes qui ne devraient jamais arriver depuis cette page
+ * (`unknown_slot`, `unsold_duration`, `invalid_json`, `method_not_allowed`) :
+ * un clic qui ne produit rien est pire qu'un clic qui explique pourquoi, et
+ * « ne devrait jamais arriver » finit toujours par arriver.
+ *
+ * `tests/sponsor-checkout-page.test.mjs` compare ces clés aux littéraux
+ * `error: '…'` de la route : le jour où le Worker gagne un code, le test
+ * rougit et nomme la traduction à écrire. Un code inconnu du client retombe
+ * malgré tout sur `fallback` — la table est un contrat, pas une condition de
+ * survie.
+ *
+ * Deux codes partagent un message : `misconfigured` (secret absent) et
+ * `forbidden_origin` (origine non déployée) disent la même chose à un
+ * acheteur — le paiement n'est pas branché ici — et appellent la même action :
+ * écrire. Les distinguer dans la page ne lui apprendrait rien et publierait le
+ * détail de notre configuration.
+ */
+function checkoutMessages(s) {
+  return {
+    slot_taken: s.buyErrorSlotTaken,
+    price_changed: s.buyErrorPriceChanged,
+    rate_limited: s.buyErrorRateLimited,
+    too_many_reservations: s.buyErrorTooManyReservations,
+    inventory_full: s.buyErrorInventoryFull,
+    misconfigured: s.buyErrorUnavailable,
+    forbidden_origin: s.buyErrorUnavailable,
+    stripe_unavailable: s.buyErrorStripe,
+    unknown_slot: s.buyError,
+    unsold_duration: s.buyError,
+    invalid_json: s.buyError,
+    method_not_allowed: s.buyError,
+    internal_error: s.buyError,
+    // Pas un code du Worker : le cas où il n'y a pas de réponse du tout
+    // (réseau coupé, CORS refusé, corps illisible), ou un code qu'on ne
+    // connaît pas encore.
+    fallback: s.buyError,
+    // Pas une erreur : l'état d'attente, pendant que la session se crée.
+    opening: s.buyPending,
+  };
+}
+
+/** Attributs de données portant ces messages, un par code. Le nom suit le
+ *  code, tirets pour underscores : `slot_taken` → `data-sponsor-msg-slot-taken`,
+ *  ce que site.js reconstruit d'une seule ligne au moment du refus. */
+function checkoutMessageAttrs(s) {
+  return Object.entries(checkoutMessages(s))
+    .map(([code, text]) => `data-sponsor-msg-${code.replace(/_/g, '-')}="${escapeHtml(text)}"`)
+    .join('\n      ');
+}
 
 /** Une ligne par marche : la n-ième ligne donne le prix du slot suivant quand
  *  n slots sont déjà pris. Le barème est publié parce qu'on vend une rareté —
@@ -110,6 +164,25 @@ function audienceFigures(stats, statsUi, n) {
  * compartiment, sérialisé depuis les constantes du module — jamais retapé.
  */
 function inventoryList(slots, sponsors, s, price, ladder, lang) {
+  // Le prix du compartiment en centimes, tel qu'il partira dans
+  // `expectedPriceCents`. Ce champ ne facture RIEN — le Worker recalcule et
+  // facture son propre montant (voir handleSponsorCheckout) ; il sert
+  // uniquement à détecter la dérive entre ce que la page annonce et ce que le
+  // serveur facturera, et à la montrer à l'acheteur au lieu de le surprendre.
+  //
+  // Il vient du même barème publié plus bas sur cette page, jamais d'un champ
+  // de la charge utile : le montant envoyé est donc exactement celui que le
+  // lecteur peut vérifier en comptant les lignes « pris ».
+  //
+  // Cas connu, transmis par la revue du plan 2 (constat B1) : un sponsor
+  // commité à la main dans data/sponsors.json est « pris » ici alors que sa
+  // ligne D1 est restée `open` — Stripe n'y a jamais touché. L'index du barème
+  // du site dépasse alors celui du Worker, et un achat parfaitement normal sur
+  // un AUTRE emplacement du même compartiment reçoit `409 price_changed`.
+  // L'acheteur n'est jamais débité du mauvais montant, et le message lui
+  // annonce le prix réel — mais la correction de fond est opératoire, pas ici :
+  // un emplacement vendu à la main doit être écrit `paid` dans D1.
+  const priceCentsAttr = price === null ? '' : ` data-sponsor-price-cents="${escapeHtml(Math.round(price * 100))}"`;
   const items = slots
     .map((slot) => {
       const { taken, sold } = sponsors.occupancy.get(slot);
@@ -125,12 +198,32 @@ function inventoryList(slots, sponsors, s, price, ladder, lang) {
       // pris n'en a pas : il n'y a rien à annoncer pour lui.
       const priceSpan = taken ? '' : ` <span class="sp-inv-price">${priceText}</span>`;
       const soldAttr = sold ? ' data-sold="1"' : '';
+      // Le bouton n'existe que sur un emplacement vendable, et reste `hidden`
+      // tant que site.js ne l'a pas activé — même règle que #theme-toggle et
+      // #copy-prompt : un contrôle qui ne fait rien est pire qu'un contrôle
+      // absent. Sans JavaScript, la page garde son inventaire, ses prix, son
+      // barème et l'adresse de contact ; c'est le <noscript> de la section qui
+      // dit où écrire (principe 5 de .impeccable.md).
+      //
+      // Un emplacement pris n'en a pas : ni celui que data/sponsors.json
+      // occupe, ni celui que la charge utile du Worker dit `paid` ou
+      // `reserved`. Il n'y a rien à vendre, donc rien à cliquer.
+      const buyButton = taken ? ''
+        : ` <button type="button" class="sp-inv-buy" hidden data-slot="${escapeHtml(slot)}">${escapeHtml(s.bookCta)}</button>`;
       return `        <li class="sp-inv-item ${taken ? 'taken' : 'open'}" data-slot="${escapeHtml(slot)}"${soldAttr}>`
         + `<span class="sp-inv-slot">${escapeHtml(slot)}</span> `
-        + `<span class="sp-inv-state">${escapeHtml(taken ? s.takenLabel : s.openLabel)}</span>${priceSpan}</li>`;
+        + `<span class="sp-inv-state">${escapeHtml(taken ? s.takenLabel : s.openLabel)}</span>${priceSpan}${buyButton}</li>`;
     })
     .join('\n');
-  return `      <ul class="sp-inv" data-sponsor-ladder="${escapeHtml(ladder.join(','))}">\n${items}\n      </ul>`;
+  // Le <p role="status"> vit APRÈS la liste et non dans la ligne : les lignes
+  // sont des puces en ligne qui s'enroulent, une phrase à l'intérieur casserait
+  // la mise en page. Un seul par compartiment, présent dès le HTML servi —
+  // une région live créée au moment du message ne serait pas annoncée. Chaque
+  // message nomme son emplacement, donc l'association reste sans ambiguïté.
+  return `      <div class="sp-inv-group">
+      <ul class="sp-inv" data-sponsor-ladder="${escapeHtml(ladder.join(','))}"${priceCentsAttr}>\n${items}\n      </ul>
+      <p class="sp-inv-status" role="status"></p>
+      </div>`;
 }
 
 /**
@@ -194,6 +287,34 @@ export function renderSponsorPage({
 
   const steps = s.howSteps.map((step) => `        <li>${escapeHtml(step)}</li>`).join('\n');
 
+  // Retour depuis Stripe. `success_url` porte `?paid=1` (voir checkoutUrls,
+  // worker/src/sponsors.mjs) et n'a AUCUNE autorité : n'importe qui peut taper
+  // cette URL, et seule la signature du webhook prouve un paiement. La note ne
+  // confirme donc rien — elle renvoie au reçu envoyé par Stripe et rappelle
+  // que la validation est manuelle. Elle est rendue masquée et dévoilée par
+  // site.js quand le paramètre est là : sans JavaScript, l'acheteur a de toute
+  // façon son reçu par email, qui vaut mieux qu'une phrase sur une page.
+  const paidReturnNote = `    <p class="sp-paid-note" id="sponsor-paid-note" role="status" hidden>${escapeHtml(s.paidReturnNote)}</p>`;
+
+  // Les deux durées que le Worker accepte de facturer (SELLABLE_MONTHS). Le
+  // groupe est masqué sans JavaScript, pour la même raison que le bouton : il
+  // ne piloterait rien. La note dit ce qui sera facturé — les lignes
+  // d'inventaire, elles, continuent d'afficher le prix du barème publié, celui
+  // que le tableau plus bas permet de vérifier.
+  const durationChoice = `      <fieldset class="sp-duration" hidden>
+        <legend>${escapeHtml(s.buyDurationLegend)}</legend>
+        <div class="sp-duration-options">
+          <label for="sp-months-1"><input type="radio" id="sp-months-1" name="sp-months" value="1" checked> ${escapeHtml(s.buyDurationOne)}</label>
+          <label for="sp-months-3"><input type="radio" id="sp-months-3" name="sp-months" value="3"> ${escapeHtml(s.buyDurationThree)}</label>
+        </div>
+        <p class="sp-duration-note" data-note-one="${escapeHtml(s.buyDurationNoteOne)}" data-note-three="${escapeHtml(s.buyDurationNoteThree)}">${escapeHtml(s.buyDurationNoteOne)}</p>
+      </fieldset>`;
+
+  // Le lecteur sans JavaScript ne voit ni le choix de durée ni les boutons. Lui
+  // laisser deviner serait malhonnête : on lui dit ce qui manque et où écrire,
+  // en HTML statique, sans rien exiger de lui.
+  const noScriptNote = `      <noscript><p class="sp-noscript">${escapeHtml(interpolate(s.buyNoScriptNote, { email: SPONSOR_EMAIL }))}</p></noscript>`;
+
   // La meta description annonce la taille de l'inventaire ("8 blocs, 20
   // places") : ces deux comptes sont dérivés des constantes exportées par
   // site-sponsors.mjs, jamais écrits en dur dans ui.json — sinon la phrase
@@ -205,6 +326,7 @@ export function renderSponsorPage({
   const main = `    ${renderBreadcrumb(breadcrumbItems)}
     <h1>${escapeHtml(s.h1)}</h1>
     <p class="lede">${escapeHtml(s.lede)}</p>
+${paidReturnNote}
 
     <section>
       <h2>${escapeHtml(s.measuredHeading)}</h2>
@@ -221,8 +343,12 @@ ${audienceBlock}
     </section>
 
     <section data-sponsor-slots-endpoint="${escapeHtml(SPONSOR_SLOTS_API_URL)}"
-      data-sponsor-open-label="${escapeHtml(s.openLabel)}" data-sponsor-taken-label="${escapeHtml(s.takenLabel)}">
+      data-sponsor-checkout-endpoint="${escapeHtml(SPONSOR_CHECKOUT_API_URL)}"
+      data-sponsor-open-label="${escapeHtml(s.openLabel)}" data-sponsor-taken-label="${escapeHtml(s.takenLabel)}"
+      ${checkoutMessageAttrs(s)}>
       <h2>${escapeHtml(s.inventoryHeading)}</h2>
+${durationChoice}
+${noScriptNote}
       <h3>${escapeHtml(s.railHeading)}</h3>
 ${inventoryList(RAIL_SLOTS, sponsors, s, sponsors.prices.rail, RAIL_LADDER_USD, lang)}
       <h3>${escapeHtml(s.tapeTopHeading)}</h3>

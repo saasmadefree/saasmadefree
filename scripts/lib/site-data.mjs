@@ -6,6 +6,12 @@ export const VOTE_ENDPOINT = 'https://votes.saasmadefree.com/api/v1/vote';
 export const VOTES_FEED_URL = 'https://votes.saasmadefree.com/feed/v1/votes.json';
 export const STATS_API_URL = 'https://votes.saasmadefree.com/api/v1/stats';
 export const SPONSOR_SLOTS_API_URL = 'https://votes.saasmadefree.com/api/v1/sponsors/slots';
+// Ouverture d'une session de paiement. Contrairement aux trois URLs ci-dessus,
+// celle-ci n'est JAMAIS appelée au build : le montant se recalcule côté Worker
+// à l'instant de l'achat, et une session créée pendant une génération de site
+// ne correspondrait à aucun acheteur. Elle n'est publiée dans la page que pour
+// que scripts/assets/site.js sache où poster (voir renderSponsorPage).
+export const SPONSOR_CHECKOUT_API_URL = 'https://votes.saasmadefree.com/api/v1/sponsors/checkout';
 
 // Le build essaie une seule fois de récupérer les compteurs réels au moment
 // de générer les pages, pour que le tri "par votes" et l'affichage initial

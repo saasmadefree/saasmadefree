@@ -3,7 +3,7 @@ import {
   siteLanguages, toolsForLang, sortTools, categoriesForLang, categoryLabel,
   categoryEmoji, langsForCategory, fetchVoteCounts, VOTES_FEED_URL,
   catalogueFigures, mrrDestroyed, fetchStats, STATS_API_URL,
-  fetchSponsorSlots, SPONSOR_SLOTS_API_URL,
+  fetchSponsorSlots, SPONSOR_SLOTS_API_URL, SPONSOR_CHECKOUT_API_URL,
 } from '../scripts/lib/site-data.mjs';
 
 function tool(slug, over = {}) {
@@ -138,11 +138,16 @@ describe('URLs des services lus au build', () => {
     expect(VOTES_FEED_URL).toBe('https://votes.saasmadefree.com/feed/v1/votes.json');
     expect(STATS_API_URL).toBe('https://votes.saasmadefree.com/api/v1/stats');
     expect(SPONSOR_SLOTS_API_URL).toBe('https://votes.saasmadefree.com/api/v1/sponsors/slots');
+    // Jamais appelée au build (voir sa doc dans site-data.mjs) : elle est
+    // épinglée ici quand même parce qu'elle est publiée dans /sponsor et que
+    // c'est elle qui encaisse. Une faute de frappe rendrait le bouton d'achat
+    // muet en production sans qu'aucun autre test ne bouge.
+    expect(SPONSOR_CHECKOUT_API_URL).toBe('https://votes.saasmadefree.com/api/v1/sponsors/checkout');
   });
 
   // Principe 4 : rien n'est récupéré chez un tiers, ni au build ni au runtime.
   it('restent sur un sous-domaine du projet, en https', () => {
-    for (const raw of [VOTES_FEED_URL, STATS_API_URL, SPONSOR_SLOTS_API_URL]) {
+    for (const raw of [VOTES_FEED_URL, STATS_API_URL, SPONSOR_SLOTS_API_URL, SPONSOR_CHECKOUT_API_URL]) {
       const url = new URL(raw);
       expect(url.protocol, raw).toBe('https:');
       expect(url.hostname.endsWith('.saasmadefree.com'), raw).toBe(true);

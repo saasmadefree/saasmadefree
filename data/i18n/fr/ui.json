@@ -215,14 +215,30 @@
       "lockBody": "Trois mois coûtent trois fois le prix du jour. Il n’y a aucune remise : ce que tu achètes, c’est le prix, avant qu’il ne bouge.",
       "howHeading": "Comment ça marche",
       "howSteps": [
-        "Choisis un slot libre et paie.",
-        "Envoie un nom d’affichage, un domaine et une ligne de description.",
-        "Validation manuelle sous 48 heures. Refusé veut dire remboursé en totalité."
+        "Choisis un slot libre et une durée, un mois ou trois. Le paiement passe par Stripe.",
+        "Le formulaire de Stripe demande un nom d’affichage, un domaine et une ligne de description. On ne collecte rien d’autre.",
+        "Validation manuelle sous 48 heures. Un placement refusé est remboursé en totalité, et le slot repart à la vente."
       ],
       "noReportingNote": "Il n’y a aucun rapport d’impressions ou de clics, parce que ce serait de la mesure d’audience. Ton lien porte ses propres paramètres UTM — mesure-le de ton côté.",
       "transparencyHeading": "Ce que le sponsoring n’achète pas",
       "transparencyBody": "Un sponsor n’achète jamais un verdict. Un outil sponsorisé listé dans le catalogue garde exactement le verdict que ses données lui valent, y compris « Continue de payer ».",
-      "contactCta": "Demander un slot"
+      "contactCta": "Demander un slot",
+      "buyDurationLegend": "Durée",
+      "buyDurationOne": "Un mois",
+      "buyDurationThree": "Trois mois",
+      "buyDurationNoteOne": "Le montant facturé est le prix affiché.",
+      "buyDurationNoteThree": "Le montant facturé est le triple du prix affiché. Le tarif est bloqué pour les trois mois.",
+      "buyNoScriptNote": "Payer depuis cette page demande JavaScript. Sans lui, écris à {email} et on ouvre l’emplacement à la main.",
+      "buyPending": "{slot} — ouverture de la page de paiement.",
+      "buyErrorSlotTaken": "{slot} — cet emplacement a été pris pendant ta lecture. Rien n’a été débité, et l’inventaire ci-dessus est à jour.",
+      "buyErrorPriceChanged": "{slot} — le prix est maintenant de {price}, et non le montant avec lequel cette page a été générée. Rien n’a été débité. Clique à nouveau pour payer {price}.",
+      "buyErrorRateLimited": "{slot} — trop de requêtes depuis cette connexion. Attends une minute, puis réessaie.",
+      "buyErrorTooManyReservations": "{slot} — tu tiens déjà le nombre maximum d’emplacements en même temps. Termine un paiement, ou attends que ces réservations tombent.",
+      "buyErrorInventoryFull": "{slot} — tous les emplacements de ce bloc sont vendus. Il ne reste rien à acheter ici.",
+      "buyErrorUnavailable": "{slot} — le paiement n’est pas disponible depuis cette page pour le moment. Écris-nous, on ouvre l’emplacement à la main.",
+      "buyErrorStripe": "{slot} — le prestataire de paiement n’a pas répondu. Rien n’a été débité. Réessaie dans quelques minutes.",
+      "buyError": "{slot} — la requête n’est pas passée. Rien n’a été débité. Réessaie, ou écris-nous.",
+      "paidReturnNote": "Tu reviens de la page de paiement. Si le paiement est passé, Stripe envoie le reçu par email ; cette page ne peut pas le confirmer. La validation est manuelle, et un placement refusé est remboursé en totalité."
     }
   },
   "categoriesIndex": {
