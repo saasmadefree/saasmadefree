@@ -145,6 +145,29 @@ describe('page /sponsor — le bouton d’achat', () => {
     expect(li).toMatch(/<button[^>]*\bhidden\b/);
   });
 
+  // Vingt-huit boutons portant tous le même mot sont indistinguables au
+  // clavier et au lecteur d'écran, sur une page où le moins cher vaut 75 $US
+  // et le plus cher 1 800 $US. Le nom accessible doit porter l'emplacement.
+  // Le nom RÉSOLU est vérifié dans un DOM par tests/sponsor-checkout-client.test.mjs ;
+  // ici on verrouille les identifiants qui le composent.
+  it('compose son nom accessible avec l’identifiant de l’emplacement', () => {
+    const li = itemFor(pageFor('en'), 'R4');
+    expect(li).toContain('id="sp-buy-R4"');
+    expect(li).toContain('aria-labelledby="sp-buy-R4 sp-slot-R4"');
+    expect(li).toContain('id="sp-slot-R4"');
+  });
+
+  it('décrit le prix sans le mettre dans le nom — il change, le nom ne doit pas', () => {
+    const li = itemFor(pageFor('en'), 'R4');
+    expect(li).toContain('aria-describedby="sp-price-R4"');
+    expect(li).toContain('id="sp-price-R4"');
+  });
+
+  it('n’émet aucun identifiant en double sur la page', () => {
+    const ids = [...pageFor('en').matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]);
+    expect(new Set(ids).size, `identifiants dupliqués : ${ids.join(', ')}`).toBe(ids.length);
+  });
+
   it('n’existe pas sur un emplacement pris — il n’y a rien à vendre', () => {
     const placements = [{
       slot: 'L1', name: 'Postiz', domain: 'postiz.com', url: 'https://postiz.com',
@@ -274,10 +297,21 @@ describe('scripts/assets/site.js — garde-fous statiques', () => {
     expect(SITE_JS).not.toContain('insertAdjacentHTML');
   });
 
-  it('ne parle qu’au Worker du projet, jamais à un tiers (principe 4)', () => {
-    const hosts = [...SITE_JS.matchAll(/https?:\/\/([a-z0-9.-]+)/g)].map((m) => m[1]);
-    for (const host of hosts) {
-      expect(host.endsWith('saasmadefree.com'), host).toBe(true);
+  it('ne porte aucune URL littérale vers un tiers (principe 4)', () => {
+    // On inspecte les chaînes littérales, pas le texte brut : les commentaires
+    // du fichier citent volontairement des hôtes hostiles (l'exemple
+    // `https://checkout.stripe.com@evil.example/` qui explique pourquoi la
+    // garde de redirection lit l'hôte et non le préfixe). Les faire échouer ici
+    // pousserait à retirer l'explication plutôt que le défaut.
+    //
+    // La contrepartie comportementale — « aucune requête ne part ailleurs » —
+    // est vérifiée par tests/sponsor-checkout-client.test.mjs, qui enregistre
+    // chaque appel réellement émis.
+    const literals = [...SITE_JS.matchAll(/'((?:[^'\\]|\\.)*)'/g)].map((m) => m[1]);
+    const urls = literals.filter((value) => value.indexOf('://') !== -1);
+    expect(urls.length, 'aucune URL littérale trouvée — le test ne vérifie plus rien').toBeGreaterThan(0);
+    for (const url of urls) {
+      expect(new URL(url).hostname.endsWith('saasmadefree.com'), url).toBe(true);
     }
   });
 });

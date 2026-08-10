@@ -196,7 +196,15 @@ function inventoryList(slots, sponsors, s, price, ladder, lang) {
       // remplacer sans jamais avoir à insérer un nouveau nœud dans la liste —
       // la mise en page ne bouge donc pas quand un montant change. Un slot
       // pris n'en a pas : il n'y a rien à annoncer pour lui.
-      const priceSpan = taken ? '' : ` <span class="sp-inv-price">${priceText}</span>`;
+      // Identifiants stables, un par emplacement. Ils existent pour le nom
+      // accessible du bouton (voir plus bas) : sans eux, les vingt-huit
+      // boutons s'appellent tous « Réserver », et un lecteur d'écran en mode
+      // formulaire ne peut pas distinguer L1 de B10 avant de s'engager sur un
+      // paiement compris entre 149 $US et 1 800 $US.
+      const slotId = `sp-slot-${escapeHtml(slot)}`;
+      const priceId = `sp-price-${escapeHtml(slot)}`;
+      const buyId = `sp-buy-${escapeHtml(slot)}`;
+      const priceSpan = taken ? '' : ` <span class="sp-inv-price" id="${priceId}">${priceText}</span>`;
       const soldAttr = sold ? ' data-sold="1"' : '';
       // Le bouton n'existe que sur un emplacement vendable, et reste `hidden`
       // tant que site.js ne l'a pas activé — même règle que #theme-toggle et
@@ -208,10 +216,20 @@ function inventoryList(slots, sponsors, s, price, ladder, lang) {
       // Un emplacement pris n'en a pas : ni celui que data/sponsors.json
       // occupe, ni celui que la charge utile du Worker dit `paid` ou
       // `reserved`. Il n'y a rien à vendre, donc rien à cliquer.
+      //
+      // `aria-labelledby` compose le nom à partir de deux nœuds déjà présents
+      // — le libellé du bouton puis l'identifiant de l'emplacement — ce qui
+      // donne « Réserver L1 » sans écrire une seconde traduction qui pourrait
+      // diverger de la première. Le prix passe en `aria-describedby` et non
+      // dans le nom : il change (dérive de barème, rafraîchissement), et un
+      // nom accessible qui bouge sous le curseur d'un lecteur d'écran est
+      // pire qu'un nom sans prix.
       const buyButton = taken ? ''
-        : ` <button type="button" class="sp-inv-buy" hidden data-slot="${escapeHtml(slot)}">${escapeHtml(s.bookCta)}</button>`;
+        : ` <button type="button" class="sp-inv-buy" hidden id="${buyId}"`
+          + ` aria-labelledby="${buyId} ${slotId}" aria-describedby="${priceId}"`
+          + ` data-slot="${escapeHtml(slot)}">${escapeHtml(s.bookCta)}</button>`;
       return `        <li class="sp-inv-item ${taken ? 'taken' : 'open'}" data-slot="${escapeHtml(slot)}"${soldAttr}>`
-        + `<span class="sp-inv-slot">${escapeHtml(slot)}</span> `
+        + `<span class="sp-inv-slot" id="${slotId}">${escapeHtml(slot)}</span> `
         + `<span class="sp-inv-state">${escapeHtml(taken ? s.takenLabel : s.openLabel)}</span>${priceSpan}${buyButton}</li>`;
     })
     .join('\n');

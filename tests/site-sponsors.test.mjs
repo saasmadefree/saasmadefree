@@ -581,7 +581,7 @@ describe('page /sponsor', () => {
   const hasClass = (li, cls) => li.includes(`class="sp-inv-item ${cls}"`);
   /** Le montant affiché dans la ligne d'inventaire d'un slot, ou null. */
   const invPrice = (html, slot) => {
-    const m = itemFor(html, slot).match(/<span class="sp-inv-price">([^<]*)<\/span>/);
+    const m = itemFor(html, slot).match(/<span class="sp-inv-price"[^>]*>([^<]*)<\/span>/);
     return m ? m[1] : null;
   };
 
@@ -837,7 +837,7 @@ describe('page /sponsor', () => {
       expect(hasClass(itemFor(html, 'L1'), 'taken')).toBe(true); // LIVE occupe L1
       const start = html.indexOf(fullUi.site.sponsor.inventoryHeading);
       const end = html.indexOf(fullUi.site.sponsor.ladderHeading);
-      const prices = [...html.slice(start, end).matchAll(/<span class="sp-inv-price">([^<]*)<\/span>/g)];
+      const prices = [...html.slice(start, end).matchAll(/<span class="sp-inv-price"[^>]*>([^<]*)<\/span>/g)];
       expect(prices.length).toBe(RAIL_SLOTS.length - 1 + TAPE_TOP_SLOTS.length + TAPE_BOTTOM_SLOTS.length);
       for (const [, content] of prices) expect(content).not.toBe('');
       // L1 pris → le rail suivant est à la deuxième marche ; les bandeaux,
