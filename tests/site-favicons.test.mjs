@@ -99,15 +99,36 @@ describe('fetchFavicons', () => {
     await expect(readFile(join(cacheDir, 'a.com.png'))).resolves.toBeInstanceOf(Buffer);
   });
 
-  it("n'appelle jamais le réseau quand aucune implémentation fetch n'est fournie", async () => {
+  // Ce test passait `fetchImpl: undefined`, ce qui déclenche la valeur par
+  // défaut du déstructurage (`fetchImpl = globalThis.fetch`) : il appelait
+  // donc VRAIMENT https://www.google.com/s2/favicons à chaque exécution, et
+  // ne passait que parce que Google répond 404 pour ce domaine de fixture.
+  // Il affirmait l'inverse de ce qu'il faisait, et rendait la suite racine
+  // non hermétique. `fetchImpl: null` désactive réellement la récupération
+  // (fetchFaviconBytes teste `typeof fetchImpl !== 'function'`), et le fetch
+  // global est remplacé par un espion : le test échoue maintenant si une
+  // requête sort, au lieu de dépendre de la réponse d'un tiers.
+  it("n'appelle jamais le réseau quand aucune implémentation fetch n'est disponible", async () => {
     const root = await tempDir();
     const tools = new Map([['a', tool('a', 'a.com')]]);
-    const { bySlug } = await fetchFavicons(tools, {
-      cacheDir: join(root, 'cache'),
-      outDir: join(root, 'out'),
-      fetchImpl: undefined,
-    });
-    expect(bySlug.a).toBe(PLACEHOLDER_PATH);
+    const original = globalThis.fetch;
+    let networkCalls = 0;
+    globalThis.fetch = async (...args) => {
+      networkCalls += 1;
+      throw new Error(`requête réseau interdite dans ce test : ${args[0]}`);
+    };
+    try {
+      const { bySlug, stats } = await fetchFavicons(tools, {
+        cacheDir: join(root, 'cache'),
+        outDir: join(root, 'out'),
+        fetchImpl: null,
+      });
+      expect(networkCalls).toBe(0);
+      expect(bySlug.a).toBe(PLACEHOLDER_PATH);
+      expect(stats).toEqual({ total: 1, cached: 0, fetched: 0, placeholder: 1 });
+    } finally {
+      globalThis.fetch = original;
+    }
   });
 
   it('télécharge aussi les domaines hors catalogue et les indexe par domaine', async () => {

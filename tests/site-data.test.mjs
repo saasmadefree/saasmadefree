@@ -127,6 +127,29 @@ describe('langsForCategory', () => {
   });
 });
 
+// Les blocs fetch* ci-dessous vérifient chacun `expect(url).toBe(CONSTANTE)`
+// — c'est-à-dire l'URL appelée comparée à la constante que l'implémentation a
+// elle-même utilisée. Seuls, ces trois tests ne peuvent pas échouer : renommer
+// le domaine dans site-data.mjs les garde verts. Ce bloc épingle les
+// constantes une fois, littéralement ; les trois autres assertions retrouvent
+// alors leur sens (« c'est bien CETTE URL qui est appelée »).
+describe('URLs des services lus au build', () => {
+  it('sont épinglées, littéralement', () => {
+    expect(VOTES_FEED_URL).toBe('https://votes.saasmadefree.com/feed/v1/votes.json');
+    expect(STATS_API_URL).toBe('https://votes.saasmadefree.com/api/v1/stats');
+    expect(SPONSOR_SLOTS_API_URL).toBe('https://votes.saasmadefree.com/api/v1/sponsors/slots');
+  });
+
+  // Principe 4 : rien n'est récupéré chez un tiers, ni au build ni au runtime.
+  it('restent sur un sous-domaine du projet, en https', () => {
+    for (const raw of [VOTES_FEED_URL, STATS_API_URL, SPONSOR_SLOTS_API_URL]) {
+      const url = new URL(raw);
+      expect(url.protocol, raw).toBe('https:');
+      expect(url.hostname.endsWith('.saasmadefree.com'), raw).toBe(true);
+    }
+  });
+});
+
 describe('fetchVoteCounts', () => {
   afterEach(() => {
     vi.unstubAllGlobals();
