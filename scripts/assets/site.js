@@ -9,16 +9,92 @@
 // n'ajoute que : le volet de suggestions de recherche, le filtre par verdict,
 // la copie en un clic, la copie automatique avant d'ouvrir un agent, le
 // vote en direct, et sur /sponsor seulement le rafraîchissement de
-// l'inventaire (statut + prix, voir enhanceSponsorInventory).
+// l'inventaire (statut + prix, voir enhanceSponsorInventory) et le bouton
+// d'achat (voir enhanceSponsorCheckout). Sur /sponsor sans JavaScript, il
+// reste l'inventaire complet, les prix, le barème, l'adresse de contact et
+// une note <noscript> qui dit où écrire — rien n'est caché au lecteur.
 //
 // Seules requêtes réseau faites par ce fichier : le Worker de ce même projet
-// (votes.saasmadefree.com, décrit dans README.md — vote, puis disponibilité
-// des emplacements sponsors). Rien d'autre, aucune tierce partie.
+// (votes.saasmadefree.com, décrit dans README.md — vote, disponibilité des
+// emplacements sponsors, ouverture d'une session de paiement). Rien d'autre,
+// aucune tierce partie.
+//
+// Rien dans ce fichier ne construit de HTML : tout texte venant du réseau
+// passe par textContent ou par un attribut rendu et échappé au build. Un
+// test statique (tests/sponsor-checkout-page.test.mjs) le verrouille.
 (function () {
   'use strict';
 
   var VOTE_ENDPOINT = 'https://votes.saasmadefree.com/api/v1/vote';
   var VOTES_FEED_URL = 'https://votes.saasmadefree.com/feed/v1/votes.json';
+
+  // Même règle que formatMoney (scripts/lib/site-format.mjs) : pas de
+  // décimales sur un montant entier. Les deux doivent rester d'accord, sinon
+  // un prix rafraîchi côté client s'écrirait autrement que le même prix cuit
+  // au build, sur la même page.
+  function formatUsd(amount, lang) {
+    var whole = Math.round(amount) === amount;
+    return new Intl.NumberFormat(lang, {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: whole ? 0 : 2,
+      maximumFractionDigits: whole ? 0 : 2,
+    }).format(amount);
+  }
+
+  // Un emplacement qui vient d'être pris ne doit plus être proposé NULLE PART
+  // sur la page. Le même slot est rendu jusqu'à cinq fois — sa ligne
+  // d'inventaire, sa carte de rail, le bloc replié des petits écrans, et deux
+  // fois dans un bandeau défilant (la piste est dupliquée pour boucler). Ne
+  // corriger que l'inventaire laissait la ligne « Pris » à côté d'une carte
+  // « Slot libre — 149 $US — Réserver » pour le même emplacement : la page se
+  // contredisait elle-même à l'exécution.
+  //
+  // L'élément n'est pas reconstruit, il est neutralisé sur place : un <a> sans
+  // href n'est ni un lien ni un arrêt de tabulation, et la feuille de style ne
+  // distingue que les classes. Le résultat est celui que le build produit pour
+  // un emplacement pris, sans jamais fabriquer de balisage.
+  function neutralizeSlotElement(el, takenLabel) {
+    el.classList.remove('open');
+    el.classList.add('taken');
+    el.removeAttribute('href');
+    el.removeAttribute('target');
+    el.removeAttribute('rel');
+    while (el.firstChild) el.removeChild(el.firstChild);
+    if (el.classList.contains('sp-card')) {
+      var label = document.createElement('span');
+      label.className = 'sp-taken-label';
+      label.textContent = takenLabel;
+      el.appendChild(label);
+    } else {
+      el.textContent = takenLabel;
+    }
+  }
+
+  /** Retire de la vente toutes les cartes et places d'un slot donné. Ne touche
+   *  qu'un emplacement encore annoncé libre : une carte de sponsor déjà en
+   *  place (.sp-card.live) n'a rien à voir avec cette bascule. */
+  function markSlotTaken(slot, takenLabel) {
+    var all = document.querySelectorAll('.sp-card[data-slot], .sp-tape-item[data-slot]');
+    for (var i = 0; i < all.length; i++) {
+      if (all[i].dataset.slot !== slot) continue;
+      if (!all[i].classList.contains('open')) continue;
+      neutralizeSlotElement(all[i], takenLabel);
+    }
+  }
+
+  /** Réécrit le montant des cartes et des places encore libres d'un
+   *  compartiment. Le prix d'un compartiment est unique : le laisser divergent
+   *  entre la ligne d'inventaire et la carte du même slot, c'est la page qui
+   *  annonce deux prix pour une seule chose. */
+  function repriceSlotElements(slots, text) {
+    var all = document.querySelectorAll('.sp-card.open[data-slot], .sp-tape-item.open[data-slot]');
+    for (var i = 0; i < all.length; i++) {
+      if (slots.indexOf(all[i].dataset.slot) === -1) continue;
+      var el = all[i].querySelector('.sp-price') || all[i].querySelector('.sp-tape-price');
+      if (el) el.textContent = text;
+    }
+  }
 
   function fetchVotes() {
     return fetch(VOTES_FEED_URL)
@@ -489,16 +565,6 @@
     var lang = document.documentElement.lang || 'en';
     var LIVE_STATUSES = { open: true, reserved: true, paid: true };
 
-    function formatUsd(amount) {
-      var whole = Math.round(amount) === amount;
-      return new Intl.NumberFormat(lang, {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: whole ? 0 : 2,
-        maximumFractionDigits: whole ? 0 : 2,
-      }).format(amount);
-    }
-
     // Le barème du compartiment, sérialisé par le build depuis
     // RAIL_LADDER_USD/TAPE_LADDER_USD (voir inventoryList). Rend null au
     // moindre doute : mieux vaut garder les montants calculés au build que
@@ -527,13 +593,19 @@
     // montant que son propre tableau de barème contredit.
     function repriceList(list) {
       var items = list.querySelectorAll('.sp-inv-item[data-slot]');
-      var i, item, priceEl;
+      var i, item, priceEl, buyEl;
+      var slots = [];
+      for (i = 0; i < items.length; i++) slots.push(items[i].dataset.slot);
 
-      // Un slot pris n'annonce plus de prix : il n'y a rien à vendre.
+      // Un slot pris n'annonce plus de prix et ne s'achète plus : il n'y a
+      // rien à vendre. Le bouton part avec le montant — le laisser ouvrirait
+      // un paiement sur un emplacement que la même ligne déclare pris.
       for (i = 0; i < items.length; i++) {
         if (!items[i].classList.contains('taken')) continue;
         priceEl = items[i].querySelector('.sp-inv-price');
         if (priceEl) priceEl.parentNode.removeChild(priceEl);
+        buyEl = items[i].querySelector('.sp-inv-buy');
+        if (buyEl) buyEl.parentNode.removeChild(buyEl);
       }
 
       var ladder = parseLadder(list.getAttribute('data-sponsor-ladder'));
@@ -543,10 +615,19 @@
         if (items[i].dataset.sold === '1') sold++;
       }
       // Compartiment plein : tout ce qui est vendu est pris, il ne reste donc
-      // aucun slot libre à tarifer (même invariant que nextPriceUsd).
-      if (sold >= ladder.length) return;
+      // aucun slot libre à tarifer (même invariant que nextPriceUsd). On retire
+      // le prix machine avec l'affichage — il ne doit rester aucun montant
+      // qu'un bouton pourrait envoyer.
+      if (sold >= ladder.length) {
+        list.removeAttribute('data-sponsor-price-cents');
+        return;
+      }
 
-      var text = formatUsd(ladder[sold]);
+      var text = formatUsd(ladder[sold], lang);
+      // Le montant que le bouton enverra en `expectedPriceCents` suit
+      // exactement l'affichage : une seule marche de barème pour les deux,
+      // jamais deux sources.
+      list.setAttribute('data-sponsor-price-cents', String(Math.round(ladder[sold] * 100)));
       for (i = 0; i < items.length; i++) {
         item = items[i];
         if (item.classList.contains('taken')) continue;
@@ -558,6 +639,8 @@
         }
         priceEl.textContent = text;
       }
+      // Les cartes et les places du même compartiment portent le même prix.
+      repriceSlotElements(slots, text);
     }
 
     fetch(endpoint)
@@ -590,6 +673,12 @@
 
           var stateEl = item.querySelector('.sp-inv-state');
           if (stateEl) stateEl.textContent = taken ? takenLabel : openLabel;
+
+          // Le même emplacement est aussi rendu en carte de rail et en place
+          // défilante. Sans cette ligne, seule la ligne d'inventaire suivait
+          // la disponibilité réelle, et la page proposait à la vente, deux
+          // blocs plus loin, l'emplacement qu'elle venait de déclarer pris.
+          if (taken) markSlotTaken(item.dataset.slot, takenLabel);
         }
 
         // Les prix se recalculent APRÈS les statuts : l'index du barème
@@ -600,11 +689,227 @@
       .catch(function () {}); // échec silencieux : l'état cuit au build reste affiché
   }
 
+  // Le bouton d'achat de /sponsor — le seul endroit du site qui déclenche un
+  // paiement. Il n'ouvre aucun formulaire : le montant est recalculé par le
+  // Worker, et la créa (nom, domaine, une ligne) est saisie dans le formulaire
+  // de Stripe lui-même. Cette page n'envoie que quatre champs.
+  //
+  // `expectedPriceCents` ne facture RIEN. Le Worker recalcule et facture son
+  // propre montant ; ce champ ne sert qu'à détecter une dérive entre le prix
+  // affiché et le prix du moment. Différent, il rend `409 price_changed` avec
+  // le vrai montant, sans créer de session — et on ne re-tente jamais tout
+  // seul : on montre le nouveau prix, et l'acheteur décide.
+  //
+  // `lang` n'est pas décoratif : il choisit la page de retour après paiement
+  // (`success_url`). Sans lui, tout acheteur francophone reviendrait sur la
+  // page anglaise juste après avoir été débité.
+  //
+  // Les contrôles sont rendus `hidden` par le build et dévoilés ici : sans ce
+  // script, ils ne feraient rien, et un contrôle mort est pire qu'un contrôle
+  // absent. La page reste complète sans eux (principe 5 de .impeccable.md).
+  function enhanceSponsorCheckout() {
+    var section = document.querySelector('[data-sponsor-slots-endpoint]');
+    if (!section) return;
+    var endpoint = section.getAttribute('data-sponsor-checkout-endpoint');
+    if (!endpoint) return;
+    var groups = section.querySelectorAll('.sp-inv-group');
+    if (groups.length === 0) return;
+
+    var lang = document.documentElement.lang || 'en';
+    var takenLabel = section.getAttribute('data-sponsor-taken-label') || '';
+
+    // Un code d'erreur venu du réseau sert à composer un nom d'attribut : on
+    // n'accepte que la forme réellement produite par le Worker, jamais une
+    // chaîne arbitraire.
+    var CODE_RE = /^[a-z_]{1,40}$/;
+
+    // Le message destiné à l'acheteur, rendu et échappé au build (voir
+    // checkoutMessages dans scripts/lib/site-page-sponsor.mjs). Un code absent
+    // de la page — parce que le Worker en a gagné un nouveau — retombe sur le
+    // message de repli plutôt que sur un silence.
+    function messageFor(code, slot, price) {
+      var attr = code && CODE_RE.test(code) ? 'data-sponsor-msg-' + code.replace(/_/g, '-') : null;
+      var text = (attr && section.getAttribute(attr)) || section.getAttribute('data-sponsor-msg-fallback') || '';
+      return text.replace(/\{slot\}/g, slot).replace(/\{price\}/g, price || '');
+    }
+
+    // Les deux seules durées que le Worker accepte de facturer. Toute autre
+    // valeur retombe sur un mois plutôt que d'envoyer un `unsold_duration`.
+    function monthsChosen() {
+      var checked = section.querySelector('input[name="sp-months"]:checked');
+      return (checked && Number(checked.value) === 3) ? 3 : 1;
+    }
+
+    // Le prix affiché du compartiment, en centimes. Rend null au moindre doute
+    // — sans montant vérifiable, on n'ouvre pas de paiement du tout.
+    function unitCentsOf(list) {
+      var raw = Number(list.getAttribute('data-sponsor-price-cents'));
+      return isFinite(raw) && raw > 0 ? Math.round(raw) : null;
+    }
+
+    // Aligne tout le compartiment sur le prix que le serveur vient d'annoncer :
+    // le montant machine qui repartira en `expectedPriceCents`, les lignes
+    // d'inventaire, et les cartes et places du même compartiment.
+    function applyServerPrice(list, unitCents) {
+      list.setAttribute('data-sponsor-price-cents', String(Math.round(unitCents)));
+      var text = formatUsd(unitCents / 100, lang);
+      var items = list.querySelectorAll('.sp-inv-item[data-slot]');
+      var slots = [];
+      for (var i = 0; i < items.length; i++) {
+        slots.push(items[i].dataset.slot);
+        if (items[i].classList.contains('taken')) continue;
+        var priceEl = items[i].querySelector('.sp-inv-price');
+        if (priceEl) priceEl.textContent = text;
+      }
+      repriceSlotElements(slots, text);
+    }
+
+    // La ligne passe « pris ». `data-sold` n'est volontairement PAS posé : un
+    // slot_taken peut n'être qu'une réservation, et une réservation ne compte
+    // pas dans l'index du barème (même règle que paidCounts côté Worker).
+    function takeInventoryRow(item) {
+      item.classList.remove('open');
+      item.classList.add('taken');
+      var state = item.querySelector('.sp-inv-state');
+      if (state) state.textContent = takenLabel;
+      var priceEl = item.querySelector('.sp-inv-price');
+      if (priceEl) priceEl.parentNode.removeChild(priceEl);
+      var buyEl = item.querySelector('.sp-inv-buy');
+      if (buyEl) buyEl.parentNode.removeChild(buyEl);
+    }
+
+    function handleFailure(body, slot, months, item, list, status) {
+      var code = body && typeof body.error === 'string' ? body.error : null;
+
+      if (code === 'price_changed') {
+        // Le Worker rend le montant réel, pour la durée demandée, et n'a créé
+        // aucune session. On repasse par l'acheteur : la page affiche le
+        // nouveau prix et il décide. Un second clic partira au bon montant.
+        var total = Number(body.priceCents);
+        if (isFinite(total) && total > 0 && total % months === 0) {
+          applyServerPrice(list, total / months);
+          status.textContent = messageFor(code, slot, formatUsd(total / 100, lang));
+          return;
+        }
+        // Montant inexploitable : on ne devine pas un prix, on le dit.
+        status.textContent = messageFor(null, slot, '');
+        return;
+      }
+
+      // Pris entre l'affichage et le clic. On le retire de la vente partout
+      // sur la page, pas seulement dans sa ligne d'inventaire.
+      if (code === 'slot_taken') {
+        takeInventoryRow(item);
+        markSlotTaken(slot, takenLabel);
+      }
+      status.textContent = messageFor(code, slot, '');
+    }
+
+    function wireButton(btn, item, list, status) {
+      btn.addEventListener('click', function () {
+        var slot = btn.dataset.slot;
+        var months = monthsChosen();
+        var unit = unitCentsOf(list);
+        if (unit === null) {
+          status.textContent = messageFor(null, slot, '');
+          return;
+        }
+
+        btn.disabled = true;
+        status.textContent = messageFor('opening', slot, '');
+
+        fetch(endpoint, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            slot: slot,
+            months: months,
+            expectedPriceCents: unit * months,
+            lang: lang,
+          }),
+        })
+          .then(function (res) {
+            // Un corps illisible ne doit pas ressembler à une panne réseau :
+            // on garde le statut HTTP et on laisse handleFailure décider.
+            return res.json().then(
+              function (body) { return { ok: res.ok, body: body }; },
+              function () { return { ok: res.ok, body: null }; }
+            );
+          })
+          .then(function (result) {
+            var url = result.ok && result.body ? result.body.url : null;
+            // Seul chemin qui quitte la page. Le préfixe est vérifié même si
+            // l'URL vient de notre propre Worker : une redirection ne doit
+            // jamais pouvoir être un "javascript:" déguisé.
+            if (typeof url === 'string' && url.indexOf('https://') === 0) {
+              location.href = url;
+              return; // bouton laissé désactivé : la page s'en va
+            }
+            handleFailure(result.body, slot, months, item, list, status);
+            btn.disabled = false;
+          })
+          .catch(function () {
+            // Réseau coupé, CORS refusé, Worker injoignable. Jamais un
+            // silence : rien n'a été réservé, rien n'a été débité, et
+            // l'acheteur doit l'apprendre de la page, pas de la console.
+            status.textContent = messageFor(null, slot, '');
+            btn.disabled = false;
+          });
+      });
+    }
+
+    function wireGroup(group) {
+      var list = group.querySelector('.sp-inv');
+      var status = group.querySelector('.sp-inv-status');
+      if (!list || !status) return;
+      var items = list.querySelectorAll('.sp-inv-item[data-slot]');
+      for (var i = 0; i < items.length; i++) {
+        var btn = items[i].querySelector('.sp-inv-buy');
+        if (!btn) continue;
+        btn.hidden = false;
+        wireButton(btn, items[i], list, status);
+      }
+    }
+
+    var fieldset = section.querySelector('.sp-duration');
+    var note = section.querySelector('.sp-duration-note');
+    if (fieldset) {
+      fieldset.hidden = false;
+      var radios = fieldset.querySelectorAll('input[name="sp-months"]');
+      for (var r = 0; r < radios.length; r++) {
+        radios[r].addEventListener('change', function () {
+          if (!note) return;
+          note.textContent = monthsChosen() === 3 ? note.dataset.noteThree : note.dataset.noteOne;
+        });
+      }
+    }
+
+    for (var g = 0; g < groups.length; g++) wireGroup(groups[g]);
+  }
+
+  // Retour depuis Stripe : `success_url` porte ?paid=1. Cette redirection n'a
+  // AUCUNE autorité — seule la signature du webhook prouve un paiement, et
+  // n'importe qui peut taper cette URL à la main. La note n'affirme donc rien
+  // sur ce visiteur : elle accuse le retour, renvoie au reçu envoyé par
+  // Stripe, et rappelle que la validation est manuelle.
+  function enhanceSponsorPaidNote() {
+    var note = document.getElementById('sponsor-paid-note');
+    if (!note) return;
+    if (new URLSearchParams(location.search).get('paid') !== '1') return;
+    note.hidden = false;
+  }
+
   enhanceHome();
   enhanceSearchCombo();
   enhanceThemeToggle();
   enhanceCopyButton();
   enhanceAgentButtons();
   enhanceVote();
+  // L'ordre compte un peu : le checkout dévoile ses boutons tout de suite,
+  // sans attendre la réponse de /slots (une API lente ou en panne ne doit pas
+  // laisser la page sans bouton d'achat). Le rafraîchissement, lui, arrive
+  // ensuite et retire les boutons des emplacements qu'il déclare pris.
   enhanceSponsorInventory();
+  enhanceSponsorCheckout();
+  enhanceSponsorPaidNote();
 })();

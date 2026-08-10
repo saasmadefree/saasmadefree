@@ -285,8 +285,14 @@ function renderTapeItem(slot, ctx, price, { hidden = false } = {}) {
     return `<span class="sp-tape-item taken" data-slot="${slot}"${hiddenAttrs}>${escapeHtml(s.takenLabel)}</span>`;
   }
   if (!placement) {
-    // Même invariant et même formatage monétaire que renderCard.
-    const body = `${escapeHtml(s.openLabel)} — ${escapeHtml(formatMoney(price, 'USD', ctx.lang))}`;
+    // Même invariant et même formatage monétaire que renderCard. Le montant
+    // vit dans son propre <span>, comme .sp-price sur la carte de rail : sans
+    // lui, le rafraîchissement client (site.js) ne pourrait pas remplacer le
+    // prix d'une place sans réécrire le nœud de texte entier — et la page
+    // annoncerait deux montants différents pour le même compartiment dès
+    // qu'une vente fait monter le barème entre le build et la visite.
+    const money = `<span class="sp-tape-price">${escapeHtml(formatMoney(price, 'USD', ctx.lang))}</span>`;
+    const body = `${escapeHtml(s.openLabel)} — ${money}`;
     return `<a class="sp-tape-item open" data-slot="${slot}" href="${escapeHtml(ctx.sponsorHref)}"${hiddenAttrs}>${body}</a>`;
   }
   const icon = sponsorIcon(ctx, placement);

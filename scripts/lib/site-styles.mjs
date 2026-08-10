@@ -522,6 +522,38 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
    de .sp-inv-item (display:inline-flex) est un flex item, donc min-width
    s'applique même si <span> reste inline par défaut. */
 .sp-inv-price{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;min-width:9ch}
+/* Le prix d'une place défilante libre, dans son propre span pour que le
+   rafraîchissement client puisse le remplacer sans réécrire la ligne. */
+.sp-tape-price{font-variant-numeric:tabular-nums}
+/* Le bouton d'achat, posé dans la puce de l'emplacement. Contour d'encre
+   plutôt qu'aplat : vingt boutons pleins feraient un mur, et surtout aucune
+   couleur saturée n'entre ici — le vert/ambre/rouge reste au badge de verdict
+   (principe 1). Il est rendu \`hidden\` et n'apparaît que si site.js l'active. */
+.sp-inv-buy{font-size:.68rem;line-height:1;padding:.4em .7em;border-radius:.3em;
+  border:1px solid var(--ink);background:transparent;color:var(--ink);
+  font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.sp-inv-buy:hover:not(:disabled){opacity:1;background:color-mix(in srgb,var(--ink) 8%,transparent)}
+/* Une région live par compartiment, sous la liste : les puces s'enroulent en
+   ligne, un message posé dans l'une d'elles casserait la mise en page. Vide,
+   elle ne prend aucune place — mais elle existe dès le HTML servi, sinon
+   l'annonce ne serait pas faite. */
+.sp-inv-status{margin:0 0 1.4rem;font-size:.82rem;color:var(--muted);max-width:var(--measure)}
+.sp-inv-status:empty{margin:0}
+
+.sp-duration{border:1px solid var(--rule);border-radius:.5em;background:var(--card);
+  padding:.7rem 1rem .9rem;margin:0 0 1.4rem;max-width:var(--measure)}
+.sp-duration legend{font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--muted);font-weight:700;padding:0 .4em}
+.sp-duration-options{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem}
+.sp-duration-options label{display:inline-flex;align-items:center;gap:.45em;font-size:.85rem}
+.sp-duration-note{margin:.7rem 0 0;font-size:.8rem;color:var(--muted)}
+.sp-noscript{margin:0 0 1.4rem;font-size:.85rem;color:var(--muted);max-width:var(--measure)}
+/* Retour depuis Stripe. Un filet d'encre en marge, comme une annotation de
+   dossier — pas un bandeau vert de confirmation : cette page ne confirme
+   aucun paiement, elle en accuse le retour. */
+.sp-paid-note{margin:0 0 clamp(2rem,5vh,3rem);padding:.9rem 1.1rem;font-size:.85rem;
+  background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--ink);
+  border-radius:0 .4em .4em 0;max-width:var(--measure)}
 
 /* .sp-ladder réutilise les règles génériques de \`table\`/\`caption\`/\`th,td\`
    définies plus haut (bordures de cellule, en-tête en petites capitales) —
