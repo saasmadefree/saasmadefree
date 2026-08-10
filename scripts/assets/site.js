@@ -793,6 +793,12 @@
     // d'un coup les deux emplacements du plafond du visiteur
     // (MAX_HOLDS_PER_VISITOR), qui recevait ensuite `too_many_reservations`
     // sur son troisième clic sans comprendre pourquoi.
+    //
+    // Ce drapeau fait double emploi avec la désactivation des boutons juste en
+    // dessous, et c'est VOULU : sur un chemin qui déclenche un paiement, une
+    // seule garde suffit à tenir la garantie mais aucune ne mérite d'être la
+    // seule. Retirer l'une des deux ne casse aucun test — c'est l'autre qui
+    // tient ; retirer les deux en casse trois. Ce n'est donc pas du code mort.
     var inFlight = false;
 
     // Un code d'erreur venu du réseau sert à composer un nom d'attribut : on

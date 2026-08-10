@@ -17,9 +17,28 @@ import { formatMoney } from '../scripts/lib/site-format.mjs';
 // vitest en devDependencies. happy-dom est donc une devDependency de plus.
 //
 // Les gardes statiques de tests/sponsor-checkout-page.test.mjs restent utiles,
-// mais aucune n'attrape un `res.ok` inversé, un `btn.disabled` supprimé, une
-// relance automatique au nouveau prix, ou un `location.href` posé sur une
-// réponse en échec. Ceux-ci, oui.
+// mais elles ne lisent que du texte. Les tests ci-dessous exécutent le code.
+//
+// Vérifié par mutation plutôt qu'affirmé. Retirer l'une de ces lignes de
+// scripts/assets/site.js rend un test rouge : la garde `result.ok &&`, le
+// dévoilement des boutons, celui du groupe de durée, le rappel de `focus()`,
+// sa condition `hadFocus`, la garde d'hôte de la redirection, la mémoire de
+// réservation, la mémoire du montant réclamé.
+//
+// Une exception, notée pour qu'on ne la prenne pas pour un trou : la
+// concurrence est tenue par DEUX gardes redondantes — le drapeau `inFlight` et
+// la désactivation des boutons. En retirer une seule laisse les tests verts,
+// parce que l'autre suffit encore à tenir la garantie ; les deux ensemble les
+// rendent rouges. C'est le comportement qui est testé, pas chaque ligne — et
+// c'est bien ce qu'on veut d'un test. Ne pas supprimer l'une des deux en
+// croyant à du code mort : sur un chemin de paiement, la redondance est voulue.
+//
+// Ce que ce banc NE prouve PAS, parce que happy-dom ne le reproduit pas :
+// - le blur réel de `disabled = true` (voir le test de focus, qui s'appuie sur
+//   un espion et le dit) ;
+// - la mise en page, donc ni décalage visuel ni contraste.
+// Ces deux-là se vérifient dans un navigateur, et sont consignés dans le
+// rapport de la tâche — pas ici.
 //
 // site.js est une IIFE non modulaire : on ne peut pas l'importer. On l'évalue
 // en lui passant ses globales en paramètres — ce qui donne au passage un
@@ -126,6 +145,30 @@ function expected(lang, key, vars = {}) {
 }
 
 const usd = (amount, lang) => formatMoney(amount, 'USD', lang);
+
+// Ces deux lignes de site.js (`btn.hidden = false`, `fieldset.hidden = false`)
+// sont ce qui transforme la page d'un inventaire en boutique. happy-dom
+// dispatche les clics sur les éléments `hidden` : sans les assertions
+// ci-dessous, on peut supprimer l'une ou l'autre et TOUS les tests d'achat
+// restent verts pendant que la page livrerait vingt-huit boutons invisibles.
+describe('site.js — les contrôles sont réellement dévoilés', () => {
+  it('dévoile les vingt-huit boutons', () => {
+    const page = mount();
+    const buttons = [...page.section.querySelectorAll('.sp-inv-buy')];
+    expect(buttons).toHaveLength(28);
+    for (const btn of buttons) expect(btn.hidden, btn.dataset.slot).toBe(false);
+  });
+
+  it('dévoile le choix de durée', () => {
+    const page = mount();
+    expect(page.doc.querySelector('.sp-duration').hidden).toBe(false);
+  });
+
+  it('ne dévoile rien sur un emplacement pris — il n’y a pas de bouton à dévoiler', () => {
+    const page = mount({ liveSlots: { L1: { status: 'paid' } } });
+    expect(page.item('L1').querySelector('.sp-inv-buy')).toBe(null);
+  });
+});
 
 describe('site.js — la requête de checkout', () => {
   it('envoie les quatre champs de la route, et rien d’autre', async () => {
@@ -251,13 +294,40 @@ describe('site.js — chaque échec de la route est dit à l’acheteur', () => 
     expect(card.textContent).toBe(UI.fr.site.sponsor.takenLabel);
   });
 
-  it('rend le focus au bouton après un échec — le désactiver le lui avait pris', async () => {
+  // Le vrai comportement — `disabled = true` retire le focus, il faut le rendre
+  // — ne se reproduit PAS dans happy-dom, qui laisse `activeElement` sur un
+  // bouton désactivé. Une assertion sur `activeElement` passerait donc que le
+  // correctif soit là ou non : elle attesterait l'environnement, pas le code.
+  //
+  // On assied donc l'assertion sur le seul point observable qui dépend
+  // vraiment de site.js : l'appel à `focus()` après un échec. Retirer la
+  // ligne du correctif rend ce test rouge.
+  //
+  // La restauration réelle du focus a été vérifiée séparément dans Chrome,
+  // qui applique bien le blur — voir le rapport. Ce test ne la prouve pas.
+  it('rappelle focus() sur le bouton après un échec — le désactiver le lui avait pris', async () => {
     const page = mount();
-    page.button('L2').focus();
+    const btn = page.button('L2');
+    btn.focus();
+    let focusCalls = 0;
+    btn.focus = () => { focusCalls += 1; };
+
     page.state.next = reply(502, { error: 'stripe_unavailable' });
     page.click('L2');
     await page.flush();
-    expect(page.doc.activeElement).toBe(page.button('L2'));
+    expect(focusCalls).toBe(1);
+  });
+
+  it('ne rappelle pas focus() sur un bouton que l’acheteur n’avait pas sous le doigt', async () => {
+    const page = mount();
+    const btn = page.button('L2');
+    let focusCalls = 0;
+    btn.focus = () => { focusCalls += 1; };
+
+    page.state.next = reply(502, { error: 'stripe_unavailable' });
+    page.click('L2');
+    await page.flush();
+    expect(focusCalls).toBe(0);
   });
 });
 
@@ -377,6 +447,23 @@ describe('site.js — la seule navigation qui sort de la page', () => {
     page.click('L1');
     await page.flush();
     expect(page.location.href).toBe('https://checkout.stripe.com/c/pay/cs_test_123');
+  });
+
+  // Le statut HTTP compte autant que la forme de l'URL. Sans la garde
+  // `result.ok &&`, une réponse d'échec portant malgré tout une URL de
+  // paiement — Worker désynchronisé, intermédiaire bavard — enverrait
+  // l'acheteur payer un emplacement que le serveur vient de lui refuser.
+  // Aucune autre fixture de ce fichier ne porte d'`url` sur une erreur, donc
+  // rien d'autre n'exerce cette garde.
+  it('ne suit pas une URL rendue avec un statut d’échec', async () => {
+    const page = mount();
+    page.state.next = reply(409, {
+      error: 'slot_taken', url: 'https://checkout.stripe.com/c/pay/cs_test_123',
+    });
+    page.click('L2');
+    await page.flush();
+    expect(page.location.href).toContain('/fr/sponsor');
+    expect(page.status('L2')).toBe(expected('fr', 'buyErrorSlotTaken', { slot: 'L2' }));
   });
 
   const refused = [
