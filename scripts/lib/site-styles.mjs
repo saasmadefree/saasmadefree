@@ -507,8 +507,21 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
   gap:.5rem 1.75rem;font-size:.85rem;color:var(--muted)}
 .sp-figures strong{color:var(--ink);font-weight:800;font-variant-numeric:tabular-nums}
 
-.sp-inv{list-style:none;margin:0 0 1.4rem;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
-.sp-inv-item{display:inline-flex;align-items:center;gap:.4em;padding:.3em .7em;
+/* Grille à colonnes auto-remplies, et non plus un flex qui s'enroule : le
+   nombre de lignes ne dépend alors QUE de la largeur disponible, jamais du
+   contenu des cases. C'est ce qui supprime le décalage de mise en page au
+   moment où le script dévoile vingt-huit boutons — sans lui, les puces
+   s'élargissaient, se répartissaient autrement, et toute la page glissait
+   vers le bas. Même intention que le min-width de .sp-inv-price, un cran
+   au-dessus. */
+.sp-inv{list-style:none;margin:0 0 1.4rem;padding:0;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:.5rem}
+/* min-height calé sur la hauteur d'une puce QUI PORTE un bouton : la ligne ne
+   change donc pas de taille quand le script en dévoile un, ni quand un
+   \`slot_taken\` en retire un au clic. Sans elle, retirer le bouton d'une seule
+   ligne rétrécissait sa case et faisait bouger toute la grille sous les yeux
+   de l'acheteur, au pire moment. */
+.sp-inv-item{display:flex;align-items:center;gap:.4em;padding:.3em .7em;min-height:2.1rem;
   border:1px solid var(--rule);border-radius:.35em;background:var(--card);font-size:.78rem}
 .sp-inv-item.open{border-style:dashed}
 .sp-inv-slot{font-family:var(--mono);font-weight:700;color:var(--ink)}
@@ -529,9 +542,9 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
    plutôt qu'aplat : vingt boutons pleins feraient un mur, et surtout aucune
    couleur saturée n'entre ici — le vert/ambre/rouge reste au badge de verdict
    (principe 1). Il est rendu \`hidden\` et n'apparaît que si site.js l'active. */
-.sp-inv-buy{font-size:.68rem;line-height:1;padding:.4em .7em;border-radius:.3em;
+.sp-inv-buy{margin-left:auto;font-size:.68rem;line-height:1;padding:.4em .7em;border-radius:.3em;
   border:1px solid var(--ink);background:transparent;color:var(--ink);
-  font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+  font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
 .sp-inv-buy:hover:not(:disabled){opacity:1;background:color-mix(in srgb,var(--ink) 8%,transparent)}
 /* Une région live par compartiment, sous la liste : les puces s'enroulent en
    ligne, un message posé dans l'une d'elles casserait la mise en page. Vide,

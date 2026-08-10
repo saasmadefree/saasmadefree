@@ -231,7 +231,7 @@
       "buyNoScriptNote": "Paying from this page needs JavaScript. Without it, write to {email} and the slot is opened by hand.",
       "buyPending": "{slot} — opening the payment page.",
       "buyErrorSlotTaken": "{slot} — this slot was taken while you were reading. Nothing has been charged, and the inventory above is up to date.",
-      "buyErrorPriceChanged": "{slot} — the price is now {price}, not the amount this page was built with. Nothing has been charged. Click again to pay {price}.",
+      "buyErrorPriceChanged": "{slot} — {duration}: the price is now {price}, not the amount this page was built with. Nothing has been charged. Click again to pay {price}.",
       "buyErrorRateLimited": "{slot} — too many requests from this connection. Wait a minute, then try again.",
       "buyErrorTooManyReservations": "{slot} — you already hold the maximum number of slots at once. Finish one payment, or wait for those holds to lapse.",
       "buyErrorInventoryFull": "{slot} — every slot in this block is sold. There is nothing left to buy here.",

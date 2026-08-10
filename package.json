@@ -24,6 +24,7 @@
   "devDependencies": {
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
+    "happy-dom": "^20.11.2",
     "vitest": "^4.1.10"
   }
 }

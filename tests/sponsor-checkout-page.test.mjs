@@ -104,12 +104,15 @@ describe('page /sponsor — messages d’achat', () => {
       }
     });
 
-    it(`${lang} : le message de dérive de prix annonce le nouveau montant et nomme le slot`, () => {
+    it(`${lang} : le message de dérive de prix annonce le montant, le slot et la durée`, () => {
       const m = pageFor(lang).match(new RegExp(`${attrFor('price_changed')}="([^"]*)"`));
-      // {price} et {slot} sont substitués côté client, au moment du refus :
-      // le montant réel n'existe pas au build.
+      // Substitués côté client, au moment du refus : ni le montant réel ni la
+      // durée choisie n'existent au build. La durée est là pour qu'un total de
+      // trois mois ne se lise pas comme une contradiction du prix unitaire
+      // affiché sur la même ligne.
       expect(m[1]).toContain('{price}');
       expect(m[1]).toContain('{slot}');
+      expect(m[1]).toContain('{duration}');
     });
   }
 

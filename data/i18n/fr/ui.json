@@ -231,7 +231,7 @@
       "buyNoScriptNote": "Payer depuis cette page demande JavaScript. Sans lui, écris à {email} et on ouvre l’emplacement à la main.",
       "buyPending": "{slot} — ouverture de la page de paiement.",
       "buyErrorSlotTaken": "{slot} — cet emplacement a été pris pendant ta lecture. Rien n’a été débité, et l’inventaire ci-dessus est à jour.",
-      "buyErrorPriceChanged": "{slot} — le prix est maintenant de {price}, et non le montant avec lequel cette page a été générée. Rien n’a été débité. Clique à nouveau pour payer {price}.",
+      "buyErrorPriceChanged": "{slot} — {duration} : le prix est maintenant de {price}, et non le montant avec lequel cette page a été générée. Rien n’a été débité. Clique à nouveau pour payer {price}.",
       "buyErrorRateLimited": "{slot} — trop de requêtes depuis cette connexion. Attends une minute, puis réessaie.",
       "buyErrorTooManyReservations": "{slot} — tu tiens déjà le nombre maximum d’emplacements en même temps. Termine un paiement, ou attends que ces réservations tombent.",
       "buyErrorInventoryFull": "{slot} — tous les emplacements de ce bloc sont vendus. Il ne reste rien à acheter ici.",

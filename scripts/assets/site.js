@@ -83,6 +83,66 @@
     }
   }
 
+  // Emplacements pour lesquels CE visiteur a ouvert un paiement, dans cet
+  // onglet. Le Worker distingue déjà une réservation du visiteur de celle d'un
+  // tiers (voir holdsOf/reserveSlot) et la lui laisse reprendre ; mais
+  // `GET /slots` ne dit pas — et ne doit pas dire — à qui appartient une
+  // réservation. Sans cette mémoire locale, recharger la page après un
+  // aller-retour chez Stripe faisait disparaître le bouton de SA propre
+  // réservation, et la branche de reprise devenait inatteignable depuis la
+  // page pendant toute la durée du verrou.
+  //
+  // sessionStorage et pas localStorage : la mémoire meurt avec l'onglet, comme
+  // la session de paiement. Aucune purge par échéance — la durée de
+  // réservation est une constante du Worker, la recopier ici la ferait
+  // diverger. Une entrée périmée ne coûte qu'un bouton de trop, dont le clic
+  // rend un `slot_taken` honnête.
+  var HOLDS_KEY = 'smf:sponsor-holds';
+
+  function ownHolds() {
+    try {
+      var raw = sessionStorage.getItem(HOLDS_KEY);
+      var list = raw ? JSON.parse(raw) : [];
+      return Object.prototype.toString.call(list) === '[object Array]' ? list : [];
+    } catch (e) {
+      return []; // stockage refusé (navigation privée) : on retombe sur le cas général
+    }
+  }
+
+  function rememberOwnHold(slot) {
+    try {
+      var list = ownHolds();
+      if (list.indexOf(slot) === -1) list.push(slot);
+      sessionStorage.setItem(HOLDS_KEY, JSON.stringify(list));
+    } catch (e) { /* sans mémoire, le bouton disparaîtra au rechargement */ }
+  }
+
+  /**
+   * L'URL rendue par le Worker est-elle bien une page de paiement Stripe ?
+   *
+   * Un simple préfixe "https://" ne suffit pas : `https://checkout.stripe.com@evil.example/`
+   * commence par https et part chez evil.example — le segment avant le "@" est
+   * un userinfo, pas un hôte. `new URL` lit l'hôte réel, ce qu'une comparaison
+   * de chaîne ne fait pas.
+   *
+   * Décision : seuls stripe.com et ses sous-domaines passent, ce que produit
+   * `createCheckoutSession` aujourd'hui (checkout.stripe.com). Stripe permet un
+   * domaine de checkout personnalisé ; si ce site en adopte un un jour, il faut
+   * l'ajouter ICI, sciemment. D'ici là l'acheteur verrait le message de repli —
+   * visible et réessayable, jamais une redirection vers un hôte non prévu.
+   */
+  function isStripeCheckoutUrl(raw) {
+    if (typeof raw !== 'string') return false;
+    var parsed;
+    try {
+      parsed = new URL(raw);
+    } catch (e) {
+      return false;
+    }
+    if (parsed.protocol !== 'https:') return false;
+    return parsed.hostname === 'stripe.com' || parsed.hostname.slice(-11) === '.stripe.com';
+  }
+
   /** Réécrit le montant des cartes et des places encore libres d'un
    *  compartiment. Le prix d'un compartiment est unique : le laisser divergent
    *  entre la ligne d'inventaire et la carte du même slot, c'est la page qui
@@ -648,6 +708,7 @@
       .then(function (body) {
         if (!body || typeof body !== 'object') return;
 
+        var holds = ownHolds();
         var items = section.querySelectorAll('.sp-inv-item[data-slot]');
         for (var i = 0; i < items.length; i++) {
           var item = items[i];
@@ -665,8 +726,16 @@
           // serait remis en vente ici alors que sa carte s'affiche déjà sur le
           // rail. `data-sold` suit la même règle, sur l'autre axe : il ne
           // s'ajoute jamais, il ne se retire pas.
+          // Une réservation que CE visiteur vient d'ouvrir n'est pas un
+          // emplacement perdu pour lui : le Worker la lui laisse reprendre
+          // (exemption `holds.slots.has(slot)` et branche de reprise de
+          // reserveSlot). La retirer de la vente ici lui fermerait la porte
+          // que le Worker garde ouverte, et pour toute la durée du verrou.
+          // Seule une RÉSERVATION est concernée : un slot passé `paid` est
+          // vendu, y compris quand c'est lui qui l'a payé.
+          var ownReserved = entry.status === 'reserved' && holds.indexOf(item.dataset.slot) !== -1;
           var wasTaken = item.classList.contains('taken');
-          var taken = entry.status !== 'open' || wasTaken;
+          var taken = (entry.status !== 'open' && !ownReserved) || wasTaken;
           item.classList.toggle('taken', taken);
           item.classList.toggle('open', !taken);
           if (entry.status === 'paid') item.dataset.sold = '1';
@@ -718,10 +787,32 @@
     var lang = document.documentElement.lang || 'en';
     var takenLabel = section.getAttribute('data-sponsor-taken-label') || '';
 
+    // Un seul paiement en vol pour toute la page. Le bouton cliqué se suffisait
+    // à lui-même, mais deux clics rapides sur des emplacements DIFFÉRENTS
+    // ouvraient deux réservations et deux sessions Stripe — et consommaient
+    // d'un coup les deux emplacements du plafond du visiteur
+    // (MAX_HOLDS_PER_VISITOR), qui recevait ensuite `too_many_reservations`
+    // sur son troisième clic sans comprendre pourquoi.
+    var inFlight = false;
+
     // Un code d'erreur venu du réseau sert à composer un nom d'attribut : on
     // n'accepte que la forme réellement produite par le Worker, jamais une
     // chaîne arbitraire.
     var CODE_RE = /^[a-z_]{1,40}$/;
+
+    function allButtons() {
+      return section.querySelectorAll('.sp-inv-buy');
+    }
+
+    function setButtonsDisabled(disabled) {
+      var buttons = allButtons();
+      for (var i = 0; i < buttons.length; i++) buttons[i].disabled = disabled;
+    }
+
+    function clearStatuses() {
+      var regions = section.querySelectorAll('.sp-inv-status');
+      for (var i = 0; i < regions.length; i++) regions[i].textContent = '';
+    }
 
     // Le message destiné à l'acheteur, rendu et échappé au build (voir
     // checkoutMessages dans scripts/lib/site-page-sponsor.mjs). Un code absent
@@ -730,7 +821,9 @@
     function messageFor(code, slot, price) {
       var attr = code && CODE_RE.test(code) ? 'data-sponsor-msg-' + code.replace(/_/g, '-') : null;
       var text = (attr && section.getAttribute(attr)) || section.getAttribute('data-sponsor-msg-fallback') || '';
-      return text.replace(/\{slot\}/g, slot).replace(/\{price\}/g, price || '');
+      return text.replace(/\{slot\}/g, slot)
+        .replace(/\{price\}/g, price || '')
+        .replace(/\{duration\}/g, durationLabel());
     }
 
     // Les deux seules durées que le Worker accepte de facturer. Toute autre
@@ -740,6 +833,16 @@
       return (checked && Number(checked.value) === 3) ? 3 : 1;
     }
 
+    // Le libellé de la durée choisie, lu du <label> déjà traduit. Il entre dans
+    // le message de dérive : sans lui, « le prix est maintenant de 447 $US » se
+    // lisait à côté d'une ligne affichant 149 $US, et les deux montants — tous
+    // deux vrais — se contredisaient à l'œil.
+    function durationLabel() {
+      var checked = section.querySelector('input[name="sp-months"]:checked');
+      var label = checked && checked.closest ? checked.closest('label') : null;
+      return label ? label.textContent.trim() : '';
+    }
+
     // Le prix affiché du compartiment, en centimes. Rend null au moindre doute
     // — sans montant vérifiable, on n'ouvre pas de paiement du tout.
     function unitCentsOf(list) {
@@ -747,11 +850,35 @@
       return isFinite(raw) && raw > 0 ? Math.round(raw) : null;
     }
 
+    // Montant exact réclamé par le serveur pour une durée donnée, mémorisé
+    // quand il n'est PAS ramenable à un prix unitaire (total non divisible par
+    // la durée). Sans lui, le clic suivant renverrait l'attente périmée, donc
+    // le même refus, indéfiniment. Il ne sert qu'à cette durée-là, et disparaît
+    // dès que le prix du compartiment bouge ou que la durée change.
+    function setPriceOverride(list, months, cents) {
+      list.setAttribute('data-sponsor-price-override', months + ':' + cents);
+    }
+
+    function priceOverride(list, months) {
+      var raw = list.getAttribute('data-sponsor-price-override');
+      if (!raw) return null;
+      var parts = raw.split(':');
+      var cents = Number(parts[1]);
+      if (Number(parts[0]) !== months || !isFinite(cents) || cents <= 0) return null;
+      return Math.round(cents);
+    }
+
+    function clearPriceOverrides() {
+      var lists = section.querySelectorAll('.sp-inv');
+      for (var i = 0; i < lists.length; i++) lists[i].removeAttribute('data-sponsor-price-override');
+    }
+
     // Aligne tout le compartiment sur le prix que le serveur vient d'annoncer :
     // le montant machine qui repartira en `expectedPriceCents`, les lignes
     // d'inventaire, et les cartes et places du même compartiment.
     function applyServerPrice(list, unitCents) {
       list.setAttribute('data-sponsor-price-cents', String(Math.round(unitCents)));
+      list.removeAttribute('data-sponsor-price-override');
       var text = formatUsd(unitCents / 100, lang);
       var items = list.querySelectorAll('.sp-inv-item[data-slot]');
       var slots = [];
@@ -786,13 +913,27 @@
         // aucune session. On repasse par l'acheteur : la page affiche le
         // nouveau prix et il décide. Un second clic partira au bon montant.
         var total = Number(body.priceCents);
-        if (isFinite(total) && total > 0 && total % months === 0) {
-          applyServerPrice(list, total / months);
-          status.textContent = messageFor(code, slot, formatUsd(total / 100, lang));
+        if (!isFinite(total) || total <= 0) {
+          // Aucun montant exploitable : on ne devine pas un prix, on le dit.
+          status.textContent = messageFor(null, slot, '');
           return;
         }
-        // Montant inexploitable : on ne devine pas un prix, on le dit.
-        status.textContent = messageFor(null, slot, '');
+        if (total % months === 0) {
+          // Ramenable à un prix unitaire : tout le compartiment se remet au
+          // bon montant — lignes, cartes et places — et le clic suivant
+          // recalculera de lui-même le même total.
+          applyServerPrice(list, total / months);
+        } else {
+          // Total indivisible (le Worker n'en produit pas, mais la page ne doit
+          // pas en dépendre) : on ne peut pas en déduire un prix unitaire
+          // honnête, donc on ne touche à aucun affichage. On mémorise le
+          // montant exact pour que le clic suivant aboutisse au lieu de
+          // renvoyer éternellement la même attente périmée.
+          setPriceOverride(list, months, total);
+        }
+        // Le nouveau prix est montré dans les deux cas — c'est la décision
+        // qu'on demande à l'acheteur de prendre.
+        status.textContent = messageFor(code, slot, formatUsd(total / 100, lang));
         return;
       }
 
@@ -807,6 +948,11 @@
 
     function wireButton(btn, item, list, status) {
       btn.addEventListener('click', function () {
+        // Un paiement est déjà en vol. On ne relance rien : la session en cours
+        // a déjà posé une réservation, et une seconde consommerait le plafond
+        // du visiteur pour un emplacement qu'il n'a pas fini de payer.
+        if (inFlight) return;
+
         var slot = btn.dataset.slot;
         var months = monthsChosen();
         var unit = unitCentsOf(list);
@@ -814,9 +960,22 @@
           status.textContent = messageFor(null, slot, '');
           return;
         }
+        var override = priceOverride(list, months);
+        var expectedPriceCents = override === null ? unit * months : override;
 
-        btn.disabled = true;
+        // `disabled` déplace le focus sur le body : on note qu'il était ici
+        // pour le rendre en cas d'échec, sinon l'acheteur au clavier repart du
+        // haut de la page pour réessayer.
+        var hadFocus = document.activeElement === btn;
+        inFlight = true;
+        setButtonsDisabled(true);
         status.textContent = messageFor('opening', slot, '');
+
+        function release() {
+          inFlight = false;
+          setButtonsDisabled(false);
+          if (hadFocus && btn.isConnected !== false && btn.focus) btn.focus();
+        }
 
         fetch(endpoint, {
           method: 'POST',
@@ -824,7 +983,7 @@
           body: JSON.stringify({
             slot: slot,
             months: months,
-            expectedPriceCents: unit * months,
+            expectedPriceCents: expectedPriceCents,
             lang: lang,
           }),
         })
@@ -838,22 +997,25 @@
           })
           .then(function (result) {
             var url = result.ok && result.body ? result.body.url : null;
-            // Seul chemin qui quitte la page. Le préfixe est vérifié même si
-            // l'URL vient de notre propre Worker : une redirection ne doit
-            // jamais pouvoir être un "javascript:" déguisé.
-            if (typeof url === 'string' && url.indexOf('https://') === 0) {
+            // Seul chemin qui quitte la page, et seul endroit qui accepte de
+            // suivre une URL venue du réseau.
+            if (isStripeCheckoutUrl(url)) {
+              // Une réservation vient d'être posée à ce nom : on s'en souvient
+              // pour que le retour sur cette page ne la traite pas comme celle
+              // d'un inconnu. Avant la navigation — après, plus rien ne tourne.
+              rememberOwnHold(slot);
               location.href = url;
-              return; // bouton laissé désactivé : la page s'en va
+              return; // boutons laissés désactivés : la page s'en va
             }
             handleFailure(result.body, slot, months, item, list, status);
-            btn.disabled = false;
+            release();
           })
           .catch(function () {
             // Réseau coupé, CORS refusé, Worker injoignable. Jamais un
             // silence : rien n'a été réservé, rien n'a été débité, et
             // l'acheteur doit l'apprendre de la page, pas de la console.
             status.textContent = messageFor(null, slot, '');
-            btn.disabled = false;
+            release();
           });
       });
     }
@@ -878,13 +1040,33 @@
       var radios = fieldset.querySelectorAll('input[name="sp-months"]');
       for (var r = 0; r < radios.length; r++) {
         radios[r].addEventListener('change', function () {
-          if (!note) return;
-          note.textContent = monthsChosen() === 3 ? note.dataset.noteThree : note.dataset.noteOne;
+          if (note) {
+            note.textContent = monthsChosen() === 3 ? note.dataset.noteThree : note.dataset.noteOne;
+          }
+          // Un message de dérive parle d'un prix POUR UNE DURÉE. Changer de
+          // durée le rend faux, et l'attente mémorisée avec lui : les deux
+          // partent ensemble plutôt que de rester à l'écran en mentant.
+          clearStatuses();
+          clearPriceOverrides();
         });
       }
     }
 
     for (var g = 0; g < groups.length; g++) wireGroup(groups[g]);
+
+    // Retour par l'historique. Partir vers Stripe laisse volontairement les
+    // boutons désactivés — la page s'en va — mais un retour arrière restaure le
+    // DOM tel quel depuis le cache de navigation : l'acheteur retrouverait un
+    // bouton mort sous un « ouverture de la page de paiement » qui n'a plus
+    // lieu d'être. Les deux redeviennent vrais ici.
+    //
+    // `pageshow` se déclenche aussi au premier affichage, où il ne fait que
+    // réaffirmer l'état initial — sans effet, et sans cas particulier à écrire.
+    window.addEventListener('pageshow', function () {
+      inFlight = false;
+      setButtonsDisabled(false);
+      clearStatuses();
+    });
   }
 
   // Retour depuis Stripe : `success_url` porte ?paid=1. Cette redirection n'a
