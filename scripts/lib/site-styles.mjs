@@ -446,6 +446,14 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
   padding:.7rem .8rem;border:1px solid var(--rule);border-radius:.4rem;
   background:var(--card);text-decoration:none;font-size:.8rem;overflow-wrap:anywhere}
 .sp-card.open{border-style:dashed;background:none;justify-content:center;text-align:center}
+/* Emplacement vendu dont la créa n'est pas encore commitée : ni carte de
+   sponsor (on n'a ni nom ni icône à afficher), ni carte libre (il n'est plus
+   vendable). Pas un lien non plus — voir renderCard. Même filet neutre que le
+   reste de la feuille, aucune couleur saturée : le badge de verdict garde le
+   vert/ambre/rouge pour lui seul. */
+.sp-card.taken{justify-content:center;text-align:center}
+.sp-taken-label{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);font-weight:700}
 .sp-icon{border-radius:.25rem}
 .sp-name{font-weight:700;color:var(--ink)}
 .sp-tagline{color:var(--muted);line-height:1.35}
@@ -469,6 +477,9 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
    tâche pour les ratios recalculés. */
 .sp-tape-item .sp-tape-tagline{color:var(--muted)}
 .sp-tape-item.live span:first-of-type{color:var(--ink);font-weight:700}
+/* Place vendue sans créa commitée : même traitement discret que la carte de
+   rail équivalente (.sp-card.taken), et ce n'est pas un lien. */
+.sp-tape-item.taken{letter-spacing:.1em;text-transform:uppercase;font-size:.68rem}
 @media (prefers-reduced-motion:no-preference){
   .sp-tape-track{animation:sp-tape-scroll 120s linear infinite}
 }

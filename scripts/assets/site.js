@@ -489,6 +489,77 @@
     var lang = document.documentElement.lang || 'en';
     var LIVE_STATUSES = { open: true, reserved: true, paid: true };
 
+    function formatUsd(amount) {
+      var whole = Math.round(amount) === amount;
+      return new Intl.NumberFormat(lang, {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: whole ? 0 : 2,
+        maximumFractionDigits: whole ? 0 : 2,
+      }).format(amount);
+    }
+
+    // Le barème du compartiment, sérialisé par le build depuis
+    // RAIL_LADDER_USD/TAPE_LADDER_USD (voir inventoryList). Rend null au
+    // moindre doute : mieux vaut garder les montants calculés au build que
+    // d'en dériver un depuis une valeur qu'on n'a pas su lire.
+    function parseLadder(raw) {
+      if (!raw) return null;
+      var parts = raw.split(',');
+      var out = [];
+      for (var i = 0; i < parts.length; i++) {
+        var value = Number(parts[i]);
+        if (parts[i] === '' || !isFinite(value) || value <= 0) return null;
+        out.push(value);
+      }
+      return out.length ? out : null;
+    }
+
+    // Le prix d'un compartiment se déduit de son occupation, exactement comme
+    // au build (mergeOccupancy + nextPriceUsd, scripts/lib/site-sponsors.mjs)
+    // et comme à l'encaissement (paidCounts, worker/src/sponsors.mjs) : c'est
+    // la marche du barème indexée par le nombre de slots VENDUS. Une
+    // réservation bloque le slot sans faire monter le barème — sinon quelques
+    // paniers abandonnés suffiraient à faire grimper les prix affichés.
+    //
+    // Le prix n'est PAS lu du champ `priceCents` de la charge utile : ce
+    // serait une seconde source d'occupation, et la page pourrait annoncer un
+    // montant que son propre tableau de barème contredit.
+    function repriceList(list) {
+      var items = list.querySelectorAll('.sp-inv-item[data-slot]');
+      var i, item, priceEl;
+
+      // Un slot pris n'annonce plus de prix : il n'y a rien à vendre.
+      for (i = 0; i < items.length; i++) {
+        if (!items[i].classList.contains('taken')) continue;
+        priceEl = items[i].querySelector('.sp-inv-price');
+        if (priceEl) priceEl.parentNode.removeChild(priceEl);
+      }
+
+      var ladder = parseLadder(list.getAttribute('data-sponsor-ladder'));
+      if (!ladder) return;
+      var sold = 0;
+      for (i = 0; i < items.length; i++) {
+        if (items[i].dataset.sold === '1') sold++;
+      }
+      // Compartiment plein : tout ce qui est vendu est pris, il ne reste donc
+      // aucun slot libre à tarifer (même invariant que nextPriceUsd).
+      if (sold >= ladder.length) return;
+
+      var text = formatUsd(ladder[sold]);
+      for (i = 0; i < items.length; i++) {
+        item = items[i];
+        if (item.classList.contains('taken')) continue;
+        priceEl = item.querySelector('.sp-inv-price');
+        if (!priceEl) {
+          priceEl = document.createElement('span');
+          priceEl.className = 'sp-inv-price';
+          item.appendChild(priceEl);
+        }
+        priceEl.textContent = text;
+      }
+    }
+
     fetch(endpoint)
       .then(function (res) { return res.ok ? res.json() : null; })
       .then(function (body) {
@@ -498,49 +569,33 @@
         for (var i = 0; i < items.length; i++) {
           var item = items[i];
           var entry = body[item.dataset.slot];
-          // Même garde que liveSlotState côté build : un slot absent de la
+          // Même garde que mergeOccupancy côté build : un slot absent de la
           // charge utile, ou d'une forme inattendue, ne touche pas à cet
           // élément — il garde l'état déjà rendu plutôt que d'être effacé.
           if (!entry || typeof entry !== 'object' || !LIVE_STATUSES[entry.status]) continue;
 
-          // Même précédence à sens unique que liveSlotState côté build : la
-          // classe déjà posée par le serveur reflète data/sponsors.json (et
-          // toute promotion déjà appliquée au build) — la charge utile ne
-          // peut que faire passer ce slot à "pris", jamais le rouvrir. Sans
-          // ce garde-fou, un sponsor commité à la main (donc toujours "open"
-          // côté D1, Stripe ne l'ayant jamais touché) serait remis en vente
-          // ici alors que sa carte s'affiche déjà sur le rail.
+          // Même précédence à sens unique que mergeOccupancy côté build : la
+          // classe déjà posée par le serveur reflète l'occupation fusionnée au
+          // build — la charge utile ne peut que faire passer ce slot à "pris",
+          // jamais le rouvrir. Sans ce garde-fou, un sponsor commité à la main
+          // (donc toujours "open" côté D1, Stripe ne l'ayant jamais touché)
+          // serait remis en vente ici alors que sa carte s'affiche déjà sur le
+          // rail. `data-sold` suit la même règle, sur l'autre axe : il ne
+          // s'ajoute jamais, il ne se retire pas.
           var wasTaken = item.classList.contains('taken');
-          var liveTaken = entry.status !== 'open';
-          var taken = liveTaken || wasTaken;
+          var taken = entry.status !== 'open' || wasTaken;
           item.classList.toggle('taken', taken);
           item.classList.toggle('open', !taken);
+          if (entry.status === 'paid') item.dataset.sold = '1';
 
           var stateEl = item.querySelector('.sp-inv-state');
           if (stateEl) stateEl.textContent = taken ? takenLabel : openLabel;
-
-          var priceEl = item.querySelector('.sp-inv-price');
-          var priceCents = entry.priceCents;
-          var hasPrice = !taken && typeof priceCents === 'number' && isFinite(priceCents) && entry.currency === 'USD';
-
-          if (hasPrice) {
-            var amount = priceCents / 100;
-            var formatted = new Intl.NumberFormat(lang, {
-              style: 'currency',
-              currency: 'USD',
-              minimumFractionDigits: Math.round(amount) === amount ? 0 : 2,
-              maximumFractionDigits: Math.round(amount) === amount ? 0 : 2,
-            }).format(amount);
-            if (!priceEl) {
-              priceEl = document.createElement('span');
-              priceEl.className = 'sp-inv-price';
-              item.appendChild(priceEl);
-            }
-            priceEl.textContent = formatted;
-          } else if (priceEl) {
-            priceEl.parentNode.removeChild(priceEl);
-          }
         }
+
+        // Les prix se recalculent APRÈS les statuts : l'index du barème
+        // dépend du nombre de slots vendus, qu'on vient de mettre à jour.
+        var lists = section.querySelectorAll('.sp-inv');
+        for (var j = 0; j < lists.length; j++) repriceList(lists[j]);
       })
       .catch(function () {}); // échec silencieux : l'état cuit au build reste affiché
   }

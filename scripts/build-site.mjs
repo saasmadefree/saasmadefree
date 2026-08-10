@@ -192,9 +192,16 @@ async function main() {
     //
     // Le contexte est gardé en plus du balisage : la page /sponsor (tâche 8) a
     // besoin de savoir quels slots sont pris pour son tableau d'inventaire.
+    //
+    // `liveSlots` entre ICI, et nulle part ailleurs : sponsorContext croise
+    // data/sponsors.json et la charge utile du Worker en une seule occupation
+    // (mergeOccupancy), dont dérivent à la fois les cartes/bandeaux et le
+    // tableau d'inventaire. Deux croisements séparés faisaient annoncer deux
+    // prix différents pour le même emplacement sur la même page.
     const sponsorCtx = sponsorContext({
       placements: data.sponsors.placements, today, lang, ui: langUi,
       favicons: sponsorFavicons, sponsorHref: `/${lang}/sponsor`,
+      liveSlots: sponsorSlotsLive,
     });
     const sponsorSlots = renderSponsorSlots(sponsorCtx);
 
@@ -240,7 +247,7 @@ async function main() {
       renderSponsorPage({
         lang, path: sponsorPath, ui: langUi, alternates: sponsorAlt,
         xDefaultPath: xDefaultOf(sponsorAlt), homePath,
-        sponsors: sponsorCtx, sponsorSlots, figures, stats, liveSlots: sponsorSlotsLive,
+        sponsors: sponsorCtx, sponsorSlots, figures, stats,
       })
     );
     sitemapPages.push({ path: sponsorPath });

@@ -24,6 +24,10 @@ export const TAPE_BOTTOM_SLOTS = tapeSlots('B');
 export const RAIL_LADDER_USD = [149, 219, 299, 429, 619, 879, 1259, 1800];
 export const TAPE_LADDER_USD = [75, 99, 129, 169, 229, 299, 399, 519, 689, 900];
 
+/** Les 28 emplacements, dans l'ordre où ils se vendent. Même liste — et même
+ *  ordre — que l'ALL_SLOTS généré pour le Worker (voir scripts/build-feed.mjs). */
+export const ALL_SLOTS = [...RAIL_SLOTS, ...TAPE_TOP_SLOTS, ...TAPE_BOTTOM_SLOTS];
+
 /**
  * Placements dont la période couvre `today`, bornes incluses.
  *
@@ -51,23 +55,99 @@ export function selectSponsors(placements, today) {
  *
  * Rend `null` quand l'inventaire est plein — jamais un zéro qui se ferait
  * passer pour un prix (principe 3 de .impeccable.md). Aucun rendu n'observe
- * ce `null` : un inventaire plein n'a plus aucun slot libre à afficher, donc
- * les cartes et les places prennent toutes la branche "occupé". L'invariant
- * tient tant qu'il y a exactement une marche de barème par slot, ce que
- * verrouille le test "a une marche de prix par slot".
+ * ce `null` : un inventaire plein n'a plus aucun slot vendable à afficher (un
+ * slot compté « vendu » est forcément « pris », voir mergeOccupancy), donc les
+ * cartes, les places et les lignes d'inventaire prennent toutes la branche
+ * "occupé". L'invariant tient tant qu'il y a exactement une marche de barème
+ * par slot, ce que verrouille le test "a une marche de prix par slot".
  *
  * Lève une erreur si `kind` n'est ni 'rail' ni 'tape' : silence sur un `kind`
  * inconnu serait une dégradation silencieuse des prix (ex. rail quoté au prix tape).
+ *
+ * Lève aussi sur un décompte négatif, pour la même raison : c'est un décompte
+ * impossible, donc un bug d'appelant. Rendre `null` le faisait remonter jusqu'à
+ * formatMoney, qui affichait "$0.00" — exactement le zéro qui se fait passer
+ * pour une donnée que ce module interdit ailleurs.
  */
 export function nextPriceUsd(kind, occupiedCount) {
   if (kind !== 'rail' && kind !== 'tape') {
     throw new Error(`nextPriceUsd: kind doit être 'rail' ou 'tape', reçu ${JSON.stringify(kind)}`);
   }
-  if (occupiedCount < 0) {
-    return null;
+  if (!Number.isInteger(occupiedCount) || occupiedCount < 0) {
+    throw new Error(
+      `nextPriceUsd: occupiedCount doit être un entier positif ou nul, reçu ${JSON.stringify(occupiedCount)}`
+    );
   }
   const ladder = kind === 'rail' ? RAIL_LADDER_USD : TAPE_LADDER_USD;
   return occupiedCount < ladder.length ? ladder[occupiedCount] : null;
+}
+
+// Statuts réellement produits par le Worker (voir readSlots dans
+// worker/src/sponsors.mjs). Un statut absent de cet ensemble — champ mal
+// formé, déploiement désynchronisé — n'est pas traité comme une donnée : le
+// slot retombe sur data/sponsors.json, jamais sur une supposition.
+export const LIVE_STATUSES = new Set(['open', 'reserved', 'paid']);
+
+/**
+ * L'occupation de l'inventaire, fusionnée une fois pour toute la page.
+ *
+ * C'est la SEULE notion d'occupation du site : les rails, les bandeaux, le
+ * repli petits écrans et le tableau d'inventaire de /sponsor en dérivent tous
+ * leur statut ET leur prix. Avant, deux notions coexistaient — l'une lue de
+ * data/sponsors.json pour les cartes, l'autre de la charge utile du Worker
+ * pour le tableau — et la même page annonçait deux prix différents pour le
+ * même emplacement.
+ *
+ * Deux axes, parce que le statut et le prix ne répondent pas à la même
+ * question :
+ *
+ * - `taken` — « ce slot est-il vendable aujourd'hui ? ». Non si
+ *   data/sponsors.json y pose un placement actif, non si la charge utile le
+ *   dit `paid`, non s'il est `reserved` (quelqu'un est en train de payer :
+ *   l'afficher libre laisserait un second acheteur cliquer sur un emplacement
+ *   déjà engagé).
+ * - `sold` — « ce slot compte-t-il dans l'index du barème ? ». Un `reserved`
+ *   NE compte PAS : c'est la règle du Worker (`paidCounts`, voir
+ *   priceCentsFor dans worker/src/sponsors.mjs), et elle existe pour qu'une
+ *   poignée de paniers abandonnés ne suffise pas à faire monter les prix
+ *   affichés. Compter les réservations ici ferait diverger le prix publié du
+ *   prix réellement facturé.
+ *
+ * La précédence entre les deux sources est VOLONTAIREMENT à sens unique : la
+ * charge utile peut PROMOUVOIR un slot vers « pris » que data/sponsors.json
+ * ignore encore (paiement encaissé, créa pas commitée), mais elle ne doit
+ * JAMAIS pouvoir rouvrir un slot que data/sponsors.json sait occupé. Sans
+ * cette garde, un sponsor commité à la main (donc toujours `open` côté D1,
+ * puisque Stripe n'y a jamais touché) réapparaîtrait à la vente alors même que
+ * sa carte s'affiche sur le rail — la page se contredirait elle-même.
+ *
+ * `liveSlots` traverse une frontière HTTP (voir fetchSponsorSlots, qui ne
+ * vérifie que « c'est un objet ») : chaque slot est donc vérifié
+ * indépendamment, jamais en bloc. Un champ absent ou du mauvais type ne fait
+ * retomber QUE ce slot sur data/sponsors.json, sans jamais planter.
+ *
+ * @param {Map<string, object>} bySlot - placements actifs (selectSponsors)
+ * @param {object|null} liveSlots - charge utile de fetchSponsorSlots
+ * @returns {Map<string, {taken: boolean, sold: boolean}>}
+ */
+export function mergeOccupancy(bySlot, liveSlots) {
+  const payload = liveSlots && typeof liveSlots === 'object' && !Array.isArray(liveSlots)
+    ? liveSlots
+    : null;
+  const occupancy = new Map();
+  for (const slot of ALL_SLOTS) {
+    const local = bySlot.has(slot);
+    const entry = payload ? payload[slot] : undefined;
+    const known = Boolean(entry)
+      && typeof entry === 'object'
+      && !Array.isArray(entry)
+      && LIVE_STATUSES.has(entry.status);
+    occupancy.set(slot, {
+      taken: local || (known && entry.status !== 'open'),
+      sold: local || (known && entry.status === 'paid'),
+    });
+  }
+  return occupancy;
 }
 
 /** Un lien sponsor est toujours tracé côté annonceur, jamais côté site : le
@@ -98,25 +178,54 @@ function sponsorIcon(ctx, placement) {
 /**
  * Contexte partagé par tous les rendus sponsor d'une page.
  * Calculé une fois par page pour ne pas refaire huit fois le même décompte.
+ *
+ * `occupancy` est la vue fusionnée (voir mergeOccupancy) : c'est elle, et elle
+ * seule, qui décide du statut de chaque emplacement et de l'index de barème de
+ * chaque compartiment. Les rails, les bandeaux, le repli et le tableau
+ * d'inventaire de /sponsor la lisent tous — ils s'accordent donc par
+ * construction, pas par coïncidence.
+ *
+ * `bySlot` reste à côté : c'est la créa à afficher (nom, icône, tagline), que
+ * seul data/sponsors.json porte. Un slot peut être `taken` sans créa (payé
+ * chez Stripe, pas encore commité) — d'où la carte « pris » sans lien.
  */
-export function sponsorContext({ placements, today, lang, ui, favicons = {}, sponsorHref }) {
+export function sponsorContext({
+  placements, today, lang, ui, favicons = {}, sponsorHref, liveSlots = null,
+}) {
   const { bySlot } = selectSponsors(placements, today);
-  const count = (slots) => slots.filter((slot) => bySlot.has(slot)).length;
+  const occupancy = mergeOccupancy(bySlot, liveSlots);
+  const soldCount = (slots) => slots.filter((slot) => occupancy.get(slot).sold).length;
   return {
-    bySlot, lang, sponsorHref,
+    bySlot, occupancy, lang, sponsorHref,
     strings: ui.site.sponsor,
     favicons,
     prices: {
-      rail: nextPriceUsd('rail', count(RAIL_SLOTS)),
-      top: nextPriceUsd('tape', count(TAPE_TOP_SLOTS)),
-      bottom: nextPriceUsd('tape', count(TAPE_BOTTOM_SLOTS)),
+      rail: nextPriceUsd('rail', soldCount(RAIL_SLOTS)),
+      top: nextPriceUsd('tape', soldCount(TAPE_TOP_SLOTS)),
+      bottom: nextPriceUsd('tape', soldCount(TAPE_BOTTOM_SLOTS)),
     },
   };
+}
+
+/** Un emplacement est-il vendable aujourd'hui ? Toujours lu de la vue
+ *  fusionnée, jamais recalculé sur place. */
+function isTaken(ctx, slot) {
+  return ctx.occupancy.get(slot)?.taken === true;
 }
 
 function renderCard(slot, ctx, price) {
   const s = ctx.strings;
   const placement = ctx.bySlot.get(slot);
+  if (!placement && isTaken(ctx, slot)) {
+    // Pris sans créa à afficher : le paiement est encaissé (ou une réservation
+    // court) mais data/sponsors.json ne porte pas encore le placement. Ni
+    // carte de sponsor — on n'a ni nom ni icône — ni carte libre : annoncer
+    // « Slot libre — 149 $US — Réserver » sur un emplacement que le tableau
+    // d'inventaire de la même page déclare pris, c'est la page qui se
+    // contredit. Pas de lien non plus : il n'y a rien à réserver ici.
+    return `<div class="sp-card taken" data-slot="${slot}">`
+      + `<span class="sp-taken-label">${escapeHtml(s.takenLabel)}</span></div>`;
+  }
   if (!placement) {
     // `price` n'est jamais null ici — voir l'invariant documenté sur
     // nextPriceUsd. Le montant passe par formatMoney comme tous les autres
@@ -170,6 +279,11 @@ function renderTapeItem(slot, ctx, price, { hidden = false } = {}) {
   // clavier. Sans inert, un lecteur d'écran l'ignorerait mais un utilisateur
   // clavier tabulerait quand même à travers vingt liens fantômes.
   const hiddenAttrs = hidden ? ' aria-hidden="true" inert' : '';
+  if (!placement && isTaken(ctx, slot)) {
+    // Même raison que la carte « pris » de renderCard : une place vendue sans
+    // créa commitée ne s'annonce pas libre, et n'est pas un lien.
+    return `<span class="sp-tape-item taken" data-slot="${slot}"${hiddenAttrs}>${escapeHtml(s.takenLabel)}</span>`;
+  }
   if (!placement) {
     // Même invariant et même formatage monétaire que renderCard.
     const body = `${escapeHtml(s.openLabel)} — ${escapeHtml(formatMoney(price, 'USD', ctx.lang))}`;

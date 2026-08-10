@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import {
-  RAIL_SLOTS, TAPE_TOP_SLOTS, TAPE_BOTTOM_SLOTS,
+  RAIL_SLOTS, TAPE_TOP_SLOTS, TAPE_BOTTOM_SLOTS, ALL_SLOTS,
   RAIL_LADDER_USD, TAPE_LADDER_USD,
-  selectSponsors, nextPriceUsd,
+  selectSponsors, nextPriceUsd, mergeOccupancy,
 } from '../scripts/lib/site-sponsors.mjs';
 import {
   sponsorContext, renderRail, renderTape, renderRailFallback, renderSponsorSlots,
@@ -98,23 +98,92 @@ describe("nextPriceUsd", () => {
     expect(() => nextPriceUsd(undefined, 0)).toThrow();
   });
 
-  it("rend null pour un occupiedCount négatif", () => {
-    expect(nextPriceUsd('rail', -1)).toBe(null);
-    expect(nextPriceUsd('tape', -5)).toBe(null);
+  // Un décompte négatif est un décompte impossible, donc un bug d'appelant.
+  // Rendre null le laissait remonter jusqu'à formatMoney, qui affichait
+  // "$0.00" — le zéro qui se fait passer pour un prix que ce module interdit
+  // partout ailleurs. Même garde que sur un `kind` inconnu.
+  it("lève une erreur sur un décompte négatif ou non entier", () => {
+    expect(() => nextPriceUsd('rail', -1)).toThrow();
+    expect(() => nextPriceUsd('tape', -5)).toThrow();
+    expect(() => nextPriceUsd('rail', 1.5)).toThrow();
+    expect(() => nextPriceUsd('rail', undefined)).toThrow();
+  });
+});
+
+// La vue fusionnée est la seule notion d'occupation du site : cartes de rail,
+// places défilantes, repli petits écrans et tableau d'inventaire en dérivent
+// tous statut ET prix. Deux notions parallèles faisaient annoncer deux prix
+// différents pour le même emplacement sur la même page.
+describe('mergeOccupancy', () => {
+  const bySlot = (slots) => new Map(slots.map((slot) => [slot, { slot }]));
+
+  it('couvre les 28 slots, même sans aucune source', () => {
+    const occ = mergeOccupancy(new Map(), null);
+    expect(occ.size).toBe(ALL_SLOTS.length);
+    for (const slot of ALL_SLOTS) expect(occ.get(slot)).toEqual({ taken: false, sold: false });
+  });
+
+  it('un placement de data/sponsors.json est pris ET vendu', () => {
+    const occ = mergeOccupancy(bySlot(['L1']), null);
+    expect(occ.get('L1')).toEqual({ taken: true, sold: true });
+  });
+
+  it('la charge utile promeut vers « pris » un slot que data/sponsors.json ignore', () => {
+    const occ = mergeOccupancy(new Map(), { L1: { status: 'paid' } });
+    expect(occ.get('L1')).toEqual({ taken: true, sold: true });
+  });
+
+  // La promotion est UNIDIRECTIONNELLE : la charge utile ne doit jamais
+  // pouvoir remettre en vente un slot que data/sponsors.json sait occupé
+  // (sponsor commité à la main, donc toujours `open` côté D1).
+  it('la charge utile ne peut jamais rouvrir un slot occupé localement', () => {
+    const occ = mergeOccupancy(bySlot(['L1']), { L1: { status: 'open', priceCents: 14900, currency: 'USD' } });
+    expect(occ.get('L1')).toEqual({ taken: true, sold: true });
+  });
+
+  // L'axe « vendu » suit la règle du Worker (paidCounts, priceCentsFor) : une
+  // réservation bloque le slot sans faire monter le barème, sinon quelques
+  // paniers abandonnés suffiraient à manipuler les prix affichés.
+  it('une réservation prend le slot sans le compter dans le barème', () => {
+    const occ = mergeOccupancy(new Map(), { L1: { status: 'reserved' } });
+    expect(occ.get('L1')).toEqual({ taken: true, sold: false });
+  });
+
+  it('un slot absent, mal formé ou de statut inconnu retombe sur data/sponsors.json, seul', () => {
+    const occ = mergeOccupancy(bySlot(['R1']), {
+      L1: { status: 'weird' },
+      L2: 'paid',
+      L3: null,
+      L4: ['paid'],
+      T01: { status: 'paid' },
+    });
+    for (const slot of ['L1', 'L2', 'L3', 'L4']) {
+      expect(occ.get(slot), slot).toEqual({ taken: false, sold: false });
+    }
+    expect(occ.get('R1')).toEqual({ taken: true, sold: true }); // repli local intact
+    expect(occ.get('T01')).toEqual({ taken: true, sold: true }); // voisin bien lu
+  });
+
+  it('une charge utile qui n’est pas un objet exploitable est ignorée en bloc', () => {
+    for (const payload of [null, undefined, ['L1'], 'L1', 42]) {
+      const occ = mergeOccupancy(bySlot(['L1']), payload);
+      expect(occ.get('L1'), String(payload)).toEqual({ taken: true, sold: true });
+      expect(occ.get('L2'), String(payload)).toEqual({ taken: false, sold: false });
+    }
   });
 });
 
 const ui = {
   site: {
     sponsor: {
-      openLabel: 'Slot libre',
+      openLabel: 'Slot libre', takenLabel: 'Pris',
       perDays: '/ 30 jours', bookCta: 'Réserver',
     },
   },
 };
 
-const ctx = (placements, favicons = {}) => sponsorContext({
-  placements, today: '2026-08-10', lang: 'fr', ui, favicons, sponsorHref: '/fr/sponsor',
+const ctx = (placements, favicons = {}, liveSlots = null) => sponsorContext({
+  placements, today: '2026-08-10', lang: 'fr', ui, favicons, sponsorHref: '/fr/sponsor', liveSlots,
 });
 
 const LIVE = {
@@ -194,6 +263,44 @@ describe('carte de rail libre', () => {
     const html = renderRail('right', ctx([]));
     expect(html).toContain('data-slot="R1"');
     expect(html).not.toContain('data-slot="L1"');
+  });
+});
+
+// Un slot payé chez Stripe avant que la créa ne soit commitée n'a ni nom ni
+// icône à afficher — mais il n'est plus vendable. L'annoncer « Slot libre —
+// 149 $US — Réserver » pendant que le tableau d'inventaire de la même page le
+// déclare pris, c'est la page qui se contredit.
+describe('carte de rail prise sans créa', () => {
+  const takenCtx = (status) => ctx([], {}, { L1: { status } });
+
+  for (const status of ['paid', 'reserved']) {
+    it(`n’annonce ni prix ni CTA quand la charge utile dit "${status}"`, () => {
+      const html = renderRail('left', takenCtx(status));
+      const card = html.match(/<(?:a|div)[^>]*data-slot="L1"[^>]*>.*?<\/(?:a|div)>/s)[0];
+      expect(card).toContain(ui.site.sponsor.takenLabel);
+      expect(card).not.toContain(ui.site.sponsor.openLabel);
+      expect(card).not.toContain(ui.site.sponsor.bookCta);
+      expect(card).not.toContain('sp-price');
+      // Rien à réserver : ce n'est pas un lien.
+      expect(card).not.toContain('href=');
+    });
+  }
+
+  // L'axe « vendu » gouverne le barème, l'axe « pris » gouverne le statut :
+  // une réservation ne doit pas renchérir les autres emplacements (même règle
+  // que paidCounts côté Worker).
+  it('un slot payé fait monter le prix des autres, une réservation non', () => {
+    expect(renderRail('right', takenCtx('paid'))).toContain(usd(RAIL_LADDER_USD[1], 'fr'));
+    expect(renderRail('right', takenCtx('reserved'))).toContain(usd(RAIL_LADDER_USD[0], 'fr'));
+  });
+
+  it('la place défilante équivalente suit la même règle', () => {
+    const html = renderTape('top', ctx([], {}, { T01: { status: 'paid' } }));
+    const item = html.match(/<(?:a|span)[^>]*data-slot="T01"[^>]*>.*?<\/(?:a|span)>/s)[0];
+    expect(item).toContain(ui.site.sponsor.takenLabel);
+    expect(item).not.toContain('href=');
+    // Le prochain prix a monté d'une marche pour les places restantes.
+    expect(html).toContain(usd(TAPE_LADDER_USD[1], 'fr'));
   });
 });
 
@@ -320,16 +427,22 @@ describe('aucune mention « Sponsor » dans le balisage des emplacements', () =>
     [LIVE, { ...LIVE, slot: 'T01' }, { ...LIVE, slot: 'B01' }],
     favicons
   );
+  // Emplacements pris sans créa commitée : troisième état du rendu, il doit
+  // respecter la même règle que les deux autres.
+  const held = ctx([], {}, { L1: { status: 'paid' }, T01: { status: 'reserved' } });
   const slots = renderSponsorSlots(busy);
 
   const cases = [
     ['rail gauche libre', renderRail('left', free)],
     ['rail droit libre', renderRail('right', free)],
     ['rail gauche occupé', renderRail('left', busy)],
+    ['rail gauche pris sans créa', renderRail('left', held)],
     ['repli libre', renderRailFallback(free)],
     ['repli occupé', renderRailFallback(busy)],
+    ['repli pris sans créa', renderRailFallback(held)],
     ['bandeau haut libre', renderTape('top', free)],
     ['bandeau haut occupé', renderTape('top', busy)],
+    ['bandeau haut pris sans créa', renderTape('top', held)],
     ['bandeau bas occupé', renderTape('bottom', busy)],
     ...Object.entries(slots).map(([key, html]) => [`renderSponsorSlots.${key}`, html]),
   ];
@@ -442,22 +555,35 @@ const STATS_PAYLOAD = {
 const VIEWS_14D_TOTAL = STATS_PAYLOAD.views14d.reduce((sum, d) => sum + d.views, 0);
 
 describe('page /sponsor', () => {
-  const page = ({ stats = null, sponsors = ctx([]), liveSlots = null } = {}) => renderSponsorPage({
+  // `liveSlots` n'entre plus par renderSponsorPage : il entre par
+  // sponsorContext, qui fusionne data/sponsors.json et la charge utile en une
+  // seule occupation — celle dont dérivent aussi les rails et les bandeaux.
+  const pageCtx = ({ placements = [], favicons = {}, liveSlots = null } = {}) => sponsorContext({
+    placements, today: '2026-08-10', lang: 'fr', ui: fullUi, favicons,
+    sponsorHref: '/fr/sponsor', liveSlots,
+  });
+
+  const page = ({ stats = null, placements = [], favicons = {}, liveSlots = null } = {}) => renderSponsorPage({
     lang: 'fr', path: '/fr/sponsor', ui: fullUi, alternates: [], xDefaultPath: null,
-    homePath: '/fr/', sponsors, sponsorSlots: null,
+    homePath: '/fr/', sponsors: pageCtx({ placements, favicons, liveSlots }), sponsorSlots: null,
     // Forme exacte retournée par catalogueFigures() dans site-data.mjs.
     figures: { toolsPublished: 529, categories: 51, languages: 2, totalMonthlyUsd: 11760.18, prompts: 529 },
-    stats, liveSlots,
+    stats,
   });
 
   // Isole le <li> d'un slot donné dans le HTML rendu, pour vérifier son état
   // (pris/libre) et son prix sans dépendre de la position exacte dans la page.
   const itemFor = (html, slot) => {
-    const m = html.match(new RegExp(`<li class="sp-inv-item[^>]*data-slot="${slot}">.*?</li>`, 's'));
+    const m = html.match(new RegExp(`<li class="sp-inv-item[^>]*data-slot="${slot}"[^>]*>.*?</li>`, 's'));
     if (!m) throw new Error(`aucun <li> trouvé pour le slot ${slot}`);
     return m[0];
   };
   const hasClass = (li, cls) => li.includes(`class="sp-inv-item ${cls}"`);
+  /** Le montant affiché dans la ligne d'inventaire d'un slot, ou null. */
+  const invPrice = (html, slot) => {
+    const m = itemFor(html, slot).match(/<span class="sp-inv-price">([^<]*)<\/span>/);
+    return m ? m[1] : null;
+  };
 
   // La page est rendue en `fr` : le barème publié doit correspondre marche
   // par marche à RAIL_LADDER_USD/TAPE_LADDER_USD, formaté par formatMoney.
@@ -508,8 +634,11 @@ describe('page /sponsor', () => {
       expect(html).toContain(fullUi.site.sponsor.statsUnavailableNote);
       // Aucune des valeurs du payload de test ne doit apparaître : ni en
       // "chiffre inventé", ni fuité d'un autre test par erreur d'état partagé.
+      // Comparé sous la forme RENDUE (n(), le même Intl.NumberFormat que la
+      // page) : comparer au nombre brut rendait l'assertion vide dès qu'une
+      // valeur franchissait 1 000, puisque `fr` y insère une espace fine.
       for (const value of [STATS_PAYLOAD.visitors7d, VIEWS_14D_TOTAL, STATS_PAYLOAD.copies7d.total, STATS_PAYLOAD.crawlers7d.length]) {
-        expect(html).not.toContain(`<strong>${value}</strong>`);
+        expect(html).not.toContain(`<strong>${n(value, 'fr')}</strong>`);
       }
       // Verrou plus général que les quatre valeurs ci-dessus (revue du
       // round 2) : une régression qui remplacerait la branche null par une
@@ -517,9 +646,14 @@ describe('page /sponsor', () => {
       // aucun <strong> (la convention .sp-figures pour un chiffre) ne doit
       // apparaître dans le bloc audience lui-même, qui va de la fin de
       // l'intro au début du lien vers /stats.
-      const start = html.indexOf(fullUi.site.sponsor.measuredIntro) + fullUi.site.sponsor.measuredIntro.length;
+      // L'ancrage est vérifié AVANT d'y ajouter la longueur de l'intro : un
+      // `indexOf` manqué (-1) donnait un `start` positif, donc une assertion
+      // « > -1 » qui ne pouvait pas échouer et un `slice` sur une zone
+      // arbitraire de la page.
+      const introAt = html.indexOf(fullUi.site.sponsor.measuredIntro);
+      expect(introAt).toBeGreaterThan(-1);
+      const start = introAt + fullUi.site.sponsor.measuredIntro.length;
       const end = html.indexOf(fullUi.site.sponsor.statsLinkCta);
-      expect(start).toBeGreaterThan(-1);
       expect(end).toBeGreaterThan(start);
       expect(html.slice(start, end)).not.toContain('<strong>');
     });
@@ -652,7 +786,7 @@ describe('page /sponsor', () => {
   describe('inventaire — disponibilité en direct', () => {
     it('marque un slot pris quand la charge utile dit "paid", même si data/sponsors.json ne le connaît pas encore', () => {
       const html = page({
-        sponsors: ctx([]), // data/sponsors.json : L1 encore inconnu (créa pas commitée)
+        placements: [], // data/sponsors.json : L1 encore inconnu (créa pas commitée)
         liveSlots: { L1: { status: 'paid', endsOn: '2026-09-10' } },
       });
       const li = itemFor(html, 'L1');
@@ -673,40 +807,102 @@ describe('page /sponsor', () => {
     // la page se contredit elle-même.
     it('un slot que data/sponsors.json sait occupé reste "pris" même si la charge utile le dit "open"', () => {
       const html = page({
-        sponsors: ctx([LIVE]), // L1 occupé côté data/sponsors.json (carte affichée sur le rail)
+        placements: [LIVE], // L1 occupé côté data/sponsors.json (carte affichée sur le rail)
         liveSlots: { L1: { status: 'open', priceCents: 21900, currency: 'USD' } },
       });
       const li = itemFor(html, 'L1');
       expect(hasClass(li, 'taken')).toBe(true);
       expect(li).toContain(fullUi.site.sponsor.takenLabel);
       expect(li).not.toContain('sp-inv-price');
-      expect(li).not.toContain(usd(219, 'fr'));
     });
 
-    it('affiche le prix d’un slot libre lu depuis la charge utile, formaté comme le reste du site', () => {
+    // Le prix ne vient plus de la charge utile mais du barème publié sur cette
+    // page même, indexé par le nombre de slots vendus : un lecteur peut le
+    // vérifier en comptant les lignes « pris ». Lire `priceCents` serait une
+    // seconde source d'occupation — celle qui faisait annoncer 149 $US ici et
+    // 219 $US sur la carte du même emplacement.
+    it('tarife un slot libre au barème indexé par l’occupation, jamais au priceCents de la charge utile', () => {
       const html = page({ liveSlots: { L1: { status: 'open', priceCents: 21900, currency: 'USD' } } });
-      const li = itemFor(html, 'L1');
-      expect(hasClass(li, 'open')).toBe(true);
-      expect(li).toContain(usd(219, 'fr'));
+      expect(hasClass(itemFor(html, 'L1'), 'open')).toBe(true);
+      expect(invPrice(html, 'L1')).toBe(usd(RAIL_LADDER_USD[0], 'fr'));
+      expect(invPrice(html, 'L1')).not.toBe(usd(219, 'fr'));
     });
 
-    it('retombe sur l’état déduit de data/sponsors.json quand la charge utile est null, sans inventer de prix', () => {
-      const html = page({ sponsors: ctx([LIVE]), liveSlots: null });
-      const l1 = itemFor(html, 'L1');
-      expect(hasClass(l1, 'taken')).toBe(true); // LIVE occupe L1 dans data/sponsors.json
-      // Chaque slot libre porte un emplacement de prix (voir la doc
-      // d'inventoryList — c'est ce qui permet au rafraîchissement client de
-      // ne jamais avoir à insérer de nœud), mais aucun n'est rempli : le
-      // repli ne calcule jamais de prix par lui-même.
+    // I2 : le repli affichait un <span class="sp-inv-price"></span> vide pour
+    // les 28 lignes — et c'est ce qui était publié, la route Worker n'étant
+    // pas déployée. Le prix EST calculable sans la charge utile (barème +
+    // occupation locale), donc le principe 3 impose de l'afficher.
+    it('affiche quand même le prix quand la charge utile est absente — il reste calculable', () => {
+      const html = page({ placements: [LIVE], liveSlots: null });
+      expect(hasClass(itemFor(html, 'L1'), 'taken')).toBe(true); // LIVE occupe L1
       const start = html.indexOf(fullUi.site.sponsor.inventoryHeading);
       const end = html.indexOf(fullUi.site.sponsor.ladderHeading);
       const prices = [...html.slice(start, end).matchAll(/<span class="sp-inv-price">([^<]*)<\/span>/g)];
-      expect(prices.length).toBeGreaterThan(0); // des slots libres existent (tous, ici)
-      for (const [, content] of prices) expect(content).toBe('');
+      expect(prices.length).toBe(RAIL_SLOTS.length - 1 + TAPE_TOP_SLOTS.length + TAPE_BOTTOM_SLOTS.length);
+      for (const [, content] of prices) expect(content).not.toBe('');
+      // L1 pris → le rail suivant est à la deuxième marche ; les bandeaux,
+      // eux, sont intacts et restent à la première.
+      expect(invPrice(html, 'L2')).toBe(usd(RAIL_LADDER_USD[1], 'fr'));
+      expect(invPrice(html, 'T01')).toBe(usd(TAPE_LADDER_USD[0], 'fr'));
+    });
+
+    it('publie le barème du compartiment pour que le rafraîchissement client applique la même règle', () => {
+      const html = page();
+      expect(html).toContain(`data-sponsor-ladder="${RAIL_LADDER_USD.join(',')}"`);
+      expect(html).toContain(`data-sponsor-ladder="${TAPE_LADDER_USD.join(',')}"`);
+    });
+
+    // L'axe « vendu » du contexte fusionné, rendu lisible au client : une
+    // réservation prend le slot sans compter dans le barème.
+    it('marque « vendu » un slot payé, jamais un slot seulement réservé', () => {
+      const html = page({ liveSlots: { L1: { status: 'paid' }, L2: { status: 'reserved' } } });
+      expect(itemFor(html, 'L1')).toContain('data-sold="1"');
+      expect(itemFor(html, 'L2')).not.toContain('data-sold');
+      // Un seul slot vendu → le prochain rail libre est à la deuxième marche.
+      expect(invPrice(html, 'L3')).toBe(usd(RAIL_LADDER_USD[1], 'fr'));
     });
 
     it('porte un attribut de données pointant vers l’API, pour que site.js rafraîchisse le bloc', () => {
       expect(page()).toContain(`data-sponsor-slots-endpoint="${SPONSOR_SLOTS_API_URL}"`);
+    });
+  });
+
+  // Le cœur de la correction : les deux chemins de prix. Reproduit le cas du
+  // reviewer — un placement actif sur L1 dans data/sponsors.json, une charge
+  // utile qui déclare les rails `open`. Avant : la carte de rail de L2
+  // annonçait 219 $US pendant que la ligne d'inventaire de L2 annonçait
+  // 149 $US, sur la même page.
+  describe('un seul prix, un seul statut, pour le même emplacement', () => {
+    const RAILS_OPEN = Object.fromEntries(
+      RAIL_SLOTS.map((slot) => [slot, { status: 'open', priceCents: 14900, currency: 'USD' }])
+    );
+
+    it('la carte de rail et la ligne d’inventaire annoncent le même prix', () => {
+      const options = { placements: [LIVE], liveSlots: RAILS_OPEN };
+      const html = page(options);
+      const rail = renderRail('left', pageCtx(options));
+      const expected = usd(RAIL_LADDER_USD[1], 'fr'); // L1 pris → deuxième marche
+      expect(rail).toContain(`<span class="sp-price">${expected}</span>`);
+      expect(invPrice(html, 'L2')).toBe(expected);
+    });
+
+    it('un slot réservé est « pris » des deux côtés, jamais « libre » d’un seul', () => {
+      const options = { liveSlots: { L2: { status: 'reserved' } } };
+      const html = page(options);
+      const rail = renderRail('left', pageCtx(options));
+      expect(hasClass(itemFor(html, 'L2'), 'taken')).toBe(true);
+      const card = rail.match(/<(?:a|div)[^>]*data-slot="L2"[^>]*>.*?<\/(?:a|div)>/s)[0];
+      expect(card).toContain(fullUi.site.sponsor.takenLabel);
+      expect(card).not.toContain(fullUi.site.sponsor.bookCta);
+    });
+
+    it('les places défilantes suivent le même barème que leur ligne d’inventaire', () => {
+      const options = { liveSlots: { T01: { status: 'paid' } } };
+      const html = page(options);
+      const tape = renderTape('top', pageCtx(options));
+      const expected = usd(TAPE_LADDER_USD[1], 'fr');
+      expect(tape).toContain(expected);
+      expect(invPrice(html, 'T02')).toBe(expected);
     });
   });
 
@@ -718,7 +914,7 @@ describe('page /sponsor', () => {
   describe('inventaire — charge utile partielle ou malformée', () => {
     it('un slot absent de la charge utile retombe sur data/sponsors.json pour ce seul slot', () => {
       const html = page({
-        sponsors: ctx([LIVE]), // LIVE occupe L1 côté data/sponsors.json
+        placements: [LIVE], // LIVE occupe L1 côté data/sponsors.json
         liveSlots: { R1: { status: 'paid', endsOn: '2026-09-01' } }, // L1 absent de la charge utile
       });
       expect(hasClass(itemFor(html, 'L1'), 'taken')).toBe(true); // repli sur data/sponsors.json
@@ -727,31 +923,55 @@ describe('page /sponsor', () => {
 
     it('un statut inconnu dans la charge utile ne plante pas et retombe sur data/sponsors.json', () => {
       expect(() => page({ liveSlots: { L1: { status: 'weird' } } })).not.toThrow();
-      const html = page({ sponsors: ctx([]), liveSlots: { L1: { status: 'weird' } } });
-      expect(hasClass(itemFor(html, 'L1'), 'open')).toBe(true); // ctx([]) : L1 libre côté data/sponsors.json
+      const html = page({ liveSlots: { L1: { status: 'weird' } } });
+      expect(hasClass(itemFor(html, 'L1'), 'open')).toBe(true); // aucun placement : L1 libre localement
+      // Le prix reste calculable : il ne dépendait pas de la charge utile.
+      expect(invPrice(html, 'L1')).toBe(usd(RAIL_LADDER_USD[0], 'fr'));
     });
 
-    it('un priceCents non numérique n’affiche aucun prix et n’écrit pas NaN', () => {
-      const html = page({ liveSlots: { L1: { status: 'open', priceCents: '219', currency: 'USD' } } });
-      expect(html).not.toContain('NaN');
-      expect(itemFor(html, 'L1')).toContain('<span class="sp-inv-price"></span>');
-    });
-
-    it('une devise différente de USD n’affiche aucun prix plutôt que de mal l’étiqueter', () => {
-      const html = page({ liveSlots: { L1: { status: 'open', priceCents: 21900, currency: 'EUR' } } });
-      expect(itemFor(html, 'L1')).toContain('<span class="sp-inv-price"></span>');
+    // Le prix n'est plus lu de la charge utile : un `priceCents` du mauvais
+    // type ou une devise inattendue ne peuvent donc plus ni effacer le prix,
+    // ni l'étiqueter de travers, ni écrire NaN.
+    it('un priceCents ou une devise absurdes ne changent rien au prix affiché', () => {
+      for (const entry of [
+        { status: 'open', priceCents: '219', currency: 'USD' },
+        { status: 'open', priceCents: 21900, currency: 'EUR' },
+        { status: 'open', priceCents: Number.NaN },
+        { status: 'open' },
+      ]) {
+        const html = page({ liveSlots: { L1: entry } });
+        expect(html, JSON.stringify(entry)).not.toContain('NaN');
+        expect(invPrice(html, 'L1'), JSON.stringify(entry)).toBe(usd(RAIL_LADDER_USD[0], 'fr'));
+      }
     });
 
     it('une entrée qui n’est pas un objet retombe sur data/sponsors.json sans planter', () => {
       expect(() => page({ liveSlots: { L1: 'paid' } })).not.toThrow();
-      const html = page({ sponsors: ctx([]), liveSlots: { L1: 'paid' } });
+      const html = page({ liveSlots: { L1: 'paid' } });
       expect(hasClass(itemFor(html, 'L1'), 'open')).toBe(true);
     });
 
     it('une charge utile qui n’est pas un objet exploitable (tableau) retombe entièrement sur data/sponsors.json', () => {
       expect(() => page({ liveSlots: ['not', 'an', 'object'] })).not.toThrow();
-      const html = page({ sponsors: ctx([LIVE]), liveSlots: ['not', 'an', 'object'] });
+      const html = page({ placements: [LIVE], liveSlots: ['not', 'an', 'object'] });
       expect(hasClass(itemFor(html, 'L1'), 'taken')).toBe(true);
+    });
+
+    // Inventaire plein : plus aucun slot libre, donc plus aucun prix à
+    // afficher — jamais un "$0.00" de repli (nextPriceUsd rend null, et
+    // aucune ligne ne l'observe puisqu'elles sont toutes prises).
+    it('un compartiment plein n’affiche aucun prix, et surtout aucun zéro', () => {
+      const liveSlots = Object.fromEntries(RAIL_SLOTS.map((slot) => [slot, { status: 'paid' }]));
+      const html = page({ liveSlots });
+      for (const slot of RAIL_SLOTS) {
+        expect(hasClass(itemFor(html, slot), 'taken'), slot).toBe(true);
+        expect(invPrice(html, slot), slot).toBe(null);
+      }
+      // Pas même un emplacement de prix vide dans ce compartiment : aucun
+      // "0 $US" ne peut s'y glisser. (Le premier <ul class="sp-inv"> de la
+      // page est celui des rails — voir renderSponsorPage.)
+      const railList = html.match(/<ul class="sp-inv"[^>]*>.*?<\/ul>/s)[0];
+      expect(railList).not.toContain('sp-inv-price');
     });
   });
 

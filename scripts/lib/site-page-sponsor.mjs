@@ -84,81 +84,53 @@ function audienceFigures(stats, statsUi, n) {
       </ul>`;
 }
 
-// Statuts réellement produits par le Worker (voir readSlots dans
-// worker/src/sponsors.mjs). Un statut absent de cet ensemble — champ mal
-// formé, déploiement désynchronisé — n'est pas traité comme une donnée : on
-// retombe sur data/sponsors.json pour CE slot, jamais sur une supposition.
-const LIVE_STATUSES = new Set(['open', 'reserved', 'paid']);
-
 /**
- * État d'un slot pour le tableau d'inventaire : `{ taken, priceCents }`.
+ * Une ligne d'inventaire par slot, statut et prix lus de la MÊME vue que les
+ * rails et les bandeaux : `sponsors.occupancy` (voir mergeOccupancy dans
+ * site-sponsors.mjs) pour le statut, `sponsors.prices` pour le montant.
  *
- * `liveSlots` (le payload de fetchSponsorSlots, voir site-data.mjs) traverse
- * une frontière HTTP comme `stats` — même discipline que audienceFigures
- * ci-dessus : chaque slot est vérifié indépendamment, jamais en bloc, et un
- * champ absent ou du mauvais type ne fait retomber QUE ce slot sur
- * data/sponsors.json, sans jamais planter ni inventer un prix.
+ * C'est le point de la correction : ce tableau dérivait autrefois son propre
+ * état de la charge utile du Worker pendant que les cartes dérivaient le leur
+ * de data/sponsors.json, et la même page pouvait annoncer 149 $US dans une
+ * ligne et 219 $US sur la carte du même emplacement. Il n'y a plus qu'une
+ * occupation, fusionnée une fois par page.
  *
- * La précédence entre les deux sources est VOLONTAIREMENT à sens unique : la
- * charge utile peut PROMOUVOIR un slot vers « pris » que data/sponsors.json
- * ignore encore (paiement encaissé, créa pas commitée — la raison d'être de
- * cette tâche), mais elle ne doit JAMAIS pouvoir rouvrir un slot que
- * data/sponsors.json sait occupé. Sans cette garde, un sponsor commité à la
- * main (donc toujours `open` côté D1, puisque Stripe n'y a jamais touché)
- * réapparaîtrait à la vente dans le tableau alors même que sa carte s'affiche
- * sur le rail — la page se contredirait elle-même. `sponsors.bySlot` est
- * donc TOUJOURS consulté, y compris quand la charge utile répond ;
- * `entry.status` ne peut que faire passer `taken` de faux à vrai, jamais
- * l'inverse.
+ * Le prix ne vient PLUS du champ `priceCents` de la charge utile : ce serait
+ * réintroduire une seconde source. Il vient du barème publié quelques
+ * paragraphes plus bas sur cette page même, indexé par le nombre de slots
+ * vendus — un lecteur peut donc vérifier le montant qu'on lui annonce en
+ * comptant les lignes « pris » et en lisant le tableau du barème. Un prix lu
+ * de la charge utile contredirait ce tableau dès que les deux sources
+ * divergent.
  *
- * - un slot `reserved` compte comme pris : quelqu'un est en train de payer,
- *   l'afficher libre laisserait un second acheteur cliquer sur un
- *   emplacement déjà engagé ;
- * - le prix n'est affiché que pour un slot réellement libre après cette
- *   règle (ni la charge utile ni data/sponsors.json ne le disent occupé),
- *   avec un `priceCents` fini et une devise `USD` (la seule que formatMoney
- *   reçoit ailleurs sur cette page) — sinon aucun prix n'est affiché, jamais
- *   un prix mal étiqueté ou un NaN.
+ * `data-sold` porte l'axe « compte dans le barème » (un `reserved` bloque le
+ * slot sans le faire compter) pour que le rafraîchissement client
+ * (enhanceSponsorInventory, scripts/assets/site.js) applique exactement la
+ * même règle que le build. `data-sponsor-ladder` porte le barème du
+ * compartiment, sérialisé depuis les constantes du module — jamais retapé.
  */
-function liveSlotState(slot, sponsors, liveSlots) {
-  const localTaken = sponsors.bySlot.has(slot);
-  const entry = liveSlots && typeof liveSlots === 'object' && !Array.isArray(liveSlots)
-    ? liveSlots[slot]
-    : undefined;
-
-  if (!(entry && typeof entry === 'object' && !Array.isArray(entry) && LIVE_STATUSES.has(entry.status))) {
-    // Repli : l'état déduit de data/sponsors.json, sans jamais inventer de
-    // prix (ce fichier ne porte aucune information de tarif par slot).
-    return { taken: localTaken, priceCents: null };
-  }
-
-  const liveTaken = entry.status !== 'open';
-  const taken = liveTaken || localTaken; // promotion à sens unique, voir la doc ci-dessus
-  if (taken) return { taken: true, priceCents: null };
-
-  const priceCents = isRealNumber(entry.priceCents) && entry.currency === 'USD' ? entry.priceCents : null;
-  return { taken: false, priceCents };
-}
-
-function inventoryList(slots, sponsors, s, liveSlots, lang) {
+function inventoryList(slots, sponsors, s, price, ladder, lang) {
   const items = slots
     .map((slot) => {
-      const { taken, priceCents } = liveSlotState(slot, sponsors, liveSlots);
-      const priceText = priceCents !== null ? escapeHtml(formatMoney(priceCents / 100, 'USD', lang)) : '';
-      // Le span de prix existe pour CHAQUE slot libre, même vide quand aucun
-      // prix n'est connu (repli sur data/sponsors.json) : c'est
-      // l'"emplacement du nombre" que le rafraîchissement client
-      // (enhanceSponsorInventory, scripts/assets/site.js) vient remplir sans
-      // jamais avoir à insérer un nouveau nœud dans la liste — la mise en
-      // page ne bouge donc pas quand un prix apparaît. Un slot pris n'en a
-      // pas : il n'y a rien à annoncer pour lui.
+      const { taken, sold } = sponsors.occupancy.get(slot);
+      // `price` n'est jamais null pour un slot libre — même invariant que
+      // renderCard, documenté sur nextPriceUsd. La garde reste : si
+      // l'invariant venait à tomber, l'emplacement du nombre doit rester vide
+      // plutôt que d'afficher le "$0.00" que formatMoney(null) produirait.
+      const priceText = price === null ? '' : escapeHtml(formatMoney(price, 'USD', lang));
+      // Le span de prix existe pour CHAQUE slot libre : c'est
+      // l'"emplacement du nombre" que le rafraîchissement client vient
+      // remplacer sans jamais avoir à insérer un nouveau nœud dans la liste —
+      // la mise en page ne bouge donc pas quand un montant change. Un slot
+      // pris n'en a pas : il n'y a rien à annoncer pour lui.
       const priceSpan = taken ? '' : ` <span class="sp-inv-price">${priceText}</span>`;
-      return `        <li class="sp-inv-item ${taken ? 'taken' : 'open'}" data-slot="${escapeHtml(slot)}">`
+      const soldAttr = sold ? ' data-sold="1"' : '';
+      return `        <li class="sp-inv-item ${taken ? 'taken' : 'open'}" data-slot="${escapeHtml(slot)}"${soldAttr}>`
         + `<span class="sp-inv-slot">${escapeHtml(slot)}</span> `
         + `<span class="sp-inv-state">${escapeHtml(taken ? s.takenLabel : s.openLabel)}</span>${priceSpan}</li>`;
     })
     .join('\n');
-  return `      <ul class="sp-inv">\n${items}\n      </ul>`;
+  return `      <ul class="sp-inv" data-sponsor-ladder="${escapeHtml(ladder.join(','))}">\n${items}\n      </ul>`;
 }
 
 /**
@@ -178,13 +150,15 @@ function inventoryList(slots, sponsors, s, liveSlots, lang) {
  * vente réel, on ne demande pas qu'on croie un chiffre tapé, on publie la
  * donnée.
  *
- * Le tableau d'inventaire suit la même discipline avec `liveSlots` (le
- * payload de fetchSponsorSlots, voir site-data.mjs) : un slot que le Worker
- * dit `paid` s'affiche pris même si data/sponsors.json ne le sait pas encore
- * (paiement encaissé, créa pas commitée), et son prix vient du payload —
- * jamais d'un calcul local. `liveSlots === null` (Worker injoignable au
- * build) fait retomber CHAQUE slot sur l'état déduit de data/sponsors.json,
- * sans jamais inventer de prix (voir liveSlotState). La section porte un
+ * Le tableau d'inventaire, lui, ne fetche rien : il lit `sponsors`, le
+ * contexte déjà fusionné par sponsorContext (voir mergeOccupancy dans
+ * site-sponsors.mjs), qui a croisé data/sponsors.json avec la charge utile du
+ * Worker une seule fois pour toute la page. Un slot que le Worker dit `paid`
+ * s'affiche donc pris ici ET sur les rails, même si data/sponsors.json ne le
+ * sait pas encore (paiement encaissé, créa pas commitée) ; une charge utile
+ * absente fait retomber toute la page sur data/sponsors.json — le prix, lui,
+ * reste calculable dans les deux cas, puisqu'il vient du barème publié plus
+ * bas indexé par l'occupation, pas de la charge utile. La section porte un
  * attribut `data-sponsor-slots-endpoint` pour que scripts/assets/site.js
  * puisse rafraîchir ce même inventaire côté client, en pure amélioration
  * progressive (principe 5) : la page est déjà complète et correcte sans lui.
@@ -195,7 +169,6 @@ function inventoryList(slots, sponsors, s, liveSlots, lang) {
  */
 export function renderSponsorPage({
   lang, path, ui, alternates, xDefaultPath, homePath, sponsors, sponsorSlots, figures, stats = null,
-  liveSlots = null,
 }) {
   const site = ui.site;
   const s = site.sponsor;
@@ -251,11 +224,11 @@ ${audienceBlock}
       data-sponsor-open-label="${escapeHtml(s.openLabel)}" data-sponsor-taken-label="${escapeHtml(s.takenLabel)}">
       <h2>${escapeHtml(s.inventoryHeading)}</h2>
       <h3>${escapeHtml(s.railHeading)}</h3>
-${inventoryList(RAIL_SLOTS, sponsors, s, liveSlots, lang)}
+${inventoryList(RAIL_SLOTS, sponsors, s, sponsors.prices.rail, RAIL_LADDER_USD, lang)}
       <h3>${escapeHtml(s.tapeTopHeading)}</h3>
-${inventoryList(TAPE_TOP_SLOTS, sponsors, s, liveSlots, lang)}
+${inventoryList(TAPE_TOP_SLOTS, sponsors, s, sponsors.prices.top, TAPE_LADDER_USD, lang)}
       <h3>${escapeHtml(s.tapeBottomHeading)}</h3>
-${inventoryList(TAPE_BOTTOM_SLOTS, sponsors, s, liveSlots, lang)}
+${inventoryList(TAPE_BOTTOM_SLOTS, sponsors, s, sponsors.prices.bottom, TAPE_LADDER_USD, lang)}
     </section>
 
     <section>
