@@ -52,8 +52,23 @@ async function call(request, overrides = {}) {
 const SECRETS = { STRIPE_SECRET_KEY: 'sk_test_abc', STRIPE_WEBHOOK_SECRET: 'whsec_test' };
 const ORIGIN = 'https://saasmadefree.com';
 const SESSION = { id: 'cs_test_123', url: 'https://checkout.stripe.com/c/pay/cs_test_123' };
-// Identifiant de réservation de la forme produite par `holdIdFor` : `h:<hash>:<uuid>`.
-const HOLD = 'h:0123456789abcdef:11111111-2222-3333-4444-555555555555';
+// Identifiants de réservation de la forme produite par `holdIdFor` :
+// `h:<hash>:<uuid>`. Le hachage fait 64 caractères hexadécimaux, comme celui
+// que `hashIp` produit vraiment (SHA-256) — pas 16 comme avant. C'est ce qui
+// rend l'invariant documenté sur `markSlotPaid`/`reserveSlot` réellement
+// exercé : le préfixe `h:<hash>:` fait exactement 67 caractères, donc aucun
+// hachage ne peut être le préfixe strict d'un autre, et la comparaison
+// `substr(session_id, 1, length(?)) = ?` ne peut confondre deux visiteurs.
+// Avec des hachages courts, un code qui tronquerait la comparaison passait
+// les tests sans que rien ne bouge.
+//
+// AUTRE_HASH ne diffère de HASH que par son DERNIER caractère : c'est le cas
+// le plus défavorable pour cette comparaison de préfixe — s'ils étaient
+// confondus, un visiteur récupérerait la réservation d'un autre.
+const HASH = 'a1b2c3d4'.repeat(8);
+const AUTRE_HASH = `${HASH.slice(0, 63)}0`;
+const HOLD = `h:${HASH}:11111111-2222-3333-4444-555555555555`;
+const AUTRE_HOLD = `h:${AUTRE_HASH}:99999999-9999-9999-9999-999999999999`;
 
 function checkoutRequest(body, { origin = ORIGIN, ip = '203.0.113.7' } = {}) {
   return new Request('https://votes.test/api/v1/sponsors/checkout', {
@@ -686,7 +701,7 @@ describe('POST /api/v1/sponsors/webhook — encaissement', () => {
   });
 
   it('refuse aussi un slot réservé par quelqu’un d’autre, réservation encore vivante', async () => {
-    await reserveL1('h:unautrevisiteur:99999999-9999-9999-9999-999999999999');
+    await reserveL1(AUTRE_HOLD);
     const res = await postWebhook(JSON.stringify(completedEvent()));
 
     // Réservation vivante : retenter ne la libérerait pas. On acquitte, et un
@@ -704,7 +719,7 @@ describe('POST /api/v1/sponsors/webhook — encaissement', () => {
     // cron ne balaie pas. Sans ce balayage, l'événement repartirait en 503 à
     // CHAQUE tentative pendant trois jours, jusqu'à désactivation du point de
     // terminaison — ce qui ferait perdre toutes les ventes suivantes.
-    await reserveL1('h:unautrevisiteur:99999999-9999-9999-9999-999999999999', { expiredSince: 60_000 });
+    await reserveL1(AUTRE_HOLD, { expiredSince: 60_000 });
 
     const res = await postWebhook(JSON.stringify(completedEvent()));
 
@@ -748,11 +763,26 @@ describe('POST /api/v1/sponsors/webhook — encaissement', () => {
     expect((await orderRow('cs_S1')).status).toBe('paid');
   });
 
+  // Verrou sur les fixtures elles-mêmes : le test ci-dessous ne vaut que si
+  // les deux hachages ont bien la forme que `hashIp` produit (64 hex) et ne
+  // se distinguent qu'au dernier caractère. Raccourcis, ils passeraient la
+  // comparaison de préfixe même tronquée.
+  it('utilise des hachages de la forme réellement produite par hashIp', async () => {
+    const reel = await hashIp('203.0.113.7', 'sel', dayKey(new Date()));
+    expect(reel).toMatch(/^[0-9a-f]{64}$/);
+    expect(HASH).toMatch(/^[0-9a-f]{64}$/);
+    expect(AUTRE_HASH).toMatch(/^[0-9a-f]{64}$/);
+    expect(AUTRE_HASH).not.toBe(HASH);
+    expect(AUTRE_HASH.slice(0, 63)).toBe(HASH.slice(0, 63));
+  });
+
   it('ne donne pas le slot au détenteur d’une AUTRE IP par la branche « même détenteur »', async () => {
-    await reserveL1('h:0000000000000000:33333333-3333-3333-3333-333333333333');
+    await reserveL1(AUTRE_HOLD);
 
     // Événement dont le hold appartient à un autre hachage : la réservation en
-    // place ne lui appartient pas, l'attribution doit être refusée.
+    // place ne lui appartient pas, l'attribution doit être refusée. Les deux
+    // hachages ne diffèrent que du dernier caractère : la comparaison de
+    // préfixe doit porter sur les 67 caractères entiers.
     const res = await postWebhook(JSON.stringify(completedEvent()));
 
     expect(res.status).toBe(200);
@@ -777,7 +807,7 @@ describe('POST /api/v1/sponsors/webhook — encaissement', () => {
   it('balaie aussi une réservation d’un tiers restée sans échéance', async () => {
     // Détenteur différent de celui de l'événement : la seule voie vers
     // l'attribution est le balayage, pas la reconnaissance de la réservation.
-    await reserveL1('h:unautrevisiteur:99999999-9999-9999-9999-999999999999');
+    await reserveL1(AUTRE_HOLD);
     await env.DB.prepare("UPDATE sponsor_slots SET reserved_until = NULL WHERE slot = 'L1'").run();
 
     const res = await postWebhook(JSON.stringify(completedEvent()));
@@ -791,7 +821,7 @@ describe('POST /api/v1/sponsors/webhook — encaissement', () => {
     // détient valablement le slot, mais on ne peut pas le constater. Répondre
     // 200 ici perdrait la vente définitivement (Stripe n'insiste plus sur un
     // acquittement) ; le 503 la fait revenir.
-    await reserveL1('h:unautrevisiteur:99999999-9999-9999-9999-999999999999', { expiredSince: 60_000 });
+    await reserveL1(AUTRE_HOLD, { expiredSince: 60_000 });
     const payload = JSON.stringify(completedEvent());
     const t = Math.floor(Date.now() / 1000);
     const request = new Request('https://votes.test/api/v1/sponsors/webhook', {

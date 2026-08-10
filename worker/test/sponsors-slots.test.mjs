@@ -1,9 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { env, createExecutionContext, waitOnExecutionContext } from 'cloudflare:test';
+import { env } from 'cloudflare:test';
 import MIGRATION_INIT from '../migrations/0001_init.sql?raw';
 import MIGRATION_STATS from '../migrations/0003_stats.sql?raw';
 import MIGRATION_SPONSORS from '../migrations/0004_sponsors.sql?raw';
-import worker from '../src/index.mjs';
 import {
   ensureSlots, readSlots, assignPaidSlot, SLOT_ASSIGNED, SLOT_CONFLICT, SLOT_RETRY,
 } from '../src/sponsors.mjs';
@@ -39,13 +38,10 @@ beforeEach(async () => {
   await applyMigration(MIGRATION_SPONSORS);
 });
 
-/** Requête sur le worker, avec un env enrichi pour les routes qui exigent Stripe. */
-async function call(request, overrides = {}) {
-  const ctx = createExecutionContext();
-  const res = await worker.fetch(request, { ...env, ...overrides }, ctx);
-  await waitOnExecutionContext(ctx);
-  return res;
-}
+// Ce fichier teste les fonctions de sponsors.mjs directement, jamais par une
+// requête HTTP : les routes sont couvertes par sponsors-routes.test.mjs. Un
+// helper `call()` traînait ici sans qu'aucun test ne l'appelle, avec les
+// imports worker/ExecutionContext qui vont avec — retiré, comme les imports.
 
 async function countSlots() {
   const row = await env.DB.prepare('SELECT COUNT(*) AS c FROM sponsor_slots').first();
