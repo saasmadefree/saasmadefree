@@ -172,6 +172,13 @@ describe('collectKeyPaths', () => {
     expect(collectKeyPaths({ a: { b: 'x', c: 'y' }, d: 'z' }, 'site'))
       .toEqual(['site.a.b', 'site.a.c', 'site.d']);
   });
+
+  it('traite un tableau comme une feuille, pas comme un nœud à descendre', () => {
+    // La parité ne vérifie que la présence de la clé, pas la forme de son
+    // contenu (le schéma s'en charge) : un tableau ne doit donc pas être
+    // parcouru élément par élément, juste compté comme un seul chemin.
+    expect(collectKeyPaths({ a: ['x', 'y'] }, 'site')).toEqual(['site.a']);
+  });
 });
 
 describe('parité des clés site.* entre langues publiées', () => {
