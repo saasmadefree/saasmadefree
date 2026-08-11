@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   formatMoney, formatMonthlyPrice, formatDate, interpolate, pluralize,
-  formatMoneyDigits, monthlySuffix, MONTHLY_BASES,
+  formatMoneyDigits, monthlySuffix, MONTHLY_BASES, formatStampDate,
 } from '../scripts/lib/site-format.mjs';
 
 describe('formatMoney', () => {
@@ -39,6 +39,13 @@ describe('formatDate', () => {
   it('formate une date ISO en toutes lettres, dans la langue demandée', () => {
     expect(formatDate('2026-07-30', 'en')).toBe('July 30, 2026');
     expect(formatDate('2026-07-30', 'fr')).toBe('30 juillet 2026');
+  });
+});
+
+describe('formatStampDate', () => {
+  it('rend JJ.MM.AAAA quelle que soit la locale', () => {
+    expect(formatStampDate('2026-07-30')).toBe('30.07.2026');
+    expect(formatStampDate('2026-01-05')).toBe('05.01.2026');
   });
 });
 

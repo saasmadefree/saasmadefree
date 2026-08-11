@@ -37,6 +37,14 @@ export function formatDate(iso, lang) {
   return new Intl.DateTimeFormat(lang, { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(date);
 }
 
+/** Date de tampon administratif : JJ.MM.AAAA, identique dans les sept locales
+ *  (spec §3 — la langue du tampon est numérique et univoque). Les dates en
+ *  prose passent par formatDate/Intl, pas par ici. */
+export function formatStampDate(iso) {
+  const [y, m, d] = String(iso).split('-');
+  return `${d}.${m}.${y}`;
+}
+
 export function interpolate(template, vars) {
   return String(template).replace(/\{(\w+)\}/g, (_, key) => (vars[key] ?? ''));
 }

@@ -115,7 +115,8 @@ ${categoryChips}
       </ul>
     </nav>
 
-    <section class="ticker-band r" aria-label="${escapeHtml(h.tickerAriaLabel)}">
+    <!-- Rustine temporaire : la clé tickerAriaLabel a été retirée de ui.json (le bandeau-ticker disparaît en Task 7). -->
+    <section class="ticker-band r" aria-label="${escapeHtml(h.tickerAriaLabel ?? '')}">
       <div class="ticker-marquee" aria-hidden="true">
         <div class="ticker-track">
         ${renderTicker(toolViews, lang)}
