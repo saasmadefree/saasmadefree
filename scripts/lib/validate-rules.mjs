@@ -1,4 +1,5 @@
 import { LANGS } from './load-data.mjs';
+import { siteLanguages } from './site-data.mjs';
 
 export const ALLOWED_VARS = new Set(['prompt', 'prompt_url', 'lang', 'slug']);
 const MAX_PRICE_AGE_DAYS = 180;
@@ -133,6 +134,22 @@ function validateSponsors(sponsors, validators, publishedLangs, today, errors) {
   }
 }
 
+/** Chemins feuilles d'un objet de traduction ("site.home.colName"), pour la
+ *  parité entre locales. Les tableaux sont des feuilles : on vérifie la
+ *  présence de la clé, pas la forme de son contenu (le schéma s'en charge). */
+export function collectKeyPaths(obj, prefix) {
+  const out = [];
+  for (const [key, value] of Object.entries(obj)) {
+    const path = `${prefix}.${key}`;
+    if (value && typeof value === 'object' && !Array.isArray(value)) {
+      out.push(...collectKeyPaths(value, path));
+    } else {
+      out.push(path);
+    }
+  }
+  return out;
+}
+
 export function validateAll(data, validators, today) {
   const errors = [];
   const { tools, i18n, ui, agents } = data;
@@ -241,17 +258,67 @@ export function validateAll(data, validators, today) {
     }
   }
 
-  // Bloc site.stats : la page /stats existe dans chaque langue publiée, donc
-  // chaque langue doit porter exactement les clés de en — pas une de plus
-  // (clé morte), pas une de moins (libellé anglais qui fuit dans une page fr).
+  // Langues réellement publiées : celles qu'au moins une fiche déclare dans ses
+  // markets — la même source que siteLanguages() côté build (site-data.mjs).
+  // Calculée ici en premier : la parité du bloc site ci-dessous et la
+  // validation des sponsors plus bas en ont toutes deux besoin.
+  //
+  // Cette liste se déduisait de la présence d'un bloc "site" dans le ui.json.
+  // Ce raccourci est devenu faux le jour où /stats a donné un bloc site.stats
+  // aux sept locales : les sept seraient passées pour publiées, et un sponsor
+  // aurait dû fournir une tagline en néerlandais pour que le build passe.
+  const publishedLangs = siteLanguages(tools);
+
+  // Parité du bloc site.* entre langues publiées : la table en fait
+  // référence. Seules les langues publiées portent un bloc "site" complet
+  // (voir tests/site-shell.test.mjs, « bloc "site" des locales — complet
+  // seulement pour les langues publiées ») ; les cinq autres n'ont que
+  // { footer, stats } et sortent volontairement de ce contrôle — les comparer
+  // au bloc complet de en signalerait des dizaines de "clés manquantes" qui
+  // n'ont jamais existé pour elles. Bidirectionnel, même contrat que
+  // site.stats ci-dessous : une clé rendue par un gabarit et absente d'une
+  // locale publiée sortirait "undefined" en production (comme requirements.*
+  // et runHints.*), et une clé qui traîne sans exister en en serait une clé
+  // morte ou une faute de frappe.
+  const enSite = ui.get('en')?.site;
+  if (enSite) {
+    const wanted = collectKeyPaths(enSite, 'site');
+    const wantedSet = new Set(wanted);
+    for (const lang of publishedLangs) {
+      if (lang === 'en') continue;
+      const table = ui.get(lang);
+      if (!table) continue;
+      const present = collectKeyPaths(table.site ?? {}, 'site');
+      const presentSet = new Set(present);
+      for (const path of wanted) {
+        if (!presentSet.has(path)) {
+          errors.push(`data/i18n/${lang}/ui.json : clé site manquante "${path}"`);
+        }
+      }
+      for (const path of present) {
+        if (!wantedSet.has(path)) {
+          errors.push(`data/i18n/${lang}/ui.json : clé ${path} absente de en — clé morte ou faute de frappe`);
+        }
+      }
+    }
+  }
+
+  // Bloc site.stats des langues NON publiées : elles ne portent que
+  // { footer, stats } (voir ci-dessus), donc le contrôle de parité qui
+  // précède — scopé aux langues publiées — ne les couvre pas. La page /stats
+  // existe quand même dans les sept langues, donc chaque locale doit porter
+  // exactement les clés stats.* de en — pas une de plus (clé morte), pas une
+  // de moins (libellé anglais qui fuit dans une page traduite).
   const enStats = ui.get('en')?.site?.stats;
   if (!enStats) {
     errors.push('data/i18n/en/ui.json : bloc site.stats manquant');
   } else {
     const expected = new Set(Object.keys(enStats));
-    for (const [lang, table] of ui) {
-      if (lang === 'en') continue;
-      const stats = table?.site?.stats ?? {};
+    for (const lang of LANGS) {
+      if (publishedLangs.includes(lang)) continue;
+      const table = ui.get(lang);
+      if (!table) continue;
+      const stats = table.site?.stats ?? {};
       for (const key of expected) {
         if (!(key in stats)) errors.push(`data/i18n/${lang}/ui.json : traduction manquante pour site.stats.${key}`);
       }
@@ -266,16 +333,6 @@ export function validateAll(data, validators, today) {
     }
   }
 
-  // Langues réellement publiées : celles qu'au moins une fiche déclare dans ses
-  // markets — la même source que siteLanguages() côté build.
-  //
-  // Cette liste se déduisait de la présence d'un bloc "site" dans le ui.json.
-  // Ce raccourci est devenu faux le jour où /stats a donné un bloc site.stats
-  // aux sept locales : les sept seraient passées pour publiées, et un sponsor
-  // aurait dû fournir une tagline en néerlandais pour que le build passe.
-  const publishedLangs = LANGS.filter(
-    (lang) => [...tools.values()].some((tool) => tool.markets?.includes(lang))
-  );
   validateSponsors(data.sponsors, validators, publishedLangs, today, errors);
 
   return errors;

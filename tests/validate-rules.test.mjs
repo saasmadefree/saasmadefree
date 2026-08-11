@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { compileValidators, loadData } from '../scripts/lib/load-data.mjs';
-import { validateAll } from '../scripts/lib/validate-rules.mjs';
+import { validateAll, collectKeyPaths } from '../scripts/lib/validate-rules.mjs';
 
 const validators = compileValidators('schema');
 const TODAY = '2026-07-30';
@@ -164,5 +164,86 @@ describe('site.stats — parité des clés entre langues', () => {
     data.ui.set('de', de);
     const errors = validateAll(data, validators, new Date().toISOString().slice(0, 10));
     expect(errors.some((e) => e.includes('de/ui.json') && e.includes('footer.stats'))).toBe(true);
+  });
+});
+
+describe('collectKeyPaths', () => {
+  it('liste les chemins feuilles, pas les nœuds', () => {
+    expect(collectKeyPaths({ a: { b: 'x', c: 'y' }, d: 'z' }, 'site'))
+      .toEqual(['site.a.b', 'site.a.c', 'site.d']);
+  });
+});
+
+describe('parité des clés site.* entre langues publiées', () => {
+  // 'a' est publié en en et fr (déclaré dans markets) : seules ces deux
+  // locales doivent porter un bloc "site" complet — voir tests/site-shell.test.mjs,
+  // « bloc "site" des locales — complet seulement pour les langues publiées ».
+  function makeSiteData(frSite) {
+    const tools = new Map([
+      ['a', makeTool('a', { markets: ['en', 'fr'], relatedSlugs: [] })],
+    ]);
+    const i18n = new Map([
+      ['en/a', makeI18n()],
+      ['fr/a', makeI18n()],
+    ]);
+    const ui = new Map([
+      ['en', {
+        requirements: { hosting: 'Hosting' },
+        pricingBasis: { 'per-seat-monthly': 'Monthly per seat' },
+        runHints: { clipboard: 'Paste it' },
+        site: {
+          brand: 'X',
+          home: { colName: 'Name' },
+          stats: {},
+          footer: { stats: 'Stats' },
+        },
+      }],
+      ['fr', {
+        requirements: { hosting: 'Hébergement' },
+        pricingBasis: { 'per-seat-monthly': 'Mensuel par siège' },
+        runHints: { clipboard: 'Coller' },
+        site: frSite,
+      }],
+    ]);
+    const agents = [{
+      id: 'clipboard-only', name: 'Autre agent', kind: 'clipboard', template: null,
+      homepage: 'https://example.com', maxLength: null, status: 'verified',
+      verifiedOn: TODAY, runHint: 'clipboard', docs: null,
+    }];
+    return { tools, i18n, ui, agents, categories: { 'docs-and-wiki': {} } };
+  }
+
+  it('signale une clé site présente en en et absente ailleurs', () => {
+    const data = makeSiteData({ brand: 'X', home: {}, stats: {}, footer: { stats: 'Stats' } });
+    const errors = validateAll(data, validators, TODAY);
+    expect(errors).toContain('data/i18n/fr/ui.json : clé site manquante "site.home.colName"');
+  });
+
+  it('ne signale rien quand toutes les locales publiées portent les clés de en', () => {
+    const data = makeSiteData({ brand: 'X', home: { colName: 'Nom' }, stats: {}, footer: { stats: 'Stats' } });
+    const errors = validateAll(data, validators, TODAY);
+    expect(errors.filter((e) => e.includes('clé site manquante'))).toEqual([]);
+  });
+
+  it('signale une clé morte présente dans une locale publiée et absente de en', () => {
+    const data = makeSiteData({
+      brand: 'X', home: { colName: 'Nom', extra: 'Fuite' }, stats: {}, footer: { stats: 'Stats' },
+    });
+    const errors = validateAll(data, validators, TODAY);
+    expect(errors).toContain(
+      'data/i18n/fr/ui.json : clé site.home.extra absente de en — clé morte ou faute de frappe'
+    );
+  });
+
+  it("ne signale rien pour une locale non publiée avec un bloc site partiel", () => {
+    // 'es' n'est déclarée dans aucun markets : c'est une locale non publiée,
+    // avec un bloc site partiel { stats, footer } comme le veut la convention
+    // du repo. Le contrôle de parité (scopé aux langues publiées) ne doit pas
+    // la comparer au bloc complet de en, sous peine de signaler tout le reste
+    // du bloc site comme "manquant" alors qu'il n'a jamais existé pour elle.
+    const data = makeSiteData({ brand: 'X', home: { colName: 'Nom' }, stats: {}, footer: { stats: 'Stats' } });
+    data.ui.set('es', { site: { stats: {}, footer: { stats: 'Estadísticas' } } });
+    const errors = validateAll(data, validators, TODAY);
+    expect(errors.filter((e) => e.includes('clé site manquante'))).toEqual([]);
   });
 });
