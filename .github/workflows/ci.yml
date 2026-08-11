@@ -98,18 +98,54 @@ jobs:
       - name: Valider les données
         run: npm run validate
 
-  # Reconstruit le site (spec tâche 5) : le Worker libère les slots sponsors
-  # expirés en base à 02:10 UTC, mais les placements sont du HTML statique
-  # généré depuis data/sponsors.json — ils ne changent qu'à un build. Sans ce
-  # job, un sponsor expiré resterait affiché indéfiniment pendant que la base
-  # le montre déjà vendable. `if` restreint ce job au déclenchement planifié :
-  # ni un push ni une pull request ne doivent republier le site en production.
-  rebuild:
-    if: github.event_name == 'schedule'
+  # Publie le site, sur push et chaque nuit.
+  #
+  # Le déploiement est piloté d'ici, et non par l'intégration git de Cloudflare
+  # Pages : celle-ci a cessé de déclencher le moindre build — un push a produit
+  # zéro déploiement, pas même en échec, pendant que le dernier build git datait
+  # de quatre jours. Ne la « rétablis » pas sans savoir que c'est délibéré.
+  #
+  # C'est aussi ce qui remplace l'ancien Deploy Hook : un hook demande à
+  # Cloudflare de construire DEPUIS git, donc il s'appuyait sur le mécanisme
+  # précisément défaillant. Ici on construit dans le runner et on téléverse
+  # l'artefact — plus aucune dépendance à cette intégration.
+  #
+  # Le passage nocturne sert l'expiration des sponsors (spec tâche 5) : le
+  # Worker libère les slots échus en base à 02:10 UTC, mais les placements sont
+  # du HTML statique issu de data/sponsors.json et ne changent qu'à un build.
+  # Sans ce job, un sponsor expiré resterait affiché pendant que la base le
+  # montre déjà vendable.
+  deploy:
+    needs: [data-and-code, worker]
+    # Trois cas, qui tirent en sens opposés :
+    #   - push : les deux jobs de code tournent, et un rouge doit bloquer la
+    #     publication — d'où le test explicite sur leur `result` ;
+    #   - planning : ces mêmes jobs sont SAUTÉS (leur `if` est faux), et un
+    #     `needs` sur un job sauté saute le dépendant par défaut. Sans
+    #     `!cancelled()` et sans la branche `schedule`, la reconstruction
+    #     nocturne ne partirait jamais ;
+    #   - pull request : jamais, une PR ne publie pas en production.
+    # `needs['data-and-code']` en crochets et non en pointillé : avec des
+    # tirets, `needs.data-and-code.result` se lit comme une soustraction.
+    if: >-
+      !cancelled()
+      && github.event_name != 'pull_request'
+      && (github.event_name == 'schedule'
+          || (needs['data-and-code'].result == 'success'
+              && needs.worker.result == 'success'))
     runs-on: ubuntu-latest
     steps:
-      - name: Déclencher la reconstruction Pages
-        # Pas de secret configuré = échec bruyant et volontaire : une
-        # expiration qui ne se voit jamais sur le site est pire qu'un job
-        # rouge que personne n'a demandé.
-        run: curl -fsS -X POST "${{ secrets.CF_PAGES_DEPLOY_HOOK }}"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22', cache: npm }
+      - run: npm ci
+      - name: Construire le site
+        run: npm run build
+      - name: Publier sur Cloudflare Pages
+        # Un secret absent, un build raté ou un téléversement refusé font virer
+        # le job au rouge : une expiration qui n'atteint jamais le site est pire
+        # qu'un job rouge. Le jeton est restreint à Pages sur ce seul compte.
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --yes wrangler@4 pages deploy dist --project-name=saasmadefree --branch=main
