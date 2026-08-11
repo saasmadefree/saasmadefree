@@ -5,6 +5,30 @@
 // vient scanner ; un grotesque système porte les titres. Le verdict est un
 // badge plein, pas un tiret discret : c'est l'information qu'on doit voir
 // d'un seul coup d'œil dans une liste de cent lignes.
+
+/** Palette fermée du spec 2026-08-04 (§2 clair, §5 sombre). Unique source des
+ *  deux thèmes : SITE_CSS est généré depuis cette table, et
+ *  tests/site-contrast.test.mjs vérifie chaque paire AA. Toute couleur absente
+ *  d'ici n'a pas le droit d'exister dans la feuille. */
+export const TOKENS = {
+  light: {
+    paperDesk: '#e8e0cc', paperDeskWeave: '#e6ddc7', paperFolder: '#e0cfa2',
+    paperSheet: '#f7f2e3', paperBright: '#fdfaf0', paperCartouche: '#f0e9d5',
+    ink: '#2b2317', ink2: '#4a4132', ink3: '#5d5445',
+    pen: '#2d3a52', hl: '#f3ecc9',
+    stampYes: '#2f5d33', stampKinda: '#6b4600', stampNo: '#9c2a1c', stampDate: '#28522c',
+  },
+  dark: {
+    // Papier bistre du §5 — valeurs de départ, à ajuster JUSQU'À ce que
+    // tests/site-contrast.test.mjs passe ; le test est l'arbitre, pas l'œil.
+    paperDesk: '#171410', paperDeskWeave: '#1a1713', paperFolder: '#241e14',
+    paperSheet: '#211d15', paperBright: '#2a251b', paperCartouche: '#262117',
+    ink: '#e8e0cc', ink2: '#c9bda0', ink3: '#a89a79',
+    pen: '#a9bcdf', hl: '#3a3320',
+    stampYes: '#8fc79a', stampKinda: '#dfaa55', stampNo: '#e8998a', stampDate: '#84bd8f',
+  },
+};
+
 export const SITE_CSS = `:root{
   --paper:#faf9f6; --card:#ffffff; --ink:#16150f; --muted:#6b6a5e; --rule:#e5e2d8;
   --yes:#15803d; --kinda:#b45309; --no:#be123c;
