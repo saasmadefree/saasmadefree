@@ -28,9 +28,11 @@ export function renderCategoriesIndexPage({
       const count = countsBySlug[slug] ?? 0;
       const tally = pluralize(count, lang, c.toolCountOne, c.toolCountOther);
       return `        <li class="category-row">
-          ${emoji ? `<span aria-hidden="true">${emoji}</span>` : ''}<a href="${homePath}categories/${slug}/">${escapeHtml(label)}</a>
-          <span class="leader" aria-hidden="true"></span>
-          <span class="category-count">${escapeHtml(tally)}</span>
+          <a href="${homePath}categories/${slug}/">
+            ${emoji ? `<span aria-hidden="true">${emoji}</span>` : ''}${escapeHtml(label)}
+            <span class="leader" aria-hidden="true"></span>
+            <span class="category-count">${escapeHtml(tally)}</span>
+          </a>
         </li>`;
     })
     .join('\n');

@@ -64,6 +64,18 @@ function cssVars(theme) {
 // la lumière du bureau, pas par le thème : elle reste bistre sombre même sur
 // le papier de nuit, où elle se fait simplement discrète.
 
+// Trame commune des feuillets réglés du dossier : fond rayé + bordure, la
+// matière posée identique sur .registry, .sheet et pre — le corps d'un
+// feuillet, qu'il porte un tableau, une pièce ou du code. Un seul endroit
+// change les trois plutôt que trois copies à faire dériver une à une.
+// SHEET_SHADOW est la première ombre de papier, commune aux trois ; .registry
+// et .sheet lui ajoutent une seconde ombre plus large (SHEET_SHADOW_LIFTED) —
+// pre n'en porte qu'une, il ne « flotte » pas au-dessus du feuillet qui le
+// contient.
+const SHEET_TRAME = 'background:var(--paper-sheet) repeating-linear-gradient(0deg,var(--paper-sheet) 0 4px,var(--paper-rule) 4px 8px);border:1px solid var(--line-strong)';
+const SHEET_SHADOW = 'box-shadow:0 2px 0 rgba(43,35,23,.06)';
+const SHEET_SHADOW_LIFTED = `${SHEET_SHADOW},0 10px 20px rgba(43,35,23,.13)`;
+
 export const SITE_CSS = `:root{${cssVars(TOKENS.light)}
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
   --cond:"Avenir Next Condensed","Arial Narrow","Helvetica Neue",Arial,sans-serif;
@@ -278,9 +290,7 @@ input[type=search]::-webkit-search-cancel-button{display:none}
    dans les lignes — crochets conservés). La feuille est réglée : la trame
    horizontale de 4px est celle des feuillets du dossier. */
 .table-scroll{overflow-x:auto;margin:0 0 1.5rem}
-.registry{background:var(--paper-sheet) repeating-linear-gradient(0deg,var(--paper-sheet) 0 4px,var(--paper-rule) 4px 8px);
-  border:1px solid var(--line-strong);
-  box-shadow:0 2px 0 rgba(43,35,23,.06),0 10px 20px rgba(43,35,23,.13)}
+.registry{${SHEET_TRAME};${SHEET_SHADOW_LIFTED}}
 .registry table{min-width:40rem}
 table{width:100%;border-collapse:collapse}
 caption{text-align:left;color:var(--muted);font-size:.78rem;padding:.6rem .8rem 0;caption-side:top}
@@ -416,9 +426,7 @@ tbody tr[hidden]{display:none}
   text-transform:uppercase;color:var(--ink-2)}
 
 /* ---------- feuillets et pièces ---------- */
-.sheet{background:var(--paper-sheet) repeating-linear-gradient(0deg,var(--paper-sheet) 0 4px,var(--paper-rule) 4px 8px);
-  border:1px solid var(--line-strong);position:relative;
-  box-shadow:0 2px 0 rgba(43,35,23,.06),0 10px 20px rgba(43,35,23,.13)}
+.sheet{${SHEET_TRAME};position:relative;${SHEET_SHADOW_LIFTED}}
 .piece-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
 /* L'onglet encré plein de la pièce, coin coupé au massicot. */
 .piece-tab{display:inline-block;background:var(--ink);color:var(--paper-sheet);
@@ -481,10 +489,9 @@ button:disabled{opacity:.5;cursor:default}
   text-transform:uppercase;color:var(--ink-2);font-weight:700}
 .prompt-actions{display:flex;flex-wrap:wrap;gap:.6rem}
 .prompt-caption{color:var(--muted);font-size:.8rem;margin:.7rem 0 0;max-width:var(--measure)}
-pre{background:var(--paper-sheet) repeating-linear-gradient(0deg,var(--paper-sheet) 0 4px,var(--paper-rule) 4px 8px);
-  border:1px solid var(--line-strong);padding:1rem 1.2rem;overflow-x:auto;font-size:.85rem;
+pre{${SHEET_TRAME};padding:1rem 1.2rem;overflow-x:auto;font-size:.85rem;
   line-height:1.8;font-family:var(--mono);white-space:pre-wrap;word-break:break-word;margin:0;
-  box-shadow:0 2px 0 rgba(43,35,23,.06)}
+  ${SHEET_SHADOW}}
 .status{font-size:.8rem;color:var(--muted);margin:.6rem 0 0;min-height:1.2em}
 
 /* ---------- pièces B et C : listes contrôlées, deux colonnes ---------- */
@@ -531,15 +538,17 @@ ul.plain{list-style:none;padding:0}
 
 /* ---------- répertoire des rubriques ---------- */
 /* Liste dense à points de conduite, pas une grille de cartes décorative
-   (spec §4) : le nom, la ligne pointillée, le compte. */
+   (spec §4) : le nom, la ligne pointillée, le compte. Toute la ligne est
+   cliquable — c'est le <a> qui porte le flex, .category-row (le <li>) ne
+   garde que la bordure et l'espacement verticaux. */
 .category-list{list-style:none;padding:0;margin:0 0 2rem;max-width:var(--wide)}
-.category-row{display:flex;align-items:baseline;gap:.5rem;padding:.45em 0;
-  border-bottom:1px dotted var(--line);margin:0}
-.category-row a{text-decoration:none;font-weight:600}
+.category-row{border-bottom:1px dotted var(--line);margin:0}
+.category-row a{display:flex;align-items:baseline;gap:.5rem;padding:.45em 0;
+  text-decoration:none;font-weight:600}
 .category-row a:hover{text-decoration:underline dotted}
 .leader{flex:1;min-width:2rem;border-bottom:1px dotted var(--line-strong);
   align-self:flex-end;margin:0 .2em .35em}
-.category-count{color:var(--muted);font-size:.8rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.category-count{color:var(--muted);font-size:.8rem;font-weight:400;font-variant-numeric:tabular-nums;white-space:nowrap}
 
 /* ---------- état récapitulatif (accueil) ---------- */
 .recap{display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem 2rem;padding:1.2rem 1.5rem 1.3rem}
@@ -645,7 +654,7 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
    gagnait une barre de défilement horizontale et le nom était tronqué. Même
    arithmétique dans la grille à deux colonnes du repli à 390px. */
 .sp-card{display:flex;flex-direction:column;gap:.35rem;flex:1 1 0;min-height:6.5rem;
-  padding:.7rem .8rem;border:1px solid var(--rule);border-radius:.4rem;
+  padding:.7rem .8rem;border:1px solid var(--rule);
   background:var(--card);text-decoration:none;font-size:.8rem;overflow-wrap:anywhere}
 .sp-card.open{border-style:dashed;background:none;justify-content:center;text-align:center}
 /* Emplacement vendu dont la créa n'est pas encore commitée : ni carte de
@@ -724,7 +733,7 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
    ligne rétrécissait sa case et faisait bouger toute la grille sous les yeux
    de l'acheteur, au pire moment. */
 .sp-inv-item{display:flex;align-items:center;gap:.4em;padding:.3em .7em;min-height:2.1rem;
-  border:1px solid var(--rule);border-radius:.35em;background:var(--card);font-size:.78rem}
+  border:1px solid var(--rule);background:var(--card);font-size:.78rem}
 .sp-inv-item.open{border-style:dashed}
 .sp-inv-slot{font-family:var(--mono);font-weight:700;color:var(--ink)}
 .sp-inv-state{font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
@@ -744,7 +753,7 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
    plutôt qu'aplat : vingt boutons pleins feraient un mur, et surtout aucune
    couleur saturée n'entre ici — le vert/ambre/rouge reste au badge de verdict
    (principe 1). Il est rendu \`hidden\` et n'apparaît que si site.js l'active. */
-.sp-inv-buy{margin-left:auto;font-size:.68rem;line-height:1;padding:.4em .7em;border-radius:.3em;
+.sp-inv-buy{margin-left:auto;font-size:.68rem;line-height:1;padding:.4em .7em;
   border:1px solid var(--ink);background:transparent;color:var(--ink);
   font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
 .sp-inv-buy:hover:not(:disabled){opacity:1;background:color-mix(in srgb,var(--ink) 8%,transparent)}
@@ -755,7 +764,7 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
 .sp-inv-status{margin:0 0 1.4rem;font-size:.82rem;color:var(--muted);max-width:var(--measure)}
 .sp-inv-status:empty{margin:0}
 
-.sp-duration{border:1px solid var(--rule);border-radius:.5em;background:var(--card);
+.sp-duration{border:1px solid var(--rule);background:var(--card);
   padding:.7rem 1rem .9rem;margin:0 0 1.4rem;max-width:var(--measure)}
 .sp-duration legend{font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;
   color:var(--muted);font-weight:700;padding:0 .4em}
@@ -768,17 +777,17 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
    aucun paiement, elle en accuse le retour. */
 .sp-paid-note{margin:0 0 clamp(2rem,5vh,3rem);padding:.9rem 1.1rem;font-size:.85rem;
   background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--ink);
-  border-radius:0 .4em .4em 0;max-width:var(--measure)}
+  max-width:var(--measure)}
 
 /* .sp-ladder réutilise les règles génériques de \`table\`/\`caption\`/\`th,td\`
    définies plus haut (bordures de cellule, en-tête en petites capitales) —
    seules largeur et enveloppe sont propres à ce tableau compact à deux
    colonnes, qui n'a pas besoin des 40rem prévus pour la liste principale. */
-.sp-ladder{min-width:0;width:100%;border:1px solid var(--rule);border-radius:.5em;background:var(--card)}
+.sp-ladder{min-width:0;width:100%;border:1px solid var(--rule);background:var(--card)}
 .sp-ladder td:last-child,.sp-ladder th:last-child{text-align:right;font-variant-numeric:tabular-nums}
 
 .sp-contact{display:inline-flex;align-items:center;gap:.4em;font-size:.9rem;font-weight:700;
-  padding:.6em 1.1em;border:1px solid var(--ink);border-radius:.35em;
+  padding:.6em 1.1em;border:1px solid var(--ink);
   background:var(--ink);color:var(--paper);text-decoration:none}
 .sp-contact:hover{opacity:.85}
 
@@ -787,7 +796,7 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
 .stats-intro{color:var(--muted);max-width:var(--measure)}
 .stats-error{color:var(--no);font-weight:600}
 .stat-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:.8rem;margin:1.6rem 0}
-.stat-tile{background:var(--card);border:1px solid var(--rule);border-radius:.5em;padding:1rem;display:flex;flex-direction:column;gap:.2rem}
+.stat-tile{background:var(--card);border:1px solid var(--rule);padding:1rem;display:flex;flex-direction:column;gap:.2rem}
 .stat-value{font-size:1.9rem;font-weight:800;font-family:var(--sans);letter-spacing:-.02em}
 .stat-label{color:var(--muted);font-size:.82rem}
 .stat-note{color:var(--muted);font-size:.72rem;line-height:1.4}
@@ -797,13 +806,21 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
 .bar-list,.crawler-list{display:flex;flex-direction:column;gap:.35rem}
 .bar-row{display:grid;grid-template-columns:minmax(8rem,14rem) 1fr auto;gap:.6rem;align-items:center;font-size:.85rem}
 .bar-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.bar-track{background:color-mix(in srgb,var(--ink) 7%,transparent);border-radius:999px;height:.55rem;overflow:hidden}
-.bar-fill{display:block;height:100%;background:var(--accent);border-radius:999px}
+.bar-track{background:color-mix(in srgb,var(--ink) 7%,transparent);height:.55rem;overflow:hidden}
+.bar-fill{display:block;height:100%;background:var(--accent)}
 .bar-fill.yes{background:var(--yes)}.bar-fill.kinda{background:var(--kinda)}.bar-fill.no{background:var(--no)}
 .bar-value{color:var(--muted);font-variant-numeric:tabular-nums}
 .crawler-row{display:grid;grid-template-columns:minmax(9rem,16rem) 1fr auto;gap:.6rem;align-items:baseline;font-size:.85rem;border-bottom:1px dashed var(--rule);padding:.3rem 0}
 .crawler-vendor{color:var(--muted);font-size:.75rem;margin-left:.4rem}
 .crawler-counts{color:var(--muted);font-variant-numeric:tabular-nums}
 .stats-empty{color:var(--muted);font-style:italic}
+
+/* ---------- page privacy ---------- */
+/* public/privacy.html est statique, hors gabarit renderLayout, mais reste du
+   papier du même dossier : un encadré feuillet pour le résumé en tête, une
+   date de mise à jour discrète. Aucune couleur saturée, même registre que le
+   reste de la feuille. */
+.box{background:var(--paper-cartouche);border:1px solid var(--line);padding:1rem 1.2rem}
+.updated{color:var(--muted);font-size:.8rem}
 
 `;
