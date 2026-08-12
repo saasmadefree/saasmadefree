@@ -462,6 +462,20 @@ tbody tr[hidden]{display:none}
 .piece-head+.sheet{border-top:2px solid var(--ink)}
 .piece-no{font-family:var(--cond);font-size:.66rem;font-weight:700;letter-spacing:.12em;
   color:var(--ink-2);border:1px solid var(--line-strong);background:var(--paper-cartouche);padding:2px 6px}
+/* Rythme des pièces : c'est l'onglet encré (h2.piece-tab) qui rythme la page,
+   pas la marge d'imprimé du h2 — annulée dans la tête de pièce. Le feuillet
+   .piece-body rend au papier réglé la marge intérieure que la maquette donnait
+   à chaque pièce (ef-prompt/ef-losswrap/ef-why). */
+.piece{margin:0 0 2.6rem}
+.piece-head h2{margin:0}
+.piece-body{padding:1.25rem 1.5rem}
+/* Le résumé au filet de verdict (maquette ef-resume) : seul le filet en marge
+   porte l'encre du tampon — jamais le texte lui-même (spec §2). */
+.verdict-summary{border-left:3px solid var(--ink);padding:.15rem 0 .15rem 1.2rem;
+  max-width:var(--wide);margin:0 0 .9rem}
+.verdict-summary.yes{border-left-color:var(--stamp-yes)}
+.verdict-summary.kinda{border-left-color:var(--stamp-kinda)}
+.verdict-summary.no{border-left-color:var(--stamp-no)}
 
 /* ---------- fiche : signalétique ---------- */
 .tool-intro{margin-bottom:clamp(2.5rem,6vh,3.5rem)}
