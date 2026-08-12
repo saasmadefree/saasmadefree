@@ -2,9 +2,9 @@ const MONTHLY_SUFFIX = { en: '/mo', fr: '/mois' };
 
 /** Codes fermés de pricing.basis (schema/tool.schema.json) qui représentent un
  *  montant récurrent mensuel — "one-time" en est délibérément exclu. Exporté
- *  parce que le bandeau-ticker de l'accueil doit filtrer sur le même critère
- *  pour ne jamais afficher un "-$X/mo" à partir d'un prix qui n'est pas
- *  vraiment mensuel (voir scripts/lib/site-page-home.mjs). */
+ *  parce que les sommes de l'état récapitulatif de l'accueil (catalogueFigures,
+ *  mrrDestroyed — voir scripts/lib/site-data.mjs) filtrent sur le même critère
+ *  pour ne jamais additionner un prix qui n'est pas vraiment mensuel. */
 export const MONTHLY_BASES = new Set([
   'flat-monthly', 'per-seat-monthly', 'annual-effective-monthly', 'usage-based',
 ]);
@@ -49,11 +49,13 @@ export function interpolate(template, vars) {
   return String(template).replace(/\{(\w+)\}/g, (_, key) => (vars[key] ?? ''));
 }
 
-/** Découpe un montant arrondi en caractères individuels pour l'affichage en
- *  "digit boxes" du bandeau-ticker — un caractère par case, symbole monétaire
- *  et séparateurs de milliers compris. Le montant est arrondi au dollar/euro
- *  le plus proche pour cet affichage décoratif ; le texte accessible associé
- *  (voir mrrSrTemplate) garde le montant exact via formatMoney. */
+/** Découpe un montant arrondi en caractères individuels pour un affichage en
+ *  "digit boxes" — un caractère par case, symbole monétaire et séparateurs de
+ *  milliers compris. Le montant est arrondi au dollar/euro le plus proche pour
+ *  cet affichage décoratif ; le texte accessible associé doit garder le
+ *  montant exact via formatMoney. Plus aucun gabarit ne la consomme depuis le
+ *  bordereau général (l'accueil affiche le MRR via formatMoney) — conservée
+ *  ici en attendant que la revue de branche tranche son sort. */
 export function formatMoneyDigits(amount, currency, lang) {
   const rounded = Math.round(amount);
   const formatted = new Intl.NumberFormat(lang, {

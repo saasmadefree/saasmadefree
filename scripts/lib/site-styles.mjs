@@ -136,6 +136,12 @@ h1 .blank,.hero-blank{display:inline-block;min-width:8ch;border:1.5px solid var(
   padding:0 .5em .1em;line-height:1.4;vertical-align:-2px}
 h1 .blank em,.hero-blank em{font-family:var(--hand);font-style:italic;font-size:.9em;
   letter-spacing:.08em;color:var(--ink-3)}
+/* Les trois feuillets du bordereau (héro, cadre recherche, état récapitulatif)
+   sont posés l'un sous l'autre sur le bureau : .sheet fournit la matière
+   (cadre, réglure), ces règles ne fixent que l'espace — le rythme vertical
+   qui vivait dans les composants disparus (.search-combo seul, .figures-band). */
+.hero{padding:1.6rem 1.6rem 1rem}
+.hero,.search-frame,.recap{margin:0 0 clamp(1.5rem,4vh,2.25rem)}
 
 /* ---------- chrome : bandeau de service, marque, cartouche ---------- */
 .service-band{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.4rem 1.2rem;
@@ -264,7 +270,10 @@ input[type=search]::-webkit-search-cancel-button{display:none}
 /* Sort volontairement du conteneur .page. Le débord est ancré sur .col-main
    (container-type:inline-size) et non sur la fenêtre : sans rails, .col-main
    occupe toute la fenêtre et 100cqw vaut 100vw ; avec rails, le bandeau
-   s'arrête à la gouttière au lieu de passer dessous. */
+   s'arrête à la gouttière au lieu de passer dessous. Plus aucun gabarit ne
+   l'émet depuis le bordereau général (l'accueil est passé à .recap) : le bloc
+   reste la référence du débord en cqw (voir tests/site-shell.test.mjs) en
+   attendant que la revue de branche tranche son sort. */
 .figures-band{width:100cqw;margin-left:calc(50% - 50cqw);margin-right:calc(50% - 50cqw);
   background:var(--paper-cartouche);border-top:1px solid var(--line-strong);
   border-bottom:1px solid var(--line-strong);padding:1.25rem 0;

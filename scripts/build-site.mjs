@@ -68,9 +68,12 @@ async function main() {
   const data = await loadData(process.cwd());
   const { tools, i18n, ui, categories, agents } = data;
 
-  // Date du build : c'est elle qui décide qu'un placement est actif. Un
-  // placement échu disparaît donc au prochain build, sans aucune action —
-  // d'où le build planifié quotidien (voir le plan 2).
+  // Date du build : c'est elle qui décide qu'un placement sponsor est actif
+  // (un placement échu disparaît au prochain build, sans aucune action —
+  // d'où le build planifié quotidien, voir le plan 2), et c'est elle que
+  // l'accueil affiche en « État arrêté le » dans sa cartouche. Calculée UNE
+  // fois ici, jamais dans un gabarit : toutes les pages d'un même build
+  // portent la même date.
   const today = new Date().toISOString().slice(0, 10);
 
 
@@ -133,8 +136,8 @@ async function main() {
     throw new Error("Aucune langue n'est déclarée par une fiche data/tools/*.json — rien à générer.");
   }
 
-  // Chiffres réels du catalogue (bandeau "figures" de l'accueil) et dépense
-  // mensuelle représentée par les votes enregistrés (bandeau-ticker) — voir
+  // Chiffres réels du catalogue et dépense mensuelle représentée par les
+  // votes enregistrés (état récapitulatif de l'accueil) — voir
   // la règle d'honnêteté du projet : jamais un chiffre inventé, et `null`
   // plutôt qu'un zéro qui se ferait passer pour une donnée quand le service
   // de vote n'a pas répondu.
@@ -216,7 +219,7 @@ async function main() {
       join(OUT, lang, 'index.html'),
       renderHomePage({
         lang, path: homePath, toolViews, topCategorySlugs, categories, voteCounts, favicons, figures, mrrTotal,
-        ui: langUi, alternates: homeAlt, xDefaultPath: homeXDefault, sponsorSlots,
+        ui: langUi, alternates: homeAlt, xDefaultPath: homeXDefault, sponsorSlots, buildDate: today,
       })
     );
     sitemapPages.push({ path: homePath });

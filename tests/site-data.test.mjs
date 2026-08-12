@@ -2,7 +2,7 @@ import { describe, it, expect, afterEach, vi } from 'vitest';
 import {
   siteLanguages, toolsForLang, sortTools, categoriesForLang, categoryLabel,
   categoryEmoji, langsForCategory, fetchVoteCounts, VOTES_FEED_URL,
-  catalogueFigures, mrrDestroyed, fetchStats, STATS_API_URL,
+  catalogueFigures, mrrDestroyed, oldestCheckedOn, fetchStats, STATS_API_URL,
   fetchSponsorSlots, SPONSOR_SLOTS_API_URL, SPONSOR_CHECKOUT_API_URL,
 } from '../scripts/lib/site-data.mjs';
 
@@ -295,5 +295,23 @@ describe('mrrDestroyed', () => {
 
   it('ignore un basis non mensuel même si le slug a des votes', () => {
     expect(mrrDestroyed(tools, { c: 5 })).toBe(0);
+  });
+});
+
+describe('oldestCheckedOn', () => {
+  it('renvoie la vérification la plus ancienne — la garantie plancher', () => {
+    const tools = new Map([
+      ['a', { pricing: { checkedOn: '2026-07-30' } }],
+      ['b', { pricing: { checkedOn: '2026-07-28' } }],
+    ]);
+    expect(oldestCheckedOn(tools)).toBe('2026-07-28');
+  });
+
+  it('accepte aussi un tableau de vues (Array.prototype.values) — la forme reçue par renderHomePage', () => {
+    const views = [
+      { pricing: { checkedOn: '2026-07-30' } },
+      { pricing: { checkedOn: '2026-07-28' } },
+    ];
+    expect(oldestCheckedOn(views)).toBe('2026-07-28');
   });
 });
