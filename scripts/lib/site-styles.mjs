@@ -158,11 +158,8 @@ h1 .blank em,.hero-blank em{font-family:var(--hand);font-style:italic;font-size:
 .brand-mark{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
   border:2px solid var(--ink);box-shadow:inset 0 0 0 3px var(--paper-desk),inset 0 0 0 4px var(--ink);
   font-family:var(--cond);font-weight:700;font-size:.7rem;letter-spacing:.06em;flex:none}
-.brand-block{display:flex;flex-direction:column;gap:2px}
 .brand{font-family:var(--cond);font-weight:700;font-size:1.05rem;text-transform:uppercase;
   letter-spacing:.15em;white-space:nowrap;text-decoration:none;color:var(--ink)}
-.brand-sub{font-family:var(--cond);font-size:.66rem;font-weight:600;text-transform:uppercase;
-  letter-spacing:.18em;color:var(--muted)}
 .nav-links{list-style:none;display:flex;align-items:baseline;gap:.9rem;padding:0;
   margin:0 0 0 auto;font-family:var(--cond);font-size:.76rem;font-weight:600;
   text-transform:uppercase;letter-spacing:.13em;flex-wrap:wrap}
@@ -269,25 +266,6 @@ input[type=search]::-webkit-search-cancel-button{display:none}
 .verdict-chip:hover{border-color:var(--ink)}
 .verdict-chip.is-active{background:var(--paper-cartouche);box-shadow:inset 2px 0 0 var(--pen)}
 
-/* ---------- bandeau de chiffres, pleine largeur ---------- */
-/* Sort volontairement du conteneur .page. Le débord est ancré sur .col-main
-   (container-type:inline-size) et non sur la fenêtre : sans rails, .col-main
-   occupe toute la fenêtre et 100cqw vaut 100vw ; avec rails, le bandeau
-   s'arrête à la gouttière au lieu de passer dessous. Plus aucun gabarit ne
-   l'émet depuis le bordereau général (l'accueil est passé à .recap) : le bloc
-   reste la référence du débord en cqw (voir tests/site-shell.test.mjs) en
-   attendant que la revue de branche tranche son sort. */
-.figures-band{width:100cqw;margin-left:calc(50% - 50cqw);margin-right:calc(50% - 50cqw);
-  background:var(--paper-cartouche);border-top:1px solid var(--line-strong);
-  border-bottom:1px solid var(--line-strong);padding:1.25rem 0;
-  margin-top:clamp(1.75rem,4vh,2.5rem);margin-bottom:clamp(1.75rem,4vh,2.5rem)}
-.figures-list{list-style:none;margin:0 auto;padding:0 clamp(1rem,5vw,2.5rem);max-width:62rem;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:1rem 1.5rem;text-align:center}
-.figure{display:flex;flex-direction:column;gap:.35rem}
-.figure-value{font-family:var(--cond);font-weight:700;letter-spacing:.02em;
-  font-size:clamp(1.2rem,.9rem + 1.4vw,1.8rem);font-variant-numeric:tabular-nums}
-.figure-caption{font-size:.7rem;color:var(--muted);letter-spacing:.02em}
-
 /* ---------- tête de section du registre ---------- */
 .list-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
   gap:.5rem 1.5rem;margin:0 0 .8rem;border-bottom:2px solid var(--ink);padding-bottom:.5rem}
@@ -335,15 +313,13 @@ tbody tr[hidden]{display:none}
 #tool-rows td.rank::before{content:counter(row,decimal-leading-zero)}
 #no-results{color:var(--muted)}
 
-/* ---------- tampons, cachets, visas ---------- */
+/* ---------- tampons, cachets ---------- */
 /* Un tampon est une bordure de sa propre encre (currentColor) : la couleur ne
    se pose jamais en aplat sous du texte, et les encres de verdict ne colorent
    que le verdict. Rotations ≤ 8°, réservées aux tampons. */
 .stamp{display:inline-block;border:3px solid currentColor;outline:1px solid currentColor;
   outline-offset:2px;font-family:var(--cond);font-weight:700;text-transform:uppercase;
   text-align:center;white-space:nowrap}
-.stamp-date{color:var(--ink-2);font-size:.7rem;letter-spacing:.2em;line-height:1.7;
-  padding:9px 12px 9px 16px;transform:rotate(-3deg)}
 .stamp-verif{color:var(--ink-2);font-size:.66rem;letter-spacing:.2em;padding:7px 11px;
   transform:rotate(4deg)}
 .stamp-sub{display:block;font-size:.56rem;letter-spacing:.18em;margin-top:6px;
@@ -369,19 +345,12 @@ tbody tr[hidden]{display:none}
   transform:rotate(7deg);position:relative;flex:none}
 .date-ring::before{content:"";position:absolute;inset:7px;border:1px solid var(--stamp-date);border-radius:50%}
 .date-ring strong{font-size:.82rem;letter-spacing:.06em;white-space:nowrap;margin:1px 0}
-.visa{display:inline-block;border:2px solid var(--ink-2);color:var(--ink-2);
-  font-family:var(--cond);font-size:.6rem;font-weight:700;letter-spacing:.18em;
-  text-transform:uppercase;padding:4px 9px;transform:rotate(-4deg);margin:0 0 .9rem}
-.piece-stamp{margin-left:auto;border:2px solid var(--ink-2);color:var(--ink-2);
-  font-family:var(--cond);font-size:.6rem;font-weight:700;letter-spacing:.2em;
-  text-transform:uppercase;padding:4px 9px;transform:rotate(-3deg)}
 
 /* ---------- la main du contrôleur ---------- */
 /* Tout ce qui est en --pen est ce qu'un contrôleur aurait écrit à la main —
    et rien d'autre. Rotations ≤ 1.5°, jamais sur plus de deux lignes. */
 .pen-line{display:inline-block;font-family:var(--hand);font-style:italic;color:var(--pen);
   font-size:.85rem;line-height:1.55;transform:rotate(-.5deg)}
-.pen-vu{font-family:var(--hand);font-style:italic;color:var(--pen);font-size:.76rem;margin-left:7px}
 .pen-note{font-family:var(--hand);font-style:italic;color:var(--pen);font-size:.85rem;
   line-height:1.55;margin:0 0 .85rem;padding-left:15px;position:relative;
   transform:rotate(-.6deg);max-width:var(--measure)}
@@ -389,13 +358,10 @@ tbody tr[hidden]{display:none}
 .paraphe{display:inline-block;font-family:var(--hand);font-style:italic;color:var(--pen);
   font-size:1.3rem;font-weight:700;letter-spacing:.05em;transform:rotate(-6deg);
   border-bottom:2px solid var(--pen);padding:0 6px 2px;margin-left:10px}
-.paraphe-sm{display:inline-block;font-family:var(--hand);font-style:italic;color:var(--pen);
-  font-size:.9rem;font-weight:700;transform:rotate(-5deg)}
 /* Le souligné main porte un second trait translucide : un double passage de
    stylo, pas une ombre portée (spec §2). */
 .hand-underline{border-bottom:2px solid var(--pen);
   box-shadow:0 2px 0 color-mix(in srgb,var(--pen) 30%,transparent)}
-.hl-mark{background:var(--hl);box-shadow:0 0 0 3px var(--hl);color:var(--ink)}
 
 /* ---------- cases à cocher du dossier ---------- */
 /* Deux échelles, deux encres (spec §2) : la petite coche de suivi est au stylo
@@ -428,7 +394,6 @@ tbody tr[hidden]{display:none}
 .folder-stamps{display:flex;align-items:center;gap:1.4rem;flex:none;padding:10px 8px 0 0}
 .folder-foot{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem 1.1rem;margin:1.6rem 0 0;
   padding-top:1rem;border-top:1px dashed var(--line-strong)}
-.folder-footnote{font-size:.72rem;color:var(--ink-2);margin-left:auto;max-width:46ch}
 
 /* ---------- artefacts physiques ---------- */
 /* Trombone, perforations, code-barres : CSS pur, toujours aria-hidden, jamais
@@ -460,8 +425,6 @@ tbody tr[hidden]{display:none}
   font-family:var(--cond);font-size:.66rem;font-weight:700;letter-spacing:.2em;
   text-transform:uppercase;padding:8px 26px 8px 16px;
   clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%)}
-.piece-meta{display:inline-flex;align-items:center;gap:8px;font-family:var(--cond);
-  font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--ink-2)}
 .piece-head+.sheet{border-top:2px solid var(--ink)}
 .piece-no{font-family:var(--cond);font-size:.66rem;font-weight:700;letter-spacing:.12em;
   color:var(--ink-2);border:1px solid var(--line-strong);background:var(--paper-cartouche);padding:2px 6px}
@@ -590,15 +553,6 @@ ul.plain{list-style:none;padding:0}
 /* Repli quand le service de vote est muet au build : du texte à la taille des
    mentions du récap, pas un artefact. */
 .recap-unavailable{color:var(--muted);font-size:.8rem;margin:0}
-/* La barre de répartition des verdicts : trois segments aux encres de tampon —
-   du verdict, donc dans leur droit — séparés par un filet de papier. */
-.recap-dist-wrap{flex:1;min-width:min(100%,220px)}
-.recap-dist{display:flex;height:13px;border:1px solid var(--ink);margin:8px 0 7px;
-  background:var(--paper-sheet)}
-.recap-seg-yes{background:var(--stamp-yes)}
-.recap-seg-kinda{background:var(--stamp-kinda);border-inline:1px solid var(--paper-sheet)}
-.recap-seg-no{background:var(--stamp-no)}
-.recap-legend{margin:0;font-size:.78rem;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline}
 .recap-stamps{display:flex;align-items:center;gap:1.2rem;margin-left:auto;padding:4px 6px}
 
 /* ---------- signature du bordereau ---------- */

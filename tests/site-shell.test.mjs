@@ -45,9 +45,13 @@ describe('débord pleine largeur', () => {
     expect(SITE_CSS).not.toMatch(/calc\(\s*50%\s*-\s*50vw\s*\)/);
   });
 
-  it('ancre le débord sur le conteneur de requête', () => {
+  // L'assertion 100cqw a été retirée avec .figures-band (ramassage CSS mort,
+  // chore/dossier-post-merge) : c'était l'unique sélecteur de la feuille à
+  // consommer cette unité, donc rien d'autre ne justifie plus de la tester
+  // ici. container-type:inline-size reste sur .col-main — infrastructure
+  // conservée pour un futur débord, pas un dead code à retirer avec elle.
+  it('garde le conteneur de requête, infrastructure d’un futur débord', () => {
     expect(SITE_CSS).toContain('container-type:inline-size');
-    expect(SITE_CSS).toMatch(/width:\s*100cqw/);
   });
 
   it('déplace le padding horizontal de body vers .page, sinon 100cqw < 100vw', () => {

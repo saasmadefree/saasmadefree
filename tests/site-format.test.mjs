@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   formatMoney, formatMonthlyPrice, formatDate, interpolate, pluralize,
-  formatMoneyDigits, monthlySuffix, MONTHLY_BASES, formatStampDate,
+  monthlySuffix, MONTHLY_BASES, formatStampDate,
 } from '../scripts/lib/site-format.mjs';
 
 describe('formatMoney', () => {
@@ -90,19 +90,5 @@ describe('monthlySuffix', () => {
     expect(monthlySuffix('en')).toBe('/mo');
     expect(monthlySuffix('fr')).toBe('/mois');
     expect(monthlySuffix('xx')).toBe('/mo');
-  });
-});
-
-describe('formatMoneyDigits', () => {
-  it('découpe le montant arrondi en un caractère par case, symbole compris', () => {
-    expect(formatMoneyDigits(47, 'USD', 'en')).toEqual(['$', '4', '7']);
-  });
-
-  it('arrondit au lieu de garder les décimales', () => {
-    expect(formatMoneyDigits(47.6, 'USD', 'en')).toEqual(['$', '4', '8']);
-  });
-
-  it('inclut les séparateurs de milliers comme cases à part entière', () => {
-    expect(formatMoneyDigits(3065, 'USD', 'en')).toEqual(['$', '3', ',', '0', '6', '5']);
   });
 });

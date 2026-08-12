@@ -49,21 +49,6 @@ export function interpolate(template, vars) {
   return String(template).replace(/\{(\w+)\}/g, (_, key) => (vars[key] ?? ''));
 }
 
-/** Découpe un montant arrondi en caractères individuels pour un affichage en
- *  "digit boxes" — un caractère par case, symbole monétaire et séparateurs de
- *  milliers compris. Le montant est arrondi au dollar/euro le plus proche pour
- *  cet affichage décoratif ; le texte accessible associé doit garder le
- *  montant exact via formatMoney. Plus aucun gabarit ne la consomme depuis le
- *  bordereau général (l'accueil affiche le MRR via formatMoney) — conservée
- *  ici en attendant que la revue de branche tranche son sort. */
-export function formatMoneyDigits(amount, currency, lang) {
-  const rounded = Math.round(amount);
-  const formatted = new Intl.NumberFormat(lang, {
-    style: 'currency', currency, minimumFractionDigits: 0, maximumFractionDigits: 0,
-  }).format(rounded);
-  return [...formatted];
-}
-
 function isSingular(count, lang) {
   return lang === 'fr' ? count <= 1 : count === 1;
 }
