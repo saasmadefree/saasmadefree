@@ -306,6 +306,10 @@ async function main() {
           ui: langUi, alternates: toolAlt, xDefaultPath: xDefaultOf(toolAlt), homePath,
           categoryPath: `/${lang}/categories/${tool.category}`,
           relatedTools, voteCount: voteCountFor(voteCounts, tool.slug), favicons, agents, sponsorSlots,
+          // Déjà câblée pour la fiche en pièce d'instruction (tampon verdict
+          // daté du build) : renderToolPage l'ignore tant que son gabarit ne
+          // la lit pas — même date unique que l'accueil, calculée dans main().
+          buildDate: today,
         })
       );
       sitemapPages.push({ path: toolPath, lastmod: tool.pricing.checkedOn });
