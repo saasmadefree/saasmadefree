@@ -61,6 +61,23 @@
         "desc": "Continue de payer. La valeur, c’est le réseau, les données ou la conformité — aucun prompt ne remplace ça."
       }
     },
+    "dossier": {
+      "serviceName": "Service de l'instruction des abonnements",
+      "registryLabel": "Registre",
+      "fileLabel": "Dossier",
+      "receivedOn": "Reçu le",
+      "instructedOn": "Instruit le",
+      "verifiedOn": "Vérifié le",
+      "verdictRecordedOn": "Verdict enregistré le",
+      "pricesVerifiedSince": "Prix tous vérifiés depuis le",
+      "statusArrestedOn": "État arrêté le",
+      "distributionLabel": "Diffusion",
+      "pieceTemplate": "Pièce {letter}",
+      "piecesAnnexed": "Pièces annexées",
+      "trackingHeading": "Bordereau de suivi des pièces",
+      "searchFrameHeading": "Recherche au registre",
+      "receiptHeading": "Récépissé"
+    },
     "home": {
       "titleTag": "SaaS Made Free — quels abonnements ne tiennent qu’à un prompt ?",
       "metaDescription": "Quels abonnements SaaS un agent IA pourrait-il reconstruire pour toi — et lesquels vaut-il mieux continuer à payer ?",
@@ -78,7 +95,7 @@
       "listCaption": "Tous les outils publiés pour l’instant, triés par votes.",
       "colName": "Outil",
       "colCategory": "Catégorie",
-      "colPrice": "Prix mensuel",
+      "colPrice": "Prix",
       "colVerdict": "Verdict",
       "colVotes": "Votes",
       "noResults": "Aucun outil ne correspond à cette recherche.",
@@ -89,7 +106,6 @@
       "searchClearLabel": "Effacer la recherche",
       "searchResultsLabel": "Résultats de recherche",
       "searchViewAllTemplate": "↓ Voir les {count} résultats dans l’annuaire",
-      "tickerAriaLabel": "Prix du catalogue, défilement",
       "mrrLabel": "Dépense mensuelle représentée par les votes enregistrés jusqu’ici",
       "mrrSrTemplate": "{amount} par mois représentés par les votes enregistrés jusqu’ici",
       "mrrUnavailable": "Chiffre en direct indisponible pour l’instant.",
@@ -185,7 +201,8 @@
       "titleTag": "Page introuvable — SaaS Made Free",
       "metaDescription": "Cette page n’existe pas. Parcourez l’annuaire des abonnements SaaS qu’un agent de code peut remplacer.",
       "heading": "Cette page n’existe pas",
-      "body": "L’outil a peut-être été retiré du catalogue, ou l’adresse est incorrecte."
+      "body": "L’outil a peut-être été retiré du catalogue, ou l’adresse est incorrecte.",
+      "stamp": "SANS OBJET"
     },
     "sponsor": {
       "openLabel": "Slot libre",

@@ -1,6 +1,6 @@
 import { escapeHtml, renderLayout, renderBreadcrumb } from './site-html.mjs';
 import { categoryLabel } from './site-data.mjs';
-import { interpolate } from './site-format.mjs';
+import { interpolate, pluralize } from './site-format.mjs';
 import { renderToolTable } from './site-table.mjs';
 import { organizationJsonLd, itemListJsonLd, breadcrumbJsonLd } from './site-seo.mjs';
 
@@ -9,10 +9,12 @@ export function renderCategoryPage({
   sponsorSlots,
 }) {
   const s = ui.site;
+  const c = ui.categoriesIndex;
   const label = categoryLabel(categories, categorySlug, lang);
   const heading = interpolate(s.category.heading, { category: label });
   const title = interpolate(s.category.titleTemplate, { category: label });
   const description = interpolate(s.category.metaDescriptionTemplate, { category: label });
+  const tally = pluralize(toolViews.length, lang, c.toolCountOne, c.toolCountOther);
 
   const breadcrumbItems = [
     { label: s.directoryLabel, href: homePath },
@@ -22,7 +24,10 @@ export function renderCategoryPage({
   const table = renderToolTable(toolViews, { lang, ui, categories, voteCounts, favicons });
 
   const main = `    ${renderBreadcrumb(breadcrumbItems)}
-    <h1>${escapeHtml(heading)}</h1>
+    <div class="sheet piece-body">
+      <h1>${escapeHtml(heading)}</h1>
+      <p class="category-count">${escapeHtml(tally)}</p>
+    </div>
 ${table}`;
 
   return renderLayout({

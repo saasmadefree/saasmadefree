@@ -1,7 +1,10 @@
-import { escapeHtml, renderLayout, renderBreadcrumb, verdictBadge } from './site-html.mjs';
+import {
+  escapeHtml, renderLayout, renderBreadcrumb, verdictBadge, stamp, dateRing, verdictChecks,
+} from './site-html.mjs';
 import { categoryLabel, categoryEmoji, SITE_ORIGIN } from './site-data.mjs';
 import {
-  formatMoney, formatMonthlyPrice, formatDate, interpolate, pluralize, MONTHLY_BASES,
+  formatMoney, formatMonthlyPrice, formatDate, formatStampDate, interpolate, pluralize,
+  MONTHLY_BASES,
 } from './site-format.mjs';
 import {
   organizationJsonLd, faqPageJsonLd, breadcrumbJsonLd,
@@ -92,10 +95,11 @@ function renderMetaRow(tool, lang, ui, categories, voteCount, categoryPath) {
 
 export function renderToolPage({
   lang, path, tool, i18nEntry, categories, ui, alternates, xDefaultPath, homePath,
-  categoryPath, relatedTools, voteCount, favicons, agents, sponsorSlots,
+  categoryPath, relatedTools, voteCount, favicons, agents, sponsorSlots, buildDate,
 }) {
   const s = ui.site;
   const t = s.tool;
+  const d = s.dossier;
   const verdict = s.verdicts[tool.verdict];
   const catLabel = categoryLabel(categories, tool.category, lang);
   const catEmoji = categoryEmoji(categories, tool.category);
@@ -103,7 +107,19 @@ export function renderToolPage({
 
   const title = interpolate(t.titleTemplate, { name: tool.name });
   const description = interpolate(t.metaDescriptionTemplate, { name: tool.name });
-  const h1 = interpolate(t.h1Template, { name: tool.name });
+
+  // La cote du dossier est le slug, stable et parlant — JAMAIS un numéro
+  // séquentiel (spec §10.1 : le « n° 002 » de la maquette est un artefact de
+  // specimen, pas une donnée ; un numéro d'ordre changerait à chaque insertion).
+  const cote = `SMF·${tool.slug.toUpperCase()}`;
+
+  // Le nom de l'outil est souligné à la main dans la question du titre
+  // (maquette ef-us) : on découpe le gabarit autour de {name} pour envelopper
+  // le nom seul, chaque morceau échappé séparément.
+  const [h1Before, h1After] = String(t.h1Template).split('{name}');
+  const h1 = h1After === undefined
+    ? escapeHtml(interpolate(t.h1Template, { name: tool.name }))
+    : `${escapeHtml(h1Before)}<span class="hand-underline">${escapeHtml(tool.name)}</span>${escapeHtml(h1After)}`;
 
   const breadcrumbItems = [
     { label: s.directoryLabel, href: homePath },
@@ -111,27 +127,153 @@ export function renderToolPage({
     { label: tool.name, href: path },
   ];
 
+  const whyHeading = interpolate(t.whyPeopleStillPayHeadingTemplate, { moat: tool.moatType });
+
+  // La table des pièces EST la liste des sections réellement rendues : le
+  // bordereau de suivi et les renvois croisés en dérivent tous, donc aucun
+  // renvoi ne peut pointer vers une pièce absente de la page.
+  const pieces = [
+    { letter: 'A', heading: t.promptHeading, id: 'prompt-heading' },
+    { letter: 'B', heading: t.whatYouLoseHeading, id: 'lose-heading' },
+    { letter: 'C', heading: whyHeading, id: 'why-heading' },
+  ];
+  const pieceLabel = (letter) => interpolate(d.pieceTemplate, { letter });
+
   const metaRow = renderMetaRow(tool, lang, ui, categories, voteCount, categoryPath);
 
+  // ---- chemise ------------------------------------------------------------
+  // L'onglet porte la rubrique, le tampon verdict est daté du build (la date à
+  // laquelle le service a arrêté ce verdict), le dateur rond porte la SEULE
+  // occurrence tamponnée de la date du relevé de prix (spec : un porteur par page).
+  const folderStamps = `<div class="folder-stamps">
+        <div>
+          ${verdictBadge(tool.verdict, verdict.label, 'badge-lg')}
+          <span class="stamp-sub">${escapeHtml(`${d.verdictRecordedOn} ${formatStampDate(buildDate)}`)}</span>
+        </div>
+        ${dateRing(d.verifiedOn, formatStampDate(tool.pricing.checkedOn))}
+      </div>`;
+
+  const folder = `    <div class="folder">
+      <span class="folder-tab">${catEmoji ? `${catEmoji} ` : ''}${escapeHtml(catLabel)}</span>
+      <span class="paper-clip" aria-hidden="true"></span>
+      <span class="hole hole-a" aria-hidden="true"></span>
+      <span class="hole hole-b" aria-hidden="true"></span>
+      <div class="folder-top">
+        <div class="folder-id">
+          <h1><img class="tool-favicon" src="${escapeHtml(favicon)}" alt="" width="40" height="40"> ${h1}</h1>
+          <p class="tagline">${catEmoji ? `${catEmoji} ` : ''}<a href="${categoryPath}">${escapeHtml(catLabel)}</a>${tool.subcategory ? ` — ${escapeHtml(tool.subcategory)}` : ''}</p>
+        </div>
+        ${folderStamps}
+      </div>
+      <dl class="meta-row">
+${metaRow}
+      </dl>
+      <p class="pen-note">${escapeHtml(t.priceSourceLabel)}: <a href="${escapeHtml(tool.pricing.source)}">${escapeHtml(sourceHost(tool.pricing.source))}</a></p>
+      ${verdictChecks(tool.verdict, s.verdicts, verdict.label)}
+      <div class="folder-foot">
+        <span class="barcode" aria-hidden="true"></span>
+        <span class="barcode-label">${escapeHtml(`${cote} — ${tool.name}`)}</span>
+      </div>
+    </div>`;
+
+  // ---- bordereau de suivi -------------------------------------------------
+  // Une ligne par pièce rendue + la ligne Questions : le renvoi est la lettre
+  // de pièce, la coche au stylo est décorative (le contenu suit juste après).
+  const slipRows = [...pieces, { letter: 'Q', heading: t.faqHeading, id: 'faq-heading' }]
+    .map(({ letter, heading, id }) => `            <tr>
+              <th scope="row"><a href="#${id}">${escapeHtml(pieceLabel(letter))}</a></th>
+              <td>${escapeHtml(heading)}</td>
+              <td><span class="pen-check" aria-hidden="true"></span></td>
+            </tr>`)
+    .join('\n');
+
+  const trackingSlip = `    <section class="tracking-slip" aria-labelledby="tracking-heading">
+      <div class="piece-head">
+        <h2 class="piece-tab" id="tracking-heading">${escapeHtml(d.trackingHeading)}</h2>
+      </div>
+      <div class="sheet">
+        <table>
+          <tbody>
+${slipRows}
+          </tbody>
+        </table>
+      </div>
+    </section>`;
+
+  // ---- pièces -------------------------------------------------------------
+  // Chaque tête de pièce est l'onglet encré « Pièce X — Intitulé » : c'est le
+  // h2 lui-même qui porte l'id d'ancre, cible unique des renvois croisés.
+  const pieceHead = ({ letter, heading, id }, extra = '') => `      <div class="piece-head">
+        <h2 class="piece-tab" id="${id}">${escapeHtml(`${pieceLabel(letter)} — ${heading}`)}</h2>${extra ? `
+        ${extra}` : ''}
+      </div>`;
+
+  const promptUrl = `/feed/${FEED_VERSION}/${lang}/prompts/${tool.slug}.txt`;
+  const agentCtx = {
+    prompt: i18nEntry.prompt,
+    prompt_url: `${SITE_ORIGIN}${promptUrl}`,
+    lang,
+    slug: tool.slug,
+  };
+  const agentButtons = renderAgentButtons(agents, agentCtx, t);
+
+  const pieceA = `    <section aria-labelledby="prompt-heading" class="piece tool-block-prompt">
+${pieceHead(pieces[0], stamp('verif', [d.receivedOn, formatStampDate(tool.pricing.checkedOn)]))}
+      <div class="prompt-block">
+        <div class="prompt-header">
+          <div class="prompt-actions">
+            <button id="copy-prompt" class="copy-btn" type="button" hidden
+              data-copied-label="${escapeHtml(t.copiedButton)}"
+              data-fail-label="${escapeHtml(t.copyFailed)}">${escapeHtml(t.copyButton)}</button>
+            ${agentButtons}
+          </div>
+        </div>
+        <pre><code id="prompt-text">${escapeHtml(i18nEntry.prompt)}</code></pre>
+      </div>
+      <p class="prompt-caption">${escapeHtml(t.promptOpenCaption)}</p>
+      <p class="status" id="copy-status" role="status" aria-live="polite"></p>
+    </section>`;
+
+  // Chaque ligne de perte est numérotée B.n (maquette ef-lno) : des renvois de
+  // lecture, pas une cote — la numérotation séquentielle interdite est celle
+  // des dossiers, pas celle des lignes d'une même pièce.
   const whatYouLose = i18nEntry.whatYouLose
-    .map((item) => `          <li><span class="lose-mark" aria-hidden="true">&minus;</span>${escapeHtml(item)}</li>`)
+    .map((item, i) => `          <li><span class="pen-check" aria-hidden="true"></span><span class="piece-no">B.${i + 1}</span> <span>${escapeHtml(item)}</span></li>`)
     .join('\n');
 
   const priorArt = tool.priorArt ?? [];
   const priorArtColumn = priorArt.length === 0 ? '' : `
-      <div class="col-priorart">
-        <h2 id="priorart-heading">${escapeHtml(t.priorArtHeading)}</h2>
-        <ul class="priorart-cards">
+        <div class="col-priorart">
+          <h3 id="priorart-heading">${escapeHtml(t.priorArtHeading)}</h3>
+          <ul class="priorart-cards">
 ${priorArt
   .map((item) => {
     const license = item.license
       ? `<span class="priorart-license">${escapeHtml(t.licenseLabel)}: ${escapeHtml(item.license)}</span>`
       : '';
-    return `          <li class="priorart-card"><a href="${escapeHtml(item.url)}">${escapeHtml(item.name)}</a>${license}</li>`;
+    return `            <li class="priorart-card"><a href="${escapeHtml(item.url)}">${escapeHtml(item.name)}</a>${license}</li>`;
   })
   .join('\n')}
-        </ul>
-      </div>`;
+          </ul>
+        </div>`;
+
+  const pieceB = `    <section aria-labelledby="lose-heading" class="piece">
+${pieceHead(pieces[1])}
+      <div class="sheet piece-body two-col">
+        <div class="col-lose">
+          <ul class="lose-list">
+${whatYouLose}
+          </ul>
+        </div>${priorArtColumn}
+      </div>
+    </section>`;
+
+  const pieceC = `    <section aria-labelledby="why-heading" class="piece">
+${pieceHead(pieces[2])}
+      <div class="sheet piece-body">
+        <p>${escapeHtml(i18nEntry.whyPeopleStillPay)}</p>
+      </div>
+    </section>`;
 
   const faqItems = i18nEntry.faq
     .map(
@@ -171,75 +313,10 @@ ${relatedTools
   const shareText = interpolate(t.shareTextTemplate, { name: tool.name, verdict: verdict.label });
   const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(`${SITE_ORIGIN}${path}`)}`;
 
-  const promptUrl = `/feed/${FEED_VERSION}/${lang}/prompts/${tool.slug}.txt`;
-  const agentCtx = {
-    prompt: i18nEntry.prompt,
-    prompt_url: `${SITE_ORIGIN}${promptUrl}`,
-    lang,
-    slug: tool.slug,
-  };
-  const agentButtons = renderAgentButtons(agents, agentCtx, t);
-
-  const whyHeading = interpolate(t.whyPeopleStillPayHeadingTemplate, { moat: tool.moatType });
-
-  const main = `    ${renderBreadcrumb(breadcrumbItems)}
-
-    <div class="tool-intro">
-      <div class="tool-title-row">
-        <img class="tool-favicon" src="${escapeHtml(favicon)}" alt="" width="40" height="40">
-        <h1>${escapeHtml(h1)}</h1>
-        ${verdictBadge(tool.verdict, verdict.label, 'badge-lg')}
-      </div>
-      <p class="tagline">${catEmoji ? `${catEmoji} ` : ''}<a href="${categoryPath}">${escapeHtml(catLabel)}</a>${tool.subcategory ? ` — ${escapeHtml(tool.subcategory)}` : ''}</p>
-
-      <dl class="meta-row">
-${metaRow}
-      </dl>
-
-      <section aria-labelledby="verdict-heading">
-        <h2 id="verdict-heading" class="visually-hidden">${escapeHtml(t.verdictHeading)}</h2>
-        <p class="verdict-summary">${escapeHtml(i18nEntry.verdictSummary)}</p>
-      </section>
-    </div>
-
-    <section aria-labelledby="prompt-heading" class="tool-block-prompt">
-      <div class="prompt-block">
-        <div class="prompt-header">
-          <h2 id="prompt-heading" class="prompt-label">${escapeHtml(t.promptHeading)}</h2>
-          <div class="prompt-actions">
-            <button id="copy-prompt" class="copy-btn" type="button" hidden
-              data-copied-label="${escapeHtml(t.copiedButton)}"
-              data-fail-label="${escapeHtml(t.copyFailed)}">${escapeHtml(t.copyButton)}</button>
-            ${agentButtons}
-          </div>
-        </div>
-        <pre><code id="prompt-text">${escapeHtml(i18nEntry.prompt)}</code></pre>
-      </div>
-      <p class="prompt-caption">${escapeHtml(t.promptOpenCaption)}</p>
-      <p class="status" id="copy-status" role="status" aria-live="polite"></p>
-    </section>
-
-    <section aria-labelledby="why-heading">
-      <h2 id="why-heading">${escapeHtml(whyHeading)}</h2>
-      <p>${escapeHtml(i18nEntry.whyPeopleStillPay)}</p>
-    </section>
-
-    <section aria-labelledby="lose-heading" class="two-col">
-      <div class="col-lose">
-        <h2 id="lose-heading">${escapeHtml(t.whatYouLoseHeading)}</h2>
-        <ul class="lose-list">
-${whatYouLose}
-        </ul>
-      </div>${priorArtColumn}
-    </section>
-
-    <section aria-labelledby="faq-heading">
-      <h2 id="faq-heading">${escapeHtml(t.faqHeading)}</h2>
-${faqItems}
-    </section>
-${relatedSection}
-
-    <section class="vote-section" aria-labelledby="vote-heading">
+  // Le cadre du visiteur devient le récépissé détachable au bas du dossier :
+  // mêmes crochets JS qu'avant, seule l'enveloppe change.
+  const receipt = `    <section class="vote-section receipt" aria-labelledby="vote-heading">
+      <p class="receipt-label">${escapeHtml(d.receiptHeading)}</p>
       <h2 id="vote-heading">${escapeHtml(t.voteHeading)}</h2>
       <div class="vote-row">
         <button id="vote-btn" class="vote-btn" type="button" data-slug="${tool.slug}"
@@ -250,6 +327,46 @@ ${relatedSection}
       </div>
       <p class="status" id="vote-status" role="status" aria-live="polite"></p>
     </section>`;
+
+  // ---- assemblage : chemise, bordereau, résumé, pièces A→C, questions,
+  // outils proches, récépissé — l'ordre du spec §4 amendé. Le renvoi au stylo
+  // sous le résumé pointe vers la pièce B (les pertes motivent le verdict).
+  const main = `    ${renderBreadcrumb(breadcrumbItems)}
+
+${folder}
+
+${trackingSlip}
+
+    <section aria-labelledby="verdict-heading">
+      <h2 id="verdict-heading" class="visually-hidden">${escapeHtml(t.verdictHeading)}</h2>
+      <p class="verdict-summary ${tool.verdict}">${escapeHtml(i18nEntry.verdictSummary)}</p>
+      <p class="pen-note"><a href="#lose-heading">${escapeHtml(`${pieceLabel('B')} — ${t.whatYouLoseHeading}`)}</a></p>
+    </section>
+
+${pieceA}
+
+${pieceB}
+
+${pieceC}
+
+    <section aria-labelledby="faq-heading">
+      <h2 id="faq-heading">${escapeHtml(t.faqHeading)}</h2>
+${faqItems}
+    </section>
+${relatedSection}
+
+${receipt}`;
+
+  // La cartouche de références sous le filet de tête (renderLayout) : chaque
+  // cellule est un fait du dossier — la cote, les deux dates, et des comptes
+  // dérivés des données rendues (jamais des constantes recopiées à la main).
+  const refCells = [
+    [d.fileLabel, cote],
+    [d.receivedOn, formatStampDate(tool.pricing.checkedOn)],
+    [d.instructedOn, formatStampDate(buildDate)],
+    [d.piecesAnnexed, String(pieces.length)],
+    [t.faqHeading, String(i18nEntry.faq.length)],
+  ];
 
   return renderLayout({
     lang,
@@ -267,5 +384,6 @@ ${relatedSection}
     ui,
     homeHref: homePath,
     sponsorSlots,
+    refCells,
   });
 }

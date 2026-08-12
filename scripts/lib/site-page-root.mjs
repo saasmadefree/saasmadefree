@@ -13,10 +13,12 @@ export function renderRootPage({ ui, enPath, otherLangs }) {
     .map((lang) => `<a href="/${lang}/" hreflang="${lang}" lang="${lang}">${escapeHtml(languageName(lang))}</a>`)
     .join(' · ');
 
-  const main = `    <h1>${escapeHtml(ui.site.brand)}</h1>
-    <p>${escapeHtml(r.redirecting)}</p>
-    <p><a href="${enPath}">${escapeHtml(r.continueLink)}</a></p>
-    ${otherLinks ? `<p>${otherLinks}</p>` : ''}`;
+  const main = `    <div class="sheet piece-body">
+      <h1>${escapeHtml(ui.site.brand)}</h1>
+      <p>${escapeHtml(r.redirecting)}</p>
+      <p><a href="${enPath}">${escapeHtml(r.continueLink)}</a></p>
+      ${otherLinks ? `<p>${otherLinks}</p>` : ''}
+    </div>`;
 
   // Volontairement sans sponsors : un annonceur ne paie pas pour une page
   // d'erreur ni pour un stub de redirection. renderLayout laisse `sponsorSlots`

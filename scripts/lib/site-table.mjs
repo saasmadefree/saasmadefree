@@ -48,7 +48,7 @@ export function renderToolTable(tools, { lang, ui, categories, voteCounts, favic
     })
     .join('\n');
 
-  return `      <div class="table-scroll">
+  return `      <div class="table-scroll registry">
         <table id="tool-table" data-lang="${lang}" data-singular="${escapeHtml(singularTpl)}" data-plural="${escapeHtml(pluralTpl)}">
           <caption>${escapeHtml(ui.site.home.listCaption)}</caption>
           <thead>

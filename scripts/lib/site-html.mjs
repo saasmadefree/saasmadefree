@@ -34,6 +34,34 @@ export function verdictBadge(verdict, label, extraClass = '') {
   return `<span class="${cls}">${escapeHtml(label)}</span>`;
 }
 
+/** Le tampon administratif (dates, statut vérifié) : une première ligne, et
+ *  d'éventuelles lignes secondaires en `.stamp-sub` — un tampon de contrôleur
+ *  a toujours une ligne d'objet puis des précisions plus petites en dessous. */
+export function stamp(kind, lines) {
+  const [first, ...rest] = lines.map((l) => escapeHtml(l));
+  const subs = rest.map((l) => `<span class="stamp-sub">${l}</span>`).join('');
+  return `<span class="stamp stamp-${kind}">${first}${subs}</span>`;
+}
+
+/** Le cachet rond à date, mais lisible : le texte est réel (pas aria-hidden),
+ *  contrairement au tampon carré qui peut être décoratif à côté d'un texte
+ *  équivalent ailleurs. */
+export function dateRing(label, dateText) {
+  return `<span class="date-ring">${escapeHtml(label)}<strong>${escapeHtml(dateText)}</strong></span>`;
+}
+
+/** Les trois cases du verdict (greffe E3) : l'échelle complète est montrée, la
+ *  retenue porte la croix (CSS ::after en --ink) et une mention lecteur d'écran.
+ *  Jamais la couleur seule (spec §7). */
+export function verdictChecks(verdict, verdictsTable, checkedNote) {
+  const items = ['yes', 'kinda', 'no'].map((v) => {
+    const on = v === verdict;
+    const note = on ? `<span class="visually-hidden"> (${escapeHtml(checkedNote)})</span>` : '';
+    return `<span class="check-item${on ? ' is-checked' : ''}"><span class="check-box" aria-hidden="true"></span>${escapeHtml(verdictsTable[v].label)}${note}</span>`;
+  });
+  return `<span class="verdict-checks">${items.join('')}</span>`;
+}
+
 export function renderBreadcrumb(items) {
   const parts = items.map((item, i) => {
     if (i === items.length - 1) {
@@ -76,10 +104,12 @@ function renderLangSwitcher(alternates, currentLang, ui) {
  * @param {string} opts.homeHref - lien de la marque dans l'en-tête
  * @param {string} [opts.extraHead] - balises additionnelles insérées dans <head>
  * @param {{tapeTop:string,tapeBottom:string,railLeft:string,railRight:string,fallback:string}|null} [opts.sponsorSlots] - balisage sponsor déjà rendu par renderSponsorSlots(), ou null pour aucun
+ * @param {Array<[string,string]>} [opts.refCells] - paires label/valeur affichées dans la
+ *   cartouche de références (`.ref-strip`) sous le filet de tête ; aucune cartouche si vide
  */
 export function renderLayout({
   lang, path, title, description, alternates = [], xDefaultPath = null,
-  jsonLd = [], main, ui, homeHref, extraHead = '', sponsorSlots = null,
+  jsonLd = [], main, ui, homeHref, extraHead = '', sponsorSlots = null, refCells = [],
 }) {
   const canonical = `${SITE_ORIGIN}${path}`;
   const hreflangLinks = alternates
@@ -140,6 +170,23 @@ export function renderLayout({
   // l'intérieur, leur pleine largeur passerait sous les rails.
   const sp = sponsorSlots ?? { tapeTop: '', tapeBottom: '', railLeft: '', railRight: '', fallback: '' };
 
+  // Le bandeau de service et le monogramme dépendent tous deux de
+  // ui.site.dossier — absent pour une locale non publiée qui ne réduit
+  // ui.site qu'à {footer, stats} (page /stats en 7 langues). Un `?.` évite un
+  // TypeError et, surtout, une chaîne "undefined" affichée au lecteur.
+  const serviceName = ui.site.dossier?.serviceName;
+  const serviceBand = serviceName
+    ? `<p class="service-band"><span>${escapeHtml(serviceName)}</span></p>`
+    : '';
+
+  // La cartouche de références (dates, numéro de registre…) : une paire
+  // label/valeur par cellule, silencieuse si l'appelant n'en fournit aucune.
+  const refStrip = refCells.length
+    ? `<dl class="ref-strip">${refCells
+        .map(([label, value]) => `<div class="ref-cell"><dt class="ref-lbl">${escapeHtml(label)}</dt><dd class="ref-val">${escapeHtml(value)}</dd></div>`)
+        .join('')}</dl>`
+    : '';
+
   return `<!doctype html>
 <html lang="${lang}">
 <head>
@@ -151,8 +198,10 @@ ${sp.tapeTop}
 <div class="shell">
   <div class="col-main">
     <div class="page">
-      <header class="site-header">
+      ${serviceBand}
+      <header class="site-header site-masthead">
         <div class="header-left">
+          <span class="brand-mark" aria-hidden="true">SMF</span>
           <a class="brand" href="${escapeHtml(homeHref)}">${escapeHtml(ui.site.brand)}</a>
           <ul class="nav-links">${navLinks}</ul>
         </div>
@@ -168,6 +217,8 @@ ${sp.tapeTop}
           </div>
         </div>
       </header>
+      <div class="head-rule" aria-hidden="true"></div>
+      ${refStrip}
       <main id="main">
 ${main}
       </main>
@@ -177,6 +228,7 @@ ${main}
         <a href="/privacy">${escapeHtml(ui.site.footer.privacy)}</a>
         <a href="mailto:privacy@saasmadefree.com">privacy@saasmadefree.com</a>
         <a class="credit" href="https://github.com/canivibecodeit/canivibecodeit" rel="noopener">${escapeHtml(ui.site.footer.credit ?? "")}</a>
+        <span class="paraphe" aria-hidden="true">SMF</span>
       </footer>
       ${sp.fallback}
     </div>

@@ -1,39 +1,98 @@
 // Feuille de style unique, émise une seule fois vers dist/assets/site.css.
 //
-// Direction : clair, dense, technique. Le monospace porte toute la donnée
-// (prix, verdicts, catégories, compteurs) parce que c'est ce que le lecteur
-// vient scanner ; un grotesque système porte les titres. Le verdict est un
-// badge plein, pas un tiret discret : c'est l'information qu'on doit voir
-// d'un seul coup d'œil dans une liste de cent lignes.
-export const SITE_CSS = `:root{
-  --paper:#faf9f6; --card:#ffffff; --ink:#16150f; --muted:#6b6a5e; --rule:#e5e2d8;
-  --yes:#15803d; --kinda:#b45309; --no:#be123c;
-  --on-accent:#ffffff;
-  --accent:#15803d;
-  --measure:36rem; --wide:48rem; --focus:#1d4ed8;
-  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
-  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+// Direction « Le Dossier instruit » (spec 2026-08-04) : le site est un dossier
+// administratif — kraft tramé du bureau, feuillets réglés, chemises à onglet,
+// tampons encrés, annotations au stylo du contrôleur. Trois familles système,
+// trois rôles : le monospace est la machine à écrire (corps, valeurs, prix),
+// l'imprimé condensé porte étiquettes, tampons et en-têtes, le serif italique
+// est la main du contrôleur. Le monde est imprimé : rien n'y bouge — la seule
+// exception est le bandeau sponsor, une obligation contractuelle déjà couverte
+// par prefers-reduced-motion.
+
+/** Palette fermée du spec 2026-08-04 (§2 clair, §5 sombre). Unique source des
+ *  deux thèmes : SITE_CSS est généré depuis cette table (via cssVars), et
+ *  tests/site-contrast.test.mjs vérifie chaque paire AA. Toute couleur absente
+ *  d'ici n'a pas le droit d'exister dans la feuille. */
+export const TOKENS = {
+  light: {
+    paperDesk: '#e8e0cc', paperDeskWeave: '#e6ddc7', paperFolder: '#e0cfa2',
+    paperSheet: '#f7f2e3', paperBright: '#fdfaf0', paperCartouche: '#f0e9d5',
+    ink: '#2b2317', ink2: '#4a4132', ink3: '#5d5445',
+    pen: '#2d3a52', hl: '#f3ecc9',
+    stampYes: '#2f5d33', stampKinda: '#6b4600', stampNo: '#9c2a1c', stampDate: '#28522c',
+    // Utilitaires décoratifs (spec §2 : bruns utilitaires, métal, réglure de
+    // feuillet) — jamais porteurs de texte, donc hors contrainte AA.
+    line: '#b6a988', lineStrong: '#8b7f68', paperRule: '#f5efdf',
+    metal: '#8a8069', metal2: '#948a72',
+  },
+  dark: {
+    // Papier bistre du §5 — valeurs de départ, à ajuster JUSQU'À ce que
+    // tests/site-contrast.test.mjs passe ; le test est l'arbitre, pas l'œil.
+    paperDesk: '#171410', paperDeskWeave: '#1a1713', paperFolder: '#241e14',
+    paperSheet: '#211d15', paperBright: '#2a251b', paperCartouche: '#262117',
+    ink: '#e8e0cc', ink2: '#c9bda0', ink3: '#a89a79',
+    pen: '#a9bcdf', hl: '#3a3320',
+    stampYes: '#8fc79a', stampKinda: '#dfaa55', stampNo: '#e8998a', stampDate: '#84bd8f',
+    // Filets et métal assombris dans l'esprit bistre — décoratifs eux aussi.
+    line: '#4a3f2c', lineStrong: '#6b5c3f', paperRule: '#242016',
+    metal: '#66604e', metal2: '#79715c',
+  },
+};
+
+// Chaque token DOIT avoir un nom de variable : la table jette si une clé de
+// TOKENS n'est pas mappée, ce qui garantit que « chaque valeur des deux thèmes
+// est émise » (garde-fou de tests/site-styles.test.mjs) ne dérive jamais.
+const VAR_NAMES = {
+  paperDesk: 'paper-desk', paperDeskWeave: 'paper-weave', paperFolder: 'paper-folder',
+  paperSheet: 'paper-sheet', paperBright: 'paper-bright', paperCartouche: 'paper-cartouche',
+  paperRule: 'paper-rule',
+  ink: 'ink', ink2: 'ink-2', ink3: 'ink-3', pen: 'pen', hl: 'hl',
+  stampYes: 'stamp-yes', stampKinda: 'stamp-kinda', stampNo: 'stamp-no', stampDate: 'stamp-date',
+  line: 'line', lineStrong: 'line-strong', metal: 'metal', metal2: 'metal-2',
+};
+
+function cssVars(theme) {
+  return Object.entries(theme).map(([key, value]) => {
+    const name = VAR_NAMES[key];
+    if (!name) throw new Error(`token TOKENS.${key} sans variable CSS dans VAR_NAMES`);
+    return `--${name}:${value};`;
+  }).join('');
+}
+
+// Nota sur les ombres : elles restent écrites en rgba(43,35,23,…) — c'est
+// --ink clair (#2b2317) rendu translucide. Une ombre de papier est portée par
+// la lumière du bureau, pas par le thème : elle reste bistre sombre même sur
+// le papier de nuit, où elle se fait simplement discrète.
+
+export const SITE_CSS = `:root{${cssVars(TOKENS.light)}
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --cond:"Avenir Next Condensed","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --hand:Georgia,"Times New Roman",serif;
+  /* Alias des sections conservées (coquille, sponsors, stats) : des références
+     vers les tokens du dossier, jamais des littéraux — les deux thèmes coulent
+     au travers sans réécrire un CSS couvert par ~1 000 lignes de tests. */
+  --paper:var(--paper-desk);--card:var(--paper-sheet);--muted:var(--ink-3);
+  --rule:var(--line);--yes:var(--stamp-yes);--kinda:var(--stamp-kinda);--no:var(--stamp-no);
+  /* Les encres de verdict ne servent que le verdict : la marque des graphiques
+     de /stats (stats.js lit --accent au canvas) passe au stylo du contrôleur. */
+  --accent:var(--pen);
+  --sans:var(--cond);
+  --measure:36rem;--wide:48rem;
 }
 /* Le thème suit le système par défaut, sauf si le lecteur a choisi. Le
    :not([data-theme="light"]) est ce qui laisse un choix explicite « clair »
    l'emporter sur un système en sombre. */
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --paper:#111110; --card:#1a1917; --ink:#f2f0e9; --muted:#9c9a8d; --rule:#2c2a25;
-    --yes:#22c55e; --kinda:#f59e0b; --no:#fb7185; --on-accent:#0d0d0c;
-    --accent:#22c55e; --focus:#93c5fd;
-  }
-}
-:root[data-theme="dark"]{
-  --paper:#111110; --card:#1a1917; --ink:#f2f0e9; --muted:#9c9a8d; --rule:#2c2a25;
-  --yes:#22c55e; --kinda:#f59e0b; --no:#fb7185; --on-accent:#0d0d0c;
-  --accent:#22c55e; --focus:#93c5fd;
-}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){${cssVars(TOKENS.dark)}}}
+:root[data-theme="dark"]{${cssVars(TOKENS.dark)}}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
+/* Le bureau : kraft tramé en bandes verticales de 6px — la seule « texture »
+   autorisée, entre deux tons de la palette. Les chiffres s'alignent partout
+   (tabular-nums) : c'est un document de service, pas une brochure. */
 body{
-  margin:0; background:var(--paper); color:var(--ink);
-  font:400 15px/1.6 var(--mono);
+  margin:0;color:var(--ink);
+  background:var(--paper-desk) repeating-linear-gradient(90deg,var(--paper-desk) 0 6px,var(--paper-weave) 6px 12px);
+  font:400 15px/1.62 var(--mono);font-variant-numeric:tabular-nums;
   padding:clamp(1.25rem,4vw,2.5rem) 0;
 }
 /* Le padding horizontal vit ici et non plus sur body : .col-main doit occuper
@@ -43,361 +102,550 @@ body{
 .page{max-width:67rem;margin:0 auto;padding-inline:clamp(1rem,5vw,2.5rem)}
 .shell{display:grid;grid-template-columns:1fr;justify-content:center}
 .col-main{container-type:inline-size;min-width:0}
-a{color:inherit;text-underline-offset:.18em;text-decoration-thickness:.06em}
-a:hover{text-decoration-thickness:.14em}
-:focus-visible{outline:2px solid var(--focus);outline-offset:.2em}
+/* Le souligné de repos est pointillé — un renvoi de dossier ; il devient plein
+   au survol (spec §7 : les états sont des marquages, jamais du mouvement). */
+a{color:inherit;text-decoration:underline dotted;text-decoration-thickness:.07em;
+  text-underline-offset:.2em;text-decoration-color:var(--line-strong)}
+a:hover{text-decoration-style:solid;text-decoration-color:currentColor}
+:focus-visible{outline:2px solid var(--pen);outline-offset:2px}
 
 .skip-link{position:absolute;left:-999px;width:1px;height:1px;overflow:hidden;
-  background:var(--ink);color:var(--paper);padding:.6em 1em;z-index:10;border-radius:.3em}
+  background:var(--ink);color:var(--paper-bright);padding:.6em 1em;z-index:10}
 .skip-link:focus{position:fixed;left:1rem;top:1rem;width:auto;height:auto;overflow:visible}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-/* ---------- chrome ---------- */
-/* Barre de navigation pleine largeur, sa propre ligne au-dessus de tout le
-   reste. Trois masses bien séparées, plutôt qu'une seule rangée au poids
-   uniforme : la marque (plus de présence) ; les liens de navigation, groupés
-   entre eux ; puis, mis à l'écart par un espace net, le bloc de contrôles
-   (langue, thème, GitHub) — voir docs/design-fixes-report.md. */
-.site-header{display:flex;align-items:center;justify-content:space-between;gap:.8rem 1.75rem;
-  flex-wrap:wrap;padding-bottom:1rem;margin-bottom:clamp(2rem,6vh,3.5rem);
-  border-bottom:1px solid var(--rule)}
-.brand{font-family:var(--sans);font-weight:800;letter-spacing:-.02em;
-  text-decoration:none;font-size:1.2rem;color:var(--ink);flex:none}
-.header-left{display:flex;align-items:baseline;gap:1.6rem;flex-wrap:wrap;min-width:0}
-.header-groups{display:flex;align-items:center;gap:1rem 1.25rem;flex-wrap:wrap}
-.nav-links{list-style:none;display:flex;gap:1.2rem;padding:0;margin:0;font-size:.85rem;flex-wrap:wrap}
-.nav-links a{text-decoration:none;color:var(--ink)}
-.nav-links a:hover{text-decoration:underline}
-/* Le bloc de contrôles se détache des liens de navigation par un filet
-   vertical discret plutôt que par la seule marge, pour que l'œil le lise
-   comme un groupe à part (langue, thème, dépôt) et non comme une suite de
-   liens supplémentaires. Le filet disparaît quand le groupe retombe seul sur
-   sa ligne, en écran étroit, où il n'aurait plus rien à séparer. */
-.header-controls{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
-.github-btn{display:inline-flex;align-items:center;gap:.35em;font-size:.8rem;
-  padding:.35em .8em;border:1px solid var(--rule);border-radius:.4em;
-  text-decoration:none;color:var(--ink);font-weight:600}
-.github-btn:hover{border-color:var(--ink)}
-/* Bascule de thème : icône seule, nom accessible porté par aria-label (voir
-   site-html.mjs / site.js) — un bouton rond compact plutôt qu'une pilule à
-   libellé, qui allonge la rangée sans rien dire qu'une icône ne dise déjà. */
+/* ---------- titres ---------- */
+/* Le h1 reste en machine à écrire : c'est l'objet de la demande, tapé sur le
+   formulaire, pas un slogan. Les h2 sont l'imprimé condensé des têtes de
+   rubrique du service. */
+h1{font-size:clamp(1.5rem,1.1rem + 1.8vw,2.1rem);line-height:1.36;font-weight:700;
+  letter-spacing:-.01em;margin:0 0 .6rem;text-wrap:balance}
+h2{font-family:var(--cond);font-size:1.05rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.18em;margin:2rem 0 .8rem}
+section:first-of-type > h2:first-child{margin-top:0}
+p{margin:0 0 .9rem;max-width:var(--wide)}
+.tagline{color:var(--ink-2);font-size:.85rem;margin:0 0 .8rem;max-width:var(--measure)}
+.lede{max-width:var(--measure);color:var(--muted);margin:0 0 clamp(2rem,5vh,3rem)}
+.hero-h1{max-width:34ch}
+.hero-sub{max-width:58ch;color:var(--ink-2)}
+/* La ligne à remplir du formulaire héro : un cadre de saisie avec sa ligne
+   d'écriture (l'ombre interne basse), le nom attendu en main de contrôleur. */
+h1 .blank,.hero-blank{display:inline-block;min-width:8ch;border:1.5px solid var(--line-strong);
+  background:var(--paper-sheet);box-shadow:inset 0 -3px 0 var(--line);
+  padding:0 .5em .1em;line-height:1.4;vertical-align:-2px}
+h1 .blank em,.hero-blank em{font-family:var(--hand);font-style:italic;font-size:.9em;
+  letter-spacing:.08em;color:var(--ink-3)}
+/* Les trois feuillets du bordereau (héro, cadre recherche, état récapitulatif)
+   sont posés l'un sous l'autre sur le bureau : .sheet fournit la matière
+   (cadre, réglure), ces règles ne fixent que l'espace — le rythme vertical
+   qui vivait dans les composants disparus (.search-combo seul, .figures-band). */
+.hero{padding:1.6rem 1.6rem 1rem}
+.hero,.search-frame,.recap{margin:0 0 clamp(1.5rem,4vh,2.25rem)}
+/* La lede fait 3-4 lignes : jamais de rotation sur un paragraphe de plus de
+   deux lignes (spec §7). */
+.hero .pen-note{transform:none}
+
+/* ---------- chrome : bandeau de service, marque, cartouche ---------- */
+.service-band{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.4rem 1.2rem;
+  font-family:var(--cond);font-size:.68rem;font-weight:700;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--ink-2);padding:.75rem 0 .6rem;
+  border-bottom:1px solid var(--line)}
+.site-masthead,.site-header{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem 1rem;
+  padding:1rem 0 0}
+/* La marque au coin : un cachet carré à double filet (les deux inset), comme
+   frappé sur la couverture du dossier. */
+.brand-mark{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
+  border:2px solid var(--ink);box-shadow:inset 0 0 0 3px var(--paper-desk),inset 0 0 0 4px var(--ink);
+  font-family:var(--cond);font-weight:700;font-size:.7rem;letter-spacing:.06em;flex:none}
+.brand-block{display:flex;flex-direction:column;gap:2px}
+.brand{font-family:var(--cond);font-weight:700;font-size:1.05rem;text-transform:uppercase;
+  letter-spacing:.15em;white-space:nowrap;text-decoration:none;color:var(--ink)}
+.brand-sub{font-family:var(--cond);font-size:.66rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:.18em;color:var(--muted)}
+.nav-links{list-style:none;display:flex;align-items:baseline;gap:.9rem;padding:0;
+  margin:0 0 0 auto;font-family:var(--cond);font-size:.76rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.13em;flex-wrap:wrap}
+/* La langue active est passée au surligneur (--hl est un fond, jamais une
+   encre) : le lecteur voit d'un coup d'œil sur quel exemplaire il est. */
+.lang-switch{display:inline-flex;align-items:baseline;gap:.6rem;font-family:var(--cond);
+  font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.13em;color:var(--muted)}
+.lang-switch a{color:var(--muted)}
+.lang-switch a:hover{color:var(--ink)}
+.lang-switch [aria-current]{color:var(--ink);background:var(--hl);box-shadow:0 0 0 3px var(--hl);
+  text-decoration:none;font-weight:700}
+/* Bascule de thème : un petit cachet carré, aria-label porté par le bouton
+   (voir site-html.mjs / site.js). Les glyphes suivent le thème résolu. */
 .theme-toggle{display:inline-flex;align-items:center;justify-content:center;
-  width:2.1rem;height:2.1rem;padding:0;border-radius:999px;border:1px solid var(--rule);
-  background:var(--card);color:var(--muted);font-size:1rem;flex:none}
-.theme-toggle:hover:not(:disabled){border-color:var(--ink);color:var(--ink);opacity:1}
+  width:2.1rem;height:2.1rem;padding:0;border:2px solid var(--ink);border-radius:0;
+  background:var(--paper-bright);color:var(--ink);font-size:1rem;flex:none;cursor:pointer;
+  box-shadow:2px 2px 0 rgba(43,35,23,.22)}
+.theme-toggle:hover:not(:disabled){background:var(--paper-cartouche)}
 .theme-icon::before{content:"\\25D0";line-height:1}
 :root[data-theme="dark"] .theme-icon::before{content:"\\25D1"}
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]) .theme-icon::before{content:"\\25D1"}
 }
-/* Sélecteur de langue : un contrôle compact à contour, pas une paire de
-   liens nus. L'état actif est un fond et un poids de trait discrets — jamais
-   le bloc plein qui se lisait comme une erreur entre "Source" et "Français". */
-.lang-switch{display:inline-flex;gap:.15rem;font-size:.78rem;color:var(--muted);
-  border:1px solid var(--rule);border-radius:999px;padding:.2rem;background:var(--card)}
-.lang-switch a,.lang-switch [aria-current]{padding:.28em .7em;border-radius:999px;
-  text-decoration:none;line-height:1.1}
-.lang-switch a{color:var(--muted)}
-.lang-switch a:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 6%,transparent)}
-.lang-switch [aria-current]{background:color-mix(in srgb,var(--ink) 9%,transparent);
-  color:var(--ink);font-weight:700}
+.github-btn{display:inline-flex;align-items:center;gap:.35em;border:2px solid var(--ink);
+  padding:.45em .9em;font-family:var(--cond);font-size:.72rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.16em;white-space:nowrap;text-decoration:none;
+  color:var(--ink);box-shadow:2px 2px 0 rgba(43,35,23,.25)}
+.github-btn:hover{background:var(--paper-cartouche)}
+/* Le double filet d'imprimé qui clôt l'en-tête, puis la cartouche de
+   références accrochée dessous (chaque cellule porte un fait calculé). */
+.head-rule{border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:6px;
+  margin:.9rem 0 0}
+.ref-strip{display:flex;flex-wrap:wrap;border:1px solid var(--line-strong);border-top:0;
+  background:var(--paper-cartouche);box-shadow:0 3px 8px rgba(43,35,23,.10);
+  margin:0 0 clamp(1.5rem,4vh,2.25rem)}
+.ref-cell{padding:.5rem 1rem .55rem;border-right:1px dotted var(--line);
+  display:flex;flex-direction:column;gap:1px}
+.ref-cell:last-child{border-right:0}
+.ref-lbl{font-family:var(--cond);font-size:.6rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.2em;color:var(--muted)}
+.ref-val{font-size:.82rem;font-weight:700;white-space:nowrap}
+.breadcrumb{font-size:.8rem;color:var(--ink-2);margin:0 0 1.4rem}
+.breadcrumb a{color:inherit}
 
-.breadcrumb{font-size:.8rem;color:var(--muted);margin:0 0 1.6rem}
-.breadcrumb a{color:var(--muted)}
-
-/* ---------- titres ---------- */
-h1{font-family:var(--sans);font-weight:800;margin:0 0 .8rem;
-  font-size:clamp(2rem,1.1rem + 3.6vw,3.6rem);line-height:1.03;
-  letter-spacing:-.035em;max-width:20ch;text-wrap:balance}
-h1 .blank{color:var(--accent);border-bottom:.12em solid var(--accent);padding:0 .12em}
-h1 em{font-style:normal;color:var(--muted)}
-/* 2rem est le rythme "de liaison" par défaut entre sections qui ne forment
-   pas un groupe explicite (voir plus bas .tool-intro / .tool-block-prompt
-   pour les intervalles volontairement plus grands qui marquent une vraie
-   frontière de groupe sur la fiche outil). */
-h2{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
-  font-weight:700;margin:2rem 0 .8rem}
-section:first-of-type > h2:first-child{margin-top:0}
-p{margin:0 0 .9rem;max-width:var(--wide)}
-.tagline{color:var(--muted);margin:0 0 clamp(1rem,2.5vh,1.5rem);max-width:var(--measure)}
-.lede{max-width:var(--measure);color:var(--muted);margin:0 0 clamp(2rem,5vh,3rem)}
-
-/* ---------- accueil : en-tête centré ---------- */
-.hero-h1{margin:0 auto .8rem;text-align:center}
-.hero-sub{margin:0 auto clamp(2rem,5vh,3rem);text-align:center}
-
-/* ---------- verdicts ---------- */
-.badge{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.09em;
-  text-transform:uppercase;padding:.32em .7em .3em;border-radius:.3em;
-  color:var(--on-accent);white-space:nowrap;line-height:1.25}
-.badge.yes{background:var(--yes)} .badge.kinda{background:var(--kinda)} .badge.no{background:var(--no)}
-.badge-lg{font-size:.85rem;padding:.5em 1em .48em;flex:none}
-
-/* ---------- recherche façon terminal + volet de suggestions ---------- */
+/* ---------- cadre de recherche + volet de suggestions ---------- */
 search{display:block;margin:0}
-.search-combo{position:relative;z-index:40;max-width:38rem;margin:0 auto clamp(1.5rem,4vh,2.25rem)}
-/* z-index sur le conteneur, pas seulement sur le panneau : la classe
-   d'apparition .r laisse un transform résiduel, qui crée un contexte
-   d'empilement sur CHAQUE bloc. Le z-index du panneau restait donc
-   enfermé dans celui de la recherche, et les pastilles — plus loin dans
-   le DOM — passaient devant. */
-.field label{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--muted);font-weight:700;margin:0 0 .5rem}
-.search-shell{position:relative;display:flex;align-items:center;gap:.6rem;background:var(--card);
-  border:1px solid var(--rule);border-radius:.45em;padding:.75em 2.5rem .75em .9em;
-  box-shadow:0 1px 0 color-mix(in srgb,var(--ink) 5%,transparent)}
-.search-shell::before{content:">";color:var(--accent);font-weight:700;flex:none}
-.search-shell:focus-within{border-color:var(--accent)}
-input[type=search]{font:inherit;border:0;background:transparent;color:var(--ink);
-  width:100%;padding:0;outline:none;font-size:.95rem}
-input[type=search]::placeholder{color:var(--muted)}
+.search-combo{position:relative;z-index:40;max-width:38rem;margin:0 0 clamp(1.5rem,4vh,2.25rem)}
+.search-frame{border:1px solid var(--line-strong);background:var(--paper-sheet);
+  padding:.9rem 1.1rem 1rem;box-shadow:0 3px 10px rgba(43,35,23,.12)}
+/* L'étiquette du champ est le cartouche « Cadre n — … » de la maquette. */
+.field label{display:inline-block;font-family:var(--cond);font-size:.62rem;font-weight:700;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2);
+  border:1px solid var(--line);background:var(--paper-cartouche);padding:4px 10px;margin:0 0 .7rem}
+.search-shell{position:relative;display:flex;align-items:center;gap:.9rem}
+/* Le champ est une ligne pointillée de formulaire, pas une boîte : elle passe
+   au trait plein en encre stylo quand le contrôleur écrit dedans (le focus
+   reste visible sans boîte bleue du navigateur). */
+input[type=search]{flex:1;min-width:0;width:100%;font:inherit;color:var(--ink);
+  background:transparent;border:0;border-bottom:2px dotted var(--ink-3);border-radius:0;
+  padding:.35em 2rem .35em .1em;outline:none}
+input[type=search]::placeholder{font-family:var(--hand);font-style:italic;color:var(--ink-3);opacity:1}
 input[type=search]::-webkit-search-cancel-button{display:none}
-.search-clear{position:absolute;right:.7rem;top:50%;transform:translateY(-50%);
-  background:transparent;border:0;color:var(--muted);font-size:1.15rem;line-height:1;
-  padding:.15em .4em;border-radius:.3em;cursor:pointer}
+.search-shell:focus-within input[type=search]{border-bottom:2px solid var(--pen)}
+.search-clear{position:absolute;right:.2rem;top:50%;transform:translateY(-50%);
+  background:transparent;border:0;box-shadow:none;color:var(--muted);
+  font-size:1.15rem;line-height:1;padding:.15em .4em;cursor:pointer}
 .search-clear:hover{color:var(--ink)}
-.search-panel{position:absolute;top:calc(100% + .5rem);left:0;right:0;z-index:30;
-  background:var(--card);border:1px solid var(--rule);border-radius:.6em;
-  box-shadow:0 16px 32px -12px rgba(0,0,0,.35);max-height:26rem;overflow-y:auto;
+.search-panel{position:absolute;top:calc(100% + .4rem);left:0;right:0;z-index:30;
+  background:var(--paper-bright);border:1px solid var(--line-strong);
+  box-shadow:0 10px 22px rgba(43,35,23,.22);max-height:26rem;overflow-y:auto;
   padding:.35rem;text-align:left}
 .search-option{display:flex;align-items:center;gap:.6rem;padding:.55em .7em;
-  border-radius:.4em;cursor:pointer;font-size:.88rem}
-.search-option:hover,.search-option[aria-selected="true"]{
-  background:color-mix(in srgb,var(--ink) 7%,transparent)}
-.search-option-icon{width:20px;height:20px;border-radius:.25em;flex:none;object-fit:contain}
-.search-option-name{font-weight:600;flex:none}
-.search-option-meta{margin-left:auto;color:var(--muted);font-size:.78rem;
+  cursor:pointer;font-size:.85rem}
+.search-option:hover,.search-option[aria-selected="true"]{background:var(--paper-cartouche)}
+.search-option[aria-selected="true"]{box-shadow:inset 2px 0 0 var(--pen)}
+.search-option-icon{width:20px;height:20px;flex:none;object-fit:contain}
+.search-option-name{font-weight:700;flex:none}
+.search-option-meta{margin-left:auto;color:var(--muted);font-size:.76rem;
   white-space:nowrap;display:flex;align-items:center;gap:.35em}
-.search-option-viewall{border-top:1px solid var(--rule);margin-top:.3rem;
+.search-option-viewall{border-top:1px solid var(--line);margin-top:.3rem;
   padding-top:.7em;color:var(--muted);justify-content:flex-start}
 .search-empty{padding:.8em .7em;color:var(--muted);font-size:.85rem}
 
-/* ---------- pastilles de catégorie et de verdict ---------- */
-.chips-nav{margin:0 0 clamp(1.75rem,4vh,2.5rem);text-align:center}
-.chips{max-width:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem;list-style:none;padding:0;margin:0}
+/* ---------- pastilles de catégorie et cases-filtres du verdict ---------- */
+.chips-nav{margin:0 0 clamp(1.5rem,4vh,2rem)}
+.chips{max-width:none;display:flex;flex-wrap:wrap;gap:.45rem;list-style:none;padding:0;margin:0}
 .chips a,.chip{display:inline-flex;align-items:center;gap:.4em;text-decoration:none;
-  font:inherit;font-size:.8rem;padding:.4em .8em;border:1px solid var(--rule);border-radius:999px;
-  background:var(--card);color:var(--ink);white-space:nowrap;cursor:pointer}
-.chips a:hover,.chip:hover{border-color:var(--ink)}
+  font-family:var(--cond);font-size:.72rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:.12em;padding:.4em .8em;border:1px solid var(--line-strong);border-radius:0;
+  box-shadow:none;background:var(--paper-sheet);color:var(--ink);white-space:nowrap;cursor:pointer}
+.chips a:hover,.chip:hover{border-color:var(--ink);background:var(--paper-cartouche)}
+/* La rubrique retenue est encrée pleine, comme l'onglet d'une pièce. */
 .chips a[aria-current],.chip[aria-pressed="true"],.chip.is-active{
-  background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.chip-all-categories{font-weight:600;color:var(--accent);border-color:var(--accent)}
+  background:var(--ink);color:var(--paper-sheet);border-color:var(--ink)}
+.chip-all-categories{font-weight:700}
 .verdict-chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 1rem}
+/* Les filtres de verdict sont des cases de bordereau : l'état coché est un
+   marquage (fond cartouche + filet stylo), jamais un changement de couleur
+   seul — spec §7. */
+.verdict-chip{display:inline-flex;align-items:center;gap:.45em;font-family:var(--cond);
+  font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;
+  color:var(--ink);border:1px solid var(--line-strong);border-radius:0;box-shadow:none;
+  background:var(--paper-sheet);padding:.4em .8em;cursor:pointer}
+.verdict-chip:hover{border-color:var(--ink)}
+.verdict-chip.is-active{background:var(--paper-cartouche);box-shadow:inset 2px 0 0 var(--pen)}
 
-/* ---------- bandeau-ticker et bandeau de chiffres, pleine largeur ---------- */
-/* Sortent volontairement du conteneur .page pour occuper toute la largeur de la
-   piste centrale, avec leur propre fond et des filets horizontaux. Le débord est
-   ancré sur .col-main (container-type:inline-size) et non sur la fenêtre : sans
-   rails, .col-main occupe toute la fenêtre et 100cqw vaut 100vw ; avec rails, le
-   bandeau s'arrête à la gouttière au lieu de passer dessous. */
-.ticker-band,.figures-band{
-  width:100cqw;margin-left:calc(50% - 50cqw);margin-right:calc(50% - 50cqw);
-  background:color-mix(in srgb,var(--ink) 4%,var(--paper));
-  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
-  padding:1.5rem 0;margin-top:clamp(1.75rem,4vh,2.5rem);margin-bottom:clamp(1.75rem,4vh,2.5rem)}
-.ticker-marquee{overflow:hidden;width:100%}
-.ticker-track{display:inline-flex;gap:0;white-space:nowrap}
-.ticker-item{font-size:.82rem;color:var(--muted);padding:.3em 1rem;
-  border-right:1px solid var(--rule);font-variant-numeric:tabular-nums}
-@media (prefers-reduced-motion:no-preference){
-  .ticker-track{animation:ticker-scroll 240s linear infinite}
-}
-@keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.mrr-figure{max-width:62rem;margin:1.2rem auto 0;padding:0 clamp(1rem,5vw,2.5rem);
-  display:flex;flex-wrap:wrap;align-items:baseline;justify-content:center;
-  gap:.3rem 1rem;text-align:center}
-.mrr-label{width:100%;text-align:center;font-size:.72rem;letter-spacing:.08em;
-  text-transform:uppercase;color:var(--muted);font-weight:700}
-.mrr-digits{display:inline-flex;align-items:baseline;gap:.2rem;font-family:var(--mono);
-  font-weight:800;font-size:clamp(1.8rem,1rem + 3vw,3rem);color:var(--ink)}
-.digit-box{display:inline-flex;align-items:center;justify-content:center;min-width:1ch;
-  padding:.02em .14em;background:color-mix(in srgb,var(--ink) 7%,transparent);
-  border-radius:.15em;color:var(--accent)}
-.mrr-suffix{font-size:.45em;color:var(--muted);margin-left:.35em;align-self:flex-end}
-.mrr-unavailable{max-width:none;color:var(--muted);font-size:.85rem}
-
-.figures-list{list-style:none;margin:0 auto;padding:0 clamp(1rem,5vw,2.5rem);
-  max-width:62rem;display:grid;grid-template-columns:repeat(5,1fr);gap:1rem 1.5rem;text-align:center}
+/* ---------- bandeau de chiffres, pleine largeur ---------- */
+/* Sort volontairement du conteneur .page. Le débord est ancré sur .col-main
+   (container-type:inline-size) et non sur la fenêtre : sans rails, .col-main
+   occupe toute la fenêtre et 100cqw vaut 100vw ; avec rails, le bandeau
+   s'arrête à la gouttière au lieu de passer dessous. Plus aucun gabarit ne
+   l'émet depuis le bordereau général (l'accueil est passé à .recap) : le bloc
+   reste la référence du débord en cqw (voir tests/site-shell.test.mjs) en
+   attendant que la revue de branche tranche son sort. */
+.figures-band{width:100cqw;margin-left:calc(50% - 50cqw);margin-right:calc(50% - 50cqw);
+  background:var(--paper-cartouche);border-top:1px solid var(--line-strong);
+  border-bottom:1px solid var(--line-strong);padding:1.25rem 0;
+  margin-top:clamp(1.75rem,4vh,2.5rem);margin-bottom:clamp(1.75rem,4vh,2.5rem)}
+.figures-list{list-style:none;margin:0 auto;padding:0 clamp(1rem,5vw,2.5rem);max-width:62rem;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:1rem 1.5rem;text-align:center}
 .figure{display:flex;flex-direction:column;gap:.35rem}
-.figure-value{font-family:var(--sans);font-weight:800;letter-spacing:-.02em;
-  font-size:clamp(1.3rem,.9rem + 1.6vw,2rem);font-variant-numeric:tabular-nums}
+.figure-value{font-family:var(--cond);font-weight:700;letter-spacing:.02em;
+  font-size:clamp(1.2rem,.9rem + 1.4vw,1.8rem);font-variant-numeric:tabular-nums}
 .figure-caption{font-size:.7rem;color:var(--muted);letter-spacing:.02em}
-@media (max-width:44rem){.figures-list{grid-template-columns:repeat(2,1fr)}}
 
-/* ---------- en-tête de liste ---------- */
-.list-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;
-  gap:.5rem 1.5rem;margin:0 0 1rem}
-.list-heading{font-family:var(--sans);font-weight:800;letter-spacing:-.02em;
-  text-transform:none;color:var(--ink);font-size:clamp(1.3rem,.9rem + 1.3vw,1.8rem);margin:0}
-.rank-note{color:var(--muted);font-size:.85rem;margin:0;text-align:right;max-width:26rem}
+/* ---------- tête de section du registre ---------- */
+.list-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
+  gap:.5rem 1.5rem;margin:0 0 .8rem;border-bottom:2px solid var(--ink);padding-bottom:.5rem}
+.list-head h2{margin:0}
+.rank-note{color:var(--muted);font-size:.8rem;margin:0;text-align:right;max-width:26rem}
 @media (max-width:36rem){.rank-note{text-align:left}}
 
-/* ---------- la liste ---------- */
-.table-scroll{overflow-x:auto;margin:0 0 1.5rem;border:1px solid var(--rule);
-  border-radius:.5em;background:var(--card)}
-table{width:100%;border-collapse:collapse;min-width:40rem}
-caption{text-align:left;color:var(--muted);font-size:.8rem;margin:0 0 .6rem;caption-side:top}
-th,td{text-align:left;padding:.7em .9em;border-bottom:1px solid var(--rule);vertical-align:middle}
+/* ---------- le registre ---------- */
+/* .registry se pose sur le .table-scroll existant (site.js lit .cat/.price
+   dans les lignes — crochets conservés). La feuille est réglée : la trame
+   horizontale de 4px est celle des feuillets du dossier. */
+.table-scroll{overflow-x:auto;margin:0 0 1.5rem}
+.registry{background:var(--paper-sheet) repeating-linear-gradient(0deg,var(--paper-sheet) 0 4px,var(--paper-rule) 4px 8px);
+  border:1px solid var(--line-strong);
+  box-shadow:0 2px 0 rgba(43,35,23,.06),0 10px 20px rgba(43,35,23,.13)}
+.registry table{min-width:40rem}
+table{width:100%;border-collapse:collapse}
+caption{text-align:left;color:var(--muted);font-size:.78rem;padding:.6rem .8rem 0;caption-side:top}
+th,td{text-align:left;padding:.6em .8em;border-bottom:1px solid var(--line);vertical-align:middle}
+td+td,th+th{border-left:1px dotted var(--line)}
 tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
-thead th{font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);
-  font-weight:700;background:color-mix(in srgb,var(--ink) 3%,transparent)}
-tbody tr:hover{background:color-mix(in srgb,var(--ink) 3%,transparent)}
-tbody th{font-weight:600}
-tbody th a{text-decoration:none}
-/* Le favicon de chaque ligne : alt vide et aria-hidden implicite — c'est une
-   décoration, le nom de l'outil est juste à côté et porte déjà l'information. */
-tbody th a{display:inline-flex;align-items:center;gap:.55em}
-.row-favicon{width:20px;height:20px;border-radius:.25em;flex:none;object-fit:contain;
-  background:color-mix(in srgb,var(--ink) 6%,transparent)}
-tbody th a:hover{text-decoration:underline}
+thead th,thead td{font-family:var(--cond);font-size:.66rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-2);font-weight:700;
+  border-bottom:2px solid var(--ink);white-space:nowrap}
+tbody th{font-weight:700}
+/* Le favicon de chaque ligne : alt vide — décoration, le nom porte déjà
+   l'information. */
+tbody th a{display:inline-flex;align-items:center;gap:.55em;text-decoration:none}
+tbody th a:hover{text-decoration:underline dotted}
+.row-favicon{width:20px;height:20px;flex:none;object-fit:contain}
 tbody tr[hidden]{display:none}
-.rank{color:var(--muted);font-variant-numeric:tabular-nums;font-size:.8rem;width:1%;
-  padding-right:0;white-space:nowrap}
+#tool-rows tr:hover td,#tool-rows tr:hover th{background:var(--paper-cartouche)}
+.rank{color:var(--ink-3);font-variant-numeric:tabular-nums;font-size:.78rem;
+  letter-spacing:.06em;width:1%;padding-right:0;white-space:nowrap}
 .price,.votes{font-variant-numeric:tabular-nums;white-space:nowrap}
-.votes{color:var(--muted);font-size:.9rem}
-.cat{white-space:nowrap;font-size:.9rem}
+.votes{color:var(--muted);font-size:.85rem}
+.cat{white-space:nowrap;font-size:.85rem;color:var(--ink-3)}
 
-/* Numérotation du classement : un compteur CSS se renumérote tout seul quand la
-   recherche masque des lignes, ce qu'un numéro écrit dans le HTML ne ferait pas. */
-#tool-rows{counter-reset:rank}
-#tool-rows tr:not([hidden]){counter-increment:rank}
-#tool-rows tr:not([hidden]) .rank::before{content:counter(rank,decimal-leading-zero)}
-
+/* Numérotation du registre : un compteur CSS suit le DOM après re-tri (votes)
+   et filtrage (recherche) par site.js — un numéro écrit dans le HTML au build
+   deviendrait faux. Ces numéros sont un ordre de lecture, pas une cote : la
+   cote stable d'un outil est son slug (code-barres). */
+#tool-rows{counter-reset:row}
+#tool-rows tr:not([hidden]){counter-increment:row}
+#tool-rows td.rank::before{content:counter(row,decimal-leading-zero)}
 #no-results{color:var(--muted)}
 
-/* ---------- fiche ---------- */
-/* Groupe 1 : titre, méta, résumé — une seule unité, resserrée. Le badge de
-   verdict est mis en relation avec le titre : la rangée épouse la largeur de
-   son contenu (favicon + h1 + badge) au lieu de s'étirer sur toute la
-   largeur de .page, ce qui évite l'écart qui se creusait entre un h1 replié
-   sur deux lignes et un badge plaqué au bord de la fenêtre. */
-.tool-intro{margin-bottom:clamp(2.5rem,6vh,3.75rem)}
-.tool-title-row{display:flex;flex-wrap:wrap;align-items:center;gap:.5em .85em;
-  width:fit-content;max-width:100%;margin:0 0 .5rem}
-.tool-favicon{border-radius:.35em;flex:none;background:var(--card);border:1px solid var(--rule)}
-.tool-title-row h1{margin:0;flex:0 1 auto;min-width:0}
+/* ---------- tampons, cachets, visas ---------- */
+/* Un tampon est une bordure de sa propre encre (currentColor) : la couleur ne
+   se pose jamais en aplat sous du texte, et les encres de verdict ne colorent
+   que le verdict. Rotations ≤ 8°, réservées aux tampons. */
+.stamp{display:inline-block;border:3px solid currentColor;outline:1px solid currentColor;
+  outline-offset:2px;font-family:var(--cond);font-weight:700;text-transform:uppercase;
+  text-align:center;white-space:nowrap}
+.stamp-date{color:var(--ink-2);font-size:.7rem;letter-spacing:.2em;line-height:1.7;
+  padding:9px 12px 9px 16px;transform:rotate(-3deg)}
+.stamp-verif{color:var(--ink-2);font-size:.66rem;letter-spacing:.2em;padding:7px 11px;
+  transform:rotate(4deg)}
+.stamp-sub{display:block;font-size:.56rem;letter-spacing:.18em;margin-top:6px;
+  padding-top:5px;border-top:1px solid currentColor}
+/* Le tampon verdict S'APPELLE .badge : site.js fait row.querySelector('.badge')
+   et le test verdictBadge existant reste vert. En ligne de registre c'est le
+   petit mot cacheté ; en chemise, .badge-lg le passe au grand format. */
+.badge{display:inline-block;border:1.5px solid currentColor;font-family:var(--cond);
+  font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:2px 7px 1px;transform:rotate(-2deg);white-space:nowrap;background:none;line-height:1.4}
+.badge.yes{color:var(--stamp-yes)}
+.badge.kinda{color:var(--stamp-kinda)}
+.badge.no{color:var(--stamp-no)}
+.badge-lg{border-width:3px;outline:1px solid currentColor;outline-offset:2px;
+  font-size:1.3rem;letter-spacing:.3em;padding:12px 8px 10px 20px;transform:rotate(-6deg);
+  line-height:1.15;text-align:center;flex:none}
+/* Tampon dateur rond — encre verte d'archive, réservé à la date du relevé de
+   prix (pricing.checkedOn) : un seul porteur de cette date par page. */
+.date-ring{width:98px;height:98px;border:2px solid var(--stamp-date);border-radius:50%;
+  display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;color:var(--stamp-date);font-family:var(--cond);font-size:.56rem;
+  font-weight:700;letter-spacing:.15em;text-transform:uppercase;line-height:1.55;
+  transform:rotate(7deg);position:relative;flex:none}
+.date-ring::before{content:"";position:absolute;inset:7px;border:1px solid var(--stamp-date);border-radius:50%}
+.date-ring strong{font-size:.82rem;letter-spacing:.06em;white-space:nowrap;margin:1px 0}
+.visa{display:inline-block;border:2px solid var(--ink-2);color:var(--ink-2);
+  font-family:var(--cond);font-size:.6rem;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;padding:4px 9px;transform:rotate(-4deg);margin:0 0 .9rem}
+.piece-stamp{margin-left:auto;border:2px solid var(--ink-2);color:var(--ink-2);
+  font-family:var(--cond);font-size:.6rem;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;padding:4px 9px;transform:rotate(-3deg)}
 
-dl.meta-row{display:flex;flex-wrap:wrap;gap:1.2rem 2rem;margin:0 0 1.4rem;
-  padding:1rem 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
-.meta-item{display:flex;flex-direction:column;gap:.25rem;min-width:6rem}
-.meta-item dt{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--muted);font-weight:700}
-.meta-item dd{margin:0;font-weight:600;font-size:.95rem}
+/* ---------- la main du contrôleur ---------- */
+/* Tout ce qui est en --pen est ce qu'un contrôleur aurait écrit à la main —
+   et rien d'autre. Rotations ≤ 1.5°, jamais sur plus de deux lignes. */
+.pen-line{display:inline-block;font-family:var(--hand);font-style:italic;color:var(--pen);
+  font-size:.85rem;line-height:1.55;transform:rotate(-.5deg)}
+.pen-vu{font-family:var(--hand);font-style:italic;color:var(--pen);font-size:.76rem;margin-left:7px}
+.pen-note{font-family:var(--hand);font-style:italic;color:var(--pen);font-size:.85rem;
+  line-height:1.55;margin:0 0 .85rem;padding-left:15px;position:relative;
+  transform:rotate(-.6deg);max-width:var(--measure)}
+.pen-note::before{content:"\\2014";position:absolute;left:0;top:0}
+.paraphe{display:inline-block;font-family:var(--hand);font-style:italic;color:var(--pen);
+  font-size:1.3rem;font-weight:700;letter-spacing:.05em;transform:rotate(-6deg);
+  border-bottom:2px solid var(--pen);padding:0 6px 2px;margin-left:10px}
+.paraphe-sm{display:inline-block;font-family:var(--hand);font-style:italic;color:var(--pen);
+  font-size:.9rem;font-weight:700;transform:rotate(-5deg)}
+/* Le souligné main porte un second trait translucide : un double passage de
+   stylo, pas une ombre portée (spec §2). */
+.hand-underline{border-bottom:2px solid var(--pen);
+  box-shadow:0 2px 0 color-mix(in srgb,var(--pen) 30%,transparent)}
+.hl-mark{background:var(--hl);box-shadow:0 0 0 3px var(--hl);color:var(--ink)}
+
+/* ---------- cases à cocher du dossier ---------- */
+/* Deux échelles, deux encres (spec §2) : la petite coche de suivi est au stylo
+   (.pen-check), la grande case du verdict est imprimée et cochée à l'encre
+   noire de la machine (.check-box, croix --ink). */
+.pen-check{display:inline-block;width:12px;height:12px;border:1.5px solid var(--ink);
+  background:var(--paper-bright);position:relative;flex:none;vertical-align:-1px}
+.pen-check::after{content:"";position:absolute;left:1px;top:-5px;width:13px;height:7px;
+  border-left:2px solid var(--pen);border-bottom:2px solid var(--pen);transform:rotate(-48deg)}
+.verdict-checks{display:flex;flex-wrap:wrap;gap:.75rem 2.2rem;margin:.8rem 0 .6rem}
+.check-item{display:inline-flex;align-items:center;gap:11px;font-family:var(--cond);
+  font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--ink)}
+.check-box{width:21px;height:21px;border:2px solid var(--ink);background:var(--paper-bright);
+  position:relative;flex:none}
+.is-checked .check-box::before,.is-checked .check-box::after{content:"";position:absolute;
+  left:-3px;right:-3px;top:calc(50% - 1.5px);height:3px;background:var(--ink)}
+.is-checked .check-box::before{transform:rotate(44deg)}
+.is-checked .check-box::after{transform:rotate(-47deg)}
+
+/* ---------- chemise à onglet (fiche) ---------- */
+.folder{position:relative;background:var(--paper-folder) repeating-linear-gradient(0deg,rgba(43,35,23,.035) 0 2px,rgba(43,35,23,0) 2px 5px);
+  border:1px solid var(--line-strong);padding:2rem 2.2rem 1.6rem 2.75rem;margin:2.1rem 0 2.9rem}
+.folder-tab{position:absolute;bottom:100%;left:26px;background:var(--paper-folder);
+  border:1px solid var(--line-strong);border-bottom:0;border-radius:7px 7px 0 0;
+  padding:7px 20px 5px;font-family:var(--cond);font-size:.66rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink);white-space:nowrap;
+  max-width:calc(100% - 26px);overflow:hidden;text-overflow:ellipsis}
+.folder-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:1.6rem}
+.folder-id{flex:1;min-width:min(100%,300px)}
+.folder-stamps{display:flex;align-items:center;gap:1.4rem;flex:none;padding:10px 8px 0 0}
+.folder-foot{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem 1.1rem;margin:1.6rem 0 0;
+  padding-top:1rem;border-top:1px dashed var(--line-strong)}
+.folder-footnote{font-size:.72rem;color:var(--ink-2);margin-left:auto;max-width:46ch}
+
+/* ---------- artefacts physiques ---------- */
+/* Trombone, perforations, code-barres : CSS pur, toujours aria-hidden, jamais
+   posés sur du texte (le padding gauche de .folder réserve la marge des
+   œillets). Le code-barres superpose trois trames de barres — c'est la cote
+   imprimée du dossier, pas un décor gratuit. */
+.paper-clip{position:absolute;top:-20px;right:15%;width:24px;height:38px;z-index:2;transform:rotate(3deg)}
+.paper-clip::before{content:"";position:absolute;inset:0;border:3.5px solid var(--metal);
+  border-radius:12px;box-shadow:1px 2px 3px rgba(43,35,23,.25)}
+.paper-clip::after{content:"";position:absolute;left:6px;right:6px;top:12px;bottom:-10px;
+  border:3.5px solid var(--metal-2);border-radius:9px}
+.hole{position:absolute;left:10px;width:13px;height:13px;border-radius:50%;
+  background:var(--paper-desk);border:1px solid var(--line);
+  box-shadow:inset 0 1px 2px rgba(43,35,23,.28)}
+.hole-a{top:24%}
+.hole-b{top:70%}
+.barcode{display:inline-block;width:168px;height:26px;
+  background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 7px),repeating-linear-gradient(90deg,var(--ink) 0 1px,transparent 1px 5px),repeating-linear-gradient(90deg,transparent 0 9px,var(--ink) 9px 12px,transparent 12px 19px)}
+.barcode-label{font-family:var(--cond);font-size:.56rem;font-weight:700;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--ink-2)}
+
+/* ---------- feuillets et pièces ---------- */
+.sheet{background:var(--paper-sheet) repeating-linear-gradient(0deg,var(--paper-sheet) 0 4px,var(--paper-rule) 4px 8px);
+  border:1px solid var(--line-strong);position:relative;
+  box-shadow:0 2px 0 rgba(43,35,23,.06),0 10px 20px rgba(43,35,23,.13)}
+.piece-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+/* L'onglet encré plein de la pièce, coin coupé au massicot. */
+.piece-tab{display:inline-block;background:var(--ink);color:var(--paper-sheet);
+  font-family:var(--cond);font-size:.66rem;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;padding:8px 26px 8px 16px;
+  clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%)}
+.piece-meta{display:inline-flex;align-items:center;gap:8px;font-family:var(--cond);
+  font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--ink-2)}
+.piece-head+.sheet{border-top:2px solid var(--ink)}
+.piece-no{font-family:var(--cond);font-size:.66rem;font-weight:700;letter-spacing:.12em;
+  color:var(--ink-2);border:1px solid var(--line-strong);background:var(--paper-cartouche);padding:2px 6px}
+/* Rythme des pièces : c'est l'onglet encré (h2.piece-tab) qui rythme la page,
+   pas la marge d'imprimé du h2 — annulée dans la tête de pièce. Le feuillet
+   .piece-body rend au papier réglé la marge intérieure que la maquette donnait
+   à chaque pièce (ef-prompt/ef-losswrap/ef-why). */
+.piece{margin:0 0 2.6rem}
+.piece-head h2{margin:0}
+.piece-body{padding:1.25rem 1.5rem}
+/* Le résumé au filet de verdict (maquette ef-resume) : seul le filet en marge
+   porte l'encre du tampon — jamais le texte lui-même (spec §2). */
+.verdict-summary{border-left:3px solid var(--ink);padding:.15rem 0 .15rem 1.2rem;
+  max-width:var(--wide);margin:0 0 .9rem}
+.verdict-summary.yes{border-left-color:var(--stamp-yes)}
+.verdict-summary.kinda{border-left-color:var(--stamp-kinda)}
+.verdict-summary.no{border-left-color:var(--stamp-no)}
+
+/* ---------- fiche : signalétique ---------- */
+.meta-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.1rem 1.5rem;
+  margin:0 0 1.4rem;border-top:1px solid var(--line-strong);padding-top:1.2rem}
+@media (max-width:56rem){.meta-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.meta-item{display:flex;flex-direction:column;min-width:0}
+.meta-item dt{display:flex;align-items:center;gap:7px;font-family:var(--cond);font-size:.62rem;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
+/* Chaque valeur repose sur sa ligne de champ pointillée, comme remplie au
+   guichet. */
+.meta-item dd{margin:6px 0 0;padding:0 0 5px;border-bottom:1px dotted var(--line-strong);
+  font-size:.9rem;font-weight:600}
 .meta-item dd a{text-decoration:none}
-.meta-item dd a:hover{text-decoration:underline}
-/* La source du prix est une légende du prix, pas du résumé qui suit : elle
-   vit maintenant sous la valeur, dans la même case "Prix" du méta-tableau —
-   voir renderMetaRow dans site-page-tool.mjs. */
+.meta-item dd a:hover{text-decoration:underline dotted}
 .meta-item .price-source{display:block;margin-top:.35rem;font-size:.72rem;
   font-weight:400;color:var(--muted)}
-.meta-item .price-source a{color:inherit}
-.verdict-summary{max-width:var(--measure)}
 
-/* Groupe 2 : le prompt est sa propre unité — un espace net avant et après le
-   distingue du groupe 1 au-dessus et de "pourquoi on paie encore" en
-   dessous, plutôt que le même intervalle uniforme partout. Les marges de
-   blocs adjacents se fusionnent au maximum (règle CSS standard), donc fixer
-   .tool-block-prompt sur les deux bords suffit à l'isoler sans avoir à
-   toucher les sections voisines. */
-.tool-block-prompt{margin:clamp(2.75rem,6vh,4rem) 0 clamp(2.75rem,6vh,4rem)}
+/* ---------- boutons d'imprimé ---------- */
+/* Contour d'encre et ombre au plomb — l'état pressé/survolé est un fond
+   cartouche, un marquage sans mouvement. */
+button,.copy-btn,.agent-btn,.share-x-btn{display:inline-block;font-family:var(--cond);
+  font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.15em;
+  border:2px solid var(--ink);border-radius:0;background:transparent;color:var(--ink);
+  padding:.7em 1.1em;cursor:pointer;text-decoration:none;
+  box-shadow:2px 2px 0 rgba(43,35,23,.22)}
+button:hover:not(:disabled),.agent-btn:hover,.share-x-btn:hover{background:var(--paper-cartouche)}
+button:disabled{opacity:.5;cursor:default}
+.vote-btn{background:var(--ink);color:var(--paper-sheet);font-size:.8rem;padding:.9em 1.4em}
+.vote-btn:hover:not(:disabled){background:var(--ink-2);color:var(--paper-sheet)}
+
+/* ---------- pièce A : le prompt ---------- */
+.tool-block-prompt{margin:clamp(2.75rem,6vh,4rem) 0}
 .prompt-block{position:relative;margin:0 0 .5rem}
 .prompt-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
   gap:.6rem 1rem;margin:0 0 .6rem}
-.prompt-label{margin:0;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--muted);font-weight:700}
-.prompt-actions{display:flex;flex-wrap:wrap;gap:.5rem}
-.prompt-actions .copy-btn,.agent-btn{
-  font-size:.78rem;padding:.45em .85em;border-radius:.35em;border:1px solid var(--rule);
-  background:var(--card);color:var(--ink);text-decoration:none;font-weight:600}
-.prompt-actions .copy-btn:hover:not(:disabled),.agent-btn:hover{
-  border-color:var(--ink);opacity:1;background:color-mix(in srgb,var(--ink) 5%,var(--card))}
-.prompt-caption{color:var(--muted);font-size:.82rem;margin:.7rem 0 0;max-width:var(--measure)}
-pre{background:var(--card);border:1px solid var(--rule);border-radius:.5em;
-  padding:1rem 1.1rem;overflow-x:auto;font-size:.82rem;line-height:1.65;
-  font-family:var(--mono);white-space:pre-wrap;word-break:break-word;margin:0}
-button{font:inherit;font-size:.85rem;padding:.55em 1.1em;border:1px solid var(--ink);
-  background:var(--ink);color:var(--paper);border-radius:.35em;cursor:pointer;font-weight:600}
-button:disabled{opacity:.5;cursor:default}
-@media (prefers-reduced-motion:no-preference){button{transition:opacity .15s ease}}
-button:hover:not(:disabled){opacity:.85}
-.status{font-size:.82rem;color:var(--muted);margin:.6rem 0 0;min-height:1.2em}
+.prompt-label{margin:0;font-family:var(--cond);font-size:.66rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-2);font-weight:700}
+.prompt-actions{display:flex;flex-wrap:wrap;gap:.6rem}
+.prompt-caption{color:var(--muted);font-size:.8rem;margin:.7rem 0 0;max-width:var(--measure)}
+pre{background:var(--paper-sheet) repeating-linear-gradient(0deg,var(--paper-sheet) 0 4px,var(--paper-rule) 4px 8px);
+  border:1px solid var(--line-strong);padding:1rem 1.2rem;overflow-x:auto;font-size:.85rem;
+  line-height:1.8;font-family:var(--mono);white-space:pre-wrap;word-break:break-word;margin:0;
+  box-shadow:0 2px 0 rgba(43,35,23,.06)}
+.status{font-size:.8rem;color:var(--muted);margin:.6rem 0 0;min-height:1.2em}
 
-/* ---------- deux colonnes : ce que tu perds / alternatives existantes ---------- */
+/* ---------- pièces B et C : listes contrôlées, deux colonnes ---------- */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:2rem 2.5rem;align-items:start}
 .two-col>div:only-child{grid-column:1 / -1}
 @media (max-width:44rem){.two-col{grid-template-columns:1fr}}
-.lose-mark{color:var(--no);font-weight:700;margin-right:.4em}
-.lose-list{list-style:none;padding:0}
-/* L'entrée n'a qu'un nom, une licence et un lien (le schéma ne porte pas de
-   description — voir data/tools/*.json) : une rangée dense et réglée plutôt
-   qu'une carte à padding généreux qui donnerait l'impression d'un contenu
-   manquant. Même famille visuelle que .breadcrumb / details : un filet, pas
-   un cadre. */
-.priorart-cards{list-style:none;padding:0;margin:0}
-.priorart-card{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
-  gap:.3em 1em;padding:.5em 0;border-bottom:1px solid var(--rule)}
-.priorart-card:first-child{border-top:1px solid var(--rule)}
-.priorart-card a{font-weight:600;text-decoration:none}
-.priorart-card a:hover{text-decoration:underline}
-.priorart-license{color:var(--muted);font-size:.78rem;white-space:nowrap}
+.lose-list{list-style:none;padding:0;margin:0;max-width:var(--wide)}
+.lose-list li{display:flex;gap:.8em;align-items:flex-start;padding:.75em 0;
+  border-bottom:1px dotted var(--line);margin:0}
+.lose-list li:last-child{border-bottom:0}
+.priorart-cards{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.9rem}
+.priorart-card{display:flex;flex-direction:column;gap:.3rem;border:2px solid var(--ink);
+  background:var(--paper-sheet);padding:.9em 1.2em;min-width:min(100%,12rem);
+  box-shadow:3px 3px 0 rgba(43,35,23,.2)}
+.priorart-card a{font-weight:700;text-decoration:none}
+.priorart-card a:hover{text-decoration:underline dotted}
+.priorart-license{color:var(--ink-2);font-family:var(--cond);font-size:.62rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.18em;white-space:nowrap}
 
 /* ---------- outils proches ---------- */
 .related-cards{list-style:none;padding:0;margin:0 0 1rem;
   display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
 @media (max-width:44rem){.related-cards{grid-template-columns:1fr}}
-.related-card{border:1px solid var(--rule);border-radius:.5em;background:var(--card)}
+.related-card{border:1px solid var(--line-strong);background:var(--paper-sheet)}
 .related-card:hover{border-color:var(--ink)}
 .related-card a{display:flex;flex-direction:column;align-items:flex-start;gap:.4rem;
   padding:1rem;text-decoration:none;color:inherit}
-.related-card img{border-radius:.3em}
 .related-card-name{font-weight:700}
 .related-card-meta{color:var(--muted);font-size:.8rem}
+.related-list{display:flex;flex-direction:column;gap:.9rem;list-style:none;padding:0;margin:0 0 1rem}
+.related-list .name{font-weight:700;margin-right:.6em}
+.related-list p{margin:.2rem 0 0;color:var(--muted);max-width:var(--measure)}
 
-/* ---------- vote et partage ---------- */
-.vote-row{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;margin:0 0 .8rem}
-.vote-btn{font-size:1rem;padding:.8em 1.5em}
-.vote-count-badge{font-weight:400;opacity:.85;margin-left:.3em}
-.share-x-btn{display:inline-flex;align-items:center;font-size:.85rem;padding:.7em 1.2em;
-  border-radius:.4em;border:1px solid var(--rule);background:var(--card);color:var(--ink);
-  text-decoration:none;font-weight:600}
-.share-x-btn:hover{border-color:var(--ink)}
-
-/* ---------- annuaire des catégories ---------- */
-ul.category-cards{list-style:none;padding:0;margin:0 0 2rem;
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.9rem}
-.category-card{border:1px solid var(--rule);border-radius:.5em;background:var(--card)}
-.category-card:hover{border-color:var(--ink)}
-.category-card a{display:flex;justify-content:space-between;align-items:center;gap:.6rem;
-  padding:.9em 1.1em;text-decoration:none;color:inherit}
-.category-card-count{color:var(--muted);font-size:.82rem;white-space:nowrap}
-
-details{border-top:1px solid var(--rule);padding:.85rem 0}
-details:last-of-type{border-bottom:1px solid var(--rule)}
-summary{cursor:pointer;font-weight:600}
-summary::marker{color:var(--muted)}
-details p{margin:.7rem 0 0;color:var(--muted);max-width:var(--measure)}
+/* ---------- questions ---------- */
+details{border-bottom:1px solid var(--line);padding:.85rem 0}
+details:first-of-type{border-top:2px solid var(--ink)}
+summary{cursor:pointer;font-weight:700}
+summary::marker{color:var(--ink-2)}
+details p{margin:.7rem 0 0;color:var(--ink-2);max-width:var(--wide)}
 
 ul{padding-left:1.1rem;max-width:var(--wide)}
 li{margin:0 0 .35rem}
 ul.plain{list-style:none;padding:0}
 
-.related-list{display:flex;flex-direction:column;gap:.9rem;list-style:none;padding:0;margin:0 0 1rem}
-.related-list .name{font-weight:600;margin-right:.6em}
-.related-list p{margin:.2rem 0 0;color:var(--muted);max-width:var(--measure)}
+/* ---------- répertoire des rubriques ---------- */
+/* Liste dense à points de conduite, pas une grille de cartes décorative
+   (spec §4) : le nom, la ligne pointillée, le compte. */
+.category-list{list-style:none;padding:0;margin:0 0 2rem;max-width:var(--wide)}
+.category-row{display:flex;align-items:baseline;gap:.5rem;padding:.45em 0;
+  border-bottom:1px dotted var(--line);margin:0}
+.category-row a{text-decoration:none;font-weight:600}
+.category-row a:hover{text-decoration:underline dotted}
+.leader{flex:1;min-width:2rem;border-bottom:1px dotted var(--line-strong);
+  align-self:flex-end;margin:0 .2em .35em}
+.category-count{color:var(--muted);font-size:.8rem;font-variant-numeric:tabular-nums;white-space:nowrap}
 
-.vote-section{border-top:1px solid var(--rule);padding-top:1.3rem;margin-top:2.4rem}
+/* ---------- état récapitulatif (accueil) ---------- */
+.recap{display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem 2rem;padding:1.2rem 1.5rem 1.3rem}
+.recap-figures{display:flex;flex-wrap:wrap}
+.recap-figure{padding:4px 1.4rem 4px 0;margin-right:1.4rem;border-right:1px dotted var(--line)}
+.recap-figure:last-child{border-right:0;margin-right:0}
+.recap-label{font-family:var(--cond);font-size:.64rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.18em;color:var(--muted)}
+.recap-value{display:block;font-size:1.3rem;font-weight:700;margin-top:3px;white-space:nowrap}
+.recap-value-sm{font-size:.9rem;padding-top:7px}
+/* Repli quand le service de vote est muet au build : du texte à la taille des
+   mentions du récap, pas un artefact. */
+.recap-unavailable{color:var(--muted);font-size:.8rem;margin:0}
+/* La barre de répartition des verdicts : trois segments aux encres de tampon —
+   du verdict, donc dans leur droit — séparés par un filet de papier. */
+.recap-dist-wrap{flex:1;min-width:min(100%,220px)}
+.recap-dist{display:flex;height:13px;border:1px solid var(--ink);margin:8px 0 7px;
+  background:var(--paper-sheet)}
+.recap-seg-yes{background:var(--stamp-yes)}
+.recap-seg-kinda{background:var(--stamp-kinda);border-inline:1px solid var(--paper-sheet)}
+.recap-seg-no{background:var(--stamp-no)}
+.recap-legend{margin:0;font-size:.78rem;display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline}
+.recap-stamps{display:flex;align-items:center;gap:1.2rem;margin-left:auto;padding:4px 6px}
+
+/* ---------- signature du bordereau ---------- */
+.sign-row{display:flex;flex-wrap:wrap;align-items:center;gap:1.4rem 2.75rem;
+  border-top:2px solid var(--ink);margin:2rem 0 0;padding:1.4rem 0 0}
+.sign-text{flex:1;min-width:min(100%,280px)}
+.sign-note{margin:0 0 .7rem;font-size:.9rem;max-width:56ch}
+
+/* ---------- bordereau de suivi des pièces (fiche) ---------- */
+.tracking-slip{margin:0 0 1.5rem}
+.tracking-slip table{min-width:0}
+
+/* ---------- récépissé de vote ---------- */
+/* Le cadre du visiteur : double filet d'encre (bordure + outline rentré),
+   comme un volet détachable au bas du formulaire. */
+.vote-section,.receipt{border:2px solid var(--ink);outline:1px solid var(--ink);
+  outline-offset:-7px;background:var(--paper-sheet);padding:1.5rem 1.75rem;
+  margin-top:2.4rem;box-shadow:0 8px 18px rgba(43,35,23,.14)}
+.receipt-label{font-family:var(--cond);font-size:.6rem;font-weight:700;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--ink-2);margin:0 0 .7rem}
+.vote-row{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;margin:0 0 .8rem}
+.vote-count-badge{font-weight:400;font-variant-numeric:tabular-nums;margin-left:.3em}
 .vote-count{color:var(--muted);margin:0 0 .8rem}
 
+/* ---------- pied de page ---------- */
+footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
+  border-top:1px dashed var(--line-strong);display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;
+  font-size:.76rem;color:var(--ink-2);letter-spacing:.06em}
 .site-footer .credit{margin-left:auto}
-footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
-  border-top:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;
-  font-size:.82rem;color:var(--muted)}
 
-.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
-  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-@media (prefers-reduced-motion:no-preference){
-  .r{opacity:0;transform:translateY(.35rem);animation:rise .5s cubic-bezier(.16,1,.3,1) forwards}
-  @keyframes rise{to{opacity:1;transform:none}}
+/* ---------- sous 40rem : les artefacts rentrent dans le flux ---------- */
+/* Jamais de chevauchement de texte en étroit (spec §6) : les artefacts
+   débordants disparaissent ou se posent à plat, et le registre devient une
+   pile de chemises — une par ligne, l'en-tête relégué hors écran pour les
+   lecteurs d'écran. */
+@media (max-width:40rem){
+  .paper-clip,.hole{display:none}
+  .date-ring{transform:none;margin:0}
+  .folder-stamps{position:static;flex-direction:row;flex-wrap:wrap}
+  .pen-note{transform:none}
+  .registry table,.registry thead,.registry tbody,.registry tr,.registry td,.registry th{display:block}
+  .registry table{min-width:0}
+  .registry thead{position:absolute;left:-9999px}
+  .registry tr{border:1px solid var(--paper-folder);background:var(--paper-sheet);
+    margin:0 0 10px;padding:8px 12px}
+  .registry td,.registry th{border-bottom:0;border-left:0;padding:.2em 0}
+  .registry td.rank{display:none}
 }
 
 /* ---------- emplacements sponsors ---------- */
@@ -578,7 +826,6 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1.2rem;
 .sp-contact{display:inline-flex;align-items:center;gap:.4em;font-size:.9rem;font-weight:700;
   padding:.6em 1.1em;border:1px solid var(--ink);border-radius:.35em;
   background:var(--ink);color:var(--paper);text-decoration:none}
-@media (prefers-reduced-motion:no-preference){.sp-contact{transition:opacity .15s ease}}
 .sp-contact:hover{opacity:.85}
 
 /* ---------- page stats ---------- */

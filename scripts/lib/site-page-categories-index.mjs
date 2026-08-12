@@ -27,18 +27,17 @@ export function renderCategoriesIndexPage({
       const label = categoryLabel(categories, slug, lang);
       const count = countsBySlug[slug] ?? 0;
       const tally = pluralize(count, lang, c.toolCountOne, c.toolCountOther);
-      return `        <li class="category-card">
-          <a href="${homePath}categories/${slug}/">
-            ${emoji ? `<span aria-hidden="true">${emoji}</span> ` : ''}<span class="category-card-name">${escapeHtml(label)}</span>
-            <span class="category-card-count">${escapeHtml(tally)}</span>
-          </a>
+      return `        <li class="category-row">
+          ${emoji ? `<span aria-hidden="true">${emoji}</span>` : ''}<a href="${homePath}categories/${slug}/">${escapeHtml(label)}</a>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="category-count">${escapeHtml(tally)}</span>
         </li>`;
     })
     .join('\n');
 
   const main = `    ${renderBreadcrumb(breadcrumbItems)}
     <h1>${escapeHtml(c.heading)}</h1>
-    <ul class="category-cards">
+    <ul class="category-list">
 ${items}
     </ul>`;
 

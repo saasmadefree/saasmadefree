@@ -188,8 +188,24 @@ export function catalogueFigures(tools, langs, promptCount) {
   };
 }
 
+/** La date de vérification la plus ANCIENNE du catalogue : c'est la garantie
+ *  plancher qu'affiche le cachet de bordereau de l'accueil (« Prix tous
+ *  vérifiés depuis le … ») — jamais la plus récente, qui promettrait trop.
+ *  Accepte la Map du catalogue (côté build) comme le tableau de vues reçu par
+ *  renderHomePage : Map et Array exposent tous deux .values(), et chaque
+ *  élément porte pricing.checkedOn (buildToolViews recopie la fiche entière). */
+export function oldestCheckedOn(tools) {
+  let min = null;
+  for (const tool of tools.values()) {
+    const d = tool.pricing.checkedOn;
+    if (min === null || d < min) min = d;
+  }
+  return min;
+}
+
 /**
- * La "dépense mensuelle détruite" affichée dans le bandeau-ticker : le prix
+ * La "dépense mensuelle détruite" affichée dans l'état récapitulatif de
+ * l'accueil : le prix
  * mensuel de chaque outil multiplié par son nombre de votes, sommé — jamais
  * inventé. Renvoie `null` quand le service de vote n'a pas répondu au build
  * (voir fetchVoteCounts) : l'appelant doit alors afficher le bandeau sans le

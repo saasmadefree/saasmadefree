@@ -1,56 +1,50 @@
-import { escapeHtml, renderLayout } from './site-html.mjs';
-import { categoryLabel, categoryEmoji } from './site-data.mjs';
-import {
-  formatMoney, formatMoneyDigits, formatMonthlyPrice, monthlySuffix, interpolate, MONTHLY_BASES,
-} from './site-format.mjs';
+import { escapeHtml, renderLayout, stamp } from './site-html.mjs';
+import { categoryLabel, categoryEmoji, oldestCheckedOn } from './site-data.mjs';
+import { formatMoney, formatStampDate, interpolate, pluralize } from './site-format.mjs';
 import { renderToolTable } from './site-table.mjs';
 import { organizationJsonLd, websiteJsonLd, itemListJsonLd } from './site-seo.mjs';
 
-/** Le bandeau défilant : une entrée par outil dont le prix est vraiment
- *  mensuel (voir MONTHLY_BASES) — jamais une fiche à paiement unique, dont le
- *  "-$X/mo" mentirait sur la périodicité. La séquence est dupliquée pour que
- *  l'animation CSS boucle sans à-coup (translateX -50%). */
-function renderTicker(toolViews, lang) {
-  const items = toolViews.filter((t) => MONTHLY_BASES.has(t.pricing.basis));
-  const entry = (t) => `<span class="ticker-item">${escapeHtml(t.name.toUpperCase())} &minus;${escapeHtml(formatMonthlyPrice(t.pricing, lang))}</span>`;
-  return [...items, ...items].map(entry).join('\n        ');
-}
-
-function renderMrrFigure(mrrTotal, lang, h) {
+/** La ligne MRR-votes de l'état récapitulatif : une ligne de bordereau sobre
+ *  (libellé + montant via formatMoney — plus jamais de "digit boxes"). Le
+ *  montant visible est doublé d'une phrase complète pour lecteur d'écran
+ *  (mrrSrTemplate) ; quand le service de vote n'a pas répondu au build
+ *  (mrrTotal null), on affiche un texte simple plutôt qu'un zéro qui se
+ *  ferait passer pour une donnée. */
+function renderMrrLine(mrrTotal, lang, h) {
   if (mrrTotal === null) {
-    return `<p class="mrr-figure mrr-unavailable">${escapeHtml(h.mrrUnavailable)}</p>`;
+    return `<p class="recap-unavailable">${escapeHtml(h.mrrUnavailable)}</p>`;
   }
-  const digitBoxes = formatMoneyDigits(mrrTotal, 'USD', lang)
-    .map((c) => `<span class="digit-box">${escapeHtml(c)}</span>`)
-    .join('');
-  const srText = interpolate(h.mrrSrTemplate, { amount: formatMoney(mrrTotal, 'USD', lang) });
-  return `<p class="mrr-figure">
-        <span class="mrr-label">${escapeHtml(h.mrrLabel)}</span>
-        <span class="mrr-digits" aria-hidden="true">${digitBoxes}<span class="mrr-suffix">${escapeHtml(monthlySuffix(lang))}</span></span>
+  const amount = formatMoney(mrrTotal, 'USD', lang);
+  const srText = interpolate(h.mrrSrTemplate, { amount });
+  return `<div class="recap-figure">
+        <span aria-hidden="true"><span class="recap-label">${escapeHtml(h.mrrLabel)}</span>
+        <span class="recap-value recap-value-sm">${escapeHtml(amount)}</span></span>
         <span class="visually-hidden">${escapeHtml(srText)}</span>
-      </p>`;
+      </div>`;
 }
 
-function renderFigures(figures, lang, h) {
+/** Les lignes de l'état récapitulatif : les figures de catalogueFigures en
+ *  lignes de bordereau (libellé condensé au-dessus, valeur en dessous). */
+function renderRecapFigures(figures, lang, h) {
   const n = (value) => new Intl.NumberFormat(lang).format(value);
   const items = [
-    [n(figures.toolsPublished), h.figureToolsPublished],
-    [n(figures.categories), h.figureCategories],
-    [formatMoney(figures.totalMonthlyUsd, 'USD', lang), h.figureTotalPrice],
+    [h.figureToolsPublished, n(figures.toolsPublished), ''],
+    [h.figureCategories, n(figures.categories), ''],
+    [h.figureTotalPrice, formatMoney(figures.totalMonthlyUsd, 'USD', lang), ' recap-value-sm'],
   ];
   return items
     .map(
-      ([value, caption]) => `      <li class="figure">
-        <span class="figure-value">${escapeHtml(value)}</span>
-        <span class="figure-caption">${escapeHtml(caption)}</span>
-      </li>`
+      ([label, value, extra]) => `      <div class="recap-figure">
+        <span class="recap-label">${escapeHtml(label)}</span>
+        <span class="recap-value${extra}">${escapeHtml(value)}</span>
+      </div>`
     )
     .join('\n');
 }
 
 export function renderHomePage({
   lang, path, toolViews, topCategorySlugs, categories, voteCounts, favicons, figures, mrrTotal,
-  ui, alternates, xDefaultPath, sponsorSlots,
+  ui, alternates, xDefaultPath, sponsorSlots, buildDate,
 }) {
   const s = ui.site;
   const h = s.home;
@@ -82,64 +76,91 @@ export function renderHomePage({
   const verdictChips = ['yes', 'kinda', 'no']
     .map((v) => {
       const verdict = s.verdicts[v];
-      return `      <button type="button" class="chip verdict-chip" data-verdict="${v}" aria-pressed="false" aria-label="${escapeHtml(`${verdict.label}: ${verdict.desc}`)}">${escapeHtml(verdict.label)}</button>`;
+      return `        <button type="button" class="chip verdict-chip" data-verdict="${v}" aria-pressed="false" aria-label="${escapeHtml(`${verdict.label}: ${verdict.desc}`)}">${escapeHtml(verdict.label)}</button>`;
     })
     .join('\n');
 
   const table = renderToolTable(toolViews, { lang, ui, categories, voteCounts, favicons });
 
-  const main = `    <h1 class="r hero-h1">${escapeHtml(qBefore)}<span class="blank">&#95;&#95;&#95;</span>${escapeHtml(qAfter ?? '')}</h1>
-    <p class="lede r hero-sub">${escapeHtml(h.heroLine1)} ${escapeHtml(h.heroLine2)}</p>
+  // Le cachet plancher du bordereau : la date de vérification la plus ANCIENNE
+  // du catalogue (oldestCheckedOn), jamais la plus récente — le tampon promet
+  // « tous vérifiés depuis », il doit donc être vrai pour la pire fiche.
+  const verifStamp = stamp('verif', [
+    s.dossier.pricesVerifiedSince,
+    formatStampDate(oldestCheckedOn(toolViews)),
+  ]);
 
-    <div class="search-combo r">
-      <search aria-label="${escapeHtml(h.searchLabel)}">
-        <label for="q" class="visually-hidden">${escapeHtml(h.searchLabel)}</label>
-        <div class="search-shell">
-          <input type="search" id="q" name="q" placeholder="${escapeHtml(h.searchPlaceholder)}"
-                 autocomplete="off" role="combobox" aria-expanded="false"
-                 aria-controls="search-panel" aria-autocomplete="list">
-          <button type="button" id="search-clear" class="search-clear" hidden aria-label="${escapeHtml(h.searchClearLabel)}">&times;</button>
+  // La cartouche de références sous le filet de tête (renderLayout) : chaque
+  // cellule est un fait calculé au build — dont la date d'arrêté, calculée UNE
+  // fois dans build-site.mjs pour que toutes les pages portent la même.
+  const refCells = [
+    [s.dossier.registryLabel, new Intl.NumberFormat(lang).format(figures.toolsPublished)],
+    [h.figureCategories, new Intl.NumberFormat(lang).format(figures.categories)],
+    [s.dossier.statusArrestedOn, formatStampDate(buildDate)],
+  ];
+
+  // Le bordereau général, dans l'ordre de la maquette-accueil : cadre héro
+  // (ligne à remplir STATIQUE — jamais un champ ; l'annotation au stylo est le
+  // renvoi vers le cadre recherche), cadre « Recherche au registre », état
+  // récapitulatif tamponné, registre annoté, signature.
+  const main = `    <section class="hero sheet">
+      <h1 class="hero-h1">${escapeHtml(qBefore)}<span class="hero-blank"><em class="pen-line" aria-hidden="true">${escapeHtml(h.searchPlaceholder)}</em></span>${escapeHtml(qAfter ?? '')}</h1>
+      <p class="hero-sub">${escapeHtml(h.heroLine1)} ${escapeHtml(h.heroLine2)}</p>
+      <p class="pen-note">${escapeHtml(h.lede)}</p>
+    </section>
+
+    <section class="search-frame sheet">
+      <div class="field">
+        <label for="q">${escapeHtml(s.dossier.searchFrameHeading)}</label>
+        <div class="search-combo">
+          <search aria-label="${escapeHtml(h.searchLabel)}">
+            <div class="search-shell">
+              <input type="search" id="q" name="q" placeholder="${escapeHtml(h.searchPlaceholder)}"
+                     autocomplete="off" role="combobox" aria-expanded="false"
+                     aria-controls="search-panel" aria-autocomplete="list">
+              <button type="button" id="search-clear" class="search-clear" hidden aria-label="${escapeHtml(h.searchClearLabel)}">&times;</button>
+            </div>
+          </search>
+          <div id="search-panel" class="search-panel" role="listbox" aria-label="${escapeHtml(h.searchResultsLabel)}"
+               data-view-all-template="${escapeHtml(h.searchViewAllTemplate)}"
+               data-no-results="${escapeHtml(h.noResults)}"
+               data-home-path="${escapeHtml(path)}" hidden></div>
         </div>
-      </search>
-      <div id="search-panel" class="search-panel" role="listbox" aria-label="${escapeHtml(h.searchResultsLabel)}"
-           data-view-all-template="${escapeHtml(h.searchViewAllTemplate)}"
-           data-no-results="${escapeHtml(h.noResults)}"
-           data-home-path="${escapeHtml(path)}" hidden></div>
-    </div>
+      </div>
+      <div class="verdict-chips" role="group" aria-label="${escapeHtml(h.verdictFilterAriaLabel)}">
+        <button type="button" class="chip verdict-chip is-active" data-verdict="all" aria-pressed="true">${escapeHtml(h.allChip)}</button>
+${verdictChips}
+      </div>
+    </section>
 
-    <nav class="chips-nav r" aria-label="${escapeHtml(h.categoryFilterLabel)}">
+    <section class="recap sheet" aria-label="${escapeHtml(h.figuresAriaLabel)}">
+      <div class="recap-figures">
+${renderRecapFigures(figures, lang, h)}
+      ${renderMrrLine(mrrTotal, lang, h)}
+      </div>
+      <div class="recap-stamps">${verifStamp}</div>
+    </section>
+
+    <div class="list-head">
+      <h2 class="list-heading">${escapeHtml(h.listHeading)}</h2>
+      <p class="rank-note">${escapeHtml(h.rankNote)}</p>
+    </div>
+    <nav class="chips-nav" aria-label="${escapeHtml(h.categoryFilterLabel)}">
       <ul class="chips">
         <li><a href="${path}" aria-current="page">${escapeHtml(h.allChip)}</a></li>
 ${categoryChips}
         <li><a class="chip-all-categories" href="${allCategoriesPath}">${escapeHtml(h.allCategoriesChip)}</a></li>
       </ul>
     </nav>
-
-    <section class="ticker-band r" aria-label="${escapeHtml(h.tickerAriaLabel)}">
-      <div class="ticker-marquee" aria-hidden="true">
-        <div class="ticker-track">
-        ${renderTicker(toolViews, lang)}
-        </div>
-      </div>
-      ${renderMrrFigure(mrrTotal, lang, h)}
-    </section>
-
-    <section class="figures-band r" aria-label="${escapeHtml(h.figuresAriaLabel)}">
-      <ul class="figures-list">
-${renderFigures(figures, lang, h)}
-      </ul>
-    </section>
-
-    <div class="list-head r">
-      <h2 class="list-heading">${escapeHtml(h.listHeading)}</h2>
-      <p class="rank-note">${escapeHtml(h.rankNote)}</p>
-    </div>
-    <div class="verdict-chips r" role="group" aria-label="${escapeHtml(h.verdictFilterAriaLabel)}">
-      <button type="button" class="chip verdict-chip is-active" data-verdict="all" aria-pressed="true">${escapeHtml(h.allChip)}</button>
-${verdictChips}
-    </div>
 ${table}
-    <p id="no-results" hidden>${escapeHtml(h.noResults)}</p>`;
+    <p id="no-results" hidden>${escapeHtml(h.noResults)}</p>
+
+    <section class="sign-row">
+      <div class="sign-text">
+        <p class="sign-note">${escapeHtml(pluralize(figures.toolsPublished, lang, h.tallyOne, h.tallyOther))}</p>
+      </div>
+      <span class="paraphe" aria-hidden="true">SMF</span>
+    </section>`;
 
   return renderLayout({
     lang,
@@ -153,5 +174,6 @@ ${table}
     ui,
     homeHref: path,
     sponsorSlots,
+    refCells,
   });
 }

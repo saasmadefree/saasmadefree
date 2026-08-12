@@ -61,6 +61,23 @@
         "desc": "Keep paying. The value is the network, the data or the compliance — no prompt replaces that."
       }
     },
+    "dossier": {
+      "serviceName": "Subscription Review Service",
+      "registryLabel": "Registry",
+      "fileLabel": "File",
+      "receivedOn": "Received on",
+      "instructedOn": "Reviewed on",
+      "verifiedOn": "Verified on",
+      "verdictRecordedOn": "Verdict recorded on",
+      "pricesVerifiedSince": "All prices verified since",
+      "statusArrestedOn": "Statement drawn up on",
+      "distributionLabel": "Distribution",
+      "pieceTemplate": "Exhibit {letter}",
+      "piecesAnnexed": "Exhibits annexed",
+      "trackingHeading": "Exhibit tracking slip",
+      "searchFrameHeading": "Registry search",
+      "receiptHeading": "Receipt"
+    },
     "home": {
       "titleTag": "SaaS Made Free — which subscriptions are one prompt away from free?",
       "metaDescription": "Which of your paid SaaS subscriptions could a coding agent rebuild for you — and which should you honestly keep paying for?",
@@ -78,7 +95,7 @@
       "listCaption": "Every tool published so far, sorted by votes.",
       "colName": "Tool",
       "colCategory": "Category",
-      "colPrice": "Monthly price",
+      "colPrice": "Price",
       "colVerdict": "Verdict",
       "colVotes": "Votes",
       "noResults": "No tools match that search.",
@@ -89,7 +106,6 @@
       "searchClearLabel": "Clear search",
       "searchResultsLabel": "Search results",
       "searchViewAllTemplate": "↓ All {count} matches in the directory",
-      "tickerAriaLabel": "Catalogue prices, scrolling",
       "mrrLabel": "Monthly spend represented by votes recorded so far",
       "mrrSrTemplate": "{amount} a month represented by votes recorded so far",
       "mrrUnavailable": "Live figure unavailable right now.",
@@ -185,7 +201,8 @@
       "titleTag": "Page not found — SaaS Made Free",
       "metaDescription": "This page does not exist. Browse the directory of SaaS subscriptions a coding agent can replace.",
       "heading": "This page does not exist",
-      "body": "The tool may have been removed from the catalogue, or the address is wrong."
+      "body": "The tool may have been removed from the catalogue, or the address is wrong.",
+      "stamp": "NOT ON FILE"
     },
     "sponsor": {
       "openLabel": "Open slot",
