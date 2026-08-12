@@ -276,7 +276,10 @@ input[type=search]::-webkit-search-cancel-button{display:none}
   color:var(--ink);border:1px solid var(--line-strong);border-radius:0;box-shadow:none;
   background:var(--paper-sheet);padding:.4em .8em;cursor:pointer}
 .verdict-chip:hover{border-color:var(--ink)}
-.verdict-chip.is-active{background:var(--paper-cartouche);box-shadow:inset 2px 0 0 var(--pen)}
+/* color répété à dessein : .chip.is-active (rubrique encrée pleine, plus
+   haut) pose color:paper-sheet à spécificité égale — sans ce color, la case
+   active affichait du papier sur du papier (recette navigateur 2026-08-12). */
+.verdict-chip.is-active{background:var(--paper-cartouche);color:var(--ink);box-shadow:inset 2px 0 0 var(--pen)}
 
 /* ---------- tête de section du registre ---------- */
 .list-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
@@ -605,7 +608,11 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
 @media (max-width:40rem){
   .paper-clip,.hole{display:none}
   .date-ring{transform:none;margin:0}
-  .folder-stamps{position:static;flex-direction:row;flex-wrap:wrap}
+  /* flex:1 1 100% : sans lui, l'item se dimensionne à son contenu (tampon +
+     dateur côte à côte ≈ 353px) et DÉBORDE de .folder-top au lieu de replier
+     ses enfants — le flex-wrap ne mord que si l'item est d'abord contraint
+     (recette navigateur à 320px, 2026-08-12). */
+  .folder-stamps{position:static;flex-direction:row;flex-wrap:wrap;flex:1 1 100%;min-width:0}
   .pen-note{transform:none}
   .registry table,.registry thead,.registry tbody,.registry tr,.registry td,.registry th{display:block}
   .registry table{min-width:0}

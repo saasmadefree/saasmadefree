@@ -7,6 +7,12 @@ import { SITE_CSS, TOKENS } from '../scripts/lib/site-styles.mjs';
 // contractuelle, déjà couvert par prefers-reduced-motion — reste la seule
 // chose qui bouge dans un monde par ailleurs imprimé.
 describe('SITE_CSS — garde-fous du spec', () => {
+  it("la case de verdict active garde l'encre : .chip.is-active pose color:paper à spécificité égale", () => {
+    const rule = SITE_CSS.match(/\.verdict-chip\.is-active\{[^}]*\}/);
+    expect(rule).not.toBeNull();
+    expect(rule[0]).toContain('color:var(--ink)');
+  });
+
   it('≤ 60 Ko non minifié', () => {
     expect(Buffer.byteLength(SITE_CSS, 'utf8')).toBeLessThanOrEqual(61440);
   });
