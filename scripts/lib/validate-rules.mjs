@@ -303,6 +303,25 @@ export function validateAll(data, validators, today) {
     }
   }
 
+  // Verrou des locales réduites : une langue NON publiée ne porte qu'un bloc
+  // site partiel { footer, stats } par convention (voir ci-dessus et
+  // tests/site-shell.test.mjs, « une locale non publiée ne porte que les
+  // clés partagées par toutes »). Rien avant ce contrôle n'empêchait une clé
+  // de premier niveau étrangère (ex. un "site.home" fuité par erreur) de s'y
+  // glisser en silence : elle ne casserait aucun gabarit tant que la page
+  // correspondante n'est pas rendue pour cette langue, et resterait invisible
+  // jusqu'à la publication de la locale.
+  for (const lang of LANGS) {
+    if (publishedLangs.includes(lang)) continue;
+    const table = ui.get(lang);
+    if (!table?.site) continue;
+    for (const key of Object.keys(table.site)) {
+      if (key !== 'footer' && key !== 'stats') {
+        errors.push(`data/i18n/${lang}/ui.json : clé site.${key} interdite dans une locale non publiée`);
+      }
+    }
+  }
+
   // Bloc site.stats des langues NON publiées : elles ne portent que
   // { footer, stats } (voir ci-dessus), donc le contrôle de parité qui
   // précède — scopé aux langues publiées — ne les couvre pas. La page /stats

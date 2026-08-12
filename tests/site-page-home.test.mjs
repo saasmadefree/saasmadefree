@@ -172,7 +172,13 @@ describe('renderHomePage — bordereau général', () => {
 
   it('la ligne à remplir du héro est statique, placeholder italique dans le cadre', () => {
     expect(html).toContain('class="hero-blank"');
-    expect(html).not.toContain('<input type="text"'); // jamais un champ dans le héro
+    // Scopé à la section héro (avant le cadre recherche, qui lui porte le
+    // vrai <input type="search">) : "pas d'<input type=\"text\">" laissait
+    // passer n'importe quel autre type de champ, et ne vérifiait rien sur sa
+    // position — un <input> ailleurs avant le cadre recherche serait passé
+    // inaperçu.
+    const heroSegment = html.slice(0, html.indexOf('class="search-frame'));
+    expect(heroSegment).not.toContain('<input'); // jamais un champ dans le héro
   });
 
   it('sans compteur de votes, la ligne MRR n’apparaît pas — texte simple à la place', () => {

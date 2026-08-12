@@ -45,9 +45,13 @@ export function stamp(kind, lines) {
 
 /** Le cachet rond à date, mais lisible : le texte est réel (pas aria-hidden),
  *  contrairement au tampon carré qui peut être décoratif à côté d'un texte
- *  équivalent ailleurs. */
+ *  équivalent ailleurs. L'espace avant <strong> n'est pas cosmétique : sans
+ *  lui le texte accessible concatène "Verified on" et la date sans séparateur
+ *  ("Verified on30.07.2026"). .date-ring est un flex column qui empile déjà
+ *  visuellement le libellé et la date sur deux lignes, donc cet espace ne
+ *  change rien au rendu — seul le nom accessible en profite. */
 export function dateRing(label, dateText) {
-  return `<span class="date-ring">${escapeHtml(label)}<strong>${escapeHtml(dateText)}</strong></span>`;
+  return `<span class="date-ring">${escapeHtml(label)} <strong>${escapeHtml(dateText)}</strong></span>`;
 }
 
 /** Les trois cases du verdict (greffe E3) : l'échelle complète est montrée, la

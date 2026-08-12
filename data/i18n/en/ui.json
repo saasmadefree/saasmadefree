@@ -76,7 +76,8 @@
       "piecesAnnexed": "Exhibits annexed",
       "trackingHeading": "Exhibit tracking slip",
       "searchFrameHeading": "Registry search",
-      "receiptHeading": "Receipt"
+      "receiptHeading": "Receipt",
+      "checkedNote": "checked"
     },
     "home": {
       "titleTag": "SaaS Made Free — which subscriptions are one prompt away from free?",

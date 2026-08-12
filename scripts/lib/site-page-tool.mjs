@@ -168,8 +168,7 @@ export function renderToolPage({
       <dl class="meta-row">
 ${metaRow}
       </dl>
-      <p class="pen-note">${escapeHtml(t.priceSourceLabel)}: <a href="${escapeHtml(tool.pricing.source)}">${escapeHtml(sourceHost(tool.pricing.source))}</a></p>
-      ${verdictChecks(tool.verdict, s.verdicts, verdict.label)}
+      ${verdictChecks(tool.verdict, s.verdicts, d.checkedNote)}
       <div class="folder-foot">
         <span class="barcode" aria-hidden="true"></span>
         <span class="barcode-label">${escapeHtml(`${cote} — ${tool.name}`)}</span>
@@ -340,7 +339,7 @@ ${trackingSlip}
     <section aria-labelledby="verdict-heading">
       <h2 id="verdict-heading" class="visually-hidden">${escapeHtml(t.verdictHeading)}</h2>
       <p class="verdict-summary ${tool.verdict}">${escapeHtml(i18nEntry.verdictSummary)}</p>
-      <p class="pen-note"><a href="#lose-heading">${escapeHtml(`${pieceLabel('B')} — ${t.whatYouLoseHeading}`)}</a></p>
+      <p class="pen-note"><a href="#${pieces[1].id}">${escapeHtml(`${pieceLabel(pieces[1].letter)} — ${pieces[1].heading}`)}</a></p>
     </section>
 
 ${pieceA}

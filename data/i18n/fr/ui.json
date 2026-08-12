@@ -76,7 +76,8 @@
       "piecesAnnexed": "Pièces annexées",
       "trackingHeading": "Bordereau de suivi des pièces",
       "searchFrameHeading": "Recherche au registre",
-      "receiptHeading": "Récépissé"
+      "receiptHeading": "Récépissé",
+      "checkedNote": "coché"
     },
     "home": {
       "titleTag": "SaaS Made Free — quels abonnements ne tiennent qu’à un prompt ?",

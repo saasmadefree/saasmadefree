@@ -25,6 +25,7 @@ const ui = {
       piecesAnnexed: 'Pièces annexées',
       trackingHeading: 'Bordereau de suivi des pièces',
       receiptHeading: 'Récépissé',
+      checkedNote: 'coché',
     },
     verdicts: {
       yes: { label: 'Oui', desc: 'Un agent le refait' },
@@ -201,7 +202,9 @@ describe('renderToolPage — la pièce d’instruction', () => {
 
   it('montre l’échelle complète du verdict, une seule case cochée', () => {
     expect(html.match(/class="check-item/g)).toHaveLength(3);
-    expect(html).toContain('check-item is-checked');
+    // Comptage exact, pas un simple toContain : une seule case doit jamais
+    // porter is-checked, jamais deux (bug de calcul de "on" dans verdictChecks).
+    expect(html.match(/check-item is-checked/g)).toHaveLength(1);
   });
 
   it('remplit la cartouche de références : cote, reçu, instruit, pièces, questions', () => {
@@ -268,14 +271,33 @@ describe('renderToolPage — la pièce d’instruction', () => {
     }
   });
 
-  it('annote au stylo : source du prix et renvoi du résumé vers la pièce B', () => {
-    expect(html).toContain('class="pen-note"');
-    expect(html).toContain('linear.app'); // sourceHost, jamais l’URL brute en clair
+  // Arbitrage design (chore/dossier-post-merge) : la pen-note "Source : <host>"
+  // de la chemise a été retirée — redondante avec la légende du prix
+  // (price-source) déjà posée dans la même case de la meta-row, sur le même
+  // écran. La seule pen-note qui reste est le renvoi du résumé vers la pièce B.
+  it('n’annote au stylo que le renvoi vers la pièce B — plus de source en double', () => {
+    expect(html.match(/class="pen-note"/g)).toHaveLength(1);
     expect(html).toMatch(/pen-note"><a href="#lose-heading">/);
+    expect(html).toContain('linear.app'); // sourceHost, toujours affiché — dans la légende du prix, plus en pen-note
   });
 
   it('le résumé porte le filet du verdict de la fiche', () => {
     expect(html).toContain('class="verdict-summary kinda"');
+  });
+
+  // Le fixture par défaut est en "kinda" : sans ces deux cas, un bug qui ne
+  // se déclenche que sur "yes" ou "no" (ex. verdictChecks qui coche la
+  // mauvaise case) passerait inaperçu.
+  it('couvre le filet du résumé pour un verdict "yes"', () => {
+    const yesHtml = renderTool({ tool: { ...tool, verdict: 'yes' } });
+    expect(yesHtml).toContain('class="verdict-summary yes"');
+    expect(yesHtml.match(/check-item is-checked/g)).toHaveLength(1);
+  });
+
+  it('couvre le filet du résumé pour un verdict "no"', () => {
+    const noHtml = renderTool({ tool: { ...tool, verdict: 'no' } });
+    expect(noHtml).toContain('class="verdict-summary no"');
+    expect(noHtml.match(/check-item is-checked/g)).toHaveLength(1);
   });
 
   it('échappe toute interpolation — le prompt avec < > & reste inoffensif', () => {

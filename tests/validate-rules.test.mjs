@@ -252,5 +252,27 @@ describe('parité des clés site.* entre langues publiées', () => {
     data.ui.set('es', { site: { stats: {}, footer: { stats: 'Estadísticas' } } });
     const errors = validateAll(data, validators, TODAY);
     expect(errors.filter((e) => e.includes('clé site manquante'))).toEqual([]);
+    expect(errors.filter((e) => e.includes('interdite dans une locale non publiée'))).toEqual([]);
+  });
+
+  // Verrou locales réduites : une langue non publiée ne porte que
+  // { footer, stats } par convention (voir tests/site-shell.test.mjs, « une
+  // locale non publiée ne porte que les clés partagées par toutes »). Rien
+  // avant ce contrôle n'empêchait une clé de premier niveau étrangère de s'y
+  // glisser en silence — elle ne casserait aucun gabarit tant que la page
+  // correspondante n'est pas rendue pour cette langue, et resterait invisible
+  // jusqu'à la publication de la locale.
+  it('signale une clé site de premier niveau interdite dans une locale non publiée', () => {
+    const data = makeSiteData({ brand: 'X', home: { colName: 'Nom' }, stats: {}, footer: { stats: 'Stats' } });
+    data.ui.set('es', { site: { home: { colName: 'Nombre' }, stats: {}, footer: { stats: 'Estadísticas' } } });
+    const errors = validateAll(data, validators, TODAY);
+    expect(errors).toContain('data/i18n/es/ui.json : clé site.home interdite dans une locale non publiée');
+  });
+
+  it('accepte footer et stats, dans n’importe quel ordre, pour une locale non publiée', () => {
+    const data = makeSiteData({ brand: 'X', home: { colName: 'Nom' }, stats: {}, footer: { stats: 'Stats' } });
+    data.ui.set('es', { site: { footer: { stats: 'Estadísticas' }, stats: {} } });
+    const errors = validateAll(data, validators, TODAY);
+    expect(errors.filter((e) => e.includes('interdite dans une locale non publiée'))).toEqual([]);
   });
 });
