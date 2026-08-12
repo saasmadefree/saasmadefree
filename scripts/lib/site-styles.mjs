@@ -571,7 +571,12 @@ ul.plain{list-style:none;padding:0}
 .sign-note{margin:0 0 .7rem;font-size:.9rem;max-width:56ch}
 
 /* ---------- bordereau de suivi des pièces (fiche) ---------- */
-.tracking-slip{margin:0 0 1.5rem}
+/* overflow-x : la table du bordereau (~410px incompressible : lettre, libellé,
+   coche, renvoi) est la seule table de fiche sans conteneur défilant — à
+   320px elle imposait un défilement horizontal à toute la page (recette
+   navigateur du 2026-08-12). Le débord défile dans sa propre boîte, jamais
+   dans celle de la page (spec §6). */
+.tracking-slip{margin:0 0 1.5rem;overflow-x:auto}
 .tracking-slip table{min-width:0}
 
 /* ---------- récépissé de vote ---------- */
@@ -785,6 +790,10 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
    colonnes, qui n'a pas besoin des 40rem prévus pour la liste principale. */
 .sp-ladder{min-width:0;width:100%;border:1px solid var(--rule);background:var(--card)}
 .sp-ladder td:last-child,.sp-ladder th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+/* Sous ~26rem, les en-têtes du barème (« Prochain slot / 30 jours ») doivent
+   pouvoir se replier : en nowrap ils poussaient la page au-delà du viewport
+   dès que le libellé s'allonge de 30 % (recette d'expansion du 2026-08-12). */
+@media (max-width:26rem){.sp-ladder th,.sp-ladder td{white-space:normal;overflow-wrap:anywhere}}
 
 .sp-contact{display:inline-flex;align-items:center;gap:.4em;font-size:.9rem;font-weight:700;
   padding:.6em 1.1em;border:1px solid var(--ink);
