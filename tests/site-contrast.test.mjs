@@ -16,7 +16,7 @@ function ratio(fg, bg) {
 
 // Paires du spec §7 : chaque encre porteuse d'information sur chaque papier où
 // elle se pose. La trame et les tons de pile sont décoratifs, pas listés.
-const INKS = ['ink', 'ink2', 'pen', 'stampYes', 'stampKinda', 'stampNo', 'stampDate'];
+const INKS = ['ink', 'ink2', 'ink3', 'pen', 'stampYes', 'stampKinda', 'stampNo', 'stampDate'];
 const PAPERS = ['paperDesk', 'paperFolder', 'paperSheet', 'paperBright', 'paperCartouche', 'hl'];
 
 for (const theme of ['light', 'dark']) {

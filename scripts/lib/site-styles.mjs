@@ -142,6 +142,9 @@ h1 .blank em,.hero-blank em{font-family:var(--hand);font-style:italic;font-size:
    qui vivait dans les composants disparus (.search-combo seul, .figures-band). */
 .hero{padding:1.6rem 1.6rem 1rem}
 .hero,.search-frame,.recap{margin:0 0 clamp(1.5rem,4vh,2.25rem)}
+/* La lede fait 3-4 lignes : jamais de rotation sur un paragraphe de plus de
+   deux lignes (spec §7). */
+.hero .pen-note{transform:none}
 
 /* ---------- chrome : bandeau de service, marque, cartouche ---------- */
 .service-band{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.4rem 1.2rem;
@@ -478,7 +481,6 @@ tbody tr[hidden]{display:none}
 .verdict-summary.no{border-left-color:var(--stamp-no)}
 
 /* ---------- fiche : signalétique ---------- */
-.tool-intro{margin-bottom:clamp(2.5rem,6vh,3.5rem)}
 .meta-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.1rem 1.5rem;
   margin:0 0 1.4rem;border-top:1px solid var(--line-strong);padding-top:1.2rem}
 @media (max-width:56rem){.meta-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -585,6 +587,9 @@ ul.plain{list-style:none;padding:0}
   letter-spacing:.18em;color:var(--muted)}
 .recap-value{display:block;font-size:1.3rem;font-weight:700;margin-top:3px;white-space:nowrap}
 .recap-value-sm{font-size:.9rem;padding-top:7px}
+/* Repli quand le service de vote est muet au build : du texte à la taille des
+   mentions du récap, pas un artefact. */
+.recap-unavailable{color:var(--muted);font-size:.8rem;margin:0}
 /* La barre de répartition des verdicts : trois segments aux encres de tampon —
    du verdict, donc dans leur droit — séparés par un filet de papier. */
 .recap-dist-wrap{flex:1;min-width:min(100%,220px)}
