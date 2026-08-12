@@ -1,4 +1,4 @@
-import { escapeHtml, renderLayout } from './site-html.mjs';
+import { escapeHtml, renderLayout, verdictBadge } from './site-html.mjs';
 
 /**
  * Page 404, servie par Cloudflare Pages pour toute URL sans fichier
@@ -21,7 +21,14 @@ export function render404Page({ ui, enPath, langs }) {
     .map((lang) => `<a href="/${lang}/">${escapeHtml(s.directoryLabel)} (${lang})</a>`)
     .join(' · ');
 
-  const main = `    <h1>${escapeHtml(n.heading)}</h1>
+  // Le tampon réutilise le composant verdict "no" (badge-lg) : de l'encre
+  // --stamp-no posée sur un constat administratif, pas un verdict d'outil —
+  // c'est l'usage prévu par le spec §4 (« dossier vide tamponné »), aucune
+  // couleur nouvelle. Défense en profondeur : si la clé venait à manquer,
+  // pas de tampon plutôt qu'une chaîne "undefined" affichée au lecteur.
+  const stampBadge = n?.stamp ? `    ${verdictBadge('no', n.stamp, 'badge-lg')}\n` : '';
+
+  const main = `${stampBadge}    <h1>${escapeHtml(n.heading)}</h1>
     <p class="lede">${escapeHtml(n.body)}</p>
     <p>${links}</p>`;
 

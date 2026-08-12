@@ -575,13 +575,6 @@ ul.plain{list-style:none;padding:0}
 .leader{flex:1;min-width:2rem;border-bottom:1px dotted var(--line-strong);
   align-self:flex-end;margin:0 .2em .35em}
 .category-count{color:var(--muted);font-size:.8rem;font-variant-numeric:tabular-nums;white-space:nowrap}
-ul.category-cards{list-style:none;padding:0;margin:0 0 2rem;
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.9rem}
-.category-card{border:1px solid var(--line-strong);background:var(--paper-sheet)}
-.category-card:hover{border-color:var(--ink)}
-.category-card a{display:flex;justify-content:space-between;align-items:center;gap:.6rem;
-  padding:.8em 1em;text-decoration:none;color:inherit}
-.category-card-count{color:var(--muted);font-size:.8rem;white-space:nowrap}
 
 /* ---------- état récapitulatif (accueil) ---------- */
 .recap{display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem 2rem;padding:1.2rem 1.5rem 1.3rem}
