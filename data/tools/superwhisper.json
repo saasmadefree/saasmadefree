@@ -24,6 +24,11 @@
   ],
   "priorArt": [
     {
+      "name": "Dictée",
+      "url": "https://github.com/MattiooFR/dictee",
+      "license": "MIT"
+    },
+    {
       "name": "whisper.cpp",
       "url": "https://github.com/ggml-org/whisper.cpp"
     }

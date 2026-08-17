@@ -1,0 +1,54 @@
+{
+  "slug": "wispr-flow",
+  "name": "Wispr Flow",
+  "domains": [
+    "wisprflow.ai"
+  ],
+  "category": "voice-dictation",
+  "subcategory": "cross-platform dictation and meeting notes",
+  "pricing": {
+    "amount": 15,
+    "currency": "USD",
+    "plan": "Pro",
+    "basis": "per-seat-monthly",
+    "source": "https://wisprflow.ai/pricing",
+    "checkedOn": "2026-08-17",
+    "confidence": "high",
+    "notes": "$12/user/month billed annually. A free tier exists, capped at 2,000 desktop dictations per week and 1,000 on iPhone."
+  },
+  "verdict": "kinda",
+  "verdictConfidence": "high",
+  "moatType": "cross-platform reach",
+  "diyTimeEstimate": "weekend",
+  "requirements": [
+    "none"
+  ],
+  "priorArt": [
+    {
+      "name": "Dictée",
+      "url": "https://github.com/MattiooFR/dictee",
+      "license": "MIT"
+    },
+    {
+      "name": "mlx-whisper",
+      "url": "https://github.com/ml-explore/mlx-examples/tree/main/whisper",
+      "license": "MIT"
+    },
+    {
+      "name": "whisper.cpp",
+      "url": "https://github.com/ggml-org/whisper.cpp",
+      "license": "MIT"
+    }
+  ],
+  "relatedSlugs": [
+    "superwhisper",
+    "otter-ai",
+    "granola"
+  ],
+  "markets": [
+    "en",
+    "fr"
+  ],
+  "pagePriority": 5,
+  "verifiedOneShot": false
+}
