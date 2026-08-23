@@ -36,7 +36,6 @@
       "viewsToday": "Vistas hoy",
       "peakDay": "Mejor día",
       "visitorDays": "Visitantes-día · 7 d",
-      "visitorDaysNote": "Visitantes únicos diarios sumados en 7 días. Nuestros hashes de IP con sal diaria no pueden vincularse entre días — a propósito — así que un visitante que vuelve cuenta una vez por día.",
       "promptsCopied": "Prompts copiados · 7 d",
       "views14d": "Páginas vistas · últimos 14 días",
       "citedByAi": "Citado por las IA",
@@ -56,7 +55,6 @@
       "votesTotal": "{count} votos registrados en total",
       "topVoted": "Herramientas más votadas",
       "catalogueTitle": "El catálogo en cifras",
-      "catalogueTools": "{count} herramientas publicadas",
       "allTimeTitle": "Desde el primer día",
       "allTimeSince": "contado desde el {date}",
       "allTimeViews": "Páginas vistas",
@@ -65,7 +63,23 @@
       "allTimeVisitorDaysNote": "Visitantes únicos diarios, sumados. Quien vuelve tres días cuenta tres veces — nuestros hashes con sal diaria no pueden vincularse entre días, a propósito. No es un recuento de personas.",
       "daysOnAir": "Días en antena",
       "byCountry": "Visitas por país · 7 d",
-      "byCountryNote": "Solo el país, leído en la capa de red. Nunca una ciudad, nunca una ubicación precisa."
+      "byCountryNote": "Solo el país, leído en la capa de red. Nunca una ciudad, nunca una ubicación precisa.",
+      "tagline": "público, porque por qué no · actualizado cada minuto",
+      "peakCaption": "vistas en un día · {date}",
+      "todayCaption": "desde medianoche UTC",
+      "visitorsCaption": "únicos diarios, sumados",
+      "copiesCaption": "copiar + abrir en el agente",
+      "allViewsCaption": "todas las páginas, desde el inicio",
+      "allVisitorDaysCaption": "no es un recuento de personas — ver notas",
+      "allCopiesCaption": "reconstrucciones iniciadas",
+      "daysOnAirCaption": "y sumando",
+      "catalogueToolsLabel": "Herramientas publicadas",
+      "catalogueToolsCaption": "un veredicto cada una",
+      "yesCaption": "déjala hoy",
+      "kindaCaption": "proyecto de fin de semana",
+      "noCaption": "sigue pagando",
+      "noData": "sin datos por ahora",
+      "notesTitle": "Cómo se cuenta"
     }
   }
 }

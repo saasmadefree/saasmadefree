@@ -36,7 +36,6 @@
       "viewsToday": "Aufrufe heute",
       "peakDay": "Bester Tag",
       "visitorDays": "Besuchertage · 7 T",
-      "visitorDaysNote": "Tägliche eindeutige Besucher, über 7 Tage summiert. Unsere täglich gesalzenen IP-Hashes lassen sich nicht über Tage hinweg verknüpfen — mit Absicht — ein wiederkehrender Besucher zählt also einmal pro Tag.",
       "promptsCopied": "Kopierte Prompts · 7 T",
       "views14d": "Seitenaufrufe · letzte 14 Tage",
       "citedByAi": "Von KI zitiert",
@@ -56,7 +55,6 @@
       "votesTotal": "{count} Stimmen insgesamt",
       "topVoted": "Meistgewählte Tools",
       "catalogueTitle": "Der Katalog in Zahlen",
-      "catalogueTools": "{count} veröffentlichte Tools",
       "allTimeTitle": "Seit dem ersten Tag",
       "allTimeSince": "gezählt seit {date}",
       "allTimeViews": "Seitenaufrufe",
@@ -65,7 +63,23 @@
       "allTimeVisitorDaysNote": "Tägliche eindeutige Besucher, aufsummiert. Wer an drei Tagen wiederkommt, zählt dreimal — unsere täglich gesalzenen Hashes lassen sich absichtlich nicht über Tage hinweg verknüpfen. Das ist keine Personenzahl.",
       "daysOnAir": "Tage auf Sendung",
       "byCountry": "Besuche nach Land · 7 T",
-      "byCountryNote": "Nur das Land, aus der Netzwerkschicht gelesen. Nie eine Stadt, nie ein genauer Standort."
+      "byCountryNote": "Nur das Land, aus der Netzwerkschicht gelesen. Nie eine Stadt, nie ein genauer Standort.",
+      "tagline": "öffentlich, warum auch nicht · jede Minute aktualisiert",
+      "peakCaption": "Aufrufe an einem Tag · {date}",
+      "todayCaption": "seit Mitternacht UTC",
+      "visitorsCaption": "tägliche Uniques, addiert",
+      "copiesCaption": "kopieren + im Agenten öffnen",
+      "allViewsCaption": "alle Seiten, seit Beginn",
+      "allVisitorDaysCaption": "keine Personenzahl — siehe Hinweise",
+      "allCopiesCaption": "gestartete Nachbauten",
+      "daysOnAirCaption": "und es geht weiter",
+      "catalogueToolsLabel": "Veröffentlichte Tools",
+      "catalogueToolsCaption": "je ein Urteil",
+      "yesCaption": "heute kündbar",
+      "kindaCaption": "Wochenendprojekt",
+      "noCaption": "weiter bezahlen",
+      "noData": "noch keine Daten",
+      "notesTitle": "So wird gezählt"
     }
   }
 }

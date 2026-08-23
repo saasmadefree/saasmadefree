@@ -36,7 +36,6 @@
       "viewsToday": "Visualizzazioni oggi",
       "peakDay": "Giorno record",
       "visitorDays": "Visitatori-giorno · 7 g",
-      "visitorDaysNote": "Visitatori unici giornalieri sommati su 7 giorni. I nostri hash IP con sale giornaliero non possono essere collegati tra giorni — di proposito — quindi un visitatore che torna conta una volta al giorno.",
       "promptsCopied": "Prompt copiati · 7 g",
       "views14d": "Pagine viste · ultimi 14 giorni",
       "citedByAi": "Citato dalle IA",
@@ -56,7 +55,6 @@
       "votesTotal": "{count} voti registrati in totale",
       "topVoted": "Strumenti più votati",
       "catalogueTitle": "Il catalogo in cifre",
-      "catalogueTools": "{count} strumenti pubblicati",
       "allTimeTitle": "Dal primo giorno",
       "allTimeSince": "conteggiato dal {date}",
       "allTimeViews": "Pagine viste",
@@ -65,7 +63,23 @@
       "allTimeVisitorDaysNote": "Visitatori unici giornalieri, sommati. Chi torna per tre giorni conta tre volte — i nostri hash con sale giornaliero non sono collegabili da un giorno all’altro, di proposito. Non è un conteggio di persone.",
       "daysOnAir": "Giorni in onda",
       "byCountry": "Visite per paese · 7 g",
-      "byCountryNote": "Solo il paese, letto dal livello di rete. Mai una città, mai una posizione precisa."
+      "byCountryNote": "Solo il paese, letto dal livello di rete. Mai una città, mai una posizione precisa.",
+      "tagline": "pubblico, perché no · aggiornato ogni minuto",
+      "peakCaption": "visite in un giorno · {date}",
+      "todayCaption": "da mezzanotte UTC",
+      "visitorsCaption": "unici giornalieri, sommati",
+      "copiesCaption": "copia + apri nell’agente",
+      "allViewsCaption": "tutte le pagine, dall’inizio",
+      "allVisitorDaysCaption": "non è un conteggio di persone — vedi note",
+      "allCopiesCaption": "ricostruzioni avviate",
+      "daysOnAirCaption": "e si continua",
+      "catalogueToolsLabel": "Strumenti pubblicati",
+      "catalogueToolsCaption": "un verdetto ciascuno",
+      "yesCaption": "lascialo oggi",
+      "kindaCaption": "progetto da weekend",
+      "noCaption": "continua a pagare",
+      "noData": "ancora nessun dato",
+      "notesTitle": "Come si conta"
     }
   }
 }

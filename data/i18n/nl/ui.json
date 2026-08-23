@@ -36,7 +36,6 @@
       "viewsToday": "Weergaven vandaag",
       "peakDay": "Beste dag",
       "visitorDays": "Bezoekersdagen · 7 d",
-      "visitorDaysNote": "Dagelijkse unieke bezoekers, opgeteld over 7 dagen. Onze dagelijks gezouten IP-hashes zijn niet over dagen heen te koppelen — bewust — dus een terugkerende bezoeker telt één keer per dag.",
       "promptsCopied": "Gekopieerde prompts · 7 d",
       "views14d": "Paginaweergaven · laatste 14 dagen",
       "citedByAi": "Geciteerd door AI",
@@ -56,7 +55,6 @@
       "votesTotal": "{count} stemmen in totaal",
       "topVoted": "Meest gestemde tools",
       "catalogueTitle": "De catalogus in cijfers",
-      "catalogueTools": "{count} gepubliceerde tools",
       "allTimeTitle": "Sinds dag één",
       "allTimeSince": "geteld sinds {date}",
       "allTimeViews": "Paginaweergaven",
@@ -65,7 +63,23 @@
       "allTimeVisitorDaysNote": "Dagelijkse unieke bezoekers, opgeteld. Wie op drie dagen terugkomt, telt drie keer — onze dagelijks gezouten hashes zijn met opzet niet aan elkaar te koppelen tussen dagen. Dit is geen aantal personen.",
       "daysOnAir": "Dagen in de lucht",
       "byCountry": "Bezoeken per land · 7 d",
-      "byCountryNote": "Alleen het land, gelezen op netwerkniveau. Nooit een stad, nooit een precieze locatie."
+      "byCountryNote": "Alleen het land, gelezen op netwerkniveau. Nooit een stad, nooit een precieze locatie.",
+      "tagline": "openbaar, waarom niet · elke minuut ververst",
+      "peakCaption": "weergaven op één dag · {date}",
+      "todayCaption": "sinds middernacht UTC",
+      "visitorsCaption": "dagelijkse unieken, opgeteld",
+      "copiesCaption": "kopiëren + openen in agent",
+      "allViewsCaption": "alle pagina’s, sinds het begin",
+      "allVisitorDaysCaption": "geen aantal personen — zie noten",
+      "allCopiesCaption": "gestarte herbouwen",
+      "daysOnAirCaption": "en we tellen door",
+      "catalogueToolsLabel": "Gepubliceerde tools",
+      "catalogueToolsCaption": "één oordeel per stuk",
+      "yesCaption": "vandaag opzeggen",
+      "kindaCaption": "weekendproject",
+      "noCaption": "blijf betalen",
+      "noData": "nog geen gegevens",
+      "notesTitle": "Hoe er geteld wordt"
     }
   }
 }
