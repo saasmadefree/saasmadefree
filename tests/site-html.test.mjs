@@ -102,6 +102,27 @@ describe('renderLayout — chrome du dossier', () => {
     expect(html).toContain('id="theme-toggle"');
     expect(html).toContain('localStorage.getItem("theme")');
   });
+
+  // Allégé le 23.08.2026 : « Annuaire » doublonnait la marque (même cible,
+  // à trois centimètres) et « Code source » doublonnait le bouton GitHub
+  // d'à côté et le lien du pied de page. Il reste Proposer / Sponsor / Stats.
+  it('ne répète ni le lien Annuaire ni le lien Code source dans la navigation', () => {
+    const nav = html.match(/<ul class="nav-links">(.*?)<\/ul>/s)[1];
+    expect(nav).not.toContain('>Directory<');
+    expect(nav).not.toContain('>Source<');
+    expect(nav).toContain('>Submit a tool<');
+    expect(nav).toContain('>Sponsor<');
+    expect(nav).toContain('>Stats<');
+  });
+
+  it('réduit le bouton GitHub à son icône, le nom restant porté par aria-label', () => {
+    const btn = html.match(/<a class="github-btn"[^>]*>.*?<\/a>/s)[0];
+    expect(btn).toContain('aria-label="GitHub"');
+    expect(btn).toContain('<svg');
+    expect(btn).toContain('aria-hidden="true"');
+    // Ni le libellé ni la flèche ↗ en texte visible.
+    expect(btn.replace(/<[^>]+>/g, '').trim()).toBe('');
+  });
 });
 
 describe('renderLayout — locale réduite (site sans dossier)', () => {

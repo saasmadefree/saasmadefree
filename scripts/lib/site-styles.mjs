@@ -280,10 +280,12 @@ p{margin:0 0 .9rem;max-width:var(--wide)}
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]) .theme-icon::before{content:"\\25D1"}
 }
-.github-btn{display:inline-flex;align-items:center;gap:.35em;border:2px solid var(--ink);
-  padding:.45em .9em;font-family:var(--cond);font-size:.72rem;font-weight:700;
-  text-transform:uppercase;letter-spacing:.16em;white-space:nowrap;text-decoration:none;
-  color:var(--ink);box-shadow:2px 2px 0 rgba(43,35,23,.25)}
+/* Le cachet GitHub : même gabarit carré que la bascule de thème (icône
+   seule, nom porté par aria-label — voir site-html.mjs). */
+.github-btn{display:inline-flex;align-items:center;justify-content:center;
+  width:2rem;height:2rem;padding:0;border:2px solid var(--ink);flex:none;
+  text-decoration:none;color:var(--ink);box-shadow:2px 2px 0 rgba(43,35,23,.25)}
+.github-btn svg{display:block;width:1rem;height:1rem}
 .github-btn:hover{background:var(--paper-cartouche)}
 /* Le double filet d'imprimé qui clôt l'en-tête, puis la cartouche de
    références accrochée dessous (chaque cellule porte un fait calculé). */
