@@ -115,8 +115,59 @@ jobs:
   # du HTML statique issu de data/sponsors.json et ne changent qu'à un build.
   # Sans ce job, un sponsor expiré resterait affiché pendant que la base le
   # montre déjà vendable.
-  deploy:
+  # Déploie le Worker saasmadefree-votes, sur push seulement (jamais la nuit :
+  # rien n'a changé, et chaque `wrangler deploy` crée une version de plus).
+  #
+  # Les migrations D1 passent AVANT le Worker, et c'est le seul ordre qui
+  # tienne : un Worker qui lit une table pas encore créée (daily_visitors,
+  # countries… voir worker/migrations/) fait planter /stats jusqu'à ce que
+  # quelqu'un s'en aperçoive. Dans l'autre sens, une table créée avant le code
+  # qui la lit ne gêne personne. `d1 migrations apply` saute sa confirmation
+  # hors terminal interactif (doc Wrangler), il n'y a pas de drapeau à passer ;
+  # les migrations déjà jouées sont reconnues par la table d1_migrations, le
+  # job est donc idempotent.
+  #
+  # worker/src/index.mjs importe des fichiers générés par scripts/build-feed.mjs
+  # et ignorés par git (slugs, agents, sponsor-inventory) : sans ce build
+  # préalable, `wrangler deploy` échoue au bundle. On lance build-feed seul, pas
+  # build-site — ici seuls les fichiers du Worker comptent.
+  #
+  # Le wrangler utilisé est celui du lockfile de worker/ (npm ci), pas un
+  # `wrangler@4` flottant : c'est la version avec laquelle les tests tournent.
+  deploy-worker:
     needs: [data-and-code, worker]
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version: '22', cache: npm }
+      - run: npm ci
+      - name: Générer worker/src/*.generated.mjs
+        run: node scripts/build-feed.mjs
+      - name: Installer les dépendances du worker
+        working-directory: worker
+        run: npm ci
+      - name: Appliquer les migrations D1 en remote
+        working-directory: worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler d1 migrations apply saasmadefree --remote
+      - name: Déployer le Worker
+        working-directory: worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy
+
+  deploy:
+    # `deploy-worker` dans les needs : le build du site lit l'API du Worker
+    # (audience, disponibilité des slots), autant qu'il lise le Worker
+    # fraîchement déployé. Mais grâce à `!cancelled()` ci-dessous, un Worker
+    # en échec (jeton sans le bon droit, migration refusée) ne retient PAS le
+    # site : le run vire au rouge, le site part quand même.
+    needs: [data-and-code, worker, deploy-worker]
     # Trois cas, qui tirent en sens opposés :
     #   - push : les deux jobs de code tournent, et un rouge doit bloquer la
     #     publication — d'où le test explicite sur leur `result` ;
@@ -144,7 +195,9 @@ jobs:
       - name: Publier sur Cloudflare Pages
         # Un secret absent, un build raté ou un téléversement refusé font virer
         # le job au rouge : une expiration qui n'atteint jamais le site est pire
-        # qu'un job rouge. Le jeton est restreint à Pages sur ce seul compte.
+        # qu'un job rouge. Le jeton est celui de `deploy-worker` aussi : droits
+        # Pages Edit + Workers Scripts Edit + D1 Edit + Account Settings Read
+        # sur ce seul compte, et Workers Routes Edit sur la zone.
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
