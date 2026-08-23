@@ -12,10 +12,14 @@ import { renderLayout } from '../scripts/lib/site-html.mjs';
 // est une URL nouvelle : le HTML (toujours revalidé) ne peut plus pointer
 // sur un asset périmé, et l'asset lui-même peut être mis en cache un an.
 describe('assets versionnés par empreinte de contenu', () => {
-  it('expose les quatre assets du site, avec leur contenu réel', () => {
-    expect(Object.keys(ASSET_FILES).sort()).toEqual(['beacon.js', 'site.css', 'site.js', 'stats.js']);
+  it('expose les cinq assets du site, avec leur contenu réel', () => {
+    expect(Object.keys(ASSET_FILES).sort()).toEqual(['beacon.js', 'chart.umd.js', 'site.css', 'site.js', 'stats.js']);
     expect(ASSET_FILES['site.css']).toBe(SITE_CSS);
     expect(ASSET_FILES['stats.js']).toBe(readFileSync('scripts/assets/stats.js', 'utf8'));
+    // Chart.js est servi depuis notre origine, copié tel quel de node_modules
+    // (principe 4 : aucune requête vers un tiers — pas de CDN, même pour une lib).
+    expect(ASSET_FILES['chart.umd.js']).toBe(readFileSync('node_modules/chart.js/dist/chart.umd.js', 'utf8'));
+    expect(ASSET_FILES['chart.umd.js']).toMatch(/^\/\*!\n \* Chart\.js v4\./);
   });
 
   it('dérive une version courte et stable du contenu', () => {

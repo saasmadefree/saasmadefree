@@ -1016,7 +1016,7 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
 .stats-sheet :is(.bar-list,.chip-list,.crawler-list)+.stats-h{margin-top:1.1rem}
 .stats-h-aside{font-weight:600;letter-spacing:.08em;text-transform:none;margin-left:.5em}
 .stats-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem}
-.views-chart{display:block;width:100%;height:auto}
+.chart-box{position:relative;height:clamp(11rem,30vw,16rem)}
 .bar-list,.crawler-list,.chip-list{display:flex;flex-direction:column;gap:.3rem}
 .chip-list{flex-direction:row;flex-wrap:wrap}
 .bar-row{display:grid;grid-template-columns:minmax(6rem,11rem) 1fr auto;gap:.55rem;align-items:center;

@@ -173,7 +173,8 @@
       "kindaCaption": "weekend project",
       "noCaption": "keep paying",
       "noData": "no data yet",
-      "notesTitle": "How this is counted"
+      "notesTitle": "How this is counted",
+      "viewsLabel": "page views"
     },
     "tool": {
       "titleTemplate": "Can a coding agent replace {name}? — SaaS Made Free",

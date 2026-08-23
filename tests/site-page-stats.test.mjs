@@ -117,10 +117,20 @@ describe('renderStatsPage — grille allégée', () => {
     expect(html).toMatch(/<section class="stats-sheet">\s*<h2 class="stats-h">[^<]*<\/h2>\s*<div class="crawler-list" id="ai-crawlers">/);
   });
 
-  it('donne à stats.js les légendes dont il a besoin (date du record, état vide, départ)', () => {
+  it('charge Chart.js depuis notre origine, avant stats.js, et pose le canvas dans sa boîte', () => {
+    const chart = html.indexOf(`<script src="${assetUrl('chart.umd.js')}" defer></script>`);
+    const stats = html.indexOf(`<script src="${assetUrl('stats.js')}" defer></script>`);
+    expect(chart).toBeGreaterThan(-1);
+    expect(stats).toBeGreaterThan(chart);
+    expect(html).toMatch(/<div class="chart-box">\s*<canvas id="views-chart"[^>]*role="img"/);
+    expect(html).not.toMatch(/src="https?:\/\//);
+  });
+
+  it('donne à stats.js les légendes dont il a besoin (date du record, état vide, départ, unité du graphe)', () => {
     const payload = JSON.parse(html.match(/data-stats-i18n="([^"]+)"/)[1].replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&'));
     expect(payload.noData).toBe(t.noData);
     expect(payload.peakCaption).toBe(t.peakCaption);
     expect(payload.allTimeSince).toBe(t.allTimeSince);
+    expect(payload.viewsLabel).toBe(t.viewsLabel);
   });
 });

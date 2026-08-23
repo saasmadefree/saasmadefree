@@ -173,7 +173,8 @@
       "kindaCaption": "projet de week-end",
       "noCaption": "continue de payer",
       "noData": "aucune donnée pour l’instant",
-      "notesTitle": "Comment c’est compté"
+      "notesTitle": "Comment c’est compté",
+      "viewsLabel": "pages vues"
     },
     "tool": {
       "titleTemplate": "Un agent IA peut-il remplacer {name} ? — SaaS Made Free",

@@ -79,7 +79,8 @@
       "kindaCaption": "weekendproject",
       "noCaption": "blijf betalen",
       "noData": "nog geen gegevens",
-      "notesTitle": "Hoe er geteld wordt"
+      "notesTitle": "Hoe er geteld wordt",
+      "viewsLabel": "paginaweergaven"
     }
   }
 }

@@ -79,7 +79,8 @@
       "kindaCaption": "Wochenendprojekt",
       "noCaption": "weiter bezahlen",
       "noData": "noch keine Daten",
-      "notesTitle": "So wird gezählt"
+      "notesTitle": "So wird gezählt",
+      "viewsLabel": "Seitenaufrufe"
     }
   }
 }

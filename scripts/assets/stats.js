@@ -130,10 +130,11 @@
     return 40 * pow;
   }
 
-  // Trame de points dans l'encre du stylo : c'est la demi-teinte d'un imprimé,
-  // pas un dégradé. Le motif est un carreau de 4 px rendu à la densité de
-  // l'écran, donc net sur Retina.
-  function dotPattern(ctx, color, dpr) {
+  // Trame de points dans l'encre du stylo : la demi-teinte d'un imprimé, pas
+  // un dégradé. Le carreau de 4 px est rendu à la densité de l'écran puis
+  // ramené à l'échelle CSS par la transformation du motif : net sur Retina.
+  function dotPattern(ctx, color) {
+    var dpr = window.devicePixelRatio || 1;
     var tile = document.createElement('canvas');
     tile.width = tile.height = Math.round(4 * dpr);
     var t = tile.getContext('2d');
@@ -141,87 +142,124 @@
     t.beginPath();
     t.arc(2 * dpr, 2 * dpr, 0.8 * dpr, 0, Math.PI * 2);
     t.fill();
-    return ctx.createPattern(tile, 'repeat');
+    var pattern = ctx.createPattern(tile, 'repeat');
+    if (pattern && pattern.setTransform && window.DOMMatrix) pattern.setTransform(new DOMMatrix().scale(1 / dpr));
+    return pattern;
+  }
+
+  // Les couleurs sont lues dans le thème au moment du dessin, jamais figées :
+  // la bascule clair/sombre repasse par ici (voir redraw en bas de fichier).
+  function palette() {
+    return {
+      ink: cssVar('--accent') || '#2d3a52',
+      text: cssVar('--ink') || '#2b2317',
+      muted: cssVar('--muted') || '#6b6a5e',
+      rule: cssVar('--rule') || '#d9d2c2',
+      sheet: cssVar('--card') || '#fbfaf6',
+      mono: cssVar('--mono') || 'monospace',
+    };
+  }
+
+  // Le graphe est confié à Chart.js (servi depuis notre origine, voir
+  // site-assets.mjs) pour ce qu'un canvas maison ne donne pas : le survol.
+  // `mode: 'index'` lit la colonne entière sous le curseur, donc chaque jour
+  // se lit au passage, pas seulement le pic. Aucune animation : le monde
+  // imprimé ne bouge pas, et prefers-reduced-motion n'a rien à désactiver.
+  var chart = null;
+
+  function styleChart(c, pal, top) {
+    var ds = c.data.datasets[0];
+    ds.borderColor = pal.ink;
+    ds.pointBackgroundColor = pal.ink;
+    ds.backgroundColor = dotPattern(c.ctx, pal.ink);
+    var o = c.options;
+    o.plugins.tooltip.backgroundColor = pal.sheet;
+    o.plugins.tooltip.titleColor = pal.muted;
+    o.plugins.tooltip.bodyColor = pal.text;
+    o.plugins.tooltip.borderColor = pal.text;
+    o.plugins.tooltip.titleFont.family = pal.mono;
+    o.plugins.tooltip.bodyFont.family = pal.mono;
+    o.scales.x.ticks.color = pal.muted;
+    o.scales.x.ticks.font.family = pal.mono;
+    o.scales.x.border.color = pal.rule;
+    o.scales.y.ticks.color = pal.muted;
+    o.scales.y.ticks.font.family = pal.mono;
+    o.scales.y.grid.color = pal.rule;
+    o.scales.y.max = top;
+    o.scales.y.ticks.stepSize = top / 4;
   }
 
   function drawChart(series) {
     var canvas = document.getElementById('views-chart');
-    if (!canvas || !canvas.getContext) return;
-    // Dimensions lues dans la mise en page, canvas rendu à la densité de
-    // l'écran : un graphe étiré par le CSS serait flou sur Retina.
-    var dpr = window.devicePixelRatio || 1;
-    var cssW = canvas.clientWidth || 900;
-    var cssH = Math.round(cssW * 0.34);
-    canvas.width = Math.round(cssW * dpr);
-    canvas.height = Math.round(cssH * dpr);
-    canvas.style.height = cssH + 'px';
-    var ctx = canvas.getContext('2d');
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, cssW, cssH);
-
-    var ink = cssVar('--accent') || '#2d3a52';
-    var muted = cssVar('--muted') || '#6b6a5e';
-    var rule = cssVar('--rule') || '#d9d2c2';
-    var mono = cssVar('--mono') || 'monospace';
-
-    var padL = 44, padR = 10, padT = 12, padB = 24;
-    var w = cssW - padL - padR, h = cssH - padT - padB;
+    if (!canvas || !window.Chart) return;
+    var pal = palette();
+    var labels = series.map(function (s) { return s.day; });
+    var data = series.map(function (s) { return s.views; });
     var max = 0;
-    for (var i = 0; i < series.length; i++) if (series[i].views > max) max = series[i].views;
+    for (var i = 0; i < data.length; i++) if (data[i] > max) max = data[i];
     var top = niceMax(max);
-    var x = function (i) { return padL + (i / (series.length - 1)) * w; };
-    var y = function (v) { return padT + h - (v / top) * h; };
+    var last = series.length - 1;
 
-    // Axe : quatre paliers, filets pointillés, valeurs à gauche.
-    ctx.font = '10px ' + mono;
-    ctx.fillStyle = muted;
-    ctx.strokeStyle = rule;
-    ctx.lineWidth = 1;
-    ctx.setLineDash([1, 3]);
-    ctx.textAlign = 'right';
-    ctx.textBaseline = 'middle';
-    for (var k = 0; k <= 4; k++) {
-      var v = (top / 4) * k;
-      var yy = Math.round(y(v)) + 0.5;
-      ctx.beginPath(); ctx.moveTo(padL, yy); ctx.lineTo(cssW - padR, yy); ctx.stroke();
-      ctx.fillText(fmt.format(v), padL - 8, yy);
-    }
-    ctx.setLineDash([]);
-
-    // Dates : une sur trois, plus la dernière ; celles des bords sont calées
-    // vers l'intérieur pour ne pas être rognées.
-    ctx.textBaseline = 'alphabetic';
-    for (var d = 0; d < series.length; d++) {
-      if ((d % 3 === 0 && d < series.length - 2) || d === series.length - 1) {
-        ctx.textAlign = d === 0 ? 'left' : d === series.length - 1 ? 'right' : 'center';
-        ctx.fillText(shortDate(series[d].day), x(d), cssH - 7);
-      }
+    if (chart) {
+      chart.data.labels = labels;
+      chart.data.datasets[0].data = data;
+      styleChart(chart, pal, top);
+      chart.update();
+      return;
     }
 
-    // Aire tramée sous la courbe, puis la ligne, puis un point par jour.
-    ctx.beginPath();
-    ctx.moveTo(x(0), y(0));
-    for (var a = 0; a < series.length; a++) ctx.lineTo(x(a), y(series[a].views));
-    ctx.lineTo(x(series.length - 1), y(0));
-    ctx.closePath();
-    ctx.fillStyle = dotPattern(ctx, ink, dpr);
-    ctx.fill();
-
-    ctx.beginPath();
-    for (var b = 0; b < series.length; b++) {
-      if (b === 0) ctx.moveTo(x(b), y(series[b].views)); else ctx.lineTo(x(b), y(series[b].views));
-    }
-    ctx.strokeStyle = ink;
-    ctx.lineWidth = 2;
-    ctx.lineJoin = 'round';
-    ctx.stroke();
-
-    ctx.fillStyle = ink;
-    for (var c = 0; c < series.length; c++) {
-      ctx.beginPath();
-      ctx.arc(x(c), y(series[c].views), c === series.length - 1 ? 3.5 : 2.2, 0, Math.PI * 2);
-      ctx.fill();
-    }
+    chart = new window.Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: data, fill: 'origin', borderWidth: 2, tension: 0,
+          pointRadius: 2.5, pointHoverRadius: 5, pointBorderWidth: 0, pointHoverBorderWidth: 0,
+        }],
+      },
+      options: {
+        animation: false, responsive: true, maintainAspectRatio: false,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            displayColors: false, cornerRadius: 0, borderWidth: 1, padding: 8, caretSize: 0,
+            titleFont: { family: pal.mono, size: 10, weight: 'normal' },
+            bodyFont: { family: pal.mono, size: 12, weight: '500' },
+            callbacks: {
+              title: function (items) { return longDate(items[0].label); },
+              label: function (item) { return fmt.format(item.parsed.y) + ' ' + (I18N.viewsLabel || ''); },
+            },
+          },
+        },
+        scales: {
+          x: {
+            grid: { display: false },
+            border: { color: pal.rule },
+            ticks: {
+              font: { family: pal.mono, size: 10 }, maxRotation: 0, autoSkip: false, padding: 6,
+              // Une date sur trois, plus la dernière ; l'avant-dernière
+              // candidate s'efface si elle collerait à la dernière.
+              callback: function (value, index) {
+                return (index % 3 === 0 && index < last - 1) || index === last
+                  ? shortDate(this.getLabelForValue(value)) : '';
+              },
+            },
+          },
+          y: {
+            beginAtZero: true, max: top,
+            grid: { drawTicks: false },
+            border: { display: false, dash: [1, 3] },
+            ticks: {
+              stepSize: top / 4, font: { family: pal.mono, size: 10 }, padding: 8,
+              callback: function (value) { return fmt.format(value); },
+            },
+          },
+        },
+      },
+    });
+    styleChart(chart, pal, top);
+    chart.update();
   }
 
   function crawlerRow(name, vendor, counts, seen) {
@@ -337,15 +375,11 @@
       if (err) err.hidden = false;
     });
 
-  // Le graphe lit les couleurs du thème au moment du dessin : redessiner
-  // quand la bascule clair/sombre change data-theme sur <html>, et quand la
-  // largeur change (le canvas est dimensionné sur sa boîte).
+  // Le graphe lit les couleurs du thème au moment du dessin : repasser par
+  // drawChart quand la bascule clair/sombre change data-theme sur <html>, ou
+  // quand le système change de thème sans choix explicite. La largeur, elle,
+  // est suivie par Chart.js (responsive) sur la boîte .chart-box.
   function redraw() { if (lastPayload) drawChart(fullSeries(lastPayload.views14d)); }
   new MutationObserver(redraw).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
   if (window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', redraw);
-  var resizeTimer = null;
-  window.addEventListener('resize', function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(redraw, 120);
-  });
 })();

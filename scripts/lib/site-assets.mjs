@@ -21,11 +21,18 @@ import { renderBeaconScript } from './site-beacon.mjs';
 
 const read = (name) => readFileSync(new URL(`../assets/${name}`, import.meta.url), 'utf8');
 
+// Chart.js (MIT, voir NOTICE) est copié tel quel depuis node_modules : une
+// bibliothèque se sert depuis notre origine comme une police, jamais depuis
+// un CDN (principe 4). Seule la page /stats la charge, et seulement avant
+// stats.js — les autres pages n'en paient pas un octet.
+const vendor = (path) => readFileSync(new URL(`../../node_modules/${path}`, import.meta.url), 'utf8');
+
 export const ASSET_FILES = Object.freeze({
   'site.css': SITE_CSS,
   'site.js': read('site.js'),
   'stats.js': read('stats.js'),
   'beacon.js': renderBeaconScript(),
+  'chart.umd.js': vendor('chart.js/dist/chart.umd.js'),
 });
 
 export const ASSET_VERSION = createHash('sha256')

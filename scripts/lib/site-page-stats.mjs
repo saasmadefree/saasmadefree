@@ -60,7 +60,7 @@ export function renderStatsPage({
   // d'i18n en JS.
   const i18nPayload = escapeHtml(JSON.stringify({
     noData: t.noData, d7: t.d7, d30: t.d30, lastSeen: t.lastSeen, votesTotal: t.votesTotal,
-    peakCaption: t.peakCaption, allTimeSince: t.allTimeSince,
+    peakCaption: t.peakCaption, allTimeSince: t.allTimeSince, viewsLabel: t.viewsLabel,
   }));
 
   const main = `
@@ -89,7 +89,7 @@ export function renderStatsPage({
     ${tile({ id: 'stat-days-on-air', label: t.daysOnAir, caption: t.daysOnAirCaption })}
   </div>
 
-  ${sheet(t.views14d, `<canvas id="views-chart" class="views-chart" role="img" aria-label="${escapeHtml(t.views14d)}"></canvas>`)}
+  ${sheet(t.views14d, `<div class="chart-box"><canvas id="views-chart" role="img" aria-label="${escapeHtml(t.views14d)}"></canvas></div>`)}
 
   <div class="stats-cols">
     ${sheet(t.topPages, `<div class="bar-list" id="top-pages"></div>`)}
@@ -133,6 +133,7 @@ export function renderStatsPage({
     <p>${escapeHtml(t.aiVisitorsNote)}</p>
   </section>
 </div>
+<script src="${assetUrl('chart.umd.js')}" defer></script>
 <script src="${assetUrl('stats.js')}" defer></script>`;
 
   return renderLayout({
