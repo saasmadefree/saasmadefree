@@ -56,7 +56,16 @@
       "votesTotal": "{count} stemmen in totaal",
       "topVoted": "Meest gestemde tools",
       "catalogueTitle": "De catalogus in cijfers",
-      "catalogueTools": "{count} gepubliceerde tools"
+      "catalogueTools": "{count} gepubliceerde tools",
+      "allTimeTitle": "Sinds dag één",
+      "allTimeSince": "geteld sinds {date}",
+      "allTimeViews": "Paginaweergaven",
+      "allTimeCopies": "Gekopieerde prompts",
+      "allTimeVisitorDays": "Bezoekersdagen",
+      "allTimeVisitorDaysNote": "Dagelijkse unieke bezoekers, opgeteld. Wie op drie dagen terugkomt, telt drie keer — onze dagelijks gezouten hashes zijn met opzet niet aan elkaar te koppelen tussen dagen. Dit is geen aantal personen.",
+      "daysOnAir": "Dagen in de lucht",
+      "byCountry": "Bezoeken per land · 7 d",
+      "byCountryNote": "Alleen het land, gelezen op netwerkniveau. Nooit een stad, nooit een precieze locatie."
     }
   }
 }

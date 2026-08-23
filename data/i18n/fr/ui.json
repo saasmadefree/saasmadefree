@@ -57,8 +57,8 @@
         "desc": "Reconstructible en un week-end, mais tu perds des choses comme l’appli mobile, la synchro ou les intégrations. La fiche précise lesquelles."
       },
       "no": {
-        "label": "Non",
-        "desc": "Continue de payer. La valeur, c’est le réseau, les données ou la conformité — aucun prompt ne remplace ça."
+        "label": "Pas encore",
+        "desc": "Continue de payer pour l’instant. La valeur, c’est le réseau, les données ou la conformité — un prompt ne remplace pas ça."
       }
     },
     "dossier": {
@@ -82,6 +82,9 @@
     "home": {
       "titleTag": "SaaS Made Free — quels abonnements ne tiennent qu’à un prompt ?",
       "metaDescription": "Quels abonnements SaaS un agent IA pourrait-il reconstruire pour toi — et lesquels vaut-il mieux continuer à payer ?",
+      "heroSuffix": "Made Free",
+      "heroStatic": "N’importe quel SaaS, libéré.",
+      "replaceableSpendLabel": "Abonnements mensuels que le catalogue dit remplaçables",
       "heroLine1": "Certains abonnements sont un vrai business.",
       "heroLine2": "D’autres ne tiennent qu’à un prompt.",
       "lede": "Un annuaire ouvert des logiciels que tu paies chaque mois, et de la possibilité qu’un agent IA en reconstruise une version que tu possèdes. Un prompt par outil, écrit pour être donné directement à Claude, Cursor ou ChatGPT.",
@@ -147,7 +150,16 @@
       "votesTotal": "{count} votes enregistrés au total",
       "topVoted": "Outils les plus votés",
       "catalogueTitle": "Le catalogue en chiffres",
-      "catalogueTools": "{count} outils publiés"
+      "catalogueTools": "{count} outils publiés",
+      "allTimeTitle": "Depuis le premier jour",
+      "allTimeSince": "compté depuis le {date}",
+      "allTimeViews": "Pages vues",
+      "allTimeCopies": "Prompts copiés",
+      "allTimeVisitorDays": "Jours-visiteurs",
+      "allTimeVisitorDaysNote": "Visiteurs uniques quotidiens, additionnés. Quelqu’un qui revient trois jours compte trois fois — nos hachages à sel quotidien ne peuvent pas être reliés d’un jour à l’autre, à dessein. Ce n’est pas un nombre de personnes.",
+      "daysOnAir": "Jours d’antenne",
+      "byCountry": "Visites par pays · 7 j",
+      "byCountryNote": "Le pays seulement, lu au niveau réseau. Jamais une ville, jamais une position précise."
     },
     "tool": {
       "titleTemplate": "Un agent IA peut-il remplacer {name} ? — SaaS Made Free",

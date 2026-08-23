@@ -2,7 +2,7 @@ import { escapeHtml, renderLayout, renderBreadcrumb } from './site-html.mjs';
 import { organizationJsonLd, breadcrumbJsonLd } from './site-seo.mjs';
 import { formatMoney, interpolate } from './site-format.mjs';
 import {
-  RAIL_SLOTS, TAPE_TOP_SLOTS, TAPE_BOTTOM_SLOTS,
+  RAIL_SLOTS, TAPE_BOTTOM_SLOTS,
   RAIL_LADDER_USD, TAPE_LADDER_USD,
 } from './site-sponsors.mjs';
 import { SPONSOR_SLOTS_API_URL, SPONSOR_CHECKOUT_API_URL } from './site-data.mjs';
@@ -338,7 +338,7 @@ export function renderSponsorPage({
   // site-sponsors.mjs, jamais écrits en dur dans ui.json — sinon la phrase
   // mentirait en silence le jour où l'inventaire change de forme.
   const railCount = RAIL_SLOTS.length;
-  const tapeCount = TAPE_TOP_SLOTS.length + TAPE_BOTTOM_SLOTS.length;
+  const tapeCount = TAPE_BOTTOM_SLOTS.length;
   const description = interpolate(s.metaDescription, { railCount, tapeCount });
 
   const main = `    ${renderBreadcrumb(breadcrumbItems)}
@@ -369,8 +369,6 @@ ${durationChoice}
 ${noScriptNote}
       <h3>${escapeHtml(s.railHeading)}</h3>
 ${inventoryList(RAIL_SLOTS, sponsors, s, sponsors.prices.rail, RAIL_LADDER_USD, lang)}
-      <h3>${escapeHtml(s.tapeTopHeading)}</h3>
-${inventoryList(TAPE_TOP_SLOTS, sponsors, s, sponsors.prices.top, TAPE_LADDER_USD, lang)}
       <h3>${escapeHtml(s.tapeBottomHeading)}</h3>
 ${inventoryList(TAPE_BOTTOM_SLOTS, sponsors, s, sponsors.prices.bottom, TAPE_LADDER_USD, lang)}
     </section>

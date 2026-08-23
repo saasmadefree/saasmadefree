@@ -57,8 +57,8 @@
         "desc": "Rebuildable in a weekend, but you give up things like the mobile app, the sync, or the integrations. The entry says which."
       },
       "no": {
-        "label": "No",
-        "desc": "Keep paying. The value is the network, the data or the compliance — no prompt replaces that."
+        "label": "Not yet",
+        "desc": "Keep paying for now. The value is the network, the data or the compliance — a prompt doesn't replace that."
       }
     },
     "dossier": {
@@ -82,6 +82,9 @@
     "home": {
       "titleTag": "SaaS Made Free — which subscriptions are one prompt away from free?",
       "metaDescription": "Which of your paid SaaS subscriptions could a coding agent rebuild for you — and which should you honestly keep paying for?",
+      "heroSuffix": "Made Free",
+      "heroStatic": "Any SaaS, made free.",
+      "replaceableSpendLabel": "Monthly bills the catalogue says you could drop",
       "heroLine1": "Some subscriptions are a business.",
       "heroLine2": "Some are just a prompt.",
       "lede": "An open directory of the software you pay for every month, and whether a coding agent could rebuild a version you own. One prompt per tool, written to be handed straight to Claude, Cursor or ChatGPT.",
@@ -147,7 +150,16 @@
       "votesTotal": "{count} votes recorded overall",
       "topVoted": "Most-voted tools",
       "catalogueTitle": "The catalogue in numbers",
-      "catalogueTools": "{count} tools published"
+      "catalogueTools": "{count} tools published",
+      "allTimeTitle": "Since day one",
+      "allTimeSince": "counting since {date}",
+      "allTimeViews": "Page views",
+      "allTimeCopies": "Prompts copied",
+      "allTimeVisitorDays": "Visitor-days",
+      "allTimeVisitorDaysNote": "Daily unique visitors, added up. Someone who comes back on three days counts three times — our daily-salted hashes cannot be linked from one day to the next, on purpose. This is not a headcount.",
+      "daysOnAir": "Days on air",
+      "byCountry": "Visits by country · 7d",
+      "byCountryNote": "Country only, read from the network layer. Never a city, never a precise location."
     },
     "tool": {
       "titleTemplate": "Can a coding agent replace {name}? — SaaS Made Free",

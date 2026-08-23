@@ -2,6 +2,8 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { env } from 'cloudflare:test';
 import MIGRATION_INIT from '../migrations/0001_init.sql?raw';
 import MIGRATION_STATS from '../migrations/0003_stats.sql?raw';
+import MIGRATION_VISITORS from '../migrations/0005_daily_visitors.sql?raw';
+import MIGRATION_COUNTRIES from '../migrations/0006_countries.sql?raw';
 import MIGRATION_SPONSORS from '../migrations/0004_sponsors.sql?raw';
 import {
   ensureSlots, readSlots, assignPaidSlot, SLOT_ASSIGNED, SLOT_CONFLICT, SLOT_RETRY,
@@ -29,12 +31,14 @@ async function applyMigration(sql) {
 }
 
 beforeEach(async () => {
-  for (const table of ['votes', 'rate', 'hits', 'uniques', 'events', 'crawlers',
+  for (const table of ['votes', 'rate', 'hits', 'uniques', 'events', 'crawlers', 'daily_visitors', 'countries',
                        'sponsor_slots', 'sponsor_orders']) {
     await env.DB.exec(`DROP TABLE IF EXISTS ${table}`);
   }
   await applyMigration(MIGRATION_INIT);
   await applyMigration(MIGRATION_STATS);
+  await applyMigration(MIGRATION_VISITORS);
+  await applyMigration(MIGRATION_COUNTRIES);
   await applyMigration(MIGRATION_SPONSORS);
 });
 
@@ -49,15 +53,15 @@ async function countSlots() {
 }
 
 describe('ensureSlots', () => {
-  it('crée les 28 lignes manquantes', async () => {
+  it('crée les 20 lignes manquantes', async () => {
     await ensureSlots(env);
-    expect(await countSlots()).toBe(28);
+    expect(await countSlots()).toBe(20);
   });
 
   it('est idempotent : un second appel ne crée aucune ligne de plus', async () => {
     await ensureSlots(env);
     await ensureSlots(env);
-    expect(await countSlots()).toBe(28);
+    expect(await countSlots()).toBe(20);
   });
 });
 
@@ -87,16 +91,18 @@ describe('readSlots', () => {
     expect(typeof out.L1.priceCents).toBe('number');
   });
 
-  it('un slot payé fait monter le prix des autres slots du même compartiment, mais pas ceux de l’autre bandeau', async () => {
+  it('un slot payé fait monter le prix de son compartiment, pas de l’autre', async () => {
+    // Depuis le retrait du bandeau du haut (20.08.2026), les deux
+    // compartiments sont : les blocs latéraux et le bandeau de pied.
     await ensureSlots(env);
-    await env.DB.prepare("UPDATE sponsor_slots SET status = 'paid' WHERE slot = 'T01'").run();
+    await env.DB.prepare("UPDATE sponsor_slots SET status = 'paid' WHERE slot = 'B01'").run();
 
     const out = await readSlots(env, new Date());
 
-    // T02 est dans le même compartiment (top) que T01 payé : son prix monte.
-    expect(out.T02.priceCents).toBeGreaterThan(7500);
-    // B01 est dans l'autre bandeau (bottom) : le prix reste au plancher.
-    expect(out.B01.priceCents).toBe(7500);
+    // B02 est dans le même compartiment que B01 payé : son prix monte.
+    expect(out.B02.priceCents).toBeGreaterThan(7500);
+    // Un bloc latéral est dans l'autre compartiment : il reste au plancher.
+    expect(out.L1.priceCents).toBe(14900);
   });
 
   it('repasse open une réservation sans échéance — sinon elle bloquerait à jamais', async () => {
@@ -117,12 +123,12 @@ describe('readSlots', () => {
   it('un slot réservé ne fait pas monter le prix', async () => {
     await ensureSlots(env);
     await env.DB.prepare(
-      "UPDATE sponsor_slots SET status = 'reserved', session_id = 'sess_2', reserved_until = ? WHERE slot = 'T01'"
+      "UPDATE sponsor_slots SET status = 'reserved', session_id = 'sess_2', reserved_until = ? WHERE slot = 'B01'"
     ).bind(new Date(Date.now() + 60_000).toISOString()).run();
 
     const out = await readSlots(env, new Date());
 
-    expect(out.T02.priceCents).toBe(7500);
+    expect(out.B02.priceCents).toBe(7500);
   });
 });
 

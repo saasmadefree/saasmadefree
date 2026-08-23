@@ -150,12 +150,12 @@ const usd = (amount, lang) => formatMoney(amount, 'USD', lang);
 // sont ce qui transforme la page d'un inventaire en boutique. happy-dom
 // dispatche les clics sur les éléments `hidden` : sans les assertions
 // ci-dessous, on peut supprimer l'une ou l'autre et TOUS les tests d'achat
-// restent verts pendant que la page livrerait vingt-huit boutons invisibles.
+// restent verts pendant que la page livrerait vingt boutons invisibles.
 describe('site.js — les contrôles sont réellement dévoilés', () => {
-  it('dévoile les vingt-huit boutons', () => {
+  it('dévoile les vingt boutons', () => {
     const page = mount();
     const buttons = [...page.section.querySelectorAll('.sp-inv-buy')];
-    expect(buttons).toHaveLength(28);
+    expect(buttons).toHaveLength(20);
     for (const btn of buttons) expect(btn.hidden, btn.dataset.slot).toBe(false);
   });
 
@@ -204,7 +204,7 @@ describe('site.js — la requête de checkout', () => {
   it('triple le montant attendu quand trois mois sont choisis', async () => {
     const page = mount();
     page.pickMonths(3);
-    page.click('T01');
+    page.click('B01');
     await page.flush();
     expect(page.checkoutCalls()[0].body).toMatchObject({
       months: 3, expectedPriceCents: TAPE_LADDER_USD[0] * 100 * 3,
@@ -346,7 +346,7 @@ describe('site.js — dérive de prix', () => {
     expect(page.item('R1').querySelector('.sp-inv-price').textContent).toBe(price);
     expect(page.doc.querySelector('.sp-card[data-slot="R1"] .sp-price').textContent).toBe(price);
     // Le bandeau suit son propre barème : il ne doit PAS bouger.
-    expect(page.doc.querySelector('.sp-tape-item[data-slot="T01"] .sp-tape-price').textContent)
+    expect(page.doc.querySelector('.sp-tape-item[data-slot="B01"] .sp-tape-price').textContent)
       .toBe(usd(TAPE_LADDER_USD[0], 'fr'));
   });
 
@@ -569,7 +569,7 @@ describe('site.js — retour depuis le paiement', () => {
 describe('site.js — nom accessible des boutons', () => {
   it('chaque bouton porte son slot dans son nom, pas seulement dans un span voisin', async () => {
     const page = mount();
-    for (const slot of ['L1', 'R4', 'T01', 'B10']) {
+    for (const slot of ['L1', 'R4', 'B01', 'B10']) {
       const btn = page.button(slot);
       const ids = btn.getAttribute('aria-labelledby').split(/\s+/);
       const name = ids.map((id) => page.doc.getElementById(id).textContent.trim()).join(' ');
@@ -577,14 +577,14 @@ describe('site.js — nom accessible des boutons', () => {
     }
   });
 
-  it('les vingt-huit noms sont distincts', async () => {
+  it('les vingt noms sont distincts', async () => {
     const page = mount();
     const names = [...page.section.querySelectorAll('.sp-inv-buy')].map((btn) =>
       btn.getAttribute('aria-labelledby').split(/\s+/)
         .map((id) => page.doc.getElementById(id).textContent.trim()).join(' ')
     );
-    expect(names).toHaveLength(28);
-    expect(new Set(names).size).toBe(28);
+    expect(names).toHaveLength(20);
+    expect(new Set(names).size).toBe(20);
   });
 
   it('le prix est décrit, pas nommé — il change, le nom ne doit pas', async () => {

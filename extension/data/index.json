@@ -3625,6 +3625,13 @@
     "currency": "USD",
     "url": "/en/tools/windsurf"
   },
+  "wisprflow.ai": {
+    "slug": "wispr-flow",
+    "verdict": "kinda",
+    "amount": 15,
+    "currency": "USD",
+    "url": "/en/tools/wispr-flow"
+  },
   "wix.com": {
     "slug": "wix",
     "verdict": "kinda",

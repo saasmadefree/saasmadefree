@@ -4,7 +4,7 @@ import { loadData, compileValidators, LANGS } from './lib/load-data.mjs';
 import { validateAll } from './lib/validate-rules.mjs';
 import { buildIndex, buildToolRecord, buildSlugList, buildAgentIdList, FEED_VERSION } from './lib/feed.mjs';
 import {
-  RAIL_SLOTS, TAPE_TOP_SLOTS, TAPE_BOTTOM_SLOTS,
+  RAIL_SLOTS, TAPE_BOTTOM_SLOTS,
   RAIL_LADDER_USD, TAPE_LADDER_USD,
 } from './lib/site-sponsors.mjs';
 
@@ -78,11 +78,10 @@ await writeFile(
   `// main ferait diverger les deux le jour où l'un des deux change, et un\n` +
   `// acheteur serait débité d'un montant différent de celui affiché.\n` +
   `export const RAIL_SLOTS = ${JSON.stringify(RAIL_SLOTS)};\n` +
-  `export const TAPE_TOP_SLOTS = ${JSON.stringify(TAPE_TOP_SLOTS)};\n` +
   `export const TAPE_BOTTOM_SLOTS = ${JSON.stringify(TAPE_BOTTOM_SLOTS)};\n` +
   `export const RAIL_LADDER_USD = ${JSON.stringify(RAIL_LADDER_USD)};\n` +
   `export const TAPE_LADDER_USD = ${JSON.stringify(TAPE_LADDER_USD)};\n` +
-  `export const ALL_SLOTS = [...RAIL_SLOTS, ...TAPE_TOP_SLOTS, ...TAPE_BOTTOM_SLOTS];\n`,
+  `export const ALL_SLOTS = [...RAIL_SLOTS, ...TAPE_BOTTOM_SLOTS];\n`,
   'utf8'
 );
 

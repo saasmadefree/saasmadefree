@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; font-family: Archivo, "Helvetica Neue", Arial, sans-serif; }
+    a { color: #12110D; text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+    .mono { font-family: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace; font-variant-numeric: tabular-nums; }
+    .bigrow:hover { background: #EAE7DE; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; min-height: 2040px; display: flex; flex-direction: column; background: #F2F0EA; color: #12110D;">
+
+  <!-- BANDEAU HAUT — T01…T10, barre d'encre pleine largeur -->
+  <div style="display: flex; align-items: stretch; height: 34px; background: #12110D; color: #F2F0EA; overflow: hidden;">
+    <div class="mono" style="display: flex; align-items: center; flex-shrink: 0; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; padding: 0 18px; background: #F2F0EA; color: #12110D; font-weight: 500;">10 places · dès 75 $US</div>
+    <sc-for list="{{ tapeTop }}" as="s" hint-placeholder-count="8">
+      <a href="#" class="mono" style="display: flex; align-items: center; gap: 9px; flex-shrink: 0; font-size: 10.5px; color: #C9C4B6; padding: 0 16px; border-right: 1px solid #2E2C25;">
+        <span style="font-size: 9px; color: #75705F;">{{ s }}</span>
+        <span>Slot libre</span>
+        <span style="color: #F2F0EA; font-weight: 500;">75 $US</span>
+      </a>
+    </sc-for>
+  </div>
+
+  <!-- Bandeau de service -->
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 54px; padding: 0 24px; border-bottom: 2px solid #12110D;">
+    <div style="display: flex; align-items: center; gap: 11px;">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <rect width="20" height="20" fill="#12110D"></rect>
+        <path d="M4 10.4l3.2 3.2L16 4.8" stroke="#F2F0EA" stroke-width="2.2" stroke-linecap="square"></path>
+      </svg>
+      <span style="font-size: 15px; font-weight: 800; letter-spacing: -0.02em; text-transform: uppercase;">SaaS Made Free</span>
+    </div>
+    <div class="mono" style="display: flex; align-items: center; gap: 24px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">
+      <a href="#">Annuaire</a><a href="#">Catégories</a><a href="#">Proposer</a><a href="#">Sponsoriser</a><a href="#">Source</a>
+      <span style="width: 1px; height: 16px; background: #C4BEAD;"></span>
+      <span><span style="border-bottom: 2px solid #12110D; padding-bottom: 2px;">FR</span> <span style="color: #9A9587;">EN</span></span>
+    </div>
+  </div>
+
+  <!-- Titre, pleine largeur -->
+  <div style="padding: 54px 24px 38px;">
+    <h1 style="margin: 0; font-size: 76px; line-height: 0.94; font-weight: 800; letter-spacing: -0.045em; text-transform: uppercase;">Combien de tes abonnements<br>tiennent à un seul prompt&nbsp;?</h1>
+    <p style="margin: 24px 0 0; font-size: 19px; line-height: 1.55; color: #55524A; max-width: 640px;">On a instruit 530 logiciels payants, un par un, et écrit le prompt qui en reconstruit une version que tu possèdes. Voici la réponse honnête.</p>
+  </div>
+
+  <!-- LA réponse, pleine largeur -->
+  <div style="display: flex; height: 226px;">
+    <sc-for list="{{ verdicts }}" as="v" hint-placeholder-count="3">
+      <div style="flex-grow: {{ v.count }}; flex-basis: 0; background: {{ v.bg }}; color: #F6F4EE; padding: 24px 28px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; overflow: hidden;">
+        <div class="mono" style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.85;">{{ v.share }}</div>
+        <div style="display: flex; flex-direction: column; gap: 3px;">
+          <div style="font-size: 64px; line-height: 0.9; font-weight: 800; letter-spacing: -0.045em;">{{ v.count }}</div>
+          <div style="font-size: 21px; font-weight: 700; letter-spacing: -0.01em; text-transform: uppercase;">{{ v.label }}</div>
+          <div style="font-size: 14px; line-height: 1.4; opacity: 0.86; margin-top: 3px;">{{ v.gloss }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 13px 24px; border-bottom: 2px solid #12110D;">
+    <span class="mono" style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #6A6558;">Sur 530 fiches · état arrêté le 12.08.2026</span>
+    <span class="mono" style="font-size: 11px; color: #6A6558;">Cliquer une bande pour filtrer le registre</span>
+  </div>
+
+  <!-- SHELL avec rails -->
+  <div style="display: grid; grid-template-columns: 204px minmax(0, 1fr) 204px; column-gap: 28px; padding: 28px 24px 0; align-items: start;">
+
+    <!-- RAIL GAUCHE — L1…L4 -->
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <sc-for list="{{ railLeft }}" as="s" hint-placeholder-count="4">
+        <a href="#" style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 112px; border: 2px dashed #C4BEAD; padding: 18px 12px 12px; text-align: center;">
+          <span class="mono" style="position: absolute; top: 6px; left: 8px; font-size: 8.5px; letter-spacing: 0.12em; color: #A39D8C;">{{ s }}</span>
+          <span class="mono" style="font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #8C8778;">Slot libre</span>
+          <span style="font-size: 28px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.1;">149 $US</span>
+          <span class="mono" style="font-size: 9.5px; color: #8C8778; margin-bottom: 8px;">/ 30 jours</span>
+          <span class="mono" style="font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; background: #12110D; color: #F2F0EA; padding: 6px 14px;">Réserver</span>
+        </a>
+      </sc-for>
+      <div class="mono" style="font-size: 9.5px; line-height: 1.5; color: #8C8778; text-align: center;">Le prix monte d’une marche à chaque slot pris.</div>
+    </div>
+
+    <!-- COLONNE PRINCIPALE -->
+    <div style="min-width: 0;">
+      <div style="display: flex; align-items: center; gap: 16px; border: 2px solid #12110D; background: #FFFFFF; padding: 18px 22px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="10.5" cy="10.5" r="7.5" stroke="#12110D" stroke-width="2.2"></circle>
+          <path d="M16 16l5 5" stroke="#12110D" stroke-width="2.2" stroke-linecap="square"></path>
+        </svg>
+        <span style="font-size: 21px; font-weight: 500; color: #9A9587;">Notion, Ahrefs, Calendly, Figma…</span>
+      </div>
+
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin: 34px 0 4px;">
+        <h2 style="margin: 0; font-size: 14px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;">Le registre</h2>
+        <span class="mono" style="font-size: 11px; color: #6A6558;">Classé par votes</span>
+      </div>
+      <sc-for list="{{ tools }}" as="t" hint-placeholder-count="8">
+        <div class="bigrow" style="display: flex; align-items: center; gap: 20px; border-top: 1px solid #D5D0C2; padding: 16px 0; cursor: pointer;">
+          <span style="width: 8px; height: 44px; background: {{ t.bg }}; flex-shrink: 0;"></span>
+          <span style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1; min-width: 0;">
+            <a href="#" style="font-size: 25px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.1;">{{ t.name }}</a>
+            <span class="mono" style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #6A6558;">{{ t.cat }}</span>
+          </span>
+          <span style="width: 250px; font-size: 14px; line-height: 1.4; color: #55524A;">{{ t.gloss }}</span>
+          <span style="width: 116px; text-align: right; display: flex; flex-direction: column; gap: 1px;">
+            <span class="mono" style="font-size: 19px; font-weight: 500;">{{ t.price }}</span>
+            <span class="mono" style="font-size: 10.5px; color: #8C8778;">{{ t.year }} / an</span>
+          </span>
+          <span style="width: 96px; text-align: right; font-size: 14px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: {{ t.bg }};">{{ t.verdict }}</span>
+        </div>
+      </sc-for>
+      <div style="border-top: 2px solid #12110D; padding-top: 20px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
+        <a href="#" style="font-size: 21px; font-weight: 700; letter-spacing: -0.02em;">Voir les 530 fiches →</a>
+        <span class="mono" style="font-size: 11.5px; color: #6A6558;">11 760,18 $US / mois de catalogue · 51 catégories</span>
+      </div>
+    </div>
+
+    <!-- RAIL DROIT — R1…R4 -->
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="position: relative; display: flex; flex-direction: column; gap: 8px; min-height: 112px; border: 2px solid #12110D; background: #FFFFFF; padding: 16px 14px;">
+        <span class="mono" style="position: absolute; top: 6px; right: 8px; font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: #6A6558; border: 1px solid #C4BEAD; padding: 1px 4px;">Exemple</span>
+        <span class="mono" style="position: absolute; top: 6px; left: 8px; font-size: 8.5px; letter-spacing: 0.12em; color: #A39D8C;">R1</span>
+        <div style="display: flex; align-items: center; gap: 10px; margin-top: 12px;">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect x="1" y="1" width="30" height="30" fill="#EFEBE0" stroke="#C4BEAD" stroke-width="2"></rect>
+            <path d="M9 21l4.5-5.5 3.2 3.8 2.3-2.8L23 21z" fill="#B4AE9C"></path>
+            <circle cx="11.5" cy="11.5" r="2.2" fill="#B4AE9C"></circle>
+          </svg>
+          <span style="font-size: 16px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; overflow-wrap: anywhere;">[TA MARQUE]</span>
+        </div>
+        <span style="font-size: 12.5px; line-height: 1.45; color: #55524A;">[Une ligne de description — 80 caractères au maximum.]</span>
+      </div>
+      <sc-for list="{{ railRight }}" as="s" hint-placeholder-count="3">
+        <a href="#" style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 112px; border: 2px dashed #C4BEAD; padding: 18px 12px 12px; text-align: center;">
+          <span class="mono" style="position: absolute; top: 6px; left: 8px; font-size: 8.5px; letter-spacing: 0.12em; color: #A39D8C;">{{ s }}</span>
+          <span class="mono" style="font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: #8C8778;">Slot libre</span>
+          <span style="font-size: 28px; font-weight: 800; letter-spacing: -0.04em; line-height: 1.1;">149 $US</span>
+          <span class="mono" style="font-size: 9.5px; color: #8C8778; margin-bottom: 8px;">/ 30 jours</span>
+          <span class="mono" style="font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; background: #12110D; color: #F2F0EA; padding: 6px 14px;">Réserver</span>
+        </a>
+      </sc-for>
+      <div class="mono" style="font-size: 9.5px; line-height: 1.5; color: #8C8778; text-align: center;">Un sponsor n’achète jamais un verdict.</div>
+    </div>
+  </div>
+
+  <div style="margin: 44px 24px 0; border-top: 2px solid #12110D; padding: 16px 0 22px; display: flex; align-items: center; justify-content: space-between; gap: 32px;">
+    <div class="mono" style="display: flex; gap: 22px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;">
+      <a href="#">Code source</a><a href="#">Stats publiques</a><a href="#">Vie privée</a><a href="#">Sponsoriser</a>
+    </div>
+    <span class="mono" style="font-size: 11px; color: #6A6558;">Aucune requête vers un tiers · aucun cookie · aucun lien affilié</span>
+  </div>
+
+  <div style="flex-grow: 1;"></div>
+  <!-- BANDEAU BAS — B01…B10 -->
+  <div style="display: flex; align-items: stretch; height: 34px; background: #12110D; color: #F2F0EA; overflow: hidden;">
+    <div class="mono" style="display: flex; align-items: center; flex-shrink: 0; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; padding: 0 18px; background: #F2F0EA; color: #12110D; font-weight: 500;">10 places · dès 75 $US</div>
+    <sc-for list="{{ tapeBottom }}" as="s" hint-placeholder-count="8">
+      <a href="#" class="mono" style="display: flex; align-items: center; gap: 9px; flex-shrink: 0; font-size: 10.5px; color: #C9C4B6; padding: 0 16px; border-right: 1px solid #2E2C25;">
+        <span style="font-size: 9px; color: #75705F;">{{ s }}</span>
+        <span>Slot libre</span>
+        <span style="color: #F2F0EA; font-weight: 500;">75 $US</span>
+      </a>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":2040}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const YES = '#17563A', KINDA = '#8F5A0B', NO = '#8C2317';
+    const bg = { yes: YES, kinda: KINDA, no: NO };
+    const label = { yes: 'Oui', kinda: 'Presque', no: 'Non' };
+    const raw = [
+      ['Calendly', 'Planification', '12 $US', '144 $US', 'kinda', 'Partage un lien, laisse les autres réserver un créneau dans ton agenda.'],
+      ['Typeform', 'Formulaires et sondages', '25 $US', '300 $US', 'yes', 'Une question à la fois, des formulaires qui ressemblent à une conversation.'],
+      ['Obsidian', 'Notes et gestion des connaissances', '4 $US', '48 $US', 'yes', 'Notes markdown locales — Sync est la seule chose que tu paierais.'],
+      ['1Password', 'Sécurité et mots de passe', '2,99 $US', '35,88 $US', 'kinda', 'Gestionnaire de mots de passe pour identifiants, passkeys, secrets et partage sécurisé.'],
+      ['ActiveCampaign', 'Newsletters et publication', '15 $US', '180 $US', 'no', 'Envoie une newsletter email conforme via une API d’emailing transactionnel.'],
+      ['Ahrefs', 'SEO et marketing', '29 $US', '348 $US', 'no', 'Plateforme SEO construite sur un crawl web propriétaire, un index de mots-clés et de backlinks.'],
+      ['Airtable', 'Bases de données', '24 $US', '288 $US', 'kinda', 'Base de données façon tableur, avec vues, formulaires et automatisations.'],
+      ['Bitwarden', 'Sécurité et mots de passe', '1,65 $US', '19,80 $US', 'yes', 'Gestionnaire de mots de passe open source, hébergé ou auto-hébergé.'],
+    ];
+    return {
+      railLeft: ['L1', 'L2', 'L3', 'L4'],
+      railRight: ['R2', 'R3', 'R4'],
+      tapeTop: ['T01', 'T02', 'T03', 'T04', 'T05', 'T06', 'T07', 'T08'],
+      tapeBottom: ['B01', 'B02', 'B03', 'B04', 'B05', 'B06', 'B07', 'B08'],
+      verdicts: [
+        { count: 70, label: 'Oui', share: '13 % du catalogue', gloss: 'Se remplace proprement, en une session.', bg: YES },
+        { count: 284, label: 'Presque', share: '54 % du catalogue', gloss: 'La boucle centrale, oui. L’étendue, non.', bg: KINDA },
+        { count: 176, label: 'Non', share: '33 % du catalogue', gloss: 'Garde ton abonnement. On te dit pourquoi.', bg: NO },
+      ],
+      tools: raw.map(([name, cat, price, year, v, gloss]) => ({
+        name, cat, price, year, gloss, verdict: label[v], bg: bg[v],
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

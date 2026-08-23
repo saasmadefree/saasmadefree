@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { renderSponsorPage, SPONSOR_EMAIL } from '../scripts/lib/site-page-sponsor.mjs';
 import {
-  sponsorContext, RAIL_SLOTS, TAPE_TOP_SLOTS, TAPE_BOTTOM_SLOTS,
+  sponsorContext, RAIL_SLOTS, TAPE_BOTTOM_SLOTS,
   RAIL_LADDER_USD, TAPE_LADDER_USD,
 } from '../scripts/lib/site-sponsors.mjs';
 import { SPONSOR_CHECKOUT_API_URL } from '../scripts/lib/site-data.mjs';
@@ -132,7 +132,7 @@ describe('page /sponsor — le bouton d’achat', () => {
 
   it('pose un bouton sur chaque emplacement libre', () => {
     const html = pageFor('en');
-    for (const slot of [...RAIL_SLOTS, ...TAPE_TOP_SLOTS, ...TAPE_BOTTOM_SLOTS]) {
+    for (const slot of [...RAIL_SLOTS, ...TAPE_BOTTOM_SLOTS, ...TAPE_BOTTOM_SLOTS]) {
       expect(itemFor(html, slot), slot).toContain('class="sp-inv-buy"');
       expect(itemFor(html, slot), slot).toContain(`data-slot="${slot}"`);
     }
@@ -195,11 +195,12 @@ describe('page /sponsor — le prix envoyé au Worker', () => {
   it('publie le prix du compartiment en centimes, à côté du barème', () => {
     const html = pageFor('en');
     const lists = [...html.matchAll(/<ul class="sp-inv"[^>]*>/g)].map((m) => m[0]);
-    expect(lists).toHaveLength(3);
-    // Rails, bandeau haut, bandeau bas — dans l'ordre de renderSponsorPage.
+    // Deux compartiments depuis le retrait du bandeau du haut : blocs latéraux
+    // et places défilantes en pied.
+    expect(lists).toHaveLength(2);
+    // Blocs latéraux puis places défilantes — dans l'ordre de renderSponsorPage.
     expect(lists[0]).toContain(`data-sponsor-price-cents="${RAIL_LADDER_USD[0] * 100}"`);
     expect(lists[1]).toContain(`data-sponsor-price-cents="${TAPE_LADDER_USD[0] * 100}"`);
-    expect(lists[2]).toContain(`data-sponsor-price-cents="${TAPE_LADDER_USD[0] * 100}"`);
   });
 
   it('monte d’une marche quand un slot du compartiment est vendu — même barème que le Worker', () => {

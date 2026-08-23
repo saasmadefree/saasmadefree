@@ -230,7 +230,24 @@
           ? counts[row.dataset.slug]
           : 0;
         row.dataset.votes = String(count);
-        cell.textContent = pluralize(count, lang, singularTpl, pluralTpl);
+        // Même rendu du zéro qu'au build (voir renderToolTable) : un tiret
+        // discret à l'œil, le décompte exact au lecteur d'écran. Sans ce
+        // branchement, le rafraîchissement en direct réécrivait « 0 vote » sur
+        // les cinq cents lignes que le build venait justement de calmer.
+        if (count === 0) {
+          cell.textContent = '';
+          var dash = document.createElement('span');
+          dash.className = 'votes-none';
+          dash.setAttribute('aria-hidden', 'true');
+          dash.textContent = '–';
+          var sr = document.createElement('span');
+          sr.className = 'visually-hidden';
+          sr.textContent = pluralize(0, lang, singularTpl, pluralTpl);
+          cell.appendChild(dash);
+          cell.appendChild(sr);
+        } else {
+          cell.textContent = pluralize(count, lang, singularTpl, pluralTpl);
+        }
       }
       var sorted = rows.slice().sort(function (a, b) {
         var diff = Number(b.dataset.votes != null ? b.dataset.votes : -1) -
@@ -1100,4 +1117,56 @@
   enhanceSponsorInventory();
   enhanceSponsorCheckout();
   enhanceSponsorPaidNote();
+
+  // ---- badges d'économie qui s'envolent -----------------------------------
+  // Le titre montre un nom de SaaS à la fois ; à chaque rotation, le prix de
+  // ce SaaS s'envole sous lui, barré, puis s'efface. Les badges se cumulent :
+  // plusieurs vivent à l'écran en même temps, ce qui donne l'impression d'une
+  // addition qui monte — c'est le propos du site rendu visible.
+  //
+  // Semé en JS parce que le cumul est impossible en CSS seul : il faut créer
+  // un élément par apparition, pas animer un élément unique.
+  (function heroSavings() {
+    var host = document.querySelector('.hero-savings');
+    if (!host) return;
+
+    // prefers-reduced-motion : rien ne s'envole. Le prix n'est pas une
+    // information portée uniquement ici — chaque fiche affiche le sien — donc
+    // ne rien semer ne fait perdre aucune donnée.
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (still && still.matches) return;
+
+    var prices;
+    try { prices = JSON.parse(host.dataset.savings || '[]'); } catch (e) { return; }
+    if (!prices.length) return;
+
+    // Le pas doit suivre celui du rotateur, sinon badge et nom se désynchronisent.
+    // On le lit sur la variable CSS qui le définit, au lieu de le dupliquer ici.
+    var step = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--rot-step-ms'));
+    if (!isFinite(step) || step <= 0) step = 1900;
+
+    var LIFE = 3000; // durée de vol, alignée sur l'animation CSS
+    var i = 0;
+
+    function spawn() {
+      // Onglet en arrière-plan : on ne sème pas. Sinon on revient à une pile
+      // de badges figés, tous apparus pendant qu'on regardait ailleurs.
+      if (document.hidden) return;
+      var badge = document.createElement('span');
+      badge.className = 'hero-savings-badge';
+      badge.textContent = prices[i % prices.length];
+      // Une dérive horizontale par badge, pour qu'ils ne se superposent pas
+      // exactement quand deux se chevauchent.
+      badge.style.setProperty('--drift', (((i % 5) - 2) * 2.2) + 'rem');
+      host.appendChild(badge);
+      i += 1;
+      setTimeout(function () {
+        if (badge.parentNode) badge.parentNode.removeChild(badge);
+      }, LIFE + 100);
+    }
+
+    spawn();
+    setInterval(spawn, step);
+  }());
+
 })();

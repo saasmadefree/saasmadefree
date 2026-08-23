@@ -2,6 +2,8 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { env, createExecutionContext, waitOnExecutionContext } from 'cloudflare:test';
 import MIGRATION_INIT from '../migrations/0001_init.sql?raw';
 import MIGRATION_STATS from '../migrations/0003_stats.sql?raw';
+import MIGRATION_VISITORS from '../migrations/0005_daily_visitors.sql?raw';
+import MIGRATION_COUNTRIES from '../migrations/0006_countries.sql?raw';
 import MIGRATION_SPONSORS from '../migrations/0004_sponsors.sql?raw';
 import worker from '../src/index.mjs';
 import { hashIp, dayKey } from '../src/hash.mjs';
@@ -26,12 +28,14 @@ async function applyMigration(sql) {
 }
 
 beforeEach(async () => {
-  for (const table of ['votes', 'rate', 'hits', 'uniques', 'events', 'crawlers',
+  for (const table of ['votes', 'rate', 'hits', 'uniques', 'events', 'crawlers', 'daily_visitors', 'countries',
                        'sponsor_slots', 'sponsor_orders']) {
     await env.DB.exec(`DROP TABLE IF EXISTS ${table}`);
   }
   await applyMigration(MIGRATION_INIT);
   await applyMigration(MIGRATION_STATS);
+  await applyMigration(MIGRATION_VISITORS);
+  await applyMigration(MIGRATION_COUNTRIES);
   await applyMigration(MIGRATION_SPONSORS);
 });
 
@@ -185,15 +189,15 @@ function dbWithFailingSweep() {
 // ============================================================== GET /slots ==
 
 describe('GET /api/v1/sponsors/slots', () => {
-  it('rend les 28 slots, cacheables 60 s', async () => {
+  it('rend les 20 slots, cacheables 60 s', async () => {
     const res = await call(new Request('https://votes.test/api/v1/sponsors/slots'));
 
     expect(res.status).toBe(200);
     expect(res.headers.get('cache-control')).toBe('public, max-age=60');
     const body = await res.json();
-    expect(Object.keys(body)).toHaveLength(28);
+    expect(Object.keys(body)).toHaveLength(20);
     expect(body.L1).toEqual({ status: 'open', priceCents: 14900, currency: 'USD' });
-    expect(body.T01.priceCents).toBe(7500);
+    expect(body.B01.priceCents).toBe(7500);
   });
 
   it("n'exige aucun secret Stripe : c'est une lecture publique", async () => {

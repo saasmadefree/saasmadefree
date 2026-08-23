@@ -1,5 +1,5 @@
 import { escapeHtml, verdictBadge } from './site-html.mjs';
-import { categoryLabel, categoryEmoji } from './site-data.mjs';
+import { categoryLabel } from './site-data.mjs';
 import { formatMonthlyPrice, pluralize } from './site-format.mjs';
 import { PLACEHOLDER_PATH } from './site-favicons.mjs';
 
@@ -20,7 +20,6 @@ export function renderToolTable(tools, { lang, ui, categories, voteCounts, favic
   const rows = tools
     .map((tool) => {
       const catLabel = categoryLabel(categories, tool.category, lang);
-      const emoji = categoryEmoji(categories, tool.category);
       const price = formatMonthlyPrice(tool.pricing, lang);
       const verdict = ui.site.verdicts[tool.verdict];
       const favicon = favicons[tool.slug] ?? PLACEHOLDER_PATH;
@@ -32,15 +31,23 @@ export function renderToolTable(tools, { lang, ui, categories, voteCounts, favic
       const searchText = [tool.name, catLabel, tool.subcategory ?? '', tool.tagline ?? '']
         .join(' ')
         .toLowerCase();
+      // Trois états, trois rendus — et le zéro n'est pas le troisième par
+      // défaut. « 0 vote » répété sur cinq cents lignes est du bruit : il
+      // occupe la place d'un chiffre sans en porter un. On le rend en tiret
+      // discret, et le décompte exact reste dans le nom accessible : le
+      // lecteur d'écran entend « 0 vote », l'œil voit une colonne calme.
+      // Rien n'est caché, rien n'est inventé — c'est de la hiérarchie.
       const voteCell = count === null
         ? `<span aria-hidden="true">–</span><span class="visually-hidden">${escapeHtml(ui.site.tool.voteUnavailable)}</span>`
-        : escapeHtml(pluralize(count, lang, singularTpl, pluralTpl));
+        : count === 0
+          ? `<span class="votes-none" aria-hidden="true">–</span><span class="visually-hidden">${escapeHtml(pluralize(0, lang, singularTpl, pluralTpl))}</span>`
+          : escapeHtml(pluralize(count, lang, singularTpl, pluralTpl));
       const votesAttr = count === null ? '' : ` data-votes="${count}"`;
 
       return `          <tr data-slug="${tool.slug}" data-category="${tool.category}" data-verdict="${tool.verdict}" data-priority="${tool.pagePriority}"${votesAttr} data-favicon="${escapeHtml(favicon)}" data-name="${escapeHtml(tool.name.toLowerCase())}" data-cat="${escapeHtml(catLabel.toLowerCase())}" data-search="${escapeHtml(searchText)}">
             <td class="rank" aria-hidden="true"></td>
             <th scope="row"><a href="${tool.path}"><img class="row-favicon" src="${escapeHtml(favicon)}" alt="" width="20" height="20" loading="lazy" decoding="async">${escapeHtml(tool.name)}</a></th>
-            <td class="cat">${emoji ? `${emoji} ` : ''}${escapeHtml(catLabel)}</td>
+            <td class="cat">${escapeHtml(catLabel)}</td>
             <td class="price">${escapeHtml(price)}</td>
             <td>${verdictBadge(tool.verdict, verdict.label)}</td>
             <td class="votes" data-vote-cell data-vote-slug="${tool.slug}">${voteCell}</td>

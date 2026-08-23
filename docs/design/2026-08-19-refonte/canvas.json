@@ -1,0 +1,92 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "title": "A · Accueil — Le Registre",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 2060
+    },
+    {
+      "file": "FicheA.dc.html",
+      "title": "A · Fiche outil — Airtable",
+      "x": 1560,
+      "y": 0,
+      "w": 1440,
+      "h": 2580
+    },
+    {
+      "file": "AccueilB.dc.html",
+      "title": "B · Accueil — La Console",
+      "x": 0,
+      "y": 2820,
+      "w": 1440,
+      "h": 1800
+    },
+    {
+      "file": "FicheB.dc.html",
+      "title": "B · Fiche outil — Airtable",
+      "x": 1560,
+      "y": 2820,
+      "w": 1440,
+      "h": 2180
+    },
+    {
+      "file": "AccueilC.dc.html",
+      "title": "C · Accueil — Le Verdict",
+      "x": 0,
+      "y": 5240,
+      "w": 1440,
+      "h": 2040
+    },
+    {
+      "file": "FicheC.dc.html",
+      "title": "C · Fiche outil — Airtable",
+      "x": 1560,
+      "y": 5240,
+      "w": 1440,
+      "h": 2320
+    }
+  ],
+  "annotations": [
+    {
+      "id": "brief",
+      "x": -480,
+      "y": -220,
+      "w": 360,
+      "text": "REFONTE — 3 directions, rendu réel en 1440 px\n\nMêmes données réelles dans les six planches : 530 fiches, 70 oui / 284 presque / 176 non, 51 catégories, et la fiche Airtable telle qu'elle est dans data/.\n\nActé avant de dessiner :\n· webfont auto-hébergée autorisée\n· pictos SVG, plus d'emojis\n· le verdict reste la seule couleur porteuse de sens, toujours doublé du mot\n\nRegarde les trois, dis-moi laquelle. J'implémente ensuite dans site-styles.mjs."
+    },
+    {
+      "id": "sponsors",
+      "x": -480,
+      "y": 300,
+      "w": 360,
+      "text": "LES 28 EMPLACEMENTS, TOUS PRÉSENTS\n\nLe vrai inventaire du projet, repris tel quel :\n· L1–L4 et R1–R4 — blocs latéraux, barème 149 / 219 / 299 / 429 / 619 / 879 / 1259 / 1800 $US\n· T01–T10 et B01–B10 — bandeaux haut et bas, barème 75 / 99 / 129 / 169 / 229 / 299 / 399 / 519 / 689 / 900 $US\n\nData/sponsors.json est vide aujourd'hui : les 28 slots affichent donc le prix d'entrée réel — 149 $US pour un bloc, 75 $US pour une place.\n\nR1 montre l'état « occupé » en placeholder marqué EXEMPLE — il n'y a pas de vrai sponsor à afficher, et je n'en invente pas.\n\nDeux changements que je propose, à valider :\n1. Un libellé de tête sur chaque bandeau (« 10 places · dès 75 $US ») : ça transforme un inventaire vide en tarif affiché, au lieu de dix « slot libre » qui se lisent comme un échec commercial.\n2. Les blocs latéraux gardent le numéro de slot visible (L1, R2…), pour qu'un acheteur puisse désigner ce qu'il veut."
+    },
+    {
+      "id": "dir-a",
+      "x": -480,
+      "y": 820,
+      "w": 360,
+      "text": "A · LE REGISTRE\nNewsreader + IBM Plex Mono · papier ivoire\n\nL'axe : autorité éditoriale. Le site se lit comme un ouvrage de référence — filets, grandes marges, un serif pour la prose, le mono réservé aux chiffres. Le verdict est une phrase, pas un tampon.\n\nLes emplacements : petites annonces classées. Cadre pointillé, prix composé en serif, filet fin. Ça ne ressemble pas à une bannière parce que ce n'en est pas une.\n\nCe que ça gagne : ça a l'air écrit par quelqu'un qui sait de quoi il parle. Bon pour le trafic SEO qui arrive froid.\n\nCe que ça coûte : c'est calme. Peu de nerf, peu de « produit »."
+    },
+    {
+      "id": "dir-b",
+      "x": -480,
+      "y": 2820,
+      "w": 360,
+      "text": "B · LA CONSOLE\nSpace Grotesk + JetBrains Mono · sombre\n\nL'axe : outil de dev. Palette ⌘K, grille dense, tri, filtres. La fiche a un rail de faits à droite et le prompt dans un vrai bloc de code.\n\nAttention — changement de structure : le rail de catégories que j'avais mis à gauche est devenu un menu déroulant dans la barre de filtres. Impossible d'avoir trois rails côte à côte à 1440 px sans écraser le tableau. Les deux rails latéraux restent donc les emplacements sponsors, comme sur les autres directions.\n\nCe que ça gagne : le sceptique technique se sent chez lui, et 530 lignes deviennent navigables.\n\nCe que ça coûte : ça ressemble à cinquante autres outils dev, et le sombre par défaut dessert l'audience non technique venue de Google."
+    },
+    {
+      "id": "dir-c",
+      "x": -480,
+      "y": 5240,
+      "w": 360,
+      "text": "C · LE VERDICT\nArchivo + DM Mono · aplats de couleur\n\nL'axe : le verdict EST l'interface. L'accueil s'ouvre sur la répartition 70/284/176 en pleine largeur, à l'échelle. La fiche s'ouvre sur un aplat de la couleur du verdict et le mot en 124 px.\n\nLes bandeaux sont des barres d'encre pleine largeur, et les blocs latéraux ont un vrai bouton noir « Réserver » — c'est la direction qui vend le mieux l'inventaire.\n\nStructure : le titre et la bande de répartition passent au-dessus des rails, en pleine largeur. Les rails ne commencent qu'à la zone de travail.\n\nCe que ça gagne : mémorable, et l'argument d'honnêteté devient la première chose qu'on voit. Ça se partage en capture d'écran.\n\nCe que ça coûte : le plus risqué. À 320 px, les aplats et la bande de répartition seront à repenser complètement."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}

@@ -173,10 +173,21 @@ export function langsForCategory(tools, categorySlug) {
 export function catalogueFigures(tools, langs, promptCount) {
   const categories = new Set();
   let totalMonthlyUsd = 0;
+  // Ce que le catalogue dit qu'on peut arrêter de payer : la même somme, mais
+  // restreinte aux verdicts « oui » et « presque ». Elle est calculée dans la
+  // MÊME boucle et sous la MÊME règle que le total (USD et base mensuelle
+  // seulement) — deux règles différentes auraient produit deux chiffres que
+  // le lecteur ne pourrait pas rapprocher, et le plus grand des deux aurait
+  // fini par mentir. Les fiches « pas encore » en sont exclues par
+  // construction : leur abonnement, on dit de le garder.
+  let replaceableMonthlyUsd = 0;
   for (const tool of tools.values()) {
     categories.add(tool.category);
     if (tool.pricing.currency === 'USD' && MONTHLY_BASES.has(tool.pricing.basis)) {
       totalMonthlyUsd += tool.pricing.amount;
+      if (tool.verdict === 'yes' || tool.verdict === 'kinda') {
+        replaceableMonthlyUsd += tool.pricing.amount;
+      }
     }
   }
   return {
@@ -184,6 +195,7 @@ export function catalogueFigures(tools, langs, promptCount) {
     categories: categories.size,
     languages: langs.length,
     totalMonthlyUsd,
+    replaceableMonthlyUsd,
     prompts: promptCount,
   };
 }

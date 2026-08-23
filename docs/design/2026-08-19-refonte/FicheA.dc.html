@@ -1,0 +1,267 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; font-family: Newsreader, Georgia, "Times New Roman", serif; }
+    a { color: #1D4E6B; text-decoration: none; }
+    a:hover { color: #14374D; text-decoration: underline; text-underline-offset: 3px; }
+    .mono { font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace; font-variant-numeric: tabular-nums; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; min-height: 2580px; display: flex; flex-direction: column; background: #FAF7F0; color: #191712;">
+
+  <!-- BANDEAU HAUT — T01…T10 -->
+  <div style="display: flex; align-items: stretch; height: 36px; background: #F3EFE4; border-bottom: 1px solid #E0D9CA; overflow: hidden;">
+    <div class="mono" style="display: flex; align-items: center; flex-shrink: 0; font-size: 9.5px; letter-spacing: 0.15em; text-transform: uppercase; color: #8A8271; padding: 0 18px; border-right: 1px solid #E0D9CA;">10 places · dès 75 $US / 30 jours</div>
+    <sc-for list="{{ tapeTop }}" as="s" hint-placeholder-count="8">
+      <a href="#" class="mono" style="display: flex; align-items: center; gap: 9px; flex-shrink: 0; font-size: 11px; color: #6E6656; padding: 0 16px; border-right: 1px solid #E7E1D2;">
+        <span style="font-size: 9px; letter-spacing: 0.1em; color: #B6AC96;">{{ s }}</span>
+        <span>Slot libre</span>
+        <span style="color: #191712; font-weight: 500;">75 $US</span>
+      </a>
+    </sc-for>
+  </div>
+
+  <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; padding: 22px 24px 18px;">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="24" height="24" stroke="#191712" stroke-width="1.4"></rect>
+        <path d="M6 9.5h14M6 14h9M6 18.5h5" stroke="#191712" stroke-width="1.4" stroke-linecap="square"></path>
+      </svg>
+      <div style="font-size: 21px; font-weight: 600; letter-spacing: -0.01em;">SaaS Made Free</div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 26px;">
+      <div class="mono" style="display: flex; align-items: center; gap: 24px; font-size: 11.5px; letter-spacing: 0.09em; text-transform: uppercase;">
+        <a href="#">Annuaire</a><a href="#">Catégories</a><a href="#">Proposer un outil</a><a href="#">Sponsoriser</a><a href="#">Code source</a>
+      </div>
+      <div style="width: 1px; height: 18px; background: #D8D0BF;"></div>
+      <div class="mono" style="display: flex; align-items: center; gap: 8px; font-size: 11.5px; letter-spacing: 0.09em; text-transform: uppercase;">
+        <span style="border-bottom: 2px solid #191712; padding-bottom: 2px;">FR</span>
+        <span style="color: #B0A794;">EN</span>
+      </div>
+    </div>
+  </div>
+  <div style="height: 1px; background: #191712; margin: 0 24px;"></div>
+
+  <div style="display: grid; grid-template-columns: 204px minmax(0, 1fr) 204px; column-gap: 28px; padding: 24px 24px 0; align-items: start;">
+
+    <!-- RAIL GAUCHE -->
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <sc-for list="{{ railLeft }}" as="s" hint-placeholder-count="4">
+        <a href="#" style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-height: 106px; border: 1px dashed #C4BBA4; padding: 16px 12px; text-align: center;">
+          <span class="mono" style="position: absolute; top: 7px; left: 9px; font-size: 8.5px; letter-spacing: 0.12em; color: #C0B69F;">{{ s }}</span>
+          <span class="mono" style="font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #A29981;">Slot libre</span>
+          <span style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: #191712; line-height: 1.1;">149 $US</span>
+          <span class="mono" style="font-size: 9.5px; color: #8A8271;">/ 30 jours</span>
+          <span class="mono" style="font-size: 9.5px; color: #1D4E6B; text-decoration: underline; margin-top: 3px;">Réserver →</span>
+        </a>
+      </sc-for>
+      <div class="mono" style="font-size: 9.5px; line-height: 1.5; color: #A29981; text-align: center; padding: 0 4px;">Le prix monte d’une marche à chaque slot pris.</div>
+    </div>
+
+    <!-- COLONNE PRINCIPALE -->
+    <div style="min-width: 0;">
+      <div class="mono" style="font-size: 11px; letter-spacing: 0.06em; color: #8A8271; padding-bottom: 16px; border-bottom: 1px solid #E0D9CA;">
+        <a href="#">Annuaire</a> &nbsp;/&nbsp; <a href="#">Bases de données</a> &nbsp;/&nbsp; <span style="color: #191712;">Airtable</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 13px; margin: 34px 0 20px;">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+          <rect x="0.7" y="0.7" width="28.6" height="28.6" rx="3" stroke="#C9C0AC" stroke-width="1.4"></rect>
+          <path d="M8 11h14M8 15.5h14M8 20h14M13 11v9M18 11v9" stroke="#5C564A" stroke-width="1.3"></path>
+        </svg>
+        <div class="mono" style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #8A8271;">Bases de données · tableur-base de données</div>
+      </div>
+      <h1 style="margin: 0; font-size: 48px; line-height: 1.06; font-weight: 400; letter-spacing: -0.02em;">Un agent IA peut-il remplacer <em style="font-weight: 500; font-style: normal;">Airtable</em>&nbsp;?</h1>
+      <p style="margin: 18px 0 0; font-size: 19px; line-height: 1.5; color: #5C564A; max-width: 600px;">Base de données façon tableur, avec vues, formulaires et automatisations.</p>
+
+      <!-- Verdict -->
+      <div style="margin-top: 36px; background: #F5F0E4; border-left: 5px solid #7A5410; padding: 24px 28px; display: flex; gap: 32px; align-items: flex-start;">
+        <div style="flex-shrink: 0; display: flex; flex-direction: column; gap: 6px;">
+          <span class="mono" style="font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #7A5410;">Verdict</span>
+          <span style="font-size: 40px; line-height: 1; font-weight: 600; color: #7A5410; letter-spacing: -0.02em;">Presque</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <p style="margin: 0; font-size: 19px; line-height: 1.5; color: #191712;">La boucle centrale se rebâtit en une session. L’étendue d’Airtable, non&nbsp;: les automatisations, l’API générée et les permissions par personne restent du côté payant.</p>
+          <span class="mono" style="font-size: 10.5px; color: #7A6C55;">Enregistré le 12.08.2026 · confiance haute · verrou&nbsp;: database / editor / integrations</span>
+        </div>
+      </div>
+
+      <!-- Faits -->
+      <div style="margin-top: 32px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: #E0D9CA; border: 1px solid #E0D9CA;">
+        <sc-for list="{{ facts }}" as="f" hint-placeholder-count="4">
+          <div style="background: #FAF7F0; padding: 17px 18px; display: flex; flex-direction: column; gap: 7px;">
+            <span class="mono" style="font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; color: #8A8271;">{{ f.label }}</span>
+            <span style="font-size: 23px; font-weight: 500; line-height: 1.1; letter-spacing: -0.01em;">{{ f.value }}</span>
+            <span class="mono" style="font-size: 10px; color: #A29981; line-height: 1.45;">{{ f.note }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <p style="margin: 40px 0 0; font-size: 21px; line-height: 1.6; text-wrap: pretty;">Une base de données façon tableur mono-utilisateur — colonnes typées, vues enregistrées, enregistrements liés — se construit en une session au-dessus d’une vraie base de données. Ce qui ne vient pas avec, c’est l’étendue d’Airtable&nbsp;: des dizaines de types de champs, des automatisations, une API générée, des applications mobiles, et des permissions de partage fines pour une équipe.</p>
+
+      <!-- Prompt -->
+      <div style="margin-top: 44px;">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 14px;">
+          <h2 style="margin: 0; font-size: 28px; font-weight: 500; letter-spacing: -0.015em;">Le prompt</h2>
+          <div style="display: flex; gap: 7px;">
+            <span class="mono" style="display: flex; align-items: center; gap: 7px; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; background: #191712; color: #FAF7F0; padding: 10px 15px; cursor: pointer;">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><rect x="3.4" y="3.4" width="7.6" height="7.6" stroke="#FAF7F0" stroke-width="1.2"></rect><path d="M8.4 1H1v7.4" stroke="#FAF7F0" stroke-width="1.2"></path></svg>
+              Copier
+            </span>
+            <span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid #191712; padding: 10px 15px; cursor: pointer;">Claude Code</span>
+            <span class="mono" style="font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid #191712; padding: 10px 15px; cursor: pointer;">Cursor</span>
+          </div>
+        </div>
+        <div style="background: #FFFFFF; border: 1px solid #D8D0BF; padding: 24px 28px;">
+          <p class="mono" style="margin: 0; font-size: 12.5px; line-height: 1.85; color: #2A261D;">Construis une base de données façon tableur personnelle&nbsp;: une interface en grille au-dessus d’une vraie base de données (SQLite convient), où les tables et les colonnes typées (texte, nombre, date, sélection unique, case à cocher, URL) se définissent depuis l’interface, pas depuis un fichier de config. Prends en charge l’édition de cellule en ligne, le tri et le filtre par colonne, et des vues enregistrées — un nom plus une combinaison filtre/tri/colonnes masquées mémorisée — listées dans une barre latérale. Ajoute un type de colonne «&nbsp;enregistrement lié&nbsp;»&nbsp;: une cellule qui référence une ligne d’une autre table, choisie dans un menu déroulant, affichée comme une puce cliquable.</p>
+          <p class="mono" style="margin: 16px 0 0; font-size: 12.5px; line-height: 1.85; color: #6B6350;">Ne construis pas d’automatisations, d’API générée, ni de permissions par personne — ce sont les éléments qui transforment une base de données personnelle en plateforme d’équipe, et c’est vraiment plus qu’une session de travail.</p>
+        </div>
+        <p class="mono" style="margin: 10px 0 0; font-size: 11px; color: #8A8271;">L’ouverture pré-remplit le prompt — il ne reste qu’à appuyer sur entrée.</p>
+      </div>
+
+      <!-- Ce que tu perds -->
+      <div style="margin-top: 44px; display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 44px;">
+        <div>
+          <h2 style="margin: 0 0 4px; font-size: 28px; font-weight: 500; letter-spacing: -0.015em;">Ce que tu perds</h2>
+          <sc-for list="{{ lose }}" as="l" hint-placeholder-count="5">
+            <div style="display: flex; align-items: flex-start; gap: 13px; padding: 13px 0; border-bottom: 1px solid #E8E2D4;">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" style="margin-top: 4px; flex-shrink: 0;" aria-hidden="true">
+                <path d="M3.5 3.5l8 8M11.5 3.5l-8 8" stroke="#9E3324" stroke-width="1.5" stroke-linecap="square"></path>
+              </svg>
+              <span style="font-size: 17px; line-height: 1.5;">{{ l }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div>
+          <h2 style="margin: 0 0 14px; font-size: 28px; font-weight: 500; letter-spacing: -0.015em;">À la place</h2>
+          <a href="#" style="display: flex; flex-direction: column; gap: 5px; border: 1px solid #D8D0BF; background: #FFFFFF; padding: 16px 18px;">
+            <span style="font-size: 19px; font-weight: 500; color: #191712;">NocoDB</span>
+            <span class="mono" style="font-size: 10.5px; color: #8A8271;">github.com/nocodb/nocodb</span>
+          </a>
+          <p style="margin: 14px 0 0; font-size: 14px; line-height: 1.55; color: #5C564A;">Un projet libre existant, cité parce qu’il existe — pas parce qu’il nous rapporte quelque chose.</p>
+        </div>
+      </div>
+
+      <!-- Pourquoi -->
+      <div style="margin-top: 44px;">
+        <h2 style="margin: 0 0 16px; font-size: 28px; font-weight: 500; letter-spacing: -0.015em;">Pourquoi certains continuent de payer</h2>
+        <p style="margin: 0; font-size: 22px; line-height: 1.55; font-style: italic; font-weight: 300; color: #2A261D; border-left: 3px solid #C9C0AC; padding-left: 24px;">Les non-développeurs utilisent Airtable pour transformer un tableur en petit outil interne sans demander à personne d’écrire du code — dès qu’une équipe a besoin de permissions, d’automatisations ou d’une vue mobile, c’est cette facilité que l’abonnement achète.</p>
+      </div>
+
+      <!-- Questions -->
+      <div style="margin-top: 44px;">
+        <h2 style="margin: 0 0 6px; font-size: 28px; font-weight: 500; letter-spacing: -0.015em;">Questions</h2>
+        <sc-for list="{{ faq }}" as="q" hint-placeholder-count="4">
+          <div style="display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 32px; padding: 18px 0; border-bottom: 1px solid #E8E2D4;">
+            <span style="font-size: 17px; font-weight: 500; line-height: 1.45;">{{ q.q }}</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #5C564A;">{{ q.a }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <!-- Vote -->
+      <div style="margin-top: 40px; border: 1px solid #191712; padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; gap: 28px;">
+        <div style="display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-size: 20px; font-weight: 500;">Ce verdict te paraît juste&nbsp;?</span>
+          <span class="mono" style="font-size: 11px; color: #8A8271;">0 vote enregistré · aucun compte, aucun cookie</span>
+        </div>
+        <div style="display: flex; gap: 7px;">
+          <span class="mono" style="font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid #2F6A44; color: #2F6A44; padding: 11px 18px; cursor: pointer;">Oui</span>
+          <span class="mono" style="font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid #7A5410; background: #7A5410; color: #FAF7F0; padding: 11px 18px; cursor: pointer;">Presque</span>
+          <span class="mono" style="font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid #9E3324; color: #9E3324; padding: 11px 18px; cursor: pointer;">Non</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RAIL DROIT -->
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="position: relative; display: flex; flex-direction: column; gap: 7px; min-height: 106px; border: 1px solid #C4BBA4; background: #FFFFFF; padding: 14px 13px;">
+        <span class="mono" style="position: absolute; top: 7px; right: 9px; font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: #B0A794; border: 1px solid #DCD4C2; padding: 1px 4px;">Exemple</span>
+        <span class="mono" style="position: absolute; top: 7px; left: 9px; font-size: 8.5px; letter-spacing: 0.12em; color: #C0B69F;">R1</span>
+        <div style="display: flex; align-items: center; gap: 9px; margin-top: 12px;">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+            <rect x="0.6" y="0.6" width="28.8" height="28.8" rx="4" fill="#F1ECDE" stroke="#DCD4C2" stroke-width="1.2"></rect>
+            <path d="M9 19l4-5 3 3.5 2-2.5 3 4z" fill="#C4BBA4"></path>
+            <circle cx="11" cy="11" r="2" fill="#C4BBA4"></circle>
+          </svg>
+          <span style="font-size: 15px; font-weight: 600; line-height: 1.2; overflow-wrap: anywhere;">[TA MARQUE]</span>
+        </div>
+        <span style="font-size: 12.5px; line-height: 1.4; color: #6E6656;">[Une ligne de description — 80 caractères au maximum.]</span>
+      </div>
+      <sc-for list="{{ railRight }}" as="s" hint-placeholder-count="3">
+        <a href="#" style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-height: 106px; border: 1px dashed #C4BBA4; padding: 16px 12px; text-align: center;">
+          <span class="mono" style="position: absolute; top: 7px; left: 9px; font-size: 8.5px; letter-spacing: 0.12em; color: #C0B69F;">{{ s }}</span>
+          <span class="mono" style="font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #A29981;">Slot libre</span>
+          <span style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: #191712; line-height: 1.1;">149 $US</span>
+          <span class="mono" style="font-size: 9.5px; color: #8A8271;">/ 30 jours</span>
+          <span class="mono" style="font-size: 9.5px; color: #1D4E6B; text-decoration: underline; margin-top: 3px;">Réserver →</span>
+        </a>
+      </sc-for>
+      <div class="mono" style="font-size: 9.5px; line-height: 1.5; color: #A29981; text-align: center; padding: 0 4px;">Un sponsor n’achète jamais un verdict.</div>
+    </div>
+  </div>
+
+  <div style="margin: 48px 24px 0; border-top: 1px solid #E0D9CA; padding: 18px 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 32px;">
+    <div class="mono" style="display: flex; gap: 22px; font-size: 11px;">
+      <a href="#">Code source</a><a href="#">Stats publiques</a><a href="#">Vie privée</a><a href="#">Sponsoriser</a>
+    </div>
+    <span class="mono" style="font-size: 11px; color: #A29981;">Aucune requête vers un tiers · aucun cookie · aucun lien affilié</span>
+  </div>
+
+  <div style="flex-grow: 1;"></div>
+  <!-- BANDEAU BAS — B01…B10 -->
+  <div style="display: flex; align-items: stretch; height: 36px; background: #F3EFE4; border-top: 1px solid #E0D9CA; overflow: hidden;">
+    <div class="mono" style="display: flex; align-items: center; flex-shrink: 0; font-size: 9.5px; letter-spacing: 0.15em; text-transform: uppercase; color: #8A8271; padding: 0 18px; border-right: 1px solid #E0D9CA;">10 places · dès 75 $US / 30 jours</div>
+    <sc-for list="{{ tapeBottom }}" as="s" hint-placeholder-count="8">
+      <a href="#" class="mono" style="display: flex; align-items: center; gap: 9px; flex-shrink: 0; font-size: 11px; color: #6E6656; padding: 0 16px; border-right: 1px solid #E7E1D2;">
+        <span style="font-size: 9px; letter-spacing: 0.1em; color: #B6AC96;">{{ s }}</span>
+        <span>Slot libre</span>
+        <span style="color: #191712; font-weight: 500;">75 $US</span>
+      </a>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":2580}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      railLeft: ['L1', 'L2', 'L3', 'L4'],
+      railRight: ['R2', 'R3', 'R4'],
+      tapeTop: ['T01', 'T02', 'T03', 'T04', 'T05', 'T06', 'T07', 'T08'],
+      tapeBottom: ['B01', 'B02', 'B03', 'B04', 'B05', 'B06', 'B07', 'B08'],
+      facts: [
+        { label: 'Prix', value: '24 $US / mois', note: 'Plan Team, par siège · source airtable.com' },
+        { label: 'Sur un an', value: '288 $US', note: 'Ce que tu arrêtes de payer' },
+        { label: 'Temps de fabrication', value: 'Une semaine', note: 'Hébergement + base de données requis' },
+        { label: 'Prix vérifié le', value: '30.07.2026', note: 'Confiance haute · relevé à la main' },
+      ],
+      lose: [
+        'les types de champs riches comme les pièces jointes, les formules et les lookups',
+        'les automatisations déclenchées par un changement de ligne',
+        'une API générée et les intégrations tierces',
+        'les applications mobiles',
+        'les permissions par collaborateur',
+      ],
+      faq: [
+        { q: 'Puis-je importer ma base Airtable existante ?', a: 'Oui pour les données — exporte chaque table en CSV et importe-la ici. Ce que tu perds au passage : toute colonne formule ou lookup, qui devient une simple valeur stockée, pas une formule vivante.' },
+        { q: 'Ça marche sur mon téléphone ?', a: 'La grille est pensée pour le desktop, mais le formulaire de saisie par table fonctionne d’une main sur un téléphone — ça couvre la saisie rapide, pas l’édition de la base complète.' },
+        { q: 'Combien ça coûte à faire tourner ?', a: 'Hébergement plus base de données, typiquement quelques dollars par mois — SQLite tourne gratuitement même sur un petit serveur, puisque ce n’est qu’un fichier.' },
+        { q: 'Quelle est la chose qui ne survit pas à la reconstruction ?', a: 'Les automatisations. Airtable peut déclencher un email ou une mise à jour de statut dès qu’une ligne change ; cette version ne fait que ce sur quoi tu cliques.' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

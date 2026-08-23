@@ -11,22 +11,30 @@ import { PLACEHOLDER_PATH } from './site-favicons.mjs';
 import { normalizeDomain } from './validate-rules.mjs';
 import { formatMoney } from './site-format.mjs';
 
-export const RAIL_SLOTS = ['L1', 'L2', 'L3', 'L4', 'R1', 'R2', 'R3', 'R4'];
-export const RAIL_LEFT_SLOTS = ['L1', 'L2', 'L3', 'L4'];
-export const RAIL_RIGHT_SLOTS = ['R1', 'R2', 'R3', 'R4'];
+export const RAIL_SLOTS = ['L1', 'L2', 'L3', 'L4', 'L5', 'R1', 'R2', 'R3', 'R4', 'R5'];
+export const RAIL_LEFT_SLOTS = ['L1', 'L2', 'L3', 'L4', 'L5'];
+export const RAIL_RIGHT_SLOTS = ['R1', 'R2', 'R3', 'R4', 'R5'];
 
 const tapeSlots = (prefix) =>
   Array.from({ length: 10 }, (_, i) => `${prefix}${String(i + 1).padStart(2, '0')}`);
 
-export const TAPE_TOP_SLOTS = tapeSlots('T');
+// Le bandeau défilant du HAUT est supprimé le 20.08.2026, et ses dix places
+// avec lui : une place vendable qui ne s'affiche nulle part est un
+// emplacement qu'on facture sans le livrer. Il reste 10 blocs latéraux et
+// 10 places défilantes en pied.
 export const TAPE_BOTTOM_SLOTS = tapeSlots('B');
 
-export const RAIL_LADDER_USD = [149, 219, 299, 429, 619, 879, 1259, 1800];
+// Dix marches depuis le passage à cinq blocs par rail (20.08.2026) :
+// l'invariant est « exactement une marche par slot », verrouillé par un test.
+// Les deux dernières prolongent la raison géométrique des huit premières
+// (≈ ×1,43 d'une marche à l'autre) — c'est une extrapolation, pas une
+// décision commerciale : à valider ou à corriger.
+export const RAIL_LADDER_USD = [149, 219, 299, 429, 619, 879, 1259, 1800, 2570, 3670];
 export const TAPE_LADDER_USD = [75, 99, 129, 169, 229, 299, 399, 519, 689, 900];
 
-/** Les 28 emplacements, dans l'ordre où ils se vendent. Même liste — et même
+/** Les 20 emplacements, dans l'ordre où ils se vendent. Même liste — et même
  *  ordre — que l'ALL_SLOTS généré pour le Worker (voir scripts/build-feed.mjs). */
-export const ALL_SLOTS = [...RAIL_SLOTS, ...TAPE_TOP_SLOTS, ...TAPE_BOTTOM_SLOTS];
+export const ALL_SLOTS = [...RAIL_SLOTS, ...TAPE_BOTTOM_SLOTS];
 
 /**
  * Placements dont la période couvre `today`, bornes incluses.
@@ -201,7 +209,6 @@ export function sponsorContext({
     favicons,
     prices: {
       rail: nextPriceUsd('rail', soldCount(RAIL_SLOTS)),
-      top: nextPriceUsd('tape', soldCount(TAPE_TOP_SLOTS)),
       bottom: nextPriceUsd('tape', soldCount(TAPE_BOTTOM_SLOTS)),
     },
   };
@@ -305,9 +312,13 @@ function renderTapeItem(slot, ctx, price, { hidden = false } = {}) {
     + `<span class="sp-tape-tagline">${escapeHtml(placement.tagline[ctx.lang] ?? '')}</span></a>`;
 }
 
-export function renderTape(position, ctx) {
-  const slots = position === 'top' ? TAPE_TOP_SLOTS : TAPE_BOTTOM_SLOTS;
-  const price = ctx.prices[position];
+/** Le bandeau défilant — il n'en reste qu'un, en pied de page. Le paramètre
+ *  `position` a disparu avec le bandeau du haut : le garder aurait laissé
+ *  `ctx.prices[position]` lire une clé qui n'existe plus, et chaque place
+ *  aurait affiché « NaN $US » sans que rien ne le signale. */
+export function renderTape(ctx) {
+  const slots = TAPE_BOTTOM_SLOTS;
+  const price = ctx.prices.bottom;
   const items = slots.map((slot) => renderTapeItem(slot, ctx, price)).join('');
   const hiddenItems = slots.map((slot) => renderTapeItem(slot, ctx, price, { hidden: true })).join('');
   // La piste est écrite deux fois : l'animation translate de -50%, donc la
@@ -318,7 +329,7 @@ export function renderTape(position, ctx) {
   // Aucun aria-label ici non plus : même décision de propriétaire que pour les
   // rails, et de toute façon aria-label sur un <div> nu est interdit par la
   // spec (name-prohibited) — les technologies d'assistance l'ignoraient déjà.
-  return `<div class="sponsor-tape sp-${position}">`
+  return `<div class="sponsor-tape sp-bottom">`
     + `<div class="sp-tape-marquee"><div class="sp-tape-track">${items}${hiddenItems}</div></div></div>`;
 }
 
@@ -331,8 +342,7 @@ export function renderTape(position, ctx) {
  */
 export function renderSponsorSlots(ctx) {
   return {
-    tapeTop: renderTape('top', ctx),
-    tapeBottom: renderTape('bottom', ctx),
+    tapeBottom: renderTape(ctx),
     railLeft: renderRail('left', ctx),
     railRight: renderRail('right', ctx),
     fallback: renderRailFallback(ctx),

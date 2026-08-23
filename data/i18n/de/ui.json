@@ -56,7 +56,16 @@
       "votesTotal": "{count} Stimmen insgesamt",
       "topVoted": "Meistgewählte Tools",
       "catalogueTitle": "Der Katalog in Zahlen",
-      "catalogueTools": "{count} veröffentlichte Tools"
+      "catalogueTools": "{count} veröffentlichte Tools",
+      "allTimeTitle": "Seit dem ersten Tag",
+      "allTimeSince": "gezählt seit {date}",
+      "allTimeViews": "Seitenaufrufe",
+      "allTimeCopies": "Kopierte Prompts",
+      "allTimeVisitorDays": "Besuchertage",
+      "allTimeVisitorDaysNote": "Tägliche eindeutige Besucher, aufsummiert. Wer an drei Tagen wiederkommt, zählt dreimal — unsere täglich gesalzenen Hashes lassen sich absichtlich nicht über Tage hinweg verknüpfen. Das ist keine Personenzahl.",
+      "daysOnAir": "Tage auf Sendung",
+      "byCountry": "Besuche nach Land · 7 T",
+      "byCountryNote": "Nur das Land, aus der Netzwerkschicht gelesen. Nie eine Stadt, nie ein genauer Standort."
     }
   }
 }

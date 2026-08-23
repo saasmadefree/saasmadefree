@@ -2,6 +2,8 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { env, createExecutionContext, waitOnExecutionContext } from 'cloudflare:test';
 import MIGRATION_INIT from '../migrations/0001_init.sql?raw';
 import MIGRATION_STATS from '../migrations/0003_stats.sql?raw';
+import MIGRATION_VISITORS from '../migrations/0005_daily_visitors.sql?raw';
+import MIGRATION_COUNTRIES from '../migrations/0006_countries.sql?raw';
 import worker from '../src/index.mjs';
 
 // Déviation contrôlée par rapport au brief : `fetchMock` (undici MockAgent)
@@ -34,11 +36,13 @@ async function applyMigration(sql) {
 afterEach(() => vi.restoreAllMocks());
 
 beforeEach(async () => {
-  for (const table of ['votes', 'rate', 'hits', 'uniques', 'events', 'crawlers']) {
+  for (const table of ['votes', 'rate', 'hits', 'uniques', 'events', 'crawlers', 'daily_visitors', 'countries']) {
     await env.DB.exec(`DROP TABLE IF EXISTS ${table}`);
   }
   await applyMigration(MIGRATION_INIT);
   await applyMigration(MIGRATION_STATS);
+  await applyMigration(MIGRATION_VISITORS);
+  await applyMigration(MIGRATION_COUNTRIES);
 });
 
 async function hitPage(ua, { path = '/en/tools/notion', body = '<html>page</html>', testEnv = env } = {}) {

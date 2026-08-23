@@ -124,28 +124,32 @@ describe('renderHomePage — bordereau général', () => {
     expect(html.toLowerCase()).not.toContain('ticker');
   });
 
-  it('porte le bandeau de service via renderLayout', () => {
-    expect(html).toContain('class="service-band"');
-    expect(html).toContain("Service de l&#39;instruction des abonnements");
+  it('ne porte plus de bandeau de service', () => {
+    expect(html).not.toContain('class="service-band"');
+    expect(html).not.toContain("Service de l&#39;instruction des abonnements");
   });
 
-  it('rend la cartouche de références : registre, catégories, état arrêté le (date du build)', () => {
-    expect(html).toContain('class="ref-strip"');
-    expect(html).toContain('Registre');
-    expect(html).toContain('Catégories');
-    expect(html).toContain('État arrêté le');
-    expect(html).toContain('03.08.2026'); // formatStampDate(buildDate)
+  it('ne rend plus de cartouche de références sur l’accueil', () => {
+    // Retirée le 20.08.2026 : elle répétait en tête, en plus grand, ce que le
+    // récapitulatif dit plus bas — nombre de fiches et de catégories — et
+    // repoussait le titre sous la ligne de flottaison. Elle reste sur la
+    // fiche outil, où ses cellules ne figurent nulle part ailleurs.
+    expect(html).not.toContain('class="ref-strip"');
   });
 
-  it('tamponne l’état récapitulatif avec la garantie plancher — le min des checkedOn', () => {
-    expect(html).toContain('stamp-verif');
-    expect(html).toContain('Prix tous vérifiés depuis le');
-    expect(html).toContain('28.07.2026'); // min(2026-07-30, 2026-07-28), jamais le plus récent
-    expect(html).not.toContain('30.07.2026');
+  it('ne tamponne plus le catalogue par sa pire fiche', () => {
+    // Retiré le 20.08.2026. Le cachet portait un vrai fait — la plus ANCIENNE
+    // date de relevé du catalogue — mais chaque fiche affiche déjà sa propre
+    // date de vérification à côté de sa source, là où elle sert. En pied
+    // d'accueil, il ne faisait que dater les 530 fiches par la plus vieille.
+    expect(html).not.toContain('stamp-verif');
+    expect(html).not.toContain('Prix tous vérifiés depuis le');
   });
 
-  it('suit la structure du bordereau : héro, cadre recherche, récapitulatif, registre, signature', () => {
-    const order = ['class="hero sheet"', 'class="search-frame sheet"', 'class="recap sheet"',
+  it('suit la structure du Verdict : héro, bande de répartition, recherche, récapitulatif, registre, signature', () => {
+    // La recherche est passée DANS le héro, au-dessus de la bande : c'est le
+    // premier geste d'un visiteur venu pour un outil précis.
+    const order = ['class="hero"', 'class="search-frame"', 'class="verdict-band"', 'class="recap"',
       'class="list-head"', 'class="table-scroll registry"', 'class="sign-row"'];
     let last = -1;
     for (const marker of order) {
@@ -157,7 +161,7 @@ describe('renderHomePage — bordereau général', () => {
 
   it('conserve tous les crochets fonctionnels de site.js', () => {
     for (const hook of ['id="q"', 'id="search-panel"', 'id="search-clear"', 'class="search-shell"',
-      'class="search-combo"', 'class="chips-nav"', 'class="chips"', 'chip verdict-chip',
+      'class="search-combo"', 'class="chips-nav"', 'class="chips"', 'verdict-chip',
       'data-verdict="all"', 'data-verdict="yes"', 'data-verdict="kinda"', 'data-verdict="no"',
       'aria-pressed="true"', 'aria-pressed="false"', 'id="no-results"', 'class="field"',
       'data-view-all-template=', 'data-no-results=', 'data-home-path=',
@@ -166,19 +170,72 @@ describe('renderHomePage — bordereau général', () => {
     }
   });
 
-  it('titre le cadre recherche avec dossier.searchFrameHeading, en étiquette du champ', () => {
-    expect(html).toContain('<label for="q">Recherche au registre</label>');
+  it('étiquette le champ pour les lecteurs d’écran, sans cartouche visible', () => {
+    // Le cartouche « Recherche au registre » était un meuble du dossier. Dans
+    // le héro, le placeholder et le contexte suffisent à l'œil ; l'étiquette
+    // reste, en visually-hidden, parce qu'un champ sans <label> n'a pas de nom.
+    expect(html).toContain('<label for="q" class="visually-hidden">');
+    expect(html).not.toContain('<label for="q">Recherche au registre</label>');
   });
 
-  it('la ligne à remplir du héro est statique, placeholder italique dans le cadre', () => {
-    expect(html).toContain('class="hero-blank"');
-    // Scopé à la section héro (avant le cadre recherche, qui lui porte le
-    // vrai <input type="search">) : "pas d'<input type=\"text\">" laissait
-    // passer n'importe quel autre type de champ, et ne vérifiait rien sur sa
-    // position — un <input> ailleurs avant le cadre recherche serait passé
-    // inaperçu.
-    const heroSegment = html.slice(0, html.indexOf('class="search-frame'));
-    expect(heroSegment).not.toContain('<input'); // jamais un champ dans le héro
+  it('le héro affirme, et le champ de recherche n’existe qu’une seule fois', () => {
+    // La fausse ligne à remplir DANS le h1 est partie avec le dossier : elle
+    // se lisait comme un bug de gabarit, et le vrai champ vivait quatre cents
+    // pixels plus bas. Le titre est maintenant les deux lignes de heroLine.
+    expect(html).not.toContain('hero-blank');
+    expect(html).toContain('class="hero-rot"');
+    // Un seul champ sur toute la page : c'est la duplication qui était le bug.
+    expect((html.match(/<input/g) ?? []).length).toBe(1);
+    // Et il est DANS le héro, au-dessus de la bande — plus quatre cents
+    // pixels plus bas.
+    expect(html.indexOf('id="q"')).toBeLessThan(html.indexOf('class="verdict-band"'));
+  });
+
+  it('le titre à trou ne montre jamais deux noms à la fois', () => {
+    // Le nombre de noms et la fenêtre de visibilité des keyframes sont liés :
+    // huit noms, donc 12,5 % du cycle chacun. Une fenêtre plus large fait se
+    // chevaucher deux noms, ce qui se lit comme un défaut d'affichage — vu en
+    // recette le 20.08.2026. Ce test tient les deux bouts ensemble.
+    const shown = [...html.matchAll(/class="hero-rot-item"/g)].length;
+    const names = [...html.matchAll(/class="hero-rot"[^>]*style="--rot-count:(\d+)"/g)];
+    expect(names.length).toBeGreaterThan(0);
+    for (const [, count] of names) {
+      expect(Number(count), 'jamais plus de 8 : au-delà, la fenêtre de 12,5 % se chevauche')
+        .toBeLessThanOrEqual(8);
+    }
+    // Un seul rotateur depuis que le prix est devenu un badge volant.
+    expect(shown).toBe(Number(names[0][1]));
+    // Et les prix voyagent en données, pour que site.js puisse en semer
+    // plusieurs à la fois.
+    expect(html).toContain('class="hero-savings"');
+    expect(html).toMatch(/data-savings="[^"]*\$/);
+  });
+
+  it('aucun emoji de catégorie sur la page — le libellé se suffit', () => {
+    // data/categories.json porte toujours un emoji (l'extension s'en sert),
+    // et le fixture aussi (analytics: 📈). Le site, lui, ne le pose plus :
+    // un emoji est un rendu système, il change de dessin et de couleur d'un
+    // appareil à l'autre, ce qu'une palette fermée ne peut pas absorber.
+    expect(categories.analytics.emoji).toBe('📈'); // la donnée existe bien
+    expect(html).not.toContain('📈');
+    expect(html).toContain('Analytics'); // le libellé, lui, est là
+  });
+
+  it('la bande de répartition compte les verdicts sur les données, et pilote le filtre', () => {
+    const band = html.slice(html.indexOf('class="verdict-band"'), html.indexOf('class="recap"'));
+    // Le fixture porte deux fiches : une "yes", une "kinda" (voir TOOLS).
+    expect(band).toContain('data-verdict="yes"');
+    expect(band).toContain('data-verdict="kinda"');
+    expect(band).toContain('data-verdict="no"');
+    // flex-grow porte la proportion réelle, jamais une largeur en dur.
+    expect(band).toContain('flex-grow:1'); // yes  : 1 fiche
+    expect(band).toContain('flex-grow:0'); // no   : aucune fiche
+    // Le verdict n'est jamais la couleur seule : le libellé est dans le nom
+    // accessible ET dans le segment.
+    expect(band).toContain('aria-label="Oui — 1 (50');
+    expect(band).toContain('class="vb-label"');
+    // Le bouton de remise à zéro reste un .verdict-chip, donc site.js le câble.
+    expect(band).toContain('class="verdict-chip vb-reset is-active" data-verdict="all"');
   });
 
   it('sans compteur de votes, la ligne MRR n’apparaît pas — texte simple à la place', () => {

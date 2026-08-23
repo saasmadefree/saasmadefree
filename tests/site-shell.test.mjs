@@ -97,9 +97,8 @@ describe('insertion des sponsors dans la coquille', () => {
   const SHELL_CLOSE_THEN_BOTTOM_TAPE =
     /<\/aside>\s*<\/div>\s*<div class="sponsor-tape sp-bottom"/;
 
-  it('place les bandeaux hors de .shell, sinon ils passeraient sous les rails', () => {
+  it('place le bandeau hors de .shell, sinon il passerait sous les rails', () => {
     const html = withSponsors();
-    expect(html.indexOf('sponsor-tape sp-top')).toBeLessThan(html.indexOf('<div class="shell">'));
     expect(html).toMatch(SHELL_CLOSE_THEN_BOTTOM_TAPE);
   });
 

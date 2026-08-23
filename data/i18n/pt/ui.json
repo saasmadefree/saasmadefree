@@ -56,7 +56,16 @@
       "votesTotal": "{count} votos registados no total",
       "topVoted": "Ferramentas mais votadas",
       "catalogueTitle": "O catálogo em números",
-      "catalogueTools": "{count} ferramentas publicadas"
+      "catalogueTools": "{count} ferramentas publicadas",
+      "allTimeTitle": "Desde o primeiro dia",
+      "allTimeSince": "contado desde {date}",
+      "allTimeViews": "Páginas vistas",
+      "allTimeCopies": "Prompts copiados",
+      "allTimeVisitorDays": "Visitantes-dia",
+      "allTimeVisitorDaysNote": "Visitantes únicos diários, somados. Quem volta em três dias conta três vezes — os nossos hashes com sal diário não podem ser ligados de um dia para o outro, de propósito. Não é uma contagem de pessoas.",
+      "daysOnAir": "Dias no ar",
+      "byCountry": "Visitas por país · 7 d",
+      "byCountryNote": "Apenas o país, lido na camada de rede. Nunca uma cidade, nunca uma localização precisa."
     }
   }
 }

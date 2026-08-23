@@ -1,0 +1,19 @@
+Fonts served by SaaS Made Free
+==============================
+
+Both families below are licensed under the SIL Open Font License, Version 1.1,
+which permits self-hosting and redistribution with this notice. The files here
+are the unmodified woff2 subsets (latin, latin-ext) published by Google Fonts.
+
+Archivo — archivo-latin.woff2, archivo-latin-ext.woff2
+  Copyright (c) Omnibus-Type
+  https://github.com/Omnibus-Type/Archivo
+  SIL Open Font License 1.1
+
+DM Mono — dmmono-400-latin.woff2, dmmono-400-latin-ext.woff2,
+          dmmono-500-latin.woff2, dmmono-500-latin-ext.woff2
+  Copyright (c) Colophon Foundry, for Deepmind
+  https://github.com/googlefonts/dm-mono
+  SIL Open Font License 1.1
+
+Full licence text: https://openfontlicense.org/open-font-license-official-text/

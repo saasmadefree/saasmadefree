@@ -170,6 +170,26 @@
     renderBars('top-prompts', payload.copies7d.topPrompts.map(function (r) { return { label: r.slug, value: r.n }; }));
     setText('votes-total', (I18N.votesTotal || '{count}').replace('{count}', fmt.format(payload.votes.total)));
     renderBars('top-voted', payload.votes.top.map(function (r) { return { label: r.slug, value: r.n }; }));
+
+    // ---- depuis l'origine ----
+    // `allTime` peut manquer si le Worker déployé est plus ancien que cette
+    // page : on laisse alors les tuiles sur leur tiret plutôt que d'afficher
+    // des zéros, qui se liraient comme une audience nulle.
+    var all = payload.allTime;
+    if (all) {
+      setText('stat-all-views', fmt.format(all.views));
+      setText('stat-all-visitor-days', fmt.format(all.visitorDays));
+      setText('stat-all-copies', fmt.format(all.copies));
+      setText('stat-days-on-air', fmt.format(all.daysOnAir));
+      // La date de départ n'est affichée que si elle existe : sans une seule
+      // vue enregistrée, il n'y a pas de premier jour à annoncer.
+      if (all.firstDay && I18N.allTimeSince) {
+        setText('stats-since', I18N.allTimeSince.replace('{date}', all.firstDay));
+      }
+    }
+    renderBars('by-country', (payload.countries7d || []).map(function (r) {
+      return { label: r.country, value: r.views };
+    }));
   }
 
   fetch(API)

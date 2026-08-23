@@ -79,11 +79,18 @@ export function renderBreadcrumb(items) {
 function renderLangSwitcher(alternates, currentLang, ui) {
   if (!alternates || alternates.length < 2) return '';
   const items = alternates
+    // Le code à deux lettres, pas le nom complet : « English Français » pesait
+    // 144px dans un en-tête qui n'en a que 888 quand les rails sont affichés,
+    // et faisait replier les contrôles sur une deuxième ligne. Le nom complet
+    // reste porté par le title du lien et par hreflang/lang, donc rien n'est
+    // perdu pour qui a besoin de la forme longue.
     .map(({ lang, path }) => {
+      const code = escapeHtml(lang.toUpperCase());
+      const name = escapeHtml(languageName(lang));
       if (lang === currentLang) {
-        return `<span aria-current="page">${escapeHtml(languageName(lang))}</span>`;
+        return `<span aria-current="page" title="${name}">${code}</span>`;
       }
-      return `<a href="${escapeHtml(path)}" hreflang="${lang}" lang="${lang}">${escapeHtml(languageName(lang))}</a>`;
+      return `<a href="${escapeHtml(path)}" hreflang="${lang}" lang="${lang}" title="${name}">${code}</a>`;
     })
     .join('\n      ');
   return `
@@ -107,7 +114,7 @@ function renderLangSwitcher(alternates, currentLang, ui) {
  * @param {object} opts.ui - table de traduction (doit contenir ui.site)
  * @param {string} opts.homeHref - lien de la marque dans l'en-tête
  * @param {string} [opts.extraHead] - balises additionnelles insérées dans <head>
- * @param {{tapeTop:string,tapeBottom:string,railLeft:string,railRight:string,fallback:string}|null} [opts.sponsorSlots] - balisage sponsor déjà rendu par renderSponsorSlots(), ou null pour aucun
+ * @param {{tapeBottom:string,railLeft:string,railRight:string,fallback:string}|null} [opts.sponsorSlots] - balisage sponsor déjà rendu par renderSponsorSlots(), ou null pour aucun
  * @param {Array<[string,string]>} [opts.refCells] - paires label/valeur affichées dans la
  *   cartouche de références (`.ref-strip`) sous le filet de tête ; aucune cartouche si vide
  */
@@ -149,10 +156,14 @@ export function renderLayout({
   ].filter(Boolean).join('\n');
 
   const nav = ui.site.nav ?? {};
+  // `footer.stats` plutôt qu'une nouvelle clé : le libellé existe déjà dans
+  // les sept locales et désigne exactement la même page. Une clé de plus,
+  // c'est sept traductions de plus à tenir pour le même mot.
   const navLinks = [
     { href: homeHref, label: ui.site.directoryLabel },
     { href: CONTRIBUTING_URL, label: nav.submitTool },
     { href: `/${lang}/sponsor`, label: nav.sponsor },
+    { href: `/${lang}/stats/`, label: ui.site.footer?.stats },
     { href: GITHUB_REPO_URL, label: nav.source },
   ]
     .filter((item) => item.label)
@@ -172,16 +183,13 @@ export function renderLayout({
   // grid-column : un lecteur d'écran et la tabulation atteignent ainsi le
   // contenu avant les sponsors. Les bandeaux sont frères de .shell — placés à
   // l'intérieur, leur pleine largeur passerait sous les rails.
-  const sp = sponsorSlots ?? { tapeTop: '', tapeBottom: '', railLeft: '', railRight: '', fallback: '' };
+  const sp = sponsorSlots ?? { tapeBottom: '', railLeft: '', railRight: '', fallback: '' };
 
-  // Le bandeau de service et le monogramme dépendent tous deux de
-  // ui.site.dossier — absent pour une locale non publiée qui ne réduit
-  // ui.site qu'à {footer, stats} (page /stats en 7 langues). Un `?.` évite un
-  // TypeError et, surtout, une chaîne "undefined" affichée au lecteur.
-  const serviceName = ui.site.dossier?.serviceName;
-  const serviceBand = serviceName
-    ? `<p class="service-band"><span>${escapeHtml(serviceName)}</span></p>`
-    : '';
+  // Le bandeau de service (« Service de l'instruction des abonnements ») est
+  // retiré le 20.08.2026 : c'était l'en-tête administratif du dossier, et il
+  // ne portait aucun fait — juste un titre de service inventé. La clé
+  // ui.site.dossier.serviceName reste dans les données, plus personne ne la
+  // lit côté site.
 
   // La cartouche de références (dates, numéro de registre…) : une paire
   // label/valeur par cellule, silencieuse si l'appelant n'en fournit aucune.
@@ -198,15 +206,15 @@ ${headLines}
 </head>
 <body>
 <a class="skip-link" href="#main">${escapeHtml(ui.site.skipToContent)}</a>
-${sp.tapeTop}
 <div class="shell">
   <div class="col-main">
     <div class="page">
-      ${serviceBand}
       <header class="site-header site-masthead">
         <div class="header-left">
-          <span class="brand-mark" aria-hidden="true">SMF</span>
-          <a class="brand" href="${escapeHtml(homeHref)}">${escapeHtml(ui.site.brand)}</a>
+          <span class="brand-lockup">
+            <span class="brand-mark" aria-hidden="true">SMF</span>
+            <a class="brand" href="${escapeHtml(homeHref)}">${escapeHtml(ui.site.brand)}</a>
+          </span>
           <ul class="nav-links">${navLinks}</ul>
         </div>
         <div class="header-groups">

@@ -18,11 +18,13 @@ function thrownCode(fn) {
 }
 
 describe('kindOf', () => {
-  it('classe les rails et les deux bandeaux', () => {
+  it('classe les rails et le bandeau', () => {
+    // Le bandeau du HAUT (T01–T10) a été retiré le 20.08.2026 avec ses dix
+    // places : il ne reste que le bandeau de pied.
     expect(kindOf('L1')).toBe('rail');
-    expect(kindOf('R4')).toBe('rail');
-    expect(kindOf('T01')).toBe('tape');
+    expect(kindOf('R5')).toBe('rail');
     expect(kindOf('B10')).toBe('tape');
+    expect(kindOf('T01')).toBe(null);
   });
 
   it('rend null sur un slot inconnu — jamais un repli silencieux', () => {
@@ -34,13 +36,14 @@ describe('kindOf', () => {
 describe('priceCentsFor', () => {
   it('part du bas de chaque barème quand rien n’est vendu', () => {
     expect(priceCentsFor('L1', 1, none)).toBe(14900);
-    expect(priceCentsFor('T01', 1, none)).toBe(7500);
+    expect(priceCentsFor('B01', 1, none)).toBe(7500);
   });
 
-  it('compte les rails ensemble et les deux bandeaux séparément', () => {
+  it('compte les rails ensemble, le bandeau à part', () => {
     expect(priceCentsFor('R1', 1, { rail: 3, top: 0, bottom: 0 })).toBe(42900);
-    expect(priceCentsFor('T05', 1, { rail: 0, top: 5, bottom: 0 })).toBe(29900);
-    expect(priceCentsFor('B05', 1, { rail: 0, top: 5, bottom: 0 })).toBe(7500);
+    expect(priceCentsFor('B05', 1, { rail: 0, top: 0, bottom: 5 })).toBe(29900);
+    // Les ventes de rail ne font pas monter le bandeau, et réciproquement.
+    expect(priceCentsFor('B05', 1, { rail: 9, top: 0, bottom: 0 })).toBe(7500);
   });
 
   it('facture trois mois au triple du prix du jour, sans remise', () => {
@@ -53,7 +56,9 @@ describe('priceCentsFor', () => {
   });
 
   it('refuse un inventaire plein plutôt que d’inventer un prix, avec le code inventory_full', () => {
-    expect(thrownCode(() => priceCentsFor('L1', 1, { rail: 8, top: 0, bottom: 0 })))
+    // Dix marches depuis le passage à cinq blocs par rail : l'inventaire
+    // n'est plein qu'à dix ventes, pas huit.
+    expect(thrownCode(() => priceCentsFor('L1', 1, { rail: 10, top: 0, bottom: 0 })))
       .toBe('inventory_full');
   });
 

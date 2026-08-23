@@ -85,9 +85,12 @@ describe('renderLayout — chrome du dossier', () => {
     refCells: [['Registry', '529'], ['Statement drawn up on', '04.08.2026']],
   });
 
-  it('ouvre sur le bandeau de service', () => {
-    expect(html).toContain('class="service-band"');
-    expect(html).toContain('Subscription Review Service');
+  it('n’ouvre plus sur un bandeau de service', () => {
+    // Retiré le 20.08.2026 avec le reste du dossier : un titre de service
+    // inventé, qui ne portait aucun fait. La coquille ouvre désormais
+    // directement sur la marque.
+    expect(html).not.toContain('class="service-band"');
+    expect(html).not.toContain('Subscription Review Service');
   });
 
   it('rend la cartouche de références quand refCells est fourni', () => {

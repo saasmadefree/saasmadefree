@@ -178,13 +178,21 @@ function renderTool(over = {}) {
 const html = renderTool();
 
 describe('renderToolPage — la pièce d’instruction', () => {
-  it('ouvre sur la chemise : cote slug, onglet catégorie, dateur, tampon verdict daté', () => {
+  it('ouvre sur l’aplat du verdict : cote slug, les deux dates, aucun ornement', () => {
     expect(html).toContain('SMF·LINEAR'); // cote slug — JAMAIS de n° séquentiel
-    expect(html).toContain('class="folder-tab"');
-    expect(html).toContain('class="date-ring"');
-    expect(html).toContain('30.07.2026'); // dateur = pricing.checkedOn
-    expect(html).toContain('04.08.2026'); // tampon verdict = date du build
+    expect(html).toContain('class="folder-cote"');
+    // L'aplat porte la couleur du verdict de la fiche, jamais une classe fixe.
+    expect(html).toContain('class="folder folder-kinda"');
+    expect(html).toContain('30.07.2026'); // relevé de prix = pricing.checkedOn
+    expect(html).toContain('04.08.2026'); // verdict arrêté = date du build
     expect(html).toContain('Verdict enregistré le 04.08.2026');
+    // Les quatre ornements sans fait sont partis avec le dossier : ils ne
+    // portaient ni date, ni source, ni chiffre — rien à vérifier, donc rien
+    // à afficher (principe 3 du .impeccable.md).
+    for (const gone of ['class="folder-tab"', 'class="date-ring"', 'class="paper-clip"',
+      'class="barcode"', 'class="hole ']) {
+      expect(html, gone).not.toContain(gone);
+    }
   });
 
   it('ne porte AUCUN numéro séquentiel — l’écart assumé avec la maquette', () => {
@@ -195,9 +203,8 @@ describe('renderToolPage — la pièce d’instruction', () => {
     expect(html).toContain('class="badge kinda badge-lg"');
   });
 
-  it('porte la cote sur le code-barres de la chemise', () => {
-    expect(html).toContain('class="barcode"');
-    expect(html).toContain('SMF·LINEAR — Linear');
+  it('porte la cote en tête de l’aplat, en clair', () => {
+    expect(html).toContain('<p class="folder-cote">SMF·LINEAR</p>');
   });
 
   it('montre l’échelle complète du verdict, une seule case cochée', () => {
@@ -227,7 +234,7 @@ describe('renderToolPage — la pièce d’instruction', () => {
   });
 
   it('déroule le dossier : chemise, bordereau, résumé, pièces, questions, proches, récépissé', () => {
-    const order = ['class="folder"', 'class="tracking-slip"', 'class="verdict-summary',
+    const order = ['class="folder folder-', 'class="tracking-slip"', 'class="verdict-summary',
       'id="prompt-heading"', 'id="lose-heading"', 'id="why-heading"',
       'id="faq-heading"', 'id="related-heading"', 'class="receipt-label"'];
     let last = -1;

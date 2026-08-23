@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import {
-  RAIL_SLOTS, TAPE_TOP_SLOTS, TAPE_BOTTOM_SLOTS, ALL_SLOTS,
+  RAIL_SLOTS, TAPE_BOTTOM_SLOTS, ALL_SLOTS,
   RAIL_LADDER_USD, TAPE_LADDER_USD,
   selectSponsors, nextPriceUsd, mergeOccupancy,
 } from '../scripts/lib/site-sponsors.mjs';
@@ -27,17 +27,19 @@ const P = (slot, startsOn, endsOn, domain = 'postiz.com') => ({
 });
 
 describe("inventaire", () => {
-  it("déclare 8 rails et 2 × 10 places défilantes", () => {
-    expect(RAIL_SLOTS).toEqual(['L1', 'L2', 'L3', 'L4', 'R1', 'R2', 'R3', 'R4']);
-    expect(TAPE_TOP_SLOTS).toHaveLength(10);
+  it("déclare 10 rails et 10 places défilantes", () => {
+    // Passé de 4 à 5 blocs par côté le 20.08.2026 : les rails occupent
+    // désormais toute la hauteur de l'écran.
+    expect(RAIL_SLOTS).toEqual(['L1', 'L2', 'L3', 'L4', 'L5', 'R1', 'R2', 'R3', 'R4', 'R5']);
     expect(TAPE_BOTTOM_SLOTS).toHaveLength(10);
-    expect(TAPE_TOP_SLOTS[0]).toBe('T01');
+    expect(TAPE_BOTTOM_SLOTS).toHaveLength(10);
+    expect(TAPE_BOTTOM_SLOTS[0]).toBe('B01');
     expect(TAPE_BOTTOM_SLOTS[9]).toBe('B10');
   });
 
   it("a une marche de prix par slot", () => {
     expect(RAIL_LADDER_USD).toHaveLength(RAIL_SLOTS.length);
-    expect(TAPE_LADDER_USD).toHaveLength(TAPE_TOP_SLOTS.length);
+    expect(TAPE_LADDER_USD).toHaveLength(TAPE_BOTTOM_SLOTS.length);
   });
 });
 
@@ -88,7 +90,7 @@ describe("nextPriceUsd", () => {
   });
 
   it("rend null quand il ne reste rien — jamais un prix inventé", () => {
-    expect(nextPriceUsd('rail', 8)).toBe(null);
+    expect(nextPriceUsd('rail', 10)).toBe(null);
     expect(nextPriceUsd('tape', 10)).toBe(null);
   });
 
@@ -117,7 +119,7 @@ describe("nextPriceUsd", () => {
 describe('mergeOccupancy', () => {
   const bySlot = (slots) => new Map(slots.map((slot) => [slot, { slot }]));
 
-  it('couvre les 28 slots, même sans aucune source', () => {
+  it('couvre les 20 slots, même sans aucune source', () => {
     const occ = mergeOccupancy(new Map(), null);
     expect(occ.size).toBe(ALL_SLOTS.length);
     for (const slot of ALL_SLOTS) expect(occ.get(slot)).toEqual({ taken: false, sold: false });
@@ -155,13 +157,13 @@ describe('mergeOccupancy', () => {
       L2: 'paid',
       L3: null,
       L4: ['paid'],
-      T01: { status: 'paid' },
+      B01: { status: 'paid' },
     });
     for (const slot of ['L1', 'L2', 'L3', 'L4']) {
       expect(occ.get(slot), slot).toEqual({ taken: false, sold: false });
     }
     expect(occ.get('R1')).toEqual({ taken: true, sold: true }); // repli local intact
-    expect(occ.get('T01')).toEqual({ taken: true, sold: true }); // voisin bien lu
+    expect(occ.get('B01')).toEqual({ taken: true, sold: true }); // voisin bien lu
   });
 
   it('une charge utile qui n’est pas un objet exploitable est ignorée en bloc', () => {
@@ -295,8 +297,8 @@ describe('carte de rail prise sans créa', () => {
   });
 
   it('la place défilante équivalente suit la même règle', () => {
-    const html = renderTape('top', ctx([], {}, { T01: { status: 'paid' } }));
-    const item = html.match(/<(?:a|span)[^>]*data-slot="T01"[^>]*>.*?<\/(?:a|span)>/s)[0];
+    const html = renderTape(ctx([], {}, { B01: { status: 'paid' } }));
+    const item = html.match(/<(?:a|span)[^>]*data-slot="B01"[^>]*>.*?<\/(?:a|span)>/s)[0];
     expect(item).toContain(ui.site.sponsor.takenLabel);
     expect(item).not.toContain('href=');
     // Le prochain prix a monté d'une marche pour les places restantes.
@@ -315,17 +317,17 @@ describe('échappement', () => {
 
 describe('bandeau défilant', () => {
   it('duplique la piste pour boucler sans saut', () => {
-    const html = renderTape('top', ctx([{ ...LIVE, slot: 'T01' }]));
-    const occurrences = html.split('data-slot="T01"').length - 1;
+    const html = renderTape(ctx([{ ...LIVE, slot: 'B01' }]));
+    const occurrences = html.split('data-slot="B01"').length - 1;
     expect(occurrences).toBe(2);
   });
 
   it('reste lisible sans défilement — la piste porte le texte, pas une image', () => {
-    expect(renderTape('top', ctx([{ ...LIVE, slot: 'T01' }]))).toContain('Postiz');
+    expect(renderTape(ctx([{ ...LIVE, slot: 'B01' }]))).toContain('Postiz');
   });
 
   it('formate le prix d’une place libre comme partout ailleurs', () => {
-    const html = renderTape('top', ctx([]));
+    const html = renderTape(ctx([]));
     expect(html).toContain(usd(TAPE_LADDER_USD[0], 'fr'));
     expect(html).not.toMatch(/\$\d/);
   });
@@ -336,8 +338,7 @@ describe('bandeau défilant', () => {
   // serait passée sans qu'aucun test ne bouge.
   describe('place occupée — mêmes garanties que la carte de rail', () => {
     const html = () => renderTape(
-      'top',
-      ctx([{ ...LIVE, slot: 'T01' }], { 'postiz.com': '/assets/favicons/postiz.com.png' })
+      ctx([{ ...LIVE, slot: 'B01' }], { 'postiz.com': '/assets/favicons/postiz.com.png' })
     );
 
     it('ne porte aucun marqueur de sponsoring', () => {
@@ -352,7 +353,7 @@ describe('bandeau défilant', () => {
 
     it('porte les UTM du slot', () => {
       expect(html()).toContain('utm_source=saasmadefree');
-      expect(html()).toContain('utm_campaign=sponsor_T01');
+      expect(html()).toContain('utm_campaign=sponsor_B01');
     });
 
     it('sert l’icône depuis le site, jamais depuis un tiers', () => {
@@ -362,22 +363,22 @@ describe('bandeau défilant', () => {
 
     it('retrouve l’icône même si le domaine du placement n’est pas normalisé', () => {
       const favicons = { 'postiz.com': '/assets/favicons/postiz.com.png' };
-      const tape = renderTape('top', ctx([{ ...LIVE, slot: 'T01', domain: 'www.Postiz.com' }], favicons));
+      const tape = renderTape(ctx([{ ...LIVE, slot: 'B01', domain: 'www.Postiz.com' }], favicons));
       expect(tape).toContain('src="/assets/favicons/postiz.com.png"');
       expect(tape).not.toContain(PLACEHOLDER_PATH);
     });
 
     it('neutralise le HTML injecté dans un nom de sponsor', () => {
-      const hostile = { ...LIVE, slot: 'T01', name: '<img src=x onerror=alert(1)>' };
-      const tape = renderTape('top', ctx([hostile]));
+      const hostile = { ...LIVE, slot: 'B01', name: '<img src=x onerror=alert(1)>' };
+      const tape = renderTape(ctx([hostile]));
       expect(tape).not.toContain('<img src=x');
       expect(tape).toContain('&lt;img');
     });
   });
 
   it('retire la moitié dupliquée de l’arbre d’accessibilité et du focus clavier', () => {
-    const html = renderTape('top', ctx([{ ...LIVE, slot: 'T01' }]));
-    const secondOccurrence = html.indexOf('data-slot="T01"', html.indexOf('data-slot="T01"') + 1);
+    const html = renderTape(ctx([{ ...LIVE, slot: 'B01' }]));
+    const secondOccurrence = html.indexOf('data-slot="B01"', html.indexOf('data-slot="B01"') + 1);
     const firstHalf = html.slice(0, secondOccurrence);
     const secondHalf = html.slice(secondOccurrence);
     // La piste visible ne doit porter ni aria-hidden ni inert…
@@ -424,7 +425,7 @@ describe('aucune mention « Sponsor » dans le balisage des emplacements', () =>
   const favicons = { 'postiz.com': '/assets/favicons/postiz.com.png' };
   const free = ctx([]);
   const busy = ctx(
-    [LIVE, { ...LIVE, slot: 'T01' }, { ...LIVE, slot: 'B01' }],
+    [LIVE, { ...LIVE, slot: 'B01' }, { ...LIVE, slot: 'B01' }],
     favicons
   );
   // Emplacements pris sans créa commitée : troisième état du rendu, il doit
@@ -440,10 +441,10 @@ describe('aucune mention « Sponsor » dans le balisage des emplacements', () =>
     ['repli libre', renderRailFallback(free)],
     ['repli occupé', renderRailFallback(busy)],
     ['repli pris sans créa', renderRailFallback(held)],
-    ['bandeau haut libre', renderTape('top', free)],
-    ['bandeau haut occupé', renderTape('top', busy)],
-    ['bandeau haut pris sans créa', renderTape('top', held)],
-    ['bandeau bas occupé', renderTape('bottom', busy)],
+    ['bandeau haut libre', renderTape(free)],
+    ['bandeau haut occupé', renderTape(busy)],
+    ['bandeau haut pris sans créa', renderTape(held)],
+    ['bandeau bas occupé', renderTape(busy)],
     ...Object.entries(slots).map(([key, html]) => [`renderSponsorSlots.${key}`, html]),
   ];
 
@@ -489,7 +490,7 @@ const fullUi = {
       openLabel: 'Open slot', perDays: '/ 30 days', bookCta: 'Book it',
       takenLabel: 'Taken',
       railHeading: 'Side blocks',
-      tapeTopHeading: 'Top scrolling band',
+      tapeBottomHeading: 'Top scrolling band',
       tapeBottomHeading: 'Bottom scrolling band',
       ladderRailHeading: 'Side blocks',
       ladderTapeHeading: 'Scrolling places',
@@ -769,12 +770,12 @@ describe('page /sponsor', () => {
   });
 
   // Verrou du round de revue : la meta description annonce la taille de
-  // l'inventaire, calculée depuis RAIL_SLOTS/TAPE_TOP_SLOTS/TAPE_BOTTOM_SLOTS
+  // l'inventaire, calculée depuis RAIL_SLOTS/TAPE_BOTTOM_SLOTS/TAPE_BOTTOM_SLOTS
   // — jamais depuis un "8"/"20" écrit en dur dans ui.json, qui mentirait en
   // silence le jour où l'inventaire change de forme.
   it('interpole le nombre de blocs et de places dans la meta description, jamais en dur', () => {
     expect(page()).toContain(
-      '<meta name="description" content="8 side slots and 20 scrolling places on a directory read by people about to cancel a subscription.">'
+      '<meta name="description" content="10 side slots and 10 scrolling places on a directory read by people about to cancel a subscription.">'
     );
   });
 
@@ -838,12 +839,12 @@ describe('page /sponsor', () => {
       const start = html.indexOf(fullUi.site.sponsor.inventoryHeading);
       const end = html.indexOf(fullUi.site.sponsor.ladderHeading);
       const prices = [...html.slice(start, end).matchAll(/<span class="sp-inv-price"[^>]*>([^<]*)<\/span>/g)];
-      expect(prices.length).toBe(RAIL_SLOTS.length - 1 + TAPE_TOP_SLOTS.length + TAPE_BOTTOM_SLOTS.length);
+      expect(prices.length).toBe(RAIL_SLOTS.length - 1 + TAPE_BOTTOM_SLOTS.length);
       for (const [, content] of prices) expect(content).not.toBe('');
       // L1 pris → le rail suivant est à la deuxième marche ; les bandeaux,
       // eux, sont intacts et restent à la première.
       expect(invPrice(html, 'L2')).toBe(usd(RAIL_LADDER_USD[1], 'fr'));
-      expect(invPrice(html, 'T01')).toBe(usd(TAPE_LADDER_USD[0], 'fr'));
+      expect(invPrice(html, 'B01')).toBe(usd(TAPE_LADDER_USD[0], 'fr'));
     });
 
     it('publie le barème du compartiment pour que le rafraîchissement client applique la même règle', () => {
@@ -897,12 +898,12 @@ describe('page /sponsor', () => {
     });
 
     it('les places défilantes suivent le même barème que leur ligne d’inventaire', () => {
-      const options = { liveSlots: { T01: { status: 'paid' } } };
+      const options = { liveSlots: { B01: { status: 'paid' } } };
       const html = page(options);
-      const tape = renderTape('top', pageCtx(options));
+      const tape = renderTape(pageCtx(options));
       const expected = usd(TAPE_LADDER_USD[1], 'fr');
       expect(tape).toContain(expected);
-      expect(invPrice(html, 'T02')).toBe(expected);
+      expect(invPrice(html, 'B02')).toBe(expected);
     });
   });
 

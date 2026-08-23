@@ -59,6 +59,14 @@ export function renderStatsPage({
     ${tile('stat-copies', t.promptsCopied)}
   </section>
 
+  <section class="stat-tiles stats-alltime">
+    ${tile('stat-all-views', t.allTimeViews)}
+    ${tile('stat-all-visitor-days', t.allTimeVisitorDays, t.allTimeVisitorDaysNote)}
+    ${tile('stat-all-copies', t.allTimeCopies)}
+    ${tile('stat-days-on-air', t.daysOnAir)}
+  </section>
+  <p class="stats-note" id="stats-since">—</p>
+
   <section class="stats-section">
     <h2>${escapeHtml(t.views14d)}</h2>
     <canvas id="views-chart" width="900" height="220" role="img" aria-label="${escapeHtml(t.views14d)}"></canvas>

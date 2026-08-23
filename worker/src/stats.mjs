@@ -30,7 +30,24 @@ const UPSERT_EVENT =
   `INSERT INTO events (day, kind, subject, n) VALUES (?, ?, ?, 1)
    ON CONFLICT(day, kind, subject) DO UPDATE SET n = n + 1`;
 
-export async function recordBeacon(env, body, ipHash, day) {
+/** Code pays ISO à deux lettres, ou null.
+ *
+ *  Il vient de la couche réseau (request.cf.country), jamais du corps du
+ *  beacon : un champ envoyé par le navigateur serait déclaratif, donc
+ *  falsifiable, et obligerait en plus le client à transmettre une donnée de
+ *  localisation qu'il n'a aucune raison de connaître.
+ *
+ *  Cloudflare rend "T1" pour Tor et "XX" quand il ne sait pas : les deux sont
+ *  des non-réponses, on préfère ne rien compter plutôt que d'inventer un pays.
+ */
+function normalizeCountry(raw) {
+  if (typeof raw !== 'string') return null;
+  const code = raw.toUpperCase();
+  if (!/^[A-Z]{2}$/.test(code) || code === 'XX' || code === 'T1') return null;
+  return code;
+}
+
+export async function recordBeacon(env, body, ipHash, day, country = null) {
   const beacon = validateBeacon(body);
   if (!beacon) return false;
   const stmts = [];
@@ -39,6 +56,13 @@ export async function recordBeacon(env, body, ipHash, day) {
       `INSERT INTO hits (day, path, lang, n) VALUES (?, ?, ?, 1)
        ON CONFLICT(day, path) DO UPDATE SET n = n + 1`
     ).bind(day, beacon.path, beacon.lang));
+    const code = normalizeCountry(country);
+    if (code) {
+      stmts.push(env.DB.prepare(
+        `INSERT INTO countries (day, country, n) VALUES (?, ?, 1)
+         ON CONFLICT(day, country) DO UPDATE SET n = n + 1`
+      ).bind(day, code));
+    }
     stmts.push(env.DB.prepare(
       'INSERT OR IGNORE INTO uniques (day, ip_hash) VALUES (?, ?)'
     ).bind(day, ipHash));
@@ -94,10 +118,25 @@ export async function buildStatsPayload(env, now) {
     env.DB.prepare('SELECT bot, MAX(day) AS last FROM crawlers GROUP BY bot'),
     env.DB.prepare('SELECT COUNT(*) AS v FROM votes'),
     env.DB.prepare('SELECT slug, COUNT(*) AS v FROM votes GROUP BY slug ORDER BY v DESC LIMIT 5'),
+    // ---- depuis l'origine ----
+    // `hits` et `events` ne sont jamais purgés : leurs totaux sont donc vrais
+    // depuis le premier jour. `daily_visitors` est le cliché pris avant purge
+    // (voir purgeUniques) — c'est la seule mémoire longue des visiteurs, et
+    // elle compte des jours-visiteurs, pas des personnes.
+    env.DB.prepare('SELECT COALESCE(SUM(n), 0) AS v FROM hits'),
+    env.DB.prepare(
+      "SELECT COALESCE(SUM(n), 0) AS v FROM events WHERE kind IN ('copy', 'open_agent')"
+    ),
+    env.DB.prepare('SELECT COALESCE(SUM(n), 0) AS v FROM daily_visitors'),
+    env.DB.prepare('SELECT MIN(day) AS first, COUNT(DISTINCT day) AS days FROM hits'),
+    env.DB.prepare(
+      'SELECT country, SUM(n) AS v FROM countries WHERE day >= ? GROUP BY country ORDER BY v DESC LIMIT 12'
+    ).bind(d7),
   ]);
   const [
     todayViews, todayVisitors, peak, views14d, visitors7d, topPages, langs,
     byAgent, topPrompts, ref7, ref30, crawlerCounts, crawlerLastSeen, votesTotal, votesTop,
+    allViews, allCopies, allVisitorDays, span, countries,
   ] = results.map((r) => r.results);
 
   const lastSeenByBot = new Map(crawlerLastSeen.map((r) => [r.bot, r.last]));
@@ -139,6 +178,18 @@ export async function buildStatsPayload(env, now) {
     crawlers7d,
     langs7d: langs.map((r) => ({ lang: r.lang, views: r.v })),
     votes: { total: votesTotal[0].v, top: votesTop.map((r) => ({ slug: r.slug, n: r.v })) },
+    // `firstDay` est nul tant qu'aucune vue n'a été enregistrée : la page doit
+    // alors ne rien afficher plutôt qu'une date inventée ou un « 0 jour ».
+    allTime: {
+      views: allViews[0].v,
+      copies: allCopies[0].v,
+      visitorDays: allVisitorDays[0].v,
+      firstDay: span[0].first ?? null,
+      daysOnAir: span[0].days,
+    },
+    // Douze pays au plus : au-delà, la liste cesse d'être lisible et devient
+    // une longue traîne sans information. Le reste est visible dans le total.
+    countries7d: countries.map((r) => ({ country: r.country, views: r.v })),
   };
 }
 
@@ -147,6 +198,18 @@ const UNIQUES_RETENTION_DAYS = 45;
 export async function purgeUniques(env, now) {
   const cutoff = daysBack(now, UNIQUES_RETENTION_DAYS);
   try {
+    // AVANT de purger : on fige le décompte de chaque jour encore présent.
+    // Sans ce cliché, le total depuis l'origine perdait 45 jours d'un coup à
+    // chaque passage du cron — et la page annonçait un chiffre qui baisse.
+    //
+    // On réécrit tous les jours de la fenêtre, pas seulement ceux qui vont
+    // disparaître : le jour courant grossit encore, son cliché doit suivre.
+    // SET n = excluded.n, jamais n + excluded.n — le cron doit être idempotent.
+    await env.DB.prepare(
+      `INSERT INTO daily_visitors (day, n)
+       SELECT day, COUNT(*) FROM uniques GROUP BY day
+       ON CONFLICT(day) DO UPDATE SET n = excluded.n`
+    ).run();
     await env.DB.prepare('DELETE FROM uniques WHERE day < ?').bind(cutoff).run();
   } catch { /* best-effort, comme pruneRate */ }
 }

@@ -1,3 +1,28 @@
 {
-  "placements": []
+  "placements": [
+    {
+      "slot": "L1",
+      "name": "Whoscale",
+      "domain": "whoscale.com",
+      "url": "https://whoscale.com/",
+      "tagline": {
+        "fr": "L’outil d’espionnage publicitaire des infopreneurs.",
+        "en": "Ad spy for creators who sell online."
+      },
+      "startsOn": "2026-08-20",
+      "endsOn": "2026-11-20"
+    },
+    {
+      "slot": "R1",
+      "name": "LinkQuiver",
+      "domain": "linkquiver.com",
+      "url": "https://linkquiver.com/",
+      "tagline": {
+        "fr": "Le cockpit de ton parc de sites, pilotable par agent IA.",
+        "en": "The cockpit for your site portfolio, driven by an AI agent."
+      },
+      "startsOn": "2026-08-20",
+      "endsOn": "2026-11-20"
+    }
+  ]
 }

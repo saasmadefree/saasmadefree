@@ -15,27 +15,37 @@
  *  d'ici n'a pas le droit d'exister dans la feuille. */
 export const TOKENS = {
   light: {
-    paperDesk: '#e8e0cc', paperDeskWeave: '#e6ddc7', paperFolder: '#e0cfa2',
-    paperSheet: '#f7f2e3', paperBright: '#fdfaf0', paperCartouche: '#f0e9d5',
-    ink: '#2b2317', ink2: '#4a4132', ink3: '#5d5445',
-    pen: '#2d3a52', hl: '#f3ecc9',
-    stampYes: '#2f5d33', stampKinda: '#6b4600', stampNo: '#9c2a1c', stampDate: '#28522c',
-    // Utilitaires décoratifs (spec §2 : bruns utilitaires, métal, réglure de
-    // feuillet) — jamais porteurs de texte, donc hors contrainte AA.
-    line: '#b6a988', lineStrong: '#8b7f68', paperRule: '#f5efdf',
-    metal: '#8a8069', metal2: '#948a72',
+    // Le sol et les surfaces : un papier chaud très peu saturé, et du blanc
+    // franc pour ce qui est posé dessus. Aucune trame — la matière du dossier
+    // a disparu avec lui.
+    paperDesk: '#f2f0ea', paperDeskWeave: '#f2f0ea', paperFolder: '#edeae0',
+    paperSheet: '#fbfaf6', paperBright: '#ffffff', paperCartouche: '#e7e3d8',
+    ink: '#12110d', ink2: '#55524a', ink3: '#6a6558',
+    // `pen` était l'encre du contrôleur ; il ne reste que l'encre du texte,
+    // qui sert aussi de marque aux graphiques de /stats via --accent. Le
+    // verdict garde la couleur pour lui seul (principe 1).
+    pen: '#12110d', hl: '#eae7de',
+    // Les trois couleurs de verdict. En direction C elles servent AUSSI de
+    // fond d'aplat : `onStamp` est l'encre qu'on pose dessus, et le couple est
+    // vérifié en AA comme les autres.
+    stampYes: '#17563a', stampKinda: '#8f5a0b', stampNo: '#8c2317',
+    stampDate: '#55524a', onStamp: '#f6f4ee',
+    // Utilitaires décoratifs — filets et gris de séparation, jamais porteurs
+    // de texte, donc hors contrainte AA.
+    line: '#d5d0c2', lineStrong: '#b3ac98', paperRule: '#fbfaf6',
+    metal: '#a8a192', metal2: '#b7b0a0',
   },
   dark: {
-    // Papier bistre du §5 — valeurs de départ, à ajuster JUSQU'À ce que
-    // tests/site-contrast.test.mjs passe ; le test est l'arbitre, pas l'œil.
-    paperDesk: '#171410', paperDeskWeave: '#1a1713', paperFolder: '#241e14',
-    paperSheet: '#211d15', paperBright: '#2a251b', paperCartouche: '#262117',
-    ink: '#e8e0cc', ink2: '#c9bda0', ink3: '#a89a79',
-    pen: '#a9bcdf', hl: '#3a3320',
-    stampYes: '#8fc79a', stampKinda: '#dfaa55', stampNo: '#e8998a', stampDate: '#84bd8f',
-    // Filets et métal assombris dans l'esprit bistre — décoratifs eux aussi.
-    line: '#4a3f2c', lineStrong: '#6b5c3f', paperRule: '#242016',
-    metal: '#66604e', metal2: '#79715c',
+    // Même construction inversée : sol quasi noir légèrement chaud, aplats de
+    // verdict éclaircis qui portent une encre sombre (onStamp).
+    paperDesk: '#14130f', paperDeskWeave: '#14130f', paperFolder: '#1f1d17',
+    paperSheet: '#1c1a15', paperBright: '#24211a', paperCartouche: '#232019',
+    ink: '#f0ede3', ink2: '#c3bdac', ink3: '#a39c88',
+    pen: '#f0ede3', hl: '#262319',
+    stampYes: '#58c98a', stampKinda: '#dfa53f', stampNo: '#ee7a66',
+    stampDate: '#c3bdac', onStamp: '#14130f',
+    line: '#35322a', lineStrong: '#4a463b', paperRule: '#1c1a15',
+    metal: '#5e5849', metal2: '#6e6757',
   },
 };
 
@@ -48,6 +58,7 @@ const VAR_NAMES = {
   paperRule: 'paper-rule',
   ink: 'ink', ink2: 'ink-2', ink3: 'ink-3', pen: 'pen', hl: 'hl',
   stampYes: 'stamp-yes', stampKinda: 'stamp-kinda', stampNo: 'stamp-no', stampDate: 'stamp-date',
+  onStamp: 'on-stamp',
   line: 'line', lineStrong: 'line-strong', metal: 'metal', metal2: 'metal-2',
 };
 
@@ -72,14 +83,42 @@ function cssVars(theme) {
 // et .sheet lui ajoutent une seconde ombre plus large (SHEET_SHADOW_LIFTED) —
 // pre n'en porte qu'une, il ne « flotte » pas au-dessus du feuillet qui le
 // contient.
-const SHEET_TRAME = 'background:var(--paper-sheet) repeating-linear-gradient(0deg,var(--paper-sheet) 0 4px,var(--paper-rule) 4px 8px);border:1px solid var(--line-strong)';
-const SHEET_SHADOW = 'box-shadow:0 2px 0 rgba(43,35,23,.06)';
-const SHEET_SHADOW_LIFTED = `${SHEET_SHADOW},0 10px 20px rgba(43,35,23,.13)`;
+const SHEET_TRAME = 'background:var(--paper-sheet);border:1px solid var(--line)';
+const SHEET_SHADOW = 'box-shadow:none';
+const SHEET_SHADOW_LIFTED = SHEET_SHADOW;
 
-export const SITE_CSS = `:root{${cssVars(TOKENS.light)}
-  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
-  --cond:"Avenir Next Condensed","Arial Narrow","Helvetica Neue",Arial,sans-serif;
-  --hand:Georgia,"Times New Roman",serif;
+/* Deux familles auto-hébergées, deux rôles, aucune requête vers un tiers : les
+   woff2 vivent dans public/fonts/ et sont servis depuis notre propre origine
+   (principe 4 du .impeccable.md, qu'une webfont de CDN aurait cassé). Archivo
+   est une variable — un seul fichier couvre 400 à 800 — et DM Mono porte les
+   chiffres, les prix, les étiquettes et le prompt. Les deux sont sous OFL 1.1,
+   voir public/fonts/LICENSE.txt.
+
+   font-display:swap est délibéré : la page doit être lisible avant que la
+   police n'arrive. Les piles de repli sont choisies pour des métriques
+   proches, pour que le remplacement ne fasse pas sauter la mise en page. */
+const FONT_FACES = [
+  ['Archivo', '100 900', 'archivo-latin', 'latin'],
+  ['Archivo', '100 900', 'archivo-latin-ext', 'latinExt'],
+  ['DM Mono', '400', 'dmmono-400-latin', 'latin'],
+  ['DM Mono', '400', 'dmmono-400-latin-ext', 'latinExt'],
+  ['DM Mono', '500', 'dmmono-500-latin', 'latin'],
+  ['DM Mono', '500', 'dmmono-500-latin-ext', 'latinExt'],
+];
+const UNICODE_RANGES = {
+  latin: 'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD',
+  latinExt: 'U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF',
+};
+const FONT_CSS = FONT_FACES.map(([family, weight, file, range]) =>
+  `@font-face{font-family:"${family}";font-style:normal;font-weight:${weight};font-display:swap;`
+  + `src:url(/fonts/${file}.woff2) format("woff2");unicode-range:${UNICODE_RANGES[range]}}`
+).join('\n');
+
+export const SITE_CSS = `${FONT_CSS}
+:root{${cssVars(TOKENS.light)}
+  --mono:"DM Mono",ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --cond:Archivo,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --hand:Archivo,"Helvetica Neue",Helvetica,Arial,sans-serif;
   /* Alias des sections conservées (coquille, sponsors, stats) : des références
      vers les tokens du dossier, jamais des littéraux — les deux thèmes coulent
      au travers sans réécrire un CSS couvert par ~1 000 lignes de tests. */
@@ -89,7 +128,7 @@ export const SITE_CSS = `:root{${cssVars(TOKENS.light)}
      de /stats (stats.js lit --accent au canvas) passe au stylo du contrôleur. */
   --accent:var(--pen);
   --sans:var(--cond);
-  --measure:36rem;--wide:48rem;
+  --measure:36rem;--wide:48rem;--rot-step-ms:1900;
 }
 /* Le thème suit le système par défaut, sauf si le lecteur a choisi. Le
    :not([data-theme="light"]) est ce qui laisse un choix explicite « clair »
@@ -98,25 +137,26 @@ export const SITE_CSS = `:root{${cssVars(TOKENS.light)}
 :root[data-theme="dark"]{${cssVars(TOKENS.dark)}}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-/* Le bureau : kraft tramé en bandes verticales de 6px — la seule « texture »
-   autorisée, entre deux tons de la palette. Les chiffres s'alignent partout
-   (tabular-nums) : c'est un document de service, pas une brochure. */
+/* Direction « Le Verdict » : le sol est un aplat, sans trame ni matière. La
+   prose est en Archivo — le monospace ne porte plus que les données. Les
+   chiffres restent alignés partout : c'est un registre, pas une brochure.
+   Le padding vertical part à zéro : les bandeaux sponsors sont désormais
+   collés aux bords de la fenêtre, en pleine largeur. */
 body{
-  margin:0;color:var(--ink);
-  background:var(--paper-desk) repeating-linear-gradient(90deg,var(--paper-desk) 0 6px,var(--paper-weave) 6px 12px);
-  font:400 15px/1.62 var(--mono);font-variant-numeric:tabular-nums;
-  padding:clamp(1.25rem,4vw,2.5rem) 0;
+  margin:0;color:var(--ink);background:var(--paper-desk);
+  font:400 16px/1.6 var(--cond);font-variant-numeric:tabular-nums;
+  padding:0;
 }
 /* Le padding horizontal vit ici et non plus sur body : .col-main doit occuper
    toute la largeur de la fenêtre pour que 100cqw vaille exactement 100vw quand
    aucun rail n'est affiché. 67rem = 62rem de texte + 2 × 2.5rem de padding, ce
    qui reproduit la mesure actuelle au pixel près sur grand écran. */
-.page{max-width:67rem;margin:0 auto;padding-inline:clamp(1rem,5vw,2.5rem)}
+.page{max-width:74rem;margin:0 auto;padding-inline:clamp(1rem,5vw,2.5rem)}
 .shell{display:grid;grid-template-columns:1fr;justify-content:center}
-.col-main{container-type:inline-size;min-width:0}
+.col-main{container-type:inline-size;min-width:0;overflow-x:clip}
 /* Le souligné de repos est pointillé — un renvoi de dossier ; il devient plein
    au survol (spec §7 : les états sont des marquages, jamais du mouvement). */
-a{color:inherit;text-decoration:underline dotted;text-decoration-thickness:.07em;
+a{color:inherit;text-decoration:underline solid;text-decoration-thickness:.07em;
   text-underline-offset:.2em;text-decoration-color:var(--line-strong)}
 a:hover{text-decoration-style:solid;text-decoration-color:currentColor}
 :focus-visible{outline:2px solid var(--pen);outline-offset:2px}
@@ -128,53 +168,98 @@ a:hover{text-decoration-style:solid;text-decoration-color:currentColor}
   overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 /* ---------- titres ---------- */
-/* Le h1 reste en machine à écrire : c'est l'objet de la demande, tapé sur le
-   formulaire, pas un slogan. Les h2 sont l'imprimé condensé des têtes de
-   rubrique du service. */
-h1{font-size:clamp(1.5rem,1.1rem + 1.8vw,2.1rem);line-height:1.36;font-weight:700;
-  letter-spacing:-.01em;margin:0 0 .6rem;text-wrap:balance}
+/* Direction « Le Verdict » : le titre est une affirmation, en Archivo lourd et
+   serré. Le clamp part de 1.75rem (lisible à 320px sans casser un mot) et
+   monte à 3.4rem sur grand écran. */
+h1{font-size:clamp(1.75rem,1.15rem + 2.6vw,3.4rem);line-height:1.06;font-weight:800;
+  letter-spacing:-.035em;margin:0 0 .6rem;text-wrap:balance}
 h2{font-family:var(--cond);font-size:1.05rem;font-weight:700;text-transform:uppercase;
   letter-spacing:.18em;margin:2rem 0 .8rem}
 section:first-of-type > h2:first-child{margin-top:0}
 p{margin:0 0 .9rem;max-width:var(--wide)}
 .tagline{color:var(--ink-2);font-size:.85rem;margin:0 0 .8rem;max-width:var(--measure)}
-.lede{max-width:var(--measure);color:var(--muted);margin:0 0 clamp(2rem,5vh,3rem)}
-.hero-h1{max-width:34ch}
-.hero-sub{max-width:58ch;color:var(--ink-2)}
-/* La ligne à remplir du formulaire héro : un cadre de saisie avec sa ligne
-   d'écriture (l'ombre interne basse), le nom attendu en main de contrôleur. */
-h1 .blank,.hero-blank{display:inline-block;min-width:8ch;border:1.5px solid var(--line-strong);
-  background:var(--paper-sheet);box-shadow:inset 0 -3px 0 var(--line);
-  padding:0 .5em .1em;line-height:1.4;vertical-align:-2px}
-h1 .blank em,.hero-blank em{font-family:var(--hand);font-style:italic;font-size:.9em;
-  letter-spacing:.08em;color:var(--ink-3)}
-/* Les trois feuillets du bordereau (héro, cadre recherche, état récapitulatif)
-   sont posés l'un sous l'autre sur le bureau : .sheet fournit la matière
-   (cadre, réglure), ces règles ne fixent que l'espace — le rythme vertical
-   qui vivait dans les composants disparus (.search-combo seul, .figures-band). */
-.hero{padding:1.6rem 1.6rem 1rem}
+.lede{max-width:44ch;color:var(--ink-2);font-size:1.125rem;line-height:1.55;
+  margin:0 0 clamp(1.5rem,4vh,2.25rem)}
+.hero-h1{max-width:none}
+
+.hero{padding:clamp(2rem,6vh,3.5rem) 0 0;text-align:center}
+.hero .lede{margin-inline:auto}
+.hero .search-shell{text-align:left}
+
+/* ---------- le titre à trou ----------
+   « ____ Made Free », où le trou défile sur les fiches au verdict « oui ».
+
+   inline-grid et non position:absolute : tous les noms occupent la MÊME
+   cellule (grid-area:1/1), donc la boîte se dimensionne toute seule sur le
+   plus long et le mot « Made » ne bouge jamais d'un nom à l'autre. En
+   absolu, la boîte n'aurait eu aucune largeur et le titre aurait sauté. */
+.hero-rot{display:inline-grid;justify-items:end;vertical-align:baseline;
+  --rot-step:1.9s;--rot-total:calc(var(--rot-step) * var(--rot-count))}
+.hero-rot-item{grid-area:1/1;white-space:nowrap;text-align:right;
+  color:var(--stamp-yes);opacity:0;
+  border-bottom:.07em solid var(--stamp-yes);padding-bottom:.04em;
+  animation:hero-rot var(--rot-total) linear infinite}
+@keyframes hero-rot{
+  0%{opacity:0;transform:translateY(.18em)}
+  2%,10%{opacity:1;transform:translateY(0)}
+  12.5%,100%{opacity:0;transform:translateY(-.18em)}
+}
+/* Le prix barré qui suit le nom : ce que la fiche dit qu'on arrête de payer.
+   Pas de filet vert dessous — ce n'est pas une ligne à remplir, c'est une
+   étiquette. Calé à GAUCHE (l'inverse du nom), pour que le prix commence
+   toujours juste après « Made Free » au lieu de flotter au bout de la boîte. */
+.hero-made{display:inline}
+
+/* ---------- les badges d'économie ----------
+   Semés par site.js à chaque rotation, ils montent et s'effacent en 3 s. Le
+   conteneur ne prend AUCUNE hauteur (height:0) : sinon il réserverait une
+   bande vide sous le titre pour des éléments qui ne sont là qu'un instant. */
+.hero-savings{position:relative;height:0;pointer-events:none}
+.hero-savings-badge{position:absolute;left:50%;top:0;white-space:nowrap;
+  font-family:var(--cond);font-size:1.05rem;font-weight:700;
+  color:var(--stamp-yes);text-decoration:line-through;
+  text-decoration-thickness:.08em;text-decoration-color:var(--ink-3);
+  animation:hero-fly 3s cubic-bezier(.22,.7,.3,1) forwards}
+@keyframes hero-fly{
+  0%{opacity:0;transform:translate(calc(-50% + var(--drift, 0px)), .8rem) scale(.85)}
+  14%{opacity:1;transform:translate(calc(-50% + var(--drift, 0px)), 0) scale(1)}
+  70%{opacity:1}
+  100%{opacity:0;transform:translate(calc(-50% + var(--drift, 0px)), -4.5rem) scale(1.02)}
+}
+/* Sans mouvement : un seul nom, posé. Le titre reste juste — il n'a jamais
+   promis d'en montrer plusieurs. */
+@media (prefers-reduced-motion:reduce){
+  .hero-rot-item{animation:none;opacity:0}
+  .hero-rot-item:first-child{opacity:1}
+}
+
+
+/* ---------- la recherche, dans le héro ---------- */
+.hero .search-frame{margin:clamp(1.25rem,3vh,2rem) auto 0;max-width:34rem}
+.hero .search-frame input[type=search]{font-size:1.05rem}
 .hero,.search-frame,.recap{margin:0 0 clamp(1.5rem,4vh,2.25rem)}
-/* La lede fait 3-4 lignes : jamais de rotation sur un paragraphe de plus de
-   deux lignes (spec §7). */
-.hero .pen-note{transform:none}
+
 
 /* ---------- chrome : bandeau de service, marque, cartouche ---------- */
-.service-band{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.4rem 1.2rem;
-  font-family:var(--cond);font-size:.68rem;font-weight:700;letter-spacing:.28em;
-  text-transform:uppercase;color:var(--ink-2);padding:.75rem 0 .6rem;
-  border-bottom:1px solid var(--line)}
-.site-masthead,.site-header{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem 1rem;
-  padding:1rem 0 0}
+
+.site-masthead,.site-header{display:flex;flex-wrap:wrap;align-items:center;
+  justify-content:space-between;gap:.9rem 1.25rem;padding:1.3rem 0 1.1rem}
+.header-left{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem 1.5rem;min-width:0}
+.header-groups{display:flex;align-items:center;margin-left:auto}
+.header-controls{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem}
 /* La marque au coin : un cachet carré à double filet (les deux inset), comme
    frappé sur la couverture du dossier. */
-.brand-mark{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
-  border:2px solid var(--ink);box-shadow:inset 0 0 0 3px var(--paper-desk),inset 0 0 0 4px var(--ink);
-  font-family:var(--cond);font-weight:700;font-size:.7rem;letter-spacing:.06em;flex:none}
-.brand{font-family:var(--cond);font-weight:700;font-size:1.05rem;text-transform:uppercase;
-  letter-spacing:.15em;white-space:nowrap;text-decoration:none;color:var(--ink)}
-.nav-links{list-style:none;display:flex;align-items:baseline;gap:.9rem;padding:0;
-  margin:0 0 0 auto;font-family:var(--cond);font-size:.76rem;font-weight:600;
-  text-transform:uppercase;letter-spacing:.13em;flex-wrap:wrap}
+.brand-mark{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;
+  background:var(--ink);color:var(--paper-desk);border:0;box-shadow:none;
+  font-family:var(--cond);font-weight:800;font-size:.68rem;letter-spacing:.04em;flex:none}
+/* Le nom colle au carré : ils forment une seule marque, d'où le gap serré du
+   groupe et non l'espacement de l'en-tête. */
+.brand-lockup{display:inline-flex;align-items:center;gap:.55rem;min-width:0}
+.brand{font-family:var(--cond);font-weight:800;font-size:1.1rem;text-transform:uppercase;
+  letter-spacing:-.01em;white-space:nowrap;text-decoration:none;color:var(--ink)}
+.nav-links{list-style:none;display:flex;align-items:baseline;gap:1.05rem;padding:0;
+  margin:0;font-family:var(--cond);font-size:.74rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.1em;flex-wrap:wrap}
 /* La langue active est passée au surligneur (--hl est un fond, jamais une
    encre) : le lecteur voit d'un coup d'œil sur quel exemplaire il est. */
 .lang-switch{display:inline-flex;align-items:baseline;gap:.6rem;font-family:var(--cond);
@@ -186,9 +271,9 @@ h1 .blank em,.hero-blank em{font-family:var(--hand);font-style:italic;font-size:
 /* Bascule de thème : un petit cachet carré, aria-label porté par le bouton
    (voir site-html.mjs / site.js). Les glyphes suivent le thème résolu. */
 .theme-toggle{display:inline-flex;align-items:center;justify-content:center;
-  width:2.1rem;height:2.1rem;padding:0;border:2px solid var(--ink);border-radius:0;
-  background:var(--paper-bright);color:var(--ink);font-size:1rem;flex:none;cursor:pointer;
-  box-shadow:2px 2px 0 rgba(43,35,23,.22)}
+  width:2rem;height:2rem;padding:0;border:2px solid var(--ink);border-radius:0;
+  background:none;color:var(--ink);font-size:.95rem;flex:none;cursor:pointer;
+  box-shadow:none}
 .theme-toggle:hover:not(:disabled){background:var(--paper-cartouche)}
 .theme-icon::before{content:"\\25D0";line-height:1}
 :root[data-theme="dark"] .theme-icon::before{content:"\\25D1"}
@@ -202,14 +287,12 @@ h1 .blank em,.hero-blank em{font-family:var(--hand);font-style:italic;font-size:
 .github-btn:hover{background:var(--paper-cartouche)}
 /* Le double filet d'imprimé qui clôt l'en-tête, puis la cartouche de
    références accrochée dessous (chaque cellule porte un fait calculé). */
-.head-rule{border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:6px;
-  margin:.9rem 0 0}
-.ref-strip{display:flex;flex-wrap:wrap;border:1px solid var(--line-strong);border-top:0;
-  background:var(--paper-cartouche);box-shadow:0 3px 8px rgba(43,35,23,.10);
-  margin:0 0 clamp(1.5rem,4vh,2.25rem)}
-.ref-cell{padding:.5rem 1rem .55rem;border-right:1px dotted var(--line);
-  display:flex;flex-direction:column;gap:1px}
+.head-rule{border-top:2px solid var(--ink);height:0;margin:.9rem 0 0}
+.ref-strip{display:flex;flex-wrap:wrap;gap:0 2.5rem;
+  margin:.75rem 0 clamp(1.5rem,4vh,2.25rem)}
+.ref-cell{padding:0;display:flex;align-items:baseline;gap:.5em}
 .ref-cell:last-child{border-right:0}
+.ref-strip .ref-lbl,.ref-strip .ref-val{margin:0}
 .ref-lbl{font-family:var(--cond);font-size:.6rem;font-weight:700;text-transform:uppercase;
   letter-spacing:.2em;color:var(--muted)}
 .ref-val{font-size:.82rem;font-weight:700;white-space:nowrap}
@@ -219,18 +302,19 @@ h1 .blank em,.hero-blank em{font-family:var(--hand);font-style:italic;font-size:
 /* ---------- cadre de recherche + volet de suggestions ---------- */
 search{display:block;margin:0}
 .search-combo{position:relative;z-index:40;max-width:38rem;margin:0 0 clamp(1.5rem,4vh,2.25rem)}
-.search-frame{border:1px solid var(--line-strong);background:var(--paper-sheet);
-  padding:.9rem 1.1rem 1rem;box-shadow:0 3px 10px rgba(43,35,23,.12)}
+.search-frame{border:2px solid var(--ink);background:var(--paper-bright);
+  padding:1rem 1.2rem 1.1rem;box-shadow:none}
+.search-frame .search-combo{margin-bottom:0}
 /* L'étiquette du champ est le cartouche « Cadre n — … » de la maquette. */
-.field label{display:inline-block;font-family:var(--cond);font-size:.62rem;font-weight:700;
-  letter-spacing:.24em;text-transform:uppercase;color:var(--ink-2);
-  border:1px solid var(--line);background:var(--paper-cartouche);padding:4px 10px;margin:0 0 .7rem}
+.field label{display:inline-block;font-family:var(--mono);font-size:.62rem;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);
+  border:0;background:none;padding:0;margin:0 0 .5rem}
 .search-shell{position:relative;display:flex;align-items:center;gap:.9rem}
 /* Le champ est une ligne pointillée de formulaire, pas une boîte : elle passe
    au trait plein en encre stylo quand le contrôleur écrit dedans (le focus
    reste visible sans boîte bleue du navigateur). */
 input[type=search]{flex:1;min-width:0;width:100%;font:inherit;color:var(--ink);
-  background:transparent;border:0;border-bottom:2px dotted var(--ink-3);border-radius:0;
+  background:transparent;border:0;border-bottom:2px solid var(--line-strong);border-radius:0;
   padding:.35em 2rem .35em .1em;outline:none}
 input[type=search]::placeholder{font-family:var(--hand);font-style:italic;color:var(--ink-3);opacity:1}
 input[type=search]::-webkit-search-cancel-button{display:none}
@@ -267,7 +351,7 @@ input[type=search]::-webkit-search-cancel-button{display:none}
 .chips a[aria-current],.chip[aria-pressed="true"],.chip.is-active{
   background:var(--ink);color:var(--paper-sheet);border-color:var(--ink)}
 .chip-all-categories{font-weight:700}
-.verdict-chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 1rem}
+
 /* Les filtres de verdict sont des cases de bordereau : l'état coché est un
    marquage (fond cartouche + filet stylo), jamais un changement de couleur
    seul — spec §7. */
@@ -280,6 +364,54 @@ input[type=search]::-webkit-search-cancel-button{display:none}
    haut) pose color:paper-sheet à spécificité égale — sans ce color, la case
    active affichait du papier sur du papier (recette navigateur 2026-08-12). */
 .verdict-chip.is-active{background:var(--paper-cartouche);color:var(--ink);box-shadow:inset 2px 0 0 var(--pen)}
+/* ---------- la bande de répartition ----------
+   L'objet signature de la direction : les trois verdicts à l'échelle, en
+   pleine largeur de la colonne. C'est le seul endroit du site où la couleur
+   couvre une surface — et elle ne couvre que le verdict.
+
+   Le débord : .col-main porte container-type:inline-size, donc 100cqw vaut
+   la largeur de la colonne principale — la fenêtre entière quand aucun rail
+   n'est affiché, la colonne seule quand ils le sont. La bande ne passe donc
+   jamais sous un emplacement sponsor. Le 50% est relatif à la boîte de
+   contenu de .page, ce qui annule exactement son padding.
+
+   Le texte posé sur l'aplat est --on-stamp, dont le contraste contre les
+   trois encres est vérifié par tests/site-contrast.test.mjs. */
+.verdict-band{margin-inline:calc(50% - 50cqw);width:100cqw;
+  margin-block:0 clamp(1.5rem,4vh,2.25rem)}
+.vb-track{display:flex;min-height:clamp(10rem,22vh,15rem)}
+.vb-seg{flex-basis:0;min-width:5.5rem;display:flex;flex-direction:column;
+  justify-content:space-between;align-items:flex-start;gap:.5rem;
+  border:0;cursor:pointer;text-align:left;color:var(--on-stamp);
+  padding:clamp(.9rem,2vw,1.5rem) clamp(.7rem,1.6vw,1.6rem);
+  font-family:var(--cond);overflow:hidden}
+.vb-yes{background:var(--stamp-yes)}
+.vb-kinda{background:var(--stamp-kinda)}
+.vb-no{background:var(--stamp-no)}
+.vb-share{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;opacity:.85}
+.vb-count{font-size:clamp(1.9rem,1rem + 3.4vw,4rem);font-weight:800;line-height:.9;
+  letter-spacing:-.045em}
+.vb-label{font-size:clamp(.8rem,.6rem + .6vw,1.3rem);font-weight:700;
+  text-transform:uppercase;letter-spacing:-.01em}
+/* L'état actif est un liseré d'encre à l'intérieur du segment : pas une
+   couleur de plus, et il survit à un mode lecture qui supprimerait les fonds. */
+.vb-seg[aria-pressed="true"]{box-shadow:inset 0 0 0 4px var(--on-stamp)}
+.vb-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:.5rem 1rem;padding:.55rem clamp(1rem,5vw,2.5rem);
+  border-bottom:1px solid var(--line)}
+
+/* Ce que le catalogue dit qu'on peut arrêter de payer : la seule figure de la
+   page qui parle au portefeuille, donc elle est posée juste sous la bande. */
+.vb-spend{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .6rem;
+  margin:0;max-width:none;margin-left:auto}
+.vb-spend-label{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3)}
+.vb-spend-value{font-size:1.15rem;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.vb-reset{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink);background:none;cursor:pointer;
+  border:1px solid var(--line-strong);padding:.35em .9em}
+.vb-reset.is-active,.vb-reset[aria-pressed="true"]{background:var(--ink);color:var(--paper-desk);
+  border-color:var(--ink)}
 
 /* ---------- tête de section du registre ---------- */
 .list-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
@@ -293,29 +425,46 @@ input[type=search]::-webkit-search-cancel-button{display:none}
    dans les lignes — crochets conservés). La feuille est réglée : la trame
    horizontale de 4px est celle des feuillets du dossier. */
 .table-scroll{overflow-x:auto;margin:0 0 1.5rem}
-.registry{${SHEET_TRAME};${SHEET_SHADOW_LIFTED}}
+@media (min-width:52rem){.table-scroll{overflow-x:visible}}
+.registry{border-top:2px solid var(--ink)}
 .registry table{min-width:40rem}
+/* Le verdict de chaque ligne, redit par un filet d'encre de verdict au bord
+   gauche. La couleur ne dit jamais rien de neuf : le badge porte déjà le mot,
+   et un mode lecture qui supprime les fonds ne fait perdre aucune information
+   (principe 2 du .impeccable.md). */
+#tool-rows tr[data-verdict="yes"] td.rank{box-shadow:inset 5px 0 0 var(--stamp-yes)}
+#tool-rows tr[data-verdict="kinda"] td.rank{box-shadow:inset 5px 0 0 var(--stamp-kinda)}
+#tool-rows tr[data-verdict="no"] td.rank{box-shadow:inset 5px 0 0 var(--stamp-no)}
 table{width:100%;border-collapse:collapse}
-caption{text-align:left;color:var(--muted);font-size:.78rem;padding:.6rem .8rem 0;caption-side:top}
-th,td{text-align:left;padding:.6em .8em;border-bottom:1px solid var(--line);vertical-align:middle}
-td+td,th+th{border-left:1px dotted var(--line)}
+caption{text-align:left;color:var(--ink-3);font-family:var(--mono);font-size:.72rem;
+  padding:.55rem 0 .7rem;caption-side:top}
+th,td{text-align:left;padding:.85em .8em;border-bottom:1px solid var(--line);vertical-align:middle}
+td+td,th+th{border-left:0}
 tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
-thead th,thead td{font-family:var(--cond);font-size:.66rem;letter-spacing:.14em;
+/* L'en-tête colle en haut : sur 530 lignes, perdre le nom des colonnes au
+   premier écran de défilement rendait le tableau illisible. */
+thead th,thead td{position:sticky;top:0;z-index:2;background:var(--paper-desk);
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--ink-2);font-weight:700;
   border-bottom:2px solid var(--ink);white-space:nowrap}
-tbody th{font-weight:700}
+tbody th{font-weight:600;font-size:1rem;letter-spacing:-.01em}
 /* Le favicon de chaque ligne : alt vide — décoration, le nom porte déjà
    l'information. */
 tbody th a{display:inline-flex;align-items:center;gap:.55em;text-decoration:none}
-tbody th a:hover{text-decoration:underline dotted}
+tbody th a:hover{text-decoration:underline solid}
 .row-favicon{width:20px;height:20px;flex:none;object-fit:contain}
 tbody tr[hidden]{display:none}
-#tool-rows tr:hover td,#tool-rows tr:hover th{background:var(--paper-cartouche)}
+#tool-rows tr:hover td,#tool-rows tr:hover th{background:var(--hl)}
 .rank{color:var(--ink-3);font-variant-numeric:tabular-nums;font-size:.78rem;
   letter-spacing:.06em;width:1%;padding-right:0;white-space:nowrap}
 .price,.votes{font-variant-numeric:tabular-nums;white-space:nowrap}
-.votes{color:var(--muted);font-size:.85rem}
-.cat{white-space:nowrap;font-size:.85rem;color:var(--ink-3)}
+.cat{white-space:nowrap;font-family:var(--mono);font-size:.72rem;letter-spacing:.02em;
+  text-transform:uppercase;color:var(--ink-3)}
+.price{font-family:var(--mono);font-size:.95rem;white-space:nowrap}
+.votes{font-family:var(--mono);font-size:.78rem;color:var(--ink-3);white-space:nowrap}
+/* Un zéro ne mérite pas le poids d'un chiffre : le tiret marque la case
+   comme lue, sans la remplir. */
+.votes-none{color:var(--line-strong)}
 
 /* Numérotation du registre : un compteur CSS suit le DOM après re-tri (votes)
    et filtrage (recherche) par site.js — un numéro écrit dans le HTML au build
@@ -330,46 +479,41 @@ tbody tr[hidden]{display:none}
 /* Un tampon est une bordure de sa propre encre (currentColor) : la couleur ne
    se pose jamais en aplat sous du texte, et les encres de verdict ne colorent
    que le verdict. Rotations ≤ 8°, réservées aux tampons. */
-.stamp{display:inline-block;border:3px solid currentColor;outline:1px solid currentColor;
-  outline-offset:2px;font-family:var(--cond);font-weight:700;text-transform:uppercase;
-  text-align:center;white-space:nowrap}
-.stamp-verif{color:var(--ink-2);font-size:.66rem;letter-spacing:.2em;padding:7px 11px;
-  transform:rotate(4deg)}
-.stamp-sub{display:block;font-size:.56rem;letter-spacing:.18em;margin-top:6px;
-  padding-top:5px;border-top:1px solid currentColor}
+.stamp{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:.15em .6em;
+  font-family:var(--mono);font-weight:500;text-transform:uppercase;text-align:left;
+  white-space:normal}
+.stamp .stamp-sub{white-space:nowrap}
+.stamp-verif{color:var(--ink-3);font-size:.66rem;letter-spacing:.14em;
+  border-left:3px solid var(--ink);padding:.15em 0 .15em .7em}
+.stamp-sub{display:inline;font-size:.66rem;letter-spacing:.08em;margin:0;
+  padding:0;border:0;color:var(--ink)}
 /* Le tampon verdict S'APPELLE .badge : site.js fait row.querySelector('.badge')
    et le test verdictBadge existant reste vert. En ligne de registre c'est le
    petit mot cacheté ; en chemise, .badge-lg le passe au grand format. */
-.badge{display:inline-block;border:1.5px solid currentColor;font-family:var(--cond);
-  font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  padding:2px 7px 1px;transform:rotate(-2deg);white-space:nowrap;background:none;line-height:1.4}
+/* Le verdict est écrit, pas cacheté : le mot en capitales lourdes, à la
+   couleur de son encre. La couleur redouble le mot, elle ne le remplace
+   jamais — un lecteur daltonien, ou un mode lecture sans couleur, lit
+   « PRESQUE » tel quel. */
+.badge{display:inline-block;font-family:var(--cond);font-size:.72rem;font-weight:800;
+  letter-spacing:.04em;text-transform:uppercase;padding:0;border:0;
+  white-space:nowrap;background:none;line-height:1.4}
 .badge.yes{color:var(--stamp-yes)}
 .badge.kinda{color:var(--stamp-kinda)}
 .badge.no{color:var(--stamp-no)}
-.badge-lg{border-width:3px;outline:1px solid currentColor;outline-offset:2px;
-  font-size:1.3rem;letter-spacing:.3em;padding:12px 8px 10px 20px;transform:rotate(-6deg);
-  line-height:1.15;text-align:center;flex:none}
+.badge-lg{font-size:clamp(2.2rem,1.2rem + 3.4vw,4rem);letter-spacing:-.04em;
+  padding:0;line-height:.95;text-align:left;flex:none}
 /* Tampon dateur rond — encre verte d'archive, réservé à la date du relevé de
    prix (pricing.checkedOn) : un seul porteur de cette date par page. */
-.date-ring{width:98px;height:98px;border:2px solid var(--stamp-date);border-radius:50%;
-  display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;color:var(--stamp-date);font-family:var(--cond);font-size:.56rem;
-  font-weight:700;letter-spacing:.15em;text-transform:uppercase;line-height:1.55;
-  transform:rotate(7deg);position:relative;flex:none}
-.date-ring::before{content:"";position:absolute;inset:7px;border:1px solid var(--stamp-date);border-radius:50%}
-.date-ring strong{font-size:.82rem;letter-spacing:.06em;white-space:nowrap;margin:1px 0}
 
 /* ---------- la main du contrôleur ---------- */
 /* Tout ce qui est en --pen est ce qu'un contrôleur aurait écrit à la main —
    et rien d'autre. Rotations ≤ 1.5°, jamais sur plus de deux lignes. */
-.pen-line{display:inline-block;font-family:var(--hand);font-style:italic;color:var(--pen);
-  font-size:.85rem;line-height:1.55;transform:rotate(-.5deg)}
-.pen-note{font-family:var(--hand);font-style:italic;color:var(--pen);font-size:.85rem;
-  line-height:1.55;margin:0 0 .85rem;padding-left:15px;position:relative;
-  transform:rotate(-.6deg);max-width:var(--measure)}
-.pen-note::before{content:"\\2014";position:absolute;left:0;top:0}
-.paraphe{display:inline-block;font-family:var(--hand);font-style:italic;color:var(--pen);
-  font-size:1.3rem;font-weight:700;letter-spacing:.05em;transform:rotate(-6deg);
+
+.pen-note{font-family:var(--mono);font-size:.78rem;line-height:1.55;color:var(--ink-3);
+  margin:0 0 .85rem;padding-left:1.1rem;position:relative;max-width:var(--measure)}
+.pen-note::before{content:"\\2192";position:absolute;left:0;top:0;color:var(--ink-3)}
+.paraphe{display:inline-block;font-family:var(--cond);color:var(--ink-3);
+  font-size:.8rem;font-weight:800;letter-spacing:.22em;transform:none;
   border-bottom:2px solid var(--pen);padding:0 6px 2px;margin-left:10px}
 /* Le souligné main porte un second trait translucide : un double passage de
    stylo, pas une ombre portée (spec §2). */
@@ -380,10 +524,8 @@ tbody tr[hidden]{display:none}
 /* Deux échelles, deux encres (spec §2) : la petite coche de suivi est au stylo
    (.pen-check), la grande case du verdict est imprimée et cochée à l'encre
    noire de la machine (.check-box, croix --ink). */
-.pen-check{display:inline-block;width:12px;height:12px;border:1.5px solid var(--ink);
-  background:var(--paper-bright);position:relative;flex:none;vertical-align:-1px}
-.pen-check::after{content:"";position:absolute;left:1px;top:-5px;width:13px;height:7px;
-  border-left:2px solid var(--pen);border-bottom:2px solid var(--pen);transform:rotate(-48deg)}
+.pen-check{display:inline-block;width:7px;height:7px;border:0;background:var(--ink);
+  position:relative;flex:none;vertical-align:2px}
 .verdict-checks{display:flex;flex-wrap:wrap;gap:.75rem 2.2rem;margin:.8rem 0 .6rem}
 .check-item{display:inline-flex;align-items:center;gap:11px;font-family:var(--cond);
   font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--ink)}
@@ -395,57 +537,55 @@ tbody tr[hidden]{display:none}
 .is-checked .check-box::after{transform:rotate(-47deg)}
 
 /* ---------- chemise à onglet (fiche) ---------- */
-.folder{position:relative;background:var(--paper-folder) repeating-linear-gradient(0deg,rgba(43,35,23,.035) 0 2px,rgba(43,35,23,0) 2px 5px);
-  border:1px solid var(--line-strong);padding:2rem 2.2rem 1.6rem 2.75rem;margin:2.1rem 0 2.9rem}
-.folder-tab{position:absolute;bottom:100%;left:26px;background:var(--paper-folder);
-  border:1px solid var(--line-strong);border-bottom:0;border-radius:7px 7px 0 0;
-  padding:7px 20px 5px;font-family:var(--cond);font-size:.66rem;font-weight:700;
-  letter-spacing:.18em;text-transform:uppercase;color:var(--ink);white-space:nowrap;
-  max-width:calc(100% - 26px);overflow:hidden;text-overflow:ellipsis}
-.folder-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:1.6rem}
+.folder{position:relative;margin-inline:calc(50% - 50cqw);width:100cqw;
+  background:var(--stamp-kinda);color:var(--on-stamp);
+  padding:clamp(1.4rem,3.5vw,2.4rem) clamp(1rem,5vw,2.5rem) clamp(1.2rem,3vw,1.9rem);
+  margin-block:0 clamp(1.75rem,4vh,2.5rem)}
+.folder-yes{background:var(--stamp-yes)}
+.folder-kinda{background:var(--stamp-kinda)}
+.folder-no{background:var(--stamp-no)}
+/* Tout ce qui se pose sur l'aplat prend l'encre de l'aplat : sans ça, les
+   couleurs de texte du papier (--ink, --muted) s'y appliquaient et tombaient
+   sous le seuil AA. */
+.folder h1,.folder a,.folder dd,.folder .tagline,.folder .stamp-sub,
+.folder .check-item,.folder .badge,
+.folder .meta-item dt,.folder .meta-item dd,.folder .meta-item dd a,
+.folder .meta-item .price-source{color:var(--on-stamp)}
+.folder .meta-item .price-source{opacity:1}
+.folder a{text-decoration-color:var(--on-stamp)}
+.folder .tagline,.folder dt,.folder .stamp-sub,.folder .price-source{opacity:1}
+.folder .meta-item dd{border-bottom-color:rgba(255,255,255,.28)}
+.folder .check-box{border-color:var(--on-stamp)}
+.folder-cote{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;
+  text-transform:uppercase;margin:0 0 1.1rem}
+.folder-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1.2rem 2rem}
 .folder-id{flex:1;min-width:min(100%,300px)}
-.folder-stamps{display:flex;align-items:center;gap:1.4rem;flex:none;padding:10px 8px 0 0}
-.folder-foot{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem 1.1rem;margin:1.6rem 0 0;
-  padding-top:1rem;border-top:1px dashed var(--line-strong)}
+.folder-stamps{display:flex;flex-direction:column;align-items:flex-start;gap:.15rem;flex:none}
 
 /* ---------- artefacts physiques ---------- */
 /* Trombone, perforations, code-barres : CSS pur, toujours aria-hidden, jamais
    posés sur du texte (le padding gauche de .folder réserve la marge des
    œillets). Le code-barres superpose trois trames de barres — c'est la cote
    imprimée du dossier, pas un décor gratuit. */
-.paper-clip{position:absolute;top:-20px;right:15%;width:24px;height:38px;z-index:2;transform:rotate(3deg)}
-.paper-clip::before{content:"";position:absolute;inset:0;border:3.5px solid var(--metal);
-  border-radius:12px;box-shadow:1px 2px 3px rgba(43,35,23,.25)}
-.paper-clip::after{content:"";position:absolute;left:6px;right:6px;top:12px;bottom:-10px;
-  border:3.5px solid var(--metal-2);border-radius:9px}
-.hole{position:absolute;left:10px;width:13px;height:13px;border-radius:50%;
-  background:var(--paper-desk);border:1px solid var(--line);
-  box-shadow:inset 0 1px 2px rgba(43,35,23,.28)}
-.hole-a{top:24%}
-.hole-b{top:70%}
-.barcode{display:inline-block;width:168px;height:26px;
-  background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 7px),repeating-linear-gradient(90deg,var(--ink) 0 1px,transparent 1px 5px),repeating-linear-gradient(90deg,transparent 0 9px,var(--ink) 9px 12px,transparent 12px 19px)}
-.barcode-label{font-family:var(--cond);font-size:.56rem;font-weight:700;letter-spacing:.3em;
-  text-transform:uppercase;color:var(--ink-2)}
 
 /* ---------- feuillets et pièces ---------- */
-.sheet{${SHEET_TRAME};position:relative;${SHEET_SHADOW_LIFTED}}
-.piece-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.sheet{position:relative}
+.piece-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.35rem 1rem;margin:0 0 1rem}
 /* L'onglet encré plein de la pièce, coin coupé au massicot. */
-.piece-tab{display:inline-block;background:var(--ink);color:var(--paper-sheet);
-  font-family:var(--cond);font-size:.66rem;font-weight:700;letter-spacing:.2em;
-  text-transform:uppercase;padding:8px 26px 8px 16px;
-  clip-path:polygon(0 0,100% 0,calc(100% - 12px) 100%,0 100%)}
-.piece-head+.sheet{border-top:2px solid var(--ink)}
-.piece-no{font-family:var(--cond);font-size:.66rem;font-weight:700;letter-spacing:.12em;
-  color:var(--ink-2);border:1px solid var(--line-strong);background:var(--paper-cartouche);padding:2px 6px}
+.piece-tab{display:block;flex:1 1 100%;min-width:0;max-width:100%;background:none;color:var(--ink);
+  font-family:var(--cond);font-size:.9rem;font-weight:800;letter-spacing:.14em;
+  text-transform:uppercase;padding:0 0 .45rem;border-bottom:2px solid var(--ink);
+  clip-path:none}
+.piece-head+.sheet{border-top:0}
+.piece-no{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;
+  color:var(--ink-3);border:0;background:none;padding:0}
 /* Rythme des pièces : c'est l'onglet encré (h2.piece-tab) qui rythme la page,
    pas la marge d'imprimé du h2 — annulée dans la tête de pièce. Le feuillet
    .piece-body rend au papier réglé la marge intérieure que la maquette donnait
    à chaque pièce (ef-prompt/ef-losswrap/ef-why). */
 .piece{margin:0 0 2.6rem}
 .piece-head h2{margin:0}
-.piece-body{padding:1.25rem 1.5rem}
+.piece-body{padding:0}
 /* Le résumé au filet de verdict (maquette ef-resume) : seul le filet en marge
    porte l'encre du tampon — jamais le texte lui-même (spec §2). */
 .verdict-summary{border-left:3px solid var(--ink);padding:.15rem 0 .15rem 1.2rem;
@@ -463,10 +603,10 @@ tbody tr[hidden]{display:none}
   letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
 /* Chaque valeur repose sur sa ligne de champ pointillée, comme remplie au
    guichet. */
-.meta-item dd{margin:6px 0 0;padding:0 0 5px;border-bottom:1px dotted var(--line-strong);
+.meta-item dd{margin:6px 0 0;padding:0 0 5px;border-bottom:1px solid var(--line);
   font-size:.9rem;font-weight:600}
 .meta-item dd a{text-decoration:none}
-.meta-item dd a:hover{text-decoration:underline dotted}
+.meta-item dd a:hover{text-decoration:underline solid}
 .meta-item .price-source{display:block;margin-top:.35rem;font-size:.72rem;
   font-weight:400;color:var(--muted)}
 
@@ -488,11 +628,11 @@ button:disabled{opacity:.5;cursor:default}
 .prompt-block{position:relative;margin:0 0 .5rem}
 .prompt-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
   gap:.6rem 1rem;margin:0 0 .6rem}
-.prompt-label{margin:0;font-family:var(--cond);font-size:.66rem;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--ink-2);font-weight:700}
+
 .prompt-actions{display:flex;flex-wrap:wrap;gap:.6rem}
 .prompt-caption{color:var(--muted);font-size:.8rem;margin:.7rem 0 0;max-width:var(--measure)}
-pre{${SHEET_TRAME};padding:1rem 1.2rem;overflow-x:auto;font-size:.85rem;
+pre{background:var(--ink);color:var(--paper-desk);border:0;
+  padding:1.35rem 1.5rem;overflow-x:auto;font-size:.85rem;
   line-height:1.8;font-family:var(--mono);white-space:pre-wrap;word-break:break-word;margin:0;
   ${SHEET_SHADOW}}
 .status{font-size:.8rem;color:var(--muted);margin:.6rem 0 0;min-height:1.2em}
@@ -503,14 +643,14 @@ pre{${SHEET_TRAME};padding:1rem 1.2rem;overflow-x:auto;font-size:.85rem;
 @media (max-width:44rem){.two-col{grid-template-columns:1fr}}
 .lose-list{list-style:none;padding:0;margin:0;max-width:var(--wide)}
 .lose-list li{display:flex;gap:.8em;align-items:flex-start;padding:.75em 0;
-  border-bottom:1px dotted var(--line);margin:0}
+  border-bottom:1px solid var(--line);margin:0}
 .lose-list li:last-child{border-bottom:0}
 .priorart-cards{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.9rem}
 .priorart-card{display:flex;flex-direction:column;gap:.3rem;border:2px solid var(--ink);
   background:var(--paper-sheet);padding:.9em 1.2em;min-width:min(100%,12rem);
   box-shadow:3px 3px 0 rgba(43,35,23,.2)}
 .priorart-card a{font-weight:700;text-decoration:none}
-.priorart-card a:hover{text-decoration:underline dotted}
+.priorart-card a:hover{text-decoration:underline solid}
 .priorart-license{color:var(--ink-2);font-family:var(--cond);font-size:.62rem;font-weight:700;
   text-transform:uppercase;letter-spacing:.18em;white-space:nowrap}
 
@@ -524,7 +664,7 @@ pre{${SHEET_TRAME};padding:1rem 1.2rem;overflow-x:auto;font-size:.85rem;
   padding:1rem;text-decoration:none;color:inherit}
 .related-card-name{font-weight:700}
 .related-card-meta{color:var(--muted);font-size:.8rem}
-.related-list{display:flex;flex-direction:column;gap:.9rem;list-style:none;padding:0;margin:0 0 1rem}
+
 .related-list .name{font-weight:700;margin-right:.6em}
 .related-list p{margin:.2rem 0 0;color:var(--muted);max-width:var(--measure)}
 
@@ -545,22 +685,24 @@ ul.plain{list-style:none;padding:0}
    cliquable — c'est le <a> qui porte le flex, .category-row (le <li>) ne
    garde que la bordure et l'espacement verticaux. */
 .category-list{list-style:none;padding:0;margin:0 0 2rem;max-width:var(--wide)}
-.category-row{border-bottom:1px dotted var(--line);margin:0}
+.category-row{border-bottom:1px solid var(--line);margin:0}
 .category-row a{display:flex;align-items:baseline;gap:.5rem;padding:.45em 0;
   text-decoration:none;font-weight:600}
-.category-row a:hover{text-decoration:underline dotted}
-.leader{flex:1;min-width:2rem;border-bottom:1px dotted var(--line-strong);
+.category-row a:hover{text-decoration:underline solid}
+.leader{flex:1;min-width:2rem;border-bottom:1px solid var(--line);
   align-self:flex-end;margin:0 .2em .35em}
 .category-count{color:var(--muted);font-size:.8rem;font-weight:400;font-variant-numeric:tabular-nums;white-space:nowrap}
 
 /* ---------- état récapitulatif (accueil) ---------- */
-.recap{display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem 2rem;padding:1.2rem 1.5rem 1.3rem}
+.recap{display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem 2rem;
+  padding:1.1rem 0 1.2rem;border-top:1px solid var(--line)}
 .recap-figures{display:flex;flex-wrap:wrap}
-.recap-figure{padding:4px 1.4rem 4px 0;margin-right:1.4rem;border-right:1px dotted var(--line)}
-.recap-figure:last-child{border-right:0;margin-right:0}
+.recap-figure{padding:4px 0;margin-right:2.6rem}
+.recap-figure:last-child{margin-right:0}
 .recap-label{font-family:var(--cond);font-size:.64rem;font-weight:700;text-transform:uppercase;
   letter-spacing:.18em;color:var(--muted)}
-.recap-value{display:block;font-size:1.3rem;font-weight:700;margin-top:3px;white-space:nowrap}
+.recap-value{display:block;font-size:1.6rem;font-weight:800;letter-spacing:-.03em;
+  margin-top:3px;white-space:nowrap}
 .recap-value-sm{font-size:.9rem;padding-top:7px}
 /* Repli quand le service de vote est muet au build : du texte à la taille des
    mentions du récap, pas un artefact. */
@@ -585,11 +727,10 @@ ul.plain{list-style:none;padding:0}
 /* ---------- récépissé de vote ---------- */
 /* Le cadre du visiteur : double filet d'encre (bordure + outline rentré),
    comme un volet détachable au bas du formulaire. */
-.vote-section,.receipt{border:2px solid var(--ink);outline:1px solid var(--ink);
-  outline-offset:-7px;background:var(--paper-sheet);padding:1.5rem 1.75rem;
-  margin-top:2.4rem;box-shadow:0 8px 18px rgba(43,35,23,.14)}
-.receipt-label{font-family:var(--cond);font-size:.6rem;font-weight:700;letter-spacing:.24em;
-  text-transform:uppercase;color:var(--ink-2);margin:0 0 .7rem}
+.vote-section,.receipt{border:2px solid var(--ink);outline:0;
+  background:none;padding:1.5rem 1.75rem;margin-top:2.4rem;box-shadow:none}
+.receipt-label{font-family:var(--mono);font-size:.66rem;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3);margin:0 0 .7rem}
 .vote-row{display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;margin:0 0 .8rem}
 .vote-count-badge{font-weight:400;font-variant-numeric:tabular-nums;margin-left:.3em}
 .vote-count{color:var(--muted);margin:0 0 .8rem}
@@ -606,14 +747,11 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
    pile de chemises — une par ligne, l'en-tête relégué hors écran pour les
    lecteurs d'écran. */
 @media (max-width:40rem){
-  .paper-clip,.hole{display:none}
-  .date-ring{transform:none;margin:0}
   /* flex:1 1 100% : sans lui, l'item se dimensionne à son contenu (tampon +
      dateur côte à côte ≈ 353px) et DÉBORDE de .folder-top au lieu de replier
      ses enfants — le flex-wrap ne mord que si l'item est d'abord contraint
      (recette navigateur à 320px, 2026-08-12). */
   .folder-stamps{position:static;flex-direction:row;flex-wrap:wrap;flex:1 1 100%;min-width:0}
-  .pen-note{transform:none}
   .registry table,.registry thead,.registry tbody,.registry tr,.registry td,.registry th{display:block}
   .registry table{min-width:0}
   .registry thead{position:absolute;left:-9999px}
@@ -651,9 +789,14 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
      de réserver sa place et le contenu ne passe jamais dessous. align-self est
      obligatoire — sans lui la piste s'étire sur toute la hauteur de la grille
      et rien ne colle jamais. */
+  /* height et non plus seulement max-height : les cinq blocs sont en
+     flex:1 1 0, donc ils ne se répartissent une hauteur que si le rail en a
+     une. Avec max-height seul, ils retombaient sur leur min-height et le
+     rail s'arrêtait au tiers de l'écran. */
   .sp-rail{display:flex;flex-direction:column;gap:.75rem;
     position:sticky;top:1rem;align-self:start;
-    max-height:calc(100dvh - 2rem);overflow-y:auto;overscroll-behavior:contain}
+    height:calc(100dvh - 2rem);max-height:calc(100dvh - 2rem);
+    overflow-y:auto;overscroll-behavior:contain}
   .sp-fallback{display:none}
 }
 
@@ -665,10 +808,14 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
    .sp-rail pose overflow-y:auto son overflow-x calculé passe à auto — le rail
    gagnait une barre de défilement horizontale et le nom était tronqué. Même
    arithmétique dans la grille à deux colonnes du repli à 390px. */
-.sp-card{display:flex;flex-direction:column;gap:.35rem;flex:1 1 0;min-height:6.5rem;
-  padding:.7rem .8rem;border:1px solid var(--rule);
+.sp-card{display:flex;flex-direction:column;justify-content:center;gap:.55rem;
+  flex:1 1 0;min-height:7rem;padding:1rem .9rem;border:2px solid var(--line-strong);
   background:var(--card);text-decoration:none;font-size:.8rem;overflow-wrap:anywhere}
-.sp-card.open{border-style:dashed;background:none;justify-content:center;text-align:center}
+/* Un emplacement libre est une offre affichée, pas un trou : le pointillé dit
+   « à prendre », le prix est composé au même poids que les chiffres du
+   catalogue, et l'appel à l'action est un bloc d'encre plein. */
+.sp-card.open{border-style:dashed;background:none;justify-content:center;
+  align-items:center;text-align:center;gap:.15rem}
 /* Emplacement vendu dont la créa n'est pas encore commitée : ni carte de
    sponsor (on n'a ni nom ni icône à afficher), ni carte libre (il n'est plus
    vendable). Pas un lien non plus — voir renderCard. Même filet neutre que le
@@ -677,22 +824,54 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
 .sp-card.taken{justify-content:center;text-align:center}
 .sp-taken-label{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
   color:var(--muted);font-weight:700}
-.sp-icon{border-radius:.25rem}
-.sp-name{font-weight:700;color:var(--ink)}
-.sp-tagline{color:var(--muted);line-height:1.35}
-.sp-open-label{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
-.sp-price{font-size:1.15rem;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums}
-.sp-per{color:var(--muted);font-size:.72rem}
-.sp-cta{color:var(--ink);text-decoration:underline;font-size:.72rem}
+.sp-icon{width:40px;height:40px;border-radius:.3rem}
+.sp-name{font-family:var(--cond);font-size:1.05rem;font-weight:800;letter-spacing:-.015em;
+  color:var(--ink);line-height:1.15}
+.sp-tagline{color:var(--ink-2);font-size:.82rem;line-height:1.4}
+.sp-open-label{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.sp-price{font-size:1.55rem;font-weight:800;letter-spacing:-.035em;line-height:1.1;
+  color:var(--ink);font-variant-numeric:tabular-nums}
+.sp-per{font-family:var(--mono);color:var(--ink-3);font-size:.66rem}
+.sp-cta{margin-top:.45rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;
+  text-transform:uppercase;text-decoration:none;
+  background:var(--ink);color:var(--paper-desk);padding:.5em 1.1em}
+.sp-card.open:hover .sp-cta{background:var(--ink-2)}
 
 /* Bandeaux : frères de .shell, donc pleine largeur sans aucune technique de
    débord, et sans jamais croiser les rails. */
-.sponsor-tape{width:100%;background:color-mix(in srgb,var(--ink) 4%,var(--paper));
-  border-block:1px solid var(--rule);padding:.5rem 0;overflow:hidden}
+/* La barre est peinte en --ink et son texte en --paper-desk : elle s'inverse
+   donc toute seule d'un thème à l'autre (encre sur papier le jour, papier sur
+   encre la nuit), et le couple est celui dont le contraste est déjà vérifié
+   par tests/site-contrast.test.mjs. */
+.sponsor-tape{width:100%;background:var(--ink);color:var(--paper-desk);
+  border-block:0;padding:.45rem 0;overflow:hidden}
 .sp-tape-marquee{overflow:hidden;width:100%}
 .sp-tape-track{display:inline-flex;gap:0;white-space:nowrap}
-.sp-tape-item{display:inline-flex;align-items:center;gap:.4rem;padding:.25em 1rem;
-  border-right:1px solid var(--rule);font-size:.78rem;color:var(--muted);text-decoration:none}
+.sp-tape-item{display:inline-flex;align-items:center;gap:.5rem;padding:.25em 1.1rem;
+  border-right:1px solid var(--ink-3);font-family:var(--mono);font-size:.72rem;
+  letter-spacing:.02em;color:var(--paper-cartouche);text-decoration:none}
+.sp-tape-price{color:var(--paper-desk);font-weight:500;font-variant-numeric:tabular-nums}
+/* Une place libre est une offre à cliquer. Deux choses l'en empêchaient :
+   rien ne signalait le lien, et la piste défile — la cible fuyait sous le
+   curseur. La piste se met donc en pause dès qu'on la survole ou qu'on y
+   entre au clavier, et la place survolée s'inverse pour devenir une cible
+   franche. :focus-within couvre la navigation au clavier, qui ne survole
+   jamais.
+
+   Le signal au repos est le souligné pointillé, la convention de lien du
+   site — et pas une flèche : un glyphe demandait un span aria-hidden, or
+   c'est ce même attribut qui distingue la copie dupliquée de la piste de
+   l'originale (voir renderTape). L'ajouter dans la moitié visible aurait
+   cassé ce marqueur. */
+.sp-tape-item.open{text-decoration:underline solid;text-underline-offset:.25em;
+  text-decoration-color:var(--ink-3)}
+.sponsor-tape:hover .sp-tape-track,
+.sponsor-tape:focus-within .sp-tape-track{animation-play-state:paused}
+.sp-tape-item.open:hover,.sp-tape-item.open:focus-visible{
+  background:var(--paper-desk);color:var(--ink)}
+.sp-tape-item.open:hover .sp-tape-price,
+.sp-tape-item.open:focus-visible .sp-tape-price{color:var(--ink)}
 /* Pas d'opacity ici : empilée sur --muted (déjà proche du plancher AA contre
    le fond du bandeau), elle faisait passer la tagline sous 4,5:1 dans les
    deux thèmes (3,26:1 clair / 4,39:1 sombre). --muted seul suffit à la rendre
@@ -760,7 +939,6 @@ footer.site-footer{margin-top:clamp(2.5rem,7vh,4rem);padding-top:1rem;
 .sp-inv-price{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;min-width:9ch}
 /* Le prix d'une place défilante libre, dans son propre span pour que le
    rafraîchissement client puisse le remplacer sans réécrire la ligne. */
-.sp-tape-price{font-variant-numeric:tabular-nums}
 /* Le bouton d'achat, posé dans la puce de l'emplacement. Contour d'encre
    plutôt qu'aplat : vingt boutons pleins feraient un mur, et surtout aucune
    couleur saturée n'entre ici — le vert/ambre/rouge reste au badge de verdict

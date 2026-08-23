@@ -1,7 +1,7 @@
 import {
-  escapeHtml, renderLayout, renderBreadcrumb, verdictBadge, stamp, dateRing, verdictChecks,
+  escapeHtml, renderLayout, renderBreadcrumb, verdictBadge, stamp, verdictChecks,
 } from './site-html.mjs';
-import { categoryLabel, categoryEmoji, SITE_ORIGIN } from './site-data.mjs';
+import { categoryLabel, SITE_ORIGIN } from './site-data.mjs';
 import {
   formatMoney, formatMonthlyPrice, formatDate, formatStampDate, interpolate, pluralize,
   MONTHLY_BASES,
@@ -77,10 +77,9 @@ function renderMetaRow(tool, lang, ui, categories, voteCount, categoryPath) {
 
   items.push([t.buildTimeLabel, escapeHtml(ui.diyTimeEstimate?.[tool.diyTimeEstimate] ?? tool.diyTimeEstimate)]);
 
-  const emoji = categoryEmoji(categories, tool.category);
   items.push([
     t.categoryMetaLabel,
-    `<a href="${escapeHtml(categoryPath)}">${emoji ? `${emoji} ` : ''}${escapeHtml(catLabel)}</a>`,
+    `<a href="${escapeHtml(categoryPath)}">${escapeHtml(catLabel)}</a>`,
   ]);
 
   const votesValue = voteCount === null
@@ -102,7 +101,6 @@ export function renderToolPage({
   const d = s.dossier;
   const verdict = s.verdicts[tool.verdict];
   const catLabel = categoryLabel(categories, tool.category, lang);
-  const catEmoji = categoryEmoji(categories, tool.category);
   const favicon = favicons?.[tool.slug] ?? PLACEHOLDER_PATH;
 
   const title = interpolate(t.titleTemplate, { name: tool.name });
@@ -146,22 +144,16 @@ export function renderToolPage({
   // laquelle le service a arrêté ce verdict), le dateur rond porte la SEULE
   // occurrence tamponnée de la date du relevé de prix (spec : un porteur par page).
   const folderStamps = `<div class="folder-stamps">
-        <div>
-          ${verdictBadge(tool.verdict, verdict.label, 'badge-lg')}
-          <span class="stamp-sub">${escapeHtml(`${d.verdictRecordedOn} ${formatStampDate(buildDate)}`)}</span>
-        </div>
-        ${dateRing(d.verifiedOn, formatStampDate(tool.pricing.checkedOn))}
+        ${verdictBadge(tool.verdict, verdict.label, 'badge-lg')}
+        <span class="stamp-sub">${escapeHtml(`${d.verdictRecordedOn} ${formatStampDate(buildDate)} · ${d.verifiedOn} ${formatStampDate(tool.pricing.checkedOn)}`)}</span>
       </div>`;
 
-  const folder = `    <div class="folder">
-      <span class="folder-tab">${catEmoji ? `${catEmoji} ` : ''}${escapeHtml(catLabel)}</span>
-      <span class="paper-clip" aria-hidden="true"></span>
-      <span class="hole hole-a" aria-hidden="true"></span>
-      <span class="hole hole-b" aria-hidden="true"></span>
+  const folder = `    <div class="folder folder-${tool.verdict}">
+      <p class="folder-cote">${escapeHtml(cote)}</p>
       <div class="folder-top">
         <div class="folder-id">
           <h1><img class="tool-favicon" src="${escapeHtml(favicon)}" alt="" width="40" height="40"> ${h1}</h1>
-          <p class="tagline">${catEmoji ? `${catEmoji} ` : ''}<a href="${categoryPath}">${escapeHtml(catLabel)}</a>${tool.subcategory ? ` — ${escapeHtml(tool.subcategory)}` : ''}</p>
+          <p class="tagline"><a href="${categoryPath}">${escapeHtml(catLabel)}</a>${tool.subcategory ? ` — ${escapeHtml(tool.subcategory)}` : ''}</p>
         </div>
         ${folderStamps}
       </div>
@@ -169,10 +161,6 @@ export function renderToolPage({
 ${metaRow}
       </dl>
       ${verdictChecks(tool.verdict, s.verdicts, d.checkedNote)}
-      <div class="folder-foot">
-        <span class="barcode" aria-hidden="true"></span>
-        <span class="barcode-label">${escapeHtml(`${cote} — ${tool.name}`)}</span>
-      </div>
     </div>`;
 
   // ---- bordereau de suivi -------------------------------------------------

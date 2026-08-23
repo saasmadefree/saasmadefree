@@ -4,6 +4,8 @@ import { env, createExecutionContext, waitOnExecutionContext } from 'cloudflare:
 // Node avant l'entrée dans workerd, où node:fs ne voit pas le disque réel.
 import MIGRATION_INIT from '../migrations/0001_init.sql?raw';
 import MIGRATION_STATS from '../migrations/0003_stats.sql?raw';
+import MIGRATION_VISITORS from '../migrations/0005_daily_visitors.sql?raw';
+import MIGRATION_COUNTRIES from '../migrations/0006_countries.sql?raw';
 import worker from '../src/index.mjs';
 
 async function applyMigration(sql) {
@@ -38,11 +40,13 @@ async function beacon(body, ip = '203.0.113.7') {
 }
 
 beforeEach(async () => {
-  for (const table of ['votes', 'rate', 'hits', 'uniques', 'events', 'crawlers']) {
+  for (const table of ['votes', 'rate', 'hits', 'uniques', 'events', 'crawlers', 'daily_visitors', 'countries']) {
     await env.DB.exec(`DROP TABLE IF EXISTS ${table}`);
   }
   await applyMigration(MIGRATION_INIT);
   await applyMigration(MIGRATION_STATS);
+  await applyMigration(MIGRATION_VISITORS);
+  await applyMigration(MIGRATION_COUNTRIES);
 });
 
 describe('POST /api/v1/stats/beacon — view', () => {

@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; font-family: Newsreader, Georgia, "Times New Roman", serif; }
+    a { color: #1D4E6B; text-decoration: none; }
+    a:hover { color: #14374D; text-decoration: underline; text-underline-offset: 3px; }
+    .mono { font-family: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace; font-variant-numeric: tabular-nums; }
+    .row:hover { background: #FFFFFF; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; min-height: 2060px; display: flex; flex-direction: column; background: #FAF7F0; color: #191712;">
+
+  <!-- BANDEAU HAUT — T01…T10 -->
+  <div style="display: flex; align-items: stretch; height: 36px; background: #F3EFE4; border-bottom: 1px solid #E0D9CA; overflow: hidden;">
+    <div class="mono" style="display: flex; align-items: center; flex-shrink: 0; font-size: 9.5px; letter-spacing: 0.15em; text-transform: uppercase; color: #8A8271; padding: 0 18px; border-right: 1px solid #E0D9CA;">10 places · dès 75 $US / 30 jours</div>
+    <sc-for list="{{ tapeTop }}" as="s" hint-placeholder-count="8">
+      <a href="#" class="mono" style="display: flex; align-items: center; gap: 9px; flex-shrink: 0; font-size: 11px; color: #6E6656; padding: 0 16px; border-right: 1px solid #E7E1D2;">
+        <span style="font-size: 9px; letter-spacing: 0.1em; color: #B6AC96;">{{ s }}</span>
+        <span>Slot libre</span>
+        <span style="color: #191712; font-weight: 500;">75 $US</span>
+      </a>
+    </sc-for>
+  </div>
+
+  <!-- Bandeau de service -->
+  <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; padding: 22px 24px 18px;">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="24" height="24" stroke="#191712" stroke-width="1.4"></rect>
+        <path d="M6 9.5h14M6 14h9M6 18.5h5" stroke="#191712" stroke-width="1.4" stroke-linecap="square"></path>
+      </svg>
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <div style="font-size: 21px; font-weight: 600; letter-spacing: -0.01em; line-height: 1;">SaaS Made Free</div>
+        <div class="mono" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #8A8271;">Annuaire ouvert · sans affiliation</div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 26px;">
+      <div class="mono" style="display: flex; align-items: center; gap: 24px; font-size: 11.5px; letter-spacing: 0.09em; text-transform: uppercase;">
+        <a href="#">Annuaire</a>
+        <a href="#">Catégories</a>
+        <a href="#">Proposer un outil</a>
+        <a href="#">Sponsoriser</a>
+        <a href="#">Code source</a>
+      </div>
+      <div style="width: 1px; height: 18px; background: #D8D0BF;"></div>
+      <div class="mono" style="display: flex; align-items: center; gap: 8px; font-size: 11.5px; letter-spacing: 0.09em; text-transform: uppercase;">
+        <span style="color: #191712; border-bottom: 2px solid #191712; padding-bottom: 2px;">FR</span>
+        <span style="color: #B0A794;">EN</span>
+      </div>
+      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true">
+        <circle cx="8.5" cy="8.5" r="7" stroke="#5C564A" stroke-width="1.3"></circle>
+        <path d="M8.5 1.5v14a7 7 0 000-14z" fill="#5C564A"></path>
+      </svg>
+    </div>
+  </div>
+  <div style="height: 1px; background: #191712; margin: 0 24px;"></div>
+
+  <!-- SHELL : rail L · colonne · rail R -->
+  <div style="display: grid; grid-template-columns: 204px minmax(0, 1fr) 204px; column-gap: 28px; padding: 24px 24px 0; align-items: start;">
+
+    <!-- RAIL GAUCHE — L1…L4 -->
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <sc-for list="{{ railLeft }}" as="s" hint-placeholder-count="4">
+        <a href="#" style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-height: 106px; border: 1px dashed #C4BBA4; padding: 16px 12px; text-align: center;">
+          <span class="mono" style="position: absolute; top: 7px; left: 9px; font-size: 8.5px; letter-spacing: 0.12em; color: #C0B69F;">{{ s }}</span>
+          <span class="mono" style="font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #A29981;">Slot libre</span>
+          <span style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: #191712; line-height: 1.1;">149 $US</span>
+          <span class="mono" style="font-size: 9.5px; color: #8A8271;">/ 30 jours</span>
+          <span class="mono" style="font-size: 9.5px; color: #1D4E6B; text-decoration: underline; margin-top: 3px;">Réserver →</span>
+        </a>
+      </sc-for>
+      <div class="mono" style="font-size: 9.5px; line-height: 1.5; color: #A29981; text-align: center; padding: 0 4px;">Le prix monte d’une marche à chaque slot pris.</div>
+    </div>
+
+    <!-- COLONNE PRINCIPALE -->
+    <div style="min-width: 0;">
+      <div class="mono" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #8A8271; margin-bottom: 22px;">530 fiches instruites · état arrêté le 12.08.2026</div>
+      <h1 style="margin: 0; font-size: 56px; line-height: 1.04; font-weight: 400; letter-spacing: -0.02em; text-wrap: pretty;">Quels abonnements <em style="font-weight: 300;">ne tiennent qu’à un&nbsp;prompt</em>&nbsp;?</h1>
+      <p style="margin: 24px 0 0; font-size: 20px; line-height: 1.55; color: #5C564A; max-width: 620px; text-wrap: pretty;">Un annuaire ouvert des logiciels que tu paies chaque mois, et de la possibilité qu’un agent IA en reconstruise une version que tu possèdes. Un prompt par outil, prêt à coller.</p>
+
+      <!-- La distribution -->
+      <div style="margin-top: 42px;">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px;">
+          <div class="mono" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #8A8271;">Le verdict des 530 fiches</div>
+          <div class="mono" style="font-size: 11px; color: #8A8271;">Cliquer une bande pour filtrer</div>
+        </div>
+        <div style="display: flex; border: 1px solid #191712;">
+          <sc-for list="{{ verdicts }}" as="v" hint-placeholder-count="3">
+            <div style="flex-grow: {{ v.count }}; flex-basis: 0; background: {{ v.tint }}; border-left: 4px solid {{ v.color }}; padding: 16px 18px 14px; cursor: pointer;">
+              <div style="font-size: 28px; font-weight: 600; line-height: 1; color: {{ v.color }}; letter-spacing: -0.01em;">{{ v.count }}</div>
+              <div class="mono" style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: {{ v.color }}; margin-top: 7px;">{{ v.label }}</div>
+              <div class="mono" style="font-size: 10.5px; color: #5C564A; margin-top: 4px;">{{ v.share }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <p style="margin: 14px 0 0; font-size: 16px; line-height: 1.5; color: #5C564A; max-width: 640px;">Treize pour cent seulement se remplacent proprement. Le site le dit avant de dire autre chose — c’est la raison pour laquelle ce n’est pas un site d’affiliation.</p>
+      </div>
+
+      <!-- Recherche -->
+      <div style="margin-top: 42px;">
+        <div style="display: flex; align-items: center; gap: 14px; border-bottom: 2px solid #191712; padding-bottom: 12px;">
+          <svg width="21" height="21" viewBox="0 0 21 21" fill="none" aria-hidden="true">
+            <circle cx="9" cy="9" r="6.7" stroke="#191712" stroke-width="1.6"></circle>
+            <path d="M14 14l5 5" stroke="#191712" stroke-width="1.6" stroke-linecap="square"></path>
+          </svg>
+          <span style="font-size: 22px; font-style: italic; font-weight: 300; color: #A29981;">Chercher un outil — Notion, Ahrefs, Calendly…</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px;">
+          <sc-for list="{{ cats }}" as="c" hint-placeholder-count="8">
+            <span class="mono" style="font-size: 10.5px; letter-spacing: 0.07em; text-transform: uppercase; color: #4A4436; border: 1px solid #D8D0BF; padding: 6px 11px; cursor: pointer;">{{ c }}</span>
+          </sc-for>
+          <a href="#" class="mono" style="font-size: 10.5px; letter-spacing: 0.07em; text-transform: uppercase; border: 1px solid #1D4E6B; padding: 6px 11px;">Les 51 catégories →</a>
+        </div>
+      </div>
+
+      <!-- Le registre -->
+      <div style="margin-top: 44px;">
+        <div style="display: grid; grid-template-columns: 28px minmax(0, 1fr) 178px 96px 88px 112px; gap: 16px; padding-bottom: 9px; border-bottom: 1px solid #191712;">
+          <div class="mono" style="font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A8271;">Nº</div>
+          <div class="mono" style="font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A8271;">Outil</div>
+          <div class="mono" style="font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A8271;">Catégorie</div>
+          <div class="mono" style="font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A8271; text-align: right;">Par mois</div>
+          <div class="mono" style="font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A8271; text-align: right;">Par an</div>
+          <div class="mono" style="font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A8271; text-align: right;">Verdict</div>
+        </div>
+        <sc-for list="{{ tools }}" as="t" hint-placeholder-count="10">
+          <div class="row" style="display: grid; grid-template-columns: 28px minmax(0, 1fr) 178px 96px 88px 112px; gap: 16px; align-items: center; padding: 13px 0; border-bottom: 1px solid #E8E2D4;">
+            <div class="mono" style="font-size: 11.5px; color: #B0A794;">{{ t.rank }}</div>
+            <div style="display: flex; flex-direction: column; gap: 1px; min-width: 0;">
+              <a href="#" style="font-size: 19px; font-weight: 500; color: #191712; letter-spacing: -0.01em;">{{ t.name }}</a>
+              <span class="mono" style="font-size: 10.5px; color: #A29981;">{{ t.domain }}</span>
+            </div>
+            <div class="mono" style="font-size: 11px; color: #5C564A;">{{ t.cat }}</div>
+            <div class="mono" style="font-size: 13px; text-align: right; color: #191712;">{{ t.price }}</div>
+            <div class="mono" style="font-size: 13px; text-align: right; color: #8A8271;">{{ t.year }}</div>
+            <div style="display: flex; align-items: center; justify-content: flex-end; gap: 7px;">
+              <span style="width: 7px; height: 7px; background: {{ t.color }};"></span>
+              <span class="mono" style="font-size: 10.5px; letter-spacing: 0.13em; text-transform: uppercase; color: {{ t.color }}; border-bottom: 2px solid {{ t.color }}; padding-bottom: 3px;">{{ t.verdict }}</span>
+            </div>
+          </div>
+        </sc-for>
+        <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 20px;">
+          <a href="#" style="font-size: 18px; font-weight: 500;">Voir les 530 fiches →</a>
+          <span class="mono" style="font-size: 11px; color: #8A8271;">Classées par votes, puis par degré de préparation</span>
+        </div>
+      </div>
+
+      <!-- Totaux -->
+      <div style="margin-top: 48px; border-top: 1px solid #191712; padding-top: 20px; display: flex; justify-content: space-between; gap: 32px;">
+        <sc-for list="{{ totals }}" as="k" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; gap: 5px;">
+            <span class="mono" style="font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8A8271;">{{ k.label }}</span>
+            <span style="font-size: 24px; font-weight: 500; letter-spacing: -0.01em;">{{ k.value }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- RAIL DROIT — R1…R4 (R1 en état « pris », placeholder explicite) -->
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="position: relative; display: flex; flex-direction: column; gap: 7px; min-height: 106px; border: 1px solid #C4BBA4; background: #FFFFFF; padding: 14px 13px;">
+        <span class="mono" style="position: absolute; top: 7px; right: 9px; font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: #B0A794; border: 1px solid #DCD4C2; padding: 1px 4px;">Exemple</span>
+        <span class="mono" style="position: absolute; top: 7px; left: 9px; font-size: 8.5px; letter-spacing: 0.12em; color: #C0B69F;">R1</span>
+        <div style="display: flex; align-items: center; gap: 9px; margin-top: 12px;">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+            <rect x="0.6" y="0.6" width="28.8" height="28.8" rx="4" fill="#F1ECDE" stroke="#DCD4C2" stroke-width="1.2"></rect>
+            <path d="M9 19l4-5 3 3.5 2-2.5 3 4z" fill="#C4BBA4"></path>
+            <circle cx="11" cy="11" r="2" fill="#C4BBA4"></circle>
+          </svg>
+          <span style="font-size: 15px; font-weight: 600; line-height: 1.2; overflow-wrap: anywhere;">[TA MARQUE]</span>
+        </div>
+        <span style="font-size: 12.5px; line-height: 1.4; color: #6E6656;">[Une ligne de description — 80 caractères au maximum.]</span>
+      </div>
+      <sc-for list="{{ railRight }}" as="s" hint-placeholder-count="3">
+        <a href="#" style="position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-height: 106px; border: 1px dashed #C4BBA4; padding: 16px 12px; text-align: center;">
+          <span class="mono" style="position: absolute; top: 7px; left: 9px; font-size: 8.5px; letter-spacing: 0.12em; color: #C0B69F;">{{ s }}</span>
+          <span class="mono" style="font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: #A29981;">Slot libre</span>
+          <span style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: #191712; line-height: 1.1;">149 $US</span>
+          <span class="mono" style="font-size: 9.5px; color: #8A8271;">/ 30 jours</span>
+          <span class="mono" style="font-size: 9.5px; color: #1D4E6B; text-decoration: underline; margin-top: 3px;">Réserver →</span>
+        </a>
+      </sc-for>
+      <div class="mono" style="font-size: 9.5px; line-height: 1.5; color: #A29981; text-align: center; padding: 0 4px;">Un sponsor n’achète jamais un verdict.</div>
+    </div>
+  </div>
+
+  <!-- Pied -->
+  <div style="margin: 52px 24px 0; border-top: 1px solid #E0D9CA; padding: 18px 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 32px;">
+    <div class="mono" style="display: flex; gap: 22px; font-size: 11px;">
+      <a href="#">Code source</a><a href="#">Stats publiques</a><a href="#">Vie privée</a><a href="#">Sponsoriser</a>
+    </div>
+    <span class="mono" style="font-size: 11px; color: #A29981;">Aucune requête vers un tiers · aucun cookie · aucun lien affilié</span>
+  </div>
+
+  <div style="flex-grow: 1;"></div>
+  <!-- BANDEAU BAS — B01…B10 -->
+  <div style="display: flex; align-items: stretch; height: 36px; background: #F3EFE4; border-top: 1px solid #E0D9CA; overflow: hidden;">
+    <div class="mono" style="display: flex; align-items: center; flex-shrink: 0; font-size: 9.5px; letter-spacing: 0.15em; text-transform: uppercase; color: #8A8271; padding: 0 18px; border-right: 1px solid #E0D9CA;">10 places · dès 75 $US / 30 jours</div>
+    <sc-for list="{{ tapeBottom }}" as="s" hint-placeholder-count="8">
+      <a href="#" class="mono" style="display: flex; align-items: center; gap: 9px; flex-shrink: 0; font-size: 11px; color: #6E6656; padding: 0 16px; border-right: 1px solid #E7E1D2;">
+        <span style="font-size: 9px; letter-spacing: 0.1em; color: #B6AC96;">{{ s }}</span>
+        <span>Slot libre</span>
+        <span style="color: #191712; font-weight: 500;">75 $US</span>
+      </a>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"$preview":{"width":1440,"height":2060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const YES = '#2F6A44', KINDA = '#7A5410', NO = '#9E3324';
+    const ink = { yes: YES, kinda: KINDA, no: NO };
+    const label = { yes: 'Oui', kinda: 'Presque', no: 'Non' };
+    const raw = [
+      ['01', 'Calendly', 'calendly.com', 'Planification', '12 $US', '144 $US', 'kinda'],
+      ['02', 'Typeform', 'typeform.com', 'Formulaires et sondages', '25 $US', '300 $US', 'yes'],
+      ['03', 'Obsidian', 'obsidian.md', 'Notes et gestion des connaissances', '4 $US', '48 $US', 'yes'],
+      ['04', '1Password', '1password.com', 'Sécurité et mots de passe', '2,99 $US', '35,88 $US', 'kinda'],
+      ['05', 'ActiveCampaign', 'activecampaign.com', 'Newsletters et publication', '15 $US', '180 $US', 'no'],
+      ['06', 'Adobe Acrobat Pro', 'adobe.com', 'PDF et documents', '29,99 $US', '359,88 $US', 'no'],
+      ['07', 'Adobe Lightroom', 'adobe.com', 'Photographie', '11,99 $US', '143,88 $US', 'kinda'],
+      ['08', 'Ahrefs', 'ahrefs.com', 'SEO et marketing', '29 $US', '348 $US', 'no'],
+      ['09', 'Airtable', 'airtable.com', 'Bases de données', '24 $US', '288 $US', 'kinda'],
+      ['10', 'AllTrails Plus', 'alltrails.com', 'Voyage et plein air', '3 $US', '36 $US', 'no'],
+    ];
+    return {
+      railLeft: ['L1', 'L2', 'L3', 'L4'],
+      railRight: ['R2', 'R3', 'R4'],
+      tapeTop: ['T01', 'T02', 'T03', 'T04', 'T05', 'T06', 'T07', 'T08'],
+      tapeBottom: ['B01', 'B02', 'B03', 'B04', 'B05', 'B06', 'B07', 'B08'],
+      verdicts: [
+        { count: 70, label: 'Oui', share: '13 % du catalogue', color: YES, tint: '#EDF2ED' },
+        { count: 284, label: 'Presque', share: '54 % du catalogue', color: KINDA, tint: '#F5F0E4' },
+        { count: 176, label: 'Non', share: '33 % du catalogue', color: NO, tint: '#F7ECE9' },
+      ],
+      cats: ['Écriture IA', 'SEO et marketing', 'CRM et prospection', 'Montage audio et vidéo', 'Réseaux sociaux', 'Automatisation', 'Bases de données', 'Outils pour développeurs'],
+      tools: raw.map(([rank, name, domain, cat, price, year, v]) => ({
+        rank, name, domain, cat, price, year, verdict: label[v], color: ink[v],
+      })),
+      totals: [
+        { label: 'Fiches publiées', value: '530' },
+        { label: 'Catégories peuplées', value: '51' },
+        { label: 'Catalogue par mois', value: '11 760,18 $US' },
+        { label: 'Prix vérifiés depuis le', value: '30.07.2026' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

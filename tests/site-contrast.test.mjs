@@ -36,6 +36,17 @@ for (const theme of ['light', 'dark']) {
     // du clair normatif, ambre/rouge, est à ≈63). La discrimination pour les
     // lecteurs daltoniens n'est pas portée par ce test : elle est garantie
     // par les libellés (le verdict n'est jamais la couleur seule, spec §7).
+    // Direction « Le Verdict » : les trois encres servent AUSSI de fond
+    // d'aplat (bande de l'accueil, chemise de la fiche). `onStamp` est la
+    // seule encre qu'on ait le droit d'y poser — ce test est ce qui rend cette
+    // inversion sûre, dans les deux thèmes.
+    for (const stampInk of ['stampYes', 'stampKinda', 'stampNo']) {
+      it(`onStamp sur ${stampInk} ≥ 4.5`, () => {
+        const t = TOKENS[theme];
+        expect(ratio(t.onStamp, t[stampInk])).toBeGreaterThanOrEqual(4.5);
+      });
+    }
+
     it('les trois encres de verdict ne s’effondrent pas l’une sur l’autre (ΔRGB ≥ 50)', () => {
       const t = TOKENS[theme];
       const rgb = (hex) => [0, 2, 4].map((i) => parseInt(hex.slice(1).slice(i, i + 2), 16));

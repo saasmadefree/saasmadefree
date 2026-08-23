@@ -1,5 +1,5 @@
 import { escapeHtml, renderLayout, renderBreadcrumb } from './site-html.mjs';
-import { categoryLabel, categoryEmoji } from './site-data.mjs';
+import { categoryLabel } from './site-data.mjs';
 import { pluralize } from './site-format.mjs';
 import { organizationJsonLd, breadcrumbJsonLd } from './site-seo.mjs';
 
@@ -23,13 +23,12 @@ export function renderCategoriesIndexPage({
 
   const items = categorySlugs
     .map((slug) => {
-      const emoji = categoryEmoji(categories, slug);
       const label = categoryLabel(categories, slug, lang);
       const count = countsBySlug[slug] ?? 0;
       const tally = pluralize(count, lang, c.toolCountOne, c.toolCountOther);
       return `        <li class="category-row">
           <a href="${homePath}categories/${slug}/">
-            ${emoji ? `<span aria-hidden="true">${emoji}</span>` : ''}${escapeHtml(label)}
+            ${escapeHtml(label)}
             <span class="leader" aria-hidden="true"></span>
             <span class="category-count">${escapeHtml(tally)}</span>
           </a>

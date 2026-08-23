@@ -1,5 +1,5 @@
 import {
-  RAIL_SLOTS, TAPE_TOP_SLOTS, TAPE_BOTTOM_SLOTS,
+  RAIL_SLOTS, TAPE_BOTTOM_SLOTS,
   RAIL_LADDER_USD, TAPE_LADDER_USD, ALL_SLOTS,
 } from './sponsor-inventory.generated.mjs';
 import { dayKey } from './hash.mjs';
@@ -75,19 +75,17 @@ export class SponsorError extends Error {
 }
 
 const RAIL = new Set(RAIL_SLOTS);
-const TOP = new Set(TAPE_TOP_SLOTS);
 const BOTTOM = new Set(TAPE_BOTTOM_SLOTS);
 
 export function kindOf(slot) {
   if (RAIL.has(slot)) return 'rail';
-  if (TOP.has(slot) || BOTTOM.has(slot)) return 'tape';
+  if (BOTTOM.has(slot)) return 'tape';
   return null;
 }
 
 /** Quel compteur d'occupation gouverne ce slot. */
 function bucketOf(slot) {
   if (RAIL.has(slot)) return 'rail';
-  if (TOP.has(slot)) return 'top';
   if (BOTTOM.has(slot)) return 'bottom';
   return null;
 }

@@ -350,7 +350,9 @@ async function handle(request, env) {
       // `uniques`, qui doit garder l'identité visiteur du schéma de hachage
       // des votes.
       if (!(await overRateLimit(env, 'b:' + ipHash, now))) {
-        await recordBeacon(env, body, ipHash, day);
+        // Le pays vient de la couche réseau, pas du corps du beacon : le
+        // navigateur n'a rien à déclarer, et rien à falsifier.
+        await recordBeacon(env, body, ipHash, day, request.cf && request.cf.country);
       }
     } catch { /* fail-open */ }
     return json({}, 204, env);
