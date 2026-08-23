@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { renderStatsPage } from '../scripts/lib/site-page-stats.mjs';
 import { escapeHtml } from '../scripts/lib/site-html.mjs';
+import { assetUrl } from '../scripts/lib/site-assets.mjs';
 
 const uiEn = JSON.parse(readFileSync('data/i18n/en/ui.json', 'utf8'));
 const uiFr = JSON.parse(readFileSync('data/i18n/fr/ui.json', 'utf8'));
@@ -38,7 +39,7 @@ describe('renderStatsPage', () => {
   it("expose l'API et charge stats.js", () => {
     const html = render();
     expect(html).toContain('data-stats-api="https://votes.saasmadefree.com/api/v1/stats"');
-    expect(html).toContain('<script src="/assets/stats.js" defer></script>');
+    expect(html).toContain(`<script src="${assetUrl('stats.js')}" defer></script>`);
   });
 
   it('contient tous les hooks DOM que stats.js utilise', () => {

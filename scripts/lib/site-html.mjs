@@ -1,4 +1,5 @@
 import { SITE_ORIGIN } from './site-data.mjs';
+import { assetUrl } from './site-assets.mjs';
 
 export const GITHUB_REPO_URL = 'https://github.com/saasmadefree/saasmadefree';
 // Le cachet GitHub de l'en-tête : l'octicon « mark-github » inline, à
@@ -150,7 +151,7 @@ export function renderLayout({
     hreflangLinks,
     xDefaultLink,
     '<link rel="icon" href="/icon.png">',
-    '<link rel="stylesheet" href="/assets/site.css">',
+    `<link rel="stylesheet" href="${assetUrl('site.css')}">`,
     // Ce script est volontairement inline et synchrone, avant la feuille de
     // style : un thème appliqué après le premier rendu ferait clignoter la page
     // en clair avant de passer en sombre. C'est le seul script bloquant du site.
@@ -262,8 +263,8 @@ ${main}
   ${sp.railRight}
 </div>
 ${sp.tapeBottom}
-<script src="/assets/site.js" defer></script>
-<script src="/assets/beacon.js" defer></script>
+<script src="${assetUrl('site.js')}" defer></script>
+<script src="${assetUrl('beacon.js')}" defer></script>
 </body>
 </html>
 `;

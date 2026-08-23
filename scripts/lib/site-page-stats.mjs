@@ -12,6 +12,7 @@
 // hauteur : elles forment un seul bloc de notes en bas de page.
 import { renderLayout, escapeHtml } from './site-html.mjs';
 import { STATS_API_URL } from './site-data.mjs';
+import { assetUrl } from './site-assets.mjs';
 
 // Une tuile : libellé, chiffre (tiret tant que stats.js n'a pas répondu, ou
 // valeur de build), légende. `dot` colore un carré devant le libellé — la
@@ -132,7 +133,7 @@ export function renderStatsPage({
     <p>${escapeHtml(t.aiVisitorsNote)}</p>
   </section>
 </div>
-<script src="/assets/stats.js" defer></script>`;
+<script src="${assetUrl('stats.js')}" defer></script>`;
 
   return renderLayout({
     lang, path,

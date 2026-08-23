@@ -2,7 +2,7 @@
 // dist/, à partir des mêmes données que le feed (scripts/build-feed.mjs, qui
 // doit avoir tourné juste avant — voir npm run build). Aucune dépendance,
 // aucun framework : uniquement du Node ESM qui écrit du HTML/CSS/JS brut.
-import { mkdir, writeFile, cp } from 'node:fs/promises';
+import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { loadData } from './lib/load-data.mjs';
 import {
@@ -10,7 +10,6 @@ import {
   categoriesForLang, topCategoriesByCount, langsForCategory, catalogueFigures, mrrDestroyed,
 } from './lib/site-data.mjs';
 import { fetchFavicons } from './lib/site-favicons.mjs';
-import { SITE_CSS } from './lib/site-styles.mjs';
 import { buildSitemap } from './lib/site-seo.mjs';
 import { renderHomePage } from './lib/site-page-home.mjs';
 import { renderCategoryPage } from './lib/site-page-category.mjs';
@@ -21,7 +20,7 @@ import { renderStatsPage } from './lib/site-page-stats.mjs';
 import { renderRootPage } from './lib/site-page-root.mjs';
 import { render404Page } from './lib/site-page-404.mjs';
 import { sponsorContext, renderSponsorSlots, selectSponsors } from './lib/site-sponsors.mjs';
-import { renderBeaconScript } from './lib/site-beacon.mjs';
+import { ASSET_FILES, ASSET_DIR, assetUrl } from './lib/site-assets.mjs';
 
 const OUT = 'dist';
 
@@ -318,10 +317,15 @@ async function main() {
   }
 
   // ---- artefacts partagés -------------------------------------------------
-  await writeText(join(OUT, 'assets', 'site.css'), SITE_CSS);
-  await cp(join('scripts', 'assets', 'site.js'), join(OUT, 'assets', 'site.js'));
-  await cp(join('scripts', 'assets', 'stats.js'), join(OUT, 'assets', 'stats.js'));
-  await writeText(join(OUT, 'assets', 'beacon.js'), renderBeaconScript());
+  // Sous /assets/v/<empreinte>/ et nulle part ailleurs (voir site-assets.mjs) :
+  // le contenu écrit est exactement celui dont l'empreinte a été calculée.
+  for (const [name, text] of Object.entries(ASSET_FILES)) {
+    await writeText(join(OUT, ...ASSET_DIR.split('/').filter(Boolean), name), text);
+  }
+  // privacy.html est statique dans public/ (copié par build-feed) : on le
+  // réécrit pour qu'il charge la feuille versionnée, comme toutes les pages.
+  const privacy = await readFile(join('public', 'privacy.html'), 'utf8');
+  await writeText(join(OUT, 'privacy.html'), privacy.replace('href="/assets/site.css"', `href="${assetUrl('site.css')}"`));
   await writeText(join(OUT, 'sitemap.xml'), buildSitemap(sitemapPages));
   console.log(
     `Site écrit dans ${OUT}/ — ${langs.length} langue(s), ${toolPageCount} fiche(s), ` +
