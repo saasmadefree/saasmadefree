@@ -323,6 +323,8 @@ describe('POST /api/v1/sponsors/checkout — le prix ne vient jamais du client',
     expect(sent.get('line_items[0][price_data][unit_amount]')).toBe('14900');
     expect(sent.get('line_items[0][price_data][currency]')).toBe('usd');
     expect(sent.get('metadata[slot]')).toBe('L1');
+    expect(sent.get('metadata[project]')).toBe('saasmadefree');
+    expect(sent.get('payment_intent_data[metadata][project]')).toBe('saasmadefree');
     expect(sent.get('metadata[months]')).toBe('1');
   });
 
@@ -626,6 +628,43 @@ describe('POST /api/v1/sponsors/webhook — signature', () => {
 });
 
 describe('POST /api/v1/sponsors/webhook — encaissement', () => {
+  it("acquitte en 200 le paiement d'un autre projet, sans rien écrire", async () => {
+    await reserveL1();
+    const res = await postWebhook(JSON.stringify(completedEvent({
+      id: 'cs_autre_projet',
+      metadata: { project: 'smartletter', workspace_id: 'w1' },
+    })));
+    expect(res.status).toBe(200);
+    expect((await res.json()).ignored).toBe('foreign_project');
+    expect(await orderRow('cs_autre_projet')).toBe(null);
+    expect((await slotRow('L1')).status).toBe('reserved');
+  });
+
+  it("acquitte en 200 un paiement sans étiquette ni slot (autre projet ancien)", async () => {
+    const res = await postWebhook(JSON.stringify(completedEvent({
+      id: 'cs_sans_etiquette',
+      metadata: {},
+    })));
+    expect(res.status).toBe(200);
+    expect(await orderRow('cs_sans_etiquette')).toBe(null);
+  });
+
+  it('refuse encore en 400 une session à nous aux métadonnées inexploitables', async () => {
+    const res = await postWebhook(JSON.stringify(completedEvent({
+      metadata: { project: 'saasmadefree', slot: 'L1', months: '7' },
+    })));
+    expect(res.status).toBe(400);
+  });
+
+  it('accepte une session étiquetée saasmadefree', async () => {
+    await reserveL1();
+    const res = await postWebhook(JSON.stringify(completedEvent({
+      metadata: { project: 'saasmadefree', slot: 'L1', months: '1', hold: HOLD },
+    })));
+    expect(res.status).toBe(200);
+    expect((await slotRow('L1')).status).toBe('paid');
+  });
+
   it('marque le slot payé et enregistre la commande avec les trois custom_fields', async () => {
     await reserveL1();
     const res = await postWebhook(JSON.stringify(completedEvent()));

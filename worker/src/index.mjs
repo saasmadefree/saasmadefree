@@ -226,6 +226,15 @@ async function handleSponsorWebhook(request, env) {
     return json({ received: true }, 200, env);
   }
   const session = event?.data?.object;
+  // Le compte Stripe est partagé avec d'autres projets : ce point de
+  // terminaison reçoit aussi leurs paiements. Un événement qui n'est pas à
+  // nous est acquitté en 200 sans rien toucher. Un 400 ferait re-tenter
+  // Stripe pendant trois jours puis désactiver le point de terminaison, et ce
+  // sont alors nos propres ventes qui ne seraient plus reçues. Les sessions
+  // créées avant l'étiquette `project` sont reconnues à leur slot.
+  if (!isOurSession(session)) {
+    return json({ received: true, ignored: 'foreign_project' }, 200, env);
+  }
   // « completed » ne veut pas dire encaissé : certains moyens de paiement se
   // règlent en différé. Le slot n'est attribué qu'une fois l'argent reçu.
   if (session?.payment_status !== 'paid') {
@@ -448,3 +457,17 @@ export default {
     try { await runScheduled(env, now); } catch { /* rien */ }
   },
 };
+
+/** Étiquette posée sur chaque session de paiement de ce projet. */
+const STRIPE_PROJECT = 'saasmadefree';
+
+/**
+ * Une session est à nous si elle porte notre étiquette, ou, faute
+ * d'étiquette (sessions antérieures), si elle désigne un de nos slots.
+ */
+function isOurSession(session) {
+  const project = session?.metadata?.project;
+  if (project !== undefined) return project === STRIPE_PROJECT;
+  return Boolean(kindOf(session?.metadata?.slot));
+}
+

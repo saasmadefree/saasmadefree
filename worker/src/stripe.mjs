@@ -91,6 +91,10 @@ export async function createCheckoutSession(
   form.set('cancel_url', cancelUrl);
   form.set('expires_at', String(Math.floor(expiresAt)));
   form.set('client_reference_id', slot);
+  // Le compte Stripe est partagé : l'étiquette dit aux autres projets que
+  // cette session n'est pas à eux, et à notre webhook qu'elle est à nous.
+  form.set('metadata[project]', 'saasmadefree');
+  form.set('payment_intent_data[metadata][project]', 'saasmadefree');
   form.set('metadata[slot]', slot);
   form.set('metadata[months]', String(months));
   // L'identifiant de réservation fait l'aller-retour par Stripe : c'est lui
