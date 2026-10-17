@@ -6,6 +6,7 @@ import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { loadData } from './lib/load-data.mjs';
 import { derivePriorArt } from './lib/prior-art.mjs';
+import { alternativesFor } from './lib/site-alternatives.mjs';
 import {
   SITE_ORIGIN, fetchVoteCounts, fetchStats, fetchSponsorSlots, siteLanguages, toolsForLang, sortTools,
   categoriesForLang, topCategoriesByCount, langsForCategory, catalogueFigures, mrrDestroyed,
@@ -50,11 +51,15 @@ function xDefaultOf(alternates) {
   return (alternates.find((a) => a.lang === 'en') ?? alternates[0]).path;
 }
 
-function buildToolViews(tools, i18n, lang, voteCounts) {
+function buildToolViews(tools, i18n, lang, voteCounts, projects, today) {
   const list = toolsForLang(tools, lang).map((tool) => ({
     ...tool,
     tagline: i18n.get(`${lang}/${tool.slug}`).tagline,
     path: `/${lang}/tools/${tool.slug}`,
+    // Noms des alternatives libres affichables (ni archivées ni inactives),
+    // dans l'ordre éditorial : la ligne « Alternatives gratuites » des cartes
+    // et la liste « Alternatives populaires » de l'accueil.
+    alternativeNames: alternativesFor(tool, projects, today).map(({ project }) => project.name),
   }));
   return sortTools(list, voteCounts);
 }
@@ -208,7 +213,7 @@ async function main() {
     });
     const sponsorSlots = renderSponsorSlots(sponsorCtx);
 
-    const toolViews = buildToolViews(tools, i18n, lang, voteCounts);
+    const toolViews = buildToolViews(tools, i18n, lang, voteCounts, projects, today);
     const categorySlugs = categoriesForLang(tools, lang);
     const topCategorySlugs = topCategoriesByCount(tools, lang, HOME_TOP_CATEGORIES);
     const homePath = `/${lang}/`;

@@ -1,7 +1,7 @@
 import { escapeHtml, renderLayout, renderBreadcrumb } from './site-html.mjs';
 import { categoryLabel } from './site-data.mjs';
 import { interpolate, pluralize } from './site-format.mjs';
-import { renderToolTable } from './site-table.mjs';
+import { renderToolGrid } from './site-table.mjs';
 import { organizationJsonLd, itemListJsonLd, breadcrumbJsonLd } from './site-seo.mjs';
 
 export function renderCategoryPage({
@@ -21,7 +21,7 @@ export function renderCategoryPage({
     { label, href: path },
   ];
 
-  const table = renderToolTable(toolViews, { lang, ui, categories, voteCounts, favicons });
+  const table = renderToolGrid(toolViews, { lang, ui, categories, voteCounts, favicons, headingLevel: 2 });
 
   const main = `    ${renderBreadcrumb(breadcrumbItems)}
     <div class="sheet piece-body">
