@@ -148,7 +148,7 @@ const tt = UI.en.site.tool;
 
 describe('renderProjectPage — titre et méta', () => {
   it('title lists up to 3 replaced tools with Intl.ListFormat', () => {
-    expect(doc.querySelector('title').textContent).toBe('Listmonk: Free Open Source Alternative to Mailchimp, Beehiiv and Kit (2026)');
+    expect(doc.querySelector('title').textContent).toBe('Listmonk: Free Open Source Alternative to Mailchimp, Beehiiv, and Kit (2026)');
     const fr = dom(render('listmonk', 'fr'));
     expect(fr.querySelector('title').textContent).toBe('Listmonk : alternative open source gratuite à Mailchimp, Beehiiv et Kit (2026)');
   });
@@ -169,10 +169,23 @@ describe('renderProjectPage — titre et méta', () => {
     expect(section(none, 'replaces-heading')).toBeNull();
   });
 
+  it('aucun outil remplacé : titre et description de repli avec la catégorie (Ruling 21)', () => {
+    const en = dom(render('listmonk', 'en', { replaced: [] }));
+    expect(en.querySelector('title').textContent).toBe('Listmonk: Free Open Source Newsletters & publishing Tool (2026)');
+    expect(en.querySelector('meta[name="description"]').getAttribute('content')).toBe(
+      'Listmonk is a free, open-source tool (Newsletters & publishing). Self-hosted newsletter and mailing list manager. See its license, its GitHub activity and what it won’t do.',
+    );
+    const fr = dom(render('listmonk', 'fr', { replaced: [] }));
+    expect(fr.querySelector('title').textContent).toBe('Listmonk : outil open source gratuit (Newsletters et publication, 2026)');
+    expect(fr.querySelector('meta[name="description"]').getAttribute('content')).toBe(
+      'Listmonk est un outil gratuit et open source (Newsletters et publication). Gestionnaire de newsletters auto-hébergé. Sa licence, son activité sur GitHub et ce qu’il ne fera pas pour toi.',
+    );
+  });
+
   it('méta-description : le nom, les outils remplacés et l’accroche', () => {
     const desc = doc.querySelector('meta[name="description"]').getAttribute('content');
     expect(desc).toContain('Listmonk');
-    expect(desc).toContain('Mailchimp, Beehiiv and Kit');
+    expect(desc).toContain('Mailchimp, Beehiiv, and Kit');
     expect(desc).toContain('Self-hosted newsletter and mailing list manager.');
   });
 

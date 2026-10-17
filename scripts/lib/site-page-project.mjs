@@ -29,7 +29,6 @@ import {
 export const MAX_RELATED_PROJECTS = 6;
 
 const DAY = 'T00:00:00Z';
-const LIST_LOCALE = { en: 'en-GB' };
 
 /**
  * Pages projet à générer : une par langue publiée (`langs`, dérivé de
@@ -276,13 +275,14 @@ export function renderProjectPage({
   const t = s.tool;
   const catLabel = categoryLabel(categories, project.categories[0], lang);
 
-  // « X, Y and Z » sans virgule d'Oxford, comme le titre du spec (D2) et
-  // celui d'openalternative.co : la forme en-GB de la liste, en seulement.
-  const list = new Intl.ListFormat(LIST_LOCALE[lang] ?? lang, { style: 'long', type: 'conjunction' })
+  const list = new Intl.ListFormat(lang, { style: 'long', type: 'conjunction' })
     .format(replaced.slice(0, 3).map((tool) => tool.name));
-  const vars = { name: project.name, list, year: buildDate.slice(0, 4), tagline: i18nEntry.tagline };
-  const title = interpolate(p.titleTemplate, vars);
-  const description = interpolate(p.metaDescriptionTemplate, vars);
+  const vars = { name: project.name, list, year: buildDate.slice(0, 4), tagline: i18nEntry.tagline, category: catLabel };
+  // Aucun outil remplacé (page alors noindex) : titre de repli par la
+  // catégorie plutôt qu'un « alternative to  » vide (Ruling 21).
+  const fallback = replaced.length === 0;
+  const title = interpolate(fallback ? p.titleFallbackTemplate : p.titleTemplate, vars);
+  const description = interpolate(fallback ? p.metaDescriptionFallbackTemplate : p.metaDescriptionTemplate, vars);
   const dateModified = projectDateModified(project);
 
   const breadcrumbItems = [

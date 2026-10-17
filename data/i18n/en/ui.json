@@ -271,6 +271,8 @@
     "project": {
       "titleTemplate": "{name}: Free Open Source Alternative to {list} ({year})",
       "metaDescriptionTemplate": "{name} is a free, open-source alternative to {list}. {tagline} See its license, its GitHub activity and what it won’t do.",
+      "titleFallbackTemplate": "{name}: Free Open Source {category} Tool ({year})",
+      "metaDescriptionFallbackTemplate": "{name} is a free, open-source tool ({category}). {tagline} See its license, its GitHub activity and what it won’t do.",
       "h1Template": "{name}",
       "factsHeading": "The facts",
       "startedLabel": "Started",
