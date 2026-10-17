@@ -23,10 +23,10 @@
     "anthropic-api-key",
     "hosting"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Slidev",
-      "url": "https://github.com/slidevjs/slidev"
+      "project": "slidev",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

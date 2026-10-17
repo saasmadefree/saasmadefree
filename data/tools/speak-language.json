@@ -23,11 +23,10 @@
   "requirements": [
     "openai-api-key"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Whisper",
-      "url": "https://github.com/openai/whisper",
-      "license": "MIT"
+      "project": "whisper",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

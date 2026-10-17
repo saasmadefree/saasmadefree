@@ -1,0 +1,18 @@
+{
+  "slug": "listmonk",
+  "name": "Listmonk",
+  "homepage": "https://github.com/knadh/listmonk",
+  "repo": "knadh/listmonk",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "newsletter"
+  ],
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "jitsi-meet",
+  "name": "Jitsi Meet",
+  "homepage": "https://github.com/jitsi/jitsi-meet",
+  "repo": "jitsi/jitsi-meet",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "video-meetings"
+  ],
+  "markets": [
+    "en"
+  ]
+}

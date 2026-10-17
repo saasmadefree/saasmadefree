@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "SEOnaut",
-      "url": "https://github.com/stjudewashere/seonaut"
+      "project": "seonaut",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

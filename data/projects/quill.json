@@ -1,0 +1,18 @@
+{
+  "slug": "quill",
+  "name": "quill",
+  "homepage": "https://github.com/digimata/quill",
+  "repo": "digimata/quill",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "meeting-notes"
+  ],
+  "markets": [
+    "en"
+  ]
+}

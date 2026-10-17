@@ -24,10 +24,10 @@
     "openai-api-key",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "whisper.cpp",
-      "url": "https://github.com/ggerganov/whisper.cpp"
+      "project": "whisper-cpp",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

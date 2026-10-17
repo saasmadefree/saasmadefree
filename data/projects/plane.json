@@ -1,0 +1,19 @@
+{
+  "slug": "plane",
+  "name": "Plane",
+  "homepage": "https://github.com/makeplane/plane",
+  "repo": "makeplane/plane",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "dev-tools",
+    "project-management"
+  ],
+  "markets": [
+    "en"
+  ]
+}

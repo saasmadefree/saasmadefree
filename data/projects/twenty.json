@@ -1,0 +1,18 @@
+{
+  "slug": "twenty",
+  "name": "Twenty",
+  "homepage": "https://github.com/twentyhq/twenty",
+  "repo": "twentyhq/twenty",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "crm-sales"
+  ],
+  "markets": [
+    "en"
+  ]
+}

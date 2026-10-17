@@ -1,0 +1,18 @@
+{
+  "slug": "baserow",
+  "name": "Baserow",
+  "homepage": "https://github.com/baserow/baserow",
+  "repo": "baserow/baserow",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "databases"
+  ],
+  "markets": [
+    "en"
+  ]
+}

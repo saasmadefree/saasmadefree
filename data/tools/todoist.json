@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Vikunja",
-      "url": "https://github.com/go-vikunja/vikunja"
+      "project": "vikunja",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

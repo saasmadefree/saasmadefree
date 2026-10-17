@@ -1,0 +1,18 @@
+{
+  "slug": "castopod",
+  "name": "Castopod",
+  "homepage": "https://github.com/ad-aures/castopod",
+  "repo": "ad-aures/castopod",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "audio-video"
+  ],
+  "markets": [
+    "en"
+  ]
+}

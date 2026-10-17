@@ -1,0 +1,18 @@
+{
+  "slug": "shiori",
+  "name": "Shiori",
+  "homepage": "https://github.com/go-shiori/shiori",
+  "repo": "go-shiori/shiori",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "read-it-later"
+  ],
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "novel",
+  "name": "Novel",
+  "homepage": "https://github.com/steven-tey/novel",
+  "repo": "steven-tey/novel",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-writing"
+  ],
+  "markets": [
+    "en"
+  ]
+}

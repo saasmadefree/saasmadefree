@@ -1,0 +1,19 @@
+{
+  "slug": "stirling-pdf",
+  "name": "Stirling PDF",
+  "homepage": "https://github.com/Stirling-Tools/Stirling-PDF",
+  "repo": "Stirling-Tools/Stirling-PDF",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "documents"
+  ],
+  "markets": [
+    "en"
+  ]
+}

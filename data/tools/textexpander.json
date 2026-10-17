@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Espanso",
-      "url": "https://github.com/espanso/espanso"
+      "project": "espanso",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

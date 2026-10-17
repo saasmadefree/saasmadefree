@@ -23,10 +23,10 @@
     "hosting",
     "domain"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Astro",
-      "url": "https://github.com/withastro/astro"
+      "project": "astro",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

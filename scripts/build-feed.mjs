@@ -46,7 +46,7 @@ for (const lang of LANGS) {
   for (const [slug, tool] of data.tools) {
     const entry = data.i18n.get(`${lang}/${slug}`);
     if (!entry) continue;
-    await writeJson(join(feedRoot, lang, 'tools', `${slug}.json`), buildToolRecord(tool, entry, lang));
+    await writeJson(join(feedRoot, lang, 'tools', `${slug}.json`), buildToolRecord(tool, entry, lang, data.projects));
     const promptPath = join(feedRoot, lang, 'prompts', `${slug}.txt`);
     await mkdir(dirname(promptPath), { recursive: true });
     await writeFile(promptPath, entry.prompt, 'utf8');

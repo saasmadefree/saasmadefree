@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "NocoDB",
-      "url": "https://github.com/nocodb/nocodb"
+      "project": "nocodb",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

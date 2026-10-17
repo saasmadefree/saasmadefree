@@ -1,0 +1,18 @@
+{
+  "slug": "mprocs",
+  "name": "mprocs",
+  "homepage": "https://github.com/pvolok/mprocs",
+  "repo": "pvolok/mprocs",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "dev-tools"
+  ],
+  "markets": [
+    "en"
+  ]
+}

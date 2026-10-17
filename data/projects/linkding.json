@@ -1,0 +1,18 @@
+{
+  "slug": "linkding",
+  "name": "linkding",
+  "homepage": "https://github.com/sissbruecker/linkding",
+  "repo": "sissbruecker/linkding",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "read-it-later"
+  ],
+  "markets": [
+    "en"
+  ]
+}

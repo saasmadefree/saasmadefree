@@ -1,0 +1,18 @@
+{
+  "slug": "vikunja",
+  "name": "Vikunja",
+  "homepage": "https://github.com/go-vikunja/vikunja",
+  "repo": "go-vikunja/vikunja",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "tasks"
+  ],
+  "markets": [
+    "en"
+  ]
+}

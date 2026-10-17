@@ -44,16 +44,15 @@
                  "database", "oauth-app", "email-provider", "none"]
       }
     },
-    "priorArt": {
-      "type": "array",
+    "alternatives": {
+      "type": "array", "maxItems": 12, "uniqueItems": true,
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["name", "url"],
+        "required": ["project", "fit"],
         "properties": {
-          "name": { "type": "string", "minLength": 1 },
-          "url": { "type": "string", "format": "uri" },
-          "license": { "type": "string" }
+          "project": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,63}$" },
+          "fit": { "enum": ["full", "partial", "niche"] }
         }
       }
     },

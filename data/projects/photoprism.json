@@ -1,0 +1,18 @@
+{
+  "slug": "photoprism",
+  "name": "PhotoPrism",
+  "homepage": "https://github.com/photoprism/photoprism",
+  "repo": "photoprism/photoprism",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "photography"
+  ],
+  "markets": [
+    "en"
+  ]
+}

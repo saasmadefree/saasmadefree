@@ -24,11 +24,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Weblate",
-      "url": "https://github.com/WeblateOrg/weblate",
-      "license": "GPL-3.0"
+      "project": "weblate",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

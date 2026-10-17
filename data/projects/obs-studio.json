@@ -1,0 +1,18 @@
+{
+  "slug": "obs-studio",
+  "name": "OBS Studio",
+  "homepage": "https://github.com/obsproject/obs-studio",
+  "repo": "obsproject/obs-studio",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "screen-recording"
+  ],
+  "markets": [
+    "en"
+  ]
+}

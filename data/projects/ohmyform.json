@@ -1,0 +1,18 @@
+{
+  "slug": "ohmyform",
+  "name": "OhMyForm",
+  "homepage": "https://github.com/ohmyform/ohmyform",
+  "repo": "ohmyform/ohmyform",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "forms"
+  ],
+  "markets": [
+    "en"
+  ]
+}

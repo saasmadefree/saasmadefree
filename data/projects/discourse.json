@@ -1,0 +1,18 @@
+{
+  "slug": "discourse",
+  "name": "Discourse",
+  "homepage": "https://github.com/discourse/discourse",
+  "repo": "discourse/discourse",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "community"
+  ],
+  "markets": [
+    "en"
+  ]
+}

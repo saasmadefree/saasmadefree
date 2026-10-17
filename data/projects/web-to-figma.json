@@ -1,0 +1,18 @@
+{
+  "slug": "web-to-figma",
+  "name": "dom-to-figma",
+  "homepage": "https://github.com/figitdesign/web-to-figma",
+  "repo": "figitdesign/web-to-figma",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "design"
+  ],
+  "markets": [
+    "en"
+  ]
+}

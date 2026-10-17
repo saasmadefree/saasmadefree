@@ -24,11 +24,10 @@
     "anthropic-api-key",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Reactive Resume",
-      "url": "https://github.com/AmruthPillai/Reactive-Resume",
-      "license": "MIT"
+      "project": "reactive-resume",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

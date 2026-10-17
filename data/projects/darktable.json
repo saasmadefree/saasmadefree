@@ -1,0 +1,18 @@
+{
+  "slug": "darktable",
+  "name": "darktable",
+  "homepage": "https://github.com/darktable-org/darktable",
+  "repo": "darktable-org/darktable",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "photography"
+  ],
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "livekit",
+  "name": "LiveKit",
+  "homepage": "https://github.com/livekit/livekit",
+  "repo": "livekit/livekit",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "video-meetings"
+  ],
+  "markets": [
+    "en"
+  ]
+}

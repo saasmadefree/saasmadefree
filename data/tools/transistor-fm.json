@@ -24,10 +24,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Castopod",
-      "url": "https://github.com/ad-aures/castopod"
+      "project": "castopod",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

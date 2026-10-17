@@ -25,10 +25,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Zulip",
-      "url": "https://github.com/zulip/zulip"
+      "project": "zulip",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

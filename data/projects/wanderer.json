@@ -1,0 +1,20 @@
+{
+  "slug": "wanderer",
+  "name": "Wanderer",
+  "homepage": "https://github.com/open-wanderer/wanderer",
+  "repo": "open-wanderer/wanderer",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "health-fitness",
+    "travel"
+  ],
+  "markets": [
+    "en"
+  ]
+}

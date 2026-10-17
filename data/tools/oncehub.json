@@ -25,10 +25,10 @@
     "database",
     "oauth-app"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Easy!Appointments",
-      "url": "https://github.com/alextselegidis/easyappointments"
+      "project": "easyappointments",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

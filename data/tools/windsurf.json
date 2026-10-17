@@ -23,10 +23,10 @@
     "anthropic-api-key",
     "openai-api-key"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Continue",
-      "url": "https://github.com/continuedev/continue"
+      "project": "continue",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -24,10 +24,10 @@
     "hosting",
     "domain"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "LiveKit",
-      "url": "https://github.com/livekit/livekit"
+      "project": "livekit",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

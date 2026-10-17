@@ -1,0 +1,19 @@
+{
+  "slug": "reactive-resume",
+  "name": "Reactive Resume",
+  "homepage": "https://github.com/AmruthPillai/Reactive-Resume",
+  "repo": "AmruthPillai/Reactive-Resume",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "job-search"
+  ],
+  "markets": [
+    "en"
+  ]
+}

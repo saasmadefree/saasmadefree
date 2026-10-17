@@ -24,10 +24,10 @@
     "hosting",
     "domain"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Jitsi Meet",
-      "url": "https://github.com/jitsi/jitsi-meet"
+      "project": "jitsi-meet",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

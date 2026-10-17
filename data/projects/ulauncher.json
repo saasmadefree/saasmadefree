@@ -1,0 +1,18 @@
+{
+  "slug": "ulauncher",
+  "name": "Ulauncher",
+  "homepage": "https://github.com/Ulauncher/Ulauncher",
+  "repo": "Ulauncher/Ulauncher",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "productivity-utilities"
+  ],
+  "markets": [
+    "en"
+  ]
+}

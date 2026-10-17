@@ -1,0 +1,18 @@
+{
+  "slug": "logseq",
+  "name": "Logseq",
+  "homepage": "https://github.com/logseq/logseq",
+  "repo": "logseq/logseq",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "read-it-later"
+  ],
+  "markets": [
+    "en"
+  ]
+}

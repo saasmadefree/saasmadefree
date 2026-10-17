@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "compare-i18n.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["summary", "pickAIf", "pickBIf", "faq"],
+  "properties": {
+    "summary": { "type": "string", "minLength": 1 },
+    "pickAIf": {
+      "type": "array", "minItems": 2, "maxItems": 4,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "pickBIf": {
+      "type": "array", "minItems": 2, "maxItems": 4,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "faq": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["q", "a"],
+        "properties": {
+          "q": { "type": "string", "minLength": 1 },
+          "a": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

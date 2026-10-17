@@ -25,10 +25,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Monica",
-      "url": "https://github.com/monicahq/monica"
+      "project": "monica",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

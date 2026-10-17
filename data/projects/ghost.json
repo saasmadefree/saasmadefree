@@ -1,0 +1,19 @@
+{
+  "slug": "ghost",
+  "name": "Ghost",
+  "homepage": "https://github.com/TryGhost/Ghost",
+  "repo": "TryGhost/Ghost",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "creator-commerce",
+    "newsletter"
+  ],
+  "markets": [
+    "en"
+  ]
+}

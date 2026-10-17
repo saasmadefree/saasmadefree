@@ -1,0 +1,19 @@
+{
+  "slug": "cal-com",
+  "name": "Cal.com",
+  "homepage": "https://github.com/calcom/cal.com",
+  "repo": "calcom/cal.com",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "scheduling",
+    "tasks"
+  ],
+  "markets": [
+    "en"
+  ]
+}

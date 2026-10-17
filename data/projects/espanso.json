@@ -1,0 +1,18 @@
+{
+  "slug": "espanso",
+  "name": "Espanso",
+  "homepage": "https://github.com/espanso/espanso",
+  "repo": "espanso/espanso",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "productivity-utilities"
+  ],
+  "markets": [
+    "en"
+  ]
+}

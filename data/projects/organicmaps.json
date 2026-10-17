@@ -1,0 +1,19 @@
+{
+  "slug": "organicmaps",
+  "name": "Organic Maps",
+  "homepage": "https://github.com/organicmaps/organicmaps",
+  "repo": "organicmaps/organicmaps",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "travel"
+  ],
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "activitywatch",
+  "name": "ActivityWatch",
+  "homepage": "https://github.com/ActivityWatch/activitywatch",
+  "repo": "ActivityWatch/activitywatch",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "time-tracking"
+  ],
+  "markets": [
+    "en"
+  ]
+}

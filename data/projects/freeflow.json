@@ -1,0 +1,18 @@
+{
+  "slug": "freeflow",
+  "name": "FreeFlow",
+  "homepage": "https://github.com/zachlatta/freeflow",
+  "repo": "zachlatta/freeflow",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "voice-dictation"
+  ],
+  "markets": [
+    "en"
+  ]
+}

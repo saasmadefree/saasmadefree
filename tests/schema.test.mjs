@@ -17,7 +17,7 @@ const validTool = {
   moatType: 'collaboration',
   diyTimeEstimate: 'weekend',
   requirements: ['anthropic-api-key'],
-  priorArt: [{ name: 'AppFlowy', url: 'https://appflowy.io', license: 'AGPL-3.0' }],
+  alternatives: [{ project: 'appflowy', fit: 'full' }, { project: 'affine', fit: 'partial' }],
   relatedSlugs: ['obsidian', 'coda', 'craft'],
   markets: ['en', 'fr'],
   pagePriority: 5,
@@ -43,6 +43,20 @@ describe('tool.schema.json', () => {
 
   it('refuse un champ inconnu', () => {
     expect(validators.tool({ ...validTool, sponsored: true })).toBe(false);
+  });
+
+  it('refuse priorArt, retiré des données sources au profit de alternatives', () => {
+    const legacy = { ...validTool, priorArt: [{ name: 'AppFlowy', url: 'https://appflowy.io' }] };
+    expect(validators.tool(legacy)).toBe(false);
+  });
+
+  it('refuse un fit hors énumération', () => {
+    expect(validators.tool({ ...validTool, alternatives: [{ project: 'appflowy', fit: 'best' }] })).toBe(false);
+  });
+
+  it('refuse plus de 12 alternatives', () => {
+    const alternatives = Array.from({ length: 13 }, (_, i) => ({ project: `p${i}`, fit: 'niche' }));
+    expect(validators.tool({ ...validTool, alternatives })).toBe(false);
   });
 
   it('refuse une date checkedOn mal formée', () => {
@@ -95,5 +109,101 @@ describe('tool-i18n.schema.json', () => {
 
   it('refuse une FAQ de trois questions', () => {
     expect(validators.toolI18n({ ...validI18n, faq: validI18n.faq.slice(0, 3) })).toBe(false);
+  });
+
+  it('accepte une FAQ de six questions, une intro et des notes par projet', () => {
+    const faq = [...validI18n.faq, { q: 'Q5', a: 'R5' }, { q: 'Q6', a: 'R6' }];
+    const entry = { ...validI18n, faq, alternativesIntro: 'AppFlowy est le meilleur choix.',
+      alternativeNotes: { appflowy: 'Couvre les pages et les bases.' } };
+    expect(validators.toolI18n(entry)).toBe(true);
+  });
+
+  it('refuse une FAQ de sept questions', () => {
+    const faq = Array.from({ length: 7 }, (_, i) => ({ q: `Q${i}`, a: `R${i}` }));
+    expect(validators.toolI18n({ ...validI18n, faq })).toBe(false);
+  });
+});
+
+describe('project.schema.json', () => {
+  const validProject = {
+    slug: 'listmonk', name: 'Listmonk', homepage: 'https://listmonk.app', repo: 'knadh/listmonk',
+    license: 'AGPL-3.0', selfHostable: true, hosted: { exists: false },
+    deploy: ['docker', 'binary'], stack: ['go', 'vue', 'postgresql'],
+    categories: ['newsletter', 'email'],
+    stats: { stars: 17000, lastCommit: '2026-10-10', createdAt: '2019-06-26', archived: false, checkedOn: '2026-10-17' },
+    markets: ['en', 'fr'],
+  };
+
+  it("accepte l'exemple du spec", () => {
+    expect(validators.project(validProject)).toBe(true);
+  });
+
+  it('accepte repo null (forge non GitHub) et stats absentes', () => {
+    const { stats, ...noStats } = validProject;
+    expect(validators.project({ ...noStats, repo: null })).toBe(true);
+  });
+
+  it('refuse un repo qui est une URL et pas owner/name', () => {
+    expect(validators.project({ ...validProject, repo: 'https://github.com/knadh/listmonk' })).toBe(false);
+  });
+
+  it('accepte une offre hébergée complète, refuse une offre hébergée sans prix', () => {
+    const hosted = { exists: true, priceFrom: 9, currency: 'USD', source: 'https://listmonk.app/pricing', checkedOn: '2026-10-17' };
+    expect(validators.project({ ...validProject, hosted })).toBe(true);
+    expect(validators.project({ ...validProject, hosted: { exists: true } })).toBe(false);
+    expect(validators.project({ ...validProject, hosted: { exists: false, priceFrom: 9 } })).toBe(false);
+  });
+
+  it('refuse un champ inconnu', () => {
+    expect(validators.project({ ...validProject, featured: true })).toBe(false);
+  });
+});
+
+describe('project-i18n.schema.json', () => {
+  const valid = {
+    tagline: 'Newsletters et listes de diffusion auto-hébergées.',
+    description: 'Une description factuelle.',
+    strengths: ['a', 'b', 'c'], limits: ['x', 'y'], bestFor: 'Les petites équipes.',
+  };
+
+  it('accepte un texte complet', () => {
+    expect(validators.projectI18n(valid)).toBe(true);
+  });
+
+  it('refuse une tagline de plus de 110 caractères', () => {
+    expect(validators.projectI18n({ ...valid, tagline: 'x'.repeat(111) })).toBe(false);
+  });
+
+  it('refuse moins de 2 limites et moins de 3 points forts', () => {
+    expect(validators.projectI18n({ ...valid, limits: ['x'] })).toBe(false);
+    expect(validators.projectI18n({ ...valid, strengths: ['a', 'b'] })).toBe(false);
+  });
+
+  it('exige description et bestFor', () => {
+    const { description, ...noDescription } = valid;
+    const { bestFor, ...noBestFor } = valid;
+    expect(validators.projectI18n(noDescription)).toBe(false);
+    expect(validators.projectI18n(noBestFor)).toBe(false);
+  });
+});
+
+describe('compare.schema.json et compare-i18n.schema.json', () => {
+  const pair = { a: 'mailchimp', b: 'listmonk', kindA: 'tool', kindB: 'project', volume: { us: 90 }, checkedOn: '2026-10-20' };
+
+  it("accepte l'exemple du spec, refuse un type de côté inconnu", () => {
+    expect(validators.compare([pair])).toBe(true);
+    expect(validators.compare([{ ...pair, kindB: 'saas' }])).toBe(false);
+  });
+
+  it('refuse une racine qui n’est pas un tableau', () => {
+    expect(validators.compare({ pairs: [pair] })).toBe(false);
+  });
+
+  it('exige exactement 3 FAQ et 2 à 4 raisons de chaque côté', () => {
+    const text = { summary: 'Un avis.', pickAIf: ['a', 'b'], pickBIf: ['a', 'b'],
+      faq: [{ q: '1', a: '1' }, { q: '2', a: '2' }, { q: '3', a: '3' }] };
+    expect(validators.compareI18n(text)).toBe(true);
+    expect(validators.compareI18n({ ...text, faq: text.faq.slice(0, 2) })).toBe(false);
+    expect(validators.compareI18n({ ...text, pickAIf: ['a'] })).toBe(false);
   });
 });

@@ -24,10 +24,10 @@
     "domain",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "WordPress",
-      "url": "https://github.com/WordPress/wordpress-develop"
+      "project": "wordpress-develop",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

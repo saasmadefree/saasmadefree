@@ -1,0 +1,18 @@
+{
+  "slug": "postiz-app",
+  "name": "Postiz",
+  "homepage": "https://github.com/gitroomhq/postiz-app",
+  "repo": "gitroomhq/postiz-app",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "social-media"
+  ],
+  "markets": [
+    "en"
+  ]
+}

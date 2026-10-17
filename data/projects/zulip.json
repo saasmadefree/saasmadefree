@@ -1,0 +1,19 @@
+{
+  "slug": "zulip",
+  "name": "Zulip",
+  "homepage": "https://github.com/zulip/zulip",
+  "repo": "zulip/zulip",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "community",
+    "video-meetings"
+  ],
+  "markets": [
+    "en"
+  ]
+}

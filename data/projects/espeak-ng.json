@@ -1,0 +1,18 @@
+{
+  "slug": "espeak-ng",
+  "name": "espeak-ng",
+  "homepage": "https://github.com/espeak-ng/espeak-ng",
+  "repo": "espeak-ng/espeak-ng",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-audio"
+  ],
+  "markets": [
+    "en"
+  ]
+}

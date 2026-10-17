@@ -1,0 +1,18 @@
+{
+  "slug": "code-server",
+  "name": "code-server",
+  "homepage": "https://github.com/coder/code-server",
+  "repo": "coder/code-server",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "dev-tools"
+  ],
+  "markets": [
+    "en"
+  ]
+}

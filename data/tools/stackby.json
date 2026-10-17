@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Baserow",
-      "url": "https://github.com/baserow/baserow"
+      "project": "baserow",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

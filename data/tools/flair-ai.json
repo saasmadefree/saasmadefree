@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "IOPaint",
-      "url": "https://github.com/Sanster/IOPaint"
+      "project": "iopaint",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

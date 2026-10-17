@@ -25,11 +25,10 @@
     "database",
     "domain"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Radicale",
-      "url": "https://github.com/Kozea/Radicale",
-      "license": "GPL-3.0"
+      "project": "radicale",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

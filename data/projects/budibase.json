@@ -1,0 +1,19 @@
+{
+  "slug": "budibase",
+  "name": "Budibase",
+  "homepage": "https://github.com/Budibase/budibase",
+  "repo": "Budibase/budibase",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "databases",
+    "no-code-apps"
+  ],
+  "markets": [
+    "en"
+  ]
+}

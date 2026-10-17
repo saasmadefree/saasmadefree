@@ -1,0 +1,19 @@
+{
+  "slug": "navidrome",
+  "name": "Navidrome",
+  "homepage": "https://github.com/navidrome/navidrome",
+  "repo": "navidrome/navidrome",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "media-streaming"
+  ],
+  "markets": [
+    "en"
+  ]
+}

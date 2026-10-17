@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Medusa",
-      "url": "https://github.com/medusajs/medusa"
+      "project": "medusa",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

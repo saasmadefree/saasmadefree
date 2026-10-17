@@ -1,0 +1,19 @@
+{
+  "slug": "weblate",
+  "name": "Weblate",
+  "homepage": "https://github.com/WeblateOrg/weblate",
+  "repo": "WeblateOrg/weblate",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "translation"
+  ],
+  "markets": [
+    "en"
+  ]
+}

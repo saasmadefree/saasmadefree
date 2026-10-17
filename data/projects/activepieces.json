@@ -1,0 +1,18 @@
+{
+  "slug": "activepieces",
+  "name": "Activepieces",
+  "homepage": "https://github.com/activepieces/activepieces",
+  "repo": "activepieces/activepieces",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "automation"
+  ],
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "openfoodfacts-server",
+  "name": "Open Food Facts",
+  "homepage": "https://github.com/openfoodfacts/openfoodfacts-server",
+  "repo": "openfoodfacts/openfoodfacts-server",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "health-fitness"
+  ],
+  "markets": [
+    "en"
+  ]
+}

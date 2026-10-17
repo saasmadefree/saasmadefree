@@ -1,0 +1,19 @@
+{
+  "slug": "freesound",
+  "name": "Freesound",
+  "homepage": "https://github.com/MTG/freesound",
+  "repo": "MTG/freesound",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "audio-video"
+  ],
+  "markets": [
+    "en"
+  ]
+}

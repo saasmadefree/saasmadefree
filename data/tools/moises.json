@@ -23,16 +23,14 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Demucs",
-      "url": "https://github.com/adefossez/demucs",
-      "license": "MIT"
+      "project": "demucs",
+      "fit": "partial"
     },
     {
-      "name": "Essentia",
-      "url": "https://github.com/MTG/essentia",
-      "license": "AGPL-3.0"
+      "project": "essentia",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

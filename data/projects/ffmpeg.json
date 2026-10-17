@@ -1,0 +1,18 @@
+{
+  "slug": "ffmpeg",
+  "name": "FFmpeg",
+  "homepage": "https://github.com/FFmpeg/FFmpeg",
+  "repo": "FFmpeg/FFmpeg",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "audio-video"
+  ],
+  "markets": [
+    "en"
+  ]
+}

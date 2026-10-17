@@ -1,0 +1,19 @@
+{
+  "slug": "librechat",
+  "name": "LibreChat",
+  "homepage": "https://github.com/danny-avila/LibreChat",
+  "repo": "danny-avila/LibreChat",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-assistant",
+    "ai-writing"
+  ],
+  "markets": [
+    "en"
+  ]
+}

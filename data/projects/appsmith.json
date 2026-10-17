@@ -1,0 +1,18 @@
+{
+  "slug": "appsmith",
+  "name": "Appsmith",
+  "homepage": "https://github.com/appsmithorg/appsmith",
+  "repo": "appsmithorg/appsmith",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "no-code-apps"
+  ],
+  "markets": [
+    "en"
+  ]
+}

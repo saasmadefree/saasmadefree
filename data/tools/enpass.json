@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Vaultwarden",
-      "url": "https://github.com/dani-garcia/vaultwarden"
+      "project": "vaultwarden",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

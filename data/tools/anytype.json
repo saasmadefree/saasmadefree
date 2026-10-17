@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "AppFlowy",
-      "url": "https://github.com/AppFlowy-IO/AppFlowy"
+      "project": "appflowy",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

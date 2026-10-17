@@ -23,11 +23,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Anki",
-      "url": "https://github.com/ankitects/anki",
-      "license": "AGPL-3.0"
+      "project": "anki",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

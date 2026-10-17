@@ -25,10 +25,10 @@
     "database",
     "oauth-app"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Mixpost",
-      "url": "https://github.com/inovector/mixpost"
+      "project": "mixpost",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

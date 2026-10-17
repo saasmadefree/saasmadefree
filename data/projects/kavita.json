@@ -1,0 +1,19 @@
+{
+  "slug": "kavita",
+  "name": "Kavita",
+  "homepage": "https://github.com/Kareadita/Kavita",
+  "repo": "Kareadita/Kavita",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "media-streaming"
+  ],
+  "markets": [
+    "en"
+  ]
+}

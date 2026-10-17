@@ -24,11 +24,10 @@
     "database",
     "hosting"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Wanderer",
-      "url": "https://github.com/open-wanderer/wanderer",
-      "license": "AGPL-3.0"
+      "project": "wanderer",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

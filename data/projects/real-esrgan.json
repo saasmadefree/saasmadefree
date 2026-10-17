@@ -1,0 +1,18 @@
+{
+  "slug": "real-esrgan",
+  "name": "Real-ESRGAN",
+  "homepage": "https://github.com/xinntao/Real-ESRGAN",
+  "repo": "xinntao/Real-ESRGAN",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-image"
+  ],
+  "markets": [
+    "en"
+  ]
+}

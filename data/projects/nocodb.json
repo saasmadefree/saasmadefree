@@ -1,0 +1,19 @@
+{
+  "slug": "nocodb",
+  "name": "NocoDB",
+  "homepage": "https://github.com/nocodb/nocodb",
+  "repo": "nocodb/nocodb",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "databases",
+    "no-code-apps"
+  ],
+  "markets": [
+    "en"
+  ]
+}

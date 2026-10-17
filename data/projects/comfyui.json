@@ -1,0 +1,18 @@
+{
+  "slug": "comfyui",
+  "name": "ComfyUI",
+  "homepage": "https://github.com/comfyanonymous/ComfyUI",
+  "repo": "comfyanonymous/ComfyUI",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-image"
+  ],
+  "markets": [
+    "en"
+  ]
+}

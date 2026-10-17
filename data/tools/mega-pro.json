@@ -24,10 +24,10 @@
     "hosting",
     "domain"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Send",
-      "url": "https://github.com/timvisee/send"
+      "project": "send",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

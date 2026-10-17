@@ -24,10 +24,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "GoatCounter",
-      "url": "https://github.com/arp242/goatcounter"
+      "project": "goatcounter",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -1,0 +1,18 @@
+{
+  "slug": "freshrss",
+  "name": "FreshRSS",
+  "homepage": "https://github.com/FreshRSS/FreshRSS",
+  "repo": "FreshRSS/FreshRSS",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "read-it-later"
+  ],
+  "markets": [
+    "en"
+  ]
+}

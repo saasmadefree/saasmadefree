@@ -1,0 +1,18 @@
+{
+  "slug": "vega-lite",
+  "name": "Vega-Lite",
+  "homepage": "https://github.com/vega/vega-lite",
+  "repo": "vega/vega-lite",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "design"
+  ],
+  "markets": [
+    "en"
+  ]
+}

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { compileValidators, loadData } from '../scripts/lib/load-data.mjs';
-import { validateAll, collectKeyPaths } from '../scripts/lib/validate-rules.mjs';
+import { validateAll, collectKeyPaths, compareKey } from '../scripts/lib/validate-rules.mjs';
 
 const validators = compileValidators('schema');
 const TODAY = '2026-07-30';
@@ -274,5 +274,250 @@ describe('parité des clés site.* entre langues publiées', () => {
     data.ui.set('es', { site: { footer: { stats: 'Estadísticas' }, stats: {} } });
     const errors = validateAll(data, validators, TODAY);
     expect(errors.filter((e) => e.includes('interdite dans une locale non publiée'))).toEqual([]);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Projets open source, alternatives, comparatifs (spec §5, §7)
+// ---------------------------------------------------------------------------
+
+function makeProject(slug, over = {}) {
+  return {
+    slug, name: slug, homepage: `https://github.com/acme/${slug}`, repo: `acme/${slug}`,
+    selfHostable: true, hosted: { exists: false }, deploy: [], stack: [],
+    categories: ['docs-and-wiki'], markets: ['en'],
+    ...over,
+  };
+}
+
+const words = (n) => Array.from({ length: n }, (_, i) => `mot${i}`).join(' ');
+
+function makeProjectI18n(over = {}) {
+  return {
+    tagline: 'Un wiki auto-hébergé.',
+    description: words(150),
+    strengths: ['s1', 's2', 's3'],
+    limits: ['l1', 'l2'],
+    bestFor: 'Les équipes qui hébergent déjà leurs outils.',
+    ...over,
+  };
+}
+
+const sixFaq = Array.from({ length: 6 }, (_, i) => ({ q: `q${i}`, a: `a${i}` }));
+
+function makeAltData() {
+  const data = makeData({
+    projects: new Map([['outline', makeProject('outline')], ['wikijs', makeProject('wikijs')]]),
+    projectI18n: new Map([['en/outline', makeProjectI18n()], ['en/wikijs', makeProjectI18n()]]),
+    compare: [],
+    compareI18n: new Map(),
+    bannedPhrases: { en: ['revolutioniz', 'seamless'], fr: ['robuste'] },
+  });
+  data.tools.get('a').alternatives = [
+    { project: 'outline', fit: 'full' }, { project: 'wikijs', fit: 'partial' },
+  ];
+  return data;
+}
+
+function makePair(over = {}) {
+  return { a: 'a', b: 'outline', kindA: 'tool', kindB: 'project', volume: { us: 90 }, checkedOn: TODAY, ...over };
+}
+
+function makeCompareI18n(over = {}) {
+  return {
+    summary: words(100), pickAIf: ['x', 'y'], pickBIf: ['x', 'y'],
+    faq: [{ q: '1', a: '1' }, { q: '2', a: '2' }, { q: '3', a: '3' }],
+    ...over,
+  };
+}
+
+describe('alternatives et projets', () => {
+  it('accepte un jeu de données avec projets, textes et alternatives', () => {
+    expect(validateAll(makeAltData(), validators, TODAY)).toEqual([]);
+  });
+
+  it('rejects alternatives pointing to unknown project', () => {
+    const data = makeAltData();
+    data.tools.get('a').alternatives.push({ project: 'fantome', fit: 'niche' });
+    const out = validateAll(data, validators, TODAY);
+    const line = out.find((e) => e.includes('fantome'));
+    expect(line).toBeDefined();
+    expect(line).toContain('data/tools/a.json');
+    expect(line).toContain('alternatives');
+  });
+
+  it('refuse le même projet cité deux fois dans alternatives', () => {
+    const data = makeAltData();
+    data.tools.get('a').alternatives.push({ project: 'outline', fit: 'niche' });
+    expect(validateAll(data, validators, TODAY).join(' ')).toContain('"outline"');
+  });
+
+  it('accepts a tool without alternatives', () => {
+    const data = makeAltData();
+    delete data.tools.get('a').alternatives;
+    expect(validateAll(data, validators, TODAY)).toEqual([]);
+  });
+
+  it('rejects project i18n missing for a declared market', () => {
+    const data = makeAltData();
+    data.projects.get('outline').markets = ['en', 'fr'];
+    expect(validateAll(data, validators, TODAY).join(' ')).toContain('data/i18n/fr/projects/outline.json');
+  });
+
+  // Les projets créés par la migration priorArt → projects n'ont encore aucun
+  // texte : ils ne sont pas publiables (portes de la Task A3), mais leur
+  // existence est légale. La règle ci-dessus ne vise qu'un projet déjà rédigé
+  // dans une langue et pas dans une autre de ses markets.
+  it('accepte un projet sans aucun texte (migré, pas encore rédigé)', () => {
+    const data = makeAltData();
+    data.projectI18n.delete('en/wikijs');
+    expect(validateAll(data, validators, TODAY)).toEqual([]);
+  });
+
+  it('refuse un texte de projet sans fichier data/projects correspondant', () => {
+    const data = makeAltData();
+    data.projectI18n.set('en/fantome', makeProjectI18n());
+    expect(validateAll(data, validators, TODAY).join(' ')).toContain('data/projects/fantome.json');
+  });
+
+  it('refuse un projet dont le champ slug ne correspond pas au fichier', () => {
+    const data = makeAltData();
+    data.projects.get('outline').slug = 'outline-wiki';
+    expect(validateAll(data, validators, TODAY).join(' ')).toContain('data/projects/outline.json');
+  });
+
+  it('rejects project description under 120 or over 320 words', () => {
+    for (const n of [119, 321]) {
+      const data = makeAltData();
+      data.projectI18n.get('en/outline').description = words(n);
+      const out = validateAll(data, validators, TODAY).join(' ');
+      expect(out).toContain('data/i18n/en/projects/outline.json');
+      expect(out).toContain(`${n} mots`);
+    }
+    for (const n of [120, 320]) {
+      const data = makeAltData();
+      data.projectI18n.get('en/outline').description = words(n);
+      expect(validateAll(data, validators, TODAY)).toEqual([]);
+    }
+  });
+
+  it('rejects banned phrase in any i18n text field', () => {
+    const data = makeAltData();
+    data.projectI18n.get('en/outline').strengths[1] = 'Plunk is revolutionizing email';
+    const out = validateAll(data, validators, TODAY).join(' ');
+    expect(out).toContain('data/i18n/en/projects/outline.json');
+    expect(out).toContain('revolutioniz');
+  });
+
+  it('attrape une tournure interdite sans tenir compte de la casse, dans une fiche outil', () => {
+    const data = makeAltData();
+    data.i18n.get('en/a').faq[1].a = 'A Seamless experience.';
+    const out = validateAll(data, validators, TODAY).join(' ');
+    expect(out).toContain('data/i18n/en/tools/a.json');
+    expect(out).toContain('faq[1].a');
+    expect(out).toContain('seamless');
+  });
+
+  it("n'applique pas la liste au prompt, qui s'adresse à un agent", () => {
+    const data = makeAltData();
+    data.i18n.get('en/a').prompt = 'Build a robust, seamless importer.';
+    expect(validateAll(data, validators, TODAY)).toEqual([]);
+  });
+
+  it("applique la liste de la langue du fichier, pas celle d'une autre", () => {
+    const data = makeAltData();
+    data.tools.get('a').markets = ['en', 'fr'];
+    data.i18n.set('fr/a', makeI18n({ tagline: 'Un outil robuste.' }));
+    data.i18n.get('en/a').tagline = 'Robuste is a French word.';
+    const out = validateAll(data, validators, TODAY);
+    expect(out.join(' ')).toContain('data/i18n/fr/tools/a.json');
+    expect(out.join(' ')).not.toContain('data/i18n/en/tools/a.json');
+  });
+
+  it('rejects alternativeNotes key not listed in tool.alternatives', () => {
+    const data = makeAltData();
+    data.i18n.get('en/a').alternativeNotes = { outline: 'Couvre le wiki.', mautic: 'Rien à voir.' };
+    const out = validateAll(data, validators, TODAY).join(' ');
+    expect(out).toContain('data/i18n/en/tools/a.json');
+    expect(out).toContain('alternativeNotes');
+    expect(out).toContain('mautic');
+    expect(out).not.toContain('"outline"');
+  });
+});
+
+describe('FAQ : 4 ou 6 entrées', () => {
+  it('requires 6 faq entries once the i18n entry has alternativesIntro', () => {
+    const data = makeAltData();
+    data.i18n.get('en/a').alternativesIntro = 'Outline est la meilleure option.';
+    const out = validateAll(data, validators, TODAY).join(' ');
+    expect(out).toContain('data/i18n/en/tools/a.json');
+    expect(out).toContain('6');
+    data.i18n.get('en/a').faq = sixFaq;
+    expect(validateAll(data, validators, TODAY)).toEqual([]);
+  });
+
+  it('accepts 4 faq entries on a migrated tool with 3 alternatives and no intro', () => {
+    const data = makeAltData();
+    data.projects.set('bookstack', makeProject('bookstack'));
+    data.tools.get('a').alternatives.push({ project: 'bookstack', fit: 'partial' });
+    expect(data.i18n.get('en/a').faq).toHaveLength(4);
+    expect(validateAll(data, validators, TODAY)).toEqual([]);
+  });
+
+  it('refuse 5 entrées : une fiche est à 4 (avant enrichissement) ou à 6', () => {
+    const data = makeAltData();
+    data.i18n.get('en/a').faq = sixFaq.slice(0, 5);
+    expect(validateAll(data, validators, TODAY).join(' ')).toContain('faq');
+  });
+});
+
+describe('comparatifs', () => {
+  it('compareKey forme la clé a-vs-b', () => {
+    expect(compareKey('mailchimp', 'listmonk')).toBe('mailchimp-vs-listmonk');
+  });
+
+  it('accepte une paire valide et son texte', () => {
+    const data = makeAltData();
+    data.compare = [makePair()];
+    data.compareI18n.set('en/a-vs-outline', makeCompareI18n());
+    expect(validateAll(data, validators, TODAY)).toEqual([]);
+  });
+
+  it('rejects compare pair with unknown side', () => {
+    const data = makeAltData();
+    data.compare = [makePair({ b: 'fantome' })];
+    const out = validateAll(data, validators, TODAY).join(' ');
+    expect(out).toContain('data/compare.json');
+    expect(out).toContain('fantome');
+  });
+
+  it('refuse un côté qui existe, mais pas sous le type déclaré', () => {
+    const data = makeAltData();
+    data.compare = [makePair({ kindB: 'tool' })];
+    expect(validateAll(data, validators, TODAY).join(' ')).toContain('outline');
+  });
+
+  it('rejects duplicate compare pair (a-vs-b and b-vs-a)', () => {
+    const data = makeAltData();
+    data.compare = [makePair(), makePair({ a: 'outline', b: 'a', kindA: 'project', kindB: 'tool' })];
+    const out = validateAll(data, validators, TODAY).join(' ');
+    expect(out).toContain('data/compare.json');
+    expect(out).toContain('a-vs-outline');
+    expect(out).toContain('outline-vs-a');
+  });
+
+  it('refuse un texte de comparatif sans paire déclarée', () => {
+    const data = makeAltData();
+    data.compareI18n.set('en/a-vs-wikijs', makeCompareI18n());
+    expect(validateAll(data, validators, TODAY).join(' ')).toContain('data/i18n/en/compare/a-vs-wikijs.json');
+  });
+
+  it('applique les tournures interdites aux textes de comparatif', () => {
+    const data = makeAltData();
+    data.compare = [makePair()];
+    data.compareI18n.set('en/a-vs-outline', makeCompareI18n({ pickBIf: ['seamless sync', 'y'] }));
+    const out = validateAll(data, validators, TODAY).join(' ');
+    expect(out).toContain('data/i18n/en/compare/a-vs-outline.json');
+    expect(out).toContain('seamless');
   });
 });

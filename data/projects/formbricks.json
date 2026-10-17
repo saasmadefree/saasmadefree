@@ -1,0 +1,18 @@
+{
+  "slug": "formbricks",
+  "name": "Formbricks",
+  "homepage": "https://github.com/formbricks/formbricks",
+  "repo": "formbricks/formbricks",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "forms"
+  ],
+  "markets": [
+    "en"
+  ]
+}

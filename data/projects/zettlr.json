@@ -1,0 +1,18 @@
+{
+  "slug": "zettlr",
+  "name": "Zettlr",
+  "homepage": "https://github.com/Zettlr/Zettlr",
+  "repo": "Zettlr/Zettlr",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-writing"
+  ],
+  "markets": [
+    "en"
+  ]
+}

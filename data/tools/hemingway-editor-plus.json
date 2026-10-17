@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "LanguageTool",
-      "url": "https://github.com/languagetool-org/languagetool"
+      "project": "languagetool",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -24,10 +24,10 @@
     "openai-api-key",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Open WebUI",
-      "url": "https://github.com/open-webui/open-webui"
+      "project": "open-webui",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

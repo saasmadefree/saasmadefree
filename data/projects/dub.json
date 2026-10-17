@@ -1,0 +1,18 @@
+{
+  "slug": "dub",
+  "name": "Dub",
+  "homepage": "https://github.com/dubinc/dub",
+  "repo": "dubinc/dub",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "analytics"
+  ],
+  "markets": [
+    "en"
+  ]
+}

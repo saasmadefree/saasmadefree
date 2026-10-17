@@ -22,14 +22,14 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Tesseract",
-      "url": "https://github.com/tesseract-ocr/tesseract"
+      "project": "tesseract",
+      "fit": "partial"
     },
     {
-      "name": "Piper",
-      "url": "https://github.com/OHF-Voice/piper1-gpl"
+      "project": "piper1-gpl",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

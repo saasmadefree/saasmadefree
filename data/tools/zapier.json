@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "n8n",
-      "url": "https://github.com/n8n-io/n8n"
+      "project": "n8n",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

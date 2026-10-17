@@ -24,11 +24,10 @@
     "hosting",
     "domain"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Stirling PDF",
-      "url": "https://github.com/Stirling-Tools/Stirling-PDF",
-      "license": "MIT"
+      "project": "stirling-pdf",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

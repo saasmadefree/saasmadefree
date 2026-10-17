@@ -1,0 +1,18 @@
+{
+  "slug": "redsignal",
+  "name": "redsignal",
+  "homepage": "https://github.com/ivucicev/redsignal",
+  "repo": "ivucicev/redsignal",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "seo-marketing"
+  ],
+  "markets": [
+    "en"
+  ]
+}

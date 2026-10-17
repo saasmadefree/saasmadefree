@@ -1,0 +1,18 @@
+{
+  "slug": "analytics",
+  "name": "plausible/analytics",
+  "homepage": "https://github.com/plausible/analytics",
+  "repo": "plausible/analytics",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "analytics"
+  ],
+  "markets": [
+    "en"
+  ]
+}

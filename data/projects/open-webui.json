@@ -1,0 +1,19 @@
+{
+  "slug": "open-webui",
+  "name": "Open WebUI",
+  "homepage": "https://github.com/open-webui/open-webui",
+  "repo": "open-webui/open-webui",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-assistant",
+    "ai-writing"
+  ],
+  "markets": [
+    "en"
+  ]
+}

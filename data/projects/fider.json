@@ -1,0 +1,19 @@
+{
+  "slug": "fider",
+  "name": "Fider",
+  "homepage": "https://github.com/getfider/fider",
+  "repo": "getfider/fider",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "user-research"
+  ],
+  "markets": [
+    "en"
+  ]
+}

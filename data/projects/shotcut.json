@@ -1,0 +1,18 @@
+{
+  "slug": "shotcut",
+  "name": "Shotcut",
+  "homepage": "https://github.com/mltframework/shotcut",
+  "repo": "mltframework/shotcut",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "audio-video"
+  ],
+  "markets": [
+    "en"
+  ]
+}

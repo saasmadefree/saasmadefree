@@ -1,0 +1,18 @@
+{
+  "slug": "wg-easy",
+  "name": "wg-easy",
+  "homepage": "https://github.com/wg-easy/wg-easy",
+  "repo": "wg-easy/wg-easy",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "security"
+  ],
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "v2",
+  "name": "Miniflux",
+  "homepage": "https://github.com/miniflux/v2",
+  "repo": "miniflux/v2",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "read-it-later"
+  ],
+  "markets": [
+    "en"
+  ]
+}

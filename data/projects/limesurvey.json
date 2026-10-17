@@ -1,0 +1,18 @@
+{
+  "slug": "limesurvey",
+  "name": "LimeSurvey",
+  "homepage": "https://github.com/LimeSurvey/LimeSurvey",
+  "repo": "LimeSurvey/LimeSurvey",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "forms"
+  ],
+  "markets": [
+    "en"
+  ]
+}

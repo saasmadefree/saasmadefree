@@ -1,0 +1,18 @@
+{
+  "slug": "mailspring",
+  "name": "Mailspring",
+  "homepage": "https://github.com/Foundry376/Mailspring",
+  "repo": "Foundry376/Mailspring",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "email"
+  ],
+  "markets": [
+    "en"
+  ]
+}

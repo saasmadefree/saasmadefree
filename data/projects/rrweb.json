@@ -1,0 +1,18 @@
+{
+  "slug": "rrweb",
+  "name": "rrweb",
+  "homepage": "https://github.com/rrweb-io/rrweb",
+  "repo": "rrweb-io/rrweb",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "monitoring"
+  ],
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "klaro-js",
+  "name": "Klaro",
+  "homepage": "https://github.com/klaro-org/klaro-js",
+  "repo": "klaro-org/klaro-js",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "business-admin"
+  ],
+  "markets": [
+    "en"
+  ]
+}

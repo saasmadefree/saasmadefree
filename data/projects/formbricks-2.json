@@ -1,0 +1,19 @@
+{
+  "slug": "formbricks-2",
+  "name": "Formbricks",
+  "homepage": "https://formbricks.com",
+  "repo": null,
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "forms"
+  ],
+  "markets": [
+    "en"
+  ]
+}

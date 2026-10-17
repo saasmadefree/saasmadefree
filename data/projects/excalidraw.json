@@ -1,0 +1,19 @@
+{
+  "slug": "excalidraw",
+  "name": "Excalidraw",
+  "homepage": "https://github.com/excalidraw/excalidraw",
+  "repo": "excalidraw/excalidraw",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "design",
+    "whiteboard"
+  ],
+  "markets": [
+    "en"
+  ]
+}

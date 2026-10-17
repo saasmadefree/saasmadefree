@@ -22,14 +22,14 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "espeak-ng",
-      "url": "https://github.com/espeak-ng/espeak-ng"
+      "project": "espeak-ng",
+      "fit": "partial"
     },
     {
-      "name": "Piper",
-      "url": "https://github.com/OHF-Voice/piper1-gpl"
+      "project": "piper1-gpl",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

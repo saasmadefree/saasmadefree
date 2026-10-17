@@ -1,0 +1,18 @@
+{
+  "slug": "easyappointments",
+  "name": "Easy!Appointments",
+  "homepage": "https://github.com/alextselegidis/easyappointments",
+  "repo": "alextselegidis/easyappointments",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "scheduling"
+  ],
+  "markets": [
+    "en"
+  ]
+}

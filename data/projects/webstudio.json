@@ -1,0 +1,18 @@
+{
+  "slug": "webstudio",
+  "name": "Webstudio",
+  "homepage": "https://github.com/webstudio-is/webstudio",
+  "repo": "webstudio-is/webstudio",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "website-builder"
+  ],
+  "markets": [
+    "en"
+  ]
+}

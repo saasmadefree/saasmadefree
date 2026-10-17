@@ -22,10 +22,10 @@
   "requirements": [
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Akaunting",
-      "url": "https://github.com/akaunting/akaunting"
+      "project": "akaunting",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -1,0 +1,18 @@
+{
+  "slug": "prometheus",
+  "name": "Prometheus",
+  "homepage": "https://github.com/prometheus/prometheus",
+  "repo": "prometheus/prometheus",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "monitoring"
+  ],
+  "markets": [
+    "en"
+  ]
+}

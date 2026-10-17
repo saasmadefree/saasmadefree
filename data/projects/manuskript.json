@@ -1,0 +1,18 @@
+{
+  "slug": "manuskript",
+  "name": "Manuskript",
+  "homepage": "https://github.com/olivierkes/manuskript",
+  "repo": "olivierkes/manuskript",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-writing"
+  ],
+  "markets": [
+    "en"
+  ]
+}

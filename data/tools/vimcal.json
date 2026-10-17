@@ -25,10 +25,10 @@
     "database",
     "oauth-app"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Cal.com",
-      "url": "https://github.com/calcom/cal.com"
+      "project": "cal-com",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

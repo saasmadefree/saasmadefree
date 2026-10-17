@@ -1,0 +1,19 @@
+{
+  "slug": "reveal-js",
+  "name": "reveal.js",
+  "homepage": "https://github.com/hakimel/reveal.js",
+  "repo": "hakimel/reveal.js",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "design",
+    "presentations"
+  ],
+  "markets": [
+    "en"
+  ]
+}

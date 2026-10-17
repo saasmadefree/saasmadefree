@@ -1,0 +1,18 @@
+{
+  "slug": "platform",
+  "name": "Huly",
+  "homepage": "https://github.com/hcengineering/platform",
+  "repo": "hcengineering/platform",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "dev-tools"
+  ],
+  "markets": [
+    "en"
+  ]
+}

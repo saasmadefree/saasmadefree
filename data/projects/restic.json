@@ -1,0 +1,18 @@
+{
+  "slug": "restic",
+  "name": "restic",
+  "homepage": "https://github.com/restic/restic",
+  "repo": "restic/restic",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "cloud-storage"
+  ],
+  "markets": [
+    "en"
+  ]
+}

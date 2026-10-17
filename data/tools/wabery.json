@@ -24,10 +24,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Meta WhatsApp Cloud API",
-      "url": "https://developers.facebook.com/docs/whatsapp/cloud-api"
+      "project": "meta-whatsapp-cloud-api",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

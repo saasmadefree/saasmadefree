@@ -1,0 +1,18 @@
+{
+  "slug": "akaunting",
+  "name": "Akaunting",
+  "homepage": "https://github.com/akaunting/akaunting",
+  "repo": "akaunting/akaunting",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "finance-accounting"
+  ],
+  "markets": [
+    "en"
+  ]
+}

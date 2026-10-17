@@ -1,0 +1,18 @@
+{
+  "slug": "seonaut",
+  "name": "SEOnaut",
+  "homepage": "https://github.com/stjudewashere/seonaut",
+  "repo": "stjudewashere/seonaut",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "seo-marketing"
+  ],
+  "markets": [
+    "en"
+  ]
+}

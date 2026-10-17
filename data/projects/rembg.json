@@ -1,0 +1,18 @@
+{
+  "slug": "rembg",
+  "name": "rembg",
+  "homepage": "https://github.com/danielgatis/rembg",
+  "repo": "danielgatis/rembg",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-image"
+  ],
+  "markets": [
+    "en"
+  ]
+}

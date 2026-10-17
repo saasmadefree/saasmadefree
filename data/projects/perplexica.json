@@ -1,0 +1,18 @@
+{
+  "slug": "perplexica",
+  "name": "Perplexica",
+  "homepage": "https://github.com/ItzCrazyKns/Perplexica",
+  "repo": "ItzCrazyKns/Perplexica",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-assistant"
+  ],
+  "markets": [
+    "en"
+  ]
+}

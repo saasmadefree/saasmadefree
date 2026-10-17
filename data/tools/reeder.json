@@ -22,10 +22,10 @@
   "requirements": [
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "NetNewsWire",
-      "url": "https://github.com/Ranchero-Software/NetNewsWire"
+      "project": "netnewswire",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

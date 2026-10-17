@@ -1,0 +1,18 @@
+{
+  "slug": "umami",
+  "name": "Umami",
+  "homepage": "https://github.com/umami-software/umami",
+  "repo": "umami-software/umami",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "analytics"
+  ],
+  "markets": [
+    "en"
+  ]
+}

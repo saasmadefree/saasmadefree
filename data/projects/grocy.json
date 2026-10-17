@@ -1,0 +1,19 @@
+{
+  "slug": "grocy",
+  "name": "Grocy",
+  "homepage": "https://github.com/grocy/grocy",
+  "repo": "grocy/grocy",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "home-family"
+  ],
+  "markets": [
+    "en"
+  ]
+}

@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "lottie-web",
-      "url": "https://github.com/airbnb/lottie-web"
+      "project": "lottie-web",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

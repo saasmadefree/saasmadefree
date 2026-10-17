@@ -1,0 +1,18 @@
+{
+  "slug": "serpbear",
+  "name": "SerpBear",
+  "homepage": "https://github.com/towfiqi/serpbear",
+  "repo": "towfiqi/serpbear",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "seo-marketing"
+  ],
+  "markets": [
+    "en"
+  ]
+}

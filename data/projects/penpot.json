@@ -1,0 +1,18 @@
+{
+  "slug": "penpot",
+  "name": "Penpot",
+  "homepage": "https://github.com/penpot/penpot",
+  "repo": "penpot/penpot",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "design"
+  ],
+  "markets": [
+    "en"
+  ]
+}

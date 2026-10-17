@@ -23,10 +23,10 @@
   "requirements": [
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "darktable",
-      "url": "https://github.com/darktable-org/darktable"
+      "project": "darktable",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

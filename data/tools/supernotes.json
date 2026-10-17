@@ -22,10 +22,10 @@
   "requirements": [
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Joplin",
-      "url": "https://github.com/laurent22/joplin"
+      "project": "joplin",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

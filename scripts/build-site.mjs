@@ -5,6 +5,7 @@
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { loadData } from './lib/load-data.mjs';
+import { derivePriorArt } from './lib/prior-art.mjs';
 import {
   SITE_ORIGIN, fetchVoteCounts, fetchStats, fetchSponsorSlots, siteLanguages, toolsForLang, sortTools,
   categoriesForLang, topCategoriesByCount, langsForCategory, catalogueFigures, mrrDestroyed,
@@ -65,7 +66,7 @@ function voteCountFor(voteCounts, slug) {
 
 async function main() {
   const data = await loadData(process.cwd());
-  const { tools, i18n, ui, categories, agents } = data;
+  const { tools, i18n, ui, categories, agents, projects } = data;
 
   // Date du build : c'est elle qui décide qu'un placement sponsor est actif
   // (un placement échu disparaît au prochain build, sans aucune action —
@@ -301,7 +302,11 @@ async function main() {
       await writeText(
         join(OUT, lang, 'tools', tool.slug, 'index.html'),
         renderToolPage({
-          lang, path: toolPath, tool, i18nEntry, categories,
+          // Pont jusqu'à la Task A4 (gabarit « alternatives ») : le gabarit
+          // actuel lit encore tool.priorArt, retiré des données sources par la
+          // migration priorArt → projects. On le lui redonne, dérivé comme
+          // dans le feed v1, pour que la colonne ne disparaisse pas d'ici là.
+          lang, path: toolPath, tool: { ...tool, priorArt: derivePriorArt(tool, projects) }, i18nEntry, categories,
           ui: langUi, alternates: toolAlt, xDefaultPath: xDefaultOf(toolAlt), homePath,
           categoryPath: `/${lang}/categories/${tool.category}`,
           relatedTools, voteCount: voteCountFor(voteCounts, tool.slug), favicons, agents, sponsorSlots,

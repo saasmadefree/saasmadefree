@@ -1,0 +1,18 @@
+{
+  "slug": "seomacroscope",
+  "name": "SEO Macroscope",
+  "homepage": "https://github.com/nazuke/SEOMacroscope",
+  "repo": "nazuke/SEOMacroscope",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "seo-marketing"
+  ],
+  "markets": [
+    "en"
+  ]
+}

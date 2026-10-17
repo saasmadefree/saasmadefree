@@ -25,10 +25,10 @@
     "database",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "wallabag",
-      "url": "https://github.com/wallabag/wallabag"
+      "project": "wallabag",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -1,0 +1,18 @@
+{
+  "slug": "mediasoup",
+  "name": "mediasoup",
+  "homepage": "https://github.com/versatica/mediasoup",
+  "repo": "versatica/mediasoup",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "community"
+  ],
+  "markets": [
+    "en"
+  ]
+}

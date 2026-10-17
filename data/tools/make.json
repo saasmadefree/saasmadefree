@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Activepieces",
-      "url": "https://github.com/activepieces/activepieces"
+      "project": "activepieces",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

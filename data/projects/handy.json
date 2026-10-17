@@ -1,0 +1,18 @@
+{
+  "slug": "handy",
+  "name": "Handy",
+  "homepage": "https://github.com/cjpais/Handy",
+  "repo": "cjpais/Handy",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "voice-dictation"
+  ],
+  "markets": [
+    "en"
+  ]
+}

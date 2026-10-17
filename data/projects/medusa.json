@@ -1,0 +1,18 @@
+{
+  "slug": "medusa",
+  "name": "Medusa",
+  "homepage": "https://github.com/medusajs/medusa",
+  "repo": "medusajs/medusa",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "creator-commerce"
+  ],
+  "markets": [
+    "en"
+  ]
+}

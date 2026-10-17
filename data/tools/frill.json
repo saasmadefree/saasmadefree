@@ -26,11 +26,10 @@
     "database",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Fider",
-      "url": "https://github.com/getfider/fider",
-      "license": "MIT"
+      "project": "fider",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

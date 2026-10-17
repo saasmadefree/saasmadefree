@@ -1,0 +1,19 @@
+{
+  "slug": "libretranslate",
+  "name": "LibreTranslate",
+  "homepage": "https://github.com/LibreTranslate/LibreTranslate",
+  "repo": "LibreTranslate/LibreTranslate",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "translation"
+  ],
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "project-i18n.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["tagline", "description", "strengths", "limits", "bestFor"],
+  "properties": {
+    "tagline": { "type": "string", "minLength": 1, "maxLength": 110 },
+    "description": { "type": "string", "minLength": 1 },
+    "strengths": {
+      "type": "array", "minItems": 3, "maxItems": 6,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "limits": {
+      "type": "array", "minItems": 2, "maxItems": 6,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "bestFor": { "type": "string", "minLength": 1 }
+  }
+}

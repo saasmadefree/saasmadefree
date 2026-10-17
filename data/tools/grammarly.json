@@ -23,10 +23,10 @@
     "anthropic-api-key",
     "hosting"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "LanguageTool",
-      "url": "https://github.com/languagetool-org/languagetool"
+      "project": "languagetool",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

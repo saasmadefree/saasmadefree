@@ -1,0 +1,18 @@
+{
+  "slug": "monica",
+  "name": "Monica",
+  "homepage": "https://github.com/monicahq/monica",
+  "repo": "monicahq/monica",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "crm-sales"
+  ],
+  "markets": [
+    "en"
+  ]
+}

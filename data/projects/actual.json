@@ -1,0 +1,18 @@
+{
+  "slug": "actual",
+  "name": "Actual Budget",
+  "homepage": "https://github.com/actualbudget/actual",
+  "repo": "actualbudget/actual",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "personal-finance"
+  ],
+  "markets": [
+    "en"
+  ]
+}

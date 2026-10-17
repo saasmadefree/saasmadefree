@@ -1,0 +1,18 @@
+{
+  "slug": "bibisco",
+  "name": "bibisco",
+  "homepage": "https://github.com/andreafeccomandi/bibisco",
+  "repo": "andreafeccomandi/bibisco",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-writing"
+  ],
+  "markets": [
+    "en"
+  ]
+}

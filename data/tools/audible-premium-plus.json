@@ -24,11 +24,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Audiobookshelf",
-      "url": "https://github.com/advplyr/audiobookshelf",
-      "license": "GPL-3.0"
+      "project": "audiobookshelf",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

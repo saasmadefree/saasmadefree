@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Screaming Frog alternatives: SEO Macroscope",
-      "url": "https://github.com/nazuke/SEOMacroscope"
+      "project": "seomacroscope",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

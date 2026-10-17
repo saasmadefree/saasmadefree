@@ -1,0 +1,19 @@
+{
+  "slug": "obsidian-livesync",
+  "name": "Self-hosted LiveSync",
+  "homepage": "https://github.com/vrtmrz/obsidian-livesync",
+  "repo": "vrtmrz/obsidian-livesync",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "notes-knowledge"
+  ],
+  "markets": [
+    "en"
+  ]
+}

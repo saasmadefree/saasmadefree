@@ -1,0 +1,18 @@
+{
+  "slug": "linkwarden",
+  "name": "linkwarden",
+  "homepage": "https://github.com/linkwarden/linkwarden",
+  "repo": "linkwarden/linkwarden",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "read-it-later"
+  ],
+  "markets": [
+    "en"
+  ]
+}

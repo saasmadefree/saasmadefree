@@ -1,0 +1,18 @@
+{
+  "slug": "onlook",
+  "name": "Onlook",
+  "homepage": "https://github.com/onlook-dev/onlook",
+  "repo": "onlook-dev/onlook",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "design"
+  ],
+  "markets": [
+    "en"
+  ]
+}

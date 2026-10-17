@@ -1,0 +1,18 @@
+{
+  "slug": "bigbluebutton",
+  "name": "BigBlueButton",
+  "homepage": "https://github.com/bigbluebutton/bigbluebutton",
+  "repo": "bigbluebutton/bigbluebutton",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "video-meetings"
+  ],
+  "markets": [
+    "en"
+  ]
+}

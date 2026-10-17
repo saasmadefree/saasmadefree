@@ -1,0 +1,18 @@
+{
+  "slug": "wallabag",
+  "name": "wallabag",
+  "homepage": "https://github.com/wallabag/wallabag",
+  "repo": "wallabag/wallabag",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "read-it-later"
+  ],
+  "markets": [
+    "en"
+  ]
+}

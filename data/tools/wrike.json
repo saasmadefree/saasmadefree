@@ -25,10 +25,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Plane",
-      "url": "https://github.com/makeplane/plane"
+      "project": "plane",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -1,0 +1,18 @@
+{
+  "slug": "owncast",
+  "name": "Owncast",
+  "homepage": "https://github.com/owncast/owncast",
+  "repo": "owncast/owncast",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "video-meetings"
+  ],
+  "markets": [
+    "en"
+  ]
+}

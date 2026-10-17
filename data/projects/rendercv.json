@@ -1,0 +1,19 @@
+{
+  "slug": "rendercv",
+  "name": "RenderCV",
+  "homepage": "https://github.com/rendercv/rendercv",
+  "repo": "rendercv/rendercv",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "job-search"
+  ],
+  "markets": [
+    "en"
+  ]
+}

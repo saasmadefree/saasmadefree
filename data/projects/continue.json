@@ -1,0 +1,18 @@
+{
+  "slug": "continue",
+  "name": "Continue",
+  "homepage": "https://github.com/continuedev/continue",
+  "repo": "continuedev/continue",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "dev-tools"
+  ],
+  "markets": [
+    "en"
+  ]
+}

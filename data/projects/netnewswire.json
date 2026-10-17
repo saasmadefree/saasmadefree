@@ -1,0 +1,18 @@
+{
+  "slug": "netnewswire",
+  "name": "NetNewsWire",
+  "homepage": "https://github.com/Ranchero-Software/NetNewsWire",
+  "repo": "Ranchero-Software/NetNewsWire",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "read-it-later"
+  ],
+  "markets": [
+    "en"
+  ]
+}

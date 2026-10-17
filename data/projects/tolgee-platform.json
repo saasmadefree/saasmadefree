@@ -1,0 +1,19 @@
+{
+  "slug": "tolgee-platform",
+  "name": "Tolgee",
+  "homepage": "https://github.com/tolgee/tolgee-platform",
+  "repo": "tolgee/tolgee-platform",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "translation"
+  ],
+  "markets": [
+    "en"
+  ]
+}

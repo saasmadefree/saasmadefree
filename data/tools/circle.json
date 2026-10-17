@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Discourse",
-      "url": "https://github.com/discourse/discourse"
+      "project": "discourse",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -1,0 +1,18 @@
+{
+  "slug": "ente",
+  "name": "Ente",
+  "homepage": "https://github.com/ente-io/ente",
+  "repo": "ente-io/ente",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "photography"
+  ],
+  "markets": [
+    "en"
+  ]
+}

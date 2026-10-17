@@ -1,0 +1,19 @@
+{
+  "slug": "matchering",
+  "name": "Matchering",
+  "homepage": "https://github.com/sergree/matchering",
+  "repo": "sergree/matchering",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "audio-video"
+  ],
+  "markets": [
+    "en"
+  ]
+}

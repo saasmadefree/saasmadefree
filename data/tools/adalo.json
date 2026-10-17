@@ -22,10 +22,10 @@
   "requirements": [
     "hosting"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Appsmith",
-      "url": "https://github.com/appsmithorg/appsmith"
+      "project": "appsmith",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

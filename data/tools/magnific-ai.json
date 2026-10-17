@@ -24,14 +24,14 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Real-ESRGAN",
-      "url": "https://github.com/xinntao/Real-ESRGAN"
+      "project": "real-esrgan",
+      "fit": "partial"
     },
     {
-      "name": "Upscayl",
-      "url": "https://github.com/upscayl/upscayl"
+      "project": "upscayl",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

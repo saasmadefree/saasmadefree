@@ -1,0 +1,18 @@
+{
+  "slug": "astro",
+  "name": "Astro",
+  "homepage": "https://github.com/withastro/astro",
+  "repo": "withastro/astro",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "website-builder"
+  ],
+  "markets": [
+    "en"
+  ]
+}

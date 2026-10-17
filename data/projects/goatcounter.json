@@ -1,0 +1,18 @@
+{
+  "slug": "goatcounter",
+  "name": "GoatCounter",
+  "homepage": "https://github.com/arp242/goatcounter",
+  "repo": "arp242/goatcounter",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "analytics"
+  ],
+  "markets": [
+    "en"
+  ]
+}

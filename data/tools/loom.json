@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "OBS Studio",
-      "url": "https://github.com/obsproject/obs-studio"
+      "project": "obs-studio",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

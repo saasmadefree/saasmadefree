@@ -1,0 +1,18 @@
+{
+  "slug": "kimai",
+  "name": "Kimai",
+  "homepage": "https://github.com/kimai/kimai",
+  "repo": "kimai/kimai",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "time-tracking"
+  ],
+  "markets": [
+    "en"
+  ]
+}

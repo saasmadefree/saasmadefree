@@ -1,0 +1,19 @@
+{
+  "slug": "demucs",
+  "name": "Demucs",
+  "homepage": "https://github.com/adefossez/demucs",
+  "repo": "adefossez/demucs",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "audio-video"
+  ],
+  "markets": [
+    "en"
+  ]
+}

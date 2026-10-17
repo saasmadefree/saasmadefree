@@ -1,0 +1,18 @@
+{
+  "slug": "languagetool",
+  "name": "LanguageTool",
+  "homepage": "https://github.com/languagetool-org/languagetool",
+  "repo": "languagetool-org/languagetool",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-writing"
+  ],
+  "markets": [
+    "en"
+  ]
+}

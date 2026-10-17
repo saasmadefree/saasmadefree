@@ -1,0 +1,18 @@
+{
+  "slug": "piper1-gpl",
+  "name": "Piper",
+  "homepage": "https://github.com/OHF-Voice/piper1-gpl",
+  "repo": "OHF-Voice/piper1-gpl",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-audio"
+  ],
+  "markets": [
+    "en"
+  ]
+}

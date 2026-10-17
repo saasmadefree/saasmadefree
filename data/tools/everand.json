@@ -24,16 +24,14 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Kavita",
-      "url": "https://github.com/Kareadita/Kavita",
-      "license": "GPL-3.0"
+      "project": "kavita",
+      "fit": "partial"
     },
     {
-      "name": "Audiobookshelf",
-      "url": "https://github.com/advplyr/audiobookshelf",
-      "license": "GPL-3.0"
+      "project": "audiobookshelf",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

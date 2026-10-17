@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Vega-Lite",
-      "url": "https://github.com/vega/vega-lite"
+      "project": "vega-lite",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

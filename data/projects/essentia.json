@@ -1,0 +1,19 @@
+{
+  "slug": "essentia",
+  "name": "Essentia",
+  "homepage": "https://github.com/MTG/essentia",
+  "repo": "MTG/essentia",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "audio-video"
+  ],
+  "markets": [
+    "en"
+  ]
+}

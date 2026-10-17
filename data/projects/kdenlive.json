@@ -1,0 +1,18 @@
+{
+  "slug": "kdenlive",
+  "name": "Kdenlive",
+  "homepage": "https://github.com/KDE/kdenlive",
+  "repo": "KDE/kdenlive",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "audio-video"
+  ],
+  "markets": [
+    "en"
+  ]
+}

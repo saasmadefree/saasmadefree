@@ -1,0 +1,18 @@
+{
+  "slug": "mailvelope",
+  "name": "Mailvelope",
+  "homepage": "https://github.com/mailvelope/mailvelope",
+  "repo": "mailvelope/mailvelope",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "email"
+  ],
+  "markets": [
+    "en"
+  ]
+}

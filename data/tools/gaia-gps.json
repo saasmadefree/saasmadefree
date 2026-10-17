@@ -24,16 +24,14 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "OsmAnd",
-      "url": "https://github.com/osmandapp/OsmAnd",
-      "license": "GPL-3.0"
+      "project": "osmand",
+      "fit": "partial"
     },
     {
-      "name": "Organic Maps",
-      "url": "https://github.com/organicmaps/organicmaps",
-      "license": "Apache-2.0"
+      "project": "organicmaps",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

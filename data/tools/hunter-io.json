@@ -25,10 +25,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "check-if-email-exists",
-      "url": "https://github.com/reacherhq/check-if-email-exists"
+      "project": "check-if-email-exists",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

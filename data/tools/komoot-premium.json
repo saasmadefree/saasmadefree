@@ -24,11 +24,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "GraphHopper",
-      "url": "https://github.com/graphhopper/graphhopper",
-      "license": "Apache-2.0"
+      "project": "graphhopper",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

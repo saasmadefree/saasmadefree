@@ -1,0 +1,18 @@
+{
+  "slug": "seatable",
+  "name": "SeaTable",
+  "homepage": "https://github.com/seatable/seatable",
+  "repo": "seatable/seatable",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "databases"
+  ],
+  "markets": [
+    "en"
+  ]
+}

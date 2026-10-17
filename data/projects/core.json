@@ -1,0 +1,19 @@
+{
+  "slug": "core",
+  "name": "Home Assistant",
+  "homepage": "https://github.com/home-assistant/core",
+  "repo": "home-assistant/core",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "home-family"
+  ],
+  "markets": [
+    "en"
+  ]
+}

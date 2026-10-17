@@ -24,11 +24,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Formbricks",
-      "url": "https://formbricks.com",
-      "license": "AGPL-3.0"
+      "project": "formbricks-2",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

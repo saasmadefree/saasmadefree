@@ -1,0 +1,18 @@
+{
+  "slug": "plasmic",
+  "name": "Plasmic",
+  "homepage": "https://github.com/plasmicapp/plasmic",
+  "repo": "plasmicapp/plasmic",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "no-code-apps"
+  ],
+  "markets": [
+    "en"
+  ]
+}

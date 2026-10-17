@@ -1,0 +1,18 @@
+{
+  "slug": "mailcow-dockerized",
+  "name": "mailcow",
+  "homepage": "https://github.com/mailcow/mailcow-dockerized",
+  "repo": "mailcow/mailcow-dockerized",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "email"
+  ],
+  "markets": [
+    "en"
+  ]
+}

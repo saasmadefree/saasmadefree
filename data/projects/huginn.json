@@ -1,0 +1,18 @@
+{
+  "slug": "huginn",
+  "name": "Huginn",
+  "homepage": "https://github.com/huginn/huginn",
+  "repo": "huginn/huginn",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "automation"
+  ],
+  "markets": [
+    "en"
+  ]
+}

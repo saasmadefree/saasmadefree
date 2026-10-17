@@ -1,0 +1,19 @@
+{
+  "slug": "mlx-examples",
+  "name": "mlx-whisper",
+  "homepage": "https://github.com/ml-explore/mlx-examples/tree/main/whisper",
+  "repo": "ml-explore/mlx-examples",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "voice-dictation"
+  ],
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "process-compose",
+  "name": "process-compose",
+  "homepage": "https://github.com/F1bonacc1/process-compose",
+  "repo": "F1bonacc1/process-compose",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "dev-tools"
+  ],
+  "markets": [
+    "en"
+  ]
+}

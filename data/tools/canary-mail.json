@@ -24,10 +24,10 @@
     "oauth-app",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Mailvelope",
-      "url": "https://github.com/mailvelope/mailvelope"
+      "project": "mailvelope",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

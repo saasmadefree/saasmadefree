@@ -1,0 +1,18 @@
+{
+  "slug": "clickhouse",
+  "name": "ClickHouse",
+  "homepage": "https://github.com/ClickHouse/ClickHouse",
+  "repo": "ClickHouse/ClickHouse",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "monitoring"
+  ],
+  "markets": [
+    "en"
+  ]
+}

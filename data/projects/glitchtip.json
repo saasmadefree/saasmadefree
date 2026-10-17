@@ -1,0 +1,18 @@
+{
+  "slug": "glitchtip",
+  "name": "GlitchTip",
+  "homepage": "https://gitlab.com/glitchtip/glitchtip-backend",
+  "repo": null,
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "monitoring"
+  ],
+  "markets": [
+    "en"
+  ]
+}

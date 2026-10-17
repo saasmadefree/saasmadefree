@@ -24,14 +24,14 @@
     "openai-api-key",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "quill",
-      "url": "https://github.com/digimata/quill"
+      "project": "quill",
+      "fit": "partial"
     },
     {
-      "name": "whisper.cpp",
-      "url": "https://github.com/ggml-org/whisper.cpp"
+      "project": "ggml-org-whisper-cpp",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

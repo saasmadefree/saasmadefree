@@ -1,0 +1,18 @@
+{
+  "slug": "freescout",
+  "name": "FreeScout",
+  "homepage": "https://github.com/freescout-help-desk/freescout",
+  "repo": "freescout-help-desk/freescout",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "customer-support"
+  ],
+  "markets": [
+    "en"
+  ]
+}

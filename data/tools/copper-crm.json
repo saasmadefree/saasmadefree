@@ -26,10 +26,10 @@
     "database",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "EspoCRM",
-      "url": "https://github.com/espocrm/espocrm"
+      "project": "espocrm",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

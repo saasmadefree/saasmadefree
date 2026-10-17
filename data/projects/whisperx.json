@@ -1,0 +1,18 @@
+{
+  "slug": "whisperx",
+  "name": "whisperX",
+  "homepage": "https://github.com/m-bain/whisperX",
+  "repo": "m-bain/whisperX",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "meeting-notes"
+  ],
+  "markets": [
+    "en"
+  ]
+}

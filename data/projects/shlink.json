@@ -1,0 +1,18 @@
+{
+  "slug": "shlink",
+  "name": "Shlink",
+  "homepage": "https://github.com/shlinkio/shlink",
+  "repo": "shlinkio/shlink",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "analytics"
+  ],
+  "markets": [
+    "en"
+  ]
+}

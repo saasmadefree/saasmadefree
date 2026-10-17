@@ -1,0 +1,18 @@
+{
+  "slug": "uptime-kuma",
+  "name": "Uptime Kuma",
+  "homepage": "https://github.com/louislam/uptime-kuma",
+  "repo": "louislam/uptime-kuma",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "monitoring"
+  ],
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "checkdmarc",
+  "name": "checkdmarc",
+  "homepage": "https://github.com/domainaware/checkdmarc",
+  "repo": "domainaware/checkdmarc",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "crm-sales"
+  ],
+  "markets": [
+    "en"
+  ]
+}

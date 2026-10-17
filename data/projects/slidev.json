@@ -1,0 +1,18 @@
+{
+  "slug": "slidev",
+  "name": "Slidev",
+  "homepage": "https://github.com/slidevjs/slidev",
+  "repo": "slidevjs/slidev",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "presentations"
+  ],
+  "markets": [
+    "en"
+  ]
+}

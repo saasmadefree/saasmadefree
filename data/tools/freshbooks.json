@@ -24,10 +24,10 @@
     "database",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Invoice Ninja",
-      "url": "https://github.com/invoiceninja/invoiceninja"
+      "project": "invoiceninja",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

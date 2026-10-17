@@ -24,11 +24,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Navidrome",
-      "url": "https://github.com/navidrome/navidrome",
-      "license": "GPL-3.0"
+      "project": "navidrome",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

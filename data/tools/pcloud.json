@@ -24,10 +24,10 @@
     "hosting",
     "domain"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Jellyfin",
-      "url": "https://github.com/jellyfin/jellyfin"
+      "project": "jellyfin",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

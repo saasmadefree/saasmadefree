@@ -1,0 +1,18 @@
+{
+  "slug": "super-productivity",
+  "name": "Super Productivity",
+  "homepage": "https://github.com/johannesjo/super-productivity",
+  "repo": "johannesjo/super-productivity",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "tasks"
+  ],
+  "markets": [
+    "en"
+  ]
+}

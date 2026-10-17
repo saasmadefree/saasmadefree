@@ -1,0 +1,18 @@
+{
+  "slug": "tesseract",
+  "name": "Tesseract",
+  "homepage": "https://github.com/tesseract-ocr/tesseract",
+  "repo": "tesseract-ocr/tesseract",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-audio"
+  ],
+  "markets": [
+    "en"
+  ]
+}

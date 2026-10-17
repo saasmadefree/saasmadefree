@@ -1,0 +1,18 @@
+{
+  "slug": "roundcubemail",
+  "name": "Roundcube",
+  "homepage": "https://github.com/roundcube/roundcubemail",
+  "repo": "roundcube/roundcubemail",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "email"
+  ],
+  "markets": [
+    "en"
+  ]
+}

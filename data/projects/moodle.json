@@ -1,0 +1,18 @@
+{
+  "slug": "moodle",
+  "name": "Moodle",
+  "homepage": "https://github.com/moodle/moodle",
+  "repo": "moodle/moodle",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "creator-commerce"
+  ],
+  "markets": [
+    "en"
+  ]
+}

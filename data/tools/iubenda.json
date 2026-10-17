@@ -24,10 +24,10 @@
     "hosting",
     "domain"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Klaro",
-      "url": "https://github.com/klaro-org/klaro-js"
+      "project": "klaro-js",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

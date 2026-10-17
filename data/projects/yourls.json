@@ -1,0 +1,18 @@
+{
+  "slug": "yourls",
+  "name": "YOURLS",
+  "homepage": "https://github.com/YOURLS/YOURLS",
+  "repo": "YOURLS/YOURLS",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "analytics"
+  ],
+  "markets": [
+    "en"
+  ]
+}

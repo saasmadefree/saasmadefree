@@ -1,0 +1,18 @@
+{
+  "slug": "mixpost",
+  "name": "Mixpost",
+  "homepage": "https://github.com/inovector/mixpost",
+  "repo": "inovector/mixpost",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "social-media"
+  ],
+  "markets": [
+    "en"
+  ]
+}

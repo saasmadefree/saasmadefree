@@ -1,0 +1,18 @@
+{
+  "slug": "espocrm",
+  "name": "EspoCRM",
+  "homepage": "https://github.com/espocrm/espocrm",
+  "repo": "espocrm/espocrm",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "crm-sales"
+  ],
+  "markets": [
+    "en"
+  ]
+}

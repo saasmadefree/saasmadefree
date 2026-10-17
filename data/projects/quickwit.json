@@ -1,0 +1,18 @@
+{
+  "slug": "quickwit",
+  "name": "Quickwit",
+  "homepage": "https://github.com/quickwit-oss/quickwit",
+  "repo": "quickwit-oss/quickwit",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "monitoring"
+  ],
+  "markets": [
+    "en"
+  ]
+}

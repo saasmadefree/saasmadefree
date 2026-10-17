@@ -1,0 +1,18 @@
+{
+  "slug": "mailinabox",
+  "name": "Mail-in-a-Box",
+  "homepage": "https://github.com/mail-in-a-box/mailinabox",
+  "repo": "mail-in-a-box/mailinabox",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "email"
+  ],
+  "markets": [
+    "en"
+  ]
+}

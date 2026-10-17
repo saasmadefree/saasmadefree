@@ -1,0 +1,18 @@
+{
+  "slug": "vaultwarden",
+  "name": "Vaultwarden",
+  "homepage": "https://github.com/dani-garcia/vaultwarden",
+  "repo": "dani-garcia/vaultwarden",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "security"
+  ],
+  "markets": [
+    "en"
+  ]
+}

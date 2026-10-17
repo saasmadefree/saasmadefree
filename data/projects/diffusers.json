@@ -1,0 +1,18 @@
+{
+  "slug": "diffusers",
+  "name": "diffusers",
+  "homepage": "https://github.com/huggingface/diffusers",
+  "repo": "huggingface/diffusers",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-audio"
+  ],
+  "markets": [
+    "en"
+  ]
+}

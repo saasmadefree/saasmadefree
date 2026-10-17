@@ -24,10 +24,10 @@
     "oauth-app",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Mailspring",
-      "url": "https://github.com/Foundry376/Mailspring"
+      "project": "mailspring",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

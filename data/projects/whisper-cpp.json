@@ -1,0 +1,19 @@
+{
+  "slug": "whisper-cpp",
+  "name": "whisper.cpp",
+  "homepage": "https://github.com/ggerganov/whisper.cpp",
+  "repo": "ggerganov/whisper.cpp",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "audio-video",
+    "meeting-notes"
+  ],
+  "markets": [
+    "en"
+  ]
+}

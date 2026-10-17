@@ -1,0 +1,18 @@
+{
+  "slug": "lottie-web",
+  "name": "lottie-web",
+  "homepage": "https://github.com/airbnb/lottie-web",
+  "repo": "airbnb/lottie-web",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "design"
+  ],
+  "markets": [
+    "en"
+  ]
+}

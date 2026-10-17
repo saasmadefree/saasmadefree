@@ -1,0 +1,18 @@
+{
+  "slug": "server",
+  "name": "Nextcloud",
+  "homepage": "https://github.com/nextcloud/server",
+  "repo": "nextcloud/server",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "cloud-storage"
+  ],
+  "markets": [
+    "en"
+  ]
+}

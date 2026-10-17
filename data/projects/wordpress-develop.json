@@ -1,0 +1,18 @@
+{
+  "slug": "wordpress-develop",
+  "name": "WordPress",
+  "homepage": "https://github.com/WordPress/wordpress-develop",
+  "repo": "WordPress/wordpress-develop",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "website-builder"
+  ],
+  "markets": [
+    "en"
+  ]
+}

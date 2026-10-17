@@ -24,16 +24,14 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Navidrome",
-      "url": "https://github.com/navidrome/navidrome",
-      "license": "GPL-3.0"
+      "project": "navidrome",
+      "fit": "partial"
     },
     {
-      "name": "beets",
-      "url": "https://github.com/beetbox/beets",
-      "license": "MIT"
+      "project": "beets",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

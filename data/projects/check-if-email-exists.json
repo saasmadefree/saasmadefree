@@ -1,0 +1,18 @@
+{
+  "slug": "check-if-email-exists",
+  "name": "check-if-email-exists",
+  "homepage": "https://github.com/reacherhq/check-if-email-exists",
+  "repo": "reacherhq/check-if-email-exists",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "crm-sales"
+  ],
+  "markets": [
+    "en"
+  ]
+}

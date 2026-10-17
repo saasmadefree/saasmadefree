@@ -1,0 +1,18 @@
+{
+  "slug": "firefly-iii",
+  "name": "Firefly III",
+  "homepage": "https://github.com/firefly-iii/firefly-iii",
+  "repo": "firefly-iii/firefly-iii",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "personal-finance"
+  ],
+  "markets": [
+    "en"
+  ]
+}

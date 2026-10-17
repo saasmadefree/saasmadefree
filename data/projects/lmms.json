@@ -1,0 +1,19 @@
+{
+  "slug": "lmms",
+  "name": "LMMS",
+  "homepage": "https://github.com/LMMS/lmms",
+  "repo": "LMMS/lmms",
+  "license": "GPL-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "audio-video"
+  ],
+  "markets": [
+    "en"
+  ]
+}

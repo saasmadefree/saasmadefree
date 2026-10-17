@@ -23,11 +23,10 @@
   "requirements": [
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Grocy",
-      "url": "https://github.com/grocy/grocy",
-      "license": "MIT"
+      "project": "grocy",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

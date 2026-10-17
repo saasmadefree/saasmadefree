@@ -23,10 +23,10 @@
   "requirements": [
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Super Productivity",
-      "url": "https://github.com/johannesjo/super-productivity"
+      "project": "super-productivity",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

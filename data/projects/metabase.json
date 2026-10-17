@@ -1,0 +1,18 @@
+{
+  "slug": "metabase",
+  "name": "Metabase",
+  "homepage": "https://github.com/metabase/metabase",
+  "repo": "metabase/metabase",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "finance-accounting"
+  ],
+  "markets": [
+    "en"
+  ]
+}

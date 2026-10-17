@@ -1,0 +1,18 @@
+{
+  "slug": "onyx",
+  "name": "Danswer/Onyx",
+  "homepage": "https://github.com/onyx-dot-app/onyx",
+  "repo": "onyx-dot-app/onyx",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "seo-marketing"
+  ],
+  "markets": [
+    "en"
+  ]
+}

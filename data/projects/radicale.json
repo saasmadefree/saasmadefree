@@ -1,0 +1,19 @@
+{
+  "slug": "radicale",
+  "name": "Radicale",
+  "homepage": "https://github.com/Kozea/Radicale",
+  "repo": "Kozea/Radicale",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "home-family"
+  ],
+  "markets": [
+    "en"
+  ]
+}

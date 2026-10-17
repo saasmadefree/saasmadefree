@@ -23,10 +23,10 @@
     "database",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Ghost",
-      "url": "https://github.com/TryGhost/Ghost"
+      "project": "ghost",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

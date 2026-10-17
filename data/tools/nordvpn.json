@@ -22,10 +22,10 @@
   "requirements": [
     "hosting"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "wg-easy",
-      "url": "https://github.com/wg-easy/wg-easy"
+      "project": "wg-easy",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

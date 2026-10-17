@@ -1,0 +1,18 @@
+{
+  "slug": "upscayl",
+  "name": "Upscayl",
+  "homepage": "https://github.com/upscayl/upscayl",
+  "repo": "upscayl/upscayl",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-image"
+  ],
+  "markets": [
+    "en"
+  ]
+}

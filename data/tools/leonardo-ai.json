@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "ComfyUI",
-      "url": "https://github.com/comfyanonymous/ComfyUI"
+      "project": "comfyui",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

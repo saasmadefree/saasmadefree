@@ -23,10 +23,10 @@
     "anthropic-api-key",
     "hosting"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "whisper.cpp",
-      "url": "https://github.com/ggml-org/whisper.cpp"
+      "project": "ggml-org-whisper-cpp",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [
