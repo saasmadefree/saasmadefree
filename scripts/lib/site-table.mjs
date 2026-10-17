@@ -56,6 +56,8 @@ export function renderToolGrid(tools, { lang, ui, categories, voteCounts, favico
           ? `<span class="visually-hidden">${escapeHtml(pluralize(0, lang, singularTpl, pluralTpl))}</span>`
           : escapeHtml(pluralize(count, lang, singularTpl, pluralTpl));
       const votesAttr = count === null ? '' : ` data-votes="${count}"`;
+      // Le point qui sépare les votes du reste est posé par la feuille, et
+      // seulement quand un décompte se voit : jamais un « · » orphelin.
       // Le tri « prix » ne compare que des mensualités : un paiement unique
       // n'a pas de prix au mois, il passe en fin de liste plutôt que d'être
       // classé contre des abonnements comme s'il en était un.
@@ -76,7 +78,7 @@ export function renderToolGrid(tools, { lang, ui, categories, voteCounts, favico
             </div>
             <p class="cat">${escapeHtml(catLabel)}</p>
             <p class="tagline">${escapeHtml(tool.tagline ?? '')}</p>
-            <p class="facts"><span class="price">${escapeHtml(price)}</span>${diyPart}<span class="dot" aria-hidden="true">·</span><span class="votes" data-vote-cell data-vote-slug="${tool.slug}">${voteText}</span></p>${altsLine}
+            <p class="facts"><span class="price">${escapeHtml(price)}</span>${diyPart}<span class="votes" data-vote-cell data-vote-slug="${tool.slug}">${voteText}</span></p>${altsLine}
           </li>`;
     })
     .join('\n');

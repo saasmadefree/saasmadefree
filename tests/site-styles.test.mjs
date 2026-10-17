@@ -9,10 +9,10 @@ import { SITE_CSS, TOKENS, SPACE } from '../scripts/lib/site-styles.mjs';
 // animations nommées, aplats sans dégradé), supprimés avec ce design.
 
 // Budget fixé par la Task A0 : taille réelle de la feuille au 17/10/2026
-// (46 287 octets) + 15 %, arrondi. Les tâches suivantes ne le changent pas
+// (27 129 octets) + 15 %, arrondi. Les tâches suivantes ne le changent pas
 // (global-constraints.md) : une page de plus se paie en réutilisant les
 // composants, pas en agrandissant la feuille.
-const CSS_BUDGET_BYTES = 53_230;
+const CSS_BUDGET_BYTES = 31_198;
 
 /** Les règles de la feuille, sélecteurs et déclarations séparés. Les @media et
  *  @container ouvrent un bloc sans déclaration : on ne garde que les feuilles. */
@@ -134,6 +134,10 @@ describe('SITE_CSS — invariants D9', () => {
       '.alt-card', '.fit-tag', '.prompt-block', '.faq', '.link-cloud', '.crumbs']) {
       expect(RULES.some((r) => r.selectors.split(',').some((s) => s.trim().startsWith(cls))), cls).toBe(true);
     }
+  });
+
+  it('hidden l’emporte toujours : un contrôle masqué sans JavaScript ne réapparaît pas par un display', () => {
+    expect(RULES.find((r) => r.selectors === '[hidden]')?.decl).toBe('display:none!important');
   });
 
   it('le tableau défile dans son cadre, jamais la page', () => {

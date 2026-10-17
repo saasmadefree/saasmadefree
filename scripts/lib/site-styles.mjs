@@ -67,16 +67,16 @@ const FONT_CSS = [
    laisse un choix explicite « clair » l'emporter sur un système en sombre.
    --accent et --muted sont lus par scripts/assets/stats.js pour le graphique
    de /stats. */
-const TOKENS_CSS = `:root{${vars(TOKENS.light)};color-scheme:light}
-:root{${vars(SPACE)};--display:"Bricolage Grotesque","Avenir Next","Gill Sans Nova","Gill Sans","Trebuchet MS",sans-serif;--text:"Atkinson Hyperlegible Next","Avenir Next","Segoe UI",Verdana,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--measure:65ch;--r:14px;--r-lg:28px;--accent:var(--tomato);--muted:var(--ink2)}
+const TOKENS_CSS = `:root{${vars(TOKENS.light)};color-scheme:light;${vars(SPACE)};--display:"Bricolage Grotesque","Avenir Next","Gill Sans Nova","Gill Sans","Trebuchet MS",sans-serif;--text:"Atkinson Hyperlegible Next","Avenir Next","Segoe UI",Verdana,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--measure:65ch;--r:14px;--r-lg:28px;--accent:var(--tomato);--muted:var(--ink2)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){${vars(TOKENS.dark)};color-scheme:dark}}
 :root[data-theme="dark"]{${vars(TOKENS.dark)};color-scheme:dark}`;
 
 /* Base : corps 17px/1.65, liens tomate soulignés, focus bleu de 3px partout.
-   Les marges de flux passent par :where() (spécificité nulle) : elles aèrent
-   les pages existantes sans jamais l'emporter sur un composant. */
+   Les marges de flux n'ont que des sélecteurs d'élément : elles l'emportent
+   sur les remises à zéro (p, h1…) mais jamais sur un composant à classe. */
 const BASE_CSS = `*,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
+[hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--text);overflow-wrap:break-word}
 a{color:var(--tomato);text-underline-offset:.2em;text-decoration-thickness:1.5px}
 a:hover{text-decoration-thickness:2.5px}
@@ -89,9 +89,10 @@ h2{font-size:clamp(1.35rem,2.8cqi,1.75rem);line-height:1.2;letter-spacing:-.015e
 h3{font-size:1.25rem;line-height:1.25;letter-spacing:-.01em}
 p,ul,ol,dl,dd,figure,pre{margin:0}
 :where(main) ul,:where(main) ol{padding-left:1.25rem}
-:where(main) > * + *{margin-top:var(--s6)}
-:where(main) > * + section{margin-top:clamp(var(--s8),9cqi,var(--s9))}
-:where(main section,.sheet,.piece-body,.stats-notes) > * + *{margin-top:var(--s4)}
+main > * + *{margin-top:var(--s6)}
+main > * + section{margin-top:clamp(var(--s8),9cqi,var(--s9))}
+main section > * + *,.sheet > * + *,.stats-notes > * + *{margin-top:var(--s4)}
+main > .crumbs + *{margin-top:var(--s3)}
 :where(main) p,:where(main) li{max-width:var(--measure)}
 code,pre{font-family:var(--mono);font-size:.875rem}
 pre{white-space:pre-wrap;overflow-wrap:anywhere}
@@ -225,10 +226,12 @@ const PAGE_CSS = `.page-head{display:grid;grid-template-columns:minmax(0,1fr);ga
    sponsor, recherche, filtres + tri, légende des verdicts, grille de cartes
    3/2/1 colonnes, puis les deux listes de liens. Aucune teinte : la moutarde
    appartient à la fiche. */
-const HOME_CSS = `.hero{padding-top:var(--s7);max-width:44rem}
+const HOME_CSS = `.hero{padding-top:var(--s7)}
+.hero > :not(.figures){max-width:44rem}
 .hero > * + *{margin-top:var(--s4)}
 .hero h1{max-width:12em}
 .sub{font-size:clamp(1.0625rem,1.8cqi,1.1875rem);line-height:1.55;color:var(--ink2);max-width:var(--measure)}
+.directory{margin-top:var(--s7)!important}
 .figures{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s4);margin-top:var(--s5)!important;padding:0;list-style:none;font-size:.875rem;color:var(--ink2)}
 .figures li{max-width:none}
 .figures strong{color:var(--ink)}
@@ -256,8 +259,9 @@ const HOME_CSS = `.hero{padding-top:var(--s7);max-width:44rem}
 .verdict-chip .c{color:var(--ink2)}
 .verdict-chip.is-active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .verdict-chip.is-active .c{color:var(--bg)}
-.selects{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) var(--s3);font-size:.9375rem;color:var(--ink2)}
-.selects select{max-width:100%;color:var(--ink);background:var(--card);border:1px solid var(--field);border-radius:999px;padding:.55rem .95rem}
+.selects{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:var(--s2) var(--s3);font-size:.9375rem;color:var(--ink2)}
+@container page (min-width:600px){.selects{grid-template-columns:auto minmax(0,16rem) auto minmax(0,12rem)}}
+.selects select{width:100%;color:var(--ink);background:var(--card);border:1px solid var(--field);border-radius:999px;padding:.55rem .95rem}
 .legend{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s5);margin-top:var(--s4)!important;padding:0;list-style:none;font-size:.875rem;color:var(--ink2)}
 .legend li{max-width:none}
 .legend strong{color:var(--ink)}
@@ -265,7 +269,6 @@ const HOME_CSS = `.hero{padding-top:var(--s7);max-width:44rem}
 @container page (min-width:600px){.tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @container page (min-width:900px){.tool-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .card{position:relative;display:flex;flex-direction:column;gap:var(--s2);max-width:none!important;padding:var(--s5);border:1px solid var(--rule);border-radius:var(--r)}
-.card[hidden]{display:none}
 .card:hover{border-color:var(--ink2)}
 .card-top{display:flex;align-items:center;gap:var(--s3)}
 .fav{flex:none;width:2rem;height:2rem;border-radius:50%;border:1px solid var(--rule);background:var(--card);object-fit:contain;padding:3px}
@@ -279,11 +282,13 @@ const HOME_CSS = `.hero{padding-top:var(--s7);max-width:44rem}
 .card .tagline{line-height:1.5}
 .card .facts{display:flex;flex-wrap:wrap;gap:0 var(--s2);margin-top:auto;padding-top:var(--s3);font-size:.875rem;color:var(--ink2)}
 .card .price{color:var(--ink);font-weight:700}
+.card .votes:not(:has(.visually-hidden))::before{content:"·" / "";margin-right:var(--s2)}
 .card .alts{padding-top:var(--s3);border-top:1px solid var(--rule);font-size:.875rem}
 .card .alts span{color:var(--ink2)}
 #no-results{color:var(--ink2)}
 .show-more{margin-top:var(--s5)}
 .start{display:grid;gap:var(--s8)}
+.start > *,.page-head > *,.faq details,.two-col > *{margin-top:0}
 @container page (min-width:820px){.start{grid-template-columns:1fr 1fr;column-gap:var(--s8)}}
 .links{list-style:none;margin:var(--s5) 0 0;padding:0;border-top:1px solid var(--rule)}
 .links li{max-width:none;border-bottom:1px solid var(--rule)}
@@ -306,6 +311,7 @@ const SPONSOR_CSS = `.sp-rail{display:none}
 .sp-icon{width:20px;height:20px;border-radius:50%}
 .sp-name{font-weight:700}
 .sp-tagline{color:var(--ink2)}
+.sp-card.live{order:-1}
 .sp-card.open,.sp-card.taken{font-size:.8125rem;color:var(--ink2)}
 .sp-card.open:hover{color:var(--ink)}
 .sp-price{font-weight:700;color:var(--ink)}
@@ -344,7 +350,9 @@ const LEGACY_CSS = `.folder{display:grid;gap:var(--s5);padding-top:var(--s5)}
 .check-item.is-checked{color:var(--ink);font-weight:700}
 .is-checked .check-box{background:var(--ink);border-color:var(--ink)}
 .tracking-slip .sheet{max-width:34rem}
+.tracking-slip td{overflow-wrap:anywhere}
 .piece-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:var(--s2) var(--s4)}
+.piece-tab{min-width:0;overflow-wrap:anywhere}
 .stamp,.date-ring{display:inline-flex;flex-wrap:wrap;gap:0 var(--s2);font-size:.8125rem;color:var(--ink2)}
 .stamp-sub{display:block}
 .pen-check{display:inline-block;width:1ch;flex:none}
