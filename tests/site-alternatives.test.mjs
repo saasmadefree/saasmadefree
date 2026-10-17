@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   isDisplayableProject, statsAreFresh, alternativesFor, replacedTools,
-  indexable, toolTitleVars, STATS_MAX_AGE_DAYS, PROJECT_MAX_IDLE_DAYS,
+  indexable, toolTitleVars, toolDateModified, STATS_MAX_AGE_DAYS, PROJECT_MAX_IDLE_DAYS,
 } from '../scripts/lib/site-alternatives.mjs';
 
 const today = '2026-10-17';
@@ -172,6 +172,15 @@ describe('indexable', () => {
   it('liste : au moins 3 éléments', () => {
     expect(indexable.list([1, 2])).toBe(false);
     expect(indexable.list([1, 2, 3])).toBe(true);
+  });
+});
+
+describe('toolDateModified', () => {
+  it('prend le relevé le plus récent : prix ou chiffres GitHub des projets affichés', () => {
+    const t = { pricing: { checkedOn: '2026-07-30' } };
+    expect(toolDateModified(t, [])).toBe('2026-07-30');
+    expect(toolDateModified(t, [{ project: { stats: { checkedOn: '2026-10-16' } } }, { project: {} }])).toBe('2026-10-16');
+    expect(toolDateModified({ pricing: { checkedOn: '2026-11-01' } }, [{ project: { stats: { checkedOn: '2026-10-16' } } }])).toBe('2026-11-01');
   });
 });
 

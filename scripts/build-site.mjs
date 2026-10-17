@@ -5,8 +5,7 @@
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { loadData } from './lib/load-data.mjs';
-import { derivePriorArt } from './lib/prior-art.mjs';
-import { alternativesFor } from './lib/site-alternatives.mjs';
+import { alternativesFor, indexable, toolDateModified } from './lib/site-alternatives.mjs';
 import {
   SITE_ORIGIN, fetchVoteCounts, fetchStats, fetchSponsorSlots, siteLanguages, toolsForLang, sortTools,
   categoriesForLang, topCategoriesByCount, langsForCategory, catalogueFigures, mrrDestroyed,
@@ -71,7 +70,7 @@ function voteCountFor(voteCounts, slug) {
 
 async function main() {
   const data = await loadData(process.cwd());
-  const { tools, i18n, ui, categories, agents, projects } = data;
+  const { tools, i18n, ui, categories, agents, projects, projectI18n } = data;
 
   // Date du build : c'est elle qui décide qu'un placement sponsor est actif
   // (un placement échu disparaît au prochain build, sans aucune action —
@@ -307,21 +306,23 @@ async function main() {
       await writeText(
         join(OUT, lang, 'tools', tool.slug, 'index.html'),
         renderToolPage({
-          // Pont jusqu'à la Task A4 (gabarit « alternatives ») : le gabarit
-          // actuel lit encore tool.priorArt, retiré des données sources par la
-          // migration priorArt → projects. On le lui redonne, dérivé comme
-          // dans le feed v1, pour que la colonne ne disparaisse pas d'ici là.
-          lang, path: toolPath, tool: { ...tool, priorArt: derivePriorArt(tool, projects) }, i18nEntry, categories,
+          lang, path: toolPath, tool, i18nEntry, categories,
           ui: langUi, alternates: toolAlt, xDefaultPath: xDefaultOf(toolAlt), homePath,
           categoryPath: `/${lang}/categories/${tool.category}`,
           relatedTools, voteCount: voteCountFor(voteCounts, tool.slug), favicons, agents, sponsorSlots,
-          // Déjà câblée pour la fiche en pièce d'instruction (tampon verdict
-          // daté du build) : renderToolPage l'ignore tant que son gabarit ne
-          // la lit pas — même date unique que l'accueil, calculée dans main().
+          // Date du verdict (build) et date de fraîcheur des chiffres GitHub :
+          // la même date unique que l'accueil, calculée dans main().
           buildDate: today,
+          projects, projectI18n, today,
+          // Lien vers /{lang}/oss/{slug} seulement si cette page est indexable
+          // (spec D7) ; sinon la fiche renvoie au site du projet.
+          projectIndexable: (project) => indexable.project(project, lang, { projectI18n, tools, today }),
         })
       );
-      sitemapPages.push({ path: toolPath, lastmod: tool.pricing.checkedOn });
+      // Une fiche est toujours dans le sitemap (Ruling 2), datée de son
+      // relevé le plus récent (prix ou chiffres GitHub affichés), comme
+      // WebPage.dateModified dans la page.
+      sitemapPages.push({ path: toolPath, lastmod: toolDateModified(tool, alternativesFor(tool, projects, today)) });
       toolPageCount += 1;
     }
   }

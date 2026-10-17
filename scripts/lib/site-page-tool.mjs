@@ -1,14 +1,14 @@
-import {
-  escapeHtml, renderLayout, renderBreadcrumb, verdictBadge, stamp, verdictChecks,
-} from './site-html.mjs';
+import { escapeHtml, renderLayout, renderBreadcrumb, verdictBadge } from './site-html.mjs';
 import { categoryLabel, SITE_ORIGIN } from './site-data.mjs';
 import {
-  formatMoney, formatMonthlyPrice, formatDate, formatStampDate, interpolate, pluralize,
-  MONTHLY_BASES,
+  formatMoney, formatMonthlyPrice, formatDate, interpolate, pluralize, MONTHLY_BASES,
 } from './site-format.mjs';
 import {
-  organizationJsonLd, faqPageJsonLd, breadcrumbJsonLd,
+  organizationJsonLd, faqPageJsonLd, breadcrumbJsonLd, softwareItemListJsonLd, webPageJsonLd,
 } from './site-seo.mjs';
+import {
+  alternativesFor, toolTitleVars, statsAreFresh, toolDateModified,
+} from './site-alternatives.mjs';
 import { PLACEHOLDER_PATH } from './site-favicons.mjs';
 import { FEED_VERSION } from './feed.mjs';
 // Le bouton "Open in <agent>" ne doit jamais réimplémenter la logique de
@@ -18,12 +18,27 @@ import { FEED_VERSION } from './feed.mjs';
 // donc réutilisable tel quel côté build Node.
 import { resolveAction } from '../../extension/lib/template.mjs';
 
+// Fiche outil = page « alternatives » (spec D1, D9, D14). Ordre des sections
+// fixé par D9 : alternatives (tableau puis fiches projet) → le construire
+// (prompt) → ce que tu perds → pourquoi on paie encore → FAQ. Suivent le vote
+// et les outils liés. Chaque information de l'ancienne fiche reste affichée
+// (D14) : tests/site-page-tool.test.mjs en tient l'inventaire.
+
+const DASH = '—';
+
 function sourceHost(url) {
   try {
-    return new URL(url).hostname;
+    return new URL(url).hostname.replace(/^www\./, '');
   } catch {
     return url;
   }
+}
+
+// « A week » → « a week » : le libellé entre au milieu d'une phrase de la
+// méta-description. Les libellés en et fr commencent tous par une capitale.
+function lowerFirst(value) {
+  const s = String(value);
+  return s.charAt(0).toLocaleLowerCase() + s.slice(1);
 }
 
 /** Un bouton par agent *vérifié* de data/agents.json (voir CONTRIBUTING.md :
@@ -42,268 +57,276 @@ function renderAgentButtons(agents, ctx, t) {
       // "url" et "clipboard" ouvrent un nouvel onglet (la fiche reste ouverte
       // pour copier le prompt) ; "deeplink" navigue dans le même onglet, seul
       // moyen fiable de déclencher le gestionnaire de protocole personnalisé
-      // de l'agent (cursor://…). Ce choix est déjà correct sans JavaScript —
-      // l'amélioration progressive (scripts/assets/site.js) ne fait qu'ajouter
-      // la copie automatique du prompt avant la navigation.
+      // de l'agent (cursor://…).
       const targetAttr = action.mode === 'deeplink' ? '' : ' target="_blank" rel="noopener noreferrer"';
       return `<a class="agent-btn" href="${escapeHtml(url)}" data-agent-id="${escapeHtml(agent.id)}" data-mode="${escapeHtml(action.mode)}"${targetAttr}
               data-copied-label="${escapeHtml(t.copiedButton)}" data-fail-label="${escapeHtml(t.copyFailed)}">${escapeHtml(label)}</a>`;
     })
-    .join('\n          ');
+    .join('\n              ');
 }
 
-function renderMetaRow(tool, lang, ui, categories, voteCount, categoryPath) {
-  const t = ui.site.tool;
-  const catLabel = categoryLabel(categories, tool.category, lang);
-  const items = [];
+/** Découpe un gabarit autour de {name} pour envelopper le nom seul dans le
+ *  soulignement à la main ; chaque morceau est échappé séparément. */
+function headingWithName(template, vars) {
+  const [before, after] = interpolate(String(template).replace('{name}', '\u0000'), vars).split('\u0000');
+  if (after === undefined) return escapeHtml(before);
+  return `${escapeHtml(before)}<span class="hand-underline">${escapeHtml(vars.name)}</span>${escapeHtml(after)}`;
+}
 
-  // La source et la date de vérification sont une légende du prix, pas du
-  // paragraphe de résumé qui suit ailleurs sur la page : elles vivent donc
-  // dans la même case que la valeur qu'elles justifient, pas au-dessus d'un
-  // autre paragraphe où elles se liraient comme sa citation.
-  const checkedOn = formatDate(tool.pricing.checkedOn, lang);
-  const sourceLabel = sourceHost(tool.pricing.source);
-  const priceSourceCaption = `<span class="price-source">${escapeHtml(t.priceSourceLabel)}: `
-    + `<a href="${escapeHtml(tool.pricing.source)}">${escapeHtml(sourceLabel)}</a> &middot; `
-    + `${escapeHtml(t.priceCheckedLabel)} ${escapeHtml(checkedOn)}</span>`;
-  items.push([t.priceHeading, `${escapeHtml(formatMonthlyPrice(tool.pricing, lang))}${priceSourceCaption}`]);
+/** Lien d'un projet (règle du brief A4) : sa page /{lang}/oss/{slug} quand
+ *  elle est indexable, sinon directement son site, en nofollow — on ne
+ *  pousse pas les moteurs vers une page que l'on garde hors index. */
+function projectLink(project, lang, isIndexable) {
+  if (isIndexable(project)) return { href: `/${lang}/oss/${project.slug}`, rel: '' };
+  return { href: project.homepage, rel: ' rel="nofollow noopener"' };
+}
 
-  // "Ce qu'une année coûte" n'a de sens que pour un prix vraiment récurrent —
-  // une fiche à paiement unique n'a pas de "coût annuel" à en déduire.
-  if (MONTHLY_BASES.has(tool.pricing.basis)) {
-    const yearly = formatMoney(tool.pricing.amount * 12, tool.pricing.currency, lang);
-    items.push([t.yearCostLabel, `<span title="${escapeHtml(t.yearCostNote)}">${escapeHtml(yearly)}</span>`]);
+/** Accroche d'un projet dans la langue de la page ; à défaut, la version en
+ *  signalée `lang="en"` ; à défaut encore, rien (null). */
+function projectTagline(project, lang, projectI18n) {
+  const own = projectI18n.get(`${lang}/${project.slug}`)?.tagline;
+  if (own) return escapeHtml(own);
+  const en = lang === 'en' ? null : projectI18n.get(`en/${project.slug}`)?.tagline;
+  return en ? `<span lang="en">${escapeHtml(en)}</span>` : null;
+}
+
+function fitTag(fit, t) {
+  return `<span class="fit-tag" data-fit="${escapeHtml(fit)}">${escapeHtml(t.fitLabels[fit])}</span>`;
+}
+
+/** Date relevée au plus tard parmi les chiffres GitHub encore frais : c'est
+ *  la date que la note « chiffres au … » annonce sous le tableau. */
+function freshStatsDate(alts, today) {
+  const dates = alts.filter(({ project }) => statsAreFresh(project, today)).map(({ project }) => project.stats.checkedOn);
+  return dates.length ? dates.sort().at(-1) : null;
+}
+
+// ---- en-tête de page --------------------------------------------------------
+
+function renderVerdictPanel({ tool, lang, t, s, verdict, buildDate, voteCount }) {
+  const { pricing } = tool;
+  // Base de facturation et plan, sous le montant (D14).
+  const parts = [s.pricingBasis?.[pricing.basis], pricing.plan ? interpolate(t.planTemplate, { plan: pricing.plan }) : null]
+    .filter(Boolean).map(escapeHtml);
+  const facts = [];
+  // « Ce qu'une année coûte » n'a de sens que pour un prix vraiment récurrent.
+  if (MONTHLY_BASES.has(pricing.basis)) {
+    const yearly = formatMoney(pricing.amount * 12, pricing.currency, lang);
+    facts.push([t.yearCostLabel, `<span title="${escapeHtml(t.yearCostNote)}">${escapeHtml(yearly)}</span>`]);
   }
-
-  items.push([t.buildTimeLabel, escapeHtml(ui.diyTimeEstimate?.[tool.diyTimeEstimate] ?? tool.diyTimeEstimate)]);
-
-  items.push([
-    t.categoryMetaLabel,
-    `<a href="${escapeHtml(categoryPath)}">${escapeHtml(catLabel)}</a>`,
-  ]);
-
-  const votesValue = voteCount === null
+  const votes = voteCount === null
     ? escapeHtml(t.voteUnavailable)
     : escapeHtml(pluralize(voteCount, lang, t.voteCountOne, t.voteCountOther));
-  items.push([t.votesMetaLabel, votesValue]);
+  facts.push([t.votesMetaLabel, votes]);
 
-  return items
-    .map(([label, value]) => `        <div class="meta-item"><dt>${escapeHtml(label)}</dt><dd>${value}</dd></div>`)
-    .join('\n');
+  return `      <div class="verdict-badge" data-verdict="${tool.verdict}" role="group" aria-label="${escapeHtml(t.verdictHeading)}">
+        <p class="vb-q">${escapeHtml(interpolate(t.verdictQuestionTemplate, { name: tool.name }))}</p>
+        <p class="vb-word">${escapeHtml(verdict.label)}</p>
+        <p class="vb-meta">${escapeHtml(t.verdictRecordedLabel)} <time datetime="${buildDate}">${escapeHtml(formatDate(buildDate, lang))}</time></p>
+        <p class="vb-price"><strong>${escapeHtml(formatMonthlyPrice(pricing, lang))}</strong>${parts.length ? ` · ${parts.join(' · ')}` : ''}
+          <span class="vb-meta">${escapeHtml(t.priceSourceLabel)}: <a href="${escapeHtml(pricing.source)}">${escapeHtml(sourceHost(pricing.source))}</a> · ${escapeHtml(t.priceCheckedLabel)} <time datetime="${pricing.checkedOn}">${escapeHtml(formatDate(pricing.checkedOn, lang))}</time></span></p>
+        <dl class="vb-facts">
+${facts.map(([label, value]) => `          <div><dt>${escapeHtml(label)}</dt><dd>${value}</dd></div>`).join('\n')}
+        </dl>
+      </div>`;
 }
 
-export function renderToolPage({
-  lang, path, tool, i18nEntry, categories, ui, alternates, xDefaultPath, homePath,
-  categoryPath, relatedTools, voteCount, favicons, agents, sponsorSlots, buildDate,
-}) {
-  const s = ui.site;
-  const t = s.tool;
-  const d = s.dossier;
-  const verdict = s.verdicts[tool.verdict];
-  const catLabel = categoryLabel(categories, tool.category, lang);
-  const favicon = favicons?.[tool.slug] ?? PLACEHOLDER_PATH;
+/** Les trois verdicts, définis, le courant marqué par le texte (« le verdict
+ *  de cette fiche ») et par la forme (filet et graisse) — jamais la couleur. */
+function renderVerdictLegend(current, s, t) {
+  const items = ['yes', 'kinda', 'no'].map((v) => {
+    const on = v === current;
+    const note = on ? ` <strong>${escapeHtml(t.currentVerdictNote)}</strong>` : '';
+    return `          <li${on ? ' aria-current="true"' : ''}>${verdictBadge(v, s.verdicts[v].label)}${note} ${escapeHtml(s.verdicts[v].desc)}</li>`;
+  });
+  return `      <details class="verdict-legend">
+        <summary>${escapeHtml(t.howWeJudge)}</summary>
+        <ul>
+${items.join('\n')}
+        </ul>
+      </details>`;
+}
 
-  const title = interpolate(t.titleTemplate, { name: tool.name });
-  const description = interpolate(t.metaDescriptionTemplate, { name: tool.name });
+function renderWays(t, hasAlternatives) {
+  const ways = [
+    hasAlternatives ? ['alternatives-heading', t.wayHostTitle, t.wayHostText] : null,
+    ['prompt-heading', t.wayBuildTitle, t.wayBuildText],
+    ['why-heading', t.wayPayTitle, t.wayPayText],
+  ].filter(Boolean);
+  const items = ways.map(([id, title, body], i) => `          <li><a href="#${id}"><span class="n" aria-hidden="true">${i + 1}</span><span><strong>${escapeHtml(title)}</strong> ${escapeHtml(body)}</span></a></li>`);
+  return `      <nav class="ways" aria-labelledby="ways-heading">
+        <p class="label" id="ways-heading">${escapeHtml(t.waysHeading)}</p>
+        <ol>
+${items.join('\n')}
+        </ol>
+      </nav>`;
+}
 
-  // La cote du dossier est le slug, stable et parlant — JAMAIS un numéro
-  // séquentiel (spec §10.1 : le « n° 002 » de la maquette est un artefact de
-  // specimen, pas une donnée ; un numéro d'ordre changerait à chaque insertion).
-  const cote = `SMF·${tool.slug.toUpperCase()}`;
+// ---- section alternatives --------------------------------------------------
 
-  // Le nom de l'outil est souligné à la main dans la question du titre
-  // (maquette ef-us) : on découpe le gabarit autour de {name} pour envelopper
-  // le nom seul, chaque morceau échappé séparément.
-  const [h1Before, h1After] = String(t.h1Template).split('{name}');
-  const h1 = h1After === undefined
-    ? escapeHtml(interpolate(t.h1Template, { name: tool.name }))
-    : `${escapeHtml(h1Before)}<span class="hand-underline">${escapeHtml(tool.name)}</span>${escapeHtml(h1After)}`;
+function renderAlternatives({ tool, alts, lang, t, s, verdict, projectI18n, i18nEntry, isIndexable, today }) {
+  const monthYear = new Intl.DateTimeFormat(lang, { month: 'short', year: 'numeric', timeZone: 'UTC' });
+  const compact = new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 1 });
+  const dash = (title) => (title ? `<span title="${escapeHtml(title)}">${DASH}</span>` : DASH);
 
-  const breadcrumbItems = [
-    { label: s.directoryLabel, href: homePath },
-    { label: catLabel, href: categoryPath },
-    { label: tool.name, href: path },
-  ];
+  const projectRows = alts.map(({ project, fit }) => {
+    const link = projectLink(project, lang, isIndexable);
+    let stars;
+    let commit;
+    if (statsAreFresh(project, today)) {
+      stars = escapeHtml(compact.format(project.stats.stars));
+      commit = escapeHtml(monthYear.format(new Date(`${project.stats.lastCommit}T00:00:00Z`)));
+    } else {
+      // Chiffre périmé ou absent : masqué, jamais affiché comme actuel ni à 0.
+      const why = project.stats?.checkedOn
+        ? interpolate(t.statsAsOf, { date: formatDate(project.stats.checkedOn, lang) })
+        : t.noGithubFigures;
+      stars = dash(why);
+      commit = dash(why);
+    }
+    const hosted = project.hosted?.exists
+      ? `${escapeHtml(interpolate(t.hostedFromTemplate, { price: formatMoney(project.hosted.priceFrom, project.hosted.currency, lang) }))}`
+        + `<span class="sub">${escapeHtml(interpolate(t.checkedOnTemplate, { date: formatDate(project.hosted.checkedOn, lang) }))}</span>`
+      : escapeHtml(t.hostedNone);
+    return `            <tr>
+              <th scope="row"><a href="${escapeHtml(link.href)}"${link.rel}>${escapeHtml(project.name)}</a></th>
+              <td>${fitTag(fit, t)}</td>
+              <td>${project.license ? escapeHtml(project.license) : DASH}</td>
+              <td class="num">${stars}</td>
+              <td class="num">${commit}</td>
+              <td>${escapeHtml(project.selfHostable ? t.selfHostYes : t.selfHostNo)}</td>
+              <td>${hosted}</td>
+            </tr>`;
+  });
 
-  const whyHeading = interpolate(t.whyPeopleStillPayHeadingTemplate, { moat: tool.moatType });
+  const buildRow = `            <tr class="other other-first">
+              <th scope="row"><a href="#prompt-heading">${escapeHtml(t.buildRowLabel)}</a></th>
+              <td>${verdictBadge(tool.verdict, verdict.label)}</td>
+              <td>${escapeHtml(t.licenseYours)}</td>
+              <td class="num">${DASH}</td>
+              <td class="num">${DASH}</td>
+              <td>${escapeHtml(t.selfHostYes)}</td>
+              <td>${DASH}</td>
+            </tr>`;
+  const keepRow = `            <tr class="other">
+              <th scope="row">${escapeHtml(interpolate(t.keepPayingRowLabel, { name: tool.name }))}</th>
+              <td>${fitTag('full', t)}</td>
+              <td>${escapeHtml(t.licenseProprietary)}</td>
+              <td class="num">${DASH}</td>
+              <td class="num">${DASH}</td>
+              <td>${escapeHtml(t.selfHostNo)}</td>
+              <td>${escapeHtml(formatMonthlyPrice(tool.pricing, lang))}<span class="sub">${escapeHtml(interpolate(t.checkedOnTemplate, { date: formatDate(tool.pricing.checkedOn, lang) }))}</span></td>
+            </tr>`;
 
-  // La table des pièces EST la liste des sections réellement rendues : le
-  // bordereau de suivi et les renvois croisés en dérivent tous, donc aucun
-  // renvoi ne peut pointer vers une pièce absente de la page.
-  const pieces = [
-    { letter: 'A', heading: t.promptHeading, id: 'prompt-heading' },
-    { letter: 'B', heading: t.whatYouLoseHeading, id: 'lose-heading' },
-    { letter: 'C', heading: whyHeading, id: 'why-heading' },
-  ];
-  const pieceLabel = (letter) => interpolate(d.pieceTemplate, { letter });
+  const cols = [
+    [t.colProject, ''], [interpolate(t.colFit, { name: tool.name }), ''], [t.colLicense, ''],
+    [t.colStars, ' class="num"'], [t.colLastCommit, ' class="num"'], [t.colSelfHost, ''], [t.colHosted, ''],
+  ].map(([label, cls]) => `<th scope="col"${cls}>${escapeHtml(label)}</th>`).join('');
 
-  const metaRow = renderMetaRow(tool, lang, ui, categories, voteCount, categoryPath);
+  const legend = ['full', 'partial', 'niche']
+    .map((fit) => `${fitTag(fit, t)} ${escapeHtml(t.fitLegend[fit])}`).join(' · ');
+  const asOf = freshStatsDate(alts, today);
+  const hint = `      <p class="hint">${legend}.${asOf ? ` ${escapeHtml(interpolate(t.statsAsOf, { date: formatDate(asOf, lang) }))}.` : ''}</p>`;
 
-  // ---- chemise ------------------------------------------------------------
-  // L'onglet porte la rubrique, le tampon verdict est daté du build (la date à
-  // laquelle le service a arrêté ce verdict), le dateur rond porte la SEULE
-  // occurrence tamponnée de la date du relevé de prix (spec : un porteur par page).
-  const folderStamps = `<div class="folder-stamps">
-        ${verdictBadge(tool.verdict, verdict.label, 'badge-lg')}
-        <span class="stamp-sub">${escapeHtml(`${d.verdictRecordedOn} ${formatStampDate(buildDate)} · ${d.verifiedOn} ${formatStampDate(tool.pricing.checkedOn)}`)}</span>
-      </div>`;
+  const empty = alts.length === 0
+    ? `\n      <p class="intro">${escapeHtml(interpolate(t.noAlternatives, { name: tool.name }))}</p>`
+    : '';
 
-  const folder = `    <div class="folder folder-${tool.verdict}">
-      <p class="folder-cote">${escapeHtml(cote)}</p>
-      <div class="folder-top">
-        <div class="folder-id">
-          <h1><img class="tool-favicon" src="${escapeHtml(favicon)}" alt="" width="40" height="40"> ${h1}</h1>
-          <p class="tagline"><a href="${categoryPath}">${escapeHtml(catLabel)}</a>${tool.subcategory ? ` — ${escapeHtml(tool.subcategory)}` : ''}</p>
-        </div>
-        ${folderStamps}
-      </div>
-      <dl class="meta-row">
-${metaRow}
-      </dl>
-      ${verdictChecks(tool.verdict, s.verdicts, d.checkedNote)}
-    </div>`;
+  const notes = i18nEntry.alternativeNotes ?? {};
+  const cards = alts.map(({ project, fit }) => {
+    const link = projectLink(project, lang, isIndexable);
+    const meta = [fitTag(fit, t)];
+    if (project.license) meta.push(escapeHtml(project.license));
+    if (statsAreFresh(project, today)) {
+      meta.push(escapeHtml(interpolate(t.starsTemplate, { count: compact.format(project.stats.stars) })));
+    }
+    const github = project.repo ? `https://github.com/${project.repo}` : null;
+    if (github && github !== project.homepage) {
+      meta.push(`<a href="${escapeHtml(github)}" rel="nofollow noopener">GitHub: ${escapeHtml(project.repo)}</a>`);
+    }
+    const tagline = projectTagline(project, lang, projectI18n);
+    const note = notes[project.slug];
+    return `        <article class="alt-card" id="alt-${project.slug}" aria-labelledby="alt-${project.slug}-h">
+          <h3 id="alt-${project.slug}-h">${escapeHtml(project.name)}</h3>
+          <p class="alt-card-meta">${meta.join(' <span aria-hidden="true">·</span> ')}</p>${tagline ? `
+          <p class="alt-card-what">${tagline}</p>` : ''}${note ? `
+          <p class="alt-card-note">${escapeHtml(note)}</p>` : ''}
+          <p><a href="${escapeHtml(link.href)}"${link.rel}>${escapeHtml(interpolate(t.seeProjectLink, { name: project.name }))}</a></p>
+        </article>`;
+  });
 
-  // ---- bordereau de suivi -------------------------------------------------
-  // Une ligne par pièce rendue + la ligne Questions : le renvoi est la lettre
-  // de pièce, la coche au stylo est décorative (le contenu suit juste après).
-  const slipRows = [...pieces, { letter: 'Q', heading: t.faqHeading, id: 'faq-heading' }]
-    .map(({ letter, heading, id }) => `            <tr>
-              <th scope="row"><a href="#${id}">${escapeHtml(pieceLabel(letter))}</a></th>
-              <td>${escapeHtml(heading)}</td>
-              <td><span class="pen-check" aria-hidden="true"></span></td>
-            </tr>`)
-    .join('\n');
-
-  const trackingSlip = `    <section class="tracking-slip" aria-labelledby="tracking-heading">
-      <div class="piece-head">
-        <h2 class="piece-tab" id="tracking-heading">${escapeHtml(d.trackingHeading)}</h2>
-      </div>
-      <div class="sheet">
-        <table>
+  return `    <section aria-labelledby="alternatives-heading">
+      <h2 id="alternatives-heading">${escapeHtml(t.alternativesHeading)}</h2>${empty}
+      <div class="table-scroll" role="region" aria-labelledby="alternatives-caption" tabindex="0">
+        <table class="alt-table">
+          <caption id="alternatives-caption">${escapeHtml(interpolate(t.alternativesTableCaption, { name: tool.name }))}</caption>
+          <thead><tr>${cols}</tr></thead>
           <tbody>
-${slipRows}
+${[...projectRows, buildRow, keepRow].join('\n')}
           </tbody>
         </table>
       </div>
+${hint}${cards.length ? `
+      <div class="alt-cards">
+${cards.join('\n')}
+      </div>` : ''}
     </section>`;
+}
 
-  // ---- pièces -------------------------------------------------------------
-  // Chaque tête de pièce est l'onglet encré « Pièce X — Intitulé » : c'est le
-  // h2 lui-même qui porte l'id d'ancre, cible unique des renvois croisés.
-  const pieceHead = ({ letter, heading, id }, extra = '') => `      <div class="piece-head">
-        <h2 class="piece-tab" id="${id}">${escapeHtml(`${pieceLabel(letter)} — ${heading}`)}</h2>${extra ? `
-        ${extra}` : ''}
-      </div>`;
+// ---- le construire ---------------------------------------------------------
 
+function renderBuild({ tool, lang, t, ui, i18nEntry, agents, showSummary }) {
   const promptUrl = `/feed/${FEED_VERSION}/${lang}/prompts/${tool.slug}.txt`;
-  const agentCtx = {
-    prompt: i18nEntry.prompt,
-    prompt_url: `${SITE_ORIGIN}${promptUrl}`,
-    lang,
-    slug: tool.slug,
-  };
-  const agentButtons = renderAgentButtons(agents, agentCtx, t);
+  const agentButtons = renderAgentButtons(agents, {
+    prompt: i18nEntry.prompt, prompt_url: `${SITE_ORIGIN}${promptUrl}`, lang, slug: tool.slug,
+  }, t);
+  const requirements = (tool.requirements ?? []).map((r) => ui.requirements?.[r] ?? r);
+  const facts = [
+    [t.buildTimeLabel, ui.diyTimeEstimate?.[tool.diyTimeEstimate] ?? tool.diyTimeEstimate],
+    requirements.length ? [t.requirementsLabel, requirements.join(', ')] : null,
+    [t.oneShotLabel, tool.verifiedOneShot ? t.oneShotYes : t.oneShotNo],
+  ].filter(Boolean);
 
-  const pieceA = `    <section aria-labelledby="prompt-heading" class="piece tool-block-prompt">
-${pieceHead(pieces[0], stamp('verif', [d.receivedOn, formatStampDate(tool.pricing.checkedOn)]))}
-      <div class="prompt-block">
-        <div class="prompt-header">
-          <div class="prompt-actions">
-            <button id="copy-prompt" class="copy-btn" type="button" hidden
-              data-copied-label="${escapeHtml(t.copiedButton)}"
-              data-fail-label="${escapeHtml(t.copyFailed)}">${escapeHtml(t.copyButton)}</button>
-            ${agentButtons}
+  // Quand l'intro des alternatives prend le lede, le résumé du verdict passe
+  // ici : il parle justement de ce qu'on peut refaire soi-même (D14).
+  const summary = showSummary ? `\n          <p>${escapeHtml(i18nEntry.verdictSummary)}</p>` : '';
+
+  return `    <section aria-labelledby="prompt-heading" class="build">
+      <div class="build-text">
+        <h2 id="prompt-heading">${escapeHtml(t.promptHeading)}</h2>${summary}
+        <p>${escapeHtml(i18nEntry.coreLoopDIY)}</p>
+        <dl class="fact-grid">
+${facts.map(([label, value]) => `          <div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join('\n')}
+        </dl>
+      </div>
+      <div class="build-prompt">
+        <div class="prompt-block">
+          <div class="prompt-header">
+            <div class="prompt-actions">
+              <button id="copy-prompt" class="copy-btn" type="button" hidden
+                data-copied-label="${escapeHtml(t.copiedButton)}"
+                data-fail-label="${escapeHtml(t.copyFailed)}">${escapeHtml(t.copyButton)}</button>
+              ${agentButtons}
+            </div>
           </div>
+          <pre><code id="prompt-text">${escapeHtml(i18nEntry.prompt)}</code></pre>
         </div>
-        <pre><code id="prompt-text">${escapeHtml(i18nEntry.prompt)}</code></pre>
-      </div>
-      <p class="prompt-caption">${escapeHtml(t.promptOpenCaption)}</p>
-      <p class="status" id="copy-status" role="status" aria-live="polite"></p>
-    </section>`;
-
-  // Chaque ligne de perte est numérotée B.n (maquette ef-lno) : des renvois de
-  // lecture, pas une cote — la numérotation séquentielle interdite est celle
-  // des dossiers, pas celle des lignes d'une même pièce.
-  const whatYouLose = i18nEntry.whatYouLose
-    .map((item, i) => `          <li><span class="pen-check" aria-hidden="true"></span><span class="piece-no">B.${i + 1}</span> <span>${escapeHtml(item)}</span></li>`)
-    .join('\n');
-
-  const priorArt = tool.priorArt ?? [];
-  const priorArtColumn = priorArt.length === 0 ? '' : `
-        <div class="col-priorart">
-          <h3 id="priorart-heading">${escapeHtml(t.priorArtHeading)}</h3>
-          <ul class="priorart-cards">
-${priorArt
-  .map((item) => {
-    const license = item.license
-      ? `<span class="priorart-license">${escapeHtml(t.licenseLabel)}: ${escapeHtml(item.license)}</span>`
-      : '';
-    return `            <li class="priorart-card"><a href="${escapeHtml(item.url)}">${escapeHtml(item.name)}</a>${license}</li>`;
-  })
-  .join('\n')}
-          </ul>
-        </div>`;
-
-  const pieceB = `    <section aria-labelledby="lose-heading" class="piece">
-${pieceHead(pieces[1])}
-      <div class="sheet piece-body two-col">
-        <div class="col-lose">
-          <ul class="lose-list">
-${whatYouLose}
-          </ul>
-        </div>${priorArtColumn}
+        <p class="prompt-caption">${escapeHtml(t.promptOpenCaption)} <a href="${promptUrl}">${escapeHtml(t.rawPromptLink)}</a></p>
+        <p class="status" id="copy-status" role="status" aria-live="polite"></p>
       </div>
     </section>`;
+}
 
-  const pieceC = `    <section aria-labelledby="why-heading" class="piece">
-${pieceHead(pieces[2])}
-      <div class="sheet piece-body">
-        <p>${escapeHtml(i18nEntry.whyPeopleStillPay)}</p>
-      </div>
-    </section>`;
+// ---- après la FAQ : vote, outils liés --------------------------------------
 
-  const faqItems = i18nEntry.faq
-    .map(
-      (entry) => `      <details>
-        <summary>${escapeHtml(entry.q)}</summary>
-        <p>${escapeHtml(entry.a)}</p>
-      </details>`
-    )
-    .join('\n');
-
-  const relatedSection = relatedTools.length === 0 ? '' : `
-    <section aria-labelledby="related-heading">
-      <h2 id="related-heading">${escapeHtml(t.relatedHeading)}</h2>
-      <ul class="related-cards">
-${relatedTools
-  .map((r) => {
-    const rv = s.verdicts[r.verdict];
-    const rCatLabel = categoryLabel(categories, r.category, lang);
-    const rFavicon = favicons?.[r.slug] ?? PLACEHOLDER_PATH;
-    return `        <li class="related-card">
-          <a href="${r.path}">
-            <img src="${escapeHtml(rFavicon)}" alt="" width="28" height="28" loading="lazy">
-            <span class="related-card-name">${escapeHtml(r.name)}</span>
-            ${verdictBadge(r.verdict, rv.label)}
-            <span class="related-card-meta">${escapeHtml(formatMonthlyPrice(r.pricing, lang))} &middot; ${escapeHtml(rCatLabel)}</span>
-          </a>
-        </li>`;
-  })
-  .join('\n')}
-      </ul>
-    </section>`;
-
+function renderVote({ tool, lang, path, t, verdict, voteCount }) {
+  const attrs = `id="vote-count" data-vote-slug="${tool.slug}" data-lang="${lang}" data-singular="${escapeHtml(t.voteCountOne)}" data-plural="${escapeHtml(t.voteCountOther)}"`;
   const voteBadge = voteCount === null
-    ? `<span class="vote-count-badge" id="vote-count" hidden data-vote-slug="${tool.slug}" data-lang="${lang}" data-singular="${escapeHtml(t.voteCountOne)}" data-plural="${escapeHtml(t.voteCountOther)}"></span>`
-    : `<span class="vote-count-badge" id="vote-count" data-vote-slug="${tool.slug}" data-lang="${lang}" data-singular="${escapeHtml(t.voteCountOne)}" data-plural="${escapeHtml(t.voteCountOther)}">(${escapeHtml(pluralize(voteCount, lang, t.voteCountOne, t.voteCountOther))})</span>`;
-
+    ? `<span class="vote-count-badge" ${attrs} hidden></span>`
+    : `<span class="vote-count-badge" ${attrs}>(${escapeHtml(pluralize(voteCount, lang, t.voteCountOne, t.voteCountOther))})</span>`;
   const shareText = interpolate(t.shareTextTemplate, { name: tool.name, verdict: verdict.label });
   const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(`${SITE_ORIGIN}${path}`)}`;
-
-  // Le cadre du visiteur devient le récépissé détachable au bas du dossier :
-  // mêmes crochets JS qu'avant, seule l'enveloppe change.
-  const receipt = `    <section class="vote-section receipt" aria-labelledby="vote-heading">
-      <p class="receipt-label">${escapeHtml(d.receiptHeading)}</p>
+  return `    <section class="vote-section" aria-labelledby="vote-heading">
       <h2 id="vote-heading">${escapeHtml(t.voteHeading)}</h2>
       <div class="vote-row">
         <button id="vote-btn" class="vote-btn" type="button" data-slug="${tool.slug}"
@@ -314,46 +337,142 @@ ${relatedTools
       </div>
       <p class="status" id="vote-status" role="status" aria-live="polite"></p>
     </section>`;
+}
 
-  // ---- assemblage : chemise, bordereau, résumé, pièces A→C, questions,
-  // outils proches, récépissé — l'ordre du spec §4 amendé. Le renvoi au stylo
-  // sous le résumé pointe vers la pièce B (les pertes motivent le verdict).
-  const main = `    ${renderBreadcrumb(breadcrumbItems)}
+function renderRelated({ relatedTools, lang, s, t, categories, favicons }) {
+  if (relatedTools.length === 0) return '';
+  const cards = relatedTools.map((r) => {
+    const rFavicon = favicons?.[r.slug] ?? PLACEHOLDER_PATH;
+    return `        <li class="related-card">
+          <a href="${escapeHtml(r.path)}">
+            <img src="${escapeHtml(rFavicon)}" alt="" width="28" height="28" loading="lazy">
+            <span class="related-card-name">${escapeHtml(r.name)}</span>
+            ${verdictBadge(r.verdict, s.verdicts[r.verdict].label)}
+            <span class="related-card-meta">${escapeHtml(formatMonthlyPrice(r.pricing, lang))} &middot; ${escapeHtml(categoryLabel(categories, r.category, lang))}</span>
+          </a>
+        </li>`;
+  });
+  return `
 
-${folder}
+    <section aria-labelledby="related-heading">
+      <h2 id="related-heading">${escapeHtml(t.relatedHeading)}</h2>
+      <ul class="related-cards">
+${cards.join('\n')}
+      </ul>
+    </section>`;
+}
 
-${trackingSlip}
+/**
+ * Fiche outil, page « alternatives ».
+ *
+ * @param {object} opts  — en plus des champs historiques :
+ * @param {Map<string, object>} opts.projects  slug → projet (loadData().projects)
+ * @param {Map<string, object>} opts.projectI18n  'lang/slug' → textes projet
+ * @param {string} opts.today  date du build, 'YYYY-MM-DD' (fraîcheur des chiffres)
+ * @param {(project: object) => boolean} [opts.projectIndexable]  vrai si la page
+ *   /{lang}/oss/{slug} du projet est indexable (indexable.project) ; absent,
+ *   chaque projet renvoie vers son site
+ */
+export function renderToolPage({
+  lang, path, tool, i18nEntry, categories, ui, alternates, xDefaultPath, homePath,
+  categoryPath, relatedTools, voteCount, favicons, agents, sponsorSlots, buildDate,
+  projects, projectI18n = new Map(), today, projectIndexable = () => false,
+}) {
+  const s = { ...ui.site, pricingBasis: ui.pricingBasis };
+  const t = s.tool;
+  const verdict = s.verdicts[tool.verdict];
+  const catLabel = categoryLabel(categories, tool.category, lang);
+  const favicon = favicons?.[tool.slug] ?? PLACEHOLDER_PATH;
 
-    <section aria-labelledby="verdict-heading">
-      <h2 id="verdict-heading" class="visually-hidden">${escapeHtml(t.verdictHeading)}</h2>
-      <p class="verdict-summary ${tool.verdict}">${escapeHtml(i18nEntry.verdictSummary)}</p>
-      <p class="pen-note"><a href="#${pieces[1].id}">${escapeHtml(`${pieceLabel(pieces[1].letter)} — ${pieces[1].heading}`)}</a></p>
-    </section>
+  const alts = alternativesFor(tool, projects ?? new Map(), today);
+  const vars = toolTitleVars(tool, alts, buildDate);
+  const dateModified = toolDateModified(tool, alts);
+  const price = formatMonthlyPrice(tool.pricing, lang);
+  const build = lowerFirst(ui.diyTimeEstimate?.[tool.diyTimeEstimate] ?? tool.diyTimeEstimate);
 
-${pieceA}
+  const title = interpolate(vars.fallback ? t.titleFallbackTemplate : t.titleTemplate, vars);
+  const top3 = new Intl.ListFormat(lang, { style: 'long', type: 'conjunction' })
+    .format(alts.slice(0, 3).map(({ project }) => project.name));
+  const description = interpolate(
+    vars.fallback ? t.metaDescriptionFallbackTemplate : t.metaDescriptionTemplate,
+    { ...vars, top3, build, price },
+  );
+  const h1 = headingWithName(vars.fallback ? t.h1FallbackTemplate : t.h1Template, vars);
 
-${pieceB}
-
-${pieceC}
-
-    <section aria-labelledby="faq-heading">
-      <h2 id="faq-heading">${escapeHtml(t.faqHeading)}</h2>
-${faqItems}
-    </section>
-${relatedSection}
-
-${receipt}`;
-
-  // La cartouche de références sous le filet de tête (renderLayout) : chaque
-  // cellule est un fait du dossier — la cote, les deux dates, et des comptes
-  // dérivés des données rendues (jamais des constantes recopiées à la main).
-  const refCells = [
-    [d.fileLabel, cote],
-    [d.receivedOn, formatStampDate(tool.pricing.checkedOn)],
-    [d.instructedOn, formatStampDate(buildDate)],
-    [d.piecesAnnexed, String(pieces.length)],
-    [t.faqHeading, String(i18nEntry.faq.length)],
+  const breadcrumbItems = [
+    { label: s.directoryLabel, href: homePath },
+    { label: catLabel, href: categoryPath },
+    { label: tool.name, href: path },
   ];
+
+  const lede = i18nEntry.alternativesIntro ?? i18nEntry.verdictSummary;
+  const eyebrow = [
+    `<a href="${escapeHtml(categoryPath)}">${escapeHtml(catLabel)}</a>`,
+    tool.subcategory ? escapeHtml(tool.subcategory) : null,
+    `${escapeHtml(t.lastUpdatedLabel)} <time datetime="${dateModified}">${escapeHtml(formatDate(dateModified, lang))}</time>`,
+  ].filter(Boolean).join(' · ');
+
+  const head = `    <header class="page-head">
+      <div class="head-text">
+        ${renderBreadcrumb(breadcrumbItems)}
+        <p class="eyebrow">${eyebrow}</p>
+        <h1><img class="tool-favicon" src="${escapeHtml(favicon)}" alt="" width="40" height="40"> ${h1}</h1>
+      </div>
+      <div class="vb-col">
+${renderVerdictPanel({ tool, lang, t, s, verdict, buildDate, voteCount })}
+${renderVerdictLegend(tool.verdict, s, t)}
+      </div>
+      <p class="lede">${escapeHtml(lede)}</p>
+${renderWays(t, alts.length > 0)}
+    </header>`;
+
+  const isIndexable = (project) => Boolean(projectIndexable?.(project));
+
+  const lose = `    <section aria-labelledby="lose-heading">
+      <h2 id="lose-heading">${escapeHtml(t.whatYouLoseHeading)}</h2>
+      <ul class="lose-list">
+${i18nEntry.whatYouLose.map((item) => `        <li>${escapeHtml(item)}</li>`).join('\n')}
+      </ul>
+    </section>`;
+
+  const why = `    <section aria-labelledby="why-heading" class="why">
+      <h2 id="why-heading">${escapeHtml(interpolate(t.whyPeopleStillPayHeadingTemplate, { name: tool.name, moat: tool.moatType }))}</h2>
+      <p class="moat"><span class="label">${escapeHtml(t.moatLabel)}</span> ${escapeHtml(tool.moatType)}</p>
+      <blockquote class="quote"><p>${escapeHtml(i18nEntry.whyPeopleStillPay)}</p></blockquote>${i18nEntry.notes ? `
+      <p class="quote-note">${escapeHtml(i18nEntry.notes)}</p>` : ''}
+    </section>`;
+
+  const faq = `    <section aria-labelledby="faq-heading" class="faq">
+      <h2 id="faq-heading">${escapeHtml(t.faqHeading)}</h2>
+${i18nEntry.faq.map((entry) => `      <details>
+        <summary>${escapeHtml(entry.q)}</summary>
+        <p>${escapeHtml(entry.a)}</p>
+      </details>`).join('\n')}
+    </section>`;
+
+  const main = `${head}
+
+${renderAlternatives({ tool, alts, lang, t, s, verdict, projectI18n, i18nEntry, isIndexable, today })}
+
+${renderBuild({ tool, lang, t, ui, i18nEntry, agents, showSummary: Boolean(i18nEntry.alternativesIntro) })}
+
+${lose}
+
+${why}
+
+${faq}
+
+${renderVote({ tool, lang, path, t, verdict, voteCount })}${renderRelated({ relatedTools, lang, s, t, categories, favicons })}`;
+
+  const itemList = alts.length === 0 ? [] : [softwareItemListJsonLd(alts.map(({ project }) => {
+    const { href } = projectLink(project, lang, isIndexable);
+    return {
+      name: project.name,
+      url: href.startsWith('/') ? `${SITE_ORIGIN}${href}` : href,
+      applicationCategory: catLabel,
+      hosted: project.hosted,
+    };
+  }))];
 
   return renderLayout({
     lang,
@@ -365,12 +484,13 @@ ${receipt}`;
     jsonLd: [
       organizationJsonLd(),
       breadcrumbJsonLd(breadcrumbItems),
+      webPageJsonLd({ path, name: title, description, lang, dateModified }),
+      ...itemList,
       faqPageJsonLd(i18nEntry.faq),
     ],
     main,
     ui,
     homeHref: homePath,
     sponsorSlots,
-    refCells,
   });
 }

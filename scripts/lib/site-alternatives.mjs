@@ -127,6 +127,22 @@ export const indexable = {
 };
 
 /**
+ * Date de dernière modification réelle d'une fiche : le plus récent des
+ * relevés qui la composent, prix de l'outil et chiffres GitHub des projets
+ * affichés. Sert au WebPage.dateModified, à la mention « mis à jour le » et
+ * au lastmod du sitemap — jamais la date du build, qui changerait chaque jour
+ * sans que rien ne change.
+ * @param {{ pricing: { checkedOn: string } }} tool
+ * @param {Array<{ project: object }>} alts  sortie d'alternativesFor
+ * @returns {string} 'YYYY-MM-DD'
+ */
+export function toolDateModified(tool, alts) {
+  const dates = [tool.pricing.checkedOn, ...alts.map(({ project }) => project.stats?.checkedOn).filter(Boolean)];
+  // Le format ISO se trie comme du texte : comparaison binaire, sans locale.
+  return dates.reduce((max, d) => (d > max ? d : max));
+}
+
+/**
  * Variables du titre d'une fiche. `alts` est la sortie d'alternativesFor
  * (déjà filtrée sur les projets affichables). L'année vient de la date de
  * build, jamais d'une constante. `fallback` signale qu'il y a trop peu

@@ -7,7 +7,6 @@ import { renderHomePage } from '../scripts/lib/site-page-home.mjs';
 import { renderToolPage } from '../scripts/lib/site-page-tool.mjs';
 import { renderSponsorPage } from '../scripts/lib/site-page-sponsor.mjs';
 import { sponsorContext, renderSponsorSlots } from '../scripts/lib/site-sponsors.mjs';
-import { derivePriorArt } from '../scripts/lib/prior-art.mjs';
 import { catalogueFigures } from '../scripts/lib/site-data.mjs';
 
 // Garde du système de design (Task A0, étape 4) : chaque crochet que
@@ -44,10 +43,11 @@ const PAGES = {
     figures, mrrTotal: 0, ui, alternates: [], xDefaultPath: null, sponsorSlots,
   }),
   tool: renderToolPage({
-    lang, path: `/${lang}/tools/${tool.slug}`, tool: { ...tool, priorArt: derivePriorArt(tool, data.projects) },
+    lang, path: `/${lang}/tools/${tool.slug}`, tool,
     i18nEntry: data.i18n.get(`${lang}/${tool.slug}`), categories: data.categories, ui, alternates: [],
     xDefaultPath: null, homePath: `/${lang}/`, categoryPath: `/${lang}/categories/${tool.category}`,
     relatedTools: [], voteCount: 0, favicons: {}, agents: data.agents, sponsorSlots, buildDate: today,
+    projects: data.projects, projectI18n: data.projectI18n, today,
   }),
   sponsor: renderSponsorPage({
     lang, path: `/${lang}/sponsor`, ui, alternates: [], xDefaultPath: null, homePath: `/${lang}/`,
