@@ -1,14 +1,14 @@
 // Améliore progressivement les pages générées par scripts/build-site.mjs.
 // Sans ce fichier (JS désactivé), chaque page reste complète et lisible :
-// la liste d'outils est déjà triée et entièrement présente dans le HTML, les
-// chips de catégorie sont déjà des liens qui fonctionnent, le champ de
+// la grille d'outils est déjà triée et toutes ses cartes sont visibles dans
+// le HTML, les catégories sont déjà des liens qui fonctionnent, le champ de
 // recherche est déjà un champ de recherche classique (voir applyFilter), le
 // prompt est déjà sélectionnable dans son <pre>, les boutons "Open in
 // <agent>" sont déjà des liens <a> qui naviguent correctement, et les
 // questions/réponses sont déjà ouvrables au clavier via <details>. Ce script
-// n'ajoute que : le volet de suggestions de recherche, le filtre par verdict,
-// la copie en un clic, la copie automatique avant d'ouvrir un agent, le
-// vote en direct, et sur /sponsor seulement le rafraîchissement de
+// n'ajoute que : le volet de suggestions de recherche, le filtre par verdict
+// et par catégorie, le tri, « Voir plus », la copie en un clic, la copie
+// automatique avant d'ouvrir un agent, le vote en direct, et sur /sponsor seulement le rafraîchissement de
 // l'inventaire (statut + prix, voir enhanceSponsorInventory) et le bouton
 // d'achat (voir enhanceSponsorCheckout). Sur /sponsor sans JavaScript, il
 // reste l'inventaire complet, les prix, le barème, l'adresse de contact et
@@ -167,39 +167,87 @@
     return (singular ? singularTpl : pluralTpl).replace('{count}', String(count));
   }
 
-  // La table (accueil et pages de catégorie) : le filtre par verdict (chips,
-  // accueil seulement) et le rafraîchissement des compteurs de votes. La
-  // frappe dans #q n'agit plus sur cette table — voir enhanceSearchCombo,
-  // qui affiche un volet de suggestions séparé à la place. #q ne filtre la
-  // table qu'une seule fois, au chargement, via ?q= dans l'URL : c'est ce que
-  // promet la SearchAction du JSON-LD de l'accueil, et ça doit rester vrai
-  // même si le lecteur n'interagit plus jamais avec le champ.
+  // La grille de cartes (accueil et pages de catégorie). Sur l'accueil : le
+  // filtre par verdict (pastilles), le filtre de catégorie, le tri, et
+  // « Voir plus » qui montre les cartes par paquets de data-page-size. Partout :
+  // le rafraîchissement des compteurs de votes.
+  //
+  // Sans ce script, toutes les cartes sont visibles et le tri est celui du
+  // build : rien n'est caché au lecteur (spec D14). Le filtre de catégorie et
+  // le tri sont rendus `hidden` et dévoilés ici — un contrôle mort est pire
+  // qu'un contrôle absent.
+  //
+  // La frappe dans #q n'agit pas sur la grille — voir enhanceSearchCombo, qui
+  // affiche un volet de suggestions séparé. #q ne filtre la grille qu'une
+  // seule fois, au chargement, via ?q= dans l'URL : c'est ce que promet la
+  // SearchAction du JSON-LD de l'accueil. Une recherche montre alors toutes
+  // ses correspondances, sans pagination.
   function enhanceHome() {
-    var table = document.getElementById('tool-table');
-    var tbody = document.getElementById('tool-rows');
-    if (!table || !tbody) return;
+    var holder = document.getElementById('tool-table');
+    var grid = document.getElementById('tool-rows');
+    if (!holder || !grid) return;
 
-    var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('[data-slug]'));
     var noResults = document.getElementById('no-results');
+    var moreBtn = document.getElementById('show-more');
+    var catSelect = document.getElementById('cat-filter');
+    var orderSelect = document.getElementById('order');
+    var selects = document.querySelector('.selects');
     var verdictChips = Array.prototype.slice.call(document.querySelectorAll('.verdict-chip'));
+    var lang = holder.dataset.lang;
 
-    var state = { verdict: 'all', initialQuery: '' };
+    // Sans bouton « Voir plus » (page de catégorie), aucune pagination.
+    var pageSize = moreBtn ? Number(moreBtn.dataset.pageSize) || 24 : Infinity;
+    var state = { verdict: 'all', category: 'all', initialQuery: '', limit: pageSize };
 
     var params = new URLSearchParams(location.search);
     var initialQ = params.get('q');
     if (initialQ) state.initialQuery = initialQ.trim().toLowerCase();
 
+    if (selects) selects.hidden = false;
+
     function applyFilter() {
-      var visible = 0;
-      for (var i = 0; i < rows.length; i++) {
-        var row = rows[i];
-        var matchesVerdict = state.verdict === 'all' || row.dataset.verdict === state.verdict;
-        var matchesQuery = !state.initialQuery || row.dataset.search.indexOf(state.initialQuery) !== -1;
-        var show = matchesVerdict && matchesQuery;
-        row.hidden = !show;
-        if (show) visible++;
+      var matched = 0;
+      // Une recherche venue de ?q= montre tout ce qu'elle trouve.
+      var limit = state.initialQuery ? Infinity : state.limit;
+      for (var i = 0; i < cards.length; i++) {
+        var card = cards[i];
+        var matches = (state.verdict === 'all' || card.dataset.verdict === state.verdict)
+          && (state.category === 'all' || card.dataset.category === state.category)
+          && (!state.initialQuery || card.dataset.search.indexOf(state.initialQuery) !== -1);
+        if (matches) matched++;
+        card.hidden = !matches || matched > limit;
       }
-      if (noResults) noResults.hidden = visible !== 0;
+      if (noResults) noResults.hidden = matched !== 0;
+      if (moreBtn) {
+        var left = matched - limit;
+        moreBtn.hidden = !(left > 0);
+        if (left > 0) {
+          moreBtn.textContent = (moreBtn.dataset.template || '{count}')
+            .replace('{count}', new Intl.NumberFormat(lang).format(left));
+        }
+      }
+    }
+
+    function resetLimit() {
+      state.limit = pageSize;
+    }
+
+    // Ordre de la grille : les cartes sont déplacées, jamais reconstruites.
+    // `votes` reprend l'ordre du build (votes, puis degré de préparation de la
+    // fiche) ; `price` ne classe que les mensualités, les paiements uniques
+    // (sans data-price) passent en dernier ; `name` suit l'alphabet.
+    function sortCards() {
+      var key = orderSelect ? orderSelect.value : 'votes';
+      var num = function (card, attr) {
+        return card.dataset[attr] != null && card.dataset[attr] !== '' ? Number(card.dataset[attr]) : -1;
+      };
+      cards.sort(function (a, b) {
+        if (key === 'name') return a.dataset.name.localeCompare(b.dataset.name, lang);
+        if (key === 'price') return num(b, 'price') - num(a, 'price') || num(b, 'priority') - num(a, 'priority');
+        return num(b, 'votes') - num(a, 'votes') || num(b, 'priority') - num(a, 'priority');
+      });
+      for (var i = 0; i < cards.length; i++) grid.appendChild(cards[i]);
     }
 
     verdictChips.forEach(function (chip) {
@@ -211,67 +259,79 @@
         chip.setAttribute('aria-pressed', 'true');
         chip.classList.add('is-active');
         state.verdict = chip.dataset.verdict;
+        resetLimit();
         applyFilter();
       });
     });
+
+    if (catSelect) {
+      catSelect.addEventListener('change', function () {
+        state.category = catSelect.value;
+        resetLimit();
+        applyFilter();
+      });
+    }
+
+    if (orderSelect) {
+      orderSelect.addEventListener('change', function () {
+        sortCards();
+        applyFilter();
+      });
+    }
+
+    if (moreBtn) {
+      moreBtn.addEventListener('click', function () {
+        state.limit += pageSize;
+        applyFilter();
+      });
+    }
 
     applyFilter();
 
     fetchVotes().then(function (counts) {
       if (!counts) return;
-      var lang = table.dataset.lang;
-      var singularTpl = table.dataset.singular;
-      var pluralTpl = table.dataset.plural;
-      for (var i = 0; i < rows.length; i++) {
-        var row = rows[i];
-        var cell = row.querySelector('[data-vote-cell]');
+      var singularTpl = holder.dataset.singular;
+      var pluralTpl = holder.dataset.plural;
+      for (var i = 0; i < cards.length; i++) {
+        var card = cards[i];
+        var cell = card.querySelector('[data-vote-cell]');
         if (!cell) continue;
-        var count = Object.prototype.hasOwnProperty.call(counts, row.dataset.slug)
-          ? counts[row.dataset.slug]
+        var count = Object.prototype.hasOwnProperty.call(counts, card.dataset.slug)
+          ? counts[card.dataset.slug]
           : 0;
-        row.dataset.votes = String(count);
-        // Même rendu du zéro qu'au build (voir renderToolTable) : un tiret
-        // discret à l'œil, le décompte exact au lecteur d'écran. Sans ce
-        // branchement, le rafraîchissement en direct réécrivait « 0 vote » sur
-        // les cinq cents lignes que le build venait justement de calmer.
+        card.dataset.votes = String(count);
+        // Même rendu du zéro qu'au build (voir renderToolGrid) : rien à
+        // l'œil, le décompte exact au lecteur d'écran.
         if (count === 0) {
           cell.textContent = '';
-          var dash = document.createElement('span');
-          dash.className = 'votes-none';
-          dash.setAttribute('aria-hidden', 'true');
-          dash.textContent = '–';
           var sr = document.createElement('span');
           sr.className = 'visually-hidden';
           sr.textContent = pluralize(0, lang, singularTpl, pluralTpl);
-          cell.appendChild(dash);
           cell.appendChild(sr);
         } else {
           cell.textContent = pluralize(count, lang, singularTpl, pluralTpl);
         }
       }
-      var sorted = rows.slice().sort(function (a, b) {
-        var diff = Number(b.dataset.votes != null ? b.dataset.votes : -1) -
-                   Number(a.dataset.votes != null ? a.dataset.votes : -1);
-        if (diff !== 0) return diff;
-        return Number(b.dataset.priority) - Number(a.dataset.priority);
-      });
-      for (var j = 0; j < sorted.length; j++) tbody.appendChild(sorted[j]);
+      if (!orderSelect || orderSelect.value === 'votes') {
+        sortCards();
+        applyFilter();
+      }
     });
   }
 
   // Le volet de suggestions au-dessus du champ de recherche de l'accueil :
   // un combobox ARIA classique (voir le rôle listbox/option), construit à
-  // partir des mêmes lignes <tr> que la table plus bas — jamais une deuxième
+  // partir des mêmes cartes que la grille plus bas — jamais une deuxième
   // copie du catalogue. Le champ reste un champ de recherche ordinaire sans
   // JavaScript ; ce volet est une pure amélioration posée par-dessus.
   function enhanceSearchCombo() {
     var input = document.getElementById('q');
     var panel = document.getElementById('search-panel');
     var clearBtn = document.getElementById('search-clear');
-    var tbody = document.getElementById('tool-rows');
-    if (!input || !panel || !tbody) return;
+    var grid = document.getElementById('tool-rows');
+    if (!input || !panel || !grid) return;
 
-    var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+    var rows = Array.prototype.slice.call(grid.querySelectorAll('[data-slug]'));
     var viewAllTemplate = panel.dataset.viewAllTemplate || '{count}';
     var noResultsText = panel.dataset.noResults || '';
     var homePath = panel.dataset.homePath || '/';
@@ -289,7 +349,7 @@
     }
 
     function buildOptionRow(row) {
-      var link = row.querySelector('th a');
+      var link = row.querySelector('.card-name a');
       var badge = row.querySelector('.badge');
       var cat = row.querySelector('.cat');
       var price = row.querySelector('.price');
@@ -1117,56 +1177,5 @@
   enhanceSponsorInventory();
   enhanceSponsorCheckout();
   enhanceSponsorPaidNote();
-
-  // ---- badges d'économie qui s'envolent -----------------------------------
-  // Le titre montre un nom de SaaS à la fois ; à chaque rotation, le prix de
-  // ce SaaS s'envole sous lui, barré, puis s'efface. Les badges se cumulent :
-  // plusieurs vivent à l'écran en même temps, ce qui donne l'impression d'une
-  // addition qui monte — c'est le propos du site rendu visible.
-  //
-  // Semé en JS parce que le cumul est impossible en CSS seul : il faut créer
-  // un élément par apparition, pas animer un élément unique.
-  (function heroSavings() {
-    var host = document.querySelector('.hero-savings');
-    if (!host) return;
-
-    // prefers-reduced-motion : rien ne s'envole. Le prix n'est pas une
-    // information portée uniquement ici — chaque fiche affiche le sien — donc
-    // ne rien semer ne fait perdre aucune donnée.
-    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (still && still.matches) return;
-
-    var prices;
-    try { prices = JSON.parse(host.dataset.savings || '[]'); } catch (e) { return; }
-    if (!prices.length) return;
-
-    // Le pas doit suivre celui du rotateur, sinon badge et nom se désynchronisent.
-    // On le lit sur la variable CSS qui le définit, au lieu de le dupliquer ici.
-    var step = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--rot-step-ms'));
-    if (!isFinite(step) || step <= 0) step = 1900;
-
-    var LIFE = 3000; // durée de vol, alignée sur l'animation CSS
-    var i = 0;
-
-    function spawn() {
-      // Onglet en arrière-plan : on ne sème pas. Sinon on revient à une pile
-      // de badges figés, tous apparus pendant qu'on regardait ailleurs.
-      if (document.hidden) return;
-      var badge = document.createElement('span');
-      badge.className = 'hero-savings-badge';
-      badge.textContent = prices[i % prices.length];
-      // Une dérive horizontale par badge, pour qu'ils ne se superposent pas
-      // exactement quand deux se chevauchent.
-      badge.style.setProperty('--drift', (((i % 5) - 2) * 2.2) + 'rem');
-      host.appendChild(badge);
-      i += 1;
-      setTimeout(function () {
-        if (badge.parentNode) badge.parentNode.removeChild(badge);
-      }, LIFE + 100);
-    }
-
-    spawn();
-    setInterval(spawn, step);
-  }());
 
 })();
