@@ -26,7 +26,8 @@ const toolViews = Array.from({ length: 30 }, (_, i) => ({
   slug: `outil-${i}`,
   name: `Outil ${String.fromCharCode(97 + ((i * 7) % 26))}${i}`,
   category: CATS[i % 3],
-  subcategory: null,
+  // La sous-catégorie n'est pas affichée, mais reste cherchable (data-sub).
+  subcategory: i === 5 ? 'Survey Builder' : null,
   tagline: `Accroche ${i}`,
   path: `/en/tools/outil-${i}`,
   // La fiche 29 se paie une fois : elle n'a pas de prix mensuel à trier.
@@ -137,7 +138,7 @@ describe('site.js — grille de l’accueil', () => {
   it('trie par nom, par prix (les paiements uniques en dernier) et revient aux votes', () => {
     const page = mount();
     page.choose('order', 'name');
-    const names = page.cards().map((c) => c.dataset.name);
+    const names = page.cards().map((c) => c.querySelector('.card-name a').textContent.toLowerCase());
     expect(names).toEqual([...names].sort((a, b) => a.localeCompare(b)));
     page.choose('order', 'price');
     const order = page.cards().map((c) => c.dataset.slug);
@@ -154,6 +155,11 @@ describe('site.js — grille de l’accueil', () => {
     // « accroche 2 », « accroche 20 » … « accroche 29 » : onze fiches.
     expect(page.visible()).toHaveLength(11);
     expect(page.more().hidden).toBe(true);
+  });
+
+  it('?q= cherche aussi dans la catégorie et la sous-catégorie, comme avant data-search', () => {
+    expect(mount({ search: '?q=survey%20builder' }).visible()).toEqual(['outil-5']);
+    expect(mount({ search: '?q=design' }).visible()).toHaveLength(10);
   });
 
   it('rafraîchit les votes sur les cartes et reclasse, sans afficher « 0 vote »', async () => {
@@ -178,6 +184,9 @@ describe('site.js — grille de l’accueil', () => {
     expect(option.querySelector('.search-option-name').textContent).toBe(toolViews[3].name);
     expect(option.querySelector('.badge')).not.toBeNull();
     expect(option.querySelector('.search-option-meta').textContent).toContain('Analytics');
+    // L'icône du volet est celle de la carte (img.fav), sans attribut recopié.
+    expect(option.querySelector('.search-option-icon').getAttribute('src'))
+      .toBe(page.cards().find((c) => c.dataset.slug === 'outil-3').querySelector('img.fav').getAttribute('src'));
     expect(page.doc.getElementById('search-panel').hidden).toBe(false);
   });
 });

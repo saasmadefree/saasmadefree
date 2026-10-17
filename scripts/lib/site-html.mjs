@@ -22,9 +22,11 @@ export function escapeHtml(value) {
 
 /** Un bloc <script type="application/ld+json"> ne doit jamais laisser passer une
  *  séquence "</script" en clair : elle romprait le bloc hors de tout contrôle du
- *  parseur JSON. On échappe "<" en <, ce que JSON.parse lit comme "<" normalement. */
+ *  parseur JSON. On échappe "<" en <, ce que JSON.parse lit comme "<" normalement.
+ *  JSON compact, sans indentation : l'ItemList de l'accueil (530 fiches)
+ *  pesait 80 Ko de blancs (Task A8). */
 export function jsonLdScript(data) {
-  const json = JSON.stringify(data, null, 2).replace(/</g, '\\u003c');
+  const json = JSON.stringify(data).replace(/</g, '\\u003c');
   return `<script type="application/ld+json">\n${json}\n</script>`;
 }
 

@@ -17,9 +17,13 @@ import { PLACEHOLDER_PATH } from './site-favicons.mjs';
  * JavaScript, chaque fiche reste liée depuis la page (spec D14). C'est
  * scripts/assets/site.js qui en montre 24 puis propose « Voir plus ».
  *
- * Chaque carte porte aussi `data-favicon`, `data-verdict`, `data-cat` et
- * `data-search` : c'est la même source de données que consomme le panneau de
- * recherche — on n'émet jamais une deuxième copie du catalogue dans la page.
+ * Le panneau de recherche et le tri lisent la carte elle-même (nom, catégorie,
+ * accroche, icône : voir cardIndex dans site.js) — on n'émet jamais une
+ * deuxième copie du catalogue dans la page. Les anciens attributs data-name,
+ * data-cat, data-search et data-favicon recopiaient ces textes visibles : sur
+ * les 530 cartes de l'accueil, ils pesaient 128 Ko (Task A8). Seule la
+ * sous-catégorie, cherchable mais non affichée, garde son attribut `data-sub`.
+ * Une carte tient sur peu de lignes, sans indentation : même raison.
  *
  * @param {object[]} tools
  * @param {object} opts
@@ -44,9 +48,7 @@ export function renderToolGrid(tools, { lang, ui, categories, voteCounts, favico
       // du build. Ce n'est pas la même chose qu'un slug absent de la réponse
       // (ça, c'est un vrai zéro). Voir la règle d'honnêteté du projet.
       const count = voteCounts ? (knownZero ? 0 : voteCounts[tool.slug]) : null;
-      const searchText = [tool.name, catLabel, tool.subcategory ?? '', tool.tagline ?? '']
-        .join(' ')
-        .toLowerCase();
+      const subAttr = tool.subcategory ? ` data-sub="${escapeHtml(tool.subcategory.toLowerCase())}"` : '';
       // Trois états, et le zéro n'est pas affiché : « 0 vote » répété sur cinq
       // cents cartes occupe la place d'un chiffre sans en porter un. Le décompte
       // exact reste dit au lecteur d'écran. Rien n'est caché, rien n'est inventé.
@@ -68,18 +70,12 @@ export function renderToolGrid(tools, { lang, ui, categories, voteCounts, favico
         : '';
       const alts = tool.alternativeNames ?? [];
       const altsLine = alts.length === 0 ? ''
-        : `\n            <p class="alts"><span>${escapeHtml(h.cardAltsLabel)}</span> ${escapeHtml(alts.join(', '))}</p>`;
+        : `\n<p class="alts"><span>${escapeHtml(h.cardAltsLabel)}</span> ${escapeHtml(alts.join(', '))}</p>`;
 
-      return `          <li class="card" data-slug="${tool.slug}" data-category="${tool.category}" data-verdict="${tool.verdict}" data-priority="${tool.pagePriority}"${votesAttr}${priceAttr} data-favicon="${escapeHtml(favicon)}" data-name="${escapeHtml(tool.name.toLowerCase())}" data-cat="${escapeHtml(catLabel.toLowerCase())}" data-search="${escapeHtml(searchText)}">
-            <div class="card-top">
-              <img class="fav" src="${escapeHtml(favicon)}" alt="" width="32" height="32" loading="lazy" decoding="async">
-              <${hn} class="card-name"><a href="${tool.path}">${escapeHtml(tool.name)}</a></${hn}>
-              ${verdictBadge(tool.verdict, verdict.label)}
-            </div>
-            <p class="cat">${escapeHtml(catLabel)}</p>
-            <p class="tagline">${escapeHtml(tool.tagline ?? '')}</p>
-            <p class="facts"><span class="price">${escapeHtml(price)}</span>${diyPart}<span class="votes" data-vote-cell data-vote-slug="${tool.slug}">${voteText}</span></p>${altsLine}
-          </li>`;
+      return `<li class="card" data-slug="${tool.slug}" data-category="${tool.category}" data-verdict="${tool.verdict}" data-priority="${tool.pagePriority}"${votesAttr}${priceAttr}${subAttr}>
+<div class="card-top"><img class="fav" src="${escapeHtml(favicon)}" alt="" width="32" height="32" loading="lazy" decoding="async"><${hn} class="card-name"><a href="${tool.path}">${escapeHtml(tool.name)}</a></${hn}>${verdictBadge(tool.verdict, verdict.label)}</div>
+<p class="cat">${escapeHtml(catLabel)}</p><p class="tagline">${escapeHtml(tool.tagline ?? '')}</p>
+<p class="facts"><span class="price">${escapeHtml(price)}</span>${diyPart}<span class="votes" data-vote-cell>${voteText}</span></p>${altsLine}</li>`;
     })
     .join('\n');
 

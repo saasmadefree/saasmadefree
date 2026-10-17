@@ -26,6 +26,12 @@ describe('jsonLdScript', () => {
     const inner = html.replace('<script type="application/ld+json">\n', '').replace('\n</script>', '');
     expect(JSON.parse(inner)).toEqual(data);
   });
+
+  // L'ItemList de l'accueil liste 530 fiches : indentée, elle pesait 80 Ko
+  // de blancs (Task A8). Les moteurs lisent le JSON compact tout aussi bien.
+  it('écrit un JSON compact, sans indentation', () => {
+    expect(jsonLdScript({ a: 1, b: ['x'] })).toBe('<script type="application/ld+json">\n{"a":1,"b":["x"]}\n</script>');
+  });
 });
 
 describe('languageName', () => {

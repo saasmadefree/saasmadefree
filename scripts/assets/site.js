@@ -167,6 +167,33 @@
     return (singular ? singularTpl : pluralTpl).replace('{count}', String(count));
   }
 
+  // Ce que le tri et la recherche savent d'une carte, lu sur la carte
+  // elle-même : le nom (.card-name a), la catégorie (.cat), l'accroche
+  // (.tagline) et l'icône (img.fav) sont déjà dans le HTML visible. Seule la
+  // sous-catégorie, non affichée, voyage en data-sub. Le texte cherché est
+  // le même qu'avant (nom, catégorie, sous-catégorie, accroche), calculé une
+  // fois par carte puis gardé.
+  var cardCache = typeof WeakMap === 'function' ? new WeakMap() : null;
+  function cardIndex(card) {
+    var cached = cardCache && cardCache.get(card);
+    if (cached) return cached;
+    var text = function (selector) {
+      var el = card.querySelector(selector);
+      return el ? el.textContent.trim() : '';
+    };
+    var name = text('.card-name a').toLowerCase();
+    var cat = text('.cat').toLowerCase();
+    var icon = card.querySelector('img.fav');
+    var entry = {
+      name: name,
+      cat: cat,
+      search: [name, cat, card.dataset.sub || '', text('.tagline')].join(' ').toLowerCase(),
+      favicon: icon ? icon.getAttribute('src') || '' : '',
+    };
+    if (cardCache) cardCache.set(card, entry);
+    return entry;
+  }
+
   // La grille de cartes (accueil et pages de catégorie). Sur l'accueil : le
   // filtre par verdict (pastilles), le filtre de catégorie, le tri, et
   // « Voir plus » qui montre les cartes par paquets de data-page-size. Partout :
@@ -214,7 +241,7 @@
         var card = cards[i];
         var matches = (state.verdict === 'all' || card.dataset.verdict === state.verdict)
           && (state.category === 'all' || card.dataset.category === state.category)
-          && (!state.initialQuery || card.dataset.search.indexOf(state.initialQuery) !== -1);
+          && (!state.initialQuery || cardIndex(card).search.indexOf(state.initialQuery) !== -1);
         if (matches) matched++;
         card.hidden = !matches || matched > limit;
       }
@@ -243,7 +270,7 @@
         return card.dataset[attr] != null && card.dataset[attr] !== '' ? Number(card.dataset[attr]) : -1;
       };
       cards.sort(function (a, b) {
-        if (key === 'name') return a.dataset.name.localeCompare(b.dataset.name, lang);
+        if (key === 'name') return cardIndex(a).name.localeCompare(cardIndex(b).name, lang);
         if (key === 'price') return num(b, 'price') - num(a, 'price') || num(b, 'priority') - num(a, 'priority');
         return num(b, 'votes') - num(a, 'votes') || num(b, 'priority') - num(a, 'priority');
       });
@@ -362,7 +389,7 @@
 
       var img = document.createElement('img');
       img.className = 'search-option-icon';
-      img.src = row.dataset.favicon || '';
+      img.src = cardIndex(row).favicon;
       img.alt = '';
       img.width = 20;
       img.height = 20;
@@ -441,8 +468,8 @@
       // classement, "gra" remontait Canva et GitHub Copilot — qui matchent dans
       // leur description — au-dessus de Grammarly et Granola.
       function relevance(row) {
-        var name = row.dataset.name || '';
-        var cat = row.dataset.cat || '';
+        var name = cardIndex(row).name;
+        var cat = cardIndex(row).cat;
         if (name.indexOf(q) === 0) return 0;                       // le nom commence par la saisie
         if ((' ' + name).indexOf(' ' + q) !== -1) return 1;        // un mot du nom commence par la saisie
         if (name.indexOf(q) !== -1) return 2;                      // le nom la contient
@@ -450,7 +477,7 @@
         return 4;                                                  // ailleurs (sous-titre, description)
       }
       var matches = rows
-        .filter(function (row) { return row.dataset.search.indexOf(q) !== -1; })
+        .filter(function (row) { return cardIndex(row).search.indexOf(q) !== -1; })
         .map(function (row, i) { return { row: row, score: relevance(row), order: i }; })
         .sort(function (a, b) { return a.score - b.score || a.order - b.order; })
         .map(function (entry) { return entry.row; });

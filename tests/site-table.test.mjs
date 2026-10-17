@@ -68,11 +68,26 @@ describe('renderToolGrid — grille de cartes', () => {
 
   it('conserve les crochets de site.js, posés sur les cartes', () => {
     for (const hook of ['id="tool-table"', 'id="tool-rows"', 'class="tool-grid"', 'data-vote-cell',
-      'data-slug="euro-tool"', 'data-verdict="yes"', 'data-search=', 'data-name=', 'data-cat=',
-      'data-favicon=', 'data-priority=', 'class="badge yes"', 'class="cat"', 'class="price"',
+      'data-slug="euro-tool"', 'data-verdict="yes"', 'data-priority=', 'class="badge yes"',
+      'class="cat"', 'class="price"', 'class="fav" src="',
       'class="card-name"><a href="/en/tools/euro-tool">Euro Tool</a>']) {
       expect(html).toContain(hook);
     }
+  });
+
+  // Poids de l'accueil (Task A8) : 530 cartes dans le HTML (spec D14). Les
+  // attributs qui recopiaient un texte déjà visible (nom, catégorie,
+  // accroche, icône) sont retirés ; site.js lit la carte elle-même. Seule la
+  // sous-catégorie, cherchable mais non affichée, garde un attribut.
+  it('ne recopie pas en attribut un texte déjà visible sur la carte', () => {
+    for (const dup of ['data-search=', 'data-name=', 'data-cat=', 'data-favicon=', 'data-vote-slug=']) {
+      expect(html).not.toContain(dup);
+    }
+    expect(html).not.toContain('data-sub=');
+    const sub = renderToolGrid([{ ...tools[0], subcategory: 'Email Marketing' }], {
+      lang: 'en', ui, categories, voteCounts: null, favicons: {},
+    });
+    expect(sub).toContain('data-sub="email marketing"');
   });
 
   it('rend une carte par fiche, toutes visibles dans le HTML', () => {
@@ -107,7 +122,7 @@ describe('renderToolGrid — grille de cartes', () => {
     expect(cardOf(counted, 'euro-tool')).toContain('data-votes="0"');
     expect(cardOf(counted, 'euro-tool')).toContain('<span class="visually-hidden">0 votes</span>');
     expect(cardOf(counted, 'onetime-tool')).toContain('data-votes="3"');
-    expect(cardOf(counted, 'onetime-tool')).toMatch(/data-vote-slug="onetime-tool">3 votes</);
+    expect(cardOf(counted, 'onetime-tool')).toMatch(/data-vote-cell>3 votes</);
   });
 
   it('le titre de carte suit le niveau demandé (h3 sous un h2, h2 sous le h1 d’une catégorie)', () => {
