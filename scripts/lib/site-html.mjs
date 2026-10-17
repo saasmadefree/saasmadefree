@@ -82,6 +82,8 @@ export function renderBreadcrumb(items) {
     if (i === items.length - 1) {
       return `<span aria-current="page">${escapeHtml(item.label)}</span>`;
     }
+    // Étape sans page (catégorie absente dans la langue) : nommée, pas liée.
+    if (!item.href) return `<span>${escapeHtml(item.label)}</span>`;
     return `<a href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a>`;
   });
   return `<nav class="crumbs" aria-label="Breadcrumb">${parts.join(' <span aria-hidden="true">/</span> ')}</nav>`;

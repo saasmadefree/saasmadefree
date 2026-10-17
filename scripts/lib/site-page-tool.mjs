@@ -69,7 +69,7 @@ function renderAgentButtons(agents, ctx, t) {
  *  lien, un soulignement) : le gabarit est découpé autour de {key}, chaque
  *  morceau de texte est échappé séparément. Ainsi la ponctuation (« Source : »
  *  en français) reste dans ui.json, jamais dans le code. */
-function templateWithHtml(template, key, html, vars = {}) {
+export function templateWithHtml(template, key, html, vars = {}) {
   const [before, after] = interpolate(String(template).replace(`{${key}}`, '\u0000'), vars).split('\u0000');
   if (after === undefined) return escapeHtml(before);
   return `${escapeHtml(before)}${html}${escapeHtml(after)}`;
@@ -83,21 +83,50 @@ function headingWithName(template, vars) {
 /** Lien d'un projet (règle du brief A4) : sa page /{lang}/oss/{slug} quand
  *  elle est indexable, sinon directement son site, en nofollow — on ne
  *  pousse pas les moteurs vers une page que l'on garde hors index. */
-function projectLink(project, lang, isIndexable) {
+export function projectLink(project, lang, isIndexable) {
   if (isIndexable(project)) return { href: `/${lang}/oss/${project.slug}`, rel: '' };
   return { href: project.homepage, rel: ' rel="nofollow noopener"' };
 }
 
 /** Accroche d'un projet dans la langue de la page ; à défaut, la version en
  *  signalée `lang="en"` ; à défaut encore, rien (null). */
-function projectTagline(project, lang, projectI18n) {
+export function projectTagline(project, lang, projectI18n) {
   const own = projectI18n.get(`${lang}/${project.slug}`)?.tagline;
   if (own) return escapeHtml(own);
   const en = lang === 'en' ? null : projectI18n.get(`en/${project.slug}`)?.tagline;
   return en ? `<span lang="en">${escapeHtml(en)}</span>` : null;
 }
 
-function fitTag(fit, t) {
+/** Étoiles et dernier commit d'un projet, en HTML prêt à poser (tableau de
+ *  la fiche, faits de la page projet). Chiffres frais (≤ 45 jours) : la
+ *  valeur. Périmés ou absents : un tiret dont le title dit pourquoi — jamais
+ *  0, jamais le vieux chiffre présenté comme actuel. `t` = ui.site.tool. */
+export function projectStatCells(project, lang, t, today) {
+  if (statsAreFresh(project, today)) {
+    const compact = new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 1 });
+    const monthYear = new Intl.DateTimeFormat(lang, { month: 'short', year: 'numeric', timeZone: 'UTC' });
+    return {
+      stars: escapeHtml(compact.format(project.stats.stars)),
+      commit: escapeHtml(monthYear.format(new Date(`${project.stats.lastCommit}T00:00:00Z`))),
+    };
+  }
+  const why = project.stats?.checkedOn
+    ? interpolate(t.statsAsOf, { date: formatDate(project.stats.checkedOn, lang) })
+    : t.noGithubFigures;
+  const dash = `<span title="${escapeHtml(why)}">${DASH}</span>`;
+  return { stars: dash, commit: dash };
+}
+
+/** Grille de faits `dl.fact-grid` : une paire libellé / valeur par cellule.
+ *  Le libellé est échappé ici, la valeur arrive déjà en HTML (lien, tiret
+ *  titré, texte échappé par l'appelant). */
+export function renderFactGrid(rows, indent = '        ') {
+  return `${indent}<dl class="fact-grid">
+${rows.map(([label, value]) => `${indent}  <div><dt>${escapeHtml(label)}</dt><dd>${value}</dd></div>`).join('\n')}
+${indent}</dl>`;
+}
+
+export function fitTag(fit, t) {
   return `<span class="fit-tag" data-fit="${escapeHtml(fit)}">${escapeHtml(t.fitLabels[fit])}</span>`;
 }
 
@@ -189,25 +218,11 @@ function renderInactive(inactive, lang, t) {
 }
 
 function renderAlternatives({ tool, alts, inactive, lang, t, s, verdict, projectI18n, i18nEntry, isIndexable, today }) {
-  const monthYear = new Intl.DateTimeFormat(lang, { month: 'short', year: 'numeric', timeZone: 'UTC' });
   const compact = new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 1 });
-  const dash = (title) => (title ? `<span title="${escapeHtml(title)}">${DASH}</span>` : DASH);
 
   const projectRows = alts.map(({ project, fit }) => {
     const link = projectLink(project, lang, isIndexable);
-    let stars;
-    let commit;
-    if (statsAreFresh(project, today)) {
-      stars = escapeHtml(compact.format(project.stats.stars));
-      commit = escapeHtml(monthYear.format(new Date(`${project.stats.lastCommit}T00:00:00Z`)));
-    } else {
-      // Chiffre périmé ou absent : masqué, jamais affiché comme actuel ni à 0.
-      const why = project.stats?.checkedOn
-        ? interpolate(t.statsAsOf, { date: formatDate(project.stats.checkedOn, lang) })
-        : t.noGithubFigures;
-      stars = dash(why);
-      commit = dash(why);
-    }
+    const { stars, commit } = projectStatCells(project, lang, t, today);
     const hosted = project.hosted?.exists
       ? `${escapeHtml(interpolate(t.hostedFromTemplate, { price: formatMoney(project.hosted.priceFrom, project.hosted.currency, lang) }))}`
         + `<span class="sub">${escapeHtml(interpolate(t.checkedOnTemplate, { date: formatDate(project.hosted.checkedOn, lang) }))}</span>`
@@ -319,9 +334,7 @@ function renderBuild({ tool, lang, t, ui, i18nEntry, agents, showSummary }) {
       <div class="build-text">
         <h2 id="prompt-heading">${escapeHtml(t.promptHeading)}</h2>${summary}
         <p>${escapeHtml(i18nEntry.coreLoopDIY)}</p>
-        <dl class="fact-grid">
-${facts.map(([label, value]) => `          <div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd></div>`).join('\n')}
-        </dl>
+${renderFactGrid(facts.map(([label, value]) => [label, escapeHtml(value)]))}
       </div>
       <div class="build-prompt">
         <div class="prompt-block">
