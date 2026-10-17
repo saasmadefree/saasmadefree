@@ -377,6 +377,29 @@ main > .az-sec + .az-sec{margin-top:var(--s7)}
 .az-nav .link-cloud{gap:var(--s2) var(--s4);font:700 1.125rem/1 var(--display)}
 .more{display:inline-block;margin-top:var(--s4);font-weight:700}`;
 
+/* Newsletter SmartLetter (Task A9, maquettes direction-3-airy) : un champ et
+   son bouton dans une même pilule, la note du double opt-in, puis la ligne
+   d'état, vide et repliée tant que rien n'a été envoyé. Sur l'accueil, la
+   promesse (.nl-lead) précède le formulaire ; en bas de fiche, elle en est le
+   titre (.nl-h). Le bouton désactivé pendant l'envoi le dit par la forme du
+   curseur et l'opacité, et le texte d'état suit. */
+const NEWSLETTER_CSS = `.newsletter,.hero > .newsletter{max-width:30rem}
+.nl-lead{font:700 .9375rem/1.45 var(--text)}
+.hero .nl-lead{margin-top:var(--s6)}
+.nl-lead + .newsletter,.nl-h + .newsletter{margin-top:var(--s3)}
+.nl-h{font:700 1.1875rem/1.4 var(--display);letter-spacing:-.01em;max-width:32em}
+.nl-row{display:flex;align-items:center;gap:var(--s1);background:var(--card);border:1.5px solid var(--field);border-radius:999px;padding:.3rem}
+.nl-row:focus-within{border-color:var(--ink);outline:3px solid var(--focus);outline-offset:2px}
+.nl-row input{flex:1;min-width:0;font:400 1rem/1.2 var(--text);color:var(--ink);background:transparent;border:0;padding:.65rem .5rem .65rem .9rem;-webkit-appearance:none;appearance:none}
+.nl-row input::placeholder{color:var(--ink2);opacity:1}
+.nl-row input:focus-visible{outline:none}
+.nl-row button{flex:none;font:700 .9375rem/1 var(--display);background:var(--btn);color:var(--btnInk);border:0;border-radius:999px;padding:.75rem 1.1rem;cursor:pointer}
+.nl-row button:hover{filter:brightness(1.08)}
+.nl-row button:disabled{opacity:.6;cursor:progress}
+.nl-note{margin:var(--s3) 0 0 var(--s4);font-size:.8125rem;line-height:1.45;color:var(--ink2)}
+.newsletter-status{margin:var(--s2) 0 0 var(--s4);font:700 .875rem/1.4 var(--text)}
+.newsletter-status:empty{display:none}`;
+
 /* Sponsors : mêmes emplacements et même nombre qu'avant la refonte (spec
    D14), en style discret. Le repli (.sp-fallback) est une rangée à filets :
    c'est aussi la rangée sous le héros de l'accueil. Les rails ne s'affichent
@@ -475,5 +498,5 @@ const MOTION_CSS = `@media (prefers-reduced-motion:no-preference){a,button,.card
 
 export const SITE_CSS = [
   FONT_CSS, TOKENS_CSS, BASE_CSS, SHELL_CSS, VERDICT_CSS, PAGE_CSS, PROJECT_CSS, COMPARE_CSS, HOME_CSS,
-  SPONSOR_CSS, LEGACY_CSS, MOTION_CSS,
+  NEWSLETTER_CSS, SPONSOR_CSS, LEGACY_CSS, MOTION_CSS,
 ].join('\n') + '\n';

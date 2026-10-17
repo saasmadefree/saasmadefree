@@ -13,7 +13,7 @@
 <div class="sheet piece-body">
 
 <h1>Privacy Policy — SaaS Made Free browser extension</h1>
-<p class="updated">Last updated: 2026-08-10</p>
+<p class="updated">Last updated: 2026-10-17</p>
 
 <div class="box">
   <strong>Short version:</strong> this extension reads the address (hostname) of the
@@ -106,10 +106,35 @@ browser reduces the referrer to a short label such as “chatgpt” before anyth
 raw user-agent strings, or IP addresses in clear. The beacon only runs on
 saasmadefree.com and sends nothing from previews or local copies.</p>
 
+<h2>Newsletter</h2>
+<p>The website (not the extension) may show a newsletter sign-up form: on the home page, under
+the subtitle, and at the bottom of each tool page. The newsletter runs on SmartLetter
+(smartletter.ai), the site owner's own mailing service. It is not an outside marketing company.</p>
+<p><strong>When something is sent.</strong> Only when you press Subscribe. Loading a page with the
+form sends nothing, to anyone. When you subscribe, your browser sends one request, straight to
+SmartLetter (<code>api.smartletter.ai</code>). It does not go through our servers.</p>
+<p><strong>What is sent.</strong> Three things:</p>
+<ul>
+  <li>the email address you typed;</li>
+  <li>the language of the page (for example <code>en</code>);</li>
+  <li>the address of the page you were on, cut before any <code>?</code> or <code>#</code>, so
+  no tracking or sharing parameters go with it.</li>
+</ul>
+<p>If the site is set up with a list segment, its identifier goes too. It is the same for
+every visitor and says nothing about you. No cookie is sent. Like any server you reach,
+SmartLetter sees your IP address; it uses it to cap sign-ups at five per address every ten
+minutes.</p>
+<p><strong>Double opt-in.</strong> After you subscribe, SmartLetter sends one email asking you to
+confirm. Until you click its link, you are not on the list and get nothing else. The form gives
+the same answer for every address, so nobody can use it to find out who is subscribed.</p>
+<p><strong>Unsubscribing.</strong> Every newsletter email has a one-click unsubscribe link. You
+can also write to the address at the bottom of this page and we will remove you. Your address
+stays on the list until you unsubscribe, and is never sold or given to anyone else.</p>
+
 <h2>Buying a sponsor slot</h2>
-<p>The website sells advertising slots. Buying one is the only thing on this site or in this
-extension that collects personal data about you. Reading the directory, copying a prompt, or
-voting never does.</p>
+<p>The website sells advertising slots. Buying one, and subscribing to the newsletter (above), are
+the only two things on this site or in this extension that collect personal data about you.
+Reading the directory, copying a prompt, or voting never does.</p>
 <p><strong>The payment happens on Stripe, not here.</strong> Clicking to buy a slot sends you
 to Stripe's own checkout page, on their domain. Card numbers are typed there and never reach
 our servers — we never see them, and we could not store them if we wanted to. Stripe is a
@@ -143,10 +168,13 @@ as an accounting record — starting with your email address.</p>
 <ul>
   <li>No cookies.</li>
   <li>No trackers or analytics of any kind inside the extension.</li>
-  <li>No account, sign-in, or persistent identifier tied to you — including when you buy a slot.</li>
-  <li>No selling or renting of data, to anyone, ever. Nothing is shared with a third party
-  except what a payment requires: buying a sponsor slot sends you to Stripe, our payment
-  processor, as described above. No advertiser, no data broker, no analytics vendor.</li>
+  <li>No account, sign-in, or persistent identifier tied to you — including when you buy a slot.
+  The one thing kept over time is the email address you choose to give the newsletter, until
+  you unsubscribe.</li>
+  <li>No selling or renting of data, to anyone, ever. Nothing leaves for another service except
+  in two cases you start yourself, both described above: buying a sponsor slot sends you to
+  Stripe, our payment processor, and subscribing to the newsletter sends your email to
+  SmartLetter, our own mailing service. No advertiser, no data broker, no analytics vendor.</li>
   <li>No reading of page content, form fields, or cookies belonging to other sites.</li>
   <li>No modification of anything already on a page — the only thing ever written is our own isolated panel, described above.</li>
 </ul>

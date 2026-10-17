@@ -47,6 +47,7 @@
       "credit": "Catalogue fondé sur canivibecodeit",
       "stats": "Stats",
       "promise": "SaaS Made Free est un guide open source des abonnements que tu pourrais arrêter de payer. Cette page ne charge rien depuis un autre site.",
+      "promiseNewsletter": "Si tu t'inscris à la newsletter, ton email part vers SmartLetter, notre propre service d'emailing, à ce moment-là et jamais autrement.",
       "hub": "Alternatives de A à Z",
       "selfHosted": "Alternatives auto-hébergées",
       "buildTonight": "À construire ce soir"
@@ -424,6 +425,20 @@
       "altCountOne": "{count} alternative",
       "altCountOther": "{count} alternatives",
       "altCountNone": "à construire toi-même"
+    },
+    "newsletter": {
+      "promise": "Un email par semaine : une appli payante, ses alternatives gratuites, et le prompt pour la refaire toi-même.",
+      "label": "Ton adresse email",
+      "placeholder": "toi@exemple.com",
+      "submit": "S'inscrire",
+      "note": "Double opt-in. On n'envoie rien tant que tu n'as pas confirmé. Désinscription en un clic.",
+      "confirmInbox": "Regarde ta boîte mail pour confirmer.",
+      "rateLimited": "Trop d'inscriptions depuis ta connexion. Réessaie dans {wait}.",
+      "waitOne": "1 minute",
+      "waitOther": "{count} minutes",
+      "waitUnknown": "quelques minutes",
+      "invalidEmail": "Cette adresse email ne semble pas valide. Vérifie-la et réessaie.",
+      "tryAgain": "Une erreur est survenue. Réessaie."
     }
   },
   "categoriesIndex": {

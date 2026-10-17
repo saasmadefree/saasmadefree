@@ -8,6 +8,7 @@ import { renderToolPage } from '../scripts/lib/site-page-tool.mjs';
 import { renderSponsorPage } from '../scripts/lib/site-page-sponsor.mjs';
 import { sponsorContext, renderSponsorSlots } from '../scripts/lib/site-sponsors.mjs';
 import { catalogueFigures } from '../scripts/lib/site-data.mjs';
+import { renderNewsletterForm } from '../scripts/lib/site-newsletter.mjs';
 
 // Garde du système de design (Task A0, étape 4) : chaque crochet que
 // scripts/assets/site.js cherche dans le DOM existe dans au moins une page
@@ -41,6 +42,8 @@ const PAGES = {
     })),
     topCategorySlugs: [tool.category], categories: data.categories, voteCounts: {}, favicons: {},
     figures, mrrTotal: 0, ui, alternates: [], xDefaultPath: null, sponsorSlots,
+    // Clé factice : sans elle, le formulaire newsletter n'existe pas (spec D13).
+    newsletter: renderNewsletterForm({ lang, ui, config: { key: 'sl_test_fixture', segmentId: null }, variant: 'hero' }),
   }),
   tool: renderToolPage({
     lang, path: `/${lang}/tools/${tool.slug}`, tool,

@@ -142,7 +142,7 @@ ${cats}
  * les places libres regroupées en un lien par zone (Ruling 14).
  *
  * @param {string} [opts.newsletter] - formulaire d'inscription déjà rendu
- *   (Task A9). Vide par défaut : sans clé SmartLetter, aucun formulaire n'est
+ *   (renderNewsletterForm, variante `hero`, Task A9). Vide par défaut : sans clé SmartLetter, aucun formulaire n'est
  *   rendu, jamais un formulaire mort (spec D13).
  */
 export function renderHomePage({
@@ -208,5 +208,6 @@ ${renderStart({ toolViews, topCategorySlugs, categories, path, lang, ui, figures
     ui,
     homeHref: path,
     sponsorSlots: layoutSlots,
+    hasNewsletter: Boolean(newsletter),
   });
 }

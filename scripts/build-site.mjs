@@ -23,6 +23,7 @@ import {
 import { renderAlternativesHub, hubPath } from './lib/site-page-alternatives-hub.mjs';
 import { renderSponsorPage } from './lib/site-page-sponsor.mjs';
 import { renderToolPage } from './lib/site-page-tool.mjs';
+import { newsletterConfig, renderNewsletterForm } from './lib/site-newsletter.mjs';
 import { renderProjectPage, projectPages, relatedProjects, projectDateModified } from './lib/site-page-project.mjs';
 import {
   renderComparePage, buildComparePages, compareLinksFor, compareDateModified, compareCategory,
@@ -102,6 +103,14 @@ async function main() {
   // fois ici, jamais dans un gabarit : toutes les pages d'un même build
   // portent la même date.
   const today = new Date().toISOString().slice(0, 10);
+
+  // Newsletter SmartLetter (spec D13) : sans SMARTLETTER_SIGNUPS_KEY, aucun
+  // formulaire n'est rendu. La clé n'est jamais journalisée : on dit
+  // seulement si elle est là.
+  const newsletter = newsletterConfig(process.env);
+  console.log(newsletter
+    ? `Newsletter SmartLetter : formulaire rendu${newsletter.segmentId ? ', avec segment' : ''}.`
+    : 'Newsletter SmartLetter : SMARTLETTER_SIGNUPS_KEY absente, aucun formulaire rendu.');
 
 
   const voteCounts = await fetchVoteCounts();
@@ -250,6 +259,12 @@ async function main() {
         'Ajouter le bloc "site" complet (voir data/i18n/en/ui.json) avant de déclarer cette langue dans markets.'
       );
     }
+    if (newsletter && !langUi.site.newsletter) {
+      throw new Error(
+        `data/i18n/${lang}/ui.json ne porte pas site.newsletter alors que SMARTLETTER_SIGNUPS_KEY est définie. ` +
+        'Ajouter le bloc (voir data/i18n/en/ui.json) : sans lui, la langue n’aurait pas de formulaire.'
+      );
+    }
 
     // Icônes des sponsors, indexées par domaine (sponsorFavicons, calculé plus
     // haut) : un sponsor n'a pas de fiche catalogue, donc pas de slug. Un
@@ -283,6 +298,7 @@ async function main() {
       renderHomePage({
         lang, path: homePath, toolViews, topCategorySlugs, categories, voteCounts, favicons, figures, mrrTotal,
         ui: langUi, alternates: homeAlt, xDefaultPath: homeXDefault, sponsorSlots, buildDate: today,
+        newsletter: renderNewsletterForm({ lang, ui: langUi, config: newsletter, variant: 'hero' }),
       })
     );
     sitemapPages.push(sitemapEntry('pages', homePath, lastmodOf(toolViews)));
@@ -401,7 +417,9 @@ async function main() {
     sitemapPages.push(...listSitemapEntries(listPages).map(({ path, lastmod }) => sitemapEntry('lists', path, lastmod)));
     noindexListCount += listPages.filter((page) => !page.indexable).length;
 
-    // Fiches outil
+    // Fiches outil. Le bloc newsletter du bas de fiche est le même sur toutes
+    // les fiches d'une langue : rendu une fois.
+    const toolNewsletter = renderNewsletterForm({ lang, ui: langUi, config: newsletter, variant: 'footer' });
     for (const tool of toolsForLang(tools, lang)) {
       const i18nEntry = i18n.get(`${lang}/${tool.slug}`);
       const toolAlt = languageVersions(tool.markets.filter((l) => langs.includes(l)), (l) => `/${l}/tools/${tool.slug}`);
@@ -433,6 +451,7 @@ async function main() {
           // « People also look for alternatives to… » : calculé par fiche,
           // même catégorie d'abord, puis le classement global (Ruling 26).
           popularTools: popularAlternatives(toolViews, lang, POPULAR_LIMIT, { current: tool }),
+          newsletter: toolNewsletter,
         })
       );
       // Une fiche est toujours dans le sitemap (Ruling 2), datée de son

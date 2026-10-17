@@ -467,11 +467,15 @@ ${items.map((other) => `        <li><a href="${escapeHtml(other.path)}">${escape
  *   dans la langue où l'outil figure (compareLinksFor) ; vide, aucune section
  * @param {Array<{slug:string,name:string,path:string}>} [opts.popularTools]  bloc
  *   « People also look for alternatives to… » (popularAlternatives) ; vide, aucune section
+ * @param {string} [opts.newsletter]  formulaire d'inscription déjà rendu
+ *   (renderNewsletterForm, variante `footer`), dernière section de la fiche ;
+ *   vide sans clé SmartLetter (spec D13), rien n'est rendu
  */
 export function renderToolPage({
   lang, path, tool, i18nEntry, categories, ui, alternates, xDefaultPath, homePath,
   categoryPath, relatedTools, voteCount, favicons, agents, sponsorSlots, buildDate,
   projects, projectI18n = new Map(), today, projectIndexable = () => false, comparisons = [], popularTools = [],
+  newsletter = '',
 }) {
   const s = { ...ui.site, pricingBasis: ui.pricingBasis };
   const t = s.tool;
@@ -557,7 +561,7 @@ ${why}
 
 ${faq}
 
-${renderVote({ tool, lang, path, t, verdict, voteCount })}${renderRelated({ relatedTools, lang, s, t, categories, favicons })}${renderPopular({ popularTools, tool, t })}${renderCompareLinks(comparisons, s.compare.linksHeading)}`;
+${renderVote({ tool, lang, path, t, verdict, voteCount })}${renderRelated({ relatedTools, lang, s, t, categories, favicons })}${renderPopular({ popularTools, tool, t })}${renderCompareLinks(comparisons, s.compare.linksHeading)}${newsletter ? `\n\n${newsletter}` : ''}`;
 
   const itemList = alts.length === 0 ? [] : [softwareItemListJsonLd(alts.map(({ project }) => {
     const { href } = projectLink(project, lang, isIndexable);
@@ -587,5 +591,6 @@ ${renderVote({ tool, lang, path, t, verdict, voteCount })}${renderRelated({ rela
     ui,
     homeHref: homePath,
     sponsorSlots,
+    hasNewsletter: Boolean(newsletter),
   });
 }

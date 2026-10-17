@@ -99,3 +99,18 @@ describe('ci.yml — garde-fous dist/ du déploiement', () => {
     expect(publish).toBeGreaterThan(guard);
   });
 });
+
+describe('ci.yml — newsletter SmartLetter (spec D13)', () => {
+  const jobs = jobsOf(read('ci.yml'));
+  const buildStep = (job) => stepsOf(jobs[job]).find((s) => /run: npm run build/.test(s));
+
+  for (const job of ['data-and-code', 'deploy']) {
+    it(`le build de ${job} reçoit la clé et le segment en vars, jamais en secrets`, () => {
+      const step = buildStep(job);
+      expect(step).toBeDefined();
+      expect(step).toContain('SMARTLETTER_SIGNUPS_KEY: ${{ vars.SMARTLETTER_SIGNUPS_KEY }}');
+      expect(step).toContain('SMARTLETTER_SEGMENT_ID: ${{ vars.SMARTLETTER_SEGMENT_ID }}');
+      expect(step).not.toMatch(/secrets\.SMARTLETTER/);
+    });
+  }
+});

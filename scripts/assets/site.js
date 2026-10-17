@@ -16,8 +16,11 @@
 //
 // Seules requêtes réseau faites par ce fichier : le Worker de ce même projet
 // (votes.saasmadefree.com, décrit dans README.md — vote, disponibilité des
-// emplacements sponsors, ouverture d'une session de paiement). Rien d'autre,
-// aucune tierce partie.
+// emplacements sponsors, ouverture d’une session de paiement), et une seule
+// exception, jamais au chargement : quand le visiteur envoie le formulaire
+// newsletter, une requête vers SmartLetter (api.smartletter.ai, le service
+// d’emailing du propriétaire, voir enhanceNewsletter et public/privacy.html).
+// Rien d’autre.
 //
 // Rien dans ce fichier ne construit de HTML : tout texte venant du réseau
 // passe par textContent ou par un attribut rendu et échappé au build. Un
@@ -705,6 +708,109 @@
     });
   }
 
+  // Newsletter SmartLetter (spec D13) : le formulaire n’existe que si le build
+  // avait une clé (scripts/lib/site-newsletter.mjs). Aucune requête au
+  // chargement ; une requête par envoi, directement vers l’API SmartLetter
+  // (pas de proxy : la limite de 5 inscriptions par IP et par 10 minutes
+  // resterait sinon globale). La clé Bearer lue dans data-key est publique par
+  // conception (type `signups`) ; elle n’est jamais écrite dans la console.
+  //
+  // Le navigateur valide l’adresse d’abord (required, type=email). Envoyés :
+  // l’adresse, la langue de la page et l’URL de la page sans query ni ancre
+  // (les paramètres de campagne ou de partage n’ont rien à faire chez un
+  // tiers), plus le segment s’il est configuré. Une Idempotency-Key neuve par
+  // envoi. Le bouton est désactivé le temps de la requête.
+  function newsletterKey() {
+    if (typeof crypto !== 'undefined' && crypto && typeof crypto.randomUUID === 'function') {
+      return crypto.randomUUID();
+    }
+    var out = '';
+    for (var i = 0; i < 32; i += 1) out += Math.floor(Math.random() * 16).toString(16);
+    return out.slice(0, 8) + '-' + out.slice(8, 12) + '-' + out.slice(12, 16) + '-' + out.slice(16, 20) + '-' + out.slice(20);
+  }
+
+  // retry-after en secondes (ou en date HTTP), arrondi à la minute supérieure.
+  // null si l’en-tête manque ou ne se lit pas : le texte dit alors « quelques
+  // minutes ».
+  function retryMinutes(res) {
+    var raw = res.headers && typeof res.headers.get === 'function' ? res.headers.get('retry-after') : null;
+    if (raw === null || raw === undefined || String(raw).trim() === '') return null;
+    var seconds = Number(raw);
+    if (!isFinite(seconds)) {
+      var at = Date.parse(raw);
+      if (isNaN(at)) return null;
+      seconds = (at - Date.now()) / 1000;
+    }
+    return Math.max(1, Math.ceil(seconds / 60));
+  }
+
+  function newsletterMessage(form, res) {
+    var d = form.dataset;
+    if (res.status === 202) return d.msgConfirm;
+    if (res.status === 429) {
+      var minutes = retryMinutes(res);
+      var wait = minutes === null
+        ? d.waitUnknown
+        : pluralize(minutes, d.lang, d.waitOne, d.waitOther);
+      return d.msgRate.replace('{wait}', wait);
+    }
+    if (res.status === 422) return d.msgInvalid;
+    return d.msgRetry;
+  }
+
+  function enhanceNewsletter() {
+    var forms = document.querySelectorAll('form[data-newsletter]');
+    Array.prototype.forEach.call(forms, function (form) {
+      var input = form.querySelector('input[name="email"]');
+      var button = form.querySelector('button[type="submit"]');
+      var status = form.querySelector('.newsletter-status');
+      if (!input || !button || !status) return;
+      var pending = false;
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (pending) return;
+        if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
+          if (typeof form.reportValidity === 'function') form.reportValidity();
+          return;
+        }
+        var body = {
+          email: input.value.trim(),
+          language: form.dataset.lang,
+          source_url: String(location.href).split('#')[0].split('?')[0],
+        };
+        if (form.dataset.segment) body.segment_id = form.dataset.segment;
+
+        pending = true;
+        button.disabled = true;
+        form.setAttribute('aria-busy', 'true');
+        status.textContent = '';
+        fetch(form.dataset.endpoint, {
+          method: 'POST',
+          credentials: 'omit',
+          headers: {
+            'authorization': 'Bearer ' + form.dataset.key,
+            'content-type': 'application/json',
+            'idempotency-key': newsletterKey(),
+          },
+          body: JSON.stringify(body),
+        })
+          .then(function (res) {
+            status.textContent = newsletterMessage(form, res);
+            if (res.status === 202) input.value = '';
+          })
+          .catch(function () {
+            status.textContent = form.dataset.msgRetry;
+          })
+          .finally(function () {
+            pending = false;
+            button.disabled = false;
+            form.removeAttribute('aria-busy');
+          });
+      });
+    });
+  }
+
   // Rafraîchit le tableau d'inventaire de /sponsor (statut + prix) une fois
   // le HTML chargé, sans jamais toucher aux autres pages : le sélecteur ne
   // trouve son point d'ancrage que sur /sponsor (voir renderSponsorPage dans
@@ -1197,6 +1303,7 @@
   enhanceCopyButton();
   enhanceAgentButtons();
   enhanceVote();
+  enhanceNewsletter();
   // L'ordre compte un peu : le checkout dévoile ses boutons tout de suite,
   // sans attendre la réponse de /slots (une API lente ou en panne ne doit pas
   // laisser la page sans bouton d'achat). Le rafraîchissement, lui, arrive

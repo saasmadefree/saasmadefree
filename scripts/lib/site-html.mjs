@@ -136,10 +136,13 @@ function renderLangSwitcher(alternates, currentLang, ui) {
  *   cartouche de références (`.ref-strip`) sous l'en-tête ; aucune cartouche si vide
  * @param {string|null} [opts.robots] - contenu de <meta name="robots"> (ex. "noindex,follow"),
  *   aucune balise si absent : une page indexable n'a pas besoin de le dire
+ * @param {boolean} [opts.hasNewsletter] - la page porte le formulaire SmartLetter (spec D13) :
+ *   la promesse du pied de page dit alors qu'une requête part vers SmartLetter à l'inscription
  */
 export function renderLayout({
   lang, path, title, description, alternates = [], xDefaultPath = null,
   jsonLd = [], main, ui, homeHref, extraHead = '', sponsorSlots = null, refCells = [], robots = null,
+  hasNewsletter = false,
 }) {
   // Canonical = l'URL de la page elle-même, jamais une autre langue.
   const canonical = `${SITE_ORIGIN}${path}`;
@@ -228,8 +231,16 @@ export function renderLayout({
   // classe .has-rails est ce qui ouvre les trois pistes de grille au-delà de
   // 84rem — sans rails, la colonne de contenu garde toute la largeur.
   const hasRails = Boolean(sp.railLeft || sp.railRight);
+  // « Cette page ne charge rien depuis un autre site » reste strictement vrai
+  // partout. Sur une page qui porte le formulaire newsletter, la phrase dit en
+  // plus la seule exception : une requête vers SmartLetter, à l'inscription
+  // et jamais autrement (spec D13).
+  const promiseText = [
+    ui.site.footer?.promise,
+    hasNewsletter ? ui.site.footer?.promiseNewsletter : null,
+  ].filter(Boolean).join(' ');
   const promise = ui.site.footer?.promise
-    ? `\n        <p>${escapeHtml(ui.site.footer.promise)}</p>`
+    ? `\n        <p>${escapeHtml(promiseText)}</p>`
     : '';
 
   // Maillage A7 : le hub A–Z et les deux collections, sur toutes les pages.
