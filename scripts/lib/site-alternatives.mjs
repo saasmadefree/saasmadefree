@@ -1,4 +1,4 @@
-import { compareKey } from './validate-rules.mjs';
+import { compareKey, daysBetween } from './validate-rules.mjs';
 
 // Données de rendu des pages « alternatives » (fiche, projet, comparatif,
 // listes) et portes d'indexation du spec D7. Fonctions pures : aucune lecture
@@ -14,15 +14,6 @@ export const PROJECT_MAX_IDLE_DAYS = 365;
 export const MIN_TITLE_ALTERNATIVES = 3;
 /** Une collection ou une catégorie n'est indexable qu'à partir de ce nombre d'éléments. */
 export const MIN_LIST_ITEMS = 3;
-
-// Écart en jours entre deux dates 'YYYY-MM-DD', calculé en UTC : en heure
-// locale, un passage à l'heure d'été retirerait une heure à l'intervalle et
-// l'arrondi pourrait faire perdre un jour au seuil.
-function daysBetween(fromIso, toIso) {
-  const from = Date.parse(`${fromIso}T00:00:00Z`);
-  const to = Date.parse(`${toIso}T00:00:00Z`);
-  return Math.round((to - from) / 86400000);
-}
 
 // Les fiches arrivent en Map (loadData) ou en tableau (tests, listes déjà
 // filtrées) : on itère sur les valeurs dans les deux cas.
@@ -96,14 +87,19 @@ export function replacedTools(projectSlug, tools) {
  */
 export const indexable = {
   /**
-   * Description rédigée dans la langue ET au moins une fiche qui cite le projet.
-   * @param {{ slug: string }} project
+   * Projet affichable (ni archivé, ni sans commit depuis plus de 365 j) ET
+   * description rédigée dans la langue ET au moins une fiche qui le cite.
+   * Une page de projet abandonné ne doit pas être proposée aux moteurs, même
+   * rédigée et citée.
+   * @param {{ slug: string, stats?: object }} project
    * @param {string} lang
-   * @param {{ projectI18n: Map<string, object>, tools: Map<string, object>|object[] }} ctx
+   * @param {{ projectI18n: Map<string, object>, tools: Map<string, object>|object[], today: string }} ctx
    *   projectI18n : clés 'lang/slug' (loadData().projectI18n) ;
-   *   tools : toutes les fiches (loadData().tools).
+   *   tools : toutes les fiches (loadData().tools) ;
+   *   today : date du build, 'YYYY-MM-DD'.
    */
   project(project, lang, ctx) {
+    if (!isDisplayableProject(project, ctx.today)) return false;
     if (!ctx.projectI18n.has(`${lang}/${project.slug}`)) return false;
     return valuesOf(ctx.tools)
       .some((tool) => (tool.alternatives ?? []).some((alt) => alt.project === project.slug));

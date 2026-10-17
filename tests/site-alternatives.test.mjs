@@ -135,9 +135,25 @@ describe('indexable', () => {
   });
 
   it('projet : texte dans la langue ET au moins une fiche qui le cite', () => {
-    expect(indexable.project(p, 'fr', { projectI18n, tools })).toBe(true);
-    expect(indexable.project(p, 'en', { projectI18n, tools })).toBe(false);
-    expect(indexable.project(p, 'fr', { projectI18n, tools: new Map() })).toBe(false);
+    expect(indexable.project(p, 'fr', { projectI18n, tools, today })).toBe(true);
+    expect(indexable.project(p, 'en', { projectI18n, tools, today })).toBe(false);
+    expect(indexable.project(p, 'fr', { projectI18n, tools: new Map(), today })).toBe(false);
+  });
+
+  it('archived project with text and citing tool is not indexable', () => {
+    const archived = project('p', { stats: stats({ archived: true }) });
+    expect(indexable.project(archived, 'fr', { projectI18n, tools, today })).toBe(false);
+  });
+
+  it('stale project (last commit 366 days ago) with text and citing tool is not indexable', () => {
+    const stale = project('p', { stats: stats({ lastCommit: '2025-10-16' }) });
+    expect(indexable.project(stale, 'fr', { projectI18n, tools, today })).toBe(false);
+  });
+
+  it('projet sans dépôt (pas de stats) avec texte et fiche qui le cite : indexable', () => {
+    const noRepo = project('p', { repo: null });
+    delete noRepo.stats;
+    expect(indexable.project(noRepo, 'fr', { projectI18n, tools, today })).toBe(true);
   });
 
   it('comparatif : texte rédigé pour la paire dans la langue', () => {

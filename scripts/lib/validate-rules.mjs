@@ -211,7 +211,13 @@ function validateCompare(data, validators, errors) {
   }
 }
 
-function daysBetween(fromIso, toIso) {
+/**
+ * Écart en jours entre deux dates 'YYYY-MM-DD', calculé en UTC : en heure
+ * locale, un passage à l'heure d'été retirerait une heure à l'intervalle et
+ * l'arrondi pourrait faire perdre un jour à un seuil. Partagé avec
+ * site-alternatives.mjs (fraîcheur des stats, activité des projets).
+ */
+export function daysBetween(fromIso, toIso) {
   const from = Date.parse(`${fromIso}T00:00:00Z`);
   const to = Date.parse(`${toIso}T00:00:00Z`);
   return Math.round((to - from) / 86400000);
