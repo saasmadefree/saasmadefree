@@ -156,7 +156,7 @@ describe('buildComparePages — ensemble des pages', () => {
     const keys = PLAN.map((p) => `${p.lang}/${p.key}`).sort();
     expect(keys).toEqual([
       'en/listmonk-vs-ghosted', 'en/listmonk-vs-keila', 'en/mailchimp-vs-listmonk', 'en/substack-vs-postal',
-      'fr/mailchimp-vs-listmonk', 'fr/substack-vs-postal',
+      'fr/mailchimp-vs-listmonk',
     ]);
     expect(PLAN.some((p) => p.key === 'mailchimp-vs-mautic')).toBe(false);
     // La langue sans texte sort aussi des hreflang.
@@ -165,6 +165,20 @@ describe('buildComparePages — ensemble des pages', () => {
     expect(planFor('fr', 'mailchimp-vs-listmonk').xDefaultPath).toBe('/en/compare/mailchimp-vs-listmonk');
     // Et le gabarit, sans texte, ne rend rien.
     expect(render('mailchimp-vs-listmonk', 'en', { i18nEntry: undefined })).toBeNull();
+  });
+
+  it('Ruling 24 : pas de page dans une langue où une fiche outil du comparatif n’est pas publiée', () => {
+    // substack-vs-postal est rédigé en fr, mais Substack n'est publié qu'en en.
+    expect(COMPARE_I18N.has('fr/substack-vs-postal')).toBe(true);
+    expect(planFor('fr', 'substack-vs-postal')).toBeUndefined();
+    const en = planFor('en', 'substack-vs-postal');
+    expect(en.alternates).toEqual([{ lang: 'en', path: '/en/compare/substack-vs-postal' }]);
+    expect(en.xDefaultPath).toBe('/en/compare/substack-vs-postal');
+    // Ni lien français depuis la page projet de Postal, ni depuis aucune fiche.
+    expect(compareLinksFor(PLAN, { lang: 'fr', kind: 'project', slug: 'postal', ui: UI.fr })).toEqual([]);
+    expect(compareLinksFor(PLAN, { lang: 'fr', kind: 'tool', slug: 'substack', ui: UI.fr })).toEqual([]);
+    expect(compareLinksFor(PLAN, { lang: 'en', kind: 'project', slug: 'postal', ui: UI.en }).map((l) => l.href))
+      .toEqual(['/en/compare/substack-vs-postal']);
   });
 
   it('un texte dans une langue non publiée ne crée aucune page', () => {
@@ -323,10 +337,12 @@ describe('renderComparePage — liens et JSON-LD', () => {
     const noOss = dom(render('mailchimp-vs-listmonk', 'en', { projectIndexable: () => false }));
     const link = noOss.querySelector('.compare-table thead a[href="https://listmonk.app"]');
     expect(link.getAttribute('rel')).toContain('nofollow');
-    // Outil non publié dans la langue : nommé, sans lien mort.
-    const fr = dom(render('substack-vs-postal', 'fr'));
-    expect(fr.querySelector('a[href="/fr/tools/substack"]')).toBeNull();
-    expect(text(fr.querySelector('.compare-table thead'))).toContain('Substack');
+  });
+
+  it('invariant : rendre un comparatif dont la fiche outil n’est pas publiée dans la langue casse le build', () => {
+    // Le plan l'exclut (Ruling 24) ; un appel direct qui le contourne échoue en nommant la paire et la langue.
+    expect(() => render('substack-vs-postal', 'en', { lang: 'fr', path: '/fr/compare/substack-vs-postal', ui: UI.fr }))
+      .toThrow(/\/fr\/compare\/substack-vs-postal.*"substack".*\bfr\b/);
   });
 
   it('FAQPage 3 questions', () => {
@@ -399,11 +415,20 @@ describe('renderComparePage — habillage', () => {
   it('échappe toute donnée interpolée', () => {
     const evil = { kind: 'project', entity: { ...PROJECTS.get('listmonk'), name: 'A<b>&"' } };
     const html = render('mailchimp-vs-listmonk', 'en', {
-      right: evil, i18nEntry: compareEntry({ summary: '<script>x</script>', pickAIf: ['<i>no</i>', 'b'] }),
+      right: evil,
+      i18nEntry: compareEntry({
+        summary: '<script>x</script>', pickAIf: ['<i>no</i>', 'b'], pickBIf: ['<u>pb</u>', 'c'],
+        faq: [{ q: '<em>q1</em>', a: '<img src=x onerror=1>' }, { q: 'q2', a: 'a2' }, { q: 'q3', a: 'a3' }],
+      }),
     });
     expect(html).not.toContain('<b>&"');
     expect(html).not.toContain('<script>x</script>');
     expect(html).not.toContain('<i>no</i>');
+    expect(html).not.toContain('<u>pb</u>');
+    expect(html).not.toContain('<em>q1</em>');
+    expect(html).not.toContain('<img src=x');
+    expect(html).toContain('&lt;u&gt;pb&lt;/u&gt;');
+    expect(html).toContain('&lt;em&gt;q1&lt;/em&gt;');
     expect(html).toContain('A&lt;b&gt;&amp;&quot;');
   });
 
@@ -477,8 +502,17 @@ describe('liens « Comparisons » des fiches outil et projet', () => {
         const out = renderTool(tl.slug, lang, compareLinksFor(PLAN, { lang, kind: 'tool', slug: tl.slug, ui: UI[lang] }));
         links.push(...[...out.matchAll(/href="(\/([a-z]{2})\/compare\/[^"]+)"/g)].map((m) => [m[1], m[2], lang]));
       }
+      // Les pages projet rédigées dans la langue, avec le même PLAN.
+      for (const pr of [...PROJECTS.values()].filter((x) => PROJECT_I18N.has(`${lang}/${x.slug}`))) {
+        const out = renderProject(pr.slug, lang, compareLinksFor(PLAN, { lang, kind: 'project', slug: pr.slug, ui: UI[lang] }));
+        links.push(...[...out.matchAll(/href="(\/([a-z]{2})\/compare\/[^"]+)"/g)].map((m) => [m[1], m[2], lang]));
+      }
     }
     expect(links.length).toBeGreaterThan(0);
+    // Les liens des pages projet sont bien comptés (listmonk : 3 en, 1 fr).
+    expect(links.filter(([href]) => href.includes('vs-keila'))).toHaveLength(1);
+    expect(links.filter(([, , lang]) => lang === 'fr').map(([href]) => href))
+      .toEqual(['/fr/compare/mailchimp-vs-listmonk', '/fr/compare/mailchimp-vs-listmonk']);
     for (const [href, hrefLang, lang] of links) {
       expect(generated.has(href), href).toBe(true);
       expect(hrefLang).toBe(lang);

@@ -1,12 +1,13 @@
 import { escapeHtml, renderLayout, renderBreadcrumb, verdictBadge } from './site-html.mjs';
 import { categoryLabel, SITE_ORIGIN } from './site-data.mjs';
-import { formatMoney, formatMonthlyPrice, formatDate, interpolate } from './site-format.mjs';
+import { formatMonthlyPrice, formatDate, interpolate } from './site-format.mjs';
 import {
   organizationJsonLd, breadcrumbJsonLd, softwareItemListJsonLd, webPageJsonLd,
 } from './site-seo.mjs';
 import { indexable as gates, isDisplayableProject, statsAreFresh } from './site-alternatives.mjs';
 import {
-  projectLink, projectTagline, templateWithHtml, projectStatCells, renderFactGrid, fitTag, renderCompareLinks,
+  projectLink, projectTagline, projectStatCells, renderFactGrid, fitTag, renderCompareLinks,
+  sourceHost, monthYear, externalLink as ext, hostedCell,
 } from './site-page-tool.mjs';
 
 // Fiche projet /{lang}/oss/{slug} (spec D2, D3, D7, D14 ; Ruling 20).
@@ -27,8 +28,6 @@ import {
 
 /** Au plus ce nombre de projets dans « Autres projets de la catégorie ». */
 export const MAX_RELATED_PROJECTS = 6;
-
-const DAY = 'T00:00:00Z';
 
 /**
  * Pages projet à générer : une par langue publiée (`langs`, dérivé de
@@ -84,20 +83,6 @@ export function projectDateModified(project) {
   return dates.length ? dates.reduce((max, d) => (d > max ? d : max)) : null;
 }
 
-function monthYear(iso, lang, month = 'short') {
-  return new Intl.DateTimeFormat(lang, { month, year: 'numeric', timeZone: 'UTC' }).format(new Date(`${iso}${DAY}`));
-}
-
-function sourceHost(url) {
-  try {
-    return new URL(url).hostname.replace(/^www\./, '');
-  } catch {
-    return url;
-  }
-}
-
-const ext = (href, label) => `<a href="${escapeHtml(href)}" rel="nofollow noopener">${escapeHtml(label)}</a>`;
-
 /** Ruling 20 : un projet archivé, ou sans commit depuis plus de 365 jours,
  *  garde sa page (noindex) et le dit en tête, en toutes lettres. */
 function renderNotice(project, lang, p, today) {
@@ -111,11 +96,7 @@ function renderNotice(project, lang, p, today) {
 /** Les faits, en tête : tout ce que l'on sait du projet, rien d'inventé. */
 function renderFacts({ project, lang, p, t, today }) {
   const { stars, commit } = projectStatCells(project, lang, t, today);
-  const hosted = project.hosted?.exists
-    ? `${escapeHtml(interpolate(t.hostedFromTemplate, { price: formatMoney(project.hosted.priceFrom, project.hosted.currency, lang) }))}`
-      + `<span class="sub">${templateWithHtml(t.priceSourceTemplate, 'host', ext(project.hosted.source, sourceHost(project.hosted.source)))}`
-      + ` · ${escapeHtml(interpolate(t.checkedOnTemplate, { date: formatDate(project.hosted.checkedOn, lang) }))}</span>`
-    : escapeHtml(t.hostedNone);
+  const hosted = hostedCell(project, lang, t);
   const github = project.repo ? `https://github.com/${project.repo}` : null;
   const rows = [
     [t.colLicense, project.license ? escapeHtml(project.license) : '—'],

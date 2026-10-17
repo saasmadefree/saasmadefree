@@ -26,12 +26,35 @@ import { resolveAction } from '../../extension/lib/template.mjs';
 
 const DASH = '—';
 
-function sourceHost(url) {
+/** Nom d'hôte d'une URL, sans « www. » : le texte des liens de source. */
+export function sourceHost(url) {
   try {
     return new URL(url).hostname.replace(/^www\./, '');
   } catch {
     return url;
   }
+}
+
+/** Mois et année d'une date 'YYYY-MM-DD', en UTC (« Oct 2026 », ou
+ *  « October 2026 » avec month = 'long'). */
+export function monthYear(iso, lang, month = 'short') {
+  return new Intl.DateTimeFormat(lang, { month, year: 'numeric', timeZone: 'UTC' }).format(new Date(`${iso}T00:00:00Z`));
+}
+
+/** Lien sortant vers un site tiers, en nofollow. */
+export function externalLink(href, label) {
+  return `<a href="${escapeHtml(href)}" rel="nofollow noopener">${escapeHtml(label)}</a>`;
+}
+
+/** Prix hébergé d'un projet, en HTML : « From $9 » avec sa source cliquable
+ *  et sa date, seulement si l'offre existe ; sinon « None ». `t` = ui.site.tool.
+ *  Faits de la page projet et tableau du comparatif. */
+export function hostedCell(project, lang, t) {
+  if (!project.hosted?.exists) return escapeHtml(t.hostedNone);
+  const { hosted } = project;
+  return `${escapeHtml(interpolate(t.hostedFromTemplate, { price: formatMoney(hosted.priceFrom, hosted.currency, lang) }))}`
+    + `<span class="sub">${templateWithHtml(t.priceSourceTemplate, 'host', externalLink(hosted.source, sourceHost(hosted.source)))}`
+    + ` · ${escapeHtml(interpolate(t.checkedOnTemplate, { date: formatDate(hosted.checkedOn, lang) }))}</span>`;
 }
 
 // « A week » → « a week » : le libellé entre au milieu d'une phrase de la
@@ -104,10 +127,9 @@ export function projectTagline(project, lang, projectI18n) {
 export function projectStatCells(project, lang, t, today) {
   if (statsAreFresh(project, today)) {
     const compact = new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 1 });
-    const monthYear = new Intl.DateTimeFormat(lang, { month: 'short', year: 'numeric', timeZone: 'UTC' });
     return {
       stars: escapeHtml(compact.format(project.stats.stars)),
-      commit: escapeHtml(monthYear.format(new Date(`${project.stats.lastCommit}T00:00:00Z`))),
+      commit: escapeHtml(monthYear(project.stats.lastCommit, lang)),
     };
   }
   const why = project.stats?.checkedOn
@@ -222,11 +244,10 @@ ${items.join('\n')}
  *  ligne discrète ; rien du tout s'il n'y en a pas. */
 function renderInactive(inactive, lang, t) {
   if (inactive.length === 0) return '';
-  const monthYear = new Intl.DateTimeFormat(lang, { month: 'short', year: 'numeric', timeZone: 'UTC' });
   const items = inactive.map(({ project, reason, lastCommit }) => {
     const status = reason === 'archived' || !lastCommit
       ? t.inactiveArchived
-      : interpolate(t.inactiveLastCommitTemplate, { date: monthYear.format(new Date(`${lastCommit}T00:00:00Z`)) });
+      : interpolate(t.inactiveLastCommitTemplate, { date: monthYear(lastCommit, lang) });
     return `<a href="${escapeHtml(project.homepage)}" rel="nofollow noopener">${escapeHtml(project.name)}</a> (${escapeHtml(status)})`;
   });
   return `

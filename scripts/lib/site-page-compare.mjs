@@ -6,7 +6,9 @@ import {
 } from './site-seo.mjs';
 import { indexable as gates, isDisplayableProject, statsAreFresh } from './site-alternatives.mjs';
 import { compareKey } from './validate-rules.mjs';
-import { projectLink, templateWithHtml, projectStatCells } from './site-page-tool.mjs';
+import {
+  projectLink, templateWithHtml, projectStatCells, sourceHost, monthYear, externalLink as ext, hostedCell,
+} from './site-page-tool.mjs';
 import { projectDateModified } from './site-page-project.mjs';
 
 // Comparatif /{lang}/compare/{a}-vs-{b} (spec D4, D7, D14). Seulement pour
@@ -23,7 +25,6 @@ import { projectDateModified } from './site-page-project.mjs';
 // chiffres GitHub périmés (> 45 jours) ou absents donnent un tiret, jamais 0.
 
 const DASH = '—';
-const DAY = 'T00:00:00Z';
 
 /** Chemin d'un comparatif dans une langue. */
 export function comparePath(lang, a, b) {
@@ -42,7 +43,9 @@ function isInactive(side, today) {
 /**
  * Pages comparatif à générer : une par paire de data/compare.json et par
  * langue publiée (`langs`) où le texte data/i18n/{lang}/compare/{a}-vs-{b}.json
- * existe. Sans texte, pas de page, et la langue sort des hreflang.
+ * existe ET où chaque côté outil est publié (`tool.markets`, Ruling 24). Sinon,
+ * pas de page dans cette langue, et elle sort des hreflang, du x-default, du
+ * sitemap et des liens « Comparisons ».
  * `indexable` = indexable.compare ET les deux côtés affichables : un
  * comparatif avec un projet archivé, ou sans commit depuis plus d'un an, est
  * généré quand même, en noindex,follow, hors sitemap, avec un avis (D7, comme
@@ -67,7 +70,10 @@ export function buildComparePages({ compare, compareI18n, tools, projects, langs
       }
       return { kind, entity };
     });
-    const written = langs.filter((lang) => compareI18n.has(`${lang}/${key}`));
+    // Ruling 24 : un comparatif n'existe dans une langue que si chaque fiche
+    // outil qu'il oppose y est publiée — jamais un côté nommé sans sa page.
+    const written = langs.filter((lang) => compareI18n.has(`${lang}/${key}`)
+      && [left, right].every((side) => side.kind !== 'tool' || side.entity.markets?.includes(lang)));
     if (written.length === 0) continue;
     const alternates = written.map((lang) => ({ lang, path: comparePath(lang, pair.a, pair.b) }));
     const xDefaultPath = (alternates.find((a) => a.lang === 'en') ?? alternates[0]).path;
@@ -108,28 +114,19 @@ export function compareDateModified(left, right) {
   return dates.length ? dates.reduce((max, d) => (d > max ? d : max)) : null;
 }
 
-function sourceHost(url) {
-  try {
-    return new URL(url).hostname.replace(/^www\./, '');
-  } catch {
-    return url;
-  }
-}
-
-const ext = (href, label) => `<a href="${escapeHtml(href)}" rel="nofollow noopener">${escapeHtml(label)}</a>`;
-
-/** Lien d'un côté vers sa page chez nous. Outil : sa fiche si elle est
- *  publiée dans la langue, sinon rien (nommé sans lien mort). Projet : sa page
- *  /oss/ si elle est indexable, sinon son site en nofollow (règle des fiches). */
-function sideLink(side, lang, isIndexable) {
+/** Lien d'un côté vers sa page chez nous. Outil : sa fiche, toujours publiée
+ *  dans la langue (Ruling 24, garanti par buildComparePages) — l'inverse est
+ *  un bug du plan, on casse le build plutôt que de lier une page absente.
+ *  Projet : sa page /oss/ si elle est indexable, sinon son site en nofollow
+ *  (règle des fiches). `path` nomme la paire et la langue dans l'erreur. */
+function sideLink(side, lang, isIndexable, path) {
   if (side.kind === 'tool') {
-    return side.entity.markets?.includes(lang) ? { href: `/${lang}/tools/${side.entity.slug}`, rel: '' } : null;
+    if (!side.entity.markets?.includes(lang)) {
+      throw new Error(`${path} : la fiche outil "${side.entity.slug}" n'est pas publiée en ${lang} (Ruling 24)`);
+    }
+    return { href: `/${lang}/tools/${side.entity.slug}`, rel: '' };
   }
   return projectLink(side.entity, lang, isIndexable);
-}
-
-function monthYear(iso, lang, month = 'short') {
-  return new Intl.DateTimeFormat(lang, { month, year: 'numeric', timeZone: 'UTC' }).format(new Date(`${iso}${DAY}`));
 }
 
 /** Un avis par côté inactif, qui le nomme (même idée que Ruling 20). */
@@ -173,11 +170,7 @@ function sideFacts(side, { lang, ui, s, t, p, today }) {
     };
   }
   const { stars, commit } = projectStatCells(e, lang, t, today);
-  const hosted = e.hosted?.exists
-    ? `${escapeHtml(interpolate(t.hostedFromTemplate, { price: formatMoney(e.hosted.priceFrom, e.hosted.currency, lang) }))}`
-      + `<span class="sub">${templateWithHtml(t.priceSourceTemplate, 'host', ext(e.hosted.source, sourceHost(e.hosted.source)))}`
-      + ` · ${escapeHtml(interpolate(t.checkedOnTemplate, { date: formatDate(e.hosted.checkedOn, lang) }))}</span>`
-    : escapeHtml(t.hostedNone);
+  const hosted = hostedCell(e, lang, t);
   return {
     kind: escapeHtml(s.compare.kindProject),
     verdict: null,
@@ -197,7 +190,7 @@ function sideFacts(side, { lang, ui, s, t, p, today }) {
   };
 }
 
-function renderFactsTable({ left, right, lang, ui, s, t, p, c, today, isIndexable }) {
+function renderFactsTable({ left, right, lang, ui, s, t, p, c, today, isIndexable, path }) {
   const ctx = { lang, ui, s, t, p, today };
   const facts = [sideFacts(left, ctx), sideFacts(right, ctx)];
   const na = `<span title="${escapeHtml(c.notApplicable)}">${DASH}</span>`;
@@ -215,10 +208,9 @@ ${facts.map((f) => `              <td${num ? ' class="num"' : ''}>${f[field] ?? 
             </tr>`);
 
   const heads = [left, right].map((side) => {
-    const link = sideLink(side, lang, isIndexable);
-    const name = escapeHtml(side.entity.name);
+    const link = sideLink(side, lang, isIndexable, path);
     const tagline = side.i18n?.tagline ? `<span class="sub">${escapeHtml(side.i18n.tagline)}</span>` : '';
-    return `<th scope="col">${link ? `<a href="${escapeHtml(link.href)}"${link.rel}>${name}</a>` : name}${tagline}</th>`;
+    return `<th scope="col"><a href="${escapeHtml(link.href)}"${link.rel}>${escapeHtml(side.entity.name)}</a>${tagline}</th>`;
   });
 
   const fresh = [left, right].filter((side) => side.kind === 'project' && statsAreFresh(side.entity, today))
@@ -254,16 +246,11 @@ ${col('pick-b-heading', right, i18nEntry.pickBIf ?? [])}
     </div>`;
 }
 
-function itemFor(side, lang, isIndexable, categories) {
-  const link = sideLink(side, lang, isIndexable);
-  // Sans lien chez nous (outil non publié dans la langue) : le site de
-  // l'outil, `domains` étant obligatoire au schéma.
-  const url = link
-    ? (link.href.startsWith('/') ? `${SITE_ORIGIN}${link.href}` : link.href)
-    : `https://${side.entity.domains[0]}`;
+function itemFor(side, lang, isIndexable, categories, path) {
+  const { href } = sideLink(side, lang, isIndexable, path);
   return {
     name: side.entity.name,
-    url,
+    url: href.startsWith('/') ? `${SITE_ORIGIN}${href}` : href,
     applicationCategory: categoryLabel(categories, compareCategory(side), lang),
     // Une offre gratuite n'est affirmée que pour un projet sans version
     // hébergée payante (softwareItemListJsonLd) ; un outil n'en porte jamais.
@@ -349,7 +336,7 @@ ${(i18nEntry.faq ?? []).map((entry) => `      <details>
 
 ${renderPicks(left, right, i18nEntry, c)}
 
-${renderFactsTable({ left, right, lang, ui, s, t, p, c, today, isIndexable })}
+${renderFactsTable({ left, right, lang, ui, s, t, p, c, today, isIndexable, path })}
 
 ${faq}`;
 
@@ -368,7 +355,7 @@ ${faq}`;
       organizationJsonLd(),
       breadcrumbJsonLd(breadcrumbItems.filter((item) => item.href)),
       webPage,
-      softwareItemListJsonLd([left, right].map((side) => itemFor(side, lang, isIndexable, categories))),
+      softwareItemListJsonLd([left, right].map((side) => itemFor(side, lang, isIndexable, categories, path))),
       faqPageJsonLd(i18nEntry.faq ?? []),
     ],
     main,
