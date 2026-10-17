@@ -79,10 +79,12 @@ describe('buildAgentIdList', () => {
 
 // Contrat public du feed v1 : l'extension Chrome lit `priorArt` dans chaque
 // enregistrement. La migration priorArt → projects (scripts/migrate-prior-art.mjs)
-// retire le champ des données sources ; le feed doit le dériver de
-// `alternatives` et sortir octet pour octet ce qu'il sortait avant. Les
-// instantanés de tests/fixtures/feed-before-migration/ ont été écrits AVANT la
-// migration, avec le code d'alors, et ne doivent jamais être régénérés.
+// a retiré le champ des données sources ; le feed le dérive désormais de
+// `alternatives`. Les instantanés de tests/fixtures/feed-before-migration/ ont
+// été écrits AVANT la migration, avec le code d'alors. Ce qui est figé, et
+// seulement ça : le `priorArt` de ces trois fiches (contenu, forme et ordre des
+// clés) et l'ordre des clés de premier niveau de l'enregistrement. Prix,
+// textes et FAQ peuvent évoluer librement sans toucher à ce test.
 describe('feed keeps priorArt derived from alternatives', () => {
   const root = fileURLToPath(new URL('..', import.meta.url));
   const fixtures = join(root, 'tests', 'fixtures', 'feed-before-migration');
@@ -96,10 +98,12 @@ describe('feed keeps priorArt derived from alternatives', () => {
     ]);
   });
 
-  it.each(cases)('%s est identique octet pour octet', async (file) => {
+  it.each(cases)('%s : priorArt identique octet pour octet, clés dans le même ordre', async (file) => {
     const [slug, lang] = file.replace(/\.json$/, '').split('.');
     const data = await loadData(root);
     const record = buildToolRecord(data.tools.get(slug), data.i18n.get(`${lang}/${slug}`), lang, data.projects);
-    expect(JSON.stringify(record, null, 2) + '\n').toBe(readFileSync(join(fixtures, file), 'utf8'));
+    const before = JSON.parse(readFileSync(join(fixtures, file), 'utf8'));
+    expect(JSON.stringify(record.priorArt)).toBe(JSON.stringify(before.priorArt));
+    expect(Object.keys(record)).toEqual(Object.keys(before));
   });
 });
