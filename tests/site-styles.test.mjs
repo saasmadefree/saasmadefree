@@ -144,3 +144,13 @@ describe('SITE_CSS — invariants D9', () => {
     expect(SITE_CSS).toMatch(/\.table-scroll\{[^}]*overflow-x:auto/);
   });
 });
+
+// Recette A8 : à 320 px, le <canvas> de /stats garde sa largeur par défaut
+// (300 px) dans une boîte de 238 px tant que Chart.js ne l'a pas
+// redimensionné, et pour toujours sans JavaScript : la page défilait de
+// 21 px en largeur. Un canvas ne dépasse jamais son conteneur.
+describe('SITE_CSS — aucun média plus large que son conteneur', () => {
+  it('img et canvas sont plafonnés à 100 %', () => {
+    expect(SITE_CSS).toMatch(/(^|\})img,canvas\{max-width:100%/m);
+  });
+});

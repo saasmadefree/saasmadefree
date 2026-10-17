@@ -81,7 +81,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(
 a{color:var(--tomato);text-underline-offset:.2em;text-decoration-thickness:1.5px}
 a:hover{text-decoration-thickness:2.5px}
 :focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
-img{max-width:100%;vertical-align:middle}
+img,canvas{max-width:100%;vertical-align:middle}
 button,input,select{font:inherit;color:inherit}
 h1,h2,h3{margin:0;font-family:var(--display);font-weight:650;text-wrap:balance}
 h1{font-size:clamp(1.85rem,4.2cqi,2.9rem);line-height:1.1;letter-spacing:-.025em;max-width:16em}
