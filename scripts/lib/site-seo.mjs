@@ -103,6 +103,23 @@ export function breadcrumbJsonLd(items) {
 }
 
 /**
+ * Fichier de dist/ qui sert une URL de page, selon les règles de Cloudflare
+ * Pages : `/a/b` est servi en 200 par `a/b.html` (et `/a/b/` y redirige en
+ * 308), `/a/b/` par `a/b/index.html`. Écrire `/en/tools/x` en
+ * `en/tools/x/index.html` faisait répondre l'URL canonique par une 308 vers
+ * `/en/tools/x/` : canonical, sitemap et hreflang visaient une redirection.
+ * Le build écrit chaque page par cette fonction, et les tests sur dist/
+ * résolvent les liens par elle : une seule règle des deux côtés.
+ * @param {string} path  chemin absolu de la page, sans query ni ancre
+ * @returns {string} chemin relatif dans dist/, séparé par des « / »
+ */
+export function pageFile(path) {
+  if (!path.startsWith('/')) throw new TypeError(`pageFile : chemin absolu attendu, reçu ${path}`);
+  if (path.endsWith('/')) return `${path.slice(1)}index.html`;
+  return `${path.slice(1)}.html`;
+}
+
+/**
  * Versions de langue d'une page : une entrée par langue où la page est
  * générée, avec sa porte D7. C'est la forme que toutes les pages passent en
  * `alternates` à renderLayout, qui en tire le sélecteur de langue (toutes les
@@ -172,4 +189,50 @@ export function buildSitemap(pages) {
     })
     .join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+}
+
+/** Types de sitemap, dans l'ordre de l'index (Task A8). `pages` : accueils et
+ *  pages fixes (sponsor, stats, confidentialité) ; `lists` : catégories,
+ *  collections, hub A–Z et répertoire des catégories. */
+export const SITEMAP_KINDS = ['pages', 'tools', 'projects', 'compare', 'lists'];
+
+/**
+ * Sitemaps découpés par type, et leur index. Les entrées doivent déjà avoir
+ * passé leur porte D7 (listSitemapEntries pour les listes) : aucune page
+ * noindex n'arrive ici. Un type sans URL n'a pas de fichier, et l'index ne le
+ * cite pas. La lastmod d'un fichier dans l'index est la plus récente de ses
+ * URL ; sans aucune date, on n'en met pas — jamais la date du build.
+ * @param {Array<{ kind: string, path: string, lastmod?: string }>} entries
+ * @returns {{ files: Array<{ name: string, xml: string, count: number, lastmod: string|null }>, index: string }}
+ */
+export function buildSitemaps(entries) {
+  const seen = new Set();
+  const byKind = new Map(SITEMAP_KINDS.map((kind) => [kind, []]));
+  for (const entry of entries) {
+    if (!byKind.has(entry.kind)) {
+      throw new TypeError(`buildSitemaps : type inconnu « ${entry.kind} » pour ${entry.path} (attendu : ${SITEMAP_KINDS.join(', ')}).`);
+    }
+    if (seen.has(entry.path)) throw new Error(`buildSitemaps : ${entry.path} en double dans les sitemaps.`);
+    seen.add(entry.path);
+    byKind.get(entry.kind).push(entry);
+  }
+  const files = [...byKind]
+    .filter(([, pages]) => pages.length > 0)
+    .map(([kind, pages]) => {
+      const dates = pages.map((p) => p.lastmod).filter(Boolean);
+      return {
+        name: `sitemap-${kind}.xml`,
+        xml: buildSitemap(pages),
+        count: pages.length,
+        lastmod: dates.length ? dates.reduce((max, d) => (d > max ? d : max)) : null,
+      };
+    });
+  const items = files
+    .map(({ name, lastmod }) => {
+      const lastmodTag = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : '';
+      return `  <sitemap>\n    <loc>${SITE_ORIGIN}/${name}</loc>${lastmodTag}\n  </sitemap>`;
+    })
+    .join('\n');
+  const index = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${items}\n</sitemapindex>\n`;
+  return { files, index };
 }

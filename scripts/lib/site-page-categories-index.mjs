@@ -33,7 +33,7 @@ export function renderCategoriesIndexPage({
         projectCount > 0 ? pluralize(projectCount, lang, s.category.projectCountOne, s.category.projectCountOther) : null,
       ].filter(Boolean).join(' · ');
       return `        <li>
-          <a href="${homePath}categories/${slug}/"><span class="l-name">${escapeHtml(label)}</span> <span class="l-meta">${escapeHtml(tally)}</span></a>
+          <a href="${homePath}categories/${slug}"><span class="l-name">${escapeHtml(label)}</span> <span class="l-meta">${escapeHtml(tally)}</span></a>
         </li>`;
     })
     .join('\n');

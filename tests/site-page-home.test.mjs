@@ -233,7 +233,7 @@ describe('accueil — liste D14', () => {
 
   it('toutes les catégories : les plus peuplées, plus le lien vers la liste complète', () => {
     const browse = between('id="h-cats"', '</section>');
-    for (const slug of CATS) expect(browse).toContain(`href="/en/categories/${slug}/"`);
+    for (const slug of CATS) expect(browse).toContain(`href="/en/categories/${slug}"`);
     expect(browse).toContain('<span class="l-meta">10 tools</span>');
     expect(browse).toContain(`<a class="more" href="/en/categories/">All 51 categories</a>`);
   });

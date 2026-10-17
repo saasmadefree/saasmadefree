@@ -324,9 +324,11 @@ describe('D14 — répertoire des catégories', () => {
     expect(text(idx.querySelector('h1'))).toBe('All categories');
   });
 
-  it('chaque catégorie, liée à sa page (URL inchangée), avec son nombre d’outils', () => {
+  it('chaque catégorie, liée à sa page (URL canonique, sans barre finale), avec son nombre d’outils', () => {
     const links = [...idx.querySelectorAll('main ul a')];
-    expect(links.map((a) => a.getAttribute('href'))).toEqual(['/en/categories/newsletter/', '/en/categories/tasks/']);
+    // L'URL de la page est /en/categories/{slug} (canonical, sitemap) ; la
+    // barre finale de l'ancien lien coûtait une redirection 308 (Task A8).
+    expect(links.map((a) => a.getAttribute('href'))).toEqual(['/en/categories/newsletter', '/en/categories/tasks']);
     expect(text(links[0])).toContain('Newsletters & publishing');
     expect(text(links[0])).toContain('3 tools');
     expect(text(links[1])).toContain('1 tool');

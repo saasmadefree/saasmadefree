@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   organizationJsonLd, websiteJsonLd, itemListJsonLd, faqPageJsonLd,
   breadcrumbJsonLd, buildSitemap, softwareItemListJsonLd, webPageJsonLd, listSitemapEntries,
-  languageVersions, hreflangFor,
+  languageVersions, hreflangFor, pageFile, buildSitemaps, SITEMAP_KINDS,
 } from '../scripts/lib/site-seo.mjs';
 
 describe('organizationJsonLd', () => {
@@ -173,5 +173,62 @@ describe('languageVersions + hreflangFor', () => {
       for (const to of tos) expect(cited.get(to)).toContain(from);
     }
     expect(cited.get('de')).toEqual([]);
+  });
+});
+
+// Règle de Cloudflare Pages : `/a/b` est servi par `a/b.html`, `/a/b/` par
+// `a/b/index.html`. Écrire une URL sans barre finale en dossier la faisait
+// répondre par une 308, alors que canonical et sitemap la citent.
+describe('pageFile', () => {
+  it('URL sans barre finale → fichier .html', () => {
+    expect(pageFile('/en/tools/mailchimp')).toBe('en/tools/mailchimp.html');
+    expect(pageFile('/en/sponsor')).toBe('en/sponsor.html');
+  });
+
+  it('URL à barre finale → index.html du dossier', () => {
+    expect(pageFile('/')).toBe('index.html');
+    expect(pageFile('/en/')).toBe('en/index.html');
+    expect(pageFile('/en/categories/')).toBe('en/categories/index.html');
+  });
+
+  it('refuse un chemin relatif', () => {
+    expect(() => pageFile('en/x')).toThrow(/absolu/);
+  });
+});
+
+// Step 1 (A8) : un index + un sitemap par type, pages indexables seulement.
+describe('buildSitemaps', () => {
+  const entries = [
+    { kind: 'pages', path: '/en/', lastmod: '2026-10-10' },
+    { kind: 'tools', path: '/en/tools/a', lastmod: '2026-10-01' },
+    { kind: 'tools', path: '/en/tools/b', lastmod: '2026-10-12' },
+    { kind: 'lists', path: '/en/categories/x' },
+  ];
+  const { files, index } = buildSitemaps(entries);
+
+  it('un fichier par type non vide, nommé sitemap-<type>.xml', () => {
+    expect(files.map((f) => [f.name, f.count])).toEqual([
+      ['sitemap-pages.xml', 1], ['sitemap-tools.xml', 2], ['sitemap-lists.xml', 1],
+    ]);
+    expect(SITEMAP_KINDS).toEqual(['pages', 'tools', 'projects', 'compare', 'lists']);
+  });
+
+  it('chaque fichier ne contient que ses URL, avec leur lastmod', () => {
+    const tools = files.find((f) => f.name === 'sitemap-tools.xml').xml;
+    expect(tools).toContain('<loc>https://saasmadefree.com/en/tools/a</loc>\n    <lastmod>2026-10-01</lastmod>');
+    expect(tools).not.toContain('/en/categories/x');
+  });
+
+  it("l'index cite chaque fichier, daté de sa plus récente lastmod", () => {
+    expect(index).toContain('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+    expect(index).toContain('<loc>https://saasmadefree.com/sitemap-tools.xml</loc>\n    <lastmod>2026-10-12</lastmod>');
+    // Aucune date dans les listes : l'index n'en invente pas.
+    expect(index).toMatch(/<loc>https:\/\/saasmadefree\.com\/sitemap-lists\.xml<\/loc>\n  <\/sitemap>/);
+    expect(index).not.toContain('sitemap-projects.xml');
+  });
+
+  it('refuse un type inconnu et une URL en double', () => {
+    expect(() => buildSitemaps([{ kind: 'blog', path: '/x' }])).toThrow(/blog/);
+    expect(() => buildSitemaps([{ kind: 'tools', path: '/x' }, { kind: 'lists', path: '/x' }])).toThrow(/double/);
   });
 });

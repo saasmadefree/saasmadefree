@@ -113,7 +113,7 @@ ${popular}
   const cats = topCategorySlugs
     .map((slug) => {
       const count = toolViews.filter((t) => t.category === slug).length;
-      return `          <li><a href="${path}categories/${slug}/"><span class="l-name">${escapeHtml(categoryLabel(categories, slug, lang))}</span>`
+      return `          <li><a href="${path}categories/${slug}"><span class="l-name">${escapeHtml(categoryLabel(categories, slug, lang))}</span>`
         + `<span class="l-meta">${escapeHtml(pluralize(count, lang, c.toolCountOne, c.toolCountOther))}</span></a></li>`;
     })
     .join('\n');
