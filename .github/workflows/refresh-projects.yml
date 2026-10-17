@@ -1,0 +1,62 @@
+name: Rafraîchir les projets
+# Chaque lundi, relit sur l'API GitHub les faits des projets open source
+# (étoiles, dernier commit, création, archivage) et propose le résultat en
+# pull request. Jamais de push sur main : la PR passe par la revue comme le
+# reste. Aucune action tierce : checkout et setup-node (officielles GitHub),
+# puis git et `gh`, déjà présents sur le runner.
+#
+# Les PR ouvertes avec le GITHUB_TOKEN du workflow ne déclenchent pas les
+# autres workflows (garde-fou de GitHub contre les boucles) : la CI ne tourne
+# pas d'elle-même sur cette PR. D'où `npm run validate` ici, avant d'ouvrir la
+# PR. Le dépôt doit aussi autoriser GitHub Actions à créer des pull requests
+# (Settings → Actions → General → Workflow permissions).
+on:
+  schedule:
+    - cron: '0 5 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: refresh-projects
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version: '22', cache: npm }
+      # Sort en code 1 si un dépôt est introuvable (404) ou si deux projets
+      # pointent sur le même dépôt : ces cas demandent un humain, pas une PR.
+      # Les doublons se fusionnent en local avec --merge-duplicates.
+      - name: Rafraîchir et valider
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm ci && npm run refresh:projects && npm run validate
+      - name: Ouvrir la pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -z "$(git status --porcelain -- data/projects)" ]; then
+            echo "Aucun changement dans data/projects, pas de PR."
+            exit 0
+          fi
+          date="$(date -u +%F)"
+          branch="chore/refresh-projects-${date}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add -- data/projects
+          git commit -m "chore(data): stats GitHub des projets au ${date}"
+          git push --force origin "$branch"
+          if [ -n "$(gh pr list --head "$branch" --state open --json number --jq '.[].number')" ]; then
+            echo "PR déjà ouverte pour ${branch}, branche mise à jour."
+            exit 0
+          fi
+          gh pr create --base main --head "$branch" \
+            --title "chore(data): stats GitHub des projets au ${date}" \
+            --body "Rafraîchissement hebdomadaire de \`stats\` (et de \`license\` quand elle manquait) par \`npm run refresh:projects\`, depuis l'API GitHub. \`npm run validate\` est passé dans le workflow."

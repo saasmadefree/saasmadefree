@@ -1,0 +1,10 @@
+[
+  {
+    "sha": "4f1c2a9e0b7d3c5a8e6f1d2b3c4a5e6f7d8c9b0a",
+    "commit": {
+      "author": { "name": "Kailash Nadh", "date": "2026-10-09T21:40:00Z" },
+      "committer": { "name": "GitHub", "date": "2026-10-10T07:58:12Z" },
+      "message": "Fix campaign preview"
+    }
+  }
+]
