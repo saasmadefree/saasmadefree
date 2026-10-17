@@ -268,6 +268,25 @@
       "githubRepoTemplate": "GitHub : {repo}",
       "priceSourceTemplate": "Source : {host}"
     },
+    "project": {
+      "titleTemplate": "{name} : alternative open source gratuite à {list} ({year})",
+      "metaDescriptionTemplate": "{name} est une alternative gratuite et open source à {list}. {tagline} Sa licence, son activité sur GitHub et ce qu’il ne fera pas pour toi.",
+      "h1Template": "{name}",
+      "factsHeading": "Les faits",
+      "startedLabel": "Lancé en",
+      "websiteLabel": "Site",
+      "repoLabel": "Code source",
+      "deployLabel": "Tourne avec",
+      "stackLabel": "Construit avec",
+      "replacesHeading": "Ce qu’il remplace",
+      "replacesIntro": "Les outils payants que {name} peut remplacer. Le verdict dit si un prompt pourrait recréer chacun d’eux.",
+      "strengthsHeading": "Ce qu’il fait bien",
+      "limitsHeading": "Ce qu’il ne fera pas",
+      "bestForHeading": "Pour qui",
+      "relatedHeading": "Autres projets : {category}",
+      "archivedNotice": "Ce projet est archivé sur GitHub : il ne reçoit plus de mises à jour. On garde cette page pour mémoire.",
+      "staleNoticeTemplate": "Aucun commit depuis {date}. Ce projet n’est peut-être plus maintenu."
+    },
     "category": {
       "titleTemplate": "Quels outils de {category} un agent IA peut-il remplacer ? — SaaS Made Free",
       "metaDescriptionTemplate": "Quels outils de {category} un agent IA peut-il remplacer, et lesquels vaut-il mieux continuer à payer ?",

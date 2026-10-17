@@ -245,12 +245,12 @@ p.vb-meta{color:var(--signInk2)}
 .lose-list li::before{content:"✕" / "";flex:none;width:1ch;font-size:.875rem;color:var(--ink2)}
 .why{display:grid;gap:var(--s5) var(--s8);align-items:end}
 .quote{margin:0;max-width:34em}
-.quote p{font:700 clamp(1.25rem,2.8cqi,1.6rem)/1.4 var(--display);letter-spacing:-.01em}
+.quote p,.best-for{font:700 clamp(1.25rem,2.8cqi,1.6rem)/1.4 var(--display);letter-spacing:-.01em}
 .quote-note{color:var(--ink2)}
 .vote-row{display:flex;flex-wrap:wrap;gap:var(--s3)}
 .vote-count-badge{font-weight:400;color:var(--ink2)}
 .related-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:var(--s4)}
-.related-card a{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) var(--s3);height:100%;padding:var(--s4) var(--s5);border:1px solid var(--rule);border-radius:var(--r);color:var(--ink);text-decoration:none}
+.related-card a,.related-card-static{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) var(--s3);height:100%;padding:var(--s4) var(--s5);border:1px solid var(--rule);border-radius:var(--r);color:var(--ink);text-decoration:none}
 .related-card a:hover{border-color:var(--ink2)}
 .related-card img{border-radius:50%}
 .related-card-name{flex:1;font:650 1.0625rem/1.3 var(--display)}
@@ -260,6 +260,22 @@ p.vb-meta{color:var(--signInk2)}
 .link-cloud a{color:var(--ink);text-decoration-color:var(--rule)}
 .link-cloud a:hover{text-decoration-color:var(--tomato)}
 @container page (min-width:860px){.alt-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--s8)}.alt-card{max-width:none}.lose-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--s8)}.lose-list li{max-width:none}.build{grid-template-columns:minmax(0,2fr) minmax(0,3fr)}.why{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}.why > :not(.quote,.quote-note){grid-column:1 / -1}.quote{max-width:none}.quote-note{padding-left:var(--s5);border-left:1px solid var(--rule)}.faq{max-width:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--s8)}.faq > :not(details){grid-column:1 / -1}.faq details{border-top:0;border-bottom:1px solid var(--rule)}.faq details:nth-of-type(-n+2){border-top:1px solid var(--rule)}}`;
+
+/* Fiche projet /{lang}/oss/{slug} (A5) : composants de la fiche outil, sans
+   panneau moutarde. Les faits prennent la colonne de droite de l'en-tête au
+   lieu du verdict (cadre à filet, page calme) ; forces et limites se rangent
+   côte à côte au-delà de 860px ; l'avis « projet inactif » est un encadré à
+   bordure de contrôle, en texte gras, sans couleur. */
+const PROJECT_CSS = `.project-notice{max-width:var(--measure);margin-top:var(--s5);padding:var(--s4) var(--s5);border:1px solid var(--field);border-radius:var(--r);font-weight:700}
+.project-facts{align-self:start;padding:var(--s5);border:1px solid var(--rule);border-radius:var(--r-lg)}
+.project-facts > * + *,.project-about > * + *{margin-top:var(--s4)}
+.fact-grid .sub{display:block;font-size:.8125rem;color:var(--ink2)}
+.related-card-what{width:100%;line-height:1.5}
+main > .pro-con{display:grid;gap:var(--s8);margin-top:clamp(var(--s8),9cqi,var(--s9))}
+.pro-con .lose-list{display:block}
+.gain-list li::before{content:"✓" / ""}
+@container page (min-width:780px){.project-head{grid-template-rows:auto auto 1fr}.project-head > .project-facts{grid-column:2;grid-row:1 / span 3}}
+@container page (min-width:860px){main > .pro-con{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--s8)}}`;
 
 /* Accueil (maquette direction-3-airy-home.html, revue D14) : héros court,
    ligne de chiffres discrète, emplacement newsletter (Task A9), rangée
@@ -437,6 +453,6 @@ const MOTION_CSS = `@media (prefers-reduced-motion:no-preference){a,button,.card
 @media (prefers-reduced-motion:reduce){.sp-tape-track{animation:none;flex-wrap:wrap;width:auto;row-gap:var(--s2);padding-inline:16px}.sp-tape-item[inert]{display:none}.vb-col > .verdict-badge{transform:none}}`;
 
 export const SITE_CSS = [
-  FONT_CSS, TOKENS_CSS, BASE_CSS, SHELL_CSS, VERDICT_CSS, PAGE_CSS, HOME_CSS,
+  FONT_CSS, TOKENS_CSS, BASE_CSS, SHELL_CSS, VERDICT_CSS, PAGE_CSS, PROJECT_CSS, HOME_CSS,
   SPONSOR_CSS, LEGACY_CSS, MOTION_CSS,
 ].join('\n') + '\n';

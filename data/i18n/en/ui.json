@@ -268,6 +268,25 @@
       "githubRepoTemplate": "GitHub: {repo}",
       "priceSourceTemplate": "Source: {host}"
     },
+    "project": {
+      "titleTemplate": "{name}: Free Open Source Alternative to {list} ({year})",
+      "metaDescriptionTemplate": "{name} is a free, open-source alternative to {list}. {tagline} See its license, its GitHub activity and what it won’t do.",
+      "h1Template": "{name}",
+      "factsHeading": "The facts",
+      "startedLabel": "Started",
+      "websiteLabel": "Website",
+      "repoLabel": "Source code",
+      "deployLabel": "Runs with",
+      "stackLabel": "Built with",
+      "replacesHeading": "Replaces",
+      "replacesIntro": "Paid tools {name} can stand in for. The verdict says whether a prompt could rebuild each one.",
+      "strengthsHeading": "What it does well",
+      "limitsHeading": "What it won’t do",
+      "bestForHeading": "Who it’s for",
+      "relatedHeading": "Other projects in {category}",
+      "archivedNotice": "This project is archived on GitHub: it no longer gets updates. We keep this page for reference.",
+      "staleNoticeTemplate": "No commit since {date}. This project may no longer be maintained."
+    },
     "category": {
       "titleTemplate": "Which {category} tools can a coding agent replace? — SaaS Made Free",
       "metaDescriptionTemplate": "Which {category} tools can a coding agent replace, and which should you keep paying for?",
