@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   isDisplayableProject, statsAreFresh, alternativesFor, replacedTools,
-  indexable, toolTitleVars, toolDateModified, STATS_MAX_AGE_DAYS, PROJECT_MAX_IDLE_DAYS,
+  indexable, toolTitleVars, toolDateModified, inactiveAlternativesFor, STATS_MAX_AGE_DAYS, PROJECT_MAX_IDLE_DAYS,
 } from '../scripts/lib/site-alternatives.mjs';
 
 const today = '2026-10-17';
@@ -101,6 +101,42 @@ describe('alternativesFor', () => {
     const bare = tool('x');
     delete bare.alternatives;
     expect(alternativesFor(bare, projects, today)).toEqual([]);
+  });
+});
+
+describe('inactiveAlternativesFor', () => {
+  const projects = new Map([
+    ['live', project('live')],
+    ['arch', project('arch', { stats: stats({ archived: true, lastCommit: '2026-10-01' }) })],
+    ['old', project('old', { stats: stats({ lastCommit: '2025-03-04' }) })],
+    ['norepo', project('norepo', { repo: null, stats: undefined })],
+  ]);
+
+  it("rend les projets cités mais non affichables, dans l'ordre de la fiche, avec leur raison", () => {
+    const t = tool('x', { alternatives: [
+      { project: 'old', fit: 'full' }, { project: 'live', fit: 'full' }, { project: 'zz', fit: 'full' },
+      { project: 'arch', fit: 'niche' }, { project: 'norepo', fit: 'partial' },
+    ] });
+    const out = inactiveAlternativesFor(t, projects, today);
+    expect(out.map((x) => [x.project.slug, x.reason, x.lastCommit])).toEqual([
+      ['old', 'stale', '2025-03-04'], ['arch', 'archived', '2026-10-01'],
+    ]);
+    expect(out[0].project).toBe(projects.get('old'));
+  });
+
+  it('archivé l’emporte sur inactif ; rien pour une fiche sans alternatives', () => {
+    const both = new Map([['b', project('b', { stats: stats({ archived: true, lastCommit: '2020-01-01' }) })]]);
+    expect(inactiveAlternativesFor(tool('x', { alternatives: [{ project: 'b', fit: 'full' }] }), both, today)[0].reason).toBe('archived');
+    const bare = tool('x');
+    delete bare.alternatives;
+    expect(inactiveAlternativesFor(bare, projects, today)).toEqual([]);
+  });
+
+  it('affichables et inactifs partitionnent les alternatives connues', () => {
+    const t = tool('x', { alternatives: [...projects.keys()].map((slug) => ({ project: slug, fit: 'full' })) });
+    const shown = alternativesFor(t, projects, today).map((x) => x.project.slug);
+    const inactive = inactiveAlternativesFor(t, projects, today).map((x) => x.project.slug);
+    expect([...shown, ...inactive].sort()).toEqual([...projects.keys()].sort());
   });
 });
 

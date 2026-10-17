@@ -65,6 +65,25 @@ export function alternativesFor(tool, projects, today) {
 }
 
 /**
+ * Le complément d'alternativesFor : les projets cités par la fiche mais non
+ * affichables (archivés, ou sans commit depuis plus de 365 jours). Ils ne
+ * comptent ni dans `n` ni dans le tableau, mais la fiche les nomme encore
+ * avec leur état (spec D14 : aucune information perdue, Ruling 19). Ordre
+ * de `tool.alternatives`, slug inconnu écarté.
+ * @returns {Array<{ project: object, reason: 'archived'|'stale', lastCommit?: string }>}
+ */
+export function inactiveAlternativesFor(tool, projects, today) {
+  const out = [];
+  for (const { project: slug } of tool?.alternatives ?? []) {
+    const project = projects.get(slug);
+    if (!project || isDisplayableProject(project, today)) continue;
+    const reason = project.stats.archived === true ? 'archived' : 'stale';
+    out.push({ project, reason, ...(project.stats.lastCommit ? { lastCommit: project.stats.lastCommit } : {}) });
+  }
+  return out;
+}
+
+/**
  * Fiches qui citent un projet dans leurs alternatives, de la plus prioritaire
  * à la moins prioritaire (`pagePriority` décroissant, puis slug pour un ordre
  * stable entre deux builds).

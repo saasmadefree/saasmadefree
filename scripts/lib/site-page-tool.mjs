@@ -7,7 +7,7 @@ import {
   organizationJsonLd, faqPageJsonLd, breadcrumbJsonLd, softwareItemListJsonLd, webPageJsonLd,
 } from './site-seo.mjs';
 import {
-  alternativesFor, toolTitleVars, statsAreFresh, toolDateModified,
+  alternativesFor, inactiveAlternativesFor, toolTitleVars, statsAreFresh, toolDateModified,
 } from './site-alternatives.mjs';
 import { PLACEHOLDER_PATH } from './site-favicons.mjs';
 import { FEED_VERSION } from './feed.mjs';
@@ -65,12 +65,19 @@ function renderAgentButtons(agents, ctx, t) {
     .join('\n              ');
 }
 
-/** Découpe un gabarit autour de {name} pour envelopper le nom seul dans le
- *  soulignement à la main ; chaque morceau est échappé séparément. */
-function headingWithName(template, vars) {
-  const [before, after] = interpolate(String(template).replace('{name}', '\u0000'), vars).split('\u0000');
+/** Rend un gabarit dont la variable `key` reçoit du HTML déjà construit (un
+ *  lien, un soulignement) : le gabarit est découpé autour de {key}, chaque
+ *  morceau de texte est échappé séparément. Ainsi la ponctuation (« Source : »
+ *  en français) reste dans ui.json, jamais dans le code. */
+function templateWithHtml(template, key, html, vars = {}) {
+  const [before, after] = interpolate(String(template).replace(`{${key}}`, '\u0000'), vars).split('\u0000');
   if (after === undefined) return escapeHtml(before);
-  return `${escapeHtml(before)}<span class="hand-underline">${escapeHtml(vars.name)}</span>${escapeHtml(after)}`;
+  return `${escapeHtml(before)}${html}${escapeHtml(after)}`;
+}
+
+/** Le nom de l'outil, souligné à la main dans le titre. */
+function headingWithName(template, vars) {
+  return templateWithHtml(template, 'name', `<span class="hand-underline">${escapeHtml(vars.name)}</span>`, vars);
 }
 
 /** Lien d'un projet (règle du brief A4) : sa page /{lang}/oss/{slug} quand
@@ -124,7 +131,7 @@ function renderVerdictPanel({ tool, lang, t, s, verdict, buildDate, voteCount })
         <p class="vb-word">${escapeHtml(verdict.label)}</p>
         <p class="vb-meta">${escapeHtml(t.verdictRecordedLabel)} <time datetime="${buildDate}">${escapeHtml(formatDate(buildDate, lang))}</time></p>
         <p class="vb-price"><strong>${escapeHtml(formatMonthlyPrice(pricing, lang))}</strong>${parts.length ? ` · ${parts.join(' · ')}` : ''}
-          <span class="vb-meta">${escapeHtml(t.priceSourceLabel)}: <a href="${escapeHtml(pricing.source)}">${escapeHtml(sourceHost(pricing.source))}</a> · ${escapeHtml(t.priceCheckedLabel)} <time datetime="${pricing.checkedOn}">${escapeHtml(formatDate(pricing.checkedOn, lang))}</time></span></p>
+          <span class="vb-meta">${templateWithHtml(t.priceSourceTemplate, 'host', `<a href="${escapeHtml(pricing.source)}">${escapeHtml(sourceHost(pricing.source))}</a>`)} · ${escapeHtml(t.priceCheckedLabel)} <time datetime="${pricing.checkedOn}">${escapeHtml(formatDate(pricing.checkedOn, lang))}</time></span></p>
         <dl class="vb-facts">
 ${facts.map(([label, value]) => `          <div><dt>${escapeHtml(label)}</dt><dd>${value}</dd></div>`).join('\n')}
         </dl>
@@ -164,7 +171,24 @@ ${items.join('\n')}
 
 // ---- section alternatives --------------------------------------------------
 
-function renderAlternatives({ tool, alts, lang, t, s, verdict, projectI18n, i18nEntry, isIndexable, today }) {
+/** Projets cités mais inactifs (archivés, ou sans commit depuis un an) :
+ *  hors `n`, hors tableau, hors JSON-LD, mais toujours nommés, avec leur état
+ *  en toutes lettres et un lien vers leur site (D14, Ruling 19). Une seule
+ *  ligne discrète ; rien du tout s'il n'y en a pas. */
+function renderInactive(inactive, lang, t) {
+  if (inactive.length === 0) return '';
+  const monthYear = new Intl.DateTimeFormat(lang, { month: 'short', year: 'numeric', timeZone: 'UTC' });
+  const items = inactive.map(({ project, reason, lastCommit }) => {
+    const status = reason === 'archived' || !lastCommit
+      ? t.inactiveArchived
+      : interpolate(t.inactiveLastCommitTemplate, { date: monthYear.format(new Date(`${lastCommit}T00:00:00Z`)) });
+    return `<a href="${escapeHtml(project.homepage)}" rel="nofollow noopener">${escapeHtml(project.name)}</a> (${escapeHtml(status)})`;
+  });
+  return `
+      <p class="inactive-projects"><strong>${escapeHtml(t.inactiveProjectsLabel)}</strong> ${escapeHtml(t.inactiveProjectsNote)} ${items.join(', ')}</p>`;
+}
+
+function renderAlternatives({ tool, alts, inactive, lang, t, s, verdict, projectI18n, i18nEntry, isIndexable, today }) {
   const monthYear = new Intl.DateTimeFormat(lang, { month: 'short', year: 'numeric', timeZone: 'UTC' });
   const compact = new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 1 });
   const dash = (title) => (title ? `<span title="${escapeHtml(title)}">${DASH}</span>` : DASH);
@@ -242,7 +266,7 @@ function renderAlternatives({ tool, alts, lang, t, s, verdict, projectI18n, i18n
     }
     const github = project.repo ? `https://github.com/${project.repo}` : null;
     if (github && github !== project.homepage) {
-      meta.push(`<a href="${escapeHtml(github)}" rel="nofollow noopener">GitHub: ${escapeHtml(project.repo)}</a>`);
+      meta.push(`<a href="${escapeHtml(github)}" rel="nofollow noopener">${escapeHtml(interpolate(t.githubRepoTemplate, { repo: project.repo }))}</a>`);
     }
     const tagline = projectTagline(project, lang, projectI18n);
     const note = notes[project.slug];
@@ -269,7 +293,7 @@ ${[...projectRows, buildRow, keepRow].join('\n')}
 ${hint}${cards.length ? `
       <div class="alt-cards">
 ${cards.join('\n')}
-      </div>` : ''}
+      </div>` : ''}${renderInactive(inactive, lang, t)}
     </section>`;
 }
 
@@ -452,7 +476,7 @@ ${i18nEntry.faq.map((entry) => `      <details>
 
   const main = `${head}
 
-${renderAlternatives({ tool, alts, lang, t, s, verdict, projectI18n, i18nEntry, isIndexable, today })}
+${renderAlternatives({ tool, alts, inactive: inactiveAlternativesFor(tool, projects ?? new Map(), today), lang, t, s, verdict, projectI18n, i18nEntry, isIndexable, today })}
 
 ${renderBuild({ tool, lang, t, ui, i18nEntry, agents, showSummary: Boolean(i18nEntry.alternativesIntro) })}
 

@@ -180,7 +180,6 @@
       "h1Template": "{n} alternatives gratuites à {name}",
       "verdictHeading": "Verdict",
       "priceHeading": "Prix",
-      "priceSourceLabel": "Source",
       "priceCheckedLabel": "Vérifié le",
       "yearCostLabel": "Par an",
       "yearCostNote": "Prix mensuel actuel × 12 — pas une économie garantie.",
@@ -261,7 +260,13 @@
       "oneShotYes": "Oui",
       "oneShotNo": "Pas encore",
       "rawPromptLink": "Le prompt en texte brut",
-      "moatLabel": "Ce qu’ils paient"
+      "moatLabel": "Ce qu’ils paient",
+      "inactiveProjectsLabel": "Projets inactifs",
+      "inactiveProjectsNote": "(archivés ou sans commit depuis un an) :",
+      "inactiveArchived": "archivé",
+      "inactiveLastCommitTemplate": "dernier commit en {date}",
+      "githubRepoTemplate": "GitHub : {repo}",
+      "priceSourceTemplate": "Source : {host}"
     },
     "category": {
       "titleTemplate": "Quels outils de {category} un agent IA peut-il remplacer ? — SaaS Made Free",

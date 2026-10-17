@@ -212,7 +212,7 @@ p.vb-meta{color:var(--signInk2)}
 .ways a{display:flex;gap:var(--s4);align-items:baseline;padding:var(--s4) 0;color:var(--ink);text-decoration:none}
 .ways a:hover strong{text-decoration:underline;text-decoration-color:var(--tomato)}
 .ways .n{font:700 1rem/1 var(--display);color:var(--ink2)}
-.hint{font-size:.875rem;color:var(--ink2);max-width:var(--measure)}
+.hint,.inactive-projects{font-size:.875rem;color:var(--ink2);max-width:var(--measure)}
 .hint .fit-tag{color:var(--ink)}
 .fact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,10rem),1fr));gap:var(--s4) var(--s5);margin:0}
 .fact-grid dt{font:700 .8125rem/1.3 var(--text);color:var(--ink2)}

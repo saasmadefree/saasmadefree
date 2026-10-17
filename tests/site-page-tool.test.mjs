@@ -46,6 +46,11 @@ const PROJECTS = new Map([
     slug: 'ghosted', name: 'Ghosted', homepage: 'https://ghosted.example', repo: 'x/ghosted', license: 'MIT',
     selfHostable: true, hosted: { exists: false }, categories: ['newsletter'], stats: stats({ archived: true }),
   }],
+  // Dernier commit il y a plus de 365 jours : cité, mais plus affiché dans n.
+  ['oldy', {
+    slug: 'oldy', name: 'Oldy', homepage: 'https://oldy.example', repo: 'x/oldy', license: 'MIT',
+    selfHostable: true, hosted: { exists: false }, categories: ['newsletter'], stats: stats({ lastCommit: '2025-03-04' }),
+  }],
 ]);
 
 const PROJECT_I18N = new Map([
@@ -75,6 +80,7 @@ const tool = {
     { project: 'mautic', fit: 'partial' },
     { project: 'keila', fit: 'partial' },
     { project: 'postal', fit: 'niche' },
+    { project: 'oldy', fit: 'partial' },
   ],
   relatedSlugs: ['beehiiv', 'todoist', 'kit'],
   markets: ['en', 'fr'],
@@ -314,6 +320,11 @@ describe('D14 — zéro perte d’information sur la fiche', () => {
     expect(jsonLd(doc).find((d) => d['@type'] === 'FAQPage').mainEntity).toHaveLength(4);
   });
 
+  it('chaque alternative citée par la fiche apparaît quelque part sur la page (Ruling 19)', () => {
+    const main = text(doc.querySelector('main'));
+    for (const { project: slug } of tool.alternatives) expect(main, slug).toContain(PROJECTS.get(slug).name);
+  });
+
   it('alternatives existantes : tableau et fiches projet', () => {
     const alt = section(doc, 'alternatives-heading');
     expect(alt.querySelector('table.alt-table')).not.toBeNull();
@@ -491,6 +502,40 @@ describe('fiche « alternatives » — titre, description, tableau', () => {
     expect(emptyElements(none)).toEqual([]);
   });
 
+  it('inactive projects stay listed with their status, outside n and the table', () => {
+    const alt = section(doc, 'alternatives-heading');
+    const line = alt.querySelector('.inactive-projects');
+    expect(line).not.toBeNull();
+    expect(text(line)).toContain(t.inactiveProjectsLabel);
+    expect(text(line)).toContain(`Ghosted (${t.inactiveArchived})`);
+    expect(text(line)).toContain(`Oldy (${t.inactiveLastCommitTemplate.replace('{date}', 'Mar 2025')})`);
+    const links = [...line.querySelectorAll('a')];
+    expect(links.map((a) => a.getAttribute('href'))).toEqual(['https://ghosted.example', 'https://oldy.example']);
+    for (const a of links) expect(a.getAttribute('rel')).toBe('nofollow noopener');
+    // Après les fiches projet, avant le bloc « le construire ».
+    expect(html.indexOf('inactive-projects')).toBeGreaterThan(html.lastIndexOf('class="alt-card"'));
+    expect(html.indexOf('inactive-projects')).toBeLessThan(html.indexOf('id="prompt-heading"'));
+    // Hors n, hors tableau, hors ItemList, hors titre.
+    expect(text(alt.querySelector('table'))).not.toMatch(/Ghosted|Oldy/);
+    expect(alt.querySelectorAll('article.alt-card')).toHaveLength(4);
+    const list = jsonLd(doc).find((d) => d['@type'] === 'ItemList');
+    expect(list.itemListElement.map((i) => i.item.name)).not.toContain('Oldy');
+    expect(text(doc.querySelector('title'))).toMatch(/^4 /);
+  });
+
+  it('no inactive line when none', () => {
+    const clean = render({ tool: { ...tool, alternatives: tool.alternatives.filter((a) => !['ghosted', 'oldy'].includes(a.project)) } });
+    expect(clean).not.toContain('inactive-projects');
+  });
+
+  it('inactive line in French, with French typography', () => {
+    const fr = dom(render({ lang: 'fr' }));
+    const line = text(fr.querySelector('.inactive-projects'));
+    expect(line).toContain(UI.fr.site.tool.inactiveProjectsLabel);
+    expect(line).toContain(`Ghosted (${UI.fr.site.tool.inactiveArchived})`);
+    expect(text(fr.querySelector('.vb-price'))).toContain('Source : mailchimp.com');
+  });
+
   it('the table scrolls in its own frame, labelled, focusable', () => {
     const frame = section(doc, 'alternatives-heading').querySelector('.table-scroll');
     expect(frame.getAttribute('role')).toBe('region');
@@ -570,6 +615,27 @@ describe('fiche « alternatives » — invariants conservés', () => {
   it('échappe toute interpolation — le prompt avec < > & reste inoffensif', () => {
     expect(html).toContain('&lt;small&gt; &amp; fast');
     expect(html).not.toContain('<small>');
+  });
+
+  it('échappe < & " dans le nom de l’outil, d’un projet, son accroche et sa note — HTML et JSON-LD', () => {
+    const evil = '<b>x</b> & "q"';
+    const projects = new Map(PROJECTS);
+    projects.set('listmonk', { ...PROJECTS.get('listmonk'), name: `L${evil}` });
+    const html2 = render({
+      tool: { ...tool, name: `M${evil}` },
+      projects,
+      projectI18n: new Map([...PROJECT_I18N, ['en/listmonk', { tagline: `T${evil}` }]]),
+      i18nEntry: { ...entryEnRich, alternativeNotes: { listmonk: `N${evil}` } },
+    });
+    expect(html2).not.toContain('<b>');
+    for (const prefix of ['M', 'L', 'T', 'N']) expect(html2, prefix).toContain(`${prefix}&lt;b&gt;x&lt;/b&gt; &amp; &quot;q&quot;`);
+    const blocks = jsonLd(dom(html2));
+    const list = blocks.find((d) => d['@type'] === 'ItemList');
+    expect(list.itemListElement[0].item.name).toBe(`L${evil}`);
+    expect(blocks.find((d) => d['@type'] === 'BreadcrumbList').itemListElement[2].name).toBe(`M${evil}`);
+    // Dans le bloc brut, aucun < n'apparaît en clair : pas de </script> possible.
+    const raw = [...html2.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => m[1]).join('');
+    expect(raw).not.toContain('<');
   });
 
   it('page française : tutoiement des clés, liens et prompt brut dans la langue', () => {
