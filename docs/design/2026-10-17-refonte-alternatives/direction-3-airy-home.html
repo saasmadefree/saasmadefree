@@ -1,0 +1,531 @@
+<!doctype html>
+<!--
+  MOCKUP — English homepage (revision 2, openalternative.co structure)
+  Direction 3 "The Kitchen Table", airy refinement (17 Oct 2026). Design-system spec, source of truth for both mockups.
+
+  Intent: a calm front door shaped like openalternative.co's landing: short promise, one-line subtitle, the
+  newsletter signup (SmartLetter, double opt-in, no subscriber count), one quiet sponsor line, the search box, filter chips + order select, then a 3/2/1-column grid of tool cards, then
+  the two quiet link lists (popular alternatives, categories). No mustard on this page: the cards stay
+  untinted; mustard belongs to the verdict sign of each tool page. JS hooks kept: #q, #search-panel,
+  #search-clear, #no-results, #theme-toggle, .verdict-chip[data-verdict] + .is-active + aria-pressed;
+  #tool-table / #tool-rows now sit on the card grid, each card carries data-slug / data-verdict / data-votes /
+  data-search and .badge / .cat / .price / [data-vote-cell]; .sp-card[data-slot]. Every figure is computed
+  from data/ by scratchpad/gen/d3-airy-home.mjs.
+
+  COLOUR TOKENS (light / dark). Every text pair checked >= 4.5:1, UI borders and focus >= 3:1 (WCAG 2.2 AA),
+  by scratchpad/gen/airy-system.mjs at generation time.
+    --bg        #fbf3e4  /  #1b1611
+    --panel     #f4e7cf  /  #261e16
+    --card      #fffaf0  /  #221b14
+    --ink       #2b2117  /  #f6ead6
+    --ink2      #5d4f3f  /  #cbbca5
+    --rule      #e3d3b5  /  #3b3128
+    --field     #8a7556  /  #8f7d66
+    --tomato    #a8361b  /  #ff9a7c
+    --btn       #a8361b  /  #f08a69
+    --btnInk    #fffaf0  /  #1b1611
+    --mustard   #f2cd68  /  #e3b951
+    --signInk   #2b2117  /  #1b1611
+    --signInk2  #4f3f22  /  #43341a
+    --focus     #1f5fbf  /  #8ab8ff
+    Roles: bg = cream ground; panel = the ONE tinted surface below the fold (build-it panel); card = prompt
+    sheet, inputs; ink / ink2 = text; rule = decorative hairlines only (never the sole boundary of a control);
+    field = input and control borders; tomato = links; btn = the single primary button (Copy prompt);
+    mustard + signInk = the verdict sign on tool pages, THE one bold element (the home page uses none); focus = focus ring.
+    No other tints. Verdicts and fit always carry a shape + a word: ● Yes / Full, ◐ Almost / Partial, ○ Not yet / Niche.
+
+  SPACING SCALE (rem): s1 .25 · s2 .5 · s3 .75 · s4 1 · s5 1.5 · s6 2 · s7 3 · s8 4.5 · s9 7
+    Section rhythm: clamp(s8, 9cqi, s9) between sections. Inside a section: heading → intro s3, intro → content s6.
+    Between project entries: s8 with a hairline. Table cells: 1.15rem block × 1rem inline.
+    Page gutter: 16px (s4) up to 700px, 40px above. Max width 1080px. Prose measure: 65ch.
+
+  TYPE: Bricolage Grotesque (display: headings 650, verdict word 750, tight tracking) + Atkinson Hyperlegible Next (text,
+    400/700), both OFL, to self-host as woff2; system fallbacks for now. Base 17px / 1.65.
+    h1 clamp(1.85rem, 4.2cqi, 2.9rem), max-width 12-16em · h2 clamp(1.35rem, 2.8cqi, 1.75rem) · h3 1.25rem · verdict word clamp(2.4rem, 7cqi, 3.1rem) 750 · small label .8125rem 700.
+
+  SHAPE: radius 14px (controls, prompt sheet), 28px (panel, sign), 999px (chips, buttons). Hairlines 1px.
+  Layout is driven by container queries on .cq, so the 320px preview frame renders the real mobile layout.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Made Free — which subscriptions are one prompt away from free?</title>
+<meta name="description" content="Which of your paid SaaS subscriptions could a coding agent rebuild for you — and which should you honestly keep paying for?">
+<script>try{var s=localStorage.getItem("theme");if(s==="dark"||s==="light")document.documentElement.dataset.theme=s;}catch(e){}</script>
+<style>
+:root{--bg:#fbf3e4;--panel:#f4e7cf;--card:#fffaf0;--ink:#2b2117;--ink2:#5d4f3f;--rule:#e3d3b5;--field:#8a7556;--tomato:#a8361b;--btn:#a8361b;--btnInk:#fffaf0;--mustard:#f2cd68;--signInk:#2b2117;--signInk2:#4f3f22;--focus:#1f5fbf;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1b1611;--panel:#261e16;--card:#221b14;--ink:#f6ead6;--ink2:#cbbca5;--rule:#3b3128;--field:#8f7d66;--tomato:#ff9a7c;--btn:#f08a69;--btnInk:#1b1611;--mustard:#e3b951;--signInk:#1b1611;--signInk2:#43341a;--focus:#8ab8ff;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1b1611;--panel:#261e16;--card:#221b14;--ink:#f6ead6;--ink2:#cbbca5;--rule:#3b3128;--field:#8f7d66;--tomato:#ff9a7c;--btn:#f08a69;--btnInk:#1b1611;--mustard:#e3b951;--signInk:#1b1611;--signInk2:#43341a;--focus:#8ab8ff;color-scheme:dark}
+/* Fonts to self-host (OFL, woff2): Bricolage Grotesque, Atkinson Hyperlegible Next. Fallbacks below. */
+:root{--display:"Bricolage Grotesque","Avenir Next","Gill Sans Nova","Gill Sans","Trebuchet MS",sans-serif;--text:"Atkinson Hyperlegible Next","Avenir Next","Segoe UI",Verdana,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+--s1:.25rem;--s2:.5rem;--s3:.75rem;--s4:1rem;--s5:1.5rem;--s6:2rem;--s7:3rem;--s8:4.5rem;--s9:7rem;--measure:65ch;--r:14px;--r-lg:28px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--text)}
+a{color:var(--tomato);text-underline-offset:.2em;text-decoration-thickness:1.5px}
+a:hover{text-decoration-thickness:2.5px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+.visually-hidden{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:8px;background:var(--card);padding:.5rem 1rem;z-index:9;border-radius:8px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+@media (min-width:700px){.wrap{padding:0 40px}}
+.cq{container:page / inline-size}
+/* top bar: quiet, one line on desktop */
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) var(--s4);padding:var(--s5) 0}
+@media (min-width:700px){.top{column-gap:var(--s5)}}
+.brand{display:flex;align-items:center;gap:.55rem;font:800 1.125rem/1 var(--display);color:var(--ink);text-decoration:none;letter-spacing:-.01em;margin-right:auto}
+.brand i{width:1.85rem;height:1.85rem;border-radius:50%;background:var(--tomato);display:inline-grid;place-items:center;color:var(--bg);font:800 .9rem/1 var(--display);font-style:normal}
+.top nav{display:flex;flex-wrap:wrap;gap:0 var(--s4);font:400 .9375rem/1 var(--text)}
+.top nav a{color:var(--ink);text-decoration:none;padding:.6rem 0}
+.top nav a:hover,.top nav a[aria-current]{text-decoration:underline;text-decoration-color:var(--tomato)}
+.toggle{font:400 .875rem/1 var(--text);background:transparent;color:var(--ink);border:1px solid var(--field);border-radius:999px;padding:.5rem .8rem;cursor:pointer}
+@media (max-width:520px){.top{column-gap:var(--s3)}.brand{font-size:1.03rem}.toggle{font-size:.8125rem;padding:.45rem .7rem}.top nav{order:3;width:100%}}
+.toggle:hover{border-color:var(--ink)}
+/* rhythm */
+.sec{padding-top:clamp(var(--s8),9cqi,var(--s9))}
+h2{margin:0;font:650 clamp(1.35rem,2.8cqi,1.75rem)/1.2 var(--display);letter-spacing:-.015em;text-wrap:balance}
+h3{margin:0;font:650 1.25rem/1.25 var(--display);letter-spacing:-.01em}
+.intro{margin:var(--s3) 0 0;color:var(--ink2);max-width:var(--measure)}
+.prose{max-width:var(--measure)}
+.label{display:block;font:700 .8125rem/1.3 var(--text);letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
+.mark{display:inline-block;width:1.1em;margin-right:.2em;text-align:center}
+/* footer */
+.foot{margin-top:clamp(var(--s8),9cqi,var(--s9));padding:var(--s6) 0 var(--s7);border-top:1px solid var(--rule);font-size:.9375rem;color:var(--ink2);display:grid;gap:var(--s3)}
+.foot p{margin:0;max-width:var(--measure)}
+.foot a{color:var(--ink2)}
+.foot-links{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5)}
+/* 320 preview */
+.preview{margin-top:var(--s8);border-top:1px solid var(--rule);padding-top:var(--s5)}
+.preview summary{cursor:pointer;font:700 1rem/1.4 var(--display);padding:.3rem 0;color:var(--ink2)}
+.frame{width:340px;max-width:100%;margin:var(--s6) auto;border:10px solid var(--ink);border-radius:32px;padding:0 16px 16px;background:var(--bg);overflow:hidden}
+.frame .cq{container:page / inline-size}
+@media (prefers-reduced-motion:no-preference){a,.toggle,button{transition:border-color .15s,background-color .15s,color .15s}}
+
+.newsletter{max-width:30rem}
+.nl-row{display:flex;align-items:center;gap:var(--s1);background:var(--card);border:1.5px solid var(--field);border-radius:999px;padding:.3rem}
+.nl-row:focus-within{border-color:var(--ink);outline:3px solid var(--focus);outline-offset:2px}
+.nl-row input{flex:1;min-width:0;font:400 1rem/1.2 var(--text);color:var(--ink);background:transparent;border:0;padding:.65rem .5rem .65rem .9rem;-webkit-appearance:none;appearance:none}
+.nl-row input::placeholder{color:var(--ink2);opacity:1}
+.nl-row input:focus-visible{outline:none}
+.nl-row button{flex:none;font:700 .9375rem/1 var(--display);background:var(--btn);color:var(--btnInk);border:0;border-radius:999px;padding:.75rem 1.1rem;cursor:pointer}
+.nl-row button:hover{filter:brightness(1.08)}
+.nl-note{margin:var(--s3) 0 0 var(--s4);font-size:.8125rem;line-height:1.45;color:var(--ink2)}
+.newsletter-status{margin:var(--s2) 0 0 var(--s4);font:700 .875rem/1.4 var(--text)}
+.newsletter-status:empty{display:none}
+
+/* hero: short, left-aligned, openalternative-sized */
+.hero{padding:var(--s7) 0 0;max-width:40rem}
+.h1{margin:0;max-width:12em;font:650 clamp(1.85rem,4.2cqi,2.9rem)/1.1 var(--display);letter-spacing:-.025em;text-wrap:balance}
+.sub{margin:var(--s4) 0 0;font-size:clamp(1.0625rem,1.8cqi,1.1875rem);line-height:1.55;color:var(--ink2);max-width:var(--measure)}
+.search-frame{margin-top:var(--s7);max-width:34rem}
+.nl-lead{margin:var(--s6) 0 var(--s3);font:700 .9375rem/1.45 var(--text)}
+.search-shell{position:relative;display:flex;align-items:center}
+.search-icon{position:absolute;left:1.1rem;color:var(--ink2);display:flex}
+.search-shell input{width:100%;font:400 1rem/1.2 var(--text);color:var(--ink);background:var(--card);border:1.5px solid var(--field);border-radius:999px;padding:.95rem 3rem;-webkit-appearance:none;appearance:none;text-overflow:ellipsis}
+.search-shell input::placeholder{color:var(--ink2);opacity:1}
+.search-shell input:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-color:var(--ink)}
+.search-clear{position:absolute;right:.6rem;width:2.5rem;height:2.5rem;border:0;border-radius:50%;background:transparent;color:var(--ink2);font-size:1.4rem;cursor:pointer}
+.search-panel{margin-top:var(--s2);background:var(--card);border:1px solid var(--field);border-radius:var(--r);padding:var(--s2)}
+.trust{margin:var(--s3) 0 0 var(--s4);font-size:.875rem;color:var(--ink2)}
+/* sponsor: one quiet line where openalternative has its logo row */
+.sponsor{margin-top:var(--s7);padding:var(--s4) 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5);align-items:baseline;font-size:.9375rem}
+.sp-card{color:var(--ink);text-decoration-color:var(--rule)}
+.sp-card:hover{text-decoration-color:var(--tomato)}
+.sp-tagline{color:var(--ink2)}
+.sp-own{margin-left:auto;color:var(--ink2);font-size:.875rem}
+@container page (max-width:520px){.sp-own{margin-left:0}}
+/* controls */
+.controls{margin-top:var(--s5);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--s4) var(--s5)}
+.filters{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.verdict-chip,.chip{font:400 .9375rem/1 var(--text);color:var(--ink);background:transparent;border:1px solid var(--ink2);border-radius:999px;padding:.6rem .95rem;cursor:pointer;display:inline-flex;gap:var(--s1);align-items:baseline}
+.verdict-chip:hover{border-color:var(--ink)}
+.verdict-chip .c,.chip .c{color:var(--ink2)}
+.is-active{background:var(--ink)!important;color:var(--bg)!important;border-color:var(--ink)!important}
+.is-active .c{color:var(--bg)!important}
+.order{display:flex;align-items:center;gap:var(--s3);font-size:.9375rem;color:var(--ink2)}
+.order select{font:400 .9375rem/1.2 var(--text);color:var(--ink);background:var(--card);border:1px solid var(--field);border-radius:999px;padding:.55rem 2.2rem .55rem .95rem;-webkit-appearance:none;appearance:none;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 1.05rem) 55%,calc(100% - .75rem) 55%;background-size:.3rem .3rem;background-repeat:no-repeat}
+/* card grid */
+.grid{list-style:none;margin:var(--s5) 0 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s4)}
+@container page (min-width:600px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container page (min-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.card{border:1px solid var(--rule);border-radius:var(--r);padding:var(--s5);display:flex;flex-direction:column;gap:var(--s2);position:relative}
+.card:hover{border-color:var(--ink2)}
+.card p{margin:0}
+.card-top{display:flex;align-items:center;gap:var(--s3)}
+.fav{flex:none;width:2rem;height:2rem;border-radius:50%;border:1px solid var(--field);display:grid;place-items:center;font:700 .875rem/1 var(--display);color:var(--ink2)}
+.card-name{margin:0;font:650 1.125rem/1.25 var(--display);letter-spacing:-.01em;min-width:0;flex:1}
+.card-name a{color:var(--ink);text-decoration:none}
+.card-name a::after{content:"";position:absolute;inset:0;border-radius:var(--r)}
+.card-name a:focus-visible{outline:none}
+.card:has(.card-name a:focus-visible){outline:3px solid var(--focus);outline-offset:3px}
+.card-name a:hover{text-decoration:underline;text-decoration-color:var(--tomato)}
+.badge{flex:none;white-space:nowrap;font-size:.875rem;font-weight:700}
+.cat{font-size:.875rem;color:var(--ink2);margin-top:calc(var(--s1) * -1)!important;padding-left:calc(2rem + var(--s3))}
+.tagline{margin-top:var(--s2)!important;line-height:1.5}
+.facts{display:flex;flex-wrap:wrap;gap:0 var(--s2);font-size:.875rem;color:var(--ink2);margin-top:auto!important;padding-top:var(--s3)}
+.facts .price{color:var(--ink);font-weight:700}
+.alts{font-size:.875rem;padding-top:var(--s3);border-top:1px solid var(--rule)}
+.alts span{color:var(--ink2)}
+#no-results{margin:var(--s5) 0 0;color:var(--ink2)}
+.list-foot{margin:var(--s5) 0 0;color:var(--ink2);font-size:.9375rem}
+/* two quiet link lists */
+.start{display:grid;gap:var(--s8)}
+@container page (min-width:820px){.start{grid-template-columns:1fr 1fr;column-gap:var(--s8)}}
+.links{list-style:none;margin:var(--s5) 0 0;padding:0;border-top:1px solid var(--rule)}
+.links li{border-bottom:1px solid var(--rule)}
+.links a{display:flex;justify-content:space-between;gap:var(--s4);align-items:baseline;padding:var(--s3) 0;color:var(--ink);text-decoration:none}
+.links a:hover .l-name{text-decoration:underline;text-decoration-color:var(--tomato)}
+.links .l-meta{color:var(--ink2);font-size:.875rem;text-align:right}
+.more{display:inline-block;margin-top:var(--s4);font-weight:700}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="/en/" aria-current="page"><i aria-hidden="true">S</i>SaaS Made Free</a>
+    <nav aria-label="Main"><a href="/en/categories/">Categories</a><a href="/en/stats/">Stats</a><a href="/fr/" hreflang="fr" lang="fr">Français</a></nav>
+    <button type="button" id="theme-toggle" class="toggle" hidden aria-pressed="false" data-label-dark="Dark mode" data-label-light="Light mode"><span data-label>Dark mode</span></button>
+  </div>
+  <main id="main" class="cq">
+
+    <section class="hero">
+      <h1 class="h1">Free alternatives to the SaaS you pay for</h1>
+      <p class="sub">530 paid apps, each with an honest verdict: host a free app, rebuild it from one prompt, or keep paying.</p>
+      <p class="nl-lead">One email a week: a paid app, the free alternatives, and the prompt to build it.</p>
+      <form class="newsletter" data-newsletter action="#" method="post" novalidate>
+        <label for="nl-email" class="visually-hidden">Your email address</label>
+        <div class="nl-row">
+          <input type="email" id="nl-email" name="email" required autocomplete="email" placeholder="you@example.com">
+          <button type="submit">Subscribe</button>
+        </div>
+        <p class="nl-note">Double opt-in. We send nothing until you confirm. Unsubscribe in one click.</p>
+        <p class="newsletter-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <aside class="sponsor" aria-label="Sponsor">
+      <span class="label">Sponsor</span>
+      <a class="sp-card live" data-slot="L1" href="https://whoscale.com/?utm_source=saasmadefree&amp;utm_medium=referral&amp;utm_campaign=sponsor_L1" rel="noopener sponsored"><strong>Whoscale</strong> <span class="sp-tagline">Ad spy for creators who sell online.</span></a>
+      <a class="sp-own" href="/en/sponsor">Advertise here</a>
+    </aside>
+
+    <section aria-labelledby="h-list">
+      <h2 id="h-list" class="visually-hidden">The directory</h2>
+
+      <div class="search-frame">
+        <label for="q" class="visually-hidden">Search the directory</label>
+        <div class="search-combo">
+          <search aria-label="Search the directory">
+            <div class="search-shell">
+              <span class="search-icon" aria-hidden="true"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="8.5" cy="8.5" r="5.5"/><path d="m13 13 4.5 4.5"/></svg></span>
+              <input type="search" id="q" name="q" placeholder="Search an app: Mailchimp, Notion…" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="search-panel" aria-autocomplete="list">
+              <button type="button" id="search-clear" class="search-clear" hidden aria-label="Clear search">&times;</button>
+            </div>
+          </search>
+          <div id="search-panel" class="search-panel" role="listbox" aria-label="Search results" data-view-all-template="↓ All {count} matches in the directory" data-no-results="No tools match that search." data-home-path="/en/" hidden></div>
+        </div>
+      </div>
+
+    <div class="controls">
+      <div class="filters" role="group" aria-label="Filter by verdict">
+        <button type="button" class="verdict-chip is-active" data-verdict="all" aria-pressed="true">All <span class="c">530</span></button>
+        <button type="button" class="verdict-chip" data-verdict="yes" aria-pressed="false"><span class="mark" aria-hidden="true">●</span>Yes <span class="c">70</span></button>
+        <button type="button" class="verdict-chip" data-verdict="kinda" aria-pressed="false"><span class="mark" aria-hidden="true">◐</span>Almost <span class="c">284</span></button>
+        <button type="button" class="verdict-chip" data-verdict="no" aria-pressed="false"><span class="mark" aria-hidden="true">○</span>Not yet <span class="c">176</span></button>
+      </div>
+      <div class="order">
+        <label for="order">Order by</label>
+        <select id="order"><option value="votes">Most voted</option><option value="price">Price, highest first</option><option value="name">A–Z</option></select>
+      </div>
+    </div>
+      <div id="tool-table" data-lang="en" data-singular="{count} vote" data-plural="{count} votes">
+        <ul class="grid" id="tool-rows" aria-label="Tools, ranked by votes recorded so far, then by how ready each entry is.">
+        <li class="card" data-slug="calendly" data-category="scheduling" data-verdict="kinda" data-priority="8" data-votes="1" data-price="12" data-name="calendly" data-search="calendly scheduling scheduling + booking pages share a link, let people book time on your calendar.">
+          <div class="card-top">
+            <span class="fav" aria-hidden="true">C</span>
+            <h3 class="card-name"><a href="/en/tools/calendly">Calendly</a></h3>
+            <span class="badge kinda"><span class="mark" aria-hidden="true">◐</span>Almost</span>
+          </div>
+          <p class="cat">Scheduling</p>
+          <p class="tagline">Share a link, let people book time on your calendar.</p>
+          <p class="facts"><span class="price">$12/mo</span><span class="dot" aria-hidden="true">·</span><span>DIY: a weekend</span><span class="dot" aria-hidden="true">·</span><span class="votes" data-vote-cell data-vote-slug="calendly">1 vote</span></p>
+          <p class="alts"><span>Free alternatives:</span> Cal.diy</p>
+        </li>
+        <li class="card" data-slug="typeform" data-category="forms" data-verdict="yes" data-priority="7" data-votes="1" data-price="25" data-name="typeform" data-search="typeform forms &amp; surveys conversational forms + surveys one question at a time, forms that feel like a conversation.">
+          <div class="card-top">
+            <span class="fav" aria-hidden="true">T</span>
+            <h3 class="card-name"><a href="/en/tools/typeform">Typeform</a></h3>
+            <span class="badge yes"><span class="mark" aria-hidden="true">●</span>Yes</span>
+          </div>
+          <p class="cat">Forms &amp; surveys</p>
+          <p class="tagline">One question at a time, forms that feel like a conversation.</p>
+          <p class="facts"><span class="price">$25/mo</span><span class="dot" aria-hidden="true">·</span><span>DIY: one sitting</span><span class="dot" aria-hidden="true">·</span><span class="votes" data-vote-cell data-vote-slug="typeform">1 vote</span></p>
+          <p class="alts"><span>Free alternatives:</span> Formbricks</p>
+        </li>
+        <li class="card" data-slug="obsidian" data-category="notes-knowledge" data-verdict="yes" data-priority="6" data-votes="0" data-price="4" data-name="obsidian" data-search="obsidian notes &amp; knowledge management local markdown notes + paid sync local markdown notes — sync is the only part you&#39;d pay for.">
+          <div class="card-top">
+            <span class="fav" aria-hidden="true">O</span>
+            <h3 class="card-name"><a href="/en/tools/obsidian">Obsidian</a></h3>
+            <span class="badge yes"><span class="mark" aria-hidden="true">●</span>Yes</span>
+          </div>
+          <p class="cat">Notes &amp; knowledge management</p>
+          <p class="tagline">Local markdown notes — Sync is the only part you'd pay for.</p>
+          <p class="facts"><span class="price">$4/mo</span><span class="dot" aria-hidden="true">·</span><span>DIY: one sitting</span><span class="dot" aria-hidden="true">·</span><span class="votes" data-vote-cell data-vote-slug="obsidian">0 votes</span></p>
+          <p class="alts"><span>Free alternatives:</span> Syncthing, Self-hosted LiveSync</p>
+        </li>
+        <li class="card" data-slug="1password" data-category="security" data-verdict="kinda" data-priority="5" data-votes="0" data-price="2.99" data-name="1password" data-search="1password security &amp; passwords password manager password manager for logins, passkeys, secrets, and secure sharing.">
+          <div class="card-top">
+            <span class="fav" aria-hidden="true">1</span>
+            <h3 class="card-name"><a href="/en/tools/1password">1Password</a></h3>
+            <span class="badge kinda"><span class="mark" aria-hidden="true">◐</span>Almost</span>
+          </div>
+          <p class="cat">Security &amp; passwords</p>
+          <p class="tagline">Password manager for logins, passkeys, secrets, and secure sharing.</p>
+          <p class="facts"><span class="price">$2.99/mo</span><span class="dot" aria-hidden="true">·</span><span>DIY: a week</span><span class="dot" aria-hidden="true">·</span><span class="votes" data-vote-cell data-vote-slug="1password">0 votes</span></p>
+          <p class="alts"><span>Free alternatives:</span> KeePassXC</p>
+        </li>
+        <li class="card" data-slug="activecampaign" data-category="newsletter" data-verdict="no" data-priority="5" data-votes="0" data-price="15" data-name="activecampaign" data-search="activecampaign newsletters &amp; publishing email newsletters and creator publishing send a compliant email newsletter through a transactional email api">
+          <div class="card-top">
+            <span class="fav" aria-hidden="true">A</span>
+            <h3 class="card-name"><a href="/en/tools/activecampaign">ActiveCampaign</a></h3>
+            <span class="badge no"><span class="mark" aria-hidden="true">○</span>Not yet</span>
+          </div>
+          <p class="cat">Newsletters &amp; publishing</p>
+          <p class="tagline">Send a compliant email newsletter through a transactional email API</p>
+          <p class="facts"><span class="price">$15/mo</span><span class="dot" aria-hidden="true">·</span><span>DIY: one sitting</span><span class="dot" aria-hidden="true">·</span><span class="votes" data-vote-cell data-vote-slug="activecampaign">0 votes</span></p>
+          <p class="alts"><span>Free alternatives:</span> Listmonk</p>
+        </li>
+        <li class="card" data-slug="adobe-acrobat-pro" data-category="documents" data-verdict="no" data-priority="5" data-votes="0" data-price="29.99" data-name="adobe-acrobat-pro" data-search="adobe acrobat pro pdf &amp; documents pdf authoring, ocr and compliance output the pdf editor every other one is measured against, plus the compliance output nobody else emits.">
+          <div class="card-top">
+            <span class="fav" aria-hidden="true">A</span>
+            <h3 class="card-name"><a href="/en/tools/adobe-acrobat-pro">Adobe Acrobat Pro</a></h3>
+            <span class="badge no"><span class="mark" aria-hidden="true">○</span>Not yet</span>
+          </div>
+          <p class="cat">PDF &amp; documents</p>
+          <p class="tagline">The PDF editor every other one is measured against, plus the compliance output nobody else emits.</p>
+          <p class="facts"><span class="price">$29.99/mo</span><span class="dot" aria-hidden="true">·</span><span>DIY: a week</span><span class="dot" aria-hidden="true">·</span><span class="votes" data-vote-cell data-vote-slug="adobe-acrobat-pro">0 votes</span></p>
+          <p class="alts"><span>Free alternatives:</span> Stirling PDF</p>
+        </li>
+        <li class="card" data-slug="adobe-lightroom" data-category="photography" data-verdict="kinda" data-priority="5" data-votes="0" data-price="11.99" data-name="adobe-lightroom" data-search="adobe lightroom photography raw photo editing and cataloguing develop raw files and have the catalogue follow you to the phone.">
+          <div class="card-top">
+            <span class="fav" aria-hidden="true">A</span>
+            <h3 class="card-name"><a href="/en/tools/adobe-lightroom">Adobe Lightroom</a></h3>
+            <span class="badge kinda"><span class="mark" aria-hidden="true">◐</span>Almost</span>
+          </div>
+          <p class="cat">Photography</p>
+          <p class="tagline">Develop raw files and have the catalogue follow you to the phone.</p>
+          <p class="facts"><span class="price">$11.99/mo</span><span class="dot" aria-hidden="true">·</span><span>DIY: a weekend</span><span class="dot" aria-hidden="true">·</span><span class="votes" data-vote-cell data-vote-slug="adobe-lightroom">0 votes</span></p>
+          <p class="alts"><span>Free alternatives:</span> darktable</p>
+        </li>
+        <li class="card" data-slug="ahrefs" data-category="seo-marketing" data-verdict="no" data-priority="5" data-votes="0" data-price="29" data-name="ahrefs" data-search="ahrefs seo &amp; marketing seo/backlink data seo platform built on a proprietary web crawl, keyword, and backlink index.">
+          <div class="card-top">
+            <span class="fav" aria-hidden="true">A</span>
+            <h3 class="card-name"><a href="/en/tools/ahrefs">Ahrefs</a></h3>
+            <span class="badge no"><span class="mark" aria-hidden="true">○</span>Not yet</span>
+          </div>
+          <p class="cat">SEO &amp; marketing</p>
+          <p class="tagline">SEO platform built on a proprietary web crawl, keyword, and backlink index.</p>
+          <p class="facts"><span class="price">$29/mo</span><span class="dot" aria-hidden="true">·</span><span>DIY: more than a week</span><span class="dot" aria-hidden="true">·</span><span class="votes" data-vote-cell data-vote-slug="ahrefs">0 votes</span></p>
+          <p class="alts"><span>Free alternatives:</span> SEO Macroscope</p>
+        </li>
+        <li class="card" data-slug="airtable" data-category="databases" data-verdict="kinda" data-priority="5" data-votes="0" data-price="24" data-name="airtable" data-search="airtable databases spreadsheet database spreadsheet-style database with views, forms, and automations.">
+          <div class="card-top">
+            <span class="fav" aria-hidden="true">A</span>
+            <h3 class="card-name"><a href="/en/tools/airtable">Airtable</a></h3>
+            <span class="badge kinda"><span class="mark" aria-hidden="true">◐</span>Almost</span>
+          </div>
+          <p class="cat">Databases</p>
+          <p class="tagline">Spreadsheet-style database with views, forms, and automations.</p>
+          <p class="facts"><span class="price">$24/mo</span><span class="dot" aria-hidden="true">·</span><span>DIY: a week</span><span class="dot" aria-hidden="true">·</span><span class="votes" data-vote-cell data-vote-slug="airtable">0 votes</span></p>
+          <p class="alts"><span>Free alternatives:</span> NocoDB</p>
+        </li>
+        <li class="card" data-slug="alltrails-plus" data-category="travel" data-verdict="no" data-priority="5" data-votes="0" data-price="3" data-name="alltrails-plus" data-search="alltrails plus travel &amp; outdoors trail database and hiking navigation curated trail guides with reviews, photos and current conditions.">
+          <div class="card-top">
+            <span class="fav" aria-hidden="true">A</span>
+            <h3 class="card-name"><a href="/en/tools/alltrails-plus">AllTrails Plus</a></h3>
+            <span class="badge no"><span class="mark" aria-hidden="true">○</span>Not yet</span>
+          </div>
+          <p class="cat">Travel &amp; outdoors</p>
+          <p class="tagline">Curated trail guides with reviews, photos and current conditions.</p>
+          <p class="facts"><span class="price">$3/mo</span><span class="dot" aria-hidden="true">·</span><span>DIY: one sitting</span><span class="dot" aria-hidden="true">·</span><span class="votes" data-vote-cell data-vote-slug="alltrails-plus">0 votes</span></p>
+          <p class="alts"><span>Free alternatives:</span> Wanderer</p>
+        </li>
+        <li class="card" data-slug="amplitude" data-category="analytics" data-verdict="no" data-priority="5" data-votes="0" data-price="49" data-name="amplitude" data-search="amplitude analytics web and product analytics a bounded first-party product-analytics dashboard for one app">
+          <div class="card-top">
+            <span class="fav" aria-hidden="true">A</span>
+            <h3 class="card-name"><a href="/en/tools/amplitude">Amplitude</a></h3>
+            <span class="badge no"><span class="mark" aria-hidden="true">○</span>Not yet</span>
+          </div>
+          <p class="cat">Analytics</p>
+          <p class="tagline">A bounded first-party product-analytics dashboard for one app</p>
+          <p class="facts"><span class="price">$49/mo</span><span class="dot" aria-hidden="true">·</span><span>DIY: one sitting</span><span class="dot" aria-hidden="true">·</span><span class="votes" data-vote-cell data-vote-slug="amplitude">0 votes</span></p>
+          <p class="alts"><span>Free alternatives:</span> Umami</p>
+        </li>
+        <li class="card" data-slug="apollo-io" data-category="crm-sales" data-verdict="no" data-priority="5" data-votes="0" data-price="49" data-name="apollo-io" data-search="apollo crm &amp; sales outreach b2b contact database a searchable database of a few hundred million business contacts.">
+          <div class="card-top">
+            <span class="fav" aria-hidden="true">A</span>
+            <h3 class="card-name"><a href="/en/tools/apollo-io">Apollo</a></h3>
+            <span class="badge no"><span class="mark" aria-hidden="true">○</span>Not yet</span>
+          </div>
+          <p class="cat">CRM &amp; sales outreach</p>
+          <p class="tagline">A searchable database of a few hundred million business contacts.</p>
+          <p class="facts"><span class="price">$49/mo</span><span class="dot" aria-hidden="true">·</span><span>DIY: one sitting</span><span class="dot" aria-hidden="true">·</span><span class="votes" data-vote-cell data-vote-slug="apollo-io">0 votes</span></p>
+          
+        </li>
+        </ul>
+      </div>
+      <p id="no-results" hidden>None of these 12 match. The search box covers all 530.</p>
+      <p class="list-foot">Showing 12 of 530. <a href="/en/tools/">See every tool</a></p>
+    </section>
+
+    <section class="sec start" aria-label="Where to start">
+      <div>
+        <h2 id="h-alts">Popular alternatives</h2>
+        <ul class="links" aria-labelledby="h-alts">
+          <li><a href="/en/tools/mailchimp"><span class="l-name">Mailchimp alternatives</span><span class="l-meta">Mautic</span></a></li>
+          <li><a href="/en/tools/zapier"><span class="l-name">Zapier alternatives</span><span class="l-meta">n8n</span></a></li>
+          <li><a href="/en/tools/airtable"><span class="l-name">Airtable alternatives</span><span class="l-meta">NocoDB</span></a></li>
+          <li><a href="/en/tools/calendly"><span class="l-name">Calendly alternatives</span><span class="l-meta">Cal.diy</span></a></li>
+          <li><a href="/en/tools/typeform"><span class="l-name">Typeform alternatives</span><span class="l-meta">Formbricks</span></a></li>
+          <li><a href="/en/tools/canva"><span class="l-name">Canva alternatives</span><span class="l-meta">Penpot</span></a></li>
+          <li><a href="/en/tools/figma"><span class="l-name">Figma alternatives</span><span class="l-meta">Penpot, Excalidraw</span></a></li>
+          <li><a href="/en/tools/grammarly"><span class="l-name">Grammarly alternatives</span><span class="l-meta">LanguageTool</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 id="h-cats">Browse by category</h2>
+        <ul class="links" aria-labelledby="h-cats">
+          <li><a href="/en/categories/ai-writing/"><span class="l-name">AI writing</span><span class="l-meta">24 apps</span></a></li>
+          <li><a href="/en/categories/seo-marketing/"><span class="l-name">SEO &amp; marketing</span><span class="l-meta">22 apps</span></a></li>
+          <li><a href="/en/categories/crm-sales/"><span class="l-name">CRM &amp; sales outreach</span><span class="l-meta">21 apps</span></a></li>
+          <li><a href="/en/categories/audio-video/"><span class="l-name">Audio &amp; video editing</span><span class="l-meta">16 apps</span></a></li>
+          <li><a href="/en/categories/social-media/"><span class="l-name">Social media</span><span class="l-meta">15 apps</span></a></li>
+          <li><a href="/en/categories/ai-audio/"><span class="l-name">AI audio &amp; video generation</span><span class="l-meta">13 apps</span></a></li>
+          <li><a href="/en/categories/newsletter/"><span class="l-name">Newsletters &amp; publishing</span><span class="l-meta">13 apps</span></a></li>
+          <li><a href="/en/categories/ai-image/"><span class="l-name">AI image generation</span><span class="l-meta">12 apps</span></a></li>
+        </ul>
+        <a class="more" href="/en/categories/">All 51 categories</a>
+      </div>
+    </section>
+
+    <details class="preview" open>
+      <summary>See the top of this page on a phone (320 px)</summary>
+      <div class="frame" role="group" aria-label="Mobile preview, 320 pixels wide"><div class="cq">
+    <section class="hero">
+      <p class="h1">Free alternatives to the SaaS you pay for</p>
+      <p class="sub">530 paid apps, each with an honest verdict: host a free app, rebuild it from one prompt, or keep paying.</p>
+      <p class="nl-lead">One email a week: a paid app, the free alternatives, and the prompt to build it.</p>
+      <form class="newsletter" data-newsletter action="#" method="post" novalidate aria-hidden="true">
+        <label for="pv-nl-email" class="visually-hidden">Your email address</label>
+        <div class="nl-row">
+          <input type="email" id="pv-nl-email" name="email" required autocomplete="email" placeholder="you@example.com" tabindex="-1">
+          <button type="submit" tabindex="-1">Subscribe</button>
+        </div>
+        <p class="nl-note">Double opt-in. We send nothing until you confirm. Unsubscribe in one click.</p>
+        <p class="newsletter-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+    <aside class="sponsor" aria-label="Sponsor">
+      <span class="label">Sponsor</span>
+      <a class="sp-card live" data-slot="L1" href="https://whoscale.com/?utm_source=saasmadefree&amp;utm_medium=referral&amp;utm_campaign=sponsor_L1" rel="noopener sponsored" tabindex="-1"><strong>Whoscale</strong> <span class="sp-tagline">Ad spy for creators who sell online.</span></a>
+      <a class="sp-own" href="/en/sponsor" tabindex="-1">Advertise here</a>
+    </aside>
+    <div class="controls">
+      <div class="filters" role="group" aria-label="Filter by verdict">
+        <button type="button" class="chip is-active" data-verdict="all" aria-pressed="true" tabindex="-1">All <span class="c">530</span></button>
+        <button type="button" class="chip" data-verdict="yes" aria-pressed="false" tabindex="-1"><span class="mark" aria-hidden="true">●</span>Yes <span class="c">70</span></button>
+        <button type="button" class="chip" data-verdict="kinda" aria-pressed="false" tabindex="-1"><span class="mark" aria-hidden="true">◐</span>Almost <span class="c">284</span></button>
+        <button type="button" class="chip" data-verdict="no" aria-pressed="false" tabindex="-1"><span class="mark" aria-hidden="true">○</span>Not yet <span class="c">176</span></button>
+      </div>
+      <div class="order">
+        <label for="pv-order">Order by</label>
+        <select id="pv-order" tabindex="-1"><option value="votes">Most voted</option><option value="price">Price, highest first</option><option value="name">A–Z</option></select>
+      </div>
+    </div><ul class="grid">
+        <li class="card" data-slug="calendly" data-category="scheduling" data-verdict="kinda" data-priority="8" data-votes="1" data-price="12" data-name="calendly" data-search="calendly scheduling scheduling + booking pages share a link, let people book time on your calendar.">
+          <div class="card-top">
+            <span class="fav" aria-hidden="true">C</span>
+            <p class="card-name"><a href="/en/tools/calendly" tabindex="-1">Calendly</a></p>
+            <span class="badge kinda"><span class="mark" aria-hidden="true">◐</span>Almost</span>
+          </div>
+          <p class="cat">Scheduling</p>
+          <p class="tagline">Share a link, let people book time on your calendar.</p>
+          <p class="facts"><span class="price">$12/mo</span><span class="dot" aria-hidden="true">·</span><span>DIY: a weekend</span><span class="dot" aria-hidden="true">·</span><span class="votes" data-vote-cell data-vote-slug="calendly">1 vote</span></p>
+          <p class="alts"><span>Free alternatives:</span> Cal.diy</p>
+        </li>
+        <li class="card" data-slug="typeform" data-category="forms" data-verdict="yes" data-priority="7" data-votes="1" data-price="25" data-name="typeform" data-search="typeform forms &amp; surveys conversational forms + surveys one question at a time, forms that feel like a conversation.">
+          <div class="card-top">
+            <span class="fav" aria-hidden="true">T</span>
+            <p class="card-name"><a href="/en/tools/typeform" tabindex="-1">Typeform</a></p>
+            <span class="badge yes"><span class="mark" aria-hidden="true">●</span>Yes</span>
+          </div>
+          <p class="cat">Forms &amp; surveys</p>
+          <p class="tagline">One question at a time, forms that feel like a conversation.</p>
+          <p class="facts"><span class="price">$25/mo</span><span class="dot" aria-hidden="true">·</span><span>DIY: one sitting</span><span class="dot" aria-hidden="true">·</span><span class="votes" data-vote-cell data-vote-slug="typeform">1 vote</span></p>
+          <p class="alts"><span>Free alternatives:</span> Formbricks</p>
+        </li></ul></div></div>
+    </details>
+  </main>
+  <footer class="foot">
+    <p>SaaS Made Free is an open-source guide to the subscriptions you could stop paying for. We don’t take affiliate money, we don’t rank sponsors, and this page loads nothing from anyone else.</p>
+    <p class="foot-links"><a href="https://github.com/saasmadefree/saasmadefree">Source on GitHub</a><a href="/en/stats/">Stats</a><a href="https://github.com/saasmadefree/saasmadefree/blob/main/CONTRIBUTING.md">Submit a tool</a><a href="/en/sponsor">Sponsor</a><a href="/privacy">Privacy</a><a href="mailto:privacy@saasmadefree.com">privacy@saasmadefree.com</a><a href="https://github.com/canivibecodeit/canivibecodeit" rel="noopener">Catalogue based on canivibecodeit</a></p>
+  </footer>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('theme-toggle');
+  if(b){
+    b.hidden=false;
+    var cur=function(){var d=document.documentElement.dataset.theme;if(d)return d;return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';};
+    var sync=function(){var dark=cur()==='dark';b.setAttribute('aria-pressed',dark?'true':'false');var l=b.querySelector('[data-label]');if(l)l.textContent=dark?b.dataset.labelLight:b.dataset.labelDark;};
+    sync();
+    b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';document.documentElement.dataset.theme=n;try{localStorage.setItem('theme',n);}catch(e){}sync();});
+  }
+  var c=document.getElementById('copy-prompt'),p=document.getElementById('prompt-text'),st=document.getElementById('copy-status');
+  if(c&&p){
+    c.hidden=false;
+    c.addEventListener('click',function(){
+      var done=function(){if(st){st.textContent='Copied to clipboard.';setTimeout(function(){st.textContent='';},2500);}};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p.textContent).then(done,function(){sel();});}else sel();
+      function sel(){var r=document.createRange();r.selectNodeContents(p);var s=getSelection();s.removeAllRanges();s.addRange(r);if(st)st.textContent='Selected: press Ctrl+C or Cmd+C.';}
+    });
+  }
+})();
+</script>
+<script>
+(function(){
+  var grid=document.getElementById('tool-rows'); if(!grid) return;
+  var cards=[].slice.call(grid.querySelectorAll('[data-slug]')), nr=document.getElementById('no-results');
+  var chips=[].slice.call(document.querySelectorAll('.verdict-chip'));
+  chips.forEach(function(c){c.addEventListener('click',function(){
+    chips.forEach(function(x){x.setAttribute('aria-pressed','false');x.classList.remove('is-active');});
+    c.setAttribute('aria-pressed','true');c.classList.add('is-active');
+    var v=c.dataset.verdict,n=0;
+    cards.forEach(function(r){var s=v==='all'||r.dataset.verdict===v;r.hidden=!s;if(s)n++;});
+    if(nr) nr.hidden=n!==0;
+  });});
+  var o=document.getElementById('order');
+  if(o) o.addEventListener('change',function(){
+    var k=o.value;
+    cards.slice().sort(function(a,b){
+      if(k==='name') return a.dataset.name.localeCompare(b.dataset.name);
+      if(k==='price') return Number(b.dataset.price)-Number(a.dataset.price);
+      return Number(b.dataset.votes)-Number(a.dataset.votes)||Number(b.dataset.priority)-Number(a.dataset.priority);
+    }).forEach(function(c){grid.appendChild(c);});
+  });
+})();
+</script>
+<script>
+document.querySelectorAll('form[data-newsletter]').forEach(function(f){
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var i=f.querySelector('input[name=email]'),s=f.querySelector('.newsletter-status');
+    if(!i.checkValidity()){s.textContent='Enter a valid email address.';i.focus();return;}
+    s.textContent='Check your inbox to confirm.';
+  });
+});
+</script>
+</body>
+</html>

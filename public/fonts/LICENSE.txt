@@ -18,15 +18,4 @@ Atkinson Hyperlegible Next — atkinson-hyperlegible-next-latin.woff2
   https://github.com/googlefonts/atkinson-hyperlegible-next
   SIL Open Font License 1.1 — full text in OFL-atkinson-hyperlegible-next.txt
 
-Archivo — archivo-latin.woff2, archivo-latin-ext.woff2
-  Copyright (c) Omnibus-Type
-  https://github.com/Omnibus-Type/Archivo
-  SIL Open Font License 1.1
-
-DM Mono — dmmono-400-latin.woff2, dmmono-400-latin-ext.woff2,
-          dmmono-500-latin.woff2, dmmono-500-latin-ext.woff2
-  Copyright (c) Colophon Foundry, for Deepmind
-  https://github.com/googlefonts/dm-mono
-  SIL Open Font License 1.1
-
 Full licence text: https://openfontlicense.org/open-font-license-official-text/
