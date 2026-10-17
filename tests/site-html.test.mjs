@@ -48,6 +48,10 @@ describe('renderBreadcrumb', () => {
     expect(html).toContain('<span aria-current="page">Notion</span>');
     expect(html).not.toContain('<a href="/en/tools/notion">Notion</a>');
   });
+
+  it('porte la classe .crumbs du système de design', () => {
+    expect(renderBreadcrumb([{ label: 'Directory', href: '/en/' }])).toContain('<nav class="crumbs" aria-label="Breadcrumb">');
+  });
 });
 
 describe('verdictBadge', () => {
@@ -113,6 +117,28 @@ describe('renderLayout — chrome du dossier', () => {
     expect(nav).toContain('>Submit a tool<');
     expect(nav).toContain('>Sponsor<');
     expect(nav).toContain('>Stats<');
+  });
+
+  it('la marque est un seul lien, pastille comprise', () => {
+    expect(html).toMatch(/<a class="brand" href="\/en\/"><span class="brand-mark" aria-hidden="true">S<\/span>SaaS Made Free<\/a>/);
+  });
+
+  it('pose la promesse du pied de page quand la locale la porte', () => {
+    const withPromise = renderLayout({
+      lang: 'en', path: '/en/', title: 't', description: 'd', main: '<h1>x</h1>', homeHref: '/en/',
+      ui: { site: { ...dossierUi.site, footer: { ...dossierUi.site.footer, promise: 'This page loads nothing from anyone else.' } } },
+    });
+    expect(withPromise).toMatch(/<footer class="site-footer">\s*<p>This page loads nothing from anyone else\.<\/p>/);
+    expect(html).not.toContain('<footer class="site-footer">\n        <p>');
+  });
+
+  it('émet <meta name="robots"> seulement quand robots est fourni', () => {
+    expect(html).not.toContain('name="robots"');
+    const noindex = renderLayout({
+      lang: 'en', path: '/en/', title: 't', description: 'd', main: '<h1>x</h1>', ui: dossierUi,
+      homeHref: '/en/', robots: 'noindex,follow',
+    });
+    expect(noindex).toContain('<meta name="robots" content="noindex,follow">');
   });
 
   it('réduit le bouton GitHub à son icône, le nom restant porté par aria-label', () => {

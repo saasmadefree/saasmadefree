@@ -120,6 +120,24 @@ describe('insertion des sponsors dans la coquille', () => {
     expect(html.indexOf('class="col-main"')).toBeLessThan(html.indexOf('class="sp-rail'));
   });
 
+  it('marque la coquille .has-rails quand la page porte des rails, et seulement alors', () => {
+    expect(withSponsors()).toContain('<div class="shell has-rails">');
+    const railless = renderLayout({
+      lang: 'en', path: '/en/', title: 'T', description: 'D', main: '<h1>Hi</h1>', ui: sponsorUi, homeHref: '/en/',
+      sponsorSlots: { ...renderSponsorSlots(ctx), railLeft: '', railRight: '', fallback: '' },
+    });
+    expect(railless).toContain('<div class="shell">');
+    expect(railless).not.toContain('sp-rail');
+    expect(railless).not.toContain('sp-fallback');
+    expect(railless).toContain('sponsor-tape');
+  });
+
+  it('range le repli sous le contenu, avant le pied de page', () => {
+    const html = withSponsors();
+    expect(html.indexOf('</main>')).toBeLessThan(html.indexOf('class="sp-fallback"'));
+    expect(html.indexOf('class="sp-fallback"')).toBeLessThan(html.indexOf('<footer'));
+  });
+
   it('n’émet aucun balisage sponsor sans contexte', () => {
     expect(layout()).not.toContain('sp-rail');
     expect(layout()).not.toContain('sponsor-tape');

@@ -35,10 +35,11 @@ export function languageName(lang) {
   return LANG_NAMES[lang] ?? lang;
 }
 
-/** Badge de verdict, partagé par la table de l'accueil, la ligne de titre
- *  d'une fiche et les cartes "outils proches" — une seule source de vérité
- *  pour le balisage, un modificateur optionnel (ex. "badge-lg") pour la
- *  variante agrandie de la fiche outil. */
+/** Badge de verdict, partagé par la grille de cartes (accueil, catégories),
+ *  la fiche et les cartes "outils proches" — une seule source de vérité pour
+ *  le balisage, un modificateur optionnel (ex. "badge-lg") pour la variante
+ *  agrandie de la fiche. La forme (● ◐ ○) est posée par la feuille sur la
+ *  classe du verdict : le badge porte toujours une forme ET un mot. */
 export function verdictBadge(verdict, label, extraClass = '') {
   const cls = ['badge', verdict, extraClass].filter(Boolean).join(' ');
   return `<span class="${cls}">${escapeHtml(label)}</span>`;
@@ -64,9 +65,9 @@ export function dateRing(label, dateText) {
   return `<span class="date-ring">${escapeHtml(label)} <strong>${escapeHtml(dateText)}</strong></span>`;
 }
 
-/** Les trois cases du verdict (greffe E3) : l'échelle complète est montrée, la
- *  retenue porte la croix (CSS ::after en --ink) et une mention lecteur d'écran.
- *  Jamais la couleur seule (spec §7). */
+/** Les trois cases du verdict : l'échelle complète est montrée, la retenue
+ *  porte la case pleine, le texte en gras et une mention lecteur d'écran.
+ *  Jamais la couleur seule (spec D9). */
 export function verdictChecks(verdict, verdictsTable, checkedNote) {
   const items = ['yes', 'kinda', 'no'].map((v) => {
     const on = v === verdict;
@@ -83,7 +84,7 @@ export function renderBreadcrumb(items) {
     }
     return `<a href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a>`;
   });
-  return `<nav class="breadcrumb" aria-label="Breadcrumb">${parts.join(' <span aria-hidden="true">/</span> ')}</nav>`;
+  return `<nav class="crumbs" aria-label="Breadcrumb">${parts.join(' <span aria-hidden="true">/</span> ')}</nav>`;
 }
 
 function renderLangSwitcher(alternates, currentLang, ui) {
@@ -126,11 +127,13 @@ function renderLangSwitcher(alternates, currentLang, ui) {
  * @param {string} [opts.extraHead] - balises additionnelles insérées dans <head>
  * @param {{tapeBottom:string,railLeft:string,railRight:string,fallback:string}|null} [opts.sponsorSlots] - balisage sponsor déjà rendu par renderSponsorSlots(), ou null pour aucun
  * @param {Array<[string,string]>} [opts.refCells] - paires label/valeur affichées dans la
- *   cartouche de références (`.ref-strip`) sous le filet de tête ; aucune cartouche si vide
+ *   cartouche de références (`.ref-strip`) sous l'en-tête ; aucune cartouche si vide
+ * @param {string|null} [opts.robots] - contenu de <meta name="robots"> (ex. "noindex,follow"),
+ *   aucune balise si absent : une page indexable n'a pas besoin de le dire
  */
 export function renderLayout({
   lang, path, title, description, alternates = [], xDefaultPath = null,
-  jsonLd = [], main, ui, homeHref, extraHead = '', sponsorSlots = null, refCells = [],
+  jsonLd = [], main, ui, homeHref, extraHead = '', sponsorSlots = null, refCells = [], robots = null,
 }) {
   const canonical = `${SITE_ORIGIN}${path}`;
   const hreflangLinks = alternates
@@ -147,6 +150,7 @@ export function renderLayout({
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
     `<title>${escapeHtml(title)}</title>`,
     `<meta name="description" content="${escapeHtml(description)}">`,
+    robots ? `<meta name="robots" content="${escapeHtml(robots)}">` : '',
     `<link rel="canonical" href="${canonical}">`,
     hreflangLinks,
     xDefaultLink,
@@ -196,14 +200,9 @@ export function renderLayout({
   // Les rails sont écrits APRÈS .col-main dans le DOM et replacés par
   // grid-column : un lecteur d'écran et la tabulation atteignent ainsi le
   // contenu avant les sponsors. Les bandeaux sont frères de .shell — placés à
-  // l'intérieur, leur pleine largeur passerait sous les rails.
+  // l'intérieur, leur pleine largeur passerait sous les rails. Le repli des
+  // petits écrans se range sous le contenu, avant le pied de page.
   const sp = sponsorSlots ?? { tapeBottom: '', railLeft: '', railRight: '', fallback: '' };
-
-  // Le bandeau de service (« Service de l'instruction des abonnements ») est
-  // retiré le 20.08.2026 : c'était l'en-tête administratif du dossier, et il
-  // ne portait aucun fait — juste un titre de service inventé. La clé
-  // ui.site.dossier.serviceName reste dans les données, plus personne ne la
-  // lit côté site.
 
   // La cartouche de références (dates, numéro de registre…) : une paire
   // label/valeur par cellule, silencieuse si l'appelant n'en fournit aucune.
@@ -213,6 +212,15 @@ export function renderLayout({
         .join('')}</dl>`
     : '';
 
+  // Les rails n'existent que si la page en porte : l'accueil range les siens
+  // dans la rangée sous le héros (spec D14) et rend la coquille sans eux. La
+  // classe .has-rails est ce qui ouvre les trois pistes de grille au-delà de
+  // 84rem — sans rails, la colonne de contenu garde toute la largeur.
+  const hasRails = Boolean(sp.railLeft || sp.railRight);
+  const promise = ui.site.footer?.promise
+    ? `\n        <p>${escapeHtml(ui.site.footer.promise)}</p>`
+    : '';
+
   return `<!doctype html>
 <html lang="${lang}">
 <head>
@@ -220,43 +228,36 @@ ${headLines}
 </head>
 <body>
 <a class="skip-link" href="#main">${escapeHtml(ui.site.skipToContent)}</a>
-<div class="shell">
+<div class="shell${hasRails ? ' has-rails' : ''}">
   <div class="col-main">
     <div class="page">
-      <header class="site-header site-masthead">
-        <div class="header-left">
-          <span class="brand-lockup">
-            <span class="brand-mark" aria-hidden="true">SMF</span>
-            <a class="brand" href="${escapeHtml(homeHref)}">${escapeHtml(ui.site.brand)}</a>
-          </span>
-          <ul class="nav-links">${navLinks}</ul>
-        </div>
-        <div class="header-groups">
-          <div class="header-controls">${langSwitcher}
-            <button type="button" id="theme-toggle" class="theme-toggle" hidden
-                    aria-label="${themeToggleLabel}"
-                    data-label-dark="${escapeHtml(ui.site.themeToDark ?? 'Dark mode')}"
-                    data-label-light="${escapeHtml(ui.site.themeToLight ?? 'Light mode')}">
-              <span aria-hidden="true" class="theme-icon"></span>
-            </button>
-            <a class="github-btn" href="${GITHUB_REPO_URL}" aria-label="${escapeHtml(nav.github ?? 'GitHub')}">${GITHUB_MARK_SVG}</a>
-          </div>
+      <header class="site-header">
+        <a class="brand" href="${escapeHtml(homeHref)}"><span class="brand-mark" aria-hidden="true">S</span>${escapeHtml(ui.site.brand)}</a>
+        <ul class="nav-links">${navLinks}</ul>
+        <div class="header-controls">${langSwitcher}
+          <button type="button" id="theme-toggle" class="theme-toggle" hidden
+                  aria-label="${themeToggleLabel}"
+                  data-label-dark="${escapeHtml(ui.site.themeToDark ?? 'Dark mode')}"
+                  data-label-light="${escapeHtml(ui.site.themeToLight ?? 'Light mode')}">
+            <span aria-hidden="true" class="theme-icon"></span>
+          </button>
+          <a class="github-btn" href="${GITHUB_REPO_URL}" aria-label="${escapeHtml(nav.github ?? 'GitHub')}">${GITHUB_MARK_SVG}</a>
         </div>
       </header>
-      <div class="head-rule" aria-hidden="true"></div>
       ${refStrip}
       <main id="main">
 ${main}
       </main>
-      <footer class="site-footer">
-        <a href="${GITHUB_REPO_URL}">${escapeHtml(ui.site.footer.source)}</a>
-        <a href="/${lang}/stats/">${escapeHtml(ui.site.footer.stats)}</a>
-        <a href="/privacy">${escapeHtml(ui.site.footer.privacy)}</a>
-        <a href="mailto:privacy@saasmadefree.com">privacy@saasmadefree.com</a>
-        <a class="credit" href="https://github.com/canivibecodeit/canivibecodeit" rel="noopener">${escapeHtml(ui.site.footer.credit ?? "")}</a>
-        <span class="paraphe" aria-hidden="true">SMF</span>
-      </footer>
       ${sp.fallback}
+      <footer class="site-footer">${promise}
+        <p class="foot-links">
+          <a href="${GITHUB_REPO_URL}">${escapeHtml(ui.site.footer.source)}</a>
+          <a href="/${lang}/stats/">${escapeHtml(ui.site.footer.stats)}</a>
+          <a href="/privacy">${escapeHtml(ui.site.footer.privacy)}</a>
+          <a href="mailto:privacy@saasmadefree.com">privacy@saasmadefree.com</a>
+          <a class="credit" href="https://github.com/canivibecodeit/canivibecodeit" rel="noopener">${escapeHtml(ui.site.footer.credit ?? "")}</a>
+        </p>
+      </footer>
     </div>
   </div>
   ${sp.railLeft}

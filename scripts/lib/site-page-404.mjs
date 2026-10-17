@@ -45,6 +45,6 @@ export function render404Page({ ui, enPath, langs }) {
     main,
     ui,
     homeHref: enPath,
-    extraHead: '<meta name="robots" content="noindex">',
+    robots: 'noindex',
   });
 }
