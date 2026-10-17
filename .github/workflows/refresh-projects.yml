@@ -2,8 +2,9 @@ name: Rafraîchir les projets
 # Chaque lundi, relit sur l'API GitHub les faits des projets open source
 # (étoiles, dernier commit, création, archivage) et propose le résultat en
 # pull request. Jamais de push sur main : la PR passe par la revue comme le
-# reste. Aucune action tierce : checkout et setup-node (officielles GitHub),
-# puis git et `gh`, déjà présents sur le runner.
+# reste. Aucune action tierce : checkout, setup-node, upload-artifact et
+# download-artifact (officielles GitHub), puis git et `gh`, déjà présents sur
+# le runner.
 #
 # Les PR ouvertes avec le GITHUB_TOKEN du workflow ne déclenchent pas les
 # autres workflows (garde-fou de GitHub contre les boucles) : ci.yml ne tourne
@@ -14,14 +15,23 @@ name: Rafraîchir les projets
 #
 # Une seule branche, `chore/refresh-projects`, réécrite à chaque passage, et
 # une seule PR ouverte, mise à jour au lieu d'empiler une PR datée par lundi.
+#
+# Isolation du jeton : deux jobs.
+# - `refresh` exécute tout le code Node (npm, refresh, validate, build,
+#   tests) avec un jeton en LECTURE SEULE (permissions: contents: read). Le
+#   pire qu'un paquet compromis puisse y faire : lire un dépôt public.
+# - `pull-request` a les droits d'écriture mais n'exécute ni npm ni node : il
+#   récupère data/projects en artefact, le commite et pousse. Le jeton n'y
+#   est jamais écrit dans .git/config (persist-credentials: false) ni dans
+#   l'URL du remote : il passe en en-tête, le temps du seul `git push`.
+# Garde-fou : tests/workflows.test.mjs.
 on:
   schedule:
     - cron: '0 5 * * 1'
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pull-requests: write
+# Rien par défaut ; chaque job déclare le strict nécessaire.
+permissions: {}
 
 concurrency:
   group: refresh-projects
@@ -30,14 +40,26 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      changed: ${{ steps.diff.outputs.changed }}
     steps:
+      # `ref: main` : un workflow_dispatch lancé sur une autre branche ne doit
+      # pas servir de base à la PR.
       - uses: actions/checkout@v7
+        with:
+          ref: main
+          persist-credentials: false
       - uses: actions/setup-node@v7
         with: { node-version: '22', cache: npm }
-      # npm ci seul, sans jeton dans son environnement : les scripts
-      # d'installation des paquets n'ont pas à voir GITHUB_TOKEN.
+      # --ignore-scripts : aucun script d'installation ne s'exécute. Le seul
+      # paquet du lockfile qui en déclare un (hasInstallScript) est fsevents,
+      # optionnel et réservé à macOS : rien n'en dépend sur ce runner Linux.
       - name: Installer les dépendances
-        run: npm ci
+        run: npm ci --ignore-scripts
+      # Seul step qui voit un jeton : celui de ce job, en lecture seule. Il
+      # sert à relever la limite d'appels de l'API GitHub (60/h sans jeton).
       # Sort en code 1 si un dépôt est introuvable (404) ou si deux projets
       # pointent sur le même dépôt : ces cas demandent un humain, pas une PR.
       # Les doublons se fusionnent en local avec --merge-duplicates.
@@ -54,26 +76,63 @@ jobs:
         run: npm run build
       - name: Tests
         run: npx vitest run
+      - name: Détecter un changement dans data/projects
+        id: diff
+        run: |
+          if [ -n "$(git status --porcelain -- data/projects)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Aucun changement dans data/projects, pas de PR."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Transmettre data/projects
+        if: steps.diff.outputs.changed == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: projects
+          path: data/projects/
+          retention-days: 1
+          if-no-files-found: error
+
+  pull-request:
+    needs: refresh
+    if: needs.refresh.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+          persist-credentials: false
+      # Remplace data/projects en entier par la version rafraîchie : un projet
+      # supprimé par le refresh disparaît aussi ici.
+      - name: Remplacer data/projects
+        run: rm -rf data/projects
+      - uses: actions/download-artifact@v7
+        with:
+          name: projects
+          path: data/projects
       - name: Ouvrir ou mettre à jour la pull request
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [ -z "$(git status --porcelain -- data/projects)" ]; then
-            echo "Aucun changement dans data/projects, pas de PR."
-            exit 0
-          fi
           date="$(date -u +%F)"
           branch="chore/refresh-projects"
           title="chore(data): stats GitHub des projets au ${date}"
           body="Rafraîchissement hebdomadaire de \`stats\` (et de \`license\` quand elle manquait) par \`npm run refresh:projects\`, depuis l'API GitHub, au ${date}. \`npm run validate\`, \`npm run build\` et \`npx vitest run\` sont passés dans le workflow (ci.yml ne tourne pas sur une PR ouverte par GITHUB_TOKEN)."
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # -C : la branche repart de main à chaque passage, puis --force la
-          # réécrit sur le dépôt. La PR ne porte donc que le dernier relevé.
+          # La branche repart de main (checkout ref: main) à chaque passage,
+          # puis --force la réécrit : la PR ne porte que le dernier relevé.
           git switch -C "$branch"
-          git add -- data/projects
+          git add -A -- data/projects
           git commit -m "$title"
-          git push --force origin "$branch"
+          # Jeton en en-tête, pour ce seul push : ni dans .git/config, ni dans
+          # l'URL du remote, ni dans le journal (GitHub masque le secret).
+          auth="$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
+          git -c http.https://github.com/.extraheader="AUTHORIZATION: basic ${auth}" push --force origin "$branch"
           number="$(gh pr list --head "$branch" --base main --state open --json number --jq '.[].number' | head -n 1)"
           if [ -n "$number" ]; then
             gh pr edit "$number" --title "$title" --body "$body"

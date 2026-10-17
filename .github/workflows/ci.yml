@@ -192,6 +192,13 @@ jobs:
       - run: npm ci
       - name: Construire le site
         run: npm run build
+      # La nuit, `data-and-code` est sauté : sans ce step, le site partirait
+      # sans aucun garde-fou sur dist/. Nombre de fichiers (spec D12, limite
+      # Cloudflare), poids de l'accueil, sitemaps, canonical, hreflang, liens
+      # internes : ces tests ne lisent que dist/, aucun appel réseau. Un
+      # échec arrête la publication.
+      - name: Garde-fous dist/
+        run: npx vitest run tests/dist-budget.test.mjs tests/site-indexing.test.mjs
       - name: Publier sur Cloudflare Pages
         # Un secret absent, un build raté ou un téléversement refusé font virer
         # le job au rouge : une expiration qui n'atteint jamais le site est pire
