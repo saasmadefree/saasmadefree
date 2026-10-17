@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   organizationJsonLd, websiteJsonLd, itemListJsonLd, faqPageJsonLd,
-  breadcrumbJsonLd, buildSitemap, softwareItemListJsonLd, webPageJsonLd,
+  breadcrumbJsonLd, buildSitemap, softwareItemListJsonLd, webPageJsonLd, listSitemapEntries,
 } from '../scripts/lib/site-seo.mjs';
 
 describe('organizationJsonLd', () => {
@@ -89,5 +89,30 @@ describe('buildSitemap', () => {
     expect(xml).toContain('<loc>https://saasmadefree.com/en/</loc>');
     expect(xml).toContain('<lastmod>2026-07-30</lastmod>');
     expect(xml.match(/<lastmod>/g)?.length).toBe(1);
+  });
+});
+
+// Porte D7 des pages de liste (catégories, collections, hub) : une page
+// noindex ne va jamais dans le sitemap.
+describe('listSitemapEntries', () => {
+  it('keeps indexable pages only, with their lastmod when present', () => {
+    const pages = [
+      { path: '/en/categories/a', indexable: true },
+      { path: '/en/collections/self-hosted', indexable: false },
+      { path: '/en/alternatives/', indexable: true, lastmod: '2026-10-17' },
+    ];
+    expect(listSitemapEntries(pages)).toEqual([
+      { path: '/en/categories/a' },
+      { path: '/en/alternatives/', lastmod: '2026-10-17' },
+    ]);
+  });
+
+  it('a noindex page never reaches the sitemap XML', () => {
+    const xml = buildSitemap(listSitemapEntries([{ path: '/fr/categories/tiny', indexable: false }]));
+    expect(xml).not.toContain('/fr/categories/tiny');
+  });
+
+  it('refuses a page whose gate was not decided', () => {
+    expect(() => listSitemapEntries([{ path: '/en/x' }])).toThrow(/indexable/);
   });
 });

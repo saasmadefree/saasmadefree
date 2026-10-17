@@ -102,6 +102,25 @@ export function breadcrumbJsonLd(items) {
   };
 }
 
+/**
+ * Entrées de sitemap d'une série de pages dont la porte D7 a été décidée
+ * (catégories, collections, hub) : seules les pages indexables y entrent ;
+ * une page noindex,follow reste hors sitemap. Une page sans décision
+ * (`indexable` non booléen) casse le build plutôt que d'entrer par défaut.
+ * @param {Array<{ path: string, indexable: boolean, lastmod?: string }>} pages
+ * @returns {Array<{ path: string, lastmod?: string }>}
+ */
+export function listSitemapEntries(pages) {
+  return pages
+    .filter((page) => {
+      if (typeof page.indexable !== 'boolean') {
+        throw new TypeError(`listSitemapEntries : ${page.path} n'a pas de porte indexable décidée.`);
+      }
+      return page.indexable;
+    })
+    .map(({ path, lastmod }) => (lastmod ? { path, lastmod } : { path }));
+}
+
 export function buildSitemap(pages) {
   const urls = pages
     .map(({ path, lastmod }) => {

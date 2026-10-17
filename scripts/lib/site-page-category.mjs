@@ -23,8 +23,9 @@ const DASH = '—';
  * sur la langue), avec leur meilleure adéquation parmi ces fiches et les
  * fiches qui les citent (dans l'ordre reçu). Tri : adéquation (full >
  * partial > niche), puis étoiles décroissantes, puis slug en comparaison
- * binaire. Un projet sans chiffres GitHub passe après ceux qui en ont : on
- * ne lui invente pas de rang.
+ * binaire. Un projet sans chiffres GitHub frais (absents, ou relevés il y a
+ * plus de 45 jours) passe après ceux qui en ont : on ne lui invente pas de
+ * rang, et on ne classe pas sur un chiffre qu'on ne montre pas.
  * @param {object[]} toolViews  fiches de la catégorie dans la langue
  * @param {Map<string, object>} projects
  * @param {string} today  'YYYY-MM-DD'
@@ -43,7 +44,9 @@ export function categoryProjects(toolViews, projects, today) {
       if (!entry.tools.includes(tool)) entry.tools.push(tool);
     }
   }
-  const stars = (p) => p.stats?.stars ?? -1;
+  // Étoiles périmées (> 45 jours) : masquées sur la page, donc sans poids
+  // dans le classement — le projet passe comme s'il n'avait pas de chiffres.
+  const stars = (p) => (statsAreFresh(p, today) ? p.stats.stars : -1);
   return [...bySlug.values()].sort((a, b) => FIT_RANK[a.fit] - FIT_RANK[b.fit]
     || stars(b.project) - stars(a.project)
     || (a.project.slug < b.project.slug ? -1 : a.project.slug > b.project.slug ? 1 : 0));

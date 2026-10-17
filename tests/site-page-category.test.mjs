@@ -174,6 +174,15 @@ describe('catégorie « best » — projets puis registre SaaS', () => {
     expect(categoryProjects(views, PROJECTS, TODAY).map((r) => r.project.slug)).toEqual(['keila', 'postal']);
   });
 
+  it('stale stars (> 45 days, hidden) do not rank: the project ranks as having no figures', () => {
+    const projects = new Map(PROJECTS);
+    // mautic : 10 787 étoiles relevées il y a 77 jours, donc masquées.
+    projects.set('mautic', { ...PROJECTS.get('mautic'), stats: stats({ stars: 10787, checkedOn: '2026-08-01' }) });
+    projects.set('cheap', project('cheap', { stats: stats({ stars: 5 }) }));
+    const views = [view('a', { alternatives: [{ project: 'mautic', fit: 'partial' }, { project: 'cheap', fit: 'partial' }, { project: 'postal', fit: 'partial' }] })];
+    expect(categoryProjects(views, projects, TODAY).map((r) => r.project.slug)).toEqual(['cheap', 'mautic', 'postal']);
+  });
+
   it('n counts displayable projects only', () => {
     expect(doc.querySelector('title').textContent).toBe('4 Best Free & Open Source Newsletters & publishing Tools (2026)');
     expect(text(doc.querySelector('h1'))).toBe('4 Best Free & Open Source Newsletters & publishing Tools (2026)');

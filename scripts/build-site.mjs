@@ -13,7 +13,7 @@ import {
   categoriesForLang, topCategoriesByCount, langsForCategory, catalogueFigures, mrrDestroyed,
 } from './lib/site-data.mjs';
 import { fetchFavicons } from './lib/site-favicons.mjs';
-import { buildSitemap } from './lib/site-seo.mjs';
+import { buildSitemap, listSitemapEntries } from './lib/site-seo.mjs';
 import { renderHomePage } from './lib/site-page-home.mjs';
 import { renderCategoryPage, categoryProjects, categoryIndexable } from './lib/site-page-category.mjs';
 import { renderCategoriesIndexPage } from './lib/site-page-categories-index.mjs';
@@ -311,6 +311,9 @@ async function main() {
     );
     sitemapPages.push({ path: statsPath });
 
+    // Pages de liste (catégories, collections, hub) et leur porte D7.
+    const listPages = [];
+
     // Catégories
     for (const categorySlug of categorySlugs) {
       const catLangs = langsForCategory(tools, categorySlug);
@@ -327,11 +330,7 @@ async function main() {
       );
       // Moins de 3 éléments (SaaS et projets confondus) : noindex,follow,
       // hors sitemap (spec D7). L'URL, elle, ne change pas.
-      if (categoryIndexable(catToolViews, rankedByCategory.get(categorySlug))) {
-        sitemapPages.push({ path: catPath });
-      } else {
-        noindexListCount += 1;
-      }
+      listPages.push({ path: catPath, indexable: categoryIndexable(catToolViews, rankedByCategory.get(categorySlug)) });
       categoryPageCount += 1;
     }
 
@@ -348,8 +347,7 @@ async function main() {
           ui: langUi, alternates: colAlt, xDefaultPath: xDefaultOf(colAlt), homePath, sponsorSlots, buildDate: today,
         })
       );
-      if (indexable.list(items)) sitemapPages.push({ path: colPath });
-      else noindexListCount += 1;
+      listPages.push({ path: colPath, indexable: indexable.list(items) });
       collectionPageCount += 1;
     }
 
@@ -364,12 +362,12 @@ async function main() {
         ui: langUi, alternates: hubAlt, xDefaultPath: xDefaultOf(hubAlt), homePath, sponsorSlots, buildDate: today,
       })
     );
-    if (indexable.list(toolViews)) sitemapPages.push({ path: hubPath(lang) });
-    else noindexListCount += 1;
+    listPages.push({ path: hubPath(lang), indexable: indexable.list(toolViews) });
 
-    // « People also look for alternatives to… » : un seul classement par
-    // langue ; chaque fiche s’en retire elle-même (un de plus pour en garder 12).
-    const popularPool = popularAlternatives(toolViews, lang, POPULAR_LIMIT + 1);
+    // Pages de liste de la langue → sitemap, par la seule porte D7 testée
+    // (listSitemapEntries) : une page noindex n'y entre jamais.
+    sitemapPages.push(...listSitemapEntries(listPages));
+    noindexListCount += listPages.filter((page) => !page.indexable).length;
 
     // Fiches outil
     for (const tool of toolsForLang(tools, lang)) {
@@ -400,7 +398,9 @@ async function main() {
           // (spec D7) ; sinon la fiche renvoie au site du projet.
           projectIndexable: projectIndexableIn(lang),
           comparisons: comparisonsOf(lang, 'tool', tool.slug),
-          popularTools: popularPool.filter((other) => other.slug !== tool.slug).slice(0, POPULAR_LIMIT),
+          // « People also look for alternatives to… » : calculé par fiche,
+          // même catégorie d'abord, puis le classement global (Ruling 26).
+          popularTools: popularAlternatives(toolViews, lang, POPULAR_LIMIT, { current: tool }),
         })
       );
       // Une fiche est toujours dans le sitemap (Ruling 2), datée de son

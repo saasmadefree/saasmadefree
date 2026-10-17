@@ -241,29 +241,58 @@ describe('toolTitleVars', () => {
   });
 });
 
-describe('popularAlternatives', () => {
-  const t = (slug, pagePriority, names, markets = ['en', 'fr']) => ({ slug, pagePriority, markets, alternativeNames: names });
+describe('popularAlternatives (Ruling 26)', () => {
+  const t = (slug, pagePriority, names, over = {}) => ({
+    slug, pagePriority, markets: ['en', 'fr'], category: 'other', relatedSlugs: [], alternativeNames: names, ...over,
+  });
   const TOOLS = [
     t('a', 5, ['x']), t('b', 9, []), t('c', 5, ['x', 'y', 'z']), t('d', 5, ['x', 'y']),
-    t('e', 9, ['x']), t('f', 99, ['x'], ['fr']), t('g', 5, ['x', 'y']),
+    t('e', 9, ['x']), t('f', 99, ['x'], { markets: ['fr'] }), t('g', 5, ['x', 'y']),
+    t('m1', 1, [], { category: 'mail' }), t('m2', 3, [], { category: 'mail' }), t('m0', 3, [], { category: 'mail' }),
+    t('mfr', 50, [], { category: 'mail', markets: ['fr'] }),
   ];
+  const cur = (over = {}) => t('cur', 1, [], { category: 'mail', ...over });
 
-  it('sorted by pagePriority desc, then displayable alternative count desc, then slug', () => {
-    expect(popularAlternatives(TOOLS, 'en').map((x) => x.slug)).toEqual(['e', 'b', 'c', 'd', 'g', 'a']);
+  it('same category first (published in lang), by pagePriority desc then slug', () => {
+    expect(popularAlternatives(TOOLS, 'en', 3, { current: cur() }).map((x) => x.slug)).toEqual(['m0', 'm2', 'm1']);
+  });
+
+  it('then fills from the global ranking: pagePriority desc, alternative count desc, slug', () => {
+    expect(popularAlternatives(TOOLS, 'en', 12, { current: cur() }).map((x) => x.slug))
+      .toEqual(['m0', 'm2', 'm1', 'e', 'b', 'c', 'd', 'g', 'a']);
+  });
+
+  it('fills up to the limit, 12 by default', () => {
+    const many = Array.from({ length: 20 }, (_, i) => t(`t${String(i).padStart(2, '0')}`, 5, []));
+    expect(popularAlternatives(many, 'en', undefined, { current: cur() })).toHaveLength(12);
+  });
+
+  it('excludes the current tool and its relatedSlugs, in both passes', () => {
+    const current = cur({ slug: 'm2', relatedSlugs: ['m0', 'e'] });
+    const out = popularAlternatives([...TOOLS, current], 'en', 12, { current }).map((x) => x.slug);
+    expect(out).not.toContain('m2');
+    expect(out).not.toContain('m0');
+    expect(out).not.toContain('e');
+    expect(out[0]).toBe('m1');
+  });
+
+  it('never lists a tool twice', () => {
+    const out = popularAlternatives(TOOLS, 'en', 12, { current: cur() }).map((x) => x.slug);
+    expect(new Set(out).size).toBe(out.length);
   });
 
   it('only tools published in the language', () => {
-    expect(popularAlternatives(TOOLS, 'fr')[0].slug).toBe('f');
+    expect(popularAlternatives(TOOLS, 'fr', 1, { current: cur() })[0].slug).toBe('mfr');
+    expect(popularAlternatives(TOOLS, 'en', 12, { current: cur() }).map((x) => x.slug)).not.toContain('f');
   });
 
-  it('limit, 12 by default, and the current tool excluded', () => {
-    const many = Array.from({ length: 20 }, (_, i) => t(`t${String(i).padStart(2, '0')}`, 5, []));
-    expect(popularAlternatives(many, 'en')).toHaveLength(12);
-    expect(popularAlternatives(TOOLS, 'en', 2).map((x) => x.slug)).toEqual(['e', 'b']);
-    expect(popularAlternatives(TOOLS, 'en', 2, { exclude: 'e' }).map((x) => x.slug)).toEqual(['b', 'c']);
+  it('two tools of different categories get different lists', () => {
+    const a = popularAlternatives(TOOLS, 'en', 4, { current: cur() }).map((x) => x.slug);
+    const b = popularAlternatives(TOOLS, 'en', 4, { current: t('cur2', 1, [], { category: 'other' }) }).map((x) => x.slug);
+    expect(a).not.toEqual(b);
   });
 
-  it('accepts a Map', () => {
+  it('accepts a Map, and works without current', () => {
     expect(popularAlternatives(new Map(TOOLS.map((x) => [x.slug, x])), 'en', 1)[0].slug).toBe('e');
   });
 });

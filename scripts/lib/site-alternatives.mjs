@@ -181,24 +181,36 @@ export function toolTitleVars(tool, alts, buildDate) {
 export const POPULAR_LIMIT = 12;
 
 /**
- * Fiches du bloc « People also look for alternatives to… » en bas de chaque
- * fiche : les fiches publiées dans la langue, par `pagePriority` décroissant,
- * puis nombre d'alternatives affichables décroissant, puis slug (comparaison
- * binaire, même ordre sur toutes les machines). Le nombre d'alternatives est
- * lu sur `alternativeNames`, que buildToolViews (build-site.mjs) calcule
- * déjà avec alternativesFor : aucune deuxième résolution des projets ici.
+ * Fiches du bloc « People also look for alternatives to… » en bas d'une
+ * fiche (Ruling 26). D'abord les fiches de la MÊME catégorie publiées dans
+ * la langue, par `pagePriority` décroissant puis slug ; puis, pour arriver à
+ * `limit`, le classement global : `pagePriority` décroissant, nombre
+ * d'alternatives affichables décroissant, slug. Dans les deux passes, ni la
+ * fiche courante ni ses `relatedSlugs` (déjà liés juste au-dessus), et
+ * jamais deux fois la même fiche. Résultat : la liste change d'une
+ * catégorie à l'autre au lieu d'être la même sur toutes les fiches.
+ * Le nombre d'alternatives est lu sur `alternativeNames`, que
+ * buildToolViews (build-site.mjs) calcule déjà avec alternativesFor.
+ * Les slugs se comparent en binaire : même ordre sur toutes les machines.
  * @param {Map<string, object>|object[]} tools  vues de fiches (avec `markets`)
  * @param {string} lang
  * @param {number} [limit=12]
- * @param {{ exclude?: string }} [opts]  slug de la fiche courante, jamais listée
+ * @param {{ current?: { slug: string, category?: string, relatedSlugs?: string[] } }} [opts]
  * @returns {object[]}
  */
-export function popularAlternatives(tools, lang, limit = POPULAR_LIMIT, { exclude } = {}) {
+export function popularAlternatives(tools, lang, limit = POPULAR_LIMIT, { current } = {}) {
+  const bySlug = (a, b) => (a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0);
+  const priority = (tool) => tool.pagePriority ?? 0;
   const count = (tool) => tool.alternativeNames?.length ?? 0;
-  return valuesOf(tools)
-    .filter((tool) => tool.slug !== exclude && (tool.markets ?? []).includes(lang))
-    .sort((a, b) => (b.pagePriority ?? 0) - (a.pagePriority ?? 0)
-      || count(b) - count(a)
-      || (a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0))
-    .slice(0, limit);
+  const excluded = new Set([current?.slug, ...(current?.relatedSlugs ?? [])].filter(Boolean));
+  const pool = valuesOf(tools).filter((tool) => !excluded.has(tool.slug) && (tool.markets ?? []).includes(lang));
+
+  const sameCategory = current?.category
+    ? pool.filter((tool) => tool.category === current.category).sort((a, b) => priority(b) - priority(a) || bySlug(a, b))
+    : [];
+  const taken = new Set(sameCategory.slice(0, limit).map((tool) => tool.slug));
+  const global = pool
+    .filter((tool) => !taken.has(tool.slug))
+    .sort((a, b) => priority(b) - priority(a) || count(b) - count(a) || bySlug(a, b));
+  return [...sameCategory, ...global].slice(0, limit);
 }
