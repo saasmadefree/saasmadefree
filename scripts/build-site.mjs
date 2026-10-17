@@ -5,7 +5,7 @@
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { loadData } from './lib/load-data.mjs';
-import { alternativesFor, indexable, toolDateModified } from './lib/site-alternatives.mjs';
+import { alternativesFor, replacedTools, toolDateModified } from './lib/site-alternatives.mjs';
 import {
   SITE_ORIGIN, fetchVoteCounts, fetchStats, fetchSponsorSlots, siteLanguages, toolsForLang, sortTools,
   categoriesForLang, topCategoriesByCount, langsForCategory, catalogueFigures, mrrDestroyed,
@@ -17,6 +17,7 @@ import { renderCategoryPage } from './lib/site-page-category.mjs';
 import { renderCategoriesIndexPage } from './lib/site-page-categories-index.mjs';
 import { renderSponsorPage } from './lib/site-page-sponsor.mjs';
 import { renderToolPage } from './lib/site-page-tool.mjs';
+import { renderProjectPage, projectPages, relatedProjects, projectDateModified } from './lib/site-page-project.mjs';
 import { renderStatsPage } from './lib/site-page-stats.mjs';
 import { renderRootPage } from './lib/site-page-root.mjs';
 import { render404Page } from './lib/site-page-404.mjs';
@@ -169,6 +170,15 @@ async function main() {
   const homeXDefault = xDefaultOf(homeAlt);
   let toolPageCount = 0;
   let categoryPageCount = 0;
+  let projectPageCount = 0;
+
+  // Pages projet /{lang}/oss/{slug} : une par langue publiée où le texte
+  // existe (Ruling 20). Calculées une fois, AVANT les fiches : le lien d'une
+  // fiche vers une page projet se décide sur ce même ensemble, donc une fiche
+  // ne lie jamais une page absente ou gardée hors index.
+  const projectPlan = projectPages({ projects, projectI18n, tools, langs, today });
+  const indexableProjectPaths = new Set(projectPlan.filter((page) => page.indexable).map((page) => page.path));
+  const projectIndexableIn = (lang) => (project) => indexableProjectPaths.has(`/${lang}/oss/${project.slug}`);
 
   // Répartition des verdicts sur tout le catalogue — voir site-page-stats.mjs,
   // bloc « catalogue en chiffres » : un seul calcul, partagé par toutes les
@@ -316,7 +326,7 @@ async function main() {
           projects, projectI18n, today,
           // Lien vers /{lang}/oss/{slug} seulement si cette page est indexable
           // (spec D7) ; sinon la fiche renvoie au site du projet.
-          projectIndexable: (project) => indexable.project(project, lang, { projectI18n, tools, today }),
+          projectIndexable: projectIndexableIn(lang),
         })
       );
       // Une fiche est toujours dans le sitemap (Ruling 2), datée de son
@@ -324,6 +334,29 @@ async function main() {
       // WebPage.dateModified dans la page.
       sitemapPages.push({ path: toolPath, lastmod: toolDateModified(tool, alternativesFor(tool, projects, today)) });
       toolPageCount += 1;
+    }
+
+    // Pages projet de la langue. Une page non indexable (projet inactif, ou
+    // cité par aucune fiche) est écrite en noindex,follow et reste hors
+    // sitemap (spec D7).
+    for (const page of projectPlan.filter((entry) => entry.lang === lang)) {
+      const { project } = page;
+      const category = project.categories[0];
+      const html = renderProjectPage({
+        lang, path: page.path, project, i18nEntry: page.i18nEntry,
+        replaced: replacedTools(project.slug, tools),
+        related: relatedProjects(project, projects, today),
+        ui: langUi, alternates: page.alternates, xDefaultPath: page.xDefaultPath, homePath,
+        categories, categoryPath: categorySlugs.includes(category) ? `/${lang}/categories/${category}` : null,
+        buildDate: today, today, indexable: page.indexable,
+        projectIndexable: projectIndexableIn(lang), projectI18n, sponsorSlots,
+      });
+      await writeText(join(OUT, lang, 'oss', project.slug, 'index.html'), html);
+      if (page.indexable) {
+        const lastmod = projectDateModified(project);
+        sitemapPages.push(lastmod ? { path: page.path, lastmod } : { path: page.path });
+      }
+      projectPageCount += 1;
     }
   }
 
@@ -340,7 +373,8 @@ async function main() {
   await writeText(join(OUT, 'sitemap.xml'), buildSitemap(sitemapPages));
   console.log(
     `Site écrit dans ${OUT}/ — ${langs.length} langue(s), ${toolPageCount} fiche(s), ` +
-    `${categoryPageCount} page(s) de catégorie, ${sitemapPages.length} URL(s) dans le sitemap (${SITE_ORIGIN}).`
+    `${categoryPageCount} page(s) de catégorie, ${projectPageCount} page(s) projet, ` +
+    `${sitemapPages.length} URL(s) dans le sitemap (${SITE_ORIGIN}).`
   );
 }
 
