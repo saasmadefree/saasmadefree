@@ -1,9 +1,22 @@
 Fonts served by SaaS Made Free
 ==============================
 
-Both families below are licensed under the SIL Open Font License, Version 1.1,
+Every family below is licensed under the SIL Open Font License, Version 1.1,
 which permits self-hosting and redistribution with this notice. The files here
-are the unmodified woff2 subsets (latin, latin-ext) published by Google Fonts.
+are the unmodified woff2 subsets (latin) published by Google Fonts. None of
+these families declares a Reserved Font Name.
+
+Bricolage Grotesque — bricolage-grotesque-latin.woff2
+  (variable, weight axis 200–800, 96 pt optical size)
+  Copyright 2022 The Bricolage Grotesque Project Authors
+  https://github.com/ateliertriay/bricolage
+  SIL Open Font License 1.1 — full text in OFL-bricolage-grotesque.txt
+
+Atkinson Hyperlegible Next — atkinson-hyperlegible-next-latin.woff2
+  (variable, weight axis 200–800)
+  Copyright 2020-2024 The Atkinson Hyperlegible Next Project Authors
+  https://github.com/googlefonts/atkinson-hyperlegible-next
+  SIL Open Font License 1.1 — full text in OFL-atkinson-hyperlegible-next.txt
 
 Archivo — archivo-latin.woff2, archivo-latin-ext.woff2
   Copyright (c) Omnibus-Type
