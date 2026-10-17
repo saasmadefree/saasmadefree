@@ -1,6 +1,6 @@
 {
   "tagline": "AI calendar and task scheduler that auto-plans your workday.",
-  "verdictSummary": "A greedy auto-scheduler for your own tasks — read calendar availability, pack tasks into free slots by deadline and priority, write the plan back as calendar events — is a real weekend build. What doesn't come with it is robust conflict handling across multiple calendars, team scheduling, and the years of edge-case polish behind 'just replan when something changes.'",
+  "verdictSummary": "A greedy auto-scheduler for your own tasks — read calendar availability, pack tasks into free slots by deadline and priority, write the plan back as calendar events — is a real weekend build. What doesn't come with it is reliable conflict handling across multiple calendars, team scheduling, and the years of edge-case polish behind 'just replan when something changes.'",
   "coreLoopDIY": "A scheduler that reads your calendar's free/busy time, packs your tasks into available slots by deadline and priority within working hours, and writes the result back as clearly labeled calendar events.",
   "whatYouLose": [
     "multi-calendar sync",

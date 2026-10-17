@@ -3,7 +3,7 @@
   "verdictSummary": "Un crawler local configurable qui respecte le robots.txt, suit les liens, et fait ressortir les problèmes SEO techniques — liens cassés, métadonnées manquantes, titres dupliqués — est un vrai projet d’une session, et c’est explicitement pour des sites que tu possèdes ou que tu as la permission de crawler. Ce qui ne survit pas : des années de gestion de cas limites de crawl à travers le vrai web désordonné, la précision de rendu JavaScript à l’échelle, et une performance de bureau calibrée pour crawler des centaines de milliers d’URL.",
   "coreLoopDIY": "Crawle un site que l’utilisateur possède ou a une permission explicite de vérifier, en respectant le robots.txt et les limites de débit, extrais les signaux SEO on-page de chaque page, et exporte une liste priorisée de problèmes avec les URL affectées.",
   "whatYouLose": [
-    "des années de robustesse sur les cas limites de crawl",
+    "des années de durcissement face aux cas limites de crawl",
     "la précision de rendu JavaScript à vraie échelle",
     "la surveillance planifiée continue",
     "le reporting client de niveau agence"
