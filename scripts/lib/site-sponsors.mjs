@@ -9,7 +9,7 @@
 import { escapeHtml } from './site-html.mjs';
 import { PLACEHOLDER_PATH } from './site-favicons.mjs';
 import { normalizeDomain } from './validate-rules.mjs';
-import { formatMoney } from './site-format.mjs';
+import { formatMoney, pluralize } from './site-format.mjs';
 
 export const RAIL_SLOTS = ['L1', 'L2', 'L3', 'L4', 'L5', 'R1', 'R2', 'R3', 'R4', 'R5'];
 export const RAIL_LEFT_SLOTS = ['L1', 'L2', 'L3', 'L4', 'L5'];
@@ -334,6 +334,51 @@ export function renderTape(ctx) {
 }
 
 /**
+ * Le lien unique qui regroupe les places libres d'une zone de l'accueil
+ * (Ruling 14). Rien si la zone est pleine : jamais « 0 emplacement ». Le texte
+ * ne dit que le décompte — aucun mot « Sponsor », même règle que les cartes —
+ * et la cible est la page qui vend, celle des cartes « libres ».
+ */
+function renderAvailableLink(slots, ctx) {
+  const free = slots.filter((slot) => !isTaken(ctx, slot)).length;
+  if (free === 0) return '';
+  const s = ctx.strings;
+  const text = pluralize(free, ctx.lang, s.slotsAvailableOne, s.slotsAvailableOther);
+  return `<a class="sp-more" href="${escapeHtml(ctx.sponsorHref)}">${escapeHtml(text)}</a>`;
+}
+
+/**
+ * La rangée de l'accueil, sous le héros (spec D14 amendée, Ruling 14) : chaque
+ * emplacement latéral VENDU, avec la même carte que les rails (renderCard :
+ * mêmes UTM, même absence de marqueur), puis un seul lien vers /sponsor pour
+ * les places libres. « Vendu » se lit dans la même occupation que le reste du
+ * site (isTaken) : un emplacement payé dont la créa n'est pas encore commitée
+ * y figure, en carte « pris ».
+ */
+export function renderHomeRow(ctx) {
+  const cards = RAIL_SLOTS
+    .filter((slot) => isTaken(ctx, slot))
+    .map((slot) => renderCard(slot, ctx, ctx.prices.rail))
+    .join('');
+  return `<aside class="sp-fallback">`
+    + `<div class="sp-fallback-grid">${cards}${renderAvailableLink(RAIL_SLOTS, ctx)}</div></aside>`;
+}
+
+/**
+ * Le bandeau du bas de l'accueil, même règle que la rangée : les places
+ * vendues, puis un seul lien groupé. Il ne défile pas — il n'y a plus de piste
+ * à boucler, donc ni copie dupliquée ni animation.
+ */
+export function renderHomeTape(ctx) {
+  const items = TAPE_BOTTOM_SLOTS
+    .filter((slot) => isTaken(ctx, slot))
+    .map((slot) => renderTapeItem(slot, ctx, ctx.prices.bottom))
+    .join('');
+  return `<div class="sponsor-tape sp-bottom">`
+    + `<div class="sp-tape-static">${items}${renderAvailableLink(TAPE_BOTTOM_SLOTS, ctx)}</div></div>`;
+}
+
+/**
  * Tout le balisage sponsor d'une page, déjà rendu.
  *
  * C'est le seul point d'entrée utilisé par renderLayout : lui passer des chaînes
@@ -346,5 +391,8 @@ export function renderSponsorSlots(ctx) {
     railLeft: renderRail('left', ctx),
     railRight: renderRail('right', ctx),
     fallback: renderRailFallback(ctx),
+    // Variante de l'accueil : vendus + un lien groupé (Ruling 14).
+    homeRow: renderHomeRow(ctx),
+    homeTape: renderHomeTape(ctx),
   };
 }

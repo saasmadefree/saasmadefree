@@ -326,6 +326,8 @@ const SPONSOR_CSS = `.sp-rail{display:none}
 .sp-tape-item img{width:16px;height:16px;border-radius:50%}
 .sp-tape-tagline{color:var(--ink2)}
 .sp-tape-price{font-weight:700}
+.sp-tape-static{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) var(--s5);max-width:1080px;margin:0 auto;padding:var(--s3) 16px}
+.sp-more{font-size:.8125rem;font-weight:700}
 @media (min-width:84rem){.shell.has-rails{grid-template-columns:minmax(9rem,13rem) minmax(0,1fr) minmax(9rem,13rem);column-gap:var(--s5);padding-inline:var(--s5)}.has-rails .col-main{grid-column:2;grid-row:1}.sp-rail{display:flex;flex-direction:column;position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;padding-block:var(--s7)}.sp-left{grid-column:1;grid-row:1}.sp-right{grid-column:3;grid-row:1}.sp-rail .sp-card{padding:var(--s3) 0;border-top:1px solid var(--rule)}.has-rails .sp-fallback{display:none}}`;
 
 /* Pages existantes en attente de leur refonte (fiche actuelle avant A4,

@@ -137,9 +137,9 @@ ${cats}
  * verdicts, grille de cartes, puis alternatives populaires et catégories.
  *
  * Rien de ce que l'accueil affichait ne disparaît (spec D14) : toutes les
- * fiches publiées sont dans la grille, et tous les emplacements sponsor de la
- * page sont rendus — les dix emplacements latéraux passent des rails à la
- * rangée sous le héros, les dix places du bandeau restent en pied.
+ * fiches publiées sont dans la grille, et chaque placement sponsor vendu est
+ * rendu — les latéraux dans la rangée sous le héros, ceux du bandeau en pied,
+ * les places libres regroupées en un lien par zone (Ruling 14).
  *
  * @param {string} [opts.newsletter] - formulaire d'inscription déjà rendu
  *   (Task A9). Vide par défaut : sans clé SmartLetter, aucun formulaire n'est
@@ -155,12 +155,13 @@ export function renderHomePage({
   const grid = renderToolGrid(toolViews, { lang, ui, categories, voteCounts, favicons });
   const sub = interpolate(h.heroSub, { count: new Intl.NumberFormat(lang).format(toolViews.length) });
 
-  // Les emplacements latéraux quittent les rails pour la rangée sous le héros :
-  // la coquille reçoit le reste (bandeau du bas) sans rails ni repli, donc ne
-  // les rend pas une seconde fois.
-  const sponsorRow = sponsorSlots?.fallback ?? '';
+  // Sponsors de l'accueil (spec D14 amendée, Ruling 14) : chaque placement
+  // vendu, et les places libres regroupées en un seul lien par zone. Les
+  // emplacements latéraux passent des rails à la rangée sous le héros ; la
+  // coquille ne reçoit que le bandeau du bas, sans rails ni repli.
+  const sponsorRow = sponsorSlots?.homeRow ?? '';
   const layoutSlots = sponsorSlots
-    ? { ...sponsorSlots, railLeft: '', railRight: '', fallback: '' }
+    ? { tapeBottom: sponsorSlots.homeTape ?? '', railLeft: '', railRight: '', fallback: '' }
     : null;
 
   const main = `    <section class="hero">

@@ -281,7 +281,9 @@
       "buyErrorUnavailable": "{slot} — le paiement n’est pas disponible depuis cette page pour le moment. Écris-nous, on ouvre l’emplacement à la main.",
       "buyErrorStripe": "{slot} — le prestataire de paiement n’a pas répondu. Rien n’a été débité. Réessaie dans quelques minutes.",
       "buyError": "{slot} — la requête n’est pas passée. Rien n’a été débité. Réessaie, ou écris-nous.",
-      "paidReturnNote": "Tu reviens de la page de paiement. Si le paiement est passé, Stripe envoie le reçu par email ; cette page ne peut pas le confirmer. La validation est manuelle, et un placement refusé est remboursé en totalité."
+      "paidReturnNote": "Tu reviens de la page de paiement. Si le paiement est passé, Stripe envoie le reçu par email ; cette page ne peut pas le confirmer. La validation est manuelle, et un placement refusé est remboursé en totalité.",
+      "slotsAvailableOne": "{count} emplacement disponible",
+      "slotsAvailableOther": "{count} emplacements disponibles"
     }
   },
   "categoriesIndex": {

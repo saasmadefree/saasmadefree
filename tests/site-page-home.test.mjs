@@ -132,22 +132,62 @@ describe('accueil — liste D14', () => {
   });
 
   it('home renders every active sponsor placement', () => {
-    // Les dix emplacements latéraux passent dans la rangée sous le héros, une
-    // seule fois chacun ; les dix places du bandeau restent en pied.
-    const row = between('class="sp-fallback"', '</aside>');
-    for (const slot of RAIL_SLOTS) expect(row.split(`data-slot="${slot}"`).length - 1, slot).toBe(1);
-    for (const slot of TAPE_BOTTOM_SLOTS) expect(between('class="sponsor-tape')).toContain(`data-slot="${slot}"`);
-    // Chaque placement actif est rendu en carte vendue, avec son lien tracé.
+    // Ruling 14 (spec D14 amendée) : l'accueil montre CHAQUE placement vendu ;
+    // les places libres sont regroupées en UN lien vers /sponsor, par zone.
+    const row = between('<aside class="sp-fallback"', '</aside>');
+    const tape = between('<div class="sponsor-tape', '<script');
     for (const p of PLACEMENTS) {
-      expect(html, p.name).toContain(`>${p.name}</span>`);
-      expect(html).toContain(`utm_campaign=sponsor_${p.slot}`);
+      const zone = p.slot.startsWith('B') ? tape : row;
+      expect(zone, p.name).toContain(`data-slot="${p.slot}"`);
+      expect(zone, p.name).toContain(`>${p.name}</span>`);
+      expect(zone).toContain(`utm_campaign=sponsor_${p.slot}`);
     }
-    // La rangée vit sous le héros, avant la recherche ; plus de rails ni de doublon.
+    // Aucune carte de place libre, un seul lien groupé par zone, avec le décompte.
+    const sold = UI.en.site.sponsor;
+    for (const [zone, free] of [[row, 8], [tape, 9]]) {
+      expect(zone).not.toContain(escapeHtml(sold.openLabel));
+      expect(zone).not.toContain('class="sp-card open"');
+      expect(zone).not.toContain('sp-tape-item open');
+      expect(zone.match(/href="\/en\/sponsor"/g)).toHaveLength(1);
+      expect(zone).toContain(`>${escapeHtml(sold.slotsAvailableOther.replace('{count}', free))}</a>`);
+      // Le mot reste banni (Ruling 15) : ni en texte, ni en nom accessible.
+      expect(zone.replace(/<[^>]+>/g, ' ')).not.toMatch(/sponsor/i);
+      expect(zone).not.toContain('aria-label');
+    }
+    // Pas de doublon de la piste défilante sur l'accueil.
+    expect(tape.split('data-slot="B01"').length - 1).toBe(1);
+    // La rangée vit sous le héros, avant la recherche ; plus de rails.
     expect(html.indexOf('class="hero"')).toBeLessThan(html.indexOf('class="sp-fallback"'));
     expect(html.indexOf('class="sp-fallback"')).toBeLessThan(html.indexOf('id="q"'));
     expect(html).not.toContain('sp-rail');
     expect(html).toContain('<div class="shell">');
     expect(html.match(/class="sp-fallback"/g)).toHaveLength(1);
+  });
+
+  it('un emplacement payé sans créa commitée compte comme vendu, et aucun lien quand tout est pris', () => {
+    // Même occupation que le reste du site (mergeOccupancy) : un slot `paid`
+    // ou `reserved` dans la charge utile est pris, même sans placement.
+    const full = (slots) => Object.fromEntries(slots.map((slot) => [slot, { status: 'paid' }]));
+    const ctx = sponsorContext({
+      placements: PLACEMENTS, today: '2026-10-17', lang: 'en', ui: UI.en, favicons: {}, sponsorHref: '/en/sponsor',
+      liveSlots: full([...RAIL_SLOTS, ...TAPE_BOTTOM_SLOTS]),
+    });
+    const page = renderHome('en', { sponsorSlots: renderSponsorSlots(ctx) });
+    const row = between('<aside class="sp-fallback"', '</aside>', page);
+    const tape = between('<div class="sponsor-tape', '<script', page);
+    expect(row).not.toContain('class="sp-more"');
+    expect(tape).not.toContain('class="sp-more"');
+    for (const slot of RAIL_SLOTS) expect(row.split(`data-slot="${slot}"`).length - 1, slot).toBe(1);
+    for (const slot of TAPE_BOTTOM_SLOTS) expect(tape.split(`data-slot="${slot}"`).length - 1, slot).toBe(1);
+    expect(row).toContain(`class="sp-card taken" data-slot="L2"`);
+    // Une seule place libre : le libellé passe au singulier, en français aussi.
+    const one = sponsorContext({
+      placements: [], today: '2026-10-17', lang: 'fr', ui: UI.fr, favicons: {}, sponsorHref: '/fr/sponsor',
+      liveSlots: full(RAIL_SLOTS.slice(1)),
+    });
+    const fr = renderHome('fr', { sponsorSlots: renderSponsorSlots(one) });
+    expect(between('class="sp-fallback"', '</aside>', fr))
+      .toContain(`>${escapeHtml(UI.fr.site.sponsor.slotsAvailableOne.replace('{count}', 1))}</a>`);
   });
 
   it('no-JS: all cards visible', () => {
@@ -175,6 +215,8 @@ describe('accueil — liste D14', () => {
 
   it('recherche avec suggestions au-dessus des filtres', () => {
     expect(html.indexOf('id="q"')).toBeLessThan(html.indexOf('class="controls"'));
+    // Un champ sans <label> n'a pas de nom : l'étiquette reste, masquée à l'œil.
+    expect(html).toContain('<label for="q" class="visually-hidden">');
     for (const hook of ['id="search-panel"', 'id="search-clear"', 'data-view-all-template=', 'data-no-results=',
       'data-home-path="/en/"', 'role="combobox"']) {
       expect(html).toContain(hook);
