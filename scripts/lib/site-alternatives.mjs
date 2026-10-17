@@ -176,3 +176,29 @@ export function toolTitleVars(tool, alts, buildDate) {
   const n = alts.length;
   return { n, name: tool.name, year: buildDate.slice(0, 4), fallback: n < MIN_TITLE_ALTERNATIVES };
 }
+
+/** Nombre de fiches du bloc « People also look for alternatives to… ». */
+export const POPULAR_LIMIT = 12;
+
+/**
+ * Fiches du bloc « People also look for alternatives to… » en bas de chaque
+ * fiche : les fiches publiées dans la langue, par `pagePriority` décroissant,
+ * puis nombre d'alternatives affichables décroissant, puis slug (comparaison
+ * binaire, même ordre sur toutes les machines). Le nombre d'alternatives est
+ * lu sur `alternativeNames`, que buildToolViews (build-site.mjs) calcule
+ * déjà avec alternativesFor : aucune deuxième résolution des projets ici.
+ * @param {Map<string, object>|object[]} tools  vues de fiches (avec `markets`)
+ * @param {string} lang
+ * @param {number} [limit=12]
+ * @param {{ exclude?: string }} [opts]  slug de la fiche courante, jamais listée
+ * @returns {object[]}
+ */
+export function popularAlternatives(tools, lang, limit = POPULAR_LIMIT, { exclude } = {}) {
+  const count = (tool) => tool.alternativeNames?.length ?? 0;
+  return valuesOf(tools)
+    .filter((tool) => tool.slug !== exclude && (tool.markets ?? []).includes(lang))
+    .sort((a, b) => (b.pagePriority ?? 0) - (a.pagePriority ?? 0)
+      || count(b) - count(a)
+      || (a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0))
+    .slice(0, limit);
+}

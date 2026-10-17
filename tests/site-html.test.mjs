@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'node:fs';
 import {
   escapeHtml, jsonLdScript, languageName, renderBreadcrumb, verdictBadge,
   renderLayout, stamp, dateRing, verdictChecks,
@@ -198,5 +199,39 @@ describe('composants tampon', () => {
     expect(html.match(/class="check-item/g)).toHaveLength(3);
     expect(html).toContain('check-item is-checked');
     expect(html).toContain('<span class="visually-hidden"> (selected)</span>');
+  });
+});
+
+// Task A7 : le pied de page lie le hub A–Z et les deux collections, sur
+// toutes les pages, en en et fr — sans retirer aucun lien existant (D14).
+describe('renderLayout — pied de page, maillage A7', () => {
+  const realUi = (lang) => JSON.parse(readFileSync(`data/i18n/${lang}/ui.json`, 'utf8'));
+  const footerOf = (lang) => {
+    const html = renderLayout({ lang, path: `/${lang}/`, title: 't', description: 'd', main: '<h1>x</h1>', ui: realUi(lang), homeHref: `/${lang}/` });
+    return html.slice(html.indexOf('<footer'), html.indexOf('</footer>'));
+  };
+
+  for (const lang of ['en', 'fr']) {
+    it(`${lang} : liens vers le hub et les deux collections`, () => {
+      const f = realUi(lang).site.footer;
+      const footer = footerOf(lang);
+      expect(footer).toContain(`<a href="/${lang}/alternatives/">${escapeHtml(f.hub)}</a>`);
+      expect(footer).toContain(`<a href="/${lang}/collections/self-hosted">${escapeHtml(f.selfHosted)}</a>`);
+      expect(footer).toContain(`<a href="/${lang}/collections/build-tonight">${escapeHtml(f.buildTonight)}</a>`);
+    });
+
+    it(`${lang} : garde chaque lien existant`, () => {
+      const footer = footerOf(lang);
+      for (const href of ['https://github.com/saasmadefree/saasmadefree', `/${lang}/stats/`, '/privacy',
+        'mailto:privacy@saasmadefree.com', 'https://github.com/canivibecodeit/canivibecodeit']) {
+        expect(footer, href).toContain(`href="${href}"`);
+      }
+    });
+  }
+
+  it('une locale sans ces clés ne rend ni lien vide ni "undefined"', () => {
+    const html = renderLayout({ lang: 'en', path: '/en/', title: 't', description: 'd', main: '<h1>x</h1>', ui: dossierUi, homeHref: '/en/' });
+    expect(html).not.toContain('/en/alternatives/');
+    expect(html).not.toContain('undefined');
   });
 });

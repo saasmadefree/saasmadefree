@@ -241,8 +241,9 @@ ${items.join('\n')}
 /** Projets cités mais inactifs (archivés, ou sans commit depuis un an) :
  *  hors `n`, hors tableau, hors JSON-LD, mais toujours nommés, avec leur état
  *  en toutes lettres et un lien vers leur site (D14, Ruling 19). Une seule
- *  ligne discrète ; rien du tout s'il n'y en a pas. */
-function renderInactive(inactive, lang, t) {
+ *  ligne discrète ; rien du tout s'il n'y en a pas. Partagée avec la page de
+ *  catégorie. */
+export function renderInactive(inactive, lang, t) {
   if (inactive.length === 0) return '';
   const items = inactive.map(({ project, reason, lastCommit }) => {
     const status = reason === 'archived' || !lastCommit
@@ -436,6 +437,22 @@ ${cards.join('\n')}
     </section>`;
 }
 
+/** « People also look for alternatives to… » : des liens simples vers
+ *  d'autres fiches publiées dans la langue (popularAlternatives), juste
+ *  après « Related tools » (D14). La fiche courante n'y figure jamais. */
+function renderPopular({ popularTools, tool, t }) {
+  const items = (popularTools ?? []).filter((other) => other.slug !== tool.slug);
+  if (items.length === 0) return '';
+  return `
+
+    <section aria-labelledby="popular-heading">
+      <h2 id="popular-heading">${escapeHtml(t.popularHeading)}</h2>
+      <ul class="link-cloud">
+${items.map((other) => `        <li><a href="${escapeHtml(other.path)}">${escapeHtml(other.name)}</a></li>`).join('\n')}
+      </ul>
+    </section>`;
+}
+
 /**
  * Fiche outil, page « alternatives ».
  *
@@ -448,11 +465,13 @@ ${cards.join('\n')}
  *   chaque projet renvoie vers son site
  * @param {Array<{href:string,label:string}>} [opts.comparisons]  comparatifs générés
  *   dans la langue où l'outil figure (compareLinksFor) ; vide, aucune section
+ * @param {Array<{slug:string,name:string,path:string}>} [opts.popularTools]  bloc
+ *   « People also look for alternatives to… » (popularAlternatives) ; vide, aucune section
  */
 export function renderToolPage({
   lang, path, tool, i18nEntry, categories, ui, alternates, xDefaultPath, homePath,
   categoryPath, relatedTools, voteCount, favicons, agents, sponsorSlots, buildDate,
-  projects, projectI18n = new Map(), today, projectIndexable = () => false, comparisons = [],
+  projects, projectI18n = new Map(), today, projectIndexable = () => false, comparisons = [], popularTools = [],
 }) {
   const s = { ...ui.site, pricingBasis: ui.pricingBasis };
   const t = s.tool;
@@ -538,7 +557,7 @@ ${why}
 
 ${faq}
 
-${renderVote({ tool, lang, path, t, verdict, voteCount })}${renderRelated({ relatedTools, lang, s, t, categories, favicons })}${renderCompareLinks(comparisons, s.compare.linksHeading)}`;
+${renderVote({ tool, lang, path, t, verdict, voteCount })}${renderRelated({ relatedTools, lang, s, t, categories, favicons })}${renderPopular({ popularTools, tool, t })}${renderCompareLinks(comparisons, s.compare.linksHeading)}`;
 
   const itemList = alts.length === 0 ? [] : [softwareItemListJsonLd(alts.map(({ project }) => {
     const { href } = projectLink(project, lang, isIndexable);

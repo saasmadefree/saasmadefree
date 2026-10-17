@@ -46,7 +46,10 @@
       "privacy": "Confidentialité",
       "credit": "Catalogue fondé sur canivibecodeit",
       "stats": "Stats",
-      "promise": "SaaS Made Free est un guide open source des abonnements que tu pourrais arrêter de payer. Cette page ne charge rien depuis un autre site."
+      "promise": "SaaS Made Free est un guide open source des abonnements que tu pourrais arrêter de payer. Cette page ne charge rien depuis un autre site.",
+      "hub": "Alternatives de A à Z",
+      "selfHosted": "Alternatives auto-hébergées",
+      "buildTonight": "À construire ce soir"
     },
     "verdicts": {
       "yes": {
@@ -266,7 +269,8 @@
       "inactiveArchived": "archivé",
       "inactiveLastCommitTemplate": "dernier commit en {date}",
       "githubRepoTemplate": "GitHub : {repo}",
-      "priceSourceTemplate": "Source : {host}"
+      "priceSourceTemplate": "Source : {host}",
+      "popularHeading": "On cherche aussi des alternatives à…"
     },
     "project": {
       "titleTemplate": "{name} : alternative open source gratuite à {list} ({year})",
@@ -309,9 +313,20 @@
       "linksHeading": "Comparatifs"
     },
     "category": {
-      "titleTemplate": "Quels outils de {category} un agent IA peut-il remplacer ? — SaaS Made Free",
-      "metaDescriptionTemplate": "Quels outils de {category} un agent IA peut-il remplacer, et lesquels vaut-il mieux continuer à payer ?",
-      "heading": "Outils de la catégorie {category}"
+      "titleTemplate": "{category} : les {n} meilleurs outils gratuits et open source ({year})",
+      "titleFallbackTemplate": "{category} : outils gratuits et open source ({year})",
+      "metaDescriptionTemplate": "{n} outils gratuits et open source pour {category}, classés par adéquation puis par étoiles GitHub. Et quels SaaS un agent IA peut remplacer, ou lesquels continuer à payer.",
+      "metaDescriptionFallbackTemplate": "Des outils gratuits et open source pour {category}, classés par adéquation puis par étoiles GitHub. Et quels SaaS un agent IA peut remplacer, ou lesquels continuer à payer.",
+      "heading": "Outils payants de la catégorie {category}",
+      "saasIntro": "Ceux qu’un agent IA peut remplacer avec un seul prompt, et ceux qu’il vaut mieux continuer à payer.",
+      "projectsHeading": "Outils open source de la catégorie {category}",
+      "projectsIntro": "Classés selon la part du travail qu’ils font, puis par étoiles GitHub.",
+      "projectsCaption": "Outils open source de la catégorie {category}, le plus complet d’abord",
+      "colFit": "Meilleure adéquation",
+      "colReplaces": "Alternative à",
+      "noProjects": "Aucun outil open source listé pour l’instant dans {category}. Chaque outil payant ci-dessous a quand même son prompt pour construire le tien.",
+      "projectCountOne": "{count} projet open source",
+      "projectCountOther": "{count} projets open source"
     },
     "root": {
       "titleTag": "SaaS Made Free",
@@ -382,6 +397,33 @@
       "paidReturnNote": "Tu reviens de la page de paiement. Si le paiement est passé, Stripe envoie le reçu par email ; cette page ne peut pas le confirmer. La validation est manuelle, et un placement refusé est remboursé en totalité.",
       "slotsAvailableOne": "{count} emplacement disponible",
       "slotsAvailableOther": "{count} emplacements disponibles"
+    },
+    "collections": {
+      "self-hosted": {
+        "titleTemplate": "{n} SaaS avec une alternative gratuite à auto-héberger ({year})",
+        "titleFallbackTemplate": "SaaS avec une alternative gratuite à auto-héberger ({year})",
+        "metaDescriptionTemplate": "{n} outils payants que tu peux remplacer par un logiciel open source sur ton propre serveur. Chacun avec ses alternatives, son prix et un prompt pour construire le tien.",
+        "lede": "Chacun de ces outils payants a au moins une alternative gratuite et open source que tu peux faire tourner sur ton serveur. Ouvre une fiche pour les comparer."
+      },
+      "build-tonight": {
+        "titleTemplate": "{n} SaaS que tu peux remplacer avec un seul prompt ({year})",
+        "titleFallbackTemplate": "SaaS que tu peux remplacer avec un seul prompt ({year})",
+        "metaDescriptionTemplate": "{n} outils payants qu’un agent IA peut refaire à partir d’un seul prompt, en une séance ou un week-end. Chacun avec son prix et le prompt à copier.",
+        "lede": "Verdict oui, et un temps de fabrication d’une séance ou d’un week-end. Copie le prompt, donne-le à Claude, Cursor ou ChatGPT, et arrête de payer."
+      },
+      "countOne": "{count} outil",
+      "countOther": "{count} outils",
+      "empty": "Aucun outil ne remplit encore ces conditions."
+    },
+    "hub": {
+      "titleTemplate": "Alternatives gratuites et open source à {n} SaaS, de A à Z ({year})",
+      "metaDescriptionTemplate": "Tous les outils payants de l’annuaire, de A à Z, avec le nombre d’alternatives gratuites et open source listées pour chacun.",
+      "h1": "Les alternatives, de A à Z",
+      "lede": "Tous les outils payants qu’on couvre, avec le nombre d’alternatives gratuites et open source qu’on liste. Choisis une lettre.",
+      "lettersLabel": "Aller à une lettre",
+      "altCountOne": "{count} alternative",
+      "altCountOther": "{count} alternatives",
+      "altCountNone": "à construire toi-même"
     }
   },
   "categoriesIndex": {

@@ -46,7 +46,10 @@
       "privacy": "Privacy",
       "credit": "Catalogue based on canivibecodeit",
       "stats": "Stats",
-      "promise": "SaaS Made Free is an open-source guide to the subscriptions you could stop paying for. This page loads nothing from anyone else."
+      "promise": "SaaS Made Free is an open-source guide to the subscriptions you could stop paying for. This page loads nothing from anyone else.",
+      "hub": "Alternatives A–Z",
+      "selfHosted": "Self-hosted alternatives",
+      "buildTonight": "Build it tonight"
     },
     "verdicts": {
       "yes": {
@@ -266,7 +269,8 @@
       "inactiveArchived": "archived",
       "inactiveLastCommitTemplate": "last commit {date}",
       "githubRepoTemplate": "GitHub: {repo}",
-      "priceSourceTemplate": "Source: {host}"
+      "priceSourceTemplate": "Source: {host}",
+      "popularHeading": "People also look for alternatives to…"
     },
     "project": {
       "titleTemplate": "{name}: Free Open Source Alternative to {list} ({year})",
@@ -309,9 +313,20 @@
       "linksHeading": "Comparisons"
     },
     "category": {
-      "titleTemplate": "Which {category} tools can a coding agent replace? — SaaS Made Free",
-      "metaDescriptionTemplate": "Which {category} tools can a coding agent replace, and which should you keep paying for?",
-      "heading": "Tools in {category}"
+      "titleTemplate": "{n} Best Free & Open Source {category} Tools ({year})",
+      "titleFallbackTemplate": "Free & Open Source {category} Tools ({year})",
+      "metaDescriptionTemplate": "{n} free and open source {category} tools, ranked by fit and GitHub stars. Plus which {category} SaaS a coding agent can replace, and which to keep paying for.",
+      "metaDescriptionFallbackTemplate": "Free and open source {category} tools, ranked by fit and GitHub stars. Plus which {category} SaaS a coding agent can replace, and which to keep paying for.",
+      "heading": "Paid tools in {category}",
+      "saasIntro": "Which ones a coding agent can replace from one prompt, and which to keep paying for.",
+      "projectsHeading": "Open source {category} tools",
+      "projectsIntro": "Ranked by how much of the job they do, then by GitHub stars.",
+      "projectsCaption": "Open source {category} tools, best fit first",
+      "colFit": "Best fit",
+      "colReplaces": "Alternative to",
+      "noProjects": "No open source {category} tool listed yet. Each paid tool below still comes with a prompt to build your own.",
+      "projectCountOne": "{count} open source project",
+      "projectCountOther": "{count} open source projects"
     },
     "root": {
       "titleTag": "SaaS Made Free",
@@ -382,6 +397,33 @@
       "paidReturnNote": "You are back from the payment page. If the payment went through, Stripe sends the receipt by email; this page cannot confirm it. Approval is manual, and a refused placement is refunded in full.",
       "slotsAvailableOne": "{count} slot available",
       "slotsAvailableOther": "{count} slots available"
+    },
+    "collections": {
+      "self-hosted": {
+        "titleTemplate": "{n} SaaS With a Free Self-Hosted Alternative ({year})",
+        "titleFallbackTemplate": "SaaS With a Free Self-Hosted Alternative ({year})",
+        "metaDescriptionTemplate": "{n} paid tools you can swap for open source software on your own server. Each one with its alternatives, its price and a prompt to build your own.",
+        "lede": "Each of these paid tools has at least one free, open source alternative you can run on your own server. Open a tool to see them side by side."
+      },
+      "build-tonight": {
+        "titleTemplate": "{n} SaaS You Can Replace With One Prompt ({year})",
+        "titleFallbackTemplate": "SaaS You Can Replace With One Prompt ({year})",
+        "metaDescriptionTemplate": "{n} paid tools a coding agent can rebuild from one prompt, in one sitting or a weekend. Each one with its price and the prompt to copy.",
+        "lede": "Verdict yes, and a build time of one sitting or a weekend. Copy the prompt, give it to Claude, Cursor or ChatGPT, and stop paying."
+      },
+      "countOne": "{count} tool",
+      "countOther": "{count} tools",
+      "empty": "No tool fits this list yet."
+    },
+    "hub": {
+      "titleTemplate": "Free & Open Source Alternatives to {n} SaaS, A to Z ({year})",
+      "metaDescriptionTemplate": "Every paid tool in the directory, A to Z, with how many free and open source alternatives we list for each.",
+      "h1": "Alternatives, A to Z",
+      "lede": "Every paid tool we cover, with the number of free and open source alternatives we list. Pick a letter.",
+      "lettersLabel": "Jump to a letter",
+      "altCountOne": "{count} alternative",
+      "altCountOther": "{count} alternatives",
+      "altCountNone": "build it yourself"
     }
   },
   "categoriesIndex": {

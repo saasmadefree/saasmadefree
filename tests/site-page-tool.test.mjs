@@ -646,3 +646,37 @@ describe('fiche « alternatives » — invariants conservés', () => {
     expect(fr.querySelector('a[href="/fr/oss/listmonk"]')).not.toBeNull();
   });
 });
+
+// ---------------------------------------------------------------------------
+// Task A7, Step 4 — « People also look for alternatives to… »
+// ---------------------------------------------------------------------------
+describe('fiche — People also look for alternatives to…', () => {
+  const popular = Array.from({ length: 12 }, (_, i) => ({ slug: `p${i}`, name: `Popular ${i}`, path: `/en/tools/p${i}` }));
+
+  it('renders after Related tools, one link per tool, 12 tools', () => {
+    const h = render({ popularTools: popular });
+    const d = dom(h);
+    const sec = section(d, 'popular-heading');
+    expect(text(sec.querySelector('h2'))).toBe(t.popularHeading);
+    const links = [...sec.querySelectorAll('ul.link-cloud a')];
+    expect(links).toHaveLength(12);
+    expect(links[0].getAttribute('href')).toBe('/en/tools/p0');
+    expect(text(links[0])).toBe('Popular 0');
+    expect(h.indexOf('id="popular-heading"')).toBeGreaterThan(h.indexOf('id="related-heading"'));
+  });
+
+  it('nothing at all without popular tools', () => {
+    expect(html).not.toContain('popular-heading');
+  });
+
+  it('never links the current tool, even if passed', () => {
+    const d = dom(render({ popularTools: [{ slug: 'mailchimp', name: 'Mailchimp', path: '/en/tools/mailchimp' }, ...popular.slice(0, 2)] }));
+    expect([...section(d, 'popular-heading').querySelectorAll('a')].map((a) => a.getAttribute('href')))
+      .toEqual(['/en/tools/p0', '/en/tools/p1']);
+  });
+
+  it('French heading', () => {
+    const d = dom(render({ lang: 'fr', popularTools: popular }));
+    expect(text(section(d, 'popular-heading').querySelector('h2'))).toBe('On cherche aussi des alternatives à…');
+  });
+});

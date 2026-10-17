@@ -223,6 +223,19 @@ export function renderLayout({
     ? `\n        <p>${escapeHtml(ui.site.footer.promise)}</p>`
     : '';
 
+  // Maillage A7 : le hub A–Z et les deux collections, sur toutes les pages.
+  // Seulement si la locale porte le libellé (les langues non publiées ont un
+  // bloc `site` réduit) : jamais un lien sans texte.
+  const footer = ui.site.footer ?? {};
+  const meshLinks = [
+    [`/${lang}/alternatives/`, footer.hub],
+    [`/${lang}/collections/self-hosted`, footer.selfHosted],
+    [`/${lang}/collections/build-tonight`, footer.buildTonight],
+  ]
+    .filter(([, label]) => label)
+    .map(([href, label]) => `\n          <a href="${href}">${escapeHtml(label)}</a>`)
+    .join('');
+
   return `<!doctype html>
 <html lang="${lang}">
 <head>
@@ -254,7 +267,7 @@ ${main}
       <footer class="site-footer">${promise}
         <p class="foot-links">
           <a href="${GITHUB_REPO_URL}">${escapeHtml(ui.site.footer.source)}</a>
-          <a href="/${lang}/stats/">${escapeHtml(ui.site.footer.stats)}</a>
+          <a href="/${lang}/stats/">${escapeHtml(ui.site.footer.stats)}</a>${meshLinks}
           <a href="/privacy">${escapeHtml(ui.site.footer.privacy)}</a>
           <a href="mailto:privacy@saasmadefree.com">privacy@saasmadefree.com</a>
           <a class="credit" href="https://github.com/canivibecodeit/canivibecodeit" rel="noopener">${escapeHtml(ui.site.footer.credit ?? "")}</a>

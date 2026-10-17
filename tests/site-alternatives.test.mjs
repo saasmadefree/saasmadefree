@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   isDisplayableProject, statsAreFresh, alternativesFor, replacedTools,
   indexable, toolTitleVars, toolDateModified, inactiveAlternativesFor, STATS_MAX_AGE_DAYS, PROJECT_MAX_IDLE_DAYS,
+  popularAlternatives,
 } from '../scripts/lib/site-alternatives.mjs';
 
 const today = '2026-10-17';
@@ -237,5 +238,32 @@ describe('toolTitleVars', () => {
   it('3 alternatives affichables → titre normal, année tirée de buildDate', () => {
     const t = tool('notion', { name: 'Notion' });
     expect(toolTitleVars(t, [{}, {}, {}], '2027-01-02')).toEqual({ n: 3, name: 'Notion', year: '2027', fallback: false });
+  });
+});
+
+describe('popularAlternatives', () => {
+  const t = (slug, pagePriority, names, markets = ['en', 'fr']) => ({ slug, pagePriority, markets, alternativeNames: names });
+  const TOOLS = [
+    t('a', 5, ['x']), t('b', 9, []), t('c', 5, ['x', 'y', 'z']), t('d', 5, ['x', 'y']),
+    t('e', 9, ['x']), t('f', 99, ['x'], ['fr']), t('g', 5, ['x', 'y']),
+  ];
+
+  it('sorted by pagePriority desc, then displayable alternative count desc, then slug', () => {
+    expect(popularAlternatives(TOOLS, 'en').map((x) => x.slug)).toEqual(['e', 'b', 'c', 'd', 'g', 'a']);
+  });
+
+  it('only tools published in the language', () => {
+    expect(popularAlternatives(TOOLS, 'fr')[0].slug).toBe('f');
+  });
+
+  it('limit, 12 by default, and the current tool excluded', () => {
+    const many = Array.from({ length: 20 }, (_, i) => t(`t${String(i).padStart(2, '0')}`, 5, []));
+    expect(popularAlternatives(many, 'en')).toHaveLength(12);
+    expect(popularAlternatives(TOOLS, 'en', 2).map((x) => x.slug)).toEqual(['e', 'b']);
+    expect(popularAlternatives(TOOLS, 'en', 2, { exclude: 'e' }).map((x) => x.slug)).toEqual(['b', 'c']);
+  });
+
+  it('accepts a Map', () => {
+    expect(popularAlternatives(new Map(TOOLS.map((x) => [x.slug, x])), 'en', 1)[0].slug).toBe('e');
   });
 });
