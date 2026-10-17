@@ -103,6 +103,48 @@ export function breadcrumbJsonLd(items) {
 }
 
 /**
+ * Versions de langue d'une page : une entrée par langue où la page est
+ * générée, avec sa porte D7. C'est la forme que toutes les pages passent en
+ * `alternates` à renderLayout, qui en tire le sélecteur de langue (toutes les
+ * versions générées) et le hreflang (les seules versions indexables, voir
+ * hreflangFor).
+ * @param {string[]} langs  langues où la page est générée
+ * @param {(lang: string) => string} pathOf
+ * @param {(lang: string) => boolean} [indexableOf]  porte de chaque version ; toujours vraie par défaut
+ * @returns {Array<{ lang: string, path: string, indexable: boolean }>}
+ */
+export function languageVersions(langs, pathOf, indexableOf = () => true) {
+  return langs.map((lang) => ({ lang, path: pathOf(lang), indexable: indexableOf(lang) === true }));
+}
+
+/**
+ * Règle hreflang unique de tout le site (Ruling 29). Les liens hreflang ne
+ * relient que des versions générées ET indexables :
+ * - une version noindex (robots contient « noindex ») ne porte aucun lien,
+ *   ni x-default ;
+ * - une version indexable ne cite que les versions indexables, elle comprise ;
+ * - x-default = la version en si elle est indexable, sinon la première
+ *   version indexable. Un `xDefaultPath` demandé n'est gardé que s'il vise
+ *   une de ces versions.
+ * Une version sans porte décidée (`indexable` absent) compte comme
+ * indexable : les fiches et l'accueil le sont toujours (Ruling 2).
+ * Comme toutes les versions d'une page reçoivent les mêmes `alternates`, la
+ * relation est symétrique : si A cite B, B cite A.
+ * @param {{ alternates?: Array<{lang:string,path:string,indexable?:boolean}>,
+ *   xDefaultPath?: string|null, robots?: string|null }} opts
+ * @returns {{ links: Array<{lang:string,path:string}>, xDefault: string|null }}
+ */
+export function hreflangFor({ alternates = [], xDefaultPath = null, robots = null }) {
+  if (robots && /noindex/i.test(robots)) return { links: [], xDefault: null };
+  const links = alternates.filter((a) => a.indexable !== false).map(({ lang, path }) => ({ lang, path }));
+  if (links.length === 0) return { links: [], xDefault: null };
+  const xDefault = xDefaultPath && links.some((l) => l.path === xDefaultPath)
+    ? xDefaultPath
+    : (links.find((l) => l.lang === 'en') ?? links[0]).path;
+  return { links, xDefault };
+}
+
+/**
  * Entrées de sitemap d'une série de pages dont la porte D7 a été décidée
  * (catégories, collections, hub) : seules les pages indexables y entrent ;
  * une page noindex,follow reste hors sitemap. Une page sans décision

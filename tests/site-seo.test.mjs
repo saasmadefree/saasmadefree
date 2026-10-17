@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   organizationJsonLd, websiteJsonLd, itemListJsonLd, faqPageJsonLd,
   breadcrumbJsonLd, buildSitemap, softwareItemListJsonLd, webPageJsonLd, listSitemapEntries,
+  languageVersions, hreflangFor,
 } from '../scripts/lib/site-seo.mjs';
 
 describe('organizationJsonLd', () => {
@@ -114,5 +115,63 @@ describe('listSitemapEntries', () => {
 
   it('refuses a page whose gate was not decided', () => {
     expect(() => listSitemapEntries([{ path: '/en/x' }])).toThrow(/indexable/);
+  });
+});
+
+// Ruling 29 : une seule règle hreflang pour tous les types de page. Seules
+// les versions générées ET indexables s'annoncent entre elles ; une version
+// noindex ne porte aucun lien et n'est citée par aucune autre langue.
+describe('languageVersions + hreflangFor', () => {
+  // Fixture : la collection existe en en et fr, mais la version fr a moins
+  // de 3 éléments, donc elle est noindex.
+  const versions = languageVersions(['en', 'fr'], (l) => `/${l}/collections/self-hosted`, (l) => l === 'en');
+
+  it('décrit chaque version générée avec sa porte', () => {
+    expect(versions).toEqual([
+      { lang: 'en', path: '/en/collections/self-hosted', indexable: true },
+      { lang: 'fr', path: '/fr/collections/self-hosted', indexable: false },
+    ]);
+  });
+
+  it('la version indexable ne cite pas la version noindex', () => {
+    const { links, xDefault } = hreflangFor({ alternates: versions, robots: null });
+    expect(links).toEqual([{ lang: 'en', path: '/en/collections/self-hosted' }]);
+    expect(xDefault).toBe('/en/collections/self-hosted');
+  });
+
+  it('la version noindex ne porte aucun lien hreflang, ni x-default', () => {
+    expect(hreflangFor({ alternates: versions, robots: 'noindex,follow' })).toEqual({ links: [], xDefault: null });
+  });
+
+  it('x-default = en tant que en est indexable, sinon la première version indexable', () => {
+    const enOff = languageVersions(['en', 'fr', 'de'], (l) => `/${l}/x`, (l) => l !== 'en');
+    expect(hreflangFor({ alternates: enOff }).xDefault).toBe('/fr/x');
+    const all = languageVersions(['fr', 'en'], (l) => `/${l}/x`);
+    expect(hreflangFor({ alternates: all }).xDefault).toBe('/en/x');
+  });
+
+  it('un x-default demandé hors des versions indexables est ignoré', () => {
+    const { xDefault } = hreflangFor({ alternates: versions, xDefaultPath: '/fr/collections/self-hosted' });
+    expect(xDefault).toBe('/en/collections/self-hosted');
+  });
+
+  it('une version sans porte décidée compte comme indexable (fiches, accueil)', () => {
+    const { links } = hreflangFor({ alternates: [{ lang: 'en', path: '/en/' }, { lang: 'fr', path: '/fr/' }] });
+    expect(links.map((l) => l.lang)).toEqual(['en', 'fr']);
+  });
+
+  it('aucune version : aucun lien', () => {
+    expect(hreflangFor({ alternates: [] })).toEqual({ links: [], xDefault: null });
+  });
+
+  it('symétrie : si A cite B, alors B cite A', () => {
+    const many = languageVersions(['en', 'fr', 'de'], (l) => `/${l}/y`, (l) => l !== 'de');
+    const cited = new Map(many.map((v) => [v.lang, hreflangFor({
+      alternates: many, robots: v.indexable ? null : 'noindex,follow',
+    }).links.map((l) => l.lang)]));
+    for (const [from, tos] of cited) {
+      for (const to of tos) expect(cited.get(to)).toContain(from);
+    }
+    expect(cited.get('de')).toEqual([]);
   });
 });

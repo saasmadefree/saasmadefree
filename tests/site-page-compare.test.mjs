@@ -160,7 +160,7 @@ describe('buildComparePages — ensemble des pages', () => {
     ]);
     expect(PLAN.some((p) => p.key === 'mailchimp-vs-mautic')).toBe(false);
     // La langue sans texte sort aussi des hreflang.
-    expect(planFor('en', 'listmonk-vs-keila').alternates).toEqual([{ lang: 'en', path: '/en/compare/listmonk-vs-keila' }]);
+    expect(planFor('en', 'listmonk-vs-keila').alternates).toEqual([{ lang: 'en', path: '/en/compare/listmonk-vs-keila', indexable: true }]);
     expect(planFor('fr', 'mailchimp-vs-listmonk').alternates.map((a) => a.lang)).toEqual(['en', 'fr']);
     expect(planFor('fr', 'mailchimp-vs-listmonk').xDefaultPath).toBe('/en/compare/mailchimp-vs-listmonk');
     // Et le gabarit, sans texte, ne rend rien.
@@ -172,7 +172,7 @@ describe('buildComparePages — ensemble des pages', () => {
     expect(COMPARE_I18N.has('fr/substack-vs-postal')).toBe(true);
     expect(planFor('fr', 'substack-vs-postal')).toBeUndefined();
     const en = planFor('en', 'substack-vs-postal');
-    expect(en.alternates).toEqual([{ lang: 'en', path: '/en/compare/substack-vs-postal' }]);
+    expect(en.alternates).toEqual([{ lang: 'en', path: '/en/compare/substack-vs-postal', indexable: true }]);
     expect(en.xDefaultPath).toBe('/en/compare/substack-vs-postal');
     // Ni lien français depuis la page projet de Postal, ni depuis aucune fiche.
     expect(compareLinksFor(PLAN, { lang: 'fr', kind: 'project', slug: 'postal', ui: UI.fr })).toEqual([]);

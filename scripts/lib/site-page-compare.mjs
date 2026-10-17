@@ -2,7 +2,7 @@ import { escapeHtml, renderLayout, renderBreadcrumb, verdictBadge } from './site
 import { categoryLabel, SITE_ORIGIN } from './site-data.mjs';
 import { formatMoney, formatMonthlyPrice, formatDate, interpolate, MONTHLY_BASES } from './site-format.mjs';
 import {
-  organizationJsonLd, breadcrumbJsonLd, faqPageJsonLd, softwareItemListJsonLd, webPageJsonLd,
+  organizationJsonLd, breadcrumbJsonLd, faqPageJsonLd, softwareItemListJsonLd, webPageJsonLd, languageVersions,
 } from './site-seo.mjs';
 import { indexable as gates, isDisplayableProject, statsAreFresh } from './site-alternatives.mjs';
 import { compareKey } from './validate-rules.mjs';
@@ -55,7 +55,7 @@ function isInactive(side, today) {
  *   projects: Map<string, object>, langs: string[], today: string }} ctx
  * @returns {Array<{ lang: string, key: string, path: string, pair: object,
  *   left: {kind:'tool'|'project', entity: object}, right: {kind:'tool'|'project', entity: object},
- *   i18nEntry: object, alternates: Array<{lang:string,path:string}>, xDefaultPath: string,
+ *   i18nEntry: object, alternates: Array<{lang:string,path:string,indexable:boolean}>, xDefaultPath: string,
  *   indexable: boolean, inactive: object[] }>}
  */
 export function buildComparePages({ compare, compareI18n, tools, projects, langs, today }) {
@@ -75,14 +75,18 @@ export function buildComparePages({ compare, compareI18n, tools, projects, langs
     const written = langs.filter((lang) => compareI18n.has(`${lang}/${key}`)
       && [left, right].every((side) => side.kind !== 'tool' || side.entity.markets?.includes(lang)));
     if (written.length === 0) continue;
-    const alternates = written.map((lang) => ({ lang, path: comparePath(lang, pair.a, pair.b) }));
-    const xDefaultPath = (alternates.find((a) => a.lang === 'en') ?? alternates[0]).path;
     const inactive = [left, right].filter((side) => isInactive(side, today)).map((side) => side.entity);
-    for (const { lang, path } of alternates) {
+    // Chaque version porte sa porte D7 : renderLayout n'annonce en hreflang
+    // que les versions indexables (Ruling 29).
+    const alternates = languageVersions(
+      written, (lang) => comparePath(lang, pair.a, pair.b),
+      (lang) => gates.compare(pair, lang, { compareI18n }) && inactive.length === 0,
+    );
+    const xDefaultPath = (alternates.find((a) => a.lang === 'en') ?? alternates[0]).path;
+    for (const { lang, path, indexable } of alternates) {
       pages.push({
-        lang, key, path, pair, left, right, alternates, xDefaultPath, inactive,
+        lang, key, path, pair, left, right, alternates, xDefaultPath, inactive, indexable,
         i18nEntry: compareI18n.get(`${lang}/${key}`),
-        indexable: gates.compare(pair, lang, { compareI18n }) && inactive.length === 0,
       });
     }
   }

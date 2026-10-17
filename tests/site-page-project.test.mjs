@@ -433,7 +433,7 @@ describe('renderProjectPage — langue sans texte', () => {
     // Sans texte dans la langue, la page n'est pas générée du tout.
     expect(render('mautic', 'fr', { i18nEntry: undefined })).toBeNull();
     expect(planFor('fr', 'mautic')).toBeUndefined();
-    expect(planFor('en', 'mautic').alternates).toEqual([{ lang: 'en', path: '/en/oss/mautic' }]);
+    expect(planFor('en', 'mautic').alternates).toEqual([{ lang: 'en', path: '/en/oss/mautic', indexable: true }]);
   });
 });
 
@@ -481,7 +481,7 @@ describe('projectPages — ensemble des pages et cohérence avec les fiches', ()
     expect(planFor('en', 'ghosted').indexable).toBe(false);
     expect(planFor('en', 'sendy').indexable).toBe(false);
     expect(planFor('en', 'listmonk').indexable).toBe(true);
-    expect(planFor('en', 'listmonk').alternates).toEqual([{ lang: 'en', path: '/en/oss/listmonk' }, { lang: 'fr', path: '/fr/oss/listmonk' }]);
+    expect(planFor('en', 'listmonk').alternates).toEqual([{ lang: 'en', path: '/en/oss/listmonk', indexable: true }, { lang: 'fr', path: '/fr/oss/listmonk', indexable: true }]);
     expect(planFor('fr', 'listmonk').xDefaultPath).toBe('/en/oss/listmonk');
   });
 

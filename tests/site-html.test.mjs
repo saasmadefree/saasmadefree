@@ -152,6 +152,39 @@ describe('renderLayout — chrome du dossier', () => {
   });
 });
 
+// Ruling 29 : fixture où la version fr est noindex. Le sélecteur de langue
+// garde toutes les versions générées (spec D14) ; seul le hreflang se
+// restreint aux versions indexables.
+describe('renderLayout — hreflang quand une version est noindex', () => {
+  const alternates = [
+    { lang: 'en', path: '/en/collections/self-hosted', indexable: true },
+    { lang: 'fr', path: '/fr/collections/self-hosted', indexable: false },
+  ];
+  const base = { title: 't', description: 'd', main: '<h1>x</h1>', ui: dossierUi, alternates };
+  const en = renderLayout({ ...base, lang: 'en', path: '/en/collections/self-hosted', homeHref: '/en/' });
+  const fr = renderLayout({
+    ...base, lang: 'fr', path: '/fr/collections/self-hosted', homeHref: '/fr/', robots: 'noindex,follow',
+  });
+  const hreflangs = (html) => [...html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">/g)]
+    .map((m) => [m[1], m[2]]);
+
+  it('la version indexable ne cite que les versions indexables', () => {
+    expect(hreflangs(en)).toEqual([
+      ['en', 'https://saasmadefree.com/en/collections/self-hosted'],
+      ['x-default', 'https://saasmadefree.com/en/collections/self-hosted'],
+    ]);
+  });
+
+  it('la version noindex ne porte aucun hreflang', () => {
+    expect(hreflangs(fr)).toEqual([]);
+  });
+
+  it('le sélecteur de langue garde les deux versions générées', () => {
+    expect(en).toContain('<a href="/fr/collections/self-hosted" hreflang="fr"');
+    expect(fr).toContain('<a href="/en/collections/self-hosted" hreflang="en"');
+  });
+});
+
 describe('renderLayout — locale réduite (site sans dossier)', () => {
   // Une locale non publiée (page /stats en 7 langues) réduit ui.site à
   // {footer, stats} : ni le bandeau ni le monogramme ne doivent supposer que

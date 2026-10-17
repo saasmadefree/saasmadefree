@@ -2,7 +2,7 @@ import { escapeHtml, renderLayout, renderBreadcrumb, verdictBadge } from './site
 import { categoryLabel, SITE_ORIGIN } from './site-data.mjs';
 import { formatMonthlyPrice, formatDate, interpolate } from './site-format.mjs';
 import {
-  organizationJsonLd, breadcrumbJsonLd, softwareItemListJsonLd, webPageJsonLd,
+  organizationJsonLd, breadcrumbJsonLd, softwareItemListJsonLd, webPageJsonLd, languageVersions,
 } from './site-seo.mjs';
 import { indexable as gates, isDisplayableProject, statsAreFresh } from './site-alternatives.mjs';
 import {
@@ -39,20 +39,24 @@ export const MAX_RELATED_PROJECTS = 6;
  * @param {{ projects: Map<string, object>, projectI18n: Map<string, object>,
  *   tools: Map<string, object>|object[], langs: string[], today: string }} ctx
  * @returns {Array<{ lang: string, project: object, i18nEntry: object, path: string,
- *   alternates: Array<{lang:string,path:string}>, xDefaultPath: string, indexable: boolean }>}
+ *   alternates: Array<{lang:string,path:string,indexable:boolean}>, xDefaultPath: string, indexable: boolean }>}
  */
 export function projectPages({ projects, projectI18n, tools, langs, today }) {
   const pages = [];
   for (const project of projects.values()) {
     const written = langs.filter((lang) => projectI18n.has(`${lang}/${project.slug}`));
     if (written.length === 0) continue;
-    const alternates = written.map((lang) => ({ lang, path: `/${lang}/oss/${project.slug}` }));
+    // Chaque version porte sa porte D7 : renderLayout n'annonce en hreflang
+    // que les versions indexables (Ruling 29).
+    const alternates = languageVersions(
+      written, (lang) => `/${lang}/oss/${project.slug}`,
+      (lang) => gates.project(project, lang, { projectI18n, tools, today }),
+    );
     const xDefaultPath = (alternates.find((a) => a.lang === 'en') ?? alternates[0]).path;
-    for (const { lang, path } of alternates) {
+    for (const { lang, path, indexable } of alternates) {
       pages.push({
-        lang, project, path, alternates, xDefaultPath,
+        lang, project, path, alternates, xDefaultPath, indexable,
         i18nEntry: projectI18n.get(`${lang}/${project.slug}`),
-        indexable: gates.project(project, lang, { projectI18n, tools, today }),
       });
     }
   }

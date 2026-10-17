@@ -1,5 +1,6 @@
 import { SITE_ORIGIN } from './site-data.mjs';
 import { assetUrl } from './site-assets.mjs';
+import { hreflangFor } from './site-seo.mjs';
 
 export const GITHUB_REPO_URL = 'https://github.com/saasmadefree/saasmadefree';
 // Le cachet GitHub de l'en-tête : l'octicon « mark-github » inline, à
@@ -120,8 +121,9 @@ function renderLangSwitcher(alternates, currentLang, ui) {
  * @param {string} opts.path - chemin absolu de la page (ex. "/en/tools/notion")
  * @param {string} opts.title
  * @param {string} opts.description
- * @param {Array<{lang:string,path:string}>} [opts.alternates] - variantes de langue existantes
- * @param {string|null} [opts.xDefaultPath]
+ * @param {Array<{lang:string,path:string,indexable?:boolean}>} [opts.alternates] - versions de langue
+ *   générées (languageVersions) : toutes au sélecteur, les seules indexables au hreflang
+ * @param {string|null} [opts.xDefaultPath] - gardé seulement s'il vise une version indexable (hreflangFor)
  * @param {Array<object>} [opts.jsonLd] - objets JSON-LD, un <script> par entrée
  * @param {string} opts.main - HTML interne de <main>, doit contenir le seul <h1> de la page
  * @param {object} opts.ui - table de traduction (doit contenir ui.site)
@@ -137,12 +139,17 @@ export function renderLayout({
   lang, path, title, description, alternates = [], xDefaultPath = null,
   jsonLd = [], main, ui, homeHref, extraHead = '', sponsorSlots = null, refCells = [], robots = null,
 }) {
+  // Canonical = l'URL de la page elle-même, jamais une autre langue.
   const canonical = `${SITE_ORIGIN}${path}`;
-  const hreflangLinks = alternates
+  // hreflang : la règle unique de site-seo.mjs (Ruling 29), seulement entre
+  // versions indexables. Le sélecteur de langue, lui, garde toutes les
+  // versions générées : une page noindex reste une page à lire.
+  const hreflang = hreflangFor({ alternates, xDefaultPath, robots });
+  const hreflangLinks = hreflang.links
     .map(({ lang: l, path: p }) => `<link rel="alternate" hreflang="${l}" href="${SITE_ORIGIN}${p}">`)
     .join('\n');
-  const xDefaultLink = xDefaultPath
-    ? `<link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}${xDefaultPath}">`
+  const xDefaultLink = hreflang.xDefault
+    ? `<link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}${hreflang.xDefault}">`
     : '';
   const jsonLdBlocks = jsonLd.map(jsonLdScript).join('\n');
   const langSwitcher = renderLangSwitcher(alternates, lang, ui);
