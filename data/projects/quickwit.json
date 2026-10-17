@@ -3,6 +3,7 @@
   "name": "Quickwit",
   "homepage": "https://github.com/quickwit-oss/quickwit",
   "repo": "quickwit-oss/quickwit",
+  "license": "Apache-2.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "monitoring"
   ],
+  "stats": {
+    "stars": 11723,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2021-04-13",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

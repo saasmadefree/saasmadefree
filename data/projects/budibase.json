@@ -13,6 +13,13 @@
     "databases",
     "no-code-apps"
   ],
+  "stats": {
+    "stars": 28329,
+    "lastCommit": "2026-10-15",
+    "createdAt": "2019-06-07",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

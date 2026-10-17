@@ -3,6 +3,7 @@
   "name": "Zettlr",
   "homepage": "https://github.com/Zettlr/Zettlr",
   "repo": "Zettlr/Zettlr",
+  "license": "GPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "ai-writing"
   ],
+  "stats": {
+    "stars": 13781,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2017-12-26",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

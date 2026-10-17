@@ -13,6 +13,13 @@
   "categories": [
     "travel"
   ],
+  "stats": {
+    "stars": 6089,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2011-01-15",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

@@ -24,7 +24,7 @@
   ],
   "alternatives": [
     {
-      "project": "ggml-org-whisper-cpp",
+      "project": "whisper-cpp",
       "fit": "partial"
     }
   ],

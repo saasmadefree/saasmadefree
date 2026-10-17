@@ -3,6 +3,7 @@
   "name": "Shiori",
   "homepage": "https://github.com/go-shiori/shiori",
   "repo": "go-shiori/shiori",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "read-it-later"
   ],
+  "stats": {
+    "stars": 11667,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2018-01-23",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

@@ -3,6 +3,7 @@
   "name": "Espanso",
   "homepage": "https://github.com/espanso/espanso",
   "repo": "espanso/espanso",
+  "license": "GPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "productivity-utilities"
   ],
+  "stats": {
+    "stars": 14645,
+    "lastCommit": "2026-09-16",
+    "createdAt": "2019-08-30",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

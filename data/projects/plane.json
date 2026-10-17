@@ -3,6 +3,7 @@
   "name": "Plane",
   "homepage": "https://github.com/makeplane/plane",
   "repo": "makeplane/plane",
+  "license": "AGPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -13,6 +14,13 @@
     "dev-tools",
     "project-management"
   ],
+  "stats": {
+    "stars": 60999,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2022-11-19",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

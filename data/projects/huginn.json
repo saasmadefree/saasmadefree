@@ -3,6 +3,7 @@
   "name": "Huginn",
   "homepage": "https://github.com/huginn/huginn",
   "repo": "huginn/huginn",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "automation"
   ],
+  "stats": {
+    "stars": 50069,
+    "lastCommit": "2026-10-15",
+    "createdAt": "2013-03-10",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

@@ -3,6 +3,7 @@
   "name": "Manuskript",
   "homepage": "https://github.com/olivierkes/manuskript",
   "repo": "olivierkes/manuskript",
+  "license": "GPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "ai-writing"
   ],
+  "stats": {
+    "stars": 2454,
+    "lastCommit": "2026-09-01",
+    "createdAt": "2015-06-22",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

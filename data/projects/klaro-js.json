@@ -1,8 +1,8 @@
 {
   "slug": "klaro-js",
   "name": "Klaro",
-  "homepage": "https://github.com/klaro-org/klaro-js",
-  "repo": "klaro-org/klaro-js",
+  "homepage": "https://github.com/kiprotect/klaro",
+  "repo": "kiprotect/klaro",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +12,13 @@
   "categories": [
     "business-admin"
   ],
+  "stats": {
+    "stars": 1520,
+    "lastCommit": "2025-03-27",
+    "createdAt": "2018-05-26",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

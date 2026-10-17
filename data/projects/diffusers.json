@@ -3,6 +3,7 @@
   "name": "diffusers",
   "homepage": "https://github.com/huggingface/diffusers",
   "repo": "huggingface/diffusers",
+  "license": "Apache-2.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "ai-audio"
   ],
+  "stats": {
+    "stars": 34744,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2022-05-30",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

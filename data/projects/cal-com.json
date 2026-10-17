@@ -1,8 +1,9 @@
 {
   "slug": "cal-com",
   "name": "Cal.com",
-  "homepage": "https://github.com/calcom/cal.com",
-  "repo": "calcom/cal.com",
+  "homepage": "https://github.com/calcom/cal.diy",
+  "repo": "calcom/cal.diy",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -13,6 +14,13 @@
     "scheduling",
     "tasks"
   ],
+  "stats": {
+    "stars": 49107,
+    "lastCommit": "2026-09-20",
+    "createdAt": "2021-03-22",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

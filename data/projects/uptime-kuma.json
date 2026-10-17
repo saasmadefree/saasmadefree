@@ -3,6 +3,7 @@
   "name": "Uptime Kuma",
   "homepage": "https://github.com/louislam/uptime-kuma",
   "repo": "louislam/uptime-kuma",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "monitoring"
   ],
+  "stats": {
+    "stars": 92571,
+    "lastCommit": "2026-10-13",
+    "createdAt": "2021-07-03",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

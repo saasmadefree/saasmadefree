@@ -1,8 +1,9 @@
 {
   "slug": "whisper-cpp",
   "name": "whisper.cpp",
-  "homepage": "https://github.com/ggerganov/whisper.cpp",
-  "repo": "ggerganov/whisper.cpp",
+  "homepage": "https://github.com/ggml-org/whisper.cpp",
+  "repo": "ggml-org/whisper.cpp",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -11,8 +12,18 @@
   "stack": [],
   "categories": [
     "audio-video",
-    "meeting-notes"
+    "meeting-notes",
+    "ai-audio",
+    "video-meetings",
+    "voice-dictation"
   ],
+  "stats": {
+    "stars": 54451,
+    "lastCommit": "2026-10-12",
+    "createdAt": "2022-09-25",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

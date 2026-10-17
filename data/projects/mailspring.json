@@ -3,6 +3,7 @@
   "name": "Mailspring",
   "homepage": "https://github.com/Foundry376/Mailspring",
   "repo": "Foundry376/Mailspring",
+  "license": "GPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "email"
   ],
+  "stats": {
+    "stars": 17925,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2016-10-13",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

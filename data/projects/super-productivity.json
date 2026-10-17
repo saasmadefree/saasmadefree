@@ -1,8 +1,9 @@
 {
   "slug": "super-productivity",
   "name": "Super Productivity",
-  "homepage": "https://github.com/johannesjo/super-productivity",
-  "repo": "johannesjo/super-productivity",
+  "homepage": "https://github.com/super-productivity/super-productivity",
+  "repo": "super-productivity/super-productivity",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "tasks"
   ],
+  "stats": {
+    "stars": 22903,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2017-01-06",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

@@ -3,6 +3,7 @@
   "name": "YOURLS",
   "homepage": "https://github.com/YOURLS/YOURLS",
   "repo": "YOURLS/YOURLS",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "analytics"
   ],
+  "stats": {
+    "stars": 12263,
+    "lastCommit": "2026-10-12",
+    "createdAt": "2012-08-22",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

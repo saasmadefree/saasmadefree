@@ -1,8 +1,9 @@
 {
   "slug": "mprocs",
   "name": "mprocs",
-  "homepage": "https://github.com/pvolok/mprocs",
-  "repo": "pvolok/mprocs",
+  "homepage": "https://github.com/pvolok/dekit",
+  "repo": "pvolok/dekit",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "dev-tools"
   ],
+  "stats": {
+    "stars": 2757,
+    "lastCommit": "2026-10-15",
+    "createdAt": "2021-08-30",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

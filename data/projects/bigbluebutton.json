@@ -3,6 +3,7 @@
   "name": "BigBlueButton",
   "homepage": "https://github.com/bigbluebutton/bigbluebutton",
   "repo": "bigbluebutton/bigbluebutton",
+  "license": "LGPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "video-meetings"
   ],
+  "stats": {
+    "stars": 9244,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2010-05-25",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

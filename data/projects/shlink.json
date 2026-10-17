@@ -3,6 +3,7 @@
   "name": "Shlink",
   "homepage": "https://github.com/shlinkio/shlink",
   "repo": "shlinkio/shlink",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "analytics"
   ],
+  "stats": {
+    "stars": 5345,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2016-04-08",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

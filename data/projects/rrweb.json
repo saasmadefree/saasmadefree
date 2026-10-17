@@ -3,6 +3,7 @@
   "name": "rrweb",
   "homepage": "https://github.com/rrweb-io/rrweb",
   "repo": "rrweb-io/rrweb",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "monitoring"
   ],
+  "stats": {
+    "stars": 20277,
+    "lastCommit": "2026-10-15",
+    "createdAt": "2018-10-06",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

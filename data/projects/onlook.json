@@ -3,6 +3,7 @@
   "name": "Onlook",
   "homepage": "https://github.com/onlook-dev/onlook",
   "repo": "onlook-dev/onlook",
+  "license": "Apache-2.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "design"
   ],
+  "stats": {
+    "stars": 26933,
+    "lastCommit": "2026-07-22",
+    "createdAt": "2024-06-25",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

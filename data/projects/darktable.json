@@ -3,6 +3,7 @@
   "name": "darktable",
   "homepage": "https://github.com/darktable-org/darktable",
   "repo": "darktable-org/darktable",
+  "license": "GPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "photography"
   ],
+  "stats": {
+    "stars": 13289,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2012-03-21",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

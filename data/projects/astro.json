@@ -12,6 +12,13 @@
   "categories": [
     "website-builder"
   ],
+  "stats": {
+    "stars": 63294,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2021-03-15",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

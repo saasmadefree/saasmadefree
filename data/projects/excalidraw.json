@@ -3,6 +3,7 @@
   "name": "Excalidraw",
   "homepage": "https://github.com/excalidraw/excalidraw",
   "repo": "excalidraw/excalidraw",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -13,6 +14,13 @@
     "design",
     "whiteboard"
   ],
+  "stats": {
+    "stars": 134049,
+    "lastCommit": "2026-10-14",
+    "createdAt": "2020-01-02",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

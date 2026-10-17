@@ -12,6 +12,13 @@
   "categories": [
     "automation"
   ],
+  "stats": {
+    "stars": 207798,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2019-06-22",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

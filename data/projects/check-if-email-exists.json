@@ -3,6 +3,7 @@
   "name": "check-if-email-exists",
   "homepage": "https://github.com/reacherhq/check-if-email-exists",
   "repo": "reacherhq/check-if-email-exists",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "crm-sales"
   ],
+  "stats": {
+    "stars": 10181,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2017-04-25",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

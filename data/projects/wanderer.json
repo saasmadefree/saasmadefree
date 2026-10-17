@@ -14,6 +14,13 @@
     "health-fitness",
     "travel"
   ],
+  "stats": {
+    "stars": 4007,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2024-01-27",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

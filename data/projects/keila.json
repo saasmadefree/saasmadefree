@@ -3,6 +3,7 @@
   "name": "Keila",
   "homepage": "https://github.com/pentacent/keila",
   "repo": "pentacent/keila",
+  "license": "AGPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "newsletter"
   ],
+  "stats": {
+    "stars": 2237,
+    "lastCommit": "2026-10-02",
+    "createdAt": "2021-01-01",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

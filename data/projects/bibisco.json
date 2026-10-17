@@ -3,6 +3,7 @@
   "name": "bibisco",
   "homepage": "https://github.com/andreafeccomandi/bibisco",
   "repo": "andreafeccomandi/bibisco",
+  "license": "GPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "ai-writing"
   ],
+  "stats": {
+    "stars": 770,
+    "lastCommit": "2024-09-27",
+    "createdAt": "2014-02-05",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

@@ -3,6 +3,7 @@
   "name": "Mailvelope",
   "homepage": "https://github.com/mailvelope/mailvelope",
   "repo": "mailvelope/mailvelope",
+  "license": "AGPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "email"
   ],
+  "stats": {
+    "stars": 1847,
+    "lastCommit": "2026-06-11",
+    "createdAt": "2012-08-24",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

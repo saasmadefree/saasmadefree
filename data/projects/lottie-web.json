@@ -3,6 +3,7 @@
   "name": "lottie-web",
   "homepage": "https://github.com/airbnb/lottie-web",
   "repo": "airbnb/lottie-web",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "design"
   ],
+  "stats": {
+    "stars": 32243,
+    "lastCommit": "2024-11-19",
+    "createdAt": "2015-02-20",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

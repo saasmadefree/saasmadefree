@@ -3,6 +3,7 @@
   "name": "LanguageTool",
   "homepage": "https://github.com/languagetool-org/languagetool",
   "repo": "languagetool-org/languagetool",
+  "license": "LGPL-2.1",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "ai-writing"
   ],
+  "stats": {
+    "stars": 15154,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2013-08-08",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

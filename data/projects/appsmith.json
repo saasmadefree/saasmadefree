@@ -3,6 +3,7 @@
   "name": "Appsmith",
   "homepage": "https://github.com/appsmithorg/appsmith",
   "repo": "appsmithorg/appsmith",
+  "license": "Apache-2.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "no-code-apps"
   ],
+  "stats": {
+    "stars": 41077,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2020-06-30",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

@@ -3,6 +3,7 @@
   "name": "ActivityWatch",
   "homepage": "https://github.com/ActivityWatch/activitywatch",
   "repo": "ActivityWatch/activitywatch",
+  "license": "MPL-2.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "time-tracking"
   ],
+  "stats": {
+    "stars": 19258,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2016-04-27",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

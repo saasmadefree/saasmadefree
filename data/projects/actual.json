@@ -3,6 +3,7 @@
   "name": "Actual Budget",
   "homepage": "https://github.com/actualbudget/actual",
   "repo": "actualbudget/actual",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "personal-finance"
   ],
+  "stats": {
+    "stars": 29574,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2022-04-29",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

@@ -3,6 +3,7 @@
   "name": "Shotcut",
   "homepage": "https://github.com/mltframework/shotcut",
   "repo": "mltframework/shotcut",
+  "license": "GPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "audio-video"
   ],
+  "stats": {
+    "stars": 15440,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2012-04-23",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

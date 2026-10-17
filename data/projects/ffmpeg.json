@@ -12,6 +12,13 @@
   "categories": [
     "audio-video"
   ],
+  "stats": {
+    "stars": 65324,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2011-04-14",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

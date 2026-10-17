@@ -3,6 +3,7 @@
   "name": "reveal.js",
   "homepage": "https://github.com/hakimel/reveal.js",
   "repo": "hakimel/reveal.js",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -13,6 +14,13 @@
     "design",
     "presentations"
   ],
+  "stats": {
+    "stars": 72435,
+    "lastCommit": "2026-09-30",
+    "createdAt": "2011-06-07",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

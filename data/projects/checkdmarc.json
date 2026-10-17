@@ -3,6 +3,7 @@
   "name": "checkdmarc",
   "homepage": "https://github.com/domainaware/checkdmarc",
   "repo": "domainaware/checkdmarc",
+  "license": "Apache-2.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "crm-sales"
   ],
+  "stats": {
+    "stars": 321,
+    "lastCommit": "2026-10-13",
+    "createdAt": "2017-12-10",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

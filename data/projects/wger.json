@@ -13,6 +13,13 @@
   "categories": [
     "health-fitness"
   ],
+  "stats": {
+    "stars": 7140,
+    "lastCommit": "2026-10-15",
+    "createdAt": "2013-01-19",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

@@ -3,6 +3,7 @@
   "name": "Vega-Lite",
   "homepage": "https://github.com/vega/vega-lite",
   "repo": "vega/vega-lite",
+  "license": "BSD-3-Clause",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "design"
   ],
+  "stats": {
+    "stars": 5523,
+    "lastCommit": "2026-10-08",
+    "createdAt": "2014-11-20",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

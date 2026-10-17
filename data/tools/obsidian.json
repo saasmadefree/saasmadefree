@@ -24,7 +24,7 @@
   ],
   "alternatives": [
     {
-      "project": "syncthing-2",
+      "project": "syncthing",
       "fit": "partial"
     },
     {

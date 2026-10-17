@@ -3,6 +3,7 @@
   "name": "linkding",
   "homepage": "https://github.com/sissbruecker/linkding",
   "repo": "sissbruecker/linkding",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "read-it-later"
   ],
+  "stats": {
+    "stars": 11308,
+    "lastCommit": "2026-09-13",
+    "createdAt": "2019-06-28",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

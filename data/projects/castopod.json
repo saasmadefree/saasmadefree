@@ -3,6 +3,7 @@
   "name": "Castopod",
   "homepage": "https://github.com/ad-aures/castopod",
   "repo": "ad-aures/castopod",
+  "license": "AGPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "audio-video"
   ],
+  "stats": {
+    "stars": 876,
+    "lastCommit": "2026-06-05",
+    "createdAt": "2020-10-26",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

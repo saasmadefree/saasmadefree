@@ -3,6 +3,7 @@
   "name": "mailcow",
   "homepage": "https://github.com/mailcow/mailcow-dockerized",
   "repo": "mailcow/mailcow-dockerized",
+  "license": "GPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "email"
   ],
+  "stats": {
+    "stars": 13627,
+    "lastCommit": "2026-10-06",
+    "createdAt": "2016-12-09",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

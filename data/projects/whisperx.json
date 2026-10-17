@@ -3,6 +3,7 @@
   "name": "whisperX",
   "homepage": "https://github.com/m-bain/whisperX",
   "repo": "m-bain/whisperX",
+  "license": "BSD-2-Clause",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "meeting-notes"
   ],
+  "stats": {
+    "stars": 24630,
+    "lastCommit": "2026-09-26",
+    "createdAt": "2022-12-09",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

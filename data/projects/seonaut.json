@@ -2,7 +2,8 @@
   "slug": "seonaut",
   "name": "SEOnaut",
   "homepage": "https://github.com/stjudewashere/seonaut",
-  "repo": "stjudewashere/seonaut",
+  "repo": "StJudeWasHere/seonaut",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "seo-marketing"
   ],
+  "stats": {
+    "stars": 808,
+    "lastCommit": "2026-10-08",
+    "createdAt": "2022-03-02",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

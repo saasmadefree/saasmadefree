@@ -13,6 +13,13 @@
   "categories": [
     "voice-dictation"
   ],
+  "stats": {
+    "stars": 9016,
+    "lastCommit": "2026-04-06",
+    "createdAt": "2023-11-28",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

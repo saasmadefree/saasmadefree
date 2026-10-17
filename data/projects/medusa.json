@@ -12,6 +12,13 @@
   "categories": [
     "creator-commerce"
   ],
+  "stats": {
+    "stars": 36779,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2020-01-18",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

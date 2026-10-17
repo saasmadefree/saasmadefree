@@ -3,6 +3,7 @@
   "name": "Vikunja",
   "homepage": "https://github.com/go-vikunja/vikunja",
   "repo": "go-vikunja/vikunja",
+  "license": "AGPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "tasks"
   ],
+  "stats": {
+    "stars": 5776,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2018-11-28",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

@@ -3,6 +3,7 @@
   "name": "Moodle",
   "homepage": "https://github.com/moodle/moodle",
   "repo": "moodle/moodle",
+  "license": "GPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "creator-commerce"
   ],
+  "stats": {
+    "stars": 7490,
+    "lastCommit": "2026-10-13",
+    "createdAt": "2009-12-16",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

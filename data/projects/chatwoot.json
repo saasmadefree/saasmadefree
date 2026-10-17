@@ -12,6 +12,13 @@
   "categories": [
     "customer-support"
   ],
+  "stats": {
+    "stars": 37891,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2019-08-14",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

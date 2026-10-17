@@ -1,8 +1,9 @@
 {
   "slug": "librechat",
   "name": "LibreChat",
-  "homepage": "https://github.com/danny-avila/LibreChat",
-  "repo": "danny-avila/LibreChat",
+  "homepage": "https://github.com/LibreChat-AI/LibreChat",
+  "repo": "LibreChat-AI/LibreChat",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -13,6 +14,13 @@
     "ai-assistant",
     "ai-writing"
   ],
+  "stats": {
+    "stars": 45869,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2023-02-12",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

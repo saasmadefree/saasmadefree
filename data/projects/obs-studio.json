@@ -3,6 +3,7 @@
   "name": "OBS Studio",
   "homepage": "https://github.com/obsproject/obs-studio",
   "repo": "obsproject/obs-studio",
+  "license": "GPL-2.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "screen-recording"
   ],
+  "stats": {
+    "stars": 77692,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2013-10-01",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

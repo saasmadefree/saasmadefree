@@ -3,6 +3,7 @@
   "name": "mediasoup",
   "homepage": "https://github.com/versatica/mediasoup",
   "repo": "versatica/mediasoup",
+  "license": "ISC",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "community"
   ],
+  "stats": {
+    "stars": 7397,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2014-12-12",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

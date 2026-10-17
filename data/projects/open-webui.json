@@ -13,6 +13,13 @@
     "ai-assistant",
     "ai-writing"
   ],
+  "stats": {
+    "stars": 155972,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2023-10-06",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

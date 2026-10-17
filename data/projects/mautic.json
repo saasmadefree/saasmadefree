@@ -13,6 +13,13 @@
     "crm-sales",
     "newsletter"
   ],
+  "stats": {
+    "stars": 10787,
+    "lastCommit": "2026-10-15",
+    "createdAt": "2013-08-19",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

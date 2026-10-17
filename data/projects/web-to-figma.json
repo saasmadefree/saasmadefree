@@ -3,6 +3,7 @@
   "name": "dom-to-figma",
   "homepage": "https://github.com/figitdesign/web-to-figma",
   "repo": "figitdesign/web-to-figma",
+  "license": "MIT",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "design"
   ],
+  "stats": {
+    "stars": 78,
+    "lastCommit": "2026-08-22",
+    "createdAt": "2026-05-05",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

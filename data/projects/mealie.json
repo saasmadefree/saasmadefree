@@ -13,6 +13,13 @@
   "categories": [
     "home-family"
   ],
+  "stats": {
+    "stars": 13590,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2020-12-07",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

@@ -3,6 +3,7 @@
   "name": "WordPress",
   "homepage": "https://github.com/WordPress/wordpress-develop",
   "repo": "WordPress/wordpress-develop",
+  "license": "GPL-2.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "website-builder"
   ],
+  "stats": {
+    "stars": 3485,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2016-12-05",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]

@@ -1,8 +1,9 @@
 {
   "slug": "comfyui",
   "name": "ComfyUI",
-  "homepage": "https://github.com/comfyanonymous/ComfyUI",
-  "repo": "comfyanonymous/ComfyUI",
+  "homepage": "https://github.com/Comfy-Org/ComfyUI",
+  "repo": "Comfy-Org/ComfyUI",
+  "license": "GPL-3.0",
   "selfHostable": true,
   "hosted": {
     "exists": false
@@ -12,6 +13,13 @@
   "categories": [
     "ai-image"
   ],
+  "stats": {
+    "stars": 138039,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2023-01-17",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
   "markets": [
     "en"
   ]
