@@ -53,6 +53,7 @@ function categoryHtml() {
     lang: 'en', path: '/en/categories/analytics', categorySlug: 'analytics', categories,
     toolViews: toolViews.filter((t) => t.category === 'analytics'), voteCounts: {}, favicons: {},
     ui: UI, alternates: [], xDefaultPath: null, homePath: '/en/', sponsorSlots: null,
+    buildDate: '2026-10-17',
   });
 }
 

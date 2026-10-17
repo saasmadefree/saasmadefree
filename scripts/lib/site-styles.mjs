@@ -297,7 +297,9 @@ const COMPARE_CSS = `.alt-table.compare-table{min-width:0;table-layout:fixed}
    ligne de chiffres discrète, emplacement newsletter (Task A9), rangée
    sponsor, recherche, filtres + tri, légende des verdicts, grille de cartes
    3/2/1 colonnes, puis les deux listes de liens. Aucune teinte : la moutarde
-   appartient à la fiche. */
+   appartient à la fiche. Les pages de liste (catégories, collections, hub
+   A–Z, Task A7) reprennent la grille et les lignes .links : .list-head pour
+   leur en-tête, .az-list pour remplir la largeur en colonnes. */
 const HOME_CSS = `.hero{padding-top:var(--s7)}
 .hero > :not(.figures){max-width:44rem}
 .hero > * + *{margin-top:var(--s4)}
@@ -367,6 +369,12 @@ const HOME_CSS = `.hero{padding-top:var(--s7)}
 .links a{display:flex;justify-content:space-between;gap:var(--s4);align-items:baseline;padding:var(--s3) 0;color:var(--ink);text-decoration:none}
 .links a:hover .l-name{text-decoration:underline;text-decoration-color:var(--tomato)}
 .l-meta{color:var(--ink2);font-size:.875rem;text-align:right}
+.list-head{padding-top:var(--s7)}
+.list-head > * + *{margin-top:var(--s3)}
+.az-list{columns:15rem;column-gap:var(--s7)}
+.az-list li{break-inside:avoid}
+main > .az-sec + .az-sec{margin-top:var(--s7)}
+.az-nav .link-cloud{gap:var(--s2) var(--s4);font:700 1.125rem/1 var(--display)}
 .more{display:inline-block;margin-top:var(--s4);font-weight:700}`;
 
 /* Sponsors : mêmes emplacements et même nombre qu'avant la refonte (spec
@@ -402,16 +410,13 @@ const SPONSOR_CSS = `.sp-rail{display:none}
 .sp-more{font-size:.8125rem;font-weight:700}
 @media (min-width:84rem){.shell.has-rails{grid-template-columns:minmax(9rem,13rem) minmax(0,1fr) minmax(9rem,13rem);column-gap:var(--s5);padding-inline:var(--s5)}.has-rails .col-main{grid-column:2;grid-row:1}.sp-rail{display:flex;flex-direction:column;position:sticky;top:0;align-self:start;max-height:100vh;overflow-y:auto;padding-block:var(--s7)}.sp-left{grid-column:1;grid-row:1}.sp-right{grid-column:3;grid-row:1}.sp-rail .sp-card{padding:var(--s3) 0;border-top:1px solid var(--rule)}.has-rails .sp-fallback{display:none}}`;
 
-/* Pages existantes en attente de leur refonte (catégories, /sponsor,
+/* Pages existantes en attente de leur refonte (/sponsor,
    /stats, 404, confidentialité) : même contenu, nouvel habillage. La fiche
    outil n'y est plus (Task A4) : ses règles vivent dans PAGE_CSS. Ces règles
    disparaîtront avec les gabarits qui les portent. */
 const LEGACY_CSS = `.two-col{display:grid;gap:var(--s6)}
 @container page (min-width:780px){.two-col{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--s8)}}
-.lose-list,.related-cards,.category-list,.sp-figures,.sp-inv{list-style:none;padding:0!important}
-.category-row a{display:flex;justify-content:space-between;gap:var(--s4);padding:var(--s3) 0;border-bottom:1px solid var(--rule);color:var(--ink);text-decoration:none}
-.category-row a:hover{text-decoration:underline;text-decoration-color:var(--tomato)}
-.category-count{color:var(--ink2);font-size:.9375rem}
+.lose-list,.related-cards,.sp-figures,.sp-inv{list-style:none;padding:0!important}
 .sp-figures{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s6)}
 .sp-inv{display:grid;gap:0}
 .sp-inv-item{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) var(--s4);padding:var(--s3) 0;border-bottom:1px solid var(--rule)}

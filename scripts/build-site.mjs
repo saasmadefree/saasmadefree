@@ -5,7 +5,9 @@
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { loadData } from './lib/load-data.mjs';
-import { alternativesFor, replacedTools, toolDateModified } from './lib/site-alternatives.mjs';
+import {
+  alternativesFor, replacedTools, toolDateModified, popularAlternatives, indexable, POPULAR_LIMIT,
+} from './lib/site-alternatives.mjs';
 import {
   SITE_ORIGIN, fetchVoteCounts, fetchStats, fetchSponsorSlots, siteLanguages, toolsForLang, sortTools,
   categoriesForLang, topCategoriesByCount, langsForCategory, catalogueFigures, mrrDestroyed,
@@ -13,8 +15,12 @@ import {
 import { fetchFavicons } from './lib/site-favicons.mjs';
 import { buildSitemap } from './lib/site-seo.mjs';
 import { renderHomePage } from './lib/site-page-home.mjs';
-import { renderCategoryPage } from './lib/site-page-category.mjs';
+import { renderCategoryPage, categoryProjects, categoryIndexable } from './lib/site-page-category.mjs';
 import { renderCategoriesIndexPage } from './lib/site-page-categories-index.mjs';
+import {
+  renderCollectionPage, collectionTools, collectionPath, COLLECTION_KINDS,
+} from './lib/site-page-collection.mjs';
+import { renderAlternativesHub, hubPath } from './lib/site-page-alternatives-hub.mjs';
 import { renderSponsorPage } from './lib/site-page-sponsor.mjs';
 import { renderToolPage } from './lib/site-page-tool.mjs';
 import { renderProjectPage, projectPages, relatedProjects, projectDateModified } from './lib/site-page-project.mjs';
@@ -175,6 +181,10 @@ async function main() {
   let categoryPageCount = 0;
   let projectPageCount = 0;
   let comparePageCount = 0;
+  // Pages de liste (catégories, collections, hub) écrites en noindex,follow
+  // faute d'atteindre 3 éléments (spec D7) : comptées pour le journal du build.
+  let noindexListCount = 0;
+  let collectionPageCount = 0;
 
   // Pages projet /{lang}/oss/{slug} : une par langue publiée où le texte
   // existe (Ruling 20). Calculées une fois, AVANT les fiches : le lien d'une
@@ -255,10 +265,18 @@ async function main() {
     const countsBySlug = Object.fromEntries(
       categorySlugs.map((slug) => [slug, toolViews.filter((t) => t.category === slug).length])
     );
+    // Projets classés par chaque page de catégorie : calculés une fois, pour
+    // le répertoire (nombre de projets), la page elle-même et sa porte D7.
+    const rankedByCategory = new Map(categorySlugs.map((slug) => [
+      slug, categoryProjects(toolViews.filter((t) => t.category === slug), projects, today),
+    ]));
+    const projectCountsBySlug = Object.fromEntries(
+      categorySlugs.map((slug) => [slug, rankedByCategory.get(slug).length])
+    );
     await writeText(
       join(OUT, lang, 'categories', 'index.html'),
       renderCategoriesIndexPage({
-        lang, path: allCategoriesPath, categorySlugs, categories, countsBySlug,
+        lang, path: allCategoriesPath, categorySlugs, categories, countsBySlug, projectCountsBySlug,
         ui: langUi, alternates: allCategoriesAlt, xDefaultPath: xDefaultOf(allCategoriesAlt), homePath, sponsorSlots,
       })
     );
@@ -304,11 +322,54 @@ async function main() {
         renderCategoryPage({
           lang, path: catPath, categorySlug, categories, toolViews: catToolViews, voteCounts, favicons,
           ui: langUi, alternates: catAlt, xDefaultPath: xDefaultOf(catAlt), homePath, sponsorSlots,
+          projects, projectI18n, buildDate: today, today, projectIndexable: projectIndexableIn(lang),
         })
       );
-      sitemapPages.push({ path: catPath });
+      // Moins de 3 éléments (SaaS et projets confondus) : noindex,follow,
+      // hors sitemap (spec D7). L'URL, elle, ne change pas.
+      if (categoryIndexable(catToolViews, rankedByCategory.get(categorySlug))) {
+        sitemapPages.push({ path: catPath });
+      } else {
+        noindexListCount += 1;
+      }
       categoryPageCount += 1;
     }
+
+    // Collections /{lang}/collections/{kind} (spec D5) : toutes les langues
+    // publiées, noindex sous 3 éléments.
+    for (const kind of COLLECTION_KINDS) {
+      const items = collectionTools(kind, toolViews, { projects, today });
+      const colPath = collectionPath(lang, kind);
+      const colAlt = langs.map((l) => ({ lang: l, path: collectionPath(l, kind) }));
+      await writeText(
+        join(OUT, lang, 'collections', kind, 'index.html'),
+        renderCollectionPage({
+          kind, lang, path: colPath, items, categories, voteCounts, favicons,
+          ui: langUi, alternates: colAlt, xDefaultPath: xDefaultOf(colAlt), homePath, sponsorSlots, buildDate: today,
+        })
+      );
+      if (indexable.list(items)) sitemapPages.push({ path: colPath });
+      else noindexListCount += 1;
+      collectionPageCount += 1;
+    }
+
+    // Hub A–Z /{lang}/alternatives/ : chaque fiche de la langue avec son
+    // nombre d'alternatives affichables (le même que celui des cartes).
+    const hubAlt = langs.map((l) => ({ lang: l, path: hubPath(l) }));
+    await writeText(
+      join(OUT, lang, 'alternatives', 'index.html'),
+      renderAlternativesHub({
+        lang, path: hubPath(lang), tools: toolViews,
+        counts: Object.fromEntries(toolViews.map((t) => [t.slug, t.alternativeNames.length])),
+        ui: langUi, alternates: hubAlt, xDefaultPath: xDefaultOf(hubAlt), homePath, sponsorSlots, buildDate: today,
+      })
+    );
+    if (indexable.list(toolViews)) sitemapPages.push({ path: hubPath(lang) });
+    else noindexListCount += 1;
+
+    // « People also look for alternatives to… » : un seul classement par
+    // langue ; chaque fiche s’en retire elle-même (un de plus pour en garder 12).
+    const popularPool = popularAlternatives(toolViews, lang, POPULAR_LIMIT + 1);
 
     // Fiches outil
     for (const tool of toolsForLang(tools, lang)) {
@@ -339,6 +400,7 @@ async function main() {
           // (spec D7) ; sinon la fiche renvoie au site du projet.
           projectIndexable: projectIndexableIn(lang),
           comparisons: comparisonsOf(lang, 'tool', tool.slug),
+          popularTools: popularPool.filter((other) => other.slug !== tool.slug).slice(0, POPULAR_LIMIT),
         })
       );
       // Une fiche est toujours dans le sitemap (Ruling 2), datée de son
@@ -409,7 +471,8 @@ async function main() {
   console.log(
     `Site écrit dans ${OUT}/ — ${langs.length} langue(s), ${toolPageCount} fiche(s), ` +
     `${categoryPageCount} page(s) de catégorie, ${projectPageCount} page(s) projet, ` +
-    `${comparePageCount} comparatif(s), ` +
+    `${comparePageCount} comparatif(s), ${collectionPageCount} collection(s), ${langs.length} hub(s) A–Z, ` +
+    `${noindexListCount} page(s) de liste en noindex, ` +
     `${sitemapPages.length} URL(s) dans le sitemap (${SITE_ORIGIN}).`
   );
 }
