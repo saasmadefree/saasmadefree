@@ -6,7 +6,7 @@ import {
 } from './site-seo.mjs';
 import { indexable as gates, isDisplayableProject, statsAreFresh } from './site-alternatives.mjs';
 import {
-  projectLink, projectTagline, templateWithHtml, projectStatCells, renderFactGrid, fitTag,
+  projectLink, projectTagline, templateWithHtml, projectStatCells, renderFactGrid, fitTag, renderCompareLinks,
 } from './site-page-tool.mjs';
 
 // Fiche projet /{lang}/oss/{slug} (spec D2, D3, D7, D14 ; Ruling 20).
@@ -263,11 +263,13 @@ function softwareApplicationJsonLd({ project, path, catLabel, description }) {
  * @param {(project: object) => boolean} [opts.projectIndexable]  même porte, pour les projets liés
  * @param {Map<string, object>} [opts.projectI18n]  accroches des projets liés
  * @param {object|null} [opts.sponsorSlots]  emplacements vendus, rendus par renderSponsorSlots
+ * @param {Array<{href:string,label:string}>} [opts.comparisons]  comparatifs générés
+ *   dans la langue où le projet figure (compareLinksFor) ; vide, aucune section
  */
 export function renderProjectPage({
   lang, path, project, i18nEntry, replaced = [], related = [], ui, alternates = [], xDefaultPath = null,
   homePath, categories = {}, categoryPath = null, buildDate, today, indexable = false,
-  projectIndexable = () => false, projectI18n = new Map(), sponsorSlots = null,
+  projectIndexable = () => false, projectI18n = new Map(), sponsorSlots = null, comparisons = [],
 }) {
   if (!i18nEntry) return null;
   const s = ui.site;
@@ -322,7 +324,7 @@ ${paragraphs.map((para) => `        <p>${escapeHtml(para)}</p>`).join('\n')}
       <p class="best-for">${escapeHtml(i18nEntry.bestFor)}</p>
     </section>` : '';
 
-  const main = `${head}${renderReplaces({ project, replaced, lang, s, t, p })}${renderProsCons(i18nEntry, p)}${bestFor}${renderRelated({ related, lang, t, p, catLabel, projectI18n, isIndexable, today })}`;
+  const main = `${head}${renderReplaces({ project, replaced, lang, s, t, p })}${renderProsCons(i18nEntry, p)}${bestFor}${renderRelated({ related, lang, t, p, catLabel, projectI18n, isIndexable, today })}${renderCompareLinks(comparisons, s.compare.linksHeading)}`;
 
   const relatedList = related.length === 0 ? [] : [softwareItemListJsonLd(related.map((other) => {
     const { href } = projectLink(other, lang, isIndexable);

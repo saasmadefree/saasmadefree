@@ -18,6 +18,9 @@ import { renderCategoriesIndexPage } from './lib/site-page-categories-index.mjs'
 import { renderSponsorPage } from './lib/site-page-sponsor.mjs';
 import { renderToolPage } from './lib/site-page-tool.mjs';
 import { renderProjectPage, projectPages, relatedProjects, projectDateModified } from './lib/site-page-project.mjs';
+import {
+  renderComparePage, buildComparePages, compareLinksFor, compareDateModified, compareCategory,
+} from './lib/site-page-compare.mjs';
 import { renderStatsPage } from './lib/site-page-stats.mjs';
 import { renderRootPage } from './lib/site-page-root.mjs';
 import { render404Page } from './lib/site-page-404.mjs';
@@ -71,7 +74,7 @@ function voteCountFor(voteCounts, slug) {
 
 async function main() {
   const data = await loadData(process.cwd());
-  const { tools, i18n, ui, categories, agents, projects, projectI18n } = data;
+  const { tools, i18n, ui, categories, agents, projects, projectI18n, compare, compareI18n } = data;
 
   // Date du build : c'est elle qui décide qu'un placement sponsor est actif
   // (un placement échu disparaît au prochain build, sans aucune action —
@@ -171,6 +174,7 @@ async function main() {
   let toolPageCount = 0;
   let categoryPageCount = 0;
   let projectPageCount = 0;
+  let comparePageCount = 0;
 
   // Pages projet /{lang}/oss/{slug} : une par langue publiée où le texte
   // existe (Ruling 20). Calculées une fois, AVANT les fiches : le lien d'une
@@ -179,6 +183,13 @@ async function main() {
   const projectPlan = projectPages({ projects, projectI18n, tools, langs, today });
   const indexableProjectPaths = new Set(projectPlan.filter((page) => page.indexable).map((page) => page.path));
   const projectIndexableIn = (lang) => (project) => indexableProjectPaths.has(`/${lang}/oss/${project.slug}`);
+
+  // Comparatifs /{lang}/compare/{a}-vs-{b} : un seul plan, d'où dérivent les
+  // pages, le sitemap et les liens « Comparisons » des fiches et des pages
+  // projet — un lien ne vise donc jamais un comparatif absent. Seulement les
+  // paires de data/compare.json (spec D4) ; un côté inconnu casse le build.
+  const comparePlan = buildComparePages({ compare, compareI18n, tools, projects, langs, today });
+  const comparisonsOf = (lang, kind, slug) => compareLinksFor(comparePlan, { lang, kind, slug, ui: ui.get(lang) });
 
   // Répartition des verdicts sur tout le catalogue — voir site-page-stats.mjs,
   // bloc « catalogue en chiffres » : un seul calcul, partagé par toutes les
@@ -327,6 +338,7 @@ async function main() {
           // Lien vers /{lang}/oss/{slug} seulement si cette page est indexable
           // (spec D7) ; sinon la fiche renvoie au site du projet.
           projectIndexable: projectIndexableIn(lang),
+          comparisons: comparisonsOf(lang, 'tool', tool.slug),
         })
       );
       // Une fiche est toujours dans le sitemap (Ruling 2), datée de son
@@ -350,6 +362,7 @@ async function main() {
         categories, categoryPath: categorySlugs.includes(category) ? `/${lang}/categories/${category}` : null,
         buildDate: today, today, indexable: page.indexable,
         projectIndexable: projectIndexableIn(lang), projectI18n, sponsorSlots,
+        comparisons: comparisonsOf(lang, 'project', project.slug),
       });
       await writeText(join(OUT, lang, 'oss', project.slug, 'index.html'), html);
       if (page.indexable) {
@@ -357,6 +370,28 @@ async function main() {
         sitemapPages.push(lastmod ? { path: page.path, lastmod } : { path: page.path });
       }
       projectPageCount += 1;
+    }
+
+    // Comparatifs de la langue. Un côté projet inactif (archivé, ou sans
+    // commit depuis un an) : page écrite en noindex,follow, hors sitemap.
+    for (const page of comparePlan.filter((entry) => entry.lang === lang)) {
+      const withText = (side) => ({
+        ...side, i18n: (side.kind === 'tool' ? i18n : projectI18n).get(`${lang}/${side.entity.slug}`),
+      });
+      const category = compareCategory(page.left);
+      const html = renderComparePage({
+        lang, path: page.path, left: withText(page.left), right: withText(page.right), i18nEntry: page.i18nEntry,
+        ui: langUi, alternates: page.alternates, xDefaultPath: page.xDefaultPath, homePath,
+        categories, categoryPath: categorySlugs.includes(category) ? `/${lang}/categories/${category}` : null,
+        buildDate: today, today, indexable: page.indexable,
+        projectIndexable: projectIndexableIn(lang), sponsorSlots,
+      });
+      await writeText(join(OUT, lang, 'compare', page.key, 'index.html'), html);
+      if (page.indexable) {
+        const lastmod = compareDateModified(page.left, page.right);
+        sitemapPages.push(lastmod ? { path: page.path, lastmod } : { path: page.path });
+      }
+      comparePageCount += 1;
     }
   }
 
@@ -374,6 +409,7 @@ async function main() {
   console.log(
     `Site écrit dans ${OUT}/ — ${langs.length} langue(s), ${toolPageCount} fiche(s), ` +
     `${categoryPageCount} page(s) de catégorie, ${projectPageCount} page(s) projet, ` +
+    `${comparePageCount} comparatif(s), ` +
     `${sitemapPages.length} URL(s) dans le sitemap (${SITE_ORIGIN}).`
   );
 }

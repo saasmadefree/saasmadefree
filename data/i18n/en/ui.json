@@ -289,6 +289,25 @@
       "archivedNotice": "This project is archived on GitHub: it no longer gets updates. We keep this page for reference.",
       "staleNoticeTemplate": "No commit since {date}. This project may no longer be maintained."
     },
+    "compare": {
+      "titleTemplate": "{a} vs {b} ({year}): Which One Should You Use?",
+      "metaDescriptionTemplate": "{a} or {b}? Price, license, GitHub activity and who each one is for, side by side, with our pick.",
+      "h1Template": "{a} vs {b}",
+      "vsTemplate": "{a} vs {b}",
+      "pickIfTemplate": "Pick {name} if…",
+      "factsHeading": "Side by side",
+      "factsCaption": "{a} and {b}: every fact we hold",
+      "colFact": "Fact",
+      "rowKind": "Type",
+      "kindTool": "Paid tool",
+      "kindProject": "Open source",
+      "rowVerdict": "Can a prompt replace it?",
+      "rowPrice": "Price",
+      "notApplicable": "Doesn’t apply",
+      "archivedNoticeTemplate": "{name} is archived on GitHub: it no longer gets updates. We keep this comparison for reference.",
+      "staleNoticeTemplate": "{name} has had no commit since {date}. It may no longer be maintained.",
+      "linksHeading": "Comparisons"
+    },
     "category": {
       "titleTemplate": "Which {category} tools can a coding agent replace? — SaaS Made Free",
       "metaDescriptionTemplate": "Which {category} tools can a coding agent replace, and which should you keep paying for?",

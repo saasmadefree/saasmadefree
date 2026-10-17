@@ -277,6 +277,22 @@ main > .pro-con{display:grid;gap:var(--s8);margin-top:clamp(var(--s8),9cqi,var(-
 @container page (min-width:780px){.project-head{grid-template-rows:auto auto 1fr}.project-head > .project-facts{grid-column:2;grid-row:1 / span 3}}
 @container page (min-width:860px){main > .pro-con{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--s8)}}`;
 
+/* Comparatif (A6) : mêmes composants que la fiche et la page projet. Le
+   tableau n'a que trois colonnes (le critère, puis un côté chacune) : il tient
+   dans 320px sans défiler, les valeurs longues passent à la ligne. Sur grand
+   écran, le résumé se range à droite du titre et les deux colonnes du tableau
+   occupent la largeur. */
+const COMPARE_CSS = `.alt-table.compare-table{min-width:0;table-layout:fixed}
+.compare-table th,.compare-table td{padding:1rem .5rem;overflow-wrap:anywhere}
+.compare-table :is(th,td):first-child{padding-left:0}
+.compare-table thead th:first-child{width:26%}
+.compare-table thead th{font:650 1rem/1.3 var(--display);color:var(--ink)}
+.compare-table thead .sub{font:400 .875rem/1.45 var(--text)}
+.compare-table tbody th{min-width:0;font:700 .875rem/1.4 var(--text);color:var(--ink2)}
+.compare-table .num{text-align:left}
+.compare-summary > * + *{margin-top:var(--s4)}
+@container page (min-width:780px){.compare-head{grid-template-columns:minmax(0,2fr) minmax(0,3fr);column-gap:var(--s8);align-items:end}.compare-head > .compare-summary{grid-column:2}.compare-table thead th:first-child{width:22%}.compare-table thead th{font-size:1.125rem}}`;
+
 /* Accueil (maquette direction-3-airy-home.html, revue D14) : héros court,
    ligne de chiffres discrète, emplacement newsletter (Task A9), rangée
    sponsor, recherche, filtres + tri, légende des verdicts, grille de cartes
@@ -453,6 +469,6 @@ const MOTION_CSS = `@media (prefers-reduced-motion:no-preference){a,button,.card
 @media (prefers-reduced-motion:reduce){.sp-tape-track{animation:none;flex-wrap:wrap;width:auto;row-gap:var(--s2);padding-inline:16px}.sp-tape-item[inert]{display:none}.vb-col > .verdict-badge{transform:none}}`;
 
 export const SITE_CSS = [
-  FONT_CSS, TOKENS_CSS, BASE_CSS, SHELL_CSS, VERDICT_CSS, PAGE_CSS, PROJECT_CSS, HOME_CSS,
+  FONT_CSS, TOKENS_CSS, BASE_CSS, SHELL_CSS, VERDICT_CSS, PAGE_CSS, PROJECT_CSS, COMPARE_CSS, HOME_CSS,
   SPONSOR_CSS, LEGACY_CSS, MOTION_CSS,
 ].join('\n') + '\n';

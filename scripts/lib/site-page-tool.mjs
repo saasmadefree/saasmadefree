@@ -126,6 +126,22 @@ ${rows.map(([label, value]) => `${indent}  <div><dt>${escapeHtml(label)}</dt><dd
 ${indent}</dl>`;
 }
 
+/** Liens « Comparisons » d'une fiche outil ou d'une page projet : les
+ *  comparatifs générés dans la langue (compareLinksFor, site-page-compare.mjs),
+ *  en liens simples sous un petit titre. Rien du tout s'il n'y en a pas.
+ *  @param {Array<{href:string,label:string}>} comparisons */
+export function renderCompareLinks(comparisons, heading) {
+  if (!comparisons?.length) return '';
+  return `
+
+    <section aria-labelledby="compare-links-heading">
+      <h2 class="label" id="compare-links-heading">${escapeHtml(heading)}</h2>
+      <ul class="link-cloud">
+${comparisons.map(({ href, label }) => `        <li><a href="${escapeHtml(href)}">${escapeHtml(label)}</a></li>`).join('\n')}
+      </ul>
+    </section>`;
+}
+
 export function fitTag(fit, t) {
   return `<span class="fit-tag" data-fit="${escapeHtml(fit)}">${escapeHtml(t.fitLabels[fit])}</span>`;
 }
@@ -409,11 +425,13 @@ ${cards.join('\n')}
  * @param {(project: object) => boolean} [opts.projectIndexable]  vrai si la page
  *   /{lang}/oss/{slug} du projet est indexable (indexable.project) ; absent,
  *   chaque projet renvoie vers son site
+ * @param {Array<{href:string,label:string}>} [opts.comparisons]  comparatifs générés
+ *   dans la langue où l'outil figure (compareLinksFor) ; vide, aucune section
  */
 export function renderToolPage({
   lang, path, tool, i18nEntry, categories, ui, alternates, xDefaultPath, homePath,
   categoryPath, relatedTools, voteCount, favicons, agents, sponsorSlots, buildDate,
-  projects, projectI18n = new Map(), today, projectIndexable = () => false,
+  projects, projectI18n = new Map(), today, projectIndexable = () => false, comparisons = [],
 }) {
   const s = { ...ui.site, pricingBasis: ui.pricingBasis };
   const t = s.tool;
@@ -499,7 +517,7 @@ ${why}
 
 ${faq}
 
-${renderVote({ tool, lang, path, t, verdict, voteCount })}${renderRelated({ relatedTools, lang, s, t, categories, favicons })}`;
+${renderVote({ tool, lang, path, t, verdict, voteCount })}${renderRelated({ relatedTools, lang, s, t, categories, favicons })}${renderCompareLinks(comparisons, s.compare.linksHeading)}`;
 
   const itemList = alts.length === 0 ? [] : [softwareItemListJsonLd(alts.map(({ project }) => {
     const { href } = projectLink(project, lang, isIndexable);

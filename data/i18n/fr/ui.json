@@ -289,6 +289,25 @@
       "archivedNotice": "Ce projet est archivé sur GitHub : il ne reçoit plus de mises à jour. On garde cette page pour mémoire.",
       "staleNoticeTemplate": "Aucun commit depuis {date}. Ce projet n’est peut-être plus maintenu."
     },
+    "compare": {
+      "titleTemplate": "{a} vs {b} ({year}) : lequel choisir ?",
+      "metaDescriptionTemplate": "{a} ou {b} ? Prix, licence, activité sur GitHub et pour qui est fait chacun, côte à côte, avec notre avis.",
+      "h1Template": "{a} vs {b}",
+      "vsTemplate": "{a} vs {b}",
+      "pickIfTemplate": "Prends {name} si…",
+      "factsHeading": "Côte à côte",
+      "factsCaption": "{a} et {b} : tous les faits qu’on a",
+      "colFact": "Critère",
+      "rowKind": "Type",
+      "kindTool": "Outil payant",
+      "kindProject": "Open source",
+      "rowVerdict": "Un prompt peut-il le remplacer ?",
+      "rowPrice": "Prix",
+      "notApplicable": "Ne s’applique pas",
+      "archivedNoticeTemplate": "{name} est archivé sur GitHub : il ne reçoit plus de mises à jour. On garde ce comparatif pour mémoire.",
+      "staleNoticeTemplate": "Aucun commit sur {name} depuis {date}. Ce projet n’est peut-être plus maintenu.",
+      "linksHeading": "Comparatifs"
+    },
     "category": {
       "titleTemplate": "Quels outils de {category} un agent IA peut-il remplacer ? — SaaS Made Free",
       "metaDescriptionTemplate": "Quels outils de {category} un agent IA peut-il remplacer, et lesquels vaut-il mieux continuer à payer ?",
