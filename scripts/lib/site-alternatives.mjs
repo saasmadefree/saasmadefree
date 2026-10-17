@@ -99,6 +99,11 @@ export const indexable = {
    *   today : date du build, 'YYYY-MM-DD'.
    */
   project(project, lang, ctx) {
+    // Sans date du jour, daysBetween rend NaN et la porte se ferme en
+    // silence : on préfère casser le build tout de suite.
+    if (typeof ctx?.today !== 'string') {
+      throw new TypeError("indexable.project : ctx.today doit être une date 'YYYY-MM-DD' (chaîne).");
+    }
     if (!isDisplayableProject(project, ctx.today)) return false;
     if (!ctx.projectI18n.has(`${lang}/${project.slug}`)) return false;
     return valuesOf(ctx.tools)

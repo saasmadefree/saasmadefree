@@ -156,6 +156,11 @@ describe('indexable', () => {
     expect(indexable.project(noRepo, 'fr', { projectI18n, tools, today })).toBe(true);
   });
 
+  it('projet : refuse un contexte sans today en chaîne — jamais un NaN silencieux', () => {
+    expect(() => indexable.project(p, 'fr', { projectI18n, tools })).toThrow(/today/);
+    expect(() => indexable.project(p, 'fr', { projectI18n, tools, today: new Date() })).toThrow(/today/);
+  });
+
   it('comparatif : texte rédigé pour la paire dans la langue', () => {
     const compareI18n = new Map([['fr/a-vs-b', { intro: '…' }]]);
     const pair = { a: 'a', b: 'b', kindA: 'tool', kindB: 'project' };

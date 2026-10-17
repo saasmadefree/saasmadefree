@@ -39,6 +39,44 @@ export function itemListJsonLd(tools) {
   };
 }
 
+/** Les alternatives libres d'une fiche, en ItemList de SoftwareApplication.
+ *  Chaque élément porte déjà son URL finale (page projet indexable, ou site
+ *  du projet) : aucune langue à résoudre ici. Une offre gratuite n'est
+ *  affirmée que s'il n'existe aucune version hébergée payante — sinon on ne
+ *  dit rien du prix plutôt que d'en inventer un.
+ *  @param {Array<{name:string,url:string,applicationCategory:string,hosted?:{exists:boolean}}>} items */
+export function softwareItemListJsonLd(items) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: items.map((entry, i) => {
+      const item = {
+        '@type': 'SoftwareApplication',
+        name: entry.name,
+        url: entry.url,
+        applicationCategory: entry.applicationCategory,
+        operatingSystem: 'Web',
+      };
+      if (entry.hosted?.exists === false) item.offers = { '@type': 'Offer', price: 0, priceCurrency: 'USD' };
+      return { '@type': 'ListItem', position: i + 1, item };
+    }),
+  };
+}
+
+/** La page elle-même : sa date de dernière modification réelle (relevé de
+ *  prix ou de chiffres GitHub le plus récent), pas la date du build. */
+export function webPageJsonLd({ path, name, description, lang, dateModified }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    url: `${SITE_ORIGIN}${path}`,
+    name,
+    description,
+    inLanguage: lang,
+    dateModified,
+  };
+}
+
 export function faqPageJsonLd(faq) {
   return {
     '@context': 'https://schema.org',

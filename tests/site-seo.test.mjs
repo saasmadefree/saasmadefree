@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   organizationJsonLd, websiteJsonLd, itemListJsonLd, faqPageJsonLd,
-  breadcrumbJsonLd, buildSitemap,
+  breadcrumbJsonLd, buildSitemap, softwareItemListJsonLd, webPageJsonLd,
 } from '../scripts/lib/site-seo.mjs';
 
 describe('organizationJsonLd', () => {
@@ -44,6 +44,42 @@ describe('breadcrumbJsonLd', () => {
   it('construit des URLs absolues à partir de chemins relatifs', () => {
     const data = breadcrumbJsonLd([{ label: 'Directory', href: '/en/' }]);
     expect(data.itemListElement[0].item).toBe('https://saasmadefree.com/en/');
+  });
+});
+
+describe('softwareItemListJsonLd', () => {
+  const items = [
+    { name: 'Listmonk', url: 'https://listmonk.app', applicationCategory: 'Newsletters', hosted: { exists: false } },
+    { name: 'Mautic', url: 'https://saasmadefree.com/en/oss/mautic', applicationCategory: 'Newsletters',
+      hosted: { exists: true, priceFrom: 9, currency: 'USD', source: 'https://x', checkedOn: '2026-10-01' } },
+  ];
+
+  it('une ItemList de SoftwareApplication, positions à partir de 1, dans l’ordre reçu', () => {
+    const data = softwareItemListJsonLd(items, 'en');
+    expect(data['@type']).toBe('ItemList');
+    expect(data.itemListElement.map((i) => i.position)).toEqual([1, 2]);
+    expect(data.itemListElement[0].item).toEqual({
+      '@type': 'SoftwareApplication', name: 'Listmonk', url: 'https://listmonk.app',
+      applicationCategory: 'Newsletters', operatingSystem: 'Web',
+      offers: { '@type': 'Offer', price: 0, priceCurrency: 'USD' },
+    });
+  });
+
+  it('pas d’offre gratuite affirmée quand une version hébergée payante existe', () => {
+    const data = softwareItemListJsonLd(items, 'en');
+    expect(data.itemListElement[1].item.offers).toBeUndefined();
+  });
+});
+
+describe('webPageJsonLd', () => {
+  it('porte dateModified, l’URL absolue et la langue', () => {
+    const data = webPageJsonLd({
+      path: '/en/tools/mailchimp', name: 'T', description: 'D', lang: 'en', dateModified: '2026-10-16',
+    });
+    expect(data).toMatchObject({
+      '@type': 'WebPage', url: 'https://saasmadefree.com/en/tools/mailchimp',
+      name: 'T', description: 'D', inLanguage: 'en', dateModified: '2026-10-16',
+    });
   });
 });
 
