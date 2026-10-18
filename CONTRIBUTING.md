@@ -38,8 +38,8 @@ data/i18n/<lang>/tools/<slug>.json      # editorial, one file per language in `m
 | `moatType` | free text, e.g. `"collaboration"`, `"compliance"` | one or two words naming what actually makes the tool hard to replace |
 | `diyTimeEstimate` | `one-sitting` \| `weekend` \| `week` \| `more` | how long a competent build realistically takes |
 | `requirements[]` | closed list: `anthropic-api-key`, `openai-api-key`, `hosting`, `domain`, `database`, `oauth-app`, `email-provider`, `none` | what the DIY version needs to run. Every code used here must already have a translated label in all seven `data/i18n/<lang>/ui.json`, under `requirements.<code>` — CI rejects a PR that introduces a code without it. |
-| `priorArt[]` | optional list of `{ name, url, license }` | existing open-source projects worth pointing readers to |
-| `relatedSlugs` | exactly 3 existing, distinct slugs | see [Exactly four, exactly three](#exactly-four-exactly-three) |
+| `alternatives[]` | optional list of `{ project, fit }`, at most 12 | the free, open-source projects that replace this tool, in display order. `project` is the slug of a file in `data/projects/` (see [Open-source projects](#open-source-projects)); `fit` is `full` (covers the core loop), `partial` (part of it) or `niche` (one use case). Only cite software someone can actually get and run: a paid API or a hosted-only service is not an alternative, even if you could build on it. The old `priorArt[]` field is rejected by the schema; the public feed still exposes `priorArt`, derived from this list. |
+| `relatedSlugs` | exactly 3 existing, distinct slugs | see [Four to six, exactly three](#four-to-six-exactly-three) |
 | `markets[]` | subset of `en, fr, es, de, it, pt, nl` | which languages this entry is published in — each one needs a matching `data/i18n/<lang>/tools/<slug>.json` |
 | `pagePriority` | integer, 0–10 | weight used by the site build for internal linking and ordering |
 | `verifiedOneShot` | boolean | whether someone actually ran the prompt end to end and it produced a working result on the first try |
@@ -59,15 +59,40 @@ data/i18n/<lang>/tools/<slug>.json      # editorial, one file per language in `m
 | `whyPeopleStillPay` | the honest answer, not a dismissal |
 | `notes` | optional |
 | `prompt` | the ready-to-use prompt for a coding agent, in this language. `en` is the reference version; other languages should track it. |
-| `faq[]` | exactly four `{ q, a }` pairs — see below |
+| `alternativesIntro` | optional, 60–120 words: names the best alternative and says why. Writing it makes the entry "enriched" |
+| `alternativeNotes` | optional `{ [projectSlug]: string }`: one or two sentences per project of `alternatives[]` on what it covers and what it lacks. A key that isn't in `alternatives[]` fails CI |
+| `faq[]` | four `{ q, a }` pairs, or six once `alternativesIntro` is written — see below |
 
-## Exactly four, exactly three
+## Four to six, exactly three
 
-Both counts are enforced by the schemas (`schema/tool-i18n.schema.json` for `faq`, `schema/tool.schema.json` for `relatedSlugs`), and `npm run validate` fails a PR that violates either.
+Both counts are enforced by the schemas (`schema/tool-i18n.schema.json` for `faq`, `schema/tool.schema.json` for `relatedSlugs`) and by `scripts/lib/validate-rules.mjs`, and `npm run validate` fails a PR that violates either.
 
-**`faq` — exactly four entries.** This project uses one rich entry per tool instead of several thin template pages ("replace X," "free alternative to X," "X open source," …). What keeps a single entry from reading as thin content is that it earns its length: four questions and answers that are actually specific to that tool, not generic filler. If a FAQ entry could be copy-pasted onto a different tool's page unchanged, it's the wrong entry.
+**`faq` — four entries, six on an enriched entry.** An entry with `alternativesIntro` needs exactly six; one without it, exactly four (five is always rejected). On an enriched entry the fifth question is "What's the best free {name} alternative?" (in the page's language) and the sixth is specific to the tool. This project uses one rich entry per tool instead of several thin template pages ("replace X," "free alternative to X," "X open source," …). What keeps a single entry from reading as thin content is that it earns its length: four questions and answers that are actually specific to that tool, not generic filler. If a FAQ entry could be copy-pasted onto a different tool's page unchanged, it's the wrong entry.
 
 **`relatedSlugs` — exactly three entries.** This is the internal linking that carries authority across what will eventually be several hundred pages. Making it optional is how it silently stops happening — every tool needs three concrete, sensible neighbors, not filler picked to satisfy the schema.
+
+## Open-source projects
+
+An open-source project is described once, in `data/projects/<slug>.json` (schema: `schema/project.schema.json`), and every tool that it replaces cites it from `alternatives[]`. Listmonk is one file, cited by Mailchimp, Beehiiv and Kit.
+
+| Field | Value |
+|---|---|
+| `slug` | `^[a-z0-9][a-z0-9-]{0,63}$`, must match the filename |
+| `name` | display name |
+| `homepage` | the project's site, `http(s)://` only |
+| `repo` | `owner/name` on GitHub, or `null` for another forge (the project is then shown without GitHub figures, never with made-up ones) |
+| `license` | SPDX identifier, optional |
+| `selfHostable` | boolean: can you run it yourself? |
+| `selfHostableCheckedOn`, `selfHostableSource` | the date (`YYYY-MM-DD`) you checked `selfHostable`, and the page you read (install docs, README). Both or neither |
+| `hosted` | `{ "exists": true, "priceFrom", "currency", "source", "checkedOn" }` for a paid hosted version, or `{ "exists": false }`, plus `checkedOn` and `source` once you have checked that there is none |
+| `deploy[]`, `stack[]` | kebab-case codes, e.g. `["docker"]`, `["go", "postgresql"]` |
+| `categories[]` | keys from `data/categories.json` |
+| `stats` | **never written by hand.** `npm run refresh:projects` reads stars, last commit, creation date and archive state from the GitHub API and dates them in `stats.checkedOn` |
+| `markets[]` | languages in which the project has a page; each one needs `data/i18n/<lang>/projects/<slug>.json` once any language is written |
+
+`selfHostable` and `hosted` are facts, so they need a source. Until `selfHostableCheckedOn` (or `hosted.checkedOn`) is set, the site shows "—" with the tooltip "Not checked yet" instead of the value, the JSON-LD makes no price claim, and the project does not count toward the self-hosted collection. Set the date only after reading the source on that day.
+
+The editorial file, `data/i18n/<lang>/projects/<slug>.json` (schema: `schema/project-i18n.schema.json`), holds `tagline` (≤ 110 characters), `description` (factual), `strengths` (3–6), `limits` (2–6, required: what the project won't do for you) and `bestFor` (one sentence).
 
 ## Adding an agent to the registry
 
