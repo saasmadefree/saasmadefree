@@ -27,8 +27,8 @@ Nothing else. Never `scripts/`, `schema/`, `tests/`. Never run `git`.
 }
 ```
 Validator rules: once `alternativesIntro` exists, `faq` must have **exactly 6** entries; every key of `alternativeNotes`
-must be a project in the tool's `alternatives`; no placeholder; no banned phrase. Word limits (60–120, 1–2 sentences)
-are not checked by the validator yet: you check them.
+must be a project in the tool's `alternatives`; no placeholder; no banned phrase. The validator also enforces `alternativesIntro` at 60–120 words and requires it to name the tool's first
+displayable alternative. The 1–2 sentence limit of each note is not checked: you check it.
 
 ## 5. Content
 - `alternativesIntro`: first sentence names the best alternative and the reason ("The best free alternative to Mailchimp

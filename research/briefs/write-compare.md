@@ -27,7 +27,7 @@ Never `data/compare.json` (the controller owns it), never another data file, nev
 }
 ```
 Validator: exactly 3 FAQ entries; the pair `a-vs-b` must exist in `data/compare.json`; no placeholder; no banned phrase.
-The word range of `summary` is not checked by the validator: you check it.
+The validator enforces `summary` at 80–150 words.
 
 ## 5. Content
 - `summary`: who should pick which, and the deciding factor, in the first two sentences. Then the cost picture
