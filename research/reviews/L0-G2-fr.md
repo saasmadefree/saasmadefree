@@ -80,3 +80,19 @@ Column 1 here means "facts identical to en and data/", column 4 "calque of the E
 - spree-commerce description: "fournir le travail Rails et TypeScript" replaced by "si tu as des développeurs Rails et TypeScript".
 - plunk description: "trois métiers" and "formulaires de croissance de liste" replaced by "trois choses" and "formulaires d'inscription pour faire grossir ta liste".
 - Also fixed: apostrophes and list-item punctuation normalised batch-wide; seafile Dropbox sentence, shopify/canva/mailchimp intros, woocommerce/prestashop/bagisto/wraft wordings.
+
+## Re-review round 1
+Date: 2026-10-18 · Scope: the 5 original blocking defects + spot-check of the batch-wide pass.
+- dropbox-plus faq[5].a: FIXED. "si ton portable est éteint, tes fichiers ne sont nulle part ailleurs" states the en fact (no other copy reachable); the "sauvegarde en moins" contradiction is gone.
+- opencloud description: FIXED. "L’ensemble reste simple, mais ta sauvegarde devient une sauvegarde de fichiers" and "Avant de te lancer, vérifie dans la documentation ce qu’il en est des clients, de l’édition de documents et de la synchro : le dépôt principal ne décrit que le backend" are natural and match en.
+- documenso description: FIXED. "ne sont pas garantis" renders best-effort correctly.
+- documenso limits[3]: FIXED. "La sécurité du réseau est à ta charge : les contrôles des requêtes de webhook ne bloquent pas toutes les requêtes vers des adresses internes" = en "not a complete defence".
+- spree-commerce description: FIXED. "si tu veux garder ton code et tes données, et si tu as des développeurs Rails et TypeScript".
+- plunk description: FIXED. "Elle sert à trois choses" and "les formulaires d’inscription pour faire grossir ta liste".
+
+Spot-check of the apostrophe and wording pass (10 of the 98 fr files changed at 2026-10-18 07:00, picked with node -e and Math.random): projects/platform, stirling-pdf, waistline, seonaut, opencut, open-seo, redmine, automatisch; tools/asana, mailchimp (scoped keys). Each read side by side with en. No straight apostrophe left, no ’ inside a URL, command, env var or file name (docker compose up, ENCRYPTION_KEY, .ee., .nvmrc, seonaut.org, opencut.app intact), no broken text, no changed fact, tutoiement kept.
+
+New blocking defects: none.
+Non-blocking, for a later pass: opencut tagline drops en "Free" ("Éditeur vidéo MIT…"; MIT implies it, no fact wrong); asana alternativesIntro "la remontée des objectifs vers ceux de l’entreprise" slightly expands en "goal roll-up"; opencut "voie d’auto-hébergement packagée" a little literal.
+
+Verdict: PASS

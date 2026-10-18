@@ -99,3 +99,13 @@ Point-by-point:
 ## Fix round 1
 - trypost strengths[0]: now "Publie vraiment sur 13 réseaux par leurs API officielles : il ne se contente jamais de te rappeler de poster à la main".
 - Also fixed (notes): platform "Huly (community fork)", operately CLI wording, pdfarranger agreement and "versions publiées", mixpost price wording, adobe/asana/smartsheet intros, stirling-pdf tagline, frappe-helpdesk script, bentopdf same-origin.
+
+## Re-review round 1
+Date: 2026-10-18 · Scope: the 1 original blocking defect + spot-check of the batch-wide pass.
+- trypost strengths[0]: FIXED. "Publie vraiment sur 13 réseaux par leurs API officielles : il ne se contente jamais de te rappeler de poster à la main" is clear French and carries the en fact (real API publishing, no reminder-only fallback); 13 networks and official APIs kept.
+
+Spot-check of the apostrophe and wording pass (10 of the 98 fr files changed at 2026-10-18 07:00, picked with node -e and Math.random): projects/platform, stirling-pdf, waistline, seonaut, opencut, open-seo, redmine, automatisch; tools/asana, mailchimp (scoped keys). Each read side by side with en. No straight apostrophe left, no ’ inside a URL, command, env var or file name (docker compose up, ENCRYPTION_KEY, .ee., .nvmrc, seonaut.org, opencut.app intact), no broken text, no changed fact, tutoiement kept. Files from this group in the sample: platform ("Huly (community fork)" now used as the proper name, consistent with asana note), stirling-pdf (tagline now "Boîte à outils PDF auto-hébergée", open core, 5 users, Team/Enterprise gates intact), redmine (eleven steps, READ COMMITTED, GPL v2 intact), tools/asana.
+
+New blocking defects: none.
+
+Verdict: PASS
