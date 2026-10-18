@@ -26,7 +26,9 @@ Nothing else. Never `scripts/`, `schema/`, `tests/`. Never run `git`.
 
 ## 5. The grid (each point: pass or blocking defect)
 1. **Sources.** Every number in the text has a source line, and the page at that URL says that number. Open at least 3 URLs per file.
-   Stars, dates and licences in prose are a defect (they come from the GitHub API, shown by the table).
+   Stars, creation dates, last-commit dates and other live figures in prose are a defect: the table shows them live.
+   Licence names and the existence of a hosted offer MAY appear in prose when they match `data/projects` and its sources
+   (Ruling 47): honesty about source-available and open-core terms needs words, not only a table cell.
 2. **Limits.** `limits` (projects) and `whatYouLose` (tools) are real and specific to this product. "May require technical
    knowledge", "smaller community", "less polished" are defects.
 3. **Winner.** `alternativesIntro` names one best alternative in its first sentence, says why, and that project is `alternatives[0]`.

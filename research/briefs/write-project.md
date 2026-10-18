@@ -35,7 +35,8 @@ So add `"en"` to `markets`, never `"fr"` (that is `write-lang`'s job).
 ## 5. Content
 - `tagline`: what it is, for whom. "Self-hosted newsletter and mailing list manager in a single Go binary."
 - `description`: what it does, how you run it (deploy options from the docs), what it needs (database, SMTP, RAM if documented),
-  which SaaS it replaces and how closely. Licence and hosting facts come from `data/projects/{slug}.json`; do not restate stars
+  which SaaS it replaces and how closely. Licence and hosting facts come from `data/projects/{slug}.json` and may be named in prose (Ruling 47); never write stars,
+  creation dates or last-commit dates in prose (the page shows them live); do not restate stars
   or dates (the page shows live figures next to your text).
 - `strengths`: concrete and checkable. "Imports subscribers from CSV with custom attributes", not "easy to use".
 - `limits`: real and specific, taken from the docs, open issues or missing features. "No visual automation builder:
