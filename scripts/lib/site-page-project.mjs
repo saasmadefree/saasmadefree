@@ -256,6 +256,7 @@ function softwareApplicationJsonLd({ project, path, catLabel, description }) {
  *   dans la langue où le projet figure (compareLinksFor) ; vide, aucune section
  */
 export function renderProjectPage({
+  collectionLinks = [],
   lang, path, project, i18nEntry, replaced = [], related = [], ui, alternates = [], xDefaultPath = null,
   homePath, categories = {}, categoryPath = null, buildDate, today, indexable = false,
   projectIndexable = () => false, projectI18n = new Map(), sponsorSlots = null, comparisons = [],
@@ -346,6 +347,7 @@ ${paragraphs.map((para) => `        <p>${escapeHtml(para)}</p>`).join('\n')}
     main,
     ui,
     homeHref: homePath,
+    collectionLinks,
     sponsorSlots,
   });
 }

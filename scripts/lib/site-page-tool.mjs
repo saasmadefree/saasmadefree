@@ -490,6 +490,7 @@ ${items.map((other) => `        <li><a href="${escapeHtml(other.path)}">${escape
  *   vide sans clé SmartLetter (spec D13), rien n'est rendu
  */
 export function renderToolPage({
+  collectionLinks = [],
   lang, path, tool, i18nEntry, categories, ui, alternates, xDefaultPath, homePath,
   categoryPath, relatedTools, voteCount, favicons, agents, sponsorSlots, buildDate,
   projects, projectI18n = new Map(), today, projectIndexable = () => false, comparisons = [], popularTools = [],
@@ -611,6 +612,7 @@ ${renderVote({ tool, lang, path, t, verdict, voteCount })}${renderRelated({ rela
     main,
     ui,
     homeHref: homePath,
+    collectionLinks,
     sponsorSlots,
     hasNewsletter: Boolean(newsletter),
   });

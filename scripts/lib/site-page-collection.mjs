@@ -53,6 +53,24 @@ export function collectionTools(kind, toolViews, { projects, today }) {
   throw new Error(`Collection inconnue : « ${kind} » (attendu : ${COLLECTION_KINDS.join(', ')}).`);
 }
 
+/**
+ * Porte D7 des collections, décidée UNE fois par langue (Ruling 34) : les
+ * collections dont la page est générée ET indexable. build-site s'en sert à
+ * la fois pour le noindex et le sitemap de la page, et pour les liens du
+ * pied de page : un lien ne peut donc jamais viser une collection gardée
+ * hors index, ni manquer une collection indexable.
+ * @param {string[]} langs  langues publiées
+ * @param {(lang: string) => object[]} viewsOf  fiches de la langue (buildToolViews)
+ * @param {{ projects: Map<string, object>, today: string }} ctx
+ * @returns {Map<string, { items: Record<string, object[]>, indexable: string[] }>}
+ */
+export function collectionPlan(langs, viewsOf, ctx) {
+  return new Map(langs.map((lang) => {
+    const items = Object.fromEntries(COLLECTION_KINDS.map((kind) => [kind, collectionTools(kind, viewsOf(lang), ctx)]));
+    return [lang, { items, indexable: COLLECTION_KINDS.filter((kind) => indexable.list(items[kind])) }];
+  }));
+}
+
 /** CollectionPage d'une liste de fiches : partagée avec le hub A–Z. */
 export function collectionPageJsonLd({ path, name, description, lang }) {
   return {
@@ -70,17 +88,20 @@ export function collectionPageJsonLd({ path, name, description, lang }) {
  * @param {'self-hosted'|'build-tonight'} opts.kind
  * @param {object[]} opts.items  collectionTools(kind, …)
  * @param {string} opts.buildDate  'YYYY-MM-DD' (année du titre)
+ * @param {boolean} [opts.isIndexable]  porte D7 déjà décidée par collectionPlan
+ *   (build-site) ; absente, elle est calculée sur `items` par la même règle
  */
 export function renderCollectionPage({
+  collectionLinks = [],
   kind, lang, path, items, categories, voteCounts, favicons, ui, alternates, xDefaultPath, homePath,
-  sponsorSlots, buildDate,
+  sponsorSlots, buildDate, isIndexable,
 }) {
   if (!COLLECTION_KINDS.includes(kind)) throw new Error(`Collection inconnue : « ${kind} ».`);
   const s = ui.site;
   const c = s.collections;
   const k = c[kind];
   const label = s.footer[LABEL_KEYS[kind]];
-  const open = indexable.list(items);
+  const open = isIndexable ?? indexable.list(items);
   const vars = { n: items.length, year: buildDate.slice(0, 4) };
   const title = interpolate(open ? k.titleTemplate : k.titleFallbackTemplate, vars);
   const description = interpolate(k.metaDescriptionTemplate, vars);
@@ -119,6 +140,7 @@ ${body}`;
     main,
     ui,
     homeHref: homePath,
+    collectionLinks,
     sponsorSlots,
   });
 }

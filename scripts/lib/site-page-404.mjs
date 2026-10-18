@@ -14,7 +14,7 @@ import { escapeHtml, renderLayout } from './site-html.mjs';
  * `noindex` en plus du statut : la balise protège même si un intermédiaire
  * réécrit le code de statut.
  */
-export function render404Page({ ui, enPath, langs }) {
+export function render404Page({ ui, enPath, langs, collectionLinks = [] }) {
   const s = ui.site;
   const n = s.notFound;
   const links = langs
@@ -45,6 +45,7 @@ export function render404Page({ ui, enPath, langs }) {
     main,
     ui,
     homeHref: enPath,
+    collectionLinks,
     robots: 'noindex',
   });
 }

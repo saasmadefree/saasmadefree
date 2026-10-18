@@ -100,6 +100,9 @@ function renderLangSwitcher(alternates, currentLang, ui) {
  * @param {string} opts.homeHref - lien de la marque dans l'en-tête
  * @param {string} [opts.extraHead] - balises additionnelles insérées dans <head>
  * @param {{tapeBottom:string,railLeft:string,railRight:string,fallback:string}|null} [opts.sponsorSlots] - balisage sponsor déjà rendu par renderSponsorSlots(), ou null pour aucun
+ * @param {string[]} [opts.collectionLinks] - collections liées au pied de page : celles dont
+ *   la page est générée et indexable dans la langue (collectionPlan, Ruling 34). Vide par
+ *   défaut : sans décision, aucun lien plutôt qu'un lien vers une page noindex
  * @param {string|null} [opts.robots] - contenu de <meta name="robots"> (ex. "noindex,follow"),
  *   aucune balise si absent : une page indexable n'a pas besoin de le dire
  * @param {boolean} [opts.hasNewsletter] - la page porte le formulaire SmartLetter (spec D13) :
@@ -107,7 +110,7 @@ function renderLangSwitcher(alternates, currentLang, ui) {
  */
 export function renderLayout({
   lang, path, title, description, alternates = [], xDefaultPath = null,
-  jsonLd = [], main, ui, homeHref, extraHead = '', sponsorSlots = null, robots = null,
+  jsonLd = [], main, ui, homeHref, extraHead = '', sponsorSlots = null, robots = null, collectionLinks = [],
   hasNewsletter = false,
 }) {
   // Canonical = l'URL de la page elle-même, jamais une autre langue.
@@ -205,14 +208,17 @@ export function renderLayout({
     ? `\n        <p>${escapeHtml(promiseText)}</p>`
     : '';
 
-  // Maillage A7 : le hub A–Z et les deux collections, sur toutes les pages.
-  // Seulement si la locale porte le libellé (les langues non publiées ont un
-  // bloc `site` réduit) : jamais un lien sans texte.
+  // Maillage A7 : le hub A–Z (toujours indexable) et les collections, sur
+  // toutes les pages. Une collection n'est liée que si sa page est générée et
+  // indexable dans la langue (`collectionLinks`, la même décision que son
+  // noindex et le sitemap, Ruling 34). Seulement si la locale porte le
+  // libellé (les langues non publiées ont un bloc `site` réduit) : jamais un
+  // lien sans texte.
   const footer = ui.site.footer ?? {};
   const meshLinks = [
     [`/${lang}/alternatives/`, footer.hub],
-    [`/${lang}/collections/self-hosted`, footer.selfHosted],
-    [`/${lang}/collections/build-tonight`, footer.buildTonight],
+    collectionLinks.includes('self-hosted') ? [`/${lang}/collections/self-hosted`, footer.selfHosted] : [],
+    collectionLinks.includes('build-tonight') ? [`/${lang}/collections/build-tonight`, footer.buildTonight] : [],
   ]
     .filter(([, label]) => label)
     .map(([href, label]) => `\n          <a href="${href}">${escapeHtml(label)}</a>`)

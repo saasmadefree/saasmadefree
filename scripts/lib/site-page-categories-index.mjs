@@ -12,6 +12,7 @@ import { organizationJsonLd, breadcrumbJsonLd } from './site-seo.mjs';
  * classe (`projectCountsBySlug`), seulement quand il y en a.
  */
 export function renderCategoriesIndexPage({
+  collectionLinks = [],
   lang, path, categorySlugs, categories, countsBySlug, projectCountsBySlug = {}, ui, alternates, xDefaultPath, homePath,
   sponsorSlots,
 }) {
@@ -55,6 +56,7 @@ ${items}
     main,
     ui,
     homeHref: homePath,
+    collectionLinks,
     sponsorSlots,
   });
 }

@@ -7,7 +7,7 @@ import { organizationJsonLd } from './site-seo.mjs';
  * de secours visible et une porte de sortie vers /fr/. Pas de hreflang ici :
  * ce n'est pas une variante linguistique d'une page, c'est l'aiguillage lui-même.
  */
-export function renderRootPage({ ui, enPath, otherLangs }) {
+export function renderRootPage({ ui, enPath, otherLangs, collectionLinks = [] }) {
   const r = ui.site.root;
   const otherLinks = otherLangs
     .map((lang) => `<a href="/${lang}/" hreflang="${lang}" lang="${lang}">${escapeHtml(languageName(lang))}</a>`)
@@ -33,6 +33,7 @@ export function renderRootPage({ ui, enPath, otherLangs }) {
     main,
     ui,
     homeHref: enPath,
+    collectionLinks,
     extraHead: `<meta http-equiv="refresh" content="0; url=${enPath}">`,
   });
 }

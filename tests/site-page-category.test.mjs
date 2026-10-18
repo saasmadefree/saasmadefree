@@ -381,3 +381,18 @@ describe('page de catégorie — valeurs non vérifiées (finding 2)', () => {
     for (const entry of list.itemListElement.slice(1)) expect(entry.item.offers).toBeUndefined();
   });
 });
+
+// Ruling 34 : le pied de page ne lie une collection que si build-site l'a
+// déclarée indexable dans la langue (collectionPlan) — et toujours le hub.
+describe('Ruling 34 — liens de collection du pied de page', () => {
+  const footer = (page) => page.slice(page.indexOf('<footer'), page.indexOf('</footer>'));
+  it('self-hosted noindex : aucun lien ; indexable : lié ; build-tonight lié s’il est indexable', () => {
+    const off = footer(render({ collectionLinks: ['build-tonight'] }));
+    expect(off).not.toContain('/collections/self-hosted');
+    expect(off).toContain('/collections/build-tonight');
+    expect(off).toContain('/alternatives/"');
+    const on = footer(render({ collectionLinks: ['self-hosted', 'build-tonight'] }));
+    expect(on).toContain('/collections/self-hosted');
+    expect(on).toContain('/collections/build-tonight');
+  });
+});

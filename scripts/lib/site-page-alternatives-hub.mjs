@@ -55,6 +55,7 @@ export function groupByLetter(tools, lang) {
  * @param {string} opts.buildDate  'YYYY-MM-DD' (année du titre)
  */
 export function renderAlternativesHub({
+  collectionLinks = [],
   lang, path, tools, counts, ui, alternates, xDefaultPath, homePath, sponsorSlots, buildDate,
 }) {
   const s = ui.site;
@@ -116,6 +117,7 @@ ${sections.join('\n\n')}`;
     main,
     ui,
     homeHref: homePath,
+    collectionLinks,
     sponsorSlots,
   });
 }

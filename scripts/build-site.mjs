@@ -18,7 +18,7 @@ import { renderHomePage } from './lib/site-page-home.mjs';
 import { renderCategoryPage, categoryProjects, categoryIndexable } from './lib/site-page-category.mjs';
 import { renderCategoriesIndexPage } from './lib/site-page-categories-index.mjs';
 import {
-  renderCollectionPage, collectionTools, collectionPath, COLLECTION_KINDS,
+  renderCollectionPage, collectionPath, collectionPlan, COLLECTION_KINDS,
 } from './lib/site-page-collection.mjs';
 import { renderAlternativesHub, hubPath } from './lib/site-page-alternatives-hub.mjs';
 import { renderSponsorPage } from './lib/site-page-sponsor.mjs';
@@ -184,19 +184,6 @@ async function main() {
   // c'est une redirection (meta refresh) vers /en/, pas une page à indexer.
   const sitemapPages = [sitemapEntry('pages', '/privacy')];
 
-  // ---- page racine ------------------------------------------------------
-  const enPath = langs.includes('en') ? '/en/' : `/${langs[0]}/`;
-  const rootUi = ui.get('en') ?? ui.get(langs[0]);
-  await writePage(
-    '/',
-    renderRootPage({ ui: rootUi, enPath, otherLangs: langs.filter((l) => `/${l}/` !== enPath) })
-  );
-
-  // ---- 404 ---------------------------------------------------------------
-  // Cloudflare Pages sert ce fichier, avec un vrai statut 404, pour toute URL
-  // sans fichier correspondant. Sans lui, Pages renvoyait la page racine en
-  // 200 pour n'importe quel chemin — voir scripts/lib/site-page-404.mjs.
-  await writeText(join(OUT, '404.html'), render404Page({ ui: rootUi, enPath, langs }));
 
   // ---- par langue : accueil, fiches, catégories --------------------------
   const homeAlt = languageVersions(langs, (l) => `/${l}/`);
@@ -237,8 +224,29 @@ async function main() {
   const toolViewsByLang = new Map(langs.map((l) => [l, buildToolViews(tools, i18n, l, voteCounts, projects, today)]));
   const viewsIn = (l, category) => toolViewsByLang.get(l).filter((t) => t.category === category);
   const categoryGate = (category) => (l) => categoryIndexable(viewsIn(l, category), categoryProjects(viewsIn(l, category), projects, today));
-  const collectionGate = (kind) => (l) => indexable.list(collectionTools(kind, toolViewsByLang.get(l), { projects, today }));
+  // Collections : une seule décision par langue (Ruling 34), d'où dérivent la
+  // page (noindex), le sitemap, le hreflang ET les liens du pied de page de
+  // toutes les pages. Un lien ne vise donc jamais une collection noindex.
+  const collections = collectionPlan(langs, (l) => toolViewsByLang.get(l), { projects, today });
+  const collectionGate = (kind) => (l) => collections.get(l).indexable.includes(kind);
   const hubGate = (l) => indexable.list(toolViewsByLang.get(l));
+
+  // ---- page racine ------------------------------------------------------
+  const enPath = langs.includes('en') ? '/en/' : `/${langs[0]}/`;
+  const rootUi = ui.get('en') ?? ui.get(langs[0]);
+  // Racine et 404 portent le pied de page de leur langue (en, à défaut la
+  // première) : mêmes liens de collection que ses pages (Ruling 34).
+  const rootCollectionLinks = collections.get(langs.includes('en') ? 'en' : langs[0]).indexable;
+  await writePage(
+    '/',
+    renderRootPage({ ui: rootUi, enPath, otherLangs: langs.filter((l) => `/${l}/` !== enPath), collectionLinks: rootCollectionLinks })
+  );
+
+  // ---- 404 ---------------------------------------------------------------
+  // Cloudflare Pages sert ce fichier, avec un vrai statut 404, pour toute URL
+  // sans fichier correspondant. Sans lui, Pages renvoyait la page racine en
+  // 200 pour n'importe quel chemin — voir scripts/lib/site-page-404.mjs.
+  await writeText(join(OUT, '404.html'), render404Page({ ui: rootUi, enPath, langs, collectionLinks: rootCollectionLinks }));
   // Date réelle de chaque fiche (prix ou chiffres GitHub), une fois : la
   // lastmod d'une page de liste est la plus récente de ses fiches.
   const toolLastmod = new Map([...tools.values()].map((tool) => [tool.slug, toolDateModified(tool, alternativesFor(tool, projects, today))]));
@@ -287,6 +295,8 @@ async function main() {
     const sponsorSlots = renderSponsorSlots(sponsorCtx);
 
     const toolViews = toolViewsByLang.get(lang);
+    // Collections liées au pied de page de chaque page de la langue (Ruling 34).
+    const collectionLinks = collections.get(lang).indexable;
     const categorySlugs = categoriesForLang(tools, lang);
     const topCategorySlugs = topCategoriesByCount(tools, lang, HOME_TOP_CATEGORIES);
     const homePath = `/${lang}/`;
@@ -297,7 +307,7 @@ async function main() {
       homePath,
       renderHomePage({
         lang, path: homePath, toolViews, topCategorySlugs, categories, voteCounts, favicons, figures, mrrTotal,
-        ui: langUi, alternates: homeAlt, xDefaultPath: homeXDefault, sponsorSlots, buildDate: today,
+        ui: langUi, collectionLinks, alternates: homeAlt, xDefaultPath: homeXDefault, sponsorSlots, buildDate: today,
         newsletter: renderNewsletterForm({ lang, ui: langUi, config: newsletter, variant: 'hero' }),
       })
     );
@@ -321,7 +331,7 @@ async function main() {
       allCategoriesPath,
       renderCategoriesIndexPage({
         lang, path: allCategoriesPath, categorySlugs, categories, countsBySlug, projectCountsBySlug,
-        ui: langUi, alternates: allCategoriesAlt, xDefaultPath: xDefaultOf(allCategoriesAlt), homePath, sponsorSlots,
+        ui: langUi, collectionLinks, alternates: allCategoriesAlt, xDefaultPath: xDefaultOf(allCategoriesAlt), homePath, sponsorSlots,
       })
     );
     sitemapPages.push(sitemapEntry('lists', allCategoriesPath, lastmodOf(toolViews)));
@@ -335,7 +345,7 @@ async function main() {
     await writePage(
       sponsorPath,
       renderSponsorPage({
-        lang, path: sponsorPath, ui: langUi, alternates: sponsorAlt,
+        lang, path: sponsorPath, ui: langUi, collectionLinks, alternates: sponsorAlt,
         xDefaultPath: xDefaultOf(sponsorAlt), homePath,
         sponsors: sponsorCtx, sponsorSlots, figures, stats,
       })
@@ -348,7 +358,7 @@ async function main() {
     await writePage(
       statsPath,
       renderStatsPage({
-        lang, path: statsPath, ui: langUi, alternates: statsAlt,
+        lang, path: statsPath, ui: langUi, collectionLinks, alternates: statsAlt,
         xDefaultPath: xDefaultOf(statsAlt), homePath,
         toolCount: tools.size, verdictCounts,
       })
@@ -370,7 +380,7 @@ async function main() {
         catPath,
         renderCategoryPage({
           lang, path: catPath, categorySlug, categories, toolViews: catToolViews, voteCounts, favicons,
-          ui: langUi, alternates: catAlt, xDefaultPath: xDefaultOf(catAlt), homePath, sponsorSlots,
+          ui: langUi, collectionLinks, alternates: catAlt, xDefaultPath: xDefaultOf(catAlt), homePath, sponsorSlots,
           projects, projectI18n, buildDate: today, today, projectIndexable: projectIndexableIn(lang),
         })
       );
@@ -385,17 +395,19 @@ async function main() {
     // Collections /{lang}/collections/{kind} (spec D5) : toutes les langues
     // publiées, noindex sous 3 éléments.
     for (const kind of COLLECTION_KINDS) {
-      const items = collectionTools(kind, toolViews, { projects, today });
+      const items = collections.get(lang).items[kind];
+      const open = collectionLinks.includes(kind);
       const colPath = collectionPath(lang, kind);
       const colAlt = languageVersions(langs, (l) => collectionPath(l, kind), collectionGate(kind));
       await writePage(
         colPath,
         renderCollectionPage({
           kind, lang, path: colPath, items, categories, voteCounts, favicons,
-          ui: langUi, alternates: colAlt, xDefaultPath: xDefaultOf(colAlt), homePath, sponsorSlots, buildDate: today,
+          ui: langUi, collectionLinks, alternates: colAlt, xDefaultPath: xDefaultOf(colAlt), homePath, sponsorSlots, buildDate: today,
+          isIndexable: open,
         })
       );
-      listPages.push({ path: colPath, indexable: indexable.list(items), lastmod: lastmodOf(items) });
+      listPages.push({ path: colPath, indexable: open, lastmod: lastmodOf(items) });
       collectionPageCount += 1;
     }
 
@@ -407,7 +419,7 @@ async function main() {
       renderAlternativesHub({
         lang, path: hubPath(lang), tools: toolViews,
         counts: Object.fromEntries(toolViews.map((t) => [t.slug, t.alternativeNames.length])),
-        ui: langUi, alternates: hubAlt, xDefaultPath: xDefaultOf(hubAlt), homePath, sponsorSlots, buildDate: today,
+        ui: langUi, collectionLinks, alternates: hubAlt, xDefaultPath: xDefaultOf(hubAlt), homePath, sponsorSlots, buildDate: today,
       })
     );
     listPages.push({ path: hubPath(lang), indexable: indexable.list(toolViews), lastmod: lastmodOf(toolViews) });
@@ -437,7 +449,7 @@ async function main() {
         toolPath,
         renderToolPage({
           lang, path: toolPath, tool, i18nEntry, categories,
-          ui: langUi, alternates: toolAlt, xDefaultPath: xDefaultOf(toolAlt), homePath,
+          ui: langUi, collectionLinks, alternates: toolAlt, xDefaultPath: xDefaultOf(toolAlt), homePath,
           categoryPath: `/${lang}/categories/${tool.category}`,
           relatedTools, voteCount: voteCountFor(voteCounts, tool.slug), favicons, agents, sponsorSlots,
           // Date du verdict (build) et date de fraîcheur des chiffres GitHub :
@@ -471,7 +483,7 @@ async function main() {
         lang, path: page.path, project, i18nEntry: page.i18nEntry,
         replaced: replacedTools(project.slug, tools),
         related: relatedProjects(project, projects, today),
-        ui: langUi, alternates: page.alternates, xDefaultPath: page.xDefaultPath, homePath,
+        ui: langUi, collectionLinks, alternates: page.alternates, xDefaultPath: page.xDefaultPath, homePath,
         categories, categoryPath: categorySlugs.includes(category) ? `/${lang}/categories/${category}` : null,
         buildDate: today, today, indexable: page.indexable,
         projectIndexable: projectIndexableIn(lang), projectI18n, sponsorSlots,
@@ -493,7 +505,7 @@ async function main() {
       const category = compareCategory(page.left);
       const html = renderComparePage({
         lang, path: page.path, left: withText(page.left), right: withText(page.right), i18nEntry: page.i18nEntry,
-        ui: langUi, alternates: page.alternates, xDefaultPath: page.xDefaultPath, homePath,
+        ui: langUi, collectionLinks, alternates: page.alternates, xDefaultPath: page.xDefaultPath, homePath,
         categories, categoryPath: categorySlugs.includes(category) ? `/${lang}/categories/${category}` : null,
         buildDate: today, today, indexable: page.indexable,
         projectIndexable: projectIndexableIn(lang), sponsorSlots,

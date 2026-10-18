@@ -285,6 +285,7 @@ function itemFor(side, lang, isIndexable, categories, path) {
  * @param {object|null} [opts.sponsorSlots]  emplacements vendus, rendus par renderSponsorSlots
  */
 export function renderComparePage({
+  collectionLinks = [],
   lang, path, left, right, i18nEntry, ui, alternates = [], xDefaultPath = null, homePath,
   categories = {}, categoryPath = null, buildDate, today, indexable = false,
   projectIndexable = () => false, sponsorSlots = null,
@@ -365,6 +366,7 @@ ${faq}`;
     main,
     ui,
     homeHref: homePath,
+    collectionLinks,
     sponsorSlots,
   });
 }

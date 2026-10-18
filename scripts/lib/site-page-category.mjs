@@ -130,6 +130,7 @@ ${rows.join('\n')}
  *   build-site (projectIndexableIn(lang)) : lien /{lang}/oss/ seulement si vrai
  */
 export function renderCategoryPage({
+  collectionLinks = [],
   lang, path, categorySlug, categories, toolViews, voteCounts, favicons, ui, alternates, xDefaultPath, homePath,
   sponsorSlots, projects = new Map(), projectI18n = new Map(), buildDate, today = buildDate,
   projectIndexable = () => false,
@@ -205,6 +206,7 @@ ${grid}
     main,
     ui,
     homeHref: homePath,
+    collectionLinks,
     sponsorSlots,
   });
 }

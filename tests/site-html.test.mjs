@@ -244,7 +244,10 @@ describe('composants du dossier retirés (revue finale, finding 12)', () => {
 describe('renderLayout — pied de page, maillage A7', () => {
   const realUi = (lang) => JSON.parse(readFileSync(`data/i18n/${lang}/ui.json`, 'utf8'));
   const footerOf = (lang) => {
-    const html = renderLayout({ lang, path: `/${lang}/`, title: 't', description: 'd', main: '<h1>x</h1>', ui: realUi(lang), homeHref: `/${lang}/` });
+    const html = renderLayout({
+      lang, path: `/${lang}/`, title: 't', description: 'd', main: '<h1>x</h1>', ui: realUi(lang), homeHref: `/${lang}/`,
+      collectionLinks: ['self-hosted', 'build-tonight'],
+    });
     return html.slice(html.indexOf('<footer'), html.indexOf('</footer>'));
   };
 

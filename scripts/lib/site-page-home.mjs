@@ -156,6 +156,7 @@ ${cats}
  *   rendu, jamais un formulaire mort (spec D13).
  */
 export function renderHomePage({
+  collectionLinks = [],
   lang, path, toolViews, topCategorySlugs, categories, voteCounts, favicons, figures, mrrTotal,
   ui, alternates, xDefaultPath, sponsorSlots, newsletter = '',
 }) {
@@ -218,6 +219,7 @@ ${renderStart({ toolViews, topCategorySlugs, categories, path, lang, ui, figures
     main,
     ui,
     homeHref: path,
+    collectionLinks,
     sponsorSlots: layoutSlots,
     hasNewsletter: Boolean(newsletter),
   });
