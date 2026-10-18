@@ -46,6 +46,24 @@ describe('newsletterConfig — configuration au build', () => {
       .toThrow(/SMARTLETTER_SEGMENT_ID/);
   });
 
+  it('le segment suit l’UUID de zod v4 (version 1–8, variante 8/9/a/b, nul et max)', () => {
+    const ok = (id) => newsletterConfig({ SMARTLETTER_SIGNUPS_KEY: KEY, SMARTLETTER_SEGMENT_ID: id }).segmentId;
+    expect(ok('0B7E2F4C-1D3A-4C5B-9E8F-7A6B5C4D3E2F')).toBe('0B7E2F4C-1D3A-4C5B-9E8F-7A6B5C4D3E2F');
+    expect(ok('0b7e2f4c-1d3a-7c5b-ae8f-7a6b5c4d3e2f')).toBeTruthy();
+    expect(ok('00000000-0000-0000-0000-000000000000')).toBeTruthy();
+    expect(ok('ffffffff-ffff-ffff-ffff-ffffffffffff')).toBeTruthy();
+    for (const bad of [
+      '0b7e2f4c-1d3a-0c5b-9e8f-7a6b5c4d3e2f', // version 0
+      '0b7e2f4c-1d3a-9c5b-9e8f-7a6b5c4d3e2f', // version 9
+      '0b7e2f4c-1d3a-4c5b-1e8f-7a6b5c4d3e2f', // variante 1
+      '0b7e2f4c-1d3a-4c5b-ce8f-7a6b5c4d3e2f', // variante c
+      '0b7e2f4c1d3a4c5b9e8f7a6b5c4d3e2f',     // sans tirets
+    ]) {
+      expect(() => newsletterConfig({ SMARTLETTER_SIGNUPS_KEY: KEY, SMARTLETTER_SEGMENT_ID: bad }), bad)
+        .toThrow(/SMARTLETTER_SEGMENT_ID/);
+    }
+  });
+
   it('le message d’erreur ne contient jamais la clé', () => {
     try {
       newsletterConfig({ SMARTLETTER_SIGNUPS_KEY: KEY, SMARTLETTER_SEGMENT_ID: 'nope' });
@@ -119,6 +137,17 @@ describe('renderNewsletterForm — rendu', () => {
         expect(html).not.toMatch(/subscriber|abonné/i);
       }
     }
+  });
+
+  it('sans JavaScript, le bloc entier est masqué au build (Ruling 31)', () => {
+    const hero = parse(renderNewsletterForm({ lang: 'en', ui: UI.en, config: CONFIG, variant: 'hero' }));
+    const blocks = [...hero.querySelectorAll('[data-nl-block]')];
+    expect(blocks.map((el) => el.className)).toEqual(['nl-lead', 'newsletter']);
+    for (const el of blocks) expect(el.hidden).toBe(true);
+    const footer = parse(renderNewsletterForm({ lang: 'en', ui: UI.en, config: CONFIG, variant: 'footer' }));
+    const section = footer.querySelector('section.nl-block');
+    expect(section.hasAttribute('data-nl-block')).toBe(true);
+    expect(section.hidden).toBe(true);
   });
 
   it('la clé est échappée dans l’attribut', () => {
@@ -224,6 +253,45 @@ const headerOf = (init, name) => {
   const entry = Object.entries(init.headers).find(([k]) => k.toLowerCase() === name);
   return entry ? entry[1] : undefined;
 };
+
+describe('site.js — dévoilement du bloc (Ruling 31)', () => {
+  it('site.js dévoile la promesse et le formulaire une fois les écouteurs posés', () => {
+    const page = mount();
+    const blocks = [...page.doc.querySelectorAll('[data-nl-block]')];
+    expect(blocks).toHaveLength(2);
+    for (const el of blocks) expect(el.hidden).toBe(false);
+  });
+
+  it('sans site.js, le bloc reste masqué', () => {
+    const doc = parse(homeHtml());
+    for (const el of doc.querySelectorAll('[data-nl-block]')) expect(el.hidden).toBe(true);
+  });
+
+  it('un formulaire sans ses crochets (champ, bouton, état) n’est jamais dévoilé', () => {
+    const broken = homeHtml().replace(/<button type="submit">[^<]*<\/button>/, '');
+    const page = mount({ html: broken });
+    for (const el of page.doc.querySelectorAll('[data-nl-block]')) expect(el.hidden).toBe(true);
+  });
+
+  it('la classe `js` est posée dans <head> avant le premier rendu, et réserve la place du bloc', async () => {
+    const { SITE_CSS } = await import('../scripts/lib/site-styles.mjs');
+    const head = homeHtml().split('</head>')[0];
+    expect(head).toMatch(/<script>document\.documentElement\.classList\.add\("js"\);/);
+    expect(SITE_CSS).toContain('.js [data-nl-block][hidden]{display:block!important;visibility:hidden}');
+  });
+});
+
+describe('ligne d’état — région live toujours dans l’arbre d’accessibilité (WCAG 4.1.3)', () => {
+  it('aucune règle ne met .newsletter-status en display:none', async () => {
+    const { SITE_CSS } = await import('../scripts/lib/site-styles.mjs');
+    const rules = [...SITE_CSS.matchAll(/([^{}]+)\{([^{}]*)\}/g)]
+      .filter(([, selector]) => selector.includes('newsletter-status'));
+    expect(rules.length).toBeGreaterThan(0);
+    for (const [, selector, body] of rules) {
+      expect(body, selector).not.toMatch(/display\s*:\s*none|visibility\s*:\s*hidden/);
+    }
+  });
+});
 
 describe('site.js — inscription SmartLetter', () => {
   it('no network request at page load', async () => {

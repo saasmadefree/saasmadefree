@@ -105,12 +105,14 @@ describe('ci.yml — newsletter SmartLetter (spec D13)', () => {
   const buildStep = (job) => stepsOf(jobs[job]).find((s) => /run: npm run build/.test(s));
 
   for (const job of ['data-and-code', 'deploy']) {
-    it(`le build de ${job} reçoit la clé et le segment en vars, jamais en secrets`, () => {
+    // Ruling 32 : en secrets, jamais en vars — une vars s'imprime en clair
+    // dans les journaux d'Actions.
+    it(`le build de ${job} reçoit la clé et le segment en secrets, jamais en vars`, () => {
       const step = buildStep(job);
       expect(step).toBeDefined();
-      expect(step).toContain('SMARTLETTER_SIGNUPS_KEY: ${{ vars.SMARTLETTER_SIGNUPS_KEY }}');
-      expect(step).toContain('SMARTLETTER_SEGMENT_ID: ${{ vars.SMARTLETTER_SEGMENT_ID }}');
-      expect(step).not.toMatch(/secrets\.SMARTLETTER/);
+      expect(step).toContain('SMARTLETTER_SIGNUPS_KEY: ${{ secrets.SMARTLETTER_SIGNUPS_KEY }}');
+      expect(step).toContain('SMARTLETTER_SEGMENT_ID: ${{ secrets.SMARTLETTER_SEGMENT_ID }}');
+      expect(step).not.toMatch(/vars\.SMARTLETTER/);
     });
   }
 });

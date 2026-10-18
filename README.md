@@ -64,7 +64,7 @@ Two environment variables are optional, and only change the site build:
 | `SMARTLETTER_SIGNUPS_KEY` | A SmartLetter key of type `signups`. When set, the build renders the newsletter form on the home page (under the subtitle) and at the bottom of each tool page. When unset or empty, no form is rendered at all. The key ends up in the public HTML: that is by design, a `signups` key can only start a double opt-in sign-up. |
 | `SMARTLETTER_SEGMENT_ID` | Optional SmartLetter segment UUID, sent with every sign-up. A value that is not a UUID fails the build. |
 
-In CI both are GitHub Actions **variables** (`vars.*`), not secrets, so they stay visible and auditable. The form posts from the visitor's browser straight to `https://api.smartletter.ai/signups`, only when they press Subscribe: nothing is requested from SmartLetter when a page loads (see `public/privacy.html`).
+In CI both are GitHub Actions **secrets** (`secrets.*`). The key is public by design, since it ends up in the HTML, but it is kept as a secret so it stays out of the CI logs, where `vars.*` values print unmasked. The form posts from the visitor's browser straight to `https://api.smartletter.ai/signups`, only when they press Subscribe: nothing is requested from SmartLetter when a page loads (see `public/privacy.html`).
 
 The Cloudflare Worker that backs the vote counter lives in its own package. `worker/src/index.mjs` imports `worker/src/slugs.generated.mjs`, written by the root `npm run build` above and gitignored — on a fresh clone that file doesn't exist yet, and skipping this step doesn't fail loudly: the worker's test suite silently loads only the tests that don't touch that import. Run the root build first, then the worker's own tests:
 

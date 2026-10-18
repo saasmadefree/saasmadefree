@@ -381,7 +381,11 @@ main > .az-sec + .az-sec{margin-top:var(--s7)}
    son bouton dans une même pilule, la note du double opt-in, puis la ligne
    d'état, vide et repliée tant que rien n'a été envoyé. Sur l'accueil, la
    promesse (.nl-lead) précède le formulaire ; en bas de fiche, elle en est le
-   titre (.nl-h). Le bouton désactivé pendant l'envoi le dit par la forme du
+   titre (.nl-h). La ligne d'état reste toujours rendue (région live :
+   display:none la sortirait de l'arbre d'accessibilité), sans marge quand
+   elle est vide. Le bloc est rendu `hidden` au build ; avec JavaScript
+   (classe `js` posée dans <head>), il garde sa place, invisible, jusqu'à ce
+   que site.js le dévoile : pas de saut du héros. Le bouton désactivé pendant l'envoi le dit par la forme du
    curseur et l'opacité, et le texte d'état suit. */
 const NEWSLETTER_CSS = `.newsletter,.hero > .newsletter{max-width:30rem}
 .nl-lead{font:700 .9375rem/1.45 var(--text)}
@@ -398,7 +402,8 @@ const NEWSLETTER_CSS = `.newsletter,.hero > .newsletter{max-width:30rem}
 .nl-row button:disabled{opacity:.6;cursor:progress}
 .nl-note{margin:var(--s3) 0 0 var(--s4);font-size:.8125rem;line-height:1.45;color:var(--ink2)}
 .newsletter-status{margin:var(--s2) 0 0 var(--s4);font:700 .875rem/1.4 var(--text)}
-.newsletter-status:empty{display:none}`;
+.newsletter-status:empty{margin:0}
+.js [data-nl-block][hidden]{display:block!important;visibility:hidden}`;
 
 /* Sponsors : mêmes emplacements et même nombre qu'avant la refonte (spec
    D14), en style discret. Le repli (.sp-fallback) est une rangée à filets :

@@ -122,14 +122,16 @@ SmartLetter (<code>api.smartletter.ai</code>). It does not go through our server
 </ul>
 <p>If the site is set up with a list segment, its identifier goes too. It is the same for
 every visitor and says nothing about you. No cookie is sent. Like any server you reach,
-SmartLetter sees your IP address; it uses it to cap sign-ups at five per address every ten
-minutes.</p>
+SmartLetter sees your IP address; it uses it to cap sign-ups at five per IP address (or
+network) every ten minutes.</p>
 <p><strong>Double opt-in.</strong> After you subscribe, SmartLetter sends one email asking you to
-confirm. Until you click its link, you are not on the list and get nothing else. The form gives
-the same answer for every address, so nobody can use it to find out who is subscribed.</p>
+confirm. Until you click its link, you are not on the list and get nothing else. If you never
+confirm, your sign-up is deleted after 7 days. The form gives the same answer for every
+address, so nobody can use it to find out who is subscribed.</p>
 <p><strong>Unsubscribing.</strong> Every newsletter email has a one-click unsubscribe link. You
 can also write to the address at the bottom of this page and we will remove you. Your address
-stays on the list until you unsubscribe, and is never sold or given to anyone else.</p>
+stays on the list until you unsubscribe. It is never sold. It is shared with one company only:
+Amazon SES, the email delivery service SmartLetter uses to send its messages.</p>
 
 <h2>Buying a sponsor slot</h2>
 <p>The website sells advertising slots. Buying one, and subscribing to the newsletter (above), are
@@ -174,7 +176,7 @@ as an accounting record — starting with your email address.</p>
   <li>No selling or renting of data, to anyone, ever. Nothing leaves for another service except
   in two cases you start yourself, both described above: buying a sponsor slot sends you to
   Stripe, our payment processor, and subscribing to the newsletter sends your email to
-  SmartLetter, our own mailing service. No advertiser, no data broker, no analytics vendor.</li>
+  SmartLetter, our own mailing service, which sends its emails through Amazon SES. No advertiser, no data broker, no analytics vendor.</li>
   <li>No reading of page content, form fields, or cookies belonging to other sites.</li>
   <li>No modification of anything already on a page — the only thing ever written is our own isolated panel, described above.</li>
 </ul>

@@ -173,7 +173,11 @@ export function renderLayout({
     // Ce script est volontairement inline et synchrone, avant la feuille de
     // style : un thème appliqué après le premier rendu ferait clignoter la page
     // en clair avant de passer en sombre. C'est le seul script bloquant du site.
-    '<script>try{var t=localStorage.getItem("theme");'
+    // Il pose aussi la classe `js` sur <html> avant le premier rendu : la
+    // newsletter (spec D13, Ruling 31) s'en sert pour réserver la place de son
+    // bloc, rendu `hidden` au build, jusqu'à ce que site.js (différé) le
+    // dévoile. Sans JavaScript, la classe n'existe pas et le bloc reste masqué.
+    '<script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");'
       + 'if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;}catch(e){}</script>',
     `<meta property="og:title" content="${escapeHtml(title)}">`,
     `<meta property="og:description" content="${escapeHtml(description)}">`,

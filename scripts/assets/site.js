@@ -760,11 +760,13 @@
 
   function enhanceNewsletter() {
     var forms = document.querySelectorAll('form[data-newsletter]');
+    var ready = 0;
     Array.prototype.forEach.call(forms, function (form) {
       var input = form.querySelector('input[name="email"]');
       var button = form.querySelector('button[type="submit"]');
       var status = form.querySelector('.newsletter-status');
       if (!input || !button || !status) return;
+      ready += 1;
       var pending = false;
 
       form.addEventListener('submit', function (event) {
@@ -808,6 +810,13 @@
             form.removeAttribute('aria-busy');
           });
       });
+    });
+
+    // Le bloc est rendu masqué au build (sans JavaScript, il ne servirait à
+    // rien) : on ne le dévoile qu’une fois les écouteurs posés.
+    if (ready === 0) return;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-nl-block]'), function (block) {
+      block.hidden = false;
     });
   }
 

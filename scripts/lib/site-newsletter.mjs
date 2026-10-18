@@ -13,7 +13,10 @@ import { escapeHtml } from './site-html.mjs';
 
 export const SMARTLETTER_SIGNUPS_URL = 'https://api.smartletter.ai/signups';
 
-const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+// Le même UUID que l'API (zod v4, z.string().uuid()) : chiffre de version
+// 1 à 8, variante 8, 9, a ou b, plus les UUID nul et max. Plus large, un
+// segment accepté au build reviendrait en 422 à chaque inscription.
+const UUID = /^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$/;
 
 /**
  * Configuration lue dans l'environnement du build : `SMARTLETTER_SIGNUPS_KEY`
@@ -47,6 +50,12 @@ export function newsletterConfig(env = process.env) {
  * direction-3-airy (form.newsletter[data-newsletter], .nl-row, .nl-note,
  * .newsletter-status).
  *
+ * Le bloc entier (promesse et formulaire, ou la section du bas de fiche) est
+ * rendu `hidden` et porte `data-nl-block` : sans JavaScript, le formulaire ne
+ * pourrait rien envoyer, donc il ne s'affiche pas (Ruling 31). site.js le
+ * dévoile une fois ses écouteurs posés ; d'ici là, la règle CSS
+ * `.js [data-nl-block][hidden]` lui garde sa place, sans saut de mise en page.
+ *
  * `action="#"` : sans JavaScript, rien ne part vers SmartLetter (l'envoi
  * natif d'un formulaire ne porte pas la clé Bearer et finirait sur une page
  * d'erreur de l'API). Seul site.js envoie, en JSON.
@@ -69,7 +78,7 @@ export function renderNewsletterForm({ lang, ui, config, variant }) {
   const id = `nl-email-${variant}`;
   const segment = config.segmentId ? ` data-segment="${escapeHtml(config.segmentId)}"` : '';
 
-  const form = (indent) => `<form class="newsletter" data-newsletter action="#" method="post"
+  const form = (indent, hidden = '') => `<form class="newsletter" data-newsletter action="#" method="post"${hidden}
 ${indent}  data-endpoint="${SMARTLETTER_SIGNUPS_URL}" data-key="${escapeHtml(config.key)}" data-lang="${escapeHtml(lang)}"${segment}
 ${indent}  data-msg-confirm="${escapeHtml(n.confirmInbox)}" data-msg-rate="${escapeHtml(n.rateLimited)}"
 ${indent}  data-wait-one="${escapeHtml(n.waitOne)}" data-wait-other="${escapeHtml(n.waitOther)}" data-wait-unknown="${escapeHtml(n.waitUnknown)}"
@@ -84,10 +93,10 @@ ${indent}  <p class="newsletter-status" role="status" aria-live="polite"></p>
 ${indent}</form>`;
 
   if (variant === 'hero') {
-    return `<p class="nl-lead">${escapeHtml(n.promise)}</p>
-      ${form('      ')}`;
+    return `<p class="nl-lead" data-nl-block hidden>${escapeHtml(n.promise)}</p>
+      ${form('      ', ' data-nl-block hidden')}`;
   }
-  return `    <section class="nl-block" aria-labelledby="nl-heading">
+  return `    <section class="nl-block" aria-labelledby="nl-heading" data-nl-block hidden>
       <h2 id="nl-heading" class="nl-h">${escapeHtml(n.promise)}</h2>
       ${form('      ')}
     </section>`;
