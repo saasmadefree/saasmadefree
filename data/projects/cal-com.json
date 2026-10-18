@@ -1,7 +1,7 @@
 {
   "slug": "cal-com",
-  "name": "Cal.com",
-  "homepage": "https://github.com/calcom/cal.diy",
+  "name": "Cal.diy",
+  "homepage": "https://cal.diy",
   "repo": "calcom/cal.diy",
   "license": "MIT",
   "selfHostable": true,
