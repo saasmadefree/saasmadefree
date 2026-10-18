@@ -4,14 +4,26 @@
   "homepage": "https://github.com/knadh/listmonk",
   "repo": "knadh/listmonk",
   "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/knadh/listmonk/blob/HEAD/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/knadh/listmonk",
+  "selfHostableSource": "https://listmonk.app/docs/installation/",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://listmonk.app",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker",
+    "binary"
+  ],
+  "stack": [
+    "go",
+    "vue",
+    "postgresql"
+  ],
   "categories": [
     "newsletter"
   ],

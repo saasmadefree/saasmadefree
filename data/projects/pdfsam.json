@@ -4,9 +4,16 @@
   "homepage": "https://pdfsam.org",
   "repo": "torakiki/pdfsam",
   "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/torakiki/pdfsam/blob/master/LICENSE",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://pdfsam.org/",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://pdfsam.org/",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [
     "binary"

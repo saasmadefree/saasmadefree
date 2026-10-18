@@ -3,11 +3,19 @@
   "name": "Operately",
   "homepage": "https://operately.com",
   "repo": "operately/operately",
+  "license": "Apache-2.0",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/operately/operately/blob/main/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
   "selfHostableSource": "https://operately.com/install",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 0,
+    "currency": "USD",
+    "source": "https://operately.com/pricing/",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [
     "docker"

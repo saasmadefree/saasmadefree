@@ -4,11 +4,18 @@
   "homepage": "https://osticket.com",
   "repo": "osTicket/osTicket",
   "license": "GPL-2.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/osTicket/osTicket/blob/develop/LICENSE.txt",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://docs.osticket.com/",
+  "selfHostableSource": "https://docs.osticket.com/en/latest/Getting%20Started/Installation.html",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 12,
+    "currency": "USD",
+    "source": "https://osticket.com/editions/",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [
     "manual"

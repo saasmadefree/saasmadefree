@@ -1,17 +1,25 @@
 {
   "slug": "easyappointments",
   "name": "Easy!Appointments",
-  "homepage": "https://github.com/alextselegidis/easyappointments",
+  "homepage": "https://easyappointments.org",
   "repo": "alextselegidis/easyappointments",
   "license": "GPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/alextselegidis/easyappointments/blob/HEAD/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
   "selfHostableSource": "https://github.com/alextselegidis/easyappointments",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://easyappointments.org",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [],
-  "stack": [],
+  "stack": [
+    "php",
+    "mysql"
+  ],
   "categories": [
     "scheduling"
   ],

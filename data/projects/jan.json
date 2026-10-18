@@ -3,13 +3,23 @@
   "name": "Jan",
   "homepage": "https://jan.ai",
   "repo": "janhq/jan",
+  "license": "Apache-2.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/janhq/jan/blob/HEAD/LICENSE",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.jan.ai/desktop",
   "hosted": {
     "exists": false
   },
-  "deploy": [],
+  "deploy": [
+    "desktop"
+  ],
   "stack": [
-    "rust"
+    "rust",
+    "tauri",
+    "typescript"
   ],
   "categories": [
     "ai-assistant"

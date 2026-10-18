@@ -4,13 +4,20 @@
   "homepage": "https://pydio.com",
   "repo": "pydio/cells",
   "license": "AGPL-3.0",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/pydio/cells/blob/v5-dev/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+  "selfHostableSource": "https://github.com/pydio/cells#readme",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://www.pydio.com/en/pricing",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
+  "deploy": [
+    "binary"
+  ],
   "stack": [
     "go"
   ],

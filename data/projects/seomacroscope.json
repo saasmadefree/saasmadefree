@@ -1,15 +1,26 @@
 {
   "slug": "seomacroscope",
   "name": "SEO Macroscope",
-  "homepage": "https://github.com/nazuke/SEOMacroscope",
+  "homepage": "https://nazuke.github.io/SEOMacroscope/",
   "repo": "nazuke/SEOMacroscope",
   "license": "GPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/nazuke/SEOMacroscope/blob/master/LICENSE",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/nazuke/SEOMacroscope#readme",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://nazuke.github.io/SEOMacroscope/",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "desktop"
+  ],
+  "stack": [
+    "csharp"
+  ],
   "categories": [
     "seo-marketing"
   ],

@@ -3,11 +3,22 @@
   "name": "GIMP",
   "homepage": "https://www.gimp.org",
   "repo": null,
+  "license": "GPL-3.0-or-later",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://www.gimp.org/about/COPYING",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://www.gimp.org/downloads/",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://www.gimp.org",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
+  "deploy": [
+    "desktop",
+    "flatpak"
+  ],
   "stack": [
     "c"
   ],

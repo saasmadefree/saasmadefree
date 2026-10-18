@@ -1,15 +1,28 @@
 {
   "slug": "shotcut",
   "name": "Shotcut",
-  "homepage": "https://github.com/mltframework/shotcut",
+  "homepage": "https://www.shotcut.org",
   "repo": "mltframework/shotcut",
   "license": "GPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/mltframework/shotcut/blob/master/COPYING",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://www.shotcut.org/download/",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://www.shotcut.org/",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "desktop"
+  ],
+  "stack": [
+    "c++",
+    "qt",
+    "mlt"
+  ],
   "categories": [
     "audio-video"
   ],

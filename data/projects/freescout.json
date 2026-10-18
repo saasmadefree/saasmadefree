@@ -1,17 +1,28 @@
 {
   "slug": "freescout",
   "name": "FreeScout",
-  "homepage": "https://github.com/freescout-help-desk/freescout",
+  "homepage": "https://freescout.net",
   "repo": "freescout-help-desk/freescout",
   "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/freescout-help-desk/freescout/blob/HEAD/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
   "selfHostableSource": "https://github.com/freescout-help-desk/freescout/wiki/Installation-Guide",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://github.com/freescout-help-desk/freescout/wiki/Cloud-Hosted-FreeScout",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "php",
+    "laravel",
+    "mysql"
+  ],
   "categories": [
     "customer-support"
   ],

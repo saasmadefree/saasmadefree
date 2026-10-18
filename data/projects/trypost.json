@@ -4,11 +4,18 @@
   "homepage": "https://trypost.it",
   "repo": "trypostit/trypost",
   "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/trypostit/trypost/blob/main/LICENSE.md",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/trypostit/trypost/blob/main/DEPLOYMENT.md",
+  "selfHostableSource": "https://github.com/trypostit/trypost#readme",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 19,
+    "currency": "USD",
+    "source": "https://trypost.it/en/pricing",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [
     "docker"

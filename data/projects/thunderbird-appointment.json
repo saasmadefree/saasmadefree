@@ -4,11 +4,18 @@
   "homepage": "https://appointment.tb.pro",
   "repo": "thunderbird/appointment",
   "license": "MPL-2.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/thunderbird/appointment/blob/main/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/thunderbird/appointment",
+  "selfHostableSource": "https://github.com/thunderbird/appointment#readme",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 6,
+    "currency": "USD",
+    "source": "https://www.tb.pro/en-US/",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [
     "docker"

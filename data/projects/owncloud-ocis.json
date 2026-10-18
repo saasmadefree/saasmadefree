@@ -4,14 +4,18 @@
   "homepage": "https://doc.owncloud.com/ocis/",
   "repo": "owncloud/ocis",
   "license": "Apache-2.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/owncloud/ocis/blob/master/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/owncloud/ocis",
+  "selfHostableSource": "https://doc.owncloud.com/ocis/",
   "hosted": {
     "exists": false
   },
   "deploy": [
-    "docker"
+    "docker",
+    "binary"
   ],
   "stack": [
     "go"

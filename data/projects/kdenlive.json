@@ -1,15 +1,29 @@
 {
   "slug": "kdenlive",
   "name": "Kdenlive",
-  "homepage": "https://github.com/KDE/kdenlive",
+  "homepage": "https://kdenlive.org",
   "repo": "KDE/kdenlive",
   "license": "GPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://invent.kde.org/multimedia/kdenlive/-/blob/master/COPYING",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://kdenlive.org/download/",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://kdenlive.org",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "flatpak",
+    "appimage"
+  ],
+  "stack": [
+    "c++",
+    "qt",
+    "mlt"
+  ],
   "categories": [
     "audio-video"
   ],

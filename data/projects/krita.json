@@ -4,13 +4,26 @@
   "homepage": "https://krita.org",
   "repo": "KDE/krita",
   "license": "GPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://invent.kde.org/graphics/krita/-/blob/master/COPYING",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://krita.org/en/download/",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://krita.org",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
+  "deploy": [
+    "desktop",
+    "flatpak",
+    "appimage",
+    "snap"
+  ],
   "stack": [
-    "c++"
+    "c++",
+    "qt"
   ],
   "categories": [
     "design"

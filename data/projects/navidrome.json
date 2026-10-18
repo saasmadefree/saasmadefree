@@ -1,17 +1,29 @@
 {
   "slug": "navidrome",
   "name": "Navidrome",
-  "homepage": "https://github.com/navidrome/navidrome",
+  "homepage": "https://www.navidrome.org",
   "repo": "navidrome/navidrome",
   "license": "GPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/navidrome/navidrome/blob/HEAD/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/navidrome/navidrome",
+  "selfHostableSource": "https://www.navidrome.org/docs/installation/",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://www.navidrome.org/docs/installation/managed",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker",
+    "binary"
+  ],
+  "stack": [
+    "go",
+    "react",
+    "sqlite"
+  ],
   "categories": [
     "media-streaming"
   ],

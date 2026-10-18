@@ -1,22 +1,37 @@
 {
   "slug": "open-webui",
   "name": "Open WebUI",
-  "homepage": "https://github.com/open-webui/open-webui",
+  "homepage": "https://openwebui.com",
   "repo": "open-webui/open-webui",
+  "license": "Open WebUI License",
+  "licenseKind": "source-available",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/open-webui/open-webui/blob/HEAD/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/open-webui/open-webui",
+  "selfHostableSource": "https://docs.openwebui.com/getting-started/",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://openwebui.com",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker",
+    "kubernetes",
+    "helm",
+    "pip"
+  ],
+  "stack": [
+    "python",
+    "fastapi",
+    "svelte"
+  ],
   "categories": [
     "ai-assistant",
     "ai-writing"
   ],
   "stats": {
-    "stars": 156013,
+    "stars": 156015,
     "lastCommit": "2026-10-16",
     "createdAt": "2023-10-06",
     "archived": false,

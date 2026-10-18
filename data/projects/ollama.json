@@ -4,18 +4,22 @@
   "homepage": "https://ollama.com",
   "repo": "ollama/ollama",
   "license": "MIT",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/ollama/ollama/blob/HEAD/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/ollama/ollama",
+  "selfHostableSource": "https://docs.ollama.com/quickstart",
   "hosted": {
     "exists": true,
-    "priceFrom": 20,
+    "priceFrom": 0,
     "currency": "USD",
     "source": "https://ollama.com/pricing",
     "checkedOn": "2026-10-18"
   },
   "deploy": [
-    "docker"
+    "docker",
+    "desktop"
   ],
   "stack": [
     "go"
@@ -24,7 +28,7 @@
     "ai-assistant"
   ],
   "stats": {
-    "stars": 183666,
+    "stars": 183671,
     "lastCommit": "2026-10-18",
     "createdAt": "2023-06-26",
     "archived": false,

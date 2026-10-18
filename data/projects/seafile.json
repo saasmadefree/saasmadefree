@@ -1,17 +1,29 @@
 {
   "slug": "seafile",
   "name": "Seafile",
-  "homepage": "http://seafile.com/",
+  "homepage": "https://www.seafile.com/",
   "repo": "haiwen/seafile",
+  "license": "GPL-2.0",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/haiwen/seafile/blob/master/LICENSE.txt",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+  "selfHostableSource": "https://manual.seafile.com/latest/",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 8,
+    "currency": "USD",
+    "source": "https://www.seafile.com/en/pricing/",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
+  "deploy": [
+    "docker"
+  ],
   "stack": [
-    "c"
+    "c",
+    "python",
+    "django"
   ],
   "categories": [
     "cloud-storage"

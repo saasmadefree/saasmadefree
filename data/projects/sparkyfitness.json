@@ -3,11 +3,17 @@
   "name": "SparkyFitness",
   "homepage": "https://codewithcj.github.io/SparkyFitness/",
   "repo": "CodeWithCJ/SparkyFitness",
+  "license": "Custom non-commercial license",
+  "licenseKind": "source-available",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/CodeWithCJ/SparkyFitness/blob/main/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/CodeWithCJ/SparkyFitness",
+  "selfHostableSource": "https://github.com/CodeWithCJ/SparkyFitness#readme",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://github.com/CodeWithCJ/SparkyFitness#readme",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [
     "docker"

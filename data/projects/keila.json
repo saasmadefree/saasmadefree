@@ -1,9 +1,12 @@
 {
   "slug": "keila",
   "name": "Keila",
-  "homepage": "https://github.com/pentacent/keila",
+  "homepage": "https://www.keila.io",
   "repo": "pentacent/keila",
-  "license": "AGPL-3.0",
+  "license": "AGPL-3.0-or-later",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/pentacent/keila/blob/HEAD/LICENSE.md",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
   "selfHostableSource": "https://github.com/pentacent/keila",
@@ -11,11 +14,16 @@
     "exists": true,
     "priceFrom": 8,
     "currency": "EUR",
-    "source": "https://www.keila.io/pricing",
+    "source": "https://www.keila.io/pricing/",
     "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "elixir",
+    "postgresql"
+  ],
   "categories": [
     "newsletter"
   ],

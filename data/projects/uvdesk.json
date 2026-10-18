@@ -4,11 +4,18 @@
   "homepage": "https://www.uvdesk.com",
   "repo": "uvdesk/community-skeleton",
   "license": "OSL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/uvdesk/community-skeleton/blob/master/LICENSE.txt",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://docs.uvdesk.com/",
+  "selfHostableSource": "https://github.com/uvdesk/community-skeleton#readme",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 8,
+    "currency": "USD",
+    "source": "https://www.uvdesk.com/en/pricing/",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [
     "docker",

@@ -4,17 +4,27 @@
   "homepage": "https://saleor.io",
   "repo": "saleor/saleor",
   "license": "BSD-3-Clause",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/saleor/saleor/blob/main/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/saleor/saleor",
+  "selfHostableSource": "https://docs.saleor.io/setup/docker-compose",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 0,
+    "currency": "USD",
+    "source": "https://saleor.io/pricing",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [
     "docker"
   ],
   "stack": [
-    "python"
+    "python",
+    "django",
+    "graphql",
+    "postgresql"
   ],
   "categories": [
     "creator-commerce"

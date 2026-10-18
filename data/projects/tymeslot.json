@@ -4,14 +4,17 @@
   "homepage": "https://tymeslot.app",
   "repo": "Tymeslot/tymeslot",
   "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/Tymeslot/tymeslot/blob/main/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/Tymeslot/tymeslot",
+  "selfHostableSource": "https://github.com/Tymeslot/tymeslot/blob/main/README-Docker.md",
   "hosted": {
     "exists": true,
-    "priceFrom": 9,
+    "priceFrom": 0,
     "currency": "EUR",
-    "source": "https://github.com/Tymeslot/tymeslot",
+    "source": "https://tymeslot.app/pricing",
     "checkedOn": "2026-10-18"
   },
   "deploy": [

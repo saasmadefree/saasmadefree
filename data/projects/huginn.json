@@ -4,19 +4,31 @@
   "homepage": "https://github.com/huginn/huginn",
   "repo": "huginn/huginn",
   "license": "MIT",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/huginn/huginn/blob/HEAD/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
   "selfHostableSource": "https://github.com/huginn/huginn/blob/master/doc/docker/install.md",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://github.com/huginn/huginn",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "ruby",
+    "rails",
+    "mysql",
+    "postgresql"
+  ],
   "categories": [
     "automation"
   ],
   "stats": {
-    "stars": 50070,
+    "stars": 50071,
     "lastCommit": "2026-10-18",
     "createdAt": "2013-03-10",
     "archived": false,

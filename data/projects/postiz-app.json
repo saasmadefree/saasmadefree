@@ -1,22 +1,38 @@
 {
   "slug": "postiz-app",
   "name": "Postiz",
-  "homepage": "https://github.com/gitroomhq/postiz-app",
+  "homepage": "https://postiz.com",
   "repo": "gitroomhq/postiz-app",
   "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/gitroomhq/postiz-app/blob/main/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://docs.postiz.com/quickstart",
+  "selfHostableSource": "https://docs.postiz.com/installation/docker-compose",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 29,
+    "currency": "USD",
+    "source": "https://postiz.com/pricing",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker",
+    "helm"
+  ],
+  "stack": [
+    "next.js",
+    "nestjs",
+    "prisma",
+    "postgresql",
+    "temporal"
+  ],
   "categories": [
     "social-media"
   ],
   "stats": {
-    "stars": 37340,
+    "stars": 37344,
     "lastCommit": "2026-10-16",
     "createdAt": "2023-07-08",
     "archived": false,

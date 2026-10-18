@@ -4,11 +4,18 @@
   "homepage": "https://frappe.io/helpdesk",
   "repo": "frappe/helpdesk",
   "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/frappe/helpdesk/blob/HEAD/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
   "selfHostableSource": "https://docs.frappe.io/helpdesk",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 5,
+    "currency": "USD",
+    "source": "https://frappe.io/helpdesk/pricing",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [
     "docker"
@@ -23,7 +30,7 @@
     "customer-support"
   ],
   "stats": {
-    "stars": 3432,
+    "stars": 3433,
     "lastCommit": "2026-10-16",
     "createdAt": "2021-10-21",
     "archived": false,

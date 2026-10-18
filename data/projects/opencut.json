@@ -4,9 +4,18 @@
   "homepage": "https://opencut.app",
   "repo": "OpenCut-app/OpenCut",
   "license": "MIT",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/OpenCut-app/OpenCut/blob/main/LICENSE",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/OpenCut-app/OpenCut#readme",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 0,
+    "currency": "USD",
+    "source": "https://opencut.app/",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [],
   "stack": [
@@ -18,7 +27,7 @@
     "audio-video"
   ],
   "stats": {
-    "stars": 95142,
+    "stars": 95145,
     "lastCommit": "2026-09-24",
     "createdAt": "2025-06-22",
     "archived": false,

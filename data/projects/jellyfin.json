@@ -4,20 +4,29 @@
   "homepage": "https://github.com/jellyfin/jellyfin",
   "repo": "jellyfin/jellyfin",
   "license": "GPL-2.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/jellyfin/jellyfin/blob/HEAD/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/jellyfin/jellyfin",
+  "selfHostableSource": "https://jellyfin.org/docs/general/installation/",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://jellyfin.org",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker",
+    "kubernetes"
+  ],
+  "stack": [
+    "dotnet"
+  ],
   "categories": [
-    "cloud-storage",
     "media-streaming"
   ],
   "stats": {
-    "stars": 58172,
+    "stars": 58174,
     "lastCommit": "2026-10-17",
     "createdAt": "2018-12-09",
     "archived": false,

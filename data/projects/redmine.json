@@ -3,11 +3,21 @@
   "name": "Redmine",
   "homepage": "https://www.redmine.org",
   "repo": "redmine/redmine",
+  "license": "GPL-2.0-or-later",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/redmine/redmine/blob/master/LICENSE.txt",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://www.redmine.org/projects/redmine/wiki/RedmineInstall",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://www.redmine.org/",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
+  "deploy": [
+    "manual"
+  ],
   "stack": [
     "ruby",
     "rails"

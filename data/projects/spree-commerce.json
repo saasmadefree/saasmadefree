@@ -4,9 +4,12 @@
   "homepage": "https://spreecommerce.org",
   "repo": "spree/spree",
   "license": "BSD-3-Clause",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/spree/spree/blob/main/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/spree/spree",
+  "selfHostableSource": "https://spreecommerce.org/docs/developer/getting-started/quickstart",
   "hosted": {
     "exists": false
   },

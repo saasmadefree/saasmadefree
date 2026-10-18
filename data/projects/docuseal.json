@@ -4,12 +4,15 @@
   "homepage": "https://www.docuseal.com",
   "repo": "docusealco/docuseal",
   "license": "AGPL-3.0",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/docusealco/docuseal/blob/HEAD/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/docusealco/docuseal",
+  "selfHostableSource": "https://www.docuseal.com/on-premises",
   "hosted": {
     "exists": true,
-    "priceFrom": 20,
+    "priceFrom": 0,
     "currency": "USD",
     "source": "https://www.docuseal.com/pricing",
     "checkedOn": "2026-10-18"

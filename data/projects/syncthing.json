@@ -1,23 +1,32 @@
 {
   "slug": "syncthing",
   "name": "Syncthing",
-  "homepage": "https://github.com/syncthing/syncthing",
+  "homepage": "https://syncthing.net",
   "repo": "syncthing/syncthing",
   "license": "MPL-2.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/syncthing/syncthing/blob/main/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/syncthing/syncthing",
+  "selfHostableSource": "https://docs.syncthing.net/intro/getting-started.html",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://syncthing.net/",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "binary",
+    "docker"
+  ],
+  "stack": [
+    "go"
+  ],
   "categories": [
-    "cloud-storage",
-    "notes-knowledge"
+    "cloud-storage"
   ],
   "stats": {
-    "stars": 89483,
+    "stars": 89484,
     "lastCommit": "2026-10-12",
     "createdAt": "2013-11-26",
     "archived": false,

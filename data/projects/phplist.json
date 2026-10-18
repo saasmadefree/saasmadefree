@@ -4,11 +4,18 @@
   "homepage": "https://www.phplist.org",
   "repo": "phpList/phplist3",
   "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/phpList/phplist3/blob/main/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/phpList/phplist3",
+  "selfHostableSource": "https://github.com/phpList/phplist3#readme",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 0,
+    "currency": "USD",
+    "source": "https://www.phplist.com/pricing",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [
     "docker"

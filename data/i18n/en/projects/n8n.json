@@ -5,7 +5,7 @@
     "Visual canvas plus JavaScript, Python and npm packages inside workflows",
     "README lists 1,500+ integrations and 9,000+ workflow templates",
     "One docker run command starts the editor on port 5678",
-    "AI agent workflows can call OpenAI, Anthropic, Google or open-source models",
+    "AI agent workflows can call OpenAI, Anthropic, Google or models you host yourself",
     "Free registration of the Community edition unlocks folders, in-editor debugging and custom execution data"
   ],
   "limits": [

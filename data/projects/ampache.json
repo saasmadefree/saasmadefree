@@ -1,14 +1,19 @@
 {
   "slug": "ampache",
   "name": "Ampache",
-  "homepage": "http://ampache.org",
+  "homepage": "https://ampache.org",
   "repo": "ampache/ampache",
   "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/ampache/ampache/blob/HEAD/LICENSE.md",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/ampache/ampache",
+  "selfHostableSource": "https://github.com/ampache/ampache/wiki/Installation",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://ampache.org",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [
     "docker"

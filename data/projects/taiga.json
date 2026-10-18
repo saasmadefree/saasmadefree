@@ -4,11 +4,18 @@
   "homepage": "https://taiga.io",
   "repo": "taigaio/taiga-back",
   "license": "MPL-2.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/taigaio/taiga-back/blob/main/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
   "selfHostableSource": "https://docs.taiga.io/",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 5,
+    "currency": "EUR",
+    "source": "https://taiga.io/deployment-pricing-options/",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [
     "docker"

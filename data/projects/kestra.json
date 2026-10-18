@@ -4,6 +4,9 @@
   "homepage": "https://kestra.io",
   "repo": "kestra-io/kestra",
   "license": "Apache-2.0",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/kestra-io/kestra/blob/HEAD/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
   "selfHostableSource": "https://kestra.io/docs/installation",
@@ -12,7 +15,8 @@
   },
   "deploy": [
     "docker",
-    "kubernetes"
+    "kubernetes",
+    "helm"
   ],
   "stack": [
     "java",
@@ -22,7 +26,7 @@
     "automation"
   ],
   "stats": {
-    "stars": 29760,
+    "stars": 29762,
     "lastCommit": "2026-10-16",
     "createdAt": "2019-08-24",
     "archived": false,

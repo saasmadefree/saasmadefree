@@ -1,17 +1,27 @@
 {
   "slug": "serpbear",
   "name": "SerpBear",
-  "homepage": "https://github.com/towfiqi/serpbear",
+  "homepage": "https://docs.serpbear.com/",
   "repo": "towfiqi/serpbear",
   "license": "MIT",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/towfiqi/serpbear/blob/main/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/towfiqi/serpbear",
+  "selfHostableSource": "https://docs.serpbear.com/",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://github.com/towfiqi/serpbear#readme",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "next.js",
+    "sqlite"
+  ],
   "categories": [
     "seo-marketing"
   ],

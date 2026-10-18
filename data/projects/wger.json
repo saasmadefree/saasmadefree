@@ -1,22 +1,36 @@
 {
   "slug": "wger",
   "name": "wger",
-  "homepage": "https://github.com/wger-project/wger",
+  "homepage": "https://wger.de",
   "repo": "wger-project/wger",
   "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/wger-project/wger/blob/master/LICENSE.txt",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/wger-project/wger",
+  "selfHostableSource": "https://github.com/wger-project/wger#readme",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 0,
+    "currency": "EUR",
+    "source": "https://wger.de/",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "python",
+    "django",
+    "postgresql",
+    "redis"
+  ],
   "categories": [
     "health-fitness"
   ],
   "stats": {
-    "stars": 7140,
+    "stars": 7141,
     "lastCommit": "2026-10-15",
     "createdAt": "2013-01-19",
     "archived": false,

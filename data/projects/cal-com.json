@@ -4,22 +4,30 @@
   "homepage": "https://cal.diy",
   "repo": "calcom/cal.diy",
   "license": "MIT",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/calcom/cal.diy/blob/HEAD/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://cal.diy",
+  "selfHostableSource": "https://github.com/calcom/cal.diy",
   "hosted": {
     "exists": false,
     "source": "https://github.com/calcom/cal.diy",
     "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "typescript",
+    "next.js",
+    "postgresql"
+  ],
   "categories": [
-    "scheduling",
-    "tasks"
+    "scheduling"
   ],
   "stats": {
-    "stars": 49123,
+    "stars": 49125,
     "lastCommit": "2026-09-20",
     "createdAt": "2021-03-22",
     "archived": false,

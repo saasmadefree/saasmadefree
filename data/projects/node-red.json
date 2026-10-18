@@ -4,11 +4,16 @@
   "homepage": "https://nodered.org",
   "repo": "node-red/node-red",
   "license": "Apache-2.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/node-red/node-red/blob/HEAD/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
   "selfHostableSource": "https://nodered.org/docs/getting-started/",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://nodered.org",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [
     "npm",

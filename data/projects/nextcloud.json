@@ -4,11 +4,21 @@
   "homepage": "https://nextcloud.com",
   "repo": "nextcloud/server",
   "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/nextcloud/server/blob/HEAD/COPYING",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.nextcloud.com/server/latest/admin_manual/installation/",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://nextcloud.com",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
+  "deploy": [
+    "docker",
+    "snap"
+  ],
   "stack": [
     "php"
   ],

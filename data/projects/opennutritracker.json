@@ -4,15 +4,24 @@
   "homepage": "https://github.com/simonoppowa/OpenNutriTracker",
   "repo": "simonoppowa/OpenNutriTracker",
   "license": "GPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/simonoppowa/OpenNutriTracker/blob/main/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/simonoppowa/OpenNutriTracker",
+  "selfHostableSource": "https://github.com/simonoppowa/OpenNutriTracker#install",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://github.com/simonoppowa/OpenNutriTracker#readme",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
+  "deploy": [
+    "android",
+    "ios"
+  ],
   "stack": [
-    "dart"
+    "dart",
+    "flutter"
   ],
   "categories": [
     "health-fitness"

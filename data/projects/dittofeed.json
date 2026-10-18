@@ -4,18 +4,22 @@
   "homepage": "https://dittofeed.com/",
   "repo": "dittofeed/dittofeed",
   "license": "MIT",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/dittofeed/dittofeed/blob/HEAD/LICENSE",
   "selfHostable": true,
   "selfHostableCheckedOn": "2026-10-18",
-  "selfHostableSource": "https://github.com/dittofeed/dittofeed",
+  "selfHostableSource": "https://docs.dittofeed.com/deployment/self-hosted/docker-compose",
   "hosted": {
     "exists": true,
     "priceFrom": 75,
     "currency": "USD",
-    "source": "https://dittofeed.com/pricing",
+    "source": "https://www.dittofeed.com/pricing",
     "checkedOn": "2026-10-18"
   },
   "deploy": [
-    "docker"
+    "docker",
+    "kubernetes"
   ],
   "stack": [
     "typescript"
