@@ -33,7 +33,13 @@ const project = (slug, over = {}) => ({
 // listmonk : actif, chiffres frais ; keila : chiffres périmés (77 jours) ;
 // postal : sans dépôt GitHub ; ghosted : archivé ; mautic : offre hébergée.
 const PROJECTS = new Map([
-  ['listmonk', project('listmonk', { name: 'Listmonk', homepage: 'https://listmonk.app', repo: 'knadh/listmonk' })],
+  // Seul listmonk a son auto-hébergement et son absence d'offre hébergée
+  // vérifiés ; les autres portent les valeurs par défaut de la migration.
+  ['listmonk', project('listmonk', {
+    name: 'Listmonk', homepage: 'https://listmonk.app', repo: 'knadh/listmonk',
+    selfHostableCheckedOn: '2026-10-12', selfHostableSource: 'https://listmonk.app/docs/installation/',
+    hosted: { exists: false, checkedOn: '2026-10-12', source: 'https://listmonk.app' },
+  })],
   ['keila', project('keila', { name: 'Keila', stats: stats({ stars: 1600, lastCommit: '2026-07-20', checkedOn: '2026-08-01' }) })],
   ['postal', project('postal', { name: 'Postal', repo: null })],
   ['ghosted', project('ghosted', { name: 'Ghosted', stats: stats({ archived: true }) })],
@@ -274,7 +280,8 @@ describe('renderComparePage — tableau des faits', () => {
     expect(text(rowOf(doc, t.colStars)[1])).toBe('17K');
     expect(text(rowOf(doc, t.colLastCommit)[1])).toBe('Oct 2026');
     expect(rowOf(doc, t.colSelfHost).map(text)).toEqual([t.selfHostNo, t.selfHostYes]);
-    expect(text(rowOf(doc, t.colHosted)[1])).toBe(t.hostedNone);
+    expect(text(rowOf(doc, t.colHosted)[1])).toContain(t.hostedNone);
+    expect(text(rowOf(doc, t.colHosted)[1])).toContain('October 12, 2026');
     expect(text(rowOf(doc, UI.en.site.project.websiteLabel)[0])).toBe('mailchimp.example');
     expect(text(rowOf(doc, UI.en.site.project.repoLabel)[1])).toBe('knadh/listmonk');
     // L'accroche de chaque côté, sous son nom.
@@ -517,5 +524,20 @@ describe('liens « Comparisons » des fiches outil et projet', () => {
       expect(generated.has(href), href).toBe(true);
       expect(hrefLang).toBe(lang);
     }
+  });
+});
+
+describe('renderComparePage — valeurs non vérifiées (finding 2)', () => {
+  it('keila : auto-hébergement et offre hébergée par défaut = tiret titré, et aucun prix 0 en JSON-LD', () => {
+    const doc = dom(render('listmonk-vs-keila'));
+    for (const label of [t.colSelfHost, t.colHosted]) {
+      const [, keila] = rowOf(doc, label);
+      expect(text(keila)).toBe('—');
+      expect(keila.querySelector('[title]').getAttribute('title')).toBe(t.notCheckedYet);
+    }
+    expect(text(rowOf(doc, t.colSelfHost)[0])).toBe(t.selfHostYes);
+    const items = ofType(doc, 'ItemList').itemListElement.map((i) => i.item);
+    expect(items[0].offers).toEqual({ '@type': 'Offer', price: 0, priceCurrency: 'USD' });
+    expect(items[1].offers).toBeUndefined();
   });
 });

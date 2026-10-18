@@ -37,6 +37,10 @@ describe('tool.schema.json', () => {
     expect(validators.tool({ ...validTool, slug: 'Notion' })).toBe(false);
   });
 
+  it('refuse une source de prix qui n’est pas en http(s)', () => {
+    expect(validators.tool({ ...validTool, pricing: { ...validTool.pricing, source: 'javascript:alert(1)' } })).toBe(false);
+  });
+
   it('refuse une liste de domaines vide', () => {
     expect(validators.tool({ ...validTool, domains: [] })).toBe(false);
   });
@@ -81,6 +85,12 @@ describe('agent.schema.json', () => {
 
   it('accepte un agent complet', () => {
     expect(validators.agent(validAgent)).toBe(true);
+  });
+
+  it('refuse une homepage ou des docs qui ne sont pas en http(s)', () => {
+    expect(validators.agent({ ...validAgent, homepage: 'javascript:alert(1)' })).toBe(false);
+    expect(validators.agent({ ...validAgent, docs: 'javascript:alert(1)' })).toBe(false);
+    expect(validators.agent({ ...validAgent, docs: null })).toBe(true);
   });
 
   it('refuse un statut inconnu', () => {
@@ -156,6 +166,34 @@ describe('project.schema.json', () => {
 
   it('refuse un champ inconnu', () => {
     expect(validators.project({ ...validProject, featured: true })).toBe(false);
+  });
+
+  // format: uri accepte « javascript:alert(1) » : le lien rendu serait un
+  // script. Chaque URL d'un projet doit commencer par http(s)://.
+  it('refuse une URL qui n’est pas en http(s) (homepage, source hébergée)', () => {
+    for (const bad of ['javascript:alert(1)', 'data:text/html,x', 'ftp://listmonk.app']) {
+      expect(validators.project({ ...validProject, homepage: bad })).toBe(false);
+      const hosted = { exists: true, priceFrom: 9, currency: 'USD', source: bad, checkedOn: '2026-10-17' };
+      expect(validators.project({ ...validProject, hosted })).toBe(false);
+      expect(validators.project({ ...validProject, hosted: { exists: false, checkedOn: '2026-10-17', source: bad } })).toBe(false);
+    }
+    expect(validators.project({ ...validProject, homepage: 'http://listmonk.app' })).toBe(true);
+  });
+
+  // « Pas d'offre hébergée » n'est un fait que vérifié : une date, et la
+  // source qu'on a lue ce jour-là. Sans date, c'est une valeur par défaut.
+  it('accepte hosted.exists false vérifié (checkedOn + source), refuse une date sans source', () => {
+    const checked = { exists: false, checkedOn: '2026-10-17', source: 'https://listmonk.app' };
+    expect(validators.project({ ...validProject, hosted: checked })).toBe(true);
+    expect(validators.project({ ...validProject, hosted: { exists: false, checkedOn: '2026-10-17' } })).toBe(false);
+    expect(validators.project({ ...validProject, hosted: { exists: false, checkedOn: '17/10/2026', source: checked.source } })).toBe(false);
+  });
+
+  it('accepte selfHostable vérifié (date + source), refuse une date sans source', () => {
+    const ok = { ...validProject, selfHostableCheckedOn: '2026-10-17', selfHostableSource: 'https://listmonk.app/docs/installation' };
+    expect(validators.project(ok)).toBe(true);
+    expect(validators.project({ ...validProject, selfHostableCheckedOn: '2026-10-17' })).toBe(false);
+    expect(validators.project({ ...ok, selfHostableSource: 'javascript:alert(1)' })).toBe(false);
   });
 });
 

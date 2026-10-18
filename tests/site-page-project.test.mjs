@@ -37,8 +37,13 @@ const project = (slug, over = {}) => ({
 // postal : pas de dépôt GitHub, donc aucun chiffre ; ghosted : archivé ;
 // oldy : dernier commit il y a plus de 365 jours ; todo : autre catégorie.
 const PROJECTS = new Map([
+  // listmonk est le seul dont l'absence d'offre hébergée et l'auto-hébergement
+  // ont été vérifiés (date et source) ; les autres gardent les valeurs par
+  // défaut de la migration, qui ne s'affichent pas comme des faits.
   ['listmonk', project('listmonk', {
     name: 'Listmonk', homepage: 'https://listmonk.app', repo: 'knadh/listmonk', license: 'AGPL-3.0',
+    selfHostableCheckedOn: '2026-10-12', selfHostableSource: 'https://listmonk.app/docs/installation/',
+    hosted: { exists: false, checkedOn: '2026-10-12', source: 'https://listmonk.app' },
     deploy: ['docker', 'binary'], stack: ['go', 'vue', 'postgresql'],
     stats: stats({ stars: 17000, lastCommit: '2026-10-10', createdAt: '2019-06-26', checkedOn: '2026-10-16' }),
   })],
@@ -242,6 +247,13 @@ describe('renderProjectPage — JSON-LD', () => {
     expect(app.offers).toBeUndefined();
   });
 
+  it('« pas d’offre hébergée » jamais vérifié : aucun prix gratuit affirmé non plus', () => {
+    const app = jsonLd(dom(render('keila'))).find((d) => d['@type'] === 'SoftwareApplication');
+    expect(app.offers).toBeUndefined();
+    const list = jsonLd(doc).find((d) => d['@type'] === 'ItemList');
+    expect(list.itemListElement.every((i) => i.item.offers === undefined)).toBe(true);
+  });
+
   it('WebPage daté du relevé le plus récent (chiffres GitHub ou prix hébergé), pas du build', () => {
     const page = jsonLd(doc).find((d) => d['@type'] === 'WebPage');
     expect(page.dateModified).toBe('2026-10-16');
@@ -267,7 +279,9 @@ describe('renderProjectPage — faits en tête', () => {
     expect(text(factOf(doc, tt.colLastCommit))).toBe('Oct 2026');
     expect(text(factOf(doc, t.startedLabel))).toBe('Jun 2019');
     expect(text(factOf(doc, tt.colSelfHost))).toBe(tt.selfHostYes);
-    expect(text(factOf(doc, tt.colHosted))).toBe(tt.hostedNone);
+    expect(text(factOf(doc, tt.colHosted))).toContain(tt.hostedNone);
+    expect(factOf(doc, tt.colHosted).querySelector('a').getAttribute('href')).toBe('https://listmonk.app');
+    expect(text(factOf(doc, tt.colHosted))).toContain(tt.checkedOnTemplate.replace('{date}', 'October 12, 2026'));
     expect(factOf(doc, t.websiteLabel).querySelector('a').getAttribute('href')).toBe('https://listmonk.app');
     expect(factOf(doc, t.repoLabel).querySelector('a').getAttribute('href')).toBe('https://github.com/knadh/listmonk');
     expect(text(factOf(doc, t.deployLabel))).toBe('docker, binary');
@@ -528,5 +542,21 @@ describe('projectPages — ensemble des pages et cohérence avec les fiches', ()
     expect(links).toContain('/en/oss/listmonk');
     expect(links).toContain('/fr/oss/listmonk');
     for (const href of links) expect(generated.has(href), href).toBe(true);
+  });
+});
+
+describe('renderProjectPage — valeurs non vérifiées (finding 2)', () => {
+  it('auto-hébergeable et offre hébergée par défaut : un tiret titré, jamais « Oui » ni « Aucune »', () => {
+    const keila = dom(render('keila'));
+    for (const label of [tt.colSelfHost, tt.colHosted]) {
+      expect(text(factOf(keila, label))).toBe('—');
+      expect(factOf(keila, label).querySelector('[title]').getAttribute('title')).toBe(tt.notCheckedYet);
+    }
+  });
+
+  it('une offre hébergée vérifiée garde son prix, même sans auto-hébergement vérifié', () => {
+    const mautic = dom(render('mautic'));
+    expect(text(factOf(mautic, tt.colHosted))).toContain(tt.hostedFromTemplate.replace('{price}', '$9'));
+    expect(text(factOf(mautic, tt.colSelfHost))).toBe('—');
   });
 });

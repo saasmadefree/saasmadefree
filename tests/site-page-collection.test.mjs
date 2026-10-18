@@ -16,7 +16,10 @@ const categories = { newsletter: { label: { en: 'Newsletters & publishing', fr: 
 
 const stats = (over) => ({ stars: 1000, lastCommit: '2026-10-01', archived: false, checkedOn: '2026-10-15', ...over });
 const PROJECTS = new Map([
-  ['listmonk', { slug: 'listmonk', name: 'Listmonk', homepage: 'https://listmonk.app', selfHostable: true, stats: stats() }],
+  ['listmonk', { slug: 'listmonk', name: 'Listmonk', homepage: 'https://listmonk.app', selfHostable: true,
+    selfHostableCheckedOn: '2026-10-12', selfHostableSource: 'https://listmonk.app/docs/installation/', stats: stats() }],
+  // selfHostable: true par défaut de migration, jamais vérifié : ne compte pas.
+  ['unchecked', { slug: 'unchecked', name: 'Unchecked', homepage: 'https://unchecked.example', selfHostable: true, stats: stats() }],
   ['saasonly', { slug: 'saasonly', name: 'SaasOnly', homepage: 'https://saasonly.example', selfHostable: false, stats: stats() }],
   ['ghosted', { slug: 'ghosted', name: 'Ghosted', homepage: 'https://ghosted.example', selfHostable: true, stats: stats({ archived: true }) }],
 ]);
@@ -34,6 +37,7 @@ const VIEWS = [
   view('d', { verdict: 'kinda', diyTimeEstimate: 'one-sitting', alternatives: [{ project: 'listmonk', fit: 'partial' }] }),
   view('e', { verdict: 'no', diyTimeEstimate: 'more' }),
   view('f', { verdict: 'yes', diyTimeEstimate: 'one-sitting', alternatives: [{ project: 'unknown', fit: 'full' }] }),
+  view('g', { verdict: 'no', diyTimeEstimate: 'more', alternatives: [{ project: 'unchecked', fit: 'full' }] }),
 ];
 
 function render(kind, over = {}) {
@@ -63,7 +67,7 @@ describe('collections — filtres exacts', () => {
     expect(collectionTools('build-tonight', VIEWS, { projects: PROJECTS, today: TODAY }).map((t) => t.slug)).toEqual(['a', 'b', 'f']);
   });
 
-  it('self-hosted = at least one displayable selfHostable project (archived, SaaS-only and unknown do not count)', () => {
+  it('self-hosted = at least one displayable, checked selfHostable project (archived, SaaS-only, unchecked and unknown do not count)', () => {
     expect(collectionTools('self-hosted', VIEWS, { projects: PROJECTS, today: TODAY }).map((t) => t.slug)).toEqual(['a', 'd']);
   });
 

@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { Window } from 'happy-dom';
 import { renderToolPage } from '../scripts/lib/site-page-tool.mjs';
+import { formatMonthlyPrice } from '../scripts/lib/site-format.mjs';
 import { loadData } from '../scripts/lib/load-data.mjs';
 import { sponsorContext, renderSponsorSlots } from '../scripts/lib/site-sponsors.mjs';
 
@@ -19,14 +20,19 @@ const categories = {
 const TODAY = '2026-10-17';
 
 // Quatre alternatives affichables sur cinq citées : une archivée est écartée.
-// listmonk : chiffres frais, page projet indexable ; mautic : chiffres frais,
+// listmonk : chiffres frais, page projet indexable, et seul projet dont
+// « pas d'offre hébergée » et « auto-hébergeable » ont été vérifiés (date et
+// source) ; les autres portent les valeurs par défaut de la migration, qui ne
+// sont pas des faits (finding 2 de la revue finale) ; mautic : chiffres frais,
 // version hébergée ; keila : chiffres périmés (77 jours) ; postal : pas de
 // dépôt GitHub, donc pas de chiffres du tout.
 const stats = (over) => ({ stars: 1000, lastCommit: '2026-10-01', createdAt: '2019-01-01', archived: false, checkedOn: '2026-10-15', ...over });
 const PROJECTS = new Map([
   ['listmonk', {
     slug: 'listmonk', name: 'Listmonk', homepage: 'https://listmonk.app', repo: 'knadh/listmonk', license: 'AGPL-3.0',
-    selfHostable: true, hosted: { exists: false }, categories: ['newsletter'], stats: stats({ stars: 17000, lastCommit: '2026-10-10' }),
+    selfHostable: true, selfHostableCheckedOn: '2026-10-12', selfHostableSource: 'https://listmonk.app/docs/installation/',
+    hosted: { exists: false, checkedOn: '2026-10-12', source: 'https://listmonk.app' },
+    categories: ['newsletter'], stats: stats({ stars: 17000, lastCommit: '2026-10-10' }),
   }],
   ['mautic', {
     slug: 'mautic', name: 'Mautic', homepage: 'https://github.com/mautic/mautic', repo: 'mautic/mautic',
@@ -392,9 +398,31 @@ describe('fiche « alternatives » — titre, description, tableau', () => {
   });
 
   it('fallback title in French too, from ui.json', () => {
-    const fr = render({ lang: 'fr', tool: { ...tool, alternatives: [] } });
+    const fr = render({ lang: 'fr', tool: { ...tool, alternatives: tool.alternatives.slice(0, 3) } });
     const expected = UI.fr.site.tool.titleFallbackTemplate.replace('{name}', 'Mailchimp').replace('{year}', '2026');
     expect(text(dom(fr).querySelector('title'))).toBe(expected);
+  });
+
+  // n = 0 : rien à auto-héberger, le titre ne le promet pas (finding 11).
+  it('zero alternatives: its own title and meta description, without "Self-Host"', () => {
+    const none = dom(render({ tool: { ...tool, alternatives: [] } }));
+    expect(text(none.querySelector('title'))).toBe('Free Mailchimp Alternative (2026): Build Your Own with One Prompt');
+    expect(text(none.querySelector('title'))).not.toMatch(/self-host/i);
+    const desc = none.querySelector('meta[name="description"]').getAttribute('content');
+    expect(desc).toBe(t.metaDescriptionNoAltTemplate.replace('{name}', 'Mailchimp').replace('{build}', 'a week').replace('{price}', '$20/mo'));
+    expect(desc).not.toMatch(/self-host/i);
+    // Une seule alternative affichable : le repli habituel, pas celui de n = 0.
+    const one = dom(render({ tool: { ...tool, alternatives: tool.alternatives.slice(0, 1) } }));
+    expect(text(one.querySelector('title'))).toBe('Free Mailchimp Alternatives (2026): Self-Host or Build Your Own');
+  });
+
+  it('zero alternatives in French: titre et description de n = 0, depuis ui.json', () => {
+    const fr = dom(render({ lang: 'fr', tool: { ...tool, alternatives: [] } }));
+    const tf = UI.fr.site.tool;
+    expect(text(fr.querySelector('title'))).toBe(tf.titleNoAltTemplate.replace('{name}', 'Mailchimp').replace('{year}', '2026'));
+    expect(fr.querySelector('meta[name="description"]').getAttribute('content'))
+      .toBe(tf.metaDescriptionNoAltTemplate.replace('{name}', 'Mailchimp').replace('{build}', 'une semaine').replace('{price}', formatMonthlyPrice(tool.pricing, 'fr')));
+    expect(tf.titleNoAltTemplate).not.toMatch(/auto-héberge/);
   });
 
   it('meta description names top 3 alternatives in order', () => {
@@ -465,9 +493,30 @@ describe('fiche « alternatives » — titre, description, tableau', () => {
     expect(cells(rows[0])[1]).toBe('AGPL-3.0');
     expect(cells(rows[1])[1]).toBe('—'); // mautic : licence inconnue
     expect(cells(rows[0])[4]).toBe(t.selfHostYes);
-    expect(cells(rows[0])[5]).toBe(t.hostedNone);
+    expect(cells(rows[0])[5]).toContain(t.hostedNone);
     expect(cells(rows[1])[5]).toContain(t.hostedFromTemplate.replace('{price}', '$9'));
     expect(cells(rows[5])[5]).toContain('$20/mo');
+  });
+
+  // Finding 2 : selfHostable: true et hosted: {exists: false} ont été écrits
+  // par la migration sur tous les projets, sans source. Non vérifiés, ce sont
+  // des tirets titrés « pas encore vérifié », jamais « Oui » ni « Aucune ».
+  it('unchecked self-hosting and hosted values are a titled dash, checked ones are values', () => {
+    const rows = section(doc, 'alternatives-heading').querySelectorAll('table.alt-table tbody tr');
+    const td = (r, i) => r.querySelectorAll('td')[i];
+    for (const row of [rows[2], rows[3]]) { // keila, postal : valeurs par défaut
+      for (const i of [4, 5]) {
+        expect(text(td(row, i))).toBe('—');
+        expect(td(row, i).querySelector('[title]').getAttribute('title')).toBe(t.notCheckedYet);
+      }
+    }
+    expect(text(td(rows[1], 4))).toBe('—'); // mautic : offre hébergée vérifiée, auto-hébergement non
+    // listmonk, vérifié : la valeur et sa date.
+    expect(text(td(rows[0], 4))).toBe(t.selfHostYes);
+    expect(text(td(rows[0], 5))).toContain(t.checkedOnTemplate.replace('{date}', 'October 12, 2026'));
+    // « None » n'apparaît qu'une fois : sur la seule absence vérifiée.
+    const hostedCells = [...rows].map((r) => td(r, 5)).filter((cell) => cell.firstChild?.textContent === t.hostedNone);
+    expect(hostedCells).toHaveLength(1);
   });
 
   it('renders project tagline in en with lang attr when fr text missing', () => {
@@ -558,7 +607,10 @@ describe('fiche « alternatives » — titre, description, tableau', () => {
     expect(list.itemListElement[0].item.url).toBe('https://saasmadefree.com/en/oss/listmonk');
     expect(list.itemListElement[2].item.url).toBe('https://keila.io');
     expect(list.itemListElement[1].item.offers).toBeUndefined(); // version hébergée payante
-    expect(list.itemListElement[0].item.offers.price).toBe(0);
+    expect(list.itemListElement[0].item.offers.price).toBe(0); // « pas d'offre hébergée » vérifié
+    // keila, postal : hosted.exists false par défaut, jamais vérifié — pas d'offre gratuite affirmée.
+    expect(list.itemListElement[2].item.offers).toBeUndefined();
+    expect(list.itemListElement[3].item.offers).toBeUndefined();
     const page = blocks.find((d) => d['@type'] === 'WebPage');
     // max(pricing 2026-07-30, stats.checkedOn des projets affichés 10-15, 10-16, 08-01)
     expect(page.dateModified).toBe('2026-10-16');

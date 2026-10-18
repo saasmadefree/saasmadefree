@@ -4,10 +4,12 @@ import { formatMonthlyPrice, formatDate, interpolate } from './site-format.mjs';
 import {
   organizationJsonLd, breadcrumbJsonLd, softwareItemListJsonLd, webPageJsonLd, languageVersions,
 } from './site-seo.mjs';
-import { indexable as gates, isDisplayableProject, statsAreFresh } from './site-alternatives.mjs';
+import {
+  indexable as gates, isDisplayableProject, statsAreFresh, noHostedOfferChecked, checkedDates,
+} from './site-alternatives.mjs';
 import {
   projectLink, projectTagline, projectStatCells, renderFactGrid, fitTag, renderCompareLinks,
-  sourceHost, monthYear, externalLink as ext, hostedCell,
+  sourceHost, monthYear, externalLink as ext, hostedCell, selfHostCell,
 } from './site-page-tool.mjs';
 
 // Fiche projet /{lang}/oss/{slug} (spec D2, D3, D7, D14 ; Ruling 20).
@@ -80,10 +82,11 @@ export function relatedProjects(project, projects, today, limit = MAX_RELATED_PR
 }
 
 /** Date de dernière modification réelle d'une page projet : le plus récent
- *  des relevés qu'elle affiche (chiffres GitHub, prix hébergé). null si le
- *  projet n'a aucun relevé daté : on ne met pas la date du build à la place. */
+ *  des relevés qu'elle affiche (chiffres GitHub, offre hébergée,
+ *  auto-hébergement). null si le projet n'a aucun relevé daté : on ne met pas
+ *  la date du build à la place. */
 export function projectDateModified(project) {
-  const dates = [project.stats?.checkedOn, project.hosted?.exists ? project.hosted.checkedOn : null].filter(Boolean);
+  const dates = checkedDates(project);
   return dates.length ? dates.reduce((max, d) => (d > max ? d : max)) : null;
 }
 
@@ -109,7 +112,7 @@ function renderFacts({ project, lang, p, t, today }) {
     // La date de création ne bouge pas : elle reste vraie même quand les
     // chiffres vivants sont trop vieux pour être montrés.
     project.stats?.createdAt ? [p.startedLabel, escapeHtml(monthYear(project.stats.createdAt, lang))] : null,
-    [t.colSelfHost, escapeHtml(project.selfHostable ? t.selfHostYes : t.selfHostNo)],
+    [t.colSelfHost, selfHostCell(project, t)],
     [t.colHosted, hosted],
     project.deploy?.length ? [p.deployLabel, escapeHtml(project.deploy.join(', '))] : null,
     project.stack?.length ? [p.stackLabel, escapeHtml(project.stack.join(', '))] : null,
@@ -207,7 +210,8 @@ ${cards.join('\n')}
 }
 
 /** SoftwareApplication du projet. Une offre gratuite n'est affirmée que
- *  sans version hébergée payante, comme sur la fiche outil ; le dépôt
+ *  si l'absence de version hébergée payante a été vérifiée, comme sur la
+ *  fiche outil (finding 2) ; le dépôt
  *  seulement s'il est sur GitHub ; la licence en URL SPDX. */
 function softwareApplicationJsonLd({ project, path, catLabel, description }) {
   const app = {
@@ -221,7 +225,7 @@ function softwareApplicationJsonLd({ project, path, catLabel, description }) {
   };
   if (project.license) app.license = `https://spdx.org/licenses/${project.license}.html`;
   if (project.repo) app.codeRepository = `https://github.com/${project.repo}`;
-  if (project.hosted?.exists === false) app.offers = { '@type': 'Offer', price: 0, priceCurrency: 'USD' };
+  if (noHostedOfferChecked(project)) app.offers = { '@type': 'Offer', price: 0, priceCurrency: 'USD' };
   return app;
 }
 

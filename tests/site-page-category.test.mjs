@@ -28,7 +28,12 @@ const project = (slug, over = {}) => ({
 // postal : sans dépôt (pas de chiffres) ; ghosted : archivé ; oldy : sans
 // commit depuis plus d'un an ; orphan : cité par une fiche d'une autre catégorie.
 const PROJECTS = new Map([
-  ['listmonk', project('listmonk', { name: 'Listmonk', license: 'AGPL-3.0', stats: stats({ stars: 17000 }) })],
+  // Seul listmonk a son auto-hébergement et son absence d'offre hébergée vérifiés.
+  ['listmonk', project('listmonk', {
+    name: 'Listmonk', license: 'AGPL-3.0', stats: stats({ stars: 17000 }),
+    selfHostableCheckedOn: '2026-10-12', selfHostableSource: 'https://listmonk.app/docs/installation/',
+    hosted: { exists: false, checkedOn: '2026-10-12', source: 'https://listmonk.app' },
+  })],
   ['keila', project('keila', { stats: stats({ stars: 1600 }) })],
   ['mautic', project('mautic', { stats: stats({ stars: 10787 }) })],
   ['postal', project('postal', { repo: null })],
@@ -355,5 +360,24 @@ describe('D14 — répertoire des catégories', () => {
   it('en français', () => {
     const fr = dom(renderIndex({ lang: 'fr' }));
     expect(text(fr.querySelector('main ul a'))).toContain('4 projets open source');
+  });
+});
+
+describe('page de catégorie — valeurs non vérifiées (finding 2)', () => {
+  const t = UI.en.site.tool;
+  it('« Run it yourself » : la valeur si vérifiée, sinon un tiret titré « pas encore vérifié »', () => {
+    const rows = [...doc.querySelectorAll('section[aria-labelledby="projects-heading"] tbody tr')];
+    const selfHost = (r) => r.querySelectorAll('td')[4];
+    expect(text(selfHost(rows[0]))).toBe(t.selfHostYes); // listmonk
+    for (const row of rows.slice(1)) {
+      expect(text(selfHost(row))).toBe('—');
+      expect(selfHost(row).querySelector('[title]').getAttribute('title')).toBe(t.notCheckedYet);
+    }
+  });
+
+  it('JSON-LD : un prix 0 seulement pour « pas d’offre hébergée » vérifié', () => {
+    const list = jsonLd(doc).find((d) => d['@type'] === 'ItemList' && d.itemListElement[0].item);
+    expect(list.itemListElement[0].item.offers).toEqual({ '@type': 'Offer', price: 0, priceCurrency: 'USD' });
+    for (const entry of list.itemListElement.slice(1)) expect(entry.item.offers).toBeUndefined();
   });
 });

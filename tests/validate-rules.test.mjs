@@ -521,3 +521,18 @@ describe('comparatifs', () => {
     expect(out).toContain('seamless');
   });
 });
+
+describe('données réelles — aucune API payante présentée en alternative libre (finding 1)', () => {
+  // Twilio Media Streams et la WhatsApp Cloud API de Meta sont des services
+  // payants, sans code à héberger : cités en alternatives, ils produisaient
+  // « 4 Free & Open Source Superscribe Alternatives », « Run it yourself:
+  // Yes » et une offre à 0 $ en JSON-LD. Ils ne reviennent pas.
+  it('superscribe et wabery ne les citent plus, et leurs fiches projet sont retirées', async () => {
+    const data = await loadData(process.cwd());
+    const cited = (slug) => (data.tools.get(slug).alternatives ?? []).map((alt) => alt.project);
+    expect(cited('superscribe')).not.toContain('twilio-media-streams');
+    expect(cited('wabery')).not.toContain('meta-whatsapp-cloud-api');
+    expect(data.projects.has('twilio-media-streams')).toBe(false);
+    expect(data.projects.has('meta-whatsapp-cloud-api')).toBe(false);
+  });
+});

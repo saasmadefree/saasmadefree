@@ -12,8 +12,8 @@ const API = 'https://api.github.com';
 // Ordre des clés dans data/projects/*.json : celui du schéma. Une clé inconnue
 // (que le schéma refuserait de toute façon) part à la fin, sans être perdue.
 const PROJECT_KEYS = [
-  'slug', 'name', 'homepage', 'repo', 'license', 'selfHostable', 'hosted',
-  'deploy', 'stack', 'categories', 'stats', 'markets',
+  'slug', 'name', 'homepage', 'repo', 'license', 'selfHostable', 'selfHostableCheckedOn', 'selfHostableSource',
+  'hosted', 'deploy', 'stack', 'categories', 'stats', 'markets',
 ];
 const STATS_KEYS = ['stars', 'lastCommit', 'createdAt', 'archived', 'checkedOn'];
 const FIT_RANK = { full: 0, partial: 1, niche: 2 };

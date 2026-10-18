@@ -156,9 +156,43 @@ export const indexable = {
  * @returns {string} 'YYYY-MM-DD'
  */
 export function toolDateModified(tool, alts) {
-  const dates = [tool.pricing.checkedOn, ...alts.map(({ project }) => project.stats?.checkedOn).filter(Boolean)];
+  const dates = [tool.pricing.checkedOn, ...alts.flatMap(({ project }) => checkedDates(project))];
   // Le format ISO se trie comme du texte : comparaison binaire, sans locale.
   return dates.reduce((max, d) => (d > max ? d : max));
+}
+
+// ---- faits vérifiés ou non ---------------------------------------------------
+//
+// La migration priorArt → projects a écrit `selfHostable: true` et
+// `hosted: { exists: false }` sur chaque projet, sans source : ce sont des
+// valeurs par défaut, pas des faits (revue finale, finding 2). Elles ne
+// s'affichent comme une valeur, et n'alimentent le JSON-LD ou une collection,
+// qu'une fois vérifiées par un humain ou par la recherche de la Partie B :
+// une date (et la source lue ce jour-là, exigée par le schéma).
+
+/** L'offre hébergée d'un projet est un fait vérifié : elle existe (prix,
+ *  source et date obligatoires), ou son absence porte une date. */
+export function hostedIsChecked(project) {
+  const hosted = project?.hosted;
+  if (hosted?.exists === true) return true;
+  return hosted?.exists === false && typeof hosted.checkedOn === 'string';
+}
+
+/** « Pas d'offre hébergée », vérifié : la seule base d'une offre gratuite
+ *  (prix 0) dans le JSON-LD. */
+export function noHostedOfferChecked(project) {
+  return project?.hosted?.exists === false && hostedIsChecked(project);
+}
+
+/** `selfHostable` est un fait vérifié (date et source posées). */
+export function selfHostIsChecked(project) {
+  return typeof project?.selfHostableCheckedOn === 'string';
+}
+
+/** Les dates de relevé qu'une page affiche pour un projet : chiffres GitHub,
+ *  offre hébergée, auto-hébergement. */
+export function checkedDates(project) {
+  return [project.stats?.checkedOn, project.hosted?.checkedOn, project.selfHostableCheckedOn].filter(Boolean);
 }
 
 /**
@@ -166,15 +200,16 @@ export function toolDateModified(tool, alts) {
  * (déjà filtrée sur les projets affichables). L'année vient de la date de
  * build, jamais d'une constante. `fallback` signale qu'il y a trop peu
  * d'alternatives pour un titre chiffré : c'est son seul effet, la fiche
- * reste indexable.
+ * reste indexable. `none` (n = 0) : aucune alternative à auto-héberger, le
+ * titre ne promet donc que le « construis le tien » (finding 11).
  * @param {{ name: string }} tool
  * @param {Array} alts
  * @param {string} buildDate  'YYYY-MM-DD'
- * @returns {{ n: number, name: string, year: string, fallback: boolean }}
+ * @returns {{ n: number, name: string, year: string, fallback: boolean, none: boolean }}
  */
 export function toolTitleVars(tool, alts, buildDate) {
   const n = alts.length;
-  return { n, name: tool.name, year: buildDate.slice(0, 4), fallback: n < MIN_TITLE_ALTERNATIVES };
+  return { n, name: tool.name, year: buildDate.slice(0, 4), fallback: n < MIN_TITLE_ALTERNATIVES, none: n === 0 };
 }
 
 /** Nombre de fiches du bloc « People also look for alternatives to… ». */

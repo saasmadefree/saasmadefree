@@ -50,7 +50,8 @@ describe('breadcrumbJsonLd', () => {
 
 describe('softwareItemListJsonLd', () => {
   const items = [
-    { name: 'Listmonk', url: 'https://listmonk.app', applicationCategory: 'Newsletters', hosted: { exists: false } },
+    { name: 'Listmonk', url: 'https://listmonk.app', applicationCategory: 'Newsletters',
+      hosted: { exists: false, checkedOn: '2026-10-12', source: 'https://listmonk.app' } },
     { name: 'Mautic', url: 'https://saasmadefree.com/en/oss/mautic', applicationCategory: 'Newsletters',
       hosted: { exists: true, priceFrom: 9, currency: 'USD', source: 'https://x', checkedOn: '2026-10-01' } },
   ];
@@ -68,6 +69,17 @@ describe('softwareItemListJsonLd', () => {
 
   it('pas d’offre gratuite affirmée quand une version hébergée payante existe', () => {
     const data = softwareItemListJsonLd(items, 'en');
+    expect(data.itemListElement[1].item.offers).toBeUndefined();
+  });
+
+  // Finding 2 : hosted: {exists: false} sans date est la valeur par défaut de
+  // la migration, pas un fait. Aucun prix 0 n'en sort.
+  it('pas d’offre gratuite affirmée quand « pas d’offre hébergée » n’a jamais été vérifié', () => {
+    const data = softwareItemListJsonLd([
+      { name: 'Keila', url: 'https://keila.io', applicationCategory: 'Newsletters', hosted: { exists: false } },
+      { name: 'Postal', url: 'https://postalserver.io', applicationCategory: 'Newsletters' },
+    ], 'en');
+    expect(data.itemListElement[0].item.offers).toBeUndefined();
     expect(data.itemListElement[1].item.offers).toBeUndefined();
   });
 });

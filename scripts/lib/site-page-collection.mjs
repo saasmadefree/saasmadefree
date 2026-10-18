@@ -3,7 +3,7 @@ import { SITE_ORIGIN } from './site-data.mjs';
 import { interpolate, pluralize } from './site-format.mjs';
 import { renderToolGrid } from './site-table.mjs';
 import { organizationJsonLd, itemListJsonLd, breadcrumbJsonLd } from './site-seo.mjs';
-import { alternativesFor, indexable } from './site-alternatives.mjs';
+import { alternativesFor, indexable, selfHostIsChecked } from './site-alternatives.mjs';
 
 // Collections /{lang}/collections/{kind} (spec D5, D7). Deux seulement, qui
 // n'ont pas d'équivalent chez openalternative.co : les SaaS qu'on peut
@@ -28,7 +28,10 @@ export function collectionPath(lang, kind) {
 /**
  * Fiches d'une collection, dans l'ordre reçu (celui de l'annuaire).
  * - `build-tonight` : verdict `yes` ET `diyTimeEstimate` `one-sitting` ou `weekend` ;
- * - `self-hosted` : au moins un projet affichable et auto-hébergeable. La
+ * - `self-hosted` : au moins un projet affichable dont l'auto-hébergement
+ *   est VÉRIFIÉ (`selfHostableCheckedOn`) : `selfHostable: true` sans date
+ *   est la valeur par défaut de la migration, pas un fait (finding 2), et la
+ *   collection suit la même règle que la colonne « Run it yourself ». La
  *   carte ne nomme alors que ces projets-là (`alternativeNames`).
  * @param {'self-hosted'|'build-tonight'} kind
  * @param {object[]} toolViews  fiches de la langue (buildToolViews)
@@ -42,7 +45,7 @@ export function collectionTools(kind, toolViews, { projects, today }) {
   if (kind === 'self-hosted') {
     const out = [];
     for (const tool of toolViews) {
-      const hostable = alternativesFor(tool, projects, today).filter(({ project }) => project.selfHostable === true);
+      const hostable = alternativesFor(tool, projects, today).filter(({ project }) => project.selfHostable === true && selfHostIsChecked(project));
       if (hostable.length) out.push({ ...tool, alternativeNames: hostable.map(({ project }) => project.name) });
     }
     return out;

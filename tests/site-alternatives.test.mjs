@@ -232,12 +232,17 @@ describe('toolTitleVars', () => {
       { project: 'a', fit: 'full' }, { project: 'b', fit: 'full' }, { project: 'c', fit: 'full' },
     ] });
     const alts = alternativesFor(t, projects, today);
-    expect(toolTitleVars(t, alts, '2026-10-17')).toEqual({ n: 2, name: 'Notion', year: '2026', fallback: true });
+    expect(toolTitleVars(t, alts, '2026-10-17')).toEqual({ n: 2, name: 'Notion', year: '2026', fallback: true, none: false });
   });
 
   it('3 alternatives affichables → titre normal, année tirée de buildDate', () => {
     const t = tool('notion', { name: 'Notion' });
-    expect(toolTitleVars(t, [{}, {}, {}], '2027-01-02')).toEqual({ n: 3, name: 'Notion', year: '2027', fallback: false });
+    expect(toolTitleVars(t, [{}, {}, {}], '2027-01-02')).toEqual({ n: 3, name: 'Notion', year: '2027', fallback: false, none: false });
+  });
+
+  it('aucune alternative affichable → `none`, le titre sans rien à auto-héberger (finding 11)', () => {
+    const t = tool('notion', { name: 'Notion' });
+    expect(toolTitleVars(t, [], '2026-10-17')).toEqual({ n: 0, name: 'Notion', year: '2026', fallback: true, none: true });
   });
 });
 

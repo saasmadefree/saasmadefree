@@ -5,7 +5,7 @@ import { renderToolGrid } from './site-table.mjs';
 import { organizationJsonLd, itemListJsonLd, breadcrumbJsonLd, softwareItemListJsonLd } from './site-seo.mjs';
 import { alternativesFor, inactiveAlternativesFor, indexable, statsAreFresh } from './site-alternatives.mjs';
 import {
-  projectLink, projectTagline, projectStatCells, fitTag, renderInactive,
+  projectLink, projectTagline, projectStatCells, fitTag, renderInactive, selfHostCell,
 } from './site-page-tool.mjs';
 
 // Page de catégorie « best » (spec D6, D7, D14). URL inchangée :
@@ -95,7 +95,7 @@ ${heading}
               <td>${project.license ? escapeHtml(project.license) : DASH}</td>
               <td class="num">${stars}</td>
               <td class="num">${commit}</td>
-              <td>${escapeHtml(project.selfHostable ? t.selfHostYes : t.selfHostNo)}</td>
+              <td>${selfHostCell(project, t)}</td>
               <td>${replaces}</td>
             </tr>`;
   });

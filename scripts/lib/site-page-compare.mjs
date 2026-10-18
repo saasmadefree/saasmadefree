@@ -7,7 +7,7 @@ import {
 import { indexable as gates, isDisplayableProject, statsAreFresh } from './site-alternatives.mjs';
 import { compareKey } from './validate-rules.mjs';
 import {
-  projectLink, templateWithHtml, projectStatCells, sourceHost, monthYear, externalLink as ext, hostedCell,
+  projectLink, templateWithHtml, projectStatCells, sourceHost, monthYear, externalLink as ext, hostedCell, selfHostCell,
 } from './site-page-tool.mjs';
 import { projectDateModified } from './site-page-project.mjs';
 
@@ -187,7 +187,7 @@ function sideFacts(side, { lang, ui, s, t, p, today }) {
     // La date de création ne bouge pas : vraie même quand les chiffres
     // vivants sont trop vieux pour être montrés (Ruling 23).
     started: e.stats?.createdAt ? escapeHtml(monthYear(e.stats.createdAt, lang)) : null,
-    selfHost: escapeHtml(e.selfHostable ? t.selfHostYes : t.selfHostNo),
+    selfHost: selfHostCell(e, t),
     hosted,
     website: ext(e.homepage, sourceHost(e.homepage)),
     repo: e.repo ? ext(`https://github.com/${e.repo}`, e.repo) : null,

@@ -8,6 +8,7 @@ import {
 } from './site-seo.mjs';
 import {
   alternativesFor, inactiveAlternativesFor, toolTitleVars, statsAreFresh, toolDateModified,
+  hostedIsChecked, selfHostIsChecked,
 } from './site-alternatives.mjs';
 import { PLACEHOLDER_PATH } from './site-favicons.mjs';
 import { FEED_VERSION } from './feed.mjs';
@@ -46,15 +47,35 @@ export function externalLink(href, label) {
   return `<a href="${escapeHtml(href)}" rel="nofollow noopener">${escapeHtml(label)}</a>`;
 }
 
-/** Prix hébergé d'un projet, en HTML : « From $9 » avec sa source cliquable
- *  et sa date, seulement si l'offre existe ; sinon « None ». `t` = ui.site.tool.
- *  Faits de la page projet et tableau du comparatif. */
-export function hostedCell(project, lang, t) {
-  if (!project.hosted?.exists) return escapeHtml(t.hostedNone);
+/** Tiret d'une valeur jamais vérifiée : son title dit pourquoi elle manque. */
+function notChecked(t) {
+  return `<span title="${escapeHtml(t.notCheckedYet)}">${DASH}</span>`;
+}
+
+/** Prix hébergé d'un projet, en HTML. Offre vérifiée : « From $9 » ; absence
+ *  vérifiée : « None ». Dans les deux cas, la date du relevé et, si
+ *  `withSource`, la source cliquable. Jamais vérifié (la valeur par défaut de
+ *  la migration) : un tiret titré « Not checked yet » (finding 2). `t` =
+ *  ui.site.tool. Tableau de la fiche (sans source, pour la largeur), faits de
+ *  la page projet et tableau du comparatif (avec). */
+export function hostedCell(project, lang, t, { withSource = true } = {}) {
+  if (!hostedIsChecked(project)) return notChecked(t);
   const { hosted } = project;
-  return `${escapeHtml(interpolate(t.hostedFromTemplate, { price: formatMoney(hosted.priceFrom, hosted.currency, lang) }))}`
-    + `<span class="sub">${templateWithHtml(t.priceSourceTemplate, 'host', externalLink(hosted.source, sourceHost(hosted.source)))}`
-    + ` · ${escapeHtml(interpolate(t.checkedOnTemplate, { date: formatDate(hosted.checkedOn, lang) }))}</span>`;
+  const value = hosted.exists
+    ? interpolate(t.hostedFromTemplate, { price: formatMoney(hosted.priceFrom, hosted.currency, lang) })
+    : t.hostedNone;
+  const source = withSource && hosted.source
+    ? `${templateWithHtml(t.priceSourceTemplate, 'host', externalLink(hosted.source, sourceHost(hosted.source)))} · `
+    : '';
+  return `${escapeHtml(value)}<span class="sub">${source}${escapeHtml(interpolate(t.checkedOnTemplate, { date: formatDate(hosted.checkedOn, lang) }))}</span>`;
+}
+
+/** « Run it yourself » d'un projet : Oui / Non une fois vérifié, sinon un
+ *  tiret titré — `selfHostable: true` sans date n'est qu'une valeur par
+ *  défaut de la migration (finding 2). */
+export function selfHostCell(project, t) {
+  if (!selfHostIsChecked(project)) return notChecked(t);
+  return escapeHtml(project.selfHostable ? t.selfHostYes : t.selfHostNo);
 }
 
 // « A week » → « a week » : le libellé entre au milieu d'une phrase de la
@@ -261,17 +282,14 @@ function renderAlternatives({ tool, alts, inactive, lang, t, s, verdict, project
   const projectRows = alts.map(({ project, fit }) => {
     const link = projectLink(project, lang, isIndexable);
     const { stars, commit } = projectStatCells(project, lang, t, today);
-    const hosted = project.hosted?.exists
-      ? `${escapeHtml(interpolate(t.hostedFromTemplate, { price: formatMoney(project.hosted.priceFrom, project.hosted.currency, lang) }))}`
-        + `<span class="sub">${escapeHtml(interpolate(t.checkedOnTemplate, { date: formatDate(project.hosted.checkedOn, lang) }))}</span>`
-      : escapeHtml(t.hostedNone);
+    const hosted = hostedCell(project, lang, t, { withSource: false });
     return `            <tr>
               <th scope="row"><a href="${escapeHtml(link.href)}"${link.rel}>${escapeHtml(project.name)}</a></th>
               <td>${fitTag(fit, t)}</td>
               <td>${project.license ? escapeHtml(project.license) : DASH}</td>
               <td class="num">${stars}</td>
               <td class="num">${commit}</td>
-              <td>${escapeHtml(project.selfHostable ? t.selfHostYes : t.selfHostNo)}</td>
+              <td>${selfHostCell(project, t)}</td>
               <td>${hosted}</td>
             </tr>`;
   });
@@ -489,11 +507,14 @@ export function renderToolPage({
   const price = formatMonthlyPrice(tool.pricing, lang);
   const build = lowerFirst(ui.diyTimeEstimate?.[tool.diyTimeEstimate] ?? tool.diyTimeEstimate);
 
-  const title = interpolate(vars.fallback ? t.titleFallbackTemplate : t.titleTemplate, vars);
+  // Trois titres : chiffré (n ≥ 3), de repli (0 < n < 3), et sans
+  // alternative (n = 0), qui ne promet rien à auto-héberger.
+  const pick = (full, fallback, none) => (vars.none ? none : vars.fallback ? fallback : full);
+  const title = interpolate(pick(t.titleTemplate, t.titleFallbackTemplate, t.titleNoAltTemplate), vars);
   const top3 = new Intl.ListFormat(lang, { style: 'long', type: 'conjunction' })
     .format(alts.slice(0, 3).map(({ project }) => project.name));
   const description = interpolate(
-    vars.fallback ? t.metaDescriptionFallbackTemplate : t.metaDescriptionTemplate,
+    pick(t.metaDescriptionTemplate, t.metaDescriptionFallbackTemplate, t.metaDescriptionNoAltTemplate),
     { ...vars, top3, build, price },
   );
   const h1 = headingWithName(vars.fallback ? t.h1FallbackTemplate : t.h1Template, vars);

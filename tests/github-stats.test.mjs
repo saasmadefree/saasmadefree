@@ -378,13 +378,16 @@ describe('serializeProject', () => {
       slug: 'x', name: 'X', homepage: 'https://x.dev', repo: 'o/x',
       selfHostable: true, hosted: { exists: false }, deploy: [], stack: [], categories: ['c'],
     };
+    // Les champs vérifiés à la main (finding 2) gardent leur place, à côté de selfHostable.
+    p.selfHostableSource = 'https://x.dev/docs';
+    p.selfHostableCheckedOn = TODAY;
     const text = serializeProject(p);
     expect(text.endsWith('}\n')).toBe(true);
     expect(text).toContain('\n  "slug": "x"');
     const parsed = JSON.parse(text);
     expect(Object.keys(parsed)).toEqual([
-      'slug', 'name', 'homepage', 'repo', 'license', 'selfHostable', 'hosted',
-      'deploy', 'stack', 'categories', 'stats', 'markets',
+      'slug', 'name', 'homepage', 'repo', 'license', 'selfHostable', 'selfHostableCheckedOn', 'selfHostableSource',
+      'hosted', 'deploy', 'stack', 'categories', 'stats', 'markets',
     ]);
     expect(Object.keys(parsed.stats)).toEqual(['stars', 'lastCommit', 'createdAt', 'archived', 'checkedOn']);
   });

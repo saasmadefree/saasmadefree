@@ -24,12 +24,7 @@
     "domain",
     "database"
   ],
-  "alternatives": [
-    {
-      "project": "meta-whatsapp-cloud-api",
-      "fit": "partial"
-    }
-  ],
+  "alternatives": [],
   "relatedSlugs": [
     "cursor",
     "github-copilot",

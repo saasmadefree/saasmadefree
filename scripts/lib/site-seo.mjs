@@ -1,4 +1,5 @@
 import { SITE_ORIGIN } from './site-data.mjs';
+import { noHostedOfferChecked } from './site-alternatives.mjs';
 
 export function organizationJsonLd() {
   return {
@@ -42,9 +43,11 @@ export function itemListJsonLd(tools) {
 /** Les alternatives libres d'une fiche, en ItemList de SoftwareApplication.
  *  Chaque élément porte déjà son URL finale (page projet indexable, ou site
  *  du projet) : aucune langue à résoudre ici. Une offre gratuite n'est
- *  affirmée que s'il n'existe aucune version hébergée payante — sinon on ne
- *  dit rien du prix plutôt que d'en inventer un.
- *  @param {Array<{name:string,url:string,applicationCategory:string,hosted?:{exists:boolean}}>} items */
+ *  affirmée que si l'absence de version hébergée payante a été VÉRIFIÉE
+ *  (`hosted.checkedOn`) — `{ exists: false }` sans date est une valeur par
+ *  défaut de la migration, et on ne dit alors rien du prix plutôt que d'en
+ *  inventer un (finding 2).
+ *  @param {Array<{name:string,url:string,applicationCategory:string,hosted?:{exists:boolean,checkedOn?:string}}>} items */
 export function softwareItemListJsonLd(items) {
   return {
     '@context': 'https://schema.org',
@@ -57,7 +60,7 @@ export function softwareItemListJsonLd(items) {
         applicationCategory: entry.applicationCategory,
         operatingSystem: 'Web',
       };
-      if (entry.hosted?.exists === false) item.offers = { '@type': 'Offer', price: 0, priceCurrency: 'USD' };
+      if (noHostedOfferChecked(entry)) item.offers = { '@type': 'Offer', price: 0, priceCurrency: 'USD' };
       return { '@type': 'ListItem', position: i + 1, item };
     }),
   };
