@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -12,6 +12,7 @@ import {
   mergeDuplicate,
   serializeProject,
 } from '../scripts/lib/github-stats.mjs';
+import { runRefreshProjects, dryRunReport } from '../scripts/lib/refresh-projects-run.mjs';
 
 const fixtures = fileURLToPath(new URL('./fixtures/github/', import.meta.url));
 const fixture = (name) => JSON.parse(readFileSync(join(fixtures, name), 'utf8'));
@@ -390,5 +391,158 @@ describe('serializeProject', () => {
       'hosted', 'deploy', 'stack', 'categories', 'stats', 'markets',
     ]);
     expect(Object.keys(parsed.stats)).toEqual(['stars', 'lastCommit', 'createdAt', 'archived', 'checkedOn']);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// scripts/refresh-projects.mjs --dry-run : mêmes appels GitHub, même calcul,
+// un bilan par slug, et aucune écriture.
+// ---------------------------------------------------------------------------
+
+const ROOT = '/depot';
+
+/** Faux système de fichiers en mémoire : seuls readFile/readdir/access
+ *  lisent ; writeFile et unlink sont des espions qui ne font rien. */
+function memoryFs(files) {
+  const store = new Map(Object.entries(files).map(([path, value]) => [`${ROOT}/${path}`, JSON.stringify(value, null, 2) + '\n']));
+  const enoent = (path) => Object.assign(new Error(`ENOENT ${path}`), { code: 'ENOENT' });
+  return {
+    readFile: async (path) => {
+      if (!store.has(path)) throw enoent(path);
+      return store.get(path);
+    },
+    readdir: async (dir) => [...store.keys()]
+      .filter((path) => path.startsWith(`${dir}/`) && !path.slice(dir.length + 1).includes('/'))
+      .map((path) => path.slice(dir.length + 1)),
+    access: async (path) => {
+      if (!store.has(path)) throw enoent(path);
+    },
+    writeFile: vi.fn(async () => {}),
+    unlink: vi.fn(async () => {}),
+  };
+}
+
+const commitOn = (date) => () => json([{ commit: { committer: { date: `${date}T12:00:00Z` } } }]);
+
+// Cinq projets, un par statut, plus un projet hors GitHub.
+const DRY_PROJECTS = {
+  'data/projects/listmonk.json': project({ stats: { stars: 1, lastCommit: '2026-01-01', createdAt: '2019-06-26', archived: false, checkedOn: '2026-01-01' } }),
+  'data/projects/gone.json': project({ slug: 'gone', repo: 'nobody/gone' }),
+  'data/projects/atom.json': project({ slug: 'atom', repo: 'atom/atom', homepage: 'https://atom.io' }),
+  'data/projects/oldie.json': project({ slug: 'oldie', repo: 'someone/oldie' }),
+  'data/projects/whisper-cpp.json': project({ slug: 'whisper-cpp', repo: 'ggerganov/whisper.cpp', homepage: 'https://github.com/ggerganov/whisper.cpp' }),
+  'data/projects/offforge.json': project({ slug: 'offforge', repo: null }),
+  'data/tools/mailchimp.json': { slug: 'mailchimp', alternatives: [{ project: 'listmonk', fit: 'full' }] },
+};
+
+const DRY_ROUTES = {
+  '/repos/knadh/listmonk': () => json(fixture('repo.json')),
+  '/repos/knadh/listmonk/commits?per_page=1': () => json(fixture('commits.json')),
+  '/repos/nobody/gone': () => json(fixture('404.json'), 404),
+  '/repos/atom/atom': () => json(fixture('archived.json')),
+  '/repos/atom/atom/commits?per_page=1': commitOn('2022-12-15'),
+  '/repos/someone/oldie': () => json({ ...fixture('repo.json'), full_name: 'someone/oldie' }),
+  '/repos/someone/oldie/commits?per_page=1': commitOn('2025-01-02'),
+  '/repos/ggerganov/whisper.cpp': () => json(fixture('renamed.json')),
+  '/repos/ggml-org/whisper.cpp/commits?per_page=1': () => json(fixture('commits.json')),
+};
+
+async function run(argv, { files = DRY_PROJECTS, routes = DRY_ROUTES, env = { GITHUB_TOKEN: 't' } } = {}) {
+  const fs = memoryFs(files);
+  const fetch = fakeFetch(routes);
+  const out = [];
+  const err = [];
+  const code = await runRefreshProjects({
+    argv, env, root: ROOT, fetch, fs, today: TODAY,
+    log: (line) => out.push(line), error: (line) => err.push(line),
+  });
+  return { code, fs, fetch, out: out.join('\n'), err: err.join('\n') };
+}
+
+describe('refresh-projects --dry-run', () => {
+  it("n'appelle jamais writeFile ni unlink, et le dit", async () => {
+    const { fs, fetch, out } = await run(['--dry-run']);
+    expect(fs.writeFile).not.toHaveBeenCalled();
+    expect(fs.unlink).not.toHaveBeenCalled();
+    expect(fetch.calls.length).toBeGreaterThan(0);
+    expect(out).toContain('aucun fichier écrit');
+  });
+
+  it('interroge GitHub exactement comme le mode normal', async () => {
+    const dry = await run(['--dry-run']);
+    const real = await run([]);
+    expect(dry.fetch.calls.map((c) => c.url)).toEqual(real.fetch.calls.map((c) => c.url));
+    expect(real.fs.writeFile).toHaveBeenCalled();
+  });
+
+  it('un bilan par slug : missing, archived, stale, renamed, ok', async () => {
+    const { out } = await run(['--dry-run']);
+    const line = (slug) => out.split('\n').find((l) => l.trim().startsWith(`${slug} `));
+    expect(line('listmonk')).toMatch(/\bok\b/);
+    expect(line('gone')).toMatch(/\bmissing\b/);
+    expect(line('gone')).toContain('nobody/gone');
+    expect(line('atom')).toMatch(/\barchived\b/);
+    expect(line('oldie')).toMatch(/\bstale\b/);
+    expect(line('oldie')).toContain('2025-01-02');
+    expect(line('whisper-cpp')).toMatch(/\brenamed\b/);
+    expect(line('whisper-cpp')).toContain('ggerganov/whisper.cpp → ggml-org/whisper.cpp');
+    expect(line('offforge')).toMatch(/\bno-repo\b/);
+  });
+
+  it('garde les codes de sortie du mode normal (404 → 1)', async () => {
+    expect((await run(['--dry-run'])).code).toBe(1);
+    const ok = await run(['--dry-run'], {
+      files: { 'data/projects/listmonk.json': DRY_PROJECTS['data/projects/listmonk.json'] },
+    });
+    expect(ok.code).toBe(0);
+    expect(ok.fs.writeFile).not.toHaveBeenCalled();
+  });
+
+  it('exige toujours GITHUB_TOKEN, sans aucun appel réseau', async () => {
+    const { code, fetch, err } = await run(['--dry-run'], { env: {} });
+    expect(code).toBe(2);
+    expect(fetch.calls).toHaveLength(0);
+    expect(err).toContain('GITHUB_TOKEN');
+  });
+
+  it('avec --merge-duplicates : la fusion est calculée, rien n’est écrit ni supprimé', async () => {
+    const files = {
+      'data/projects/listmonk.json': project(),
+      'data/projects/listmonk-2.json': project({ slug: 'listmonk-2' }),
+      'data/tools/mailchimp.json': { slug: 'mailchimp', alternatives: [{ project: 'listmonk-2', fit: 'full' }] },
+    };
+    const { code, fs, out } = await run(['--dry-run', '--merge-duplicates'], { files });
+    expect(code).toBe(0);
+    expect(fs.writeFile).not.toHaveBeenCalled();
+    expect(fs.unlink).not.toHaveBeenCalled();
+    expect(out).toContain('listmonk-2 → listmonk');
+  });
+
+  it('une erreur GitHub : rien écrit, code 1', async () => {
+    const routes = { ...DRY_ROUTES, '/repos/atom/atom': () => json({}, 403, { 'x-ratelimit-remaining': '0' }) };
+    const { code, fs } = await run(['--dry-run'], { routes });
+    expect(code).toBe(1);
+    expect(fs.writeFile).not.toHaveBeenCalled();
+  });
+
+  it('refuse toujours une option inconnue', async () => {
+    expect((await run(['--dryrun'])).code).toBe(2);
+  });
+});
+
+describe('dryRunReport', () => {
+  it('cumule les statuts et trie par slug', () => {
+    const original = new Map([
+      ['b', project({ slug: 'b', repo: 'o/b' })],
+      ['a', project({ slug: 'a', repo: 'o/a' })],
+    ]);
+    const refreshed = new Map([
+      ['b', project({ slug: 'b', repo: 'o/b' })],
+      ['a', project({ slug: 'a', repo: 'n/a', stats: { stars: 1, lastCommit: '2020-01-01', createdAt: '2019-01-01', archived: true, checkedOn: TODAY } })],
+    ]);
+    const rows = dryRunReport({ original, refreshed, missing: ['b'], today: TODAY });
+    expect(rows.map((r) => r.slug)).toEqual(['a', 'b']);
+    expect(rows[0].statuses).toEqual(['renamed', 'archived']);
+    expect(rows[1].statuses).toEqual(['missing']);
   });
 });
