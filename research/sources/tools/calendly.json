@@ -70,5 +70,11 @@
     "url": "https://github.com/Calnode/calnode",
     "retrievedOn": "2026-10-18",
     "field": "alternativesIntro"
+  },
+  {
+    "claim": "Tymeslot creates Meet, Teams, Zoom and Jitsi rooms; whatYouLose[0] now says a DIY build must wire video APIs itself",
+    "url": "https://github.com/Tymeslot/tymeslot",
+    "retrievedOn": "2026-10-18",
+    "field": "whatYouLose[0]"
   }
 ]

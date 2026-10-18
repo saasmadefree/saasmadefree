@@ -46,7 +46,7 @@
     "anything-llm": "Chat with your documents in workspaces, over a local or cloud model. It has no frontier model of its own.",
     "cherry-studio": "A multi-provider desktop chat client with knowledge bases. It has no server mode and no model of its own.",
     "librechat": "A multi-provider chat interface with history, presets and agents. It has no frontier model of its own.",
-    "jan": "A desktop chat app that runs downloaded open models offline, with optional OpenAI and Anthropic keys and a local API server. It is desktop only, with no multi-user server.",
+    "jan": "A desktop chat app that runs downloaded open models offline, with optional OpenAI and Anthropic keys and a local API server. The app you install is desktop only, with no multi-user server. The docs also mention a separate browser version, Jan Web, which is labelled as a separate offering.",
     "onyx": "Chat over your own documents with any model, centred on search across connected apps. It has no frontier model of its own."
   }
 }

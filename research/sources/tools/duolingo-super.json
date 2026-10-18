@@ -22,5 +22,11 @@
     "url": "https://github.com/ankitects/anki",
     "retrievedOn": "2026-10-18",
     "field": "alternativesIntro"
+  },
+  {
+    "claim": "Figures (language pairs, person-years, skill trees) and the superlative removed from verdictSummary and whatYouLose[0]; no unsourced figure remains",
+    "url": "https://www.duolingo.com/courses",
+    "retrievedOn": "2026-10-18",
+    "field": "verdictSummary, whatYouLose[0]"
   }
 ]

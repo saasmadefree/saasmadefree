@@ -42,7 +42,7 @@
     "leantime": "Covers kanban, gantt, table, list and calendar views, plus goals, canvases and timesheets, all in the free version. It needs MySQL or MariaDB and a long list of PHP extensions.",
     "operately": "Covers goals, projects and check-ins linked in one workflow, with a CLI and API. It is opinionated, aimed at teams of 5 to 100, and Docker is the only documented deploy method.",
     "plane": "Covers work items, cycles, modules and analytics. The Community Edition matches only the Cloud Free tier, and paid plans need the Commercial Edition with a licence key.",
-    "platform": "Huly covers issue tracking, chat, CRM and HR in one workspace. It needs 2 vCPUs and 8 GB of RAM at minimum, and the original company stopped its hosted service, the original repository is frozen, and development continues in a community fork.",
+    "platform": "Huly covers issue tracking, chat, CRM and HR in one workspace. The original company stopped its hosted service and froze its repository. The community fork, Huly (community fork), continues development, and you host it yourself.",
     "openproject": "Covers Gantt scheduling, Kanban, Scrum, time tracking and budgets. Some features are Enterprise add-ons, and the admin load is heavier than lightweight tools.",
     "vikunja": "Covers list, kanban, Gantt and table views as one Go binary. The admin panel, audit logs and time tracking are in the paid Pro tier, and the mobile app is basic.",
     "worklenz": "Covers tasks, time tracking, resource planning and a client portal, with list, board and Gantt views. It needs PostgreSQL, Redis and S3-compatible storage, and import covers CSV only.",

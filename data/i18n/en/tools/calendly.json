@@ -3,7 +3,7 @@
   "verdictSummary": "A single-calendar booking page is a weekend build: define your availability rules, connect one Google Calendar via OAuth to check free/busy, and create events when someone books, with basic timezone conversion. What you don't rebuild in a weekend is the integration surface — video links that auto-generate, CRM sync, and round-robin routing across a team calendar.",
   "coreLoopDIY": "A public booking page that reads free/busy from one connected calendar, offers slots inside your availability rules, and creates a calendar event with a two-way OAuth token when someone books.",
   "whatYouLose": [
-    "automatic video-call links (Zoom, Meet) generated per booking",
+    "video-call links that are created for you at no effort: building them yourself means wiring the Zoom or Meet APIs (Tymeslot already ships them)",
     "team round-robin and collective availability across multiple calendars",
     "native integrations with CRMs and Slack, and automated reminder workflows"
   ],

@@ -1,18 +1,18 @@
 {
-  "tagline": "Self-hostable all-in-one workspace from Huly: issue tracking, chat, CRM, HR and recruiting in one app.",
-  "description": "The Huly platform repository holds a set of business apps: chat, project management, CRM, HRM and applicant tracking. The README calls the platform a framework for building business applications, and Huly is the product built on it. For issue tracking it can stand in for Linear or Asana. The README sends people who only want to host Huly to a separate repository, huly-selfhost, which runs the stack with Docker Compose and offers a sample Kubernetes configuration. That guide says Huly is resource-heavy: the minimum is 2 vCPUs and 8 GB of RAM, and 4 vCPUs with 16 GB is recommended. Production releases carry v tags, and each upgrade should be checked against a MIGRATION.md file; going from 0.6.x to 0.7.x needs dedicated steps. A typed API client lets you script it. The code is under EPL-2.0. The original company has stopped the hosted Huly service, so self-hosting is now the main route. This repository is frozen, and development continues in a young, small community fork, Platform-Collective/platform. Development for building the code needs Node.js 22, Docker and Docker Compose.",
+  "tagline": "Community fork of Huly: issues, chat, CRM, HR and recruiting apps you host yourself.",
+  "description": "Huly (community fork) is the Platform Collective's version of the Huly platform, a framework for business apps such as chat, project management, CRM, HRM and applicant tracking. Its README says it is a fork of Huly Platform by Hardcore Engineering Inc. and is developed independently. The original company stopped its hosted Huly service and froze its own repository, so this fork is where development continues. For issue tracking it can stand in for Linear or Asana. Production releases carry v tags and are the ones recommended for self-hosted installs; development builds use s tags and are not for production. The fork's README covers building and running the code, not a ready-made deployment guide, and it needs Docker and Docker Compose plus a recent Node.js LTS. The code is under EPL-2.0. Hardcore Engineering's separate huly-selfhost guide for the original Huly says the stack needs at least 2 vCPUs and 8 GB of RAM, with 4 vCPUs and 16 GB recommended. That figure may differ for the fork, which does not state its own.",
   "strengths": [
     "Chat, project management, CRM, HR and recruiting apps in one codebase",
-    "Docker Compose self-hosting through the separate huly-selfhost repository, plus a sample Kubernetes config",
-    "Typed API client for scripting and integrations",
-    "Versioned production releases with a migration guide for each upgrade"
+    "Versioned production releases with v tags, kept apart from development builds",
+    "Active community development after the original company stopped its hosted service",
+    "Changelog and architecture overview kept in the repository"
   ],
   "limits": [
-    "Resource-heavy: 2 vCPUs and 8 GB RAM minimum, 4 vCPUs and 16 GB recommended",
-    "The original company stopped the hosted Huly service, so self-hosting is the main route",
-    "The upstream repository is frozen; future development depends on a community fork",
-    "Upgrades from 0.6.x to 0.7.x cannot be done in place and need the dedicated migration steps",
-    "Building from source needs Node.js 22, Docker and Docker Compose"
+    "A community fork run independently of the original company, with no hosted service behind it",
+    "No ready-made self-hosting guide in the fork's README; it documents building and running from source",
+    "Resource-heavy if it matches the original: Hardcore Engineering's guide asks for 2 vCPUs and 8 GB RAM minimum",
+    "Building needs Docker, Docker Compose and a Node.js version the README and .nvmrc state differently, so check both",
+    "Needs rush and a GitHub token to install dependencies from GitHub Packages"
   ],
-  "bestFor": "A small company that wants issues, chat and CRM in one self-run tool and has a server with at least 8 GB of RAM."
+  "bestFor": "A technical team that wants issues, chat and CRM in one self-run tool and can build and run from source."
 }

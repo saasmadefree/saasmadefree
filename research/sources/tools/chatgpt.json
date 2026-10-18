@@ -88,5 +88,11 @@
     "url": "https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus",
     "retrievedOn": "2026-10-18",
     "field": "faq[5]"
+  },
+  {
+    "claim": "Jan Web is mentioned in the docs as a separate browser offering; the installed app is desktop only",
+    "url": "https://jan.ai/docs/desktop",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.jan"
   }
 ]

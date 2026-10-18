@@ -5,7 +5,7 @@
     "Booking page where attendees choose from your availability",
     "Calendar connections through Google and CalDAV, per the architecture notes",
     "Docker Compose brings up the whole stack, including PostgreSQL, Redis and a test mail catcher",
-    "Maintained by the Thunderbird project, with a recent commit in our data",
+    "Maintained by the Thunderbird project, with recent development activity",
     "OpenAPI docs are served by the backend, and the interface is localized with Fluent files"
   ],
   "limits": [
