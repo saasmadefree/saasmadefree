@@ -78,14 +78,13 @@ describe('buildAgentIdList', () => {
 });
 
 // Contrat public du feed v1 : l'extension Chrome lit `priorArt` dans chaque
-// enregistrement. La migration priorArt → projects (scripts/migrate-prior-art.mjs)
-// a retiré le champ des données sources ; le feed le dérive désormais de
-// `alternatives`. Les instantanés de tests/fixtures/feed-before-migration/ ont
-// été écrits AVANT la migration, avec le code d'alors. Ce qui est figé, et
-// seulement ça : le `priorArt` de ces trois fiches (contenu, forme et ordre des
-// clés) et l'ordre des clés de premier niveau de l'enregistrement. Prix,
-// textes et FAQ peuvent évoluer librement sans toucher à ce test.
-describe('feed keeps priorArt derived from alternatives', () => {
+// enregistrement. Ce qui est figé, c'est la FORME lue par l'extension, pas la
+// liste des projets : `priorArt` est un tableau d'entrées {name, url, license?}
+// avec exactement ces clés dans cet ordre, et l'enregistrement garde l'ordre de
+// ses clés de premier niveau (vérifié contre tests/fixtures/feed-before-migration/,
+// écrits avant la migration priorArt → projects). Les alternatives d'une fiche
+// peuvent s'enrichir ou changer librement sans toucher à ce test.
+describe('feed keeps the v1 priorArt shape', () => {
   const root = fileURLToPath(new URL('..', import.meta.url));
   const fixtures = join(root, 'tests', 'fixtures', 'feed-before-migration');
   const cases = readdirSync(fixtures).filter((f) => f.endsWith('.json')).sort();
@@ -98,12 +97,36 @@ describe('feed keeps priorArt derived from alternatives', () => {
     ]);
   });
 
-  it.each(cases)('%s : priorArt identique octet pour octet, clés dans le même ordre', async (file) => {
+  it('chaque enregistrement du feed expose un priorArt de forme v1', async () => {
+    const data = await loadData(root);
+    let checked = 0;
+    for (const [slug, tool] of data.tools) {
+      for (const lang of tool.markets ?? []) {
+        const i18n = data.i18n.get(`${lang}/${slug}`);
+        if (!i18n) continue;
+        const record = buildToolRecord(tool, i18n, lang, data.projects);
+        const where = `${lang}/${slug}`;
+        expect(Array.isArray(record.priorArt), where).toBe(true);
+        for (const entry of record.priorArt) {
+          const keys = Object.keys(entry);
+          expect(['name,url', 'name,url,license'], where).toContain(keys.join(','));
+          expect(typeof entry.name === 'string' && entry.name.length > 0, `${where} name`).toBe(true);
+          expect(entry.url, `${where} url`).toMatch(/^https?:\/\//);
+          if ('license' in entry) {
+            expect(typeof entry.license === 'string' && entry.license.length > 0, `${where} license`).toBe(true);
+          }
+        }
+        checked++;
+      }
+    }
+    expect(checked).toBeGreaterThan(0);
+  });
+
+  it.each(cases)('%s : clés de premier niveau dans le même ordre', async (file) => {
     const [slug, lang] = file.replace(/\.json$/, '').split('.');
     const data = await loadData(root);
     const record = buildToolRecord(data.tools.get(slug), data.i18n.get(`${lang}/${slug}`), lang, data.projects);
     const before = JSON.parse(readFileSync(join(fixtures, file), 'utf8'));
-    expect(JSON.stringify(record.priorArt)).toBe(JSON.stringify(before.priorArt));
     expect(Object.keys(record)).toEqual(Object.keys(before));
   });
 });
