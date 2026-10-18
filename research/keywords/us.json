@@ -1,0 +1,7014 @@
+{
+ "1password": {
+  "queryName": "1password",
+  "kd": {
+   "alt": 24,
+   "alts": 29
+  },
+  "absent": [],
+  "alt": 170,
+  "alts": 210,
+  "free": 20,
+  "oss": 20
+ },
+ "accuranker": {
+  "queryName": "accuranker",
+  "kd": {
+   "alt": 10,
+   "alts": 15
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 590,
+  "alts": 480,
+  "free": 0,
+  "oss": 0
+ },
+ "activecampaign": {
+  "queryName": "activecampaign",
+  "kd": {
+   "alt": 24,
+   "alts": 14
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 170,
+  "alts": 480,
+  "free": 0,
+  "oss": 0
+ },
+ "activepieces-cloud": {
+  "queryName": "activepieces",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "adalo": {
+  "queryName": "adalo",
+  "kd": {
+   "alts": 7
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "adobe-acrobat-pro": {
+  "queryName": "adobe acrobat",
+  "kd": {
+   "alt": 39,
+   "alts": 42,
+   "free": 39
+  },
+  "absent": [],
+  "alt": 1300,
+  "alts": 880,
+  "free": 320,
+  "oss": 40
+ },
+ "adobe-express": {
+  "queryName": "adobe express",
+  "kd": {
+   "alt": 24,
+   "alts": 24
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 110,
+  "alts": 90,
+  "free": 20,
+  "oss": 0
+ },
+ "adobe-lightroom": {
+  "queryName": "adobe lightroom",
+  "kd": {
+   "alt": 27,
+   "alts": 15,
+   "free": 19
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 390,
+  "alts": 480,
+  "free": 90,
+  "oss": 0
+ },
+ "aftershoot": {
+  "queryName": "aftershoot",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "ahrefs": {
+  "queryName": "ahrefs",
+  "kd": {
+   "alt": 36,
+   "alts": 36,
+   "free": 39
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 8100,
+  "alts": 9900,
+  "free": 2400,
+  "oss": 0
+ },
+ "airmail": {
+  "queryName": "airmail",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "airtable": {
+  "queryName": "airtable",
+  "kd": {
+   "alt": 21,
+   "alts": 9,
+   "oss": 14
+  },
+  "absent": [],
+  "alt": 260,
+  "alts": 1300,
+  "free": 0,
+  "oss": 50
+ },
+ "akiflow": {
+  "queryName": "akiflow",
+  "kd": {
+   "alt": 9,
+   "alts": 6
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 70,
+  "free": 20,
+  "oss": 0
+ },
+ "albato": {
+  "queryName": "albato",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "alitu": {
+  "queryName": "alitu",
+  "kd": {},
+  "absent": [
+   "alt",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "alltrails-plus": {
+  "queryName": "alltrails",
+  "kd": {
+   "alt": 27
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 90,
+  "alts": 30,
+  "free": 20,
+  "oss": 0
+ },
+ "amazing-marvin": {
+  "queryName": "amazing marvin",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "amie": {
+  "queryName": "amie",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "amplitude": {
+  "queryName": "amplitude",
+  "kd": {
+   "alts": 23
+  },
+  "absent": [
+   "free"
+  ],
+  "alt": 40,
+  "alts": 170,
+  "free": 0,
+  "oss": 20
+ },
+ "anydo": {
+  "queryName": "any.do",
+  "kd": {
+   "alt": 2
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "anylist-complete": {
+  "queryName": "anylist",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "anytype": {
+  "queryName": "anytype",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "anyword": {
+  "queryName": "anyword",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "apollo-io": {
+  "queryName": "apollo",
+  "kd": {
+   "alt": 19,
+   "alts": 22
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 260,
+  "alts": 720,
+  "free": 0,
+  "oss": 0
+ },
+ "apple-music": {
+  "queryName": "apple music",
+  "kd": {
+   "alt": 31,
+   "alts": 21
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 320,
+  "alts": 170,
+  "free": 20,
+  "oss": 0
+ },
+ "appsheet": {
+  "queryName": "appsheet",
+  "kd": {
+   "alt": 6
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 20,
+  "free": 20,
+  "oss": 0
+ },
+ "appsmith-cloud": {
+  "queryName": "appsmith",
+  "kd": {
+   "alts": 8
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "arcade": {
+  "queryName": "arcade",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "asana": {
+  "queryName": "asana",
+  "kd": {
+   "alt": 32,
+   "alts": 28,
+   "free": 22
+  },
+  "absent": [],
+  "alt": 590,
+  "alts": 1600,
+  "free": 70,
+  "oss": 20
+ },
+ "attio": {
+  "queryName": "attio",
+  "kd": {
+   "alts": 5
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "audible-premium-plus": {
+  "queryName": "audible",
+  "kd": {
+   "alt": 28,
+   "alts": 18
+  },
+  "absent": [],
+  "alt": 480,
+  "alts": 1300,
+  "free": 20,
+  "oss": 10
+ },
+ "aurelius": {
+  "queryName": "aurelius",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "avoma": {
+  "queryName": "avoma",
+  "kd": {
+   "alts": 14
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "axiom": {
+  "queryName": "axiom",
+  "kd": {
+   "alts": 11
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 320,
+  "free": 0,
+  "oss": 0
+ },
+ "babbel": {
+  "queryName": "babbel",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 20,
+  "oss": 0
+ },
+ "backblaze-personal-backup": {
+  "queryName": "backblaze",
+  "kd": {
+   "alt": 21,
+   "alts": 24
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 140,
+  "alts": 140,
+  "free": 0,
+  "oss": 0
+ },
+ "bardeen": {
+  "queryName": "bardeen",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "basecamp": {
+  "queryName": "basecamp",
+  "kd": {
+   "alt": 20,
+   "alts": 26,
+   "free": 17
+  },
+  "absent": [],
+  "alt": 320,
+  "alts": 1300,
+  "free": 40,
+  "oss": 0
+ },
+ "baserow-cloud": {
+  "queryName": "baserow",
+  "kd": {
+   "alts": 13
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "bear-pro": {
+  "queryName": "bear",
+  "kd": {
+   "alt": 12
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "beautiful-ai": {
+  "queryName": "beautiful.ai",
+  "kd": {
+   "alts": 23
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "beehiiv": {
+  "queryName": "beehiiv",
+  "kd": {
+   "alt": 18,
+   "alts": 18
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 140,
+  "free": 0,
+  "oss": 0
+ },
+ "bettermode": {
+  "queryName": "bettermode",
+  "kd": {
+   "alts": 12
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 110,
+  "free": 0,
+  "oss": 0
+ },
+ "bigcommerce": {
+  "queryName": "bigcommerce",
+  "kd": {
+   "alt": 17,
+   "alts": 18
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 140,
+  "alts": 320,
+  "free": 0,
+  "oss": 0
+ },
+ "bigin": {
+  "queryName": "bigin",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "bitly": {
+  "queryName": "bitly",
+  "kd": {
+   "alt": 23,
+   "alts": 24
+  },
+  "absent": [],
+  "alt": 390,
+  "alts": 480,
+  "free": 30,
+  "oss": 0
+ },
+ "bitwarden": {
+  "queryName": "bitwarden",
+  "kd": {
+   "alt": 26,
+   "alts": 27
+  },
+  "absent": [],
+  "alt": 110,
+  "alts": 140,
+  "free": 20,
+  "oss": 20
+ },
+ "bolt-new": {
+  "queryName": "bolt.new",
+  "kd": {
+   "alt": 9,
+   "alts": 13
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 880,
+  "alts": 90,
+  "free": 0,
+  "oss": 0
+ },
+ "brevo": {
+  "queryName": "brevo",
+  "kd": {
+   "alt": 16,
+   "alts": 11
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 320,
+  "free": 0,
+  "oss": 0
+ },
+ "brilliant": {
+  "queryName": "brilliant",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 20,
+  "oss": 0
+ },
+ "bubble": {
+  "queryName": "bubble",
+  "kd": {
+   "alt": 8,
+   "alts": 14
+  },
+  "absent": [],
+  "alt": 30,
+  "alts": 170,
+  "free": 0,
+  "oss": 20
+ },
+ "buffer": {
+  "queryName": "buffer",
+  "kd": {
+   "alt": 21,
+   "alts": 26
+  },
+  "absent": [],
+  "alt": 170,
+  "alts": 880,
+  "free": 10,
+  "oss": 20
+ },
+ "busuu-premium": {
+  "queryName": "busuu",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "buttondown": {
+  "queryName": "buttondown",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "buzzsprout": {
+  "queryName": "buzzsprout",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "cal-com-teams": {
+  "queryName": "cal.com",
+  "kd": {
+   "alts": 7
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "calendly": {
+  "queryName": "calendly",
+  "kd": {
+   "alt": 28,
+   "alts": 26,
+   "free": 17
+  },
+  "absent": [],
+  "alt": 320,
+  "alts": 1900,
+  "free": 320,
+  "oss": 30
+ },
+ "calm": {
+  "queryName": "calm",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 20,
+  "oss": 0
+ },
+ "campaign-monitor": {
+  "queryName": "campaign monitor",
+  "kd": {
+   "alt": 41,
+   "alts": 31
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "canary-mail": {
+  "queryName": "canary mail",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "canny": {
+  "queryName": "canny",
+  "kd": {
+   "alt": 11,
+   "alts": 19
+  },
+  "absent": [],
+  "alt": 70,
+  "alts": 140,
+  "free": 0,
+  "oss": 0
+ },
+ "canva": {
+  "queryName": "canva",
+  "kd": {
+   "alt": 27,
+   "alts": 31,
+   "free": 19
+  },
+  "absent": [],
+  "alt": 1300,
+  "alts": 2400,
+  "free": 210,
+  "oss": 20
+ },
+ "capacities": {
+  "queryName": "capacities",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "capcut": {
+  "queryName": "capcut",
+  "kd": {
+   "alt": 13,
+   "alts": 28,
+   "free": 24
+  },
+  "absent": [],
+  "alt": 1600,
+  "alts": 1300,
+  "free": 210,
+  "oss": 20
+ },
+ "capsule-crm": {
+  "queryName": "capsule",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "captions-ai": {
+  "queryName": "captions",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "capture-one": {
+  "queryName": "capture one",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "careerflow": {
+  "queryName": "careerflow",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "carrd": {
+  "queryName": "carrd",
+  "kd": {
+   "alt": 4,
+   "alts": 6
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 320,
+  "free": 0,
+  "oss": 0
+ },
+ "caspio": {
+  "queryName": "caspio",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 20,
+  "oss": 0
+ },
+ "castmagic": {
+  "queryName": "castmagic",
+  "kd": {},
+  "absent": [
+   "alt",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "chatgpt": {
+  "queryName": "chatgpt",
+  "kd": {
+   "alt": 56,
+   "alts": 52,
+   "free": 59,
+   "oss": 43
+  },
+  "absent": [],
+  "alt": 14800,
+  "alts": 4400,
+  "free": 720,
+  "oss": 30
+ },
+ "chatwoot-cloud": {
+  "queryName": "chatwoot",
+  "kd": {
+   "alt": 8,
+   "alts": 4
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "checkly": {
+  "queryName": "checkly",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "circle": {
+  "queryName": "circle",
+  "kd": {
+   "alt": 11,
+   "alts": 10
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 110,
+  "free": 0,
+  "oss": 0
+ },
+ "claude": {
+  "queryName": "claude",
+  "kd": {
+   "alt": 21,
+   "alts": 9,
+   "free": 15,
+   "oss": 7
+  },
+  "absent": [],
+  "alt": 480,
+  "alts": 480,
+  "free": 390,
+  "oss": 30
+ },
+ "clay": {
+  "queryName": "clay",
+  "kd": {
+   "alt": 21,
+   "alts": 22
+  },
+  "absent": [
+   "free"
+  ],
+  "alt": 260,
+  "alts": 590,
+  "free": 0,
+  "oss": 40
+ },
+ "cleanmymac": {
+  "queryName": "cleanmymac",
+  "kd": {
+   "alt": 28,
+   "alts": 24
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 90,
+  "alts": 90,
+  "free": 10,
+  "oss": 0
+ },
+ "clearscope": {
+  "queryName": "clearscope",
+  "kd": {
+   "alt": 18,
+   "alts": 16
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 210,
+  "alts": 260,
+  "free": 0,
+  "oss": 0
+ },
+ "clickup": {
+  "queryName": "clickup",
+  "kd": {
+   "alt": 24,
+   "alts": 26
+  },
+  "absent": [],
+  "alt": 590,
+  "alts": 1000,
+  "free": 20,
+  "oss": 20
+ },
+ "clipdrop": {
+  "queryName": "clipdrop",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "clockify": {
+  "queryName": "clockify",
+  "kd": {
+   "alt": 13,
+   "alts": 15
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 110,
+  "alts": 320,
+  "free": 0,
+  "oss": 0
+ },
+ "clockwise": {
+  "queryName": "clockwise",
+  "kd": {
+   "alts": 3
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "close-crm": {
+  "queryName": "close",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "coda": {
+  "queryName": "coda",
+  "kd": {
+   "alt": 5,
+   "alts": 6
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 210,
+  "free": 20,
+  "oss": 0
+ },
+ "codesandbox": {
+  "queryName": "codesandbox",
+  "kd": {
+   "alt": 9
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 110,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "colossyan": {
+  "queryName": "colossyan",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "constant-contact": {
+  "queryName": "constant contact",
+  "kd": {
+   "alt": 21,
+   "alts": 22
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 140,
+  "alts": 590,
+  "free": 10,
+  "oss": 0
+ },
+ "copilot-money": {
+  "queryName": "copilot money",
+  "kd": {
+   "alts": 4
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "copper-crm": {
+  "queryName": "copper",
+  "kd": {
+   "alts": 14
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "copy-ai": {
+  "queryName": "copy.ai",
+  "kd": {
+   "alt": 12,
+   "alts": 10
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 170,
+  "free": 10,
+  "oss": 0
+ },
+ "cozi-gold": {
+  "queryName": "cozi",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "craft": {
+  "queryName": "craft",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "crisp": {
+  "queryName": "crisp",
+  "kd": {
+   "alts": 15
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "cronometer-gold": {
+  "queryName": "cronometer",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "crouton": {
+  "queryName": "crouton",
+  "kd": {
+   "alt": 20,
+   "alts": 13
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 70,
+  "free": 0,
+  "oss": 0
+ },
+ "crowdcast": {
+  "queryName": "crowdcast",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "crowdin": {
+  "queryName": "crowdin",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "cursor": {
+  "queryName": "cursor",
+  "kd": {
+   "alt": 30,
+   "alts": 25,
+   "free": 26,
+   "oss": 31
+  },
+  "absent": [],
+  "alt": 880,
+  "alts": 1300,
+  "free": 140,
+  "oss": 140
+ },
+ "d-id": {
+  "queryName": "d-id",
+  "kd": {
+   "alt": 16,
+   "alts": 18
+  },
+  "absent": [],
+  "alt": 90,
+  "alts": 70,
+  "free": 10,
+  "oss": 0
+ },
+ "dabble": {
+  "queryName": "dabble",
+  "kd": {},
+  "absent": [
+   "alt",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "dashlane": {
+  "queryName": "dashlane",
+  "kd": {
+   "alt": 19,
+   "alts": 19
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 30,
+  "free": 20,
+  "oss": 0
+ },
+ "datadog": {
+  "queryName": "datadog",
+  "kd": {
+   "alt": 23,
+   "alts": 25,
+   "oss": 19
+  },
+  "absent": [],
+  "alt": 210,
+  "alts": 720,
+  "free": 20,
+  "oss": 30
+ },
+ "deel": {
+  "queryName": "deel",
+  "kd": {
+   "alts": 14
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 210,
+  "free": 0,
+  "oss": 0
+ },
+ "deepl-pro": {
+  "queryName": "deepl",
+  "kd": {
+   "alt": 15,
+   "alts": 21
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 50,
+  "free": 20,
+  "oss": 0
+ },
+ "deleteme": {
+  "queryName": "deleteme",
+  "kd": {
+   "alt": 19,
+   "alts": 20
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 260,
+  "free": 0,
+  "oss": 0
+ },
+ "demio": {
+  "queryName": "demio",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "descript": {
+  "queryName": "descript",
+  "kd": {
+   "alt": 16,
+   "alts": 15
+  },
+  "absent": [],
+  "alt": 210,
+  "alts": 320,
+  "free": 20,
+  "oss": 0
+ },
+ "dochub": {
+  "queryName": "dochub",
+  "kd": {
+   "alt": 7,
+   "alts": 9
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "docusign": {
+  "queryName": "docusign",
+  "kd": {
+   "alt": 46,
+   "alts": 37,
+   "free": 51
+  },
+  "absent": [],
+  "alt": 590,
+  "alts": 2900,
+  "free": 210,
+  "oss": 20
+ },
+ "doodle": {
+  "queryName": "doodle",
+  "kd": {
+   "alt": 15,
+   "alts": 21,
+   "free": 14
+  },
+  "absent": [],
+  "alt": 320,
+  "alts": 480,
+  "free": 50,
+  "oss": 20
+ },
+ "doola": {
+  "queryName": "doola",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "dorik": {
+  "queryName": "dorik",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "draftbit": {
+  "queryName": "draftbit",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "drafts-pro": {
+  "queryName": "drafts",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "drip": {
+  "queryName": "drip",
+  "kd": {
+   "alts": 11
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "dropbox-plus": {
+  "queryName": "dropbox",
+  "kd": {
+   "alt": 35,
+   "alts": 34,
+   "free": 30,
+   "oss": 26
+  },
+  "absent": [],
+  "alt": 590,
+  "alts": 3600,
+  "free": 170,
+  "oss": 30
+ },
+ "duda": {
+  "queryName": "duda",
+  "kd": {
+   "alts": 7
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "duolingo-super": {
+  "queryName": "duolingo",
+  "kd": {
+   "alt": 22,
+   "alts": 24,
+   "free": 15
+  },
+  "absent": [],
+  "alt": 590,
+  "alts": 1900,
+  "free": 50,
+  "oss": 20
+ },
+ "ecwid": {
+  "queryName": "ecwid",
+  "kd": {
+   "alt": 14,
+   "alts": 18
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 210,
+  "free": 0,
+  "oss": 0
+ },
+ "elevenlabs": {
+  "queryName": "elevenlabs",
+  "kd": {
+   "alt": 20,
+   "alts": 25,
+   "free": 18
+  },
+  "absent": [],
+  "alt": 480,
+  "alts": 210,
+  "free": 70,
+  "oss": 20
+ },
+ "elsa-speak": {
+  "queryName": "elsa speak",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "emailoctopus": {
+  "queryName": "emailoctopus",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "enhancv": {
+  "queryName": "enhancv",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "enpass": {
+  "queryName": "enpass",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "ente-photos": {
+  "queryName": "ente photos",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "equals": {
+  "queryName": "equals",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "everand": {
+  "queryName": "everand",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "evernote": {
+  "queryName": "evernote",
+  "kd": {
+   "alt": 32,
+   "alts": 13,
+   "free": 21
+  },
+  "absent": [],
+  "alt": 880,
+  "alts": 720,
+  "free": 90,
+  "oss": 10
+ },
+ "factorial-hr": {
+  "queryName": "factorial",
+  "kd": {},
+  "absent": [
+   "alt",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "familywall-premium": {
+  "queryName": "familywall",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "fantastical": {
+  "queryName": "fantastical",
+  "kd": {
+   "alt": 6
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "fastmail": {
+  "queryName": "fastmail",
+  "kd": {
+   "alt": 23,
+   "alts": 29
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 90,
+  "alts": 70,
+  "free": 0,
+  "oss": 0
+ },
+ "fathom-ai": {
+  "queryName": "fathom",
+  "kd": {
+   "alts": 8
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 90,
+  "free": 0,
+  "oss": 0
+ },
+ "fathom-analytics": {
+  "queryName": "fathom analytics",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "fathom-hq": {
+  "queryName": "fathom hq",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "feathery": {
+  "queryName": "feathery",
+  "kd": {},
+  "absent": [
+   "alt",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "featurebase": {
+  "queryName": "featurebase",
+  "kd": {
+   "alts": 1
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "feedly": {
+  "queryName": "feedly",
+  "kd": {
+   "alt": 23,
+   "alts": 21
+  },
+  "absent": [],
+  "alt": 390,
+  "alts": 320,
+  "free": 20,
+  "oss": 0
+ },
+ "figma": {
+  "queryName": "figma",
+  "kd": {
+   "alt": 22,
+   "alts": 21,
+   "free": 26,
+   "oss": 24
+  },
+  "absent": [],
+  "alt": 480,
+  "alts": 1000,
+  "free": 90,
+  "oss": 70
+ },
+ "fillout": {
+  "queryName": "fillout",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "fireflies-ai": {
+  "queryName": "fireflies.ai",
+  "kd": {
+   "alt": 23,
+   "alts": 16
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "fitbod": {
+  "queryName": "fitbod",
+  "kd": {
+   "alts": 3
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 110,
+  "free": 30,
+  "oss": 0
+ },
+ "flair-ai": {
+  "queryName": "flair ai",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "flickr-pro": {
+  "queryName": "flickr",
+  "kd": {
+   "alt": 17,
+   "alts": 16
+  },
+  "absent": [
+   "free"
+  ],
+  "alt": 110,
+  "alts": 210,
+  "free": 0,
+  "oss": 0
+ },
+ "flighty-pro": {
+  "queryName": "flighty",
+  "kd": {
+   "alt": 9
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 20,
+  "free": 20,
+  "oss": 0
+ },
+ "flutterflow": {
+  "queryName": "flutterflow",
+  "kd": {
+   "alt": 9,
+   "alts": 9
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 90,
+  "free": 0,
+  "oss": 0
+ },
+ "folk": {
+  "queryName": "folk",
+  "kd": {
+   "alt": 36
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 90,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "formstack-forms": {
+  "queryName": "formstack",
+  "kd": {
+   "alts": 6
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 90,
+  "free": 0,
+  "oss": 0
+ },
+ "foxit-pdf-editor": {
+  "queryName": "foxit",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "framer": {
+  "queryName": "framer",
+  "kd": {
+   "alt": 5,
+   "alts": 9
+  },
+  "absent": [],
+  "alt": 110,
+  "alts": 260,
+  "free": 20,
+  "oss": 20
+ },
+ "frase": {
+  "queryName": "frase",
+  "kd": {
+   "alt": 12,
+   "alts": 14
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 170,
+  "alts": 210,
+  "free": 0,
+  "oss": 0
+ },
+ "freeletics": {
+  "queryName": "freeletics",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "freshbooks": {
+  "queryName": "freshbooks",
+  "kd": {
+   "alt": 20,
+   "alts": 21
+  },
+  "absent": [],
+  "alt": 170,
+  "alts": 320,
+  "free": 0,
+  "oss": 0
+ },
+ "freshdesk": {
+  "queryName": "freshdesk",
+  "kd": {
+   "alt": 16,
+   "alts": 27
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 480,
+  "alts": 1300,
+  "free": 20,
+  "oss": 0
+ },
+ "frill": {
+  "queryName": "frill",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "front": {
+  "queryName": "front",
+  "kd": {
+   "alt": 15,
+   "alts": 14
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 320,
+  "alts": 590,
+  "free": 0,
+  "oss": 0
+ },
+ "gaia-gps": {
+  "queryName": "gaia gps",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "gamma": {
+  "queryName": "gamma",
+  "kd": {
+   "alt": 13,
+   "alts": 17,
+   "free": 16
+  },
+  "absent": [],
+  "alt": 40,
+  "alts": 110,
+  "free": 40,
+  "oss": 20
+ },
+ "gather-town": {
+  "queryName": "gather",
+  "kd": {
+   "alts": 12
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 140,
+  "free": 0,
+  "oss": 0
+ },
+ "gemini": {
+  "queryName": "google gemini",
+  "kd": {
+   "alt": 14,
+   "alts": 11
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 110,
+  "free": 0,
+  "oss": 0
+ },
+ "ghost-pro": {
+  "queryName": "ghost",
+  "kd": {
+   "alt": 10,
+   "alts": 13
+  },
+  "absent": [],
+  "alt": 50,
+  "alts": 170,
+  "free": 20,
+  "oss": 20
+ },
+ "github-copilot": {
+  "queryName": "github copilot",
+  "kd": {
+   "alt": 24,
+   "alts": 18
+  },
+  "absent": [],
+  "alt": 260,
+  "alts": 480,
+  "free": 20,
+  "oss": 20
+ },
+ "glide": {
+  "queryName": "glide",
+  "kd": {
+   "alt": 6,
+   "alts": 7
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 140,
+  "free": 10,
+  "oss": 0
+ },
+ "going-premium": {
+  "queryName": "going",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "goodlinks": {
+  "queryName": "goodlinks",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "google-one": {
+  "queryName": "google one",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "google-workspace-business-starter": {
+  "queryName": "google workspace",
+  "kd": {
+   "alt": 13,
+   "alts": 28,
+   "free": 25
+  },
+  "absent": [],
+  "alt": 320,
+  "alts": 880,
+  "free": 30,
+  "oss": 20
+ },
+ "gorgias": {
+  "queryName": "gorgias",
+  "kd": {
+   "alt": 15,
+   "alts": 12
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 90,
+  "alts": 210,
+  "free": 0,
+  "oss": 0
+ },
+ "grammarly": {
+  "queryName": "grammarly",
+  "kd": {
+   "alt": 24,
+   "alts": 25,
+   "free": 20,
+   "oss": 30
+  },
+  "absent": [],
+  "alt": 1300,
+  "alts": 480,
+  "free": 390,
+  "oss": 50
+ },
+ "granola": {
+  "queryName": "granola",
+  "kd": {
+   "alt": 21,
+   "alts": 21,
+   "oss": 19
+  },
+  "absent": [
+   "free"
+  ],
+  "alt": 210,
+  "alts": 50,
+  "free": 0,
+  "oss": 50
+ },
+ "grist": {
+  "queryName": "grist",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "guidde": {
+  "queryName": "guidde",
+  "kd": {
+   "alts": 11
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "gumloop": {
+  "queryName": "gumloop",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "gusto": {
+  "queryName": "gusto",
+  "kd": {
+   "alt": 26,
+   "alts": 29
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 480,
+  "free": 0,
+  "oss": 0
+ },
+ "harvest": {
+  "queryName": "harvest",
+  "kd": {
+   "alt": 10,
+   "alts": 15
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 140,
+  "alts": 210,
+  "free": 20,
+  "oss": 0
+ },
+ "headliner": {
+  "queryName": "headliner",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "headspace": {
+  "queryName": "headspace",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 10,
+  "free": 20,
+  "oss": 0
+ },
+ "heartbeat-community": {
+  "queryName": "heartbeat",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "help-scout": {
+  "queryName": "help scout",
+  "kd": {
+   "alt": 12,
+   "alts": 13
+  },
+  "absent": [],
+  "alt": 50,
+  "alts": 390,
+  "free": 0,
+  "oss": 0
+ },
+ "hemingway-editor-plus": {
+  "queryName": "hemingway editor",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "heroku-basic": {
+  "queryName": "heroku",
+  "kd": {
+   "alt": 33,
+   "alts": 36
+  },
+  "absent": [],
+  "alt": 110,
+  "alts": 590,
+  "free": 0,
+  "oss": 20
+ },
+ "hevy-pro": {
+  "queryName": "hevy",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "hey-email": {
+  "queryName": "hey",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "heygen": {
+  "queryName": "heygen",
+  "kd": {
+   "alt": 20,
+   "alts": 22
+  },
+  "absent": [],
+  "alt": 390,
+  "alts": 720,
+  "free": 0,
+  "oss": 20
+ },
+ "home-assistant-cloud": {
+  "queryName": "home assistant",
+  "kd": {
+   "alt": 25,
+   "alts": 18
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 210,
+  "alts": 170,
+  "free": 0,
+  "oss": 0
+ },
+ "homebase": {
+  "queryName": "homebase",
+  "kd": {
+   "alt": 14,
+   "alts": 17
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 210,
+  "free": 0,
+  "oss": 0
+ },
+ "honeycomb": {
+  "queryName": "honeycomb",
+  "kd": {
+   "alt": 12,
+   "alts": 7
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "hootsuite": {
+  "queryName": "hootsuite",
+  "kd": {
+   "alt": 38,
+   "alts": 40,
+   "free": 35
+  },
+  "absent": [],
+  "alt": 480,
+  "alts": 1600,
+  "free": 170,
+  "oss": 20
+ },
+ "hubstaff": {
+  "queryName": "hubstaff",
+  "kd": {
+   "alt": 14,
+   "alts": 11
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 170,
+  "alts": 260,
+  "free": 10,
+  "oss": 0
+ },
+ "hunter-io": {
+  "queryName": "hunter",
+  "kd": {
+   "alt": 16
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 90,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "huntr": {
+  "queryName": "huntr",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "hypefury": {
+  "queryName": "hypefury",
+  "kd": {
+   "alts": 1
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "hyperwrite": {
+  "queryName": "hyperwrite",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "icloud-plus": {
+  "queryName": "icloud plus",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "ideogram": {
+  "queryName": "ideogram",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 30,
+  "free": 10,
+  "oss": 0
+ },
+ "ifttt": {
+  "queryName": "ifttt",
+  "kd": {
+   "alt": 5,
+   "alts": 15
+  },
+  "absent": [],
+  "alt": 40,
+  "alts": 260,
+  "free": 0,
+  "oss": 20
+ },
+ "ilovepdf-premium": {
+  "queryName": "ilovepdf",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "incogni": {
+  "queryName": "incogni",
+  "kd": {
+   "alt": 16,
+   "alts": 36
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 90,
+  "alts": 720,
+  "free": 0,
+  "oss": 0
+ },
+ "inoreader": {
+  "queryName": "inoreader",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "instantly": {
+  "queryName": "instantly",
+  "kd": {
+   "alt": 13,
+   "alts": 11
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 260,
+  "free": 0,
+  "oss": 0
+ },
+ "instapaper-premium": {
+  "queryName": "instapaper",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "integrately": {
+  "queryName": "integrately",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "intercom": {
+  "queryName": "intercom",
+  "kd": {
+   "alt": 13,
+   "alts": 14,
+   "free": 18,
+   "oss": 32
+  },
+  "absent": [],
+  "alt": 720,
+  "alts": 1300,
+  "free": 140,
+  "oss": 40
+ },
+ "invoice-ninja": {
+  "queryName": "invoice ninja",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "involve-me": {
+  "queryName": "involve.me",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "iubenda": {
+  "queryName": "iubenda",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "jasper": {
+  "queryName": "jasper",
+  "kd": {
+   "alt": 20,
+   "alts": 24
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 140,
+  "alts": 320,
+  "free": 0,
+  "oss": 0
+ },
+ "jenni-ai": {
+  "queryName": "jenni ai",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "jotform": {
+  "queryName": "jotform",
+  "kd": {
+   "alt": 14,
+   "alts": 18
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 480,
+  "alts": 880,
+  "free": 30,
+  "oss": 0
+ },
+ "kajabi": {
+  "queryName": "kajabi",
+  "kd": {
+   "alt": 18,
+   "alts": 17
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 480,
+  "alts": 720,
+  "free": 0,
+  "oss": 0
+ },
+ "keeper-password-manager": {
+  "queryName": "keeper",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "keysearch": {
+  "queryName": "keysearch",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "kickresume": {
+  "queryName": "kickresume",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "kit": {
+  "queryName": "kit",
+  "kd": {
+   "alt": 18,
+   "alts": 21
+  },
+  "absent": [
+   "free"
+  ],
+  "alt": 30,
+  "alts": 110,
+  "free": 0,
+  "oss": 0
+ },
+ "kittl": {
+  "queryName": "kittl",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 20,
+  "oss": 0
+ },
+ "knack": {
+  "queryName": "knack",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "koalawriter": {
+  "queryName": "koalawriter",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "komoot-premium": {
+  "queryName": "komoot",
+  "kd": {},
+  "absent": [
+   "free"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "krea": {
+  "queryName": "krea",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "krisp": {
+  "queryName": "krisp",
+  "kd": {
+   "alt": 20,
+   "alts": 20
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 70,
+  "free": 20,
+  "oss": 0
+ },
+ "kumospace": {
+  "queryName": "kumospace",
+  "kd": {
+   "alt": 3
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "landr-studio": {
+  "queryName": "landr studio",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "languagetool": {
+  "queryName": "languagetool",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "later": {
+  "queryName": "later",
+  "kd": {
+   "alt": 19,
+   "alts": 14
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 480,
+  "free": 0,
+  "oss": 0
+ },
+ "leadpages": {
+  "queryName": "leadpages",
+  "kd": {
+   "alt": 18,
+   "alts": 19
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 170,
+  "alts": 1000,
+  "free": 0,
+  "oss": 0
+ },
+ "legalzoom": {
+  "queryName": "legalzoom",
+  "kd": {
+   "alt": 12,
+   "alts": 12
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 320,
+  "alts": 210,
+  "free": 0,
+  "oss": 0
+ },
+ "lemlist": {
+  "queryName": "lemlist",
+  "kd": {
+   "alt": 15,
+   "alts": 15
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 140,
+  "alts": 140,
+  "free": 0,
+  "oss": 0
+ },
+ "leonardo-ai": {
+  "queryName": "leonardo ai",
+  "kd": {
+   "alt": 14
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 110,
+  "alts": 20,
+  "free": 20,
+  "oss": 0
+ },
+ "less-annoying-crm": {
+  "queryName": "less annoying crm",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "lex": {
+  "queryName": "lex",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "linear": {
+  "queryName": "linear",
+  "kd": {
+   "alt": 13,
+   "alts": 10
+  },
+  "absent": [],
+  "alt": 50,
+  "alts": 260,
+  "free": 10,
+  "oss": 20
+ },
+ "lingq-premium": {
+  "queryName": "lingq",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 20,
+  "oss": 0
+ },
+ "linguise": {
+  "queryName": "linguise",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "livechat": {
+  "queryName": "livechat",
+  "kd": {
+   "alt": 9,
+   "alts": 18
+  },
+  "absent": [
+   "free"
+  ],
+  "alt": 110,
+  "alts": 170,
+  "free": 0,
+  "oss": 0
+ },
+ "livestorm": {
+  "queryName": "livestorm",
+  "kd": {
+   "alts": 6
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "livingwriter": {
+  "queryName": "livingwriter",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "lnkflow": {
+  "queryName": "lnkflow",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "logrocket": {
+  "queryName": "logrocket",
+  "kd": {
+   "alt": 12,
+   "alts": 9
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 70,
+  "free": 0,
+  "oss": 0
+ },
+ "lokalise": {
+  "queryName": "lokalise",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "loom": {
+  "queryName": "loom",
+  "kd": {
+   "alt": 20,
+   "alts": 26,
+   "free": 17
+  },
+  "absent": [],
+  "alt": 480,
+  "alts": 880,
+  "free": 110,
+  "oss": 30
+ },
+ "loomly": {
+  "queryName": "loomly",
+  "kd": {
+   "alt": 10,
+   "alts": 15
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 140,
+  "alts": 590,
+  "free": 0,
+  "oss": 0
+ },
+ "lovable": {
+  "queryName": "lovable",
+  "kd": {
+   "alt": 19,
+   "alts": 25,
+   "oss": 5
+  },
+  "absent": [],
+  "alt": 260,
+  "alts": 720,
+  "free": 20,
+  "oss": 30
+ },
+ "lovo": {
+  "queryName": "lovo",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "lowfruits": {
+  "queryName": "lowfruits",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "lucky-orange": {
+  "queryName": "lucky orange",
+  "kd": {
+   "alts": 16
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "lunch-money": {
+  "queryName": "lunch money",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "macrofactor": {
+  "queryName": "macrofactor",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 20,
+  "oss": 0
+ },
+ "magnific-ai": {
+  "queryName": "magnific ai",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 20,
+  "oss": 0
+ },
+ "mailbird": {
+  "queryName": "mailbird",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "mailchimp": {
+  "queryName": "mailchimp",
+  "kd": {
+   "alt": 41,
+   "alts": 43,
+   "free": 24
+  },
+  "absent": [],
+  "alt": 590,
+  "alts": 2400,
+  "free": 110,
+  "oss": 10
+ },
+ "mailerlite": {
+  "queryName": "mailerlite",
+  "kd": {
+   "alt": 33,
+   "alts": 33
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 480,
+  "alts": 590,
+  "free": 0,
+  "oss": 0
+ },
+ "make": {
+  "queryName": "make",
+  "kd": {
+   "alts": 24
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 90,
+  "free": 0,
+  "oss": 0
+ },
+ "mangools": {
+  "queryName": "mangools",
+  "kd": {
+   "alt": 13,
+   "alts": 17
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 260,
+  "alts": 210,
+  "free": 0,
+  "oss": 0
+ },
+ "mara": {
+  "queryName": "mara",
+  "kd": {},
+  "absent": [
+   "alt",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "matter": {
+  "queryName": "matter",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "mattermost-professional": {
+  "queryName": "mattermost",
+  "kd": {
+   "alt": 3
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "mealime-pro": {
+  "queryName": "mealime",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "meetergo": {
+  "queryName": "meetergo",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "meetgeek": {
+  "queryName": "meetgeek",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "mega-pro": {
+  "queryName": "mega",
+  "kd": {
+   "alt": 21,
+   "alts": 16
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 90,
+  "alts": 140,
+  "free": 0,
+  "oss": 0
+ },
+ "meistertask": {
+  "queryName": "meistertask",
+  "kd": {
+   "alt": 7
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "mem-ai": {
+  "queryName": "mem",
+  "kd": {
+   "alts": 8
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "memtime": {
+  "queryName": "memtime",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "metricool": {
+  "queryName": "metricool",
+  "kd": {
+   "alt": 19,
+   "alts": 18
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 170,
+  "alts": 390,
+  "free": 10,
+  "oss": 0
+ },
+ "microsoft-teams-essentials": {
+  "queryName": "microsoft teams",
+  "kd": {
+   "alt": 27,
+   "alts": 31
+  },
+  "absent": [],
+  "alt": 210,
+  "alts": 260,
+  "free": 30,
+  "oss": 20
+ },
+ "midjourney": {
+  "queryName": "midjourney",
+  "kd": {
+   "alt": 33,
+   "alts": 34,
+   "free": 36
+  },
+  "absent": [],
+  "alt": 590,
+  "alts": 720,
+  "free": 320,
+  "oss": 20
+ },
+ "mighty-networks": {
+  "queryName": "mighty networks",
+  "kd": {
+   "alt": 6,
+   "alts": 12
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 390,
+  "free": 0,
+  "oss": 0
+ },
+ "mimestream": {
+  "queryName": "mimestream",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "miro": {
+  "queryName": "miro",
+  "kd": {
+   "alt": 26,
+   "alts": 24,
+   "free": 21
+  },
+  "absent": [],
+  "alt": 390,
+  "alts": 720,
+  "free": 110,
+  "oss": 20
+ },
+ "missive": {
+  "queryName": "missive",
+  "kd": {
+   "alts": 15
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "moises": {
+  "queryName": "moises",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 20,
+  "oss": 0
+ },
+ "monarch-money": {
+  "queryName": "monarch money",
+  "kd": {
+   "alt": 1,
+   "alts": 3
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 210,
+  "free": 20,
+  "oss": 0
+ },
+ "monday-com": {
+  "queryName": "monday.com",
+  "kd": {
+   "alt": 29,
+   "alts": 28
+  },
+  "absent": [],
+  "alt": 480,
+  "alts": 1300,
+  "free": 20,
+  "oss": 20
+ },
+ "morgen": {
+  "queryName": "morgen",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "motion": {
+  "queryName": "motion",
+  "kd": {
+   "alt": 11,
+   "alts": 12
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 110,
+  "free": 20,
+  "oss": 0
+ },
+ "mouseflow": {
+  "queryName": "mouseflow",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "moz-pro": {
+  "queryName": "moz pro",
+  "kd": {
+   "alt": 8,
+   "alts": 3
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 480,
+  "alts": 390,
+  "free": 0,
+  "oss": 0
+ },
+ "murf": {
+  "queryName": "murf",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "myfitnesspal-premium": {
+  "queryName": "myfitnesspal",
+  "kd": {
+   "alt": 18,
+   "alts": 18,
+   "free": 4
+  },
+  "absent": [],
+  "alt": 18100,
+  "alts": 260,
+  "free": 50,
+  "oss": 10
+ },
+ "n8n-cloud": {
+  "queryName": "n8n",
+  "kd": {
+   "alt": 20,
+   "alts": 27,
+   "free": 27,
+   "oss": 21
+  },
+  "absent": [],
+  "alt": 720,
+  "alts": 1300,
+  "free": 110,
+  "oss": 30
+ },
+ "naturalreader": {
+  "queryName": "naturalreader",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "neon": {
+  "queryName": "neon",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "netlify": {
+  "queryName": "netlify",
+  "kd": {
+   "alt": 13,
+   "alts": 14
+  },
+  "absent": [
+   "free"
+  ],
+  "alt": 170,
+  "alts": 480,
+  "free": 0,
+  "oss": 0
+ },
+ "neuronwriter": {
+  "queryName": "neuronwriter",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "newsblur-premium": {
+  "queryName": "newsblur",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "newton-mail": {
+  "queryName": "newton mail",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "nightwatch": {
+  "queryName": "nightwatch",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "nitro-pdf-pro": {
+  "queryName": "nitro pdf",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "nocodb-cloud": {
+  "queryName": "nocodb",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "nolt": {
+  "queryName": "nolt",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "nordpass": {
+  "queryName": "nordpass",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "nordvpn": {
+  "queryName": "nordvpn",
+  "kd": {
+   "alt": 44,
+   "alts": 57
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 140,
+  "alts": 210,
+  "free": 20,
+  "oss": 0
+ },
+ "northwest-registered-agent": {
+  "queryName": "northwest registered agent",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "notta": {
+  "queryName": "notta",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "novelcrafter": {
+  "queryName": "novelcrafter",
+  "kd": {
+   "alts": 22
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "novoresume": {
+  "queryName": "novoresume",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "nuclino": {
+  "queryName": "nuclino",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "obsidian": {
+  "queryName": "obsidian",
+  "kd": {
+   "alt": 29,
+   "alts": 23,
+   "oss": 20
+  },
+  "absent": [],
+  "alt": 590,
+  "alts": 880,
+  "free": 20,
+  "oss": 110
+ },
+ "oncehub": {
+  "queryName": "oncehub",
+  "kd": {},
+  "absent": [
+   "alt",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "opinion-stage": {
+  "queryName": "opinion stage",
+  "kd": {},
+  "absent": [
+   "alt",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "optery": {
+  "queryName": "optery",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "otter-ai": {
+  "queryName": "otter.ai",
+  "kd": {
+   "alt": 29,
+   "alts": 21
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 170,
+  "free": 0,
+  "oss": 0
+ },
+ "outgrow": {
+  "queryName": "outgrow",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "pabbly-connect": {
+  "queryName": "pabbly connect",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "pageoptimizer-pro": {
+  "queryName": "pageoptimizer pro",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "pandadoc": {
+  "queryName": "pandadoc",
+  "kd": {
+   "alt": 17,
+   "alts": 22
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 390,
+  "alts": 1300,
+  "free": 20,
+  "oss": 0
+ },
+ "paperform": {
+  "queryName": "paperform",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "paste": {
+  "queryName": "paste",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "payhip": {
+  "queryName": "payhip",
+  "kd": {
+   "alts": 23
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 140,
+  "free": 0,
+  "oss": 0
+ },
+ "pcloud": {
+  "queryName": "pcloud",
+  "kd": {
+   "alt": 17
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "pdf-expert": {
+  "queryName": "pdf expert",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "pebblely": {
+  "queryName": "pebblely",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "perplexity": {
+  "queryName": "perplexity",
+  "kd": {
+   "alt": 14,
+   "alts": 17
+  },
+  "absent": [],
+  "alt": 110,
+  "alts": 170,
+  "free": 30,
+  "oss": 20
+ },
+ "pestle": {
+  "queryName": "pestle",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "photoroom": {
+  "queryName": "photoroom",
+  "kd": {
+   "alt": 7
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 90,
+  "alts": 20,
+  "free": 20,
+  "oss": 0
+ },
+ "pic-time": {
+  "queryName": "pic-time",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "piktochart": {
+  "queryName": "piktochart",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "pimsleur": {
+  "queryName": "pimsleur",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "pinboard": {
+  "queryName": "pinboard",
+  "kd": {},
+  "absent": [
+   "free"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "pingdom": {
+  "queryName": "pingdom",
+  "kd": {
+   "alt": 15,
+   "alts": 15
+  },
+  "absent": [],
+  "alt": 390,
+  "alts": 90,
+  "free": 10,
+  "oss": 0
+ },
+ "pipedream": {
+  "queryName": "pipedream",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "pipedrive": {
+  "queryName": "pipedrive",
+  "kd": {
+   "alt": 21,
+   "alts": 20
+  },
+  "absent": [],
+  "alt": 480,
+  "alts": 880,
+  "free": 0,
+  "oss": 0
+ },
+ "pirsch": {
+  "queryName": "pirsch",
+  "kd": {},
+  "absent": [
+   "alt",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "pitch": {
+  "queryName": "pitch",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "pixelcut": {
+  "queryName": "pixelcut",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "pixieset": {
+  "queryName": "pixieset",
+  "kd": {
+   "alt": 9,
+   "alts": 4
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 140,
+  "alts": 110,
+  "free": 0,
+  "oss": 0
+ },
+ "plan-to-eat": {
+  "queryName": "plan to eat",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "planable": {
+  "queryName": "planable",
+  "kd": {
+   "alts": 8
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 140,
+  "free": 0,
+  "oss": 0
+ },
+ "planetscale": {
+  "queryName": "planetscale",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "plausible": {
+  "queryName": "plausible",
+  "kd": {
+   "alt": 35
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 10,
+  "free": 20,
+  "oss": 0
+ },
+ "playground-ai": {
+  "queryName": "playground ai",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "playht": {
+  "queryName": "playht",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "pocketsmith": {
+  "queryName": "pocketsmith",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "podcastle": {
+  "queryName": "podcastle",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "podia": {
+  "queryName": "podia",
+  "kd": {
+   "alt": 12,
+   "alts": 12
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 140,
+  "alts": 390,
+  "free": 0,
+  "oss": 0
+ },
+ "podsqueeze": {
+  "queryName": "podsqueeze",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "poeditor": {
+  "queryName": "poeditor",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "point-me": {
+  "queryName": "point.me",
+  "kd": {
+   "alt": 53,
+   "alts": 28
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 70,
+  "free": 0,
+  "oss": 0
+ },
+ "post-bridge": {
+  "queryName": "post bridge",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "postiz": {
+  "queryName": "postiz",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 10,
+  "oss": 0
+ },
+ "productboard": {
+  "queryName": "productboard",
+  "kd": {
+   "alt": 5,
+   "alts": 10
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 140,
+  "free": 0,
+  "oss": 0
+ },
+ "productlane": {
+  "queryName": "productlane",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "promptdc": {
+  "queryName": "promptdc",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "proton-drive-plus": {
+  "queryName": "proton drive",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "proton-pass-plus": {
+  "queryName": "proton pass",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "prowritingaid": {
+  "queryName": "prowritingaid",
+  "kd": {
+   "alts": 12
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "publer": {
+  "queryName": "publer",
+  "kd": {
+   "alt": 5,
+   "alts": 6
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 110,
+  "free": 0,
+  "oss": 0
+ },
+ "pumble": {
+  "queryName": "pumble",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "quickbase": {
+  "queryName": "quickbase",
+  "kd": {
+   "alts": 21
+  },
+  "absent": [],
+  "alt": 20,
+  "alts": 90,
+  "free": 20,
+  "oss": 0
+ },
+ "quickbooks-online": {
+  "queryName": "quickbooks online",
+  "kd": {
+   "alt": 32,
+   "alts": 38
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 320,
+  "alts": 590,
+  "free": 0,
+  "oss": 0
+ },
+ "quicken-classic-deluxe": {
+  "queryName": "quicken",
+  "kd": {
+   "alt": 8,
+   "alts": 16,
+   "free": 9
+  },
+  "absent": [],
+  "alt": 110,
+  "alts": 590,
+  "free": 210,
+  "oss": 20
+ },
+ "quicken-simplifi": {
+  "queryName": "quicken simplifi",
+  "kd": {
+   "alts": 15
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 70,
+  "free": 0,
+  "oss": 0
+ },
+ "quillbot": {
+  "queryName": "quillbot",
+  "kd": {
+   "alt": 13,
+   "alts": 11
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 140,
+  "alts": 210,
+  "free": 10,
+  "oss": 0
+ },
+ "railway": {
+  "queryName": "railway",
+  "kd": {
+   "alt": 31,
+   "alts": 36,
+   "free": 38
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 170,
+  "free": 30,
+  "oss": 0
+ },
+ "raindrop-io": {
+  "queryName": "raindrop.io",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "rankhog": {
+  "queryName": "rankhog",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "raycast-pro": {
+  "queryName": "raycast",
+  "kd": {
+   "alt": 11,
+   "alts": 17
+  },
+  "absent": [
+   "free"
+  ],
+  "alt": 70,
+  "alts": 50,
+  "free": 0,
+  "oss": 20
+ },
+ "read-ai": {
+  "queryName": "read ai",
+  "kd": {
+   "alts": 15
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "readwise-reader": {
+  "queryName": "readwise reader",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "recall": {
+  "queryName": "recall",
+  "kd": {
+   "alts": 12
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "reclaim-ai": {
+  "queryName": "reclaim.ai",
+  "kd": {
+   "alts": 13
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "recraft": {
+  "queryName": "recraft",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "reeder": {
+  "queryName": "reeder",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "reform": {
+  "queryName": "reform",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "relay-app": {
+  "queryName": "relay.app",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "remote-com": {
+  "queryName": "remote",
+  "kd": {
+   "alts": 24
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "render": {
+  "queryName": "render",
+  "kd": {
+   "alt": 14,
+   "alts": 14
+  },
+  "absent": [
+   "free"
+  ],
+  "alt": 70,
+  "alts": 210,
+  "free": 0,
+  "oss": 0
+ },
+ "replit": {
+  "queryName": "replit",
+  "kd": {
+   "alt": 19,
+   "alts": 17,
+   "oss": 15
+  },
+  "absent": [],
+  "alt": 390,
+  "alts": 1000,
+  "free": 0,
+  "oss": 40
+ },
+ "rescuetime": {
+  "queryName": "rescuetime",
+  "kd": {
+   "alts": 14
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 170,
+  "free": 0,
+  "oss": 0
+ },
+ "retool": {
+  "queryName": "retool",
+  "kd": {
+   "alt": 31,
+   "alts": 22
+  },
+  "absent": [],
+  "alt": 50,
+  "alts": 260,
+  "free": 20,
+  "oss": 20
+ },
+ "rezi": {
+  "queryName": "rezi",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "riverside": {
+  "queryName": "riverside",
+  "kd": {
+   "alt": 7,
+   "alts": 5
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 880,
+  "alts": 140,
+  "free": 20,
+  "oss": 0
+ },
+ "rize": {
+  "queryName": "rize",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "roadtrippers": {
+  "queryName": "roadtrippers",
+  "kd": {
+   "alt": 25
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "roboform": {
+  "queryName": "roboform",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "rocket-lawyer": {
+  "queryName": "rocket lawyer",
+  "kd": {
+   "alts": 20
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "rosetta-stone": {
+  "queryName": "rosetta stone",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 20,
+  "oss": 0
+ },
+ "routine": {
+  "queryName": "routine",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "rows": {
+  "queryName": "rows",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "runway": {
+  "queryName": "runway",
+  "kd": {
+   "alts": 12
+  },
+  "absent": [],
+  "alt": 20,
+  "alts": 50,
+  "free": 20,
+  "oss": 0
+ },
+ "rytr": {
+  "queryName": "rytr",
+  "kd": {
+   "alts": 24
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 110,
+  "free": 0,
+  "oss": 0
+ },
+ "saleshandy": {
+  "queryName": "saleshandy",
+  "kd": {
+   "alts": 14
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "salesmate": {
+  "queryName": "salesmate",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "savio": {
+  "queryName": "savio",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "savvycal": {
+  "queryName": "savvycal",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "scalenut": {
+  "queryName": "scalenut",
+  "kd": {
+   "alts": 12
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "screaming-frog-seo-spider": {
+  "queryName": "screaming frog",
+  "kd": {
+   "alt": 21,
+   "alts": 25,
+   "free": 20
+  },
+  "absent": [],
+  "alt": 880,
+  "alts": 170,
+  "free": 30,
+  "oss": 0
+ },
+ "scribe": {
+  "queryName": "scribe",
+  "kd": {
+   "alt": 12,
+   "alts": 14,
+   "free": 6
+  },
+  "absent": [],
+  "alt": 110,
+  "alts": 590,
+  "free": 50,
+  "oss": 20
+ },
+ "se-ranking": {
+  "queryName": "se ranking",
+  "kd": {
+   "alt": 24,
+   "alts": 14
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 90,
+  "alts": 70,
+  "free": 0,
+  "oss": 0
+ },
+ "seatable-cloud": {
+  "queryName": "seatable",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "seats-aero-pro": {
+  "queryName": "seats.aero",
+  "kd": {
+   "alt": 7
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 90,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "sejda-web": {
+  "queryName": "sejda",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "sellfy": {
+  "queryName": "sellfy",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "sembly-ai": {
+  "queryName": "sembly ai",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "semrush": {
+  "queryName": "semrush",
+  "kd": {
+   "alt": 35,
+   "alts": 35,
+   "free": 31
+  },
+  "absent": [],
+  "alt": 5400,
+  "alts": 4400,
+  "free": 390,
+  "oss": 0
+ },
+ "sendspark": {
+  "queryName": "sendspark",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "sentry": {
+  "queryName": "sentry",
+  "kd": {
+   "alt": 20,
+   "alts": 21
+  },
+  "absent": [],
+  "alt": 70,
+  "alts": 260,
+  "free": 20,
+  "oss": 20
+ },
+ "seobility": {
+  "queryName": "seobility",
+  "kd": {
+   "alt": 14,
+   "alts": 18
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 320,
+  "alts": 210,
+  "free": 0,
+  "oss": 0
+ },
+ "serpstat": {
+  "queryName": "serpstat",
+  "kd": {
+   "alt": 15,
+   "alts": 13
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 260,
+  "alts": 390,
+  "free": 0,
+  "oss": 0
+ },
+ "setapp": {
+  "queryName": "setapp",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "shopify": {
+  "queryName": "shopify",
+  "kd": {
+   "alt": 22,
+   "alts": 29
+  },
+  "absent": [],
+  "alt": 590,
+  "alts": 3600,
+  "free": 20,
+  "oss": 20
+ },
+ "shortcut": {
+  "queryName": "shortcut",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "shortwave": {
+  "queryName": "shortwave",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "simple-analytics": {
+  "queryName": "simple analytics",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "sitebulb": {
+  "queryName": "sitebulb",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "skillshare": {
+  "queryName": "skillshare",
+  "kd": {
+   "alt": 12,
+   "alts": 15
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 110,
+  "alts": 140,
+  "free": 20,
+  "oss": 0
+ },
+ "slack-pro": {
+  "queryName": "slack",
+  "kd": {
+   "alt": 33,
+   "alts": 34,
+   "free": 34,
+   "oss": 30
+  },
+  "absent": [],
+  "alt": 480,
+  "alts": 1300,
+  "free": 140,
+  "oss": 140
+ },
+ "sleek": {
+  "queryName": "sleek",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "slite": {
+  "queryName": "slite",
+  "kd": {
+   "alt": 2,
+   "alts": 14
+  },
+  "absent": [
+   "free"
+  ],
+  "alt": 90,
+  "alts": 110,
+  "free": 0,
+  "oss": 20
+ },
+ "smallpdf": {
+  "queryName": "smallpdf",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "smartlead": {
+  "queryName": "smartlead",
+  "kd": {
+   "alts": 7
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "smartsheet": {
+  "queryName": "smartsheet",
+  "kd": {
+   "alt": 22,
+   "alts": 20,
+   "free": 23
+  },
+  "absent": [],
+  "alt": 880,
+  "alts": 1600,
+  "free": 140,
+  "oss": 0
+ },
+ "smartsuite": {
+  "queryName": "smartsuite",
+  "kd": {
+   "alts": 15
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "smugmug": {
+  "queryName": "smugmug",
+  "kd": {
+   "alts": 7
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 90,
+  "free": 20,
+  "oss": 0
+ },
+ "snappa": {
+  "queryName": "snappa",
+  "kd": {},
+  "absent": [
+   "alt",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "snov-io": {
+  "queryName": "snov.io",
+  "kd": {
+   "alt": 14,
+   "alts": 13
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 70,
+  "free": 0,
+  "oss": 0
+ },
+ "socialbee": {
+  "queryName": "socialbee",
+  "kd": {
+   "alt": 19,
+   "alts": 6
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "softr": {
+  "queryName": "softr",
+  "kd": {
+   "alt": 14,
+   "alts": 11
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 210,
+  "free": 0,
+  "oss": 0
+ },
+ "soundcloud-go-plus": {
+  "queryName": "soundcloud",
+  "kd": {
+   "alt": 9,
+   "alts": 13
+  },
+  "absent": [],
+  "alt": 590,
+  "alts": 390,
+  "free": 20,
+  "oss": 0
+ },
+ "soundtrap": {
+  "queryName": "soundtrap",
+  "kd": {
+   "alts": 12
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 90,
+  "free": 0,
+  "oss": 0
+ },
+ "spark-premium": {
+  "queryName": "spark mail",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "speak-language": {
+  "queryName": "speak",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "speechify": {
+  "queryName": "speechify",
+  "kd": {
+   "alt": 18,
+   "alts": 8,
+   "free": 15
+  },
+  "absent": [],
+  "alt": 320,
+  "alts": 390,
+  "free": 260,
+  "oss": 0
+ },
+ "splice": {
+  "queryName": "splice",
+  "kd": {
+   "alt": 9,
+   "alts": 5,
+   "free": 9
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 170,
+  "alts": 260,
+  "free": 320,
+  "oss": 0
+ },
+ "spotify-premium": {
+  "queryName": "spotify",
+  "kd": {
+   "alt": 27,
+   "alts": 34,
+   "free": 32
+  },
+  "absent": [],
+  "alt": 1300,
+  "alts": 9900,
+  "free": 720,
+  "oss": 20
+ },
+ "spyfu": {
+  "queryName": "spyfu",
+  "kd": {
+   "alt": 15,
+   "alts": 22,
+   "free": 20
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 1000,
+  "alts": 590,
+  "free": 260,
+  "oss": 0
+ },
+ "squarespace": {
+  "queryName": "squarespace",
+  "kd": {
+   "alt": 23,
+   "alts": 23
+  },
+  "absent": [],
+  "alt": 210,
+  "alts": 720,
+  "free": 10,
+  "oss": 20
+ },
+ "stackby": {
+  "queryName": "stackby",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "strava": {
+  "queryName": "strava",
+  "kd": {
+   "alt": 14,
+   "alts": 10
+  },
+  "absent": [],
+  "alt": 140,
+  "alts": 110,
+  "free": 10,
+  "oss": 20
+ },
+ "streak-crm": {
+  "queryName": "streak",
+  "kd": {
+   "alt": 6
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "strong-pro": {
+  "queryName": "strong app",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "structured": {
+  "queryName": "structured",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "sudowrite": {
+  "queryName": "sudowrite",
+  "kd": {
+   "alt": 8,
+   "alts": 12
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 110,
+  "free": 20,
+  "oss": 0
+ },
+ "sunsama": {
+  "queryName": "sunsama",
+  "kd": {
+   "alt": 7,
+   "alts": 7
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 110,
+  "alts": 110,
+  "free": 20,
+  "oss": 0
+ },
+ "supabase-pro": {
+  "queryName": "supabase",
+  "kd": {
+   "alt": 16,
+   "alts": 17,
+   "free": 21
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 320,
+  "alts": 590,
+  "free": 50,
+  "oss": 0
+ },
+ "supademo": {
+  "queryName": "supademo",
+  "kd": {
+   "alts": 18
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 210,
+  "free": 0,
+  "oss": 0
+ },
+ "superhuman": {
+  "queryName": "superhuman",
+  "kd": {
+   "alt": 13,
+   "alts": 13
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 210,
+  "free": 20,
+  "oss": 0
+ },
+ "supernormal": {
+  "queryName": "supernormal",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "supernotes": {
+  "queryName": "supernotes",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "superscribe": {
+  "queryName": "superscribe",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "superwhisper": {
+  "queryName": "superwhisper",
+  "kd": {
+   "alts": 5
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 140,
+  "free": 10,
+  "oss": 0
+ },
+ "superx": {
+  "queryName": "superx",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "surfer-seo": {
+  "queryName": "surfer seo",
+  "kd": {
+   "alt": 15,
+   "alts": 23
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 590,
+  "alts": 880,
+  "free": 20,
+  "oss": 0
+ },
+ "surveymonkey": {
+  "queryName": "surveymonkey",
+  "kd": {
+   "alt": 16,
+   "alts": 14
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 140,
+  "alts": 1300,
+  "free": 10,
+  "oss": 0
+ },
+ "swell-ai": {
+  "queryName": "swell ai",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "sync-com": {
+  "queryName": "sync.com",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "synthesia": {
+  "queryName": "synthesia",
+  "kd": {
+   "alt": 13,
+   "alts": 23
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 260,
+  "alts": 320,
+  "free": 20,
+  "oss": 0
+ },
+ "tabnine": {
+  "queryName": "tabnine",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "tactiq": {
+  "queryName": "tactiq",
+  "kd": {
+   "alts": 11
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "tally": {
+  "queryName": "tally",
+  "kd": {
+   "alt": 7,
+   "alts": 10
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "tango": {
+  "queryName": "tango",
+  "kd": {
+   "alt": 10,
+   "alts": 17
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 90,
+  "free": 0,
+  "oss": 0
+ },
+ "taplio": {
+  "queryName": "taplio",
+  "kd": {
+   "alt": 15,
+   "alts": 12
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 140,
+  "free": 0,
+  "oss": 0
+ },
+ "taskade": {
+  "queryName": "taskade",
+  "kd": {
+   "alt": 10,
+   "alts": 14
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 70,
+  "free": 0,
+  "oss": 0
+ },
+ "teachable": {
+  "queryName": "teachable",
+  "kd": {
+   "alt": 16,
+   "alts": 18
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 90,
+  "alts": 880,
+  "free": 0,
+  "oss": 0
+ },
+ "teamwork": {
+  "queryName": "teamwork",
+  "kd": {
+   "alt": 19,
+   "alts": 18
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 210,
+  "free": 0,
+  "oss": 0
+ },
+ "tella": {
+  "queryName": "tella",
+  "kd": {
+   "alts": 11
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 90,
+  "free": 0,
+  "oss": 0
+ },
+ "textexpander": {
+  "queryName": "textexpander",
+  "kd": {
+   "alt": 3,
+   "alts": 15
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 70,
+  "free": 20,
+  "oss": 0
+ },
+ "thinkific": {
+  "queryName": "thinkific",
+  "kd": {
+   "alt": 14,
+   "alts": 16
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 590,
+  "free": 0,
+  "oss": 0
+ },
+ "thumblifyai": {
+  "queryName": "thumblifyai",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "thunkable": {
+  "queryName": "thunkable",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "ticktick": {
+  "queryName": "ticktick",
+  "kd": {
+   "alt": 9,
+   "alts": 11
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 90,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "tidal": {
+  "queryName": "tidal",
+  "kd": {
+   "alt": 18
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "tidio": {
+  "queryName": "tidio",
+  "kd": {
+   "alt": 20,
+   "alts": 22
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 210,
+  "alts": 320,
+  "free": 0,
+  "oss": 0
+ },
+ "tilda": {
+  "queryName": "tilda",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "tiller-money": {
+  "queryName": "tiller",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "time-doctor": {
+  "queryName": "time doctor",
+  "kd": {
+   "alt": 6,
+   "alts": 5
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 110,
+  "alts": 110,
+  "free": 10,
+  "oss": 0
+ },
+ "timely": {
+  "queryName": "timely",
+  "kd": {
+   "alt": 7,
+   "alts": 7
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 70,
+  "free": 0,
+  "oss": 0
+ },
+ "timing": {
+  "queryName": "timing",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "tldv": {
+  "queryName": "tldv",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "todoist": {
+  "queryName": "todoist",
+  "kd": {
+   "alt": 17,
+   "alts": 9
+  },
+  "absent": [],
+  "alt": 320,
+  "alts": 390,
+  "free": 10,
+  "oss": 20
+ },
+ "tody": {
+  "queryName": "tody",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "toggl-track": {
+  "queryName": "toggl track",
+  "kd": {
+   "alt": 11,
+   "alts": 15
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "tolgee-cloud": {
+  "queryName": "tolgee",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "transifex": {
+  "queryName": "transifex",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "transistor-fm": {
+  "queryName": "transistor",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "trello": {
+  "queryName": "trello",
+  "kd": {
+   "alt": 32,
+   "alts": 31,
+   "free": 24,
+   "oss": 40
+  },
+  "absent": [],
+  "alt": 1000,
+  "alts": 1900,
+  "free": 140,
+  "oss": 30
+ },
+ "tresorit": {
+  "queryName": "tresorit",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "tripit-pro": {
+  "queryName": "tripit",
+  "kd": {
+   "alt": 3
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "twist": {
+  "queryName": "twist",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "typeform": {
+  "queryName": "typeform",
+  "kd": {
+   "alt": 23,
+   "alts": 23,
+   "free": 19
+  },
+  "absent": [],
+  "alt": 320,
+  "alts": 390,
+  "free": 40,
+  "oss": 20
+ },
+ "typefully": {
+  "queryName": "typefully",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "ubersuggest": {
+  "queryName": "ubersuggest",
+  "kd": {
+   "alt": 9,
+   "alts": 28
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 260,
+  "alts": 210,
+  "free": 20,
+  "oss": 0
+ },
+ "ulysses": {
+  "queryName": "ulysses",
+  "kd": {},
+  "absent": [
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "umami-cloud": {
+  "queryName": "umami",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "umso": {
+  "queryName": "umso",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "unbounce": {
+  "queryName": "unbounce",
+  "kd": {
+   "alt": 7,
+   "alts": 13
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 320,
+  "free": 0,
+  "oss": 0
+ },
+ "uncircle": {
+  "queryName": "uncircle",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "unicorn-platform": {
+  "queryName": "unicorn platform",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "v0": {
+  "queryName": "v0",
+  "kd": {
+   "alt": 15,
+   "alts": 13
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 140,
+  "free": 0,
+  "oss": 0
+ },
+ "vercel": {
+  "queryName": "vercel",
+  "kd": {
+   "alt": 25,
+   "alts": 23,
+   "free": 28
+  },
+  "absent": [],
+  "alt": 210,
+  "alts": 590,
+  "free": 40,
+  "oss": 20
+ },
+ "verifieddr": {
+  "queryName": "verifieddr",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "vidyard": {
+  "queryName": "vidyard",
+  "kd": {
+   "alt": 11,
+   "alts": 5
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 140,
+  "alts": 110,
+  "free": 0,
+  "oss": 0
+ },
+ "vimcal": {
+  "queryName": "vimcal",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "visme": {
+  "queryName": "visme",
+  "kd": {
+   "alts": 12
+  },
+  "absent": [
+   "free"
+  ],
+  "alt": 20,
+  "alts": 70,
+  "free": 0,
+  "oss": 0
+ },
+ "vista-social": {
+  "queryName": "vista social",
+  "kd": {
+   "alts": 30
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "vistacreate": {
+  "queryName": "vistacreate",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "waalaxy": {
+  "queryName": "waalaxy",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 30,
+  "free": 0,
+  "oss": 0
+ },
+ "wabery": {
+  "queryName": "wabery",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "wanderlog-pro": {
+  "queryName": "wanderlog",
+  "kd": {
+   "alts": 2
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 40,
+  "free": 0,
+  "oss": 0
+ },
+ "webex-meet": {
+  "queryName": "webex",
+  "kd": {
+   "alt": 23,
+   "alts": 27
+  },
+  "absent": [],
+  "alt": 40,
+  "alts": 140,
+  "free": 20,
+  "oss": 0
+ },
+ "webflow": {
+  "queryName": "webflow",
+  "kd": {
+   "alt": 20,
+   "alts": 22
+  },
+  "absent": [],
+  "alt": 210,
+  "alts": 590,
+  "free": 20,
+  "oss": 20
+ },
+ "webinarjam": {
+  "queryName": "webinarjam",
+  "kd": {
+   "alts": 10
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 70,
+  "free": 0,
+  "oss": 0
+ },
+ "weglot": {
+  "queryName": "weglot",
+  "kd": {
+   "alt": 2,
+   "alts": 12
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 70,
+  "alts": 140,
+  "free": 0,
+  "oss": 0
+ },
+ "wellsaid-labs": {
+  "queryName": "wellsaid labs",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "weweb": {
+  "queryName": "weweb",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "when-i-work": {
+  "queryName": "when i work",
+  "kd": {
+   "alt": 12,
+   "alts": 14
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 480,
+  "free": 0,
+  "oss": 0
+ },
+ "whereby": {
+  "queryName": "whereby",
+  "kd": {
+   "alt": 16,
+   "alts": 10
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "whimsical": {
+  "queryName": "whimsical",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "windsurf": {
+  "queryName": "windsurf",
+  "kd": {
+   "alt": 27,
+   "alts": 22
+  },
+  "absent": [],
+  "alt": 170,
+  "alts": 90,
+  "free": 20,
+  "oss": 20
+ },
+ "wispr-flow": {
+  "queryName": "wispr flow",
+  "kd": {
+   "alt": 5,
+   "alts": 5,
+   "free": 8
+  },
+  "absent": [],
+  "alt": 320,
+  "alts": 390,
+  "free": 70,
+  "oss": 140
+ },
+ "wix": {
+  "queryName": "wix",
+  "kd": {
+   "alt": 19,
+   "alts": 21
+  },
+  "absent": [],
+  "alt": 210,
+  "alts": 720,
+  "free": 20,
+  "oss": 20
+ },
+ "woodpecker": {
+  "queryName": "woodpecker",
+  "kd": {
+   "alts": 29
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 50,
+  "free": 0,
+  "oss": 0
+ },
+ "wordtune": {
+  "queryName": "wordtune",
+  "kd": {
+   "alt": 20,
+   "alts": 25
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 140,
+  "alts": 90,
+  "free": 10,
+  "oss": 0
+ },
+ "wrike": {
+  "queryName": "wrike",
+  "kd": {
+   "alt": 18,
+   "alts": 26
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 260,
+  "alts": 1300,
+  "free": 20,
+  "oss": 0
+ },
+ "writerzen": {
+  "queryName": "writerzen",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "writesonic": {
+  "queryName": "writesonic",
+  "kd": {
+   "alt": 22,
+   "alts": 24
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 90,
+  "alts": 210,
+  "free": 10,
+  "oss": 0
+ },
+ "xero": {
+  "queryName": "xero",
+  "kd": {
+   "alt": 12,
+   "alts": 12
+  },
+  "absent": [
+   "oss"
+  ],
+  "alt": 50,
+  "alts": 170,
+  "free": 20,
+  "oss": 0
+ },
+ "xodo-pro": {
+  "queryName": "xodo",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "ynab": {
+  "queryName": "ynab",
+  "kd": {
+   "alt": 12,
+   "alts": 13,
+   "free": 7
+  },
+  "absent": [],
+  "alt": 320,
+  "alts": 170,
+  "free": 140,
+  "oss": 20
+ },
+ "youcanbookme": {
+  "queryName": "youcanbookme",
+  "kd": {},
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 20,
+  "alts": 10,
+  "free": 0,
+  "oss": 0
+ },
+ "youtube-music-premium": {
+  "queryName": "youtube music",
+  "kd": {
+   "alt": 40
+  },
+  "absent": [],
+  "alt": 140,
+  "alts": 30,
+  "free": 20,
+  "oss": 20
+ },
+ "zapier": {
+  "queryName": "zapier",
+  "kd": {
+   "alt": 27,
+   "alts": 30,
+   "free": 28,
+   "oss": 25
+  },
+  "absent": [],
+  "alt": 390,
+  "alts": 1900,
+  "free": 70,
+  "oss": 70
+ },
+ "zenbusiness": {
+  "queryName": "zenbusiness",
+  "kd": {
+   "alts": 13
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 30,
+  "alts": 90,
+  "free": 0,
+  "oss": 0
+ },
+ "zencal": {
+  "queryName": "zencal",
+  "kd": {},
+  "absent": [
+   "alt",
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 0,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "zendesk": {
+  "queryName": "zendesk",
+  "kd": {
+   "alt": 22,
+   "alts": 28,
+   "free": 15
+  },
+  "absent": [],
+  "alt": 880,
+  "alts": 1300,
+  "free": 50,
+  "oss": 30
+ },
+ "zenfolio": {
+  "queryName": "zenfolio",
+  "kd": {
+   "alt": 9
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 40,
+  "alts": 20,
+  "free": 0,
+  "oss": 0
+ },
+ "zight": {
+  "queryName": "zight",
+  "kd": {},
+  "absent": [
+   "alts",
+   "free",
+   "oss"
+  ],
+  "alt": 10,
+  "alts": 0,
+  "free": 0,
+  "oss": 0
+ },
+ "zoho-crm": {
+  "queryName": "zoho crm",
+  "kd": {
+   "alt": 26,
+   "alts": 23
+  },
+  "absent": [
+   "free",
+   "oss"
+  ],
+  "alt": 140,
+  "alts": 210,
+  "free": 0,
+  "oss": 0
+ },
+ "zoom-pro": {
+  "queryName": "zoom",
+  "kd": {
+   "alt": 36,
+   "alts": 29,
+   "free": 29
+  },
+  "absent": [],
+  "alt": 880,
+  "alts": 1000,
+  "free": 140,
+  "oss": 20
+ },
+ "_meta": {
+  "database": "us",
+  "checkedOn": "2026-10-18",
+  "renamed": {
+   "activepieces-cloud": "activepieces",
+   "adobe-acrobat-pro": "adobe acrobat",
+   "alltrails-plus": "alltrails",
+   "anylist-complete": "anylist",
+   "appsmith-cloud": "appsmith",
+   "audible-premium-plus": "audible",
+   "backblaze-personal-backup": "backblaze",
+   "baserow-cloud": "baserow",
+   "bear-pro": "bear",
+   "busuu-premium": "busuu",
+   "cal-com-teams": "cal.com",
+   "chatwoot-cloud": "chatwoot",
+   "cozi-gold": "cozi",
+   "cronometer-gold": "cronometer",
+   "deepl-pro": "deepl",
+   "drafts-pro": "drafts",
+   "dropbox-plus": "dropbox",
+   "duolingo-super": "duolingo",
+   "familywall-premium": "familywall",
+   "flickr-pro": "flickr",
+   "flighty-pro": "flighty",
+   "formstack-forms": "formstack",
+   "foxit-pdf-editor": "foxit",
+   "ghost-pro": "ghost",
+   "google-workspace-business-starter": "google workspace",
+   "hemingway-editor-plus": "hemingway editor",
+   "hevy-pro": "hevy",
+   "home-assistant-cloud": "home assistant",
+   "ilovepdf-premium": "ilovepdf",
+   "instapaper-premium": "instapaper",
+   "komoot-premium": "komoot",
+   "lingq-premium": "lingq",
+   "mattermost-professional": "mattermost",
+   "mealime-pro": "mealime",
+   "mega-pro": "mega",
+   "microsoft-teams-essentials": "microsoft teams",
+   "myfitnesspal-premium": "myfitnesspal",
+   "n8n-cloud": "n8n",
+   "nocodb-cloud": "nocodb",
+   "novoresume": "novoresume",
+   "proton-drive-plus": "proton drive",
+   "proton-pass-plus": "proton pass",
+   "quicken-classic-deluxe": "quicken",
+   "raycast-pro": "raycast",
+   "screaming-frog-seo-spider": "screaming frog",
+   "seatable-cloud": "seatable",
+   "sejda-web": "sejda",
+   "slack-pro": "slack",
+   "smallpdf": "smallpdf",
+   "soundcloud-go-plus": "soundcloud",
+   "spark-premium": "spark mail",
+   "spotify-premium": "spotify",
+   "strong-pro": "strong app",
+   "supabase-pro": "supabase",
+   "tldv": "tldv",
+   "tolgee-cloud": "tolgee",
+   "tripit-pro": "tripit",
+   "umami-cloud": "umami",
+   "wanderlog-pro": "wanderlog",
+   "webex-meet": "webex",
+   "youtube-music-premium": "youtube music",
+   "zoom-pro": "zoom"
+  },
+  "totals": {
+   "alt": 106100,
+   "alts": 139830,
+   "free": 12190,
+   "oss": 2260
+  },
+  "apiUnits": 12570,
+  "note": "0 with the key listed in absent = keyword not in Semrush"
+ }
+}
