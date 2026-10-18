@@ -1,4 +1,4 @@
-import { escapeHtml, renderLayout, verdictBadge } from './site-html.mjs';
+import { escapeHtml, renderLayout } from './site-html.mjs';
 
 /**
  * Page 404, servie par Cloudflare Pages pour toute URL sans fichier
@@ -21,14 +21,14 @@ export function render404Page({ ui, enPath, langs }) {
     .map((lang) => `<a href="/${lang}/">${escapeHtml(s.directoryLabel)} (${lang})</a>`)
     .join(' · ');
 
-  // Le tampon réutilise le composant verdict "no" (badge-lg) : de l'encre
-  // --stamp-no posée sur un constat administratif, pas un verdict d'outil —
-  // c'est l'usage prévu par le spec §4 (« dossier vide tamponné »), aucune
-  // couleur nouvelle. Défense en profondeur : si la clé venait à manquer,
-  // pas de tampon plutôt qu'une chaîne "undefined" affichée au lecteur.
-  const stampBadge = n?.stamp ? `    ${verdictBadge('no', n.stamp, 'badge-lg')}\n` : '';
+  // Le constat (« NOT ON FILE ») en simple eyebrow au-dessus du titre : le
+  // tampon du dossier n'a plus de feuille de style, et un badge de verdict
+  // « no » sur une page d'erreur se lisait comme le verdict d'un outil
+  // (revue finale, finding 12). Défense en profondeur : sans la clé, rien
+  // plutôt qu'une chaîne "undefined" affichée au lecteur.
+  const eyebrow = n?.stamp ? `    <p class="eyebrow">${escapeHtml(n.stamp)}</p>\n` : '';
 
-  const main = `${stampBadge}    <h1>${escapeHtml(n.heading)}</h1>
+  const main = `${eyebrow}    <h1>${escapeHtml(n.heading)}</h1>
     <p class="lede">${escapeHtml(n.body)}</p>
     <p>${links}</p>`;
 

@@ -142,10 +142,6 @@ const SHELL_CSS = `.shell{display:grid;grid-template-columns:minmax(0,1fr)}
 :root[data-theme="dark"] .theme-icon::before{content:"\\25D1"}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .theme-icon::before{content:"\\25D1"}}
 @media (max-width:520px){.site-header{column-gap:var(--s3)}.brand{font-size:1.03rem}.nav-links{order:3;width:100%}}
-.ref-strip{display:flex;flex-wrap:wrap;gap:var(--s1) var(--s5);margin:0 0 var(--s4);font-size:.8125rem;color:var(--ink2)}
-.ref-cell{display:flex;gap:var(--s2)}
-.ref-lbl{font-weight:700}
-.ref-val{margin:0}
 .site-footer{margin-top:clamp(var(--s8),9cqi,var(--s9));padding:var(--s6) 0 var(--s7);border-top:1px solid var(--rule);font-size:.9375rem;color:var(--ink2);display:grid;gap:var(--s3)}
 .site-footer p{max-width:var(--measure)}
 .foot-links{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5)}
@@ -162,7 +158,6 @@ const VERDICT_CSS = `.badge{display:inline-flex;align-items:baseline;flex:none;w
 .badge.yes::before{content:"●" / ""}
 .badge.kinda::before{content:"◐" / ""}
 .badge.no::before{content:"○" / ""}
-.badge-lg{font:750 clamp(1.6rem,5cqi,2.2rem)/1 var(--display);letter-spacing:-.02em}
 .fit-tag{white-space:nowrap;font-weight:700}
 .fit-tag[data-fit="full"]::before{content:"●" / ""}
 .fit-tag[data-fit="partial"]::before{content:"◐" / ""}

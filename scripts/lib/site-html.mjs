@@ -40,44 +40,12 @@ export function languageName(lang) {
 
 /** Badge de verdict, partagé par la grille de cartes (accueil, catégories),
  *  la fiche et les cartes "outils proches" — une seule source de vérité pour
- *  le balisage, un modificateur optionnel (ex. "badge-lg") pour la variante
- *  agrandie de la fiche. La forme (● ◐ ○) est posée par la feuille sur la
+ *  le balisage, un modificateur optionnel (une classe de plus) pour une variante
+ *  de mise en page. La forme (● ◐ ○) est posée par la feuille sur la
  *  classe du verdict : le badge porte toujours une forme ET un mot. */
 export function verdictBadge(verdict, label, extraClass = '') {
   const cls = ['badge', verdict, extraClass].filter(Boolean).join(' ');
   return `<span class="${cls}">${escapeHtml(label)}</span>`;
-}
-
-/** Le tampon administratif (dates, statut vérifié) : une première ligne, et
- *  d'éventuelles lignes secondaires en `.stamp-sub` — un tampon de contrôleur
- *  a toujours une ligne d'objet puis des précisions plus petites en dessous. */
-export function stamp(kind, lines) {
-  const [first, ...rest] = lines.map((l) => escapeHtml(l));
-  const subs = rest.map((l) => `<span class="stamp-sub">${l}</span>`).join('');
-  return `<span class="stamp stamp-${kind}">${first}${subs}</span>`;
-}
-
-/** Le cachet rond à date, mais lisible : le texte est réel (pas aria-hidden),
- *  contrairement au tampon carré qui peut être décoratif à côté d'un texte
- *  équivalent ailleurs. L'espace avant <strong> n'est pas cosmétique : sans
- *  lui le texte accessible concatène "Verified on" et la date sans séparateur
- *  ("Verified on30.07.2026"). .date-ring est un flex column qui empile déjà
- *  visuellement le libellé et la date sur deux lignes, donc cet espace ne
- *  change rien au rendu — seul le nom accessible en profite. */
-export function dateRing(label, dateText) {
-  return `<span class="date-ring">${escapeHtml(label)} <strong>${escapeHtml(dateText)}</strong></span>`;
-}
-
-/** Les trois cases du verdict : l'échelle complète est montrée, la retenue
- *  porte la case pleine, le texte en gras et une mention lecteur d'écran.
- *  Jamais la couleur seule (spec D9). */
-export function verdictChecks(verdict, verdictsTable, checkedNote) {
-  const items = ['yes', 'kinda', 'no'].map((v) => {
-    const on = v === verdict;
-    const note = on ? `<span class="visually-hidden"> (${escapeHtml(checkedNote)})</span>` : '';
-    return `<span class="check-item${on ? ' is-checked' : ''}"><span class="check-box" aria-hidden="true"></span>${escapeHtml(verdictsTable[v].label)}${note}</span>`;
-  });
-  return `<span class="verdict-checks">${items.join('')}</span>`;
 }
 
 export function renderBreadcrumb(items) {
@@ -132,8 +100,6 @@ function renderLangSwitcher(alternates, currentLang, ui) {
  * @param {string} opts.homeHref - lien de la marque dans l'en-tête
  * @param {string} [opts.extraHead] - balises additionnelles insérées dans <head>
  * @param {{tapeBottom:string,railLeft:string,railRight:string,fallback:string}|null} [opts.sponsorSlots] - balisage sponsor déjà rendu par renderSponsorSlots(), ou null pour aucun
- * @param {Array<[string,string]>} [opts.refCells] - paires label/valeur affichées dans la
- *   cartouche de références (`.ref-strip`) sous l'en-tête ; aucune cartouche si vide
  * @param {string|null} [opts.robots] - contenu de <meta name="robots"> (ex. "noindex,follow"),
  *   aucune balise si absent : une page indexable n'a pas besoin de le dire
  * @param {boolean} [opts.hasNewsletter] - la page porte le formulaire SmartLetter (spec D13) :
@@ -141,7 +107,7 @@ function renderLangSwitcher(alternates, currentLang, ui) {
  */
 export function renderLayout({
   lang, path, title, description, alternates = [], xDefaultPath = null,
-  jsonLd = [], main, ui, homeHref, extraHead = '', sponsorSlots = null, refCells = [], robots = null,
+  jsonLd = [], main, ui, homeHref, extraHead = '', sponsorSlots = null, robots = null,
   hasNewsletter = false,
 }) {
   // Canonical = l'URL de la page elle-même, jamais une autre langue.
@@ -222,14 +188,6 @@ export function renderLayout({
   // petits écrans se range sous le contenu, avant le pied de page.
   const sp = sponsorSlots ?? { tapeBottom: '', railLeft: '', railRight: '', fallback: '' };
 
-  // La cartouche de références (dates, numéro de registre…) : une paire
-  // label/valeur par cellule, silencieuse si l'appelant n'en fournit aucune.
-  const refStrip = refCells.length
-    ? `<dl class="ref-strip">${refCells
-        .map(([label, value]) => `<div class="ref-cell"><dt class="ref-lbl">${escapeHtml(label)}</dt><dd class="ref-val">${escapeHtml(value)}</dd></div>`)
-        .join('')}</dl>`
-    : '';
-
   // Les rails n'existent que si la page en porte : l'accueil range les siens
   // dans la rangée sous le héros (spec D14) et rend la coquille sans eux. La
   // classe .has-rails est ce qui ouvre les trois pistes de grille au-delà de
@@ -283,7 +241,6 @@ ${headLines}
           <a class="github-btn" href="${GITHUB_REPO_URL}" aria-label="${escapeHtml(nav.github ?? 'GitHub')}">${GITHUB_MARK_SVG}</a>
         </div>
       </header>
-      ${refStrip}
       <main id="main">
 ${main}
       </main>
