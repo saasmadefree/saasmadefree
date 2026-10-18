@@ -1,18 +1,18 @@
 {
   "tagline": "Gestion de projet auto-hébergeable : tâches, suivi du temps, planification des ressources et portail client.",
-  "description": "Worklenz est une plateforme de gestion de projet avec des vues de tâches en liste, en tableau et en Gantt. Elle inclut aussi le suivi du temps, des modèles de projet, la planification de la capacité et de la charge de l'équipe, une vue financière avec budgets et coûts, un planning et un portail client. Tu peux importer des tâches depuis un CSV et exporter des projets entiers en CSV. La pile utilise React avec Ant Design côté front, TypeScript avec Express côté back, PostgreSQL pour les données, Redis pour le cache, et SeaweedFS, AWS S3 ou Azure Blob pour les fichiers. L'installation conseillée passe par Docker Compose, avec un script qui écrit le fichier d'environnement avec des secrets générés et peut configurer les certificats SSL. Le fichier compose démarre PostgreSQL, Redis et SeaweedFS ensemble. Une installation manuelle demande Node.js 20 ou plus et PostgreSQL 15 ou plus. Les invitations par email passent par un relais SMTP que tu configures. Le README précise que la version auto-hébergée inclut Planning, Finances et Portail client pour toutes les organisations. Le code est sous AGPL-3.0. Il peut remplacer des outils comme Asana pour les équipes qui ont besoin de suivre le temps et les budgets.",
+  "description": "Worklenz est une plateforme de gestion de projet avec des vues de tâches en liste, en tableau et en Gantt. Elle inclut aussi le suivi du temps, des modèles de projet, la planification de la capacité et de la charge de l’équipe, une vue financière avec budgets et coûts, un planning et un portail client. Tu peux importer des tâches depuis un CSV et exporter des projets entiers en CSV. La pile utilise React avec Ant Design côté front, TypeScript avec Express côté back, PostgreSQL pour les données, Redis pour le cache, et SeaweedFS, AWS S3 ou Azure Blob pour les fichiers. L’installation conseillée passe par Docker Compose, avec un script qui écrit le fichier d’environnement avec des secrets générés et peut configurer les certificats SSL. Le fichier compose démarre PostgreSQL, Redis et SeaweedFS ensemble. Une installation manuelle demande Node.js 20 ou plus et PostgreSQL 15 ou plus. Les invitations par email passent par un relais SMTP que tu configures. Le README précise que la version auto-hébergée inclut Planning, Finances et Portail client pour toutes les organisations. Le code est sous AGPL-3.0. Il peut remplacer des outils comme Asana pour les équipes qui ont besoin de suivre le temps et les budgets.",
   "strengths": [
     "Suivi du temps, finances de projet et portail client inclus dans la version auto-hébergée",
     "Vues en liste, en tableau et en Gantt, plus des modèles de projet",
     "Le script Docker génère les secrets et peut configurer les certificats SSL",
-    "La planification des ressources montre la capacité et la charge de l'équipe sur les projets",
+    "La planification des ressources montre la capacité et la charge de l’équipe sur les projets",
     "Import de tâches depuis un CSV et export de projets en CSV"
   ],
   "limits": [
     "Demande PostgreSQL, Redis et un stockage compatible S3 : la pile a plusieurs composants",
     "Les invitations demandent un relais SMTP à configurer toi-même",
-    "Import et export se limitent au CSV, d'après le README",
-    "Le README ne documente pas l'authentification unique (SSO) : vérifie avant de t'y fier en entreprise"
+    "Import et export se limitent au CSV, d’après le README",
+    "Le README ne documente pas l’authentification unique (SSO) : vérifie avant de t’y fier en entreprise"
   ],
   "bestFor": "Une petite agence ou une équipe de services qui veut tableaux de tâches, suivi du temps et budgets dans un seul outil sur son propre serveur."
 }

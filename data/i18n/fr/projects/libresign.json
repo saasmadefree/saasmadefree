@@ -1,18 +1,18 @@
 {
   "tagline": "Appli de signature de documents pour Nextcloud : circuits de signature, suivi et contrôle des certificats.",
-  "description": "LibreSign est une appli qui tourne dans Nextcloud et permet à une organisation de définir comment ses documents sont signés. Chaque circuit peut fixer qui signe en premier, quel rôle a chaque personne et quelles règles s'appliquent, et une même demande peut mêler des personnes de ton organisation et des personnes extérieures. Les signataires reçoivent des notifications et des relances. Chaque demande et chaque action sont consignées, ce qui donne une piste d'audit, et l'appli peut vérifier les fichiers signés ainsi que l'état de leurs certificats. Elle s'appuie sur tes fichiers, tes comptes et tes partages Nextcloud, et expose des API pour que d'autres systèmes lancent une demande de signature. La licence est l'AGPL-3.0. Le README ne donne pas d'étapes d'installation : tu suis le site de documentation séparé, et le projet demande aux organisations qui en dépendent de le parrainer. Concrètement, il te faut d'abord un serveur Nextcloud qui fonctionne. Face à DocuSign, elle couvre la boucle de base : envoyer un document, récolter les signatures et garder une piste d'audit. Ce n'est pas un produit autonome.",
+  "description": "LibreSign est une appli qui tourne dans Nextcloud et permet à une organisation de définir comment ses documents sont signés. Chaque circuit peut fixer qui signe en premier, quel rôle a chaque personne et quelles règles s’appliquent, et une même demande peut mêler des personnes de ton organisation et des personnes extérieures. Les signataires reçoivent des notifications et des relances. Chaque demande et chaque action sont consignées, ce qui donne une piste d’audit, et l’appli peut vérifier les fichiers signés ainsi que l’état de leurs certificats. Elle s’appuie sur tes fichiers, tes comptes et tes partages Nextcloud, et expose des API pour que d’autres systèmes lancent une demande de signature. La licence est l’AGPL-3.0. Le README ne donne pas d’étapes d’installation : tu suis le site de documentation séparé, et le projet demande aux organisations qui en dépendent de le parrainer. Concrètement, il te faut d’abord un serveur Nextcloud qui fonctionne. Face à DocuSign, elle couvre la boucle de base : envoyer un document, récolter les signatures et garder une piste d’audit. Ce n’est pas un produit autonome.",
   "strengths": [
-    "Chaque circuit fixe qui signe en premier, avec quel rôle et sous quelles règles.",
-    "Des signataires internes et externes peuvent signer la même demande.",
-    "Des relances et des notifications partent vers les signataires.",
-    "Consigne chaque demande et chaque action, ce qui donne une piste d'audit pour les contrôles ultérieurs.",
-    "Des API permettent à d'autres systèmes de créer et de suivre des demandes de signature."
+    "Chaque circuit fixe qui signe en premier, avec quel rôle et sous quelles règles",
+    "Des signataires internes et externes peuvent signer la même demande",
+    "Des relances et des notifications partent vers les signataires",
+    "Consigne chaque demande et chaque action, ce qui donne une piste d’audit pour les contrôles ultérieurs",
+    "Des API permettent à d’autres systèmes de créer et de suivre des demandes de signature"
   ],
   "limits": [
-    "Il faut un serveur Nextcloud : c'est une appli, pas un produit autonome.",
-    "Le README ne donne pas d'étapes d'installation : les instructions sont sur un site de documentation séparé.",
-    "Le README n'indique pas quels niveaux de signature légale sont pris en charge : vérifie la documentation par rapport à ton pays.",
-    "Aucun service de signature hébergé n'est décrit dans le README : l'hébergement et l'entretien sont pour toi."
+    "Il faut un serveur Nextcloud : c’est une appli, pas un produit autonome",
+    "Le README ne donne pas d’étapes d’installation : les instructions sont sur un site de documentation séparé",
+    "Le README n’indique pas quels niveaux de signature légale sont pris en charge : vérifie la documentation par rapport à ton pays",
+    "Aucun service de signature hébergé n’est décrit dans le README : l’hébergement et l’entretien sont pour toi"
   ],
-  "bestFor": "Une équipe déjà sur Nextcloud qui a besoin de circuits de signature et d'une piste d'audit pour ses contrats."
+  "bestFor": "Une équipe déjà sur Nextcloud qui a besoin de circuits de signature et d’une piste d’audit pour ses contrats."
 }

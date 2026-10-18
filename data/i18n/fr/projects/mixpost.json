@@ -1,17 +1,17 @@
 {
   "tagline": "Planificateur de posts auto-hébergé sur Laravel, avec une édition Lite gratuite et une édition Pro payante.",
-  "description": "Mixpost est un outil de programmation de posts pour les réseaux sociaux, écrit en PHP sur le framework Laravel. L'édition Lite gratuite de ce dépôt donne un calendrier, une médiathèque, des versions de post, des étiquettes et des statistiques de base. Tu l'installes toi-même, avec Docker, une installation PHP manuelle ou dans une application Laravel existante. La documentation conseille de le placer sur un domaine ou un sous-domaine public, car l'application doit dialoguer avec les serveurs des réseaux. Lite demande PHP 8.2 ou plus récent. Le projet vend aussi Mixpost Pro en achat unique et exploite un service Cloud hébergé. Pro ajoute ce dont une équipe a souvent besoin : un circuit d'approbation, une API et la publication sur tous les réseaux pris en charge. Pour remplacer Hootsuite ou Loomly, Lite suffit à un usage en solo sur trois réseaux. Les équipes qui veulent des approbations, plus de réseaux ou une boîte de réception doivent acheter Pro, un produit commercial avec sa propre licence. Le code de ce dépôt est sous licence MIT.",
+  "description": "Mixpost est un outil de programmation de posts pour les réseaux sociaux, écrit en PHP sur le framework Laravel. L’édition Lite gratuite de ce dépôt donne un calendrier, une médiathèque, des versions de post, des étiquettes et des statistiques de base. Tu l’installes toi-même, avec Docker, une installation PHP manuelle ou dans une application Laravel existante. La documentation conseille de le placer sur un domaine ou un sous-domaine public, car l’application doit dialoguer avec les serveurs des réseaux. Lite demande PHP 8.2 ou plus récent. Le projet vend aussi Mixpost Pro en achat unique et exploite un service Cloud hébergé. Pro ajoute ce dont une équipe a souvent besoin : un circuit d’approbation, une API et la publication sur tous les réseaux pris en charge. Pour remplacer Hootsuite ou Loomly, Lite suffit à un usage en solo sur trois réseaux. Les équipes qui veulent des approbations, plus de réseaux ou une boîte de réception doivent acheter Pro, un produit commercial avec sa propre licence. Le code de ce dépôt est sous licence MIT.",
   "strengths": [
     "Tourne avec Docker, en installation PHP manuelle ou dans une application Laravel existante",
     "Lite inclut gratuitement un calendrier, une médiathèque, des versions de post et des étiquettes",
-    "Pro coûte un paiement unique de 299 $ pour un domaine, sans abonnement mensuel par utilisateur",
-    "Serveur MCP et API documentés dans l'édition Pro pour l'automatisation"
+    "Pro se paie une seule fois, 299 $ pour un domaine, sans abonnement mensuel par utilisateur",
+    "Serveur MCP et API documentés dans l’édition Pro pour l’automatisation"
   ],
   "limits": [
     "Lite ne publie que sur les Pages Facebook, les profils Mastodon et les profils X : tous les autres réseaux demandent Pro",
-    "Le circuit d'approbation, le premier commentaire, le gestionnaire de hashtags, les modèles de post et l'API sont listés dans Pro, pas dans Lite",
-    "Les mainteneurs demandent que les contributions à Lite restent distinctes des fonctions Pro : les fonctions réservées à Pro n'arriveront pas dans Lite",
-    "Il faut un domaine ou un sous-domaine public : une installation purement locale n'est pas pratique"
+    "Le circuit d’approbation, le premier commentaire, le gestionnaire de hashtags, les modèles de post et l’API sont listés dans Pro, pas dans Lite",
+    "Les mainteneurs demandent que les contributions à Lite restent distinctes des fonctions Pro : les fonctions réservées à Pro n’arriveront pas dans Lite",
+    "Il faut un domaine ou un sous-domaine public : une installation purement locale n’est pas pratique"
   ],
-  "bestFor": "Un créateur solo ou une petite marque avec un VPS, qui programme des posts sur les Pages Facebook, Mastodon et X sans avoir besoin d'approbations."
+  "bestFor": "Un créateur solo ou une petite marque avec un VPS, qui programme des posts sur les Pages Facebook, Mastodon et X sans avoir besoin d’approbations."
 }

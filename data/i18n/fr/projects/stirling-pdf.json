@@ -1,18 +1,18 @@
 {
-  "tagline": "PDF auto-hébergé : plus de 50 outils, une API et un client bureau, gratuit jusqu'à 5 utilisateurs.",
-  "description": "Stirling PDF existe sous trois formes : un programme de bureau, une interface web et un serveur qui expose une API sur ton réseau. Il couvre plus de 50 opérations, dont fusionner, découper, signer, caviarder, convertir, faire de l'OCR et compresser, et te laisse enchaîner des étapes dans des pipelines sans code. Presque tous les outils ont un point d'accès REST, donc des scripts et d'autres applis peuvent les appeler. Le démarrage rapide tient en une commande docker run qui sert l'interface sur le port 8080, et la documentation couvre aussi Kubernetes et une installation par JAR. Tes fichiers restent sur ta machine au lieu d'aller chez un service extérieur. Le dépôt est de type open core. Le fichier de licence applique la MIT à la plupart du code, mais place plusieurs dossiers, comme les dossiers propriétaires et desktop, sous d'autres licences. Selon la documentation, un serveur auto-hébergé tourne avec une formule gratuite limitée à 5 utilisateurs ; base de données externe, cluster et stockage de fichiers S3 demandent la formule payante Team, et la connexion SAML et le journal d'audit demandent Enterprise. Il convient à ceux qui paient Acrobat, Smallpdf ou iLovePDF pour fusionner, signer et convertir des fichiers. Regarde le tableau des formules si tu as besoin d'un stockage partagé ou de plus de 5 comptes.",
+  "tagline": "Boîte à outils PDF auto-hébergée : 50 outils et plus, API, client bureau. Gratuit jusqu’à 5 utilisateurs.",
+  "description": "Stirling PDF existe sous trois formes : un programme de bureau, une interface web et un serveur qui expose une API sur ton réseau. Il couvre plus de 50 opérations, dont fusionner, découper, signer, caviarder, convertir, faire de l’OCR et compresser, et te laisse enchaîner des étapes dans des pipelines sans code. Presque tous les outils ont un point d’accès REST, donc des scripts et d’autres applis peuvent les appeler. Le démarrage rapide tient en une commande docker run qui sert l’interface sur le port 8080, et la documentation couvre aussi Kubernetes et une installation par JAR. Tes fichiers restent sur ta machine au lieu d’aller chez un service extérieur. Le dépôt est de type open core. Le fichier de licence applique la MIT à la plupart du code, mais place plusieurs dossiers, comme les dossiers propriétaires et desktop, sous d’autres licences. Selon la documentation, un serveur auto-hébergé tourne avec une formule gratuite limitée à 5 utilisateurs ; base de données externe, cluster et stockage de fichiers S3 demandent la formule payante Team, et la connexion SAML et le journal d’audit demandent Enterprise. Il convient à ceux qui paient Acrobat, Smallpdf ou iLovePDF pour fusionner, signer et convertir des fichiers. Regarde le tableau des formules si tu as besoin d’un stockage partagé ou de plus de 5 comptes.",
   "strengths": [
     "Plus de 50 opérations PDF, dont fusion, découpe, signature, caviardage, conversion, OCR et compression",
-    "API REST pour presque tous les outils, plus des pipelines sans code dans l'interface",
+    "API REST pour presque tous les outils, plus des pipelines sans code dans l’interface",
     "Une seule commande docker run pour démarrer ; la documentation couvre aussi Kubernetes et le JAR",
     "Client bureau et interface dans le navigateur en plus du serveur",
     "Connexion OAuth2 et OIDC et signature par certificat serveur disponibles dans la formule gratuite"
   ],
   "limits": [
-    "Open core : plusieurs dossiers sont sous d'autres licences, et certaines fonctionnalités sont réservées aux formules payantes",
-    "La formule gratuite d'un serveur auto-hébergé est plafonnée à 5 utilisateurs",
+    "Open core : plusieurs dossiers sont sous d’autres licences, et certaines fonctionnalités sont réservées aux formules payantes",
+    "La formule gratuite d’un serveur auto-hébergé est plafonnée à 5 utilisateurs",
     "Base de données externe, cluster et stockage de fichiers S3 ou en base demandent la formule Team",
-    "La connexion SAML, le journal d'audit et les statistiques d'usage demandent la formule Enterprise"
+    "La connexion SAML, le journal d’audit et les statistiques d’usage demandent la formule Enterprise"
   ],
-  "bestFor": "Un cabinet ou un indépendant qui modifie et convertit des PDF confidentiels et dispose d'un petit serveur pour une équipe de 5 personnes au plus."
+  "bestFor": "Un cabinet ou un indépendant qui modifie et convertit des PDF confidentiels et dispose d’un petit serveur pour une équipe de 5 personnes au plus."
 }

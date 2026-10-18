@@ -1,18 +1,18 @@
 {
   "tagline": "Outil SEO auto-hébergé : mots-clés, suivi de positions et audits, avec ta propre clé DataForSEO.",
-  "description": "OpenSEO est un atelier SEO qui couvre la recherche de mots-clés, le suivi de positions, l'analyse des concurrents, les backlinks, les audits de site et le suivi de la visibilité dans les IA. Il ne possède aucun index de données. Chaque chiffre vient de DataForSEO, un service payé à l'usage : tu fournis ta clé d'API et tu paies directement. Un nouveau compte DataForSEO reçoit 1 $ de crédit, et la recharge minimale est de 50 $. Tu peux l'auto-héberger de deux façons. La voie Docker vise un usage perso sur une seule machine et démarre avec l'authentification de l'appli désactivée. La voie Cloudflare se déploie en une commande sur ton compte, marche avec l'offre gratuite et place une connexion Cloudflare Access devant l'appli. OpenSEO expose aussi un serveur MCP et des skills pour agents, afin que des outils comme Claude Code interrogent tes données SEO. La licence est MIT. Une version hébergée coûte 10 $ par mois. Il remplace Semrush ou Ahrefs pour des besoins plus légers, avec des coûts à l'usage plutôt qu'un abonnement.",
+  "description": "OpenSEO est un atelier SEO qui couvre la recherche de mots-clés, le suivi de positions, l’analyse des concurrents, les backlinks, les audits de site et le suivi de la visibilité dans les IA. Il ne possède aucun index de données. Chaque chiffre vient de DataForSEO, un service payé à l’usage : tu fournis ta clé d’API et tu paies directement. Un nouveau compte DataForSEO reçoit 1 $ de crédit, et la recharge minimale est de 50 $. Tu peux l’auto-héberger de deux façons. La voie Docker vise un usage perso sur une seule machine et démarre avec l’authentification de l’appli désactivée. La voie Cloudflare se déploie en une commande sur ton compte, marche avec l’offre gratuite et place une connexion Cloudflare Access devant l’appli. OpenSEO expose aussi un serveur MCP et des skills pour agents, afin que des outils comme Claude Code interrogent tes données SEO. La licence est MIT. Une version hébergée coûte 10 $ par mois. Il remplace Semrush ou Ahrefs pour des besoins plus légers, avec des coûts à l’usage plutôt qu’un abonnement.",
   "strengths": [
-    "Pas d'abonnement : tu paies DataForSEO à chaque requête",
-    "Couvre la recherche de mots-clés, le suivi de positions, l'analyse des concurrents, les backlinks, les audits de site et la visibilité dans les IA",
+    "Pas d’abonnement : tu paies DataForSEO à chaque requête",
+    "Couvre la recherche de mots-clés, le suivi de positions, l’analyse des concurrents, les backlinks, les audits de site et la visibilité dans les IA",
     "Serveur MCP et skills pour Claude Code et les agents du même genre",
     "Le déploiement Cloudflare crée la base de données, le stockage et une connexion Access en une seule commande"
   ],
   "limits": [
     "Il faut un compte DataForSEO, avec une recharge minimale de 50 $",
-    "L'installation Docker tourne sans authentification : place-la derrière la connexion de ton proxy ou sur un réseau privé",
-    "La voie Cloudflare exige R2, qui demande un moyen de paiement enregistré même avec l'offre gratuite",
-    "L'appli envoie une télémétrie d'usage anonymisée, comme des compteurs agrégés, liée à un identifiant d'installation aléatoire",
-    "Ses données viennent d'une seule API tierce, donc la couverture et la fraîcheur sont celles de DataForSEO"
+    "L’installation Docker tourne sans authentification : place-la derrière la connexion de ton proxy ou sur un réseau privé",
+    "La voie Cloudflare exige R2, qui demande un moyen de paiement enregistré même avec l’offre gratuite",
+    "L’appli envoie une télémétrie d’usage anonymisée, comme des compteurs agrégés, liée à un identifiant d’installation aléatoire",
+    "Ses données viennent d’une seule API tierce, donc la couverture et la fraîcheur sont celles de DataForSEO"
   ],
   "bestFor": "Un SEO freelance ou une petite agence qui a des besoins de recherche ponctuels et juge les abonnements Semrush et Ahrefs trop lourds."
 }

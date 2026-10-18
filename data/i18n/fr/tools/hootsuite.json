@@ -29,19 +29,19 @@
     },
     {
       "q": "Quelle est la meilleure alternative gratuite à Hootsuite ?",
-      "a": "Postiz est le meilleur choix : programmation au calendrier et publication croisée sur de nombreux réseaux, avec canaux, posts et membres d'équipe illimités en auto-hébergé. Il n'inclut pas la boîte de réception unifiée de Hootsuite. Mixpost est l'alternative pour quelques réseaux, avec une édition Lite gratuite limitée aux Pages Facebook, Mastodon et X."
+      "a": "Postiz est le meilleur choix : programmation au calendrier et publication croisée sur de nombreux réseaux, avec canaux, posts et membres d’équipe illimités en auto-hébergé. Il n’inclut pas la boîte de réception unifiée de Hootsuite. Mixpost est l’alternative pour quelques réseaux, avec une édition Lite gratuite limitée aux Pages Facebook, Mastodon et X."
     },
     {
       "q": "Pourquoi je ne peux pas simplement me connecter à mes comptes sociaux, comme dans Hootsuite ?",
-      "a": "Hootsuite gère ses propres applications approuvées sur chaque réseau. Quand tu auto-héberges, tu crées ta propre application développeur sur chaque plateforme et tu la fais approuver, ce qui peut prendre des semaines. Les statistiques demandent des droits supplémentaires sur ces applications. C'est le principal coût du départ."
+      "a": "Hootsuite gère ses propres applications approuvées sur chaque réseau. Quand tu auto-héberges, tu crées ta propre application développeur sur chaque plateforme et tu la fais approuver, ce qui peut prendre des semaines. Les statistiques demandent des droits supplémentaires sur ces applications. C’est le principal coût du départ."
     }
   ],
-  "alternativesIntro": "La meilleure alternative gratuite à Hootsuite est Postiz : il programme et publie sur de nombreux réseaux depuis un calendrier, avec des canaux, des posts et des membres d'équipe illimités quand tu l'héberges toi-même, plus une API publique. Le piège : tu dois créer et faire approuver ta propre application développeur sur chaque réseau, ce qui peut prendre des semaines. Tu perds la boîte de réception unifiée de Hootsuite, la modération des commentaires et les analyses poussées. Mixpost, sous licence MIT, convient pour quelques réseaux : son édition Lite gratuite ne publie que sur les Pages Facebook, Mastodon et X. Coder la tienne ne recrée ni les connecteurs ni la boîte de réception : choisis Postiz ou paie.",
+  "alternativesIntro": "La meilleure alternative gratuite à Hootsuite est Postiz : il programme et publie sur de nombreux réseaux depuis un calendrier, avec des canaux, des posts et des membres d’équipe illimités quand tu l’héberges toi-même, plus une API publique. Le piège : tu dois créer et faire approuver ta propre application développeur sur chaque réseau, ce qui peut prendre des semaines. Tu perds la boîte de réception unifiée de Hootsuite, la modération des commentaires et les analyses poussées. Mixpost, sous licence MIT, convient pour quelques réseaux : son édition Lite gratuite ne publie que sur les Pages Facebook, Mastodon et X. Coder la tienne ne recrée ni les connecteurs ni la boîte de réception : choisis Postiz ou paie.",
   "alternativeNotes": {
     "postiz-app": "Couvre la programmation au calendrier, la publication croisée, une API publique et le travail en équipe. La publication et les statistiques demandent tes propres applications développeur, et les fonctions IA tes propres clés chez un fournisseur.",
-    "mixpost": "Couvre un calendrier, une médiathèque et des versions de post, sur Laravel. Lite ne publie que sur les Pages Facebook, Mastodon et X, et les autres réseaux, les approbations et l'API demandent Pro, à 299 $ en achat unique.",
-    "trypost": "Couvre 13 réseaux par leurs API officielles, des approbations et des espaces de travail pour agences. C'est un projet jeune, et tu configures toi-même l'accès à l'API de chaque réseau.",
-    "socioboard": "Couvre la programmation, les statistiques, le RSS et les tâches d'équipe pour neuf réseaux. Il demande MongoDB et MySQL, et ses étapes d'installation sont dans un fichier à part.",
+    "mixpost": "Couvre un calendrier, une médiathèque et des versions de post, sur Laravel. Lite ne publie que sur les Pages Facebook, Mastodon et X, et les autres réseaux, les approbations et l’API demandent Pro, à 299 $ en achat unique.",
+    "trypost": "Couvre 13 réseaux par leurs API officielles, des approbations et des espaces de travail pour agences. C’est un projet jeune, et tu configures toi-même l’accès à l’API de chaque réseau.",
+    "socioboard": "Couvre la programmation, les statistiques, le RSS et les tâches d’équipe pour neuf réseaux. Il demande MongoDB et MySQL, et ses étapes d’installation sont dans un fichier à part.",
     "threaduler": "Couvre la publication de fils sur X depuis une base Notion, avec une prise en charge de Bluesky annoncée mais non confirmée. Il est étiqueté 0.1 alpha et ne gère encore aucun autre réseau."
   }
 }

@@ -1,19 +1,19 @@
 {
   "tagline": "Planificateur auto-hébergé pour 13 réseaux : calendrier, approbations, API REST et serveur MCP.",
-  "description": "TryPost est un planificateur de réseaux sociaux construit avec Laravel et Vue. Tu écris un post, puis tu en adaptes une version pour chaque réseau en vérifiant l'aperçu. Les posts peuvent aller dans un calendrier ou dans une file par canal, où chaque nouveau post prend le prochain créneau libre. Une étape de relecture permet aux administrateurs d'accepter le post d'un membre ou de le renvoyer. Les espaces de travail séparent les marques ou les clients, ce qui convient aux agences. Le README liste Instagram, TikTok, LinkedIn, X, YouTube, Facebook, Threads, Bluesky, Pinterest, Mastodon, Google Business, Telegram et Discord, chacun publié par l'API officielle du réseau. Une API REST et un serveur MCP de plus de 80 outils permettent à des scripts ou à des assistants IA de créer des posts et de lire les statistiques. Des webhooks signalent les publications réussies ou en échec. La licence est AGPL-3.0, et le README dit que la version auto-hébergée a toutes les fonctionnalités du cloud payant, sans paliers verrouillés. Un guide de déploiement est dans le dépôt, et la voie prise en charge est Docker. Publier sur chaque réseau demande un accès développeur à son API : prévois d'enregistrer des applications sur les plateformes que tu utilises. C'est un projet jeune à côté de Hootsuite.",
+  "description": "TryPost est un planificateur de réseaux sociaux construit avec Laravel et Vue. Tu écris un post, puis tu en adaptes une version pour chaque réseau en vérifiant l’aperçu. Les posts peuvent aller dans un calendrier ou dans une file par canal, où chaque nouveau post prend le prochain créneau libre. Une étape de relecture permet aux administrateurs d’accepter le post d’un membre ou de le renvoyer. Les espaces de travail séparent les marques ou les clients, ce qui convient aux agences. Le README liste Instagram, TikTok, LinkedIn, X, YouTube, Facebook, Threads, Bluesky, Pinterest, Mastodon, Google Business, Telegram et Discord, chacun publié par l’API officielle du réseau. Une API REST et un serveur MCP de plus de 80 outils permettent à des scripts ou à des assistants IA de créer des posts et de lire les statistiques. Des webhooks signalent les publications réussies ou en échec. La licence est AGPL-3.0, et le README dit que la version auto-hébergée a toutes les fonctionnalités du cloud payant, sans paliers verrouillés. Un guide de déploiement est dans le dépôt, et la voie prise en charge est Docker. Publier sur chaque réseau demande un accès développeur à son API : prévois d’enregistrer des applications sur les plateformes que tu utilises. C’est un projet jeune à côté de Hootsuite.",
   "strengths": [
-    "Publie sur 13 réseaux par leurs API officielles, sans simple rappel en solution de repli",
+    "Publie vraiment sur 13 réseaux par leurs API officielles : il ne se contente jamais de te rappeler de poster à la main",
     "Files par canal et calendrier avec déplacement par glisser-déposer",
-    "Circuit d'approbation et espaces de travail séparés pour les agences qui gèrent plusieurs marques",
+    "Circuit d’approbation et espaces de travail séparés pour les agences qui gèrent plusieurs marques",
     "API REST, webhooks et serveur MCP de plus de 80 outils",
-    "L'édition auto-hébergée a toutes les fonctionnalités de l'édition cloud, sans paliers payants"
+    "L’édition auto-hébergée a toutes les fonctionnalités de l’édition cloud, sans paliers payants"
   ],
   "limits": [
     "Projet jeune : attends-toi à des fonctionnalités qui changent",
-    "L'accès à l'API de chaque réseau, les clés et les règles de validation sont à ta charge en auto-hébergé",
-    "L'AGPL-3.0 oblige à publier tes modifications si tu fais tourner une version modifiée comme service réseau",
+    "L’accès à l’API de chaque réseau, les clés et les règles de validation sont à ta charge en auto-hébergé",
+    "L’AGPL-3.0 oblige à publier tes modifications si tu fais tourner une version modifiée comme service réseau",
     "Le README ne décrit ni boîte de réception, ni écoute sociale, ni gestion des publicités",
-    "La pile PHP, Laravel et Vue demande ces compétences pour déboguer ou étendre l'outil"
+    "La pile PHP, Laravel et Vue demande ces compétences pour déboguer ou étendre l’outil"
   ],
-  "bestFor": "Une petite agence ou une équipe interne qui programme des posts pour plusieurs marques et veut faire tourner l'outil sur son propre serveur."
+  "bestFor": "Une petite agence ou une équipe interne qui programme des posts pour plusieurs marques et veut faire tourner l’outil sur son propre serveur."
 }

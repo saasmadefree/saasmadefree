@@ -1,18 +1,18 @@
 {
   "tagline": "Gestionnaire de newsletters en PHP, auto-hébergé, avec gestion des rebonds et limitation de débit.",
-  "description": "phpList envoie des campagnes email et des newsletters depuis un serveur que tu fais tourner. C'est une application PHP qui demande MySQL ou MariaDB et Apache, et la page des prérequis système exige PHP 8.1 ou plus récent avec une liste d'extensions. Tu envoies les fichiers de la version dans la racine web, tu crées une base de données, tu modifies le fichier de configuration et tu termines dans un installeur en navigateur. Une image Docker est aussi publiée. La liste des fonctionnalités couvre l'import d'abonnés depuis CSV et Excel avec leurs attributs, les messages personnalisés, la programmation et la remise en file, le traitement des rebonds, la limitation de débit par domaine et la prise en charge intégrée d'Amazon SES. Il peut aussi lire des flux RSS et en envoyer le contenu à intervalles réguliers, ou envoyer une page web comme corps du message. Il est sous licence AGPL. Le projet gère aussi un service hébergé sur phplist.com, gratuit au départ, avec une migration des données entre les deux. Comme remplaçant de Mailchimp, il couvre les listes, les campagnes, les statistiques et les rebonds. La liste des fonctionnalités ne décrit pas de créateur visuel d'automatisations, et les mises à jour se font à la main, avec une sauvegarde de la base et une copie des fichiers.",
+  "description": "phpList envoie des campagnes email et des newsletters depuis un serveur que tu fais tourner. C’est une application PHP qui demande MySQL ou MariaDB et Apache, et la page des prérequis système exige PHP 8.1 ou plus récent avec une liste d’extensions. Tu envoies les fichiers de la version dans la racine web, tu crées une base de données, tu modifies le fichier de configuration et tu termines dans un installeur en navigateur. Une image Docker est aussi publiée. La liste des fonctionnalités couvre l’import d’abonnés depuis CSV et Excel avec leurs attributs, les messages personnalisés, la programmation et la remise en file, le traitement des rebonds, la limitation de débit par domaine et la prise en charge intégrée d’Amazon SES. Il peut aussi lire des flux RSS et en envoyer le contenu à intervalles réguliers, ou envoyer une page web comme corps du message. Il est sous licence AGPL. Le projet gère aussi un service hébergé sur phplist.com, gratuit au départ, avec une migration des données entre les deux. Comme remplaçant de Mailchimp, il couvre les listes, les campagnes, les statistiques et les rebonds. La liste des fonctionnalités ne décrit pas de créateur visuel d’automatisations, et les mises à jour se font à la main, avec une sauvegarde de la base et une copie des fichiers.",
   "strengths": [
-    "Importe et exporte les abonnés en CSV ou Excel, attributs compris.",
-    "Traitement des rebonds avec des règles de politique et d'expressions régulières.",
-    "Gestion de file avec limitation de débit par domaine pour les gros envois.",
-    "Prise en charge intégrée d'Amazon SES et un flux RSS vers email.",
-    "Architecture à plugins et plusieurs API."
+    "Importe et exporte les abonnés en CSV ou Excel, attributs compris",
+    "Traitement des rebonds avec des règles de politique et d’expressions régulières",
+    "Gestion de file avec limitation de débit par domaine pour les gros envois",
+    "Prise en charge intégrée d’Amazon SES et un flux RSS vers email",
+    "Architecture à plugins et plusieurs API"
   ],
   "limits": [
-    "Les mises à jour sont manuelles : sauvegarde de la base, copie des fichiers, passage par la page de mise à jour.",
-    "Il faut Apache et une liste d'extensions PHP : pas d'installation en un seul binaire.",
-    "La liste des fonctionnalités ne montre ni créateur visuel d'automatisations ni éditeur d'emails en glisser-déposer.",
-    "L'ancien thème Dressprow n'est pas maintenu actuellement."
+    "Les mises à jour sont manuelles : sauvegarde de la base, copie des fichiers, passage par la page de mise à jour",
+    "Il faut Apache et une liste d’extensions PHP : pas d’installation en un seul binaire",
+    "La liste des fonctionnalités ne montre ni créateur visuel d’automatisations ni éditeur d’emails en glisser-déposer",
+    "L’ancien thème Dressprow n’est pas maintenu actuellement"
   ],
-  "bestFor": "Une petite organisation qui a un hébergement PHP et une liste de diffusion, et veut garder la main sur les rebonds et la vitesse d'envoi."
+  "bestFor": "Une petite organisation qui a un hébergement PHP et une liste de diffusion, et veut garder la main sur les rebonds et la vitesse d’envoi."
 }

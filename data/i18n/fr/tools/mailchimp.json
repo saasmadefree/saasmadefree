@@ -13,14 +13,32 @@
   "notes": "Un exemple classique de barrière cachée : l’interface d’envoi est facile à reconstruire ; l’arrivée en boîte de réception ne se règle pas d’un geste de la main.",
   "prompt": "Construis un outil de campagne email pour petite liste : des contacts avec tags et champs personnalisés, import et export CSV, et des segments définis comme des filtres enregistrés (a tel tag, inscrit après une date, a ouvert la dernière campagne). Écris les campagnes en Markdown, rendues en un email HTML propre en une colonne avec une alternative texte brut générée automatiquement. Envoie via une vraie API d’emailing transactionnel (Amazon SES ou équivalent) avec limitation de débit et un statut par destinataire ; branche les webhooks de bounce et de plainte pour supprimer automatiquement ces adresses à l’avenir. Intègre la conformité au lieu de la rajouter après coup : un lien de désabonnement et ton adresse postale dans chaque pied de page, un en-tête List-Unsubscribe, et un double opt-in sur le formulaire d’inscription public. Fais du suivi d’ouverture un interrupteur par campagne, désactivé par défaut. Affiche un rapport de campagne avec les comptages d’envois, de bounces et de désabonnements.\n\nNe construis pas d’éditeur de modèles en glisser-déposer, de parcours d’automatisation visuels, ni d’intégrations e-commerce — ce sont de vrais produits séparés. Sois direct dans le README : l’arrivée en boîte de réception se gagne par le comportement d’envoi dans le temps, pas en se configurant. Documente la mise en place de SPF, DKIM et DMARC, et fais chauffer progressivement le volume d’envoi sur un nouveau domaine.",
   "faq": [
-    { "q": "Puis-je importer mon audience Mailchimp existante ?", "a": "Oui — Mailchimp exporte tes contacts, tags et champs personnalisés en CSV, qui s’importe directement ici. Les parcours d’automatisation et les modèles ne se transfèrent pas ; cette logique doit être reconstruite depuis zéro." },
-    { "q": "Ça marche sur mon téléphone ?", "a": "La vue admin est une simple page web, utilisable sur téléphone pour une vérification rapide, mais l’éditeur n’est pas optimisé pour un petit écran et il n’y a pas d’app dédiée." },
-    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement, domaine et base de données, typiquement quelques dollars par mois, plus les coûts d’envoi par email sur l’API transactionnelle — souvent bien en dessous des paliers tarifaires de Mailchimp pour de petites listes." },
-    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La réputation d’envoi. Les IP partagées et dédiées de Mailchimp portent des années de confiance établie auprès des fournisseurs de boîtes mail ; un tout nouveau domaine d’envoi part de zéro et doit gagner cette confiance de la même façon lente, quelle que soit la qualité du code." },
-    { "q": "Quelle est la meilleure alternative gratuite à Mailchimp ?", "a": "Listmonk est la meilleure alternative gratuite à Mailchimp pour les newsletters. Il gère les listes, les segments et les campagnes sur ton propre serveur. Ajoute ton propre fournisseur SMTP, et n’attends pas d’automatisations visuelles." },
-    { "q": "Quelle alternative a des automatisations comme les parcours de Mailchimp ?", "a": "Mautic est la plus proche, avec des automatisations visuelles, des formulaires et des segments. Il est plus lourd à faire tourner que Listmonk. Dittofeed construit aussi des parcours déclenchés, mais il vise les événements produit plus que les newsletters." }
+    {
+      "q": "Puis-je importer mon audience Mailchimp existante ?",
+      "a": "Oui — Mailchimp exporte tes contacts, tags et champs personnalisés en CSV, qui s’importe directement ici. Les parcours d’automatisation et les modèles ne se transfèrent pas ; cette logique doit être reconstruite depuis zéro."
+    },
+    {
+      "q": "Ça marche sur mon téléphone ?",
+      "a": "La vue admin est une simple page web, utilisable sur téléphone pour une vérification rapide, mais l’éditeur n’est pas optimisé pour un petit écran et il n’y a pas d’app dédiée."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Hébergement, domaine et base de données, typiquement quelques dollars par mois, plus les coûts d’envoi par email sur l’API transactionnelle — souvent bien en dessous des paliers tarifaires de Mailchimp pour de petites listes."
+    },
+    {
+      "q": "Quelle est la chose qui ne survit pas à la reconstruction ?",
+      "a": "La réputation d’envoi. Les IP partagées et dédiées de Mailchimp portent des années de confiance établie auprès des fournisseurs de boîtes mail ; un tout nouveau domaine d’envoi part de zéro et doit gagner cette confiance de la même façon lente, quelle que soit la qualité du code."
+    },
+    {
+      "q": "Quelle est la meilleure alternative gratuite à Mailchimp ?",
+      "a": "Listmonk est la meilleure alternative gratuite à Mailchimp pour les newsletters. Il gère les listes, les segments et les campagnes sur ton propre serveur. Ajoute ton propre fournisseur SMTP, et n’attends pas d’automatisations visuelles."
+    },
+    {
+      "q": "Quelle alternative a des automatisations comme les parcours de Mailchimp ?",
+      "a": "Mautic est la plus proche, avec des automatisations visuelles, des formulaires et des segments. Il est plus lourd à faire tourner que Listmonk. Dittofeed construit aussi des parcours déclenchés, mais il vise les événements produit plus que les newsletters."
+    }
   ],
-  "alternativesIntro": "La meilleure alternative gratuite à Mailchimp est Listmonk : il gère les listes, les segments et l’envoi de campagnes sur ton propre serveur. Il a un éditeur d’emails en glisser-déposer, mais pas d’automatisations visuelles ni de synchro e-commerce. Tu perds aussi la réputation d’envoi de Mailchimp : tu dois brancher un SMTP et garder tes listes propres. Mautic est le bon choix si tu as besoin d’automatisations et de formulaires, même s’il est plus lourd à faire tourner. Pour une newsletter à une petite liste, Listmonk gagne. Si la délivrabilité ou l’automatisation est ton métier, continue de payer : la formule d’entrée coûte 20 $ par mois pour une petite liste.",
+  "alternativesIntro": "La meilleure alternative gratuite à Mailchimp est Listmonk : il gère les listes, les segments et l’envoi de campagnes sur ton propre serveur. Il a un éditeur d’emails en glisser-déposer, mais pas d’automatisations visuelles ni de synchro e-commerce. Tu perds aussi la réputation d’envoi de Mailchimp : tu dois brancher un SMTP et garder tes listes propres. Mautic est le bon choix si tu as besoin d’automatisations et de formulaires, même s’il est plus lourd à faire tourner. Pour une newsletter à une petite liste, Listmonk est le meilleur choix. Si la délivrabilité ou l’automatisation est ton métier, continue de payer : la formule d’entrée coûte 20 $ par mois pour une petite liste.",
   "alternativeNotes": {
     "listmonk": "Couvre les listes, les segments, l’envoi de campagnes, un éditeur d’emails en glisser-déposer, les modèles et la gestion des désabonnements. Il n’a pas d’automatisations visuelles.",
     "mautic": "Couvre les campagnes email, les segments, les formulaires et les automatisations visuelles. Il est plus lourd à faire tourner qu’un outil de newsletter.",

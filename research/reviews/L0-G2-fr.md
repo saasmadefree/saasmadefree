@@ -72,3 +72,11 @@ Column 1 here means "facts identical to en and data/", column 4 "calque of the E
 - docuseal and documenso `description` cite hosted plans from 20 $ and 25 $ while data/projects `hosted.priceFrom` is 0 for both (free tier). Both prices are sourced ("Hosted plan from 20 USD", "from 25 USD") and identical to en, so not a translation defect; flag for the next data pass.
 - pydio-cells and opensign are `open-core` in data/projects, but neither the en nor the fr text names a paid edition. fr is consistent with the en that passed the gate; worth a word in a later data/content pass.
 - Licence honesty: Notifuse is described as BUSL-1.1 for v40+, with explicit negations only ("n'est pas une licence open source reconnue par l'OSI", "pas un projet open source au sens strict"). No banned "open source"/"libre" claim found for the six listed projects.
+
+## Fix round 1
+- dropbox-plus faq[5].a: "une sauvegarde en moins" replaced by "si ton portable est éteint, tes fichiers ne sont nulle part ailleurs".
+- opencloud description: "pièces mobiles" and the misattached "t'engager sur les clients" rewritten as proposed.
+- documenso description: "effort de bonne foi" replaced by "ne sont pas garantis"; limits[3] now "La sécurité du réseau est à ta charge : …".
+- spree-commerce description: "fournir le travail Rails et TypeScript" replaced by "si tu as des développeurs Rails et TypeScript".
+- plunk description: "trois métiers" and "formulaires de croissance de liste" replaced by "trois choses" and "formulaires d'inscription pour faire grossir ta liste".
+- Also fixed: apostrophes and list-item punctuation normalised batch-wide; seafile Dropbox sentence, shopify/canva/mailchimp intros, woocommerce/prestashop/bagisto/wraft wordings.

@@ -11,7 +11,7 @@
   "limits": [
     "Les intégrations sont annoncées « à venir » dans le README : pas encore de connecteurs prêts à l’emploi",
     "Parmi les tickets ouverts, on trouve des problèmes de connexion OIDC et Microsoft, et l’échec de création du premier utilisateur sur une installation auto-hébergée",
-    "Fonctionnalités de kanban basique : tableaux, listes, cartes, étiquettes et commentaires, sans chronologie ni tableau de bord décrits",
+    "Un kanban basique : tableaux, listes, cartes, étiquettes et commentaires, sans chronologie ni tableau de bord décrits",
     "Demande une base PostgreSQL et plusieurs variables d’environnement obligatoires avant le premier démarrage"
   ],
   "bestFor": "Une petite équipe ou un freelance qui tient ses tableaux dans Trello, possède un VPS et veut les mêmes cartes sur une infrastructure qu’il contrôle."

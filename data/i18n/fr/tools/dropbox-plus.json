@@ -28,8 +28,14 @@
       "q": "Comment récupérer tout ce qui est dans Dropbox ?",
       "a": "L’export de compte produit une archive complète, ou tu peux simplement copier le dossier local si tu as la synchro complète plutôt que des fichiers en ligne uniquement. Les dossiers partagés possédés par d’autres personnes ne passent pas, et l’historique de versions reste derrière."
     },
-    { "q": "Quelle est la meilleure alternative gratuite à Dropbox Plus ?", "a": "Nextcloud est la meilleure alternative gratuite à Dropbox. Il couvre la synchro, les liens de partage et l’historique des versions sur ton propre serveur. Tu prends en charge le serveur, ses sauvegardes et ses mises à jour, ce que Dropbox fait pour toi." },
-    { "q": "Je peux synchroniser mes ordinateurs sans faire tourner de serveur ?", "a": "Oui, avec Syncthing. Il synchronise les dossiers directement entre tes machines et signale les versions en conflit. Il a une interface web d’administration, mais ni explorateur de fichiers web, ni liens de partage, ni copie dans le cloud : un portable éteint, c’est une sauvegarde en moins." }
+    {
+      "q": "Quelle est la meilleure alternative gratuite à Dropbox Plus ?",
+      "a": "Nextcloud est la meilleure alternative gratuite à Dropbox. Il couvre la synchro, les liens de partage et l’historique des versions sur ton propre serveur. Tu prends en charge le serveur, ses sauvegardes et ses mises à jour, ce que Dropbox fait pour toi."
+    },
+    {
+      "q": "Je peux synchroniser mes ordinateurs sans faire tourner de serveur ?",
+      "a": "Oui, avec Syncthing. Il synchronise les dossiers directement entre tes machines et signale les versions en conflit. Il a une interface web d’administration, mais ni explorateur de fichiers web, ni liens de partage, ni copie dans le cloud : si ton portable est éteint, tes fichiers ne sont nulle part ailleurs."
+    }
   ],
   "alternativesIntro": "La meilleure alternative gratuite à Dropbox est Nextcloud : synchro de fichiers, liens de partage, historique des versions et applis, sur ton propre serveur. Tu gères le serveur et ses sauvegardes, et tu paies le stockage. Tu perds le moteur de synchro éprouvé de Dropbox et ses applis mobiles soignées, et les fichiers à la demande y sont moins aboutis. Seafile est le bon choix si tu veux une synchro plus rapide pour de grosses bibliothèques. Syncthing te convient si tu veux seulement mettre en miroir des dossiers entre tes propres machines. Si personne ne veut s’occuper d’un serveur, continue de payer 9,99 € par mois.",
   "alternativeNotes": {

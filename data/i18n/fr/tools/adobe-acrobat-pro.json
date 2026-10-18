@@ -31,18 +31,18 @@
     },
     {
       "q": "Quelle est la meilleure alternative gratuite à Adobe Acrobat Pro ?",
-      "a": "Stirling PDF est le meilleur choix : une boîte à outils auto-hébergée de plus de 50 outils avec une API, gratuite jusqu'à 5 utilisateurs, en open-core. BentoPDF est l'alternative si tu veux que les fichiers soient traités dans le navigateur. Ni l'un ni l'autre ne modifie le texte courant du PDF de quelqu'un d'autre comme Acrobat."
+      "a": "Stirling PDF est le meilleur choix : une boîte à outils auto-hébergée de plus de 50 outils avec une API, gratuite jusqu’à 5 utilisateurs, en open-core. BentoPDF est l’alternative si tu veux que les fichiers soient traités dans le navigateur. Ni l’un ni l’autre ne modifie le texte courant du PDF de quelqu’un d’autre comme Acrobat."
     },
     {
       "q": "Je peux signer des PDF sans Acrobat Sign ?",
-      "a": "Oui pour la signature elle-même. Stirling PDF liste la signature parmi ses outils, et BentoPDF propose des signatures numériques cryptographiques avec certificats X.509 et la validation de signature. Ce que tu n'as pas, c'est la piste d'audit qu'Acrobat Sign garde derrière chaque document signé."
+      "a": "Oui pour la signature elle-même. Stirling PDF liste la signature parmi ses outils, et BentoPDF propose des signatures numériques cryptographiques avec certificats X.509 et la validation de signature. Ce que tu n’as pas, c’est la piste d’audit qu’Acrobat Sign garde derrière chaque document signé."
     }
   ],
-  "alternativesIntro": "La meilleure alternative gratuite à Adobe Acrobat Pro est Stirling PDF : une boîte à outils auto-hébergée de plus de 50 outils, dont fusion, découpe, signature, caviardage, conversion, OCR et compression, avec une API REST. C'est de l'open-core, gratuit jusqu'à 5 utilisateurs, et certaines fonctionnalités sont réservées aux formules payantes. Aucun projet de cette liste n'égale l'édition du texte courant d'Acrobat ni sa sortie PDF/UA et PDF/A. BentoPDF est le choix confidentialité : les fichiers sont traités dans ton navigateur et jamais envoyés au serveur que tu héberges. Continue de payer Acrobat si ton travail exige des PDF accessibles ou d'archivage qui passent un vérificateur.",
+  "alternativesIntro": "La meilleure alternative gratuite à Adobe Acrobat Pro est Stirling PDF : une boîte à outils auto-hébergée de plus de 50 outils, dont fusion, découpe, signature, caviardage, conversion, OCR et compression, avec une API REST. C’est de l’open-core, gratuit jusqu’à 5 utilisateurs, et certaines fonctionnalités sont réservées aux formules payantes. Aucun projet de cette liste n’égale l’édition du texte courant d’Acrobat ni sa sortie PDF/UA et PDF/A. BentoPDF est le meilleur choix pour la confidentialité : les fichiers sont traités dans ton navigateur et jamais envoyés au serveur que tu héberges. Continue de payer Acrobat si ton travail exige des PDF accessibles ou d’archivage qui passent un vérificateur.",
   "alternativeNotes": {
-    "stirling-pdf": "Couvre plus de 50 opérations avec une API et des pipelines sans code, lancé avec une seule commande docker run. C'est de l'open-core : l'offre serveur gratuite est plafonnée à 5 utilisateurs, et le clustering demande la formule Team.",
+    "stirling-pdf": "Couvre plus de 50 opérations avec une API et des pipelines sans code, lancé avec une seule commande docker run. C’est de l’open-core : l’offre serveur gratuite est plafonnée à 5 utilisateurs, et le clustering demande la formule Team.",
     "bentopdf": "Couvre plus de 50 outils dans le navigateur, dont les signatures numériques avec certificats X.509. Il est sous AGPL-3.0 pour un usage gratuit, les produits fermés demandent une licence payante, et les modules WASM se chargent par défaut depuis un CDN.",
-    "pdfsam": "Couvre la découpe, la fusion, le mélange, la rotation et l'extraction de pages sur le bureau. Aucune édition de texte, signature ou OCR n'est décrite.",
-    "pdfarranger": "Couvre la fusion, la découpe, la rotation, le recadrage et le réordonnancement visuel des pages. Il ne fait que l'organisation des pages, sans édition de texte ni signature."
+    "pdfsam": "Couvre la découpe, la fusion, le mélange, la rotation et l’extraction de pages sur le bureau. Aucune édition de texte, signature ou OCR n’est décrite.",
+    "pdfarranger": "Couvre la fusion, la découpe, la rotation, le recadrage et le réordonnancement visuel des pages. Il ne fait que l’organisation des pages, sans édition de texte ni signature."
   }
 }

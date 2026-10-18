@@ -13,19 +13,37 @@
   "notes": "La seule moitié sincèrement reconstructible, c’est l’historique d’écoute : l’export de données de Spotify est complet, et un outil de statistiques personnelles dessus survit à l’abonnement.",
   "prompt": "Construis une archive et un outil d’analyse de l’historique d’écoute, et diffuse ta propre collection à côté.\n\nPour la lecture, fais tourner Navidrome sur ton dossier de musique et utilise les clients Subsonic existants — voir la fiche Apple Music pour le pipeline d’ingestion qui rend cette bibliothèque utilisable.\n\nLa partie qui vaut la peine d’être écrite, c’est l’historique. L’export d’historique de streaming étendu de Spotify te donne chaque écoute que tu as jamais faite, avec horodatages, piste, artiste, millisecondes jouées et si tu as sauté. Importe-le dans SQLite avec un schéma propre et ça devient le jeu de données le plus intéressant que tu possèdes sur toi-même.\n\nConstruis les rapports qu’aucun bilan annuel ne te donne : taux de skip par artiste, qui est une bien meilleure mesure du goût que le nombre d’écoutes ; les pistes que tu as jouées de façon obsessionnelle pendant deux semaines et plus jamais ; l’écoute par heure de la journée et jour de la semaine ; les artistes que tu as écoutés chaque année depuis cinq ans ; et les dates de première écoute, pour voir quand quelque chose est entré dans ta vie.\n\nBoucle ensuite avec la bibliothèque locale. Pour chacun de tes artistes préférés, rapporte si tu possèdes quelque chose d’eux. Cette liste est une liste d’achats, et c’est la sortie pratique de tout l’exercice — la musique que tu écoutes vraiment, que tu perdrais le jour où l’abonnement s’arrête.\n\nContinue le scrobbling en avant : Navidrome peut rapporter les écoutes à un service de scrobbling ou à ton propre point d’accès, pour que l’historique continue dans le même schéma après ta résiliation.\n\nN’essaie pas de télécharger depuis le service de streaming. Ça viole les conditions, l’outillage est une cible mouvante, et ce n’est pas à ça que sert ce projet.",
   "faq": [
-    { "q": "Puis-je exporter mes données Spotify ?", "a": "Oui, et de façon inhabituellement complète. L’historique de streaming étendu couvre toute ta vie d’écoute et arrive en JSON dans les quelques semaines suivant la demande. Les playlists s’exportent via l’API ou des outils tiers. Demande l’historique avant de résilier — c’est la seule chose que tu ne peux pas recréer." },
-    { "q": "Puis-je garder mes playlists ?", "a": "Les listes de pistes, oui — plusieurs outils les exportent en CSV, en faisant correspondre artiste et titre. Si tu peux les jouer dépend entièrement de ce que tu possèdes, ce qui est exactement ce que l’export rend inconfortablement clair." },
-    { "q": "Combien ça coûte à faire tourner ?", "a": "Le stockage pour la collection plus une petite machine toujours allumée. L’analyse, c’est du SQLite sur quelques centaines de milliers de lignes et ça tourne instantanément." },
-    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Discover Weekly. Ça marche parce que des dizaines de millions de personnes ont écouté quelque chose ensuite, et aucune quantité d’analyse locale ne reproduit une recommandation tirée d’une foule." },
-    { "q": "Quelle est la meilleure alternative gratuite à Spotify Premium ?", "a": "Navidrome est la meilleure alternative gratuite à Spotify si tu possèdes ta musique. Il lit tes fichiers, avec playlists et historique. Il n'a ni catalogue ni recommandations : il remplace le lecteur, pas la bibliothèque." },
-    { "q": "Où trouver de la musique pour un serveur auto-hébergé ?", "a": "Dans des fichiers que tu possèdes, comme des CD numérisés ou des achats en téléchargement. Aucun de ces projets ne fournit de catalogue sous licence. Si tu n'as pas encore de collection, un serveur auto-hébergé démarrera vide." }
+    {
+      "q": "Puis-je exporter mes données Spotify ?",
+      "a": "Oui, et de façon inhabituellement complète. L’historique de streaming étendu couvre toute ta vie d’écoute et arrive en JSON dans les quelques semaines suivant la demande. Les playlists s’exportent via l’API ou des outils tiers. Demande l’historique avant de résilier — c’est la seule chose que tu ne peux pas recréer."
+    },
+    {
+      "q": "Puis-je garder mes playlists ?",
+      "a": "Les listes de pistes, oui — plusieurs outils les exportent en CSV, en faisant correspondre artiste et titre. Si tu peux les jouer dépend entièrement de ce que tu possèdes, ce qui est exactement ce que l’export rend inconfortablement clair."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Le stockage pour la collection plus une petite machine toujours allumée. L’analyse, c’est du SQLite sur quelques centaines de milliers de lignes et ça tourne instantanément."
+    },
+    {
+      "q": "Quelle est la chose qui ne survit pas à la reconstruction ?",
+      "a": "Discover Weekly. Ça marche parce que des dizaines de millions de personnes ont écouté quelque chose ensuite, et aucune quantité d’analyse locale ne reproduit une recommandation tirée d’une foule."
+    },
+    {
+      "q": "Quelle est la meilleure alternative gratuite à Spotify Premium ?",
+      "a": "Navidrome est la meilleure alternative gratuite à Spotify si tu possèdes ta musique. Il lit tes fichiers, avec playlists et historique. Il n’a ni catalogue ni recommandations : il remplace le lecteur, pas la bibliothèque."
+    },
+    {
+      "q": "Où trouver de la musique pour un serveur auto-hébergé ?",
+      "a": "Dans des fichiers que tu possèdes, comme des CD numérisés ou des achats en téléchargement. Aucun de ces projets ne fournit de catalogue sous licence. Si tu n’as pas encore de collection, un serveur auto-hébergé démarrera vide."
+    }
   ],
-  "alternativesIntro": "La meilleure alternative gratuite à Spotify est Navidrome : un serveur uniquement musical, avec playlists et historique d'écoute, pour les fichiers que tu possèdes déjà. Aucun projet auto-hébergé ne remplace le catalogue sous licence, Discover Weekly ou les playlists partagées que tes amis peuvent ouvrir. Ces serveurs lisent ta propre musique, et leurs suggestions valent ce que vaut ton goût. Jellyfin convient si tu veux aussi la vidéo depuis le même serveur. Si tu écoutes surtout des nouveautés et des playlists d'algorithme, continue de payer 12,99 $ par mois. Coder ton propre lecteur est facile, mais le catalogue est le vrai produit.",
+  "alternativesIntro": "La meilleure alternative gratuite à Spotify est Navidrome : un serveur uniquement musical, avec playlists et historique d’écoute, pour les fichiers que tu possèdes déjà. Aucun projet auto-hébergé ne remplace le catalogue sous licence, Discover Weekly ou les playlists partagées que tes amis peuvent ouvrir. Ces serveurs lisent ta propre musique, et leurs suggestions valent ce que vaut ton goût. Jellyfin convient si tu veux aussi la vidéo depuis le même serveur. Si tu écoutes surtout des nouveautés et des playlists d’algorithme, continue de payer 12,99 $ par mois. Coder ton propre lecteur est facile, mais le catalogue est le vrai produit.",
   "alternativeNotes": {
-    "navidrome": "Diffuse et range tes propres fichiers musicaux, avec playlists et historique d'écoute. Il n'a ni catalogue sous licence ni recommandations.",
-    "jellyfin": "Diffuse ta musique et ta vidéo depuis un seul serveur. Il n'a pas de catalogue sous licence, et ses fonctions musicales sont plus légères que celles d'un serveur dédié à la musique.",
-    "koel": "Un lecteur web pour tes propres fichiers, avec playlists et file d'attente. Il n'a pas de catalogue sous licence.",
-    "ampache": "Diffuse ta bibliothèque vers des clients web et API, avec playlists et notes. Il n'a pas de catalogue sous licence.",
-    "gonic": "Sert ta bibliothèque aux applis Subsonic, avec des playlists. Il n'a ni catalogue ni recommandations."
+    "navidrome": "Diffuse et range tes propres fichiers musicaux, avec playlists et historique d’écoute. Il n’a ni catalogue sous licence ni recommandations.",
+    "jellyfin": "Diffuse ta musique et ta vidéo depuis un seul serveur. Il n’a pas de catalogue sous licence, et ses fonctions musicales sont plus légères que celles d’un serveur dédié à la musique.",
+    "koel": "Un lecteur web pour tes propres fichiers, avec playlists et file d’attente. Il n’a pas de catalogue sous licence.",
+    "ampache": "Diffuse ta bibliothèque vers des clients web et API, avec playlists et notes. Il n’a pas de catalogue sous licence.",
+    "gonic": "Sert ta bibliothèque aux applis Subsonic, avec des playlists. Il n’a ni catalogue ni recommandations."
   }
 }

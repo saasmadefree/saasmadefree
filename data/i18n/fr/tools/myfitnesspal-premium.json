@@ -12,19 +12,37 @@
   "whyPeopleStillPay": "Deux décennies de gens qui tapent l’aliment devant eux ont produit une base de données qui trouve un sandwich de supermarché à la première recherche, et la couverture est la seule fonctionnalité qui compte dans un compteur de calories.",
   "prompt": "Construis un traqueur de calories et macros sur des données alimentaires ouvertes, et fais de la couverture de base de données ce que tu mesures.\n\nImporte l’export Open Food Facts filtré sur ton pays, plus USDA FoodData Central pour les aliments bruts, dans SQLite avec un index plein texte sur les noms de produits et de marques. Normalise tout au 100 g à l’import.\n\nLa saisie, c’est chercher, quantité, terminé, avec une liste de récents, une liste de favoris et des repas sauvegardés — un repas sauvegardé est un ensemble nommé d’aliments et de quantités enregistré en une action, et c’est ce qui fait qu’un petit-déjeuner répétitif arrête de coûter trente secondes par jour.\n\nConstruis un rapport de couverture et regarde-le honnêtement après quinze jours : le nombre d’aliments que tu as dû saisir à la main parce que la recherche n’a rien trouvé. Ce chiffre te dit si la base de données ouverte fonctionne là où tu fais tes courses, et c’est le fait décisif pour savoir si ce projet remplace l’abonnement ou lui ressemble simplement. Rends la saisie manuelle bon marché — nom, macros par 100 g, sauvegarder — et propose de soumettre les nouveaux produits en retour à Open Food Facts, puisque l’écart de couverture ne se comble que si les gens le comblent.\n\nVue quotidienne : énergie et les trois macros contre les cibles, avec le reste pour la journée. Vue hebdomadaire : la moyenne, qui est le chiffre qui correspond vraiment à comment fonctionnent les corps, et la dispersion jour par jour.\n\nLe scan de codes-barres dans le navigateur avec la caméra de l’appareil et une bibliothèque de codes-barres vaut l’après-midi que ça coûte — c’est le facteur déterminant unique le plus important de savoir si quelqu’un continue à enregistrer.\n\nNe copie pas la base de données de MyFitnessPal. Son contenu est contribué par les utilisateurs mais la compilation leur appartient, et la scraper est à la fois un problème de licence et un problème de qualité de données, puisqu’une grande part de ses entrées sont fausses.",
   "faq": [
-    { "q": "Puis-je exporter mon historique MyFitnessPal ?", "a": "Les abonnés Premium peuvent exporter les données du journal quotidien en CSV ; sur le palier gratuit, l’export est limité. Fais-le avant de résilier, parce que le journal est la seule chose qu’il n’y a aucun moyen de récupérer après coup." },
-    { "q": "La base de données ouverte trouvera-t-elle mes aliments ?", "a": "En Europe, généralement — Open Food Facts y est le plus fort. Aux États-Unis, la couverture est nettement plus mince pour les produits emballés et très mince pour les plats de restaurant. Fais tourner le rapport de couverture pendant deux semaines avant de décider ; c’est une question factuelle sur où tu fais tes courses, pas une opinion." },
-    { "q": "Combien ça coûte à faire tourner ?", "a": "Rien au-delà du disque et de l’hébergement. L’export Open Food Facts filtré par pays fait quelques centaines de mégaoctets et se rafraîchit mensuellement." },
-    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "Trouver un repas de chaîne de restaurant. Quelqu’un a saisi ce burrito dans MyFitnessPal en 2014 et il y est encore ; les bases de données ouvertes indexent les courses, pas les menus." },
-    { "q": "Quelle est la meilleure alternative gratuite à MyFitnessPal Premium ?", "a": "SparkyFitness est la meilleure alternative gratuite à MyFitnessPal. Il couvre les repas, les macros, l'exercice et les mesures corporelles sur ton propre serveur. Sa base d'aliments est plus petite, et sa licence est non commerciale." },
-    { "q": "Je peux scanner des codes-barres sans MyFitnessPal ?", "a": "Oui. OpenNutriTracker a un lecteur de codes-barres sur le téléphone, et Waistline cherche les codes-barres dans les données alimentaires ouvertes sur Android. Les deux reposent sur des données ouvertes, donc la couverture des produits de grandes marques et de restauration est plus mince que chez MyFitnessPal." }
+    {
+      "q": "Puis-je exporter mon historique MyFitnessPal ?",
+      "a": "Les abonnés Premium peuvent exporter les données du journal quotidien en CSV ; sur le palier gratuit, l’export est limité. Fais-le avant de résilier, parce que le journal est la seule chose qu’il n’y a aucun moyen de récupérer après coup."
+    },
+    {
+      "q": "La base de données ouverte trouvera-t-elle mes aliments ?",
+      "a": "En Europe, généralement — Open Food Facts y est le plus fort. Aux États-Unis, la couverture est nettement plus mince pour les produits emballés et très mince pour les plats de restaurant. Fais tourner le rapport de couverture pendant deux semaines avant de décider ; c’est une question factuelle sur où tu fais tes courses, pas une opinion."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Rien au-delà du disque et de l’hébergement. L’export Open Food Facts filtré par pays fait quelques centaines de mégaoctets et se rafraîchit mensuellement."
+    },
+    {
+      "q": "Quelle est la chose qui ne survit pas à la reconstruction ?",
+      "a": "Trouver un repas de chaîne de restaurant. Quelqu’un a saisi ce burrito dans MyFitnessPal en 2014 et il y est encore ; les bases de données ouvertes indexent les courses, pas les menus."
+    },
+    {
+      "q": "Quelle est la meilleure alternative gratuite à MyFitnessPal Premium ?",
+      "a": "SparkyFitness est la meilleure alternative gratuite à MyFitnessPal. Il couvre les repas, les macros, l’exercice et les mesures corporelles sur ton propre serveur. Sa base d’aliments est plus petite, et sa licence est non commerciale."
+    },
+    {
+      "q": "Je peux scanner des codes-barres sans MyFitnessPal ?",
+      "a": "Oui. OpenNutriTracker a un lecteur de codes-barres sur le téléphone, et Waistline cherche les codes-barres dans les données alimentaires ouvertes sur Android. Les deux reposent sur des données ouvertes, donc la couverture des produits de grandes marques et de restauration est plus mince que chez MyFitnessPal."
+    }
   ],
-  "alternativesIntro": "La meilleure alternative gratuite à MyFitnessPal est SparkyFitness : une appli auto-hébergeable pour noter ses repas avec calories et macros, ses séances d'exercice et ses mesures corporelles. Sa couverture d'aliments dépend des sources que tu connectes et peut être plus mince que celle de MyFitnessPal. Vérifie qu'elle connaît tes aliments avant de changer. Sa licence est « source disponible » et non commerciale, ce qui convient à un usage personnel. Si tu veux scanner des codes-barres sur ton téléphone sans serveur, OpenNutriTracker est l'option la plus légère. Coder la tienne ne vaut le coup que pour un petit carnet de quelques aliments. Si tu dépends de la grande base et des intégrations, continue de payer 19,99 $.",
+  "alternativesIntro": "La meilleure alternative gratuite à MyFitnessPal est SparkyFitness : une appli auto-hébergeable pour noter ses repas avec calories et macros, ses séances d’exercice et ses mesures corporelles. Sa couverture d’aliments dépend des sources que tu connectes et peut être plus mince que celle de MyFitnessPal. Vérifie qu’elle connaît tes aliments avant de changer. Sa licence est « source disponible » et non commerciale, ce qui convient à un usage personnel. Si tu veux scanner des codes-barres sur ton téléphone sans serveur, OpenNutriTracker est l’option la plus légère. Coder la tienne ne vaut le coup que pour un petit carnet de quelques aliments. Si tu dépends de la grande base et des intégrations, continue de payer 19,99 $.",
   "alternativeNotes": {
-    "sparkyfitness": "Enregistre les repas avec calories et macros, plus l'exercice et les mesures corporelles, sur ton propre serveur. La couverture des aliments dépend des sources que tu connectes.",
-    "wger": "Combine le suivi d'entraînement, un journal alimentaire et des plans de calories. La base d'aliments est moins fournie.",
-    "opennutritracker": "Enregistre les repas avec un lecteur de codes-barres et des anneaux de macros quotidiens, sur téléphone. Il n'a ni serveur ni synchro entre appareils.",
-    "waistline": "Suit les calories et le poids, avec recherche par code-barres dans les données alimentaires ouvertes. Il est réservé à Android et n'a pas de serveur.",
-    "daily-value": "Un journal alimentaire dans le navigateur, avec macros, micronutriments et recherche par code-barres. C'est une page web sur un seul appareil, sans synchro serveur, et un projet très récent."
+    "sparkyfitness": "Enregistre les repas avec calories et macros, plus l’exercice et les mesures corporelles, sur ton propre serveur. La couverture des aliments dépend des sources que tu connectes.",
+    "wger": "Combine le suivi d’entraînement, un journal alimentaire et des plans de calories. La base d’aliments est moins fournie.",
+    "opennutritracker": "Enregistre les repas avec un lecteur de codes-barres et des anneaux de macros quotidiens, sur téléphone. Il n’a ni serveur ni synchro entre appareils.",
+    "waistline": "Suit les calories et le poids, avec recherche par code-barres dans les données alimentaires ouvertes. Il est réservé à Android et n’a pas de serveur.",
+    "daily-value": "Un journal alimentaire dans le navigateur, avec macros, micronutriments et recherche par code-barres. C’est une page web sur un seul appareil, sans synchro serveur, et un projet très récent."
   }
 }

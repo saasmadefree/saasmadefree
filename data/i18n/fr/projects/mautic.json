@@ -1,16 +1,16 @@
 {
   "tagline": "Automatisation marketing auto-hébergée en PHP : contacts, segments, formulaires et campagnes email.",
-  "description": "Mautic est une plateforme open source d'automatisation marketing. Elle gère des contacts et des segments, envoie des campagnes email et mène des campagnes multicanales, avec une segmentation et une automatisation sans limite, d'après le projet. Son fichier source indique la licence GPL v3. Tu peux installer le paquet de production depuis un zip, ou passer par Composer en ligne de commande, puis finir avec un installeur web. Une configuration DDEV est dans le dépôt pour les essais en local. Mautic demande PHP et un serveur de base de données, et le max_execution_time de PHP doit valoir au moins 240 secondes. Pour des envois plus gros, la documentation conseille de mettre les emails en file d'attente et de les envoyer par une tâche cron. Le projet propose aussi des essais hébergés sur demande par formulaire, donc une voie gérée existe. Face à Mailchimp, Mautic va plus loin sur l'automatisation, mais il est bien plus lourd à faire tourner qu'un outil de newsletter comme Listmonk. Prévois des tâches cron, des mises à jour en ligne de commande et un entretien régulier du serveur.",
+  "description": "Mautic est une plateforme open source d’automatisation marketing. Elle gère des contacts et des segments, envoie des campagnes email et mène des campagnes multicanales, avec une segmentation et une automatisation sans limite, d’après le projet. Son fichier source indique la licence GPL v3. Tu peux installer le paquet de production depuis un zip, ou passer par Composer en ligne de commande, puis finir avec un installeur web. Une configuration DDEV est dans le dépôt pour les essais en local. Mautic demande PHP et un serveur de base de données, et le max_execution_time de PHP doit valoir au moins 240 secondes. Pour des envois plus gros, la documentation conseille de mettre les emails en file d’attente et de les envoyer par une tâche cron. Le projet propose aussi des essais hébergés sur demande par formulaire, donc une voie gérée existe. Face à Mailchimp, Mautic va plus loin sur l’automatisation, mais il est bien plus lourd à faire tourner qu’un outil de newsletter comme Listmonk. Prévois des tâches cron, des mises à jour en ligne de commande et un entretien régulier du serveur.",
   "strengths": [
-    "Automatisation marketing, segments et campagnes email dans un seul produit.",
-    "Ta propre base de données garde toutes les données de contacts.",
-    "Installation par un zip avec installeur web, ou par Composer en ligne de commande.",
-    "Configuration DDEV incluse pour un démarrage local rapide.",
-    "La mise en file d'attente des emails par cron aide pour les gros volumes d'envoi."
+    "Automatisation marketing, segments et campagnes email dans un seul produit",
+    "Ta propre base de données garde toutes les données de contacts",
+    "Installation par un zip avec installeur web, ou par Composer en ligne de commande",
+    "Configuration DDEV incluse pour un démarrage local rapide",
+    "La mise en file d’attente des emails par cron aide pour les gros volumes d’envoi"
   ],
   "limits": [
-    "Lourd à faire tourner : il faut PHP, un serveur de base de données, des tâches cron et un max_execution_time d'au moins 240 secondes.",
-    "Le code hors version publiée est étiqueté alpha et peut entraîner des pertes de données ; installer depuis GitHub demande Composer et de l'aisance en ligne de commande."
+    "Lourd à faire tourner : il faut PHP, un serveur de base de données, des tâches cron et un max_execution_time d’au moins 240 secondes",
+    "Le code hors version publiée est étiqueté alpha et peut entraîner des pertes de données ; installer depuis GitHub demande Composer et de l’aisance en ligne de commande"
   ],
   "bestFor": "Une équipe marketing qui a un administrateur système et veut suivre ses contacts et automatiser au-delà des newsletters, sur son propre serveur."
 }

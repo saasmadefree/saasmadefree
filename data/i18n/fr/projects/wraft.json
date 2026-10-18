@@ -1,17 +1,17 @@
 {
-  "tagline": "Plateforme open source pour rédiger, relire et produire des documents d'entreprise structurés.",
-  "description": "Wraft est un outil de rédaction et de suivi de documents pour le contenu d'entreprise, comme les courriers et les contrats. Les documents reposent sur des formats ouverts, Markdown et JSON, et les PDF sont produits avec Pandoc et LaTeX. Le serveur est écrit en Elixir avec Phoenix, les données vivent dans PostgreSQL et les fichiers vont sur un stockage compatible S3. La documentation pour développeurs décrit l'auto-hébergement avec Docker Compose, Kamal et Kubernetes. Le fichier Compose du dépôt démarre l'interface et le serveur, PostgreSQL, un stockage d'objets compatible S3 et un service de recherche Typesense. Une référence d'API est publiée pour les intégrations. La licence est l'AGPLv3, et le projet est un produit de Functionary Labs. Un Wraft Cloud hébergé existe aussi : la version open source est donc l'une des deux façons de l'utiliser. Il sert à ceux qui veulent des modèles et un circuit contrôlé pour leurs documents, dans le même domaine que DocuSign ou des outils de documents voisins. Le site wraft.app annonce la signature électronique et des circuits de validation intégrés, mais le README ne les décrit pas : regarde la documentation pour en mesurer la profondeur avant de planifier un départ d'un service de signature.",
+  "tagline": "Plateforme open source pour rédiger, relire et produire des documents d’entreprise structurés.",
+  "description": "Wraft est un outil de rédaction et de suivi de documents pour le contenu d’entreprise, comme les courriers et les contrats. Les documents reposent sur des formats ouverts, Markdown et JSON, et les PDF sont produits avec Pandoc et LaTeX. Le serveur est écrit en Elixir avec Phoenix, les données vivent dans PostgreSQL et les fichiers vont sur un stockage compatible S3. La documentation pour développeurs décrit l’auto-hébergement avec Docker Compose, Kamal et Kubernetes. Le fichier Compose du dépôt démarre l’interface et le serveur, PostgreSQL, un stockage d’objets compatible S3 et un service de recherche Typesense. Une référence d’API est publiée pour les intégrations. La licence est l’AGPLv3, et le projet est un produit de Functionary Labs. Un Wraft Cloud hébergé existe aussi : la version open source est donc l’une des deux façons de l’utiliser. Il sert à ceux qui veulent des modèles et un circuit contrôlé pour leurs documents, dans le même domaine que DocuSign ou des outils de documents voisins. Le site wraft.app annonce la signature électronique et des circuits de validation intégrés, mais le README ne les décrit pas : regarde la documentation pour en mesurer la profondeur avant de quitter un service de signature.",
   "strengths": [
-    "Stocke le contenu en Markdown et JSON : les documents restent lisibles hors de l'outil.",
-    "Produit des PDF avec Pandoc et LaTeX.",
-    "Documente trois voies d'auto-hébergement : Docker Compose, Kamal et Kubernetes.",
-    "Publie une référence d'API pour les intégrations et l'automatisation.",
-    "S'appuie sur PostgreSQL et un stockage compatible S3 plutôt que sur un stockage propriétaire."
+    "Stocke le contenu en Markdown et JSON : les documents restent lisibles hors de l’outil",
+    "Produit des PDF avec Pandoc et LaTeX",
+    "Documente trois voies d’auto-hébergement : Docker Compose, Kamal et Kubernetes",
+    "Publie une référence d’API pour les intégrations et l’automatisation",
+    "S’appuie sur PostgreSQL et un stockage compatible S3 plutôt que sur un stockage propriétaire"
   ],
   "limits": [
-    "Le fichier Compose ajoute un stockage compatible S3 et un service de recherche Typesense : une installation complète a beaucoup de pièces.",
-    "La sortie PDF dépend de la présence de Pandoc et de LaTeX.",
-    "Le README et la présentation pour développeurs ne décrivent pas la signature électronique, que wraft.app annonce comme intégrée : vérifie ce qu'elle couvre avant de remplacer un service de signature."
+    "Le fichier Compose ajoute un stockage compatible S3 et un service de recherche Typesense : une installation complète a beaucoup de pièces",
+    "La sortie PDF dépend de la présence de Pandoc et de LaTeX",
+    "Le README et la présentation pour développeurs ne décrivent pas la signature électronique, que wraft.app annonce comme intégrée : vérifie ce qu’elle couvre avant de remplacer un service de signature"
   ],
-  "bestFor": "Une petite entreprise ou une équipe de développeurs qui a un serveur, veut des documents d'entreprise à modèles dans des formats ouverts et sait faire tourner Docker."
+  "bestFor": "Une petite entreprise ou une équipe de développeurs qui a un serveur, veut des documents d’entreprise à modèles dans des formats ouverts et sait faire tourner Docker."
 }

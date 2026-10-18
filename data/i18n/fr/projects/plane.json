@@ -12,5 +12,5 @@
     "L’édition Commercial demande une clé de licence pour les fonctions payantes",
     "Le minimum documenté pour le guide Docker de l’édition Commercial est de 2 cœurs et 4 Go de RAM, soit plus qu’un outil à binaire unique"
   ],
-  "bestFor": "Une équipe de développement qui veut un suivi de tickets dans le style de Jira ou Linear sur son propre serveur et à l’aise avec les conteneurs."
+  "bestFor": "Une équipe de développement qui veut un suivi de tickets dans le style de Jira ou Linear sur son propre serveur et qui est à l’aise avec les conteneurs."
 }

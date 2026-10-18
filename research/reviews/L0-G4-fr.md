@@ -95,3 +95,7 @@ Point-by-point:
 
 ## Verdict changes (new-tool only)
 - none
+
+## Fix round 1
+- trypost strengths[0]: now "Publie vraiment sur 13 réseaux par leurs API officielles : il ne se contente jamais de te rappeler de poster à la main".
+- Also fixed (notes): platform "Huly (community fork)", operately CLI wording, pdfarranger agreement and "versions publiées", mixpost price wording, adobe/asana/smartsheet intros, stirling-pdf tagline, frappe-helpdesk script, bentopdf same-origin.

@@ -9,7 +9,7 @@
   ],
   "limits": [
     "Le dépôt GitHub sert au développement et à l’aperçu ; une installation de production part d’une version téléchargée",
-    "L’hébergement, les sauvegardes, les correctifs de sécurité et la configuration des paiements sont ton travail",
+    "L’hébergement, les sauvegardes, les correctifs de sécurité et la configuration des paiements sont à ta charge",
     "Le README prévient que la mise à niveau vers une nouvelle version n’est pas simple",
     "La configuration Docker est un environnement de développement avec des identifiants d’admin par défaut"
   ],

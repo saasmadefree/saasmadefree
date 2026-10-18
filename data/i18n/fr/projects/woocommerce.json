@@ -11,7 +11,7 @@
   "limits": [
     "Demande d’abord un site WordPress qui fonctionne, avec PHP 8.3 et MySQL 8.0 ou MariaDB 10.6 d’après la documentation actuelle",
     "Abonnements, réservations et adhésions sont des extensions à part, présentées comme des produits sur la page de l’extension : les coûts peuvent s’additionner",
-    "L’hébergement, les sauvegardes, les mises à jour de sécurité et la conformité des paiements sont ton travail",
+    "L’hébergement, les sauvegardes, les mises à jour de sécurité et la conformité des paiements sont à ta charge",
     "Le support gratuit se limite au forum WordPress.org, et les issues GitHub servent aux bugs du cœur seulement"
   ],
   "bestFor": "Un petit commerçant qui a déjà WordPress, ou un hébergeur ou une agence qui s’en occupe, et veut vendre sans abonnement mensuel à un créateur de boutique."

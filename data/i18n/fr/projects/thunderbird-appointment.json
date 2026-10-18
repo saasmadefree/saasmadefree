@@ -1,18 +1,18 @@
 {
   "tagline": "Outil de liens de réservation du projet Thunderbird : les autres choisissent un créneau dans ton agenda.",
-  "description": "Thunderbird Appointment te permet de partager une page où les autres choisissent un créneau libre dans ton agenda. Les notes d'architecture décrivent un frontend Vue 3, un backend FastAPI, une base PostgreSQL et des connexions d'agenda via Google et CalDAV. Le backend peut utiliser un fournisseur OIDC pour la connexion. Le README cite Docker comme la voie recommandée et, pour l'instant, la seule prise en charge pour construire et lancer l'outil, et dit que la documentation technique est encore en cours de rédaction. Tu copies les fichiers .env d'exemple, tu autorises la première inscription, tu ajoutes ton email à une liste d'administrateurs et tu lances docker-compose. Cela démarre cinq conteneurs : backend, frontend, PostgreSQL, Redis et Mailpit. Une connexion simple par mot de passe est incluse ; le README indique qu'elle est prévue pour le développement et les tests, mais qu'elle peut servir à l'auto-hébergement. La licence est MPL-2.0, et nos données ne listent aucune offre hébergée. L'outil vise à remplacer Calendly pour une personne ou une petite équipe qui veut des liens de réservation sur ses propres agendas. Prévois une installation orientée développement, et vérifie que les agendas et les notifications dont tu as besoin fonctionnent avant de t'y fier.",
+  "description": "Thunderbird Appointment te permet de partager une page où les autres choisissent un créneau libre dans ton agenda. Les notes d’architecture décrivent un frontend Vue 3, un backend FastAPI, une base PostgreSQL et des connexions d’agenda via Google et CalDAV. Le backend peut utiliser un fournisseur OIDC pour la connexion. Le README cite Docker comme la voie recommandée et, pour l’instant, la seule prise en charge pour construire et lancer l’outil, et dit que la documentation technique est encore en cours de rédaction. Tu copies les fichiers .env d’exemple, tu autorises la première inscription, tu ajoutes ton email à une liste d’administrateurs et tu lances docker-compose. Cela démarre cinq conteneurs : backend, frontend, PostgreSQL, Redis et Mailpit. Une connexion simple par mot de passe est incluse ; le README indique qu’elle est prévue pour le développement et les tests, mais qu’elle peut servir à l’auto-hébergement. La licence est MPL-2.0, et aucune offre hébergée n’est décrite. L’outil vise à remplacer Calendly pour une personne ou une petite équipe qui veut des liens de réservation sur ses propres agendas. Prévois une installation orientée développement, et vérifie que les agendas et les notifications dont tu as besoin fonctionnent avant de t’y fier.",
   "strengths": [
     "Page de réservation où les invités choisissent dans tes disponibilités",
-    "Connexions d'agenda via Google et CalDAV, d'après les notes d'architecture",
-    "Docker Compose monte toute la pile, avec PostgreSQL, Redis et un récepteur d'emails de test",
+    "Connexions d’agenda via Google et CalDAV, d’après les notes d’architecture",
+    "Docker Compose monte toute la pile, avec PostgreSQL, Redis et un récepteur d’emails de test",
     "Maintenu par le projet Thunderbird, avec une activité de développement récente",
     "Documentation OpenAPI servie par le backend, interface localisée avec des fichiers Fluent"
   ],
   "limits": [
-    "Docker est la seule voie prise en charge pour construire et lancer l'outil",
-    "Le README juge la documentation technique en cours de rédaction, et le schéma d'architecture est signalé comme dépassé",
+    "Docker est la seule voie prise en charge pour construire et lancer l’outil",
+    "Le README juge la documentation technique en cours de rédaction, et le schéma d’architecture est signalé comme dépassé",
     "La connexion par mot de passe intégrée est décrite comme prévue pour le développement et les tests",
-    "La config par défaut utilise un mot de passe de base publié et un récepteur d'emails de développement : durcis-la avant de l'exposer",
+    "La config par défaut utilise un mot de passe de base publié et un récepteur d’emails de développement : durcis-la avant de l’exposer",
     "Le README ne décrit ni paiements, ni salles de visio, ni automatisation de workflows"
   ],
   "bestFor": "Un utilisateur de Thunderbird ou une petite équipe, avec un hôte Docker, qui veut des liens de réservation à la Calendly sur des agendas Google ou CalDAV."

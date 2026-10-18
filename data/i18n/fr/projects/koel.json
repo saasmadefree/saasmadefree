@@ -1,18 +1,18 @@
 {
   "tagline": "Lecteur musical web auto-hébergé pour tes propres fichiers audio, construit avec Laravel et Vue.",
-  "description": "Koel analyse un dossier de musique que tu possèdes déjà et le diffuse dans un lecteur web. Il gère les playlists, les playlists intelligentes, les podcasts, la radio, le scrobbling, et des liens avec Last.fm, Spotify et MusicBrainz. Le cœur est sous licence MIT. Le serveur est une application Laravel qui demande PHP 8.2 ou plus récent et une base de données : MySQL, MariaDB, PostgreSQL et SQLite ont tous été testés. La documentation décrit cinq méthodes d'installation, dont une archive autonome qui embarque FrankenPHP et utilise SQLite par défaut, donc l'hôte n'a pas besoin de PHP. Des applis officielles iOS et Android vivent dans un dépôt séparé, Koel Player. Une formule payante, Koel Plus, ajoute les bibliothèques multi-utilisateur, la collaboration, le SSO, des pilotes de stockage cloud, des thèmes personnalisés et la marque blanche. Koel ne remplace Spotify Premium que pour une collection personnelle. Il ne vient avec aucun catalogue sous licence : chaque morceau est un fichier que tu fournis toi-même.",
+  "description": "Koel analyse un dossier de musique que tu possèdes déjà et le diffuse dans un lecteur web. Il gère les playlists, les playlists intelligentes, les podcasts, la radio, le scrobbling, et des liens avec Last.fm, Spotify et MusicBrainz. Le cœur est sous licence MIT. Le serveur est une application Laravel qui demande PHP 8.2 ou plus récent et une base de données : MySQL, MariaDB, PostgreSQL et SQLite ont tous été testés. La documentation décrit cinq méthodes d’installation, dont une archive autonome qui embarque FrankenPHP et utilise SQLite par défaut, donc l’hôte n’a pas besoin de PHP. Des applis officielles iOS et Android vivent dans un dépôt séparé, Koel Player. Une formule payante, Koel Plus, ajoute les bibliothèques multi-utilisateur, la collaboration, le SSO, des pilotes de stockage cloud, des thèmes personnalisés et la marque blanche. Koel ne remplace Spotify Premium que pour une collection personnelle. Il ne vient avec aucun catalogue sous licence : chaque morceau est un fichier que tu fournis toi-même.",
   "strengths": [
-    "Binaire autonome avec SQLite par défaut : l'hôte n'a besoin ni de PHP, ni de Composer, ni de Node.",
-    "Prend en charge MySQL, MariaDB, PostgreSQL et SQLite comme bases de données.",
-    "Playlists intelligentes, podcasts et radio côtoient la bibliothèque musicale dans une seule interface web.",
-    "L'appli mobile officielle, Koel Player, couvre iOS et Android.",
-    "Le scrobbling et les intégrations Last.fm, Spotify et MusicBrainz sont intégrés."
+    "Binaire autonome avec SQLite par défaut : l’hôte n’a besoin ni de PHP, ni de Composer, ni de Node",
+    "Prend en charge MySQL, MariaDB, PostgreSQL et SQLite comme bases de données",
+    "Playlists intelligentes, podcasts et radio côtoient la bibliothèque musicale dans une seule interface web",
+    "L’appli mobile officielle, Koel Player, couvre iOS et Android",
+    "Le scrobbling et les intégrations Last.fm, Spotify et MusicBrainz sont intégrés"
   ],
   "limits": [
-    "Aucun catalogue musical : il ne diffuse que des fichiers que tu possèdes, donc il ne remplace pas la découverte de Spotify.",
-    "Les bibliothèques multi-utilisateur, la collaboration, le SSO, les pilotes de stockage cloud et la marque blanche demandent Koel Plus, payant.",
-    "L'appli mobile est un projet distinct du serveur, avec son propre dépôt.",
-    "Lancer depuis les sources demande PHP 8.2, Composer, Node.js 20 et pnpm."
+    "Aucun catalogue musical : il ne diffuse que des fichiers que tu possèdes, donc il ne remplace pas la découverte de Spotify",
+    "Les bibliothèques multi-utilisateur, la collaboration, le SSO, les pilotes de stockage cloud et la marque blanche demandent Koel Plus, payant",
+    "L’appli mobile est un projet distinct du serveur, avec son propre dépôt",
+    "Lancer depuis les sources demande PHP 8.2, Composer, Node.js 20 et pnpm"
   ],
   "bestFor": "Un collectionneur de musique avec un serveur à la maison, qui veut un lecteur navigateur et téléphone pour sa bibliothèque personnelle."
 }

@@ -11,7 +11,7 @@
   "limits": [
     "Les emails sont jetés en silence tant que tu n’as pas configuré SMTP ou un autre service d’envoi",
     "Demande au moins 500 Mo de RAM, avec 1 Go recommandé",
-    "Licence AGPL-3.0 : les modifications d’une version modifiée exploitée comme service doivent être partagées",
+    "Licence AGPL-3.0 : si tu proposes une version modifiée comme service en ligne, tu dois en publier le code",
     "Le README ne décrit ni événements de groupe, ni répartition en round-robin entre membres d’une équipe, ni intégrations CRM"
   ],
   "bestFor": "Un freelance ou un petit studio qui a un VPS et veut des pages de réservation dans le style de Calendly, avec ses propres calendriers et son propre serveur d’emails."

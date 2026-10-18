@@ -1,18 +1,18 @@
 {
   "tagline": "Boîte de support auto-hébergée : chat, email et réseaux sociaux. Alternative à Intercom et Zendesk.",
-  "description": "Chatwoot réunit les conversations clients dans une boîte partagée. Les canaux comprennent le chat en direct sur ton site, l'email, Facebook, Instagram, Twitter, WhatsApp, Telegram, Line et le SMS. Les agents disposent de notes privées, de @mentions, d'étiquettes, de réponses types, d'attribution automatique, d'horaires d'ouverture et de rapports comme le CSAT. Un portail de centre d'aide publie des articles, et des intégrations existent avec Slack, Shopify, Linear et Dialogflow. Le README décrit aussi un agent IA, Captain, pour les questions courantes. Pour l'auto-héberger, le dépôt contient un fichier Docker Compose de production. Il lance un service web Rails, un worker Sidekiq en arrière-plan, PostgreSQL (avec pgvector) et Redis. Le README cite en plus des installations en un clic sur Heroku et sur Kubernetes DigitalOcean, ainsi qu'un chart Helm sur Artifact Hub. Le code est sous licence MIT, mais le dossier enterprise a sa propre licence. Chatwoot peut remplacer Zendesk ou Intercom pour de petites équipes support. Regarde cependant la page des tarifs pour savoir ce que contient une installation auto-hébergée par rapport aux formules cloud payantes. Prévois aussi de configurer l'envoi et la réception des emails.",
+  "description": "Chatwoot réunit les conversations clients dans une boîte partagée. Les canaux comprennent le chat en direct sur ton site, l’email, Facebook, Instagram, Twitter, WhatsApp, Telegram, Line et le SMS. Les agents disposent de notes privées, de @mentions, d’étiquettes, de réponses types, d’attribution automatique, d’horaires d’ouverture et de rapports comme le CSAT. Un portail de centre d’aide publie des articles, et des intégrations existent avec Slack, Shopify, Linear et Dialogflow. Le README décrit aussi un agent IA, Captain, pour les questions courantes. Pour l’auto-héberger, le dépôt contient un fichier Docker Compose de production. Il lance un service web Rails, un worker Sidekiq en arrière-plan, PostgreSQL (avec pgvector) et Redis. Le README cite en plus des installations en un clic sur Heroku et sur Kubernetes DigitalOcean, ainsi qu’un chart Helm sur Artifact Hub. Le code est sous licence MIT, mais le dossier enterprise a sa propre licence. Chatwoot peut remplacer Zendesk ou Intercom pour de petites équipes support. Regarde cependant la page des tarifs pour savoir ce que contient une installation auto-hébergée par rapport aux formules cloud payantes. Prévois aussi de configurer l’envoi et la réception des emails.",
   "strengths": [
-    "Une seule boîte pour le chat en direct, l'email, WhatsApp, Telegram, Instagram, Facebook, Twitter, Line et le SMS",
-    "Outils d'agent : notes privées, @mentions, réponses types, attribution automatique, horaires d'ouverture et rapports CSAT",
-    "Portail de centre d'aide intégré pour publier des articles et des FAQ",
+    "Une seule boîte pour le chat en direct, l’email, WhatsApp, Telegram, Instagram, Facebook, Twitter, Line et le SMS",
+    "Outils d’agent : notes privées, @mentions, réponses types, attribution automatique, horaires d’ouverture et rapports CSAT",
+    "Portail de centre d’aide intégré pour publier des articles et des FAQ",
     "Intégrations avec Slack, Shopify, Linear et Dialogflow",
     "Déploiement avec Docker Compose, Heroku, Kubernetes DigitalOcean ou Helm"
   ],
   "limits": [
-    "Le fichier Compose de production lance quatre services (Rails, Sidekiq, PostgreSQL, Redis) : l'empreinte dépasse celle d'un seul conteneur",
+    "Le fichier Compose de production lance quatre services (Rails, Sidekiq, PostgreSQL, Redis) : l’empreinte dépasse celle d’un seul conteneur",
     "Le contenu du dossier enterprise a une licence à part, pas la MIT",
-    "L'agent IA Captain est mis en avant dans le README, mais celui-ci ne dit pas s'il est inclus dans une installation auto-hébergée",
+    "L’agent IA Captain est mis en avant dans le README, mais celui-ci ne dit pas s’il est inclus dans une installation auto-hébergée",
     "Le README ne précise pas quelles fonctionnalités une installation auto-hébergée reçoit par rapport aux formules cloud payantes"
   ],
-  "bestFor": "Une petite équipe support ou une startup qui utilise Zendesk ou Intercom, a un serveur Linux et veut le chat du site et l'email dans une boîte partagée."
+  "bestFor": "Une petite équipe support ou une startup qui utilise Zendesk ou Intercom, a un serveur Linux et veut le chat du site et l’email dans une boîte partagée."
 }

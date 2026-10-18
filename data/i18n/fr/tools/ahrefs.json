@@ -13,18 +13,36 @@
   "notes": "Une des fiches « non » les plus nettes du catalogue : dis clairement où est la barrière liée aux données plutôt que de prétendre qu’un script de crawl comble l’écart.",
   "prompt": "Construis un suivi de positionnement et un auditeur SEO technique pour les domaines que tu contrôles réellement — pas une plateforme SEO généraliste. Pour le suivi de positionnement : une tâche planifiée qui vérifie une liste de tes propres mots-clés via une vraie API SERP (plusieurs ont un palier gratuit ; ne scrape jamais directement les pages de résultats Google, tu te feras bloquer rapidement) et stocke position, URL classée et date dans une petite base de données, avec un tableau de bord simple montrant la tendance par mot-clé. Pour la partie audit : un crawler limité à ton propre domaine qui suit les liens internes et signale les bases — liens morts, titres et descriptions manquants ou dupliqués, chaînes de redirections, pages pauvres en contenu — dans un rapport texte simple. Récupère gratuitement tes vraies données de clics et d’impressions via l’API Google Search Console et affiche-les à côté de tes données de position ; prévois du vrai temps pour la configuration OAuth, c’est la partie fastidieuse. Fais tourner tout ça sur un planning, sans autre compte que les clés API nécessaires.\n\nN’essaie pas de construire un index de backlinks, une base de mots-clés, ou une analyse concurrentielle sur les sites d’autres personnes — ça demande de crawler tout le web en continu, ce qui est exactement ce que tu paies à Ahrefs pour avoir déjà fait.",
   "faq": [
-    { "q": "Puis-je importer mes données Ahrefs existantes — mon historique de backlinks, mes mots-clés suivis ?", "a": "Ta liste de mots-clés suivis, oui — c’est juste un fichier texte que tu gères toi-même. L’index de backlinks et les données de crawl historiques ne peuvent ni être exportés ni reconstruits ; ces données n’existent que dans le crawl propre à Ahrefs." },
-    { "q": "Ça marche sur mon téléphone ?", "a": "Le tableau de bord est une petite page web, donc il s’affiche dans un navigateur mobile si tu l’exposes sur ton réseau, mais il n’y a ni app dédiée ni alerte push — il faut penser à aller le consulter." },
-    { "q": "Combien ça coûte vraiment à faire tourner ?", "a": "Le palier gratuit d’une API SERP couvre généralement une liste de mots-clés personnelle, et l’accès à Search Console est gratuit. Prévois quelques dollars par mois une fois le palier gratuit dépassé — une somme dérisoire face au forfait Starter d’Ahrefs." },
-    { "q": "Quelle est la chose qui ne survit vraiment pas à la reconstruction ?", "a": "Le site de n’importe qui d’autre. Tu peux suivre et auditer ton propre domaine tant que tu veux ; tu ne peux pas voir qui pointe vers un concurrent ni sur quoi il se positionne — cette visibilité est le produit tout entier, et elle n’existe que parce qu’Ahrefs a déjà tout crawlé." },
-    { "q": "Quelle est la meilleure alternative gratuite à Ahrefs ?", "a": "OpenSEO est la meilleure alternative gratuite à Ahrefs. Il couvre la recherche de mots-clés, le suivi de positions, l'analyse des concurrents et les backlinks, mais les données viennent de l'API payante de DataForSEO : tu paies à la requête. SerpBear, Seonaut et SEOmacroscope ne couvrent que le suivi de positions et l'audit de site." },
-    { "q": "Un outil gratuit peut me montrer les backlinks de mes concurrents ?", "a": "Oui, avec OpenSEO, au prix à la requête de DataForSEO. Les trois autres ne le peuvent pas : SerpBear suit tes propres positions, et Seonaut et SEOmacroscope explorent ton propre site. Attends-toi à la couverture et à l'historique de DataForSEO, pas à l'index d'Ahrefs." }
+    {
+      "q": "Puis-je importer mes données Ahrefs existantes — mon historique de backlinks, mes mots-clés suivis ?",
+      "a": "Ta liste de mots-clés suivis, oui — c’est juste un fichier texte que tu gères toi-même. L’index de backlinks et les données de crawl historiques ne peuvent ni être exportés ni reconstruits ; ces données n’existent que dans le crawl propre à Ahrefs."
+    },
+    {
+      "q": "Ça marche sur mon téléphone ?",
+      "a": "Le tableau de bord est une petite page web, donc il s’affiche dans un navigateur mobile si tu l’exposes sur ton réseau, mais il n’y a ni app dédiée ni alerte push — il faut penser à aller le consulter."
+    },
+    {
+      "q": "Combien ça coûte vraiment à faire tourner ?",
+      "a": "Le palier gratuit d’une API SERP couvre généralement une liste de mots-clés personnelle, et l’accès à Search Console est gratuit. Prévois quelques dollars par mois une fois le palier gratuit dépassé — une somme dérisoire face au forfait Starter d’Ahrefs."
+    },
+    {
+      "q": "Quelle est la chose qui ne survit vraiment pas à la reconstruction ?",
+      "a": "Le site de n’importe qui d’autre. Tu peux suivre et auditer ton propre domaine tant que tu veux ; tu ne peux pas voir qui pointe vers un concurrent ni sur quoi il se positionne — cette visibilité est le produit tout entier, et elle n’existe que parce qu’Ahrefs a déjà tout crawlé."
+    },
+    {
+      "q": "Quelle est la meilleure alternative gratuite à Ahrefs ?",
+      "a": "OpenSEO est la meilleure alternative gratuite à Ahrefs. Il couvre la recherche de mots-clés, le suivi de positions, l’analyse des concurrents et les backlinks, mais les données viennent de l’API payante de DataForSEO : tu paies à la requête. SerpBear, Seonaut et SEOmacroscope ne couvrent que le suivi de positions et l’audit de site."
+    },
+    {
+      "q": "Un outil gratuit peut me montrer les backlinks de mes concurrents ?",
+      "a": "Oui, avec OpenSEO, au prix à la requête de DataForSEO. Les trois autres ne le peuvent pas : SerpBear suit tes propres positions, et Seonaut et SEOmacroscope explorent ton propre site. Attends-toi à la couverture et à l’historique de DataForSEO, pas à l’index d’Ahrefs."
+    }
   ],
-  "alternativesIntro": "La meilleure alternative gratuite à Ahrefs est OpenSEO : il couvre la recherche de mots-clés, le suivi de positions, l'analyse des concurrents et la consultation des backlinks. Il n'a pas d'index à lui. Tous ses chiffres viennent de l'API payante de DataForSEO, facturée à la requête, donc la couverture et l'historique sont ceux de DataForSEO, pas ceux d'Ahrefs. SerpBear est le bon choix si tu veux seulement un suivi quotidien de positions pour ton domaine. Seonaut et SEOmacroscope auditent ton propre site. Continue de payer Ahrefs si tu as besoin de son index de backlinks et de son long historique, ou si tu fais de la recherche tous les jours et que le coût à la requête s'accumule.",
+  "alternativesIntro": "La meilleure alternative gratuite à Ahrefs est OpenSEO : il couvre la recherche de mots-clés, le suivi de positions, l’analyse des concurrents et la consultation des backlinks. Il n’a pas d’index à lui. Tous ses chiffres viennent de l’API payante de DataForSEO, facturée à la requête, donc la couverture et l’historique sont ceux de DataForSEO, pas ceux d’Ahrefs. SerpBear est le bon choix si tu veux seulement un suivi quotidien de positions pour ton domaine. Seonaut et SEOmacroscope auditent ton propre site. Continue de payer Ahrefs si tu as besoin de son index de backlinks et de son long historique, ou si tu fais de la recherche tous les jours et que le coût à la requête s’accumule.",
   "alternativeNotes": {
-    "open-seo": "Couvre la recherche de mots-clés, le suivi de positions, l'analyse des concurrents et les backlinks, grâce à l'API payante de DataForSEO. Il n'a pas d'index à lui : la couverture et la fraîcheur sont celles de DataForSEO.",
-    "serpbear": "Suit chaque jour les positions de tes mots-clés pour ton propre domaine. Il n'a ni crawl, ni données de backlinks, ni base de concurrents.",
-    "seonaut": "Explore un site et liste les problèmes, avec des rapports par page. Il n'a ni suivi de positions ni données de backlinks.",
-    "seomacroscope": "Lance un crawl technique d'un site que tu contrôles. Il n'a ni suivi de positions, ni base de backlinks ou de mots-clés."
+    "open-seo": "Couvre la recherche de mots-clés, le suivi de positions, l’analyse des concurrents et les backlinks, grâce à l’API payante de DataForSEO. Il n’a pas d’index à lui : la couverture et la fraîcheur sont celles de DataForSEO.",
+    "serpbear": "Suit chaque jour les positions de tes mots-clés pour ton propre domaine. Il n’a ni crawl, ni données de backlinks, ni base de concurrents.",
+    "seonaut": "Explore un site et liste les problèmes, avec des rapports par page. Il n’a ni suivi de positions ni données de backlinks.",
+    "seomacroscope": "Lance un crawl technique d’un site que tu contrôles. Il n’a ni suivi de positions, ni base de backlinks ou de mots-clés."
   }
 }

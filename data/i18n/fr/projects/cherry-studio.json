@@ -1,18 +1,18 @@
 {
   "tagline": "Client de chat de bureau pour Windows, macOS et Linux, relié à de nombreux modèles de langage cloud et locaux.",
-  "description": "Cherry Studio est une application de bureau, pas un serveur : tu l'installes sur ton ordinateur et tu y branches ton propre accès aux modèles. Elle parle aux fournisseurs cloud comme OpenAI, Gemini et Anthropic, et aux moteurs locaux comme Ollama et LM Studio. Le dépôt cite aussi une appli mobile distincte pour iOS et Android. Dans le client, tu trouves des assistants enregistrés (le projet en annonce plus de 300 préconfigurés), des conversations qui interrogent plusieurs modèles à la fois, la gestion de fichiers texte, d'images, de documents Office et de PDF, et une intégration de serveurs MCP pour les outils. Les sauvegardes peuvent partir vers un emplacement WebDAV. Comme il n'y a ni version hébergée ni serveur à faire tourner, l'installation se résume à un téléchargement et à une clé d'API, sans déploiement. Le code est sous AGPL-3.0, et le projet vend aussi une édition entreprise séparée. Cherry Studio remplace la fenêtre de chat d'un assistant payant comme ChatGPT, mais seulement l'interface : tu paies toujours l'usage des modèles au jeton chez chaque fournisseur, ou tu fais tourner un modèle local sur ton matériel. Le modèle, sa qualité et les fonctions web du produit commercial ne sont pas fournis avec le client.",
+  "description": "Cherry Studio est une application de bureau, pas un serveur : tu l’installes sur ton ordinateur et tu y branches ton propre accès aux modèles. Elle parle aux fournisseurs cloud comme OpenAI, Gemini et Anthropic, et aux moteurs locaux comme Ollama et LM Studio. Le dépôt cite aussi une appli mobile distincte pour iOS et Android. Dans le client, tu trouves des assistants enregistrés (le projet en annonce plus de 300 préconfigurés), des conversations qui interrogent plusieurs modèles à la fois, la gestion de fichiers texte, d’images, de documents Office et de PDF, et une intégration de serveurs MCP pour les outils. Les sauvegardes peuvent partir vers un emplacement WebDAV. Comme il n’y a ni version hébergée ni serveur à faire tourner, l’installation se résume à un téléchargement et à une clé d’API, sans déploiement. Le code est sous AGPL-3.0, et le projet vend aussi une édition entreprise séparée. Cherry Studio remplace la fenêtre de chat d’un assistant payant comme ChatGPT, mais seulement l’interface : tu paies toujours l’usage des modèles au jeton chez chaque fournisseur, ou tu fais tourner un modèle local sur ton matériel. Le modèle, sa qualité et les fonctions web du produit commercial ne sont pas fournis avec le client.",
   "strengths": [
-    "Un seul client pour plusieurs fournisseurs : tu passes d'OpenAI à Gemini, Anthropic ou un modèle local dans la même fenêtre.",
-    "Envoie un même prompt à plusieurs modèles en parallèle et affiche les réponses côte à côte.",
-    "Marche avec des moteurs locaux comme Ollama et LM Studio, ce qui garde tes prompts sur ta machine.",
-    "Installeurs pour Windows, macOS et Linux, sans serveur ni environnement à préparer.",
-    "Gère les serveurs Model Context Protocol : les assistants peuvent appeler des outils externes."
+    "Un seul client pour plusieurs fournisseurs : tu passes d’OpenAI à Gemini, Anthropic ou un modèle local dans la même fenêtre",
+    "Envoie un même prompt à plusieurs modèles en parallèle et affiche les réponses côte à côte",
+    "Marche avec des moteurs locaux comme Ollama et LM Studio, ce qui garde tes prompts sur ta machine",
+    "Installeurs pour Windows, macOS et Linux, sans serveur ni environnement à préparer",
+    "Gère les serveurs Model Context Protocol : les assistants peuvent appeler des outils externes"
   ],
   "limits": [
-    "Client de bureau uniquement : pas de serveur web multi-utilisateur, donc une équipe ne peut pas partager une instance comme elle partage un espace ChatGPT.",
-    "Aucun modèle inclus : tu apportes tes clés d'API ou un modèle local, et chaque fournisseur facture son usage.",
-    "Des fonctions de la feuille de route, comme la recherche approfondie, un système de plugins et la reconnaissance vocale, n'étaient pas encore livrées à la lecture du README.",
-    "Les fonctions d'entreprise, comme la gestion centralisée des modèles, forment une édition commerciale séparée, hors du client communautaire."
+    "Client de bureau uniquement : pas de serveur web multi-utilisateur, donc une équipe ne peut pas partager une instance comme elle partage un espace ChatGPT",
+    "Aucun modèle inclus : tu apportes tes clés d’API ou un modèle local, et chaque fournisseur facture son usage",
+    "Des fonctions de la feuille de route, comme la recherche approfondie, un système de plugins et la reconnaissance vocale, n’étaient pas encore livrées à la lecture du README",
+    "Les fonctions d’entreprise, comme la gestion centralisée des modèles, forment une édition commerciale séparée, hors du client communautaire"
   ],
-  "bestFor": "Un développeur ou un utilisateur avancé qui a déjà des clés d'API chez plusieurs fournisseurs et veut une seule fenêtre de bureau pour toutes les utiliser."
+  "bestFor": "Un développeur ou un utilisateur avancé qui a déjà des clés d’API chez plusieurs fournisseurs et veut une seule fenêtre de bureau pour toutes les utiliser."
 }

@@ -1,18 +1,18 @@
 {
   "tagline": "Serveur web PHP auto-hébergé qui diffuse ta musique et tes vidéos vers le navigateur et les applis.",
-  "description": "Ampache met en ligne une collection audio et vidéo que tu as déjà. Il lit les métadonnées dans les tags des fichiers, ou à défaut dans leurs noms, puis affiche la bibliothèque dans une interface web et dans une API que beaucoup de clients tiers utilisent. Il ne range rien à ta place : le projet part du principe que ta collection est déjà bien tenue. Pour le faire tourner, il faut un serveur web (Apache est le plus testé, nginx et lighttpd marchent aussi), PHP avec ses modules, MySQL ou MariaDB, et Node.js pour compiler les fichiers de l'interface. Une image Docker est publiée. La branche principale, Ampache 8, demande PHP 8.5 ou plus récent, et le README recommande la branche release7 comme la plus stable. Une API compatible Jellyfin, à activer à la main, permet à certaines applis Jellyfin de parcourir et d'écouter la bibliothèque. La licence est AGPL-3.0. La comparaison payante la plus proche est Spotify Premium, mais seulement pour la musique que tu possèdes : il n'y a aucun catalogue de titres sous licence. Il convient à ceux qui gardent des CD numérisés ou des achats en téléchargement et veulent les écouter depuis un téléphone ou un navigateur, sans confier les fichiers à un tiers.",
+  "description": "Ampache diffuse sur le web une collection audio et vidéo que tu as déjà. Il lit les métadonnées dans les tags des fichiers, ou à défaut dans leurs noms, puis affiche la bibliothèque dans une interface web et dans une API que beaucoup de clients tiers utilisent. Il ne range rien à ta place : le projet part du principe que ta collection est déjà bien tenue. Pour le faire tourner, il faut un serveur web (Apache est le plus testé, nginx et lighttpd marchent aussi), PHP avec ses modules, MySQL ou MariaDB, et Node.js pour compiler les fichiers de l’interface. Une image Docker est publiée. La branche principale, Ampache 8, demande PHP 8.5 ou plus récent, et le README recommande la branche release7 comme la plus stable. Une API compatible Jellyfin, à activer à la main, permet à certaines applis Jellyfin de parcourir et d’écouter la bibliothèque. La licence est AGPL-3.0. La comparaison payante la plus proche est Spotify Premium, mais seulement pour la musique que tu possèdes : il n’y a aucun catalogue de titres sous licence. Il convient à ceux qui gardent des CD numérisés ou des achats en téléchargement et veulent les écouter depuis un téléphone ou un navigateur, sans confier les fichiers à un tiers.",
   "strengths": [
-    "Diffuse l'audio et la vidéo de tes propres fichiers vers un navigateur ou via son API",
-    "Propose une API compatible Jellyfin, à activer, pour que des clients comme Finamp ou Symfonium s'y connectent",
+    "Diffuse l’audio et la vidéo de tes propres fichiers vers un navigateur ou via son API",
+    "Propose une API compatible Jellyfin, à activer, pour que des clients comme Finamp ou Symfonium s’y connectent",
     "Tourne sur Apache, nginx, lighttpd ou IIS, avec une image Docker publiée",
-    "Authentification LDAP et prise en charge d'UPnP en option",
+    "Authentification LDAP et prise en charge d’UPnP en option",
     "API publique documentée, avec des exemples, utilisée par des clients tiers"
   ],
   "limits": [
     "Aucun catalogue : il ne sert que tes fichiers, donc il ne remplace pas la bibliothèque sous licence de Spotify",
-    "Ce n'est pas un outil de rangement : il faut des tags ou des noms de fichiers propres pour de bonnes métadonnées",
-    "Il demande MySQL ou MariaDB, PHP avec beaucoup de modules et Node.js pour compiler l'interface, soit une pile plus lourde qu'un simple binaire",
-    "Ampache 8 exige PHP 8.5 ou plus récent, alors que la version recommandée comme stable est l'ancienne branche release7"
+    "Ce n’est pas un outil de rangement : il faut des tags ou des noms de fichiers propres pour de bonnes métadonnées",
+    "Il demande MySQL ou MariaDB, PHP avec beaucoup de modules et Node.js pour compiler l’interface, soit une pile plus lourde qu’un simple binaire",
+    "Ampache 8 exige PHP 8.5 ou plus récent, alors que la version recommandée comme stable est l’ancienne branche release7"
   ],
   "bestFor": "Un collectionneur avec une bibliothèque bien rangée de fichiers à lui et un serveur à la maison, qui veut écouter sur son téléphone et son navigateur sans abonnement."
 }

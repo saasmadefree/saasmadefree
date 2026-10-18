@@ -1,18 +1,18 @@
 {
   "tagline": "Logiciel de peinture numérique gratuit pour illustrateurs, auteurs de BD et peintres de textures.",
-  "description": "Krita est un logiciel de peinture numérique gratuit, pensé pour l'illustration dessinée à la main, la BD, le concept art et les textures. Selon le projet, des auteurs de BD, des illustrateurs et des artistes de concept art l'utilisent. Il est sous licence GPL-3.0 dans son ensemble, même si certains fichiers peuvent porter une autre licence compatible. C'est un programme à installer sur ton ordinateur, pas un serveur : il n'y a rien à héberger et aucune base de données à faire tourner. Des versions nocturnes sont disponibles depuis l'intégration continue de KDE. Le dépôt GitHub n'est qu'un miroir, le vrai code vit sur le serveur de KDE. Krita ne remplace Canva que pour une tâche étroite : peindre et retoucher des images matricielles. Il ne se présente pas comme un outil de mise en page à modèles ni comme un outil de visuels pour les réseaux sociaux. Le manuel d'utilisation est publié en ligne pour la série 5.3. Le développement est porté par la communauté, sous l'égide de KDE, et les bugs sont suivis sur le gestionnaire de bugs de KDE.",
+  "description": "Krita est un logiciel de peinture numérique gratuit, pensé pour l’illustration dessinée à la main, la BD, le concept art et les textures. Selon le projet, des auteurs de BD, des illustrateurs et des artistes de concept art l’utilisent. Il est sous licence GPL-3.0 dans son ensemble, même si certains fichiers peuvent porter une autre licence compatible. C’est un programme à installer sur ton ordinateur, pas un serveur : il n’y a rien à héberger et aucune base de données à faire tourner. Des versions nocturnes sont disponibles depuis l’intégration continue de KDE. Le dépôt GitHub n’est qu’un miroir, le vrai code vit sur le serveur de KDE. Krita ne remplace Canva que pour une tâche étroite : peindre et retoucher des images matricielles. Il ne se présente pas comme un outil de mise en page à modèles ni comme un outil de visuels pour les réseaux sociaux. Le manuel d’utilisation est publié en ligne pour la série 5.3. Le développement est porté par la communauté, sous l’égide de KDE, et les bugs sont suivis sur le gestionnaire de bugs de KDE.",
   "strengths": [
-    "Conçu pour peindre et illustrer à la main, pas pour retoucher des photos ni faire de la mise en page.",
-    "Aucun serveur ni compte : tu l'installes sur un ordinateur et tes fichiers restent chez toi.",
-    "Sous licence GPL-3.0, avec des versions nocturnes publiées depuis l'intégration continue de KDE.",
-    "Un manuel en ligne est tenu à jour pour la série de versions actuelle.",
-    "Utilisé en BD, en concept art, en peinture de textures et en effets visuels, d'après le projet."
+    "Conçu pour peindre et illustrer à la main, pas pour retoucher des photos ni faire de la mise en page",
+    "Aucun serveur ni compte : tu l’installes sur un ordinateur et tes fichiers restent chez toi",
+    "Sous licence GPL-3.0, avec des versions nocturnes publiées depuis l’intégration continue de KDE",
+    "Un manuel en ligne est tenu à jour pour la série de versions actuelle",
+    "Utilisé en BD, en concept art, en peinture de textures et en effets visuels, d’après le projet"
   ],
   "limits": [
-    "Logiciel de peinture pour ordinateur : il n'a pas de modèles, donc il ne remplace pas Canva pour des flyers ou des posts.",
-    "Le projet ne décrit ni version hébergée ni version navigateur : il ne tourne que là où tu peux l'installer.",
-    "Le dépôt GitHub est un miroir : tickets et contributions passent par l'infrastructure de KDE.",
-    "Les versions nocturnes et de développement sont instables, selon le projet lui-même."
+    "Logiciel de peinture pour ordinateur : il n’a pas de modèles, donc il ne remplace pas Canva pour des flyers ou des posts",
+    "Le projet ne décrit ni version hébergée ni version navigateur : il ne tourne que là où tu peux l’installer",
+    "Le dépôt GitHub est un miroir : tickets et contributions passent par l’infrastructure de KDE",
+    "Les versions nocturnes et de développement sont instables, selon le projet lui-même"
   ],
   "bestFor": "Un illustrateur ou un auteur de BD qui veut un logiciel de peinture gratuit sur son propre ordinateur."
 }

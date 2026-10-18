@@ -33,17 +33,17 @@
       "a": "Zammad est le meilleur choix si tu veux ce que vend Zendesk Suite : email, chat, téléphone et réseaux sociaux dans une seule file, une base de connaissances et une API. Il est plus lourd à faire tourner que la plupart des autres, avec environ 6 Go de RAM. FreeScout convient mieux à une petite boîte sur un hébergement mutualisé."
     },
     {
-      "q": "Je peux garder un centre d'aide public après avoir quitté Zendesk ?",
-      "a": "Oui, plusieurs outils en proposent un. Chatwoot a un portail de centre d'aide intégré, et UVdesk, Zammad et Frappe Helpdesk fournissent chacun une base de connaissances. Déplacer tes articles actuels est un chantier à part : regarde comment chaque outil importe du contenu avant de changer."
+      "q": "Je peux garder un centre d’aide public après avoir quitté Zendesk ?",
+      "a": "Oui, plusieurs outils en proposent un. Chatwoot a un portail de centre d’aide intégré, et UVdesk, Zammad et Frappe Helpdesk fournissent chacun une base de connaissances. Déplacer tes articles actuels est un chantier à part : regarde comment chaque outil importe du contenu avant de changer."
     }
   ],
-  "alternativesIntro": "La meilleure alternative gratuite à Zendesk est Zammad : il réunit email, chat, téléphone et réseaux sociaux dans une seule file de tickets, avec une base de connaissances et une API REST documentée. Il est sous AGPL-3.0 et s'installe avec Docker Compose, un chart Helm ou des paquets. Prévois environ 2 cœurs et 6 Go de RAM, plus 4 Go pour un Elasticsearch local. Tu perds la place de marché de Zendesk, les applis mobiles et les contrôles d'audit, de rétention et de résidence des données qu'exige une revue de sécurité. FreeScout est le choix léger pour une petite boîte partagée. Continue de payer si les achats t'envoient un questionnaire de sécurité.",
+  "alternativesIntro": "La meilleure alternative gratuite à Zendesk est Zammad : il réunit email, chat, téléphone et réseaux sociaux dans une seule file de tickets, avec une base de connaissances et une API REST documentée. Il est sous AGPL-3.0 et s’installe avec Docker Compose, un chart Helm ou des paquets. Prévois environ 2 cœurs et 6 Go de RAM, plus 4 Go pour un Elasticsearch local. Tu perds la place de marché de Zendesk, les applis mobiles et les contrôles d’audit, de rétention et de résidence des données qu’exige une revue de sécurité. FreeScout est le choix léger pour une petite boîte partagée. Continue de payer si les achats t’envoient un questionnaire de sécurité.",
   "alternativeNotes": {
-    "zammad": "Couvre l'email, le chat, le téléphone et les réseaux sociaux dans une seule file, plus les SLA et une API REST. Il demande PostgreSQL 15 ou plus récent, Redis 7 ou plus récent et environ 6 Go de RAM.",
-    "uvdesk": "Couvre les tickets par email, les agents et tickets illimités et une base de connaissances. Il demande les extensions PHP IMAP et Mailparse et annonce 4 Go de RAM, et les modules marketing sont des extras d'une boutique à part.",
-    "osticket": "Couvre les tickets venus des emails, des formulaires web et des saisies d'appels, sur du PHP et MySQL classiques. Aucun chat en direct ni réseau social n'est listé, et aucune image Docker n'est documentée.",
-    "frappe-helpdesk": "Couvre les SLA, les règles d'attribution, les réponses enregistrées et une base de connaissances. Il demande le framework Frappe et l'outil bench, et seules les versions 15 et 16 de Frappe sont prises en charge.",
-    "chatwoot": "Couvre une boîte unique pour le chat en direct, l'email, WhatsApp, Instagram et d'autres canaux, avec un centre d'aide. C'est de l'open-core : le dossier enterprise a une licence à part, et l'ensemble lance quatre services.",
-    "freescout": "Couvre une boîte partagée légère, avec agents et tickets illimités, sur un hébergement mutualisé. WhatsApp, le chat en direct et d'autres extras sont des modules, et aucun moteur de SLA n'est décrit."
+    "zammad": "Couvre l’email, le chat, le téléphone et les réseaux sociaux dans une seule file, plus les SLA et une API REST. Il demande PostgreSQL 15 ou plus récent, Redis 7 ou plus récent et environ 6 Go de RAM.",
+    "uvdesk": "Couvre les tickets par email, les agents et tickets illimités et une base de connaissances. Il demande les extensions PHP IMAP et Mailparse et annonce 4 Go de RAM, et les modules marketing sont des extras d’une boutique à part.",
+    "osticket": "Couvre les tickets venus des emails, des formulaires web et des saisies d’appels, sur du PHP et MySQL classiques. Aucun chat en direct ni réseau social n’est listé, et aucune image Docker n’est documentée.",
+    "frappe-helpdesk": "Couvre les SLA, les règles d’attribution, les réponses enregistrées et une base de connaissances. Il demande le framework Frappe et l’outil bench, et seules les versions 15 et 16 de Frappe sont prises en charge.",
+    "chatwoot": "Couvre une boîte unique pour le chat en direct, l’email, WhatsApp, Instagram et d’autres canaux, avec un centre d’aide. C’est de l’open-core : le dossier enterprise a une licence à part, et l’ensemble lance quatre services.",
+    "freescout": "Couvre une boîte partagée légère, avec agents et tickets illimités, sur un hébergement mutualisé. WhatsApp, le chat en direct et d’autres extras sont des modules, et aucun moteur de SLA n’est décrit."
   }
 }

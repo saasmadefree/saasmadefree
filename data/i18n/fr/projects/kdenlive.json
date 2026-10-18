@@ -7,7 +7,7 @@
     "Construit sur le moteur MLT, avec les effets vidéo frei0r et les effets audio LADSPA",
     "Transitions et compositions pour superposer des calques",
     "Versions stables et builds quotidiens expérimentaux proposés tous les deux",
-    "Transcription automatique pour créer des sous-titres, la fonction pour laquelle on utilise le plus les éditeurs de vidéo courte"
+    "Transcription automatique pour créer des sous-titres"
   ],
   "limits": [
     "Sur ordinateur uniquement : pas d’éditeur dans le navigateur, de synchro des projets dans le cloud ni d’espace partagé",

@@ -1,16 +1,16 @@
 {
   "tagline": "Plateforme auto-hébergée qui transforme des scripts en workflows, tâches de fond et applis internes.",
-  "description": "Windmill est un outil d'automatisation centré sur le code. Tu écris un script en TypeScript, Python, Go, Bash ou d'autres langages, et Windmill lit ses paramètres pour en faire un formulaire web. Les scripts s'enchaînent en flows, tournent sur un planning ou via des webhooks, et peuvent alimenter des applis low-code utilisées comme outils internes. Le backend est écrit en Rust, les workers prennent leurs tâches dans une file PostgreSQL, et les scripts sont isolés avec nsjail. Pour l'auto-hébergement, le README donne une installation Docker Compose en trois fichiers et un chart Helm pour Kubernetes. Sa règle pratique : un worker par vCPU et 1 à 2 Go de RAM. Tu peux utiliser ton propre PostgreSQL managé. Windmill se rapproche de Retool, Pipedream et Temporal plus que d'un clone no-code de Zapier : construire des flows demande de savoir programmer. Le code source est partagé. Une partie est sous AGPLv3 ou Apache 2, mais les builds de la Community Edition gratuite contiennent aussi du code propriétaire. Tu peux utiliser cette édition en interne gratuitement. La revendre ou l'intégrer à un produit que tu distribues demande une licence commerciale.",
+  "description": "Windmill est un outil d’automatisation centré sur le code. Tu écris un script en TypeScript, Python, Go, Bash ou d’autres langages, et Windmill lit ses paramètres pour en faire un formulaire web. Les scripts s’enchaînent en flux, tournent sur un planning ou via des webhooks, et peuvent alimenter des applis low-code utilisées comme outils internes. Le backend est écrit en Rust, les workers prennent leurs tâches dans une file PostgreSQL, et les scripts sont isolés avec nsjail. Pour l’auto-hébergement, le README donne une installation Docker Compose en trois fichiers et un chart Helm pour Kubernetes. Sa règle pratique : un worker par vCPU et 1 à 2 Go de RAM. Tu peux utiliser ton propre PostgreSQL managé. Windmill se rapproche de Retool, Pipedream et Temporal plus que d’un clone no-code de Zapier : construire des flux demande de savoir programmer. Le code source est partagé. Une partie est sous AGPLv3 ou Apache 2, mais les builds de la Community Edition gratuite contiennent aussi du code propriétaire. Tu peux utiliser cette édition en interne gratuitement. La revendre ou l’intégrer à un produit que tu distribues demande une licence commerciale.",
   "strengths": [
-    "Génère automatiquement un formulaire web à partir des paramètres d'un script",
-    "Exécute des scripts en TypeScript, Python, Go, Bash, SQL et d'autres langages",
+    "Génère automatiquement un formulaire web à partir des paramètres d’un script",
+    "Exécute des scripts en TypeScript, Python, Go, Bash, SQL et d’autres langages",
     "Déclencheurs : plannings, webhooks, routes HTTP, Kafka et WebSockets",
     "Les workers prennent leurs tâches dans PostgreSQL et tournent dans des bacs à sable nsjail",
     "CLI, extension VS Code et synchro Git pour le développement en local"
   ],
   "limits": [
-    "Conçu pour les développeurs : les flows se font en code, donc peu adapté à un utilisateur de Zapier sans compétences techniques",
-    "La Community Edition gratuite contient du code propriétaire avec des quotas, et n'est pas entièrement open source",
+    "Conçu pour les développeurs : les flux se font en code, donc peu adapté à un utilisateur de Zapier sans compétences techniques",
+    "La Community Edition gratuite contient du code propriétaire avec des quotas, et n’est pas entièrement open source",
     "Redistribution, marque blanche ou produit vendu construit dessus : il faut une licence commerciale",
     "Il faut PostgreSQL et un reverse proxy, et le guide suggère environ 1 vCPU et 1 à 2 Go de RAM par worker"
   ],
