@@ -14,6 +14,17 @@
     { "q": "Can I connect more than one calendar?", "a": "The prompt wires up one OAuth calendar. Adding a second means merging two freebusy calls before offering slots — doable, but it's the first thing that turns a weekend into a week." },
     { "q": "Does it create a Zoom or Meet link automatically?", "a": "No. That needs a second OAuth integration with the video provider's API; the DIY version leaves the link field blank for you to fill in manually." },
     { "q": "What happens with timezones?", "a": "The page detects the visitor's browser timezone and converts slots to it, the same way Calendly does for a single host." },
-    { "q": "Can a team share one booking page with round-robin assignment?", "a": "Not with this build. Round-robin across several people's calendars is real scheduling logic, not a small add-on." }
-  ]
+    { "q": "Can a team share one booking page with round-robin assignment?", "a": "Not with this build. Round-robin across several people's calendars is real scheduling logic, not a small add-on." },
+    { "q": "What's the best free Calendly alternative?", "a": "Tymeslot is the closest match: booking pages, multi-calendar sync, video links and reminders from one container. Cal.diy is the alternative if you want the Cal.com codebase, though it drops teams and SSO. Neither replaces Calendly's CRM and Slack integrations." },
+    { "q": "Do I need to set up email to send booking confirmations?", "a": "Yes. Tymeslot drops emails silently until you configure SMTP or another mail provider. CloudMeet depends on a third-party service, Emailit, and sends nothing without its key. Plan for mail setup on day one." }
+  ],
+  "alternativesIntro": "The best free Calendly alternative is Tymeslot: it gives you booking pages, two-way sync across Google, Outlook, iCloud and CalDAV calendars, video links and email reminders. It starts with one docker run command and bundles PostgreSQL. You lose Calendly's CRM and Slack integrations, and its text does not mention team round-robin, so check that before you commit. Cal.diy is the MIT pick if you want the Cal.com codebase, but its maintainers advise personal, non-production use only. Build your own page if you have one calendar and one booking type. Keep paying if a sales team needs round-robin.",
+  "alternativeNotes": {
+    "tymeslot": "Covers booking pages, two-way calendar sync with conflict checks, named availability schedules, video links and reminders. Emails are dropped until you set up SMTP, and it needs at least 500 MB of RAM.",
+    "cal-com": "Cal.diy is the MIT fork of Cal.com, with no licence key needed. Teams, Organizations, Workflows and SSO/SAML are removed, and the maintainers advise personal, non-production use.",
+    "calnode": "Covers booking in one Go binary with SQLite, a REST API and signed webhooks. Video rooms need a LiveKit server, and the admin interface is English-only.",
+    "easyappointments": "Covers services, providers with their own working plans and Google Calendar sync on ordinary PHP and MySQL hosting. No Outlook sync or video-link creation is described.",
+    "thunderbird-appointment": "Covers a booking page over your Google or CalDAV calendar. Docker is the only supported install, and the technical docs are flagged as work in progress.",
+    "cloudmeet": "Covers one person's scheduling on Cloudflare Pages and D1, with Google Meet or Teams links. It has a single admin, so no team scheduling or round-robin."
+  }
 }

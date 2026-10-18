@@ -26,11 +26,11 @@
   ],
   "alternatives": [
     {
-      "project": "jellyfin",
+      "project": "navidrome",
       "fit": "partial"
     },
     {
-      "project": "navidrome",
+      "project": "jellyfin",
       "fit": "partial"
     },
     {

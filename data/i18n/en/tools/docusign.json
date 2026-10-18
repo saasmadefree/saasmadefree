@@ -28,6 +28,22 @@
     {
       "q": "What is the one thing that does not survive the rebuild?",
       "a": "Acceptance. Everything technical here is buildable; the reason people pay is that the other side already trusts the envelope, and that is not a feature you can implement."
+    },
+    {
+      "q": "What's the best free DocuSign alternative?",
+      "a": "DocuSeal is the best free Docusign alternative. It covers signing links, signed PDFs and an audit trail. It does not give you identity checks or the legal recognition Docusign has built up."
+    },
+    {
+      "q": "Can I do my signing inside Nextcloud?",
+      "a": "Yes, with LibreSign. It signs PDFs with certificates inside a Nextcloud server you already run. It needs that server, and it is a partial match for Docusign."
     }
-  ]
+  ],
+  "alternativesIntro": "The best free Docusign alternative is DocuSeal: it handles PDF form fields, signing links, signed PDF output and an audit trail, under AGPL-3.0. Some features need the paid edition. You lose recognition: identity checks, qualified signatures under eIDAS and the integrations that start envelopes from a CRM. Documenso is the pick if you want a hosted option or a certificate-based flow. For routine contracts between people who trust each other, self-hosting works. For deals where a counterparty's lawyers must accept the signature, keep paying Docusign at $11 a month.",
+  "alternativeNotes": {
+    "docuseal": "Covers PDF form fields, signing links, signed PDF output and an audit trail. Some features need the paid edition.",
+    "documenso": "Covers sending, signing and tracking documents with signing links and a certificate. It has no identity verification by default and no legal evidence guarantee.",
+    "opensign": "Covers signature requests, templates and completed PDFs with a trail. Legal strength depends on your jurisdiction.",
+    "libresign": "Covers PDF signing with certificates inside Nextcloud. It requires a Nextcloud server.",
+    "wraft": "Covers document generation with templates and signing steps. It is a broader workflow tool than a signing service."
+  }
 }

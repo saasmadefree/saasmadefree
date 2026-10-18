@@ -1,0 +1,62 @@
+[
+  {
+    "claim": "Zendesk price 55 USD, plan Suite Team, annual-effective-monthly",
+    "url": "https://www.zendesk.com/pricing/",
+    "retrievedOn": "2026-07-31",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "Four projects are rated full. Zammad brings email, chat, phone and social channels into one queue with a knowledge base and REST API, which is closest to what Zendesk Suite sells; UVdesk is email ticketing with a portal.",
+    "url": "research/alternatives/zendesk.json",
+    "retrievedOn": "2026-10-18",
+    "field": "alternatives order"
+  },
+  {
+    "claim": "Facts about Zammad (licence, features, limits) as written in alternativeNotes.zammad, from data/i18n/en/projects/zammad.json",
+    "url": "https://github.com/zammad/zammad",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.zammad"
+  },
+  {
+    "claim": "Facts about UVdesk (licence, features, limits) as written in alternativeNotes.uvdesk, from data/i18n/en/projects/uvdesk.json",
+    "url": "https://github.com/uvdesk/community-skeleton",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.uvdesk"
+  },
+  {
+    "claim": "Facts about osTicket (licence, features, limits) as written in alternativeNotes.osticket, from data/i18n/en/projects/osticket.json",
+    "url": "https://github.com/osTicket/osTicket",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.osticket"
+  },
+  {
+    "claim": "Facts about Frappe Helpdesk (licence, features, limits) as written in alternativeNotes.frappe-helpdesk, from data/i18n/en/projects/frappe-helpdesk.json",
+    "url": "https://github.com/frappe/helpdesk",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.frappe-helpdesk"
+  },
+  {
+    "claim": "Facts about Chatwoot (licence, features, limits) as written in alternativeNotes.chatwoot, from data/i18n/en/projects/chatwoot.json",
+    "url": "https://github.com/chatwoot/chatwoot",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.chatwoot"
+  },
+  {
+    "claim": "Facts about FreeScout (licence, features, limits) as written in alternativeNotes.freescout, from data/i18n/en/projects/freescout.json",
+    "url": "https://github.com/freescout-help-desk/freescout",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.freescout"
+  },
+  {
+    "claim": "Winner Zammad: claims in alternativesIntro and FAQ 5 drawn from its README and project text",
+    "url": "https://github.com/zammad/zammad",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[4]"
+  },
+  {
+    "claim": "FAQ 6 facts are drawn from the project texts in data/i18n/en/projects/*.json",
+    "url": "data/i18n/en/projects",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[5]"
+  }
+]

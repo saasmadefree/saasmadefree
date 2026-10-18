@@ -28,11 +28,11 @@
   ],
   "alternatives": [
     {
-      "project": "uvdesk",
+      "project": "zammad",
       "fit": "full"
     },
     {
-      "project": "zammad",
+      "project": "uvdesk",
       "fit": "full"
     },
     {

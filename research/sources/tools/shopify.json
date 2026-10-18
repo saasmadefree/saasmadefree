@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Shopify Basic price used in intro",
+    "url": "https://www.shopify.com/pricing",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "bagisto: coverage and gaps as stated in the alternative note",
+    "url": "https://bagisto.com",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.bagisto"
+  },
+  {
+    "claim": "spree-commerce: coverage and gaps as stated in the alternative note",
+    "url": "https://spreecommerce.org",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.spree-commerce"
+  },
+  {
+    "claim": "woocommerce: coverage and gaps as stated in the alternative note",
+    "url": "https://woocommerce.com",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.woocommerce"
+  },
+  {
+    "claim": "prestashop: coverage and gaps as stated in the alternative note",
+    "url": "https://www.prestashop-project.org/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.prestashop"
+  },
+  {
+    "claim": "shopware: coverage and gaps as stated in the alternative note",
+    "url": "https://shopware.com",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.shopware"
+  },
+  {
+    "claim": "medusa: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/medusajs/medusa",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.medusa"
+  },
+  {
+    "claim": "saleor: coverage and gaps as stated in the alternative note",
+    "url": "https://saleor.io",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.saleor"
+  },
+  {
+    "claim": "solidus: coverage and gaps as stated in the alternative note",
+    "url": "https://solidus.io",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.solidus"
+  }
+]

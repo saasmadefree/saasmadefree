@@ -13,9 +13,40 @@
   "notes": "An honest 'no' that still leaves room for a genuinely useful, much cheaper wrapper if all you actually use is text chat.",
   "prompt": "If what you actually use is plain text chat — not voice, image generation, browsing agents, or memory — a thin client on a model API is a real build, and for light use it's often cheaper than a flat monthly fee. Build a chat interface: a streaming reply pane, a model picker that supports both OpenAI and Anthropic (switching between them is one of the real advantages of owning the wrapper), and a conversation sidebar with full-text search. Store every conversation, allow exporting a thread to Markdown, and let a conversation carry an editable system prompt. Support uploading a text file or PDF whose contents go straight into the context window — no vector database needed at personal scale. Show a running cost estimate per conversation and per month, computed from each API response's token usage, so 'is this actually cheaper' has a real number behind it. Read API keys from environment variables, never commit them.\n\nDo not build image generation, voice mode, browsing agents, or persistent memory across conversations — those need infrastructure well beyond an API wrapper, and they're exactly what the subscription is paying for if you use them.",
   "faq": [
-    { "q": "Can I import my ChatGPT conversation history?", "a": "OpenAI lets you export your full chat history as a structured archive, and that maps reasonably well onto this build's conversation table — a short one-off script converts the export format." },
-    { "q": "Will it work on my phone?", "a": "As a responsive web page, yes, if you host it somewhere reachable. There's no native app, no push notifications, and no offline mode — it's a browser tab, not a phone app." },
-    { "q": "What does it actually cost to run?", "a": "Hosting is a few dollars a month; API usage for someone who mostly does text chat is often under five dollars a month in tokens — the built-in cost meter shows exactly where you land against the flat subscription fee." },
-    { "q": "What's the one thing that genuinely doesn't survive the rebuild?", "a": "The model keeping up with itself. OpenAI ships new capabilities into ChatGPT continuously; this wrapper only gets better when you notice and manually swap in a newer model — it doesn't improve on its own." }
-  ]
+    {
+      "q": "Can I import my ChatGPT conversation history?",
+      "a": "OpenAI lets you export your full chat history as a structured archive, and that maps reasonably well onto this build's conversation table — a short one-off script converts the export format."
+    },
+    {
+      "q": "Will it work on my phone?",
+      "a": "As a responsive web page, yes, if you host it somewhere reachable. There's no native app, no push notifications, and no offline mode — it's a browser tab, not a phone app."
+    },
+    {
+      "q": "What does it actually cost to run?",
+      "a": "Hosting is a few dollars a month; API usage for someone who mostly does text chat is often under five dollars a month in tokens — the built-in cost meter shows exactly where you land against the flat subscription fee."
+    },
+    {
+      "q": "What's the one thing that genuinely doesn't survive the rebuild?",
+      "a": "The model keeping up with itself. OpenAI ships new capabilities into ChatGPT continuously; this wrapper only gets better when you notice and manually swap in a newer model — it doesn't improve on its own."
+    },
+    {
+      "q": "What's the best free ChatGPT alternative?",
+      "a": "Ollama is the best free ChatGPT alternative if you want to run models on your own hardware. Add Open WebUI for a ChatGPT-style browser interface. Expect weaker answers than the paid models, and no voice mode or image generation."
+    },
+    {
+      "q": "Can I keep using OpenAI models in a self-hosted chat app?",
+      "a": "Yes. Open WebUI and LibreChat connect to OpenAI-compatible APIs, so you can plug in an API key and pay per use instead of a flat fee. You keep the chat history on your own server. The model is still OpenAI's, so you give up nothing on quality."
+    }
+  ],
+  "alternativesIntro": "The best free ChatGPT alternative is Ollama: it runs open-weight models on your own machine, with no monthly fee. No self-hosted project replaces the frontier model itself, image generation, voice mode or the mobile apps. Local models are weaker than the paid ones. Pair Ollama with Open WebUI if you want a browser chat with history and document upload. For plain text chat, a self-hosted interface on a model API is cheaper than ChatGPT Plus at $20 a month. If you rely on voice, images or the newest model, keep paying.",
+  "alternativeNotes": {
+    "ollama": "Runs open-weight models locally and exposes them to other apps. Model quality is below the frontier models, and the chat features are basic without a separate interface.",
+    "open-webui": "Gives you a browser chat with history, model switching and document chat on your own server. It has no model of its own, so quality depends on what you plug in.",
+    "lobe-chat": "A multi-provider chat interface with agents and plugins. It has no frontier model of its own.",
+    "anything-llm": "Chat with your documents in workspaces, over a local or cloud model. It has no frontier model of its own.",
+    "cherry-studio": "A multi-provider desktop chat client with knowledge bases. It has no server mode and no model of its own.",
+    "librechat": "A multi-provider chat interface with history, presets and agents. It has no frontier model of its own.",
+    "jan": "Chats with downloaded models on your computer, with optional API connections. It is a desktop app only, with no multi-user server.",
+    "onyx": "Chat over your own documents with any model, centred on search across connected apps. It has no frontier model of its own."
+  }
 }

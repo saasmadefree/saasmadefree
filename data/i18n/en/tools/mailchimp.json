@@ -13,9 +13,40 @@
   "notes": "A classic hidden-moat example: the sending UI is easy to rebuild; inbox placement cannot be hand-waved.",
   "prompt": "Build a small-list email campaign tool: contacts with tags and custom fields, CSV import and export, and segments defined as saved filters (has a given tag, joined after a date, opened the last campaign). Write campaigns in Markdown, rendered into one clean single-column HTML email with an automatically generated plain-text alternative. Send through a real transactional email API (Amazon SES or similar) with throttling and a per-recipient status; wire up bounce and complaint webhooks to automatically suppress those addresses going forward. Bake compliance in rather than bolting it on: an unsubscribe link and your postal address in every footer, a List-Unsubscribe header, and double opt-in on the public signup form. Make open tracking a per-campaign toggle, off by default. Show a campaign report with sent, bounced, and unsubscribed counts.\n\nDo not build a drag-and-drop template editor, visual automation journeys, or e-commerce integrations — those are real, separate products. Be blunt in the README: inbox placement is earned through sending behavior over time, not configured. Document SPF, DKIM, and DMARC setup, and warm up sending volume gradually on a new domain.",
   "faq": [
-    { "q": "Can I import my existing Mailchimp audience?", "a": "Yes — Mailchimp exports your contacts, tags, and custom fields to CSV, which imports directly here. Automation journeys and templates don't transfer; that logic has to be rebuilt from scratch." },
-    { "q": "Will it work on my phone?", "a": "The admin view is a plain web page, usable on a phone for a quick check, but the composer isn't optimized for a small screen and there's no dedicated app." },
-    { "q": "What does it cost to run?", "a": "Hosting, a domain, and a database, typically a few dollars a month, plus per-email sending costs on the transactional API — often well under Mailchimp's tiered pricing at small list sizes." },
-    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Sending reputation. Mailchimp's shared and dedicated IPs carry years of established trust with inbox providers; a brand-new sending domain starts at zero and has to earn that trust the same slow way, regardless of how good the code is." }
-  ]
+    {
+      "q": "Can I import my existing Mailchimp audience?",
+      "a": "Yes — Mailchimp exports your contacts, tags, and custom fields to CSV, which imports directly here. Automation journeys and templates don't transfer; that logic has to be rebuilt from scratch."
+    },
+    {
+      "q": "Will it work on my phone?",
+      "a": "The admin view is a plain web page, usable on a phone for a quick check, but the composer isn't optimized for a small screen and there's no dedicated app."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Hosting, a domain, and a database, typically a few dollars a month, plus per-email sending costs on the transactional API — often well under Mailchimp's tiered pricing at small list sizes."
+    },
+    {
+      "q": "What's the one thing that doesn't survive the rebuild?",
+      "a": "Sending reputation. Mailchimp's shared and dedicated IPs carry years of established trust with inbox providers; a brand-new sending domain starts at zero and has to earn that trust the same slow way, regardless of how good the code is."
+    },
+    {
+      "q": "What's the best free Mailchimp alternative?",
+      "a": "Listmonk is the best free Mailchimp alternative for newsletters. It handles lists, segments and campaigns on your own server. Add your own SMTP provider, and expect no visual automations."
+    },
+    {
+      "q": "Which alternative has automations like Mailchimp's journeys?",
+      "a": "Mautic is the closest, with visual automations, forms and segments. It is heavier to run than Listmonk. Dittofeed builds triggered journeys too, but it targets product events rather than newsletters."
+    }
+  ],
+  "alternativesIntro": "The best free Mailchimp alternative is Listmonk: it covers lists, segments and campaign sending on your own server. It has no drag-and-drop editor, no visual automations and no e-commerce sync. You also lose Mailchimp's sending reputation, so you must set up SMTP and keep your lists clean. Mautic is the pick if you need automations and forms, though it is heavier to run. For a newsletter to a small list, Listmonk wins. If deliverability or automation is your business, keep paying $20 a month.",
+  "alternativeNotes": {
+    "listmonk": "Covers lists, segments, campaign sending, templates and unsubscribe handling. It has no visual automations.",
+    "mautic": "Covers email campaigns, segments, forms and visual automations. It is heavier to run than a newsletter tool.",
+    "keila": "Covers campaigns, contact forms, segments and unsubscribe handling. It has fewer automations than Mailchimp.",
+    "plunk": "Covers campaigns, contacts and event-driven emails through SES. It is newer and lighter than Mailchimp.",
+    "dittofeed": "Covers triggered journeys and broadcasts through your own email provider. It is aimed at product events rather than newsletters.",
+    "notifuse": "Covers contact lists, campaigns and templates through your own provider. It is a newer project.",
+    "sendportal": "Covers subscribers, segments and campaigns through your own mail provider. It has limited automations.",
+    "phplist": "Covers lists, campaigns and bounce handling. It has a dated interface and few automations."
+  }
 }

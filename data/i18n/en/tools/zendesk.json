@@ -27,6 +27,23 @@
     {
       "q": "How hard is leaving Zendesk?",
       "a": "The data comes out — the API pages through tickets, users, organisations and help-centre articles, and there is a bulk export on request. The expensive part is the integrations and the reports other teams built on top, which is the real switching cost rather than the export itself."
+    },
+    {
+      "q": "What's the best free Zendesk alternative?",
+      "a": "Zammad is the best fit if you want what Zendesk Suite sells: email, chat, telephone and social channels in one queue, a knowledge base and an API. It is heavier to run than most, at about 6 GB of RAM. FreeScout is the better pick for a small inbox on shared hosting."
+    },
+    {
+      "q": "Can I keep a public help centre after leaving Zendesk?",
+      "a": "Yes, several tools include one. Chatwoot has a built-in help center portal, and UVdesk, Zammad and Frappe Helpdesk each ship a knowledge base. Moving your existing articles is a separate job, so check how each tool imports content before you switch."
     }
-  ]
+  ],
+  "alternativesIntro": "The best free Zendesk alternative is Zammad: it puts email, chat, telephone and social requests into one ticket queue, with a knowledge base and a documented REST API. It is AGPL-3.0 and installs from Docker Compose, a Helm chart or packages. Plan for about 2 CPU cores and 6 GB of RAM, plus 4 GB more for a local Elasticsearch. You lose Zendesk's app marketplace, mobile apps and the audit, retention and residency controls a security review asks for. FreeScout is the lightweight pick for a small shared inbox. Keep paying if procurement sends you a security questionnaire.",
+  "alternativeNotes": {
+    "zammad": "Covers email, chat, telephone and social channels in one queue, plus SLAs and a REST API. It needs PostgreSQL 15 or newer, Redis 7 or newer and about 6 GB of RAM.",
+    "uvdesk": "Covers email-to-ticket, unlimited agents and tickets, and a knowledge base. It needs PHP IMAP and Mailparse and lists 4 GB of RAM, and marketing modules are add-ons from a separate store.",
+    "osticket": "Covers tickets from email, web forms and phone entries on plain PHP and MySQL. It has no live chat or social channels listed, and no Docker image is documented.",
+    "frappe-helpdesk": "Covers SLAs, assignment rules, saved replies and a knowledge base. It needs the Frappe framework and bench tooling, and only Frappe 15 and 16 are supported.",
+    "chatwoot": "Covers one inbox for live chat, email, WhatsApp, Instagram and more, with a help centre. It is open-core: the enterprise directory has a separate licence, and the stack runs four services.",
+    "freescout": "Covers a lightweight shared inbox with unlimited agents and tickets on shared hosting. WhatsApp, live chat and other extras are modules, and no SLA engine is described."
+  }
 }

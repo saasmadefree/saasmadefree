@@ -1,0 +1,68 @@
+[
+  {
+    "claim": "Asana price 13.49 USD, plan Starter, per-seat-monthly",
+    "url": "https://asana.com/pricing",
+    "retrievedOn": "2026-07-31",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "Facts about Leantime (licence, features, limits) as written in alternativeNotes.leantime, from data/i18n/en/projects/leantime.json",
+    "url": "https://github.com/Leantime/leantime",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.leantime"
+  },
+  {
+    "claim": "Facts about Operately (licence, features, limits) as written in alternativeNotes.operately, from data/i18n/en/projects/operately.json",
+    "url": "https://github.com/operately/operately",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.operately"
+  },
+  {
+    "claim": "Facts about Plane (licence, features, limits) as written in alternativeNotes.plane, from data/i18n/en/projects/plane.json",
+    "url": "https://github.com/makeplane/plane",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.plane"
+  },
+  {
+    "claim": "Facts about Huly (licence, features, limits) as written in alternativeNotes.platform, from data/i18n/en/projects/platform.json",
+    "url": "https://github.com/hcengineering/platform",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.platform"
+  },
+  {
+    "claim": "Facts about OpenProject (licence, features, limits) as written in alternativeNotes.openproject, from data/i18n/en/projects/openproject.json",
+    "url": "https://github.com/opf/openproject",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.openproject"
+  },
+  {
+    "claim": "Facts about Vikunja (licence, features, limits) as written in alternativeNotes.vikunja, from data/i18n/en/projects/vikunja.json",
+    "url": "https://github.com/go-vikunja/vikunja",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.vikunja"
+  },
+  {
+    "claim": "Facts about Worklenz (licence, features, limits) as written in alternativeNotes.worklenz, from data/i18n/en/projects/worklenz.json",
+    "url": "https://github.com/Worklenz/worklenz",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.worklenz"
+  },
+  {
+    "claim": "Facts about Taiga (licence, features, limits) as written in alternativeNotes.taiga, from data/i18n/en/projects/taiga.json",
+    "url": "https://github.com/taigaio/taiga-back",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.taiga"
+  },
+  {
+    "claim": "Winner Leantime: claims in alternativesIntro and FAQ 5 drawn from its README and project text",
+    "url": "https://github.com/Leantime/leantime",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[4]"
+  },
+  {
+    "claim": "FAQ 6 facts are drawn from the project texts in data/i18n/en/projects/*.json",
+    "url": "data/i18n/en/projects",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[5]"
+  }
+]

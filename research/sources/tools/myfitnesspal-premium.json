@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "MyFitnessPal Premium Premium price used in intro",
+    "url": "https://apps.apple.com/us/app/myfitnesspal-calorie-counter/id341232718",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "sparkyfitness: coverage and gaps as stated in the alternative note",
+    "url": "https://codewithcj.github.io/SparkyFitness/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.sparkyfitness"
+  },
+  {
+    "claim": "wger: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/wger-project/wger",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.wger"
+  },
+  {
+    "claim": "opennutritracker: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/simonoppowa/OpenNutriTracker",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.opennutritracker"
+  },
+  {
+    "claim": "waistline: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/davidhealey/waistline",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.waistline"
+  },
+  {
+    "claim": "daily-value: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/jjnesk1-ship-it/daily-value",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.daily-value"
+  }
+]

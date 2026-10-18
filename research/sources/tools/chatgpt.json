@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "ChatGPT Plus price used in intro",
+    "url": "https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "ollama: coverage and gaps as stated in the alternative note",
+    "url": "https://ollama.com",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.ollama"
+  },
+  {
+    "claim": "open-webui: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/open-webui/open-webui",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.open-webui"
+  },
+  {
+    "claim": "lobe-chat: coverage and gaps as stated in the alternative note",
+    "url": "https://lobehub.com",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.lobe-chat"
+  },
+  {
+    "claim": "anything-llm: coverage and gaps as stated in the alternative note",
+    "url": "https://anythingllm.com",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.anything-llm"
+  },
+  {
+    "claim": "cherry-studio: coverage and gaps as stated in the alternative note",
+    "url": "https://cherryai.com",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.cherry-studio"
+  },
+  {
+    "claim": "librechat: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/LibreChat-AI/LibreChat",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.librechat"
+  },
+  {
+    "claim": "jan: coverage and gaps as stated in the alternative note",
+    "url": "https://jan.ai",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.jan"
+  },
+  {
+    "claim": "onyx: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/onyx-dot-app/onyx",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.onyx"
+  }
+]

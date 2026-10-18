@@ -1,0 +1,44 @@
+[
+  {
+    "claim": "Adobe Acrobat Pro price 29.99 USD, plan Acrobat Pro, flat-monthly",
+    "url": "https://www.adobe.com/acrobat/pricing.html",
+    "retrievedOn": "2026-07-31",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "Facts about Stirling PDF (licence, features, limits) as written in alternativeNotes.stirling-pdf, from data/i18n/en/projects/stirling-pdf.json",
+    "url": "https://github.com/Stirling-Tools/Stirling-PDF",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.stirling-pdf"
+  },
+  {
+    "claim": "Facts about BentoPDF (licence, features, limits) as written in alternativeNotes.bentopdf, from data/i18n/en/projects/bentopdf.json",
+    "url": "https://github.com/alam00000/bentopdf",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.bentopdf"
+  },
+  {
+    "claim": "Facts about PDFsam Basic (licence, features, limits) as written in alternativeNotes.pdfsam, from data/i18n/en/projects/pdfsam.json",
+    "url": "https://github.com/torakiki/pdfsam",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.pdfsam"
+  },
+  {
+    "claim": "Facts about PDF Arranger (licence, features, limits) as written in alternativeNotes.pdfarranger, from data/i18n/en/projects/pdfarranger.json",
+    "url": "https://github.com/pdfarranger/pdfarranger",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.pdfarranger"
+  },
+  {
+    "claim": "Winner Stirling PDF: claims in alternativesIntro and FAQ 5 drawn from its README and project text",
+    "url": "https://github.com/Stirling-Tools/Stirling-PDF",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[4]"
+  },
+  {
+    "claim": "FAQ 6 facts are drawn from the project texts in data/i18n/en/projects/*.json",
+    "url": "data/i18n/en/projects",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[5]"
+  }
+]

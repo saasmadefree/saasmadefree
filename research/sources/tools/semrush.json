@@ -1,0 +1,32 @@
+[
+  {
+    "claim": "Semrush SEO Pro price used in intro",
+    "url": "https://www.semrush.com/pricing/seo-ai-search/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "open-seo: coverage and gaps as stated in the alternative note",
+    "url": "https://openseo.so",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.open-seo"
+  },
+  {
+    "claim": "serpbear: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/towfiqi/serpbear",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.serpbear"
+  },
+  {
+    "claim": "seonaut: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/stjudewashere/seonaut",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.seonaut"
+  },
+  {
+    "claim": "seomacroscope: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/nazuke/SEOMacroscope",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.seomacroscope"
+  }
+]

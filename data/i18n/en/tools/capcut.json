@@ -16,6 +16,16 @@
     { "q": "Can I import my existing CapCut projects?", "a": "No — CapCut's project format is proprietary and doesn't export to anything this tool can read. You'd start from the exported video file, not the editable project." },
     { "q": "Will it work on my phone?", "a": "No — this is a command-line tool meant to run on a computer with real processing power for transcription. CapCut's mobile-first editing is exactly the part this doesn't replace." },
     { "q": "What does it cost to run?", "a": "Nothing — it runs fully offline on your own machine after the one-time transcription model download, with no hosting and no API key." },
-    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The editor itself. This tool captions and trims a single clip; it has no timeline, no drag-and-drop effects, and no library of trending templates — for anything beyond captions and a trim, you're back to a real video editor." }
-  ]
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "The editor itself. This tool captions and trims a single clip; it has no timeline, no drag-and-drop effects, and no library of trending templates — for anything beyond captions and a trim, you're back to a real video editor." },
+    { "q": "What's the best free CapCut alternative?", "a": "Kdenlive is the best fit if you want a full free editor on a laptop: it is multi-platform, has hundreds of effects and animates them with keyframes. Shotcut is the alternative with FFmpeg-wide format support. Neither has CapCut's templates or phone editing." },
+    { "q": "Do these editors need an account or a subscription?", "a": "No. They run locally on your computer. Flowblade states there is no account, subscription or export fee, and Shotcut and Kdenlive are desktop programs with no cloud storage or shared workspace. Your projects stay as files on your disk." }
+  ],
+  "alternativesIntro": "The best free CapCut alternative is Kdenlive: it is a multi-track desktop editor for Linux, Windows, macOS and BSD with hundreds of audio and video effects and keyframe animation. It has no template library, no bundled stock media and no phone app, so you lose the quick short-video workflow CapCut is built for. Shotcut is the other solid pick, using FFmpeg for wide format support. OpenCut targets web, desktop and mobile, but its main repository is mid-rewrite today. A captioning and clipping tool is a one-sitting build and covers social exports. Keep paying if you edit on your phone every day.",
+  "alternativeNotes": {
+    "kdenlive": "Covers multi-track editing, keyframed effects and local rendering. It has no stock footage, music or templates, and no cloud sync.",
+    "shotcut": "Covers timeline editing with FFmpeg formats and Frei0r and MLT filters on all three desktop systems. It has no template library and no one-tap short-video tools.",
+    "openshot": "Covers unlimited tracks, keyframe animation, chroma key and title templates. It is desktop only, and hardware encoding is labelled experimental.",
+    "opencut": "Aims to be a free MIT editor for web, desktop and mobile. The main repository is a rewrite in progress, so follow it rather than depend on it.",
+    "flowblade": "Covers a multitrack timeline with keyframed compositing and many filters. It runs on Linux only, with no templates, stock media or automatic captions described."
+  }
 }

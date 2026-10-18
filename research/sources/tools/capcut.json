@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "CapCut price 19.99 USD, plan Pro, flat-monthly",
+    "url": "https://www.capcut.com/resource/capcut-standard-vs-pro",
+    "retrievedOn": "2026-07-30",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "All five are partial fits. OpenCut's README says the main repository is a rewrite in progress with no deploy method, so it cannot be named best today. Kdenlive runs on Linux, Windows, macOS and BSD and has the broadest effects and keyframe support of the maintained editors.",
+    "url": "research/alternatives/capcut.json",
+    "retrievedOn": "2026-10-18",
+    "field": "alternatives order"
+  },
+  {
+    "claim": "Facts about Kdenlive (licence, features, limits) as written in alternativeNotes.kdenlive, from data/i18n/en/projects/kdenlive.json",
+    "url": "https://github.com/KDE/kdenlive",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.kdenlive"
+  },
+  {
+    "claim": "Facts about Shotcut (licence, features, limits) as written in alternativeNotes.shotcut, from data/i18n/en/projects/shotcut.json",
+    "url": "https://github.com/mltframework/shotcut",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.shotcut"
+  },
+  {
+    "claim": "Facts about OpenShot (licence, features, limits) as written in alternativeNotes.openshot, from data/i18n/en/projects/openshot.json",
+    "url": "https://github.com/OpenShot/openshot-qt",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.openshot"
+  },
+  {
+    "claim": "Facts about OpenCut (licence, features, limits) as written in alternativeNotes.opencut, from data/i18n/en/projects/opencut.json",
+    "url": "https://github.com/OpenCut-app/OpenCut",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.opencut"
+  },
+  {
+    "claim": "Facts about Flowblade (licence, features, limits) as written in alternativeNotes.flowblade, from data/i18n/en/projects/flowblade.json",
+    "url": "https://github.com/jliljebl/flowblade",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.flowblade"
+  },
+  {
+    "claim": "Winner Kdenlive: claims in alternativesIntro and FAQ 5 drawn from its README and project text",
+    "url": "https://github.com/KDE/kdenlive",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[4]"
+  },
+  {
+    "claim": "FAQ 6 facts are drawn from the project texts in data/i18n/en/projects/*.json",
+    "url": "data/i18n/en/projects",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[5]"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Smartsheet price 9 USD, plan Pro, annual-effective-monthly",
+    "url": "https://www.smartsheet.com/pricing",
+    "retrievedOn": "2026-07-31",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "Facts about OpenProject (licence, features, limits) as written in alternativeNotes.openproject, from data/i18n/en/projects/openproject.json",
+    "url": "https://github.com/opf/openproject",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.openproject"
+  },
+  {
+    "claim": "Facts about Leantime (licence, features, limits) as written in alternativeNotes.leantime, from data/i18n/en/projects/leantime.json",
+    "url": "https://github.com/Leantime/leantime",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.leantime"
+  },
+  {
+    "claim": "Facts about Redmine (licence, features, limits) as written in alternativeNotes.redmine, from data/i18n/en/projects/redmine.json",
+    "url": "https://github.com/redmine/redmine",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.redmine"
+  },
+  {
+    "claim": "Winner OpenProject: claims in alternativesIntro and FAQ 5 drawn from its README and project text",
+    "url": "https://github.com/opf/openproject",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[4]"
+  },
+  {
+    "claim": "FAQ 6 facts are drawn from the project texts in data/i18n/en/projects/*.json",
+    "url": "data/i18n/en/projects",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[5]"
+  }
+]

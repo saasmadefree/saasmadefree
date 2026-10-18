@@ -13,9 +13,36 @@
   "notes": "One of the clearest 'no' entries here: state the data moat plainly instead of pretending a crawler script closes the gap.",
   "prompt": "Build a rank tracker and technical SEO auditor for the domains you actually control — not a general SEO platform. For rank tracking: a scheduled job that checks a list of your own keywords against a real SERP API (several have a free tier; do not scrape Google's results pages directly, you'll get blocked quickly) and stores position, ranking URL, and date in a small database, with a simple dashboard showing the trend per keyword. For the audit half: a crawler limited to your own domain that follows internal links and flags the basics — broken links, missing or duplicate titles and descriptions, redirect chains, thin pages — written to a plain report. Pull your real click and impression data for free from the Google Search Console API and show it next to your rank data; budget real time for the OAuth setup, it's the fiddly part. Run this on a schedule with no accounts beyond the API keys it needs.\n\nDo not attempt to build a backlink index, a keyword database, or competitor research on other people's sites — that requires crawling the entire web continuously, which is exactly what you're paying Ahrefs to have already done.",
   "faq": [
-    { "q": "Can I import my existing Ahrefs data — my backlink history, my tracked keywords?", "a": "Your tracked keyword list, yes — that's just a text file you maintain yourself. The backlink index and historical crawl data cannot be exported or rebuilt; that data only exists inside Ahrefs' own crawl." },
-    { "q": "Will it work on my phone?", "a": "The dashboard is a small web page, so it renders on a phone browser if you expose it on your network, but there's no dedicated app and no push alerts — you'd have to remember to check it." },
-    { "q": "What does it actually cost to run?", "a": "A SERP API's free tier usually covers a personal keyword list, and Search Console access is free. Budget a few dollars a month once you outgrow the free tier — a rounding error next to Ahrefs' Starter plan." },
-    { "q": "What's the one thing that genuinely doesn't survive the rebuild?", "a": "Anyone else's site. You can track and audit your own domain all day; you cannot see who links to a competitor or what they rank for — that visibility is the entire product, and it only exists because Ahrefs already crawled it." }
-  ]
+    {
+      "q": "Can I import my existing Ahrefs data — my backlink history, my tracked keywords?",
+      "a": "Your tracked keyword list, yes — that's just a text file you maintain yourself. The backlink index and historical crawl data cannot be exported or rebuilt; that data only exists inside Ahrefs' own crawl."
+    },
+    {
+      "q": "Will it work on my phone?",
+      "a": "The dashboard is a small web page, so it renders on a phone browser if you expose it on your network, but there's no dedicated app and no push alerts — you'd have to remember to check it."
+    },
+    {
+      "q": "What does it actually cost to run?",
+      "a": "A SERP API's free tier usually covers a personal keyword list, and Search Console access is free. Budget a few dollars a month once you outgrow the free tier — a rounding error next to Ahrefs' Starter plan."
+    },
+    {
+      "q": "What's the one thing that genuinely doesn't survive the rebuild?",
+      "a": "Anyone else's site. You can track and audit your own domain all day; you cannot see who links to a competitor or what they rank for — that visibility is the entire product, and it only exists because Ahrefs already crawled it."
+    },
+    {
+      "q": "What's the best free Ahrefs alternative?",
+      "a": "OpenSEO is the best free Ahrefs alternative for keyword research and tracking on your own sites. It relies on a paid data API for its figures. None of the four projects offers backlink data, so competitor link research stays with Ahrefs."
+    },
+    {
+      "q": "Can a free tool show me my competitors' backlinks?",
+      "a": "Not with these four projects. None of them has a backlink index or a competitor database. Seonaut and SEOmacroscope crawl your own site, and SerpBear tracks your own rankings. Competitor link data needs a large crawl that a personal project cannot run."
+    }
+  ],
+  "alternativesIntro": "The best free Ahrefs alternative is OpenSEO: it handles keyword research and tracking for your own sites. No self-hosted project replaces Ahrefs' backlink index, its keyword volume data or its history of other sites. OpenSEO pulls its numbers from a paid data API (DataForSEO), so it is not free to run at volume. SerpBear is the pick if you only need daily rank tracking for your domain. For a small site you own, these tools are enough. For link research on competitors, keep paying Ahrefs.",
+  "alternativeNotes": {
+    "open-seo": "Covers keyword research and tracking, driven by a paid data API. It has no web index of its own and no backlink crawl.",
+    "serpbear": "Tracks keyword rankings daily for your own domain. It has no crawl, no backlink data and no competitor database.",
+    "seonaut": "Crawls a site and lists issues with page reports. It has no rank tracking and no backlink data.",
+    "seomacroscope": "Runs a technical crawl of a site you control. It has no rank tracking and no backlink or keyword database."
+  }
 }

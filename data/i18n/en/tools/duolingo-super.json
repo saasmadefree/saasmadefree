@@ -27,6 +27,15 @@
     {
       "q": "What is the one thing that does not survive the rebuild?",
       "a": "Showing up. Duolingo's course is good and its retention design is better, and a self-built drill has neither the sequencing nor the pull that gets you to day two hundred."
+    },
+    {
+      "q": "What's the best free Duolingo Super alternative?",
+      "a": "None that we can recommend today. The projects we checked were archived or inactive, so none replaces Duolingo's courses. The closest free route is a drill trainer you build over your own sentences with our prompt, which covers practice and not curriculum."
+    },
+    {
+      "q": "Can I practise with my own sentences instead of Duolingo's course?",
+      "a": "Yes. Our prompt builds a daily drill trainer over a plain file of sentence pairs you collect from graded readers or subtitles. It generates translate, fill-the-blank and word-order exercises from each pair. It will not give you a sequenced course or speech recognition."
     }
-  ]
+  ],
+  "alternativesIntro": "No maintained open-source project replaces the Duolingo course experience today. The candidates we checked were archived or had no commits in the past year. What Super sells is the course underneath: sequenced lessons, audio and exercises for over a hundred language pairs, plus a daily habit loop. That is thousands of person-years of authored content, and no free project has it. Your honest choices are to keep paying, or to build a small drill trainer for one language over your own sentence bank with our prompt. Do not expect it to match the course."
 }

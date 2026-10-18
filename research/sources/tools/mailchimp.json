@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Mailchimp Standard price used in intro",
+    "url": "https://mailchimp.com/pricing/marketing/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "listmonk: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/knadh/listmonk",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.listmonk"
+  },
+  {
+    "claim": "mautic: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/mautic/mautic",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.mautic"
+  },
+  {
+    "claim": "keila: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/pentacent/keila",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.keila"
+  },
+  {
+    "claim": "plunk: coverage and gaps as stated in the alternative note",
+    "url": "https://www.useplunk.com",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.plunk"
+  },
+  {
+    "claim": "dittofeed: coverage and gaps as stated in the alternative note",
+    "url": "https://dittofeed.com/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.dittofeed"
+  },
+  {
+    "claim": "notifuse: coverage and gaps as stated in the alternative note",
+    "url": "https://www.notifuse.com",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.notifuse"
+  },
+  {
+    "claim": "sendportal: coverage and gaps as stated in the alternative note",
+    "url": "https://sendportal.io",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.sendportal"
+  },
+  {
+    "claim": "phplist: coverage and gaps as stated in the alternative note",
+    "url": "https://www.phplist.org",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.phplist"
+  }
+]

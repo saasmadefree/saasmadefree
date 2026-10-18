@@ -24,7 +24,7 @@
   ],
   "alternatives": [
     {
-      "project": "opencut",
+      "project": "kdenlive",
       "fit": "partial"
     },
     {
@@ -36,7 +36,7 @@
       "fit": "partial"
     },
     {
-      "project": "kdenlive",
+      "project": "opencut",
       "fit": "partial"
     },
     {

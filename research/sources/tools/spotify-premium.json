@@ -1,0 +1,44 @@
+[
+  {
+    "claim": "Spotify Premium Premium Individual price used in intro",
+    "url": "https://www.spotify.com/us/premium/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "navidrome: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/navidrome/navidrome",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.navidrome"
+  },
+  {
+    "claim": "jellyfin: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/jellyfin/jellyfin",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.jellyfin"
+  },
+  {
+    "claim": "koel: coverage and gaps as stated in the alternative note",
+    "url": "https://koel.dev",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.koel"
+  },
+  {
+    "claim": "ampache: coverage and gaps as stated in the alternative note",
+    "url": "http://ampache.org",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.ampache"
+  },
+  {
+    "claim": "gonic: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/sentriz/gonic",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.gonic"
+  },
+  {
+    "claim": "Navidrome moved first: music-only server with playlists and play history, closer to Spotify's player than Jellyfin, which also serves video. Same fit (partial).",
+    "url": "https://github.com/navidrome/navidrome",
+    "retrievedOn": "2026-10-18",
+    "field": "alternatives order"
+  }
+]

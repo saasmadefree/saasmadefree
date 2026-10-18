@@ -26,19 +26,19 @@
   ],
   "alternatives": [
     {
-      "project": "cal-com",
-      "fit": "full"
-    },
-    {
-      "project": "easyappointments",
-      "fit": "full"
-    },
-    {
       "project": "tymeslot",
       "fit": "full"
     },
     {
+      "project": "cal-com",
+      "fit": "full"
+    },
+    {
       "project": "calnode",
+      "fit": "full"
+    },
+    {
+      "project": "easyappointments",
       "fit": "full"
     },
     {

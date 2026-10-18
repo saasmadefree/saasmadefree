@@ -1,0 +1,20 @@
+[
+  {
+    "claim": "Duolingo Super price 12.99 USD, plan Super, flat-monthly",
+    "url": "https://apps.apple.com/us/app/duolingo-language-lessons/id570060128",
+    "retrievedOn": "2026-07-31",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "No maintained alternative: all candidates were archived or inactive; see research/alternatives/duolingo-super.json",
+    "url": "research/alternatives/duolingo-super.json",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "FAQ 6 facts are drawn from the project texts in data/i18n/en/projects/*.json",
+    "url": "data/i18n/en/projects",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[5]"
+  }
+]

@@ -25,11 +25,11 @@
   ],
   "alternatives": [
     {
-      "project": "n8n",
+      "project": "activepieces",
       "fit": "full"
     },
     {
-      "project": "activepieces",
+      "project": "n8n",
       "fit": "full"
     },
     {

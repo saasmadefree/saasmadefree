@@ -28,6 +28,21 @@
     {
       "q": "What is the one thing that does not survive the rebuild?",
       "a": "Compliance output you can defend. If someone requires a tagged, accessible PDF or a PDF/A-2b archive, this build can tell you that your file is not one — but it cannot produce one."
+    },
+    {
+      "q": "What's the best free Adobe Acrobat Pro alternative?",
+      "a": "Stirling PDF is the best fit: a self-hosted toolbox with 50+ tools and an API, free for up to 5 users and open-core. BentoPDF is the alternative if you want files processed in the browser. Neither edits the body text of someone else's PDF the way Acrobat does."
+    },
+    {
+      "q": "Can I sign PDFs without Acrobat Sign?",
+      "a": "Yes for the signature itself. Stirling PDF lists signing among its tools, and BentoPDF offers cryptographic digital signatures with X.509 certificates and signature validation. What you do not get is the audit trail that Acrobat Sign keeps behind each signed document."
     }
-  ]
+  ],
+  "alternativesIntro": "The best free Adobe Acrobat Pro alternative is Stirling PDF: a self-hosted toolbox with 50+ tools, including merge, split, sign, redact, convert, OCR and compress, plus a REST API. It is open-core, free for up to 5 users, and some features sit behind paid plans. We found no project in this list that matches Acrobat's body-text editing or its PDF/UA and PDF/A output. BentoPDF is the privacy pick: files are processed in your browser and never uploaded to the server you host. Keep paying for Acrobat if your work needs accessible or archival PDFs that pass a checker.",
+  "alternativeNotes": {
+    "stirling-pdf": "Covers 50+ operations with an API and no-code pipelines, started with one docker run command. It is open-core: the free server plan is capped at 5 users, and clustering needs the Team plan.",
+    "bentopdf": "Covers 50+ browser-based tools, including digital signatures with X.509 certificates. It is AGPL-3.0 for free use, closed-source products need a paid licence, and WASM modules load from a CDN by default.",
+    "pdfsam": "Covers splitting, merging, mixing, rotating and extracting pages on the desktop. No text editing, signing or OCR is described.",
+    "pdfarranger": "Covers merging, splitting, rotating, cropping and reordering pages visually. It is page arrangement only, with no text editing or signing."
+  }
 }
