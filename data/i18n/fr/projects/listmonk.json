@@ -1,0 +1,19 @@
+{
+  "tagline": "Gestionnaire de newsletters et de listes de diffusion auto-hébergé, en un seul binaire Go sur PostgreSQL.",
+  "description": "Listmonk est un gestionnaire de newsletters et de listes de diffusion livré en un seul binaire, qui range ses données dans PostgreSQL. Il gère des abonnés sur des listes à inscription simple ou double, et tu les segmentes avec des expressions SQL. Les campagnes utilisent des modèles Go, avec de la logique et des fonctions possibles dans les objets et le contenu. L'envoi passe par les serveurs SMTP que tu configures, dans des files multi-fils avec des limites de débit et des fenêtres glissantes. Des statistiques intégrées couvrent les performances des campagnes, les rebonds et les liens les plus cliqués. La licence est l'AGPL-3.0. Pour l'installer, tu peux utiliser le fichier Docker Compose d'exemple, ou télécharger le binaire, générer un fichier de configuration, lancer la commande d'installation sur Postgres et démarrer le serveur sur le port 9000. Le site du projet montre une instance de production qui envoie une campagne de plus de sept millions d'emails avec un pic de 57 Mo de RAM. Il couvre le côté listes, campagnes et modèles de Mailchimp. Il n'a ni créateur visuel d'automatisations, ni logique de séquences individuelles, et le courrier va dans un seul sens, de toi vers la liste.",
+  "strengths": [
+    "Un seul binaire, PostgreSQL comme unique stockage, installable avec Docker Compose ou à la main.",
+    "Les segments sont des requêtes SQL : le ciblage peut être très précis.",
+    "Les emails se construisent dans un éditeur en glisser-déposer, un éditeur de texte riche, en Markdown, en HTML ou en texte brut.",
+    "Plusieurs files SMTP avec limitation du débit pour régler la vitesse d'envoi.",
+    "Statistiques intégrées sur les rebonds, les liens les plus cliqués et les performances des campagnes.",
+    "Les modèles Go permettent de la logique et du contenu dynamique dans les emails."
+  ],
+  "limits": [
+    "Les listes vont dans un sens : le site les décrit comme des listes de diffusion à sens unique, pas comme des groupes de discussion.",
+    "La segmentation demande des expressions SQL, ce qui bloque les équipes non techniques.",
+    "Tu dois fournir un service ou un serveur SMTP, et la délivrabilité est ton affaire.",
+    "Aucun créateur visuel d'automatisations ou de séquences n'est listé dans ses fonctionnalités."
+  ],
+  "bestFor": "Un créateur indépendant qui a un VPS, envoie une newsletter à une grande liste et sait installer SMTP et Postgres."
+}

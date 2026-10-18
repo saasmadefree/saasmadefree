@@ -1,0 +1,19 @@
+{
+  "tagline": "Framework e-commerce Ruby on Rails avec admin, API et vitrine, pour les équipes qui ont un développeur.",
+  "description": "Solidus est une plateforme e-commerce construite comme un ensemble de gems Ruby sur Rails. Installer la gem principale apporte les modèles de base, une zone d’administration, une API REST et des données d’exemple. Tu peux aussi n’utiliser que la gem de base et écrire ta propre vitrine et ta propre admin. Il est né d’un fork de Spree. Le projet documente une installation à la manière de Rails plutôt qu’une application toute faite : tu ajoutes la gem à une application Rails, tu lances un générateur d’installation qui migre la base et charge les données de départ et d’exemple, puis tu démarres le serveur Rails. Une vitrine a ses propres instructions d’installation. Le développement peut passer par Docker Compose, avec SQLite, PostgreSQL ou MySQL, et le README précise qu’ImageMagick doit être installé. La licence BSD-3-Clause autorise l’usage commercial sans partager les modifications, et il n’y a pas d’offre hébergée. Solidus peut remplacer Shopify quand tu dois posséder le code et modéliser des catalogues, des règles de paiement ou des intégrations hors norme. En échange, tu prends en charge l’hébergement, les mises à niveau, la configuration des paiements et le travail de thème. Il te faut quelqu’un qui connaît Ruby on Rails. Un commerçant qui veut ouvrir sa boutique cette semaine sans développeur ira beaucoup plus vite avec Shopify.",
+  "strengths": [
+    "Livré en gems séparées pour les modèles de base, l’admin, l’API REST et les données d’exemple : tu ne gardes que ce que tu veux",
+    "Utilisable comme cœur headless avec ta propre vitrine et ta propre interface d’admin",
+    "Licence BSD-3-Clause : les modifications peuvent rester privées et servir un usage commercial",
+    "Le générateur d’installation lance les migrations et charge les données de départ et d’exemple en une étape",
+    "Fonctionne avec SQLite, PostgreSQL ou MySQL, et le dépôt fournit une configuration Docker Compose pour le développement"
+  ],
+  "limits": [
+    "C’est un framework Rails, pas une boutique prête : il faut un développeur pour l’installer, le personnaliser et le mettre à niveau",
+    "Le README ne documente aucune recette de déploiement en production, seulement Docker Compose pour le développement",
+    "Pas d’offre hébergée : hébergement, sauvegardes, correctifs de sécurité et configuration de la passerelle de paiement sont à toi",
+    "Le README prévient que la branche principale n’est pas sûre pour la production : fixe une version publiée",
+    "Les identifiants d’admin par défaut sont admin@example.com et test123, à changer"
+  ],
+  "bestFor": "Une petite agence ou une équipe Rails interne qui veut posséder le code de sa boutique plutôt que louer Shopify."
+}

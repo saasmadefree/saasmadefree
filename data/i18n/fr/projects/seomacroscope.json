@@ -1,0 +1,18 @@
+{
+  "tagline": "Crawler Windows gratuit pour repérer les liens cassés et faire des contrôles SEO de base. Projet inactif.",
+  "description": "SEO Macroscope est un programme de bureau pour Microsoft Windows. Il parcourt un site à partir d'une URL de départ et rapporte ce qu'il trouve. Il liste les liens cassés et redirigés, collecte les métadonnées de chaque URL et construit une matrice HrefLang pour les sites multilingues. Les contrôles SEO portent sur la longueur du titre et de la description en mots, en caractères et en pixels, sur les titres de section, les mots-clés et les métadonnées des PDF. Tu peux ajouter des filtres personnalisés pour repérer un contenu absent ou présent, et des extracteurs de données pour récupérer n'importe quel contenu de page. Les résultats s'exportent en fichiers Excel. Il n'y a rien à héberger : tu télécharges l'installeur depuis la page des versions GitHub et tu le lances sur ta machine, sans serveur, sans base de données ni compte. La licence est GPL-3.0. Le projet est inactif, et le README de l'auteur prévient lui-même de bugs et de fonctions inachevées. Pour remplacer les audits de Screaming Frog, Semrush ou Ahrefs, il couvre les bases du crawl et du rapport sur un seul PC Windows. Il ne couvre ni les positions, ni les backlinks, ni le trafic.",
+  "strengths": [
+    "Rapporte les liens cassés, les redirections et les métadonnées de chaque URL trouvée",
+    "Construit une matrice HrefLang pour les sites multilingues",
+    "Règles de longueur du titre et de la description en mots, en caractères et en pixels",
+    "Filtres personnalisés et extracteurs de données pour contrôler et récupérer du contenu",
+    "Exporte les rapports vers Excel"
+  ],
+  "limits": [
+    "Projet inactif : n'attends ni correctifs ni support, le tableau indique le dernier commit",
+    "Windows uniquement et application de bureau, donc ni tableau de bord partagé, ni planification, ni accès pour une équipe",
+    "Le README dit lui-même de s'attendre à des bugs et à des fonctions non implémentées",
+    "Ni positions, ni backlinks, ni trafic : c'est un crawler, rien de plus"
+  ],
+  "bestFor": "Un freelance seul sous Windows qui veut un contrôle gratuit et ponctuel des liens et des métadonnées, et qui accepte un outil qui n'est plus maintenu."
+}

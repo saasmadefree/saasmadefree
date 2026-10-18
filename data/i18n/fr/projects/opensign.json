@@ -1,0 +1,18 @@
+{
+  "tagline": "Signature électronique auto-hébergeable pour PDF, avec modèles, signataires multiples et piste d'audit.",
+  "description": "OpenSign est une plateforme de signature de documents présentée comme une alternative à DocuSign. Les signataires peuvent dessiner, taper ou téléverser une signature, et plusieurs personnes peuvent signer un même document, dans un ordre imposé si tu le veux. Les signataires invités confirment avec un code à usage unique envoyé par email. Un document peut expirer ou être refusé avec un motif. Tu peux enregistrer des modèles de PDF, ranger tes fichiers dans un espace de stockage intégré, personnaliser les modèles d'email et obtenir un certificat de fin de signature avec un journal d'audit. Une API et une intégration Zapier le relient à d'autres outils. Pour l'auto-hébergement, le README décrit une installation avec Docker Compose, qui demande Docker et git, plus un fichier de proxy inverse Caddy et un fichier d'environnement. L'instance MongoDB fournie par défaut n'est pas persistante : pour garder tes données, tu dois donner ta propre URL de connexion MongoDB. Une version hébergée gratuite existe aussi. La licence est l'AGPL-3, ce qui compte si tu modifies le code et que tu l'exposes comme un service.",
+  "strengths": [
+    "Signatures à plusieurs, avec un ordre de signature en option.",
+    "Vérification par code à usage unique envoyé par email pour les signataires invités.",
+    "Certificat de fin de signature et piste d'audit avec horodatage et adresses IP.",
+    "Modèles de PDF et signatures enregistrées réutilisables.",
+    "API et intégration Zapier."
+  ],
+  "limits": [
+    "Le MongoDB fourni par défaut perd les données au redémarrage : tu dois donner l'URL de ta propre base.",
+    "La licence AGPL-3 oblige à partager le code source des versions modifiées proposées comme service.",
+    "L'installation répartit la configuration sur un fichier Compose, un fichier Caddy et un fichier d'environnement.",
+    "Le README ne décrit aucune signature qualifiée à valeur légale certifiée."
+  ],
+  "bestFor": "Une petite entreprise qui a un serveur et des bases de Docker, envoie des contrats à ses clients et veut arrêter de payer par signataire."
+}

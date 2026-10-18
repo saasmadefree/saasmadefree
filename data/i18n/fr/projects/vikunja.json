@@ -1,0 +1,18 @@
+{
+  "tagline": "Gestionnaire de tâches auto-hébergé en un seul binaire Go, avec vues liste, kanban, Gantt et tableau.",
+  "description": "Vikunja est un gestionnaire de tâches que tu fais tourner toi-même. Le serveur et l’interface web sont regroupés dans un seul binaire ou un seul conteneur Docker : il n’y a qu’une chose à installer. Il gère MySQL, MariaDB, PostgreSQL et SQLite, et SQLite est fourni avec les binaires officiels et l’image Docker, donc une petite installation n’a pas besoin de serveur de base de données. Il existe d’autres voies d’installation : paquets Debian, RPM, Arch, Alpine, FreeBSD, Kubernetes et Ansible. Tu ranges le travail en projets avec des tâches, et la description du projet liste les vues liste, kanban, Gantt et tableau. Les plugins, OpenID, LDAP, les webhooks et une API sont documentés. Il remplace les applis de tâches personnelles et d’équipe, comme Todoist ou Trello, et la documentation contient une page de migration depuis des services tiers. Le code est sous AGPL-3.0 ou ultérieure. Les mainteneurs exploitent aussi un service hébergé payant, Vikunja Cloud, et vendent une offre Vikunja Pro : certaines fonctions sont donc hors du code gratuit. Le README indique que les mainteneurs utilisent des outils de code assistés par IA dans certaines parties du code.",
+  "strengths": [
+    "Tourne en un seul binaire ou conteneur, interface web incluse",
+    "Marche avec SQLite d’office, ou avec MySQL, MariaDB ou PostgreSQL pour les installations plus grosses",
+    "Plusieurs voies d’installation, dont Debian, RPM, Alpine, Kubernetes et Ansible",
+    "Documente OpenID, l’authentification LDAP, les webhooks, une API et une migration depuis d’autres applis de tâches",
+    "Les binaires officiels sont signés avec une clé GPG publiée"
+  ],
+  "limits": [
+    "Le panneau d’administration, les journaux d’audit et le suivi du temps sont dans l’offre payante Vikunja Pro, pas dans le code gratuit",
+    "L’appli mobile ne gère que les fonctions de base, selon la documentation d’installation",
+    "MySQL 5.7 n’est pas pris en charge, et MySQL ou MariaDB demandent une configuration UTF-8 pour les textes non latins",
+    "La configuration par défaut active CORS : il faut fixer une URL publique ou désactiver CORS"
+  ],
+  "bestFor": "Une personne ou une petite équipe qui a un serveur disponible et veut des listes dans le style de Todoist et des tableaux kanban sous son contrôle."
+}

@@ -1,0 +1,18 @@
+{
+  "tagline": "Backend e-commerce headless en Python, uniquement GraphQL, pour boutiques multi-canaux et multi-devises.",
+  "description": "Saleor est un moteur e-commerce sans vitrine intégrée. Tout, de la configuration à l’extension, passe par son API GraphQL. Un tableau de bord séparé gère les produits, les commandes, les clients, les promotions et les cartes cadeaux, et une vitrine d’exemple en Next.js montre comment construire la boutique. Le modèle de données couvre plusieurs canaux, avec prix, devise et stock réglés par canal, plus le stock multi-entrepôts, les paiements fractionnés et les retours. Les extensions sont des applis séparées qui parlent au cœur par webhooks, métadonnées et iframes du tableau de bord : tu les écris dans le langage de ton choix. Tu le lances avec Docker Compose via le projet saleor-platform, ou tu déploies toi-même le cœur Python. Le projet vend aussi un Saleor Cloud géré. Le code est sous BSD-3-Clause. Il peut remplacer Shopify si tu veux posséder le backend et bâtir une interface sur mesure, par exemple pour une boutique dans plusieurs pays. Il ne donne pas à un commerçant non technique une boutique finie à lancer en un après-midi. Prévois de faire tourner trois pièces ensemble : l’API, le tableau de bord et une vitrine que tu construis ou adaptes.",
+  "strengths": [
+    "Contrôle par canal des prix, des devises, du stock et de la disponibilité des produits",
+    "GraphQL est la seule API : chaque action d’administration peut aussi être scriptée",
+    "Les extensions tournent comme des applis indépendantes via webhooks et métadonnées, dans n’importe quel langage",
+    "Stock multi-entrepôts, paiements fractionnés et retours font partie du modèle de commande",
+    "Moteur de promotions avec soldes, bons, règles de panier et cartes cadeaux"
+  ],
+  "limits": [
+    "Pas de thèmes ni de vitrine prête : tu dois construire ou adapter l’interface toi-même",
+    "La branche principale du dépôt est décrite comme une version de développement, parfois instable : déploie à partir des tags de release",
+    "Le cœur, le tableau de bord et la vitrine vivent dans trois dépôts, et la documentation demande d’utiliser des versions assorties des trois",
+    "Le projet prévient qu’une petite boutique à faible trafic peut trouver cette approche par services plus complexe qu’une pile à la WordPress"
+  ],
+  "bestFor": "Une équipe de développement qui monte une boutique multi-pays sur mesure et veut posséder le backend e-commerce plutôt que louer Shopify."
+}

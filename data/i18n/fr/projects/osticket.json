@@ -1,0 +1,18 @@
+{
+  "tagline": "Système de tickets en PHP et MySQL, éprouvé : email, formulaires web et appels deviennent des tickets.",
+  "description": "osTicket est un système de tickets de support. Il crée des tickets à partir des emails, des formulaires web et des saisies d'appels téléphoniques, les enregistre, les attribue aux agents et garde l'historique des échanges dans une interface web multi-utilisateur. Il est écrit en PHP, utilise MySQL et sort sous licence GPL-2.0. Le README demande un serveur web Apache ou IIS, PHP 8.2 à 8.4 (8.4 recommandé), l'extension mysqli et MySQL 5.5 ou plus récent. Les extensions PHP imap, intl et gd sont facultatives, et APCu est recommandé. Pour l'installer, tu clones le dépôt, tu lances une commande de déploiement qui copie le code dans la racine web, puis tu ouvres la page de configuration dans un navigateur. Pour une mise à jour, tu récupères le dépôt et tu relances le déploiement. Il vise les équipes qui quittent Zendesk et ont surtout besoin de recevoir, d'attribuer et d'archiver des tickets. Le support passe par le forum et la documentation, avec une aide commerciale payante proposée par le projet.",
+  "strengths": [
+    "Crée des tickets à partir des emails, des formulaires web et des saisies d'appels",
+    "Tourne sur un hébergement PHP et MySQL classique",
+    "Mises à jour documentées depuis la version 1.6-rc1",
+    "Interface traduisible, avec des packs de langue sur la page de téléchargement",
+    "Gratuit à faire tourner, aide payante en option"
+  ],
+  "limits": [
+    "Le noyau est une file de tickets : ni chat en direct ni réseaux sociaux intégrés dans la liste",
+    "Demande un serveur web PHP et MySQL, et aucune image Docker n'est documentée dans le README",
+    "Les mises à jour se font en récupérant le dépôt et en relançant la commande de déploiement",
+    "Le support passe par les forums et la documentation : aucun délai de réponse garanti sans aide payante"
+  ],
+  "bestFor": "Une équipe informatique ou administrative avec un hébergement PHP qui veut une boîte partagée email vers tickets, sans frais par agent."
+}

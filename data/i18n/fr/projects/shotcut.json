@@ -1,0 +1,18 @@
+{
+  "tagline": "Éditeur vidéo gratuit pour Windows, macOS et Linux, construit sur MLT, Qt et FFmpeg.",
+  "description": "Shotcut est un éditeur vidéo de bureau qui tourne sous Windows, macOS et Linux. Il repose sur le framework multimédia MLT, sur Qt 6 pour l’interface et sur FFmpeg pour les formats et les codecs. Frei0r fournit les filtres vidéo, et FFTW et SDL soutiennent l’audio. Tu télécharges un binaire prêt à l’emploi sur le site du projet : rien à héberger, et aucun compte. La compilation depuis les sources utilise CMake, et le README prévient qu’elle est réservée aux testeurs bêta et aux contributeurs. La licence est GPL-3.0, et les traductions passent par Transifex. Les fonctionnalités et la feuille de route sont documentées sur le site du projet. C’est un remplaçant gratuit correct pour CapCut quand tu veux un éditeur à timeline avec des filtres, qui marche hors ligne sur ton ordinateur. Ce n’est pas une appli de vidéo courte à modèles, et il n’a ni synchro de projets dans le cloud ni validation en équipe. Tes projets et tes médias restent sur tes disques locaux : les sauvegardes et le partage, c’est à toi de les gérer.",
+  "strengths": [
+    "Tourne en natif sous Windows, macOS et Linux",
+    "Utilise FFmpeg pour une large prise en charge des formats et des codecs",
+    "Filtres et effets de Frei0r et de MLT",
+    "Marche hors ligne, sans compte",
+    "Binaires prêts à l’emploi : pas besoin de compiler pour s’en servir"
+  ],
+  "limits": [
+    "C’est un programme de bureau local : pas de stockage cloud, de validation en équipe ni de projets partagés",
+    "Le README dit que la compilation depuis les sources est réservée aux testeurs et aux contributeurs, avec Qt 6.4 au minimum",
+    "Pas de bibliothèque de modèles ni d’outils de vidéo courte en un geste comme ceux de CapCut",
+    "Le README ne cite qu’un auteur principal : la continuité du projet repose sur une petite équipe"
+  ],
+  "bestFor": "Un créateur solo ou un enseignant qui monte ses vidéos sur un seul ordinateur et veut un éditeur gratuit hors ligne à la place de CapCut."
+}

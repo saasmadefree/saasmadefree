@@ -1,0 +1,18 @@
+{
+  "tagline": "Appli auto-hébergée pour discuter avec tes documents, avec agents, multi-utilisateur et nombreux modèles.",
+  "description": "AnythingLLM est une application pour discuter avec tes propres documents grâce à un modèle de langage. Tu envoies des fichiers (PDF, TXT, DOCX) dans des espaces de travail, tu choisis un fournisseur de modèle et tu poses tes questions, avec des citations de sources. Elle marche avec des moteurs locaux comme avec des API hébergées, et stocke les embeddings dans LanceDB par défaut, avec PGVector, Pinecone et d'autres en option. Elle ajoute un créateur d'agents sans code, la prise en charge de MCP, des tâches planifiées, des mémoires et un widget de chat à intégrer sur un site. Tu peux l'utiliser en appli de bureau ou en serveur Docker ; les droits multi-utilisateur et le widget n'existent que dans la version Docker. Une installation de production sans Docker est décrite dans un guide séparé. Le code est sous licence MIT. Pour remplacer ChatGPT, elle couvre bien les questions-réponses privées sur des documents et l'accès en équipe, mais la qualité des réponses dépend du modèle connecté, et aucun modèle de pointe n'est inclus. La télémétrie anonyme est active par défaut et se coupe avec une variable d'environnement ou dans l'appli. Prévois le coût d'un GPU ou d'une API si tu veux de bonnes réponses sur de gros corpus.",
+  "strengths": [
+    "Importe des documents PDF, TXT et DOCX dans des espaces de travail et répond avec des citations de sources.",
+    "Fonctionne avec de nombreux fournisseurs de modèles, locaux ou hébergés, et plusieurs bases vectorielles (LanceDB par défaut, PGVector, Pinecone).",
+    "La version Docker ajoute des comptes multi-utilisateur avec droits par personne et un widget de chat à intégrer à un site.",
+    "Inclut un créateur d'agents sans code, la compatibilité MCP et des tâches planifiées façon cron.",
+    "La télémétrie se désactive avec le réglage DISABLE_TELEMETRY."
+  ],
+  "limits": [
+    "Le mode multi-utilisateur et le widget de chat sont réservés à Docker, absents de l'appli de bureau.",
+    "Aucun modèle de pointe inclus : la qualité dépend du modèle connecté, et un bon modèle local demande du matériel costaud.",
+    "La télémétrie est active par défaut et c'est à l'administrateur de la couper.",
+    "Le README ne documente pas de génération d'images intégrée : elle remplace ChatGPT pour le chat sur documents et les agents, pas pour toutes ses fonctionnalités."
+  ],
+  "bestFor": "Une petite équipe qui veut interroger ses fichiers en privé, avec un hôte Docker et soit une clé d'API de modèle, soit un GPU local."
+}

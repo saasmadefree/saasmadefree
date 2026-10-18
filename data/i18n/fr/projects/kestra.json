@@ -1,0 +1,18 @@
+{
+  "tagline": "Orchestrateur de workflows auto-hébergé où les flows sont des fichiers YAML, pour équipes data et infra.",
+  "description": "Kestra exécute des workflows planifiés ou déclenchés par des événements, que tu décris en YAML. Tu peux modifier un flow dans l'éditeur de code, dans un éditeur à formulaire sans code ou dans une barre latérale Copilot IA : les trois modifient le même fichier. Les flows peuvent être synchronisés avec Git. Les tâches viennent de plugins qui couvrent les requêtes SQL, les appels HTTP, le stockage cloud et des scripts en Python, Node.js, R, Go ou shell. Le projet est sous licence Apache-2.0. Pour un premier test, une commande Docker démarre un serveur local. Pour une installation durable, la documentation propose un fichier Docker Compose avec PostgreSQL et un chart Helm pour Kubernetes avec PostgreSQL et un stockage objet. Depuis la version 2.0, les workers se connectent au serveur en gRPC et peuvent se trouver dans un réseau séparé. Kestra peut remplacer Zapier quand la personne qui automatise est à l'aise avec le code et que les tâches sont des pipelines, des traitements par lots ou de l'infrastructure. Il convient mal à un marketeur qui veut relier deux applis SaaS en quelques clics. Tu gères toi-même le serveur, sa base de données et ses mises à jour.",
+  "strengths": [
+    "Les flows sont du YAML que tu peux pousser sur une branche Git : revues et CI/CD fonctionnent comme pour du code",
+    "Les déclencheurs couvrent plannings et événements, déclarés dans le flow lui-même",
+    "Les plugins exécutent des scripts en Python, Node.js, R, Go ou shell et interrogent des bases, sans code de colle sur mesure",
+    "Des voies officielles existent : Docker Compose (PostgreSQL) et chart Helm (PostgreSQL, stockage objet)",
+    "Les modifications d'un flow sont enregistrées en brouillon, et les déclencheurs planifiés gardent la dernière révision publiée jusqu'à ce que tu publies"
+  ],
+  "limits": [
+    "Destiné aux équipes data, IA et infrastructure ; pas de catalogue de recettes d'applis en un clic comme chez Zapier",
+    "Gestion des droits par rôle, politiques et cas d'incident relèvent de l'édition Enterprise payante",
+    "Le démarrage Docker en une commande monte le socket Docker et tourne en root : c'est une config de test, pas une config durcie",
+    "Avec l'image allégée, les plugins se téléchargent depuis Maven Central à la première utilisation, ce qui demande un accès réseau sortant"
+  ],
+  "bestFor": "Un développeur ou un data engineer qui veut remplacer des tâches à la Zapier par une solution auto-hébergée, et qui aime les garder dans Git."
+}

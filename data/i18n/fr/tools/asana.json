@@ -27,6 +27,25 @@
     {
       "q": "Comment sortir ses données d’Asana ?",
       "a": "Export CSV par projet, et JSON pour tout un espace de travail sur les plans payants. Les commentaires et les pièces jointes sont la partie délicate : les pièces jointes sortent sous forme d’URL qui cessent de fonctionner une fois l’espace de travail supprimé."
+    },
+    {
+      "q": "Quelle est la meilleure alternative gratuite à Asana ?",
+      "a": "Leantime est le meilleur choix : vues kanban, gantt, tableau, liste et calendrier avec objectifs et feuilles de temps, le tout dans la version gratuite AGPL-3.0. Operately est l'alternative si tu veux des objectifs et des points d'étape de projet reliés. Attends-toi à renoncer aux applis mobiles d'Asana et à l'édition en temps réel."
+    },
+    {
+      "q": "Les clients peuvent voir leurs projets dans une alternative à Asana auto-hébergée ?",
+      "a": "Oui, dans certains outils. Worklenz inclut un portail client dans sa version auto-hébergée, et Leantime a des droits par projet plus la connexion LDAP et OIDC. Vérifie les rôles invité et client de chaque outil avant d'inviter des personnes extérieures, car certaines fonctionnalités sont payantes."
     }
-  ]
+  ],
+  "alternativesIntro": "La meilleure alternative gratuite à Asana est Leantime : il propose des vues kanban, gantt, tableau, liste et calendrier, plus des objectifs, des canevas et des feuilles de temps, et toutes ces fonctionnalités sont dans la version AGPL-3.0. Il gère aussi la connexion LDAP et OIDC et les droits par projet. Il demande MySQL ou MariaDB et une longue liste d'extensions PHP. Tu perds les applis mobiles natives, l'édition à plusieurs en temps réel et les intégrations d'Asana. Operately est le bon choix si tu veux des objectifs et des points d'étape au centre. Code la tienne si seul le cumul des objectifs t'intéresse. Continue de payer si ton équipe n'adoptera pas un outil auto-hébergé.",
+  "alternativeNotes": {
+    "leantime": "Couvre les vues kanban, gantt, tableau, liste et calendrier, plus les objectifs, les canevas et les feuilles de temps, le tout dans la version gratuite. Il demande MySQL ou MariaDB et une longue liste d'extensions PHP.",
+    "operately": "Couvre les objectifs, les projets et les points d'étape reliés dans un seul flux, avec une CLI et une API. Il a des idées arrêtées, vise des équipes de 5 à 100 personnes, et Docker est la seule méthode de déploiement documentée.",
+    "plane": "Couvre les éléments de travail, les cycles, les modules et les analyses. La Community Edition n'égale que l'offre Cloud Free, et les formules payantes demandent la Commercial Edition avec une clé de licence.",
+    "platform": "Huly couvre le suivi de tickets, la messagerie, le CRM et les RH dans un seul espace de travail. L'entreprise d'origine a arrêté son service hébergé et gelé son dépôt. Le fork communautaire, Huly (community fork), continue le développement, et tu l'héberges toi-même.",
+    "openproject": "Couvre la planification en Gantt, le Kanban, Scrum, le suivi du temps et les budgets. Certaines fonctionnalités sont des modules Enterprise, et l'administration est plus lourde que celle des outils légers.",
+    "vikunja": "Couvre les vues liste, kanban, Gantt et tableau dans un seul binaire Go. Le panneau d'administration, les journaux d'audit et le suivi du temps sont dans la formule Pro payante, et l'appli mobile est basique.",
+    "worklenz": "Couvre les tâches, le suivi du temps, la planification des ressources et un portail client, avec des vues liste, tableau et Gantt. Il demande PostgreSQL, Redis et un stockage compatible S3, et l'import ne gère que le CSV.",
+    "taiga": "Couvre les tableaux kanban et scrum, avec un guide officiel de production sous Docker. Il lance plusieurs services et n'a ni objectifs ni couche de portefeuille."
+  }
 }

@@ -1,0 +1,17 @@
+{
+  "tagline": "Serveur de synchro et partage de fichiers en Go, qui stocke tout sur le disque, sans base de données.",
+  "description": "OpenCloud est un serveur de synchro et de partage de fichiers écrit en Go et publié sous licence Apache 2.0. Il se présente sous la forme d’un seul binaire : tu lances une commande d’initialisation qui crée la configuration, puis tu démarres le serveur. Les utilisateurs se connectent par OpenID Connect, avec un fournisseur d’identité externe comme Keycloak ou celui qui est intégré au serveur. Le backend n’a pas besoin de base de données. Tout est écrit sur le système de fichiers, par défaut dans le dossier personnel de l’utilisateur qui lance le serveur. Il y a peu de pièces mobiles, mais ton plan de sauvegarde devient un plan de sauvegarde de fichiers. Le README du dépôt s’adresse aux contributeurs : le guide d’installation en production se trouve sur le site de documentation, à part. Pour remplacer Dropbox Plus, il couvre l’essentiel : stocker des fichiers et les partager avec d’autres depuis ton serveur. Lis la documentation avant de t’engager sur les clients, l’édition de documents et le comportement de la synchro, car le dépôt principal ne décrit que le backend.",
+  "strengths": [
+    "Un seul binaire Go qui démarre avec deux commandes : init, puis server",
+    "Pas de base de données à installer ni à régler : les données sont des fichiers",
+    "Connexion par OpenID Connect, avec un fournisseur d’identité intégré si tu n’en as pas",
+    "Licence Apache 2.0 : le code du serveur peut être modifié et redistribué librement"
+  ],
+  "limits": [
+    "Sans base de données, les sauvegardes et la croissance dépendent du système de fichiers que tu choisis",
+    "Le dépôt principal ne documente que le backend ; les clients et l’installation en production sont décrits ailleurs",
+    "Il faut un fournisseur OpenID Connect pour se connecter, intégré ou externe",
+    "Par défaut, les données vont dans le dossier personnel de l’utilisateur du serveur : en production, choisis un emplacement de stockage et prévois la sauvegarde"
+  ],
+  "bestFor": "Une petite équipe qui a son propre serveur et veut du partage de fichiers à la Dropbox sans faire tourner de base de données."
+}

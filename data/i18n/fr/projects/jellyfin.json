@@ -1,0 +1,18 @@
+{
+  "tagline": "Serveur multimédia gratuit qui diffuse tes films, séries, musiques et photos vers tous tes appareils.",
+  "description": "Jellyfin est un système multimédia gratuit pour gérer ta bibliothèque et la diffuser depuis un serveur dédié vers des applis sur d'autres appareils. Il descend de la version 3.5.2 d'Emby et il est sous licence GPL-2.0. Le projet affirme n'avoir ni licence premium ni fonctionnalité payante. Son serveur est écrit pour .NET et utilise ffmpeg, dans la version maison jellyfin-ffmpeg, pour le transcodage. Le guide d'installation couvre Windows, macOS, Debian et Ubuntu, les autres distributions Linux, Docker, Kubernetes et Podman, ainsi que Synology et TrueNAS SCALE. FreeBSD et TrueNAS CORE ne sont pas pris en charge, car .NET n'y fonctionne pas. Le serveur héberge le client web par défaut, et des applis séparées existent pour les autres appareils. Le transcodage matériel peut déléguer le travail vidéo à Intel Quick Sync, NVIDIA NVENC, AMD AMF, VA-API, Apple VideoToolbox ou Rockchip RKMPP, ce qui garde le processeur au calme quand un client ne sait pas lire un fichier tel quel. C'est la réponse gratuite la plus proche de Plex ou d'Emby, et il couvre le côté vidéo de ce que proposent les abonnements façon Netflix, pour tes propres fichiers. Il ne fournit aucun contenu sous licence, et pour l'accès à distance, le réseau et la sécurité restent à ta charge.",
+  "strengths": [
+    "Pas d'offre premium : le projet dit n'avoir ni licence payante ni fonctionnalité verrouillée.",
+    "Transcodage matériel via Intel QSV, NVIDIA NVENC, AMD AMF, VA-API, Apple VideoToolbox et Rockchip RKMPP.",
+    "Guides d'installation officiels pour Windows, macOS, Linux, Docker, Kubernetes, Podman, Synology et TrueNAS SCALE.",
+    "Fournit sa propre version optimisée de ffmpeg (jellyfin-ffmpeg).",
+    "Le serveur sert lui-même le client web : un navigateur suffit comme premier lecteur."
+  ],
+  "limits": [
+    "FreeBSD et TrueNAS CORE ne sont pas pris en charge, car .NET ne tourne pas officiellement sur ces plateformes.",
+    "Tu fournis les fichiers et les métadonnées : aucun catalogue, donc il remplace le stockage et la lecture, pas le contenu d'un service de streaming.",
+    "Un transcodage fluide demande de bons pilotes GPU ; une accélération partielle peut faire monter le processeur et ralentir le transcodage.",
+    "L'accès à distance, c'est toi : la documentation couvre le réseau, mais le reverse proxy, le TLS et les comptes sont à ta charge."
+  ],
+  "bestFor": "Un foyer avec un NAS ou un mini PC plein de films et de musique numérisés, qui veut des applis façon Plex sans abonnement."
+}

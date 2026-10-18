@@ -1,0 +1,18 @@
+{
+  "tagline": "Tableau kanban en temps réel à auto-héberger, avec une édition Community gratuite et une édition Pro payante.",
+  "description": "PLANKA est un outil kanban dans la lignée de Trello. Tu y trouves des projets, des tableaux, des listes et des cartes, des mises à jour en direct entre utilisateurs, des descriptions en Markdown, des pièces jointes, des commentaires et des champs personnalisés. Les cartes ont une date d’échéance et un chronomètre. Les notifications partent par plus de 100 fournisseurs, et il y a une API REST documentée et des webhooks. L’authentification à deux facteurs fait partie de l’édition gratuite. L’installation passe par Docker Compose : tu télécharges le fichier compose, tu fixes une clé secrète et l’URL de base, tu crées le compte admin avec une commande unique, puis tu lances les services. Une voie Kubernetes est aussi documentée, et la pile est Node.js avec PostgreSQL. La licence n’est pas open source au sens de l’OSI. Le README parle de fair-code, sous une licence communautaire d’usage équitable, avec une licence commerciale à part pour Pro. L’édition Community est gratuite à auto-héberger. Pro ajoute les affichages téléphone et tablette, les vues calendrier, chronologie et carte, les cartes récurrentes, les modèles, les rôles invités, la connexion OIDC et l’export PDF. Pro met à niveau une installation existante sur place, mais le README précise que l’étape est à sens unique : fais une sauvegarde avant.",
+  "strengths": [
+    "Tableaux en temps réel avec Markdown, pièces jointes, commentaires et champs personnalisés",
+    "Chronomètre et dates d’échéance sur les cartes",
+    "Notifications via plus de 100 fournisseurs, webhooks et API REST documentée",
+    "Authentification à deux facteurs dans l’édition gratuite",
+    "Installation courte avec Docker Compose et une commande unique pour créer l’admin"
+  ],
+  "limits": [
+    "Licence fair-code, pas une licence open source approuvée par l’OSI",
+    "Pas de vues calendrier, chronologie ou carte, ni de cartes récurrentes ou de modèles dans Community : tout cela est réservé à Pro",
+    "La connexion OIDC et les rôles invités sont réservés à Pro",
+    "Le passage de Community à Pro est irréversible et n’accepte que certaines versions de Community"
+  ],
+  "bestFor": "Une petite équipe qui veut un tableau privé dans le style de Trello sur son propre serveur et n’a pas besoin de connexion unique (SSO)."
+}

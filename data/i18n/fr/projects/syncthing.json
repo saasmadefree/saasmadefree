@@ -1,0 +1,19 @@
+{
+  "tagline": "Synchro de fichiers de pair à pair entre tes appareils, sans serveur central ni stockage dans le cloud.",
+  "description": "Syncthing garde des dossiers identiques sur deux ordinateurs ou plus. Les changements se copient directement d’un appareil à l’autre dès qu’ils sont en ligne en même temps : rien n’est envoyé vers le cloud d’une entreprise. Il tient dans un seul binaire, qui crée au premier lancement un fichier de configuration, des clés de chiffrement et une interface web d’administration. Par défaut, l’interface n’écoute que sur la machine locale, au port 8384. Des versions communautaires ajoutent des habillages de bureau et des applis Android, et une image Docker est documentée. Les binaires de release sont signés GPG. La licence est la MPL-2.0. Il convient à ceux qui paient Dropbox pour synchroniser leur portable, leur poste fixe et leur serveur. Il ne se comporte pas comme Dropbox sur tous les points. Il n’y a pas de compte hébergé, pas de lien de partage pour des personnes extérieures, et pas de copie toujours disponible, sauf si l’un de tes appareils, comme un serveur à la maison, reste allumé. La FAQ dit clairement que ce n’est pas un outil de sauvegarde, car les suppressions et les modifications se propagent partout. Tu peux activer le versionnage des fichiers pour atténuer ça. Le projet place la protection contre la perte de données et la sécurité avant la facilité d’usage.",
+  "strengths": [
+    "Les fichiers passent directement entre tes appareils, sans cloud tiers pour les garder",
+    "Un seul binaire avec une interface web d’administration, et une documentation Docker",
+    "Synchronise le contenu et les dates de modification, et en option les permissions, les propriétaires et les attributs étendus",
+    "Binaires de release signés GPG, builds macOS et Windows signés",
+    "Les gros transferts sont découpés en blocs et peuvent venir de plusieurs appareils à la fois"
+  ],
+  "limits": [
+    "Les appareils doivent être en ligne en même temps pour échanger leurs changements : une machine doit rester allumée si tu veux une copie toujours disponible",
+    "La FAQ dit que ce n’est pas un bon outil de sauvegarde : suppressions et modifications se propagent à tous les appareils",
+    "Pas de compte hébergé, pas d’explorateur de fichiers web, pas de liens de partage pour les personnes hors de ta liste d’appareils",
+    "L’interface web écoute par défaut sur 127.0.0.1:8384 et doit être reconfigurée pour y accéder depuis un autre ordinateur",
+    "Les liens physiques, les ACL Windows et les resource forks ne sont pas conservés"
+  ],
+  "bestFor": "Quelqu’un qui a un portable, un poste fixe et un serveur à la maison, et veut remplacer Dropbox pour synchroniser ses propres fichiers."
+}

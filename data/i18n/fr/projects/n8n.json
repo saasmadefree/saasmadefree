@@ -1,0 +1,18 @@
+{
+  "tagline": "Automatisation avec canevas visuel et nœuds de code, au code source consultable (Sustainable Use License).",
+  "description": "n8n te laisse construire des automatisations sur un canevas de nœuds et ajouter du JavaScript ou du Python là où aucun nœud n'existe. Le README annonce plus de 1 500 intégrations et une grande bibliothèque de modèles. Tu peux le lancer avec Docker, Docker Compose ou npm, et le démarrage rapide tient en une commande docker run qui sert l'éditeur sur le port 5678. La documentation précise que l'auto-hébergement demande de vraies compétences serveur et recommande n8n Cloud à ceux qui n'en ont pas. De nouvelles versions mineures sortent à peu près chaque semaine. Le code n'est pas open source au sens de l'OSI. Il utilise la Sustainable Use License, qui autorise l'usage interne en entreprise et le partage non commercial gratuit, et garde les fichiers marqués .ee sous une licence entreprise distincte. Pour qui paie Zapier, n8n remplit l'essentiel du travail : relier des applis avec des déclencheurs et des actions. Il ajoute des nœuds d'agents IA qui appellent des modèles de plusieurs fournisseurs. L'édition Community gratuite laisse de côté plusieurs fonctions d'équipe, listées ci-dessous.",
+  "strengths": [
+    "Canevas visuel, plus JavaScript, Python et paquets npm dans les workflows",
+    "Le README liste plus de 1 500 intégrations et plus de 9 000 modèles de workflows",
+    "Une seule commande docker run démarre l'éditeur sur le port 5678",
+    "Des workflows d'agents IA peuvent appeler OpenAI, Anthropic, Google ou des modèles que tu héberges toi-même",
+    "L'inscription gratuite de l'édition Community débloque les dossiers, le débogage dans l'éditeur et les données d'exécution personnalisées"
+  ],
+  "limits": [
+    "La Sustainable Use License n'est pas une licence open source de l'OSI : tu ne peux ni le revendre ni l'héberger commercialement pour des tiers",
+    "L'édition Community n'a ni SSO (SAML, LDAP), ni contrôle de version Git, ni environnements, ni projets, ni secrets externes",
+    "Workflows et identifiants ne se partagent pas entre utilisateurs en Community : seuls le propriétaire et le créateur peuvent les ouvrir",
+    "La documentation avertit que l'auto-hébergement s'adresse aux utilisateurs expérimentés et qu'une erreur peut causer perte de données ou interruption"
+  ],
+  "bestFor": "Un fondateur technique ou une petite équipe qui remplace Zapier pour des automatisations internes, sur un serveur qu'elle gère déjà."
+}

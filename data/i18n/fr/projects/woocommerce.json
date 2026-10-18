@@ -1,0 +1,18 @@
+{
+  "tagline": "Extension WordPress gratuite qui ajoute catalogue, panier et paiement à un site que tu héberges toi-même.",
+  "description": "WooCommerce est une extension e-commerce pour WordPress. Elle ajoute à un site WordPress existant des produits, des variations, des téléchargements numériques, un panier, un paiement, des taxes, des options de livraison et la gestion des commandes. Les paiements passent par des passerelles ; la page de l’extension cite WooPayments, proposé seulement dans une liste de pays. Des extensions ajoutent abonnements, réservations et adhésions, et certaines sont payantes. Il y a une API REST, des webhooks et des hooks pour les développeurs, ainsi qu’une appli mobile pour les gérants de boutique. Pour le faire tourner, tu as besoin de ton propre hébergement WordPress. La documentation actuelle demande WordPress 6.9 ou plus récent, PHP 8.3 ou plus récent, MySQL 8.0 ou MariaDB 10.6 ou plus récent, HTTPS et une limite mémoire de 256 Mo. L’extension est sous licence GPLv3. Le README du monorepo s’adresse aux contributeurs et précise que les issues GitHub ne sont pas faites pour le support, qui passe par le forum WordPress.org. WooCommerce remplace les créateurs de boutique hébergés comme Shopify, avec une contrepartie : l’hébergement, les sauvegardes, les mises à jour de sécurité et la conformité des paiements sont à ta charge.",
+  "strengths": [
+    "Gère les produits physiques et numériques, les variations, les téléchargements et les produits affiliés",
+    "Tourne sur tout hébergeur qui respecte les prérequis WordPress, PHP et MySQL, sans frais de plateforme",
+    "API REST, webhooks et système de hooks pour le sur-mesure",
+    "Les données de la boutique restent dans ta base et peuvent être exportées",
+    "Grand marché d’extensions pour abonnements, réservations et adhésions"
+  ],
+  "limits": [
+    "Demande d’abord un site WordPress qui fonctionne, avec PHP 8.3 et MySQL 8.0 ou MariaDB 10.6 d’après la documentation actuelle",
+    "Abonnements, réservations et adhésions sont des extensions à part, présentées comme des produits sur la page de l’extension : les coûts peuvent s’additionner",
+    "L’hébergement, les sauvegardes, les mises à jour de sécurité et la conformité des paiements sont ton travail",
+    "Le support gratuit se limite au forum WordPress.org, et les issues GitHub servent aux bugs du cœur seulement"
+  ],
+  "bestFor": "Un petit commerçant qui a déjà WordPress, ou un hébergeur ou une agence qui s’en occupe, et veut vendre sans abonnement mensuel à un créateur de boutique."
+}

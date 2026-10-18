@@ -1,0 +1,17 @@
+{
+  "tagline": "Appli Laravel auto-hébergée pour campagnes email, listes et suivi, avec envoi par SES, Postmark et d'autres.",
+  "description": "SendPortal est une application Laravel pour envoyer des campagnes email depuis ton propre serveur. Elle gère les abonnés et les listes, construit et envoie les campagnes, suit les messages et affiche des rapports. Une seule installation peut contenir plusieurs espaces de travail et plusieurs domaines. Elle n'envoie pas le courrier elle-même : tu branches un service d'envoi externe, et le README cite Amazon SES, Postmark, Sendgrid, Mailgun et Mailjet. La version 4 demande PHP 8.3 ou plus récent, Laravel 13 et MySQL 5.7 ou plus récent, ou PostgreSQL 10 ou plus récent. La documentation couvre une installation autonome, ainsi qu'une installation en paquet si tu veux intégrer SendPortal Core dans une appli Laravel existante. Les versions V2 et V3 servent les anciennes versions de PHP et de Laravel. La licence est MIT et le projet ne propose pas de formule hébergée. Elle convient à ceux qui quittent Mailchimp, envoient surtout des newsletters et des campagnes, et veulent ne payer que le prix par message de leur fournisseur d'envoi. C'est un simple outil de campagnes, pas une suite marketing avec pages d'atterrissage ou tunnels de vente.",
+  "strengths": [
+    "Se connecte à Amazon SES, Postmark, Sendgrid, Mailgun et Mailjet : tu choisis l'expéditeur le moins cher.",
+    "Plusieurs espaces de travail et plusieurs domaines dans une seule installation.",
+    "Gestion des abonnés et des listes, suivi des ouvertures et des clics, rapports.",
+    "Peut s'ajouter comme paquet à une appli Laravel existante grâce à SendPortal Core."
+  ],
+  "limits": [
+    "Elle n'envoie pas le courrier seule : il te faut un compte chez un fournisseur d'envoi externe.",
+    "Le README ne liste aucun créateur visuel d'automatisations ou de séquences, seulement des campagnes.",
+    "La version 4 demande PHP 8.3+ et Laravel 13 : les piles plus anciennes restent sur la V2 ou la V3.",
+    "Le README ne liste ni formule hébergée officielle ni image Docker officielle."
+  ],
+  "bestFor": "Un développeur à l'aise avec PHP qui envoie des newsletters et des campagnes pour une ou plusieurs marques et veut utiliser SES pour la livraison."
+}

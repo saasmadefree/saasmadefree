@@ -1,0 +1,17 @@
+{
+  "tagline": "Gestionnaire de réseaux sociaux open source : planification, statistiques et tâches, en Node.js et PHP.",
+  "description": "Socioboard Core est l'édition open source d'un outil de gestion de réseaux sociaux, qui existe aussi en service commercial sur socioboard.com. Tu y connectes plusieurs comptes, tu planifies des publications, tu lis des statistiques, tu importes des flux RSS, tu envoies des rapports automatiques par email et tu attribues des tâches aux membres de l'équipe. Le README annonce neuf réseaux pris en charge. La version 5.0 repose sur une API centrale en Node.js (Express, Mongoose, Sequelize) et sur un front en PHP. L'installation demande Node.js, npm, PM2, une base MySQL et une base MongoDB, plus au moins cinq ports libres, et le guide lance quatre microservices. Le fichier LICENSE du dépôt indique GPL-3.0, alors que le README n'en parle pas. Socioboard vise ceux qui veulent remplacer un outil de type Hootsuite ou Buffer par un serveur à eux. Prévois de créer toi-même une application développeur pour chaque réseau et de suivre les changements de leurs API.",
+  "strengths": [
+    "Planification, statistiques, flux RSS, rapports par email et tâches d'équipe dans une seule appli",
+    "Neuf réseaux sociaux pris en charge, d'après le README",
+    "Extensibilité par plugins, décrite par le projet",
+    "Même famille de code qu'un service commercial : une offre hébergée payante existe"
+  ],
+  "limits": [
+    "Deux bases de données (MongoDB et MySQL), plus Node.js, PM2 et cinq ports libres",
+    "Le README dit que les liens de configuration de la 5.0 arriveront bientôt, et les étapes d'installation sont dans un autre fichier",
+    "L'accès aux API des réseaux reste ton travail : les règles et validations de chaque plateforme s'appliquent",
+    "Le README ressemble surtout à de la publicité et ne mentionne jamais la licence GPL-3.0 du fichier LICENSE"
+  ],
+  "bestFor": "Une petite agence avec un développeur Node.js, qui veut gérer elle-même ses comptes sociaux au lieu de payer par utilisateur chez Hootsuite."
+}

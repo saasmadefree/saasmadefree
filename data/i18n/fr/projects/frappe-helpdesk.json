@@ -1,0 +1,19 @@
+{
+  "tagline": "Système de tickets open source sur Frappe, avec SLA, règles d'attribution et base de connaissances.",
+  "description": "Frappe Helpdesk est un outil de gestion de tickets créé par l'équipe derrière ERPNext. Les clients déposent leurs demandes via un portail, et les agents travaillent dans une vue séparée. Il ajoute des SLA personnalisables, des règles qui attribuent les tickets selon la priorité, le type de demande ou la charge, des réponses enregistrées, et une base de connaissances dont les articles sont proposés aux clients quand ils cherchent. Le back-end est le framework Frappe en Python, et l'interface utilise Vue avec Frappe UI. Pour la production, le README fournit un script d'installation facile qui déploie une instance Docker pour ton domaine, et les auteurs annoncent environ cinq minutes. Une voie Docker Compose et une installation locale avec bench sont décrites pour le développement. Le tableau de compatibilité associe la branche principale aux versions 15 et 16 de Frappe. Le code est sous AGPL-3.0. Le projet Frappe propose aussi Frappe Cloud pour l'hébergement géré de ses applications, mais Helpdesk y est une application parmi d'autres, sans formule dédiée. Il vise les équipes qui quittent Zendesk, veulent des SLA et un portail, et acceptent de faire tourner la pile Frappe. Tu auras moins d'intégrations que dans la place de marché de Zendesk.",
+  "strengths": [
+    "SLA, règles d'attribution automatique, réponses enregistrées et base de connaissances inclus d'origine",
+    "Vues séparées pour l'agent et pour le portail client",
+    "Un seul script d'installation facile déploie une instance de production sous Docker",
+    "Construit sur Frappe : tu peux le personnaliser et le relier aux données d'ERPNext",
+    "Code AGPL-3.0, avec un tableau public de compatibilité avec les versions de Frappe"
+  ],
+  "limits": [
+    "Demande le framework Frappe et l'outil bench, une pile plus lourde à apprendre qu'une application PHP ou Go autonome",
+    "Seules les versions 15 et 16 de Frappe sont indiquées comme compatibles",
+    "L'hébergement géré passe par Frappe Cloud, une plateforme Frappe générale et non une formule réservée à Helpdesk",
+    "Le README ne liste aucune boîte multicanal du type WhatsApp ou chat en direct",
+    "L'image Docker de développement contient un mot de passe administrateur par défaut, à ne jamais utiliser en production"
+  ],
+  "bestFor": "Une entreprise qui utilise déjà ERPNext ou des applications Frappe et veut un système de tickets avec SLA sur la même pile."
+}

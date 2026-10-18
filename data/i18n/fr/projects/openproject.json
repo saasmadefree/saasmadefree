@@ -1,0 +1,17 @@
+{
+  "tagline": "Gestion de projet auto-hébergée : Gantt, tableaux agiles, suivi du temps et comptes rendus de réunion.",
+  "description": "OpenProject est une application web de gestion de projet, écrite avec Ruby on Rails et Angular, sous licence GPL-3.0. Elle couvre la planification de projets et de portefeuilles, les diagrammes de Gantt, les tableaux Kanban et Scrum, le suivi des tâches et des bugs, le suivi du temps et des coûts, les wikis, les forums et les ordres du jour de réunion. Elle s’intègre avec Nextcloud, GitHub et GitLab. Tu peux faire tourner l’édition Community toi-même avec Docker ou avec les paquets de ta distribution, en suivant les guides d’installation du site du projet. Un essai cloud de 14 jours et une édition Enterprise payante, en cloud ou sur site, existent aussi, avec des modules en plus et du support. L’entreprise derrière l’outil le place face à Jira, MS Project, Monday, Asana et YouTrack. Pour une équipe qui quitte Asana, Trello ou Smartsheet, c’est le choix le plus lourd : plus de profondeur en planification et en rapports, mais aussi un système plus gros à installer, à mettre à jour et à administrer. Le minimum documenté est de 4 Go de RAM sur un processeur à quatre cœurs, et les besoins augmentent avec le nombre d’utilisateurs.",
+  "strengths": [
+    "Planification Gantt, Kanban, Scrum et suivi des bugs dans une seule application",
+    "Suivi du temps, des coûts et des budgets intégré",
+    "Intégrations avec Nextcloud, GitHub et GitLab",
+    "Installations Docker et par paquets documentées pour l’édition Community",
+    "Ordres du jour et comptes rendus de réunion à côté des tâches"
+  ],
+  "limits": [
+    "La comparaison de référence complète à n’importe quelle date, la synchro des groupes LDAP et la connexion OpenID Connect sont des modules Enterprise, absents de l’édition Community gratuite",
+    "Le minimum documenté pour un serveur est un processeur à quatre cœurs, 4 Go de RAM et 20 Go de disque, pour 200 utilisateurs au plus",
+    "Pour une version hébergée, il faut passer par le cloud payant ou l’offre Enterprise : l’essai gratuit dure 14 jours"
+  ],
+  "bestFor": "Une équipe de quelques dizaines de personnes qui a besoin de planification Gantt et de suivi du temps, et qui compte quelqu’un capable de faire tourner une appli Rails."
+}

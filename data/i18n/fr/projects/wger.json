@@ -1,0 +1,18 @@
+{
+  "tagline": "Suivi auto-hébergé d'entraînement, de nutrition et de poids, avec une API REST et des applis mobiles.",
+  "description": "wger est un gestionnaire d'entraînement et de forme écrit avec Django. Tu construis des programmes avec des règles de progression, tu notes tes séances, tu suis ton poids et des mesures personnalisées, et tu planifies un journal alimentaire à partir d'une base d'aliments d'Open Food Facts. Il comprend aussi un wiki d'exercices, une galerie de photos de progression et une API REST. Plusieurs personnes peuvent partager un même serveur, et il offre des outils de base pour gérer une salle de sport. Des applis mobiles Android et iOS se connectent à un serveur, et le README précise qu'elles existent aussi sur F-Droid et Flathub. Le fichier Docker Compose de production lance gunicorn, PostgreSQL, Redis et un reverse proxy Nginx, et garde la base de données, les fichiers statiques et les envois dans des volumes. Après le premier démarrage, tu lances une commande pour préparer le stockage de la synchro mobile, puis tu te connectes avec un compte admin par défaut dont tu changes le mot de passe. Il faut aussi définir ta propre clé secrète et tes clés JWT. Le code de l'application est sous AGPL-3.0 ou ultérieure, alors que les données d'exercices et d'ingrédients portent des licences Creative Commons. Il remplace les carnets d'entraînement et les compteurs de calories comme Strong ou Hevy, ainsi que la partie alimentation de MyFitnessPal.",
+  "strengths": [
+    "Réunit programmes d'entraînement, mesures du corps et journal alimentaire dans une seule appli",
+    "Offre une API REST pour des scripts et des intégrations tierces",
+    "Des applis mobiles officielles existent pour Android et iOS, y compris sur F-Droid",
+    "Le fichier Docker Compose de production regroupe PostgreSQL, Redis et Nginx, avec des volumes persistants",
+    "Comptes multi-utilisateurs et fonctions de base pour gérer une salle de sport"
+  ],
+  "limits": [
+    "La pile Compose fait tourner gunicorn, PostgreSQL, Redis et Nginx, ce qui est plus lourd qu'un seul conteneur",
+    "Le mot de passe admin par défaut est adminadmin : change-le et définis les clés JWT avant d'exposer le serveur",
+    "La synchro mobile demande une commande unique de configuration du stockage PowerSync après le premier démarrage",
+    "Les données alimentaires viennent d'Open Food Facts, donc la couverture des produits de marque dépend de cette base ouverte"
+  ],
+  "bestFor": "Un pratiquant de musculation ou une petite salle avec un serveur maison, qui veut noter entraînements et repas dans une seule appli auto-hébergée plutôt que de payer Strong ou MyFitnessPal."
+}

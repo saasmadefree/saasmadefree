@@ -1,0 +1,17 @@
+{
+  "tagline": "Planificateur de posts auto-hébergé avec statistiques, travail en équipe, API publique et outils IA.",
+  "description": "Postiz programme et publie des posts sur de nombreux réseaux sociaux depuis un seul calendrier. L'équipe peut commenter les brouillons, inviter des membres et garder les statistiques à côté des posts. Une API publique, un SDK Node, un nœud n8n et une intégration Make.com couvrent l'automatisation, et un point d'accès MCP permet à des agents IA de le piloter. Il est écrit avec Next.js et NestJS, utilise Prisma avec PostgreSQL par défaut, et s'appuie sur Temporal pour les workflows. L'installation passe par un dépôt Docker Compose, Docker seul ou Helm. Avec Compose, le frontend est servi sur le port 4007 et un tableau de bord Temporal sur le port 8080. Le code est sous AGPL-3.0, et le README affirme que les éditions open source et cloud ont les mêmes fonctionnalités de base. Il peut remplacer Buffer ou Hootsuite côté coût, sans limite de canaux, de posts ou de membres. Le prix à payer, c'est la mise en place. Sur ton propre serveur, tu enregistres une application développeur auprès de chaque plateforme sociale et tu attends son approbation, ce qui peut prendre des semaines pour Meta, YouTube et TikTok. Postiz Cloud, la version hébergée, a déjà ces applications approuvées.",
+  "strengths": [
+    "Programmation au calendrier et publication croisée sur de nombreux réseaux",
+    "Canaux, posts et membres d'équipe illimités en auto-hébergé",
+    "API publique, SDK Node, intégrations n8n et Make.com, prise en charge de MCP",
+    "Installation avec Docker Compose, Docker seul ou Helm"
+  ],
+  "limits": [
+    "Tu crées ta propre application développeur sur chaque plateforme sociale et tu la fais approuver, ce qui peut prendre des semaines",
+    "Les statistiques demandent les identifiants de tes propres applications, avec les droits d'analyse",
+    "Les fonctions IA demandent tes propres clés chez un fournisseur, comme OpenAI",
+    "La planification repose sur un service Temporal, un composant de plus à faire tourner à côté de l'application et de la base"
+  ],
+  "bestFor": "Une petite agence ou un créateur qui veut publier en croisé depuis un calendrier, sans frais par canal, et qui sait gérer une pile Docker."
+}

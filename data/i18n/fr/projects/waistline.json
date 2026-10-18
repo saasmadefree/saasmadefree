@@ -1,0 +1,18 @@
+{
+  "tagline": "Compteur de calories et suivi du poids gratuit sur Android, avec Open Food Facts et les données USDA.",
+  "description": "Waistline est une appli mobile, pas un serveur. Elle tourne sur Android, elle est construite avec Cordova et la bibliothèque Framework7, et garde ses données sur le téléphone. Il n'y a rien à héberger : tu installes l'appli depuis F-Droid ou Google Play et tu sauvegardes toi-même ses données. Le journal enregistre ce que tu manges au fil de la journée. La liste d'aliments est une base locale que tu remplis en saisissant des aliments, en scannant un code-barres ou en cherchant en ligne. Les recherches en ligne passent par Open Food Facts et la base alimentaire de l'USDA, et seuls le code-barres ou le terme cherché quittent le téléphone. L'appli peut importer et exporter ses données pour les sauvegardes et les restaurations. Elle n'a ni publicité ni achat intégré. Le README indique qu'elle fonctionne sous Android 5.0 et plus récent. La licence est GPLv3. Elle remplace la partie suivi des applis de calories payantes comme MyFitnessPal Premium. Un projet communautaire propose une base d'aliments française construite sur les données ouvertes ANSES-CIQUAL, pour ceux qui vivent hors des États-Unis.",
+  "strengths": [
+    "Ni publicité ni achat intégré",
+    "Recherche de produits par scan de code-barres ou par texte dans Open Food Facts et la base de l'USDA",
+    "Les données restent sur le téléphone, et le README dit qu'aucune donnée personnelle n'est collectée",
+    "Import et export des données de l'appli pour sauvegarder et restaurer",
+    "Distribuée sur F-Droid comme sur Google Play"
+  ],
+  "limits": [
+    "Android uniquement, sans appli iOS ni version web",
+    "Rien n'est hébergé ni synchronisé entre appareils : changer de téléphone passe par un export et un import manuels",
+    "Les données alimentaires en ligne viennent d'Open Food Facts et de l'USDA, donc la couverture dépend de ces bases ouvertes",
+    "Les autorisations caméra et stockage sont nécessaires pour le scan de codes-barres, l'import et l'export"
+  ],
+  "bestFor": "Un utilisateur Android qui veut noter ses calories et son poids en privé, sans abonnement ni compte."
+}

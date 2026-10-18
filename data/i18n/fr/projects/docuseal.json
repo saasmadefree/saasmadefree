@@ -1,0 +1,18 @@
+{
+  "tagline": "Créateur de formulaires PDF et de signature électronique, auto-hébergeable dans un seul conteneur Docker.",
+  "description": "DocuSeal transforme un PDF en formulaire à remplir, l'envoie à un ou plusieurs signataires et conserve le document signé. Le créateur de formulaires est visuel, avec 12 types de champs, plusieurs signataires par document, la signature automatique des PDF et la vérification des signatures. C'est une application Ruby. Le démarrage le plus rapide tient en une commande docker run, qui utilise SQLite par défaut ; définis DATABASE_URL pour passer à PostgreSQL ou MySQL. Un fichier Docker Compose ajoute Caddy pour le HTTPS automatique sur ton nom de domaine, et des modèles en un clic existent pour Heroku, Railway, DigitalOcean et Render. Les fichiers vont sur disque ou sur S3, Google Cloud Storage ou Azure. Les emails partent par ton serveur SMTP. Une API et des webhooks sont disponibles. La licence est l'AGPLv3 avec des conditions supplémentaires dans un fichier séparé, et l'éditeur vend une formule hébergée à partir de 20 $ par mois (docuseal.com/pricing). C'est un bon équivalent pour envoyer des contrats et des formulaires, le principal usage de DocuSign. Plusieurs fonctionnalités que les équipes attendent souvent, comme le SSO, les relances, la vérification par SMS et l'envoi en masse depuis un tableur, relèvent de la formule payante Pro.",
+  "strengths": [
+    "Démarre avec une seule commande docker run et SQLite, puis passe à PostgreSQL ou MySQL.",
+    "Créateur visuel de champs PDF, avec 12 types de champs et plusieurs signataires par document.",
+    "Stocke les fichiers sur disque ou sur un stockage S3, Google Cloud ou Azure.",
+    "Signe les PDF automatiquement et vérifie les signatures de PDF existants.",
+    "Propose une API et des webhooks pour se brancher à d'autres logiciels."
+  ],
+  "limits": [
+    "Réservé à la formule Pro : relances automatiques, vérification d'identité par SMS, champs conditionnels, envoi en masse depuis CSV ou XLSX, et SSO.",
+    "La marque blanche, les rôles d'utilisateurs et les composants de signature intégrables sont aussi dans la formule Pro.",
+    "La licence ajoute des conditions de la section 7(b) à l'AGPLv3 : lis-les avant de revendre ou de changer la marque.",
+    "L'interface existe en 7 langues, moins que les 14 disponibles pour la signature."
+  ],
+  "bestFor": "Une petite équipe qui doit récolter des signatures sur des PDF et des contrats, et qui sait faire tourner un conteneur Docker sur son propre serveur."
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "Suivi nutritionnel web statique au style d'une étiquette Nutrition Facts, avec base d'aliments et scan.",
+  "description": "Daily Value est un journal de nutrition fait de simples fichiers JavaScript, sans étape de compilation ni code serveur. Tu peux ouvrir le site GitHub Pages de l'auteur et l'installer sur un téléphone, ou servir les fichiers depuis n'importe quel hébergeur statique. Comme c'est une page web classique, le journal reste dans le stockage local du navigateur : les données restent sur l'appareil, sauf si tu les sauvegardes à la main avec les boutons de copie et de restauration. Il embarque environ 13 000 aliments courants de l'USDA et environ 374 000 produits de marque issus d'USDA Branded Foods et d'Open Food Facts. La caméra du téléphone lit les codes-barres. Tu notes repas, exercice, eau et poids, tu fixes des objectifs d'après les apports nutritionnels de référence (Dietary Reference Intakes) et tu regardes des courbes de tendance. Des comptes par email, facultatifs, synchronisent le journal entre appareils grâce à un projet Supabase gratuit que tu crées toi-même, avec un schéma SQL fourni. Le code est sous licence MIT, alors que les données alimentaires gardent leurs propres licences (CC0 pour l'USDA, ODbL pour Open Food Facts). C'est un projet récent, sans historique pour l'instant : considère-le comme un outil à usage personnel. Il remplace la partie suivi de MyFitnessPal ou Cronometer, pas le coaching ni les plans de repas.",
+  "strengths": [
+    "Il ne demande qu'un hébergement statique : de simples fichiers JavaScript, sans serveur ni compilation",
+    "Inclut une base d'aliments embarquée, donc les recherches marchent sans API alimentaire payante",
+    "Scanne les codes-barres avec la caméra du téléphone, depuis une photo ou en tapant le numéro",
+    "S'installe sur l'écran d'accueil du téléphone et marche hors ligne après la première visite",
+    "La synchro dans le cloud est facultative et passe par un projet Supabase gratuit que tu contrôles"
+  ],
+  "limits": [
+    "Projet récent, sans historique de maintenance ni de support pour l'instant",
+    "Sans la configuration Supabase, le journal n'existe que dans le navigateur d'un seul appareil et se déplace par sauvegarde manuelle",
+    "Les données alimentaires viennent de téléchargements figés de l'USDA et d'Open Food Facts : les nouveaux produits n'apparaissent que si tu reconstruis les données toi-même",
+    "Les fonctions d'IA pour noter les repas ne marchent que si la page tourne comme artefact claude.ai",
+    "L'offre gratuite de Supabase met un projet en pause après environ une semaine sans usage, et la connexion par email demande ton propre SMTP pour toute autre personne que toi"
+  ],
+  "bestFor": "Une personne soucieuse de sa vie privée qui veut un journal simple de calories et de nutriments et qui sait héberger une page statique."
+}

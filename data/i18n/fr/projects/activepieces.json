@@ -1,0 +1,18 @@
+{
+  "tagline": "Outil d'automatisation sans code auto-hébergé, avec intégrations en TypeScript, positionné contre Zapier.",
+  "description": "Activepieces est un outil d'automatisation visuel. Tu enchaînes un déclencheur et des étapes dans un flow, avec des branches, des boucles, des nouvelles tentatives, des appels HTTP et une étape de code qui peut utiliser des paquets npm. Les flows sont versionnés. Les intégrations s'appellent des pieces : des paquets npm écrits en TypeScript, dont environ 60 % viennent de la communauté, d'après le projet. Quand un connecteur manque, tu peux écrire ta propre piece. Les pieces servent aussi de serveurs MCP, donc un client LLM comme Claude Desktop peut les appeler. Pour l'auto-hébergement, le dépôt fournit un fichier Docker Compose qui démarre l'appli, PostgreSQL (avec l'extension pgvector) et Redis. La documentation liste d'autres modes d'installation. L'édition Community est sous licence MIT, tandis que les fonctions entreprise relèvent d'une licence commerciale distincte : regarde la page des tarifs avant de compter sur une fonction précise. L'outil vise ceux qui paient Zapier ou Make et veulent le même modèle déclencheur-action sur leur serveur. Les étapes d'approbation humaine et les déclencheurs par formulaire ou par chat sont inclus. Le principe ressemble à celui de Zapier : vérifie que tes applis clés ont une piece avant de migrer.",
+  "strengths": [
+    "Les flows gèrent branches, boucles, nouvelles tentatives automatiques, requêtes HTTP et une étape de code qui importe des paquets npm",
+    "Chaque intégration est un paquet npm TypeScript open source : un connecteur manquant s'écrit et se branche en local",
+    "Les pieces servent de serveurs MCP pour des clients LLM comme Claude Desktop, Cursor ou Windsurf",
+    "Étapes avec intervention humaine : exécution différée, demandes d'approbation, déclencheurs par formulaire ou par chat",
+    "Flows entièrement versionnés, interface traduite"
+  ],
+  "limits": [
+    "Le Compose par défaut lance PostgreSQL et Redis à côté de l'appli : plus lourd qu'un outil en un seul conteneur",
+    "Les fonctions entreprise relèvent d'une licence commerciale distincte, pas de l'édition Community sous MIT",
+    "Le README annonce plus de 200 pieces : une appli de niche peut ne pas avoir de connecteur, et il faudra une piece sur mesure",
+    "Écrire une intégration manquante demande du développement TypeScript, pas un écran de réglages"
+  ],
+  "bestFor": "Une petite équipe ou une agence qui paie Zapier, dispose d'un VPS et veut ses principales connexions entre applis sur son propre serveur."
+}

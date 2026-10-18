@@ -1,0 +1,17 @@
+{
+  "tagline": "Éditeur graphique 2D open source qui combine calques vectoriels et matriciels, avec un cœur à nœuds.",
+  "description": "Graphite est un éditeur graphique gratuit pour le travail vectoriel et matriciel. Le projet le décrit comme un outil non destructif qui mélange la composition par calques et un graphe de nœuds : chaque modification est une étape que tu peux rouvrir plus tard. Il est parti d’un éditeur vectoriel et s’étend vers la retouche photo, l’animation graphique, la peinture numérique, la PAO et la composition. Prends cette liste comme une feuille de route : le projet lui-même classe l’éditeur en alpha. Tu peux l’utiliser dans le navigateur sur editor.graphite.art, sans rien installer, donc sans serveur à déployer ni base de données. Le code source est en Rust, sous double licence MIT et Apache 2.0, au choix. Le dépôt ne donne aucune recette de déploiement, car c’est une application cliente. Les contributeurs le compilent depuis les sources en suivant le guide des bénévoles. En pratique, c’est un candidat pour remplacer une partie d’Adobe Illustrator, d’Affinity ou de Canva pour l’illustration et le design génératif, surtout si tu aimes construire des motifs de façon procédurale. Le graphe de nœuds te laisse piloter des formes et des remplissages par des paramètres, ce que les éditeurs à simples calques ne proposent pas. Le financement vient de dons et de bénévolat, sans formule payante citée dans le README. Compte avec des fonctions manquantes et des formats de fichier qui changent tant qu’il reste en alpha.",
+  "strengths": [
+    "Le cœur à nœuds rend les modifications non destructives et permet de générer motifs et formes de façon procédurale",
+    "Fonctionne dans le navigateur sur editor.graphite.art, sans rien installer",
+    "Double licence MIT et Apache 2.0, au choix",
+    "Réunit vectoriel et matriciel dans un seul document à calques"
+  ],
+  "limits": [
+    "Classé alpha par le projet : les fonctions sont incomplètes et le comportement peut changer d’une version à l’autre",
+    "Retouche photo, animation graphique, PAO et composition sont des objectifs annoncés, pas des fonctions terminées",
+    "Le README ne décrit ni modèles, ni kit de marque, ni collaboration en équipe : il ne remplace pas la méthode de travail de Canva",
+    "Financé par des dons et des bénévoles seulement, sans option de support commercial"
+  ],
+  "bestFor": "Un illustrateur amateur ou un développeur qui aime les outils à nœuds et veut essayer dans le navigateur un éditeur vectoriel en alpha."
+}

@@ -1,0 +1,17 @@
+{
+  "tagline": "Chat IA et recherche auto-hébergés sur les applis de ton entreprise, avec agents et plus de 50 connecteurs.",
+  "description": "Onyx se connecte à plus de 50 applications de travail, indexe leur contenu en gardant les droits d'accès, et laisse un modèle de langage répondre à partir de ce contenu. Au-delà de la recherche, il propose des agents personnalisés, la recherche approfondie, la recherche web, un bac à sable de code, des actions MCP et un mode vocal. Il fonctionne avec des modèles auto-hébergés comme Ollama et vLLM, et avec Anthropic, OpenAI ou Gemini. Le déploiement passe par Docker, Kubernetes, Helm ou Terraform, et un script d'installation unique permet de démarrer vite. Il existe deux modes. Le mode Standard construit l'index et demande au moins 4 vCPU et 10 Go de RAM. Le mode Lite est une interface de chat avec agents, qui ne peut pas indexer de documents et tourne avec 2 Go. L'édition communautaire est sous licence MIT, alors que les fichiers des dossiers ee relèvent d'une licence entreprise. Onyx tient la place de ChatGPT pour un usage en équipe, avec un atout quand les réponses doivent venir des documents internes. Onyx Cloud existe pour ceux qui préfèrent ne pas héberger.",
+  "strengths": [
+    "Indexe plus de 50 applis connectées avec leurs permissions : les réponses respectent qui a le droit de voir quoi.",
+    "Marche avec des modèles locaux (Ollama, vLLM, LiteLLM) et hébergés (Anthropic, OpenAI, Gemini).",
+    "Recherche web via Serper, Google PSE, Brave ou SearXNG, avec son propre robot d'exploration.",
+    "Bots Slack et Discord, serveur MCP, extension Chrome et widget à intégrer."
+  ],
+  "limits": [
+    "Le mode Standard exige au moins 4 vCPU, 10 Go de RAM et 32 Go de disque, plus environ 2,5 fois le volume de données indexées.",
+    "Le mode Lite tourne avec bien moins, mais ne peut pas indexer de documents.",
+    "SSO, SCIM, gestion des droits par rôle, statistiques, historique des requêtes et marque blanche sont des fonctions Enterprise.",
+    "Le code des dossiers ee relève d'une licence Enterprise séparée : le dépôt n'est donc pas purement MIT."
+  ],
+  "bestFor": "Une équipe de 10 à 500 personnes, avec un serveur ou un compte cloud, qui veut des réponses façon ChatGPT tirées de Slack, de Drive et de son wiki."
+}

@@ -1,0 +1,17 @@
+{
+  "tagline": "Petite appli de bureau pour fusionner, découper, pivoter, rogner et réordonner des pages PDF.",
+  "description": "PDF Arranger est une petite application de bureau pour réorganiser des PDF. Tu peux fusionner ou découper des documents, pivoter et rogner des pages, et les glisser dans un nouvel ordre dans une interface visuelle. Elle est écrite en Python avec GTK et sert d'interface à la bibliothèque pikepdf. Le projet est né comme un fork de PDF-Shuffler, un outil plus ancien, pour garder un développement actif. La licence est GPL-3.0. Ce n'est pas un serveur : tu l'installes sur ton propre ordinateur. Les versions Windows se trouvent sur la page des releases, et sous Linux tu peux passer par Flathub, le Snap Store ou les paquets de ta distribution. Une installation depuis les sources demande pikepdf 6 ou plus, GTK, Poppler et d'autres paquets liés. Un manuel d'utilisation est sur le wiki du projet. Comme remplaçant d'Adobe Acrobat Pro, il ne couvre que l'organisation des pages. Il ne modifie pas le texte, ne remplit pas de formulaires et ne signe pas de documents, et le README ne décrit aucune de ces fonctions.",
+  "strengths": [
+    "Fusion, découpe, rotation, rognage et réordonnancement visuel des pages",
+    "Disponible sur Flathub, le Snap Store et dans de nombreuses distributions Linux",
+    "Versions Windows disponibles sur la page des releases",
+    "Construit sur pikepdf, qui gère la structure du PDF"
+  ],
+  "limits": [
+    "Réarrangement de pages uniquement : aucune modification de texte, aucun remplissage de formulaires, aucune signature décrits",
+    "Appli de bureau, sans interface web ni mode multi-utilisateur",
+    "L'installation depuis les sources demande pikepdf 6 ou plus et les bibliothèques GTK",
+    "Pas de paquet pour macOS : tu suis les instructions de macOS.md pour compiler depuis les sources"
+  ],
+  "bestFor": "Quelqu'un qui réordonne ou fusionne souvent des pages PDF sur un ordinateur Linux ou Windows et n'a pas besoin d'un Acrobat complet."
+}

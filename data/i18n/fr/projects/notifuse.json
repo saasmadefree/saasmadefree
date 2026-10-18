@@ -1,0 +1,19 @@
+{
+  "tagline": "Plateforme d'emails auto-hébergée en Go : newsletters, automatisations et transactionnel, sur PostgreSQL.",
+  "description": "Notifuse est une plateforme d'emails écrite en Go, avec une console en React. Elle gère les newsletters, les automatisations et les messages transactionnels via une API REST. Elle n'envoie pas le courrier elle-même : tu connectes un fournisseur comme Amazon SES, Mailgun, Postmark, Mailjet, SparkPost, SendGrid, ou un simple SMTP. L'éditeur est en glisser-déposer et basé sur MJML, les modèles utilisent Liquid, et les campagnes peuvent être testées en A/B. Les automatisations se construisent sur un canevas avec des délais, des branches, des filtres et des étapes webhook. Elle inclut aussi un script d'analyse web sans cookies. Tu la lances avec Docker et un assistant de configuration, et il te faut PostgreSQL 17 ou plus récent. Un Notifuse Cloud hébergé démarre à 16 $ par mois. Elle se positionne face à Mailchimp et aux outils du même genre. La licence est mixte : les versions jusqu'à la 39 sont en AGPL-3.0, alors que la version 40 et les suivantes utilisent la Business Source License 1.1, avec une clé de licence pour une courte liste de fonctionnalités. Ce n'est donc pas un projet open source au sens strict pour les versions récentes.",
+  "strengths": [
+    "Canevas visuel d'automatisation avec des nœuds de délai, de branche, de filtre, de test A/B et de webhook.",
+    "Se connecte à Amazon SES, Mailgun, Postmark, Mailjet, SparkPost, SendGrid ou SMTP.",
+    "Éditeur d'emails MJML en glisser-déposer et modèles Liquid.",
+    "Analyse web intégrée sans cookies, servie depuis ta propre instance.",
+    "Pas de prix par email : contacts, emails et membres d'équipe illimités sans clé de licence."
+  ],
+  "limits": [
+    "Elle envoie par un fournisseur externe que tu dois configurer et payer : la délivrabilité dépend de ce compte.",
+    "Il faut PostgreSQL 17 ou plus récent, et une mise à jour majeure de Postgres demande pg_upgrade.",
+    "La version 40 et les suivantes utilisent la Business Source License 1.1, qui n'est pas une licence open source reconnue par l'OSI.",
+    "Une clé de licence est requise au-delà de trois espaces de travail, pour les droits fins, les locataires SES, le SSO, les modèles multilingues et les journaux d'audit.",
+    "Les mainteneurs n'acceptent pas les pull requests, seulement les tickets."
+  ],
+  "bestFor": "Le propriétaire d'un petit SaaS ou d'une newsletter qui a déjà un compte SES ou Postmark et veut des automatisations façon Mailchimp sur son propre serveur."
+}

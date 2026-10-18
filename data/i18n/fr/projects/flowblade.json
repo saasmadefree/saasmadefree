@@ -1,0 +1,19 @@
+{
+  "tagline": "Éditeur vidéo non linéaire multipiste pour Linux, construit sur MLT et FFmpeg.",
+  "description": "Flowblade est un éditeur vidéo de bureau pour Linux, écrit en Python au-dessus du framework MLT et des codecs FFmpeg. Ce n’est pas un service à héberger : tu l’installes depuis Flathub, depuis le dépôt de paquets de ta distribution ou depuis le dépôt de développement. Tu montes sur une timeline qui compte jusqu’à 21 pistes vidéo et audio combinées, avec six outils de montage, et tu appliques une composition avec 19 modes de fusion et une animation en images clés. Il inclut plus de 50 filtres d’image et plus de 30 filtres audio, un outil de texte, un outil G’MIC, l’encodage par lots, le montage avec proxys et la reconnexion des médias. Le rendu gère les encodeurs GPU (VAAPI et NVENC) et des arguments FFmpeg personnalisés. Le projet recommande 8 Go de RAM pour le HD et 16 Go pour la 4K, plus MLT 7.30. La licence est GPL-3.0. Il remplace sur un ordinateur Linux la partie coupe, ajustement, effets et export de CapCut, et il marche sans compte ni filigrane. Il n’offre ni la bibliothèque de modèles, ni les sous-titres automatiques, ni le stockage cloud, ni les applis mobiles qui font le succès de CapCut, et il n’existe pas pour macOS ni Windows.",
+  "strengths": [
+    "Éditeur gratuit sous Linux, sans compte, sans abonnement et sans frais d’export",
+    "Timeline jusqu’à 21 pistes, six outils de montage et composition en images clés",
+    "Plus de 50 filtres d’image et 30 filtres audio, avec des outils de texte et G’MIC",
+    "Encodage matériel via VAAPI et NVENC, ou avec tes propres arguments FFmpeg",
+    "Encodage par lots et montage avec proxys pour les projets plus lourds"
+  ],
+  "limits": [
+    "Linux uniquement : le projet documente Flatpak et les paquets de distribution, sans installeur Windows ni macOS",
+    "Le README ne décrit ni bibliothèque de modèles, ni médias d’archives intégrés, ni sous-titres automatiques",
+    "Parmi les problèmes connus que le mainteneur ne compte pas corriger : le positionnement du compositeur cassé quand on change de profil de rendu, et des soucis avec certains fichiers MKV faits par OBS",
+    "16 Go de RAM recommandés pour les projets 4K, et 4 cœurs",
+    "Les paquets des distributions peuvent avoir du retard sur la dernière version, qui est toujours sur Flathub"
+  ],
+  "bestFor": "Un utilisateur de Linux qui monte des vidéos YouTube ou courtes sur ordinateur et veut un éditeur à timeline gratuit, sans filigrane."
+}

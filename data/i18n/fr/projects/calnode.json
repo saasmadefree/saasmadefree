@@ -1,0 +1,19 @@
+{
+  "tagline": "Prise de rendez-vous à la Calendly en un seul binaire Go avec SQLite, API d'abord et serveur MCP intégré.",
+  "description": "Calnode est une appli de prise de rendez-vous auto-hébergée, livrée sous forme d'un binaire Go statique avec une base SQLite intégrée. Pas de Redis, pas de PostgreSQL, pas de serveur d'API séparé. Pour l'essayer, une commande docker run suffit, avec un dossier de données monté. Pour un vrai usage, ajoute HTTPS, une clé de chiffrement persistante et des sauvegardes ; Litestream sauvegarde le fichier SQLite à tout instant. Calnode propose des pages de réservation, un widget intégrable, des modes de routage d'équipe (fixe, round-robin, collectif, prioritaire), la détection de conflits avec Google Agenda et Microsoft 365, et Stripe Checkout pour les réservations payantes. Une API REST avec webhooks signés HMAC sert de poste de pilotage, et un serveur MCP est compilé dans le binaire pour que des agents IA listent les créneaux et réservent. Les salles de visio avec enregistrement et notes IA, facultatives, passent par LiveKit, que tu héberges ou que tu loues. Rien n'est verrouillé derrière un paiement pour l'auto-hébergement, et la licence est Apache-2.0. Il remplace Calendly pour l'essentiel de la réservation. Plusieurs fonctions dépendent de services extérieurs, comme Deepgram pour les transcriptions.",
+  "strengths": [
+    "Un binaire statique avec SQLite intégré : un petit VPS et un docker run suffisent",
+    "API REST de 88 endpoints, webhooks signés HMAC configurés par l'API",
+    "Serveur MCP compilé dans le binaire, en transport stdio et Streamable HTTP",
+    "Modes de routage d'équipe : fixe, round-robin, collectif et prioritaire",
+    "Réservations payantes via Stripe Checkout, avec remboursement automatique à l'annulation",
+    "Licence Apache-2.0, et le README affirme que rien n'est payant pour l'auto-hébergement"
+  ],
+  "limits": [
+    "Salles de visio, enregistrement et notes IA demandent un serveur LiveKit, et les transcriptions passent par Deepgram",
+    "L'interface d'administration et la salle de visio sont en anglais seulement ; les autres traductions sont des brouillons automatiques",
+    "Spécification OpenAPI, endpoint de métriques et multi-domaine restent à la feuille de route",
+    "Un déploiement égale un espace de travail (une instance par client) : pas de mode multi-tenant partagé"
+  ],
+  "bestFor": "Un développeur ou une petite agence qui veut un remplaçant léger de Calendly sur un VPS bon marché, avec des agents IA ou des scripts qui gèrent les réservations."
+}

@@ -1,0 +1,17 @@
+{
+  "tagline": "Éditeur vidéo MIT pour le web, le bureau et le mobile, en cours de réécriture autour d’un cœur Rust.",
+  "description": "OpenCut est un éditeur vidéo open source pensé pour le navigateur, le bureau et le mobile. Son code est sous licence MIT. Le dépôt principal est en pleine réécriture complète autour d’un cœur Rust, avec un plan annoncé pour une API d’éditeur, des plugins, un serveur MCP pour les agents IA, un mode sans interface pour le rendu par lots et un onglet de scripts. La version précédente vit dans un dépôt séparé, opencut-classic, et le README dit que c’est celle à utiliser aujourd’hui. Le site public opencut.app sert encore la version classique, tandis que la réécriture est présentée sur une autre adresse jusqu’à ce qu’elle soit prête. Les développeurs l’installent avec l’outil proto et lancent les applis web, API et bureau avec des commandes moon. Le README ne décrit aucune voie d’auto-hébergement packagée. Comme alternative à CapCut, il vise la boucle de montage sur timeline, mais la réécriture actuelle est à considérer comme un travail en cours. Le projet n’accepte pas de code venu de l’extérieur pour l’instant, le temps de concevoir l’architecture.",
+  "strengths": [
+    "Licence MIT",
+    "Mode sans interface prévu, pour l’automatisation et le rendu par lots",
+    "Système de plugins et API d’éditeur prévus pour des extensions tierces",
+    "La version classique reste disponible dans un dépôt séparé"
+  ],
+  "limits": [
+    "Le dépôt principal est une réécriture en cours : le README renvoie vers la version classique pour l’usage actuel",
+    "Aucun guide d’auto-hébergement ni méthode de déploiement n’est documenté",
+    "Les contributions extérieures ne sont pas acceptées pendant la conception de l’architecture",
+    "Les fonctions prévues, comme le serveur MCP et l’onglet de scripts, sont annoncées mais pas livrées"
+  ],
+  "bestFor": "Un développeur ou un créateur qui veut suivre un éditeur vidéo web et accepte d’utiliser la version classique en attendant."
+}

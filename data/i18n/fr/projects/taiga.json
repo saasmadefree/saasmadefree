@@ -1,0 +1,19 @@
+{
+  "tagline": "Gestion de projet agile avec tableaux kanban et scrum, auto-hébergée avec Docker.",
+  "description": "Taiga est un outil de gestion de projet pour les équipes agiles. Le site du projet présente des modules kanban et scrum, et une copie auto-hébergée est une option documentée à côté du cloud de l'éditeur. Le backend de ce dépôt est écrit en Python avec Django. Les installations en production suivent le guide Docker officiel, que la documentation présente comme la voie la plus simple et recommandée, avec un dépôt taiga-docker et un fichier .env où tu règles le mot de passe de la base, le domaine, le schéma et la clé secrète. Docker 19.03 ou plus est exigé. Une installation manuelle depuis les sources est aussi documentée et s'appuie sur PostgreSQL et RabbitMQ. L'appli est découpée en backend, frontend et service d'événements, donc tu fais tourner plusieurs éléments. Le code est sous MPL-2.0. Taiga vise les équipes qui paient Asana ou un outil proche et qui ont surtout besoin de tâches, de sprints et de tableaux. Avant de t'engager, retiens que son modèle tourne autour de la livraison agile. Les objectifs, les portefeuilles et les rapports entre projets, que vendent les suites de gestion du travail, ne sont pas son centre : teste d'abord sur un vrai projet.",
+  "strengths": [
+    "Modules kanban et scrum sur le site du projet, pensés pour les équipes agiles",
+    "Guide Docker officiel pour la production, présenté par la documentation comme la méthode la plus simple et recommandée",
+    "Les réglages de base (utilisateur de la base, domaine, schéma, clé secrète) tiennent dans un seul fichier .env",
+    "Alternative documentée : installation manuelle depuis les sources avec PostgreSQL et RabbitMQ",
+    "Licence MPL-2.0 et API documentée pour les intégrations"
+  ],
+  "limits": [
+    "Le déploiement a plusieurs composants : backend, frontend et service d'événements, plus PostgreSQL et, pour une installation depuis les sources, RabbitMQ",
+    "Le guide suppose que tu connais Docker, Docker Compose et la configuration d'un reverse proxy",
+    "Centré sur la livraison agile : le site décrit planification, points quotidiens et visibilité, sans couche d'objectifs ou de portefeuille",
+    "Les valeurs par défaut du .env doivent être changées avant la mise en production",
+    "Le support auto-hébergé passe par le forum de la communauté et les suivis de tickets"
+  ],
+  "bestFor": "Une équipe logicielle d'une dizaine de personnes, avec un hôte Docker, qui veut des tableaux kanban et scrum sans abonnement Asana."
+}

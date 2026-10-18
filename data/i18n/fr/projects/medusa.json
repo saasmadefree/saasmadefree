@@ -1,0 +1,18 @@
+{
+  "tagline": "Framework e-commerce en Node.js avec modules produits, paniers, commandes et paiements, en open-core.",
+  "description": "Medusa est une boîte à outils Node.js pour construire des boutiques en ligne. Tu choisis les modules de commerce dont tu as besoin, puis tu écris toi-même la vitrine et les règles sur mesure. Une application Medusa est un serveur Node.js plus un tableau de bord d’administration basé sur Vite. L’installation locale demande Node.js v20 ou plus récent, Git et un PostgreSQL en marche ; la commande create-medusa-app crée la base à ta place. L’installeur peut aussi ajouter une vitrine de départ en Next.js. Le cœur est sous licence MIT. Une partie du dépôt, listée dans ENTERPRISE-LICENSE.md, relève de l’édition Enterprise sous une autre licence, et le README cite le contrôle d’accès par rôle parmi ces éléments. Les mainteneurs vendent aussi Medusa Cloud, un hébergement géré. Face à Shopify, Medusa couvre la boucle catalogue, panier, commande et fournisseur de paiement, et convient aux boutiques aux besoins B2B ou place de marché atypiques. Il n’y a ni boutique d’applis ni thèmes prêts à l’emploi : un développeur doit construire et maintenir la vitrine.",
+  "strengths": [
+    "La logique de commerce est découpée en modules : tu ajoutes ta propre logique sans forker",
+    "Gère les montages B2B, vente directe, place de marché et point de vente, d’après le README",
+    "create-medusa-app met en place le projet et sa base PostgreSQL",
+    "Une vitrine de départ Next.js est proposée pendant l’installation",
+    "Cœur sous licence MIT"
+  ],
+  "limits": [
+    "Il faut un développeur : l’installation produit un serveur Node.js et une admin, pas une boutique prête avec des thèmes",
+    "Demande Node.js v20 ou plus récent et PostgreSQL",
+    "Le contrôle d’accès par rôle fait partie de l’édition Enterprise, sous une licence à part",
+    "Le README dit que le départ le plus rapide passe par Medusa Cloud : l’auto-hébergement est la voie secondaire"
+  ],
+  "bestFor": "Une équipe de développement qui monte une boutique B2B ou place de marché sur mesure, et a dépassé les limites de Shopify."
+}

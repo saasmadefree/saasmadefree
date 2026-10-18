@@ -1,0 +1,19 @@
+{
+  "tagline": "Centre d'aide et boîte partagée légers en PHP et Laravel, qui tournent sur un hébergement mutualisé.",
+  "description": "FreeScout est un centre d'aide et une boîte mail partagée construits avec PHP et Laravel, pensés comme alternative gratuite à Zendesk et Help Scout. Plusieurs agents traitent les conversations d'une ou plusieurs boîtes mail. Il se connecte en SMTP, IMAP ou POP3, accepte la connexion OAuth pour Microsoft 365 et Google Workspace, et ne limite ni les agents, ni les tickets, ni les boîtes. Au quotidien, tu as des notes internes, des réponses automatiques, la fusion et le transfert de conversations, la détection de collision quand deux personnes ouvrent le même fil, et une appli web progressive. L'interface est traduite en 33 langues. Les prérequis sont modestes : un serveur web, PHP 7.4 ou plus récent, et MySQL, MariaDB ou PostgreSQL. Le projet dit qu'il tourne sur un hébergement mutualisé et ne donne aucun minimum de processeur ou de RAM. Un installeur et un outil de mise à jour web existent, une image Docker est disponible, et des options gérées comme PikaPods et Cloudron sont citées. Le code est sous AGPL-3.0. Le noyau est gratuit. Les extras comme WhatsApp, Facebook, Slack, le chat en direct et les réponses par IA viennent de modules à part, certains créés par des tiers. Prévois de payer pour certains.",
+  "strengths": [
+    "Agents, tickets et boîtes mail illimités dans le noyau gratuit",
+    "Tourne sur du PHP et MySQL, MariaDB ou PostgreSQL classiques, y compris en hébergement mutualisé",
+    "Installeur et outil de mise à jour web, image Docker et installations en un clic",
+    "Détection de collision, notes internes, fusion et transfert de conversations",
+    "Système de modules et API, avec des intégrations Zapier et Make"
+  ],
+  "limits": [
+    "Beaucoup de canaux (WhatsApp, Facebook, chat en direct) et d'extras sont des modules, pas du noyau",
+    "La qualité et le suivi des modules communautaires et tiers varient",
+    "Le README ne décrit ni moteur de SLA ni portail client",
+    "L'envoi des emails et le filtrage du spam dépendent de ton serveur mail ou de ton fournisseur",
+    "Le README ne donne aucun minimum de RAM ou de processeur : dimensionner pour de grosses boîtes reste ton travail"
+  ],
+  "bestFor": "Une petite équipe support qui a déjà une boîte mail et veut une boîte partagée sur un hébergement PHP bon marché."
+}

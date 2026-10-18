@@ -1,0 +1,18 @@
+{
+  "tagline": "Centre de support PHP auto-hébergé avec tickets par email et portail client.",
+  "description": "UVdesk Community est un centre de support construit sur le framework PHP Symfony, avec une interface Backbone.js. Un composant de messagerie transforme les emails reçus en tickets, et les agents les traitent avec des réponses enregistrées, des notes, des étiquettes, des types de ticket et des réponses préparées. Un module d'automatisation ajoute des workflows, et un module de centre de support offre aux clients un portail avec base de connaissances et FAQ. Le README annonce des agents, groupes, clients, tickets et boîtes mail en nombre illimité : pas de coût par utilisateur. Tu l'installes avec Composer ou depuis une archive zip, puis tu termines la configuration dans un installeur web ou avec une commande console. Une voie Docker et une voie Vagrant sont décrites dans le wiki du projet. Le README demande PHP 8.1, MySQL 5.7.23 ou plus récent, Apache ou Nginx, les extensions PHP IMAP et Mailparse, et 4 Go de RAM. Le code est sous licence OSL-3.0. Le projet indique qu'une image de machine Amazon existe pour AWS, mais il ne vend aucune formule hébergée de son côté. UVdesk couvre la boucle de base de Zendesk : tickets par email, outils d'agent et centre d'aide. Les extras, comme les modules marketing ou l'intégration Microsoft, se vendent ou se distribuent dans une boutique à part.",
+  "strengths": [
+    "Transforme les emails d'une boîte mail en tickets, sans limite annoncée du nombre de boîtes connectées",
+    "Agents, groupes, clients et tickets illimités : le coût ne grandit pas avec l'équipe",
+    "Inclut une base de connaissances et une FAQ organisées en articles, catégories et dossiers",
+    "Fournit un module d'API REST et un module d'automatisation pour les workflows et les réponses préparées",
+    "S'installe avec Composer ou un fichier zip, puis se termine dans un installeur dans le navigateur"
+  ],
+  "limits": [
+    "Demande les extensions PHP IMAP et Mailparse et une base MySQL : il ne tourne donc pas sur un conteneur minimal sans réglages en plus",
+    "Le README affiche 4 Go de RAM comme prérequis, ce qui est lourd pour un petit VPS",
+    "Plusieurs extras, comme les modules marketing, sont des modules complémentaires d'une boutique à part, pas du noyau",
+    "Le README ne documente que PHP 8.1 : vérifie la compatibilité avant de choisir une version plus récente"
+  ],
+  "bestFor": "Une petite équipe support avec un serveur compatible PHP qui veut des tickets par email et un centre d'aide sans frais par agent."
+}

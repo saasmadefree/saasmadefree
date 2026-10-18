@@ -1,0 +1,19 @@
+{
+  "tagline": "Plateforme de signature électronique auto-hébergeable pour envoyer, signer et suivre des documents.",
+  "description": "Documenso te laisse téléverser un PDF, placer des champs de signature, l'envoyer aux signataires et garder la copie signée. Il est écrit en TypeScript avec React Router, Hono, Prisma et une base PostgreSQL. La documentation liste plusieurs façons de le faire tourner : Docker, Docker Compose, Railway, Kubernetes et une installation manuelle. Le projet publie des images officielles sur Docker Hub et sur le registre de conteneurs de GitHub. Il te faut aussi un SMTP pour les emails de notification, un stockage compatible S3 en option, et un certificat de signature que tu génères toi-même : l'application n'en fournit pas, et sans lui la signature échoue. Le code est en AGPL-3.0. Les mainteneurs vendent une formule hébergée à partir de 25 $ et une édition Enterprise pour les fonctionnalités absentes de la version communautaire. Il couvre l'usage courant de DocuSign : envoyer des contrats à signer. Attention : la documentation te demande de sécuriser ton propre réseau, car les contrôles des requêtes sortantes, par exemple pour les webhooks, ne sont qu'un effort de bonne foi. Le README précise aussi que l'équipe n'accepte plus de pull requests externes : les contributions passent par les tickets.",
+  "strengths": [
+    "Images Docker officielles et voies documentées pour Compose, Railway et Kubernetes.",
+    "Données dans PostgreSQL, avec un stockage de fichiers compatible S3 en option.",
+    "Utilise ton propre certificat de signature : tu maîtrises la façon dont les documents sont scellés.",
+    "Pile TypeScript documentée, avec une API publique et la prise en charge des webhooks dans la documentation.",
+    "Un code AGPL-3.0 que tu peux lire, auditer et faire tourner."
+  ],
+  "limits": [
+    "Tu dois générer et configurer toi-même un certificat de signature, et la signature échoue tant que ce n'est pas fait.",
+    "Les fonctionnalités Enterprise se vendent à part et ne sont pas dans l'édition communautaire auto-hébergée.",
+    "Aucune pull request externe n'est acceptée : les correctifs dont tu as besoin dépendent des mainteneurs.",
+    "Tu portes la sécurité du réseau : les contrôles des requêtes de webhook ne protègent pas complètement contre les requêtes vers des adresses internes.",
+    "Les signatures électroniques qualifiées ou avancées dépendent de ton certificat et de la loi locale, que le projet te laisse gérer."
+  ],
+  "bestFor": "Une petite entreprise qui a un ingénieur et un serveur PostgreSQL, et qui veut envoyer des contrats à signer sans frais par enveloppe."
+}
