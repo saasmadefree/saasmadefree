@@ -33,6 +33,7 @@ export function compileValidators(schemaDir) {
     projectI18n: ajv.compile(load('project-i18n.schema.json')),
     compare: ajv.compile(load('compare.schema.json')),
     compareI18n: ajv.compile(load('compare-i18n.schema.json')),
+    categories: ajv.compile(load('categories.schema.json')),
   };
 }
 

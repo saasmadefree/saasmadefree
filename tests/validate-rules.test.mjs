@@ -5,6 +5,12 @@ import { validateAll, collectKeyPaths, compareKey } from '../scripts/lib/validat
 const validators = compileValidators('schema');
 const TODAY = '2026-07-30';
 
+// Une catégorie conforme à schema/categories.schema.json : emoji et libellé
+// dans les sept langues. Un `{}` vide ne passe plus depuis que validateAll
+// valide data/categories.json.
+const LABEL7 = { en: 'Docs', fr: 'Docs', es: 'Docs', de: 'Docs', it: 'Docs', pt: 'Docs', nl: 'Docs' };
+const CATEGORIES = { 'docs-and-wiki': { emoji: '📚', label: LABEL7 } };
+
 function makeTool(slug, over = {}) {
   return {
     slug, name: slug, domains: [`${slug}.com`], category: 'docs-and-wiki',
@@ -48,7 +54,7 @@ function makeData(over = {}) {
     homepage: 'https://example.com', maxLength: null, status: 'verified',
     verifiedOn: TODAY, runHint: 'clipboard', docs: null,
   }];
-  return { tools, i18n, ui, agents, categories: { 'docs-and-wiki': {} }, ...over };
+  return { tools, i18n, ui, agents, categories: CATEGORIES, ...over };
 }
 
 describe('validateAll', () => {
@@ -217,7 +223,7 @@ describe('parité des clés site.* entre langues publiées', () => {
       homepage: 'https://example.com', maxLength: null, status: 'verified',
       verifiedOn: TODAY, runHint: 'clipboard', docs: null,
     }];
-    return { tools, i18n, ui, agents, categories: { 'docs-and-wiki': {} } };
+    return { tools, i18n, ui, agents, categories: CATEGORIES };
   }
 
   it('signale une clé site présente en en et absente ailleurs', () => {
@@ -302,6 +308,9 @@ function makeProjectI18n(over = {}) {
     ...over,
   };
 }
+
+/** Une intro conforme : n mots, dont le nom du projet en tête. */
+const introNaming = (name, n = 80) => `${name} ${words(n - 1)}`;
 
 const sixFaq = Array.from({ length: 6 }, (_, i) => ({ q: `q${i}`, a: `a${i}` }));
 
@@ -448,7 +457,7 @@ describe('alternatives et projets', () => {
 describe('FAQ : 4 ou 6 entrées', () => {
   it('requires 6 faq entries once the i18n entry has alternativesIntro', () => {
     const data = makeAltData();
-    data.i18n.get('en/a').alternativesIntro = 'Outline est la meilleure option.';
+    data.i18n.get('en/a').alternativesIntro = introNaming('outline');
     const out = validateAll(data, validators, TODAY).join(' ');
     expect(out).toContain('data/i18n/en/tools/a.json');
     expect(out).toContain('6');
@@ -534,5 +543,177 @@ describe('données réelles — aucune API payante présentée en alternative li
     expect(cited('wabery')).not.toContain('meta-whatsapp-cloud-api');
     expect(data.projects.has('twilio-media-streams')).toBe(false);
     expect(data.projects.has('meta-whatsapp-cloud-api')).toBe(false);
+  });
+});
+
+describe('alternativesIntro : longueur et gagnant nommé', () => {
+  function withIntro(intro) {
+    const data = makeAltData();
+    data.i18n.get('en/a').alternativesIntro = intro;
+    data.i18n.get('en/a').faq = sixFaq;
+    return data;
+  }
+
+  it('accepte une intro de 60 à 120 mots', () => {
+    for (const n of [60, 120]) {
+      expect(validateAll(withIntro(introNaming('outline', n)), validators, TODAY)).toEqual([]);
+    }
+  });
+
+  it('refuse une intro de moins de 60 ou de plus de 120 mots', () => {
+    for (const n of [59, 121]) {
+      const out = validateAll(withIntro(introNaming('outline', n)), validators, TODAY).join(' ');
+      expect(out).toContain('data/i18n/en/tools/a.json');
+      expect(out).toContain('alternativesIntro');
+      expect(out).toContain(`${n} mots`);
+    }
+  });
+
+  it('compte les mots comme la description de projet : espaces multiples et bords ignorés', () => {
+    const intro = `  outline\n\n${words(59).replace(/ /g, '   ')}  `;
+    expect(validateAll(withIntro(intro), validators, TODAY)).toEqual([]);
+  });
+
+  it('accepte une intro qui nomme la première alternative, sans tenir compte de la casse', () => {
+    const data = withIntro(`La meilleure option est OUTLINE. ${words(70)}`);
+    expect(validateAll(data, validators, TODAY)).toEqual([]);
+  });
+
+  it('refuse une intro qui ne nomme pas la première alternative', () => {
+    const data = withIntro(`La meilleure option est wikijs. ${words(70)}`);
+    const out = validateAll(data, validators, TODAY);
+    const line = out.find((e) => e.includes('alternativesIntro') && e.includes('"outline"'));
+    expect(line, out.join('\n')).toBeDefined();
+    expect(line).toContain('data/i18n/en/tools/a.json');
+  });
+
+  it("compare au nom du projet, pas à son slug", () => {
+    const data = withIntro(`La meilleure option est outline. ${words(70)}`);
+    data.projects.get('outline').name = 'Outline Wiki';
+    const out = validateAll(data, validators, TODAY).join(' ');
+    expect(out).toContain('"Outline Wiki"');
+  });
+
+  it("saute une alternative non affichable : c'est la première affichable qui doit être nommée", () => {
+    const data = withIntro(`La meilleure option est wikijs. ${words(70)}`);
+    // Archivé : isDisplayableProject le retire du tableau, l'intro ne peut pas le citer en gagnant.
+    data.projects.get('outline').stats = {
+      stars: 10, lastCommit: '2026-07-01', createdAt: '2020-01-01', archived: true, checkedOn: TODAY,
+    };
+    expect(validateAll(data, validators, TODAY)).toEqual([]);
+    data.i18n.get('en/a').alternativesIntro = `La meilleure option est outline. ${words(70)}`;
+    expect(validateAll(data, validators, TODAY).join(' ')).toContain('"wikijs"');
+  });
+
+  it('juge la fraîcheur par rapport à today, comme le reste du validateur', () => {
+    const data = withIntro(`La meilleure option est wikijs. ${words(70)}`);
+    data.projects.get('outline').stats = {
+      stars: 10, lastCommit: '2025-07-01', createdAt: '2020-01-01', archived: false, checkedOn: TODAY,
+    };
+    // 2025-07-01 → 2026-07-30 : plus de 365 jours sans commit, outline n'est plus affichable.
+    expect(validateAll(data, validators, TODAY)).toEqual([]);
+    // Un an plus tôt, il l'était encore : c'est lui qu'il fallait nommer.
+    expect(validateAll(data, validators, '2025-08-01').join(' ')).toContain('"outline"');
+  });
+
+  it("ne demande aucun nom quand la fiche n'a aucune alternative affichable", () => {
+    const data = withIntro(`Aucun projet ne couvre ce besoin. ${words(70)}`);
+    data.tools.get('a').alternatives = [];
+    expect(validateAll(data, validators, TODAY)).toEqual([]);
+  });
+});
+
+describe('comparatifs : summary et listes pick', () => {
+  function withCompare(over) {
+    const data = makeAltData();
+    data.compare = [makePair()];
+    data.compareI18n.set('en/a-vs-outline', makeCompareI18n(over));
+    return data;
+  }
+
+  it('accepte un summary de 80 à 150 mots', () => {
+    for (const n of [80, 150]) {
+      expect(validateAll(withCompare({ summary: words(n) }), validators, TODAY)).toEqual([]);
+    }
+  });
+
+  it('refuse un summary de moins de 80 ou de plus de 150 mots', () => {
+    for (const n of [79, 151]) {
+      const out = validateAll(withCompare({ summary: words(n) }), validators, TODAY).join(' ');
+      expect(out).toContain('data/i18n/en/compare/a-vs-outline.json');
+      expect(out).toContain('summary');
+      expect(out).toContain(`${n} mots`);
+    }
+  });
+
+  // pickAIf / pickBIf : 2 à 4 entrées, déjà imposé par compare-i18n.schema.json
+  // (minItems/maxItems). Ces tests verrouillent que validateAll le remonte.
+  it('accepte 2 à 4 entrées dans pickAIf et pickBIf', () => {
+    for (const n of [2, 4]) {
+      const list = Array.from({ length: n }, (_, i) => `cas ${i}`);
+      expect(validateAll(withCompare({ pickAIf: list, pickBIf: list }), validators, TODAY)).toEqual([]);
+    }
+  });
+
+  it('refuse 1 ou 5 entrées dans pickAIf ou pickBIf', () => {
+    for (const field of ['pickAIf', 'pickBIf']) {
+      for (const n of [1, 5]) {
+        const list = Array.from({ length: n }, (_, i) => `cas ${i}`);
+        const out = validateAll(withCompare({ [field]: list }), validators, TODAY).join(' ');
+        expect(out, `${field} × ${n}`).toContain(`data/i18n/en/compare/a-vs-outline.json /${field}`);
+      }
+    }
+  });
+});
+
+describe('limits des projets : 2 à 6 (règle existante, inchangée)', () => {
+  it('accepte 2 et 6 limites', () => {
+    for (const n of [2, 6]) {
+      const data = makeAltData();
+      data.projectI18n.get('en/outline').limits = Array.from({ length: n }, (_, i) => `l${i}`);
+      expect(validateAll(data, validators, TODAY)).toEqual([]);
+    }
+  });
+
+  it('refuse 1 ou 7 limites', () => {
+    for (const n of [1, 7]) {
+      const data = makeAltData();
+      data.projectI18n.get('en/outline').limits = Array.from({ length: n }, (_, i) => `l${i}`);
+      expect(validateAll(data, validators, TODAY).join(' ')).toContain('data/i18n/en/projects/outline.json /limits');
+    }
+  });
+});
+
+describe('data/categories.json', () => {
+  it('accepte une catégorie avec emoji et libellé dans les sept langues', () => {
+    expect(validateAll(makeData(), validators, TODAY)).toEqual([]);
+  });
+
+  it('accepte un titleLabel partiel, indexé par langue', () => {
+    const categories = { 'docs-and-wiki': { emoji: '📚', label: LABEL7, titleLabel: { en: 'Wiki' } } };
+    expect(validateAll(makeData({ categories }), validators, TODAY)).toEqual([]);
+  });
+
+  it('refuse un libellé auquel il manque une langue', () => {
+    const { nl: _nl, ...label } = LABEL7;
+    const categories = { 'docs-and-wiki': { emoji: '📚', label } };
+    const out = validateAll(makeData({ categories }), validators, TODAY).join(' ');
+    expect(out).toContain('data/categories.json');
+    expect(out).toContain('nl');
+  });
+
+  it('refuse un champ inconnu dans une catégorie', () => {
+    const categories = { 'docs-and-wiki': { emoji: '📚', label: LABEL7, color: 'red' } };
+    expect(validateAll(makeData({ categories }), validators, TODAY).join(' ')).toContain('data/categories.json');
+  });
+
+  it('refuse une langue inconnue dans titleLabel', () => {
+    const categories = { 'docs-and-wiki': { emoji: '📚', label: LABEL7, titleLabel: { xx: 'Wiki' } } };
+    expect(validateAll(makeData({ categories }), validators, TODAY).join(' ')).toContain('data/categories.json');
+  });
+
+  it('accepte le fichier réel du dépôt', async () => {
+    const data = await loadData(process.cwd());
+    expect(validators.categories(data.categories), JSON.stringify(validators.categories.errors)).toBe(true);
   });
 });

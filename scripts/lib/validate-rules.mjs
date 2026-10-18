@@ -1,5 +1,9 @@
 import { LANGS } from './load-data.mjs';
 import { siteLanguages } from './site-data.mjs';
+// Import circulaire assumé (site-alternatives importe daysBetween et
+// compareKey d'ici) : les deux modules n'utilisent l'autre que dans des
+// fonctions, jamais au chargement, donc l'ordre d'évaluation est sans effet.
+import { isDisplayableProject } from './site-alternatives.mjs';
 
 export const ALLOWED_VARS = new Set(['prompt', 'prompt_url', 'lang', 'slug']);
 const MAX_PRICE_AGE_DAYS = 180;
@@ -99,6 +103,27 @@ export function compareKey(a, b) {
 
 const MIN_PROJECT_WORDS = 120;
 const MAX_PROJECT_WORDS = 320;
+// Bornes des briefs de contenu (research/briefs/write-tool-alternatives.md
+// et write-compare.md, spec §5) : une intro qui tient en deux lignes ne
+// tranche rien, un summary de 300 mots repousse le tableau sous la ligne de
+// flottaison.
+const MIN_INTRO_WORDS = 60;
+const MAX_INTRO_WORDS = 120;
+const MIN_SUMMARY_WORDS = 80;
+const MAX_SUMMARY_WORDS = 150;
+
+/** Nombre de mots, compté partout de la même façon : texte rogné, découpé sur
+ *  les blancs. */
+function wordCount(text) {
+  return text.trim().split(/\s+/).filter(Boolean).length;
+}
+
+function checkWordRange(text, field, min, max, path, errors) {
+  const count = wordCount(text);
+  if (count < min || count > max) {
+    errors.push(`${path} : ${field} compte ${count} mots, attendu entre ${min} et ${max}`);
+  }
+}
 
 function validateProjects(data, validators, errors) {
   const projects = data.projects ?? new Map();
@@ -144,12 +169,7 @@ function validateProjects(data, validators, errors) {
       errors.push(`${path} : aucun projet data/projects/${slug}.json`);
     }
     if (typeof entry.description === 'string') {
-      const count = entry.description.trim().split(/\s+/).filter(Boolean).length;
-      if (count < MIN_PROJECT_WORDS || count > MAX_PROJECT_WORDS) {
-        errors.push(
-          `${path} : description compte ${count} mots, attendu entre ${MIN_PROJECT_WORDS} et ${MAX_PROJECT_WORDS}`
-        );
-      }
+      checkWordRange(entry.description, 'description', MIN_PROJECT_WORDS, MAX_PROJECT_WORDS, path, errors);
     }
     findPlaceholders(entry, path, errors);
     findBannedPhrases(entry, path, banned[lang], errors);
@@ -205,6 +225,10 @@ function validateCompare(data, validators, errors) {
     }
     if (!declared.has(key)) {
       errors.push(`${path} : aucune paire "${key}" dans data/compare.json`);
+    }
+    // pickAIf / pickBIf (2 à 4 entrées) : imposé par compare-i18n.schema.json.
+    if (typeof entry.summary === 'string') {
+      checkWordRange(entry.summary, 'summary', MIN_SUMMARY_WORDS, MAX_SUMMARY_WORDS, path, errors);
     }
     findPlaceholders(entry, path, errors);
     findBannedPhrases(entry, path, banned[lang], errors);
@@ -288,6 +312,40 @@ function validateSponsors(sponsors, validators, publishedLangs, today, errors) {
           `(index ${i} et ${j})`
         );
       }
+    }
+  }
+}
+
+/**
+ * Règle « le gagnant d'abord » (brief write-tool-alternatives §5) : l'intro
+ * désigne la meilleure alternative, et ce projet doit être le premier du
+ * tableau affiché. Le tableau saute les projets non affichables (archivés,
+ * sans commit depuis plus d'un an), donc on compare au premier projet
+ * affichable, jugé à la même date `today` que le reste du validateur. Sans
+ * projet affichable, il n'y a personne à nommer : rien à vérifier.
+ * Comparaison sur le `name` du projet, sans tenir compte de la casse.
+ */
+function checkIntroNamesWinner(intro, tool, projects, today, path, errors) {
+  const first = (tool?.alternatives ?? [])
+    .map((alt) => projects.get(alt.project))
+    .find((project) => project && isDisplayableProject(project, today));
+  if (!first) return;
+  if (!intro.toLowerCase().includes(String(first.name).toLowerCase())) {
+    errors.push(
+      `${path} : alternativesIntro doit nommer "${first.name}", première alternative affichable ` +
+      `(data/projects/${first.slug}.json) — règle « le gagnant d'abord » : le projet désigné comme ` +
+      'meilleur est alternatives[0], sinon réordonner alternatives'
+    );
+  }
+}
+
+function validateCategories(categories, validators, errors) {
+  // Absent (jeux de test partiels) : rien à valider. loadData() le lit
+  // toujours, et un fichier manquant y lève déjà une erreur.
+  if (categories === undefined) return;
+  if (!validators.categories(categories)) {
+    for (const e of validators.categories.errors) {
+      errors.push(`data/categories.json ${e.instancePath || '/'} ${e.message}`);
     }
   }
 }
@@ -409,6 +467,10 @@ export function validateAll(data, validators, today) {
         errors.push(`${path} : faq compte 5 entrées, attendu 4 (fiche pas encore enrichie) ou 6`);
       }
     }
+    if (typeof entry.alternativesIntro === 'string') {
+      checkWordRange(entry.alternativesIntro, 'alternativesIntro', MIN_INTRO_WORDS, MAX_INTRO_WORDS, path, errors);
+      checkIntroNamesWinner(entry.alternativesIntro, tools.get(entrySlug), projects, today, path, errors);
+    }
     if (entry.alternativeNotes && typeof entry.alternativeNotes === 'object') {
       const listed = new Set((tools.get(entrySlug)?.alternatives ?? []).map((alt) => alt.project));
       for (const project of Object.keys(entry.alternativeNotes)) {
@@ -423,6 +485,7 @@ export function validateAll(data, validators, today) {
 
   validateProjects(data, validators, errors);
   validateCompare(data, validators, errors);
+  validateCategories(data.categories, validators, errors);
 
   const seenAgentIds = new Set();
   for (const agent of agents) {
