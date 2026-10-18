@@ -1,0 +1,43 @@
+{
+  "slug": "trypost",
+  "name": "TryPost",
+  "homepage": "https://trypost.it",
+  "repo": "trypostit/trypost",
+  "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/trypostit/trypost/blob/main/LICENSE.md",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/trypostit/trypost#readme",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 19,
+    "currency": "USD",
+    "source": "https://trypost.it/en/pricing",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "php",
+    "laravel",
+    "vue",
+    "typescript"
+  ],
+  "categories": [
+    "social-media"
+  ],
+  "stats": {
+    "stars": 714,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2026-01-17",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

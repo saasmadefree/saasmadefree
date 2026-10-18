@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Taiga presented as free and open-source agile project management tool; Self hosted option",
+    "url": "https://taiga.io",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Kanban and scrum modules",
+    "url": "https://taiga.io",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Docker is the easiest and recommended way to run Taiga in production; Docker >= 19.03.0",
+    "url": "https://docs.taiga.io/setup-production.html",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Basic configuration in .env: database, URL scheme and domain, secret key; strongly recommended to change defaults",
+    "url": "https://docs.taiga.io/setup-production.html",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Source install documents PostgreSQL and RabbitMQ, backend, frontend and events setup",
+    "url": "https://docs.taiga.io/setup-production.html",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Familiarity with Docker, docker compose and Docker repositories needed",
+    "url": "https://docs.taiga.io/setup-production.html",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "API documentation hub",
+    "url": "https://github.com/taigaio/taiga-back#documentation",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Patches licensed under MPL 2.0; support via community and issue trackers",
+    "url": "https://github.com/taigaio/taiga-back#license",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Site frames Taiga around planning, team interaction (stand-ups) and insight; no goals or portfolio feature described",
+    "url": "https://taiga.io",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

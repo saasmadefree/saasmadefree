@@ -1,0 +1,36 @@
+{
+  "slug": "automatisch",
+  "name": "Automatisch",
+  "homepage": "https://automatisch.io",
+  "repo": "automatisch/automatisch",
+  "license": "AGPL-3.0",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/automatisch/automatisch/blob/HEAD/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://automatisch.io/docs/guide/installation",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "node.js"
+  ],
+  "categories": [
+    "automation"
+  ],
+  "stats": {
+    "stars": 14000,
+    "lastCommit": "2026-01-15",
+    "createdAt": "2021-09-30",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

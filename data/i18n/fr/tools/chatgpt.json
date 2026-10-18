@@ -13,9 +13,40 @@
   "notes": "Un « non » honnête qui laisse quand même de la place pour une surcouche vraiment utile et bien moins chère, si tout ce que tu utilises réellement, c’est le chat texte.",
   "prompt": "Si ce que tu utilises réellement, c’est du chat texte simple — pas la voix, la génération d’image, les agents de navigation, ou la mémoire — un client léger sur une API de modèle est un vrai projet, et pour un usage léger, c’est souvent moins cher qu’un abonnement mensuel fixe. Construis une interface de chat : un panneau de réponse en streaming, un sélecteur de modèle qui prend en charge à la fois OpenAI et Anthropic (basculer entre les deux est l’un des vrais avantages de posséder ta propre surcouche), et une barre latérale de conversations avec recherche plein texte. Stocke chaque conversation, permets d’exporter un fil vers Markdown, et laisse une conversation porter un system prompt éditable. Prends en charge l’import d’un fichier texte ou PDF dont le contenu part directement dans la fenêtre de contexte — pas besoin de base de données vectorielle à l’échelle personnelle. Affiche une estimation de coût cumulée par conversation et par mois, calculée à partir de l’usage de tokens de chaque réponse d’API, pour que « est-ce vraiment moins cher » repose sur un vrai chiffre. Lis les clés API depuis des variables d’environnement, ne les commite jamais.\n\nNe construis pas la génération d’image, le mode vocal, les agents de navigation, ni la mémoire persistante entre conversations — ça demande une infrastructure bien au-delà d’une surcouche d’API, et c’est exactement ce que paie l’abonnement si tu utilises ces fonctionnalités.",
   "faq": [
-    { "q": "Puis-je importer mon historique de conversations ChatGPT ?", "a": "OpenAI permet d’exporter tout ton historique de chat sous forme d’archive structurée, et ça correspond raisonnablement bien à la table de conversations de cette version — un court script ponctuel convertit le format d’export." },
-    { "q": "Ça marche sur mon téléphone ?", "a": "En tant que page web responsive, oui, si tu l’héberges quelque part d’accessible. Il n’y a ni app native, ni notifications push, ni mode hors ligne — c’est un onglet de navigateur, pas une app téléphone." },
-    { "q": "Combien ça coûte vraiment à faire tourner ?", "a": "L’hébergement coûte quelques dollars par mois ; l’usage d’API pour quelqu’un qui fait surtout du chat texte tombe souvent sous les cinq dollars par mois en tokens — le compteur de coût intégré montre exactement où tu te situes par rapport à l’abonnement fixe." },
-    { "q": "Quelle est la chose qui ne survit vraiment pas à la reconstruction ?", "a": "Le modèle qui continue de s’améliorer tout seul. OpenAI intègre en continu de nouvelles capacités dans ChatGPT ; cette surcouche ne s’améliore que si tu le remarques et bascules manuellement vers un modèle plus récent — elle ne progresse pas d’elle-même." }
-  ]
+    {
+      "q": "Puis-je importer mon historique de conversations ChatGPT ?",
+      "a": "OpenAI permet d’exporter tout ton historique de chat sous forme d’archive structurée, et ça correspond raisonnablement bien à la table de conversations de cette version — un court script ponctuel convertit le format d’export."
+    },
+    {
+      "q": "Ça marche sur mon téléphone ?",
+      "a": "En tant que page web responsive, oui, si tu l’héberges quelque part d’accessible. Il n’y a ni app native, ni notifications push, ni mode hors ligne — c’est un onglet de navigateur, pas une app téléphone."
+    },
+    {
+      "q": "Combien ça coûte vraiment à faire tourner ?",
+      "a": "L’hébergement coûte quelques dollars par mois ; l’usage d’API pour quelqu’un qui fait surtout du chat texte tombe souvent sous les cinq dollars par mois en tokens — le compteur de coût intégré montre exactement où tu te situes par rapport à l’abonnement fixe."
+    },
+    {
+      "q": "Quelle est la chose qui ne survit vraiment pas à la reconstruction ?",
+      "a": "Le modèle qui continue de s’améliorer tout seul. OpenAI intègre en continu de nouvelles capacités dans ChatGPT ; cette surcouche ne s’améliore que si tu le remarques et bascules manuellement vers un modèle plus récent — elle ne progresse pas d’elle-même."
+    },
+    {
+      "q": "Quelle est la meilleure alternative gratuite à ChatGPT ?",
+      "a": "Jan est la meilleure alternative gratuite à ChatGPT pour une personne. C’est une appli de bureau qui fait tourner des modèles ouverts sur ton ordinateur, et qui peut aussi appeler OpenAI ou Anthropic avec ta propre clé. Attends-toi à des réponses moins bonnes avec les modèles locaux, et à l’absence de mode vocal et de génération d’images. Pour une équipe, installe LibreChat sur un serveur."
+    },
+    {
+      "q": "Je peux garder les modèles OpenAI dans une appli de chat auto-hébergée ?",
+      "a": "Oui. Open WebUI et LibreChat se connectent aux API compatibles OpenAI : tu branches une clé d’API et tu paies à l’usage plutôt qu’au forfait. L’historique des conversations reste sur ton serveur. Les réponses viennent des mêmes modèles ; les fonctions propres à l’appli, comme la mémoire et les outils intégrés, ne suivent pas."
+    }
+  ],
+  "alternativesIntro": "La meilleure alternative gratuite à ChatGPT est Jan : une appli de bureau qui télécharge des modèles ouverts et les fait tourner hors ligne, sans compte. Elle accepte aussi ta propre clé OpenAI ou Anthropic. Payer à l’usage coûte souvent moins que ChatGPT Plus à 20 $ par mois ; un usage intensif peut coûter plus. Les modèles locaux sont moins bons que les modèles payants, et aucun projet n’égale les applis mobiles officielles, la génération d’images ou le mode vocal. Pour une équipe sur un serveur commun, prends LibreChat. Les développeurs qui veulent une API de modèle locale regarderont Ollama. Si tu comptes sur la voix, les images ou le tout dernier modèle, continue de payer.",
+  "alternativeNotes": {
+    "ollama": "Fait tourner des modèles à poids ouverts en local et les sert à d’autres applis par une API. Le chat se fait dans le terminal tant que tu n’ajoutes pas d’interface, et la qualité reste sous celle des modèles de pointe.",
+    "open-webui": "Te donne un chat dans le navigateur, avec historique, changement de modèle et discussion avec tes documents, sur ton propre serveur. Il n’a aucun modèle à lui : la qualité dépend de ce que tu branches.",
+    "lobe-chat": "Une interface de chat multi-fournisseurs avec agents et plugins. Elle n’a aucun modèle de pointe à elle.",
+    "anything-llm": "Discute avec tes documents dans des espaces de travail, sur un modèle local ou cloud. Il n’a aucun modèle de pointe à lui.",
+    "cherry-studio": "Un client de chat de bureau multi-fournisseurs, avec bases de connaissances. Il n’a pas de mode serveur ni de modèle à lui.",
+    "librechat": "Une interface de chat multi-fournisseurs avec historique, préréglages et agents. Elle n’a aucun modèle de pointe à elle.",
+    "jan": "Une appli de bureau qui fait tourner hors ligne des modèles ouverts téléchargés, avec des clés OpenAI et Anthropic en option et un serveur d’API local. L’appli que tu installes est réservée au poste de travail, sans serveur multi-utilisateur. La documentation évoque aussi une version navigateur, Jan Web, présentée comme une offre à part.",
+    "onyx": "Du chat sur tes propres documents avec le modèle de ton choix, centré sur la recherche dans les applis connectées. Il n’a aucun modèle de pointe à lui."
+  }
 }

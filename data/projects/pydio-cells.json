@@ -1,0 +1,38 @@
+{
+  "slug": "pydio-cells",
+  "name": "Pydio Cells",
+  "homepage": "https://pydio.com",
+  "repo": "pydio/cells",
+  "license": "AGPL-3.0",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/pydio/cells/blob/v5-dev/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/pydio/cells#readme",
+  "hosted": {
+    "exists": false,
+    "source": "https://www.pydio.com/en/pricing",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "binary"
+  ],
+  "stack": [
+    "go"
+  ],
+  "categories": [
+    "cloud-storage"
+  ],
+  "stats": {
+    "stars": 2256,
+    "lastCommit": "2026-10-08",
+    "createdAt": "2018-03-24",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

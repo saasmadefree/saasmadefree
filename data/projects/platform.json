@@ -1,26 +1,42 @@
 {
   "slug": "platform",
-  "name": "Huly",
-  "homepage": "https://github.com/hcengineering/platform",
-  "repo": "hcengineering/platform",
+  "name": "Huly (community fork)",
+  "homepage": "https://github.com/Platform-Collective/platform",
+  "repo": "Platform-Collective/platform",
   "license": "EPL-2.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/Platform-Collective/platform/blob/develop/LICENSE",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/hcengineering/huly-selfhost",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://github.com/Platform-Collective/platform#readme",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker",
+    "kubernetes"
+  ],
+  "stack": [
+    "typescript",
+    "svelte",
+    "mongodb"
+  ],
   "categories": [
-    "dev-tools"
+    "dev-tools",
+    "project-management"
   ],
   "stats": {
-    "stars": 27932,
-    "lastCommit": "2026-10-14",
-    "createdAt": "2021-08-02",
+    "stars": 89,
+    "lastCommit": "2026-10-18",
+    "createdAt": "2026-06-26",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
-    "en"
+    "en",
+    "fr"
   ]
 }

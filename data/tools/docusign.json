@@ -27,7 +27,23 @@
   ],
   "alternatives": [
     {
+      "project": "docuseal",
+      "fit": "full"
+    },
+    {
       "project": "documenso",
+      "fit": "full"
+    },
+    {
+      "project": "opensign",
+      "fit": "full"
+    },
+    {
+      "project": "libresign",
+      "fit": "partial"
+    },
+    {
+      "project": "wraft",
       "fit": "partial"
     }
   ],

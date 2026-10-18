@@ -1,0 +1,39 @@
+{
+  "slug": "waistline",
+  "name": "Waistline",
+  "homepage": "https://github.com/davidhealey/waistline",
+  "repo": "davidhealey/waistline",
+  "license": "GPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/davidhealey/waistline#license",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/davidhealey/waistline#readme",
+  "hosted": {
+    "exists": false,
+    "source": "https://github.com/davidhealey/waistline#readme",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "android"
+  ],
+  "stack": [
+    "javascript",
+    "cordova"
+  ],
+  "categories": [
+    "health-fitness"
+  ],
+  "stats": {
+    "stars": 751,
+    "lastCommit": "2026-10-12",
+    "createdAt": "2018-05-04",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

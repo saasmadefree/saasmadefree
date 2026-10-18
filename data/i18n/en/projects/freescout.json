@@ -1,0 +1,19 @@
+{
+  "tagline": "Lightweight PHP and Laravel help desk and shared inbox that runs on shared hosting.",
+  "description": "FreeScout is a help desk and shared mailbox built with PHP and Laravel, designed as a free alternative to Zendesk and Help Scout. Several agents work on conversations from one or more email mailboxes. It connects by SMTP, IMAP or POP3, supports OAuth sign-in for Microsoft 365 and Google Workspace, and has no limit on agents, tickets or mailboxes. Day-to-day tools include internal notes, auto replies, merging and forwarding, collision detection when two people open the same thread, and a progressive web app. The interface is translated into 33 languages. The requirements are modest: a web server, PHP 7.4 or later, and MySQL, MariaDB or PostgreSQL. The project says it will run on shared hosting and states no minimum CPU or RAM. A web installer and updater exist, a Docker image is available, and managed options such as PikaPods and Cloudron are listed. The code is AGPL-3.0. Core features are free. Extras such as WhatsApp, Facebook, Slack, live chat and AI replies come from separate modules, some from third parties. Expect to pay for some of them.",
+  "strengths": [
+    "Unlimited agents, tickets and mailboxes in the free core",
+    "Runs on plain PHP and MySQL, MariaDB or PostgreSQL, including shared hosting",
+    "Web installer and updater, plus a Docker image and one-click installs",
+    "Collision detection, internal notes, merging and forwarding of conversations",
+    "Module system and an API, with Zapier and Make integrations"
+  ],
+  "limits": [
+    "Many channels (WhatsApp, Facebook, live chat) and extras are modules, not part of the core",
+    "Community and third-party modules vary in quality and upkeep",
+    "No built-in ticket SLA engine or customer portal is described in the README",
+    "Email delivery and spam handling rely on your own mail server or provider",
+    "The README gives no minimum RAM or CPU figure, so capacity planning for large inboxes is up to you"
+  ],
+  "bestFor": "A small support team that already has a mailbox and wants a shared inbox on cheap PHP hosting."
+}

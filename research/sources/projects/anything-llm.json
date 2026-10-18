@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Chat with documents, multi-user, agents, workspaces; supports PDF, TXT, DOCX",
+    "url": "https://github.com/Mintplex-Labs/anything-llm#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Vector databases: LanceDB (default), PGVector, Pinecone",
+    "url": "https://github.com/Mintplex-Labs/anything-llm#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Multi-user support and embeddable chat widget are Docker version only",
+    "url": "https://github.com/Mintplex-Labs/anything-llm#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "No-code agent builder, MCP compatibility, scheduled tasks, memories",
+    "url": "https://github.com/Mintplex-Labs/anything-llm#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Telemetry opt-out with DISABLE_TELEMETRY",
+    "url": "https://github.com/Mintplex-Labs/anything-llm#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Works with closed and open-source LLM providers",
+    "url": "https://github.com/Mintplex-Labs/anything-llm#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Bare-metal production guide exists",
+    "url": "https://github.com/Mintplex-Labs/anything-llm/blob/master/BARE_METAL.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Desktop app for Mac, Windows and Linux",
+    "url": "https://github.com/Mintplex-Labs/anything-llm#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

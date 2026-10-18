@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hostable PDF toolkit that runs entirely in the browser, with 50+ tools and no file uploads.",
+  "description": "BentoPDF is a web app for working with PDF files: merging, splitting, editing, converting, signing and compressing. The processing runs in the visitor's browser using WebAssembly, so documents are not sent to your server. That makes deployment light. You can run the Docker or Podman image, or serve the built files as static hosting on Netlify, Vercel, GitHub Pages or any web server. The docs list more than 50 tools, including form filling, digital signatures with X.509 certificates, and conversion to and from several formats. Some heavy WASM modules, such as LibreOffice, Ghostscript and PyMuPDF, are loaded from the jsDelivr CDN by default; an air-gapped bundle and a same-origin option exist for offline networks. Branding, language and the list of enabled tools can be set at build time. The project is dual licensed: AGPL-3.0 for free use with public source, or a one-time commercial licence listed at 79 dollars for closed-source use. It is a fit for people paying for Adobe Acrobat for routine tasks, but check the specific features you rely on, since server-side OCR pipelines are not the model here.",
+  "strengths": [
+    "Files are processed in the browser, so no PDF is uploaded to the server you host",
+    "Deploys as a static site or as a Docker or Podman container, with no backend database",
+    "Includes cryptographic digital signatures with X.509 certificates and signature validation",
+    "Branding, default language and the enabled tool list are configurable at build time",
+    "Documents an air-gapped bundle for offline networks"
+  ],
+  "limits": [
+    "By default the large WASM modules load from the jsDelivr CDN; offline use needs a custom build with same-origin files",
+    "The digital signature tool may need a CORS proxy (the README suggests a Cloudflare Worker) to fetch certificate chains",
+    "AGPL-3.0 applies to free use; closed-source products need the paid commercial licence",
+    "Heavy conversions run on the user's device, so very large files depend on the visitor's browser memory"
+  ],
+  "bestFor": "A privacy-conscious office or IT admin who wants an internal web page for everyday PDF tasks instead of paying per seat for Acrobat."
+}

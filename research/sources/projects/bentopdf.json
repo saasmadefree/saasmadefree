@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Client-side PDF toolkit; processing in the browser, no server-side processing",
+    "url": "https://github.com/alam00000/bentopdf#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Dual licence: AGPL-3.0 free, Commercial $79 lifetime",
+    "url": "https://github.com/alam00000/bentopdf#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docs list 50+ tools; self-hosting guides for Docker, Vercel, Netlify, Cloudflare, Nginx, Apache",
+    "url": "https://bentopdf.com/docs/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Static hosting possible; Docker/Podman Compose supported",
+    "url": "https://github.com/alam00000/bentopdf#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "WASM modules (LibreOffice, Ghostscript, PyMuPDF) load from jsDelivr CDN by default",
+    "url": "https://github.com/alam00000/bentopdf#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "WASM files must be served from the same origin for air-gapped use",
+    "url": "https://github.com/alam00000/bentopdf#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Digital Signature tool may need a CORS proxy, example using Cloudflare Workers",
+    "url": "https://github.com/alam00000/bentopdf#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Digital signatures with X.509 certificates (PFX/PEM) and Validate Signature tool",
+    "url": "https://github.com/alam00000/bentopdf#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Custom branding, DISABLE_TOOLS and default language set at build time",
+    "url": "https://github.com/alam00000/bentopdf#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "tagline": "Long-running PHP and MySQL support ticket system that turns email, web forms and phone calls into tickets.",
+  "description": "osTicket is a support ticket system. It creates tickets from email, web forms and phone entries, saves them, assigns them to agents and keeps the conversation history in a multi-user web interface. It is written in PHP, uses MySQL, and is released under GPL-2.0. The README lists an Apache or IIS web server, PHP 8.2 to 8.4 (8.4 recommended), the mysqli extension and MySQL 5.5 or later as requirements. Optional PHP extensions include imap, intl and gd, and APCu is recommended. Install by cloning the repository and running a deploy command that copies the code into your web root, then opening the setup page in a browser. Updates work by pulling the repository and running deploy again. It targets teams replacing Zendesk who mainly need ticket intake, assignment and archive. Support is by forum and documentation, with paid commercial help available from the project.",
+  "strengths": [
+    "Creates tickets from email, web forms and phone entries",
+    "Runs on a plain PHP and MySQL hosting stack",
+    "Upgrades documented from version 1.6-rc1 onward",
+    "Interface is translatable, with language packs on the download page",
+    "Free to run; paid help optional"
+  ],
+  "limits": [
+    "Core is a ticket queue: no built-in live chat or social channels are listed",
+    "Requires a PHP web server and MySQL; no Docker image is documented in the README",
+    "Updates are done by pulling the repository and re-running the deploy command",
+    "Support runs through forums and documentation, so there is no guaranteed response time unless you buy paid help"
+  ],
+  "bestFor": "An IT or office team with a PHP host that needs a shared email-to-ticket inbox without per-agent fees."
+}

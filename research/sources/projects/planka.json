@@ -1,0 +1,44 @@
+[
+  {
+    "claim": "Kanban features: projects, boards, lists, cards, real-time updates, Markdown, 100+ notification providers",
+    "url": "https://github.com/plankanban/planka",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Community vs Pro table: Pro adds phones and tablets, calendar, timeline, map views, recurring cards, templates, guest roles, SSO (OIDC), PDF and HTML export",
+    "url": "https://github.com/plankanban/planka",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Community includes webhooks, REST API, two-factor authentication, stopwatch and due dates",
+    "url": "https://github.com/plankanban/planka",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Pro upgrade is one-way, no downgrade, and accepts only certain Community releases (currently 2.1.x and 2.2.x)",
+    "url": "https://github.com/plankanban/planka",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "PLANKA is fair-code under a Fair Use License and a Pro/Enterprise commercial licence",
+    "url": "https://github.com/plankanban/planka",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker Compose install steps: secret key, BASE_URL, create admin user, docker compose up",
+    "url": "https://docs.planka.cloud/docs/installation/docker/production-version/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Kubernetes install documented in the docs menu",
+    "url": "https://docs.planka.cloud/docs/installation/docker/production-version/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

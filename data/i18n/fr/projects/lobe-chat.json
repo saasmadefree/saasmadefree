@@ -1,0 +1,18 @@
+{
+  "tagline": "Espace de chat IA auto-hébergé avec agents, tâches planifiées et mémoire, déployable avec Docker ou Vercel.",
+  "description": "LobeHub, anciennement LobeChat, est un espace de chat IA où l’agent est l’unité de travail. Il propose un créateur d’agents, des groupes d’agents qui travaillent en parallèle, des exécutions planifiées, des pages partagées, des projets, un espace pour les équipes et une mémoire personnelle modifiable. Il annonce une bibliothèque de plus de 10 000 compétences et plugins compatibles MCP. Pour l’auto-hébergement, le README propose une installation Docker Compose créée par un script, ainsi que des déploiements en un clic sur Vercel, Zeabur, Sealos et Alibaba Cloud. La documentation décrit une appli Next.js, PostgreSQL pour les conversations, les agents et les fichiers, un stockage compatible S3 pour les envois, et Redis en option. La voie Docker est celle que la documentation recommande pour avoir toutes les fonctionnalités, sans limite de durée d’exécution. La licence est la LobeHub Community License, fondée sur Apache 2.0 avec des conditions en plus : le code est consultable, mais ce n’est pas de l’Apache pur. LobeHub peut remplacer l’interface de ChatGPT pour une équipe, mais il n’apporte aucun modèle et tu fournis les clés de tes fournisseurs.",
+  "strengths": [
+    "Les agents peuvent tourner sur un planning, travailler en groupe et garder une mémoire modifiable",
+    "L’installation Docker Compose est créée par un seul script",
+    "Des modèles de déploiement en un clic existent pour Vercel, Zeabur, Sealos et Alibaba Cloud",
+    "Compatible avec les plugins MCP, avec une bibliothèque annoncée de plus de 10 000 compétences",
+    "Utilise PostgreSQL pour les données et un stockage compatible S3 pour les fichiers"
+  ],
+  "limits": [
+    "La licence ajoute des conditions à Apache 2.0 : distribuer une œuvre dérivée demande une licence commerciale auprès de l’éditeur",
+    "La pile Docker complète exige PostgreSQL et un stockage compatible S3 : c’est plus lourd qu’un seul conteneur",
+    "Les hébergeurs serverless comme Vercel ont des limites de durée d’exécution que la pile Docker évite",
+    "Aucun modèle inclus : tu dois fournir une clé d’API OpenAI ou d’un autre fournisseur"
+  ],
+  "bestFor": "Une équipe qui veut un espace de chat centré sur les agents, sur son propre serveur, et qui sait faire tourner Postgres et un stockage objet."
+}

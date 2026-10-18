@@ -1,0 +1,3182 @@
+[
+ {
+  "slug": "chatgpt",
+  "score": 17770,
+  "alts_us": 4400,
+  "alt_fr_total": 1990
+ },
+ {
+  "slug": "spotify-premium",
+  "score": 14720,
+  "alts_us": 9900,
+  "alt_fr_total": 1390
+ },
+ {
+  "slug": "ahrefs",
+  "score": 14280,
+  "alts_us": 9900,
+  "alt_fr_total": 110
+ },
+ {
+  "slug": "myfitnesspal-premium",
+  "score": 9370,
+  "alts_us": 260,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "semrush",
+  "score": 8150,
+  "alts_us": 4400,
+  "alt_fr_total": 350
+ },
+ {
+  "slug": "dropbox-plus",
+  "score": 4735,
+  "alts_us": 3600,
+  "alt_fr_total": 280
+ },
+ {
+  "slug": "shopify",
+  "score": 4435,
+  "alts_us": 3600,
+  "alt_fr_total": 180
+ },
+ {
+  "slug": "canva",
+  "score": 3950,
+  "alts_us": 2400,
+  "alt_fr_total": 300
+ },
+ {
+  "slug": "docusign",
+  "score": 3525,
+  "alts_us": 2900,
+  "alt_fr_total": 110
+ },
+ {
+  "slug": "mailchimp",
+  "score": 3055,
+  "alts_us": 2400,
+  "alt_fr_total": 120
+ },
+ {
+  "slug": "trello",
+  "score": 3000,
+  "alts_us": 1900,
+  "alt_fr_total": 200
+ },
+ {
+  "slug": "capcut",
+  "score": 2670,
+  "alts_us": 1300,
+  "alt_fr_total": 190
+ },
+ {
+  "slug": "duolingo-super",
+  "score": 2585,
+  "alts_us": 1900,
+  "alt_fr_total": 130
+ },
+ {
+  "slug": "calendly",
+  "score": 2390,
+  "alts_us": 1900,
+  "alt_fr_total": 110
+ },
+ {
+  "slug": "zapier",
+  "score": 2215,
+  "alts_us": 1900,
+  "alt_fr_total": 40
+ },
+ {
+  "slug": "smartsheet",
+  "score": 2130,
+  "alts_us": 1600,
+  "alt_fr_total": 30
+ },
+ {
+  "slug": "zendesk",
+  "score": 2070,
+  "alts_us": 1300,
+  "alt_fr_total": 110
+ },
+ {
+  "slug": "hootsuite",
+  "score": 2050,
+  "alts_us": 1600,
+  "alt_fr_total": 70
+ },
+ {
+  "slug": "asana",
+  "score": 2045,
+  "alts_us": 1600,
+  "alt_fr_total": 50
+ },
+ {
+  "slug": "adobe-acrobat-pro",
+  "score": 2040,
+  "alts_us": 880,
+  "alt_fr_total": 170
+ },
+ {
+  "slug": "slack-pro",
+  "score": 1930,
+  "alts_us": 1300,
+  "alt_fr_total": 130
+ },
+ {
+  "slug": "audible-premium-plus",
+  "score": 1810,
+  "alts_us": 1300,
+  "alt_fr_total": 90
+ },
+ {
+  "slug": "intercom",
+  "score": 1810,
+  "alts_us": 1300,
+  "alt_fr_total": 50
+ },
+ {
+  "slug": "cursor",
+  "score": 1800,
+  "alts_us": 1300,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "n8n-cloud",
+  "score": 1720,
+  "alts_us": 1300,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "zoom-pro",
+  "score": 1710,
+  "alts_us": 1000,
+  "alt_fr_total": 90
+ },
+ {
+  "slug": "freshdesk",
+  "score": 1660,
+  "alts_us": 1300,
+  "alt_fr_total": 40
+ },
+ {
+  "slug": "monday-com",
+  "score": 1630,
+  "alts_us": 1300,
+  "alt_fr_total": 30
+ },
+ {
+  "slug": "midjourney",
+  "score": 1585,
+  "alts_us": 720,
+  "alt_fr_total": 190
+ },
+ {
+  "slug": "airtable",
+  "score": 1580,
+  "alts_us": 1300,
+  "alt_fr_total": 50
+ },
+ {
+  "slug": "pandadoc",
+  "score": 1555,
+  "alts_us": 1300,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "doodle",
+  "score": 1540,
+  "alts_us": 480,
+  "alt_fr_total": 300
+ },
+ {
+  "slug": "basecamp",
+  "score": 1520,
+  "alts_us": 1300,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "clickup",
+  "score": 1505,
+  "alts_us": 1000,
+  "alt_fr_total": 70
+ },
+ {
+  "slug": "wrike",
+  "score": 1490,
+  "alts_us": 1300,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "figma",
+  "score": 1450,
+  "alts_us": 1000,
+  "alt_fr_total": 70
+ },
+ {
+  "slug": "evernote",
+  "score": 1400,
+  "alts_us": 720,
+  "alt_fr_total": 80
+ },
+ {
+  "slug": "surveymonkey",
+  "score": 1370,
+  "alts_us": 1300,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "loom",
+  "score": 1330,
+  "alts_us": 880,
+  "alt_fr_total": 70
+ },
+ {
+  "slug": "bolt-new",
+  "score": 1310,
+  "alts_us": 90,
+  "alt_fr_total": 260
+ },
+ {
+  "slug": "pipedrive",
+  "score": 1270,
+  "alts_us": 880,
+  "alt_fr_total": 50
+ },
+ {
+  "slug": "replit",
+  "score": 1255,
+  "alts_us": 1000,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "obsidian",
+  "score": 1235,
+  "alts_us": 880,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "google-workspace-business-starter",
+  "score": 1220,
+  "alts_us": 880,
+  "alt_fr_total": 60
+ },
+ {
+  "slug": "spyfu",
+  "score": 1210,
+  "alts_us": 590,
+  "alt_fr_total": 40
+ },
+ {
+  "slug": "grammarly",
+  "score": 1190,
+  "alts_us": 480,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "jotform",
+  "score": 1180,
+  "alts_us": 880,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "surfer-seo",
+  "score": 1175,
+  "alts_us": 880,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "wix",
+  "score": 1155,
+  "alts_us": 720,
+  "alt_fr_total": 110
+ },
+ {
+  "slug": "leadpages",
+  "score": 1145,
+  "alts_us": 1000,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "miro",
+  "score": 1065,
+  "alts_us": 720,
+  "alt_fr_total": 50
+ },
+ {
+  "slug": "buffer",
+  "score": 1055,
+  "alts_us": 880,
+  "alt_fr_total": 30
+ },
+ {
+  "slug": "kajabi",
+  "score": 1020,
+  "alts_us": 720,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "supabase-pro",
+  "score": 1020,
+  "alts_us": 590,
+  "alt_fr_total": 90
+ },
+ {
+  "slug": "lovable",
+  "score": 970,
+  "alts_us": 720,
+  "alt_fr_total": 40
+ },
+ {
+  "slug": "teachable",
+  "score": 955,
+  "alts_us": 880,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "heygen",
+  "score": 915,
+  "alts_us": 720,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "datadog",
+  "score": 885,
+  "alts_us": 720,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "squarespace",
+  "score": 885,
+  "alts_us": 720,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "apollo-io",
+  "score": 880,
+  "alts_us": 720,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "mailerlite",
+  "score": 860,
+  "alts_us": 590,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "claude",
+  "score": 840,
+  "alts_us": 480,
+  "alt_fr_total": 40
+ },
+ {
+  "slug": "incogni",
+  "score": 825,
+  "alts_us": 720,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "typeform",
+  "score": 820,
+  "alts_us": 390,
+  "alt_fr_total": 90
+ },
+ {
+  "slug": "accuranker",
+  "score": 805,
+  "alts_us": 480,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "bitly",
+  "score": 795,
+  "alts_us": 480,
+  "alt_fr_total": 40
+ },
+ {
+  "slug": "heroku-basic",
+  "score": 795,
+  "alts_us": 590,
+  "alt_fr_total": 50
+ },
+ {
+  "slug": "webflow",
+  "score": 785,
+  "alts_us": 590,
+  "alt_fr_total": 30
+ },
+ {
+  "slug": "front",
+  "score": 780,
+  "alts_us": 590,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "vercel",
+  "score": 755,
+  "alts_us": 590,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "quickbooks-online",
+  "score": 750,
+  "alts_us": 590,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "soundcloud-go-plus",
+  "score": 745,
+  "alts_us": 390,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "adobe-lightroom",
+  "score": 735,
+  "alts_us": 480,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "screaming-frog-seo-spider",
+  "score": 730,
+  "alts_us": 170,
+  "alt_fr_total": 40
+ },
+ {
+  "slug": "clay",
+  "score": 720,
+  "alts_us": 590,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "constant-contact",
+  "score": 720,
+  "alts_us": 590,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "quicken-classic-deluxe",
+  "score": 675,
+  "alts_us": 590,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "github-copilot",
+  "score": 670,
+  "alts_us": 480,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "loomly",
+  "score": 660,
+  "alts_us": 590,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "scribe",
+  "score": 645,
+  "alts_us": 590,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "serpstat",
+  "score": 640,
+  "alts_us": 390,
+  "alt_fr_total": 40
+ },
+ {
+  "slug": "wispr-flow",
+  "score": 640,
+  "alts_us": 390,
+  "alt_fr_total": 30
+ },
+ {
+  "slug": "moz-pro",
+  "score": 630,
+  "alts_us": 390,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "activecampaign",
+  "score": 625,
+  "alts_us": 480,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "netlify",
+  "score": 625,
+  "alts_us": 480,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "thinkific",
+  "score": 625,
+  "alts_us": 590,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "speechify",
+  "score": 610,
+  "alts_us": 390,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "todoist",
+  "score": 610,
+  "alts_us": 390,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "feedly",
+  "score": 605,
+  "alts_us": 320,
+  "alt_fr_total": 30
+ },
+ {
+  "slug": "riverside",
+  "score": 580,
+  "alts_us": 140,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "later",
+  "score": 565,
+  "alts_us": 480,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "metricool",
+  "score": 565,
+  "alts_us": 390,
+  "alt_fr_total": 30
+ },
+ {
+  "slug": "synthesia",
+  "score": 540,
+  "alts_us": 320,
+  "alt_fr_total": 30
+ },
+ {
+  "slug": "brevo",
+  "score": 525,
+  "alts_us": 320,
+  "alt_fr_total": 60
+ },
+ {
+  "slug": "podia",
+  "score": 520,
+  "alts_us": 390,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "gusto",
+  "score": 515,
+  "alts_us": 480,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "elevenlabs",
+  "score": 510,
+  "alts_us": 210,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "when-i-work",
+  "score": 505,
+  "alts_us": 480,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "ubersuggest",
+  "score": 490,
+  "alts_us": 210,
+  "alt_fr_total": 50
+ },
+ {
+  "slug": "microsoft-teams-essentials",
+  "score": 485,
+  "alts_us": 260,
+  "alt_fr_total": 40
+ },
+ {
+  "slug": "tidio",
+  "score": 485,
+  "alts_us": 320,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "jasper",
+  "score": 450,
+  "alts_us": 320,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "mangools",
+  "score": 430,
+  "alts_us": 210,
+  "alt_fr_total": 30
+ },
+ {
+  "slug": "descript",
+  "score": 425,
+  "alts_us": 320,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "help-scout",
+  "score": 415,
+  "alts_us": 390,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "mighty-networks",
+  "score": 410,
+  "alts_us": 390,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "freshbooks",
+  "score": 405,
+  "alts_us": 320,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "ifttt",
+  "score": 400,
+  "alts_us": 260,
+  "alt_fr_total": 40
+ },
+ {
+  "slug": "home-assistant-cloud",
+  "score": 395,
+  "alts_us": 170,
+  "alt_fr_total": 40
+ },
+ {
+  "slug": "bigcommerce",
+  "score": 390,
+  "alts_us": 320,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "ynab",
+  "score": 390,
+  "alts_us": 170,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "clockify",
+  "score": 375,
+  "alts_us": 320,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "framer",
+  "score": 375,
+  "alts_us": 260,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "splice",
+  "score": 375,
+  "alts_us": 260,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "legalzoom",
+  "score": 370,
+  "alts_us": 210,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "seobility",
+  "score": 370,
+  "alts_us": 210,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "clearscope",
+  "score": 365,
+  "alts_us": 260,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "apple-music",
+  "score": 360,
+  "alts_us": 170,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "1password",
+  "score": 355,
+  "alts_us": 210,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "carrd",
+  "score": 355,
+  "alts_us": 320,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "flickr-pro",
+  "score": 355,
+  "alts_us": 210,
+  "alt_fr_total": 30
+ },
+ {
+  "slug": "sentry",
+  "score": 355,
+  "alts_us": 260,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "unbounce",
+  "score": 355,
+  "alts_us": 320,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "hubstaff",
+  "score": 345,
+  "alts_us": 260,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pingdom",
+  "score": 345,
+  "alts_us": 90,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "retool",
+  "score": 345,
+  "alts_us": 260,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "nordvpn",
+  "score": 340,
+  "alts_us": 210,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "quillbot",
+  "score": 340,
+  "alts_us": 210,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "zoho-crm",
+  "score": 340,
+  "alts_us": 210,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "axiom",
+  "score": 325,
+  "alts_us": 320,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "gorgias",
+  "score": 315,
+  "alts_us": 210,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "harvest",
+  "score": 310,
+  "alts_us": 210,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "strava",
+  "score": 300,
+  "alts_us": 110,
+  "alt_fr_total": 40
+ },
+ {
+  "slug": "deleteme",
+  "score": 295,
+  "alts_us": 260,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "frase",
+  "score": 295,
+  "alts_us": 210,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "softr",
+  "score": 295,
+  "alts_us": 210,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "instantly",
+  "score": 285,
+  "alts_us": 260,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "linear",
+  "score": 285,
+  "alts_us": 260,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "make",
+  "score": 285,
+  "alts_us": 90,
+  "alt_fr_total": 60
+ },
+ {
+  "slug": "perplexity",
+  "score": 285,
+  "alts_us": 170,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "granola",
+  "score": 275,
+  "alts_us": 50,
+  "alt_fr_total": 40
+ },
+ {
+  "slug": "render",
+  "score": 275,
+  "alts_us": 210,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "lemlist",
+  "score": 270,
+  "alts_us": 140,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "railway",
+  "score": 265,
+  "alts_us": 170,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "bitwarden",
+  "score": 255,
+  "alts_us": 140,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "ghost-pro",
+  "score": 255,
+  "alts_us": 170,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "skillshare",
+  "score": 255,
+  "alts_us": 140,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "writesonic",
+  "score": 255,
+  "alts_us": 210,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "coda",
+  "score": 245,
+  "alts_us": 210,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "mega-pro",
+  "score": 245,
+  "alts_us": 140,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "copy-ai",
+  "score": 235,
+  "alts_us": 170,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "dashlane",
+  "score": 235,
+  "alts_us": 30,
+  "alt_fr_total": 60
+ },
+ {
+  "slug": "ecwid",
+  "score": 235,
+  "alts_us": 210,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "se-ranking",
+  "score": 235,
+  "alts_us": 70,
+  "alt_fr_total": 40
+ },
+ {
+  "slug": "teamwork",
+  "score": 235,
+  "alts_us": 210,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "windsurf",
+  "score": 235,
+  "alts_us": 90,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "deel",
+  "score": 230,
+  "alts_us": 210,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "homebase",
+  "score": 230,
+  "alts_us": 210,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "monarch-money",
+  "score": 230,
+  "alts_us": 210,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "superhuman",
+  "score": 230,
+  "alts_us": 210,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "livechat",
+  "score": 225,
+  "alts_us": 170,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "supademo",
+  "score": 220,
+  "alts_us": 210,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "youtube-music-premium",
+  "score": 220,
+  "alts_us": 30,
+  "alt_fr_total": 40
+ },
+ {
+  "slug": "backblaze-personal-backup",
+  "score": 210,
+  "alts_us": 140,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "gather-town",
+  "score": 210,
+  "alts_us": 140,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "adobe-express",
+  "score": 205,
+  "alts_us": 90,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "circle",
+  "score": 195,
+  "alts_us": 110,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "cleanmymac",
+  "score": 195,
+  "alts_us": 90,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "sunsama",
+  "score": 195,
+  "alts_us": 110,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "xero",
+  "score": 195,
+  "alts_us": 170,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "amplitude",
+  "score": 190,
+  "alts_us": 170,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "gamma",
+  "score": 190,
+  "alts_us": 110,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "motion",
+  "score": 190,
+  "alts_us": 110,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "bubble",
+  "score": 185,
+  "alts_us": 170,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "otter-ai",
+  "score": 185,
+  "alts_us": 170,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pcloud",
+  "score": 185,
+  "alts_us": 20,
+  "alt_fr_total": 50
+ },
+ {
+  "slug": "rescuetime",
+  "score": 185,
+  "alts_us": 170,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pixieset",
+  "score": 180,
+  "alts_us": 110,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "superwhisper",
+  "score": 180,
+  "alts_us": 140,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "vidyard",
+  "score": 180,
+  "alts_us": 110,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "canny",
+  "score": 175,
+  "alts_us": 140,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "deepl-pro",
+  "score": 175,
+  "alts_us": 50,
+  "alt_fr_total": 30
+ },
+ {
+  "slug": "flutterflow",
+  "score": 175,
+  "alts_us": 90,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "tango",
+  "score": 175,
+  "alts_us": 90,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "taplio",
+  "score": 175,
+  "alts_us": 140,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "v0",
+  "score": 175,
+  "alts_us": 140,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "weglot",
+  "score": 175,
+  "alts_us": 140,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "time-doctor",
+  "score": 165,
+  "alts_us": 110,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "beehiiv",
+  "score": 160,
+  "alts_us": 140,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "webex-meet",
+  "score": 160,
+  "alts_us": 140,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "wordtune",
+  "score": 160,
+  "alts_us": 90,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "glide",
+  "score": 155,
+  "alts_us": 140,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "productboard",
+  "score": 155,
+  "alts_us": 140,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "slite",
+  "score": 155,
+  "alts_us": 110,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "planable",
+  "score": 150,
+  "alts_us": 140,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "d-id",
+  "score": 145,
+  "alts_us": 70,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "payhip",
+  "score": 145,
+  "alts_us": 140,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "publer",
+  "score": 145,
+  "alts_us": 110,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "akiflow",
+  "score": 135,
+  "alts_us": 70,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "codesandbox",
+  "score": 135,
+  "alts_us": 20,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "gemini",
+  "score": 135,
+  "alts_us": 110,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "leonardo-ai",
+  "score": 135,
+  "alts_us": 20,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "sudowrite",
+  "score": 135,
+  "alts_us": 110,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "fitbod",
+  "score": 130,
+  "alts_us": 110,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "kit",
+  "score": 125,
+  "alts_us": 110,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "photoroom",
+  "score": 125,
+  "alts_us": 20,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "textexpander",
+  "score": 125,
+  "alts_us": 70,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "whereby",
+  "score": 125,
+  "alts_us": 50,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "bettermode",
+  "score": 120,
+  "alts_us": 110,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "crisp",
+  "score": 120,
+  "alts_us": 50,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "runway",
+  "score": 120,
+  "alts_us": 50,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "fastmail",
+  "score": 115,
+  "alts_us": 70,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "folk",
+  "score": 115,
+  "alts_us": 10,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "remote-com",
+  "score": 115,
+  "alts_us": 50,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "rytr",
+  "score": 115,
+  "alts_us": 110,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "simple-analytics",
+  "score": 115,
+  "alts_us": 10,
+  "alt_fr_total": 30
+ },
+ {
+  "slug": "factorial-hr",
+  "score": 110,
+  "alts_us": 20,
+  "alt_fr_total": 30
+ },
+ {
+  "slug": "close-crm",
+  "score": 105,
+  "alts_us": 10,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "crouton",
+  "score": 105,
+  "alts_us": 70,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "krisp",
+  "score": 105,
+  "alts_us": 70,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "meistertask",
+  "score": 105,
+  "alts_us": 10,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "point-me",
+  "score": 105,
+  "alts_us": 70,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "timely",
+  "score": 105,
+  "alts_us": 70,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "zenbusiness",
+  "score": 105,
+  "alts_us": 90,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "appsheet",
+  "score": 100,
+  "alts_us": 20,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "fathom-ai",
+  "score": 100,
+  "alts_us": 90,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "formstack-forms",
+  "score": 100,
+  "alts_us": 90,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "quickbase",
+  "score": 100,
+  "alts_us": 90,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "smugmug",
+  "score": 100,
+  "alts_us": 90,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "waalaxy",
+  "score": 100,
+  "alts_us": 30,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "campaign-monitor",
+  "score": 95,
+  "alts_us": 50,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "google-one",
+  "score": 95,
+  "alts_us": 30,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "ideogram",
+  "score": 95,
+  "alts_us": 30,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "neon",
+  "score": 95,
+  "alts_us": 20,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "snov-io",
+  "score": 95,
+  "alts_us": 70,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "soundtrap",
+  "score": 95,
+  "alts_us": 90,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "tella",
+  "score": 95,
+  "alts_us": 90,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "ticktick",
+  "score": 95,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "freeletics",
+  "score": 90,
+  "alts_us": 20,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "keeper-password-manager",
+  "score": 90,
+  "alts_us": 20,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "mattermost-professional",
+  "score": 90,
+  "alts_us": 10,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "ilovepdf-premium",
+  "score": 85,
+  "alts_us": 20,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "logrocket",
+  "score": 85,
+  "alts_us": 70,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "moises",
+  "score": 85,
+  "alts_us": 20,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "raycast-pro",
+  "score": 85,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "spark-premium",
+  "score": 85,
+  "alts_us": 10,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "taskade",
+  "score": 85,
+  "alts_us": 70,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "tripit-pro",
+  "score": 85,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "mailbird",
+  "score": 80,
+  "alts_us": 10,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "roboform",
+  "score": 80,
+  "alts_us": 10,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "rosetta-stone",
+  "score": 80,
+  "alts_us": 10,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "visme",
+  "score": 80,
+  "alts_us": 70,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "alltrails-plus",
+  "score": 75,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "livestorm",
+  "score": 75,
+  "alts_us": 40,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "quicken-simplifi",
+  "score": 75,
+  "alts_us": 70,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "webinarjam",
+  "score": 75,
+  "alts_us": 70,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "babbel",
+  "score": 70,
+  "alts_us": 0,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "captions-ai",
+  "score": 70,
+  "alts_us": 0,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "capture-one",
+  "score": 70,
+  "alts_us": 0,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "copper-crm",
+  "score": 70,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "komoot-premium",
+  "score": 70,
+  "alts_us": 0,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "pdf-expert",
+  "score": 70,
+  "alts_us": 0,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "attio",
+  "score": 65,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "clockwise",
+  "score": 65,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "demio",
+  "score": 65,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "hunter-io",
+  "score": 65,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "smartlead",
+  "score": 65,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "socialbee",
+  "score": 65,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "tally",
+  "score": 65,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "adalo",
+  "score": 60,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "copilot-money",
+  "score": 60,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "fireflies-ai",
+  "score": 60,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "magnific-ai",
+  "score": 60,
+  "alts_us": 20,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "neuronwriter",
+  "score": 60,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "saleshandy",
+  "score": 60,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "timing",
+  "score": 60,
+  "alts_us": 0,
+  "alt_fr_total": 20
+ },
+ {
+  "slug": "baserow-cloud",
+  "score": 55,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "craft",
+  "score": 55,
+  "alts_us": 20,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "drip",
+  "score": 55,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "gumloop",
+  "score": 55,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "honeycomb",
+  "score": 55,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "lucky-orange",
+  "score": 55,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "nordpass",
+  "score": 55,
+  "alts_us": 20,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "nuclino",
+  "score": 55,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "plausible",
+  "score": 55,
+  "alts_us": 10,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "seats-aero-pro",
+  "score": 55,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "woodpecker",
+  "score": 55,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "cal-com-teams",
+  "score": 50,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "chatwoot-cloud",
+  "score": 50,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "novelcrafter",
+  "score": 50,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "recall",
+  "score": 50,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "scalenut",
+  "score": 50,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "streak-crm",
+  "score": 50,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "tactiq",
+  "score": 50,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "tidal",
+  "score": 50,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "tldv",
+  "score": 50,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "vista-social",
+  "score": 50,
+  "alts_us": 50,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "avoma",
+  "score": 45,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "beautiful-ai",
+  "score": 45,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "dochub",
+  "score": 45,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "emailoctopus",
+  "score": 45,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "fantastical",
+  "score": 45,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "flighty-pro",
+  "score": 45,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "lokalise",
+  "score": 45,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "outgrow",
+  "score": 45,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "read-ai",
+  "score": 45,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "reclaim-ai",
+  "score": 45,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "toggl-track",
+  "score": 45,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "wanderlog-pro",
+  "score": 45,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "aftershoot",
+  "score": 40,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "duda",
+  "score": 40,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "featurebase",
+  "score": 40,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "languagetool",
+  "score": 40,
+  "alts_us": 0,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "missive",
+  "score": 40,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "mouseflow",
+  "score": 40,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "piktochart",
+  "score": 40,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "podcastle",
+  "score": 40,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "prowritingaid",
+  "score": 40,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "relay-app",
+  "score": 40,
+  "alts_us": 40,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "sellfy",
+  "score": 40,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "tabnine",
+  "score": 40,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "zenfolio",
+  "score": 40,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "anytype",
+  "score": 35,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "anyword",
+  "score": 35,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "appsmith-cloud",
+  "score": 35,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "frill",
+  "score": 35,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "guidde",
+  "score": 35,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "headliner",
+  "score": 35,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "knack",
+  "score": 35,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "kumospace",
+  "score": 35,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "mem-ai",
+  "score": 35,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "nightwatch",
+  "score": 35,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "paperform",
+  "score": 35,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "proton-drive-plus",
+  "score": 35,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "raindrop-io",
+  "score": 35,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "umami-cloud",
+  "score": 35,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "amazing-marvin",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "amie",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "arcade",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "bear-pro",
+  "score": 30,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "capsule-crm",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "caspio",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "crowdin",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "fathom-analytics",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "gaia-gps",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "hypefury",
+  "score": 30,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "kickresume",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "less-annoying-crm",
+  "score": 30,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "mealime-pro",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "mimestream",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "morgen",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "nocodb-cloud",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "notta",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pic-time",
+  "score": 30,
+  "alts_us": 0,
+  "alt_fr_total": 10
+ },
+ {
+  "slug": "playground-ai",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "playht",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "postiz",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "rize",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "rocket-lawyer",
+  "score": 30,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "sejda-web",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "shortcut",
+  "score": 30,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "smallpdf",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "smartsuite",
+  "score": 30,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "thunkable",
+  "score": 30,
+  "alts_us": 30,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "transifex",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "writerzen",
+  "score": 30,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "activepieces-cloud",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "brilliant",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "busuu-premium",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "clipdrop",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "colossyan",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "elsa-speak",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "headspace",
+  "score": 25,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "hey-email",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "huntr",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "hyperwrite",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "inoreader",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "integrately",
+  "score": 25,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "kittl",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "meetgeek",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "memtime",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "murf",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "nolt",
+  "score": 25,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pabbly-connect",
+  "score": 25,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pitch",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "readwise-reader",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "rezi",
+  "score": 25,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "roadtrippers",
+  "score": 25,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "seatable-cloud",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "tilda",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "typefully",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "whimsical",
+  "score": 25,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "alitu",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "bardeen",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "buzzsprout",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "calm",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "capacities",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "castmagic",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "checkly",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "cozi-gold",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "cronometer-gold",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "crowdcast",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "dabble",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "doola",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "enhancv",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "familywall-premium",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "grist",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "hemingway-editor-plus",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "instapaper-premium",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "iubenda",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "jenni-ai",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "krea",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "lingq-premium",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "macrofactor",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "matter",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "newsblur-premium",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "oncehub",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "optery",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pebblely",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pestle",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pimsleur",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pinboard",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pixelcut",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pocketsmith",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "poeditor",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "proton-pass-plus",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pumble",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "recraft",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "sendspark",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "shortwave",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "snappa",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "strong-pro",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "sync-com",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "transistor-fm",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "tresorit",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "ulysses",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "vimcal",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "vistacreate",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "weweb",
+  "score": 20,
+  "alts_us": 20,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "youcanbookme",
+  "score": 20,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "canary-mail",
+  "score": 15,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "everand",
+  "score": 15,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "foxit-pdf-editor",
+  "score": 15,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "northwest-registered-agent",
+  "score": 15,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "savio",
+  "score": 15,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "savvycal",
+  "score": 15,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "sitebulb",
+  "score": 15,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "supernotes",
+  "score": 15,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "airmail",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "anydo",
+  "score": 10,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "anylist-complete",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "buttondown",
+  "score": 10,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "dorik",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "draftbit",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "enpass",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "ente-photos",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "goodlinks",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "heartbeat-community",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "icloud-plus",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "invoice-ninja",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "involve-me",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "newton-mail",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "nitro-pdf-pro",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "novoresume",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "paste",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "planetscale",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "podsqueeze",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "reeder",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "salesmate",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "setapp",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "structured",
+  "score": 10,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "supernormal",
+  "score": 10,
+  "alts_us": 10,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "tiller-money",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "tody",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "twist",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "wellsaid-labs",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "xodo-pro",
+  "score": 10,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "albato",
+  "score": 5,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "fillout",
+  "score": 5,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "flair-ai",
+  "score": 5,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "hevy-pro",
+  "score": 5,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pipedream",
+  "score": 5,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "post-bridge",
+  "score": 5,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "stackby",
+  "score": 5,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "superx",
+  "score": 5,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "unicorn-platform",
+  "score": 5,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "zight",
+  "score": 5,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "aurelius",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "bigin",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "careerflow",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "drafts-pro",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "equals",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "fathom-hq",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "feathery",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "going-premium",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "keysearch",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "koalawriter",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "landr-studio",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "lex",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "linguise",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "livingwriter",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "lnkflow",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "lovo",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "lowfruits",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "lunch-money",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "mara",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "meetergo",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "naturalreader",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "opinion-stage",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pageoptimizer-pro",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "pirsch",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "plan-to-eat",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "productlane",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "promptdc",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "rankhog",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "reform",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "routine",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "rows",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "sembly-ai",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "sleek",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "speak-language",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "superscribe",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "swell-ai",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "thumblifyai",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "tolgee-cloud",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "umso",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "uncircle",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "verifieddr",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "wabery",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ },
+ {
+  "slug": "zencal",
+  "score": 0,
+  "alts_us": 0,
+  "alt_fr_total": 0
+ }
+]

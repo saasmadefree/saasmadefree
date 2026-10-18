@@ -1,0 +1,18 @@
+{
+  "tagline": "Gestion de projet auto-hébergée avec kanban, Gantt, sprints, objectifs et feuilles de temps, écrite en PHP.",
+  "description": "Leantime est un système de gestion de projet pour les équipes qui n’ont pas de chef de projet dédié. Il réunit des vues de tâches (kanban, Gantt, tableau, liste et calendrier), des jalons, des sprints, le suivi du temps et des feuilles de temps, avec le suivi d’objectifs, un lean canvas, des analyses SWOT et de risques, des wikis et des tableaux d’idées. Le README précise que tout cela est livré dans la version open source, sous AGPL-3.0. Tu peux le lancer depuis une archive de version sur un serveur Apache ou Nginx, ou depuis l’image Docker officielle. Il demande PHP 8.2 ou plus récent, MySQL 8.0 ou MariaDB 10.6 ou plus récent, et une liste d’extensions PHP qui comprend LDAP, bcmath et GD. L’authentification gère LDAP et OIDC, avec une connexion à deux facteurs en option, et des plugins et une API l’étendent. Les fichiers peuvent aller sur S3 ou sur le disque local. Il vise la boucle centrale d’Asana, Trello et Smartsheet : tâches, tableaux, échéances et rapports. Une formule hébergée payante, Leantime Pro, est affichée à 10 $ par utilisateur et par mois.",
+  "strengths": [
+    "Toutes les fonctions listées, dont les objectifs, les canevas et les feuilles de temps, sont dans la version open source",
+    "Cinq vues de tâches : kanban, Gantt, tableau, liste et calendrier",
+    "Connexion LDAP et OIDC, droits par projet et authentification à deux facteurs intégrés",
+    "Image Docker officielle, ou archive de version pour un hébergement LAMP classique",
+    "Stockage des fichiers sur S3 ou sur le disque local"
+  ],
+  "limits": [
+    "Ne gère que MySQL 8.0+ ou MariaDB 10.6+ : PostgreSQL ne figure pas dans les prérequis",
+    "Une longue liste d’extensions PHP obligatoires, dont LDAP, PCNTL et bcmath, rend l’installation manuelle fastidieuse",
+    "Apache et Nginx sont les serveurs web documentés ; IIS ne marche qu’avec des modifications",
+    "Derrière un reverse proxy, l’image Docker demande des variables d’environnement en plus pour le domaine et la gestion du SSL"
+  ],
+  "bestFor": "Une petite équipe sans chef de projet qui veut des tableaux dans le style de Trello et des objectifs, sur son propre hébergement PHP."
+}

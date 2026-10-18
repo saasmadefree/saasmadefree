@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Self-hosting through huly-selfhost with docker compose; Kubernetes sample under kube",
+    "url": "https://github.com/hcengineering/huly-selfhost",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Minimum 2 vCPUs and 8 GB RAM; recommended 4 vCPUs and 16 GB",
+    "url": "https://github.com/hcengineering/huly-selfhost",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Review MIGRATION.md before updating; 0.6.x to 0.7.x needs dedicated migration steps",
+    "url": "https://github.com/hcengineering/huly-selfhost",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Hosted Huly has shut down because hosting is no longer funded; repository frozen, development continues in Platform-Collective/platform",
+    "url": "https://github.com/hcengineering/platform",
+    "retrievedOn": "2026-10-18",
+    "field": "description, limits"
+  },
+  {
+    "claim": "Fork README: Platform Collective platform, a framework for CRM, project management, chat, HRM and ATS; fork of Huly Platform by Hardcore Engineering Inc., developed independently",
+    "url": "https://github.com/Platform-Collective/platform",
+    "retrievedOn": "2026-10-18",
+    "field": "description, tagline"
+  },
+  {
+    "claim": "Fork README: v* tags are production releases recommended for self-hosted installs; s* tags are development builds not recommended for production; changelog and architecture overview in repo",
+    "url": "https://github.com/Platform-Collective/platform",
+    "retrievedOn": "2026-10-18",
+    "field": "description, strengths"
+  },
+  {
+    "claim": "Fork README pre-requisites: Docker, Docker Compose, Node.js (README says v20.11.0; fork .nvmrc says v24 on develop, v22 on main) so the page names no exact version; rush install and GitHub Packages token required",
+    "url": "https://github.com/Platform-Collective/platform",
+    "retrievedOn": "2026-10-18",
+    "field": "description, limits"
+  },
+  {
+    "claim": "Licence EPL-2.0 as recorded in project data",
+    "url": "https://github.com/Platform-Collective/platform",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Hardware figures (2 vCPUs/8 GB min, 4/16 recommended) belong to huly-selfhost of the original Huly; the fork README gives none, and the text says so",
+    "url": "https://github.com/hcengineering/huly-selfhost",
+    "retrievedOn": "2026-10-18",
+    "field": "description, limits"
+  }
+]

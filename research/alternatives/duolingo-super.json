@@ -1,0 +1,178 @@
+[
+  {
+    "slug": "anki",
+    "existing": true,
+    "name": "Anki",
+    "repo": "ankitects/anki",
+    "homepage": "https://apps.ankiweb.net",
+    "why": "Spaced-repetition flashcard program with a desktop app and the AnkiWeb sync service.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Daily review of your own cards with scheduling; no streak or course path.",
+    "deploy": [],
+    "stack": [
+      "rust",
+      "python",
+      "qt",
+      "typescript"
+    ],
+    "categories": [
+      "learning"
+    ],
+    "evidenceUrls": [
+      "https://github.com/ankitects/anki"
+    ]
+  },
+  {
+    "slug": "zoonk",
+    "existing": false,
+    "name": "Zoonk",
+    "repo": "zoonk/zoonk",
+    "homepage": "https://zoonk.com",
+    "why": "Open-source learning planner that builds daily lessons, practice and reviews toward a goal.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Generated lessons and reviews up to a target date; not a fixed language course.",
+    "hosted": {
+      "exists": true,
+      "source": "https://github.com/zoonk/zoonk",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "typescript",
+      "next.js",
+      "prisma",
+      "postgresql"
+    ],
+    "categories": [
+      "learning"
+    ],
+    "evidenceUrls": [
+      "https://github.com/zoonk/zoonk"
+    ]
+  },
+  {
+    "slug": "librelingo",
+    "existing": false,
+    "name": "LibreLingo",
+    "repo": "LibreLingo/LibreLingo",
+    "homepage": "https://librelingo.app",
+    "why": "Community language-learning web app with interactive exercises and spaced repetition; archived in June 2026.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Exercise-based courses with spaced repetition and progress sync; repository no longer maintained.",
+    "hosted": {
+      "exists": true,
+      "source": "https://librelingo.app/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "javascript",
+      "svelte",
+      "python",
+      "pouchdb"
+    ],
+    "categories": [
+      "learning"
+    ],
+    "evidenceUrls": [
+      "https://github.com/LibreLingo/LibreLingo"
+    ]
+  },
+  {
+    "slug": "lute-v3",
+    "existing": false,
+    "name": "Lute v3",
+    "repo": "LuteOrg/lute-v3",
+    "homepage": "https://luteorg.github.io/lute-manual/",
+    "why": "Self-hosted tool for learning languages by reading texts and tracking known words.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Reading with term lookup and word status tracking; no drills or streak.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/LuteOrg/lute-v3",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "python",
+      "flask"
+    ],
+    "categories": [
+      "learning"
+    ],
+    "evidenceUrls": [
+      "https://github.com/LuteOrg/lute-v3"
+    ]
+  },
+  {
+    "slug": "linguacafe",
+    "existing": false,
+    "name": "LinguaCafe",
+    "repo": "simjanos-dev/LinguaCafe",
+    "homepage": "https://simjanos-dev.github.io/LinguaCafeHome/",
+    "why": "Self-hosted app for learning vocabulary by reading, covering 27 languages.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Reading with word lookup and review; single-user and no gamified streak.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/simjanos-dev/LinguaCafe/wiki/2.-Setup",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "php",
+      "laravel",
+      "python",
+      "spacy"
+    ],
+    "categories": [
+      "learning"
+    ],
+    "evidenceUrls": [
+      "https://github.com/simjanos-dev/LinguaCafe"
+    ]
+  },
+  {
+    "slug": "mnemosyne",
+    "existing": false,
+    "name": "Mnemosyne",
+    "repo": "mnemosyne-proj/mnemosyne",
+    "homepage": "https://mnemosyne-proj.org",
+    "why": "Spaced-repetition flashcard program for desktop and Android.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Daily card review with scheduling and statistics; no streak or course path.",
+    "deploy": [],
+    "stack": [
+      "python",
+      "pyqt"
+    ],
+    "categories": [
+      "learning"
+    ],
+    "evidenceUrls": [
+      "https://github.com/mnemosyne-proj/mnemosyne"
+    ]
+  },
+  {
+    "slug": "yomitan",
+    "existing": true,
+    "name": "Yomitan",
+    "repo": "yomidevs/yomitan",
+    "homepage": "https://github.com/yomidevs/yomitan",
+    "why": "Browser extension for looking up words while reading, with Anki export.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Dictionary lookup and card creation only; no drills.",
+    "deploy": [],
+    "stack": [],
+    "categories": [
+      "learning"
+    ],
+    "evidenceUrls": [
+      "https://github.com/yomidevs/yomitan"
+    ]
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "tagline": "Appli de bureau gratuite pour découper, fusionner, mélanger, pivoter et extraire des pages de PDF, en JavaFX.",
+  "description": "PDFsam Basic est un programme de bureau, pas un serveur. Tu l’installes sur Windows, macOS ou Linux et tu travailles sur des PDF stockés sur ta propre machine, donc tes documents ne passent par aucun service tiers. Son README liste cinq opérations : extraire des pages, découper, fusionner, mélanger et pivoter. Depuis la version 4, l’appli est livrée en paquet autonome avec son propre environnement Java, donc tu n’as pas à installer Java à part. La version 3 demandait un Java 8 avec JavaFX. Le code est sous AGPL, et les anciennes versions sous GPLv2. Il n’y a pas d’offre hébergée, et il ne faut ni base de données ni serveur web. Comme remplaçant d’Adobe Acrobat Pro, il ne couvre que la gestion des pages : organiser, couper et assembler des documents. Tout ce qui modifie le contenu d’une page sort de ce que décrit le README. La documentation et une FAQ sont sur le site du projet, et une page du wiki liste les propriétés et arguments de démarrage qui changent son comportement. Si plusieurs personnes doivent l’utiliser, il faut l’installer sur chaque poste, car il n’existe pas d’instance partagée.",
+  "strengths": [
+    "Travaille sur des fichiers locaux : aucun PDF n’est envoyé nulle part",
+    "Découpe, fusionne, mélange, pivote et extrait des pages, les cinq opérations que liste le README",
+    "À partir de la version 4, il embarque son propre Java : rien d’autre à installer",
+    "Licence AGPL pour la branche actuelle ; ni compte, ni base de données, ni serveur à faire tourner",
+    "Propriétés et arguments de démarrage documentés sur le wiki du projet"
+  ],
+  "limits": [
+    "Outil de pages uniquement : le README ne décrit ni modification de texte, ni remplissage de formulaires, ni signature",
+    "Appli de bureau sans interface web : impossible de la partager comme une instance d’équipe",
+    "Aucun OCR n’est décrit dans le README"
+  ],
+  "bestFor": "Un indépendant ou un employé de bureau qui doit couper, assembler et réordonner des PDF sur un portable sans envoyer les documents de ses clients."
+}

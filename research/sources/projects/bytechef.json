@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Open-source AI agents and workflow automation; self-host or embed in your SaaS",
+    "url": "https://github.com/bytechefhq/bytechef#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "AI Agent component is one step in a durable workflow that resumes from the failed or paused step",
+    "url": "https://github.com/bytechefhq/bytechef#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "H2 for evaluation only; no migration path from H2 to PostgreSQL; knowledge base and Copilot need PostgreSQL with pgvector",
+    "url": "https://github.com/bytechefhq/bytechef#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Docker Compose with PostgreSQL is the recommended setup",
+    "url": "https://github.com/bytechefhq/bytechef#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Copilot generates workflows from a sentence",
+    "url": "https://github.com/bytechefhq/bytechef#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Apache 2.0 licence with server/ee and client/src/ee under Enterprise License",
+    "url": "https://raw.githubusercontent.com/bytechefhq/bytechef/master/LICENSE",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Agent Skills and Evaluations marked in development",
+    "url": "https://github.com/bytechefhq/bytechef#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Java, TypeScript and PostgreSQL stack with Docker and Helm deploy options",
+    "url": "data/projects/bytechef.json",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

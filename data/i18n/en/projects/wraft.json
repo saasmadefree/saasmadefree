@@ -1,0 +1,17 @@
+{
+  "tagline": "Open-source document lifecycle platform for drafting, reviewing and producing structured business documents.",
+  "description": "Wraft is a document authoring and lifecycle tool for business content such as letters and contracts. Documents are built on open formats, Markdown and JSON, and PDFs are produced through Pandoc and LaTeX. The backend is written in Elixir with Phoenix, data lives in PostgreSQL and files go to S3-compatible storage. The developer docs describe self-hosting with Docker Compose, Kamal and Kubernetes. The repository's compose file starts the front end and back end, PostgreSQL, an S3-compatible object store and a Typesense search service. An API reference is published for integrations. The licence is AGPLv3, and the project is a product of Functionary Labs. A hosted Wraft Cloud also exists, so the open source release is one of two ways to use it. It is useful to people who want templates and a controlled workflow for documents, in the same area as DocuSign or similar document tools. The wraft.app site advertises built-in e-signature and approval workflows, but the README does not describe them, so check the docs for their depth before planning a migration from a signing service.",
+  "strengths": [
+    "Stores content in Markdown and JSON, so documents stay readable outside the tool",
+    "Produces PDFs through Pandoc and LaTeX",
+    "Documents three self-hosting routes: Docker Compose, Kamal and Kubernetes",
+    "Publishes an API reference for integrations and automation",
+    "Backed by PostgreSQL and S3-compatible storage rather than a proprietary store"
+  ],
+  "limits": [
+    "The compose file adds an S3-compatible store and a Typesense search service, so a full install has many parts",
+    "PDF output depends on Pandoc and LaTeX being available",
+    "The README and developer overview do not describe e-signature, which wraft.app advertises as built in, so confirm what it covers before it replaces a signing service"
+  ],
+  "bestFor": "A small business or developer team with a server that wants templated business documents in open formats and can run Docker."
+}

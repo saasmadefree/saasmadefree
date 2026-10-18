@@ -26,7 +26,27 @@
   ],
   "alternatives": [
     {
-      "project": "cal-diy",
+      "project": "tymeslot",
+      "fit": "full"
+    },
+    {
+      "project": "cal-com",
+      "fit": "full"
+    },
+    {
+      "project": "calnode",
+      "fit": "full"
+    },
+    {
+      "project": "easyappointments",
+      "fit": "full"
+    },
+    {
+      "project": "thunderbird-appointment",
+      "fit": "partial"
+    },
+    {
+      "project": "cloudmeet",
       "fit": "partial"
     }
   ],

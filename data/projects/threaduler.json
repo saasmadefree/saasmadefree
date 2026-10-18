@@ -1,0 +1,36 @@
+{
+  "slug": "threaduler",
+  "name": "Threaduler",
+  "homepage": "https://maikroservice.com/release-of-the-threaduler",
+  "repo": "maikroservice/threaduler",
+  "license": "MIT",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/maikroservice/threaduler/blob/main/LICENSE.txt",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/maikroservice/threaduler#readme",
+  "hosted": {
+    "exists": false,
+    "source": "https://github.com/maikroservice/threaduler#readme",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [],
+  "stack": [
+    "python"
+  ],
+  "categories": [
+    "social-media"
+  ],
+  "stats": {
+    "stars": 6,
+    "lastCommit": "2025-12-01",
+    "createdAt": "2023-07-31",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

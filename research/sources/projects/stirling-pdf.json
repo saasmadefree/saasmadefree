@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Desktop, browser UI and self-hosted server with private API; 50+ tools; no-code pipelines; REST APIs for nearly all tools",
+    "url": "https://github.com/Stirling-Tools/Stirling-PDF#key-capabilities",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "docker run command on port 8080; Kubernetes and desktop covered in docs",
+    "url": "https://github.com/Stirling-Tools/Stirling-PDF#quick-start",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docs list Docker, Kubernetes and Bare bones (JAR) server installs",
+    "url": "https://docs.stirlingpdf.com/Server/Licensing/Plans-and-Licences",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Open-core",
+    "url": "https://github.com/Stirling-Tools/Stirling-PDF#license",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "MIT licence for most code; listed directories under separate licences",
+    "url": "https://raw.githubusercontent.com/Stirling-Tools/Stirling-PDF/main/LICENSE",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Free plan: 5 users; all PDF tools, REST API, OAuth2/OIDC SSO, server certificate signing",
+    "url": "https://docs.stirlingpdf.com/Server/Licensing/Plans-and-Licences",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "External database, clustering, S3 or database file storage need Team",
+    "url": "https://docs.stirlingpdf.com/Server/Licensing/Plans-and-Licences",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "SAML2 SSO, audit logging and usage analytics need Enterprise",
+    "url": "https://docs.stirlingpdf.com/Server/Licensing/Plans-and-Licences",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Operations include edit, merge, split, sign, redact, convert, OCR, compress",
+    "url": "https://github.com/Stirling-Tools/Stirling-PDF#key-capabilities",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "tagline": "Système Ruby on Rails auto-hébergé pour créer des agents qui surveillent le web et réagissent aux événements.",
+  "description": "Huginn te permet de construire de petits agents qui lisent le web, écoutent des événements et agissent à ta place. Les agents créent et consomment des événements, qu’ils se passent le long d’un graphe orienté. Le projet se présente comme une version bidouillable et auto-hébergée d’IFTTT ou de Zapier. Il est sous licence MIT et le code est une appli Rails. Le README liste de nombreuses sources et actions : surveiller une page et envoyer un email quand elle change, suivre des flux RSS, des boîtes IMAP, des webhooks et des sujets MQTT, publier sur Slack, Telegram ou Twitter, envoyer des SMS via Twilio, et appeler des API compatibles OpenAI pour résumer ou classer du texte. Le contenu des événements se remodèle avec des gabarits Liquid, des filtres jq ou de petits agents JavaScript, et les événements collectés peuvent être resservis sous forme de flux ou de point d’accès JSON à toi. Pour essayer, lance l’image Docker officielle, qui regroupe tous les processus dans un conteneur. En production, la documentation renvoie vers Docker Compose, qui lance l’appli web et un worker séparé sur une base MySQL ou PostgreSQL. Une image à processus unique permet de les séparer. Des paquets existent pour YunoHost et Unraid. Huginn remplace le cœur déclencheur-action de Zapier ou d’IFTTT. Il n’égale pas leur catalogue de connecteurs prêts à l’emploi : certaines intégrations demandent un agent HTTP ou un agent sur mesure que tu configures toi-même.",
+  "strengths": [
+    "Les agents se passent des événements le long d’un graphe orienté : une source peut alimenter plusieurs actions",
+    "Entrées possibles : RSS, IMAP, webhooks, MQTT et extraction de pages web",
+    "Le contenu des événements se remodèle avec Liquid, jq ou de petits agents JavaScript",
+    "Images Docker officielles tout-en-un et à processus unique, avec des exemples Compose pour MySQL et PostgreSQL",
+    "Peut republier les événements collectés sous forme de flux ou de points d’accès JSON à toi"
+  ],
+  "limits": [
+    "Il faut un processus web, un worker en arrière-plan et une base MySQL ou PostgreSQL : plus lourd qu’un binaire unique",
+    "Le projet n’exploite aucun service hébergé ; l’hébergement géré n’est proposé que par des sponsors listés dans le dépôt",
+    "La liste de connecteurs est bien plus courte que celle de Zapier ; hors liste du README, il faut des webhooks ou des agents HTTP",
+    "Les paquets communautaires (YunoHost, Unraid) peuvent avoir du retard sur les versions, d’après le README"
+  ],
+  "bestFor": "Un développeur ou un bricoleur avec un petit VPS, qui veut une surveillance et des notifications privées sans payer à la tâche."
+}

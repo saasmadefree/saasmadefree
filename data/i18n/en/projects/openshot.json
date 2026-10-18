@@ -1,0 +1,18 @@
+{
+  "tagline": "Free cross-platform desktop video editor with unlimited tracks, keyframe animation and FFmpeg-based export.",
+  "description": "OpenShot is a desktop video editor for Linux, macOS and Windows. It is written in Python with Qt and uses a C++ library and FFmpeg underneath. The licence is GPL, version 3 or later. You do not host it: you download an installer from the project site, or get daily builds made for each new commit. The editor offers unlimited tracks, a timeline with snapping, clip trimming, scaling and rotation, transitions with live preview, keyframe curves for animation and compositing. It also has title templates, 3D animated titles, time mapping for speed changes, audio mixing and a set of video effects including chroma key. Rendering goes through FFmpeg to many formats, and EDL and XML can be imported and exported. Hardware encoding and decoding are marked experimental. As an alternative to CapCut it handles classic timeline editing, but it is not an online editor and has no cloud project sharing.",
+  "strengths": [
+    "Runs on Linux, macOS and Windows",
+    "Unlimited tracks with keyframe curve animation",
+    "Chroma key, transitions and title templates included",
+    "Exports through FFmpeg to many codecs, with EDL and XML import and export",
+    "Official user guide and step-by-step video tutorial"
+  ],
+  "limits": [
+    "Desktop application only; no browser editing or cloud project sharing",
+    "Hardware encoding and decoding are labelled experimental in the README",
+    "Daily builds are described as experimental; stable releases come from the download page",
+    "No built-in auto-captioning or template marketplace is listed among the features"
+  ],
+  "bestFor": "A hobbyist or teacher who edits on a laptop and wants a free desktop timeline editor."
+}

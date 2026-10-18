@@ -1,5 +1,11 @@
 import { LANGS } from './load-data.mjs';
 import { siteLanguages } from './site-data.mjs';
+import { isDisplayableProject } from './site-alternatives.mjs';
+import { compareKey, daysBetween, escapeRegExp } from './data-utils.mjs';
+
+// Réexportés : compareKey et daysBetween vivaient ici avant data-utils.mjs,
+// et des appelants (tests compris) les importent encore depuis ce module.
+export { compareKey, daysBetween };
 
 export const ALLOWED_VARS = new Set(['prompt', 'prompt_url', 'lang', 'slug']);
 const MAX_PRICE_AGE_DAYS = 180;
@@ -92,13 +98,29 @@ function findBannedPhrases(entry, path, stems, errors) {
   }, ['prompt']);
 }
 
-/** Clé d'un comparatif, et nom de son fichier de texte : "a-vs-b". */
-export function compareKey(a, b) {
-  return `${a}-vs-${b}`;
-}
-
 const MIN_PROJECT_WORDS = 120;
 const MAX_PROJECT_WORDS = 320;
+// Bornes des briefs de contenu (research/briefs/write-tool-alternatives.md
+// et write-compare.md, spec §5) : une intro qui tient en deux lignes ne
+// tranche rien, un summary de 300 mots repousse le tableau sous la ligne de
+// flottaison.
+const MIN_INTRO_WORDS = 60;
+const MAX_INTRO_WORDS = 120;
+const MIN_SUMMARY_WORDS = 80;
+const MAX_SUMMARY_WORDS = 150;
+
+/** Nombre de mots, compté partout de la même façon : texte rogné, découpé sur
+ *  les blancs. */
+function wordCount(text) {
+  return text.trim().split(/\s+/).filter(Boolean).length;
+}
+
+function checkWordRange(text, field, min, max, path, errors) {
+  const count = wordCount(text);
+  if (count < min || count > max) {
+    errors.push(`${path} : ${field} compte ${count} mots, attendu entre ${min} et ${max}`);
+  }
+}
 
 function validateProjects(data, validators, errors) {
   const projects = data.projects ?? new Map();
@@ -144,13 +166,9 @@ function validateProjects(data, validators, errors) {
       errors.push(`${path} : aucun projet data/projects/${slug}.json`);
     }
     if (typeof entry.description === 'string') {
-      const count = entry.description.trim().split(/\s+/).filter(Boolean).length;
-      if (count < MIN_PROJECT_WORDS || count > MAX_PROJECT_WORDS) {
-        errors.push(
-          `${path} : description compte ${count} mots, attendu entre ${MIN_PROJECT_WORDS} et ${MAX_PROJECT_WORDS}`
-        );
-      }
+      checkWordRange(entry.description, 'description', MIN_PROJECT_WORDS, MAX_PROJECT_WORDS, path, errors);
     }
+    checkProjectNoOpenSourceClaim(entry, lang, projects.get(slug), path, errors);
     findPlaceholders(entry, path, errors);
     findBannedPhrases(entry, path, banned[lang], errors);
   }
@@ -206,21 +224,13 @@ function validateCompare(data, validators, errors) {
     if (!declared.has(key)) {
       errors.push(`${path} : aucune paire "${key}" dans data/compare.json`);
     }
+    // pickAIf / pickBIf (2 à 4 entrées) : imposé par compare-i18n.schema.json.
+    if (typeof entry.summary === 'string') {
+      checkWordRange(entry.summary, 'summary', MIN_SUMMARY_WORDS, MAX_SUMMARY_WORDS, path, errors);
+    }
     findPlaceholders(entry, path, errors);
     findBannedPhrases(entry, path, banned[lang], errors);
   }
-}
-
-/**
- * Écart en jours entre deux dates 'YYYY-MM-DD', calculé en UTC : en heure
- * locale, un passage à l'heure d'été retirerait une heure à l'intervalle et
- * l'arrondi pourrait faire perdre un jour à un seuil. Partagé avec
- * site-alternatives.mjs (fraîcheur des stats, activité des projets).
- */
-export function daysBetween(fromIso, toIso) {
-  const from = Date.parse(`${fromIso}T00:00:00Z`);
-  const to = Date.parse(`${toIso}T00:00:00Z`);
-  return Math.round((to - from) / 86400000);
 }
 
 /**
@@ -288,6 +298,136 @@ function validateSponsors(sponsors, validators, publishedLangs, today, errors) {
           `(index ${i} et ${j})`
         );
       }
+    }
+  }
+}
+
+/**
+ * Règle « le gagnant d'abord » (brief write-tool-alternatives §5) : l'intro
+ * désigne la meilleure alternative, et ce projet doit être le premier du
+ * tableau affiché. Le tableau saute les projets non affichables (archivés,
+ * sans commit depuis plus d'un an), donc on compare au premier projet
+ * affichable, jugé à la même date `today` que le reste du validateur. Sans
+ * projet affichable, il n'y a personne à nommer : rien à vérifier.
+ * Comparaison sur le `name` du projet, sans tenir compte de la casse, en mot
+ * entier (voir namesProject).
+ */
+/**
+ * Le texte nomme-t-il le projet ? Mot entier, insensible à la casse : ni
+ * lettre ni chiffre (Unicode) juste avant ou juste après le nom. « Send » ne
+ * se trouve pas dans « sending », mais « n8n. », « Outline's » et « Cal.diy »
+ * sont reconnus (le point du nom est littéral).
+ */
+function namesProject(text, name) {
+  const pattern = new RegExp(`(?<![\\p{L}\\p{N}])${escapeRegExp(name)}(?![\\p{L}\\p{N}])`, 'iu');
+  return pattern.test(text);
+}
+
+function checkIntroNamesWinner(intro, tool, projects, today, path, errors) {
+  const first = (tool?.alternatives ?? [])
+    .map((alt) => projects.get(alt.project))
+    .find((project) => project && isDisplayableProject(project, today));
+  if (!first) return;
+  if (!namesProject(intro, first.name)) {
+    errors.push(
+      `${path} : alternativesIntro doit nommer "${first.name}", première alternative affichable ` +
+      `(data/projects/${first.slug}.json) — règle « le gagnant d'abord » : le projet désigné comme ` +
+      'meilleur est alternatives[0], sinon réordonner alternatives'
+    );
+  }
+}
+
+// Ruling 44 : une fiche dont TOUTES les alternatives affichables sont
+// source-available ou fair-code ne peut pas les dire « open source » dans son
+// texte rédigé. Garde-fou : aucune fiche n'est dans ce cas aujourd'hui.
+const NOT_OPEN_KINDS = new Set(['source-available', 'fair-code']);
+// fr : « open source » (glossaire research/glossary/fr.json) et « libre(s) »,
+// mot entier — « librement » ou « délibéré » ne sont pas des affirmations.
+const OPEN_SOURCE_CLAIM = {
+  en: /open[- ]source/i,
+  fr: /open[- ]source|(?<![\p{L}\p{N}])libres?(?![\p{L}\p{N}])/iu,
+};
+
+// Négation explicite, détection volontairement simple : une occurrence est
+// acceptée si, dans les 30 caractères qui la précèdent, un mot de négation
+// apparaît sans ponctuation (. ! ? ; , :) entre lui et l'occurrence.
+//   en : not, isn't, never, no — « It is not open source », « source-available,
+//        not open source » ;
+//   fr : pas, non, jamais, ni — « Ce n'est pas de l'open source », « pas libre ».
+// « Not free, but open source » reste une affirmation : la virgule coupe.
+const NEGATION_BEFORE = {
+  en: /(?<![\p{L}\p{N}])(?:not|isn['’]t|never|no)(?![\p{L}\p{N}])[^.!?;,:]*$/iu,
+  fr: /(?<![\p{L}\p{N}])(?:pas|non|jamais|ni)(?![\p{L}\p{N}])[^.!?;,:]*$/iu,
+};
+const NEGATION_WINDOW = 30;
+
+/** Le texte affirme-t-il « open source » (ou « libre » en fr) ? Une
+ *  occurrence niée explicitement (NEGATION_BEFORE) ne compte pas. */
+export function claimsOpenSource(text, lang) {
+  const base = OPEN_SOURCE_CLAIM[lang] ?? OPEN_SOURCE_CLAIM.en;
+  const negation = NEGATION_BEFORE[lang] ?? NEGATION_BEFORE.en;
+  for (const match of text.matchAll(new RegExp(base.source, `${base.flags}g`))) {
+    const before = text.slice(Math.max(0, match.index - NEGATION_WINDOW), match.index);
+    if (!negation.test(before)) return true;
+  }
+  return false;
+}
+
+function checkNoOpenSourceClaim(entry, lang, tool, projects, today, path, errors) {
+  const shown = (tool?.alternatives ?? [])
+    .map((alt) => projects.get(alt.project))
+    .filter((project) => project && isDisplayableProject(project, today));
+  if (shown.length === 0 || !shown.every((project) => NOT_OPEN_KINDS.has(project.licenseKind))) return;
+  const fields = [];
+  if (typeof entry.alternativesIntro === 'string') fields.push(['alternativesIntro', entry.alternativesIntro]);
+  for (const [slug, note] of Object.entries(entry.alternativeNotes ?? {})) {
+    if (typeof note === 'string') fields.push([`alternativeNotes.${slug}`, note]);
+  }
+  for (const i of [4, 5]) {
+    const item = entry.faq?.[i];
+    if (typeof item?.q === 'string') fields.push([`faq[${i}].q`, item.q]);
+    if (typeof item?.a === 'string') fields.push([`faq[${i}].a`, item.a]);
+  }
+  for (const [field, text] of fields) {
+    if (claimsOpenSource(text, lang)) {
+      errors.push(
+        `${path} : ${field} dit « open source », mais toutes les alternatives affichables sont ` +
+        'source-available ou fair-code (licenseKind) — Ruling 44, ne pas affirmer une licence libre'
+      );
+    }
+  }
+}
+
+/** Même règle pour le texte d'un projet dont la licence n'est pas libre :
+ *  tagline, description, strengths[], limits[], bestFor. */
+function checkProjectNoOpenSourceClaim(entry, lang, project, path, errors) {
+  if (!NOT_OPEN_KINDS.has(project?.licenseKind)) return;
+  const fields = [];
+  for (const key of ['tagline', 'description', 'bestFor']) {
+    if (typeof entry[key] === 'string') fields.push([key, entry[key]]);
+  }
+  for (const key of ['strengths', 'limits']) {
+    for (const [i, item] of (Array.isArray(entry[key]) ? entry[key] : []).entries()) {
+      if (typeof item === 'string') fields.push([`${key}[${i}]`, item]);
+    }
+  }
+  for (const [field, text] of fields) {
+    if (claimsOpenSource(text, lang)) {
+      errors.push(
+        `${path} : ${field} dit « open source », mais data/projects/${project.slug}.json a ` +
+        `licenseKind "${project.licenseKind}" — Ruling 44, ne pas affirmer une licence libre (une négation explicite passe)`
+      );
+    }
+  }
+}
+
+function validateCategories(categories, validators, errors) {
+  // Absent (jeux de test partiels) : rien à valider. loadData() le lit
+  // toujours, et un fichier manquant y lève déjà une erreur.
+  if (categories === undefined) return;
+  if (!validators.categories(categories)) {
+    for (const e of validators.categories.errors) {
+      errors.push(`data/categories.json ${e.instancePath || '/'} ${e.message}`);
     }
   }
 }
@@ -409,6 +549,10 @@ export function validateAll(data, validators, today) {
         errors.push(`${path} : faq compte 5 entrées, attendu 4 (fiche pas encore enrichie) ou 6`);
       }
     }
+    if (typeof entry.alternativesIntro === 'string') {
+      checkWordRange(entry.alternativesIntro, 'alternativesIntro', MIN_INTRO_WORDS, MAX_INTRO_WORDS, path, errors);
+      checkIntroNamesWinner(entry.alternativesIntro, tools.get(entrySlug), projects, today, path, errors);
+    }
     if (entry.alternativeNotes && typeof entry.alternativeNotes === 'object') {
       const listed = new Set((tools.get(entrySlug)?.alternatives ?? []).map((alt) => alt.project));
       for (const project of Object.keys(entry.alternativeNotes)) {
@@ -417,12 +561,14 @@ export function validateAll(data, validators, today) {
         }
       }
     }
+    checkNoOpenSourceClaim(entry, entryLang, tools.get(entrySlug), projects, today, path, errors);
     findPlaceholders(entry, path, errors);
     findBannedPhrases(entry, path, banned[entryLang], errors);
   }
 
   validateProjects(data, validators, errors);
   validateCompare(data, validators, errors);
+  validateCategories(data.categories, validators, errors);
 
   const seenAgentIds = new Set();
   for (const agent of agents) {

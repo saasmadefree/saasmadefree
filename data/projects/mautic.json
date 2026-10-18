@@ -1,26 +1,44 @@
 {
   "slug": "mautic",
   "name": "Mautic",
-  "homepage": "https://github.com/mautic/mautic",
+  "homepage": "https://www.mautic.org",
   "repo": "mautic/mautic",
+  "license": "GPL-3.0-or-later",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/mautic/mautic/blob/HEAD/LICENSE.txt",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.mautic.org/en/5.x/getting_started/how_to_install_mautic.html",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 247.5,
+    "currency": "EUR",
+    "source": "https://mautic.org/start-using-mautic/managed-mautic/",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "zip",
+    "composer",
+    "ddev"
+  ],
+  "stack": [
+    "php",
+    "mysql"
+  ],
   "categories": [
     "crm-sales",
     "newsletter"
   ],
   "stats": {
-    "stars": 10787,
+    "stars": 10789,
     "lastCommit": "2026-10-15",
     "createdAt": "2013-08-19",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
-    "en"
+    "en",
+    "fr"
   ]
 }

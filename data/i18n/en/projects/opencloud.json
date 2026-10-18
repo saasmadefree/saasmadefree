@@ -1,0 +1,17 @@
+{
+  "tagline": "Self-hosted file sync and sharing server written in Go, storing data on the filesystem with no database.",
+  "description": "OpenCloud is a file sync and sharing server written in Go and published under the Apache 2.0 licence. It is built as a single binary: you run an init command to create a configuration, then start the server. Users sign in through OpenID Connect, either with an external identity provider such as Keycloak or with the identity provider embedded in the server. The backend needs no database. Everything is written to the filesystem, by default under the home directory of the user running it. That keeps the moving parts few, but your backup plan becomes a file backup plan. The repository README is aimed at contributors, so production installation guidance lives on the separate documentation site. As a replacement for Dropbox Plus it covers the core loop of storing files and sharing them with other people from your own server. Check the documentation for clients, office editing and sync behaviour before you commit, because the main repository only describes the server backend.",
+  "strengths": [
+    "Single Go binary that starts with two commands: init, then server",
+    "No database to install or tune; data is stored as files",
+    "Sign-in through OpenID Connect, with an embedded identity provider if you have none",
+    "Apache 2.0 licence, so the server code can be modified and redistributed freely"
+  ],
+  "limits": [
+    "No database means backups and growth planning depend on the filesystem you choose",
+    "The main repository documents only the backend; clients and production setup are described elsewhere",
+    "Needs an OpenID Connect provider for sign-in, either embedded or external",
+    "By default data is stored under the home directory of the user running the server, so a production setup needs a deliberate storage location and backup plan"
+  ],
+  "bestFor": "A small team with its own server that wants Dropbox-style file sharing without running a database."
+}

@@ -1,0 +1,68 @@
+[
+  {
+    "claim": "Fair-code platform; visual canvas with custom code; 1500+ integrations; 9,000+ templates",
+    "url": "https://raw.githubusercontent.com/n8n-io/n8n/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Docker quick start serves editor on port 5678",
+    "url": "https://raw.githubusercontent.com/n8n-io/n8n/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Install options: Docker, Docker Compose, npm",
+    "url": "https://docs.n8n.io/hosting/installation/docker/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Self-hosting requires technical knowledge; n8n recommends n8n Cloud for inexperienced users; mistakes can lead to data loss",
+    "url": "https://docs.n8n.io/hosting/installation/docker/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "n8n releases a new minor version most weeks",
+    "url": "https://docs.n8n.io/hosting/installation/docker/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Sustainable Use License: internal business or non-commercial use; distribution only free and non-commercial",
+    "url": "https://raw.githubusercontent.com/n8n-io/n8n/HEAD/LICENSE.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Files with .ee are under the n8n Enterprise License",
+    "url": "https://raw.githubusercontent.com/n8n-io/n8n/HEAD/LICENSE.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Community edition excludes variables, environments, external secrets, log streaming, multi-main, projects, SSO, sharing, Git version control",
+    "url": "https://docs.n8n.io/hosting/community-edition-features/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Only the instance owner and the creator can access workflows and credentials on Community",
+    "url": "https://docs.n8n.io/hosting/community-edition-features/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Registered Community edition unlocks folders, debug in editor, custom execution data",
+    "url": "https://docs.n8n.io/hosting/community-edition-features/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "AI workflows connect to OpenAI, Anthropic, Google or open-source models; JavaScript, Python and npm packages",
+    "url": "https://raw.githubusercontent.com/n8n-io/n8n/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

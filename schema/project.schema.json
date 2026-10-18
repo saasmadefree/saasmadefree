@@ -5,7 +5,16 @@
   "additionalProperties": false,
   "required": ["slug", "name", "homepage", "repo", "selfHostable", "hosted", "deploy",
                "stack", "categories", "markets"],
-  "dependentRequired": { "selfHostableCheckedOn": ["selfHostableSource"] },
+  "dependentRequired": {
+    "selfHostableCheckedOn": ["selfHostableSource"],
+    "licenseKind": ["license", "licenseSource"],
+    "licenseCheckedOn": ["license", "licenseSource"]
+  },
+  "if": {
+    "required": ["license"],
+    "properties": { "license": { "type": "string", "not": { "type": "string", "pattern": "^[A-Za-z0-9.+-]+$" } } }
+  },
+  "then": { "required": ["licenseSource"], "properties": { "licenseSource": true } },
   "properties": {
     "slug": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,63}$" },
     "name": { "type": "string", "minLength": 1 },
@@ -17,6 +26,9 @@
       ]
     },
     "license": { "type": "string", "minLength": 1 },
+    "licenseKind": { "enum": ["open-source", "open-core", "source-available", "fair-code"] },
+    "licenseCheckedOn": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "licenseSource": { "type": "string", "format": "uri", "pattern": "^https?://" },
     "selfHostable": { "type": "boolean" },
     "selfHostableCheckedOn": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
     "selfHostableSource": { "type": "string", "format": "uri", "pattern": "^https?://" },

@@ -1,0 +1,18 @@
+{
+  "tagline": "Plateforme auto-hébergée qui réunit agents IA et automatisation, en autonome ou intégrée à un SaaS.",
+  "description": "ByteChef est une plateforme d’automatisation de workflows écrite surtout en Java, avec un frontend en TypeScript. Elle traite les agents IA comme une étape d’un workflow : une exécution qui échoue ou attend une personne peut reprendre à cette étape. Un éditeur en glisser-déposer construit les flows, et un Copilot peut rédiger un workflow à partir d’une phrase. Le README propose aussi d’intégrer ByteChef dans ton propre produit. Pour l’auto-hébergement, la voie recommandée est Docker Compose avec PostgreSQL. Un docker run en une ligne avec un fichier H2 embarqué fonctionne aussi, mais il sert à essayer le produit : les données gardées dans H2 ne peuvent pas migrer vers PostgreSQL plus tard. Les fonctions IA reposent aussi sur l’extension pgvector de ton serveur PostgreSQL. Le projet liste un chart Helm pour Kubernetes. Le code est sous licence Apache 2.0, sauf les fichiers des dossiers server/ee et client ee, qui portent la ByteChef Enterprise License. Il se positionne face à Zapier et Make, pour les équipes qui veulent agents et intégrations au même endroit.",
+  "strengths": [
+    "Fait tourner des agents IA comme étapes de workflows durables, qui reprennent après un échec ou une pause humaine",
+    "Démarrage Docker en une commande pour tester, et Docker Compose avec PostgreSQL pour un vrai usage",
+    "Le Copilot peut générer des flux à partir d’une description écrite",
+    "Conçu pour être intégré dans un autre produit SaaS autant que pour un usage autonome",
+    "Cœur open source sous Apache 2.0"
+  ],
+  "limits": [
+    "Les données du démarrage rapide (fichier H2) ne migrent pas vers PostgreSQL : pour un vrai usage, pars directement sur Compose",
+    "Le Copilot et la base de connaissances IA ne marchent pas sans l’extension pgvector sur ton PostgreSQL",
+    "Le code des dossiers ee relève d’une licence entreprise distincte",
+    "Le README marque Agent Skills et Evaluations comme en cours de développement"
+  ],
+  "bestFor": "Une équipe technique à l’aise avec Java qui veut agents IA et intégrations sur une plateforme auto-hébergée, ou un fondateur de SaaS qui veut intégrer de l’automatisation."
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "Self-hosted social media scheduler for 13 networks with calendar, approvals, REST API and an MCP server.",
+  "description": "TryPost is a social media scheduler built with Laravel and Vue. You write one post, then edit a version for each network while checking a preview. Posts can sit on a calendar or in a per-channel queue, where each new one drops into the next open posting time. A review step lets admins accept a member's post or send it back. Workspaces keep brands or clients apart, which suits agencies. The README lists Instagram, TikTok, LinkedIn, X, YouTube, Facebook, Threads, Bluesky, Pinterest, Mastodon, Google Business, Telegram and Discord, each published through the network's official API. A REST API and an MCP server with more than 80 tools let scripts or AI assistants create posts and read analytics. Webhooks report when posts are published or fail. The licence is AGPL-3.0, and the README says the self-hosted version has every feature of the paid cloud, with no locked tiers. A deployment guide is in the repository and the supported route is Docker. Publishing to each network needs developer access to its API, so expect to register apps on the platforms you use. It is a young project compared with Hootsuite.",
+  "strengths": [
+    "Publishes to 13 networks through their official APIs, with no reminder-only fallback",
+    "Per-channel queues and a drag-to-reschedule calendar",
+    "Approval flow and separate workspaces for agencies handling many brands",
+    "REST API, webhooks and an MCP server with 80+ tools",
+    "Self-hosted edition has all features of the cloud edition, with no paid tiers"
+  ],
+  "limits": [
+    "A young project, so expect a changing feature set",
+    "Each network's API access, keys and review rules are yours to set up when self-hosting",
+    "AGPL-3.0 requires publishing your changes if you run a modified version as a network service",
+    "The README describes no inbox, social listening or ad management",
+    "Stack of PHP, Laravel and Vue means you need that skill set to debug or extend it"
+  ],
+  "bestFor": "A small agency or in-house team that schedules posts for several brands and wants to run the tool on its own server."
+}

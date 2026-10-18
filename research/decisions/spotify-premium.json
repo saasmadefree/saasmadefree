@@ -1,0 +1,92 @@
+{
+  "tool": "spotify-premium",
+  "checkedOn": "2026-10-18",
+  "question": "Paid SaaS: \"Spotify Premium\". What people pay it for: Stream your own music collection to every device, with playlists and listening history you own. Question: is the candidate below an open-source or self-hostable application (web, desktop or server) that a person could actually use INSTEAD of Spotify Premium for that job, or for a clear, substantial part of it? Partial replacements count as yes (for example a desktop video editor for a video app, a self-hosted rank tracker for an SEO suite). Answer no for: a code library or SDK only, a command-line utility with no end-user workflow, a closed paid service, a tutorial, or a tool for an unrelated job.",
+  "jevModel": "jev-1.13.0",
+  "results": [
+    {
+      "slug": "navidrome",
+      "name": "Navidrome",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 1,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "jellyfin",
+      "name": "Jellyfin",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.84,
+      "kept": true
+    },
+    {
+      "slug": "koel",
+      "name": "Koel",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.97,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "gonic",
+      "name": "gonic",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.97,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.95,
+      "kept": true
+    },
+    {
+      "slug": "airsonic-advanced",
+      "name": "Airsonic-Advanced",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.99,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "ampache",
+      "name": "Ampache",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.99,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 1,
+      "kept": true
+    },
+    {
+      "slug": "nuclear",
+      "name": "Nuclear",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.09,
+        "review": false,
+        "classId": "other"
+      },
+      "decision": 0.21,
+      "kept": false
+    }
+  ]
+}

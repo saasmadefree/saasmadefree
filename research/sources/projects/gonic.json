@@ -1,0 +1,62 @@
+[
+  {
+    "claim": "Free-software Subsonic server API implementation",
+    "url": "https://github.com/sentriz/gonic",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Features: browse by folder or tags via TagLib (mp3, opus, flac, ape, m4a, wav), on-the-fly transcoding with ffmpeg, jukebox, podcasts, multiple users, last.fm and ListenBrainz scrobbling",
+    "url": "https://github.com/sentriz/gonic",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Install from source, Docker or systemd; default login admin/admin",
+    "url": "https://github.com/sentriz/gonic",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Initial scan of about 50k tracks takes about 10 minutes",
+    "url": "https://github.com/sentriz/gonic",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Scan interval, scan at start and file watcher options; transcode cache size in MB",
+    "url": "https://github.com/sentriz/gonic",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Written in Go, GPL-3.0",
+    "url": "https://github.com/sentriz/gonic",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Tested clients include Symfonium, DSub, Amperfy",
+    "url": "https://github.com/sentriz/gonic",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Multi-valued tags for genres, artists, album artists",
+    "url": "https://github.com/sentriz/gonic",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Directory structure caveat: files from the same album in the same folder, all files in a folder from the same album",
+    "url": "https://github.com/sentriz/gonic",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Web interface is for configuration (last.fm, users, scans)",
+    "url": "https://github.com/sentriz/gonic",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

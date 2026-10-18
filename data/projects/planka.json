@@ -1,0 +1,43 @@
+{
+  "slug": "planka",
+  "name": "PLANKA",
+  "homepage": "https://planka.app",
+  "repo": "plankanban/planka",
+  "license": "PLANKA Community License",
+  "licenseKind": "fair-code",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/plankanban/planka/blob/master/LICENSE.md",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.planka.cloud/",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 8.5,
+    "currency": "EUR",
+    "source": "https://planka.app/pricing",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker",
+    "helm"
+  ],
+  "stack": [
+    "javascript",
+    "node.js"
+  ],
+  "categories": [
+    "project-management",
+    "tasks"
+  ],
+  "stats": {
+    "stars": 12621,
+    "lastCommit": "2026-09-17",
+    "createdAt": "2019-08-30",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

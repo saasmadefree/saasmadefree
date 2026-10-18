@@ -1,0 +1,18 @@
+{
+  "tagline": "Lightweight Subsonic-compatible music streaming server written in Go, for your own music folder.",
+  "description": "gonic is a free-software server that implements the Subsonic API, so any Subsonic-compatible player can browse and stream your own music collection. It is written in Go and licensed under GPL-3.0. You point it at one or more music folders, and it indexes them either by folder structure or by audio tags read with TagLib, which covers mp3, opus, flac, ape, m4a and wav. The installation guide lists three routes: build from source, run the Docker image, or use a systemd unit. The default login is admin/admin and you change it in the web interface. A web panel handles last.fm setup, user management and scans. Transcoding and caching happen on the fly through ffmpeg, with a configurable cache size. Each user has separate playlists, play history and transcoding preferences. It scrobbles to last.fm and ListenBrainz, supports podcasts, and has a jukebox mode that plays through the server instead of streaming. Scanning can run at start, on an interval, or from a file system watcher. The README reports about ten minutes for a first scan of roughly 50,000 tracks. It stands in for the music side of Spotify Premium: you stream your own files rather than a catalogue. It does not give you licensed music, and the web interface is administrative only, so you need a separate client app to listen.",
+  "strengths": [
+    "Implements the Subsonic API, so existing clients such as Symfonium, DSub or Amperfy can connect.",
+    "Reads multi-valued tags for genres, artists and album artists, so one album can appear under several of them.",
+    "Transcodes on the fly with ffmpeg and caches the results, with a configurable cache size in MB.",
+    "Per-user playlists, top tracks, top artists and transcoding preferences.",
+    "Scrobbles to both last.fm and ListenBrainz."
+  ],
+  "limits": [
+    "The built-in web interface covers configuration only (last.fm, users, scans); playback needs a separate Subsonic client.",
+    "Folder browsing requires each album in its own folder, with all files in a folder from the same album.",
+    "Transcoding depends on a separate ffmpeg install.",
+    "Only your own files: there is no catalogue, so it replaces the library part of a streaming subscription, not the discovery part."
+  ],
+  "bestFor": "A listener with a personal FLAC or MP3 collection on a home server or small VPS who wants a light Subsonic server instead of a streaming subscription."
+}

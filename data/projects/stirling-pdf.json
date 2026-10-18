@@ -1,26 +1,42 @@
 {
   "slug": "stirling-pdf",
   "name": "Stirling PDF",
-  "homepage": "https://github.com/Stirling-Tools/Stirling-PDF",
+  "homepage": "https://stirling.com",
   "repo": "Stirling-Tools/Stirling-PDF",
   "license": "MIT",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/Stirling-Tools/Stirling-PDF/blob/main/LICENSE",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.stirlingpdf.com/",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 0,
+    "currency": "USD",
+    "source": "https://www.stirling.com/pricing",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker",
+    "kubernetes",
+    "binary"
+  ],
+  "stack": [
+    "java"
+  ],
   "categories": [
     "documents"
   ],
   "stats": {
-    "stars": 94380,
+    "stars": 94407,
     "lastCommit": "2026-10-15",
     "createdAt": "2023-01-27",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
-    "en"
+    "en",
+    "fr"
   ]
 }

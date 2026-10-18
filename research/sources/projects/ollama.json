@@ -1,0 +1,44 @@
+[
+  {
+    "claim": "Download for macOS, Windows, Linux, and official Docker image ollama/ollama",
+    "url": "https://raw.githubusercontent.com/ollama/ollama/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "ollama run gemma4 chats with a model; REST API at localhost:11434; ollama-python and ollama-js",
+    "url": "https://raw.githubusercontent.com/ollama/ollama/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "ollama launch connects to Claude Code, Codex, OpenCode and others",
+    "url": "https://raw.githubusercontent.com/ollama/ollama/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Nvidia compute capability 5.0+ and driver 550+; CPU can be forced",
+    "url": "https://docs.ollama.com/gpu",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Pricing: Free, Pro $20/mo, usage credits for cloud models",
+    "url": "https://ollama.com/pricing",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "MIT licence, written in Go",
+    "url": "https://api.github.com/repos/ollama/ollama",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Model library of open models",
+    "url": "https://ollama.com/library",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

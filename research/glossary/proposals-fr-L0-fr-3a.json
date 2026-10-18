@@ -1,0 +1,6 @@
+[
+  { "en": "swimlane", "fr": "couloir", "why": "Terme kanban courant en français (WeKan, Trello)" },
+  { "en": "keyframe", "fr": "image clé", "why": "Montage vidéo : Kdenlive, OpenShot, Flowblade" },
+  { "en": "round-robin", "fr": "round-robin", "why": "Terme gardé en anglais, utilisé tel quel par les lecteurs de Calendly" },
+  { "en": "source-available", "fr": "source-available", "why": "Pas d'équivalent français établi ; n8n, Sustainable Use License" }
+]

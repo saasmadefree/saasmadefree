@@ -1,0 +1,42 @@
+{
+  "slug": "bagisto",
+  "name": "Bagisto",
+  "homepage": "https://bagisto.com",
+  "repo": "bagisto/bagisto",
+  "license": "MIT",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/bagisto/bagisto/blob/HEAD/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/bagisto/bagisto",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 25,
+    "currency": "USD",
+    "source": "https://bagisto.com/en/cloud-hosting/",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker",
+    "composer"
+  ],
+  "stack": [
+    "php",
+    "laravel"
+  ],
+  "categories": [
+    "creator-commerce"
+  ],
+  "stats": {
+    "stars": 28249,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2018-09-10",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

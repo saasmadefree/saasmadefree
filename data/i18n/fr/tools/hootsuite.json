@@ -11,9 +11,37 @@
   "whyPeopleStillPay": "Un connecteur, c’est un week-end ; rester autorisé et fonctionnel sur une douzaine de réseaux à mesure que chacun change silencieusement les conditions de son API, tout en donnant aussi à une équipe des flux d’approbation et une boîte de réception partagée, c’est le vrai fardeau de maintenance qu’on paie.",
   "prompt": "Construis un planificateur pour l’API officielle d’exactement un réseau social — pas un tableau de bord multi-réseaux. Choisis une plateforme avec une API de publication stable et documentée, comme l’API AT Protocol de Bluesky ou l’API REST de Mastodon, toutes deux vraiment accessibles sans le processus de vérification d’entreprise que beaucoup d’autres plateformes exigent. Utilise Next.js/TypeScript avec Postgres, et le flux OAuth de ce réseau pour l’autorisation. Construis un éditeur de brouillon avec un compte de caractères en direct et une validation des limites de média correspondant aux vraies contraintes du réseau cible, une vue calendrier hebdomadaire des posts planifiés, et des templates de snippets réutilisables. Publie les posts planifiés via une tâche en arrière-plan — un worker de file déclenché par cron — avec reprises et signalement clair des échecs ; un post échoué devrait être visiblement signalé, pas silencieusement abandonné. Stocke l’identifiant de post retourné par la plateforme après publication et rafraîchis périodiquement des stats d’engagement basiques (j’aime, republications) via la même API, sans scraping. Ajoute un stockage local de médias pour les images attachées aux posts planifiés, et un export CSV de ton historique de posts. Ne construis pas de prise en charge multi-réseaux, de boîte de réception unifiée, ni de veille sociale — c’est hors périmètre ; si tu as besoin de publier sur un second réseau, attends-toi à écrire une seconde intégration séparée, pas une abstraction partagée sur les deux. Nécessite un enregistrement d’application OAuth auprès du réseau choisi, généralement gratuit et rapide à faire approuver pour un usage perso.",
   "faq": [
-    { "q": "Puis-je planifier sur Instagram, X et LinkedIn tous depuis cette construction ?", "a": "Non — cette construction cible délibérément un seul réseau avec une API accessible. Chaque réseau supplémentaire est un effort d’intégration séparé, ce qui est exactement le fardeau de maintenance que l’abonnement Hootsuite paie d’autres personnes pour absorber." },
-    { "q": "Pourquoi construire pour Bluesky ou Mastodon plutôt que les plus grands réseaux ?", "a": "Parce que leurs API sont ouvertes et n’exigent pas un long processus de vérification d’entreprise — un point de départ sensiblement plus honnête pour un projet de week-end perso que des réseaux qui verrouillent l’accès à l’API." },
-    { "q": "Que se passe-t-il si un post planifié échoue à publier ?", "a": "Il est clairement signalé plutôt que de silencieusement disparaître — la tâche en arrière-plan réessaie automatiquement, et un échec persistant reste visible jusqu’à ce que tu le traites." },
-    { "q": "Ça montre des analytics d’engagement ?", "a": "Des comptes basiques, comme les j’aime et les republications, tirés de la même API et rafraîchis périodiquement — rien comme les analytics plus profondes ou la couche de veille sociale de Hootsuite." }
-  ]
+    {
+      "q": "Puis-je planifier sur Instagram, X et LinkedIn tous depuis cette construction ?",
+      "a": "Non — cette construction cible délibérément un seul réseau avec une API accessible. Chaque réseau supplémentaire est un effort d’intégration séparé, ce qui est exactement le fardeau de maintenance que l’abonnement Hootsuite paie d’autres personnes pour absorber."
+    },
+    {
+      "q": "Pourquoi construire pour Bluesky ou Mastodon plutôt que les plus grands réseaux ?",
+      "a": "Parce que leurs API sont ouvertes et n’exigent pas un long processus de vérification d’entreprise — un point de départ sensiblement plus honnête pour un projet de week-end perso que des réseaux qui verrouillent l’accès à l’API."
+    },
+    {
+      "q": "Que se passe-t-il si un post planifié échoue à publier ?",
+      "a": "Il est clairement signalé plutôt que de silencieusement disparaître — la tâche en arrière-plan réessaie automatiquement, et un échec persistant reste visible jusqu’à ce que tu le traites."
+    },
+    {
+      "q": "Ça montre des analytics d’engagement ?",
+      "a": "Des comptes basiques, comme les j’aime et les republications, tirés de la même API et rafraîchis périodiquement — rien comme les analytics plus profondes ou la couche de veille sociale de Hootsuite."
+    },
+    {
+      "q": "Quelle est la meilleure alternative gratuite à Hootsuite ?",
+      "a": "Postiz est le meilleur choix : programmation au calendrier et publication croisée sur de nombreux réseaux, avec canaux, posts et membres d’équipe illimités en auto-hébergé. Il n’inclut pas la boîte de réception unifiée de Hootsuite. Mixpost est l’alternative pour quelques réseaux, avec une édition Lite gratuite limitée aux Pages Facebook, Mastodon et X."
+    },
+    {
+      "q": "Pourquoi je ne peux pas simplement me connecter à mes comptes sociaux, comme dans Hootsuite ?",
+      "a": "Hootsuite gère ses propres applications approuvées sur chaque réseau. Quand tu auto-héberges, tu crées ta propre application développeur sur chaque plateforme et tu la fais approuver, ce qui peut prendre des semaines. Les statistiques demandent des droits supplémentaires sur ces applications. C’est le principal coût du départ."
+    }
+  ],
+  "alternativesIntro": "La meilleure alternative gratuite à Hootsuite est Postiz : il programme et publie sur de nombreux réseaux depuis un calendrier, avec des canaux, des posts et des membres d’équipe illimités quand tu l’héberges toi-même, plus une API publique. Le piège : tu dois créer et faire approuver ta propre application développeur sur chaque réseau, ce qui peut prendre des semaines. Tu perds la boîte de réception unifiée de Hootsuite, la modération des commentaires et les analyses poussées. Mixpost, sous licence MIT, convient pour quelques réseaux : son édition Lite gratuite ne publie que sur les Pages Facebook, Mastodon et X. Coder la tienne ne recrée ni les connecteurs ni la boîte de réception : choisis Postiz ou paie.",
+  "alternativeNotes": {
+    "postiz-app": "Couvre la programmation au calendrier, la publication croisée, une API publique et le travail en équipe. La publication et les statistiques demandent tes propres applications développeur, et les fonctions IA tes propres clés chez un fournisseur.",
+    "mixpost": "Couvre un calendrier, une médiathèque et des versions de post, sur Laravel. Lite ne publie que sur les Pages Facebook, Mastodon et X, et les autres réseaux, les approbations et l’API demandent Pro, à 299 $ en achat unique.",
+    "trypost": "Couvre 13 réseaux par leurs API officielles, des approbations et des espaces de travail pour agences. C’est un projet jeune, et tu configures toi-même l’accès à l’API de chaque réseau.",
+    "socioboard": "Couvre la programmation, les statistiques, le RSS et les tâches d’équipe pour neuf réseaux. Il demande MongoDB et MySQL, et ses étapes d’installation sont dans un fichier à part.",
+    "threaduler": "Couvre la publication de fils sur X depuis une base Notion, avec une prise en charge de Bluesky annoncée mais non confirmée. Il est étiqueté 0.1 alpha et ne gère encore aucun autre réseau."
+  }
 }

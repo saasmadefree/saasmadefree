@@ -28,6 +28,26 @@
   ],
   "alternatives": [
     {
+      "project": "zammad",
+      "fit": "full"
+    },
+    {
+      "project": "uvdesk",
+      "fit": "full"
+    },
+    {
+      "project": "osticket",
+      "fit": "full"
+    },
+    {
+      "project": "frappe-helpdesk",
+      "fit": "full"
+    },
+    {
+      "project": "chatwoot",
+      "fit": "partial"
+    },
+    {
       "project": "freescout",
       "fit": "partial"
     }

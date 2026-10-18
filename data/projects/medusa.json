@@ -1,25 +1,44 @@
 {
   "slug": "medusa",
   "name": "Medusa",
-  "homepage": "https://github.com/medusajs/medusa",
+  "homepage": "https://medusajs.com",
   "repo": "medusajs/medusa",
+  "license": "MIT",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/medusajs/medusa/blob/HEAD/LICENSE",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.medusajs.com/learn/installation",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 29,
+    "currency": "USD",
+    "source": "https://medusajs.com/pricing",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "npm",
+    "docker"
+  ],
+  "stack": [
+    "node.js",
+    "typescript",
+    "vite",
+    "postgresql"
+  ],
   "categories": [
     "creator-commerce"
   ],
   "stats": {
-    "stars": 36779,
+    "stars": 36786,
     "lastCommit": "2026-10-16",
     "createdAt": "2020-01-18",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
-    "en"
+    "en",
+    "fr"
   ]
 }

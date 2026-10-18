@@ -1,0 +1,62 @@
+[
+  {
+    "claim": "Free open source help desk and shared inbox built with PHP and Laravel",
+    "url": "https://github.com/freescout-help-desk/freescout",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Email via SMTP, IMAP, POP3; OAuth for Microsoft 365 and Google Workspace",
+    "url": "https://github.com/freescout-help-desk/freescout",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Unlimited agents, tickets and mailboxes",
+    "url": "https://github.com/freescout-help-desk/freescout",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Translated into 33 languages; PWA",
+    "url": "https://github.com/freescout-help-desk/freescout",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Requirements: Nginx/Apache/IIS, PHP 7.4 to 8.x, MySQL/MariaDB/PostgreSQL; no minimum CPU or RAM; shared hosting possible",
+    "url": "https://github.com/freescout-help-desk/freescout",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker image and one-click installs (PikaPods, Cloudron and others)",
+    "url": "https://github.com/freescout-help-desk/freescout",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Official and community modules; WhatsApp and other channels are separate",
+    "url": "https://github.com/freescout-help-desk/freescout",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "API, Zapier and Make integrations",
+    "url": "https://github.com/freescout-help-desk/freescout",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Installation guide",
+    "url": "https://github.com/freescout-help-desk/freescout/wiki/Installation-Guide",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Collision detection, internal notes, merging and forwarding",
+    "url": "https://github.com/freescout-help-desk/freescout",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

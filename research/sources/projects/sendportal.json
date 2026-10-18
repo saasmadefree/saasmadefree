@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Features: subscriber and list management, email campaigns, message tracking, reports, multiple workspaces/domains",
+    "url": "https://github.com/mettle/sendportal",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Integrates with Amazon SES, Postmark, Sendgrid, Mailgun and Mailjet",
+    "url": "https://github.com/mettle/sendportal",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "V4 requires PHP 8.3+, Laravel 13, MySQL 5.7+ or PostgreSQL 10+",
+    "url": "https://github.com/mettle/sendportal",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "V2 and V3 are for earlier PHP and Laravel versions",
+    "url": "https://github.com/mettle/sendportal",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "SendPortal Core can be added to an existing Laravel application",
+    "url": "https://github.com/mettle/sendportal",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Installation guide for the standalone application",
+    "url": "https://sendportal.io/docs/v4/getting-started/installation",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Features list contains no automation builder and installation options list no Docker image",
+    "url": "https://github.com/mettle/sendportal",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Licence is MIT",
+    "url": "https://github.com/mettle/sendportal",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

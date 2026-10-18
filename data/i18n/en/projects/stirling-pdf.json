@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted PDF toolbox with 50+ tools, API and desktop client, free for up to 5 users.",
+  "description": "Stirling PDF ships three ways: a desktop program, a web interface, and a server that exposes an API on your own network. It covers more than 50 operations, among them merge, split, sign, redact, convert, OCR and compress, and lets you chain steps into no-code pipelines. REST endpoints exist for nearly all tools, so scripts and other apps can call them. The quick start is a single docker run command that serves the interface on port 8080, and the docs also cover Kubernetes and a plain JAR install. Files stay on your machine instead of going to an outside service. The repository is open-core. The licence file applies MIT to most of the code but puts several directories, such as proprietary and desktop folders, under separate licences. Per the docs, a self-hosted server runs on a Free plan limited to 5 users; external databases, clustering and S3 file storage need the paid Team plan, and SAML sign-in and audit logging need Enterprise. It suits people who pay for Acrobat, Smallpdf or iLovePDF to merge, sign and convert files. Check the plan table if you need shared storage or more than 5 accounts.",
+  "strengths": [
+    "More than 50 PDF operations including merge, split, sign, redact, convert, OCR and compress",
+    "REST API for nearly all tools, plus no-code pipelines in the interface",
+    "Single docker run command to start; docs also cover Kubernetes and a JAR install",
+    "Desktop client and browser interface in addition to the server",
+    "OAuth2 and OIDC sign-in and server certificate signing are available on the Free plan"
+  ],
+  "limits": [
+    "Open-core: several directories are under separate licences, and some features sit behind paid plans",
+    "The Free plan for a self-hosted server is capped at 5 users",
+    "External database, clustering and S3 or database file storage need the Team plan",
+    "SAML sign-in, audit logging and usage analytics need the Enterprise plan"
+  ],
+  "bestFor": "An office or freelancer that edits and converts confidential PDFs and has a small server for a team of up to 5 people."
+}

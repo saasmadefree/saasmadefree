@@ -1,0 +1,18 @@
+{
+  "tagline": "Éditeur de flux dans le navigateur pour relier appareils, API et services, construit sur Node.js.",
+  "description": "Node-RED est un outil low-code où tu glisses des nœuds sur un canevas et les relies en flux qui réagissent à des événements. Il tourne sur Node.js et c’est un projet de l’OpenJS Foundation sous licence Apache-2.0. Tu l’installes avec npm grâce à sudo npm install -g node-red, avec une image Docker qui expose le port 1880, ou avec des scripts d’installation pour Raspberry Pi et RPM. Une bibliothèque publique, flows.nodered.org, réunit des nœuds communautaires, des flux partagés et des collections : la plupart des intégrations arrivent donc sous forme de paquets complémentaires. Il convient aux tâches à la Zapier, comme appeler une API à la réception d’un webhook, et aussi au travail avec des appareils et des capteurs. L’éditeur est ouvert par défaut, ce qui compte sur tout serveur joignable de l’extérieur. La documentation explique comment activer HTTPS et protéger l’éditeur et l’API d’administration par une authentification. Aucune offre hébergée n’est décrite : tu gères tout toi-même.",
+  "strengths": [
+    "Une commande npm ou une commande docker run suffit, avec l’éditeur sur le port 1880",
+    "Bibliothèque communautaire de nœuds, de flux partagés et de collections sur flows.nodered.org",
+    "Licence Apache-2.0, au sein d’un projet de l’OpenJS Foundation",
+    "Installateurs pour Raspberry Pi et systèmes Debian, systèmes RPM et Windows",
+    "Réglages HTTPS et authentification documentés pour l’éditeur et l’API d’administration"
+  ],
+  "limits": [
+    "Par défaut l’éditeur n’est pas protégé : quiconque atteint son adresse peut l’ouvrir et déployer des changements",
+    "Tu dois activer HTTPS et une connexion toi-même avant de l’exposer sur internet",
+    "Les installations Snap tournent dans un conteneur sans accès à gcc, git ni au stockage principal du système, ce qui casse certains nœuds et la fonction Projects",
+    "Il faut une version de Node.js prise en charge, installée et tenue à jour"
+  ],
+  "bestFor": "Un bricoleur ou un développeur avec un Raspberry Pi ou un petit serveur, qui veut des automatisations d’API ou de maison pilotées par événements, extensibles en JavaScript."
+}

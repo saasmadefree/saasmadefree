@@ -1,0 +1,45 @@
+{
+  "slug": "leantime",
+  "name": "Leantime",
+  "homepage": "https://leantime.io",
+  "repo": "Leantime/leantime",
+  "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/Leantime/leantime/blob/HEAD/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.leantime.io",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 10,
+    "currency": "USD",
+    "source": "https://leantime.io/pricing/",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker",
+    "zip"
+  ],
+  "stack": [
+    "php",
+    "mysql",
+    "mariadb",
+    "tailwindcss"
+  ],
+  "categories": [
+    "project-management",
+    "tasks"
+  ],
+  "stats": {
+    "stars": 11859,
+    "lastCommit": "2026-10-18",
+    "createdAt": "2015-01-23",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

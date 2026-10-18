@@ -1,0 +1,18 @@
+{
+  "tagline": "Serveur de streaming musical léger, compatible Subsonic et écrit en Go, pour ton dossier de musique.",
+  "description": "gonic est un serveur gratuit qui implémente l’API Subsonic. Tout lecteur compatible Subsonic peut donc parcourir et écouter ta collection de musique. Il est écrit en Go et distribué sous licence GPL-3.0. Tu lui indiques un ou plusieurs dossiers de musique, et il les indexe selon l’arborescence ou selon les tags audio lus avec TagLib, ce qui couvre mp3, opus, flac, ape, m4a et wav. Le guide d’installation propose trois voies : compiler les sources, lancer l’image Docker ou utiliser une unité systemd. L’identifiant par défaut est admin/admin, à changer dans l’interface web. Un panneau web gère la configuration de last.fm, les utilisateurs et les analyses. Le transcodage et le cache se font à la volée avec ffmpeg, avec une taille de cache réglable. Chaque utilisateur a ses playlists, son historique d’écoute et ses préférences de transcodage. gonic envoie les écoutes à last.fm et à ListenBrainz, gère les podcasts et propose un mode jukebox qui joue sur le serveur au lieu de diffuser. L’analyse peut se lancer au démarrage, à intervalle régulier ou par surveillance du système de fichiers. Le README annonce une dizaine de minutes pour une première analyse d’environ 50 000 titres. Il remplace la partie musique de Spotify Premium : tu écoutes tes fichiers, pas un catalogue. Il ne fournit aucune musique sous licence, et son interface web sert seulement à l’administration, donc il te faut une appli cliente pour écouter.",
+  "strengths": [
+    "Implémente l’API Subsonic, donc des clients existants comme Symfonium, DSub ou Amperfy s’y connectent",
+    "Lit les tags à valeurs multiples pour les genres, artistes et artistes d’album, si bien qu’un album peut apparaître sous plusieurs d’entre eux",
+    "Transcode à la volée avec ffmpeg et garde les résultats en cache, dont la taille se règle en Mo",
+    "Playlists, titres et artistes les plus écoutés et préférences de transcodage propres à chaque utilisateur",
+    "Envoie les écoutes à last.fm et à ListenBrainz"
+  ],
+  "limits": [
+    "L’interface web intégrée ne sert qu’à la configuration (last.fm, utilisateurs, analyses) : pour écouter, il faut un client Subsonic à part",
+    "Pour parcourir par dossier, chaque album doit avoir son propre dossier, et tous les fichiers d’un dossier doivent venir du même album",
+    "Le transcodage dépend d’une installation de ffmpeg séparée",
+    "Seulement tes fichiers : sans catalogue, il remplace la bibliothèque d’un abonnement de streaming, pas la découverte"
+  ],
+  "bestFor": "Un auditeur qui a une collection perso en FLAC ou MP3 sur un serveur maison ou un petit VPS, et qui veut un serveur Subsonic léger à la place d’un abonnement de streaming."
+}

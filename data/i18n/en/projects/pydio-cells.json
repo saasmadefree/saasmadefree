@@ -1,0 +1,17 @@
+{
+  "tagline": "Self-hosted file sharing platform for organisations, written in Go as a set of micro-services.",
+  "description": "Pydio Cells is a file sharing and collaboration server for organisations. The project describes it as a full rewrite of the older Pydio, written in Go with a micro-service architecture. You can take a pre-built binary for Linux, macOS or Windows from the download page, or build it yourself with Go 1.21 or later. It needs a MySQL 5.6 or newer database, or the MariaDB equivalent. Setup is two commands: run cells configure to walk through the installer, then cells start, and the default site answers on port 8080 over HTTPS. The code is AGPL-3. It aims at the same ground as Dropbox for teams, with shares and workflows kept on your own storage. The authors say they tested it on macOS, Ubuntu, Debian and CentOS. They add that the Windows version may have unknown glitches and is not supported yet. The README does not describe desktop or mobile sync clients, so check the documentation before counting on them as a Dropbox replacement.",
+  "strengths": [
+    "Single Go binary distribution for Linux, macOS and Windows, or build from source",
+    "Guided installer through the cells configure command",
+    "AGPL-3 licence",
+    "Micro-service architecture written in Go"
+  ],
+  "limits": [
+    "Requires a separate MySQL 5.6+ or MariaDB database",
+    "Windows is not yet supported according to the README",
+    "The README does not describe sync clients, which Dropbox users rely on",
+    "Documented tested platforms are macOS, Ubuntu, Debian and CentOS only"
+  ],
+  "bestFor": "An IT team at a small organisation that wants a private file-sharing portal on a Linux server with MySQL."
+}

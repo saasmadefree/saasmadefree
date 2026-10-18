@@ -1,0 +1,18 @@
+{
+  "tagline": "Planificateur alpha piloté par Notion pour publier des threads sur X ; Bluesky annoncé mais non confirmé.",
+  "description": "Threaduler est un petit projet Python qui publie des posts à partir d’une base Notion. Tu écris tes posts et leurs métadonnées dans Notion, avec une base modèle que l’auteur partage, et l’outil lit ce contenu pour l’envoyer aux réseaux. Le README parle d’une alpha 0.1 qui marche mais peut avoir des accrocs. Il dit que l’outil fonctionne avec X et Bluesky et que LinkedIn arrive, mais sa feuille de route laisse l’intégration Bluesky non cochée : considère Bluesky comme non confirmé. Le modèle contient des exemples de threads et de citations. Pour le lancer, tu installes Poetry, tu crées une intégration Notion, tu récupères des clés d’API Notion et X, tu clones le dépôt, tu installes les dépendances et tu mets les clés dans un fichier .env. Le README ne propose ni image Docker ni interface web : tu l’exécutes et tu le programmes toi-même. La licence est MIT. Il peut remplacer un planificateur payant comme Hootsuite seulement pour un auteur solo qui vit dans Notion et publie surtout sur X. Il n’a rien des fonctions d’équipe de Hootsuite : validations, statistiques, boîte de réception. Le développement semble à l’arrêt et la communauté est minuscule : vois-le comme un point de départ, pas comme un produit suivi.",
+  "strengths": [
+    "Notion sert d’éditeur et de stock de contenu : les brouillons restent dans un outil que tu utilises peut-être déjà",
+    "Gère les threads et les citations, avec des exemples dans la base modèle",
+    "Licence MIT et petit code Python que tu peux lire et modifier",
+    "Publie sur X depuis une source unique ; Bluesky est annoncé mais non confirmé"
+  ],
+  "limits": [
+    "Étiqueté alpha 0.1 par son auteur, avec des défauts non précisés à prévoir",
+    "X est le seul réseau confirmé ; Bluesky est annoncé mais encore sur la feuille de route, et LinkedIn est marqué « à venir »",
+    "Demande tes propres clés d’API Notion et X, et un environnement Poetry installé",
+    "Le README ne décrit ni Docker, ni interface web, ni validations, statistiques ou fonctions d’équipe",
+    "Communauté minuscule et signes de développement à l’arrêt"
+  ],
+  "bestFor": "Un auteur solo qui prépare déjà ses posts dans Notion, à l’aise avec Python, et qui publie surtout sur X."
+}

@@ -1,0 +1,68 @@
+[
+  {
+    "claim": "Trello price 12.5 USD, plan Premium, per-seat-monthly",
+    "url": "https://trello.com/pricing",
+    "retrievedOn": "2026-07-31",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "Facts about WeKan (licence, features, limits) as written in alternativeNotes.wekan, from data/i18n/en/projects/wekan.json",
+    "url": "https://github.com/wekan/wekan",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.wekan"
+  },
+  {
+    "claim": "Facts about PLANKA (licence, features, limits) as written in alternativeNotes.planka, from data/i18n/en/projects/planka.json",
+    "url": "https://github.com/plankanban/planka",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.planka"
+  },
+  {
+    "claim": "Facts about Kan (licence, features, limits) as written in alternativeNotes.kan, from data/i18n/en/projects/kan.json",
+    "url": "https://github.com/kanbn/kan",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.kan"
+  },
+  {
+    "claim": "Facts about Plane (licence, features, limits) as written in alternativeNotes.plane, from data/i18n/en/projects/plane.json",
+    "url": "https://github.com/makeplane/plane",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.plane"
+  },
+  {
+    "claim": "Facts about OpenProject (licence, features, limits) as written in alternativeNotes.openproject, from data/i18n/en/projects/openproject.json",
+    "url": "https://github.com/opf/openproject",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.openproject"
+  },
+  {
+    "claim": "Facts about Leantime (licence, features, limits) as written in alternativeNotes.leantime, from data/i18n/en/projects/leantime.json",
+    "url": "https://github.com/Leantime/leantime",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.leantime"
+  },
+  {
+    "claim": "Facts about Vikunja (licence, features, limits) as written in alternativeNotes.vikunja, from data/i18n/en/projects/vikunja.json",
+    "url": "https://github.com/go-vikunja/vikunja",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.vikunja"
+  },
+  {
+    "claim": "Winner WeKan: claims in alternativesIntro and FAQ 5 drawn from its README and project text",
+    "url": "https://github.com/wekan/wekan",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[4]"
+  },
+  {
+    "claim": "FAQ 6 facts are drawn from the project texts in data/i18n/en/projects/*.json",
+    "url": "data/i18n/en/projects",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[5]"
+  },
+  {
+    "claim": "OpenProject minimum hardware and Enterprise-only features as written in the openproject page",
+    "url": "https://www.openproject.org/pricing/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.openproject"
+  }
+]

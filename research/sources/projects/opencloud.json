@@ -1,0 +1,44 @@
+[
+  {
+    "claim": "The server is a Go codebase for the backend services",
+    "url": "https://github.com/opencloud-eu/opencloud#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Released under Apache 2.0",
+    "url": "https://github.com/opencloud-eu/opencloud#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Built with make and started with opencloud init followed by opencloud server; produces a single binary",
+    "url": "https://github.com/opencloud-eu/opencloud#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Authenticates via OpenID Connect with an external IdP such as Keycloak or the embedded LibreGraph Connect",
+    "url": "https://github.com/opencloud-eu/opencloud#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "The backend does not use a database; data is stored in the filesystem, default root under $HOME/.opencloud",
+    "url": "https://github.com/opencloud-eu/opencloud#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "The README is a contributor-oriented backend readme pointing to docs.opencloud.eu for setup",
+    "url": "https://github.com/opencloud-eu/opencloud#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Default data root is under $HOME/.opencloud, no database",
+    "url": "https://github.com/opencloud-eu/opencloud#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

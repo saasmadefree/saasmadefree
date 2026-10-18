@@ -1,0 +1,74 @@
+[
+  {
+    "claim": "Continuous file synchronization between two or more computers",
+    "url": "https://github.com/syncthing/syncthing#goals",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Does not upload data to the cloud; exchanges data as soon as devices are online at the same time",
+    "url": "https://docs.syncthing.net/users/faq.html",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "At first start generates config file and encryption keys and starts the admin GUI in the browser; single syncthing binary",
+    "url": "https://docs.syncthing.net/intro/getting-started.html",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "GUI default listen address 127.0.0.1:8384",
+    "url": "https://docs.syncthing.net/users/faq.html",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Docker README exists; community GUI wrappers",
+    "url": "https://github.com/syncthing/syncthing#docker",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Release binaries are GPG signed; macOS and Windows binaries code-signed",
+    "url": "https://github.com/syncthing/syncthing#signed-releases",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "All code licensed under MPLv2",
+    "url": "https://github.com/syncthing/syncthing#documentation",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Not a great backup application: changes and deletions propagate to all devices; versioning can be enabled",
+    "url": "https://docs.syncthing.net/users/faq.html",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "What is synced: contents, mtimes; optionally permissions, owners, xattrs. Not synced: hard links, Windows ACLs, resource forks",
+    "url": "https://docs.syncthing.net/users/faq.html",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Blocks are fetched from all devices in parallel",
+    "url": "https://docs.syncthing.net/users/faq.html",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Goals ordered: safe from data loss, secure, easy to use",
+    "url": "https://github.com/syncthing/syncthing#goals",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Android and other community flavors run the same core",
+    "url": "https://docs.syncthing.net/intro/getting-started.html",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

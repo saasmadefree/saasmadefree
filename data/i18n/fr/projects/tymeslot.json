@@ -1,0 +1,18 @@
+{
+  "tagline": "Prise de rendez-vous auto-hébergée : pages de réservation, synchro de calendriers, visio et rappels.",
+  "description": "Tymeslot est une appli de prise de rendez-vous écrite en Elixir avec Phoenix LiveView et PostgreSQL. Le visiteur choisit une durée et un créneau sur ta page de réservation. Les disponibilités viennent de plannings nommés, avec pauses, marges, délais de préavis et exceptions par date, et chaque calendrier connecté est vérifié au moment de la réservation pour éviter les doubles réservations. Il lit et écrit dans Google Agenda, Outlook, iCloud, CalDAV et d’autres, et crée des salles sur Google Meet, Teams, Zoom, Jitsi et plus. Les emails contiennent un fichier .ics, des rappels et des liens d’annulation ou de report. Les webhooks, les alertes Slack et Telegram, les questions personnalisées et les paiements Stripe facultatifs sont inclus. Le démarrage rapide tient en une commande docker run, avec PostgreSQL embarqué, et le premier compte devient admin. La documentation donne 500 Mo de RAM au minimum. Des installations Cloudron et Railway existent aussi. Tu dois configurer SMTP ou un autre service d’envoi, car sans cela les emails sont jetés en silence. Le code est sous AGPL-3.0, et un cloud géré avec une formule gratuite est aussi proposé, avec une formule Pro payante à partir de 9 € par mois. Il vise les utilisateurs de Calendly qui veulent héberger leurs propres pages de réservation. Le README ne décrit ni les événements de groupe ni la répartition en round-robin.",
+  "strengths": [
+    "Une seule commande docker run avec PostgreSQL embarqué, et le premier utilisateur inscrit devient admin",
+    "Synchro dans les deux sens avec Google, Outlook, iCloud, CalDAV et d’autres, avec contrôle des conflits sur tous les calendriers connectés",
+    "Plusieurs plannings de disponibilité nommés, chacun avec pauses, marges, préavis et exceptions par date",
+    "Salles de visio sur Google Meet, Teams, Zoom, Jitsi et d’autres, choisies par l’invité",
+    "SSO par OAuth ou OIDC générique, webhooks, et paiements Stripe Connect facultatifs sans frais pour ceux qui l’auto-hébergent"
+  ],
+  "limits": [
+    "Les emails sont jetés en silence tant que tu n’as pas configuré SMTP ou un autre service d’envoi",
+    "Demande au moins 500 Mo de RAM, avec 1 Go recommandé",
+    "Licence AGPL-3.0 : si tu proposes une version modifiée comme service en ligne, tu dois en publier le code",
+    "Le README ne décrit ni événements de groupe, ni répartition en round-robin entre membres d’une équipe, ni intégrations CRM"
+  ],
+  "bestFor": "Un freelance ou un petit studio qui a un VPS et veut des pages de réservation dans le style de Calendly, avec ses propres calendriers et son propre serveur d’emails."
+}

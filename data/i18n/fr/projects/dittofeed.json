@@ -1,0 +1,18 @@
+{
+  "tagline": "Messagerie client auto-hébergeable (email, SMS, push et plus), avec segments et parcours.",
+  "description": "Dittofeed est une plateforme d’engagement client en TypeScript, pour envoyer des diffusions et des parcours automatisés déclenchés par des événements. Tu lui donnes les données de tes utilisateurs par Segment, par ETL inversé ou par sa propre API, tu construis des segments, tu crées des modèles en MJML ou dans un éditeur low-code, et tu envoies par des fournisseurs comme SendGrid ou Amazon SES. Les canaux listés par le projet sont l’email, les notifications push mobiles, les SMS, WhatsApp et Slack. Le tableau de bord montre les performances des messages. Tu le fais tourner toi-même avec Docker Compose, en suivant la documentation, ou tu le déploies sur Render. Le cœur est sous licence MIT, et les mainteneurs vendent aussi un service cloud hébergé, à partir de 75 $ par mois (dittofeed.com/pricing). Le README précise que le multi-locataire, l’intégration et la marque blanche se trouvent dans une base de code distincte, à source fermée. Les développeurs peuvent garder leurs modèles dans git et tester les campagnes en intégration continue. Il convient pour remplacer les parties automatisation et cycle de vie de Mailchimp quand ton produit émet déjà des événements. Ce n’est pas un remplaçant direct pour la constitution de listes : tu n’as ni créateurs de formulaires ni pages d’atterrissage comme chez Mailchimp.",
+  "strengths": [
+    "Parcours déclenchés par des événements avec un créateur visuel, alimentés par les données que tu envoies via son API ou Segment",
+    "Segments construits à partir des traits et du comportement des utilisateurs, avec plusieurs opérateurs",
+    "Modèles écrits en MJML ou dans un éditeur low-code, et stockables dans git",
+    "Fonctionne avec plusieurs fournisseurs d’envoi, dont SendGrid et Amazon SES",
+    "L’auto-hébergement avec Docker Compose évite une facturation au volume"
+  ],
+  "limits": [
+    "Destiné aux développeurs : les données arrivent par une API, Segment ou ETL inversé, pas par des formulaires d’inscription hébergés ni des pages d’atterrissage",
+    "Le multi-locataire, l’intégration et la marque blanche sont dans une base de code sous licence à source fermée, pas dans le dépôt MIT",
+    "Il faut quand même un fournisseur d’envoi comme SendGrid ou Amazon SES, avec le travail de délivrabilité qui va avec",
+    "Certains points de la feuille de route, comme la résolution d’identité et un tableau de bord d’analyse plus complet, étaient encore marqués en développement dans le README"
+  ],
+  "bestFor": "Une équipe produit avec un développeur, qui suit déjà les événements de ses utilisateurs et veut des emails et des notifications push de cycle de vie sans payer par contact."
+}

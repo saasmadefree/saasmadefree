@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hostable e-signature platform for PDFs, with templates, multiple signers and audit trails.",
+  "description": "OpenSign is an open source document signing platform presented as an alternative to DocuSign. Signers can draw, type or upload a signature, and several people can sign one document, optionally in a set order. Guest signers confirm by a one-time code sent to their email. Documents can expire or be rejected with a reason. You can save PDF templates, store files in a built-in drive, customise email templates and get a completion certificate with an audit log. An API and a Zapier integration connect it to other tools. For self-hosting, the README gives a Docker Compose route that needs Docker and git, plus a Caddy reverse proxy file and an environment file. The default MongoDB instance is not persistent, so you must supply your own MongoDB connection URL to keep data. A free hosted version also exists. The licence is AGPL-3, which matters if you modify and expose it as a service.",
+  "strengths": [
+    "Multi-signer flows with optional signing order",
+    "Email one-time code check for guest signers",
+    "Completion certificate and audit trail with timestamps and IP addresses",
+    "PDF templates and reusable saved signatures",
+    "API and Zapier integration"
+  ],
+  "limits": [
+    "The default bundled MongoDB loses data on restart; you must provide your own database URL",
+    "AGPL-3 licence requires sharing source of modified versions offered as a service",
+    "Self-hosting setup spans a compose file, a Caddy file and an environment file",
+    "No legally certified qualified signatures are described in the README"
+  ],
+  "bestFor": "A small business with a server and some Docker skill that sends contracts to clients and wants to stop paying per signer."
+}

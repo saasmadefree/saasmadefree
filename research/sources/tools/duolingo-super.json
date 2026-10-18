@@ -1,0 +1,32 @@
+[
+  {
+    "claim": "Duolingo Super price 12.99 USD, plan Super, flat-monthly",
+    "url": "https://apps.apple.com/us/app/duolingo-language-lessons/id570060128",
+    "retrievedOn": "2026-07-31",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "No maintained open-source project replaces the course experience: the two course-style projects are archived (LibreLingo) or inactive (LinguaCafe); maintained tools such as Anki and Yomitan were rejected because they do not replace a course. Unsourced figures (language pair count, person-years) were removed from the intro.",
+    "url": "research/alternatives/duolingo-super.json",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "FAQ 6 facts are drawn from the project texts in data/i18n/en/projects/*.json",
+    "url": "data/i18n/en/projects",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[5]"
+  },
+  {
+    "claim": "Anki is an actively maintained flashcard application (flashcard review, not a course)",
+    "url": "https://github.com/ankitects/anki",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "Figures (language pairs, person-years, skill trees) and the superlative removed from verdictSummary and whatYouLose[0]; no unsourced figure remains",
+    "url": "https://www.duolingo.com/courses",
+    "retrievedOn": "2026-10-18",
+    "field": "verdictSummary, whatYouLose[0]"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "tagline": "Journal de calories et de nutriments sur téléphone, avec scan de codes-barres. Sans compte, données locales.",
+  "description": "OpenNutriTracker est une appli mobile pour noter ce que tu manges et bois. Elle calcule un objectif de calories et de macros à partir de ta taille, de ton poids, de ton âge et de ton niveau d’activité, puis compare chaque journée à cet objectif. Le journal reste sur ton téléphone, sans compte à créer. Elle est écrite en Dart et publiée sous GPL-3.0. Tu l’installes depuis l’App Store ou Google Play, sans déployer de serveur. La recherche d’aliments s’appuie sur Open Food Facts, USDA FoodData Central et la base allemande BLS, avec scan de codes-barres et un mode d’ajout rapide. Un panneau de micronutriments couvre dix nutriments, et l’appli offre aussi un suivi de l’eau, un minuteur de jeûne facultatif, des recettes et l’historique du poids. Tu peux exporter le journal en JSON ou en CSV et réimporter le JSON. Le serveur d’aliments est un dépôt séparé qu’on peut auto-héberger, et c’est la seule partie serveur. Comme alternative à MyFitnessPal Premium, elle couvre le suivi quotidien et l’affichage des nutriments, sans publicité ni formule payante. Attends-toi à une appli pour un seul appareil, pas à une plateforme multi-utilisateurs.",
+  "strengths": [
+    "Aucun compte nécessaire : le journal est stocké chiffré sur l’appareil",
+    "Panneau de micronutriments pour dix nutriments, sans formule payante",
+    "Scan de codes-barres appuyé sur les données d’Open Food Facts, de l’USDA et de la base allemande BLS",
+    "Export en JSON ou CSV, et réimport depuis le JSON",
+    "Le serveur d’aliments peut être auto-hébergé depuis son propre dépôt"
+  ],
+  "limits": [
+    "Appli mobile seulement, pour Android et iOS : pas de version web ni de bureau",
+    "L’auto-hébergement concerne le serveur d’aliments facultatif, pas l’appli elle-même",
+    "Le journal vit sur un seul téléphone, et l’export ou le partage par QR code sont les seuls moyens de déplacer les données",
+    "Aucune fonction multi-utilisateur ni de coach n’est décrite"
+  ],
+  "bestFor": "Une personne qui compte ses calories sur son téléphone et veut arrêter de payer une appli de nutrition ou de partager ses habitudes alimentaires."
+}

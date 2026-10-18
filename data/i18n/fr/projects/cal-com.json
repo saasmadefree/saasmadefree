@@ -1,0 +1,19 @@
+{
+  "tagline": "Fork communautaire de Cal.com sous licence MIT, auto-hébergé, sans les fonctions entreprise.",
+  "description": "Cal.diy est l’édition communautaire de la plateforme de prise de rendez-vous Cal.com. C’est un fork d’où tout le code entreprise et commercial a été retiré, sous licence MIT, pensé pour les particuliers qui hébergent eux-mêmes leurs pages de réservation. Il s’appuie sur Next.js, tRPC, React, Tailwind CSS et Prisma, avec PostgreSQL 13 ou plus récent. Tu peux le lancer depuis les sources avec Yarn, grâce à un raccourci Docker de développement qui démarre un Postgres local, ou déployer l’image Docker publiée avec Docker Compose. Avant de commencer, tu dois générer tes propres valeurs pour NEXTAUTH_SECRET et CALENDSO_ENCRYPTION_KEY. Les intégrations d’agenda et de visio demandent tes propres identifiants. L’assistant d’installation propose de connecter un agenda, mais tu peux passer cette étape. Il n’existe pas de version hébergée de Cal.diy. Le README précise que l’usage se fait à tes risques et recommande un usage personnel, hors production. Il renvoie les usages commerciaux vers Cal.com. Cal.diy couvre donc l’essentiel de Calendly (liens de réservation, synchro d’agenda), mais sans les fonctions d’équipe : il convient mal à une équipe commerciale.",
+  "strengths": [
+    "Licence MIT, sans clé de licence, sans code de l’édition entreprise et sans compte Cal.com",
+    "Image Docker et déploiement avec Docker Compose documentés, avec des images ARM",
+    "PostgreSQL, une base standard que la plupart des hébergeurs proposent",
+    "Intégrations d’agenda et de visio facultatives, avec tes propres identifiants",
+    "Issu du code de Cal.com : les réservations et la synchro d’agenda sont déjà bien rodées"
+  ],
+  "limits": [
+    "Équipes, organisations, statistiques, workflows et SSO/SAML ont été retirés",
+    "Les mainteneurs conseillent un usage personnel, hors production, à tes risques",
+    "Pas de version hébergée : mises à jour, sauvegardes et envoi d’emails sont à ta charge",
+    "Tu dois générer tes propres secrets (NEXTAUTH_SECRET, CALENDSO_ENCRYPTION_KEY) avant la production",
+    "Il faut Node.js et PostgreSQL, une pile plus lourde que celle d’un outil en un seul binaire"
+  ],
+  "bestFor": "Un freelance ou un consultant qui veut ses liens de réservation sur son propre serveur, sans prise de rendez-vous d’équipe ni routage."
+}

@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted file sync and sharing server with encrypted libraries, groups and built-in wikis and documents.",
+  "description": "Seafile is a file sync and sharing system you host on your own server. Files are organised in libraries, and each library syncs on its own, so a laptop can pull only the folders it needs. Users can lock a library with a password of their own, and desktop sync encrypts on the client side. Sync sends only the changed parts of files, resumes interrupted transfers and resolves conflicts from file history instead of timestamps. You can share folders with users or groups, create password-protected download links and upload links, and keep version history. Newer features add file properties with table, Kanban, gallery and map views, a wiki, the SeaDoc editor, and links to OnlyOffice, Collabora and Excalidraw. The server is deployed with Docker, and the manual documents a Community edition and a paid Professional edition. It stands in for Dropbox and similar tools when a team wants files on its own disks. The project is split into several repositories: the sync daemon, desktop GUI, server core, web interface and mobile apps.",
+  "strengths": [
+    "Each library syncs independently, with selective sync of any folder",
+    "Delta transfer: only the changed content goes to the server, and interrupted transfers resume",
+    "Client-side encryption of libraries with a password chosen by the user",
+    "Conflicts are resolved from file history, not from timestamps",
+    "Group sharing, password-protected download links and upload links"
+  ],
+  "limits": [
+    "The code is spread over many repositories (sync client, desktop GUI, server core, web UI, iOS, Android, WebDAV), which makes self-builds harder to follow",
+    "A Professional edition with its own licence exists, so some features of the vendor product may not be in the Community edition",
+    "Bug reports go to GitHub issues, and install questions to a forum, with email support reserved for Pro customers",
+    "Office editing relies on an extra server such as OnlyOffice or Collabora that you run yourself"
+  ],
+  "bestFor": "A small company or lab that wants Dropbox-style sync on its own server, with encrypted shared libraries for staff."
+}

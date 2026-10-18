@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted helpdesk and ticketing platform handling email, chat, phone and social channels.",
+  "description": "Zammad is a web-based helpdesk for customer support. It collects requests from email, chat, telephone and social media into one ticket system, and the docs describe a knowledge base, a REST API and service-level agreements. The code is Ruby on Rails with a Vue front end, released under AGPLv3 and owned by the independent Zammad Foundation. Zammad GmbH, the company behind it, sells a cloud service. You can self-host with Docker Compose images, a Helm chart for Kubernetes, DEB and RPM packages, or from source. The docs require PostgreSQL 15 or newer and Redis 7 or newer, and strongly recommend Elasticsearch for search. As a rough guide, the minimum is 2 CPU cores and 6 GB of RAM, with 4 GB more if Elasticsearch runs on the same server. The example setup for up to 40 agents uses 6 cores. Zammad is a close match for Zendesk on multichannel tickets, so the main cost of switching is running the servers yourself rather than any missing core feature.",
+  "strengths": [
+    "Brings email, chat, telephone and social media requests into a single ticket queue",
+    "Has a documented REST API with endpoints for tickets, users, groups, SLAs and the knowledge base",
+    "Installs from Docker Compose, a Helm chart, DEB or RPM packages, or source",
+    "Owned by an independent foundation, and the maintainers state the software stays AGPLv3",
+    "Docs give sizing guidance, including an example setup for up to 40 agents"
+  ],
+  "limits": [
+    "Needs about 2 CPU cores and 6 GB of RAM at minimum, plus 4 GB more for a local Elasticsearch",
+    "Requires PostgreSQL 15 or newer and Redis 7 or newer",
+    "Without Elasticsearch, search is very limited, so a full setup has one more service to run",
+    "The documented example for 40 agents uses 6 CPU cores, so a growing team has to plan server capacity"
+  ],
+  "bestFor": "A support team of roughly 5 to 40 agents with a sysadmin who wants a Zendesk-style multichannel helpdesk on its own servers."
+}

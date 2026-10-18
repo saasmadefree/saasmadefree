@@ -1,0 +1,18 @@
+{
+  "tagline": "Plateforme e-commerce PHP sur Symfony et Vue.js, orientée API et extensible par plugins et applis.",
+  "description": "Shopware 6 est un système de boutique en ligne complet, et aussi un framework pour des projets e-commerce sur mesure. Il repose sur Symfony 7 et Vue.js 3, adopte une conception orientée API, et peut tourner en headless si tu veux ta propre interface. Tu l’étends avec des plugins, chargés comme des bundles Symfony, ou avec des apps, une voie plus légère qui demande peu de connaissances propres à Shopware. Une boutique communautaire liste plus de 3 100 extensions. Pour la production sur tes propres serveurs, la voie recommandée est le modèle flex avec Composer ; la documentation propose aussi un installeur web et une configuration Docker pour le développement. L’éditeur vend un cloud géré, des hébergeurs partenaires avec des boutiques préinstallées, et des formules commerciales payantes avec des fonctions en plus pour les boutiques sur site. Le cœur est sous licence MIT, et les contributeurs doivent signer un CLA qui donne des droits d’utilisation de leur code à Shopware AG. C’est un candidat pour remplacer Shopify quand on a un développeur PHP ou une agence, surtout sur les marchés germanophones. Ce n’est pas un créateur de boutique hébergé qui demande peu d’effort.",
+  "strengths": [
+    "Cœur sous licence MIT avec un panier prêt à l’emploi et une admin construite en Vue.js",
+    "Orienté API et capable de tourner en headless avec ta propre interface",
+    "Deux voies d’extension : plugins basés sur Symfony et applis plus légères",
+    "Grand catalogue d’extensions, annoncé à plus de 3 100",
+    "Installable via le modèle flex de Composer, un installeur web ou Docker pour le développement"
+  ],
+  "limits": [
+    "Certaines fonctions sont vendues en formules commerciales pour les boutiques sur site : le cœur gratuit n’est pas tout le produit",
+    "Les contributeurs signent un CLA qui donne à Shopware AG le droit d’utiliser leur code",
+    "Demande des compétences PHP pour l’installation, les mises à niveau et les plugins, contrairement à une boutique Shopify hébergée",
+    "L’éditeur présente son cloud payant comme le moyen le plus simple de faire tourner une boutique"
+  ],
+  "bestFor": "Un commerçant qui a une agence PHP ou un développeur interne, et veut posséder le code de sa boutique et l’étendre avec des plugins."
+}

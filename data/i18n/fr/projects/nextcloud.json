@@ -1,0 +1,19 @@
+{
+  "tagline": "Plateforme auto-hébergée de synchro, partage, agenda et contacts, en PHP, extensible par applications.",
+  "description": "Nextcloud Server range tes fichiers, tes contacts et tes agendas sur la machine de ton choix, et les synchronise entre tous tes appareils. Les liens de partage et les outils de collaboration viennent par-dessus. Les fonctions en plus, comme Calendar, Contacts, Mail et Talk, sont des applications séparées que tu installes depuis son magasin d’applis. C’est une application PHP. Le manuel d’administration demande Apache ou nginx avec PHP-FPM, PHP 8.3 à 8.5, et une base de données : MariaDB, MySQL ou PostgreSQL. SQLite reste réservé aux tests et aux toutes petites instances. Le manuel fixe un minimum de 128 Mo de RAM par processus et en recommande 512. Tu peux l’installer à la main sous Linux, avec l’installeur en ligne de commande ou avec une appliance. Des hébergeurs le proposent aussi tout prêt, et Nextcloud GmbH vend une édition entreprise avec support. Il remplace le stockage de Dropbox, Google One ou iCloud, et va plus loin avec le travail en groupe. La licence est l’AGPL-3.0.",
+  "strengths": [
+    "Fichiers, contacts et agendas synchronisés entre tes appareils depuis un seul serveur que tu contrôles",
+    "Des centaines d’applis dans le magasin officiel, dont Calendar, Contacts, Mail et Talk",
+    "Fonctionne avec MariaDB, MySQL ou PostgreSQL derrière Apache ou nginx",
+    "Des hébergeurs et des appliances prêtes à l’emploi existent si tu ne veux pas l’installer",
+    "Authentification à deux facteurs et programme public de bug bounty cités dans le README"
+  ],
+  "limits": [
+    "Tu fais tourner PHP, un serveur web et une base de données, et tu appliques les mises à jour et les correctifs de sécurité",
+    "Les besoins en mémoire varient beaucoup : le manuel fixe 128 Mo par processus au minimum et recommande 512 Mo",
+    "SQLite n’est conseillé que pour les tests et les installations minimales, et Oracle Database est réservé aux abonnés entreprise",
+    "Le manuel recommande le support entreprise payant pour monter en charge et pour le conseil",
+    "Calendar, Mail et Talk vivent dans des dépôts séparés, donc chaque appli a son propre rythme de versions"
+  ],
+  "bestFor": "Un foyer ou une petite équipe avec un serveur Linux, qui veut quitter Dropbox ou Google One et garder fichiers, agenda et contacts au même endroit."
+}

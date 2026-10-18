@@ -1,0 +1,18 @@
+{
+  "tagline": "Interface de chat web auto-hébergée pour Ollama et les API compatibles OpenAI, avec comptes, RAG et plugins.",
+  "description": "Open WebUI est une interface de chat dans le navigateur que tu héberges toi-même. Elle n’embarque aucun modèle. Elle se connecte à Ollama ou à n’importe quelle API compatible OpenAI, donc tu mélanges modèles locaux et modèles cloud au même endroit. Tu l’installes avec pip, uv, Docker ou Kubernetes, et la commande Docker du README associe le port 3000 au conteneur. Des images étiquetées incluent Ollama ou la prise en charge de CUDA. Elle ajoute des comptes avec rôles et groupes, la recherche dans tes documents avec neuf bases vectorielles prises en charge, la recherche web via de nombreux fournisseurs, la génération d’images, les appels vocaux, des notes, des canaux et un système de plugins. Le stockage peut être SQLite ou PostgreSQL. Le projet a sa propre licence, qui t’oblige à garder la marque Open WebUI ; le détail se trouve dans un fichier d’historique des licences. Une formule Enterprise existe pour les grands déploiements. Elle tient la place de l’interface de ChatGPT, mais la qualité des réponses dépend des modèles que tu branches.",
+  "strengths": [
+    "Connecte Ollama et n’importe quelle API compatible OpenAI côte à côte",
+    "Rôles, groupes et permissions, plus LDAP, OAuth, SSO par en-tête de confiance et provisionnement SCIM",
+    "Recherche dans tes documents en mode hybride, avec le choix entre neuf bases vectorielles",
+    "Recherche web via de nombreux fournisseurs comme SearXNG, Brave et Google PSE",
+    "Stockage SQLite ou PostgreSQL, avec Redis pour les déploiements multi-nœuds"
+  ],
+  "limits": [
+    "Elle ne contient aucun modèle : il te faut Ollama ou une clé d’API chez un fournisseur",
+    "La licence est sur mesure et interdit de retirer ou de remplacer la marque Open WebUI : pas de marque blanche",
+    "Les environnements de terminal isolés par utilisateur (Terminals) sont un produit Enterprise",
+    "Sous Docker, joindre un serveur Ollama installé sur l’hôte peut échouer et demander l’option --network=host, qui fait passer le port à 8080"
+  ],
+  "bestFor": "Une petite équipe ou un labo qui fait déjà tourner Ollama ou une passerelle d’API, et veut un site partagé façon ChatGPT avec des comptes."
+}

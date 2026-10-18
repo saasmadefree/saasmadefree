@@ -1,0 +1,17 @@
+{
+  "tagline": "Open-source SEO audit crawler in Go with a MySQL backend, a dashboard and severity-ranked issue reports.",
+  "description": "SEOnaut crawls a website and produces an audit of problems that can hurt search rankings. Issues are grouped into three severity levels: critical, high and low. Checks include broken links that return 404, redirect problems such as temporary, permanent or looping redirects, missing or duplicate meta tags and headings in the wrong order. The application is written in Go, stores data in MySQL, and shows results in a dashboard drawn with Apache ECharts. The recommended install is Docker: the README gives a compose file with a MySQL 8.4 container and the application image, listening on port 9000 over plain HTTP, so you should add a reverse proxy for HTTPS. Settings can be overridden with environment variables. The licence is MIT. The author also runs a hosted version at seonaut.org. It is a self-hosted alternative to the site-audit modules in Ahrefs, Semrush or Screaming Frog, covering on-page and technical checks. It does not track keyword positions or backlinks, so it replaces only the audit part of those subscriptions.",
+  "strengths": [
+    "Issues ranked as critical, high or low so you fix the worst first",
+    "Detects broken links, redirect chains and loops, missing or duplicate meta tags and heading order",
+    "Docker compose setup with MySQL 8.4 is given in the README",
+    "Interactive dashboard with charts, in a lightweight frontend with little JavaScript",
+    "All settings can be overridden through environment variables"
+  ],
+  "limits": [
+    "No keyword rank tracking, backlink data or traffic figures: it audits pages only",
+    "Needs a separate MySQL database, and listens on plain HTTP by default, so you set up HTTPS yourself",
+    "Only a handful of issue types are named in the README, so check the coverage against your audit checklist"
+  ],
+  "bestFor": "An in-house SEO or developer who wants repeatable site audits on a server they control, in place of a Screaming Frog or Ahrefs audit plan."
+}

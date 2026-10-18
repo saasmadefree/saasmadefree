@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Penpot is an open-source design platform for teams building digital products",
+    "url": "https://github.com/penpot/penpot",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Design tokens, CSS Grid and Flex Layout, inspect tab with SVG, CSS and HTML, API with access tokens and webhooks, plugins, MCP server",
+    "url": "https://github.com/penpot/penpot",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Hosted service at design.penpot.app, or deploy anywhere",
+    "url": "https://github.com/penpot/penpot",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Self-hosting options: Docker compose, Kubernetes with official Helm chart, Openshift, Rancher, Elestio, TrueNAS",
+    "url": "https://help.penpot.app/technical-guide/getting-started/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Source code licensed under MPL-2.0",
+    "url": "https://github.com/penpot/penpot",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Penpot Enterprise is a paid plan with a centralised Admin Console",
+    "url": "https://github.com/penpot/penpot",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Docker images are published shortly after the SaaS update; page links to why self-hosted versions lag",
+    "url": "https://help.penpot.app/technical-guide/getting-started/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "README describes no template library or stock assets",
+    "url": "https://github.com/penpot/penpot",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

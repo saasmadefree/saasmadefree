@@ -1,0 +1,175 @@
+[
+  {
+    "slug": "postiz-app",
+    "existing": true,
+    "name": "Postiz",
+    "repo": "gitroomhq/postiz-app",
+    "homepage": "https://postiz.com",
+    "why": "Social media management platform for scheduling, automating and analysing posts across many networks.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Multi-network composing, scheduling and publishing with team features.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.postiz.com/quickstart",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://github.com/gitroomhq/postiz-app",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript",
+      "next.js",
+      "nestjs",
+      "prisma",
+      "postgresql",
+      "temporal"
+    ],
+    "categories": [
+      "social-media"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/hootsuite",
+      "https://github.com/gitroomhq/postiz-app"
+    ]
+  },
+  {
+    "slug": "mixpost",
+    "existing": true,
+    "name": "Mixpost",
+    "repo": "inovector/mixpost",
+    "homepage": "https://mixpost.app",
+    "why": "Self-hosted social media management tool; Lite is MIT, Pro is paid.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Scheduling and publishing across platforms with a calendar; some features need Pro.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.mixpost.app/lite/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "php",
+      "laravel"
+    ],
+    "categories": [
+      "social-media"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/hootsuite",
+      "https://github.com/inovector/mixpost"
+    ]
+  },
+  {
+    "slug": "trypost",
+    "existing": false,
+    "name": "TryPost",
+    "repo": "trypostit/trypost",
+    "homepage": "https://trypost.it",
+    "why": "Open-source social scheduler with calendar, approvals, REST API and MCP server for 13 networks.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Composer, calendar, queues and approval workflows publishing to 13 networks.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/trypostit/trypost/blob/main/DEPLOYMENT.md",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://github.com/trypostit/trypost",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "php",
+      "laravel",
+      "vue",
+      "typescript"
+    ],
+    "categories": [
+      "social-media"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/hootsuite",
+      "https://github.com/trypostit/trypost"
+    ]
+  },
+  {
+    "slug": "socioboard",
+    "existing": false,
+    "name": "Socioboard",
+    "repo": "Socioboard/Socioboard-5.0",
+    "homepage": "https://socioboard.org",
+    "why": "Open-source social media management, analytics and reporting platform covering nine networks.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Scheduling and analytics across accounts; maintenance level not checked.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/Socioboard/Socioboard-5.0",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://github.com/Socioboard/Socioboard-5.0",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "ansible"
+    ],
+    "stack": [
+      "node.js",
+      "express",
+      "php"
+    ],
+    "categories": [
+      "social-media"
+    ],
+    "evidenceUrls": [
+      "https://postiz.com/blog/open-source-social-media-scheduler",
+      "https://github.com/Socioboard/Socioboard-5.0"
+    ]
+  },
+  {
+    "slug": "shoutify",
+    "existing": false,
+    "name": "Shoutify",
+    "repo": "TechSquidTV/Shoutify",
+    "homepage": "https://github.com/TechSquidTV/Shoutify",
+    "why": "Scheduler for posts, threads and direct messages; archived in May 2023.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Scheduling posts to a few networks; repository is read-only.",
+    "deploy": [],
+    "stack": [],
+    "categories": [
+      "social-media"
+    ],
+    "evidenceUrls": [
+      "https://postiz.com/blog/open-source-social-media-scheduler"
+    ]
+  },
+  {
+    "slug": "threaduler",
+    "existing": false,
+    "name": "Threaduler",
+    "repo": "maikroservice/threaduler",
+    "homepage": "https://github.com/maikroservice/threaduler",
+    "why": "Notion-integrated scheduler for threads on X and Bluesky, in alpha.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Thread scheduling for two networks only.",
+    "deploy": [],
+    "stack": [],
+    "categories": [
+      "social-media"
+    ],
+    "evidenceUrls": [
+      "https://postiz.com/blog/open-source-social-media-scheduler"
+    ]
+  }
+]

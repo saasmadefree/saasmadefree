@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted visual automation tool that connects web apps, an open-source Zapier alternative.",
+  "description": "Automatisch lets you connect web services into automated flows without writing code. You choose a trigger app, add actions, and the server runs the flow. Because it runs on your own machine, credentials and data stay on your side, which the project presents as its main reason to exist. Installation is documented for Docker Compose and plain Docker: clone the repository and run docker compose up. The first login uses a default sample account that you must change in the settings. Two environment variables matter a lot. ENCRYPTION_KEY protects stored third-party credentials and WEBHOOK_SECRET_KEY verifies webhook calls, and changing either breaks existing connections and flows. The core is AGPL-3.0 licensed, while files with .ee. in their name fall under a commercial enterprise licence. The integration list is browsable in the docs and new ones can be requested through GitHub issues. It is a close match for simple trigger-action automations, but it is a smaller project than Zapier or n8n, so check that the apps you need are supported before moving. Other install methods than Docker are not documented yet.",
+  "strengths": [
+    "Starts with a single docker compose up command from the cloned repository",
+    "Stores connection credentials on your own server, encrypted with a key you control",
+    "Documents each supported app with its triggers and actions",
+    "New integrations can be requested through GitHub issues, and the docs include a guide to build one",
+    "Licence split is explicit: AGPL-3.0 core, with enterprise files marked by .ee. in the name"
+  ],
+  "limits": [
+    "Only Docker and Docker Compose installs are documented",
+    "Changing ENCRYPTION_KEY or WEBHOOK_SECRET_KEY later breaks existing connections and flows",
+    "Ships with a default sample login that must be changed after first start",
+    "Some files fall under a commercial enterprise licence, so not everything in the repository is AGPL"
+  ],
+  "bestFor": "A non-developer or small business owner with a VPS who runs a handful of simple app-to-app automations and wants the data kept in house."
+}

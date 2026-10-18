@@ -1,0 +1,31 @@
+{
+  "slug": "inkscape",
+  "name": "Inkscape",
+  "homepage": "https://inkscape.org",
+  "repo": null,
+  "license": "GPL-2.0-or-later",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://gitlab.com/inkscape/inkscape/-/blob/master/COPYING",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://inkscape.org/release/",
+  "hosted": {
+    "exists": false,
+    "source": "https://inkscape.org",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "desktop"
+  ],
+  "stack": [
+    "c++"
+  ],
+  "categories": [
+    "design"
+  ],
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

@@ -13,9 +13,40 @@
   "notes": "A valuable 'no': the app isn't just product pages and a cart, and pretending otherwise would understate what actually breaks at real volume.",
   "prompt": "Build a small personal storefront for a handful of products: a catalog with images, price, and stock count, a cart kept in a session, and checkout handed off entirely to a hosted payment processor's checkout page — never touch card data on your own server, that's non-negotiable. A webhook from the payment processor records the order, decrements stock, and emails both you and the buyer a confirmation. A simple admin view behind authentication: an order list and a mark-shipped action that emails the buyer, optionally with a tracking number. Flat shipping rates per region from a config file; a sold-out product stays visible but can't be bought.\n\nDo not build discount engines, multi-currency support, point-of-sale, or tax automation — turn on your payment processor's own tax feature if you need it, don't build your own. Do not build customer accounts. If volume actually grows, the honest move is migrating to a real platform (Shopify or an open-source alternative like Medusa), not scaling this further — and the README should say so plainly, along with the fact that you are now, personally, the fraud department.",
   "faq": [
-    { "q": "Can I import my existing Shopify products and orders?", "a": "Products, yes — Shopify exports a product CSV that maps reasonably well onto a simple catalog. Order history generally doesn't need to migrate, since it's historical record, not something the new store needs to operate." },
-    { "q": "Will it work on my phone?", "a": "The storefront is a normal responsive page, so customers buying from a phone works fine. The admin view is usable in a pinch but is built for a desktop screen." },
-    { "q": "What does it cost to run?", "a": "Hosting, a domain, and a database, typically a few dollars a month, plus standard payment-processing fees per sale — no monthly platform fee at all beyond that." },
-    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "Trust at checkout, and someone else absorbing fraud risk. Shopify's checkout is recognized and trusted by shoppers, and its risk systems catch a meaningful share of fraudulent orders before they cost you money; a personal storefront has neither, and a single bad chargeback costs more than months of the subscription." }
-  ]
+    {
+      "q": "Can I import my existing Shopify products and orders?",
+      "a": "Products, yes — Shopify exports a product CSV that maps reasonably well onto a simple catalog. Order history generally doesn't need to migrate, since it's historical record, not something the new store needs to operate."
+    },
+    {
+      "q": "Will it work on my phone?",
+      "a": "The storefront is a normal responsive page, so customers buying from a phone works fine. The admin view is usable in a pinch but is built for a desktop screen."
+    },
+    {
+      "q": "What does it cost to run?",
+      "a": "Hosting, a domain, and a database, typically a few dollars a month, plus standard payment-processing fees per sale — no monthly platform fee at all beyond that."
+    },
+    {
+      "q": "What's the one thing that doesn't survive the rebuild?",
+      "a": "Trust at checkout, and someone else absorbing fraud risk. Shopify's checkout is recognized and trusted by shoppers, and its risk systems catch a meaningful share of fraudulent orders before they cost you money; a personal storefront has neither, and a single bad chargeback costs more than months of the subscription."
+    },
+    {
+      "q": "What's the best free Shopify alternative?",
+      "a": "WooCommerce is the best free Shopify alternative for a small shop owner who already runs WordPress, or has a host that does. It adds a catalogue, cart and checkout, with payment gateways and many extensions. You take on hosting, backups, security updates and payment compliance. PrestaShop is the standalone choice if you do not want WordPress."
+    },
+    {
+      "q": "Do I need a developer to run one of these stores?",
+      "a": "Spree, Medusa, Saleor and Solidus are developer platforms: changing the storefront means writing code. Bagisto and Shopware need a PHP developer for themes, upgrades and plugins, and PrestaShop needs PHP hosting skills. WooCommerce is the easiest to run without a developer if you have a WordPress host. Every option leaves hosting, security updates and payments setup to you."
+    }
+  ],
+  "alternativesIntro": "The best free Shopify alternative is WooCommerce: it adds a catalogue, cart and checkout to WordPress, with payment gateways and a marketplace of themes and extensions. You handle hosting, backups, security updates and payment compliance yourself. You lose Shopify's trusted checkout, fraud handling, point-of-sale and built-in shipping and tax. PrestaShop is the pick if you want a standalone store without WordPress. Bagisto suits a team with a Laravel developer. Medusa and Saleor suit teams that want an API-first store. If you sell more than a handful of items without technical help, keep paying $39 a month.",
+  "alternativeNotes": {
+    "bagisto": "Covers catalogue, cart, checkout and an admin panel on a Laravel stack. Theming and extensions usually need a PHP developer, and B2B and marketplace features are separate packages.",
+    "spree-commerce": "Covers catalogue, cart, checkout and admin, with marketplace and B2B tools. It is a developer platform: changing the storefront means writing code, not picking a theme.",
+    "woocommerce": "Covers catalogue, cart, checkout and payment gateways inside WordPress, with extensions for subscriptions and bookings that cost extra. You handle hosting, security updates and compliance.",
+    "prestashop": "Covers catalogue, cart, checkout and admin with themes and modules on your own server. Upgrades are not trivial, and you handle hosting and compliance.",
+    "shopware": "Covers catalogue, checkout, storefront themes and admin, extended through plugins. It needs PHP skills for installs, upgrades and plugins, and some features are sold as paid plans.",
+    "medusa": "Covers catalog, cart, orders and payment integrations that you build a storefront on. It has no hosted payments network, app store or ready-made themes.",
+    "saleor": "Covers catalog, checkout and orders through an API. You build the storefront and run the payments setup.",
+    "solidus": "Covers catalog, cart and checkout as a Rails engine you extend. It needs a developer."
+  }
 }

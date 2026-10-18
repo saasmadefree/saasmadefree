@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Hootsuite price 99 USD, plan Standard, annual-effective-monthly",
+    "url": "https://hootsuite.com/plans",
+    "retrievedOn": "2026-07-31",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "Facts about Postiz (licence, features, limits) as written in alternativeNotes.postiz-app, from data/i18n/en/projects/postiz-app.json",
+    "url": "https://github.com/gitroomhq/postiz-app",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.postiz-app"
+  },
+  {
+    "claim": "Facts about Mixpost (licence, features, limits) as written in alternativeNotes.mixpost, from data/i18n/en/projects/mixpost.json",
+    "url": "https://github.com/inovector/mixpost",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.mixpost"
+  },
+  {
+    "claim": "Facts about TryPost (licence, features, limits) as written in alternativeNotes.trypost, from data/i18n/en/projects/trypost.json",
+    "url": "https://github.com/trypostit/trypost",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.trypost"
+  },
+  {
+    "claim": "Facts about Socioboard (licence, features, limits) as written in alternativeNotes.socioboard, from data/i18n/en/projects/socioboard.json",
+    "url": "https://github.com/Socioboard-developers/Socioboard-5.0",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.socioboard"
+  },
+  {
+    "claim": "Facts about Threaduler (licence, features, limits) as written in alternativeNotes.threaduler, from data/i18n/en/projects/threaduler.json",
+    "url": "https://github.com/maikroservice/threaduler",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.threaduler"
+  },
+  {
+    "claim": "Winner Postiz: claims in alternativesIntro and FAQ 5 drawn from its README and project text",
+    "url": "https://github.com/gitroomhq/postiz-app",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[4]"
+  },
+  {
+    "claim": "FAQ 6 facts are drawn from the project texts in data/i18n/en/projects/*.json",
+    "url": "data/i18n/en/projects",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[5]"
+  }
+]

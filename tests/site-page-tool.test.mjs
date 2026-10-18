@@ -747,3 +747,99 @@ describe('Ruling 34 — liens de collection du pied de page', () => {
     expect(on).toContain('/collections/build-tonight');
   });
 });
+
+// Ruling 44 : n8n, PLANKA ou Notifuse se lisent et s'auto-hébergent, mais leur
+// licence n'est pas open source. La page le dit à côté de la licence, et le
+// titre ne compte dans « Open Source » que les licences libres.
+describe('Ruling 44 — nature de la licence', () => {
+  const SOURCE = 'https://example.org/LICENSE';
+  /** PROJECTS, avec une nature de licence posée sur certains slugs. */
+  const withKinds = (kinds) => new Map([...PROJECTS].map(([slug, p]) => [slug, kinds[slug]
+    ? { ...p, license: p.license ?? 'Custom', licenseKind: kinds[slug], licenseSource: SOURCE }
+    : p]));
+  const titleOf = (d) => text(d.querySelector('title'));
+
+  it('une alternative fair-code : hors du compte « Open Source », dans le h1', () => {
+    const d = dom(render({ projects: withKinds({ keila: 'fair-code' }) }));
+    expect(titleOf(d)).toBe('3 Free & Open Source Mailchimp Alternatives (2026) — or Build Your Own');
+    expect(text(d.querySelector('h1'))).toBe('4 free alternatives to Mailchimp');
+  });
+
+  it('open-core compte comme open source', () => {
+    const d = dom(render({ projects: withKinds({ listmonk: 'open-core', mautic: 'open-core' }) }));
+    expect(titleOf(d)).toBe('4 Free & Open Source Mailchimp Alternatives (2026) — or Build Your Own');
+  });
+
+  it('n ≥ 3 mais moins de 3 open source : titre chiffré sur n, sans « Open Source »', () => {
+    const d = dom(render({ projects: withKinds({ keila: 'source-available', postal: 'fair-code' }) }));
+    expect(titleOf(d)).toBe('4 Free Mailchimp Alternatives (2026): Self-Host One or Build Your Own');
+    expect(titleOf(d)).not.toMatch(/open source/i);
+  });
+
+  it('liste entièrement source-available : jamais « Open Source » dans le titre (en et fr)', () => {
+    const all = withKinds({ listmonk: 'source-available', mautic: 'source-available', keila: 'source-available', postal: 'fair-code' });
+    const en = dom(render({ projects: all }));
+    expect(titleOf(en)).toBe(t.titleNotOpenTemplate.replace('{n}', '4').replace('{name}', 'Mailchimp').replace('{year}', '2026'));
+    expect(titleOf(en)).not.toMatch(/open source/i);
+    const fr = dom(render({ lang: 'fr', projects: all }));
+    const tf = UI.fr.site.tool;
+    expect(titleOf(fr)).toBe(tf.titleNotOpenTemplate.replace('{n}', '4').replace('{name}', 'Mailchimp').replace('{year}', '2026'));
+    expect(titleOf(fr)).not.toMatch(/open source/i);
+  });
+
+  it('moins de 3 alternatives, toutes source-available : le repli habituel, sans « Open Source »', () => {
+    const few = dom(render({
+      tool: { ...tool, alternatives: tool.alternatives.slice(0, 3) },
+      projects: withKinds({ listmonk: 'source-available', mautic: 'source-available' }),
+    }));
+    expect(titleOf(few)).toBe('Free Mailchimp Alternatives (2026): Self-Host or Build Your Own');
+  });
+
+  it('tableau et fiche projet : la nature à côté de la licence, avec son explication en title', () => {
+    const d = dom(render({ projects: withKinds({ listmonk: 'fair-code', keila: 'open-source' }) }));
+    const rows = section(d, 'alternatives-heading').querySelectorAll('table.alt-table tbody tr');
+    const cell = rows[0].querySelectorAll('td')[1];
+    expect(text(cell)).toBe('AGPL-3.0 Fair-code');
+    const tag = cell.querySelector('.license-kind');
+    expect(tag.getAttribute('data-kind')).toBe('fair-code');
+    expect(tag.getAttribute('title')).toBe(t.licenseKindNotes['fair-code']);
+    // open-source : le nom seul, rien à signaler.
+    expect(text(rows[2].querySelectorAll('td')[1])).toBe('AGPL-3.0');
+    expect(rows[2].querySelector('.license-kind')).toBeNull();
+    const card = d.querySelector('#alt-listmonk .alt-card-meta .license-kind');
+    expect(text(card)).toBe(t.licenseKindLabels['fair-code']);
+    expect(d.querySelector('#alt-keila .license-kind')).toBeNull();
+  });
+
+  it('libellés et explications en français', () => {
+    const d = dom(render({ lang: 'fr', projects: withKinds({ listmonk: 'source-available', keila: 'open-core' }) }));
+    const tf = UI.fr.site.tool;
+    const tags = [...section(d, 'alternatives-heading').querySelectorAll('table.alt-table .license-kind')];
+    expect(tags.map(text)).toEqual(['Source disponible', 'Open-core']);
+    expect(tags.map((el) => el.getAttribute('title'))).toEqual([tf.licenseKindNotes['source-available'], tf.licenseKindNotes['open-core']]);
+  });
+
+  it('JSON-LD : rien n’y affirme « open source »', () => {
+    const d = dom(render({ projects: withKinds({ listmonk: 'source-available', mautic: 'source-available', keila: 'source-available', postal: 'fair-code' }) }));
+    const list = jsonLd(d).find((x) => x['@type'] === 'ItemList');
+    expect(JSON.stringify(list)).not.toMatch(/open.?source/i);
+  });
+});
+
+// Fix round 1 : fiche dont toutes les alternatives sont source-available ou
+// fair-code — ni le titre ni les libellés de l'interface ne disent « open source ».
+describe('fiche — libellés neutres (Ruling 44)', () => {
+  const all = new Map([...PROJECTS].map(([slug, p]) => [slug, { ...p, license: p.license ?? 'Custom', licenseKind: 'source-available', licenseSource: 'https://example.org/LICENSE' }]));
+  for (const lang of ['en', 'fr']) {
+    it(`tout source-available (${lang}) : titre, menu « ways » et note sans alternative`, () => {
+      const claims = lang === 'fr' ? /open[- ]source|\blibres?\b/i : /open[- ]source/i;
+      const d = dom(render({ lang, projects: all }));
+      expect(text(d.querySelector('title'))).not.toMatch(claims);
+      expect(text(d.querySelector('nav.ways'))).not.toMatch(claims);
+      expect(text(d.querySelector('#alternatives-heading'))).not.toMatch(claims);
+      expect(text(d.querySelector('#alternatives-caption'))).not.toMatch(claims);
+      const none = dom(render({ lang, tool: { ...tool, alternatives: [] } }));
+      expect(text(section(none, 'alternatives-heading').querySelector('.intro'))).not.toMatch(claims);
+    });
+  }
+});

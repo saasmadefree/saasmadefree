@@ -1,0 +1,18 @@
+{
+  "tagline": "Desktop chat client for Windows, macOS and Linux that connects to many cloud and local language models.",
+  "description": "Cherry Studio is a desktop application, not a server: you install it on your computer and plug in your own model access. It talks to cloud providers such as OpenAI, Gemini and Anthropic, and to local runtimes such as Ollama and LM Studio. The repository also lists a separate mobile app for iOS and Android. Inside the client you get saved assistants (the project mentions more than 300 pre-configured ones), conversations that query several models at once, file handling for text, images, Office documents and PDFs, and an MCP server integration for tools. Backups can go to a WebDAV location. Because there is no hosted version and no server to run, the install is a download and an API key rather than a deployment. The code is under AGPL-3.0. It replaces the chat window of a paid assistant such as ChatGPT only in the sense of the interface: you still pay for model usage by the token with each provider, or you run a local model on your own hardware. The model itself, its quality and any built-in web features of the commercial product do not come with the client.",
+  "strengths": [
+    "One client for several providers, so you can switch between OpenAI, Gemini, Anthropic and local models in the same window",
+    "Sends one prompt to several models in parallel and shows the answers side by side",
+    "Works with local runtimes such as Ollama and LM Studio, which keeps prompts on your machine",
+    "Ships installers for Windows, macOS and Linux, with no server or environment to set up",
+    "Supports Model Context Protocol servers, so assistants can call external tools"
+  ],
+  "limits": [
+    "Desktop client only: there is no multi-user web server, so a team cannot share one instance the way it shares a ChatGPT workspace",
+    "No model included: you bring API keys or run local models, and usage is billed by each provider",
+    "Features listed on the roadmap, such as deep research, a plugin system and speech recognition, were not yet shipped when the README was read",
+    "Enterprise features such as central model management are a separate commercial edition, not part of the community client"
+  ],
+  "bestFor": "A developer or power user who already holds API keys from several providers and wants one desktop window to use them all."
+}

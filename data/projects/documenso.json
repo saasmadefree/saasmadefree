@@ -1,26 +1,46 @@
 {
   "slug": "documenso",
   "name": "Documenso",
-  "homepage": "https://github.com/documenso/documenso",
+  "homepage": "https://documenso.com",
   "repo": "documenso/documenso",
   "license": "AGPL-3.0",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/documenso/documenso/blob/HEAD/LICENSE",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.documenso.com/developers/self-hosting",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 0,
+    "currency": "USD",
+    "source": "https://documenso.com/pricing",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker",
+    "kubernetes",
+    "railway"
+  ],
+  "stack": [
+    "typescript",
+    "react-router",
+    "hono",
+    "prisma",
+    "postgresql"
+  ],
   "categories": [
     "documents"
   ],
   "stats": {
-    "stars": 15445,
+    "stars": 15452,
     "lastCommit": "2026-10-16",
     "createdAt": "2023-03-12",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
-    "en"
+    "en",
+    "fr"
   ]
 }

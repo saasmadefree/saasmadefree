@@ -1,0 +1,16 @@
+{
+  "tagline": "Self-hosted marketing automation platform for contacts, segments, forms and email campaigns, written in PHP.",
+  "description": "Mautic is an open-source marketing automation platform. It manages contacts and segments, sends email campaigns, and runs multi-channel campaigns, with unlimited segmentation and automation according to the project. Its source file states the licence is GPL v3. You can install the production package from a zip, or use Composer on the command line, and then finish with a web installer. A DDEV configuration is in the repository for local trials. Mautic needs PHP and a database server, and PHP's max_execution_time should be at least 240 seconds. For larger sending volumes, the docs advise queuing emails and sending them through a cron job. The project also offers hosted trials through a request form, so a managed route exists. Compared with Mailchimp, Mautic goes further on automation, but it is much heavier to run than a newsletter tool such as Listmonk. Plan for cron jobs, upgrades through the command line and regular care of the server.",
+  "strengths": [
+    "Marketing automation, segments and email campaigns in one product.",
+    "Your own database holds all contact data.",
+    "Install as a zip with web installer, or by Composer on the command line.",
+    "DDEV configuration included for a quick local start.",
+    "Email queuing through cron helps with larger send volumes."
+  ],
+  "limits": [
+    "Heavy to run: needs PHP, a database server, cron jobs and a max_execution_time of at least 240 seconds.",
+    "Source outside a tagged release is labelled alpha and may cause data loss; installs from GitHub need Composer and command-line skills."
+  ],
+  "bestFor": "A marketing team with a sysadmin that needs contact tracking and automation beyond newsletters, on its own server."
+}

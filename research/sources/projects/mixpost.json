@@ -1,0 +1,68 @@
+[
+  {
+    "claim": "Mixpost Lite is a social media management platform with a calendar, media library, post versions and basic analytics",
+    "url": "https://mixpost.app/pricing",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Lite installs with Docker, manual PHP installation, or inside an existing Laravel app",
+    "url": "https://docs.mixpost.app/lite/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docs recommend a public domain or subdomain because Mixpost talks to social platform servers",
+    "url": "https://docs.mixpost.app/lite/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Lite requires PHP ^8.2",
+    "url": "https://raw.githubusercontent.com/inovector/mixpost/HEAD/composer.json",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Repository contains the Lite version of Mixpost Pro, a commercial product",
+    "url": "https://raw.githubusercontent.com/inovector/mixpost/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Mixpost Cloud is the same tool hosted by the vendor",
+    "url": "https://mixpost.app/pricing",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Pro costs $299 (one-time payment, 1 domain or subdomain) and adds all platforms, approval flow, API, MCP",
+    "url": "https://mixpost.app/pricing",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Lite publishes on Facebook Pages, Mastodon profiles and X profiles; Pro publishes on all social platforms",
+    "url": "https://mixpost.app/pricing",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Approval flow, first comment, hashtag manager, post templates, API and MCP are Pro features",
+    "url": "https://mixpost.app/pricing",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Contributors must keep Lite features distinct from Pro; open an issue first",
+    "url": "https://raw.githubusercontent.com/inovector/mixpost/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Licence MIT for the Lite repository",
+    "url": "https://api.github.com/repos/inovector/mixpost",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

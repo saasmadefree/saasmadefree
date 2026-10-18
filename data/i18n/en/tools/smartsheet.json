@@ -27,6 +27,20 @@
     {
       "q": "Does Smartsheet export preserve the project structure?",
       "a": "Partly. Excel and CSV exports carry the values, and the hierarchy comes across as indentation that other tools mostly ignore. Predecessors export as text you can parse, which is why the prompt asks for a documented round-trip format."
+    },
+    {
+      "q": "What's the best free Smartsheet alternative?",
+      "a": "OpenProject is the best fit: Gantt scheduling, Kanban, Scrum and time tracking in one GPL-3.0 application you host yourself. Leantime is the lighter option with goals and timesheets in its free version. Neither copies Smartsheet's spreadsheet interface or its enterprise approval controls."
+    },
+    {
+      "q": "Can I give outside people limited access like Smartsheet's free contributors?",
+      "a": "Partly. Smartsheet's Pro plan includes unlimited free contributors. OpenProject, the best fit here, has per-project roles. Redmine sets roles per project too, so a person can be a viewer on one project and a manager on another, and Leantime has per-project permissions. None offers Smartsheet's free-contributor pricing model, because you pay in server upkeep instead."
     }
-  ]
+  ],
+  "alternativesIntro": "The best free Smartsheet alternative is OpenProject: it covers Gantt scheduling, Kanban, Scrum, time tracking and cost reporting, and it is GPL-3.0 software you host yourself. You lose Smartsheet's spreadsheet feel, its connectors into Jira and Salesforce, and its proofing and approval controls. Some OpenProject features are Enterprise add-ons, so check the list before you commit. Leantime is the lighter pick for a small team that wants goals and timesheets for free. Building your own is a week of work, not a weekend, so it pays off only if you need one narrow project view. Keep paying if finance staff expect a sheet.",
+  "alternativeNotes": {
+    "openproject": "Covers Gantt scheduling, Kanban, Scrum, time tracking and budgets, with Nextcloud, GitHub and GitLab integrations. Some features are Enterprise add-ons, and the admin load is heavier than board tools.",
+    "leantime": "Covers kanban, gantt, table, list and calendar views, plus goals, canvases and timesheets in the free version. It needs MySQL or MariaDB and a long list of PHP extensions.",
+    "redmine": "Covers issues, Gantt charts, time tracking and wikis, with roles set per project. Installation is manual and Kanban boards need third-party plugins."
+  }
 }

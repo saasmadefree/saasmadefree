@@ -1,0 +1,41 @@
+{
+  "slug": "graphite",
+  "name": "Graphite",
+  "homepage": "https://graphite.art",
+  "repo": "GraphiteEditor/Graphite",
+  "license": "Apache-2.0 OR MIT",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/GraphiteEditor/Graphite#license",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://graphite.art/",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 0,
+    "currency": "USD",
+    "source": "https://graphite.art/",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "desktop"
+  ],
+  "stack": [
+    "rust",
+    "webassembly"
+  ],
+  "categories": [
+    "design"
+  ],
+  "stats": {
+    "stars": 27635,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2020-04-26",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

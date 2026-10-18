@@ -1,0 +1,40 @@
+{
+  "slug": "flowblade",
+  "name": "Flowblade",
+  "homepage": "https://jliljebl.github.io/flowblade/",
+  "repo": "jliljebl/flowblade",
+  "license": "GPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/jliljebl/flowblade/blob/HEAD/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/jliljebl/flowblade/blob/master/flowblade-trunk/docs/INSTALLING.md",
+  "hosted": {
+    "exists": false,
+    "source": "https://jliljebl.github.io/flowblade/",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "flatpak"
+  ],
+  "stack": [
+    "python",
+    "mlt",
+    "ffmpeg"
+  ],
+  "categories": [
+    "audio-video"
+  ],
+  "stats": {
+    "stars": 3096,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2015-04-01",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

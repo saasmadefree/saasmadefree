@@ -1,0 +1,80 @@
+[
+  {
+    "claim": "Calendly price 12 USD, plan Standard, per-seat-monthly",
+    "url": "https://calendly.com/pricing",
+    "retrievedOn": "2026-07-30",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "Four projects are rated full. Tymeslot's description lists the features Calendly users lose in a rebuild (video links, reminders, multi-calendar conflict checks), while Cal.diy's maintainers advise personal, non-production use only and it removes Teams and SAML SSO.",
+    "url": "research/alternatives/calendly.json",
+    "retrievedOn": "2026-10-18",
+    "field": "alternatives order"
+  },
+  {
+    "claim": "Facts about Tymeslot (licence, features, limits) as written in alternativeNotes.tymeslot, from data/i18n/en/projects/tymeslot.json",
+    "url": "https://github.com/Tymeslot/tymeslot",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.tymeslot"
+  },
+  {
+    "claim": "Facts about Cal.diy (licence, features, limits) as written in alternativeNotes.cal-com, from data/i18n/en/projects/cal-com.json",
+    "url": "https://github.com/calcom/cal.diy",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.cal-com"
+  },
+  {
+    "claim": "Facts about Calnode (licence, features, limits) as written in alternativeNotes.calnode, from data/i18n/en/projects/calnode.json",
+    "url": "https://github.com/Calnode/calnode",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.calnode"
+  },
+  {
+    "claim": "Facts about Easy!Appointments (licence, features, limits) as written in alternativeNotes.easyappointments, from data/i18n/en/projects/easyappointments.json",
+    "url": "https://github.com/alextselegidis/easyappointments",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.easyappointments"
+  },
+  {
+    "claim": "Facts about Thunderbird Appointment (licence, features, limits) as written in alternativeNotes.thunderbird-appointment, from data/i18n/en/projects/thunderbird-appointment.json",
+    "url": "https://github.com/thunderbird/appointment",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.thunderbird-appointment"
+  },
+  {
+    "claim": "Facts about CloudMeet (licence, features, limits) as written in alternativeNotes.cloudmeet, from data/i18n/en/projects/cloudmeet.json",
+    "url": "https://github.com/dennisklappe/CloudMeet",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.cloudmeet"
+  },
+  {
+    "claim": "Winner Tymeslot: claims in alternativesIntro and FAQ 5 drawn from its README and project text",
+    "url": "https://github.com/Tymeslot/tymeslot",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[4]"
+  },
+  {
+    "claim": "FAQ 6 facts are drawn from the project texts in data/i18n/en/projects/*.json",
+    "url": "data/i18n/en/projects",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[5]"
+  },
+  {
+    "claim": "Tymeslot README: Slack and Telegram notifications plus meeting_created, meeting_cancelled and meeting_rescheduled webhooks (so Slack is notifications only; no native CRM integrations listed)",
+    "url": "https://raw.githubusercontent.com/Tymeslot/tymeslot/main/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "Calnode documents fixed, round-robin, collective and priority routing",
+    "url": "https://github.com/Calnode/calnode",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "Tymeslot creates Meet, Teams, Zoom and Jitsi rooms; whatYouLose[0] now says a DIY build must wire video APIs itself",
+    "url": "https://github.com/Tymeslot/tymeslot",
+    "retrievedOn": "2026-10-18",
+    "field": "whatYouLose[0]"
+  }
+]

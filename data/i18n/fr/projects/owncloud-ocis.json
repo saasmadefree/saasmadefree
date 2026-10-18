@@ -1,0 +1,18 @@
+{
+  "tagline": "Synchro et partage de fichiers en Go, en un seul conteneur ou binaire, du petit serveur à Kubernetes.",
+  "description": "ownCloud Infinite Scale, ou oCIS, est un serveur de synchro et de partage de fichiers écrit en Go sous licence Apache 2.0. Tu l’installes sous la forme d’un exécutable ou d’un conteneur. Une petite carte comme un Raspberry Pi peut l’héberger, et le même code peut ensuite se répartir sur un cluster Kubernetes, une fois les réglages adaptés et davantage de services lancés. Le README montre un démarrage rapide avec Docker : une étape d’initialisation, puis une étape de lancement qui écoute sur le port 9200. Les clients web, Android, iOS et bureau se synchronisent par WebDAV et les API CS3, et le client web se trouve dans le même dépôt. La connexion passe par OpenID Connect, avec Keycloak ou un fournisseur d’identité intégré. L’édition collaborative de documents est possible avec Collabora Online, OnlyOffice ou Microsoft Office Online Server, reliés par une passerelle WOPI. Pour remplacer Dropbox Plus, il couvre la synchro et le partage ; la suite bureautique est un composant à part que tu dois faire tourner. Certaines versions publiées par ownCloud GmbH sont soumises à un contrat de licence utilisateur final.",
+  "strengths": [
+    "Un seul binaire ou conteneur, pour les petites comme pour les grandes installations",
+    "Clients officiels web, Android, iOS et bureau",
+    "Connexion OpenID Connect avec un fournisseur intégré",
+    "Édition de documents via Collabora, OnlyOffice ou Microsoft Office Online Server",
+    "Apache 2.0, sans accord de contributeur"
+  ],
+  "limits": [
+    "L’édition de documents demande un serveur bureautique séparé, relié par WOPI",
+    "Certaines versions stables d’ownCloud GmbH sont soumises à un contrat de licence utilisateur final",
+    "L’architecture en plusieurs services ajoute du travail de configuration quand tu montes en charge",
+    "Le démarrage rapide du README utilise un réglage non sécurisé, prévu pour l’évaluation seulement"
+  ],
+  "bestFor": "Une organisation dont l’administrateur est à l’aise avec Docker ou Kubernetes, et qui veut du partage à la Dropbox sur sa propre infrastructure."
+}

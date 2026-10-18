@@ -26,7 +26,31 @@
   ],
   "alternatives": [
     {
+      "project": "wekan",
+      "fit": "full"
+    },
+    {
+      "project": "planka",
+      "fit": "full"
+    },
+    {
+      "project": "kan",
+      "fit": "full"
+    },
+    {
       "project": "plane",
+      "fit": "partial"
+    },
+    {
+      "project": "openproject",
+      "fit": "partial"
+    },
+    {
+      "project": "leantime",
+      "fit": "partial"
+    },
+    {
+      "project": "vikunja",
       "fit": "partial"
     }
   ],

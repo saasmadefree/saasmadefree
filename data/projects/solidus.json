@@ -1,0 +1,39 @@
+{
+  "slug": "solidus",
+  "name": "Solidus",
+  "homepage": "https://solidus.io",
+  "repo": "solidusio/solidus",
+  "license": "BSD-3-Clause",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/solidusio/solidus/blob/main/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/solidusio/solidus#readme",
+  "hosted": {
+    "exists": false,
+    "source": "https://solidus.io/",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "manual"
+  ],
+  "stack": [
+    "ruby",
+    "rails"
+  ],
+  "categories": [
+    "creator-commerce"
+  ],
+  "stats": {
+    "stars": 5344,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2015-02-18",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

@@ -23,12 +23,7 @@
   "requirements": [
     "none"
   ],
-  "alternatives": [
-    {
-      "project": "anki",
-      "fit": "partial"
-    }
-  ],
+  "alternatives": [],
   "relatedSlugs": [
     "babbel",
     "busuu-premium",

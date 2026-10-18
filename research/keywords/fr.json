@@ -1,0 +1,6728 @@
+{
+ "1password": {
+  "queryName": "1password",
+  "kd": {
+   "gratuit": 44
+  },
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 90
+ },
+ "accuranker": {
+  "queryName": "accuranker",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "activecampaign": {
+  "queryName": "activecampaign",
+  "kd": {},
+  "absent": [
+   "gratuit"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "activepieces-cloud": {
+  "queryName": "activepieces",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "adalo": {
+  "queryName": "adalo",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "adobe-acrobat-pro": {
+  "queryName": "adobe acrobat",
+  "kd": {
+   "alternative": 17,
+   "alt_en": 17,
+   "gratuit": 66
+  },
+  "absent": [],
+  "alternative": 140,
+  "alternative_a": 30,
+  "alt_en": 140,
+  "gratuit": 2400
+ },
+ "adobe-express": {
+  "queryName": "adobe express",
+  "kd": {
+   "gratuit": 45
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 1900
+ },
+ "adobe-lightroom": {
+  "queryName": "adobe lightroom",
+  "kd": {
+   "gratuit": 53
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 110
+ },
+ "aftershoot": {
+  "queryName": "aftershoot",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "ahrefs": {
+  "queryName": "ahrefs",
+  "kd": {
+   "alternative_a": 31,
+   "alt_en": 29,
+   "gratuit": 60
+  },
+  "absent": [],
+  "alternative": 40,
+  "alternative_a": 70,
+  "alt_en": 50,
+  "gratuit": 140
+ },
+ "airmail": {
+  "queryName": "airmail",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "airtable": {
+  "queryName": "airtable",
+  "kd": {
+   "alternative": 13,
+   "alt_en": 13,
+   "gratuit": 33
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 50,
+  "alternative_a": 0,
+  "alt_en": 110,
+  "gratuit": 320
+ },
+ "akiflow": {
+  "queryName": "akiflow",
+  "kd": {},
+  "absent": [
+   "alternative"
+  ],
+  "alternative": 0,
+  "alternative_a": 10,
+  "alt_en": 0,
+  "gratuit": 10
+ },
+ "albato": {
+  "queryName": "albato",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "alitu": {
+  "queryName": "alitu",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "alltrails-plus": {
+  "queryName": "alltrails",
+  "kd": {
+   "gratuit": 31
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 390
+ },
+ "amazing-marvin": {
+  "queryName": "amazing marvin",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "amie": {
+  "queryName": "amie",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "amplitude": {
+  "queryName": "amplitude",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "anydo": {
+  "queryName": "any.do",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 20
+ },
+ "anylist-complete": {
+  "queryName": "anylist",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "anytype": {
+  "queryName": "anytype",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "anyword": {
+  "queryName": "anyword",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "apollo-io": {
+  "queryName": "apollo",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "apple-music": {
+  "queryName": "apple music",
+  "kd": {
+   "gratuit": 47
+  },
+  "absent": [],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 3600
+ },
+ "appsheet": {
+  "queryName": "appsheet",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "appsmith-cloud": {
+  "queryName": "appsmith",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "arcade": {
+  "queryName": "arcade",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "asana": {
+  "queryName": "asana",
+  "kd": {
+   "alternative": 14,
+   "alt_en": 18,
+   "gratuit": 48
+  },
+  "absent": [],
+  "alternative": 50,
+  "alternative_a": 0,
+  "alt_en": 110,
+  "gratuit": 210
+ },
+ "attio": {
+  "queryName": "attio",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "audible-premium-plus": {
+  "queryName": "audible",
+  "kd": {
+   "alternative": 21,
+   "alt_en": 16,
+   "gratuit": 44
+  },
+  "absent": [],
+  "alternative": 70,
+  "alternative_a": 20,
+  "alt_en": 50,
+  "gratuit": 5400
+ },
+ "aurelius": {
+  "queryName": "aurelius",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "avoma": {
+  "queryName": "avoma",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "axiom": {
+  "queryName": "axiom",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "babbel": {
+  "queryName": "babbel",
+  "kd": {
+   "gratuit": 47
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 1300
+ },
+ "backblaze-personal-backup": {
+  "queryName": "backblaze",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "bardeen": {
+  "queryName": "bardeen",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "basecamp": {
+  "queryName": "basecamp",
+  "kd": {},
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "baserow-cloud": {
+  "queryName": "baserow",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "bear-pro": {
+  "queryName": "bear",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "beautiful-ai": {
+  "queryName": "beautiful.ai",
+  "kd": {
+   "gratuit": 24
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 50
+ },
+ "beehiiv": {
+  "queryName": "beehiiv",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "bettermode": {
+  "queryName": "bettermode",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "bigcommerce": {
+  "queryName": "bigcommerce",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "bigin": {
+  "queryName": "bigin",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "bitly": {
+  "queryName": "bitly",
+  "kd": {
+   "gratuit": 34
+  },
+  "absent": [],
+  "alternative": 40,
+  "alternative_a": 0,
+  "alt_en": 40,
+  "gratuit": 390
+ },
+ "bitwarden": {
+  "queryName": "bitwarden",
+  "kd": {
+   "gratuit": 51
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 260
+ },
+ "bolt-new": {
+  "queryName": "bolt.new",
+  "kd": {
+   "alternative": 17,
+   "alt_en": 15
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 260,
+  "alternative_a": 0,
+  "alt_en": 140,
+  "gratuit": 20
+ },
+ "brevo": {
+  "queryName": "brevo",
+  "kd": {
+   "gratuit": 35
+  },
+  "absent": [],
+  "alternative": 40,
+  "alternative_a": 20,
+  "alt_en": 40,
+  "gratuit": 210
+ },
+ "brilliant": {
+  "queryName": "brilliant",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "bubble": {
+  "queryName": "bubble",
+  "kd": {
+   "gratuit": 53
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 1600
+ },
+ "buffer": {
+  "queryName": "buffer",
+  "kd": {},
+  "absent": [],
+  "alternative": 30,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "busuu-premium": {
+  "queryName": "busuu",
+  "kd": {
+   "gratuit": 52
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 480
+ },
+ "buttondown": {
+  "queryName": "buttondown",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "buzzsprout": {
+  "queryName": "buzzsprout",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "cal-com-teams": {
+  "queryName": "cal.com",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "calendly": {
+  "queryName": "calendly",
+  "kd": {
+   "alternative": 18,
+   "alt_en": 27,
+   "gratuit": 23
+  },
+  "absent": [],
+  "alternative": 90,
+  "alternative_a": 20,
+  "alt_en": 90,
+  "gratuit": 2400
+ },
+ "calm": {
+  "queryName": "calm",
+  "kd": {},
+  "absent": [
+   "alternative"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "campaign-monitor": {
+  "queryName": "campaign monitor",
+  "kd": {},
+  "absent": [
+   "alternative"
+  ],
+  "alternative": 0,
+  "alternative_a": 10,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "canary-mail": {
+  "queryName": "canary mail",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "canny": {
+  "queryName": "canny",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "canva": {
+  "queryName": "canva",
+  "kd": {
+   "alternative": 23,
+   "alternative_a": 19,
+   "alt_en": 27,
+   "gratuit": 48
+  },
+  "absent": [],
+  "alternative": 210,
+  "alternative_a": 90,
+  "alt_en": 1600,
+  "gratuit": 110000
+ },
+ "capacities": {
+  "queryName": "capacities",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "capcut": {
+  "queryName": "capcut",
+  "kd": {
+   "alternative": 22,
+   "alternative_a": 20,
+   "alt_en": 27,
+   "gratuit": 53
+  },
+  "absent": [],
+  "alternative": 140,
+  "alternative_a": 50,
+  "alt_en": 170,
+  "gratuit": 9900
+ },
+ "capsule-crm": {
+  "queryName": "capsule",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "captions-ai": {
+  "queryName": "captions",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "capture-one": {
+  "queryName": "capture one",
+  "kd": {
+   "gratuit": 31
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 90
+ },
+ "careerflow": {
+  "queryName": "careerflow",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "carrd": {
+  "queryName": "carrd",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "caspio": {
+  "queryName": "caspio",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "castmagic": {
+  "queryName": "castmagic",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "chatgpt": {
+  "queryName": "chatgpt",
+  "kd": {
+   "alternative": 56,
+   "alternative_a": 58,
+   "alt_en": 64,
+   "gratuit": 80
+  },
+  "absent": [],
+  "alternative": 1600,
+  "alternative_a": 390,
+  "alt_en": 880,
+  "gratuit": 246000
+ },
+ "chatwoot-cloud": {
+  "queryName": "chatwoot",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "checkly": {
+  "queryName": "checkly",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "circle": {
+  "queryName": "circle",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "claude": {
+  "queryName": "claude",
+  "kd": {
+   "alt_en": 12,
+   "gratuit": 50
+  },
+  "absent": [],
+  "alternative": 30,
+  "alternative_a": 10,
+  "alt_en": 50,
+  "gratuit": 1300
+ },
+ "clay": {
+  "queryName": "clay",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "cleanmymac": {
+  "queryName": "cleanmymac",
+  "kd": {
+   "gratuit": 36
+  },
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 390
+ },
+ "clearscope": {
+  "queryName": "clearscope",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "clickup": {
+  "queryName": "clickup",
+  "kd": {
+   "gratuit": 38
+  },
+  "absent": [],
+  "alternative": 30,
+  "alternative_a": 40,
+  "alt_en": 20,
+  "gratuit": 110
+ },
+ "clipdrop": {
+  "queryName": "clipdrop",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "clockify": {
+  "queryName": "clockify",
+  "kd": {
+   "gratuit": 32
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 210
+ },
+ "clockwise": {
+  "queryName": "clockwise",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "close-crm": {
+  "queryName": "close",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "coda": {
+  "queryName": "coda",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "codesandbox": {
+  "queryName": "codesandbox",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "colossyan": {
+  "queryName": "colossyan",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "constant-contact": {
+  "queryName": "constant contact",
+  "kd": {},
+  "absent": [
+   "gratuit"
+  ],
+  "alternative": 10,
+  "alternative_a": 10,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "copilot-money": {
+  "queryName": "copilot money",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "copper-crm": {
+  "queryName": "copper",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "copy-ai": {
+  "queryName": "copy.ai",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "cozi-gold": {
+  "queryName": "cozi",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "craft": {
+  "queryName": "craft",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "crisp": {
+  "queryName": "crisp",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "cronometer-gold": {
+  "queryName": "cronometer",
+  "kd": {
+   "gratuit": 31
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 70
+ },
+ "crouton": {
+  "queryName": "crouton",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "crowdcast": {
+  "queryName": "crowdcast",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "crowdin": {
+  "queryName": "crowdin",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "cursor": {
+  "queryName": "cursor",
+  "kd": {
+   "alt_en": 22,
+   "gratuit": 26
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 210,
+  "gratuit": 110
+ },
+ "d-id": {
+  "queryName": "d-id",
+  "kd": {
+   "gratuit": 16
+  },
+  "absent": [],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 90
+ },
+ "dabble": {
+  "queryName": "dabble",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "dashlane": {
+  "queryName": "dashlane",
+  "kd": {
+   "alternative": 22,
+   "gratuit": 38
+  },
+  "absent": [],
+  "alternative": 50,
+  "alternative_a": 10,
+  "alt_en": 40,
+  "gratuit": 170
+ },
+ "datadog": {
+  "queryName": "datadog",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "deel": {
+  "queryName": "deel",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "deepl-pro": {
+  "queryName": "deepl",
+  "kd": {
+   "gratuit": 67
+  },
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 10,
+  "alt_en": 20,
+  "gratuit": 390
+ },
+ "deleteme": {
+  "queryName": "deleteme",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "demio": {
+  "queryName": "demio",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "descript": {
+  "queryName": "descript",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 30,
+  "gratuit": 20
+ },
+ "dochub": {
+  "queryName": "dochub",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "docusign": {
+  "queryName": "docusign",
+  "kd": {
+   "alternative": 24,
+   "alt_en": 29,
+   "gratuit": 44
+  },
+  "absent": [],
+  "alternative": 110,
+  "alternative_a": 0,
+  "alt_en": 90,
+  "gratuit": 1600
+ },
+ "doodle": {
+  "queryName": "doodle",
+  "kd": {
+   "alternative": 16,
+   "alternative_a": 12,
+   "alt_en": 18,
+   "gratuit": 62
+  },
+  "absent": [],
+  "alternative": 210,
+  "alternative_a": 90,
+  "alt_en": 210,
+  "gratuit": 5400
+ },
+ "doola": {
+  "queryName": "doola",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "dorik": {
+  "queryName": "dorik",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "draftbit": {
+  "queryName": "draftbit",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "drafts-pro": {
+  "queryName": "drafts",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "drip": {
+  "queryName": "drip",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "dropbox-plus": {
+  "queryName": "dropbox",
+  "kd": {
+   "alternative": 16,
+   "alternative_a": 15,
+   "alt_en": 16,
+   "gratuit": 70
+  },
+  "absent": [],
+  "alternative": 140,
+  "alternative_a": 140,
+  "alt_en": 140,
+  "gratuit": 4400
+ },
+ "duda": {
+  "queryName": "duda",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "duolingo-super": {
+  "queryName": "duolingo",
+  "kd": {
+   "alternative": 14,
+   "alt_en": 13,
+   "gratuit": 40
+  },
+  "absent": [],
+  "alternative": 110,
+  "alternative_a": 20,
+  "alt_en": 70,
+  "gratuit": 6600
+ },
+ "ecwid": {
+  "queryName": "ecwid",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 50
+ },
+ "elevenlabs": {
+  "queryName": "elevenlabs",
+  "kd": {
+   "gratuit": 34
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 320
+ },
+ "elsa-speak": {
+  "queryName": "elsa speak",
+  "kd": {
+   "gratuit": 19
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 70
+ },
+ "emailoctopus": {
+  "queryName": "emailoctopus",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "enhancv": {
+  "queryName": "enhancv",
+  "kd": {
+   "gratuit": 19
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 50
+ },
+ "enpass": {
+  "queryName": "enpass",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "ente-photos": {
+  "queryName": "ente photos",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "equals": {
+  "queryName": "equals",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "everand": {
+  "queryName": "everand",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "evernote": {
+  "queryName": "evernote",
+  "kd": {
+   "alternative": 18,
+   "alt_en": 13,
+   "gratuit": 45
+  },
+  "absent": [],
+  "alternative": 50,
+  "alternative_a": 30,
+  "alt_en": 70,
+  "gratuit": 590
+ },
+ "factorial-hr": {
+  "queryName": "factorial",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 30,
+  "alternative_a": 0,
+  "alt_en": 30,
+  "gratuit": 0
+ },
+ "familywall-premium": {
+  "queryName": "familywall",
+  "kd": {
+   "gratuit": 24
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 90
+ },
+ "fantastical": {
+  "queryName": "fantastical",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "fastmail": {
+  "queryName": "fastmail",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "fathom-ai": {
+  "queryName": "fathom",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 10
+ },
+ "fathom-analytics": {
+  "queryName": "fathom analytics",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "fathom-hq": {
+  "queryName": "fathom hq",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "feathery": {
+  "queryName": "feathery",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "featurebase": {
+  "queryName": "featurebase",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "feedly": {
+  "queryName": "feedly",
+  "kd": {
+   "gratuit": 43
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 30,
+  "alternative_a": 0,
+  "alt_en": 30,
+  "gratuit": 320
+ },
+ "figma": {
+  "queryName": "figma",
+  "kd": {
+   "alternative": 28,
+   "alt_en": 24,
+   "gratuit": 49
+  },
+  "absent": [],
+  "alternative": 50,
+  "alternative_a": 20,
+  "alt_en": 90,
+  "gratuit": 170
+ },
+ "fillout": {
+  "queryName": "fillout",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "fireflies-ai": {
+  "queryName": "fireflies.ai",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "fitbod": {
+  "queryName": "fitbod",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "flair-ai": {
+  "queryName": "flair ai",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 20
+ },
+ "flickr-pro": {
+  "queryName": "flickr",
+  "kd": {
+   "gratuit": 47
+  },
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 10,
+  "alt_en": 20,
+  "gratuit": 260
+ },
+ "flighty-pro": {
+  "queryName": "flighty",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "flutterflow": {
+  "queryName": "flutterflow",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "folk": {
+  "queryName": "folk",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "formstack-forms": {
+  "queryName": "formstack",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "foxit-pdf-editor": {
+  "queryName": "foxit",
+  "kd": {
+   "gratuit": 54
+  },
+  "absent": [
+   "alternative"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 140
+ },
+ "framer": {
+  "queryName": "framer",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "frase": {
+  "queryName": "frase",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "freeletics": {
+  "queryName": "freeletics",
+  "kd": {
+   "gratuit": 30
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 90
+ },
+ "freshbooks": {
+  "queryName": "freshbooks",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "freshdesk": {
+  "queryName": "freshdesk",
+  "kd": {},
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 20,
+  "alt_en": 10,
+  "gratuit": 20
+ },
+ "frill": {
+  "queryName": "frill",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "front": {
+  "queryName": "front",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 10
+ },
+ "gaia-gps": {
+  "queryName": "gaia gps",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 50
+ },
+ "gamma": {
+  "queryName": "gamma",
+  "kd": {
+   "gratuit": 49
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 30,
+  "gratuit": 210
+ },
+ "gather-town": {
+  "queryName": "gather",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "gemini": {
+  "queryName": "google gemini",
+  "kd": {
+   "gratuit": 62
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 390
+ },
+ "ghost-pro": {
+  "queryName": "ghost",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "github-copilot": {
+  "queryName": "github copilot",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 40,
+  "gratuit": 20
+ },
+ "glide": {
+  "queryName": "glide",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 30
+ },
+ "going-premium": {
+  "queryName": "going",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "goodlinks": {
+  "queryName": "goodlinks",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "google-one": {
+  "queryName": "google one",
+  "kd": {
+   "gratuit": 45
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 390
+ },
+ "google-workspace-business-starter": {
+  "queryName": "google workspace",
+  "kd": {
+   "gratuit": 48
+  },
+  "absent": [],
+  "alternative": 40,
+  "alternative_a": 20,
+  "alt_en": 20,
+  "gratuit": 1000
+ },
+ "gorgias": {
+  "queryName": "gorgias",
+  "kd": {},
+  "absent": [
+   "gratuit"
+  ],
+  "alternative": 10,
+  "alternative_a": 10,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "grammarly": {
+  "queryName": "grammarly",
+  "kd": {},
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "granola": {
+  "queryName": "granola",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 40,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "grist": {
+  "queryName": "grist",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "guidde": {
+  "queryName": "guidde",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "gumloop": {
+  "queryName": "gumloop",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "gusto": {
+  "queryName": "gusto",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "harvest": {
+  "queryName": "harvest",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "headliner": {
+  "queryName": "headliner",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "headspace": {
+  "queryName": "headspace",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "heartbeat-community": {
+  "queryName": "heartbeat",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "help-scout": {
+  "queryName": "help scout",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "hemingway-editor-plus": {
+  "queryName": "hemingway editor",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 20
+ },
+ "heroku-basic": {
+  "queryName": "heroku",
+  "kd": {
+   "alt_en": 13
+  },
+  "absent": [],
+  "alternative": 40,
+  "alternative_a": 10,
+  "alt_en": 50,
+  "gratuit": 20
+ },
+ "hevy-pro": {
+  "queryName": "hevy",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "hey-email": {
+  "queryName": "hey",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "heygen": {
+  "queryName": "heygen",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 140,
+  "gratuit": 10
+ },
+ "home-assistant-cloud": {
+  "queryName": "home assistant",
+  "kd": {},
+  "absent": [],
+  "alternative": 40,
+  "alternative_a": 0,
+  "alt_en": 50,
+  "gratuit": 30
+ },
+ "homebase": {
+  "queryName": "homebase",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "honeycomb": {
+  "queryName": "honeycomb",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "hootsuite": {
+  "queryName": "hootsuite",
+  "kd": {
+   "alternative": 28,
+   "gratuit": 33
+  },
+  "absent": [],
+  "alternative": 50,
+  "alternative_a": 20,
+  "alt_en": 30,
+  "gratuit": 320
+ },
+ "hubstaff": {
+  "queryName": "hubstaff",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "hunter-io": {
+  "queryName": "hunter",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "huntr": {
+  "queryName": "huntr",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "hypefury": {
+  "queryName": "hypefury",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "hyperwrite": {
+  "queryName": "hyperwrite",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "icloud-plus": {
+  "queryName": "icloud plus",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "ideogram": {
+  "queryName": "ideogram",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "ifttt": {
+  "queryName": "ifttt",
+  "kd": {
+   "gratuit": 17
+  },
+  "absent": [],
+  "alternative": 40,
+  "alternative_a": 0,
+  "alt_en": 30,
+  "gratuit": 140
+ },
+ "ilovepdf-premium": {
+  "queryName": "ilovepdf",
+  "kd": {
+   "gratuit": 45
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 3600
+ },
+ "incogni": {
+  "queryName": "incogni",
+  "kd": {
+   "alt_en": 22
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 480,
+  "gratuit": 20
+ },
+ "inoreader": {
+  "queryName": "inoreader",
+  "kd": {
+   "gratuit": 43
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 70
+ },
+ "instantly": {
+  "queryName": "instantly",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "instapaper-premium": {
+  "queryName": "instapaper",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "integrately": {
+  "queryName": "integrately",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "intercom": {
+  "queryName": "intercom",
+  "kd": {
+   "alternative": 25,
+   "alt_en": 23
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 50,
+  "alternative_a": 0,
+  "alt_en": 140,
+  "gratuit": 0
+ },
+ "invoice-ninja": {
+  "queryName": "invoice ninja",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "involve-me": {
+  "queryName": "involve.me",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "iubenda": {
+  "queryName": "iubenda",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "jasper": {
+  "queryName": "jasper",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "jenni-ai": {
+  "queryName": "jenni ai",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "jotform": {
+  "queryName": "jotform",
+  "kd": {
+   "gratuit": 29
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 70
+ },
+ "kajabi": {
+  "queryName": "kajabi",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "keeper-password-manager": {
+  "queryName": "keeper",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "keysearch": {
+  "queryName": "keysearch",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "kickresume": {
+  "queryName": "kickresume",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 10
+ },
+ "kit": {
+  "queryName": "kit",
+  "kd": {
+   "gratuit": 19
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 90
+ },
+ "kittl": {
+  "queryName": "kittl",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "knack": {
+  "queryName": "knack",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "koalawriter": {
+  "queryName": "koalawriter",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "komoot-premium": {
+  "queryName": "komoot",
+  "kd": {
+   "gratuit": 33
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 2900
+ },
+ "krea": {
+  "queryName": "krea",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "krisp": {
+  "queryName": "krisp",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "kumospace": {
+  "queryName": "kumospace",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "landr-studio": {
+  "queryName": "landr studio",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "languagetool": {
+  "queryName": "languagetool",
+  "kd": {
+   "gratuit": 41
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 30,
+  "gratuit": 210
+ },
+ "later": {
+  "queryName": "later",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "leadpages": {
+  "queryName": "leadpages",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 20
+ },
+ "legalzoom": {
+  "queryName": "legalzoom",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "lemlist": {
+  "queryName": "lemlist",
+  "kd": {
+   "alt_en": 14
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 140,
+  "gratuit": 20
+ },
+ "leonardo-ai": {
+  "queryName": "leonardo ai",
+  "kd": {
+   "gratuit": 29
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 480
+ },
+ "less-annoying-crm": {
+  "queryName": "less annoying crm",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "lex": {
+  "queryName": "lex",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "linear": {
+  "queryName": "linear",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "lingq-premium": {
+  "queryName": "lingq",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 50
+ },
+ "linguise": {
+  "queryName": "linguise",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "livechat": {
+  "queryName": "livechat",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 30
+ },
+ "livestorm": {
+  "queryName": "livestorm",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "livingwriter": {
+  "queryName": "livingwriter",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "lnkflow": {
+  "queryName": "lnkflow",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "logrocket": {
+  "queryName": "logrocket",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "lokalise": {
+  "queryName": "lokalise",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "loom": {
+  "queryName": "loom",
+  "kd": {
+   "alternative": 14,
+   "alt_en": 18
+  },
+  "absent": [],
+  "alternative": 50,
+  "alternative_a": 20,
+  "alt_en": 70,
+  "gratuit": 20
+ },
+ "loomly": {
+  "queryName": "loomly",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "lovable": {
+  "queryName": "lovable",
+  "kd": {
+   "alt_en": 14,
+   "gratuit": 25
+  },
+  "absent": [],
+  "alternative": 40,
+  "alternative_a": 0,
+  "alt_en": 170,
+  "gratuit": 70
+ },
+ "lovo": {
+  "queryName": "lovo",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "lowfruits": {
+  "queryName": "lowfruits",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "lucky-orange": {
+  "queryName": "lucky orange",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "lunch-money": {
+  "queryName": "lunch money",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "macrofactor": {
+  "queryName": "macrofactor",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "magnific-ai": {
+  "queryName": "magnific ai",
+  "kd": {
+   "gratuit": 21
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 50
+ },
+ "mailbird": {
+  "queryName": "mailbird",
+  "kd": {
+   "gratuit": 30
+  },
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 110
+ },
+ "mailchimp": {
+  "queryName": "mailchimp",
+  "kd": {
+   "alternative": 38,
+   "alternative_a": 26,
+   "gratuit": 32
+  },
+  "absent": [],
+  "alternative": 50,
+  "alternative_a": 70,
+  "alt_en": 20,
+  "gratuit": 480
+ },
+ "mailerlite": {
+  "queryName": "mailerlite",
+  "kd": {
+   "gratuit": 34
+  },
+  "absent": [
+   "alternative"
+  ],
+  "alternative": 0,
+  "alternative_a": 10,
+  "alt_en": 20,
+  "gratuit": 50
+ },
+ "make": {
+  "queryName": "make",
+  "kd": {},
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 40,
+  "alt_en": 10,
+  "gratuit": 30
+ },
+ "mangools": {
+  "queryName": "mangools",
+  "kd": {},
+  "absent": [
+   "gratuit"
+  ],
+  "alternative": 10,
+  "alternative_a": 20,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "mara": {
+  "queryName": "mara",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "matter": {
+  "queryName": "matter",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "mattermost-professional": {
+  "queryName": "mattermost",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "mealime-pro": {
+  "queryName": "mealime",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "meetergo": {
+  "queryName": "meetergo",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "meetgeek": {
+  "queryName": "meetgeek",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "mega-pro": {
+  "queryName": "mega",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "meistertask": {
+  "queryName": "meistertask",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 20
+ },
+ "mem-ai": {
+  "queryName": "mem",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "memtime": {
+  "queryName": "memtime",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "metricool": {
+  "queryName": "metricool",
+  "kd": {
+   "gratuit": 29
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 30,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 320
+ },
+ "microsoft-teams-essentials": {
+  "queryName": "microsoft teams",
+  "kd": {
+   "gratuit": 77
+  },
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 20,
+  "alt_en": 20,
+  "gratuit": 1900
+ },
+ "midjourney": {
+  "queryName": "midjourney",
+  "kd": {
+   "alternative": 18,
+   "alt_en": 29,
+   "gratuit": 40
+  },
+  "absent": [],
+  "alternative": 170,
+  "alternative_a": 20,
+  "alt_en": 90,
+  "gratuit": 4400
+ },
+ "mighty-networks": {
+  "queryName": "mighty networks",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "mimestream": {
+  "queryName": "mimestream",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "miro": {
+  "queryName": "miro",
+  "kd": {
+   "alt_en": 15,
+   "gratuit": 31
+  },
+  "absent": [],
+  "alternative": 30,
+  "alternative_a": 20,
+  "alt_en": 90,
+  "gratuit": 90
+ },
+ "missive": {
+  "queryName": "missive",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 10
+ },
+ "moises": {
+  "queryName": "moises",
+  "kd": {
+   "gratuit": 31
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 70
+ },
+ "monarch-money": {
+  "queryName": "monarch money",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "monday-com": {
+  "queryName": "monday.com",
+  "kd": {
+   "gratuit": 34
+  },
+  "absent": [],
+  "alternative": 30,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 390
+ },
+ "morgen": {
+  "queryName": "morgen",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "motion": {
+  "queryName": "motion",
+  "kd": {},
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "mouseflow": {
+  "queryName": "mouseflow",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "moz-pro": {
+  "queryName": "moz pro",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "murf": {
+  "queryName": "murf",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 10
+ },
+ "myfitnesspal-premium": {
+  "queryName": "myfitnesspal",
+  "kd": {
+   "gratuit": 32
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 260
+ },
+ "n8n-cloud": {
+  "queryName": "n8n",
+  "kd": {
+   "alt_en": 19,
+   "gratuit": 13
+  },
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 210,
+  "gratuit": 480
+ },
+ "naturalreader": {
+  "queryName": "naturalreader",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "neon": {
+  "queryName": "neon",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "netlify": {
+  "queryName": "netlify",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 70
+ },
+ "neuronwriter": {
+  "queryName": "neuronwriter",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "newsblur-premium": {
+  "queryName": "newsblur",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "newton-mail": {
+  "queryName": "newton mail",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "nightwatch": {
+  "queryName": "nightwatch",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "nitro-pdf-pro": {
+  "queryName": "nitro pdf",
+  "kd": {
+   "gratuit": 47
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 70
+ },
+ "nocodb-cloud": {
+  "queryName": "nocodb",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "nolt": {
+  "queryName": "nolt",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "nordpass": {
+  "queryName": "nordpass",
+  "kd": {
+   "gratuit": 42
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 140
+ },
+ "nordvpn": {
+  "queryName": "nordvpn",
+  "kd": {
+   "gratuit": 69
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 1900
+ },
+ "northwest-registered-agent": {
+  "queryName": "northwest registered agent",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "notta": {
+  "queryName": "notta",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 30
+ },
+ "novelcrafter": {
+  "queryName": "novelcrafter",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "novoresume": {
+  "queryName": "novoresume",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 10
+ },
+ "nuclino": {
+  "queryName": "nuclino",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "obsidian": {
+  "queryName": "obsidian",
+  "kd": {
+   "alt_en": 25
+  },
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 140,
+  "gratuit": 20
+ },
+ "oncehub": {
+  "queryName": "oncehub",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "opinion-stage": {
+  "queryName": "opinion stage",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "optery": {
+  "queryName": "optery",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "otter-ai": {
+  "queryName": "otter.ai",
+  "kd": {
+   "gratuit": 38
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 10
+ },
+ "outgrow": {
+  "queryName": "outgrow",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "pabbly-connect": {
+  "queryName": "pabbly connect",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "pageoptimizer-pro": {
+  "queryName": "pageoptimizer pro",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "pandadoc": {
+  "queryName": "pandadoc",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 30,
+  "gratuit": 30
+ },
+ "paperform": {
+  "queryName": "paperform",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "paste": {
+  "queryName": "paste",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "payhip": {
+  "queryName": "payhip",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "pcloud": {
+  "queryName": "pcloud",
+  "kd": {
+   "alternative": 18,
+   "gratuit": 44
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 50,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 480
+ },
+ "pdf-expert": {
+  "queryName": "pdf expert",
+  "kd": {
+   "gratuit": 29
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 50
+ },
+ "pebblely": {
+  "queryName": "pebblely",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "perplexity": {
+  "queryName": "perplexity",
+  "kd": {
+   "gratuit": 67
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 5400
+ },
+ "pestle": {
+  "queryName": "pestle",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "photoroom": {
+  "queryName": "photoroom",
+  "kd": {
+   "gratuit": 32
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 1000
+ },
+ "pic-time": {
+  "queryName": "pic-time",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "piktochart": {
+  "queryName": "piktochart",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 40
+ },
+ "pimsleur": {
+  "queryName": "pimsleur",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "pinboard": {
+  "queryName": "pinboard",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "pingdom": {
+  "queryName": "pingdom",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "pipedream": {
+  "queryName": "pipedream",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "pipedrive": {
+  "queryName": "pipedrive",
+  "kd": {
+   "alternative": 9,
+   "alt_en": 10
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 50,
+  "alternative_a": 0,
+  "alt_en": 90,
+  "gratuit": 20
+ },
+ "pirsch": {
+  "queryName": "pirsch",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "pitch": {
+  "queryName": "pitch",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "pixelcut": {
+  "queryName": "pixelcut",
+  "kd": {
+   "gratuit": 31
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 210
+ },
+ "pixieset": {
+  "queryName": "pixieset",
+  "kd": {
+   "gratuit": 22
+  },
+  "absent": [],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 90
+ },
+ "plan-to-eat": {
+  "queryName": "plan to eat",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "planable": {
+  "queryName": "planable",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "planetscale": {
+  "queryName": "planetscale",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "plausible": {
+  "queryName": "plausible",
+  "kd": {},
+  "absent": [
+   "gratuit"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 30,
+  "gratuit": 0
+ },
+ "playground-ai": {
+  "queryName": "playground ai",
+  "kd": {
+   "gratuit": 28
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 90
+ },
+ "playht": {
+  "queryName": "playht",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "pocketsmith": {
+  "queryName": "pocketsmith",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "podcastle": {
+  "queryName": "podcastle",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "podia": {
+  "queryName": "podia",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "podsqueeze": {
+  "queryName": "podsqueeze",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "poeditor": {
+  "queryName": "poeditor",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "point-me": {
+  "queryName": "point.me",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "post-bridge": {
+  "queryName": "post bridge",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "postiz": {
+  "queryName": "postiz",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "productboard": {
+  "queryName": "productboard",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "productlane": {
+  "queryName": "productlane",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "promptdc": {
+  "queryName": "promptdc",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "proton-drive-plus": {
+  "queryName": "proton drive",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "proton-pass-plus": {
+  "queryName": "proton pass",
+  "kd": {
+   "gratuit": 43
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 110
+ },
+ "prowritingaid": {
+  "queryName": "prowritingaid",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "publer": {
+  "queryName": "publer",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "pumble": {
+  "queryName": "pumble",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "quickbase": {
+  "queryName": "quickbase",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "quickbooks-online": {
+  "queryName": "quickbooks online",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "quicken-classic-deluxe": {
+  "queryName": "quicken",
+  "kd": {},
+  "absent": [],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 20
+ },
+ "quicken-simplifi": {
+  "queryName": "quicken simplifi",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "quillbot": {
+  "queryName": "quillbot",
+  "kd": {
+   "gratuit": 83
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 210
+ },
+ "railway": {
+  "queryName": "railway",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "raindrop-io": {
+  "queryName": "raindrop.io",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "rankhog": {
+  "queryName": "rankhog",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "raycast-pro": {
+  "queryName": "raycast",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "read-ai": {
+  "queryName": "read ai",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "readwise-reader": {
+  "queryName": "readwise reader",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "recall": {
+  "queryName": "recall",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "reclaim-ai": {
+  "queryName": "reclaim.ai",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "recraft": {
+  "queryName": "recraft",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "reeder": {
+  "queryName": "reeder",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "reform": {
+  "queryName": "reform",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "relay-app": {
+  "queryName": "relay.app",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "remote-com": {
+  "queryName": "remote",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 40,
+  "gratuit": 0
+ },
+ "render": {
+  "queryName": "render",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "replit": {
+  "queryName": "replit",
+  "kd": {},
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 20
+ },
+ "rescuetime": {
+  "queryName": "rescuetime",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "retool": {
+  "queryName": "retool",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "rezi": {
+  "queryName": "rezi",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "riverside": {
+  "queryName": "riverside",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "rize": {
+  "queryName": "rize",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "roadtrippers": {
+  "queryName": "roadtrippers",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 20
+ },
+ "roboform": {
+  "queryName": "roboform",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "rocket-lawyer": {
+  "queryName": "rocket lawyer",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "rosetta-stone": {
+  "queryName": "rosetta stone",
+  "kd": {
+   "gratuit": 28
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 210
+ },
+ "routine": {
+  "queryName": "routine",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "rows": {
+  "queryName": "rows",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "runway": {
+  "queryName": "runway",
+  "kd": {
+   "gratuit": 43
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 110
+ },
+ "rytr": {
+  "queryName": "rytr",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "saleshandy": {
+  "queryName": "saleshandy",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "salesmate": {
+  "queryName": "salesmate",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "savio": {
+  "queryName": "savio",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "savvycal": {
+  "queryName": "savvycal",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "scalenut": {
+  "queryName": "scalenut",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "screaming-frog-seo-spider": {
+  "queryName": "screaming frog",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 40,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "scribe": {
+  "queryName": "scribe",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "se-ranking": {
+  "queryName": "se ranking",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 40,
+  "alternative_a": 0,
+  "alt_en": 30,
+  "gratuit": 0
+ },
+ "seatable-cloud": {
+  "queryName": "seatable",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "seats-aero-pro": {
+  "queryName": "seats.aero",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 30,
+  "gratuit": 0
+ },
+ "sejda-web": {
+  "queryName": "sejda",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "sellfy": {
+  "queryName": "sellfy",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "sembly-ai": {
+  "queryName": "sembly ai",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "semrush": {
+  "queryName": "semrush",
+  "kd": {
+   "alternative": 28,
+   "alternative_a": 20,
+   "alt_en": 30,
+   "gratuit": 41
+  },
+  "absent": [],
+  "alternative": 260,
+  "alternative_a": 90,
+  "alt_en": 590,
+  "gratuit": 1300
+ },
+ "sendspark": {
+  "queryName": "sendspark",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "sentry": {
+  "queryName": "sentry",
+  "kd": {
+   "alt_en": 14
+  },
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 50,
+  "gratuit": 0
+ },
+ "seobility": {
+  "queryName": "seobility",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "serpstat": {
+  "queryName": "serpstat",
+  "kd": {},
+  "absent": [
+   "gratuit"
+  ],
+  "alternative": 20,
+  "alternative_a": 20,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "setapp": {
+  "queryName": "setapp",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "shopify": {
+  "queryName": "shopify",
+  "kd": {
+   "alternative": 15,
+   "alt_en": 17,
+   "gratuit": 41
+  },
+  "absent": [],
+  "alternative": 140,
+  "alternative_a": 40,
+  "alt_en": 110,
+  "gratuit": 210
+ },
+ "shortcut": {
+  "queryName": "shortcut",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "shortwave": {
+  "queryName": "shortwave",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "simple-analytics": {
+  "queryName": "simple analytics",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 30,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "sitebulb": {
+  "queryName": "sitebulb",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "skillshare": {
+  "queryName": "skillshare",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "slack-pro": {
+  "queryName": "slack",
+  "kd": {
+   "alternative": 29,
+   "alt_en": 31,
+   "gratuit": 31
+  },
+  "absent": [],
+  "alternative": 110,
+  "alternative_a": 20,
+  "alt_en": 110,
+  "gratuit": 110
+ },
+ "sleek": {
+  "queryName": "sleek",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "slite": {
+  "queryName": "slite",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "smallpdf": {
+  "queryName": "smallpdf",
+  "kd": {
+   "gratuit": 38
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 1600
+ },
+ "smartlead": {
+  "queryName": "smartlead",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "smartsheet": {
+  "queryName": "smartsheet",
+  "kd": {
+   "gratuit": 27
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 30,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 110
+ },
+ "smartsuite": {
+  "queryName": "smartsuite",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "smugmug": {
+  "queryName": "smugmug",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 10
+ },
+ "snappa": {
+  "queryName": "snappa",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "alt_en"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "snov-io": {
+  "queryName": "snov.io",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "socialbee": {
+  "queryName": "socialbee",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "softr": {
+  "queryName": "softr",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "soundcloud-go-plus": {
+  "queryName": "soundcloud",
+  "kd": {
+   "gratuit": 40
+  },
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 720
+ },
+ "soundtrap": {
+  "queryName": "soundtrap",
+  "kd": {
+   "gratuit": 26
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 70
+ },
+ "spark-premium": {
+  "queryName": "spark mail",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "speak-language": {
+  "queryName": "speak",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 40
+ },
+ "speechify": {
+  "queryName": "speechify",
+  "kd": {
+   "gratuit": 19
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 260
+ },
+ "splice": {
+  "queryName": "splice",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 40
+ },
+ "spotify-premium": {
+  "queryName": "spotify",
+  "kd": {
+   "alternative": 19,
+   "alternative_a": 17,
+   "alt_en": 18,
+   "gratuit": 76
+  },
+  "absent": [],
+  "alternative": 1000,
+  "alternative_a": 390,
+  "alt_en": 880,
+  "gratuit": 14800
+ },
+ "spyfu": {
+  "queryName": "spyfu",
+  "kd": {},
+  "absent": [],
+  "alternative": 10,
+  "alternative_a": 30,
+  "alt_en": 50,
+  "gratuit": 0
+ },
+ "squarespace": {
+  "queryName": "squarespace",
+  "kd": {},
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 30,
+  "gratuit": 20
+ },
+ "stackby": {
+  "queryName": "stackby",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "strava": {
+  "queryName": "strava",
+  "kd": {
+   "gratuit": 32
+  },
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 20,
+  "alt_en": 20,
+  "gratuit": 6600
+ },
+ "streak-crm": {
+  "queryName": "streak",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "strong-pro": {
+  "queryName": "strong app",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "structured": {
+  "queryName": "structured",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "sudowrite": {
+  "queryName": "sudowrite",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 20
+ },
+ "sunsama": {
+  "queryName": "sunsama",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 10,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "supabase-pro": {
+  "queryName": "supabase",
+  "kd": {
+   "alt_en": 19
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 90,
+  "alternative_a": 0,
+  "alt_en": 140,
+  "gratuit": 20
+ },
+ "supademo": {
+  "queryName": "supademo",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "superhuman": {
+  "queryName": "superhuman",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "supernormal": {
+  "queryName": "supernormal",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "supernotes": {
+  "queryName": "supernotes",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "superscribe": {
+  "queryName": "superscribe",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "superwhisper": {
+  "queryName": "superwhisper",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 20
+ },
+ "superx": {
+  "queryName": "superx",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "surfer-seo": {
+  "queryName": "surfer seo",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "surveymonkey": {
+  "queryName": "surveymonkey",
+  "kd": {},
+  "absent": [],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 30
+ },
+ "swell-ai": {
+  "queryName": "swell ai",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "sync-com": {
+  "queryName": "sync.com",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "synthesia": {
+  "queryName": "synthesia",
+  "kd": {
+   "gratuit": 37
+  },
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 10,
+  "alt_en": 20,
+  "gratuit": 50
+ },
+ "tabnine": {
+  "queryName": "tabnine",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "tactiq": {
+  "queryName": "tactiq",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "tally": {
+  "queryName": "tally",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 10
+ },
+ "tango": {
+  "queryName": "tango",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "taplio": {
+  "queryName": "taplio",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "taskade": {
+  "queryName": "taskade",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "teachable": {
+  "queryName": "teachable",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "teamwork": {
+  "queryName": "teamwork",
+  "kd": {
+   "gratuit": 28
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 2900
+ },
+ "tella": {
+  "queryName": "tella",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "textexpander": {
+  "queryName": "textexpander",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 10,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "thinkific": {
+  "queryName": "thinkific",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "thumblifyai": {
+  "queryName": "thumblifyai",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "thunkable": {
+  "queryName": "thunkable",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "ticktick": {
+  "queryName": "ticktick",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 30
+ },
+ "tidal": {
+  "queryName": "tidal",
+  "kd": {
+   "gratuit": 21
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 170
+ },
+ "tidio": {
+  "queryName": "tidio",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "tilda": {
+  "queryName": "tilda",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "tiller-money": {
+  "queryName": "tiller",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "time-doctor": {
+  "queryName": "time doctor",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "timely": {
+  "queryName": "timely",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "timing": {
+  "queryName": "timing",
+  "kd": {},
+  "absent": [
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "tldv": {
+  "queryName": "tldv",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "todoist": {
+  "queryName": "todoist",
+  "kd": {
+   "gratuit": 36
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 140
+ },
+ "tody": {
+  "queryName": "tody",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "toggl-track": {
+  "queryName": "toggl track",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 30
+ },
+ "tolgee-cloud": {
+  "queryName": "tolgee",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "transifex": {
+  "queryName": "transifex",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "transistor-fm": {
+  "queryName": "transistor",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "trello": {
+  "queryName": "trello",
+  "kd": {
+   "alternative": 18,
+   "alt_en": 21,
+   "gratuit": 34
+  },
+  "absent": [],
+  "alternative": 170,
+  "alternative_a": 30,
+  "alt_en": 210,
+  "gratuit": 1900
+ },
+ "tresorit": {
+  "queryName": "tresorit",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 10
+ },
+ "tripit-pro": {
+  "queryName": "tripit",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 10
+ },
+ "twist": {
+  "queryName": "twist",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 20
+ },
+ "typeform": {
+  "queryName": "typeform",
+  "kd": {
+   "alternative": 16,
+   "alt_en": 23,
+   "gratuit": 31
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 90,
+  "alternative_a": 0,
+  "alt_en": 70,
+  "gratuit": 260
+ },
+ "typefully": {
+  "queryName": "typefully",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "ubersuggest": {
+  "queryName": "ubersuggest",
+  "kd": {
+   "gratuit": 36
+  },
+  "absent": [],
+  "alternative": 30,
+  "alternative_a": 20,
+  "alt_en": 20,
+  "gratuit": 320
+ },
+ "ulysses": {
+  "queryName": "ulysses",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "umami-cloud": {
+  "queryName": "umami",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "umso": {
+  "queryName": "umso",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "unbounce": {
+  "queryName": "unbounce",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "uncircle": {
+  "queryName": "uncircle",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "unicorn-platform": {
+  "queryName": "unicorn platform",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "v0": {
+  "queryName": "v0",
+  "kd": {
+   "alt_en": 17
+  },
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 50,
+  "gratuit": 0
+ },
+ "vercel": {
+  "queryName": "vercel",
+  "kd": {
+   "alt_en": 21
+  },
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 170,
+  "gratuit": 20
+ },
+ "verifieddr": {
+  "queryName": "verifieddr",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "vidyard": {
+  "queryName": "vidyard",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "vimcal": {
+  "queryName": "vimcal",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "visme": {
+  "queryName": "visme",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "vista-social": {
+  "queryName": "vista social",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "vistacreate": {
+  "queryName": "vistacreate",
+  "kd": {
+   "gratuit": 32
+  },
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 90
+ },
+ "waalaxy": {
+  "queryName": "waalaxy",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 30,
+  "gratuit": 20
+ },
+ "wabery": {
+  "queryName": "wabery",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "wanderlog-pro": {
+  "queryName": "wanderlog",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "webex-meet": {
+  "queryName": "webex",
+  "kd": {},
+  "absent": [],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 30
+ },
+ "webflow": {
+  "queryName": "webflow",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 30,
+  "alternative_a": 0,
+  "alt_en": 40,
+  "gratuit": 20
+ },
+ "webinarjam": {
+  "queryName": "webinarjam",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "weglot": {
+  "queryName": "weglot",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "wellsaid-labs": {
+  "queryName": "wellsaid labs",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "weweb": {
+  "queryName": "weweb",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "when-i-work": {
+  "queryName": "when i work",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "whereby": {
+  "queryName": "whereby",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "whimsical": {
+  "queryName": "whimsical",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "windsurf": {
+  "queryName": "windsurf",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "wispr-flow": {
+  "queryName": "wispr flow",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 30,
+  "alternative_a": 0,
+  "alt_en": 110,
+  "gratuit": 10
+ },
+ "wix": {
+  "queryName": "wix",
+  "kd": {
+   "alternative": 18,
+   "alt_en": 20,
+   "gratuit": 44
+  },
+  "absent": [],
+  "alternative": 70,
+  "alternative_a": 40,
+  "alt_en": 50,
+  "gratuit": 720
+ },
+ "woodpecker": {
+  "queryName": "woodpecker",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "wordtune": {
+  "queryName": "wordtune",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "wrike": {
+  "queryName": "wrike",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 20
+ },
+ "writerzen": {
+  "queryName": "writerzen",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "writesonic": {
+  "queryName": "writesonic",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 20
+ },
+ "xero": {
+  "queryName": "xero",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "xodo-pro": {
+  "queryName": "xodo",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 20
+ },
+ "ynab": {
+  "queryName": "ynab",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 20,
+  "gratuit": 0
+ },
+ "youcanbookme": {
+  "queryName": "youcanbookme",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 0
+ },
+ "youtube-music-premium": {
+  "queryName": "youtube music",
+  "kd": {
+   "gratuit": 55
+  },
+  "absent": [],
+  "alternative": 20,
+  "alternative_a": 20,
+  "alt_en": 20,
+  "gratuit": 4400
+ },
+ "zapier": {
+  "queryName": "zapier",
+  "kd": {
+   "alt_en": 12,
+   "gratuit": 40
+  },
+  "absent": [],
+  "alternative": 30,
+  "alternative_a": 10,
+  "alt_en": 50,
+  "gratuit": 140
+ },
+ "zenbusiness": {
+  "queryName": "zenbusiness",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "zencal": {
+  "queryName": "zencal",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "alt_en",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "zendesk": {
+  "queryName": "zendesk",
+  "kd": {
+   "alternative": 14,
+   "alt_en": 21
+  },
+  "absent": [],
+  "alternative": 90,
+  "alternative_a": 20,
+  "alt_en": 260,
+  "gratuit": 20
+ },
+ "zenfolio": {
+  "queryName": "zenfolio",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "zight": {
+  "queryName": "zight",
+  "kd": {},
+  "absent": [
+   "alternative",
+   "alternative_a",
+   "gratuit"
+  ],
+  "alternative": 0,
+  "alternative_a": 0,
+  "alt_en": 0,
+  "gratuit": 0
+ },
+ "zoho-crm": {
+  "queryName": "zoho crm",
+  "kd": {},
+  "absent": [
+   "alternative_a"
+  ],
+  "alternative": 20,
+  "alternative_a": 0,
+  "alt_en": 10,
+  "gratuit": 20
+ },
+ "zoom-pro": {
+  "queryName": "zoom",
+  "kd": {
+   "alternative": 11,
+   "gratuit": 68
+  },
+  "absent": [],
+  "alternative": 70,
+  "alternative_a": 20,
+  "alt_en": 30,
+  "gratuit": 2400
+ },
+ "_meta": {
+  "database": "fr",
+  "checkedOn": "2026-10-18",
+  "renamed": {
+   "activepieces-cloud": "activepieces",
+   "adobe-acrobat-pro": "adobe acrobat",
+   "alltrails-plus": "alltrails",
+   "anylist-complete": "anylist",
+   "appsmith-cloud": "appsmith",
+   "audible-premium-plus": "audible",
+   "backblaze-personal-backup": "backblaze",
+   "baserow-cloud": "baserow",
+   "bear-pro": "bear",
+   "busuu-premium": "busuu",
+   "cal-com-teams": "cal.com",
+   "chatwoot-cloud": "chatwoot",
+   "cozi-gold": "cozi",
+   "cronometer-gold": "cronometer",
+   "deepl-pro": "deepl",
+   "drafts-pro": "drafts",
+   "dropbox-plus": "dropbox",
+   "duolingo-super": "duolingo",
+   "familywall-premium": "familywall",
+   "flickr-pro": "flickr",
+   "flighty-pro": "flighty",
+   "formstack-forms": "formstack",
+   "foxit-pdf-editor": "foxit",
+   "ghost-pro": "ghost",
+   "google-workspace-business-starter": "google workspace",
+   "hemingway-editor-plus": "hemingway editor",
+   "hevy-pro": "hevy",
+   "home-assistant-cloud": "home assistant",
+   "ilovepdf-premium": "ilovepdf",
+   "instapaper-premium": "instapaper",
+   "komoot-premium": "komoot",
+   "lingq-premium": "lingq",
+   "mattermost-professional": "mattermost",
+   "mealime-pro": "mealime",
+   "mega-pro": "mega",
+   "microsoft-teams-essentials": "microsoft teams",
+   "myfitnesspal-premium": "myfitnesspal",
+   "n8n-cloud": "n8n",
+   "nocodb-cloud": "nocodb",
+   "novoresume": "novoresume",
+   "proton-drive-plus": "proton drive",
+   "proton-pass-plus": "proton pass",
+   "quicken-classic-deluxe": "quicken",
+   "raycast-pro": "raycast",
+   "screaming-frog-seo-spider": "screaming frog",
+   "seatable-cloud": "seatable",
+   "sejda-web": "sejda",
+   "slack-pro": "slack",
+   "smallpdf": "smallpdf",
+   "soundcloud-go-plus": "soundcloud",
+   "spark-premium": "spark mail",
+   "spotify-premium": "spotify",
+   "strong-pro": "strong app",
+   "supabase-pro": "supabase",
+   "tldv": "tldv",
+   "tolgee-cloud": "tolgee",
+   "tripit-pro": "tripit",
+   "umami-cloud": "umami",
+   "wanderlog-pro": "wanderlog",
+   "webex-meet": "webex",
+   "youtube-music-premium": "youtube music",
+   "zoom-pro": "zoom"
+  },
+  "totals": {
+   "alternative": 8850,
+   "alternative_a": 2190,
+   "alt_en": 14210,
+   "gratuit": 480680
+  },
+  "apiUnits": 10150,
+  "note": "0 with the key listed in absent = keyword not in Semrush"
+ }
+}

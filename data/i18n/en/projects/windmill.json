@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted developer platform that turns scripts into workflows, background jobs and internal apps.",
+  "description": "Windmill is a code-first automation tool. You write a script in TypeScript, Python, Go, Bash or other languages, and Windmill reads its parameters and builds a web form for it. Scripts chain into flows, run on schedules or webhooks, and can sit behind low-code apps used as internal tools. The backend is written in Rust, workers pull jobs from a PostgreSQL queue, and scripts are sandboxed with nsjail. For self-hosting, the README gives a Docker Compose setup with three files and a Kubernetes Helm chart. Its rule of thumb is one worker per vCPU and 1 to 2 GB of RAM. It can use your own managed PostgreSQL. It sits closer to Retool, Pipedream and Temporal than to a no-code Zapier clone, so building flows needs programming skills. The source is split. Some of it is AGPLv3 or Apache 2, but the free Community Edition builds also include proprietary code. You can use that edition internally for free. Reselling it or embedding it in a product you distribute needs a commercial licence.",
+  "strengths": [
+    "Generates a web form automatically from a script's parameters",
+    "Runs scripts in TypeScript, Python, Go, Bash, SQL and other languages",
+    "Triggers include schedules, webhooks, HTTP routes, Kafka and WebSockets",
+    "Workers pull jobs from PostgreSQL and run inside nsjail sandboxes",
+    "Offers a CLI, a VS Code extension and Git sync for local development"
+  ],
+  "limits": [
+    "Built for developers: flows are made from code, so it is a poor fit for a non-technical Zapier user",
+    "The free Community Edition contains proprietary code with quotas, and is not fully open source",
+    "Redistribution, white-labelling or building a sold product on it needs a commercial licence",
+    "Needs PostgreSQL plus a reverse proxy, and the guide suggests about 1 vCPU and 1 to 2 GB of RAM per worker"
+  ],
+  "bestFor": "A developer or small engineering team that wants scheduled scripts, internal tools and workflows on its own server, and is comfortable writing code."
+}

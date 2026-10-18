@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Web-based open source project management; self-hostable; positioned against Jira, MS Project, Monday, Asana, YouTrack",
+    "url": "https://github.com/opf/openproject#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Key features: portfolios, agile boards, Gantt, time tracking, cost reporting, bug tracking, wikis, forums, meetings",
+    "url": "https://github.com/opf/openproject#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Integrations: Nextcloud, XWiki, GitHub, GitLab",
+    "url": "https://github.com/opf/openproject#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "14-day free trial; Community edition self-hosted; Enterprise edition cloud or on-premises with add-ons",
+    "url": "https://github.com/opf/openproject#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Licensed under GPL version 3",
+    "url": "https://github.com/opf/openproject#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Installation guides for download and installation",
+    "url": "https://www.openproject.org/download-and-installation/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Full baseline comparison, LDAP group synchronisation and OpenID Connect SSO are Enterprise features",
+    "url": "https://www.openproject.org/pricing/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Minimum hardware: quad core CPU (>= 2 GHz), 4096 MB memory, 20 GB disk, for up to 200 total users",
+    "url": "https://www.openproject.org/docs/installation-and-operations/system-requirements/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

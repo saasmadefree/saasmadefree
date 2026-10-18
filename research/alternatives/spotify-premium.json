@@ -1,0 +1,190 @@
+[
+  {
+    "slug": "navidrome",
+    "existing": true,
+    "name": "Navidrome",
+    "repo": "navidrome/navidrome",
+    "homepage": "https://www.navidrome.org",
+    "why": "Self-hosted music server that streams your own library to web and Subsonic-compatible apps.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Stream and organise your own music files, with playlists and play history. No licensed catalogue and no recommendations.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/navidrome/navidrome",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "go"
+    ],
+    "categories": [
+      "media-streaming"
+    ],
+    "evidenceUrls": [
+      "https://github.com/navidrome/navidrome",
+      "https://openalternative.co/alternatives/spotify",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "jellyfin",
+    "existing": true,
+    "name": "Jellyfin",
+    "repo": "jellyfin/jellyfin",
+    "homepage": "https://jellyfin.org",
+    "why": "Self-hosted media server for video, music and photos with apps on most devices.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Streams your own music alongside video from one server. No licensed catalogue; music features are lighter than a music-only server.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/jellyfin/jellyfin",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "c#"
+    ],
+    "categories": [
+      "media-streaming"
+    ],
+    "evidenceUrls": [
+      "https://github.com/jellyfin/jellyfin",
+      "https://openalternative.co/alternatives/spotify",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "koel",
+    "existing": false,
+    "name": "Koel",
+    "repo": "koel/koel",
+    "homepage": "https://koel.dev",
+    "why": "Self-hosted web music streaming server with playlists and smart playlists.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Web player for your own files, with playlists and a queue. No licensed catalogue.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "php"
+    ],
+    "categories": [
+      "media-streaming"
+    ],
+    "evidenceUrls": [
+      "https://github.com/koel/koel",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "gonic",
+    "existing": false,
+    "name": "gonic",
+    "repo": "sentriz/gonic",
+    "homepage": "https://github.com/sentriz/gonic",
+    "why": "Lightweight self-hosted Subsonic-compatible music server written in Go.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Serves your own library to Subsonic apps with playlists. No catalogue, no recommendations.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/sentriz/gonic",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "go"
+    ],
+    "categories": [
+      "media-streaming"
+    ],
+    "evidenceUrls": [
+      "https://github.com/sentriz/gonic",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "airsonic-advanced",
+    "existing": false,
+    "name": "Airsonic-Advanced",
+    "repo": "airsonic-advanced/airsonic-advanced",
+    "homepage": "https://github.com/airsonic-advanced/airsonic-advanced",
+    "why": "Self-hosted Java music streamer, a fork of Airsonic with Subsonic API support.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Streams your own music with playlists and multi-user access. No catalogue; repository looks quiet since 2024.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/airsonic-advanced/airsonic-advanced",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "java"
+    ],
+    "categories": [
+      "media-streaming"
+    ],
+    "evidenceUrls": [
+      "https://github.com/airsonic-advanced/airsonic-advanced"
+    ]
+  },
+  {
+    "slug": "ampache",
+    "existing": false,
+    "name": "Ampache",
+    "repo": "ampache/ampache",
+    "homepage": "http://ampache.org",
+    "why": "Self-hosted web audio and video streaming application with a Subsonic-compatible API.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Streams your own library to web and API clients, with playlists and ratings. No licensed catalogue.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/ampache/ampache",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "php"
+    ],
+    "categories": [
+      "media-streaming"
+    ],
+    "evidenceUrls": [
+      "https://github.com/ampache/ampache",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "nuclear",
+    "existing": false,
+    "name": "Nuclear",
+    "repo": "nukeop/nuclear",
+    "homepage": "https://nuclearplayer.com",
+    "why": "Desktop music player that streams from free sources and builds playlists without an account.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Plays tracks pulled from free sources on a desktop. Not a server and not a licensed catalogue.",
+    "deploy": [],
+    "stack": [
+      "typescript"
+    ],
+    "categories": [
+      "media-streaming"
+    ],
+    "evidenceUrls": [
+      "https://github.com/nukeop/nuclear",
+      "https://openalternative.co/alternatives/spotify"
+    ]
+  }
+]

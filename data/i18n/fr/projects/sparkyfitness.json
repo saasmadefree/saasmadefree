@@ -1,0 +1,19 @@
+{
+  "tagline": "Suivi de forme et de nutrition auto-hébergé, avec applis web et mobiles, pensé pour remplacer MyFitnessPal.",
+  "description": "SparkyFitness est un suivi auto-hébergé pour l’alimentation, le sport, l’hydratation, le sommeil, le jeûne, l’humeur et les mesures du corps. Il comprend un serveur, une interface web et des applis natives iOS et Android, qui stockent toutes les données sur un serveur que tu gères. Tu fixes des objectifs, tu fais un point chaque jour et tu lis des graphiques et des rapports à long terme. Plusieurs profils sont possibles, avec un accès famille et des droits, que le README classe en bêta. Le README cite la synchro avec Apple Health, Google Health Connect, Fitbit, Garmin Connect, Withings, Polar, Oura et Hevy, et des données alimentaires issues de sources comme OpenFoodFacts et l’USDA. Un assistant de discussion optionnel, encore en bêta, peut enregistrer des repas à partir d’un texte ou d’une photo. Pour l’auto-héberger, tu télécharges un fichier Docker Compose, tu remplis un court fichier .env avec un mot de passe de base de données et deux secrets, puis tu démarres : l’appli écoute alors sur le port 3004. Le README indique que la licence est à code source disponible et non commerciale, pas open source : vérifie-la avant tout usage commercial. Le projet prévient que des changements incompatibles peuvent arriver d’une version à l’autre. Il convient à qui veut arrêter de payer une appli de nutrition et garder ses données de santé chez lui.",
+  "strengths": [
+    "Suit l’alimentation, le sport, l’hydratation, le sommeil, le jeûne, l’humeur et les mesures du corps dans une seule appli",
+    "Applis natives iOS et Android et interface web, toutes branchées sur ton propre serveur",
+    "Synchro avec Apple Health, Google Health Connect, Fitbit, Garmin Connect, Withings, Polar, Oura et Hevy",
+    "Partage en famille (bêta) avec plusieurs profils, et connexion par OIDC, TOTP ou passkeys",
+    "L’installation Docker Compose demande quelques valeurs dans un fichier .env, avec un générateur en ligne pour les secrets"
+  ],
+  "limits": [
+    "La licence est à code source disponible et non commerciale : ce n’est pas de l’open source, et un usage commercial demande une autorisation",
+    "Le README prévient que des changements incompatibles peuvent survenir d’une version à l’autre et déconseille la mise à jour automatique des conteneurs",
+    "L’assistant de discussion IA est annoncé en bêta",
+    "Le sommeil, la variabilité cardiaque et la glycémie sont importés depuis des montres ou des capteurs : l’appli les stocke et les trace, mais ne les mesure pas",
+    "Les données alimentaires viennent de sources tierces que tu connectes (le README cite OpenFoodFacts, USDA, Fatsecret et Nutritionix), donc la couverture en dépend"
+  ],
+  "bestFor": "Un foyer avec un petit serveur maison qui veut un journal privé de repas et d’entraînements à la place d’un abonnement MyFitnessPal."
+}

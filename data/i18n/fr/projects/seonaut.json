@@ -1,0 +1,17 @@
+{
+  "tagline": "Crawler d’audit SEO open source en Go, avec MySQL, un tableau de bord et des anomalies classées par gravité.",
+  "description": "SEOnaut parcourt un site et produit un audit des problèmes qui peuvent nuire au classement. Les anomalies sont rangées en trois niveaux de gravité : critique, élevée et faible. Les contrôles couvrent les liens cassés qui renvoient une 404, les problèmes de redirection (temporaire, permanente ou en boucle), les balises meta absentes ou en double et les titres dans le mauvais ordre. L’application est écrite en Go, stocke ses données dans MySQL et affiche les résultats dans un tableau de bord dessiné avec Apache ECharts. L’installation recommandée passe par Docker : le README donne un fichier compose avec un conteneur MySQL 8.4 et l’image de l’application, qui écoute sur le port 9000 en HTTP simple. Ajoute donc un reverse proxy pour le HTTPS. Les réglages se surchargent avec des variables d’environnement. La licence est MIT. L’auteur propose aussi une version hébergée sur seonaut.org. C’est une alternative auto-hébergée aux modules d’audit d’Ahrefs, de Semrush ou de Screaming Frog, pour les contrôles de pages et les contrôles techniques. Il ne suit ni les positions des mots-clés ni les backlinks : il ne remplace que la partie audit de ces abonnements.",
+  "strengths": [
+    "Anomalies classées en critique, élevée ou faible, pour corriger les pires d’abord",
+    "Détecte les liens cassés, les chaînes et boucles de redirection, les balises meta absentes ou en double et l’ordre des titres",
+    "Le README donne une installation Docker compose avec MySQL 8.4",
+    "Tableau de bord interactif avec graphiques, dans une interface légère qui utilise peu de JavaScript",
+    "Tous les réglages peuvent être surchargés par des variables d’environnement"
+  ],
+  "limits": [
+    "Ni suivi de positions, ni données de backlinks, ni chiffres de trafic : il n’audite que les pages",
+    "Il faut une base MySQL à part, et l’appli écoute en HTTP simple par défaut, donc tu mets en place le HTTPS toi-même",
+    "Le README ne nomme que quelques types d’anomalies : compare la couverture à ta propre liste de contrôle"
+  ],
+  "bestFor": "Un SEO interne ou un développeur qui veut des audits de site répétables sur un serveur qu’il contrôle, à la place d’une formule d’audit Screaming Frog ou Ahrefs."
+}

@@ -1,0 +1,104 @@
+{
+  "tool": "dropbox-plus",
+  "checkedOn": "2026-10-18",
+  "question": "Paid SaaS: \"Dropbox Plus\". What people pay it for: Keep a folder in sync between machines through your own server, and when two versions disagree, keep both and say so — never silently pick a winner. Question: is the candidate below an open-source or self-hostable application (web, desktop or server) that a person could actually use INSTEAD of Dropbox Plus for that job, or for a clear, substantial part of it? Partial replacements count as yes (for example a desktop video editor for a video app, a self-hosted rank tracker for an SEO suite). Answer no for: a code library or SDK only, a command-line utility with no end-user workflow, a closed paid service, a tutorial, or a tool for an unrelated job.",
+  "jevModel": "jev-1.13.0",
+  "results": [
+    {
+      "slug": "syncthing",
+      "name": "Syncthing",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.96,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 1,
+      "kept": true
+    },
+    {
+      "slug": "nextcloud",
+      "name": "Nextcloud",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "opencloud",
+      "name": "OpenCloud",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.96,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.95,
+      "kept": true
+    },
+    {
+      "slug": "seafile",
+      "name": "Seafile",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "owncloud-ocis",
+      "name": "ownCloud Infinite Scale",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.97,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.95,
+      "kept": true
+    },
+    {
+      "slug": "filestash",
+      "name": "Filestash",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.03,
+        "review": false,
+        "classId": "other"
+      },
+      "decision": 0.16,
+      "kept": false
+    },
+    {
+      "slug": "pydio-cells",
+      "name": "Pydio Cells",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.91,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.92,
+      "kept": true
+    },
+    {
+      "slug": "cryptomator",
+      "name": "Cryptomator",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0,
+        "review": false,
+        "classId": "other"
+      },
+      "decision": 0.16,
+      "kept": false
+    }
+  ]
+}

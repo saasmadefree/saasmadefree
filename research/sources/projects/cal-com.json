@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Cal.diy is a fork of Cal.com with enterprise/commercial code removed, MIT licensed",
+    "url": "https://github.com/calcom/cal.diy#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Removed features: Teams, Organizations, Insights, Workflows, SSO/SAML",
+    "url": "https://github.com/calcom/cal.diy#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Warning: use at your own risk, personal non-production use recommended; use Cal.com for commercial",
+    "url": "https://github.com/calcom/cal.diy#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "No hosted/managed version",
+    "url": "https://github.com/calcom/cal.diy#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Built with Next.js, tRPC, React, Tailwind CSS, Prisma",
+    "url": "https://github.com/calcom/cal.diy#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Prerequisites Node.js >=18 and PostgreSQL >=13",
+    "url": "https://github.com/calcom/cal.diy#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker image and Docker Compose; ARM suffix images",
+    "url": "https://github.com/calcom/cal.diy#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Must generate NEXTAUTH_SECRET and CALENDSO_ENCRYPTION_KEY; calendar step in wizard can be skipped",
+    "url": "https://github.com/calcom/cal.diy#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

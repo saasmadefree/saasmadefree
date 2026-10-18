@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted web music streamer that serves your own audio files, built on Laravel and Vue.",
+  "description": "Koel scans a folder of music you already own and serves it through a browser player. It handles playlists, smart playlists, podcasts, radio, scrobbling, and links to Last.fm, Spotify and MusicBrainz. The core is MIT-licensed. The server is a Laravel application that needs PHP 8.2 or newer and a database: MySQL, MariaDB, PostgreSQL and SQLite have all been tested. The docs describe five install methods, including a standalone archive that bundles FrankenPHP and defaults to SQLite, so a host needs no system PHP. Official iOS and Android apps live in a separate repository, Koel Player. A paid tier called Koel Plus adds multi-user libraries, collaboration, single sign-on, cloud storage drivers, custom themes and white-labeling. Koel can replace Spotify Premium only for a personal collection. It does not come with a licensed catalogue, so every track must be a file you supply yourself.",
+  "strengths": [
+    "Standalone binary with SQLite by default, so a host needs no PHP, Composer or Node install.",
+    "Supports MySQL, MariaDB, PostgreSQL and SQLite as databases.",
+    "Smart playlists, podcasts and radio sit next to the music library in one web interface.",
+    "Official mobile app, Koel Player, covers iOS and Android.",
+    "Scrobbling and Last.fm, Spotify and MusicBrainz integrations are built in."
+  ],
+  "limits": [
+    "No music catalogue: it streams only files you already own, so it does not replace discovery on Spotify.",
+    "Multi-user libraries, collaboration, single sign-on, cloud storage drivers and white-labeling require the paid Koel Plus.",
+    "The mobile app is a separate project from the server, with its own repository.",
+    "Running from source needs PHP 8.2, Composer, Node.js 20 and pnpm."
+  ],
+  "bestFor": "A music collector with a home server who wants a browser and phone player for a personal library."
+}

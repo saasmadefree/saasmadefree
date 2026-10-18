@@ -1,0 +1,18 @@
+{
+  "tagline": "Go file sync and sharing platform in one container or binary, for a small server or Kubernetes.",
+  "description": "ownCloud Infinite Scale, or oCIS, is a file sync and sharing server written in Go under the Apache 2.0 licence. You install it as one executable or one container. A small board such as a Raspberry Pi can host it, and the same code can later spread across a Kubernetes cluster once you adjust the settings and run more services. The README shows a Docker quickstart with an init step and a run step that listens on port 9200. Web, Android, iOS and desktop clients synchronise through WebDAV and CS3 APIs, and the web client lives in the same repository. Sign-in uses OpenID Connect, with either Keycloak or an embedded identity provider. Collaborative office editing is possible through Collabora Online, OnlyOffice or Microsoft Office Online Server, connected by a WOPI gateway. As a Dropbox Plus replacement it covers sync and sharing; the office suite is a separate component you must run. Some builds published by ownCloud GmbH fall under an end user licence agreement.",
+  "strengths": [
+    "Single binary or container for small and large setups",
+    "Official web, Android, iOS and desktop clients",
+    "OpenID Connect sign-in with an embedded provider",
+    "Office editing via Collabora, OnlyOffice or Microsoft Office Online Server",
+    "Apache 2.0 with no contributor agreement"
+  ],
+  "limits": [
+    "Document editing needs a separate office server connected through WOPI",
+    "Some stable builds from ownCloud GmbH are covered by an end user licence agreement",
+    "Multi-service architecture adds configuration work as you scale up",
+    "The README quickstart uses an insecure setting meant for evaluation only"
+  ],
+  "bestFor": "An organisation with an admin comfortable with Docker or Kubernetes that wants Dropbox-style sharing on its own infrastructure."
+}

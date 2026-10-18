@@ -1,0 +1,44 @@
+[
+  {
+    "claim": "Open-source Laravel e-commerce and marketplace platform built with Laravel and Vue.js",
+    "url": "https://github.com/bagisto/bagisto#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Single docker run command; migrations, seed data and search indexes baked in",
+    "url": "https://github.com/bagisto/bagisto#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Images for Nginx/Apache/OpenLiteSpeed with MySQL 8.0, MariaDB 10.11, PostgreSQL 16; DB_HOST for external DB",
+    "url": "https://github.com/bagisto/bagisto#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "composer.json requires PHP ^8.4 and laravel/framework ^13.0",
+    "url": "https://raw.githubusercontent.com/bagisto/bagisto/master/composer.json",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Bagisto Cloud Hosting and AWS AMI offered",
+    "url": "https://github.com/bagisto/bagisto#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "B2B and multi vendor marketplace presented as separate products",
+    "url": "https://github.com/bagisto/bagisto#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Installation with or without Composer",
+    "url": "https://devdocs.bagisto.com/getting-started/installation.html",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

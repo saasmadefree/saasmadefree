@@ -1,0 +1,18 @@
+{
+  "tagline": "Open-core commerce framework in Node.js with modules for products, carts, orders and payments.",
+  "description": "Medusa is a Node.js toolkit for building online stores. You pick the commerce modules you need, then write the storefront and any custom rules yourself. A Medusa application is a Node.js server plus a Vite-based admin dashboard. Local setup needs Node.js v20 or newer, Git and a running PostgreSQL, and the create-medusa-app command creates the database for you. The installer can also add a Next.js starter storefront. The core is MIT-licensed. Parts of the repository, listed in ENTERPRISE-LICENSE.md, are Enterprise Edition materials under a different licence, and the README names role-based access control as one of them. The maintainers also sell Medusa Cloud, a managed host. Compared with Shopify, Medusa covers the catalogue, cart, order and payment-provider loop, and it suits stores with unusual B2B or marketplace needs. You get no app store or ready-made themes, so a developer has to build and maintain the shop front.",
+  "strengths": [
+    "Core commerce logic is split into modules, so you can add custom logic without forking.",
+    "Supports B2B, direct-to-consumer, marketplace and point-of-sale builds, as the README describes.",
+    "create-medusa-app sets up the project and its PostgreSQL database.",
+    "A Next.js starter storefront is offered during install.",
+    "MIT-licensed core."
+  ],
+  "limits": [
+    "A developer is required: the install produces a Node.js server and admin, not a ready store with themes.",
+    "Needs Node.js v20 or newer and PostgreSQL.",
+    "Role-based access control is part of the Enterprise Edition under a separate licence.",
+    "The README says the fastest start is Medusa Cloud, so self-hosting is the secondary path."
+  ],
+  "bestFor": "A development team building a custom B2B or marketplace store that has outgrown Shopify's limits."
+}

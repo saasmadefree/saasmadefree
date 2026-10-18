@@ -1,0 +1,74 @@
+[
+  {
+    "claim": "Dropbox Plus Plus price used in intro",
+    "url": "https://www.dropbox.com/plans",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "nextcloud: coverage and gaps as stated in the alternative note",
+    "url": "https://nextcloud.com",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.nextcloud"
+  },
+  {
+    "claim": "seafile: coverage and gaps as stated in the alternative note",
+    "url": "http://seafile.com/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.seafile"
+  },
+  {
+    "claim": "opencloud: coverage and gaps as stated in the alternative note",
+    "url": "https://opencloud.eu",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.opencloud"
+  },
+  {
+    "claim": "owncloud-ocis: coverage and gaps as stated in the alternative note",
+    "url": "https://doc.owncloud.com/ocis/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.owncloud-ocis"
+  },
+  {
+    "claim": "syncthing: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/syncthing/syncthing",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.syncthing"
+  },
+  {
+    "claim": "pydio-cells: coverage and gaps as stated in the alternative note",
+    "url": "https://pydio.com",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.pydio-cells"
+  },
+  {
+    "claim": "Dropbox Plus price is €9.99 a month (EUR), as in data/tools/dropbox-plus.json",
+    "url": "https://www.dropbox.com/plans",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "Syncthing ships a web-based admin GUI (folder view, device view); it has no web file browser or sharing links",
+    "url": "https://docs.syncthing.net/intro/gui.html",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.syncthing"
+  },
+  {
+    "claim": "Syncthing ships a web-based admin GUI; no sharing links or cloud copy (FAQ)",
+    "url": "https://docs.syncthing.net/users/faq.html",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[5].a"
+  },
+  {
+    "claim": "Pydio Cells README describes no sync clients (see projects/pydio-cells sources)",
+    "url": "https://github.com/pydio/cells",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.pydio-cells"
+  },
+  {
+    "claim": "Nextcloud desktop client offers virtual files on Windows and macOS, so on-demand placeholders exist but are less mature than Dropbox's (qualified, not a measured claim)",
+    "url": "https://docs.nextcloud.com/desktop/latest/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  }
+]

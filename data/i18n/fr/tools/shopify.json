@@ -13,9 +13,40 @@
   "notes": "Un « non » précieux : l’app n’est pas juste des pages produit et un panier, et prétendre le contraire sous-estimerait ce qui casse vraiment à vrai volume.",
   "prompt": "Construis une petite boutique personnelle pour une poignée de produits : un catalogue avec images, prix et stock, un panier gardé en session, et un checkout entièrement délégué à la page de checkout hébergée d’un prestataire de paiement — ne touche jamais aux données de carte sur ton propre serveur, ce n’est pas négociable. Un webhook du prestataire de paiement enregistre la commande, décrémente le stock, et envoie une confirmation par email à toi et à l’acheteur. Une simple vue admin derrière authentification : une liste de commandes et une action « marquer expédié » qui envoie un email à l’acheteur, optionnellement avec un numéro de suivi. Des frais de port fixes par région depuis un fichier de config ; un produit épuisé reste visible mais ne peut pas être acheté.\n\nNe construis pas de moteurs de réduction, de support multi-devise, de point de vente, ni d’automatisation de taxe — active la propre fonctionnalité de taxe de ton prestataire de paiement si tu en as besoin, ne construis pas la tienne. Ne construis pas de comptes clients. Si le volume grandit vraiment, le geste honnête est de migrer vers une vraie plateforme (Shopify ou une alternative open source comme Medusa), pas de faire grossir ça davantage — et le README devrait le dire clairement, en plus du fait que tu es désormais, personnellement, le département antifraude.",
   "faq": [
-    { "q": "Puis-je importer mes produits et commandes Shopify existants ?", "a": "Les produits, oui — Shopify exporte un CSV de produits qui correspond raisonnablement bien à un catalogue simple. L’historique des commandes n’a généralement pas besoin de migrer, puisque c’est un registre historique, pas quelque chose dont la nouvelle boutique a besoin pour fonctionner." },
-    { "q": "Ça marche sur mon téléphone ?", "a": "La boutique est une page responsive normale, donc les clients qui achètent depuis un téléphone n’ont aucun problème. La vue admin est utilisable en cas de besoin mais conçue pour un écran de desktop." },
-    { "q": "Combien ça coûte à faire tourner ?", "a": "Hébergement, domaine et base de données, typiquement quelques dollars par mois, plus des frais standards de traitement de paiement par vente — aucun frais de plateforme mensuel au-delà de ça." },
-    { "q": "Quelle est la chose qui ne survit pas à la reconstruction ?", "a": "La confiance au checkout, et quelqu’un d’autre qui absorbe le risque de fraude. Le checkout de Shopify est reconnu et digne de confiance pour les acheteurs, et ses systèmes de risque attrapent une part significative des commandes frauduleuses avant qu’elles ne te coûtent de l’argent ; une boutique personnelle n’a ni l’un ni l’autre, et une seule mauvaise rétrofacturation coûte plus que des mois d’abonnement." }
-  ]
+    {
+      "q": "Puis-je importer mes produits et commandes Shopify existants ?",
+      "a": "Les produits, oui — Shopify exporte un CSV de produits qui correspond raisonnablement bien à un catalogue simple. L’historique des commandes n’a généralement pas besoin de migrer, puisque c’est un registre historique, pas quelque chose dont la nouvelle boutique a besoin pour fonctionner."
+    },
+    {
+      "q": "Ça marche sur mon téléphone ?",
+      "a": "La boutique est une page responsive normale, donc les clients qui achètent depuis un téléphone n’ont aucun problème. La vue admin est utilisable en cas de besoin mais conçue pour un écran de desktop."
+    },
+    {
+      "q": "Combien ça coûte à faire tourner ?",
+      "a": "Hébergement, domaine et base de données, typiquement quelques dollars par mois, plus des frais standards de traitement de paiement par vente — aucun frais de plateforme mensuel au-delà de ça."
+    },
+    {
+      "q": "Quelle est la chose qui ne survit pas à la reconstruction ?",
+      "a": "La confiance au checkout, et quelqu’un d’autre qui absorbe le risque de fraude. Le checkout de Shopify est reconnu et digne de confiance pour les acheteurs, et ses systèmes de risque attrapent une part significative des commandes frauduleuses avant qu’elles ne te coûtent de l’argent ; une boutique personnelle n’a ni l’un ni l’autre, et une seule mauvaise rétrofacturation coûte plus que des mois d’abonnement."
+    },
+    {
+      "q": "Quelle est la meilleure alternative gratuite à Shopify ?",
+      "a": "WooCommerce est la meilleure alternative gratuite à Shopify pour un petit commerçant qui a déjà WordPress, ou un hébergeur qui s’en charge. Il ajoute catalogue, panier et paiement, avec des passerelles de paiement et de nombreuses extensions. Tu prends en charge l’hébergement, les sauvegardes, les mises à jour de sécurité et la conformité des paiements. PrestaShop est le choix autonome si tu ne veux pas de WordPress."
+    },
+    {
+      "q": "Faut-il un développeur pour faire tourner une de ces boutiques ?",
+      "a": "Spree, Medusa, Saleor et Solidus sont des plateformes pour développeurs : changer la vitrine veut dire écrire du code. Bagisto et Shopware demandent un développeur PHP pour les thèmes, les mises à niveau et les plugins, et PrestaShop demande de savoir gérer un hébergement PHP. WooCommerce est le plus facile à faire tourner sans développeur si tu as un hébergeur WordPress. Dans tous les cas, l’hébergement, les mises à jour de sécurité et la mise en place des paiements restent à ta charge."
+    }
+  ],
+  "alternativesIntro": "La meilleure alternative gratuite à Shopify est WooCommerce : il ajoute catalogue, panier et paiement à WordPress, avec des passerelles de paiement et un marché de thèmes et d’extensions. Tu gères l’hébergement, les sauvegardes, la sécurité et la conformité des paiements. Tu perds le paiement que tes clients connaissent déjà, la gestion de la fraude, la caisse en magasin, la livraison et les taxes intégrées. PrestaShop est le bon choix si tu veux une boutique autonome, sans WordPress. Bagisto convient à une équipe qui a un développeur Laravel. Medusa et Saleor s’adressent aux équipes qui veulent une boutique pilotée par API. Si tu vends plus que quelques articles sans aide technique, continue de payer 39 $ par mois.",
+  "alternativeNotes": {
+    "woocommerce": "Couvre catalogue, panier, paiement et passerelles de paiement dans WordPress, avec des extensions payantes pour les abonnements et les réservations. L’hébergement, les mises à jour de sécurité et la conformité sont à ta charge.",
+    "bagisto": "Couvre catalogue, panier, paiement et panneau d’administration sur une pile Laravel. Les thèmes et les extensions demandent en général un développeur PHP, et les fonctions B2B et place de marché sont des paquets à part.",
+    "spree-commerce": "Couvre catalogue, panier, paiement et admin, avec des outils de place de marché et de B2B. C’est une plateforme pour développeurs : changer la vitrine veut dire écrire du code, pas choisir un thème.",
+    "prestashop": "Couvre catalogue, panier, paiement et admin, avec thèmes et modules sur ton serveur. Les mises à niveau ne sont pas simples, et tu gères l’hébergement et la conformité.",
+    "shopware": "Couvre catalogue, paiement, thèmes de vitrine et admin, étendus par des plugins. Il demande des compétences PHP pour les installations, les mises à niveau et les plugins, et certaines fonctions sont vendues en formules payantes.",
+    "medusa": "Couvre catalogue, panier, commandes et intégrations de paiement, sur lesquels tu construis une vitrine. Il n’a ni réseau de paiement hébergé, ni boutique d’applis, ni thèmes prêts à l’emploi.",
+    "saleor": "Couvre catalogue, paiement et commandes via une API. Tu construis la vitrine et tu gères la mise en place des paiements.",
+    "solidus": "Couvre catalogue, panier et paiement sous forme de moteur Rails que tu étends. Il demande un développeur."
+  }
 }

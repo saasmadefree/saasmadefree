@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Ahrefs Starter price used in intro",
+    "url": "https://ahrefs.com/pricing",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "open-seo: coverage and gaps as stated in the alternative note",
+    "url": "https://openseo.so",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.open-seo"
+  },
+  {
+    "claim": "serpbear: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/towfiqi/serpbear",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.serpbear"
+  },
+  {
+    "claim": "seonaut: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/stjudewashere/seonaut",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.seonaut"
+  },
+  {
+    "claim": "seomacroscope: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/nazuke/SEOMacroscope",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.seomacroscope"
+  },
+  {
+    "claim": "OpenSEO lists Competitor Insights and Backlinks among its main workflows and takes all data from DataForSEO, billed per request",
+    "url": "https://raw.githubusercontent.com/every-app/open-seo/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[4]"
+  },
+  {
+    "claim": "OpenSEO lists Competitor Insights and Backlinks among its main workflows and takes all data from DataForSEO, billed per request",
+    "url": "https://raw.githubusercontent.com/every-app/open-seo/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[5]"
+  },
+  {
+    "claim": "OpenSEO lists Competitor Insights and Backlinks among its main workflows and takes all data from DataForSEO, billed per request",
+    "url": "https://raw.githubusercontent.com/every-app/open-seo/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.open-seo"
+  },
+  {
+    "claim": "DataForSEO is a pay-as-you-go API; self-hosters pay it directly",
+    "url": "https://raw.githubusercontent.com/every-app/open-seo/HEAD/docs/DATAFORSEO_API_KEY.md",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  }
+]

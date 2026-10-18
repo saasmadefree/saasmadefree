@@ -1,6 +1,6 @@
 import { describe, it, expect, afterEach, vi } from 'vitest';
 import {
-  siteLanguages, toolsForLang, sortTools, categoriesForLang, categoryLabel,
+  siteLanguages, toolsForLang, sortTools, categoriesForLang, categoryLabel, categoryTitleLabel,
   categoryEmoji, langsForCategory, fetchVoteCounts, VOTES_FEED_URL,
   catalogueFigures, mrrDestroyed, oldestCheckedOn, fetchStats, STATS_API_URL,
   fetchSponsorSlots, SPONSOR_SLOTS_API_URL, SPONSOR_CHECKOUT_API_URL,
@@ -315,5 +315,29 @@ describe('oldestCheckedOn', () => {
       { pricing: { checkedOn: '2026-07-28' } },
     ];
     expect(oldestCheckedOn(views)).toBe('2026-07-28');
+  });
+});
+
+describe('categoryTitleLabel', () => {
+  const categories = {
+    newsletter: {
+      emoji: '✉️',
+      label: { en: 'Newsletters & publishing', fr: 'Newsletters et publication' },
+      titleLabel: { en: 'Newsletter' },
+    },
+    tasks: { emoji: '✅', label: { en: 'Tasks', fr: 'Tâches' } },
+  };
+
+  it('prend titleLabel[lang] quand il existe', () => {
+    expect(categoryTitleLabel(categories, 'newsletter', 'en')).toBe('Newsletter');
+  });
+
+  it("retombe sur label[lang], jamais sur le titleLabel d'une autre langue", () => {
+    expect(categoryTitleLabel(categories, 'newsletter', 'fr')).toBe('Newsletters et publication');
+  });
+
+  it('sans titleLabel, rend exactement categoryLabel', () => {
+    expect(categoryTitleLabel(categories, 'tasks', 'fr')).toBe('Tâches');
+    expect(categoryTitleLabel({}, 'docs-and-wiki', 'en')).toBe(categoryLabel({}, 'docs-and-wiki', 'en'));
   });
 });

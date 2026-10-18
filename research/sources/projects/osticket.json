@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Support ticket system integrating email, phone and web-form inquiries in a multi-user web interface",
+    "url": "https://github.com/osTicket/osTicket#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Requirements: IIS or Apache, PHP 8.2-8.4 (8.4 recommended), mysqli, MySQL 5.5 or greater",
+    "url": "https://github.com/osTicket/osTicket#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Recommended extensions: imap, intl, gd, others; APCu module",
+    "url": "https://github.com/osTicket/osTicket#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Deployment by cloning the repo and php manage.php deploy --setup; updates with git pull and deploy",
+    "url": "https://github.com/osTicket/osTicket#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Upgrade supported from 1.6-rc1 and later",
+    "url": "https://github.com/osTicket/osTicket#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Translatable interface; language packs on download page",
+    "url": "https://github.com/osTicket/osTicket#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Commercial support available",
+    "url": "https://github.com/osTicket/osTicket#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "GPL-2.0 licence per project data (data/projects/osticket.json)",
+    "url": "https://github.com/osTicket/osTicket",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

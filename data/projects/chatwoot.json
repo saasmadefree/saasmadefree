@@ -1,25 +1,44 @@
 {
   "slug": "chatwoot",
   "name": "Chatwoot",
-  "homepage": "https://github.com/chatwoot/chatwoot",
+  "homepage": "https://www.chatwoot.com",
   "repo": "chatwoot/chatwoot",
+  "license": "MIT",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/chatwoot/chatwoot/blob/HEAD/LICENSE",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://developers.chatwoot.com/self-hosted",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 0,
+    "currency": "USD",
+    "source": "https://www.chatwoot.com/pricing",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker",
+    "kubernetes"
+  ],
+  "stack": [
+    "ruby",
+    "rails",
+    "postgresql",
+    "redis"
+  ],
   "categories": [
     "customer-support"
   ],
   "stats": {
-    "stars": 37891,
-    "lastCommit": "2026-10-16",
+    "stars": 37911,
+    "lastCommit": "2026-10-18",
     "createdAt": "2019-08-14",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
-    "en"
+    "en",
+    "fr"
   ]
 }

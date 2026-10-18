@@ -1,0 +1,19 @@
+{
+  "tagline": "Système de réservation en PHP, auto-hébergé, avec services, prestataires et synchro Google Agenda.",
+  "description": "Easy!Appointments est une application PHP éprouvée qui permet à tes clients de réserver un créneau avec un prestataire, directement sur ton site. Tu gères les clients, les services et les prestataires, tu définis les plannings de travail et les règles de réservation, et tu envoies des notifications par email. Elle se synchronise avec Google Agenda et son interface existe en plusieurs langues. En production, il faut Apache ou Nginx, PHP 8.2 ou plus récent et une base MySQL. Tu envoies le dossier sur le serveur, tu rends le dossier de stockage inscriptible, tu copies le fichier de config d’exemple vers config.php, tu renseignes la base, puis tu termines avec l’assistant d’installation dans le navigateur. Un fichier Docker Compose existe, mais le README le présente comme l’environnement de développement, pas comme une voie de production. Le code est sous GPL-3.0 et le projet est gratuit pour un usage commercial. Le mainteneur vend aussi des modules premium et des services. Face à Calendly, elle convient à une entreprise avec plusieurs employés et plusieurs services, qui veut le formulaire de réservation dans son propre site plutôt qu’un lien de rendez-vous personnel.",
+  "strengths": [
+    "Tourne sur un hébergement PHP et MySQL classique, avec un assistant d’installation dans le navigateur",
+    "Gère plusieurs prestataires et services, chacun avec son planning",
+    "Se synchronise avec Google Agenda",
+    "Interface disponible en plusieurs langues",
+    "S’intègre à un site existant et à sa base de données"
+  ],
+  "limits": [
+    "Le README ne mentionne que Google Agenda : aucune synchro Outlook ou Microsoft 365 n’est annoncée",
+    "Le README ne décrit aucune création de lien de visio",
+    "Les capacités avancées sont vendues par le mainteneur en modules premium et en services",
+    "Docker Compose est documenté pour le développement ; en production, l’installation se fait à la main",
+    "Il faut PHP 8.2 ou plus récent, ce que certains vieux hébergements mutualisés n’offrent pas"
+  ],
+  "bestFor": "Un salon, un cabinet ou une petite entreprise de services, avec son site et un hébergement PHP, qui veut que les clients réservent avec un employé précis."
+}

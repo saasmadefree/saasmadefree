@@ -1,0 +1,19 @@
+{
+  "tagline": "Self-hosted fitness and nutrition tracker with web and mobile apps, aimed at replacing MyFitnessPal.",
+  "description": "SparkyFitness is a self-hosted tracker for food, exercise, hydration, sleep, fasting, mood and body measurements. It has a backend server, a web frontend and native apps for iOS and Android, all storing data on a server you run. You set goals, do daily check-ins and read charts and long-term reports. Several user profiles are supported, including family access with permissions, which the README lists as a beta feature. The README lists sync with Apple Health, Google Health Connect, Fitbit, Garmin Connect, Withings, Polar, Oura and Hevy, and food data from sources such as OpenFoodFacts and USDA. An optional chat assistant, still in beta, can log meals from text or photos. To self-host, you download a Docker Compose file, fill in a short .env file with a database password and two secrets, and start it; the app then listens on port 3004. The README states the licence is source-available and non-commercial, not open source, so check it before any commercial use. The project warns that breaking changes can happen between releases. It fits a person who wants to stop paying for a nutrition app and keep their health data at home.",
+  "strengths": [
+    "Tracks nutrition, exercise, hydration, sleep, fasting, mood and body measurements in a single app",
+    "Native iOS and Android apps plus a web frontend, all against your own server",
+    "Syncs with Apple Health, Google Health Connect, Fitbit, Garmin Connect, Withings, Polar, Oura and Hevy",
+    "Family sharing (beta) with several user profiles, and login options including OIDC, TOTP and passkeys",
+    "Docker Compose install needs only a few values in a .env file, with an online generator for the secrets"
+  ],
+  "limits": [
+    "The licence is source-available and non-commercial, so it is not open source and commercial use needs permission",
+    "The README says breaking changes may occur between releases and advises against auto-updating containers",
+    "The AI chat assistant is labelled beta",
+    "Sleep, HRV and glucose data are imported from watches or meters; the app stores and charts them but does not measure them",
+    "Food data comes from third-party sources you connect (the README names OpenFoodFacts, USDA, Fatsecret and Nutritionix), so coverage depends on them"
+  ],
+  "bestFor": "A household with a small home server that wants a private food and workout log instead of a MyFitnessPal subscription."
+}

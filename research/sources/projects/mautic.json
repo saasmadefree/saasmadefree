@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Mautic is released under the GPL v3",
+    "url": "https://raw.githubusercontent.com/mautic/mautic/HEAD/LICENSE.txt",
+    "retrievedOn": "2026-10-18",
+    "field": "license"
+  },
+  {
+    "claim": "Open source marketing automation; unlimited segmentation and automation; multi-channel marketing",
+    "url": "https://github.com/mautic/mautic#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Install via production package zip, Composer, and web installer; DDEV config present",
+    "url": "https://github.com/mautic/mautic#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Source outside a tagged release should be considered alpha and may cause data corruption or loss",
+    "url": "https://github.com/mautic/mautic#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "PHP max_execution_time at least 240 seconds; database server required",
+    "url": "https://docs.mautic.org/en/6.0/getting_started/how_to_install_mautic.html",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Mautic requires a complex password from version 5.1",
+    "url": "https://docs.mautic.org/en/6.0/getting_started/how_to_install_mautic.html",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Queue emails and send them through a cron job for larger instances",
+    "url": "https://docs.mautic.org/en/6.0/getting_started/how_to_install_mautic.html",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Hosted trials available by request form",
+    "url": "https://github.com/mautic/mautic#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Use your own database and own your data",
+    "url": "https://github.com/mautic/mautic#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

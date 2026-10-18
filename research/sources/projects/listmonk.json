@@ -1,0 +1,74 @@
+[
+  {
+    "claim": "AGPL-3.0 licence",
+    "url": "https://github.com/knadh/listmonk#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "license"
+  },
+  {
+    "claim": "Standalone self-hosted newsletter and mailing list manager, single binary, uses PostgreSQL",
+    "url": "https://github.com/knadh/listmonk#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker Compose install and binary install with --new-config, --install, then ./listmonk on port 9000",
+    "url": "https://github.com/knadh/listmonk#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Single and double opt-in lists; query and segment subscribers with SQL expressions",
+    "url": "https://listmonk.app/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Go templating with 100+ functions in subject lines and content",
+    "url": "https://listmonk.app/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Multi-threaded multi-SMTP queues with throughput and sliding window rate limiting",
+    "url": "https://listmonk.app/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Analytics for campaign performance, bounces and top links",
+    "url": "https://listmonk.app/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Production instance sending a campaign of 7+ million emails, peak RAM 57 MB",
+    "url": "https://listmonk.app/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Described as one-way mailing lists",
+    "url": "https://listmonk.app/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Listmonk has no affiliation with SMTP providers listed on the site",
+    "url": "https://listmonk.app/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Feature list on the site has no automation or drip builder",
+    "url": "https://listmonk.app/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Visual drag-and-drop builder, WYSIWYG editor, Markdown, raw HTML or plain text for writing emails",
+    "url": "https://listmonk.app/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

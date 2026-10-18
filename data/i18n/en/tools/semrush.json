@@ -13,9 +13,36 @@
   "notes": "An important 'no': naming the data moat plainly here keeps the rest of the catalogue honest about what a personal build can and can't reproduce.",
   "prompt": "Build a rank and site-health tracker limited to domains you actually own — not a general SEO platform. A scheduled job that checks a chosen list of keywords against a real SERP API (there are several with an affordable tier; do not scrape Google's results pages directly) and stores position and ranking URL per day, with a simple report showing movement over time. Pull your own click and impression data for free from the Google Search Console API for properties you control. Run a technical crawl limited to your own domain flagging broken links, missing or duplicate titles and descriptions, redirect chains, and slow pages. Send a summary report only when something actually moved — a meaningful position swing, new broken links — rather than a constant stream of noise.\n\nDo not attempt competitor keyword gaps, a backlink database, or traffic estimates for sites you don't own — none of that data can be self-collected without crawling the entire web continuously, which is exactly the infrastructure the subscription pays for.",
   "faq": [
-    { "q": "Can I import my existing Semrush data — tracked keywords, competitor research?", "a": "Your tracked keyword list, yes, that's just a text file you maintain yourself. Historical keyword and backlink data cannot be exported or rebuilt; it only exists inside Semrush's own crawl and licensed datasets." },
-    { "q": "Will it work on my phone?", "a": "The report is a simple web page, so checking it on a phone works, but there's no app and no alerting beyond the scheduled email summary." },
-    { "q": "What does it actually cost to run?", "a": "A SERP API's affordable tier plus hosting, typically a small monthly cost well under Semrush's own pricing — Search Console access itself is free." },
-    { "q": "What's the one thing that genuinely doesn't survive the rebuild?", "a": "Anyone else's site. You can track and audit your own domain thoroughly; you cannot see a competitor's keyword gaps or backlink profile — that visibility only exists because Semrush already crawled it, continuously, for years." }
-  ]
+    {
+      "q": "Can I import my existing Semrush data — tracked keywords, competitor research?",
+      "a": "Your tracked keyword list, yes, that's just a text file you maintain yourself. Historical keyword and backlink data cannot be exported or rebuilt; it only exists inside Semrush's own crawl and licensed datasets."
+    },
+    {
+      "q": "Will it work on my phone?",
+      "a": "The report is a simple web page, so checking it on a phone works, but there's no app and no alerting beyond the scheduled email summary."
+    },
+    {
+      "q": "What does it actually cost to run?",
+      "a": "A SERP API's affordable tier plus hosting, typically a small monthly cost well under Semrush's own pricing — Search Console access itself is free."
+    },
+    {
+      "q": "What's the one thing that genuinely doesn't survive the rebuild?",
+      "a": "Anyone else's site. You can track and audit your own domain thoroughly; you cannot see a competitor's keyword gaps or backlink profile — that visibility only exists because Semrush already crawled it, continuously, for years."
+    },
+    {
+      "q": "What's the best free Semrush alternative?",
+      "a": "OpenSEO is the best free Semrush alternative. It covers keyword research, rank tracking, competitor insights and backlinks through DataForSEO's paid API, at a cost per request. Pair it with SerpBear and Seonaut, and keep Semrush for the depth of its database, PPC and SERP history and traffic estimates."
+    },
+    {
+      "q": "Can I replace Semrush's site audit and rank tracking for free?",
+      "a": "Yes, for a site you own. Seonaut crawls your site and lists issues, and SerpBear tracks your keyword rankings daily. Neither gives keyword volumes, backlinks or competitor data."
+    }
+  ],
+  "alternativesIntro": "The best free Semrush alternative is OpenSEO: it covers keyword research, rank tracking, competitor insights and backlinks. It buys all its data from a paid API (DataForSEO), per request, so it costs money at volume and has no index of its own. Add SerpBear for daily rank tracking and Seonaut for site audits. For a few sites you own, that covers a lot of the $139.95 SEO Pro plan. Keep Semrush if you need the depth of its database, its PPC and SERP history or its traffic estimates.",
+  "alternativeNotes": {
+    "open-seo": "Covers keyword research, rank tracking, competitor insights and backlinks, driven by DataForSEO's paid API. It has no index of its own, so coverage and freshness are DataForSEO's.",
+    "serpbear": "Tracks keyword rankings daily for your own domain. It has no crawl, no backlink data and no competitor database.",
+    "seonaut": "Crawls a site and lists issues with page reports. It has no rank tracking and no backlink data.",
+    "seomacroscope": "Runs a technical crawl of a site you control. It has no rank tracking and no backlink or keyword database."
+  }
 }

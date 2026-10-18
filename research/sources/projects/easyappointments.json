@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Open-source scheduling system, self-hosted, free for personal and commercial use",
+    "url": "https://github.com/alextselegidis/easyappointments",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Features: appointments, customers, services, providers, working plans, booking rules, Google Calendar sync, email notifications, multi-language",
+    "url": "https://github.com/alextselegidis/easyappointments",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Production requirements: Apache or Nginx, PHP 8.2+, MySQL",
+    "url": "https://github.com/alextselegidis/easyappointments",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Install steps: upload, writable storage, config.php, setup wizard",
+    "url": "https://github.com/alextselegidis/easyappointments",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker Compose in a Quick Start (Development) section",
+    "url": "https://github.com/alextselegidis/easyappointments",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Code licence GPL v3.0",
+    "url": "https://github.com/alextselegidis/easyappointments",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Premium features and services offered at easyappointments.org/premium",
+    "url": "https://github.com/alextselegidis/easyappointments",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Repository created 2014-11-26, last commit 2026-10-06",
+    "url": "https://github.com/alextselegidis/easyappointments",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

@@ -1,15 +1,15 @@
 import { escapeHtml, renderLayout, renderBreadcrumb, verdictBadge } from './site-html.mjs';
-import { categoryLabel, SITE_ORIGIN } from './site-data.mjs';
+import { categoryLabel, categoryTitleLabel, SITE_ORIGIN } from './site-data.mjs';
 import { formatMonthlyPrice, formatDate, interpolate } from './site-format.mjs';
 import {
   organizationJsonLd, breadcrumbJsonLd, softwareItemListJsonLd, webPageJsonLd, languageVersions,
 } from './site-seo.mjs';
 import {
-  indexable as gates, isDisplayableProject, statsAreFresh, noHostedOfferChecked, checkedDates,
+  indexable as gates, isDisplayableProject, statsAreFresh, noHostedOfferChecked, checkedDates, countsAsOpenSource,
 } from './site-alternatives.mjs';
 import {
   projectLink, projectTagline, projectStatCells, renderFactGrid, fitTag, renderCompareLinks,
-  sourceHost, monthYear, externalLink as ext, hostedCell, selfHostCell,
+  sourceHost, monthYear, externalLink as ext, hostedCell, selfHostCell, licenseCell,
 } from './site-page-tool.mjs';
 
 // Fiche projet /{lang}/oss/{slug} (spec D2, D3, D7, D14 ; Ruling 20).
@@ -106,7 +106,7 @@ function renderFacts({ project, lang, p, t, today }) {
   const hosted = hostedCell(project, lang, t);
   const github = project.repo ? `https://github.com/${project.repo}` : null;
   const rows = [
-    [t.colLicense, project.license ? escapeHtml(project.license) : '—'],
+    [t.colLicense, licenseCell(project, t)],
     [t.colStars, stars],
     [t.colLastCommit, commit],
     // La date de création ne bouge pas : elle reste vraie même quand les
@@ -184,7 +184,7 @@ function renderRelated({ related, lang, t, p, catLabel, projectI18n, isIndexable
   if (related.length === 0) return '';
   const cards = related.map((other) => {
     const link = projectLink(other, lang, isIndexable);
-    const meta = [other.license ? escapeHtml(other.license) : null];
+    const meta = [other.license ? licenseCell(other, t) : null];
     if (statsAreFresh(other, today)) {
       const compact = new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 1 });
       meta.push(escapeHtml(interpolate(t.starsTemplate, { count: compact.format(other.stats.stars) })));
@@ -212,7 +212,10 @@ ${cards.join('\n')}
 /** SoftwareApplication du projet. Une offre gratuite n'est affirmée que
  *  si l'absence de version hébergée payante a été vérifiée, comme sur la
  *  fiche outil (finding 2) ; le dépôt
- *  seulement s'il est sur GitHub ; la licence en URL SPDX. */
+ *  seulement s'il est sur GitHub ; la licence en URL : la source lue
+ *  (`licenseSource`) quand elle existe, sinon l'URL SPDX de l'identifiant
+ *  remonté par GitHub. Rien n'y dit « open source » : schema.org n'a pas de
+ *  tel champ, et une licence source-available ne doit pas l'être (Ruling 44). */
 function softwareApplicationJsonLd({ project, path, catLabel, description }) {
   const app = {
     '@context': 'https://schema.org',
@@ -223,7 +226,8 @@ function softwareApplicationJsonLd({ project, path, catLabel, description }) {
     description,
     applicationCategory: catLabel,
   };
-  if (project.license) app.license = `https://spdx.org/licenses/${project.license}.html`;
+  if (project.licenseSource) app.license = project.licenseSource;
+  else if (project.license) app.license = `https://spdx.org/licenses/${project.license}.html`;
   if (project.repo) app.codeRepository = `https://github.com/${project.repo}`;
   if (noHostedOfferChecked(project)) app.offers = { '@type': 'Offer', price: 0, priceCurrency: 'USD' };
   return app;
@@ -273,8 +277,18 @@ export function renderProjectPage({
   // Aucun outil remplacé (page alors noindex) : titre de repli par la
   // catégorie plutôt qu'un « alternative to  » vide (Ruling 21).
   const fallback = replaced.length === 0;
-  const title = interpolate(fallback ? p.titleFallbackTemplate : p.titleTemplate, vars);
-  const description = interpolate(fallback ? p.metaDescriptionFallbackTemplate : p.metaDescriptionTemplate, vars);
+  // Titre de repli « {name}: Free Open Source {category} Tool » : libellé
+  // court de la catégorie (titleLabel), la description garde le libellé.
+  const titleVars = { ...vars, category: categoryTitleLabel(categories, project.categories[0], lang) };
+  // Licence source-available ou fair-code : ni le titre ni la description ne
+  // disent « open source » (Ruling 44).
+  const open = countsAsOpenSource(project);
+  const titleKey = fallback ? (open ? 'titleFallbackTemplate' : 'titleNotOpenFallbackTemplate') : (open ? 'titleTemplate' : 'titleNotOpenTemplate');
+  const descKey = fallback
+    ? (open ? 'metaDescriptionFallbackTemplate' : 'metaDescriptionNotOpenFallbackTemplate')
+    : (open ? 'metaDescriptionTemplate' : 'metaDescriptionNotOpenTemplate');
+  const title = interpolate(p[titleKey], titleVars);
+  const description = interpolate(p[descKey], vars);
   const dateModified = projectDateModified(project);
 
   const breadcrumbItems = [
@@ -287,7 +301,7 @@ export function renderProjectPage({
 
   const eyebrow = [
     categoryPath ? `<a href="${escapeHtml(categoryPath)}">${escapeHtml(catLabel)}</a>` : escapeHtml(catLabel),
-    project.license ? escapeHtml(project.license) : null,
+    project.license ? licenseCell(project, t) : null,
     dateModified ? `${escapeHtml(t.lastUpdatedLabel)} <time datetime="${dateModified}">${escapeHtml(formatDate(dateModified, lang))}</time>` : null,
   ].filter(Boolean).join(' · ');
 

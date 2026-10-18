@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted chat-with-your-documents app with agents, multi-user access and many LLM backends.",
+  "description": "AnythingLLM is an application for chatting with your own documents through a language model. You upload files such as PDF, TXT or DOCX into workspaces, pick a model provider, and ask questions with source citations. It works with local engines and with hosted LLM APIs, and stores embeddings in LanceDB by default, with PGVector, Pinecone and others as alternatives. Extra features include a no-code agent builder, MCP support, scheduled tasks, memories and an embeddable chat widget for a website. You can run it as a desktop app or as a Docker server; the multi-user permissions and the chat widget only exist in the Docker version. A non-Docker production setup is documented in a separate bare-metal guide. The code is MIT licensed. As a replacement for ChatGPT it covers private document Q&A and team access well, but answer quality depends on the model you connect, and there is no built-in frontier model. Anonymous telemetry is on by default and can be disabled with an environment variable or in the app. Plan for GPU or API costs if you want strong answers on large document sets.",
+  "strengths": [
+    "Imports documents such as PDF, TXT and DOCX into workspaces and answers with source citations",
+    "Works with many LLM providers, local or hosted, and several vector databases (LanceDB by default, PGVector, Pinecone)",
+    "Docker version adds multi-user accounts with per-user permissions and an embeddable website chat widget",
+    "Includes a no-code agent builder, MCP compatibility and cron-style scheduled tasks",
+    "Telemetry can be switched off with the DISABLE_TELEMETRY setting"
+  ],
+  "limits": [
+    "Multi-user mode and the embeddable chat widget are Docker-only, not available in the desktop app",
+    "It ships no frontier model: answer quality depends on the LLM you connect, and a good local model needs capable hardware",
+    "Telemetry is enabled by default and must be turned off by the operator",
+    "The README does not document built-in image generation, so it replaces ChatGPT for document chat and agents, not for every feature"
+  ],
+  "bestFor": "A small team that wants private question answering over its own files, with a Docker host and a model API key or a local GPU."
+}

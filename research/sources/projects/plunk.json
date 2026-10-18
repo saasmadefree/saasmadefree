@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Open-source email platform built on AWS SES; self-hosted alternative to SendGrid, Resend and Mailgun",
+    "url": "https://github.com/useplunk/plunk",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Features: transactional emails, automations, broadcasts",
+    "url": "https://github.com/useplunk/plunk",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Requirements: Docker and Docker Compose, AWS SES account, domain with subdomains; quick start with docker compose up",
+    "url": "https://docs.useplunk.com/self-hosting/introduction.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Subdomains: app, api, docs, www, smtp optional",
+    "url": "https://docs.useplunk.com/self-hosting/introduction.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Docs describe Plunk as designed for developers",
+    "url": "https://docs.useplunk.com/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "README links to docs.useplunk.com/getting-started/self-hosting, which returned 404 on retrieval",
+    "url": "https://docs.useplunk.com/getting-started/self-hosting",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "AGPL-3.0 licence file in the repository",
+    "url": "https://raw.githubusercontent.com/useplunk/plunk/main/LICENSE",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker image driaug/plunk is the recommended route",
+    "url": "https://github.com/useplunk/plunk",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

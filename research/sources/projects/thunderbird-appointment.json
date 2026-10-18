@@ -1,0 +1,62 @@
+[
+  {
+    "claim": "Invite others to grab times on your calendar",
+    "url": "https://github.com/thunderbird/appointment#thunderbird-appointment",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker is the recommended and, for now, the only supported method; docs are still work-in-progress",
+    "url": "https://github.com/thunderbird/appointment#get-started",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "docker-compose creates 5 containers: backend, frontend, postgres, redis, mailpit",
+    "url": "https://github.com/thunderbird/appointment#installation",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Database is accessible with a published default username and password in the README",
+    "url": "https://github.com/thunderbird/appointment#installation",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "APP_ALLOW_FIRST_TIME_REGISTER and APP_ADMIN_ALLOW_LIST env variables",
+    "url": "https://github.com/thunderbird/appointment#installation",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Simple password auth meant for developing and testing, can be used for self-hosting; OIDC via Thunderbird Accounts",
+    "url": "https://github.com/thunderbird/appointment#authentication",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Architecture: Vue3 frontend, FastAPI backend, PostgreSQL; Google and CalDAV calendar connections; OIDC; chart slightly outdated",
+    "url": "https://github.com/thunderbird/appointment/blob/main/docs/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Localization with Fluent",
+    "url": "https://github.com/thunderbird/appointment#localization",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "OpenAPI docs served by backend",
+    "url": "https://github.com/thunderbird/appointment/blob/main/docs/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "MPL-2.0 licence (project data)",
+    "url": "https://github.com/thunderbird/appointment",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

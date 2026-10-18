@@ -1,7 +1,7 @@
 {
   "slug": "formbricks",
   "name": "Formbricks",
-  "homepage": "https://github.com/formbricks/formbricks",
+  "homepage": "https://formbricks.com",
   "repo": "formbricks/formbricks",
   "selfHostable": true,
   "hosted": {
@@ -13,11 +13,11 @@
     "forms"
   ],
   "stats": {
-    "stars": 13117,
+    "stars": 13123,
     "lastCommit": "2026-10-16",
     "createdAt": "2022-06-06",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

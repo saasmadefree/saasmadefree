@@ -1,0 +1,128 @@
+{
+  "tool": "shopify",
+  "checkedOn": "2026-10-18",
+  "question": "Paid SaaS: \"Shopify\". What people pay it for: A small catalog and cart, with checkout handed off entirely to a hosted payment processor so card data never touches your own server. Question: is the candidate below an open-source or self-hostable application (web, desktop or server) that a person could actually use INSTEAD of Shopify for that job, or for a clear, substantial part of it? Partial replacements count as yes (for example a desktop video editor for a video app, a self-hosted rank tracker for an SEO suite). Answer no for: a code library or SDK only, a command-line utility with no end-user workflow, a closed paid service, a tutorial, or a tool for an unrelated job.",
+  "jevModel": "jev-1.13.0",
+  "results": [
+    {
+      "slug": "medusa",
+      "name": "Medusa",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.8,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.86,
+      "kept": true
+    },
+    {
+      "slug": "saleor",
+      "name": "Saleor",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.95,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.97,
+      "kept": true
+    },
+    {
+      "slug": "woocommerce",
+      "name": "WooCommerce",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.81,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "bagisto",
+      "name": "Bagisto",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.99,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "spree-commerce",
+      "name": "Spree Commerce",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.95,
+      "kept": true
+    },
+    {
+      "slug": "solidus",
+      "name": "Solidus",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.62,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.95,
+      "kept": true
+    },
+    {
+      "slug": "vendure",
+      "name": "Vendure",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.72,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.91,
+      "kept": true
+    },
+    {
+      "slug": "shopware",
+      "name": "Shopware",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.98,
+      "kept": true
+    },
+    {
+      "slug": "prestashop",
+      "name": "PrestaShop",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.96,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "sylius",
+      "name": "Sylius",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.75,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.97,
+      "kept": true
+    }
+  ]
+}

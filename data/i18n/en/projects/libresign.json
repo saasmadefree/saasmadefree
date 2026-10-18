@@ -1,0 +1,18 @@
+{
+  "tagline": "Document signing app for Nextcloud, with signing workflows, signer tracking and certificate checks.",
+  "description": "LibreSign is an app that runs inside Nextcloud and lets an organization set up how documents get signed. Each document flow can set who signs first, which role each person has and which rules apply, and one request can mix people inside and outside your organization. Signers get notifications and reminders. Every request and action is logged, which gives you an audit trail, and the app can check signed files and the status of their certificates. It builds on your existing Nextcloud files, accounts and shares, and exposes APIs so other systems can start a signing request. The licence is AGPL-3.0. The README gives no install steps, so you follow the separate documentation site, and the project asks organizations that depend on it to sponsor it. The practical consequence is that you need a working Nextcloud server first. Compared with DocuSign, it covers the core loop of sending a document, collecting signatures and keeping an audit trail. It is not a standalone product.",
+  "strengths": [
+    "Each flow sets who signs first, in what role and under which rules.",
+    "Internal and external signers can sign the same request.",
+    "Reminders and notifications go out to signers.",
+    "Logs each request and action, giving an audit trail for later checks.",
+    "APIs let other systems create and follow signing requests."
+  ],
+  "limits": [
+    "Requires a Nextcloud server; it is an app, not a standalone product.",
+    "The README has no install steps; setup instructions are on a separate documentation site.",
+    "The README does not say which legal signature levels are supported, so check the docs against your jurisdiction.",
+    "No hosted signing service is described in the README, so you carry the hosting and upkeep."
+  ],
+  "bestFor": "A team already on Nextcloud that needs signing workflows and an audit trail for contracts."
+}

@@ -1,0 +1,149 @@
+[
+  {
+    "slug": "sparkyfitness",
+    "existing": false,
+    "name": "SparkyFitness",
+    "repo": "CodeWithCJ/SparkyFitness",
+    "homepage": "https://codewithcj.github.io/SparkyFitness/",
+    "why": "Self-hosted fitness tracker that logs nutrition, exercise and body metrics and names MyFitnessPal as the app it replaces.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Food logging with calories and macros, exercise and body metrics on your own server. Food database is smaller than MyFitnessPal's.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/CodeWithCJ/SparkyFitness",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript"
+    ],
+    "categories": [
+      "health-fitness"
+    ],
+    "evidenceUrls": [
+      "https://github.com/CodeWithCJ/SparkyFitness"
+    ]
+  },
+  {
+    "slug": "opennutritracker",
+    "existing": false,
+    "name": "OpenNutriTracker",
+    "repo": "simonoppowa/OpenNutriTracker",
+    "homepage": "https://github.com/simonoppowa/OpenNutriTracker",
+    "why": "Open-source mobile app that logs food and drink against calorie and macro targets.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Meal logging with a barcode scanner and daily macro rings on a phone. No server or sync to other devices.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/simonoppowa/OpenNutriTracker",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "dart"
+    ],
+    "categories": [
+      "health-fitness"
+    ],
+    "evidenceUrls": [
+      "https://github.com/simonoppowa/OpenNutriTracker"
+    ]
+  },
+  {
+    "slug": "waistline",
+    "existing": false,
+    "name": "Waistline",
+    "repo": "davidhealey/waistline",
+    "homepage": "https://github.com/davidhealey/waistline",
+    "why": "Libre Android calorie counter and weight tracker that looks up products in Open Food Facts and USDA data.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Calorie and weight logging with barcode lookups against open food data. Android only, no server.",
+    "deploy": [],
+    "stack": [
+      "javascript"
+    ],
+    "categories": [
+      "health-fitness"
+    ],
+    "evidenceUrls": [
+      "https://github.com/davidhealey/waistline"
+    ]
+  },
+  {
+    "slug": "openfoodfacts-server",
+    "existing": true,
+    "name": "Open Food Facts",
+    "repo": "openfoodfacts/openfoodfacts-server",
+    "homepage": "https://world.openfoodfacts.org",
+    "why": "Open barcode-indexed food database and the server that runs it.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "The open food database behind barcode lookups. It is data and an API, not a meal diary with targets.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/openfoodfacts/openfoodfacts-server",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "perl"
+    ],
+    "categories": [
+      "health-fitness"
+    ],
+    "evidenceUrls": [
+      "https://github.com/openfoodfacts/openfoodfacts-server"
+    ]
+  },
+  {
+    "slug": "wger",
+    "existing": true,
+    "name": "wger",
+    "repo": "wger-project/wger",
+    "homepage": "https://wger.de",
+    "why": "Self-hosted workout and nutrition manager with a REST API.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Workout logging plus a nutrition diary with calorie plans. Food database coverage is smaller.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/wger-project/wger",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "python"
+    ],
+    "categories": [
+      "health-fitness"
+    ],
+    "evidenceUrls": [
+      "https://github.com/wger-project/wger",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "daily-value",
+    "existing": false,
+    "name": "Daily Value",
+    "repo": "jjnesk1-ship-it/daily-value",
+    "homepage": "https://github.com/jjnesk1-ship-it/daily-value",
+    "why": "Static web nutrition tracker with a food diary, barcode scanning and USDA and Open Food Facts data, described as a MyFitnessPal alternative.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Food diary with macros, micronutrients and barcode lookup in the browser. Single-device web page with no server sync; very new project.",
+    "deploy": [],
+    "stack": [
+      "javascript"
+    ],
+    "categories": [
+      "health-fitness"
+    ],
+    "evidenceUrls": [
+      "https://github.com/jjnesk1-ship-it/daily-value"
+    ]
+  }
+]

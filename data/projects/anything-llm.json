@@ -1,0 +1,43 @@
+{
+  "slug": "anything-llm",
+  "name": "AnythingLLM",
+  "homepage": "https://anythingllm.com",
+  "repo": "Mintplex-Labs/anything-llm",
+  "license": "MIT",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/Mintplex-Labs/anything-llm/blob/HEAD/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.anythingllm.com/installation-docker/overview",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 50,
+    "currency": "USD",
+    "source": "https://anythingllm.com/cloud",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker",
+    "desktop"
+  ],
+  "stack": [
+    "javascript",
+    "node.js",
+    "react"
+  ],
+  "categories": [
+    "ai-assistant"
+  ],
+  "stats": {
+    "stars": 67262,
+    "lastCommit": "2026-10-15",
+    "createdAt": "2023-06-04",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

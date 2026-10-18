@@ -1,0 +1,40 @@
+{
+  "slug": "prestashop",
+  "name": "PrestaShop",
+  "homepage": "https://www.prestashop-project.org/",
+  "repo": "PrestaShop/PrestaShop",
+  "license": "OSL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/PrestaShop/PrestaShop/blob/develop/LICENSE.md",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.prestashop-project.org/v.8-documentation/getting-started/installing-prestashop",
+  "hosted": {
+    "exists": false,
+    "source": "https://www.prestashop-project.org/",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "manual"
+  ],
+  "stack": [
+    "php",
+    "symfony",
+    "mysql"
+  ],
+  "categories": [
+    "creator-commerce"
+  ],
+  "stats": {
+    "stars": 9226,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2012-11-19",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

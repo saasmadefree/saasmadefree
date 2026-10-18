@@ -28,6 +28,16 @@
     {
       "q": "Quelle est la seule chose qui ne survit pas à la reconstruction ?",
       "a": "L’acceptation. Tout ce qui est technique ici se construit ; la raison pour laquelle les gens paient, c’est que l’autre partie fait déjà confiance à l’enveloppe, et ce n’est pas une fonctionnalité qu’on peut implémenter."
-    }
-  ]
+    },
+    { "q": "Quelle est la meilleure alternative gratuite à DocuSign ?", "a": "DocuSeal est la meilleure alternative gratuite à DocuSign. Il couvre les liens de signature, les PDF signés et une piste d’audit. L’édition gratuite n’inclut pas de vérification d’identité, et tu n’as pas la reconnaissance juridique que DocuSign a construite." },
+    { "q": "Je peux signer mes documents dans Nextcloud ?", "a": "Oui, avec LibreSign. Il signe des PDF avec des certificats dans un serveur Nextcloud que tu fais déjà tourner. Il demande ce serveur, et il ne couvre DocuSign qu’en partie." }
+  ],
+  "alternativesIntro": "La meilleure alternative gratuite à DocuSign est DocuSeal : il gère les champs de formulaire PDF, les liens de signature, le PDF signé en sortie et une piste d’audit, sous licence AGPL-3.0. Certaines fonctions demandent l’édition payante. Tu perds la reconnaissance : vérifications d’identité, signatures qualifiées eIDAS et intégrations qui lancent des enveloppes depuis un CRM. Documenso est le bon choix si tu veux un flux à base de certificat. Pour des contrats courants entre personnes qui se font confiance, l’auto-hébergement suffit. Pour les affaires où les juristes de l’autre partie doivent accepter la signature, continue de payer DocuSign 11 $ par mois, facturé à l’année.",
+  "alternativeNotes": {
+    "docuseal": "Couvre les champs de formulaire PDF, les liens de signature, le PDF signé en sortie et une piste d’audit. Certaines fonctions demandent l’édition payante.",
+    "documenso": "Couvre l’envoi, la signature et le suivi de documents avec des liens de signature et un certificat. Il n’a pas de vérification d’identité par défaut ni de garantie de valeur de preuve.",
+    "opensign": "Couvre les demandes de signature, les modèles et les PDF terminés avec une piste d’audit. La valeur juridique dépend de ton pays.",
+    "libresign": "Couvre la signature de PDF avec des certificats dans Nextcloud. Il demande un serveur Nextcloud.",
+    "wraft": "Couvre la génération de documents avec des modèles et des étapes de signature. C’est un outil de workflow plus large qu’un service de signature."
+  }
 }

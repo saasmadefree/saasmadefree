@@ -1,0 +1,41 @@
+{
+  "slug": "open-seo",
+  "name": "OpenSEO",
+  "homepage": "https://openseo.so",
+  "repo": "every-app/open-seo",
+  "license": "MIT",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/every-app/open-seo/blob/HEAD/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/every-app/open-seo",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 10,
+    "currency": "USD",
+    "source": "https://openseo.so/pricing",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker",
+    "cloudflare"
+  ],
+  "stack": [
+    "typescript"
+  ],
+  "categories": [
+    "seo-marketing"
+  ],
+  "stats": {
+    "stars": 23954,
+    "lastCommit": "2026-10-14",
+    "createdAt": "2026-02-27",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

@@ -1,0 +1,68 @@
+[
+  {
+    "claim": "Meeting scheduler that runs on Cloudflare, with Google and Outlook calendar integration",
+    "url": "https://github.com/dennisklappe/CloudMeet",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Deploy via repository template, GitHub secrets and an Actions workflow",
+    "url": "https://github.com/dennisklappe/CloudMeet",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Required secrets include Cloudflare token, account ID, admin email, JWT secret, app URL and Google OAuth",
+    "url": "https://github.com/dennisklappe/CloudMeet",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Runs entirely on Cloudflare's free tier (author's claim)",
+    "url": "https://github.com/dennisklappe/CloudMeet",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "MIT licence",
+    "url": "https://github.com/dennisklappe/CloudMeet",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Reminders at 24h and 1h sent by a Cloudflare Worker running every 5 minutes",
+    "url": "https://github.com/dennisklappe/CloudMeet",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Availability is checked across both calendars when both are connected",
+    "url": "https://github.com/dennisklappe/CloudMeet",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Google Meet or Teams links on events",
+    "url": "https://github.com/dennisklappe/CloudMeet",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "ADMIN_EMAIL: only this account can log in",
+    "url": "https://github.com/dennisklappe/CloudMeet",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "EMAILIT_API_KEY is used for booking emails",
+    "url": "https://github.com/dennisklappe/CloudMeet",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Update via Sync and Deploy workflow",
+    "url": "https://github.com/dennisklappe/CloudMeet",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "tagline": "Plateforme e-commerce PHP avec vitrine, back-office, thèmes et modules, sur ton propre serveur.",
+  "description": "PrestaShop est une application de boutique en ligne écrite en PHP. Elle fournit un catalogue, un panier, un paiement et un back-office, et tu l’étends avec des modules et des thèmes. Le README indique qu’elle gère les principaux services de paiement et qu’elle est traduite en de nombreuses langues. Le dépôt GitHub sert au développement et à l’aperçu seulement. Pour une boutique en ligne, tu télécharges une version sur le site du projet, actuellement la 9.0. Cette version demande un serveur web avec PHP 8.1 ou plus récent et MySQL 5.6 ou plus récent, ou un équivalent compatible comme MariaDB. Apache ou Nginx sont recommandés. La licence est OSL-3.0 pour le cœur et AFL-3.0 pour les modules. La configuration Docker du dépôt est un environnement de développement avec des identifiants par défaut, pas une recette de production. Pour remplacer Shopify, elle te donne le contrôle total du code et des données, mais tu gères l’hébergement, les correctifs de sécurité, la configuration des paiements et les mises à niveau. Le README lui-même prévient que passer à une version plus récente n’est pas simple et renvoie vers un guide de mise à jour dédié.",
+  "strengths": [
+    "Catalogue, panier, paiement et back-office dans une seule application",
+    "Étendue par des modules et des thèmes, avec la possibilité de surcharger des composants",
+    "Tourne sur une pile PHP et MySQL standard avec Apache ou Nginx",
+    "Traduite en de nombreuses langues et adaptée à de nombreux pays"
+  ],
+  "limits": [
+    "Le dépôt GitHub sert au développement et à l’aperçu ; une installation de production part d’une version téléchargée",
+    "L’hébergement, les sauvegardes, les correctifs de sécurité et la configuration des paiements sont à ta charge",
+    "Le README prévient que la mise à niveau vers une nouvelle version n’est pas simple",
+    "La configuration Docker est un environnement de développement avec des identifiants d’admin par défaut"
+  ],
+  "bestFor": "Un commerçant ou une agence qui sait gérer un hébergement PHP et veut contrôler le code et les données de sa boutique."
+}

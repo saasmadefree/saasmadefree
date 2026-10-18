@@ -26,7 +26,35 @@
   ],
   "alternatives": [
     {
+      "project": "leantime",
+      "fit": "full"
+    },
+    {
+      "project": "operately",
+      "fit": "full"
+    },
+    {
       "project": "plane",
+      "fit": "partial"
+    },
+    {
+      "project": "platform",
+      "fit": "partial"
+    },
+    {
+      "project": "openproject",
+      "fit": "partial"
+    },
+    {
+      "project": "vikunja",
+      "fit": "partial"
+    },
+    {
+      "project": "worklenz",
+      "fit": "partial"
+    },
+    {
+      "project": "taiga",
       "fit": "partial"
     }
   ],

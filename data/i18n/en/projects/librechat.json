@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted ChatGPT-style chat interface for many AI providers, with agents, MCP tools and multi-user login.",
+  "description": "LibreChat is a web chat interface that you point at the AI providers you choose. It supports Anthropic, OpenAI, Azure OpenAI, Google, AWS Bedrock and any OpenAI-compatible endpoint, which covers local servers such as Ollama. On top of chat it offers agents with MCP tools, file search, a code interpreter, code artifacts, image generation, web search, presets and conversation branching. It is MIT-licensed. The README says the Docker Compose stacks give a one-command setup, and the project's Docker guide shows that the default stack runs MongoDB. Users sign in with email, OAuth2 or LDAP, and you can share agents and prompts with specific users and groups. It replaces the ChatGPT interface closely, but not the model: you bring API keys and pay each provider by usage. The code interpreter is a separate service built on ClickHouse's open-source project. The latest release notes list several features as beta or highly experimental, including attached code workspaces and the agent management API.",
+  "strengths": [
+    "Works with many providers at once and lets you switch endpoint or preset in the middle of a chat.",
+    "Any OpenAI-compatible API can be added as a custom endpoint without a proxy.",
+    "Multi-user sign-in through email, OAuth2 or LDAP, with sharing of agents and prompts by user or group.",
+    "Agents can use MCP servers, file search and code execution.",
+    "Docker Compose stacks for a one-command setup."
+  ],
+  "limits": [
+    "No model of its own: you need provider API keys and pay per use, so the bill is not flat like a ChatGPT subscription.",
+    "The default Docker Compose stack runs MongoDB, which crashes on Apple Silicon Macs without an override file.",
+    "The code interpreter relies on a separate ClickHouse project that you host yourself, or on LibreChat's Code Interpreter API with an API key.",
+    "Attached code workspaces are labelled highly experimental and the agent management API is beta."
+  ],
+  "bestFor": "A small company or community that wants one shared chat interface over several AI providers and its own login system."
+}

@@ -1,0 +1,18 @@
+{
+  "tagline": "Free media server that streams your movies, shows, music and photos to apps on any device.",
+  "description": "Jellyfin is a free-software media system for managing and streaming your own library from a dedicated server to apps on other devices. It descends from the Emby 3.5.2 release and is licensed under GPL-2.0. The project states that it has no premium licences or paid features. Its server is written for .NET and uses ffmpeg, in the project's own jellyfin-ffmpeg build, for transcoding. The installation guide covers Windows, macOS, Debian and Ubuntu, other Linux distributions, Docker, Kubernetes and Podman, plus Synology and TrueNAS SCALE. FreeBSD and TrueNAS CORE are not supported because .NET is not compatible with them. The server hosts the web client by default, and separate apps exist for other devices. Hardware transcoding can offload video work to Intel Quick Sync, NVIDIA NVENC, AMD AMF, VA-API, Apple VideoToolbox or Rockchip RKMPP, which keeps CPU load low when a client cannot play a file directly. It is the closest free answer to Plex or Emby, and it covers the video side of what Netflix-style subscriptions offer for your own files. It does not provide licensed content, and remote access means you must handle networking and security yourself.",
+  "strengths": [
+    "No premium tier: the project says there are no paid licences or locked features.",
+    "Hardware transcoding through Intel QSV, NVIDIA NVENC, AMD AMF, VA-API, Apple VideoToolbox and Rockchip RKMPP.",
+    "Official install guides for Windows, macOS, Linux, Docker, Kubernetes, Podman, Synology and TrueNAS SCALE.",
+    "Ships its own tuned ffmpeg build (jellyfin-ffmpeg).",
+    "Web client is served by the server itself, so a browser works as a first player."
+  ],
+  "limits": [
+    "FreeBSD and TrueNAS CORE are not supported, because .NET does not run officially on those platforms.",
+    "You provide the files and metadata: it brings no catalogue, so it replaces storage and playback, not a streaming service's content.",
+    "Smooth transcoding needs suitable GPU drivers; partial acceleration can raise CPU use and slow transcoding.",
+    "Remote access is your job: the docs cover networking, but you set up the reverse proxy, TLS and user accounts yourself."
+  ],
+  "bestFor": "A household with a NAS or mini PC full of ripped films and music who wants Plex-style apps without a subscription."
+}

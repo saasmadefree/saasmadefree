@@ -1,26 +1,43 @@
 {
   "slug": "mixpost",
   "name": "Mixpost",
-  "homepage": "https://github.com/inovector/mixpost",
+  "homepage": "https://mixpost.app",
   "repo": "inovector/mixpost",
   "license": "MIT",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/inovector/mixpost/blob/HEAD/LICENSE.md",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.mixpost.app/lite/",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 29,
+    "currency": "USD",
+    "source": "https://mixpost.app/cloud",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker",
+    "composer"
+  ],
+  "stack": [
+    "php",
+    "laravel",
+    "vue"
+  ],
   "categories": [
     "social-media"
   ],
   "stats": {
-    "stars": 3826,
+    "stars": 3829,
     "lastCommit": "2026-03-16",
     "createdAt": "2022-07-22",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
-    "en"
+    "en",
+    "fr"
   ]
 }

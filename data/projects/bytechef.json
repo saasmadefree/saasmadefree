@@ -1,0 +1,44 @@
+{
+  "slug": "bytechef",
+  "name": "ByteChef",
+  "homepage": "https://www.bytechef.io",
+  "repo": "bytechefhq/bytechef",
+  "license": "Apache-2.0",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/bytechefhq/bytechef/blob/HEAD/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.bytechef.io",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 23,
+    "currency": "USD",
+    "source": "https://www.bytechef.io/pricing",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker",
+    "helm",
+    "kubernetes"
+  ],
+  "stack": [
+    "java",
+    "typescript",
+    "postgresql"
+  ],
+  "categories": [
+    "automation"
+  ],
+  "stats": {
+    "stars": 1023,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2021-09-30",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

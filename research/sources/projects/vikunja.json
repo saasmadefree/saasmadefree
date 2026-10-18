@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Server and front end bundled into one binary or Docker container",
+    "url": "https://vikunja.io/docs/installing/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Supports MySQL, MariaDB, PostgreSQL and SQLite; SQLite bundled; MySQL 5.7 unsupported",
+    "url": "https://vikunja.io/docs/installing/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Install methods: binary, source, Docker, Debian/Ubuntu, RPM, Arch, Alpine, FreeBSD, Kubernetes, Ansible",
+    "url": "https://vikunja.io/docs/installing/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Mobile app supports only very basic features",
+    "url": "https://vikunja.io/docs/installing/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Default CORS needs service.publicurl or cors.enable false",
+    "url": "https://vikunja.io/docs/installing/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Releases signed with GPG",
+    "url": "https://vikunja.io/docs/installing/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Admin panel, audit logs and time tracking are in Vikunja Pro; hosted version Vikunja Cloud; LLM-assisted coding note",
+    "url": "https://github.com/go-vikunja/vikunja#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "AGPL-3.0-or-later licence",
+    "url": "https://github.com/go-vikunja/vikunja#license",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Documentation index lists OpenID, LDAP, webhooks, API and migration from third-party services",
+    "url": "https://vikunja.io/docs/installing/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

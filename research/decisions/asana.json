@@ -1,0 +1,116 @@
+{
+  "tool": "asana",
+  "checkedOn": "2026-10-18",
+  "question": "Paid SaaS: \"Asana\". What people pay it for: Track tasks in projects, attach projects to goals, and read one page where each goal's progress is computed from the tasks underneath it, with the stalest contributing project named. Question: is the candidate below an open-source or self-hostable application (web, desktop or server) that a person could actually use INSTEAD of Asana for that job, or for a clear, substantial part of it? Partial replacements count as yes (for example a desktop video editor for a video app, a self-hosted rank tracker for an SEO suite). Answer no for: a code library or SDK only, a command-line utility with no end-user workflow, a closed paid service, a tutorial, or a tool for an unrelated job.",
+  "jevModel": "jev-1.13.0",
+  "results": [
+    {
+      "slug": "plane",
+      "name": "Plane",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.84,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.74,
+      "kept": true
+    },
+    {
+      "slug": "openproject",
+      "name": "OpenProject",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.71,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.79,
+      "kept": true
+    },
+    {
+      "slug": "leantime",
+      "name": "Leantime",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.97,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.92,
+      "kept": true
+    },
+    {
+      "slug": "operately",
+      "name": "Operately",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.94,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.94,
+      "kept": true
+    },
+    {
+      "slug": "vikunja",
+      "name": "Vikunja",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.85,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.74,
+      "kept": true
+    },
+    {
+      "slug": "taiga",
+      "name": "Taiga",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.75,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.7,
+      "kept": true
+    },
+    {
+      "slug": "platform",
+      "name": "Huly",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.41,
+        "review": true,
+        "classId": "other"
+      },
+      "decision": 0.72,
+      "kept": true
+    },
+    {
+      "slug": "worklenz",
+      "name": "Worklenz",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.9,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.81,
+      "kept": true
+    },
+    {
+      "slug": "redmine",
+      "name": "Redmine",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.86,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.49,
+      "kept": false
+    }
+  ]
+}

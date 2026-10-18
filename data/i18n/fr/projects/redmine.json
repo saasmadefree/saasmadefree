@@ -1,0 +1,18 @@
+{
+  "tagline": "Gestionnaire de tickets et de projets auto-hébergé : Gantt, suivi du temps et wikis, sur Rails.",
+  "description": "Redmine est une application web qui suit les tickets de plusieurs projets depuis une seule installation. Chaque projet a ses propres rôles, types de ticket, transitions de workflow, wiki, forums et espace de fichiers, et les modules s’activent ou se désactivent projet par projet. Tu y trouves aussi un diagramme de Gantt, un calendrier, la saisie du temps au niveau du projet ou du ticket, et des champs personnalisés sur les tickets, les projets, les utilisateurs et les saisies de temps. Tu l’installes toi-même : tu crées une base de données, tu suis les étapes Rails du guide, puis tu lances l’application. Les bases prises en charge sont PostgreSQL, MySQL et SQLite, mais le guide précise que SQLite ne convient pas à une production multi-utilisateur. La licence est GPL v2 et le projet publie une nouvelle version environ tous les six mois. Il ne propose pas d’offre hébergée lui-même. Dans la pratique, Redmine remplace le volet tickets et tâches d’outils comme Asana ou Smartsheet, pour les équipes qui raisonnent en tickets, en types de demande et en échéances. Il convient mieux au développement, au support et aux opérations internes qu’à un calendrier éditorial. Des plugins et des thèmes l’étendent : l’installation de base reste sobre et tu ajoutes ce dont tu as besoin.",
+  "strengths": [
+    "Rôles et droits par projet : une personne peut être responsable d’un projet et simple lectrice d’un autre",
+    "Les workflows de tickets se règlent par type de ticket et par rôle depuis l’interface d’administration",
+    "Suivi du temps intégré, avec des rapports par utilisateur, type de ticket, catégorie ou activité",
+    "Diagramme de Gantt et calendrier générés à partir des dates de début et d’échéance des tickets",
+    "Champs personnalisés sur les tickets, les saisies de temps, les projets et les utilisateurs, utilisables comme filtres de liste"
+  ],
+  "limits": [
+    "L’installation est manuelle : le guide officiel compte onze étapes et ne propose pas de montage Docker en une commande",
+    "La liste officielle des fonctionnalités ne contient pas de tableau Kanban : il faut passer par des plugins tiers",
+    "SQLite ne convient pas à une production multi-utilisateur, et MySQL demande un niveau d’isolation des transactions réglé sur READ COMMITTED",
+    "Pas de prise en charge de JRuby : il faut l’interpréteur Ruby standard, dans une version que la release accepte"
+  ],
+  "bestFor": "Une petite équipe de développement ou de support qui veut des tickets, un planning Gantt et des rapports de temps sur son propre serveur, et qui sait maintenir une application Rails."
+}

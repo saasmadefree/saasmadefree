@@ -11,6 +11,16 @@
   ],
   "whyPeopleStillPay": "Parce qu’une formation zéro vaut de vrais sous, et parce que Trello, c’est là où un groupe de gens qui ne s’accordent sur rien d’autre acceptera de mettre ses cartes.",
   "prompt": "Construis un tableau kanban et fais ensuite les deux choses qui séparent un bon tableau d’une démo : un vrai ordonnancement par glisser-déposer, et une seconde vue sur les mêmes cartes.\n\nStack : ton choix, Postgres, Docker Compose.\n\nTableaux, Listes, Cartes. Une Carte a un titre, une description en Markdown, des membres, des étiquettes, une date d’échéance avec un indicateur fait, une checklist, des commentaires, des pièces jointes et une couleur de couverture.\n\nL’ordonnancement, c’est la partie toujours mal faite. Stocke la position comme une valeur fractionnaire entre voisins plutôt qu’une séquence dense d’entiers, pour qu’un glisser écrive une ligne au lieu de renuméroter la liste. Gère l’épuisement de précision en renormalisant les positions de cette liste dans une passe en arrière-plan. Écris un test qui effectue deux cents glissers séquentiels vers la même position et vérifie que l’ordonnancement reste correct.\n\nLe glisser doit être optimiste dans l’interface et réconcilié contre la réponse du serveur, avec un retour en arrière visible si l’écriture échoue — un tableau qui perd silencieusement un glisser est pire qu’un qui est lent.\n\nDeuxième et troisième vues sur les mêmes cartes, à travers tous les tableaux dont tu es membre :\n- Calendrier : les cartes avec des dates d’échéance, glisser une carte change la date d’échéance.\n- Table : chaque carte comme une ligne avec tableau, liste, étiquettes, membres et date d’échéance, triable et filtrable, avec édition en ligne.\n\nAutomatisation, gardée petite : des règles de la forme « quand une carte est déplacée vers la liste X » ou « quand une date d’échéance passe » ou « chaque jour ouvré à l’heure T », puis des actions parmi un ensemble fermé — déplacer, archiver, ajouter ou retirer une étiquette, ajouter un membre, poster un commentaire, fixer une date d’échéance. Journalise chaque exécution. Plafonne la profondeur de chaîne à deux.\n\nFiltres qui persistent par tableau et par utilisateur : par étiquette, membre, fenêtre d’échéance, et texte libre.\n\nAjoute aussi : des modèles de carte par liste, une archive de tableaux avec recherche, et un export JSON d’un tableau entier dans une forme documentée.\n\nÉcris des tests pour l’ordonnancement fractionnaire sous des insertions répétées, pour le glisser calendrier qui écrit le même champ que l’éditeur de carte, et pour le plafonnement de profondeur de chaîne d’automatisation.\n\nNe construis ni Power-Ups, ni applications mobiles, ni multi-utilisateur en temps réel.",
+  "alternativesIntro": "La meilleure alternative gratuite à Trello est WeKan : tableaux, listes, cartes et couloirs sur ton propre serveur, sous licence MIT, avec import direct de tes tableaux Trello. Il propose aussi des vues tableau, calendrier, Gantt et Scrum. Tu perds les applis mobiles, les intégrations Power-Up et le fait que tes invités connaissent déjà Trello. PLANKA est plus sobre si tu veux un simple tableau en temps réel, mais sa licence est fair-code, pas open source. Coder ton propre tableau prend un week-end, ce qui convient à une seule personne. Continue de payer Trello si des clients ou des collègues invités l’attendent.",
+  "alternativeNotes": {
+    "wekan": "Couvre tableaux, couloirs, règles et vues tableau, calendrier, Gantt et Scrum, avec import depuis Trello. L’interface est plus dense que celle de Trello.",
+    "planka": "Couvre tableaux en temps réel, commentaires, champs personnalisés et API REST, sous licence fair-code. Les vues calendrier et chronologie et la connexion OIDC sont réservées à Pro.",
+    "kan": "Couvre tableaux, listes, cartes et étiquettes, et importe directement les tableaux Trello. Les intégrations sont encore annoncées comme « à venir ».",
+    "plane": "Couvre éléments de travail, cycles, modules et analyses : c’est plus un outil de suivi de tickets qu’un tableau de cartes. L’édition Community n’égale que l’offre gratuite du cloud.",
+    "openproject": "Couvre Gantt, Kanban, Scrum et suivi du temps. Le minimum documenté est de 4 cœurs de processeur et 4 Go de RAM, et la comparaison de référence complète, la synchro des groupes LDAP et la connexion OpenID Connect sont des modules Enterprise.",
+    "leantime": "Couvre les vues kanban, Gantt, tableau, liste et calendrier, plus les objectifs et les feuilles de temps, le tout dans la version gratuite. Il demande MySQL ou MariaDB et ne liste pas PostgreSQL.",
+    "vikunja": "Couvre les vues liste, kanban, Gantt et tableau dans un seul binaire Go. Le panneau d’administration et le suivi du temps sont dans l’offre payante Pro, et l’appli mobile reste basique."
+  },
   "faq": [
     {
       "q": "Pourquoi l’ordonnancement de cartes mérite-t-il un test avec deux cents glissers ?",
@@ -27,6 +37,14 @@
     {
       "q": "Puis-je récupérer mes tableaux Trello ?",
       "a": "Oui — chaque tableau s’exporte en JSON depuis le menu, y compris cartes, listes, checklists, commentaires et définitions d’étiquettes. Les pièces jointes sont des URL, donc télécharge-les séparément avant de fermer le compte."
+    },
+    {
+      "q": "Quelle est la meilleure alternative gratuite à Trello ?",
+      "a": "WeKan convient le mieux si tu veux quitter Trello sans perdre tes tableaux : il est sous licence MIT, tourne sur ton serveur et importe les tableaux Trello. Kan est un choix plus léger qui les importe aussi, mais ses intégrations sont encore annoncées comme « à venir ». Compte renoncer aux Power-Ups et aux applis mobiles."
+    },
+    {
+      "q": "Il me faut un serveur de base de données pour auto-héberger une alternative à Trello ?",
+      "a": "Pas toujours. WeKan utilise FerretDB avec SQLite par défaut, donc aucun serveur de base de données séparé n’est nécessaire, et Vikunja démarre aussi sur SQLite. Le Docker Compose de Kan embarque PostgreSQL 15, alors que Leantime exige MySQL ou MariaDB."
     }
   ]
 }

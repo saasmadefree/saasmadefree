@@ -27,6 +27,24 @@
     {
       "q": "Can I get my Trello boards out?",
       "a": "Yes — every board exports as JSON from the menu, including cards, lists, checklists, comments and label definitions. Attachments are URLs, so download them separately before closing the account."
+    },
+    {
+      "q": "What's the best free Trello alternative?",
+      "a": "WeKan is the best fit if you want to leave Trello with your boards intact: it is MIT licensed, runs on your own server and imports Trello boards. Kan is a lighter pick that also imports Trello boards, though its integrations are still marked as coming soon. Expect to give up Power-Ups and the mobile apps."
+    },
+    {
+      "q": "Do I need a database server to self-host a Trello alternative?",
+      "a": "Not always. WeKan defaults to FerretDB with SQLite, so no separate database server is needed, and Vikunja also starts on SQLite. Kan's Docker Compose setup bundles PostgreSQL 15, while Leantime requires MySQL or MariaDB."
     }
-  ]
+  ],
+  "alternativesIntro": "The best free Trello alternative is WeKan: it gives you boards, lists, cards and swimlanes on your own server under the MIT licence, and it imports boards from Trello. It also offers table, calendar, Gantt and Scrum views. You lose the mobile apps, the Power-Up integrations and invitees who already know how Trello works. PLANKA is the cleaner option if you want a plain real-time board, but its licence is fair-code, not open source. Building your own board takes a weekend, which suits one person. Keep paying for Trello if clients or colleagues you invite expect it.",
+  "alternativeNotes": {
+    "wekan": "Covers boards, swimlanes, rules and table, calendar, Gantt and Scrum views, with imports from Trello. The interface is denser than Trello's.",
+    "planka": "Covers real-time boards, comments, custom fields and a REST API under a fair-code licence. Calendar and timeline views and OIDC sign-in are Pro-only.",
+    "kan": "Covers boards, lists, cards and labels, and imports Trello boards directly. Integrations are still listed as coming soon.",
+    "plane": "Covers work items, cycles, modules and analytics, so it is issue tracking more than a card board. The Community Edition matches only the Cloud Free tier.",
+    "openproject": "Covers Gantt, Kanban, Scrum and time tracking. The documented minimum is 4 CPU cores and 4 GB of RAM, and full baseline comparison, LDAP group sync and OpenID Connect sign-in are Enterprise add-ons.",
+    "leantime": "Covers kanban, gantt, table, list and calendar views, plus goals and timesheets, all in the free version. It needs MySQL or MariaDB and does not list PostgreSQL.",
+    "vikunja": "Covers list, kanban, Gantt and table views in one Go binary. The admin panel and time tracking are in the paid Pro tier, and the mobile app is basic."
+  }
 }

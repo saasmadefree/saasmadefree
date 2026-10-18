@@ -1,0 +1,44 @@
+[
+  {
+    "claim": "Kdenlive powerful free and open-source video editor; downloads include stable releases and experimental daily builds",
+    "url": "https://github.com/KDE/kdenlive",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Tech stack: C++, MLT, Qt and KDE Frameworks 6, frei0r, LADSPA",
+    "url": "https://github.com/KDE/kdenlive",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Primary development on KDE Invent with GitHub mirror; contributions via KDE GitLab",
+    "url": "https://github.com/KDE/kdenlive",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Acronym for KDE Non-Linear Video Editor; works on Linux, Windows, macOS and BSD",
+    "url": "https://kdenlive.org/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Effects and transitions: hundreds of audio and video effects, keyframes, transitions, compositions",
+    "url": "https://kdenlive.org/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "GPL-3.0 licence (data/projects/kdenlive.json)",
+    "url": "https://github.com/KDE/kdenlive",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Kdenlive can create subtitles with automatic transcription",
+    "url": "https://kdenlive.org/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

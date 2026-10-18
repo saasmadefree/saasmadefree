@@ -1,0 +1,43 @@
+{
+  "slug": "koel",
+  "name": "Koel",
+  "homepage": "https://koel.dev",
+  "repo": "koel/koel",
+  "license": "MIT",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/koel/koel/blob/HEAD/LICENSE.md",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.koel.dev/guide/getting-started",
+  "hosted": {
+    "exists": false,
+    "source": "https://koel.dev",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker",
+    "binary",
+    "zip",
+    "composer"
+  ],
+  "stack": [
+    "php",
+    "laravel",
+    "vue"
+  ],
+  "categories": [
+    "media-streaming"
+  ],
+  "stats": {
+    "stars": 17279,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2015-12-06",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

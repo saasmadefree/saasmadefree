@@ -1,0 +1,104 @@
+{
+  "tool": "adobe-acrobat-pro",
+  "checkedOn": "2026-10-18",
+  "question": "Paid SaaS: \"Adobe Acrobat Pro\". What people pay it for: Self-host Stirling PDF for the everyday operations, keep every original file untouched, and write each operation to a new versioned output rather than editing in place. Question: is the candidate below an open-source or self-hostable application (web, desktop or server) that a person could actually use INSTEAD of Adobe Acrobat Pro for that job, or for a clear, substantial part of it? Partial replacements count as yes (for example a desktop video editor for a video app, a self-hosted rank tracker for an SEO suite). Answer no for: a code library or SDK only, a command-line utility with no end-user workflow, a closed paid service, a tutorial, or a tool for an unrelated job.",
+  "jevModel": "jev-1.13.0",
+  "results": [
+    {
+      "slug": "stirling-pdf",
+      "name": "Stirling PDF",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 1,
+      "kept": true
+    },
+    {
+      "slug": "ocrmypdf",
+      "name": "OCRmyPDF",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.24,
+        "review": true,
+        "classId": "other"
+      },
+      "decision": 0.27,
+      "kept": false
+    },
+    {
+      "slug": "pdfsam",
+      "name": "PDFsam Basic",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.91,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.95,
+      "kept": true
+    },
+    {
+      "slug": "bentopdf",
+      "name": "BentoPDF",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.96,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.97,
+      "kept": true
+    },
+    {
+      "slug": "pdfarranger",
+      "name": "PDF Arranger",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.79,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "documenso",
+      "name": "Documenso",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.14,
+        "review": false,
+        "classId": "other"
+      },
+      "decision": 0.01,
+      "kept": false
+    },
+    {
+      "slug": "paperless-ngx",
+      "name": "Paperless-ngx",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.12,
+        "review": false,
+        "classId": "other"
+      },
+      "decision": 0.08,
+      "kept": false
+    },
+    {
+      "slug": "pdfding",
+      "name": "PdfDing",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.42,
+        "review": true,
+        "classId": "other"
+      },
+      "decision": 0.72,
+      "kept": true
+    }
+  ]
+}

@@ -1,0 +1,277 @@
+[
+  {
+    "slug": "open-webui",
+    "existing": true,
+    "name": "Open WebUI",
+    "repo": "open-webui/open-webui",
+    "homepage": "https://openwebui.com",
+    "why": "Self-hosted chat interface that talks to Ollama and OpenAI-compatible APIs and keeps conversation history.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Chat UI, history, model switching and document chat on your own server. No frontier model of its own; quality depends on the model you plug in.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/open-webui/open-webui",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "python"
+    ],
+    "categories": [
+      "ai-assistant"
+    ],
+    "evidenceUrls": [
+      "https://github.com/open-webui/open-webui",
+      "https://openalternative.co/alternatives/chatgpt",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "librechat",
+    "existing": true,
+    "name": "LibreChat",
+    "repo": "LibreChat-AI/LibreChat",
+    "homepage": "https://librechat.ai",
+    "why": "Self-hosted ChatGPT-style interface that connects to many model providers with user accounts and saved conversations.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Multi-provider chat UI with history, presets and agents. No frontier model of its own.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/LibreChat-AI/LibreChat",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript"
+    ],
+    "categories": [
+      "ai-assistant"
+    ],
+    "evidenceUrls": [
+      "https://github.com/LibreChat-AI/LibreChat",
+      "https://openalternative.co/alternatives/chatgpt",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "onyx",
+    "existing": true,
+    "name": "Onyx",
+    "repo": "onyx-dot-app/onyx",
+    "homepage": "https://www.onyx.app",
+    "why": "Self-hostable chat and enterprise search layer that connects an LLM to company documents.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Chat over your own documents with any LLM. No frontier model of its own; centred on search over connected apps.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/onyx-dot-app/onyx",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "python"
+    ],
+    "categories": [
+      "ai-assistant"
+    ],
+    "evidenceUrls": [
+      "https://github.com/onyx-dot-app/onyx",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "anything-llm",
+    "existing": false,
+    "name": "AnythingLLM",
+    "repo": "Mintplex-Labs/anything-llm",
+    "homepage": "https://anythingllm.com",
+    "why": "All-in-one chat application with document ingestion that runs on a desktop or in Docker.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Chat with documents and workspaces over a local or cloud model. No frontier model of its own.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/Mintplex-Labs/anything-llm",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "javascript"
+    ],
+    "categories": [
+      "ai-assistant"
+    ],
+    "evidenceUrls": [
+      "https://github.com/Mintplex-Labs/anything-llm",
+      "https://openalternative.co/alternatives/chatgpt",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "lobe-chat",
+    "existing": false,
+    "name": "LobeHub",
+    "repo": "lobehub/lobehub",
+    "homepage": "https://lobehub.com",
+    "why": "Chat framework with multi-provider support, agents and plugins that can be deployed with Docker.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Multi-provider chat UI with agents and plugins. No frontier model of its own.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/lobehub/lobehub",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript"
+    ],
+    "categories": [
+      "ai-assistant"
+    ],
+    "evidenceUrls": [
+      "https://github.com/lobehub/lobehub",
+      "https://openalternative.co/alternatives/chatgpt"
+    ]
+  },
+  {
+    "slug": "ollama",
+    "existing": false,
+    "name": "Ollama",
+    "repo": "ollama/ollama",
+    "homepage": "https://ollama.com",
+    "why": "Runtime that downloads and serves open-weight language models locally behind a simple API and app.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Runs open-weight models on your own machine. Model quality is below frontier hosted models; chat features are basic without a separate UI.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/ollama/ollama",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "priceFrom": 20,
+      "currency": "USD",
+      "source": "https://ollama.com/pricing",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "go"
+    ],
+    "categories": [
+      "ai-assistant"
+    ],
+    "evidenceUrls": [
+      "https://github.com/ollama/ollama",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "jan",
+    "existing": false,
+    "name": "Jan",
+    "repo": "janhq/jan",
+    "homepage": "https://jan.ai",
+    "why": "Desktop chat application that runs open-weight models offline and can also call remote APIs.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Local chat with downloaded models and optional API connections. Desktop app only, no multi-user server.",
+    "deploy": [],
+    "stack": [
+      "rust"
+    ],
+    "categories": [
+      "ai-assistant"
+    ],
+    "evidenceUrls": [
+      "https://github.com/janhq/jan",
+      "https://openalternative.co/alternatives/chatgpt"
+    ]
+  },
+  {
+    "slug": "cherry-studio",
+    "existing": false,
+    "name": "Cherry Studio",
+    "repo": "CherryHQ/cherry-studio",
+    "homepage": "https://cherryai.com",
+    "why": "Desktop client that connects to many model providers and local models in one chat interface.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Multi-provider desktop chat client with knowledge bases. No server and no frontier model of its own.",
+    "deploy": [],
+    "stack": [
+      "typescript"
+    ],
+    "categories": [
+      "ai-assistant"
+    ],
+    "evidenceUrls": [
+      "https://github.com/CherryHQ/cherry-studio",
+      "https://openalternative.co/alternatives/chatgpt"
+    ]
+  },
+  {
+    "slug": "khoj",
+    "existing": false,
+    "name": "Khoj",
+    "repo": "khoj-ai/khoj",
+    "homepage": "https://khoj.dev",
+    "why": "Self-hostable AI assistant that answers from your notes and documents using local or hosted models.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Chat over personal documents with scheduled automations. No frontier model of its own.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/khoj-ai/khoj",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "python"
+    ],
+    "categories": [
+      "ai-assistant"
+    ],
+    "evidenceUrls": [
+      "https://github.com/khoj-ai/khoj",
+      "https://openalternative.co/alternatives/chatgpt"
+    ]
+  },
+  {
+    "slug": "perplexica",
+    "existing": true,
+    "name": "Vane",
+    "repo": "ItzCrazyKns/Vane",
+    "homepage": "https://github.com/ItzCrazyKns/Vane",
+    "why": "Self-hosted AI answer engine that searches the web through SearXNG and summarises with a chosen model.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Web-search answers with citations through your own model. Not a general chat assistant.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/ItzCrazyKns/Vane",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript"
+    ],
+    "categories": [
+      "ai-assistant"
+    ],
+    "evidenceUrls": [
+      "https://github.com/ItzCrazyKns/Vane"
+    ]
+  }
+]

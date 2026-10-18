@@ -1,0 +1,46 @@
+{
+  "slug": "openproject",
+  "name": "OpenProject",
+  "homepage": "https://www.openproject.org",
+  "repo": "opf/openproject",
+  "license": "GPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/opf/openproject/blob/dev/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://www.openproject.org/docs/installation-and-operations/installation/",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 5.95,
+    "currency": "EUR",
+    "source": "https://www.openproject.org/pricing/",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker",
+    "kubernetes",
+    "deb",
+    "rpm"
+  ],
+  "stack": [
+    "ruby",
+    "rails",
+    "angular",
+    "postgresql"
+  ],
+  "categories": [
+    "project-management"
+  ],
+  "stats": {
+    "stars": 16454,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2012-11-28",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

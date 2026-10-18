@@ -1,9 +1,15 @@
 import { describe, it, expect } from 'vitest';
 import { compileValidators, loadData } from '../scripts/lib/load-data.mjs';
-import { validateAll, collectKeyPaths, compareKey } from '../scripts/lib/validate-rules.mjs';
+import { validateAll, collectKeyPaths, compareKey, claimsOpenSource } from '../scripts/lib/validate-rules.mjs';
 
 const validators = compileValidators('schema');
 const TODAY = '2026-07-30';
+
+// Une catégorie conforme à schema/categories.schema.json : emoji et libellé
+// dans les sept langues. Un `{}` vide ne passe plus depuis que validateAll
+// valide data/categories.json.
+const LABEL7 = { en: 'Docs', fr: 'Docs', es: 'Docs', de: 'Docs', it: 'Docs', pt: 'Docs', nl: 'Docs' };
+const CATEGORIES = { 'docs-and-wiki': { emoji: '📚', label: LABEL7 } };
 
 function makeTool(slug, over = {}) {
   return {
@@ -48,7 +54,7 @@ function makeData(over = {}) {
     homepage: 'https://example.com', maxLength: null, status: 'verified',
     verifiedOn: TODAY, runHint: 'clipboard', docs: null,
   }];
-  return { tools, i18n, ui, agents, categories: { 'docs-and-wiki': {} }, ...over };
+  return { tools, i18n, ui, agents, categories: CATEGORIES, ...over };
 }
 
 describe('validateAll', () => {
@@ -217,7 +223,7 @@ describe('parité des clés site.* entre langues publiées', () => {
       homepage: 'https://example.com', maxLength: null, status: 'verified',
       verifiedOn: TODAY, runHint: 'clipboard', docs: null,
     }];
-    return { tools, i18n, ui, agents, categories: { 'docs-and-wiki': {} } };
+    return { tools, i18n, ui, agents, categories: CATEGORIES };
   }
 
   it('signale une clé site présente en en et absente ailleurs', () => {
@@ -302,6 +308,9 @@ function makeProjectI18n(over = {}) {
     ...over,
   };
 }
+
+/** Une intro conforme : n mots, dont le nom du projet en tête. */
+const introNaming = (name, n = 80) => `${name} ${words(n - 1)}`;
 
 const sixFaq = Array.from({ length: 6 }, (_, i) => ({ q: `q${i}`, a: `a${i}` }));
 
@@ -448,7 +457,7 @@ describe('alternatives et projets', () => {
 describe('FAQ : 4 ou 6 entrées', () => {
   it('requires 6 faq entries once the i18n entry has alternativesIntro', () => {
     const data = makeAltData();
-    data.i18n.get('en/a').alternativesIntro = 'Outline est la meilleure option.';
+    data.i18n.get('en/a').alternativesIntro = introNaming('outline');
     const out = validateAll(data, validators, TODAY).join(' ');
     expect(out).toContain('data/i18n/en/tools/a.json');
     expect(out).toContain('6');
@@ -534,5 +543,342 @@ describe('données réelles — aucune API payante présentée en alternative li
     expect(cited('wabery')).not.toContain('meta-whatsapp-cloud-api');
     expect(data.projects.has('twilio-media-streams')).toBe(false);
     expect(data.projects.has('meta-whatsapp-cloud-api')).toBe(false);
+  });
+});
+
+describe('alternativesIntro : longueur et gagnant nommé', () => {
+  function withIntro(intro) {
+    const data = makeAltData();
+    data.i18n.get('en/a').alternativesIntro = intro;
+    data.i18n.get('en/a').faq = sixFaq;
+    return data;
+  }
+
+  it('accepte une intro de 60 à 120 mots', () => {
+    for (const n of [60, 120]) {
+      expect(validateAll(withIntro(introNaming('outline', n)), validators, TODAY)).toEqual([]);
+    }
+  });
+
+  it('refuse une intro de moins de 60 ou de plus de 120 mots', () => {
+    for (const n of [59, 121]) {
+      const out = validateAll(withIntro(introNaming('outline', n)), validators, TODAY).join(' ');
+      expect(out).toContain('data/i18n/en/tools/a.json');
+      expect(out).toContain('alternativesIntro');
+      expect(out).toContain(`${n} mots`);
+    }
+  });
+
+  it('compte les mots comme la description de projet : espaces multiples et bords ignorés', () => {
+    const intro = `  outline\n\n${words(59).replace(/ /g, '   ')}  `;
+    expect(validateAll(withIntro(intro), validators, TODAY)).toEqual([]);
+  });
+
+  it('accepte une intro qui nomme la première alternative, sans tenir compte de la casse', () => {
+    const data = withIntro(`La meilleure option est OUTLINE. ${words(70)}`);
+    expect(validateAll(data, validators, TODAY)).toEqual([]);
+  });
+
+  it('refuse une intro qui ne nomme pas la première alternative', () => {
+    const data = withIntro(`La meilleure option est wikijs. ${words(70)}`);
+    const out = validateAll(data, validators, TODAY);
+    const line = out.find((e) => e.includes('alternativesIntro') && e.includes('"outline"'));
+    expect(line, out.join('\n')).toBeDefined();
+    expect(line).toContain('data/i18n/en/tools/a.json');
+  });
+
+  it("compare au nom du projet, pas à son slug", () => {
+    const data = withIntro(`La meilleure option est outline. ${words(70)}`);
+    data.projects.get('outline').name = 'Outline Wiki';
+    const out = validateAll(data, validators, TODAY).join(' ');
+    expect(out).toContain('"Outline Wiki"');
+  });
+
+  it("saute une alternative non affichable : c'est la première affichable qui doit être nommée", () => {
+    const data = withIntro(`La meilleure option est wikijs. ${words(70)}`);
+    // Archivé : isDisplayableProject le retire du tableau, l'intro ne peut pas le citer en gagnant.
+    data.projects.get('outline').stats = {
+      stars: 10, lastCommit: '2026-07-01', createdAt: '2020-01-01', archived: true, checkedOn: TODAY,
+    };
+    expect(validateAll(data, validators, TODAY)).toEqual([]);
+    data.i18n.get('en/a').alternativesIntro = `La meilleure option est outline. ${words(70)}`;
+    expect(validateAll(data, validators, TODAY).join(' ')).toContain('"wikijs"');
+  });
+
+  it('juge la fraîcheur par rapport à today, comme le reste du validateur', () => {
+    const data = withIntro(`La meilleure option est wikijs. ${words(70)}`);
+    data.projects.get('outline').stats = {
+      stars: 10, lastCommit: '2025-07-01', createdAt: '2020-01-01', archived: false, checkedOn: TODAY,
+    };
+    // 2025-07-01 → 2026-07-30 : plus de 365 jours sans commit, outline n'est plus affichable.
+    expect(validateAll(data, validators, TODAY)).toEqual([]);
+    // Un an plus tôt, il l'était encore : c'est lui qu'il fallait nommer.
+    expect(validateAll(data, validators, '2025-08-01').join(' ')).toContain('"outline"');
+  });
+
+  // Correspondance par mot entier (frontière Unicode lettre/chiffre), pas par
+  // sous-chaîne : « Send » ne doit pas se trouver dans « sending ».
+  function namedWinner(name, intro) {
+    const data = withIntro(intro);
+    data.projects.get('outline').name = name;
+    return validateAll(data, validators, TODAY);
+  }
+
+  it('refuse « Send » trouvé seulement dans « sending »', () => {
+    const out = namedWinner('Send', `We recommend sending files with wikijs. ${words(70)}`);
+    expect(out.join(' ')).toContain('"Send"');
+  });
+
+  it('accepte un nom avec un point, « Cal.diy »', () => {
+    expect(namedWinner('Cal.diy', `The best pick is Cal.diy for bookings. ${words(70)}`)).toEqual([]);
+  });
+
+  it('le point de « Cal.diy » est littéral : « Calxdiy » ne compte pas', () => {
+    expect(namedWinner('Cal.diy', `The best pick is Calxdiy for bookings. ${words(70)}`).join(' ')).toContain('"Cal.diy"');
+  });
+
+  it('accepte « n8n. » en fin de phrase', () => {
+    expect(namedWinner('n8n', `The best free alternative is n8n. ${words(70)}`)).toEqual([]);
+  });
+
+  it('accepte le possessif « Outline\'s »', () => {
+    expect(namedWinner('Outline', `Outline's editor covers most needs. ${words(70)}`)).toEqual([]);
+  });
+
+  it('accepte un nom accentué, sans tenir compte de la casse', () => {
+    expect(namedWinner('Écrivain', `La meilleure option est écrivain, hébergé chez toi. ${words(70)}`)).toEqual([]);
+    expect(namedWinner('Écrivain', `La meilleure option est écrivains. ${words(70)}`).join(' ')).toContain('"Écrivain"');
+  });
+
+  it("ne demande aucun nom quand la fiche n'a aucune alternative affichable", () => {
+
+    const data = withIntro(`Aucun projet ne couvre ce besoin. ${words(70)}`);
+    data.tools.get('a').alternatives = [];
+    expect(validateAll(data, validators, TODAY)).toEqual([]);
+  });
+});
+
+describe('comparatifs : summary et listes pick', () => {
+  function withCompare(over) {
+    const data = makeAltData();
+    data.compare = [makePair()];
+    data.compareI18n.set('en/a-vs-outline', makeCompareI18n(over));
+    return data;
+  }
+
+  it('accepte un summary de 80 à 150 mots', () => {
+    for (const n of [80, 150]) {
+      expect(validateAll(withCompare({ summary: words(n) }), validators, TODAY)).toEqual([]);
+    }
+  });
+
+  it('refuse un summary de moins de 80 ou de plus de 150 mots', () => {
+    for (const n of [79, 151]) {
+      const out = validateAll(withCompare({ summary: words(n) }), validators, TODAY).join(' ');
+      expect(out).toContain('data/i18n/en/compare/a-vs-outline.json');
+      expect(out).toContain('summary');
+      expect(out).toContain(`${n} mots`);
+    }
+  });
+
+  // pickAIf / pickBIf : 2 à 4 entrées, déjà imposé par compare-i18n.schema.json
+  // (minItems/maxItems). Ces tests verrouillent que validateAll le remonte.
+  it('accepte 2 à 4 entrées dans pickAIf et pickBIf', () => {
+    for (const n of [2, 4]) {
+      const list = Array.from({ length: n }, (_, i) => `cas ${i}`);
+      expect(validateAll(withCompare({ pickAIf: list, pickBIf: list }), validators, TODAY)).toEqual([]);
+    }
+  });
+
+  it('refuse 1 ou 5 entrées dans pickAIf ou pickBIf', () => {
+    for (const field of ['pickAIf', 'pickBIf']) {
+      for (const n of [1, 5]) {
+        const list = Array.from({ length: n }, (_, i) => `cas ${i}`);
+        const out = validateAll(withCompare({ [field]: list }), validators, TODAY).join(' ');
+        expect(out, `${field} × ${n}`).toContain(`data/i18n/en/compare/a-vs-outline.json /${field}`);
+      }
+    }
+  });
+});
+
+describe('limits des projets : 2 à 6 (règle existante, inchangée)', () => {
+  it('accepte 2 et 6 limites', () => {
+    for (const n of [2, 6]) {
+      const data = makeAltData();
+      data.projectI18n.get('en/outline').limits = Array.from({ length: n }, (_, i) => `l${i}`);
+      expect(validateAll(data, validators, TODAY)).toEqual([]);
+    }
+  });
+
+  it('refuse 1 ou 7 limites', () => {
+    for (const n of [1, 7]) {
+      const data = makeAltData();
+      data.projectI18n.get('en/outline').limits = Array.from({ length: n }, (_, i) => `l${i}`);
+      expect(validateAll(data, validators, TODAY).join(' ')).toContain('data/i18n/en/projects/outline.json /limits');
+    }
+  });
+});
+
+describe('data/categories.json', () => {
+  it('accepte une catégorie avec emoji et libellé dans les sept langues', () => {
+    expect(validateAll(makeData(), validators, TODAY)).toEqual([]);
+  });
+
+  it('accepte un titleLabel partiel, indexé par langue', () => {
+    const categories = { 'docs-and-wiki': { emoji: '📚', label: LABEL7, titleLabel: { en: 'Wiki' } } };
+    expect(validateAll(makeData({ categories }), validators, TODAY)).toEqual([]);
+  });
+
+  it('refuse un libellé auquel il manque une langue', () => {
+    const { nl: _nl, ...label } = LABEL7;
+    const categories = { 'docs-and-wiki': { emoji: '📚', label } };
+    const out = validateAll(makeData({ categories }), validators, TODAY).join(' ');
+    expect(out).toContain('data/categories.json');
+    expect(out).toContain('nl');
+  });
+
+  it('refuse un champ inconnu dans une catégorie', () => {
+    const categories = { 'docs-and-wiki': { emoji: '📚', label: LABEL7, color: 'red' } };
+    expect(validateAll(makeData({ categories }), validators, TODAY).join(' ')).toContain('data/categories.json');
+  });
+
+  it('refuse une langue inconnue dans titleLabel', () => {
+    const categories = { 'docs-and-wiki': { emoji: '📚', label: LABEL7, titleLabel: { xx: 'Wiki' } } };
+    expect(validateAll(makeData({ categories }), validators, TODAY).join(' ')).toContain('data/categories.json');
+  });
+
+  it('accepte le fichier réel du dépôt', async () => {
+    const data = await loadData(process.cwd());
+    expect(validators.categories(data.categories), JSON.stringify(validators.categories.errors)).toBe(true);
+  });
+});
+
+// Ruling 44 : une fiche dont toutes les alternatives affichables sont
+// source-available ou fair-code ne les dit pas « open source ».
+describe('texte rédigé : pas de « open source » si aucune alternative ne l’est', () => {
+  const kind = (k) => ({ license: 'SUL-1.0', licenseKind: k, licenseSource: 'https://example.com/LICENSE' });
+  function makeData(kinds, entryOver = {}, lang = 'en') {
+    const data = makeAltData();
+    data.projects.set('outline', makeProject('outline', kind(kinds[0])));
+    data.projects.set('wikijs', makeProject('wikijs', kinds[1] ? kind(kinds[1]) : {}));
+    const entry = { ...data.i18n.get('en/a'), faq: sixFaq, alternativesIntro: introNaming('outline'), ...entryOver };
+    if (lang === 'fr') {
+      data.tools.get('a').markets = ['en', 'fr'];
+      data.i18n.set('fr/a', entry);
+      data.ui.set('fr', data.ui.get('en'));
+    } else {
+      data.i18n.set('en/a', entry);
+    }
+    return data;
+  }
+  const errorsOf = (data) => validateAll(data, validators, TODAY).filter((e) => e.includes('Ruling 44'));
+  const openFaq = sixFaq.map((f, i) => (i === 5 ? { q: 'Is it open source?', a: 'Yes.' } : f));
+
+  it('toutes source-available ou fair-code : refuse intro, note et FAQ 5-6 qui disent « open source »', () => {
+    const intro = `outline is the best open-source pick. ${words(70)}`;
+    const data = makeData(['source-available', 'fair-code'], {
+      alternativesIntro: intro, alternativeNotes: { wikijs: 'An open source wiki.' }, faq: openFaq,
+    });
+    const out = errorsOf(data);
+    expect(out).toHaveLength(3);
+    expect(out[0]).toContain('data/i18n/en/tools/a.json');
+    expect(out.join('\n')).toMatch(/alternativesIntro[\s\S]*alternativeNotes\.wikijs[\s\S]*faq\[5\]\.q/);
+  });
+
+  it('les quatre premières FAQ ne sont pas contrôlées', () => {
+    const faq = sixFaq.map((f, i) => (i === 0 ? { q: 'Open source?', a: 'No.' } : f));
+    expect(errorsOf(makeData(['source-available', 'fair-code'], { faq }))).toEqual([]);
+  });
+
+  it('une seule alternative open source (ou sans licenseKind) suffit : rien à signaler', () => {
+    expect(errorsOf(makeData(['source-available', 'open-core'], { faq: openFaq }))).toEqual([]);
+    expect(errorsOf(makeData(['source-available', null], { faq: openFaq }))).toEqual([]);
+  });
+
+  it('une alternative archivée ne compte pas : seules les affichables décident', () => {
+    const data = makeData(['source-available', null], { faq: openFaq });
+    data.projects.get('wikijs').stats = { stars: 1, lastCommit: '2026-07-01', createdAt: '2020-01-01', archived: true, checkedOn: TODAY };
+    expect(errorsOf(data)).toHaveLength(1);
+  });
+
+  it('fr : « open source » et « libre » refusés, « librement » accepté', () => {
+    const intro = `outline est le choix ${words(70)}`;
+    const libre = makeData(['fair-code', 'fair-code'], { alternativesIntro: `${intro} logiciel libre` }, 'fr');
+    expect(errorsOf(libre).join('\n')).toContain('data/i18n/fr/tools/a.json : alternativesIntro');
+    const os = makeData(['fair-code', 'fair-code'], { alternativeNotes: { outline: 'Un wiki open source.' } }, 'fr');
+    expect(errorsOf(os).join('\n')).toContain('alternativeNotes.outline');
+    expect(errorsOf(makeData(['fair-code', 'fair-code'], { alternativesIntro: `${intro} utilisable librement` }, 'fr'))).toEqual([]);
+  });
+});
+
+describe('données réelles — garde-fou « open source » (Ruling 44)', () => {
+  it('aucune erreur sur les données du jour', async () => {
+    const data = await loadData(process.cwd());
+    const out = validateAll(data, validators, new Date().toISOString().slice(0, 10)).filter((e) => e.includes('Ruling 44'));
+    expect(out).toEqual([]);
+  });
+});
+
+// Follow-up 2 : le texte d'un projet source-available ou fair-code ne le dit
+// pas « open source » ; une négation explicite passe.
+describe('claimsOpenSource : affirmation ou négation explicite', () => {
+  it('en : affirmations refusées', () => {
+    for (const text of ['An open source wiki.', 'Open-source automation.', 'Not free, but open source.', 'Fast. Open source too.']) {
+      expect(claimsOpenSource(text, 'en'), text).toBe(true);
+    }
+  });
+  it('en : négations acceptées', () => {
+    for (const text of ['It is not open source.', 'Source-available, not open source.', "It isn't open-source.", 'No open source license here.']) {
+      expect(claimsOpenSource(text, 'en'), text).toBe(false);
+    }
+  });
+  it('en : une occurrence niée ne couvre pas une seconde affirmée', () => {
+    expect(claimsOpenSource('The core is not open source. The SDK is open source.', 'en')).toBe(true);
+  });
+  it('fr : « open source » et « libre », négations acceptées', () => {
+    expect(claimsOpenSource('Un wiki open source.', 'fr')).toBe(true);
+    expect(claimsOpenSource('Un logiciel libre.', 'fr')).toBe(true);
+    expect(claimsOpenSource('Ce n’est pas de l’open source.', 'fr')).toBe(false);
+    expect(claimsOpenSource('Source disponible, pas open source.', 'fr')).toBe(false);
+    expect(claimsOpenSource('Ce n’est pas libre.', 'fr')).toBe(false);
+    expect(claimsOpenSource('Utilisable librement.', 'fr')).toBe(false);
+  });
+});
+
+describe('texte d’un projet non libre : pas de « open source » (Ruling 44)', () => {
+  const kind = (k) => ({ license: 'Sustainable Use License', licenseKind: k, licenseCheckedOn: TODAY, licenseSource: 'https://example.com/LICENSE' });
+  function dataWith(k, i18nOver, lang = 'en') {
+    const data = makeAltData();
+    data.projects.set('outline', makeProject('outline', { ...(k ? kind(k) : {}), markets: [lang] }));
+    data.projectI18n.delete('en/outline');
+    data.projectI18n.set(`${lang}/outline`, makeProjectI18n(i18nOver));
+    return data;
+  }
+  const errorsOf = (data) => validateAll(data, validators, TODAY).filter((e) => e.includes('Ruling 44'));
+
+  it('source-available : refuse tagline, description, strengths[], limits[] et bestFor qui l’affirment', () => {
+    const out = errorsOf(dataWith('source-available', {
+      tagline: 'An open source wiki.', description: `${words(140)} open-source`,
+      strengths: ['s1', 'Open source core', 's3'], limits: ['l1', 'Open source, but slow'], bestFor: 'Open source fans.',
+    }));
+    expect(out).toHaveLength(5);
+    expect(out[0]).toContain('data/i18n/en/projects/outline.json : tagline');
+    expect(out.join('\n')).toMatch(/description[\s\S]*bestFor[\s\S]*strengths\[1\][\s\S]*limits\[1\]/);
+    expect(out[0]).toContain('licenseKind "source-available"');
+  });
+
+  it('fair-code : une négation explicite passe', () => {
+    expect(errorsOf(dataWith('fair-code', { tagline: 'Workflow automation. It is not open source.', bestFor: 'Teams fine with source-available, not open source.' }))).toEqual([]);
+  });
+
+  it('fr : « libre » refusé, « pas de l’open source » accepté', () => {
+    expect(errorsOf(dataWith('fair-code', { tagline: 'Un outil libre.' }, 'fr'))).toHaveLength(1);
+    expect(errorsOf(dataWith('fair-code', { tagline: 'Gratuit, mais ce n’est pas de l’open source.' }, 'fr'))).toEqual([]);
+  });
+
+  it('sans licenseKind, open-source ou open-core : rien à signaler', () => {
+    for (const k of [null, 'open-source', 'open-core']) {
+      expect(errorsOf(dataWith(k, { tagline: 'An open source wiki.' }))).toEqual([]);
+    }
   });
 });

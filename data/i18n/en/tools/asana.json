@@ -27,6 +27,25 @@
     {
       "q": "How does data come out of Asana?",
       "a": "CSV export per project, and JSON for a whole workspace on the paid tiers. Comments and attachments are the awkward parts: attachments come out as URLs that stop resolving once the workspace is gone."
+    },
+    {
+      "q": "What's the best free Asana alternative?",
+      "a": "Leantime is the best fit: kanban, gantt, table, list and calendar views with goals and timesheets, all in the free AGPL-3.0 version. Operately is the alternative if you want goals and project check-ins linked together. Expect to give up Asana's mobile apps and real-time editing."
+    },
+    {
+      "q": "Can clients see their projects in a self-hosted Asana alternative?",
+      "a": "Yes, in some. Worklenz includes a client portal in its self-hosted build, and Leantime has per-project permissions plus LDAP and OIDC sign-in. Check the guest and client roles of any tool before inviting outsiders, since some features are paid."
     }
-  ]
+  ],
+  "alternativesIntro": "The best free Asana alternative is Leantime: it has kanban, gantt, table, list and calendar views, plus goals, canvases and timesheets, and every listed feature is in the AGPL-3.0 version. It also offers LDAP and OIDC sign-in and per-project permissions. It needs MySQL or MariaDB and a long list of PHP extensions. You lose native mobile apps, real-time co-editing and Asana's integration catalogue. Operately is the pick if you want goals and check-ins as the core. Build your own if you only want the goal roll-up. Keep paying if your team will not adopt a self-hosted tool.",
+  "alternativeNotes": {
+    "leantime": "Covers kanban, gantt, table, list and calendar views, plus goals, canvases and timesheets, all in the free version. It needs MySQL or MariaDB and a long list of PHP extensions.",
+    "operately": "Covers goals, projects and check-ins linked in one workflow, with a CLI and API. It is opinionated, aimed at teams of 5 to 100, and Docker is the only documented deploy method.",
+    "plane": "Covers work items, cycles, modules and analytics. The Community Edition matches only the Cloud Free tier, and paid plans need the Commercial Edition with a licence key.",
+    "platform": "Huly covers issue tracking, chat, CRM and HR in one workspace. The original company stopped its hosted service and froze its repository. The community fork, Huly (community fork), continues development, and you host it yourself.",
+    "openproject": "Covers Gantt scheduling, Kanban, Scrum, time tracking and budgets. Some features are Enterprise add-ons, and the admin load is heavier than lightweight tools.",
+    "vikunja": "Covers list, kanban, Gantt and table views as one Go binary. The admin panel, audit logs and time tracking are in the paid Pro tier, and the mobile app is basic.",
+    "worklenz": "Covers tasks, time tracking, resource planning and a client portal, with list, board and Gantt views. It needs PostgreSQL, Redis and S3-compatible storage, and import covers CSV only.",
+    "taiga": "Covers kanban and scrum boards with an official Docker production guide. It runs several services and has no goals or portfolio layer."
+  }
 }

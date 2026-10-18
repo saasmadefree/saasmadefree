@@ -1,0 +1,18 @@
+{
+  "tagline": "Éditeur de dessin vectoriel gratuit basé sur SVG, pour logos, illustrations et schémas sur ordinateur.",
+  "description": "Inkscape est un éditeur de graphisme vectoriel gratuit, pour dessiner des logos, des icônes, des affiches et des schémas techniques. Son format natif est le SVG, que les navigateurs et beaucoup d’autres applications savent ouvrir. Les formes sont stockées sous forme de tracés et non de pixels : le rendu reste net à n’importe quelle taille, à l’écran comme à l’impression. Tu dessines avec des tracés, des formes et du texte, tu organises le travail en calques, tu déplaces les nœuds un par un et tu peux modifier le code SVG directement. Les dégradés, les clones, les transformations et le texte posé le long d’un tracé sont intégrés. Il ouvre les fichiers d’image et d’impression courants comme PNG, JPEG, TIFF et PostScript, et enregistre en PNG ainsi qu’en plusieurs formats vectoriels. L’essentiel du code source est publié sous licence GNU GPL, version 2 ou ultérieure. Inkscape est un programme pour ordinateur écrit en C++, donc rien à héberger : tu le télécharges sur inkscape.org pour ton système. Les fonctionnalités au-delà du cœur passent par des extensions. Il remplace le côté vectoriel d’Adobe Illustrator et le travail de logos et d’icônes qu’on fait dans Canva. Il ne gère ni modèles de marque ni bibliothèques d’équipe, et ce n’est pas un éditeur photo. Pour retoucher des images, associe-le à un outil matriciel comme GIMP.",
+  "strengths": [
+    "Utilise le SVG standard comme format principal : le résultat s’ouvre dans les navigateurs et dans d’autres outils",
+    "Tu peux éditer le code SVG à la main, déplacer des nœuds et combiner des tracés",
+    "Ouvre les fichiers d’image et d’impression courants, dont EPS et TIFF, pour les vectoriser ou les placer dans un dessin",
+    "Le texte sur un tracé, les clones et les dégradés font partie des fonctionnalités documentées",
+    "Des extensions apportent ce que le cœur, volontairement léger, ne fait pas"
+  ],
+  "limits": [
+    "Vectoriel uniquement : les formats matriciels s’importent, et le README ne cite que le PNG comme export matriciel",
+    "Ce n’est pas un éditeur photo : pour la retouche, il faut un autre outil",
+    "Pas de bibliothèque de modèles, de kit de marque ni d’édition d’équipe en temps réel : le côté collaboratif de Canva n’est pas couvert",
+    "Application pour ordinateur, sans édition hébergée ni web listée par le projet"
+  ],
+  "bestFor": "Un designer, un enseignant ou un rédacteur technique qui dessine des logos, des icônes et des schémas et veut remplacer Illustrator par un outil qui enregistre du SVG brut."
+}

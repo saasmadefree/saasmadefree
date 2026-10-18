@@ -1,0 +1,92 @@
+{
+  "tool": "zendesk",
+  "checkedOn": "2026-10-18",
+  "question": "Paid SaaS: \"Zendesk\". What people pay it for: Run tickets and a public help centre from one store, with a customer portal where somebody can see and reply to their own past tickets without a support agent forwarding anything. Question: is the candidate below an open-source or self-hostable application (web, desktop or server) that a person could actually use INSTEAD of Zendesk for that job, or for a clear, substantial part of it? Partial replacements count as yes (for example a desktop video editor for a video app, a self-hosted rank tracker for an SEO suite). Answer no for: a code library or SDK only, a command-line utility with no end-user workflow, a closed paid service, a tutorial, or a tool for an unrelated job.",
+  "jevModel": "jev-1.13.0",
+  "results": [
+    {
+      "slug": "freescout",
+      "name": "FreeScout",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.99,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "zammad",
+      "name": "Zammad",
+      "fitGuess": "full",
+      "jev": {
+        "p": 1,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.98,
+      "kept": true
+    },
+    {
+      "slug": "frappe-helpdesk",
+      "name": "Frappe Helpdesk",
+      "fitGuess": "full",
+      "jev": {
+        "p": 1,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.99,
+      "kept": true
+    },
+    {
+      "slug": "chatwoot",
+      "name": "Chatwoot",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.93,
+      "kept": true
+    },
+    {
+      "slug": "osticket",
+      "name": "osTicket",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.99,
+      "kept": true
+    },
+    {
+      "slug": "uvdesk",
+      "name": "UVdesk",
+      "fitGuess": "full",
+      "jev": {
+        "p": 1,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 1,
+      "kept": true
+    },
+    {
+      "slug": "peppermint",
+      "name": "Peppermint",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.77,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    }
+  ]
+}

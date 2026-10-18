@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Canva Pro price used in intro",
+    "url": "https://www.canva.com/en_in/pricing/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "penpot: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/penpot/penpot",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.penpot"
+  },
+  {
+    "claim": "graphite: coverage and gaps as stated in the alternative note",
+    "url": "https://graphite.art",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.graphite"
+  },
+  {
+    "claim": "krita: coverage and gaps as stated in the alternative note",
+    "url": "https://krita.org",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.krita"
+  },
+  {
+    "claim": "inkscape: coverage and gaps as stated in the alternative note",
+    "url": "https://gitlab.com/inkscape/inkscape",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.inkscape"
+  },
+  {
+    "claim": "gimp: coverage and gaps as stated in the alternative note",
+    "url": "https://www.gimp.org",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.gimp"
+  }
+]

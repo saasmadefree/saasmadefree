@@ -1,0 +1,17 @@
+{
+  "tagline": "Self-hosted Laravel app for email campaigns, lists and tracking, sent through SES, Postmark and others.",
+  "description": "SendPortal is a Laravel application for sending email campaigns from your own server. It manages subscribers and lists, builds and sends campaigns, tracks messages and shows reports. One install can hold several workspaces and domains. It does not send mail itself: you connect an outside sending service, and the README lists Amazon SES, Postmark, Sendgrid, Mailgun and Mailjet. Version 4 needs PHP 8.3 or newer, Laravel 13 and either MySQL 5.7 or later or PostgreSQL 10 or later. The documentation covers a standalone install as well as a package install if you want to embed SendPortal Core in an existing Laravel app. Older PHP and Laravel versions are served by the V2 and V3 releases. The licence is MIT and the project offers no hosted plan. It is a fit for people leaving Mailchimp who mainly send newsletters and campaigns and want to pay only the per-message price of their sending provider. It is a plain campaign tool, not a marketing suite with landing pages or funnels.",
+  "strengths": [
+    "Connects to Amazon SES, Postmark, Sendgrid, Mailgun and Mailjet, so you pick the cheapest sender",
+    "Several workspaces and domains in one install",
+    "Subscriber and list management with open and click tracking and reports",
+    "Can be added as a package to an existing Laravel app through SendPortal Core"
+  ],
+  "limits": [
+    "It does not send mail on its own: you must have an account with an outside sending provider",
+    "The README lists no visual automation or drip-sequence builder, only campaigns",
+    "Version 4 requires PHP 8.3+ and Laravel 13; older stacks must stay on V2 or V3",
+    "No official hosted plan or Docker image is listed in the README"
+  ],
+  "bestFor": "A PHP-comfortable developer who sends newsletters and campaigns for one or several brands and wants to use SES for delivery."
+}

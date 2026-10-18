@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Open-source alternative to Intercom, Zendesk; omnichannel inbox with live chat, email, Facebook, Instagram, Twitter, WhatsApp, Telegram, Line, SMS",
+    "url": "https://github.com/chatwoot/chatwoot#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Private notes, mentions, labels, canned responses, auto-assignment, business hours, CSAT reports",
+    "url": "https://github.com/chatwoot/chatwoot#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Help center portal",
+    "url": "https://github.com/chatwoot/chatwoot#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Slack, Shopify, Linear, Dialogflow integrations",
+    "url": "https://github.com/chatwoot/chatwoot#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Captain AI agent described in README",
+    "url": "https://github.com/chatwoot/chatwoot#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Production compose runs rails, sidekiq, postgres (pgvector) and redis",
+    "url": "https://raw.githubusercontent.com/chatwoot/chatwoot/develop/docker-compose.production.yaml",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Heroku and DigitalOcean Kubernetes one-click deployment; Helm chart on Artifact Hub",
+    "url": "https://github.com/chatwoot/chatwoot#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "MIT licence except enterprise/ directory under its own licence",
+    "url": "https://raw.githubusercontent.com/chatwoot/chatwoot/develop/LICENSE",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

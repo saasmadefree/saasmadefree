@@ -1,0 +1,26 @@
+[
+  {
+    "claim": "Open-source ecommerce platform for WordPress; physical and digital goods, variations, downloads, affiliate; subscriptions, bookings, memberships via extensions; WooPayments in listed countries; REST API and webhooks; GPLv3",
+    "url": "https://github.com/woocommerce/woocommerce/blob/trunk/plugins/woocommerce/readme.txt",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Requirements: WordPress 6.9+, PHP 8.3+, MySQL 8.0+ or MariaDB 10.6+, HTTPS, 256 MB memory limit",
+    "url": "https://woocommerce.com/document/server-requirements/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Repository is not for support; support via WordPress.org forum",
+    "url": "https://github.com/woocommerce/woocommerce#support",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Monorepo README targets contributors",
+    "url": "https://github.com/woocommerce/woocommerce#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

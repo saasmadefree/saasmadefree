@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Core licensed under MIT; Enterprise Edition materials under a separate licence; RBAC-based Enterprise Edition",
+    "url": "https://github.com/medusajs/medusa#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "license"
+  },
+  {
+    "claim": "Commerce platform with a built-in framework for customization; B2B, DTC, marketplaces, PoS",
+    "url": "https://github.com/medusajs/medusa#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "A Medusa application is a Node.js server and a Vite admin dashboard",
+    "url": "https://docs.medusajs.com/learn/installation",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Requires Node.js v20+, Git, and PostgreSQL running; create-medusa-app creates the database",
+    "url": "https://docs.medusajs.com/learn/installation",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Installer asks whether to install the Next.js Starter Storefront",
+    "url": "https://docs.medusajs.com/learn/installation",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Medusa Cloud is described as the fastest way to get started",
+    "url": "https://github.com/medusajs/medusa#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Commerce modules in the documentation",
+    "url": "https://docs.medusajs.com/resources/commerce-modules",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "README describes an open-core model: MIT core, Enterprise Edition parts under a separate licence",
+    "url": "https://github.com/medusajs/medusa#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "tagline"
+  }
+]

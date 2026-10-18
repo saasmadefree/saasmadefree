@@ -1,27 +1,42 @@
 {
   "slug": "librechat",
   "name": "LibreChat",
-  "homepage": "https://github.com/LibreChat-AI/LibreChat",
+  "homepage": "https://www.librechat.ai",
   "repo": "LibreChat-AI/LibreChat",
   "license": "MIT",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/LibreChat-AI/LibreChat/blob/HEAD/LICENSE",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://www.librechat.ai/docs/local",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://www.librechat.ai",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker",
+    "npm"
+  ],
+  "stack": [
+    "typescript",
+    "node.js",
+    "mongodb"
+  ],
   "categories": [
     "ai-assistant",
     "ai-writing"
   ],
   "stats": {
-    "stars": 45869,
+    "stars": 45907,
     "lastCommit": "2026-10-17",
     "createdAt": "2023-02-12",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
-    "en"
+    "en",
+    "fr"
   ]
 }

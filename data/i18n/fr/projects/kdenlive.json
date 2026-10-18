@@ -1,0 +1,19 @@
+{
+  "tagline": "Éditeur vidéo gratuit et multiplateforme de KDE, construit sur MLT, pour le montage non linéaire.",
+  "description": "Kdenlive est un éditeur vidéo non linéaire développé par la communauté KDE. Son nom veut dire KDE Non-Linear Video Editor. Il tourne sous Linux, Windows, macOS et BSD, et le projet publie des versions stables et des builds quotidiens expérimentaux sur kdenlive.org. La licence est GPL-3.0. C’est une application C++ qui s’appuie sur Qt et KDE Frameworks 6, avec le framework MLT comme moteur de montage, frei0r pour les effets vidéo et LADSPA pour les effets audio. Le projet annonce des centaines d’effets audio et vidéo, des images clés pour les animer, des transitions entre les clips et des compositions qui superposent des calques. Pour les sous-titres, il sait les créer par transcription automatique. Le développement se passe surtout sur KDE Invent, avec un miroir GitHub. Comme c’est un logiciel de bureau, il n’y a rien à déployer et aucun serveur : tu l’installes, tu montes des fichiers locaux et tu fais le rendu sur ton disque. Il peut remplacer des éditeurs payants comme CapCut ou Adobe Premiere pour les coupes, les titres, les effets et le mixage audio. Il n’a ni bibliothèque de médias, ni projets dans le cloud, ni montage dans le navigateur, et il ne gère aucun compte. Les modèles et les préréglages de réseaux sociaux en un clic des applis pensées pour le mobile ne sont pas son objectif.",
+  "strengths": [
+    "Tourne sous Linux, Windows, macOS et BSD",
+    "Des centaines d’effets audio et vidéo, avec des images clés pour les animer",
+    "Construit sur le moteur MLT, avec les effets vidéo frei0r et les effets audio LADSPA",
+    "Transitions et compositions pour superposer des calques",
+    "Versions stables et builds quotidiens expérimentaux proposés tous les deux",
+    "Transcription automatique pour créer des sous-titres"
+  ],
+  "limits": [
+    "Sur ordinateur uniquement : pas d’éditeur dans le navigateur, de synchro des projets dans le cloud ni d’espace partagé",
+    "Pas de vidéos d’archives, de musique ni de marché de modèles fournis : la bibliothèque de contenus de CapCut n’y est pas",
+    "Le rendu est local : les longs exports dépendent de ton propre processeur et de ta carte graphique",
+    "Le dépôt GitHub est un miroir : les rapports de bugs et les demandes de fusion passent par KDE Invent et le suivi de bugs de KDE"
+  ],
+  "bestFor": "Un YouTubeur ou un petit studio qui monte sur ordinateur et veut quitter un éditeur par abonnement."
+}

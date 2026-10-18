@@ -1,0 +1,18 @@
+{
+  "tagline": "Éditeur vidéo de bureau gratuit, avec pistes illimitées, animation en images clés et export FFmpeg.",
+  "description": "OpenShot est un éditeur vidéo de bureau pour Linux, macOS et Windows. Il est écrit en Python avec Qt et utilise une bibliothèque C++ et FFmpeg en dessous. La licence est la GPL, version 3 ou ultérieure. Tu ne l’héberges pas : tu télécharges un installeur sur le site du projet, ou des builds quotidiens faits à chaque nouveau commit. L’éditeur offre des pistes illimitées, une timeline avec aimantation, le découpage, le redimensionnement et la rotation des clips, des transitions avec aperçu en direct, et des courbes d’images clés pour l’animation et la composition. Il propose aussi des modèles de titres, des titres animés en 3D, la gestion du temps pour changer la vitesse, le mixage audio et une série d’effets vidéo dont l’incrustation sur fond vert. Le rendu passe par FFmpeg vers de nombreux formats, et EDL et XML s’importent et s’exportent. L’encodage et le décodage matériels sont signalés comme expérimentaux. Comme alternative à CapCut, il couvre le montage classique sur timeline, mais ce n’est pas un éditeur en ligne et il n’a pas de partage de projets dans le cloud.",
+  "strengths": [
+    "Tourne sous Linux, macOS et Windows",
+    "Pistes illimitées avec animation par courbes d’images clés",
+    "Incrustation sur fond vert, transitions et modèles de titres inclus",
+    "Export via FFmpeg vers de nombreux codecs, avec import et export EDL et XML",
+    "Guide d’utilisation officiel et tutoriel vidéo pas à pas"
+  ],
+  "limits": [
+    "Application de bureau uniquement : pas de montage dans le navigateur ni de partage de projets dans le cloud",
+    "L’encodage et le décodage matériels sont étiquetés expérimentaux dans le README",
+    "Les builds quotidiens sont décrits comme expérimentaux : les versions stables viennent de la page de téléchargement",
+    "Ni sous-titrage automatique intégré ni marché de modèles dans la liste des fonctionnalités"
+  ],
+  "bestFor": "Un amateur ou un enseignant qui monte sur un portable et veut un éditeur à timeline gratuit sur ordinateur."
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "claim": "Store files, contacts, calendars; sync; share; hundreds of apps; app store",
+    "url": "https://raw.githubusercontent.com/nextcloud/server/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Calendar, Contacts, Mail, Talk are separate repositories",
+    "url": "https://raw.githubusercontent.com/nextcloud/server/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Two-factor authentication and HackerOne bounty programme",
+    "url": "https://raw.githubusercontent.com/nextcloud/server/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Install yourself, appliances, devices, providers; Nextcloud Enterprise by Nextcloud GmbH",
+    "url": "https://raw.githubusercontent.com/nextcloud/server/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Apache 2.4 or nginx with php-fpm; PHP 8.3, 8.4, 8.5",
+    "url": "https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "MariaDB, MySQL, PostgreSQL; SQLite only recommended for testing and minimal instances; Oracle only with enterprise subscription",
+    "url": "https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Minimum 128MB RAM per process, recommended 512MB",
+    "url": "https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Manual recommends enterprise support for professional deployment consulting and scaling",
+    "url": "https://docs.nextcloud.com/server/latest/admin_manual/installation/system_requirements.html",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "AGPL-3.0 licence",
+    "url": "https://api.github.com/repos/nextcloud/server",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Repository is written in PHP",
+    "url": "https://api.github.com/repos/nextcloud/server",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

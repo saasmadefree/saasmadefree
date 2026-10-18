@@ -1,0 +1,17 @@
+{
+  "tagline": "Fait tourner des modèles de langage ouverts sur ta machine, avec une ligne de commande et une API REST locale.",
+  "description": "Ollama télécharge et exécute des modèles de langage ouverts en local, et les expose par une ligne de commande et une API REST sur le port 11434. Tu tapes ollama run suivi d’un nom de modèle : l’outil récupère le modèle et ouvre un chat. Des installeurs existent pour macOS, Windows et Linux, et une image Docker officielle est publiée. Des bibliothèques Python et JavaScript encapsulent l’API. Une commande launch le relie à des agents de code comme Claude Code, Codex ou OpenCode. Le projet est écrit en Go, sous licence MIT. Les cartes Nvidia doivent avoir une compute capability de 5.0 ou plus et un pilote récent ; tu peux aussi forcer l’usage du processeur. Ollama vend également un accès cloud à des modèles plus gros, d’un palier gratuit à des formules payantes à partir de 20 $ par mois. Comme remplaçant de ChatGPT, il te donne le moteur de modèles et l’API, pas un produit de chat soigné avec des comptes. Associe-le à une interface comme Open WebUI si plusieurs personnes ont besoin d’un chat.",
+  "strengths": [
+    "Une seule commande récupère un modèle et lance un chat : ollama run suivi du nom du modèle",
+    "API REST locale sur le port 11434, avec des bibliothèques officielles Python et JavaScript",
+    "Installeurs pour macOS, Windows et Linux, et image Docker officielle",
+    "Peut lancer des outils de code comme Claude Code, Codex et OpenCode sur des modèles locaux"
+  ],
+  "limits": [
+    "La vitesse dépend de ton matériel : les GPU Nvidia demandent une compute capability 5.0+ et un pilote 550 ou plus récent, sinon l’inférence passe sur le processeur",
+    "Les modèles ouverts de sa bibliothèque ne sont pas ceux de ChatGPT : teste la qualité sur tes propres tâches",
+    "Les modèles cloud sont facturés en crédits d’usage et la formule Pro coûte 20 $ par mois : ce n’est pas de l’inférence locale gratuite",
+    "Le dépôt décrit une ligne de commande et une API, pas un site de chat multi-utilisateur avec comptes et historique"
+  ],
+  "bestFor": "Un développeur avec un bon GPU ou un MacBook Apple Silicon, qui veut une API locale privée pour des modèles ouverts plutôt que de payer au jeton."
+}

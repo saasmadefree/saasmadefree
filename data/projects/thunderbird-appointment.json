@@ -1,0 +1,43 @@
+{
+  "slug": "thunderbird-appointment",
+  "name": "Thunderbird Appointment",
+  "homepage": "https://appointment.tb.pro",
+  "repo": "thunderbird/appointment",
+  "license": "MPL-2.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/thunderbird/appointment/blob/main/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/thunderbird/appointment#readme",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 6,
+    "currency": "USD",
+    "source": "https://www.tb.pro/en-US/",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "python",
+    "vue",
+    "postgresql",
+    "redis"
+  ],
+  "categories": [
+    "scheduling"
+  ],
+  "stats": {
+    "stars": 555,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2022-08-15",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

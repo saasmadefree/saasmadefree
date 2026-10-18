@@ -1,0 +1,18 @@
+{
+  "tagline": "Calendly-style meeting scheduler for one person that runs on Cloudflare Pages and D1.",
+  "description": "CloudMeet is a booking page you deploy to your own Cloudflare account. You create a repository from the project template, add a handful of secrets in GitHub (a Cloudflare API token and account ID, an admin email, a session secret, the app URL and Google OAuth credentials), then run a GitHub Actions workflow that publishes the app. Data lives in a D1 database and the code is built with Svelte and TypeScript. The author states that it runs on Cloudflare's free tier. Visitors pick a slot on a public page, and events are created in Google Calendar or Outlook Calendar, with Google Meet or Teams links when you choose a provider. You can connect both calendars and availability is checked across them. Hours, event types such as 30 minutes or one hour, and email notifications are configurable. Booking emails need an Emailit API key, which is optional. Reminders at 24 hours and one hour before a meeting are sent by a small Cloudflare worker that runs every five minutes. The licence is MIT. It covers the core of Calendly for a single host. It does not try to match team scheduling, routing forms or payment collection.",
+  "strengths": [
+    "Deploys with a GitHub template and one Actions workflow, with no server to maintain",
+    "Checks availability across Google and Outlook calendars at the same time",
+    "Creates Google Meet or Microsoft Teams links on each booking",
+    "Sends confirmation, cancellation and reminder emails, with a dashboard to switch each one on or off",
+    "Updates by running a sync workflow against the upstream template"
+  ],
+  "limits": [
+    "Single admin: only the email set in ADMIN_EMAIL can log in, so it does not offer team scheduling or round-robin",
+    "Needs a Google Cloud OAuth client, and a Microsoft Azure app registration for Outlook, which is more setup than signing up for Calendly",
+    "Booking emails depend on a third-party service (Emailit); without its key, no emails go out",
+    "Ties you to Cloudflare Pages, Workers and D1, so it will not run on a plain VPS"
+  ],
+  "bestFor": "A freelancer or consultant with a Cloudflare account who needs a personal booking page tied to Google or Outlook calendar."
+}

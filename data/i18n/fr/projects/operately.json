@@ -1,0 +1,18 @@
+{
+  "tagline": "Gestion du travail autour des objectifs de l’entreprise, des points d’avancement et des espaces d’équipe.",
+  "description": "Operately est un outil auto-hébergeable pour piloter objectifs, projets et équipes, écrit avec Elixir et React sous licence Apache 2.0. Au lieu d’un espace vide, il impose des routines : revues d’objectifs, points d’avancement des projets et mises à jour régulières. Il propose des objectifs de type OKR reliés aux projets, des tableaux de tâches et des jalons, des espaces d’équipe, des forums de messages, des documents et fichiers, et des permissions. Un outil en ligne de commande et une API permettent à des scripts et à des assistants IA de travailler avec les objectifs, les projets et les points d’avancement. L’installation passe par une archive pour un seul serveur : tu la télécharges, tu la décompresses, tu lances le script d’installation et tu démarres avec Docker Compose. Le README se compare à Monday.com, Asana et Notion et vise des équipes de 5 à 100 personnes. Face à Asana, attends-toi à moins de souplesse et moins d’intégrations, en échange d’une façon de travailler imposée. Le modèle est de type open core.",
+  "strengths": [
+    "Objectifs, projets et points d’avancement reliés dans un même fonctionnement",
+    "Licence Apache 2.0",
+    "Un outil en ligne de commande et une API permettent à des scripts ou des agents IA de poster des mises à jour",
+    "Installation sur un seul serveur avec Docker Compose, à partir d’une archive",
+    "Espaces d’équipe avec forums de messages et documents"
+  ],
+  "limits": [
+    "Structure imposée : le README l’oppose lui-même aux outils qu’on plie à tous les usages",
+    "Vise des équipes de 5 à 100 personnes ; les grandes organisations ne sont pas sa cible annoncée",
+    "Docker est la seule méthode de déploiement documentée",
+    "Moins d’intégrations prêtes à l’emploi décrites que dans des outils établis comme Asana"
+  ],
+  "bestFor": "Une startup de 10 à 50 personnes qui veut des OKR et des points d’avancement réguliers, avec un outil qu’elle héberge elle-même."
+}

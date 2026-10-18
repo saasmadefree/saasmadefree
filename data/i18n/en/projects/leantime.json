@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted project management with kanban, gantt, sprints, goals and timesheets, written in PHP.",
+  "description": "Leantime is a project management system built for teams that do not have a dedicated project manager. It combines task views (kanban, gantt, table, list and calendar), milestones, sprints, time tracking and timesheets with goal tracking, a lean canvas, SWOT and risk analysis, wikis and idea boards. The README states that all of these ship in the open-source version, which is AGPL-3.0. You can run it from a release zip on an Apache or Nginx server, or from the official Docker image. It needs PHP 8.2 or newer and MySQL 8.0 or MariaDB 10.6 or newer, plus a list of PHP extensions that includes LDAP, bcmath and GD. Authentication supports LDAP and OIDC, with optional two-factor login, and plugins and an API extend it. Files can go to S3 or the local disk. It targets the core loop of Asana, Trello and Smartsheet: tasks, boards, deadlines and reporting. A paid hosted plan, Leantime Pro, is listed at $10 per user per month.",
+  "strengths": [
+    "All listed features, including goals, canvases and timesheets, are in the open-source version.",
+    "Five task views: kanban, gantt, table, list and calendar.",
+    "LDAP and OIDC sign-in, per-project permissions and two-factor authentication are built in.",
+    "Official Docker image, or a release zip for a classic LAMP host.",
+    "File storage works on S3 or the local filesystem."
+  ],
+  "limits": [
+    "Supports only MySQL 8.0+ or MariaDB 10.6+; PostgreSQL is not listed in the requirements.",
+    "A long list of required PHP extensions, including LDAP, PCNTL and bcmath, makes manual setup fussy.",
+    "Apache or Nginx are the documented web servers; IIS works only with modifications.",
+    "Behind a reverse proxy, the Docker image needs extra environment variables for the domain and SSL handling."
+  ],
+  "bestFor": "A small team without a project manager that wants Trello-style boards plus goals on its own PHP host."
+}

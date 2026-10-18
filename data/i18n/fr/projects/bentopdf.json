@@ -1,0 +1,18 @@
+{
+  "tagline": "Boîte à outils PDF auto-hébergeable, 100 % dans le navigateur : plus de 50 outils, aucun envoi de fichier.",
+  "description": "BentoPDF est une appli web pour travailler sur des PDF : fusionner, découper, modifier, convertir, signer et compresser. Le traitement se fait dans le navigateur du visiteur grâce à WebAssembly, donc les documents n’arrivent jamais sur ton serveur. Le déploiement reste léger. Tu peux lancer l’image Docker ou Podman, ou servir les fichiers compilés comme un site statique sur Netlify, Vercel, GitHub Pages ou n’importe quel serveur web. La documentation liste plus de 50 outils, dont le remplissage de formulaires, les signatures numériques avec certificats X.509 et la conversion vers et depuis plusieurs formats. Certains gros modules WASM, comme LibreOffice, Ghostscript et PyMuPDF, se chargent par défaut depuis le CDN jsDelivr ; un paquet pour réseau isolé et une option servie depuis ton propre domaine existent pour les réseaux hors ligne. L’identité visuelle, la langue et la liste des outils activés se règlent à la compilation. Le projet a une double licence : AGPL-3.0 pour un usage libre avec code source public, ou une licence commerciale unique, affichée à 79 dollars, pour un usage en code fermé. Il convient à ceux qui paient Adobe Acrobat pour des tâches courantes, mais vérifie les fonctionnalités dont tu dépends : les chaînes d’OCR côté serveur ne sont pas le modèle ici.",
+  "strengths": [
+    "Les fichiers sont traités dans le navigateur : aucun PDF n’est envoyé au serveur que tu héberges",
+    "Se déploie comme un site statique ou un conteneur Docker ou Podman, sans base de données côté serveur",
+    "Signatures numériques cryptographiques avec certificats X.509 et validation de signature",
+    "Identité visuelle, langue par défaut et liste des outils réglables à la compilation",
+    "Paquet documenté pour réseau isolé, utilisable hors ligne"
+  ],
+  "limits": [
+    "Par défaut, les gros modules WASM se chargent depuis le CDN jsDelivr ; un usage hors ligne demande une compilation sur mesure avec des fichiers servis depuis ton propre domaine",
+    "L’outil de signature peut avoir besoin d’un proxy CORS (le README suggère un Cloudflare Worker) pour récupérer les chaînes de certificats",
+    "L’AGPL-3.0 vaut pour l’usage gratuit ; un produit en code fermé demande la licence commerciale payante",
+    "Les conversions lourdes tournent sur l’appareil de l’utilisateur : les très gros fichiers dépendent de la mémoire de son navigateur"
+  ],
+  "bestFor": "Un bureau soucieux de confidentialité, ou un administrateur informatique, qui veut une page interne pour les tâches PDF courantes au lieu de payer Acrobat par utilisateur."
+}

@@ -1,0 +1,18 @@
+{
+  "tagline": "Free cross-platform video editor for Windows, macOS and Linux, built on MLT, Qt and FFmpeg.",
+  "description": "Shotcut is a desktop video editor that runs on Windows, macOS and Linux. It is built on the MLT multimedia framework, Qt 6 for the interface, and FFmpeg for formats and codecs, with Frei0r supplying video filters and FFTW and SDL supporting audio. You download a ready-made binary from the project site, so nothing needs to be hosted and there is no account. Building from source uses CMake, and the README warns this is meant for beta testers and contributors. The licence is GPL-3.0, and translations are handled on Transifex. Features and the roadmap are documented on the project site. It is a reasonable free replacement for CapCut when you want a timeline editor with filters that runs offline on your own computer. It is not a template-driven short-video app, and it has no cloud project sync or team review. Your projects and media stay on local disks, so backups and sharing are your own job.",
+  "strengths": [
+    "Runs natively on Windows, macOS and Linux",
+    "Uses FFmpeg for broad format and codec support",
+    "Filters and effects from Frei0r and MLT",
+    "Works offline with no account",
+    "Ready-made binaries, so no compiling is needed to use it"
+  ],
+  "limits": [
+    "It is a local desktop program: no cloud storage, team review or shared projects",
+    "The README says building from source is only for testers and contributors, and Qt 6.4 is the minimum",
+    "No template library or one-tap short-video tools like those in CapCut",
+    "Mostly one main author listed in the README, so project continuity leans on a small core team"
+  ],
+  "bestFor": "A solo creator or teacher who edits videos on one computer and wants a free offline editor in place of CapCut."
+}

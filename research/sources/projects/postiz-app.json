@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Social media management platform for scheduling, automating and analysing content; cloud and open-source editions",
+    "url": "https://github.com/gitroomhq/postiz-app",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Stack: Next.js, NestJS, Prisma with PostgreSQL by default, Temporal; Redis in self-hosted setup",
+    "url": "https://github.com/gitroomhq/postiz-app",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Public API, Node SDK, n8n custom node and Make.com integration",
+    "url": "https://github.com/gitroomhq/postiz-app",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Docker Compose install; frontend at port 4007, Temporal at port 8080",
+    "url": "https://docs.postiz.com/general/quickstart",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Install menu lists Docker Compose, Docker and Helm",
+    "url": "https://docs.postiz.com/installation/docker-compose",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Self-hosted: unlimited channels, posts and members; own developer apps with approval that can take weeks for Meta, YouTube, TikTok",
+    "url": "https://github.com/gitroomhq/postiz-app",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Analytics require your own app credentials; AI features require your own keys; you pull images and run migrations",
+    "url": "https://github.com/gitroomhq/postiz-app",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "AGPL-3.0 licence; same core features in cloud and open source",
+    "url": "https://github.com/gitroomhq/postiz-app",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

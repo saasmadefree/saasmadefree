@@ -1,0 +1,46 @@
+{
+  "slug": "zammad",
+  "name": "Zammad",
+  "homepage": "https://zammad.com",
+  "repo": "zammad/zammad",
+  "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/zammad/zammad/blob/develop/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.zammad.org/en/latest/install/package.html",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 7,
+    "currency": "EUR",
+    "source": "https://zammad.com/en/pricing",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker",
+    "helm",
+    "deb",
+    "rpm"
+  ],
+  "stack": [
+    "ruby",
+    "rails",
+    "vue",
+    "typescript"
+  ],
+  "categories": [
+    "customer-support"
+  ],
+  "stats": {
+    "stars": 6015,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2012-04-02",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "tagline": "Self-hosted email platform for transactional mail, automations and broadcasts, sending through AWS SES.",
+  "description": "Plunk is an email platform you run yourself with Docker. It covers three jobs: transactional emails sent from your application through an API, automations triggered by user actions, and broadcasts to larger audiences. It does not send mail itself. It builds on AWS SES, so you need an SES account for delivery. The README presents it as a self-hosted alternative to SendGrid, Resend and Mailgun, and it can take over part of a Mailchimp setup for simple campaigns. The self-hosting guide lists Docker and Docker Compose, an SES account and a domain with subdomains. The dashboard, API and documentation each get one, the landing page another, and an SMTP relay is optional. You download the compose file, set environment variables and run docker compose up. The licence is AGPL-3.0, and the code is TypeScript. The README and docs describe the product as aimed at developers, so there is no long list of marketing-team tools such as template galleries or list-growth forms.",
+  "strengths": [
+    "Transactional API, event-based automations and broadcasts in one product",
+    "Short install: download the compose file, set variables, run docker compose up",
+    "Optional SMTP relay subdomain for apps that send over SMTP",
+    "AGPL-3.0 with a public Docker image"
+  ],
+  "limits": [
+    "Sending depends on an AWS SES account; no other delivery backend is documented",
+    "Needs several subdomains for dashboard, API, docs and landing page",
+    "The README lists only three features, so no template gallery or form builder is described"
+  ],
+  "bestFor": "A developer who sends app emails and the occasional newsletter and already has an AWS account."
+}

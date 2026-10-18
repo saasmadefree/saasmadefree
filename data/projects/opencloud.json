@@ -1,0 +1,39 @@
+{
+  "slug": "opencloud",
+  "name": "OpenCloud",
+  "homepage": "https://opencloud.eu",
+  "repo": "opencloud-eu/opencloud",
+  "license": "Apache-2.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/opencloud-eu/opencloud/blob/main/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.opencloud.eu/",
+  "hosted": {
+    "exists": false,
+    "source": "https://opencloud.eu/en",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker",
+    "binary"
+  ],
+  "stack": [
+    "go"
+  ],
+  "categories": [
+    "cloud-storage"
+  ],
+  "stats": {
+    "stars": 6185,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2025-01-10",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

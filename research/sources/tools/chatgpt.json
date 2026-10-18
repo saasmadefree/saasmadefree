@@ -1,0 +1,98 @@
+[
+  {
+    "claim": "ChatGPT Plus price used in intro",
+    "url": "https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "ollama: coverage and gaps as stated in the alternative note",
+    "url": "https://ollama.com",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.ollama"
+  },
+  {
+    "claim": "open-webui: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/open-webui/open-webui",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.open-webui"
+  },
+  {
+    "claim": "lobe-chat: coverage and gaps as stated in the alternative note",
+    "url": "https://lobehub.com",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.lobe-chat"
+  },
+  {
+    "claim": "anything-llm: coverage and gaps as stated in the alternative note",
+    "url": "https://anythingllm.com",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.anything-llm"
+  },
+  {
+    "claim": "cherry-studio: coverage and gaps as stated in the alternative note",
+    "url": "https://cherryai.com",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.cherry-studio"
+  },
+  {
+    "claim": "librechat: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/LibreChat-AI/LibreChat",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.librechat"
+  },
+  {
+    "claim": "jan: coverage and gaps as stated in the alternative note",
+    "url": "https://jan.ai",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.jan"
+  },
+  {
+    "claim": "onyx: coverage and gaps as stated in the alternative note",
+    "url": "https://github.com/onyx-dot-app/onyx",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.onyx"
+  },
+  {
+    "claim": "Alternatives order: Jan first. Ollama is a runtime with a CLI and API and needs a separate interface (Open WebUI, which is not OSI open source) for a chat window; Jan is one desktop chat app that runs open models offline with no account and also takes OpenAI or Anthropic keys, and exposes an OpenAI-compatible local server. LibreChat is the pick for teams.",
+    "url": "https://jan.ai/docs/desktop",
+    "retrievedOn": "2026-10-18",
+    "field": "alternatives order"
+  },
+  {
+    "claim": "Jan: desktop app, offline use, no account, API keys for OpenAI/Anthropic, local OpenAI-compatible server on port 1337",
+    "url": "https://github.com/janhq/jan#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.jan"
+  },
+  {
+    "claim": "LibreChat: multi-user sign-in (email, OAuth2, LDAP), ChatGPT-style web interface",
+    "url": "https://github.com/danny-avila/LibreChat#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "Ollama: runs models locally with a CLI chat (ollama run) and a REST API",
+    "url": "https://github.com/ollama/ollama#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.ollama"
+  },
+  {
+    "claim": "Cherry Studio README links a mobile app, Open WebUI and LibreChat can run as PWAs; wording softened to 'no project matches the official mobile apps'",
+    "url": "https://github.com/CherryHQ/cherry-studio#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "ChatGPT memory, built-in tools and app features are not part of the API",
+    "url": "https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[5]"
+  },
+  {
+    "claim": "Jan Web is mentioned in the docs as a separate browser offering; the installed app is desktop only",
+    "url": "https://jan.ai/docs/desktop",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.jan"
+  }
+]

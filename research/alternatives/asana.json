@@ -1,0 +1,303 @@
+[
+  {
+    "slug": "plane",
+    "existing": true,
+    "name": "Plane",
+    "repo": "makeplane/plane",
+    "homepage": "https://github.com/makeplane/plane",
+    "why": "Open-source project management with work items, cycles, modules, views and analytics.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Tasks in projects and modules; goal roll-ups are not confirmed.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://developers.plane.so/self-hosting/overview",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://github.com/makeplane/plane",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "kubernetes"
+    ],
+    "stack": [
+      "python",
+      "django",
+      "typescript",
+      "react",
+      "postgresql",
+      "redis"
+    ],
+    "categories": [
+      "dev-tools",
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/asana",
+      "https://github.com/makeplane/plane"
+    ]
+  },
+  {
+    "slug": "openproject",
+    "existing": false,
+    "name": "OpenProject",
+    "repo": "opf/openproject",
+    "homepage": "https://www.openproject.org",
+    "why": "Project management suite with Gantt charts, agile boards, roadmaps and time tracking.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Projects and work packages with several views; goal tracking is not confirmed.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://www.openproject.org/download-and-installation/",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://start.openproject.com/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "packages"
+    ],
+    "stack": [
+      "ruby",
+      "rails",
+      "angular"
+    ],
+    "categories": [
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/asana",
+      "https://github.com/opf/openproject"
+    ]
+  },
+  {
+    "slug": "leantime",
+    "existing": false,
+    "name": "Leantime",
+    "repo": "Leantime/leantime",
+    "homepage": "https://leantime.io",
+    "why": "Goal-oriented project management with tasks, milestones and goals.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Tasks linked to strategy and goal tracking.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.leantime.io",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://leantime.io/pricing/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "zip"
+    ],
+    "stack": [
+      "php",
+      "mysql"
+    ],
+    "categories": [
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/asana",
+      "https://github.com/Leantime/leantime"
+    ]
+  },
+  {
+    "slug": "operately",
+    "existing": false,
+    "name": "Operately",
+    "repo": "operately/operately",
+    "homepage": "https://operately.com",
+    "why": "Open-source company operating system coordinating goals, projects and teams with check-ins.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Goals linked to projects with reviews and check-ins.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://operately.com/install",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "elixir",
+      "react",
+      "typescript"
+    ],
+    "categories": [
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/asana",
+      "https://github.com/operately/operately"
+    ]
+  },
+  {
+    "slug": "vikunja",
+    "existing": true,
+    "name": "Vikunja",
+    "repo": "go-vikunja/vikunja",
+    "homepage": "https://github.com/go-vikunja/vikunja",
+    "why": "Self-hosted task manager with list, kanban, Gantt and table views.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Task lists and projects; no goal roll-ups confirmed.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://vikunja.io/docs/installing",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://vikunja.cloud/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "binary"
+    ],
+    "stack": [
+      "go",
+      "vue"
+    ],
+    "categories": [
+      "tasks",
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/asana",
+      "https://github.com/go-vikunja/vikunja"
+    ]
+  },
+  {
+    "slug": "taiga",
+    "existing": false,
+    "name": "Taiga",
+    "repo": "taigaio/taiga-back",
+    "homepage": "https://taiga.io",
+    "why": "Agile project management platform with kanban, scrum and wiki.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Tasks and sprints; goals are not part of the model.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.taiga.io/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "python",
+      "django"
+    ],
+    "categories": [
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/asana",
+      "https://github.com/taigaio/taiga-back"
+    ]
+  },
+  {
+    "slug": "platform",
+    "existing": true,
+    "name": "Huly",
+    "repo": "hcengineering/platform",
+    "homepage": "https://github.com/Platform-Collective/platform",
+    "why": "All-in-one project management, chat, CRM and HR platform; this repository is no longer maintained.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Project management with issues; development moved to Platform-Collective/platform.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/hcengineering/huly-selfhost",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": false,
+      "source": "https://github.com/hcengineering/platform",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript",
+      "svelte",
+      "mongodb",
+      "elasticsearch"
+    ],
+    "categories": [
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/asana",
+      "https://github.com/hcengineering/platform"
+    ]
+  },
+  {
+    "slug": "worklenz",
+    "existing": false,
+    "name": "Worklenz",
+    "repo": "Worklenz/worklenz",
+    "homepage": "https://worklenz.com",
+    "why": "Self-hostable project management with tasks, resource planning, time tracking and client portal.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Projects and tasks with resource planning; goals are not confirmed.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/Worklenz/worklenz/blob/main/DOCKER_SETUP.md",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://github.com/Worklenz/worklenz",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "react",
+      "typescript",
+      "express",
+      "postgresql",
+      "redis"
+    ],
+    "categories": [
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/asana",
+      "https://github.com/Worklenz/worklenz"
+    ]
+  },
+  {
+    "slug": "redmine",
+    "existing": false,
+    "name": "Redmine",
+    "repo": "redmine/redmine",
+    "homepage": "https://www.redmine.org",
+    "why": "Ruby on Rails project management and issue tracking application.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Projects and issues; no goals layer.",
+    "deploy": [],
+    "stack": [
+      "ruby",
+      "rails"
+    ],
+    "categories": [
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/asana",
+      "https://github.com/redmine/redmine"
+    ]
+  }
+]

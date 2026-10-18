@@ -1,0 +1,17 @@
+{
+  "tagline": "PHP e-commerce platform with storefront, back office, themes and modules, run on your own server.",
+  "description": "PrestaShop is an online shop application written in PHP. It gives you a catalogue, cart, checkout and a back office, and you extend it with modules and themes. The README says it supports the major payment services and is translated into many languages. The GitHub repository is meant for development and preview only. For a live shop you download a release from the project site, which currently is version 9.0. That version needs a web server running PHP 8.1 or later and MySQL 5.6 or later, or a compatible fork such as MariaDB. Apache or Nginx are recommended. The licence is OSL-3.0 for the core and AFL-3.0 for modules. The Docker setup in the repository is a development environment with default credentials, not a production recipe. As a Shopify replacement it gives full control of code and data, but you handle hosting, security patches, payment setup and upgrades. The README itself warns that moving to a newer version is not trivial and points to a dedicated updating guide.",
+  "strengths": [
+    "Catalogue, cart, checkout and back office in one application",
+    "Extended through modules and themes, with developers able to override components",
+    "Runs on a standard PHP and MySQL stack with Apache or Nginx",
+    "Translated into many languages and localised for many countries"
+  ],
+  "limits": [
+    "The GitHub repository is for development and preview; production installs use a release download",
+    "Hosting, backups, security patches and payment setup are your job",
+    "The README warns that upgrading to a new version is not trivial",
+    "The Docker setup is a development environment with default admin credentials"
+  ],
+  "bestFor": "A merchant or agency with PHP hosting skills that wants full control of a store's code and data."
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "wraft",
+  "name": "Wraft",
+  "homepage": "https://wraft.app",
+  "repo": "wraft/wraft",
+  "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/wraft/wraft/blob/main/LICENSE.md",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.wraft.app/",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 299,
+    "currency": "USD",
+    "source": "https://www.wraft.app/pricing",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker",
+    "kubernetes",
+    "kamal"
+  ],
+  "stack": [
+    "elixir"
+  ],
+  "categories": [
+    "documents"
+  ],
+  "stats": {
+    "stars": 168,
+    "lastCommit": "2026-10-03",
+    "createdAt": "2024-09-12",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

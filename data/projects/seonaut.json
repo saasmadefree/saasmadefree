@@ -1,26 +1,41 @@
 {
   "slug": "seonaut",
   "name": "SEOnaut",
-  "homepage": "https://github.com/stjudewashere/seonaut",
+  "homepage": "https://seonaut.org",
   "repo": "StJudeWasHere/seonaut",
   "license": "MIT",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/StJudeWasHere/seonaut/blob/main/LICENSE",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/StJudeWasHere/seonaut#readme",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 0,
+    "currency": "USD",
+    "source": "https://seonaut.org/",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "go",
+    "mysql"
+  ],
   "categories": [
     "seo-marketing"
   ],
   "stats": {
-    "stars": 808,
+    "stars": 809,
     "lastCommit": "2026-10-08",
     "createdAt": "2022-03-02",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
-    "en"
+    "en",
+    "fr"
   ]
 }

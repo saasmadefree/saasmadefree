@@ -1,0 +1,18 @@
+{
+  "tagline": "Open-source Kanban board for teams, with Trello import, built on Next.js and PostgreSQL.",
+  "description": "Kan is a Kanban project tool aimed at people who use Trello and want to host their own boards. Features listed in the README include workspace members, board visibility controls, labels and filters, comments, an activity log of card changes, reusable board templates and import of Trello boards. It is licensed under AGPL-3.0. The stack is Next.js, tRPC, Better Auth, Tailwind CSS, Drizzle ORM and React Email, with PostgreSQL for data. Self-hosting has two official routes: a one-click Railway template, which the project says supports its development, or Docker Compose. The Compose file runs a migrate container, the web container on port 3000 and a PostgreSQL 15 container, and it applies database migrations before the web service starts. You need to set a base URL, an auth secret and the database URL. Optional settings add SMTP for email, generic OIDC login, and S3-compatible storage for uploads. Kan replaces Trello's boards and cards. Some items, such as integrations, are marked as coming soon in the README.",
+  "strengths": [
+    "Imports Trello boards directly.",
+    "Docker Compose setup includes PostgreSQL 15 and runs migrations automatically before the web app starts.",
+    "Optional generic OIDC login, SMTP email and S3-compatible file storage.",
+    "Reusable board templates and an activity log of card changes.",
+    "One-click Railway template for people without their own server."
+  ],
+  "limits": [
+    "Integrations are listed as coming soon in the README, so no ready-made connectors yet.",
+    "Open issues on the tracker include OIDC and Microsoft sign-in problems and failed first-user creation on a self-hosted install.",
+    "Feature set is basic Kanban: boards, lists, cards, labels and comments, with no timelines or dashboards described.",
+    "Needs a PostgreSQL database and several required environment variables before first start."
+  ],
+  "bestFor": "A small team or freelancer who runs Trello boards, owns a VPS, and wants the same cards on infrastructure they control."
+}

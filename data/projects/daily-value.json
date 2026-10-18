@@ -1,0 +1,40 @@
+{
+  "slug": "daily-value",
+  "name": "Daily Value",
+  "homepage": "https://jjnesk1-ship-it.github.io/daily-value/",
+  "repo": "jjnesk1-ship-it/daily-value",
+  "license": "MIT",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/jjnesk1-ship-it/daily-value/blob/HEAD/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/jjnesk1-ship-it/daily-value",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 0,
+    "currency": "USD",
+    "source": "https://jjnesk1-ship-it.github.io/daily-value/",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "static"
+  ],
+  "stack": [
+    "javascript"
+  ],
+  "categories": [
+    "health-fitness"
+  ],
+  "stats": {
+    "stars": 0,
+    "lastCommit": "2026-10-01",
+    "createdAt": "2026-09-28",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

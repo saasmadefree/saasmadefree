@@ -1,0 +1,16 @@
+{
+  "tagline": "Plateforme d’emails auto-hébergée : emails transactionnels, automatisations et envois groupés via AWS SES.",
+  "description": "Plunk est une plateforme d’emails que tu fais tourner toi-même avec Docker. Elle sert à trois choses : les emails transactionnels envoyés depuis ton application par une API, les automatisations déclenchées par des actions d’utilisateurs, et les envois groupés vers de plus grandes audiences. Elle n’envoie pas le courrier elle-même. Elle s’appuie sur AWS SES, donc il te faut un compte SES pour la livraison. Le README la présente comme une alternative auto-hébergée à SendGrid, Resend et Mailgun, et elle peut reprendre une partie d’une installation Mailchimp pour des campagnes simples. Le guide d’auto-hébergement demande Docker et Docker Compose, un compte SES et un nom de domaine avec des sous-domaines. Le tableau de bord, l’API et la documentation en prennent chacun un, la page d’accueil un autre, et un relais SMTP est facultatif. Tu télécharges le fichier Compose, tu règles les variables d’environnement et tu lances docker compose up. La licence est l’AGPL-3.0, et le code est en TypeScript. Le README et la documentation décrivent un produit destiné aux développeurs : tu n’y trouves pas la longue liste d’outils des équipes marketing, comme les galeries de modèles ou les formulaires d’inscription pour faire grossir ta liste.",
+  "strengths": [
+    "API transactionnelle, automatisations déclenchées par des événements et envois groupés dans un seul produit",
+    "Installation courte : télécharger le fichier Compose, régler les variables, lancer docker compose up",
+    "Sous-domaine de relais SMTP en option pour les applications qui envoient en SMTP",
+    "AGPL-3.0, avec une image Docker publique"
+  ],
+  "limits": [
+    "L’envoi dépend d’un compte AWS SES : aucun autre moyen de livraison n’est documenté",
+    "Il faut plusieurs sous-domaines pour le tableau de bord, l’API, la documentation et la page d’accueil",
+    "Le README ne liste que trois fonctionnalités : aucune galerie de modèles ni créateur de formulaires n’est décrit"
+  ],
+  "bestFor": "Un développeur qui envoie les emails de son appli et une newsletter de temps en temps, et qui a déjà un compte AWS."
+}

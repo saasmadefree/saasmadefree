@@ -269,7 +269,7 @@ describe('catégorie « best » — projets puis registre SaaS', () => {
   it('no project at all: a plain note, no table, no project ItemList', () => {
     const d = dom(render({ toolViews: [VIEWS[2]] }));
     expect(d.querySelector('section[aria-labelledby="projects-heading"] table')).toBeNull();
-    expect(text(d.querySelector('section[aria-labelledby="projects-heading"]'))).toContain('No open source');
+    expect(text(d.querySelector('section[aria-labelledby="projects-heading"]'))).toContain(UI.en.site.category.noProjects.replace('{category}', 'Newsletters & publishing'));
     expect(jsonLd(d).filter((x) => x['@type'] === 'ItemList')).toHaveLength(1);
   });
 
@@ -339,10 +339,10 @@ describe('D14 — répertoire des catégories', () => {
     expect(text(links[1])).toContain('1 tool');
   });
 
-  it('le nombre de projets open source quand il y en a, rien sinon', () => {
+  it('le nombre de projets quand il y en a, rien sinon', () => {
     const links = [...idx.querySelectorAll('main ul a')];
-    expect(text(links[0])).toContain('4 open source projects');
-    expect(text(links[1])).not.toContain('open source');
+    expect(text(links[0])).toContain('4 free projects');
+    expect(text(links[1])).not.toContain('project');
   });
 
   it('Organization en JSON-LD, hreflang', () => {
@@ -359,7 +359,7 @@ describe('D14 — répertoire des catégories', () => {
 
   it('en français', () => {
     const fr = dom(renderIndex({ lang: 'fr' }));
-    expect(text(fr.querySelector('main ul a'))).toContain('4 projets open source');
+    expect(text(fr.querySelector('main ul a'))).toContain('4 projets gratuits');
   });
 });
 
@@ -395,4 +395,133 @@ describe('Ruling 34 — liens de collection du pied de page', () => {
     expect(on).toContain('/collections/self-hosted');
     expect(on).toContain('/collections/build-tonight');
   });
+});
+
+describe('titleLabel : libellé court pour le titre', () => {
+  const withTitle = {
+    ...categories,
+    newsletter: { ...categories.newsletter, titleLabel: { en: 'Newsletter' } },
+  };
+
+  it('le titre et le H1 « best » prennent titleLabel[lang]', () => {
+    const d = dom(render({ categories: withTitle }));
+    expect(d.querySelector('title').textContent).toBe('4 Best Free & Open Source Newsletter Tools (2026)');
+    expect(text(d.querySelector('h1'))).toBe('4 Best Free & Open Source Newsletter Tools (2026)');
+  });
+
+  it('le titre de repli (moins de 3 projets) le prend aussi', () => {
+    const d = dom(render({ categories: withTitle, toolViews: [VIEWS[0], VIEWS[2]] }));
+    expect(d.querySelector('title').textContent).toBe('Free & Open Source Newsletter Tools (2026)');
+  });
+
+  it('le reste de la page garde label : fil d’Ariane, description, intertitres', () => {
+    const d = dom(render({ categories: withTitle }));
+    expect(text(d.querySelector('nav.crumbs'))).toBe('Directory / Newsletters & publishing');
+    expect(d.querySelector('meta[name="description"]').getAttribute('content')).toContain('Newsletters & publishing');
+    expect(text(d.querySelector('#projects-heading'))).toContain('Newsletters & publishing');
+  });
+
+  it('sans titleLabel dans la langue, le titre retombe sur label[lang]', () => {
+    const fr = dom(render({ lang: 'fr', categories: withTitle }));
+    expect(fr.querySelector('title').textContent).toBe('Newsletters et publication : les 4 meilleurs outils gratuits et open source (2026)');
+  });
+});
+
+// Ruling 44 : la nature d'une licence non libre suit son nom dans le tableau.
+describe('page de catégorie — nature de la licence (Ruling 44)', () => {
+  const t = UI.en.site.tool;
+  const projects = new Map([...PROJECTS, ['listmonk', {
+    ...PROJECTS.get('listmonk'), licenseKind: 'open-core', licenseSource: 'https://listmonk.app/LICENSE',
+  }]]);
+  const rowOf = (d, name) => [...d.querySelectorAll('section[aria-labelledby="projects-heading"] tbody tr')]
+    .find((tr) => text(tr.querySelector('th a')) === name);
+
+  it('licence puis nature, avec son explication en title ; sans nature : le nom seul', () => {
+    const d = dom(render({ projects }));
+    const cell = rowOf(d, 'Listmonk').querySelectorAll('td')[1];
+    expect(text(cell)).toBe('AGPL-3.0 Open-core');
+    expect(cell.querySelector('.license-kind').getAttribute('title')).toBe(t.licenseKindNotes['open-core']);
+    expect(text(rowOf(d, 'Keila').querySelectorAll('td')[1])).toBe('MIT');
+    expect(rowOf(d, 'Keila').querySelector('.license-kind')).toBeNull();
+  });
+
+  it('en français', () => {
+    const d = dom(render({ lang: 'fr', projects: new Map([...projects, ['keila', { ...PROJECTS.get('keila'), licenseKind: 'fair-code', licenseSource: 'https://keila.example/LICENSE' }]]) }));
+    const tags = [...d.querySelectorAll('section[aria-labelledby="projects-heading"] .license-kind')];
+    expect(tags.map(text).sort()).toEqual(['Fair-code', 'Open-core']);
+    expect(tags.map((el) => el.getAttribute('title'))).toContain(UI.fr.site.tool.licenseKindNotes['fair-code']);
+  });
+});
+
+// Ruling 44, suite : le titre « best » ne compte dans « Open Source » que les
+// projets sans licenseKind, open-source ou open-core — même règle que la fiche.
+describe('page de catégorie — « Open Source » du titre (Ruling 44)', () => {
+  const kinds = (map) => new Map([...PROJECTS].map(([slug, p]) => [slug, map[slug]
+    ? { ...p, licenseKind: map[slug], licenseSource: `https://${slug}.example/LICENSE` } : p]));
+  const titleOf = (d) => d.querySelector('title').textContent;
+  const descOf = (d) => d.querySelector('meta[name="description"]').getAttribute('content');
+  const c = UI.en.site.category;
+
+  it('une fair-code sur 4 : {n} = 3 open source, titre inchangé', () => {
+    const d = dom(render({ projects: kinds({ keila: 'fair-code' }) }));
+    expect(titleOf(d)).toBe('3 Best Free & Open Source Newsletters & publishing Tools (2026)');
+    expect(text(d.querySelector('h1'))).toBe(titleOf(d));
+    // La description compte comme le titre : 3, pas 4.
+    expect(descOf(d)).toBe(c.metaDescriptionTemplate.replace('{n}', '3').replaceAll('{category}', 'Newsletters & publishing'));
+  });
+
+  it('open-core compte comme open source', () => {
+    const d = dom(render({ projects: kinds({ listmonk: 'open-core', keila: 'open-core' }) }));
+    expect(titleOf(d)).toBe('4 Best Free & Open Source Newsletters & publishing Tools (2026)');
+    expect(descOf(d)).toBe(c.metaDescriptionTemplate.replace('{n}', '4').replaceAll('{category}', 'Newsletters & publishing'));
+  });
+
+  it('total ≥ 3 mais moins de 3 open source : titre chiffré sur n, sans « Open Source » (en)', () => {
+    const d = dom(render({ projects: kinds({ keila: 'source-available', postal: 'fair-code' }) }));
+    expect(titleOf(d)).toBe('4 Best Free Newsletters & publishing Tools (2026)');
+    expect(titleOf(d)).not.toMatch(/open source/i);
+    expect(text(d.querySelector('h1'))).toBe(titleOf(d));
+    expect(descOf(d)).not.toMatch(/free and open source/i);
+    expect(descOf(d)).toBe(c.metaDescriptionNotOpenTemplate.replace('{n}', '4').replaceAll('{category}', 'Newsletters & publishing'));
+    expect(descOf(d)).toContain('not every tool here is open source');
+  });
+
+  it('idem en français', () => {
+    const d = dom(render({ lang: 'fr', projects: kinds({ listmonk: 'source-available', keila: 'source-available', mautic: 'fair-code', postal: 'fair-code' }) }));
+    const cf = UI.fr.site.category;
+    expect(titleOf(d)).toBe(cf.titleNotOpenTemplate.replace('{n}', '4').replace('{category}', 'Newsletters et publication').replace('{year}', '2026'));
+    expect(titleOf(d)).not.toMatch(/open source/i);
+    expect(descOf(d)).not.toMatch(/gratuits et open source/i);
+  });
+
+  it('moins de 3 projets : repli « Open Source » seulement si tous le sont', () => {
+    const few = { toolViews: [VIEWS[0], VIEWS[2]] }; // listmonk + mautic
+    expect(titleOf(dom(render({ ...few, projects: kinds({ listmonk: 'open-core' }) }))))
+      .toBe('Free & Open Source Newsletters & publishing Tools (2026)');
+    const mixed = dom(render({ ...few, projects: kinds({ mautic: 'source-available' }) }));
+    expect(titleOf(mixed)).toBe('Free Newsletters & publishing Tools (2026)');
+    expect(descOf(mixed)).toBe(c.metaDescriptionNotOpenFallbackTemplate.replaceAll('{category}', 'Newsletters & publishing'));
+    expect(descOf(mixed)).not.toMatch(/free and open source/i);
+    const fr = dom(render({ ...few, lang: 'fr', projects: kinds({ mautic: 'fair-code' }) }));
+    expect(titleOf(fr)).toBe('Newsletters et publication : outils gratuits (2026)');
+  });
+});
+
+// Fix round 1 : les libellés de l'interface ne disent plus « open source »
+// d'office. Catégorie dont tous les projets sont source-available.
+describe('page de catégorie — libellés neutres (Ruling 44)', () => {
+  const all = new Map([...PROJECTS].map(([slug, p]) => [slug, { ...p, licenseKind: 'source-available', licenseSource: `https://${slug}.example/LICENSE` }]));
+  for (const lang of ['en', 'fr']) {
+    it(`tout source-available (${lang}) : titre, description, intertitre, légende et compteur sans « open source »`, () => {
+      const d = dom(render({ lang, projects: all }));
+      const claims = lang === 'fr' ? /open[- ]source|\blibres?\b/i : /open[- ]source/i;
+      expect(d.querySelector('title').textContent).not.toMatch(claims);
+      expect(text(d.querySelector('#projects-heading'))).not.toMatch(claims);
+      expect(text(d.querySelector('#projects-caption'))).not.toMatch(claims);
+      expect(text(d.querySelector('.list-head .intro'))).not.toMatch(claims);
+      // La description dit seulement que tous ne le sont pas.
+      expect(d.querySelector('meta[name="description"]').getAttribute('content'))
+        .not.toMatch(/free and open source|gratuits et open source/i);
+    });
+  }
 });

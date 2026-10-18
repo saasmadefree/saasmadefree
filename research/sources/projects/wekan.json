@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "MIT licensed kanban; databases FerretDB v1 with SQLite default, PostgreSQL, experimental MySQL/MariaDB/SAP HANA, MongoDB 6-9",
+    "url": "https://github.com/wekan/wekan#about-wekan-",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Import from Trello, Jira, Asana, Todoist, Notion, Vikunja and others; export to PDF, Excel, CSV",
+    "url": "https://github.com/wekan/wekan#about-wekan-",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Views: table, calendar, timeline, Gantt, Scrum with sprints and burndown; rules like IFTTT",
+    "url": "https://github.com/wekan/wekan#about-wekan-",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Login via SAML, LDAP, OAuth2; storage on GridFS, filesystem, S3/MinIO, Azure Blob, Google Cloud",
+    "url": "https://github.com/wekan/wekan#about-wekan-",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Platforms: bundle, Snap, AppImage, Docker, Kubernetes; SaaS with paid admin panel and commercial support",
+    "url": "https://wekan.fi/install/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Meets 9 out of 16 Standard for Public Code criteria out of the box",
+    "url": "https://github.com/wekan/wekan#standards",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

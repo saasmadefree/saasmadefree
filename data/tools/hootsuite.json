@@ -25,7 +25,23 @@
   "alternatives": [
     {
       "project": "postiz-app",
+      "fit": "full"
+    },
+    {
+      "project": "mixpost",
+      "fit": "full"
+    },
+    {
+      "project": "trypost",
+      "fit": "full"
+    },
+    {
+      "project": "socioboard",
       "fit": "partial"
+    },
+    {
+      "project": "threaduler",
+      "fit": "niche"
     }
   ],
   "relatedSlugs": [

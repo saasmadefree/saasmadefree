@@ -1,0 +1,18 @@
+{
+  "tagline": "Prise de rendez-vous à la Calendly pour une seule personne, sur Cloudflare Pages et D1.",
+  "description": "CloudMeet est une page de réservation que tu déploies sur ton propre compte Cloudflare. Tu crées un dépôt à partir du modèle du projet, tu ajoutes quelques secrets dans GitHub (un jeton d’API et l’identifiant de compte Cloudflare, un email d’administrateur, un secret de session, l’URL de l’appli et les identifiants OAuth Google), puis tu lances un workflow GitHub Actions qui publie l’appli. Les données vivent dans une base D1 et le code est écrit en Svelte et TypeScript. L’auteur indique qu’il tourne dans l’offre gratuite de Cloudflare. Les visiteurs choisissent un créneau sur une page publique, et les événements sont créés dans Google Agenda ou Outlook, avec des liens Google Meet ou Teams selon le fournisseur choisi. Tu peux connecter les deux agendas : les disponibilités sont vérifiées sur les deux. Les horaires, les types d’événements (30 minutes ou une heure, par exemple) et les notifications par email se règlent. Les emails de réservation demandent une clé d’API Emailit, facultative. Les rappels à 24 heures et à une heure avant le rendez-vous partent d’un petit worker Cloudflare exécuté toutes les cinq minutes. La licence est MIT. CloudMeet couvre l’essentiel de Calendly pour un seul hôte. Il ne cherche pas à égaler la prise de rendez-vous d’équipe, les formulaires de routage ni l’encaissement.",
+  "strengths": [
+    "Se déploie avec un modèle GitHub et un seul workflow Actions, sans serveur à entretenir",
+    "Vérifie les disponibilités sur Google Agenda et Outlook en même temps",
+    "Crée un lien Google Meet ou Microsoft Teams à chaque réservation",
+    "Envoie des emails de confirmation, d’annulation et de rappel, avec un tableau de bord pour activer chacun",
+    "Se met à jour en lançant un workflow de synchro avec le modèle d’origine"
+  ],
+  "limits": [
+    "Un seul administrateur : seul l’email défini dans ADMIN_EMAIL peut se connecter, donc ni équipe ni round-robin",
+    "Il faut un client OAuth Google Cloud, et une app Azure pour Outlook : plus de réglages qu’une inscription à Calendly",
+    "Les emails de réservation dépendent d’un service tiers (Emailit) : sans sa clé, aucun email ne part",
+    "Tu es lié à Cloudflare Pages, Workers et D1 : il ne tournera pas sur un simple VPS"
+  ],
+  "bestFor": "Un freelance ou un consultant avec un compte Cloudflare, qui veut une page de réservation personnelle reliée à Google Agenda ou Outlook."
+}

@@ -1,0 +1,18 @@
+{
+  "tagline": "Fork communautaire de Huly : tickets, chat, CRM, RH et recrutement, à héberger toi-même.",
+  "description": "Huly (community fork) est la version du Platform Collective de la plateforme Huly, un socle pour des applis métier : chat, gestion de projet, CRM, RH et suivi des candidatures. Son README dit qu’il s’agit d’un fork de Huly Platform de Hardcore Engineering Inc., développé de façon indépendante. L’entreprise d’origine a arrêté son service Huly hébergé et figé son propre dépôt : c’est ce fork qui continue le développement. Pour le suivi de tickets, il peut remplacer Linear ou Asana. Les versions de production portent des tags v et sont celles conseillées pour une installation auto-hébergée ; les builds de développement portent des tags s et ne sont pas faits pour la production. Le README du fork explique comment compiler et lancer le code, pas comment le déployer clé en main, et il demande Docker, Docker Compose et une version LTS récente de Node.js. Le code est sous EPL-2.0. Le guide huly-selfhost de Hardcore Engineering, qui concerne le Huly d’origine, annonce au moins 2 vCPU et 8 Go de RAM, avec 4 vCPU et 16 Go conseillés. Ce chiffre peut différer pour le fork, qui n’indique pas le sien.",
+  "strengths": [
+    "Chat, gestion de projet, CRM, RH et recrutement dans un seul code",
+    "Versions de production numérotées par tags v, séparées des builds de développement",
+    "Développement communautaire actif après l’arrêt du service hébergé de l’entreprise d’origine",
+    "Journal des changements et aperçu de l’architecture dans le dépôt"
+  ],
+  "limits": [
+    "Fork communautaire géré indépendamment de l’entreprise d’origine, sans service hébergé derrière",
+    "Pas de guide d’auto-hébergement clé en main dans le README du fork, qui décrit la compilation et le lancement depuis les sources",
+    "Gourmand en ressources s’il ressemble à l’original : le guide de Hardcore Engineering demande 2 vCPU et 8 Go de RAM au minimum",
+    "La compilation demande Docker, Docker Compose et une version de Node.js que le README et le fichier .nvmrc indiquent différemment : vérifie les deux",
+    "Il faut rush et un jeton GitHub pour installer les dépendances depuis GitHub Packages"
+  ],
+  "bestFor": "Une équipe technique qui veut tickets, chat et CRM dans un seul outil à elle, et qui sait compiler et lancer depuis les sources."
+}

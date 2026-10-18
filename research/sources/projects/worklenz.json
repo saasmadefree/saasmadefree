@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Features: projects, tasks with list, board and Gantt views, resource planning, finance, time tracking, templates, planner, client portal, CSV import and export",
+    "url": "https://github.com/Worklenz/worklenz#-features",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Tech stack: React and Ant Design, TypeScript and Express, PostgreSQL, SeaweedFS, S3 or Azure Blob, Redis, Nginx",
+    "url": "https://github.com/Worklenz/worklenz#%EF%B8%8F-tech-stack",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Requirements Node.js 20+, PostgreSQL 15+",
+    "url": "https://github.com/Worklenz/worklenz#requirements",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker quick-setup script generates secrets, configures SSL; compose starts PostgreSQL, Redis, SeaweedFS",
+    "url": "https://github.com/Worklenz/worklenz/blob/main/DOCKER_SETUP.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Self-hosted build includes Planner, Finance and Client Portal; SMTP relay for invitations",
+    "url": "https://github.com/Worklenz/worklenz#self-hosted-features-and-email",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "AGPL-3.0 licence (repository metadata in our data)",
+    "url": "https://github.com/Worklenz/worklenz",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

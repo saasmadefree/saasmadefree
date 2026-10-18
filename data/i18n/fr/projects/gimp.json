@@ -1,0 +1,17 @@
+{
+  "tagline": "Éditeur d’images matricielles pour ordinateur : retouche photo et montage sous Linux, macOS et Windows.",
+  "description": "GIMP, pour GNU Image Manipulation Program, est un logiciel pour ordinateur qui sert à retoucher des photos, assembler des images en une seule et créer des visuels. Une communauté de bénévoles le développe sous licence GNU GPL. Rien ne se déploie sur un serveur : tu l’installes sur ta machine. La page de téléchargement propose des AppImage pour x86_64 et ARM64, des paquets Flatpak et Snap, et des installeurs pour macOS et Windows. La branche stable actuelle est la 3.2. Son apport principal est celui des calques non destructifs : les calques de texte fonctionnaient déjà ainsi, et la 3.2 ajoute des calques de lien et des calques vectoriels, qui restent modifiables tant que tu ne les rasterises pas. Les filtres sont non destructifs depuis la 3.0, donc un effet validé peut encore être ajusté sans tout défaire. GIMP tourne aussi nativement sous Wayland depuis la 3.0. Il exporte des PSD avec tracés de détourage, profils CMJN et métadonnées, et il sait faire une épreuve écran par rapport à un profil CMJN associé. Il remplace la moitié matricielle d’Adobe Photoshop, ou la partie retouche photo d’un abonnement Canva ou Pixlr. Il ne remplace pas le côté modèles et kit de marque de Canva. Il n’y a ni compte, ni synchro, ni stockage dans le cloud : les fichiers restent là où tu les enregistres.",
+  "strengths": [
+    "Filtres non destructifs depuis la 3.0 : un effet validé reste modifiable au lieu d’être fondu dans le calque",
+    "Les calques de lien et les calques vectoriels de la 3.2 restent modifiables jusqu’à ce que tu choisisses de les rasteriser",
+    "Prise en charge native de Wayland depuis la 3.0, avec l’association des boutons de tablette sous Wayland",
+    "Exporte en PSD avec tracés de détourage, profils CMJN et métadonnées, et propose l’épreuve écran avec un profil CMJN associé",
+    "Versions officielles pour Linux (AppImage, Flatpak, Snap), macOS et Windows"
+  ],
+  "limits": [
+    "Ordinateur uniquement : la page de téléchargement ne liste que des installeurs et des paquets, sans version web hébergée ni espace partagé",
+    "Pas de modèles de design ni de kit de marque intégrés : le côté modèles de Canva n’est pas couvert",
+    "L’AppImage demande Debian 13 ou une distribution plus récente, d’après la page de téléchargement"
+  ],
+  "bestFor": "Un photographe ou un designer indépendant qui retouche ses images sur son ordinateur et veut arrêter de payer un abonnement Photoshop."
+}

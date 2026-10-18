@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Free Software Media System; alternative to Emby and Plex; descended from Emby 3.5.2; no premium licenses or features",
+    "url": "https://github.com/jellyfin/jellyfin",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "GPL-2.0 licence text",
+    "url": "https://raw.githubusercontent.com/jellyfin/jellyfin/master/LICENSE",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Install guide: Windows, macOS, Debian/Ubuntu, other Linux, Docker/Kubernetes/Podman, Synology, TrueNAS SCALE; FreeBSD and TrueNAS CORE not supported because of .NET",
+    "url": "https://jellyfin.org/docs/general/installation/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Server hosts the web client by default; ffmpeg required (jellyfin-ffmpeg); .NET SDK for building",
+    "url": "https://github.com/jellyfin/jellyfin",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Hardware acceleration methods: QSV, NVENC, AMF, VA-API, VideoToolbox, RKMPP; partial acceleration raises CPU usage and lowers speed",
+    "url": "https://jellyfin.org/docs/general/post-install/transcoding/hardware-acceleration/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Networking is covered in the post-install docs (administrator task)",
+    "url": "https://jellyfin.org/docs/general/installation/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

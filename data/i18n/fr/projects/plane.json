@@ -1,0 +1,16 @@
+{
+  "tagline": "Gestion de projet open source pour tickets, cycles et modules, installable avec Docker et Kubernetes.",
+  "description": "Plane suit des éléments de travail dans des projets. Il les regroupe en cycles pour le travail limité dans le temps et en modules pour les ensembles plus gros, avec des vues enregistrées, des pages pour les notes et des analyses sur l’ensemble des données. Il est construit avec React Router, Django et Node. Il vise le même terrain que Jira, Linear, ClickUp et Asana pour les équipes logicielles. Tu peux utiliser Plane Cloud ou l’héberger toi-même, avec des guides pour Docker Compose, Docker AIO, Swarm, Kubernetes, Podman et des plateformes gérées comme Coolify. Il existe trois éditions auto-hébergées. L’édition Community est sous AGPL-3.0 et correspond à l’offre gratuite du cloud. L’édition Commercial ajoute des formules payantes et donne 12 places gratuites par espace de travail. Pour le guide Docker Compose de l’édition Commercial, le minimum documenté est de 2 cœurs de processeur et 4 Go de RAM, avec 8 Go recommandés en production. Les administrateurs de l’instance règlent l’authentification, SMTP et le stockage dans un espace appelé God mode. Les fonctions payantes sont derrière une clé de licence, et le passage de Community à Commercial est une étape à part.",
+  "strengths": [
+    "Éléments de travail, cycles, modules, vues enregistrées, pages et analyses dans une seule appli",
+    "Guides d’installation pour Docker Compose, Kubernetes, Podman et Coolify",
+    "L’édition Community est sous AGPL-3.0, sans dépendance de code envers l’édition Commercial",
+    "Les réglages de l’instance se font dans un espace d’administration intégré, appelé God mode"
+  ],
+  "limits": [
+    "L’édition Community n’égale que l’offre gratuite du cloud : les formules payantes demandent l’édition Commercial",
+    "L’édition Commercial demande une clé de licence pour les fonctions payantes",
+    "Le minimum documenté pour le guide Docker de l’édition Commercial est de 2 cœurs et 4 Go de RAM, soit plus qu’un outil à binaire unique"
+  ],
+  "bestFor": "Une équipe de développement qui veut un suivi de tickets dans le style de Jira ou Linear sur son propre serveur et qui est à l’aise avec les conteneurs."
+}

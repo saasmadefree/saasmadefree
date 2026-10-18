@@ -1,0 +1,43 @@
+{
+  "slug": "uvdesk",
+  "name": "UVdesk",
+  "homepage": "https://www.uvdesk.com",
+  "repo": "uvdesk/community-skeleton",
+  "license": "OSL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/uvdesk/community-skeleton/blob/master/LICENSE.txt",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/uvdesk/community-skeleton#readme",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 8,
+    "currency": "USD",
+    "source": "https://www.uvdesk.com/en/pricing/",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker",
+    "composer"
+  ],
+  "stack": [
+    "php",
+    "symfony",
+    "mysql"
+  ],
+  "categories": [
+    "customer-support"
+  ],
+  "stats": {
+    "stars": 19636,
+    "lastCommit": "2026-10-07",
+    "createdAt": "2018-11-02",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

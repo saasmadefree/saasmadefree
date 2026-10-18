@@ -1,0 +1,19 @@
+{
+  "tagline": "Peer-to-peer file synchronization between your own devices, with no central server or cloud storage.",
+  "description": "Syncthing keeps folders identical across two or more computers. Changes are copied directly between devices as soon as they are online at the same time; nothing is uploaded to a company cloud. It ships as a single binary, which starts a configuration file, encryption keys and a web admin interface on first run. By default the interface listens only on the local machine, on port 8384. Community builds add desktop wrappers and Android apps, and a Docker image is documented. Release binaries are GPG signed. The licence is MPL-2.0. It fits readers who pay Dropbox for syncing between their own laptop, desktop and server. It does not behave like Dropbox in every way. There is no hosted account, no link sharing for outsiders, and no always-on copy unless one of your devices, such as a home server, stays running. The FAQ says plainly that it is not a backup tool, because deletions and edits spread to every device. File versioning can be turned on to soften that. The project lists safety from data loss and security first among its goals, ahead of ease of use.",
+  "strengths": [
+    "Files go directly between your devices, with no third-party cloud holding them",
+    "A single binary with a web admin interface, plus Docker documentation",
+    "Syncs file contents and modification times, and optionally permissions, owners and extended attributes",
+    "Release binaries are GPG signed, and macOS and Windows builds are code-signed",
+    "Large transfers are split into blocks and can be fetched from several devices at once"
+  ],
+  "limits": [
+    "Devices must be online at the same time to exchange changes, so one machine has to stay on if you want an always-available copy",
+    "The FAQ says it is not a good backup tool: deletions and modifications propagate to all devices",
+    "No hosted account, web file browser or share links for people outside your device list",
+    "The web interface listens on 127.0.0.1:8384 by default and must be reconfigured to reach it from another computer",
+    "Hard links, Windows ACLs and resource forks are not preserved"
+  ],
+  "bestFor": "A person with a laptop, a desktop and a home server who wants to replace Dropbox for syncing their own files."
+}

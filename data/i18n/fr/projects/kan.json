@@ -1,0 +1,18 @@
+{
+  "tagline": "Tableau kanban open source pour les équipes, avec import Trello, construit sur Next.js et PostgreSQL.",
+  "description": "Kan est un outil de gestion de projet kanban pour les gens qui utilisent Trello et veulent héberger leurs propres tableaux. Le README liste des membres d’espace de travail, des réglages de visibilité des tableaux, des étiquettes et des filtres, des commentaires, un journal d’activité des changements de cartes, des modèles de tableau réutilisables et l’import de tableaux Trello. La licence est AGPL-3.0. La pile réunit Next.js, tRPC, Better Auth, Tailwind CSS, Drizzle ORM et React Email, avec PostgreSQL pour les données. L’auto-hébergement a deux voies officielles : un modèle Railway en un clic, dont le projet dit qu’il soutient son développement, ou Docker Compose. Le fichier Compose lance un conteneur de migration, le conteneur web sur le port 3000 et un conteneur PostgreSQL 15, et il applique les migrations de la base avant de démarrer le service web. Tu dois fixer une URL de base, un secret d’authentification et l’URL de la base de données. Des réglages facultatifs ajoutent SMTP pour les emails, une connexion OIDC générique et un stockage compatible S3 pour les fichiers. Kan remplace les tableaux et les cartes de Trello. Certains points, comme les intégrations, sont marqués « à venir » dans le README.",
+  "strengths": [
+    "Importe directement les tableaux Trello",
+    "Le Docker Compose inclut PostgreSQL 15 et lance les migrations automatiquement avant l’appli web",
+    "Connexion OIDC générique, emails SMTP et stockage de fichiers compatible S3, en option",
+    "Modèles de tableau réutilisables et journal d’activité des changements de cartes",
+    "Modèle Railway en un clic pour ceux qui n’ont pas de serveur"
+  ],
+  "limits": [
+    "Les intégrations sont annoncées « à venir » dans le README : pas encore de connecteurs prêts à l’emploi",
+    "Parmi les tickets ouverts, on trouve des problèmes de connexion OIDC et Microsoft, et l’échec de création du premier utilisateur sur une installation auto-hébergée",
+    "Un kanban basique : tableaux, listes, cartes, étiquettes et commentaires, sans chronologie ni tableau de bord décrits",
+    "Demande une base PostgreSQL et plusieurs variables d’environnement obligatoires avant le premier démarrage"
+  ],
+  "bestFor": "Une petite équipe ou un freelance qui tient ses tableaux dans Trello, possède un VPS et veut les mêmes cartes sur une infrastructure qu’il contrôle."
+}

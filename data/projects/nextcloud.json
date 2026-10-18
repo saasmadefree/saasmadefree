@@ -1,0 +1,39 @@
+{
+  "slug": "nextcloud",
+  "name": "Nextcloud",
+  "homepage": "https://nextcloud.com",
+  "repo": "nextcloud/server",
+  "license": "AGPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/nextcloud/server/blob/HEAD/COPYING",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.nextcloud.com/server/latest/admin_manual/installation/",
+  "hosted": {
+    "exists": false,
+    "source": "https://nextcloud.com",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker",
+    "snap"
+  ],
+  "stack": [
+    "php"
+  ],
+  "categories": [
+    "cloud-storage"
+  ],
+  "stats": {
+    "stars": 37163,
+    "lastCommit": "2026-10-18",
+    "createdAt": "2016-06-02",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

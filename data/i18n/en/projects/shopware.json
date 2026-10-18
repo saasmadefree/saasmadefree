@@ -1,0 +1,18 @@
+{
+  "tagline": "Open-source PHP e-commerce platform on Symfony and Vue.js, API-first and extensible through plugins and apps.",
+  "description": "Shopware 6 is a full online shop system and also a framework for building custom commerce projects. It is built on Symfony 7 and Vue.js 3, exposes an API-first design, and can run headless if you want your own front end. You extend it with plugins, which load as Symfony bundles, or with apps, a lighter route that needs little Shopware-specific knowledge. A community store lists more than 3,100 extensions. For production on your own servers, the recommended path is the flex template through Composer, and the docs also offer a web installer and a Docker setup for development. The vendor sells a managed Shopware cloud, hosting partners with pre-installed shops, and paid commercial plans with extra features for on-premise shops. The core is MIT-licensed, and contributors must sign a CLA that gives Shopware AG rights to use their code. It is a candidate to replace Shopify for merchants with a PHP developer or agency, especially in German-speaking markets. It is not a low-effort hosted store builder.",
+  "strengths": [
+    "MIT-licensed core with a ready shopping cart system and an admin built in Vue.js",
+    "API-first and able to run headless with your own front end",
+    "Two extension routes: Symfony-based plugins and lighter apps",
+    "Large extension catalogue, listed at more than 3,100 extensions",
+    "Installable through a Composer flex template, a web installer or Docker for development"
+  ],
+  "limits": [
+    "Some features are sold as commercial plans for on-premise shops, so the free core is not the whole product",
+    "Contributors sign a CLA that gives Shopware AG the right to use their code",
+    "Needs PHP skills for installation, upgrades and plugins, unlike a hosted Shopify store",
+    "The vendor points to its paid cloud as the easiest way to run a shop"
+  ],
+  "bestFor": "A merchant with a PHP agency or in-house developer who wants to own the shop code and extend it with plugins."
+}

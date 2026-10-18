@@ -1,0 +1,17 @@
+{
+  "tagline": "Plateforme open source de design et de prototypage pour les équipes produit, dans le cloud ou auto-hébergée.",
+  "description": "Penpot est un outil de design dans le navigateur, pensé pour le travail sur les interfaces. Les équipes dessinent des maquettes vectorielles, construisent des composants et des variantes, et prototypent des parcours ensemble en temps réel. Il utilise des design tokens natifs, et les mises en page peuvent utiliser CSS Grid et Flex, si bien que les maquettes se rapprochent du code front-end. Les développeurs ont un onglet d’inspection qui montre le SVG, le CSS et le HTML de chaque élément. Une API avec jetons d’accès, des webhooks, des plugins et un serveur MCP le relient à d’autres outils. Tu peux utiliser le service hébergé sur design.penpot.app ou faire tourner ta propre instance. La documentation couvre Docker, Kubernetes avec un chart Helm officiel, Elestio et TrueNAS, et la communauté entretient d’autres options. Le code source est sous licence MPL-2.0. Une formule Enterprise payante ajoute une console d’administration pour les accès et la gestion des équipes. Il n’est pas décrit comme une bibliothèque de modèles ou d’images comme celle de Canva : il convient mieux au design d’interfaces qu’aux visuels marketing rapides. Les images auto-hébergées sont publiées peu après chaque mise à jour du service hébergé, donc ton instance peut avoir un peu de retard sur la version cloud.",
+  "strengths": [
+    "Collaboration en temps réel sur des maquettes vectorielles, des composants et des variantes",
+    "Design tokens natifs et mises en page CSS Grid et Flex",
+    "Onglet d’inspection avec le SVG, le CSS et le HTML de chaque élément",
+    "API avec jetons d’accès, webhooks, plugins et serveur MCP",
+    "Voies d’auto-hébergement officielles : Docker, chart Helm, Elestio et TrueNAS"
+  ],
+  "limits": [
+    "Les images auto-hébergées suivent la version hébergée : une nouvelle fonctionnalité peut arriver plus tard chez toi",
+    "La console d’administration et la gouvernance centralisée des équipes relèvent de la formule Enterprise payante",
+    "Pensé pour le design de produits et d’interfaces ; le README ne cite aucune bibliothèque de modèles ou d’images comme celle de Canva"
+  ],
+  "bestFor": "Une équipe produit qui dessine des interfaces avec des développeurs et veut garder ses fichiers de design sur ses propres serveurs."
+}

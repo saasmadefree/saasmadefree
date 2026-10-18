@@ -1,0 +1,252 @@
+[
+  {
+    "slug": "n8n",
+    "existing": true,
+    "name": "n8n",
+    "repo": "n8n-io/n8n",
+    "homepage": "https://n8n.io",
+    "why": "Fair-code workflow automation with a visual canvas, custom code steps and 1500+ integrations.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Webhook and scheduled triggers, API calls and code steps with execution logs.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.n8n.io/hosting/installation/docker/",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://app.n8n.cloud/login",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript",
+      "node.js"
+    ],
+    "categories": [
+      "automation"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/zapier",
+      "https://github.com/n8n-io/n8n"
+    ]
+  },
+  {
+    "slug": "activepieces",
+    "existing": true,
+    "name": "Activepieces",
+    "repo": "activepieces/activepieces",
+    "homepage": "https://www.activepieces.com",
+    "why": "Open-source no-code automation platform with a pieces framework and MCP support.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Trigger and action flows across 200+ pieces with run history.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://www.activepieces.com/docs/install/overview",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript",
+      "bun"
+    ],
+    "categories": [
+      "automation"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/zapier",
+      "https://github.com/activepieces/activepieces"
+    ]
+  },
+  {
+    "slug": "automatisch",
+    "existing": false,
+    "name": "Automatisch",
+    "repo": "automatisch/automatisch",
+    "homepage": "https://automatisch.io",
+    "why": "Self-hosted workflow automation tool described as an open-source Zapier alternative.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Drag-and-drop trigger and action flows connecting services.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://automatisch.io/docs/guide/installation",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "node.js"
+    ],
+    "categories": [
+      "automation"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/zapier",
+      "https://github.com/automatisch/automatisch"
+    ]
+  },
+  {
+    "slug": "windmill",
+    "existing": false,
+    "name": "Windmill",
+    "repo": "windmill-labs/windmill",
+    "homepage": "https://www.windmill.dev",
+    "why": "Developer platform for scripts, workflows, background jobs and internal UIs.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Code-first scheduled and webhook flows with logs and retries.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://www.windmill.dev/docs/advanced/self_host",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://app.windmill.dev",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "kubernetes"
+    ],
+    "stack": [
+      "rust",
+      "svelte",
+      "postgresql",
+      "typescript",
+      "python"
+    ],
+    "categories": [
+      "automation",
+      "dev-tools"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/zapier",
+      "https://github.com/windmill-labs/windmill"
+    ]
+  },
+  {
+    "slug": "huginn",
+    "existing": true,
+    "name": "Huginn",
+    "repo": "huginn/huginn",
+    "homepage": "https://github.com/huginn/huginn",
+    "why": "Self-hosted system of agents that watch the web and act on events, described as a hackable IFTTT or Zapier.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Event-driven agents for feeds, webhooks and notifications; less polished than visual builders.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/huginn/huginn/blob/master/doc/docker/install.md",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "manual"
+    ],
+    "stack": [
+      "ruby",
+      "rails",
+      "mysql",
+      "postgresql"
+    ],
+    "categories": [
+      "automation"
+    ],
+    "evidenceUrls": [
+      "https://github.com/huginn/huginn"
+    ]
+  },
+  {
+    "slug": "node-red",
+    "existing": false,
+    "name": "Node-RED",
+    "repo": "node-red/node-red",
+    "homepage": "https://nodered.org",
+    "why": "Low-code flow-based programming tool for event-driven applications.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Webhook and timer flows wiring APIs together; per-run logging and retries are limited.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://nodered.org/docs/getting-started/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "npm",
+      "docker"
+    ],
+    "stack": [
+      "javascript",
+      "node.js"
+    ],
+    "categories": [
+      "automation"
+    ],
+    "evidenceUrls": [
+      "https://github.com/node-red/node-red"
+    ]
+  },
+  {
+    "slug": "bytechef",
+    "existing": false,
+    "name": "ByteChef",
+    "repo": "bytechefhq/bytechef",
+    "homepage": "https://www.bytechef.io",
+    "why": "Open-source workflow automation with visual editor, AI agents and 250+ connectors.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Visual flows with triggers and connectors; enterprise code under a separate licence.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.bytechef.io",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "helm"
+    ],
+    "stack": [
+      "java",
+      "typescript",
+      "postgresql"
+    ],
+    "categories": [
+      "automation"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/zapier",
+      "https://github.com/bytechefhq/bytechef"
+    ]
+  },
+  {
+    "slug": "kestra",
+    "existing": false,
+    "name": "Kestra",
+    "repo": "kestra-io/kestra",
+    "homepage": "https://kestra.io",
+    "why": "Declarative YAML orchestration platform for scheduled and event-driven workflows.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Scheduled and event-triggered flows with logs; aimed at data and infrastructure teams.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://kestra.io/docs/installation",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "kubernetes"
+    ],
+    "stack": [
+      "java",
+      "vue"
+    ],
+    "categories": [
+      "automation"
+    ],
+    "evidenceUrls": [
+      "https://github.com/kestra-io/kestra"
+    ]
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "tagline": "Outil de newsletters open source avec éditeur visuel, formulaires et segments, sur PostgreSQL.",
+  "description": "Keila est un outil de newsletters pour envoyer des campagnes et construire des formulaires d’inscription. Il se présente comme une alternative open source à Mailchimp ou Sendinblue et il est sous licence AGPL-3.0. Tu écris tes campagnes dans un éditeur visuel, en Markdown ou en texte brut, et MJML est pris en charge pour les designs sur mesure. Tu cibles les contacts avec des segments, grâce à un éditeur visuel de segments ou à un langage de segments. Les emails se personnalisent avec des champs de données sur mesure et des modèles Liquid. Le créateur de formulaires ajoute des cases à cocher, des champs de texte et des listes déroulantes, avec captcha et double inscription pour écarter les robots. Une API documentée gère les contacts et les campagnes. Le suivi peut être coupé entièrement. Pour l’envoi, les petites listes peuvent passer par ta propre boîte mail en SMTP, les plus grosses par AWS SES, SendGrid, Mailgun ou Postmark. Pour l’auto-héberger, tu lances l’image Docker pentacent/keila, ou le fichier Docker Compose d’exemple du dépôt, avec une base PostgreSQL. Derrière un proxy inverse, il faut relayer les WebSockets. L’équipe vend aussi une version hébergée dans l’UE, à partir de 8 € par mois pour 2 000 emails, ce qui permet de comparer avec l’auto-hébergement. Keila couvre les campagnes et les listes, pas l’automatisation marketing en plusieurs étapes.",
+  "strengths": [
+    "Édition de campagnes en visuel, en Markdown ou en texte brut, avec prise en charge de MJML",
+    "Segments construits dans un éditeur visuel ou avec un langage de segments, plus personnalisation Liquid",
+    "Créateur de formulaires avec champs sur mesure, captcha et double inscription",
+    "Envoie par ta propre boîte SMTP, AWS SES, SendGrid, Mailgun ou Postmark",
+    "Le suivi peut être désactivé complètement"
+  ],
+  "limits": [
+    "Pas de créateur d’automatisations ni de séquences : les automatisations par email n’existent que comme demande de fonctionnalité dans le suivi des tickets (#132)",
+    "Il faut PostgreSQL, et le relais des WebSockets si tu mets un proxy inverse devant",
+    "En auto-hébergement, tu apportes ton infrastructure d’envoi et tu gères toi-même la délivrabilité",
+    "Les formules hébergées plafonnent les emails par mois (2 000 en XS) : les grandes listes coûtent plus cher sur l’offre gérée"
+  ],
+  "bestFor": "Un créateur indépendant ou une petite organisation dans l’UE, avec un VPS, qui envoie des newsletters et veut quitter Mailchimp."
+}

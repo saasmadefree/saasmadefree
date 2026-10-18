@@ -1,0 +1,18 @@
+{
+  "tagline": "Plateforme e-commerce Rails avec API REST, admin React et vitrine Next.js, pour places de marché et B2B.",
+  "description": "Spree est un backend e-commerce avec une API REST, des clients TypeScript typés, un tableau de bord d’administration en React et une vitrine Next.js en option. Le cœur gère le catalogue, les paniers, le paiement, les promotions, les cartes cadeaux, le stock multi-sites, la livraison, les retours et les règles de taxes, y compris des calculs Avalara et Stripe Tax. Les paiements Stripe, Adyen et PayPal sont fournis. Ses points forts sont les places de marché multi-vendeurs, avec inscription des vendeurs, découpage des commandes par vendeur, commissions et versements Stripe Connect, et la vente B2B avec listes de prix, groupes de clients et comptes d’entreprise. Chaque région peut avoir sa devise, sa langue, ses moyens de paiement et sa livraison. Pour démarrer, tu lances une commande create-spree-app qui met en place le backend, l’admin et la vitrine ; il faut Node.js 24 ou plus récent et Docker. La licence est BSD-3-Clause. Le README précise que le mode SaaS multi-tenant demande l’édition Enterprise, payante. Spree peut remplacer Shopify si tu veux garder ton code et tes données, et si tu as des développeurs Rails et TypeScript. Il n’offre pas de boutique de thèmes sans code : prévois du temps de développeur pour chaque changement de vitrine.",
+  "strengths": [
+    "API REST avec spécification OpenAPI 3.0 et trois clients TypeScript typés : boutique, admin et vendeur",
+    "Fonctions de place de marché dans le cœur : inscription des vendeurs, commandes découpées par vendeur, moteur de commissions et versements Stripe Connect",
+    "Outils B2B : listes de prix avec paliers de volume, groupes de clients, entreprises avec exonérations de taxes et catalogues par segment",
+    "Intégrations de paiement Stripe, Adyen et PayPal fournies, avec un SDK pour en ajouter",
+    "Chaque région a sa devise, sa langue, ses moyens de paiement et sa livraison, et l’import et l’export CSV sont intégrés"
+  ],
+  "limits": [
+    "Le mode SaaS multi-tenant demande l’édition Enterprise payante",
+    "L’installation locale demande Node.js 24 ou plus et Docker, et la pile couvre Rails, une admin React et une vitrine Next.js",
+    "L’hébergement, les mises à jour et la création des comptes de paiement sont à ta charge",
+    "C’est une plateforme pour développeurs : changer une vitrine veut dire écrire du code, pas choisir un thème"
+  ],
+  "bestFor": "Une équipe de développement qui monte une place de marché ou une boutique de gros, et veut posséder son code e-commerce plutôt que louer Shopify."
+}

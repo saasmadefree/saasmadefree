@@ -26,7 +26,23 @@
   ],
   "alternatives": [
     {
-      "project": "openfoodfacts-server",
+      "project": "sparkyfitness",
+      "fit": "full"
+    },
+    {
+      "project": "wger",
+      "fit": "partial"
+    },
+    {
+      "project": "opennutritracker",
+      "fit": "partial"
+    },
+    {
+      "project": "waistline",
+      "fit": "partial"
+    },
+    {
+      "project": "daily-value",
       "fit": "partial"
     }
   ],

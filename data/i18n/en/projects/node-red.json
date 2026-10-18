@@ -1,0 +1,18 @@
+{
+  "tagline": "Browser-based flow editor for wiring devices, APIs and services together, built on Node.js.",
+  "description": "Node-RED is a low-code tool where you drag nodes onto a canvas and wire them into flows that react to events. It runs on Node.js and is a project of the OpenJS Foundation under the Apache-2.0 licence. You install it with npm using sudo npm install -g node-red, with a Docker image that exposes port 1880, or with Pi and RPM install scripts. A public library at flows.nodered.org holds community nodes, shared flows and collections, so most integrations arrive as add-on packages. It fits Zapier-style jobs such as calling an API when a webhook arrives, and it also suits device and sensor work. The editor is open by default, which matters on any server reachable from outside. The docs describe how to enable HTTPS and put authentication on the editor and admin API. No hosted offer is described, so you operate everything yourself.",
+  "strengths": [
+    "One npm command or one docker run command installs it, with the editor on port 1880",
+    "Community library of nodes, shared flows and collections at flows.nodered.org",
+    "Apache-2.0 licence, as a project of the OpenJS Foundation",
+    "Installers exist for Raspberry Pi and Debian-based systems, RPM systems and Windows",
+    "Documented HTTPS and authentication settings for the editor and admin API"
+  ],
+  "limits": [
+    "By default the editor is not secured: anyone who can reach its address can open it and deploy changes",
+    "You must turn on HTTPS and login yourself before exposing it to the internet",
+    "Snap installs run in a container without access to gcc, git or main system storage, which breaks some nodes and the Projects feature",
+    "Needs a supported Node.js version installed and kept current"
+  ],
+  "bestFor": "A hobbyist or developer on a Raspberry Pi or small server who wants event-driven home or API automations they can extend with JavaScript."
+}

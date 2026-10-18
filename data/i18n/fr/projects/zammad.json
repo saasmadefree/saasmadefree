@@ -1,0 +1,18 @@
+{
+  "tagline": "Plateforme de support et de tickets auto-hébergée : email, chat, téléphone et réseaux sociaux.",
+  "description": "Zammad est un centre de support client en ligne. Il rassemble les demandes venues de l’email, du chat, du téléphone et des réseaux sociaux dans un seul système de tickets, et la documentation décrit une base de connaissances, une API REST et des accords de niveau de service (SLA). Le code est en Ruby on Rails avec une interface Vue, publié sous AGPLv3 et détenu par la Zammad Foundation, indépendante. Zammad GmbH, l’entreprise derrière le projet, vend un service cloud. Tu peux l’auto-héberger avec des images Docker Compose, un chart Helm pour Kubernetes, des paquets DEB et RPM, ou depuis les sources. La documentation exige PostgreSQL 15 ou plus récent et Redis 7 ou plus récent, et recommande fortement Elasticsearch pour la recherche. Comme repère, le minimum est de 2 cœurs de processeur et 6 Go de RAM, plus 4 Go si Elasticsearch tourne sur le même serveur. L’exemple de configuration pour 40 agents au plus utilise 6 cœurs. Face à Zendesk, Zammad couvre bien les tickets multicanaux : le vrai coût du changement, c’est de faire tourner les serveurs toi-même, pas une fonctionnalité de base qui manquerait.",
+  "strengths": [
+    "Réunit les demandes par email, chat, téléphone et réseaux sociaux dans une seule file de tickets",
+    "API REST documentée, avec des points d’accès pour les tickets, les utilisateurs, les groupes, les SLA et la base de connaissances",
+    "S’installe avec Docker Compose, un chart Helm, des paquets DEB ou RPM, ou depuis les sources",
+    "Détenu par une fondation indépendante, dont les mainteneurs affirment que le logiciel reste sous AGPLv3",
+    "La documentation donne des repères de dimensionnement, dont un exemple pour 40 agents"
+  ],
+  "limits": [
+    "Demande au minimum environ 2 cœurs et 6 Go de RAM, plus 4 Go pour un Elasticsearch local",
+    "Exige PostgreSQL 15 ou plus récent et Redis 7 ou plus récent",
+    "Sans Elasticsearch, la recherche est très limitée : une installation complète a donc un service de plus à faire tourner",
+    "L’exemple documenté pour 40 agents utilise 6 cœurs : une équipe qui grandit doit prévoir la capacité de ses serveurs"
+  ],
+  "bestFor": "Une équipe support d’environ 5 à 40 agents, avec un administrateur système, qui veut un centre de support multicanal à la Zendesk sur ses propres serveurs."
+}

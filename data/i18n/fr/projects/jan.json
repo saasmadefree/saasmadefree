@@ -1,0 +1,18 @@
+{
+  "tagline": "Appli de bureau qui fait tourner des modèles ouverts en local et se connecte aux modèles cloud.",
+  "description": "Jan est un assistant de chat open source qui tourne sur ton ordinateur. C’est une appli de bureau pour macOS, Windows et Linux, proposée en exe, dmg, deb et AppImage, avec aussi une fiche sur Flathub et sur le Microsoft Store. Tu télécharges des modèles ouverts comme Llama, Gemma ou Qwen depuis Hugging Face et tu les fais tourner chez toi. La documentation indique un code sous licence Apache 2.0 et des applis qui marchent hors ligne, sans compte. Tu peux aussi ajouter tes clés d’API OpenAI, Anthropic, Mistral, Groq ou d’autres fournisseurs : modèles locaux et modèles cloud se retrouvent au même endroit. Jan lance un serveur compatible OpenAI sur localhost, port 1337, que d’autres applis peuvent appeler, et prend en charge le Model Context Protocol pour les outils de type agent. Tu peux créer des assistants personnalisés pour les tâches que tu répètes. La documentation évoque aussi Jan Web, une version dans le navigateur, et un aperçu appelé Cowork, où Jan travaille sur tes fichiers. Le dépôt utilise Tauri : compiler depuis les sources demande Node.js, Yarn, Make et Rust. Jan remplace la fenêtre de chat de ChatGPT ou de Claude quand la confidentialité compte. Le résultat dépend de ta machine : les modèles locaux réclament assez de mémoire et un bon GPU, et les petits modèles répondent moins bien que les modèles de pointe.",
+  "strengths": [
+    "Fait tourner en local des modèles ouverts comme Llama, Gemma et Qwen, téléchargés depuis Hugging Face",
+    "Propose un serveur local compatible OpenAI sur localhost:1337 pour tes autres applications",
+    "Se connecte à OpenAI, Anthropic, Mistral, Groq et d’autres fournisseurs dans la même interface",
+    "Gère les intégrations Model Context Protocol et les assistants personnalisés",
+    "Installeurs pour Windows, macOS et Linux, plus des fiches Flathub et Microsoft Store"
+  ],
+  "limits": [
+    "Appli de bureau, pas un serveur multi-utilisateur : le README ne décrit ni comptes d’équipe, ni historique partagé, ni console d’administration",
+    "La qualité et la vitesse des modèles locaux dépendent de ta RAM et de ton GPU ; le README ne donne aucun minimum chiffré",
+    "Pour Linux Arm64, le README renvoie vers un tutoriel au lieu d’un téléchargement officiel",
+    "Cowork et Jan Web sont présentés comme des offres séparées ou des aperçus : vérifie ce qui est stable avant de t’appuyer dessus"
+  ],
+  "bestFor": "Un professionnel attentif à sa confidentialité, avec un ordinateur récent, qui veut un assistant façon ChatGPT utilisable hors ligne."
+}

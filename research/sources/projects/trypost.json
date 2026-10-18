@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Composer adapts per network with live preview; calendar and queues; approvals; workspaces",
+    "url": "https://github.com/trypostit/trypost#two-ways-to-post-one-place-to-run-it",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Supported networks list of 13, each published through the official API",
+    "url": "https://github.com/trypostit/trypost#supported-networks",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "MCP server with 80+ tools; REST API; webhooks",
+    "url": "https://github.com/trypostit/trypost#for-ai-agents-mcp-and-rest-api",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "AGPL-3.0; self-hosted has every feature of the cloud, no paid tiers; AGPL section 13",
+    "url": "https://github.com/trypostit/trypost#open-source-with-every-feature",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Deployment guide with Docker",
+    "url": "https://github.com/trypostit/trypost/blob/main/DEPLOYMENT.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Repository created January 2026 (project data)",
+    "url": "https://github.com/trypostit/trypost",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "No inbox, listening or ads described: absence in README feature list",
+    "url": "https://github.com/trypostit/trypost#everything-else-you-get",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Stack PHP, Laravel, Vue, TypeScript (project data)",
+    "url": "https://github.com/trypostit/trypost",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

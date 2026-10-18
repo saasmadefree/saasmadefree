@@ -1,0 +1,18 @@
+{
+  "tagline": "Free WordPress plugin that adds a product catalogue, cart and checkout to a site you host yourself.",
+  "description": "WooCommerce is an ecommerce plugin for WordPress. It adds products, variations, digital downloads, a cart, checkout, taxes, shipping options and order management to an existing WordPress site. Payments go through gateways, and the plugin page names WooPayments, which is offered only in a list of countries. Extensions add subscriptions, bookings and memberships, and some of those are paid. There is a REST API, webhooks and hooks for developers, and a mobile app for store owners. To run it you need your own WordPress host. Current documentation asks for WordPress 6.9 or later, PHP 8.3 or later, MySQL 8.0 or MariaDB 10.6 or later, HTTPS and a 256 MB memory limit. The plugin is licensed GPLv3. The monorepo README is aimed at contributors and says GitHub issues are not for support, which goes to the WordPress.org forum. WooCommerce replaces hosted store builders such as Shopify, with the trade-off that you handle hosting, backups, security updates and payment compliance yourself.",
+  "strengths": [
+    "Supports physical and digital products, variations, downloads and affiliate items",
+    "Runs on any host that meets the WordPress, PHP and MySQL requirements, with no platform fee",
+    "Has a REST API, webhooks and a hooks system for custom work",
+    "Store data stays in your own database and can be exported",
+    "Large extension marketplace for subscriptions, bookings and memberships"
+  ],
+  "limits": [
+    "Needs a working WordPress site first, plus PHP 8.3 and MySQL 8.0 or MariaDB 10.6 under current docs",
+    "Subscriptions, bookings and memberships are separate extensions, and the plugin page links them as products, so costs can add up",
+    "Hosting, backups, security updates and payment compliance are your job",
+    "Free support is limited to the WordPress.org forum, and GitHub issues are for core bugs only"
+  ],
+  "bestFor": "A small shop owner who already runs WordPress, or has a host or agency that does, and wants to sell products without a monthly store-builder fee."
+}

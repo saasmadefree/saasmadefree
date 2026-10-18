@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Built on Symfony and Backbone.js; core framework, extension framework, automation bundle, mailbox component and support center bundle",
+    "url": "https://github.com/uvdesk/community-skeleton#about",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Features list: unlimited agents, groups, customers and tickets; no limit on mailbox integrations; saved replies; notes; knowledge base and FAQ; API bundle",
+    "url": "https://github.com/uvdesk/community-skeleton#features",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Requirements: PHP 8.1, MySQL 5.7.23 or higher, Apache or Nginx, 4GB RAM, PHP IMAP and Mailparse",
+    "url": "https://github.com/uvdesk/community-skeleton#requirements",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Install by Composer or zip archive, then terminal command or web installer; Docker and Vagrant guides in wiki; Amazon AMI",
+    "url": "https://github.com/uvdesk/community-skeleton#installation",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "OSL-3.0 licence",
+    "url": "https://github.com/uvdesk/community-skeleton#license",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Modules and apps are available from a separate Webkul store",
+    "url": "https://store.webkul.com/UVdesk/UVdesk-Open-Source.html",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

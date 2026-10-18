@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hostable PDF form builder and e-signature tool that runs from one Docker container.",
+  "description": "DocuSeal turns a PDF into a fillable form, sends it to one or more signers, and stores the signed result. The form builder is visual, with 12 field types, several signers per document and automatic PDF signing with signature verification. It is a Ruby application. The quickest start is a single docker run command, which uses SQLite by default; set DATABASE_URL to use PostgreSQL or MySQL instead. A Docker Compose file adds Caddy for automatic HTTPS on your own domain, and one-click templates exist for Heroku, Railway, DigitalOcean and Render. Files go to disk or to S3, Google Cloud Storage or Azure. Emails are sent over your SMTP server. It exposes an API and webhooks. The licence is AGPLv3 with extra terms in a separate file, and the vendor sells a hosted plan from 20 USD a month (docuseal.com/pricing). It is a close match for sending contracts and forms, the main DocuSign use. Several features that teams often expect, such as SSO, reminders, SMS verification and bulk send from a spreadsheet, belong to the paid Pro tier.",
+  "strengths": [
+    "Starts with one docker run command and SQLite, and scales to PostgreSQL or MySQL",
+    "Visual PDF field builder with 12 field types and multiple signers per document",
+    "Stores files on disk or on S3, Google Cloud or Azure storage",
+    "Signs PDFs automatically and can verify existing PDF signatures",
+    "Offers an API and webhooks for connecting to other software"
+  ],
+  "limits": [
+    "Pro-only features include automated reminders, SMS identity checks, conditional fields, bulk send from CSV or XLSX, and SSO",
+    "White-label branding, user roles and embedded signing components are also in the Pro tier",
+    "The licence adds Section 7(b) terms on top of AGPLv3, so read them before reselling or rebranding",
+    "The interface is in 7 languages, a narrower set than the 14 available for signing"
+  ],
+  "bestFor": "A small team that needs to collect signatures on PDFs and contracts and can run a Docker container on its own server."
+}

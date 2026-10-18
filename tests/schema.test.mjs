@@ -195,6 +195,63 @@ describe('project.schema.json', () => {
     expect(validators.project({ ...validProject, selfHostableCheckedOn: '2026-10-17' })).toBe(false);
     expect(validators.project({ ...ok, selfHostableSource: 'javascript:alert(1)' })).toBe(false);
   });
+
+  // Nature de la licence (Ruling 44) : un fait lu sur le fichier LICENSE ou la
+  // page de licence, donc jamais sans sa source.
+  describe('licenseKind / licenseSource', () => {
+    const source = 'https://github.com/n8n-io/n8n/blob/master/LICENSE.md';
+
+    it('licence SPDX sans source : toujours valide (remplie par l’API GitHub, sa propre source)', () => {
+      expect(validators.project(validProject)).toBe(true);
+      expect(validators.project({ ...validProject, license: 'BSD-3-Clause' })).toBe(true);
+    });
+
+    it('accepte chaque nature avec sa licence et sa source', () => {
+      for (const kind of ['open-source', 'open-core', 'source-available', 'fair-code']) {
+        expect(validators.project({ ...validProject, licenseKind: kind, licenseSource: source })).toBe(true);
+      }
+    });
+
+    it('refuse une nature hors liste', () => {
+      expect(validators.project({ ...validProject, licenseKind: 'proprietary', licenseSource: source })).toBe(false);
+    });
+
+    it('refuse une nature sans source, ou sans licence', () => {
+      expect(validators.project({ ...validProject, licenseKind: 'source-available' })).toBe(false);
+      const { license, ...noLicense } = validProject;
+      expect(validators.project({ ...noLicense, licenseKind: 'source-available', licenseSource: source })).toBe(false);
+    });
+
+    it('licence écrite à la main (licenseCheckedOn) : exige sa source', () => {
+      expect(validators.project({ ...validProject, licenseCheckedOn: '2026-10-17' })).toBe(false);
+      expect(validators.project({ ...validProject, licenseCheckedOn: '2026-10-17', licenseSource: source })).toBe(true);
+      expect(validators.project({ ...validProject, licenseCheckedOn: '17/10/2026', licenseSource: source })).toBe(false);
+    });
+
+    it('licence qui n’est pas un identifiant SPDX (écrite à la main) : exige sa source', () => {
+      const sul = { ...validProject, license: 'Sustainable Use License' };
+      expect(validators.project(sul)).toBe(false);
+      expect(validators.project({ ...sul, licenseSource: source })).toBe(true);
+    });
+
+    // Ruling 45 : l'identifiant SPDX s'il existe, sinon le nom exact lu dans le
+    // fichier LICENSE, toujours avec date et source.
+    it('Ruling 45 : identifiants SPDX et noms exacts (espaces, capitales) acceptés avec date et source', () => {
+      const checked = { licenseCheckedOn: '2026-10-18', licenseSource: source };
+      for (const license of ['BUSL-1.1', 'AGPL-3.0-only', 'Elastic-2.0', 'Sustainable Use License', 'Open WebUI License', 'LobeHub Community License']) {
+        expect(validators.project({ ...validProject, license, licenseKind: 'source-available', ...checked })).toBe(true);
+      }
+      for (const license of ['Open WebUI License', 'LobeHub Community License']) {
+        expect(validators.project({ ...validProject, license })).toBe(false);
+      }
+    });
+
+    it('refuse une source qui n’est pas en http(s)', () => {
+      for (const bad of ['javascript:alert(1)', 'ftp://n8n.io/LICENSE', 'LICENSE.md']) {
+        expect(validators.project({ ...validProject, licenseKind: 'fair-code', licenseSource: bad })).toBe(false);
+      }
+    });
+  });
 });
 
 describe('project-i18n.schema.json', () => {

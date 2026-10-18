@@ -27,6 +27,20 @@
     {
       "q": "L’export Smartsheet préserve-t-il la structure de projet ?",
       "a": "En partie. Les exports Excel et CSV portent les valeurs, et la hiérarchie passe comme une indentation que d’autres outils ignorent la plupart du temps. Les prédécesseurs s’exportent en texte que tu peux analyser, ce qui est pourquoi le prompt demande un format d’aller-retour documenté."
+    },
+    {
+      "q": "Quelle est la meilleure alternative gratuite à Smartsheet ?",
+      "a": "OpenProject est le meilleur choix : planification en Gantt, Kanban, Scrum et suivi du temps dans une seule application GPL-3.0 que tu héberges toi-même. Leantime est l’option plus légère, avec des objectifs et des feuilles de temps dans sa version gratuite. Aucun des deux ne copie l’interface tableur de Smartsheet ni ses contrôles d’approbation d’entreprise."
+    },
+    {
+      "q": "Je peux donner un accès limité à des personnes extérieures, comme les contributeurs gratuits de Smartsheet ?",
+      "a": "En partie. La formule Pro de Smartsheet inclut des contributeurs gratuits en nombre illimité. OpenProject, le meilleur choix ici, a des rôles par projet. Redmine règle aussi les rôles projet par projet : une personne peut être lectrice d’un projet et responsable d’un autre. Leantime a des droits par projet. Aucun ne reprend le modèle tarifaire des contributeurs gratuits, car tu paies en entretien de serveur."
     }
-  ]
+  ],
+  "alternativesIntro": "La meilleure alternative gratuite à Smartsheet est OpenProject : il couvre la planification en Gantt, le Kanban, Scrum, le suivi du temps et les rapports de coûts, et c’est un logiciel GPL-3.0 que tu héberges toi-même. Tu perds le côté tableur de Smartsheet, ses connecteurs vers Jira et Salesforce, et ses contrôles de relecture et d’approbation. Certaines fonctions sont des modules Enterprise payants : vérifie la liste. Leantime est plus léger : objectifs et feuilles de temps gratuits pour une petite équipe. Coder la tienne prend une semaine, pas un week-end : ça ne vaut le coup que pour une vue projet très précise. Continue de payer si le service financier attend une feuille de calcul.",
+  "alternativeNotes": {
+    "openproject": "Couvre la planification en Gantt, le Kanban, Scrum, le suivi du temps et les budgets, avec des intégrations Nextcloud, GitHub et GitLab. Certaines fonctionnalités sont des modules Enterprise, et l’administration est plus lourde que celle des outils à tableaux.",
+    "leantime": "Couvre les vues kanban, gantt, tableau, liste et calendrier, plus les objectifs, les canevas et les feuilles de temps dans la version gratuite. Il demande MySQL ou MariaDB et une longue liste d’extensions PHP.",
+    "redmine": "Couvre les tickets, les diagrammes de Gantt, le suivi du temps et les wikis, avec des rôles réglés par projet. L’installation est manuelle et les tableaux Kanban passent par des plugins tiers."
+  }
 }

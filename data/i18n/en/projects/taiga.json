@@ -1,0 +1,19 @@
+{
+  "tagline": "Agile project management with kanban and scrum boards, self-hosted with Docker.",
+  "description": "Taiga is a project management tool for agile teams. The project site presents kanban and scrum modules, and a self-hosted copy is a documented option next to the company's own cloud. The backend in this repository is written in Python with Django. Production installs follow the official Docker guide, which the docs call the easiest and recommended route, using a taiga-docker repository and an .env file where you set the database password, domain, scheme and secret key. Docker 19.03 or newer is the stated requirement. A manual install from source is also documented and relies on PostgreSQL and RabbitMQ, and the app is split into backend, frontend and an events service, so you run several parts. The code is MPL-2.0. It targets teams that pay for Asana or a similar tool and mostly need tasks, sprints and boards. Before you commit, note that its model is built around agile delivery. Goals, portfolios and cross-project reporting of the kind sold in work-management suites are not the focus, so test a real project first.",
+  "strengths": [
+    "Kanban and scrum modules on the project site, aimed at agile teams",
+    "Official Docker production guide, described by the docs as the easiest and recommended method",
+    "Basic settings such as database user, domain, scheme and secret key live in one .env file",
+    "Documented alternative: manual install from source with PostgreSQL and RabbitMQ",
+    "MPL-2.0 licence and a documented API for integrations"
+  ],
+  "limits": [
+    "The deployment has several moving parts: backend, frontend and events service, plus PostgreSQL and, for source installs, RabbitMQ",
+    "The guide expects familiarity with Docker, Docker Compose and reverse proxy setup",
+    "Built around agile delivery: the project site describes planning, stand-ups and visibility, with no goals or portfolio layer",
+    "The default .env values must be changed before going to production",
+    "Self-hosted support goes through the community forum and issue trackers"
+  ],
+  "bestFor": "A software team of ten or so with a Docker host that wants kanban and scrum boards without an Asana subscription."
+}

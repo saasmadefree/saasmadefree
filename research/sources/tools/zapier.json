@@ -1,0 +1,74 @@
+[
+  {
+    "claim": "Zapier price 29.99 USD, plan Professional/Starter, flat-monthly",
+    "url": "https://zapier.com/pricing",
+    "retrievedOn": "2026-07-30",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "n8n is rated full but is source-available under the Sustainable Use License, not open source. Activepieces' Community Edition is MIT licensed, so it is named best to keep the wording honest; n8n stays second as the larger catalogue (1,500+ integrations vs 200+ pieces).",
+    "url": "research/alternatives/zapier.json",
+    "retrievedOn": "2026-10-18",
+    "field": "alternatives order"
+  },
+  {
+    "claim": "Facts about Activepieces (licence, features, limits) as written in alternativeNotes.activepieces, from data/i18n/en/projects/activepieces.json",
+    "url": "https://github.com/activepieces/activepieces",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.activepieces"
+  },
+  {
+    "claim": "Facts about n8n (licence, features, limits) as written in alternativeNotes.n8n, from data/i18n/en/projects/n8n.json",
+    "url": "https://github.com/n8n-io/n8n",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.n8n"
+  },
+  {
+    "claim": "Facts about Windmill (licence, features, limits) as written in alternativeNotes.windmill, from data/i18n/en/projects/windmill.json",
+    "url": "https://github.com/windmill-labs/windmill",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.windmill"
+  },
+  {
+    "claim": "Facts about Automatisch (licence, features, limits) as written in alternativeNotes.automatisch, from data/i18n/en/projects/automatisch.json",
+    "url": "https://github.com/automatisch/automatisch",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.automatisch"
+  },
+  {
+    "claim": "Facts about ByteChef (licence, features, limits) as written in alternativeNotes.bytechef, from data/i18n/en/projects/bytechef.json",
+    "url": "https://github.com/bytechefhq/bytechef",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.bytechef"
+  },
+  {
+    "claim": "Facts about Huginn (licence, features, limits) as written in alternativeNotes.huginn, from data/i18n/en/projects/huginn.json",
+    "url": "https://github.com/huginn/huginn",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.huginn"
+  },
+  {
+    "claim": "Facts about Kestra (licence, features, limits) as written in alternativeNotes.kestra, from data/i18n/en/projects/kestra.json",
+    "url": "https://github.com/kestra-io/kestra",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.kestra"
+  },
+  {
+    "claim": "Facts about Node-RED (licence, features, limits) as written in alternativeNotes.node-red, from data/i18n/en/projects/node-red.json",
+    "url": "https://github.com/node-red/node-red",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.node-red"
+  },
+  {
+    "claim": "Winner Activepieces: claims in alternativesIntro and FAQ 5 drawn from its README and project text",
+    "url": "https://github.com/activepieces/activepieces",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[4]"
+  },
+  {
+    "claim": "FAQ 6 facts are drawn from the project texts in data/i18n/en/projects/*.json",
+    "url": "data/i18n/en/projects",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[5]"
+  }
+]

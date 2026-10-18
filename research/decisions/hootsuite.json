@@ -1,0 +1,80 @@
+{
+  "tool": "hootsuite",
+  "checkedOn": "2026-10-18",
+  "question": "Paid SaaS: \"Hootsuite\". What people pay it for: Draft and schedule posts for one social network, validate them against that network's character and media limits before scheduling, and publish through its official API on a background job with retries. Question: is the candidate below an open-source or self-hostable application (web, desktop or server) that a person could actually use INSTEAD of Hootsuite for that job, or for a clear, substantial part of it? Partial replacements count as yes (for example a desktop video editor for a video app, a self-hosted rank tracker for an SEO suite). Answer no for: a code library or SDK only, a command-line utility with no end-user workflow, a closed paid service, a tutorial, or a tool for an unrelated job.",
+  "jevModel": "jev-1.13.0",
+  "results": [
+    {
+      "slug": "postiz-app",
+      "name": "Postiz",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.94,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.95,
+      "kept": true
+    },
+    {
+      "slug": "mixpost",
+      "name": "Mixpost",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.98,
+      "kept": true
+    },
+    {
+      "slug": "trypost",
+      "name": "TryPost",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "socioboard",
+      "name": "Socioboard",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.81,
+      "kept": true
+    },
+    {
+      "slug": "shoutify",
+      "name": "Shoutify",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.39,
+        "review": true,
+        "classId": "other"
+      },
+      "decision": 0.42,
+      "kept": false
+    },
+    {
+      "slug": "threaduler",
+      "name": "Threaduler",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.84,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.83,
+      "kept": true
+    }
+  ]
+}

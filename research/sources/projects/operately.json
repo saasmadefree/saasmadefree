@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Open source company operating system for goals, projects and teams",
+    "url": "https://github.com/operately/operately#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Apache 2.0 licence badge",
+    "url": "https://github.com/operately/operately#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Features: Goals/OKRs, projects, team spaces, message boards, documents, team management, check-ins, CLI and API",
+    "url": "https://github.com/operately/operately#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Quick start: download operately-single-host.tar.gz, ./install.sh, docker compose up",
+    "url": "https://github.com/operately/operately#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Comparison table against Monday.com, Asana, Notion; works best for teams of 5 to 100",
+    "url": "https://github.com/operately/operately#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Opinionated operating system, unlike tools that let you build anything",
+    "url": "https://github.com/operately/operately#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

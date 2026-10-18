@@ -1,0 +1,41 @@
+{
+  "slug": "shopware",
+  "name": "Shopware",
+  "homepage": "https://shopware.com",
+  "repo": "shopware/shopware",
+  "license": "MIT",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/shopware/shopware/blob/trunk/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://developer.shopware.com/docs/guides/installation/",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 600,
+    "currency": "EUR",
+    "source": "https://www.shopware.com/en/pricing/",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "php",
+    "symfony"
+  ],
+  "categories": [
+    "creator-commerce"
+  ],
+  "stats": {
+    "stars": 3450,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2018-05-03",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

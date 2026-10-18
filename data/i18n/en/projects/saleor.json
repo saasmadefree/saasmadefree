@@ -1,0 +1,18 @@
+{
+  "tagline": "Headless, GraphQL-only e-commerce backend in Python for stores that need multiple channels and currencies.",
+  "description": "Saleor is an e-commerce engine with no built-in storefront. Everything, from configuration to extension, goes through its GraphQL API. A separate dashboard handles products, orders, customers, promotions and gift cards, and a Next.js example storefront shows how to build the shop front. The data model covers multiple channels, with pricing, currency and stock set per channel, plus multi-warehouse stock, split payments and returns. Extensions are separate apps that talk to the core through webhooks, metadata and dashboard iframes, so you write them in any language. You run it with Docker Compose using the saleor-platform project, or deploy the Python core yourself. The project also sells a managed Saleor Cloud. The code is BSD-3-Clause. It can stand in for Shopify when you want to own the backend and build a custom front end, for example a store in several countries. It does not give a non-technical merchant a finished shop to launch in an afternoon. Expect to run three pieces together: the API, the dashboard and a storefront you build or adapt.",
+  "strengths": [
+    "Per-channel control of pricing, currencies, stock and product availability",
+    "GraphQL is the only API, so every admin action can also be scripted",
+    "Extensions run as independent apps through webhooks and metadata, in any language",
+    "Multi-warehouse stock, split payments and returns are part of the order model",
+    "Promotion engine with sales, vouchers, cart rules and gift cards"
+  ],
+  "limits": [
+    "No themes or ready storefront: you must build or adapt the front end yourself",
+    "The repository main branch is described as a development version that may be unstable, so you deploy from release tags",
+    "The core, dashboard and storefront live in three repositories, and the docs say to use matching versions of all three",
+    "The project advises that a small shop with low traffic may find the service-based approach more complex than a WordPress-style setup"
+  ],
+  "bestFor": "A development team building a custom multi-country store that wants to own the commerce backend instead of renting Shopify."
+}

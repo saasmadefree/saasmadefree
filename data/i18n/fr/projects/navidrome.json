@@ -1,0 +1,18 @@
+{
+  "tagline": "Serveur de streaming musical auto-hébergé pour tes fichiers audio, compatible avec les applis Subsonic.",
+  "description": "Navidrome diffuse dans un navigateur ou sur un téléphone la bibliothèque musicale que tu possèdes déjà. Il lit tes fichiers et leurs tags, surveille le dossier pour repérer les changements, et diffuse tous les formats, avec un transcodage à la volée réglable par utilisateur ou par lecteur. Il parle l’API Subsonic, donc de nombreux clients mobiles et de bureau tiers fonctionnent avec lui. Il est écrit en Go et fourni en binaires prêts à l’emploi pour macOS, Linux et Windows, plus des images Docker pour amd64 et arm. L’installation Docker demande un dossier de données où il peut écrire et un dossier de musique qu’il lit seulement. La documentation dit qu’il tourne sur un Raspberry Pi Zero. Chaque utilisateur a ses propres compteurs d’écoute, playlists et favoris, et tu peux envoyer tes écoutes à Last.fm et ListenBrainz. C’est le plus proche équivalent auto-hébergé du lecteur de Spotify, mais il n’a aucun catalogue : tu apportes les fichiers. Un hébergement géré est proposé par des fournisseurs partenaires. La licence est GPL-3.0.",
+  "strengths": [
+    "Diffuse tous les formats audio et transcode à la volée, avec des réglages par utilisateur ou par lecteur",
+    "Compatible avec les clients Subsonic, Madsonic et Airsonic : des applis pour téléphone existent déjà",
+    "Multi-utilisateur, avec compteurs d’écoute, playlists et favoris séparés pour chaque personne",
+    "Playlists intelligentes, import .m3u, liens de partage publics et scrobbling vers Last.fm et ListenBrainz",
+    "Binaires officiels et images Docker pour amd64, arm/v6, arm/v7 et arm64"
+  ],
+  "limits": [
+    "Aucun catalogue musical : tu dois posséder et ranger toi-même les fichiers audio",
+    "La navigation par dossiers est simulée à partir des tags, sous la forme /ArtisteDeLAlbum/Album/Titre : des tags en désordre donnent une bibliothèque en désordre",
+    "La branche master peut être instable : le README te dit d’installer depuis les versions publiées",
+    "La qualité de lecture sur mobile dépend de clients Subsonic tiers, pas d’applis du projet"
+  ],
+  "bestFor": "Un auditeur avec une grosse collection de musique en local et un petit serveur ou un Raspberry Pi, qui veut quitter Spotify."
+}

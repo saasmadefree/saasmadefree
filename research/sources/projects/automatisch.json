@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Connects services into flows; data stays on own servers; no programming needed",
+    "url": "https://github.com/automatisch/automatisch#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker Compose install by clone and docker compose up",
+    "url": "https://automatisch.io/docs/guide/installation",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Docker compose and docker setups documented; other types by GitHub issue request",
+    "url": "https://automatisch.io/docs/guide/installation",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Default login user@automatisch.io / sample, to be changed",
+    "url": "https://automatisch.io/docs/guide/installation",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "ENCRYPTION_KEY and WEBHOOK_SECRET_KEY: changing them breaks connections and flows",
+    "url": "https://automatisch.io/docs/guide/installation",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "AGPL-3.0 community edition; files with .ee. fall under Enterprise licence",
+    "url": "https://github.com/automatisch/automatisch#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Supported apps documented with triggers and actions",
+    "url": "https://automatisch.io/docs/guide/available-apps",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Request integration page and build-integration docs",
+    "url": "https://automatisch.io/docs/guide/request-integration",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

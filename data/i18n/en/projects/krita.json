@@ -1,0 +1,18 @@
+{
+  "tagline": "Free desktop painting program for illustrators, comic artists and texture painters.",
+  "description": "Krita is a free digital painting program for hand-drawn illustration, comics, concept art and texture work. Comic, concept and texture artists use it, according to the project. It is licensed GPL-3.0 as a whole, though individual files may carry other compatible licences. It is a program you install on your computer, not a server, so there is nothing to host and no database to run. Nightly builds are available from KDE's CI. The GitHub repository is only a mirror: the real code lives on KDE's own server. Krita can stand in for Canva only for one narrow job, which is painting and editing raster images. It does not present itself as a template-based layout or social-media design tool. The user manual is published online for the 5.3 series. Development is community-driven under the KDE umbrella, and bugs are tracked on KDE's bug tracker.",
+  "strengths": [
+    "Built for painting and illustration by hand rather than photo editing or page layout.",
+    "No server or account: install it on a computer and files stay local.",
+    "GPL-3.0 licensed, with nightly builds published from KDE's CI.",
+    "An online user manual is maintained for the current release series.",
+    "Used in comics, concept art, texture painting and VFX, according to the project."
+  ],
+  "limits": [
+    "Desktop painting program: it is not a template-driven design tool, so it does not replace Canva for flyers or social posts.",
+    "The project describes no hosted or browser version, so it runs only where you can install it.",
+    "The GitHub repository is a mirror; issues and contributions go through KDE's infrastructure.",
+    "Nightly and developer builds are unstable by the project's own labelling."
+  ],
+  "bestFor": "An illustrator or comic artist who wants a free painting program on their own computer."
+}

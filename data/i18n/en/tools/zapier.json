@@ -15,6 +15,19 @@
     { "q": "Can I import my existing Zaps?", "a": "Not automatically — Zapier's visual flows don't export to code. Each Zap you actually rely on becomes a short script you write by hand, which for most personal automations is a handful of pipelines, not hundreds." },
     { "q": "Will it work on my phone?", "a": "The admin page for checking run history works in a phone browser, but pipelines themselves run unattended on a server — there's nothing to interact with on mobile day to day, which is roughly how Zapier works too." },
     { "q": "What does it cost to run?", "a": "Hosting and a database, typically a few dollars a month, regardless of how many pipelines you run — no per-task pricing tiers to think about." },
-    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "OAuth-based integrations. Any service that requires signing in with your account instead of a plain API key is out of scope here; that's most of Zapier's most popular app connections, and building each one by hand would cost real time per app." }
-  ]
+    { "q": "What's the one thing that doesn't survive the rebuild?", "a": "OAuth-based integrations. Any service that requires signing in with your account instead of a plain API key is out of scope here; that's most of Zapier's most popular app connections, and building each one by hand would cost real time per app." },
+    { "q": "What's the best free Zapier alternative?", "a": "Activepieces is the best fit: its Community Edition is MIT licensed, the builder is no-code like Zapier's, and connectors are TypeScript packages you can extend. n8n offers a larger catalogue but is source-available, not open source. Both lack Zapier's thousands of maintained connections." },
+    { "q": "Can I add a connector that does not exist yet?", "a": "Yes, on the self-hosted tools. Every Activepieces integration is an open-source TypeScript npm package, so you can write a missing one and plug it in locally. n8n workflows can run JavaScript and Python code nodes with npm packages. On Zapier you wait for the app to be added." }
+  ],
+  "alternativesIntro": "The best free Zapier alternative is Activepieces: its Community Edition is MIT licensed and gives you a no-code flow builder with branches, loops, retries and a code step. Every connector is a TypeScript package, so you can write a missing one yourself. You lose Zapier's catalogue, since Activepieces lists 200+ pieces against thousands of apps. n8n has the larger catalogue, with 1,500+ integrations, but its Sustainable Use License is source-available, not open source. A handful of personal automations is a weekend build as plain code. Keep paying if your flows depend on many niche apps.",
+  "alternativeNotes": {
+    "activepieces": "Covers a visual builder with branches, loops, retries and code steps that import npm packages. The catalogue is 200+ pieces, and enterprise features sit under a separate licence.",
+    "n8n": "Covers a visual canvas, code nodes and 1,500+ integrations under the source-available Sustainable Use License. Community has no SSO and limited sharing, and you may not resell it.",
+    "windmill": "Covers scripts in TypeScript, Python, Go and more as workflows, with forms generated from parameters. It is built for developers, and the free edition contains proprietary code with quotas.",
+    "automatisch": "Covers a visual builder you start with docker compose up, with credentials encrypted on your server. Only Docker installs are documented, and changing the encryption key breaks existing connections.",
+    "bytechef": "Covers workflows with AI agents, durable resumes and a Copilot that drafts flows. The quick-start H2 database cannot be migrated to PostgreSQL, and ee directories carry a separate licence.",
+    "huginn": "Covers agents that watch RSS, email, webhooks and scraped sites, and pass events onward. It needs a web process, a worker and a database, and its connector list is far shorter than Zapier's.",
+    "kestra": "Covers flows written as YAML with schedule and event triggers. It is aimed at data and infrastructure teams and has no catalogue of one-click app recipes.",
+    "node-red": "Covers a browser flow editor with a community library of nodes. The editor is unsecured by default, so you must turn on login and HTTPS before exposing it."
+  }
 }

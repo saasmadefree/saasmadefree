@@ -1,0 +1,40 @@
+{
+  "slug": "opensign",
+  "name": "OpenSign",
+  "homepage": "https://www.opensignlabs.com",
+  "repo": "OpenSignLabs/OpenSign",
+  "license": "AGPL-3.0",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/OpenSignLabs/OpenSign/blob/staging/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.opensignlabs.com/docs/self-host/intro",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 0,
+    "currency": "USD",
+    "source": "https://github.com/OpenSignLabs/OpenSign#readme",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "javascript"
+  ],
+  "categories": [
+    "documents"
+  ],
+  "stats": {
+    "stars": 7109,
+    "lastCommit": "2026-08-21",
+    "createdAt": "2023-10-02",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

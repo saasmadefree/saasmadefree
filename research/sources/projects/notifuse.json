@@ -1,0 +1,68 @@
+[
+  {
+    "claim": "Built with Go and React; newsletters and transactional emails",
+    "url": "https://raw.githubusercontent.com/Notifuse/notifuse/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Providers: Amazon SES, Mailgun, Postmark, Mailjet, SparkPost, SendGrid, SMTP",
+    "url": "https://raw.githubusercontent.com/Notifuse/notifuse/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "MJML drag-and-drop builder, A/B testing, Liquid templating, REST API",
+    "url": "https://raw.githubusercontent.com/Notifuse/notifuse/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Automation node types: delay, email, branch, filter, ab_test, webhook",
+    "url": "https://raw.githubusercontent.com/Notifuse/notifuse/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Cookieless web analytics script served by your own instance",
+    "url": "https://raw.githubusercontent.com/Notifuse/notifuse/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Interactive setup wizard; PostgreSQL 17 or newer; major upgrade needs pg_upgrade",
+    "url": "https://raw.githubusercontent.com/Notifuse/notifuse/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Notifuse Cloud from $16/month; open-source alternative to Mailchimp and others",
+    "url": "https://raw.githubusercontent.com/Notifuse/notifuse/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "v40.0 and later under BSL 1.1; v39.x and earlier AGPL-3.0",
+    "url": "https://raw.githubusercontent.com/Notifuse/notifuse/HEAD/LICENSING.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Licence key needed for >3 workspaces, granular permissions, SES tenant, OIDC SSO, multilingual templates, audit log",
+    "url": "https://raw.githubusercontent.com/Notifuse/notifuse/HEAD/LICENSING.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Unlimited emails, contacts and team members need no key",
+    "url": "https://raw.githubusercontent.com/Notifuse/notifuse/HEAD/LICENSING.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "We don't accept pull requests; issues welcome",
+    "url": "https://raw.githubusercontent.com/Notifuse/notifuse/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "tagline": "Serveur auto-hébergé de synchro et partage de fichiers, avec bibliothèques chiffrées, groupes et wikis.",
+  "description": "Seafile est un système de synchro et de partage de fichiers que tu héberges sur ton propre serveur. Il remplace Dropbox et les outils du même genre quand une équipe veut garder ses fichiers sur ses propres disques. Les fichiers sont rangés en bibliothèques, et chaque bibliothèque se synchronise à part : un portable ne récupère que les dossiers dont il a besoin. Chaque utilisateur peut verrouiller une bibliothèque avec son propre mot de passe, et la synchro du bureau chiffre côté client. La synchro n’envoie que les parties modifiées des fichiers, reprend les transferts interrompus et règle les conflits à partir de l’historique des fichiers plutôt que des horodatages. Tu partages des dossiers avec des utilisateurs ou des groupes, tu crées des liens de téléchargement protégés par mot de passe et des liens de dépôt, et tu gardes l’historique des versions. Les nouveautés ajoutent des propriétés de fichiers avec vues tableau, Kanban, galerie et carte, un wiki, l’éditeur SeaDoc et des liens vers OnlyOffice, Collabora et Excalidraw. Le serveur se déploie avec Docker. Le manuel décrit une édition Community et une édition Professional payante. Le projet est découpé en plusieurs dépôts : démon de synchro, interface de bureau, cœur du serveur, interface web et applis mobiles.",
+  "strengths": [
+    "Chaque bibliothèque se synchronise seule, avec synchro sélective de n’importe quel dossier",
+    "Transfert par différences : seul le contenu modifié part vers le serveur, et les transferts interrompus reprennent",
+    "Chiffrement des bibliothèques côté client avec un mot de passe choisi par l’utilisateur",
+    "Les conflits se règlent à partir de l’historique des fichiers, pas des horodatages",
+    "Partage par groupe, liens de téléchargement protégés par mot de passe et liens de dépôt"
+  ],
+  "limits": [
+    "Le code est réparti sur de nombreux dépôts (client de synchro, interface de bureau, cœur du serveur, interface web, iOS, Android, WebDAV), ce qui complique une compilation maison",
+    "Une édition Professional existe sous une licence à part, donc certaines fonctions du produit du fournisseur peuvent manquer à l’édition Community",
+    "Les bugs se signalent sur les issues GitHub et les questions d’installation sur un forum ; le support par email est réservé aux clients Pro",
+    "L’édition de documents passe par un serveur en plus, comme OnlyOffice ou Collabora, que tu fais tourner toi-même"
+  ],
+  "bestFor": "Une petite entreprise ou un labo qui veut une synchro à la Dropbox sur son propre serveur, avec des bibliothèques partagées et chiffrées pour le personnel."
+}

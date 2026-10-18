@@ -1,0 +1,18 @@
+{
+  "tagline": "Tableau kanban open source à héberger toi-même, avec couloirs, Gantt, vues Scrum et imports d’autres outils.",
+  "description": "WeKan est une application kanban collaborative, publiée sous licence MIT. Un tableau contient des listes, des couloirs et des cartes, que tu ranges par glisser-déposer, avec des mises à jour en temps réel. Le README liste aussi des vues tableau, calendrier, chronologie, Gantt et Scrum, avec sprints et courbes d’avancement (burndown). Les règles fonctionnent comme des déclencheurs IFTTT sur les cartes, et un tableau s’exporte dans de nombreux formats, dont PDF, Excel et CSV. Les importeurs lisent les tableaux de Trello, Jira, Asana, Todoist, Notion, Vikunja et bien d’autres outils : WeKan est donc un candidat direct pour remplacer Trello. Côté hébergement, le README cite Docker, Kubernetes, un paquet Snap, une AppImage et des archives pour Windows, macOS et Linux. La base par défaut est FerretDB avec SQLite, donc aucun serveur de base de données n’est nécessaire. MongoDB et PostgreSQL sont aussi pris en charge. Pour la connexion, tu as LDAP, SAML et OAuth2, et les pièces jointes peuvent aller sur le disque, un stockage compatible S3, Azure Blob ou Google Cloud. Une version SaaS payante et un support commercial existent à côté du code gratuit. Prévois une liste de fonctionnalités très longue et une interface dense.",
+  "strengths": [
+    "Importe les tableaux de Trello, Jira, Asana, Todoist et de nombreux autres outils",
+    "L’installation par défaut utilise FerretDB avec SQLite : pas de serveur de base de données à ajouter",
+    "Propose des vues tableau, calendrier, Gantt et Scrum, avec rapports de sprint et courbes d’avancement",
+    "Gère les connexions LDAP, SAML et OAuth2 et le stockage des pièces jointes sur S3, Azure ou Google Cloud",
+    "S’installe avec Docker, Kubernetes, Snap, AppImage ou une simple archive"
+  ],
+  "limits": [
+    "La liste de fonctionnalités est très longue : l’interface et les réglages sont plus denses que ceux d’un simple clone de Trello",
+    "Le README indique que WeKan remplit 9 des 16 critères du Standard for Public Code dès l’installation",
+    "Les bases MySQL, MariaDB et SAP HANA via FerretDB sont signalées comme expérimentales",
+    "Le README renvoie vers un SaaS avec un panneau d’administration payant : certaines fonctions d’administration peuvent dépendre de ce service"
+  ],
+  "bestFor": "Une équipe ou une organisation qui a son propre serveur et veut un tableau gratuit dans le style de Trello, avec connexion LDAP ou SAML."
+}

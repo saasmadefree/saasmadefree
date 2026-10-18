@@ -1,25 +1,44 @@
 {
   "slug": "activepieces",
   "name": "Activepieces",
-  "homepage": "https://github.com/activepieces/activepieces",
+  "homepage": "https://www.activepieces.com",
   "repo": "activepieces/activepieces",
+  "license": "MIT",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/activepieces/activepieces/blob/HEAD/LICENSE",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://www.activepieces.com/docs/install/overview",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 0,
+    "currency": "USD",
+    "source": "https://www.activepieces.com/pricing",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker",
+    "kubernetes",
+    "helm"
+  ],
+  "stack": [
+    "typescript",
+    "postgresql",
+    "redis"
+  ],
   "categories": [
     "automation"
   ],
   "stats": {
-    "stars": 25083,
+    "stars": 25087,
     "lastCommit": "2026-10-16",
     "createdAt": "2022-12-03",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
-    "en"
+    "en",
+    "fr"
   ]
 }

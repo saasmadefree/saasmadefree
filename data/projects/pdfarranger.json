@@ -1,0 +1,42 @@
+{
+  "slug": "pdfarranger",
+  "name": "PDF Arranger",
+  "homepage": "https://github.com/pdfarranger/pdfarranger",
+  "repo": "pdfarranger/pdfarranger",
+  "license": "GPL-3.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/pdfarranger/pdfarranger/blob/main/COPYING",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/pdfarranger/pdfarranger#readme",
+  "hosted": {
+    "exists": false,
+    "source": "https://github.com/pdfarranger/pdfarranger#readme",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "flatpak",
+    "snap",
+    "binary"
+  ],
+  "stack": [
+    "python",
+    "gtk",
+    "pikepdf"
+  ],
+  "categories": [
+    "documents"
+  ],
+  "stats": {
+    "stars": 5983,
+    "lastCommit": "2026-09-30",
+    "createdAt": "2015-10-21",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

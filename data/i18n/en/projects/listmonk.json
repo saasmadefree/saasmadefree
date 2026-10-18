@@ -1,0 +1,19 @@
+{
+  "tagline": "Self-hosted newsletter and mailing list manager in a single Go binary on PostgreSQL.",
+  "description": "Listmonk is a newsletter and mailing list manager that ships as one binary and stores data in PostgreSQL. It manages subscribers across single and double opt-in lists, and lets you segment them with SQL expressions. Campaigns use Go templates, with logic and functions available in subject lines and content. Sending goes through the SMTP servers you configure, in multi-threaded queues with throughput and sliding-window rate limits. Built-in analytics cover campaign performance, bounces and top links. The licence is AGPL-3.0. To install, you can use the sample Docker Compose file, or download the binary, generate a config file, run the install command against Postgres and start the server on port 9000. The project site shows a production instance sending one campaign of more than seven million emails at a peak of 57 MB of RAM. It covers the list, campaign and template side of Mailchimp. It does not have a visual automation builder or one-to-one drip logic, and mail is delivered one way, from you to the list.",
+  "strengths": [
+    "Single binary with PostgreSQL as its only store, installable by Docker Compose or by hand.",
+    "Segments are SQL queries, so very precise targeting is possible.",
+    "Emails can be built in a drag-and-drop editor, a rich-text editor, Markdown, HTML or plain text.",
+    "Multiple SMTP queues with rate limiting give control over sending speed.",
+    "Built-in analytics for bounces, top links and campaign performance.",
+    "Go templates allow logic and dynamic content in emails."
+  ],
+  "limits": [
+    "Lists are one-way: the site describes them as one-way mailing lists, not discussion groups.",
+    "Segmenting needs SQL expressions, which is a barrier for non-technical staff.",
+    "You must bring an SMTP service or server, and deliverability is yours to manage.",
+    "No visual automation or drip-sequence builder is listed among its features."
+  ],
+  "bestFor": "A solo creator with a VPS who sends a newsletter to a large list and can set up SMTP and Postgres."
+}

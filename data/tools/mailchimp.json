@@ -27,7 +27,35 @@
   ],
   "alternatives": [
     {
+      "project": "listmonk",
+      "fit": "full"
+    },
+    {
       "project": "mautic",
+      "fit": "full"
+    },
+    {
+      "project": "keila",
+      "fit": "full"
+    },
+    {
+      "project": "plunk",
+      "fit": "partial"
+    },
+    {
+      "project": "dittofeed",
+      "fit": "partial"
+    },
+    {
+      "project": "notifuse",
+      "fit": "partial"
+    },
+    {
+      "project": "sendportal",
+      "fit": "partial"
+    },
+    {
+      "project": "phplist",
       "fit": "partial"
     }
   ],

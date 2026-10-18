@@ -1,0 +1,18 @@
+{
+  "tagline": "Plateforme e-commerce Laravel et Vue.js pour boutiques, ventes B2B et places de marché multi-vendeurs.",
+  "description": "Bagisto est une plateforme de boutique en ligne construite sur Laravel et Vue.js. Elle couvre une boutique classique avec catalogue, commandes et panneau d’administration, et le projet propose aussi des variantes B2B et place de marché multi-vendeurs. Tu peux l’installer avec Composer en suivant le guide, ou lancer l’image Docker publiée avec une seule commande : migrations, données de départ et index de recherche sont déjà dans l’image. Il existe des images pour Nginx, Apache et OpenLiteSpeed, chacune avec MySQL 8.0, MariaDB 10.11 ou PostgreSQL 16, et DB_HOST permet de pointer le conteneur vers une base externe. Le fichier Composer actuel demande PHP 8.4 et Laravel 13. Le code est sous licence MIT. Les mainteneurs vendent aussi un hébergement géré, Bagisto Cloud Hosting, et une image sur l’AWS Marketplace : une offre hébergée existe donc, même si tu peux héberger toi-même. Face à Shopify, tu gagnes le contrôle total du code et pas de frais de plateforme, mais tu prends en charge l’hébergement, les mises à jour, les paiements et la livraison. Les paquets B2B et place de marché sont présentés comme des produits à part : vérifie leur prix et leur licence avant de bâtir ton plan dessus. Compte avec un développeur pour les thèmes et les extensions.",
+  "strengths": [
+    "Installation Docker en une commande, avec migrations, données de départ et index de recherche déjà inclus",
+    "Images pour Nginx, Apache ou OpenLiteSpeed avec MySQL, MariaDB ou PostgreSQL, ou une base externe via DB_HOST",
+    "Construit sur Laravel et Vue.js : les développeurs PHP l’étendent avec des outils qu’ils connaissent",
+    "La même famille de code couvre boutique simple, B2B et place de marché multi-vendeurs",
+    "Licence MIT sur le cœur du projet"
+  ],
+  "limits": [
+    "Demande PHP 8.4 et Laravel 13 d’après le composer.json actuel : un vieil hébergement PHP ne le fera pas tourner",
+    "Les fonctions B2B et place de marché multi-vendeurs sont décrites comme des paquets séparés, hors de l’installation de base",
+    "En auto-hébergement, tu gères mises à jour, sauvegardes, paiements et livraison, ce que Shopify fait à ta place",
+    "Les thèmes et les extensions demandent en général un développeur PHP"
+  ],
+  "bestFor": "Une petite agence ou un développeur PHP interne qui monte une boutique ou une place de marché sur mesure, sans commission de plateforme sur chaque vente."
+}

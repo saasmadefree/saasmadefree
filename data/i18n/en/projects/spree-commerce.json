@@ -1,0 +1,18 @@
+{
+  "tagline": "Ruby on Rails commerce platform with REST API, React admin and Next.js storefront, for marketplaces and B2B.",
+  "description": "Spree is a commerce backend with a REST API, typed TypeScript clients, a React admin dashboard and an optional Next.js storefront. The core handles catalog, carts, checkout, promotions, gift cards, multi-location inventory, shipping, returns and tax rules, including Avalara and Stripe Tax lookups. Payments ship for Stripe, Adyen and PayPal. Its stronger angles are multi-vendor marketplaces, with seller onboarding, per-seller order splitting, commissions and Stripe Connect payouts, and B2B selling with price lists, customer groups and company accounts. Each region can have its own currency, language, payment methods and shipping. To start, you run a create-spree-app command that sets up the backend, admin and storefront; it needs Node.js 24 or later and Docker. The licence is BSD-3-Clause. The README says multi-tenant SaaS mode needs a paid Enterprise Edition. Spree can replace Shopify when you want your own code and data and can staff the Rails and TypeScript work. It does not offer a no-code theme store experience, so plan for developer time on every storefront change.",
+  "strengths": [
+    "REST API with an OpenAPI 3.0 spec and three typed TypeScript clients for store, admin and seller use",
+    "Marketplace features in the open-source core: seller onboarding, per-seller order splits, commission engine and Stripe Connect payouts",
+    "B2B tools: price lists with volume tiers, customer groups, companies with tax exemptions and per-segment catalogs",
+    "Ships payment integrations for Stripe, Adyen and PayPal, with a provider SDK for others",
+    "Each region can have its own currency, language, payment methods and shipping, and CSV import and export are built in"
+  ],
+  "limits": [
+    "Multi-tenant SaaS mode requires the paid Enterprise Edition",
+    "Local setup needs Node.js 24 or later and Docker, and the stack spans Rails, a React admin and a Next.js storefront",
+    "Hosting, upgrades and payment account setup fall to you",
+    "It is a developer platform: changing a storefront means writing code, not picking a theme"
+  ],
+  "bestFor": "A development team building a marketplace or wholesale store that wants to own its commerce code instead of renting Shopify."
+}

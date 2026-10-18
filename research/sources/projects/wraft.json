@@ -1,0 +1,32 @@
+[
+  {
+    "claim": "Open-source document lifecycle management; Markdown and JSON open formats; AGPLv3; Functionary Labs; Wraft Cloud",
+    "url": "https://github.com/wraft/wraft#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Elixir/Phoenix, PostgreSQL, S3-compatible storage, Pandoc and LaTeX PDF generation; Docker Compose, Kamal, Kubernetes; API reference",
+    "url": "https://docs.wraft.app/developers",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Compose file services: frontend, backend, postgres, rustfs object store, Typesense",
+    "url": "https://github.com/wraft/wraft/blob/main/docker-compose.yml",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Site advertises built-in e-signature and approval workflows; README and developer overview do not describe them",
+    "url": "https://wraft.app",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Site advertises built-in e-signature and approval workflows",
+    "url": "https://wraft.app",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

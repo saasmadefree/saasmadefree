@@ -1,0 +1,42 @@
+{
+  "slug": "notifuse",
+  "name": "Notifuse",
+  "homepage": "https://www.notifuse.com",
+  "repo": "Notifuse/notifuse",
+  "license": "BUSL-1.1",
+  "licenseKind": "source-available",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/Notifuse/notifuse/blob/HEAD/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/Notifuse/notifuse",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 16,
+    "currency": "USD",
+    "source": "https://www.notifuse.com/pricing/",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "go",
+    "react",
+    "postgresql"
+  ],
+  "categories": [
+    "newsletter"
+  ],
+  "stats": {
+    "stars": 2248,
+    "lastCommit": "2026-09-17",
+    "createdAt": "2025-03-15",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

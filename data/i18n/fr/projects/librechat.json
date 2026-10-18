@@ -1,0 +1,18 @@
+{
+  "tagline": "Interface de chat auto-hébergée façon ChatGPT pour de nombreux fournisseurs d’IA, avec agents et MCP.",
+  "description": "LibreChat est une interface de chat web que tu pointes vers les fournisseurs d’IA de ton choix. Elle gère Anthropic, OpenAI, Azure OpenAI, Google, AWS Bedrock et tout point d’accès compatible OpenAI, ce qui inclut les serveurs locaux comme Ollama. En plus du chat, elle propose des agents avec outils MCP, la recherche dans les fichiers, un interpréteur de code, des artefacts de code, la génération d’images, la recherche web, des préréglages et le branchement des conversations. Elle est sous licence MIT. Le README annonce des piles Docker Compose pour une installation en une commande, et le guide Docker du projet montre que la pile par défaut fait tourner MongoDB. Les utilisateurs se connectent par email, OAuth2 ou LDAP, et tu peux partager agents et prompts avec des personnes ou des groupes précis. Elle remplace de près l’interface de ChatGPT, mais pas le modèle : tu apportes tes clés d’API et tu paies chaque fournisseur à l’usage. L’interpréteur de code est un service séparé, construit sur un projet open source de ClickHouse. Les notes de la dernière version classent plusieurs fonctions en bêta ou très expérimentales, dont les espaces de code attachés et l’API de gestion des agents.",
+  "strengths": [
+    "Travaille avec de nombreux fournisseurs à la fois et te laisse changer de point d’accès ou de préréglage en pleine conversation",
+    "Toute API compatible OpenAI s’ajoute comme point d’accès personnalisé, sans proxy",
+    "Connexion multi-utilisateur par email, OAuth2 ou LDAP, avec partage d’agents et de prompts par personne ou par groupe",
+    "Les agents peuvent utiliser des serveurs MCP, la recherche dans les fichiers et l’exécution de code",
+    "Piles Docker Compose pour une installation en une commande"
+  ],
+  "limits": [
+    "Aucun modèle propre : il te faut des clés d’API et tu paies à l’usage, donc la facture n’est pas fixe comme un abonnement ChatGPT",
+    "La pile Docker Compose par défaut lance MongoDB, qui plante sur les Mac Apple Silicon sans fichier de surcharge",
+    "L’interpréteur de code repose sur un projet ClickHouse séparé que tu héberges toi-même, ou sur l’API Code Interpreter de LibreChat avec une clé d’API",
+    "Les espaces de code attachés sont signalés comme très expérimentaux et l’API de gestion des agents est en bêta"
+  ],
+  "bestFor": "Une petite entreprise ou une communauté qui veut une seule interface de chat pour plusieurs fournisseurs d’IA, avec son propre système de connexion."
+}

@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted PHP web server that streams your own music and video library to browsers and apps.",
+  "description": "Ampache serves an existing audio and video collection over the web. It reads metadata from the tags embedded in your files, or from file names, and presents the library in a browser interface and through an API that many third-party clients use. It does not organise files for you: the project says it assumes you already keep your collection in order. You run it on a web server (Apache is the most tested, nginx and lighttpd also work) with PHP, the required PHP modules, MySQL or MariaDB, and Node.js to build the front-end assets. A Docker image is published as well. The newest mainline, Ampache 8, requires PHP 8.5 or later, and the README recommends the release7 branch as the most stable line. A new opt-in Jellyfin-compatible API lets some Jellyfin client apps browse and stream the library. It is licensed AGPL-3.0. The closest paid comparison is Spotify Premium, but only for music you already own: there is no catalogue of licensed tracks. It suits people who already keep ripped or purchased music and want to reach it from a phone or browser without handing the files to a third party.",
+  "strengths": [
+    "Streams both audio and video from your own files to a browser or through its API",
+    "Offers an opt-in Jellyfin-compatible API so clients such as Finamp or Symfonium can connect",
+    "Runs on Apache, nginx, lighttpd or IIS, with a published Docker image",
+    "Optional LDAP authentication and UPnP support",
+    "Has a documented public API with examples, used by third-party clients"
+  ],
+  "limits": [
+    "No music catalogue: it only serves files you already own, so it cannot replace Spotify's licensed library",
+    "It is not a media organiser; clean tags or file names are needed for good metadata",
+    "Needs MySQL or MariaDB, PHP with many modules and Node.js to build front-end assets, which is a heavier stack than a single binary",
+    "Ampache 8 needs PHP 8.5 or newer, and the stable recommendation is the older release7 branch"
+  ],
+  "bestFor": "A music collector with a tidy library of owned files and a home server who wants streaming to phone and browser without a subscription."
+}

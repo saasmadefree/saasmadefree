@@ -1,11 +1,13 @@
 import { escapeHtml, renderLayout, renderBreadcrumb } from './site-html.mjs';
-import { categoryLabel, SITE_ORIGIN } from './site-data.mjs';
+import { categoryLabel, categoryTitleLabel, SITE_ORIGIN } from './site-data.mjs';
 import { interpolate, pluralize, formatDate } from './site-format.mjs';
 import { renderToolGrid } from './site-table.mjs';
 import { organizationJsonLd, itemListJsonLd, breadcrumbJsonLd, softwareItemListJsonLd } from './site-seo.mjs';
-import { alternativesFor, inactiveAlternativesFor, indexable, statsAreFresh } from './site-alternatives.mjs';
 import {
-  projectLink, projectTagline, projectStatCells, fitTag, renderInactive, selfHostCell,
+  alternativesFor, inactiveAlternativesFor, indexable, statsAreFresh, countsAsOpenSource, MIN_LIST_ITEMS,
+} from './site-alternatives.mjs';
+import {
+  projectLink, projectTagline, projectStatCells, fitTag, renderInactive, selfHostCell, licenseCell,
 } from './site-page-tool.mjs';
 
 // Page de catégorie « best » (spec D6, D7, D14). URL inchangée :
@@ -16,7 +18,6 @@ import {
 // tests/site-page-category.test.mjs en tient l'inventaire.
 
 const FIT_RANK = { full: 0, partial: 1, niche: 2 };
-const DASH = '—';
 
 /**
  * Projets affichables cités par les fiches de la catégorie (déjà filtrées
@@ -92,7 +93,7 @@ ${heading}
     return `            <tr>
               <th scope="row"><a href="${escapeHtml(link.href)}"${link.rel}>${escapeHtml(project.name)}</a>${tagline ? `<span class="sub">${tagline}</span>` : ''}</th>
               <td>${fitTag(fit, t)}</td>
-              <td>${project.license ? escapeHtml(project.license) : DASH}</td>
+              <td>${licenseCell(project, t)}</td>
               <td class="num">${stars}</td>
               <td class="num">${commit}</td>
               <td>${selfHostCell(project, t)}</td>
@@ -151,8 +152,21 @@ export function renderCategoryPage({
   const n = ranked.length;
   const fallback = !indexable.list(ranked);
   const vars = { n, category: label, year: buildDate.slice(0, 4) };
-  const title = interpolate(fallback ? c.titleFallbackTemplate : c.titleTemplate, vars);
-  const description = interpolate(fallback ? c.metaDescriptionFallbackTemplate : c.metaDescriptionTemplate, vars);
+  // Le titre (et le H1, qui le reprend) prend le libellé court : « 4 Best Free
+  // & Open Source Newsletter Tools » se lit, « … Newsletters & publishing
+  // Tools » non. Description, fil d'Ariane et intertitres gardent le libellé.
+  const titleVars = { ...vars, category: categoryTitleLabel(categories, categorySlug, lang) };
+  // « Open Source » ne compte que les licences libres, comme sur la fiche
+  // outil (Ruling 44) : titre chiffré si au moins 3 le sont (et {n} = ce
+  // compte) ; sinon le titre chiffré sur n, sans « Open Source ». Titre de
+  // repli (n < 3) : « Open Source » seulement si tous les projets le sont.
+  const nOpen = ranked.filter(({ project }) => countsAsOpenSource(project)).length;
+  const open = fallback ? nOpen === n : nOpen >= MIN_LIST_ITEMS;
+  const key = (base) => `${base}${open ? '' : 'NotOpen'}${fallback ? 'Fallback' : ''}Template`;
+  const title = interpolate(c[key('title')], open && !fallback ? { ...titleVars, n: nOpen } : titleVars);
+  // Même compte dans la description que dans le titre : sinon « 3 … Open
+  // Source » au titre et « 4 free and open source » dessous.
+  const description = interpolate(c[key('metaDescription')], open && !fallback ? { ...vars, n: nOpen } : vars);
   const tally = [
     pluralize(toolViews.length, lang, ci.toolCountOne, ci.toolCountOther),
     n > 0 ? pluralize(n, lang, c.projectCountOne, c.projectCountOther) : null,

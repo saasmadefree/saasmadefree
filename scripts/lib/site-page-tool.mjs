@@ -70,6 +70,21 @@ export function hostedCell(project, lang, t, { withSource = true } = {}) {
   return `${escapeHtml(value)}<span class="sub">${source}${escapeHtml(interpolate(t.checkedOnTemplate, { date: formatDate(hosted.checkedOn, lang) }))}</span>`;
 }
 
+/** Licence d'un projet, en HTML : son nom, et sa nature (Ruling 44) quand
+ *  elle n'est pas open source au sens de l'OSI — « Source-available »,
+ *  « Open-core », « Fair-code » — avec un title d'une ligne qui l'explique.
+ *  Sans `licenseKind` (licence lue sur GitHub) ou en `open-source` : le nom
+ *  seul. Sans licence connue : un tiret. Seule source de ce rendu : tableau et
+ *  fiches de la page outil, faits et projets liés de la page projet, faits du
+ *  comparatif, tableau de la catégorie. `t` = ui.site.tool. */
+export function licenseCell(project, t) {
+  const name = project.license ? escapeHtml(project.license) : DASH;
+  const kind = project.licenseKind;
+  const label = kind && kind !== 'open-source' ? t.licenseKindLabels?.[kind] : undefined;
+  if (!label) return name;
+  return `${name} <span class="license-kind" data-kind="${escapeHtml(kind)}" title="${escapeHtml(t.licenseKindNotes[kind])}">${escapeHtml(label)}</span>`;
+}
+
 /** « Run it yourself » d'un projet : Oui / Non une fois vérifié, sinon un
  *  tiret titré — `selfHostable: true` sans date n'est qu'une valeur par
  *  défaut de la migration (finding 2). */
@@ -286,7 +301,7 @@ function renderAlternatives({ tool, alts, inactive, lang, t, s, verdict, project
     return `            <tr>
               <th scope="row"><a href="${escapeHtml(link.href)}"${link.rel}>${escapeHtml(project.name)}</a></th>
               <td>${fitTag(fit, t)}</td>
-              <td>${project.license ? escapeHtml(project.license) : DASH}</td>
+              <td>${licenseCell(project, t)}</td>
               <td class="num">${stars}</td>
               <td class="num">${commit}</td>
               <td>${selfHostCell(project, t)}</td>
@@ -331,7 +346,7 @@ function renderAlternatives({ tool, alts, inactive, lang, t, s, verdict, project
   const cards = alts.map(({ project, fit }) => {
     const link = projectLink(project, lang, isIndexable);
     const meta = [fitTag(fit, t)];
-    if (project.license) meta.push(escapeHtml(project.license));
+    if (project.license) meta.push(licenseCell(project, t));
     if (statsAreFresh(project, today)) {
       meta.push(escapeHtml(interpolate(t.starsTemplate, { count: compact.format(project.stats.stars) })));
     }
@@ -511,7 +526,14 @@ export function renderToolPage({
   // Trois titres : chiffré (n ≥ 3), de repli (0 < n < 3), et sans
   // alternative (n = 0), qui ne promet rien à auto-héberger.
   const pick = (full, fallback, none) => (vars.none ? none : vars.fallback ? fallback : full);
-  const title = interpolate(pick(t.titleTemplate, t.titleFallbackTemplate, t.titleNoAltTemplate), vars);
+  // Titre chiffré : « {n} Free & Open Source » ne compte que les licences
+  // libres (nOpen). Moins de 3 : un titre chiffré sur n, sans « Open
+  // Source » (Ruling 44).
+  const title = vars.fallback
+    ? interpolate(pick(null, t.titleFallbackTemplate, t.titleNoAltTemplate), vars)
+    : vars.notOpen
+      ? interpolate(t.titleNotOpenTemplate, vars)
+      : interpolate(t.titleTemplate, { ...vars, n: vars.nOpen });
   const top3 = new Intl.ListFormat(lang, { style: 'long', type: 'conjunction' })
     .format(alts.slice(0, 3).map(({ project }) => project.name));
   const description = interpolate(

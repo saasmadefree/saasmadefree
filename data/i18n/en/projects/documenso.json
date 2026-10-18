@@ -1,0 +1,19 @@
+{
+  "tagline": "Self-hostable e-signature platform for sending, signing and tracking documents, as a DocuSign alternative.",
+  "description": "Documenso lets you upload a PDF, place signature fields, send it to signers and keep the signed copy. It is written in TypeScript with React Router, Hono, Prisma and a PostgreSQL database. The documentation lists several ways to run it: Docker, Docker Compose, Railway, Kubernetes and a manual install, and the project publishes official images on Docker Hub and GitHub Container Registry. You also need SMTP for notification emails, optional S3-compatible storage, and a signing certificate that you generate yourself, because the application does not ship one and signing fails without it. The code is AGPL-3.0, and the maintainers sell a hosted plan from 25 USD plus an Enterprise edition for features outside the community version. It covers the everyday DocuSign use case of sending contracts for signature. Be aware that the docs warn you to secure your own network, since outbound request checks such as those for webhooks are best-effort. The README also says the team no longer accepts external pull requests, so contributions go through issues.",
+  "strengths": [
+    "Official Docker images and documented routes for Compose, Railway and Kubernetes",
+    "Stores data in PostgreSQL, with optional S3-compatible file storage",
+    "Uses your own signing certificate, so you control how documents are sealed",
+    "Built on a documented TypeScript stack with a public API and webhooks support in the docs",
+    "AGPL-3.0 code you can read, audit and run"
+  ],
+  "limits": [
+    "You must generate and configure a signing certificate yourself, and signing fails until you do",
+    "Enterprise features are sold separately and are not in the self-hosted community edition",
+    "No external pull requests are accepted, so fixes you need depend on the maintainers",
+    "Self-hosters own network security: webhook request checks are not a complete defence against requests to internal addresses",
+    "Qualified or advanced electronic signatures depend on your certificate and local law, which the project leaves to you"
+  ],
+  "bestFor": "A small company with an engineer and a PostgreSQL server that wants to send contracts for signature without per-envelope fees."
+}

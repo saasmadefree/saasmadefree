@@ -1,0 +1,48 @@
+{
+  "slug": "wekan",
+  "name": "WeKan",
+  "homepage": "https://wekan.fi",
+  "repo": "wekan/wekan",
+  "license": "MIT",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/wekan/wekan/blob/main/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/wekan/wekan/wiki/Install",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 4.17,
+    "currency": "EUR",
+    "source": "https://wekan.fi/saas/",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker",
+    "snap",
+    "appimage",
+    "kubernetes"
+  ],
+  "stack": [
+    "javascript",
+    "meteor",
+    "node.js",
+    "mongodb",
+    "postgresql"
+  ],
+  "categories": [
+    "project-management",
+    "tasks"
+  ],
+  "stats": {
+    "stars": 21124,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2014-01-21",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

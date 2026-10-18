@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Open-source project management tool for issues, cycles, modules, views, pages and analytics",
+    "url": "https://github.com/makeplane/plane",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Built with React Router, Django and Node",
+    "url": "https://github.com/makeplane/plane",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Installation methods: Docker, Kubernetes, managed hosting; Plane Cloud also exists",
+    "url": "https://github.com/makeplane/plane",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Install menu lists Docker Compose, Docker AIO, Swarm, Kubernetes, Podman Quadlets, Coolify and Portainer",
+    "url": "https://developers.plane.so/self-hosting/methods/docker-compose",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Community Edition under AGPL v3.0, equal to Cloud Free tier; paid plans require switching to Commercial Edition; Commercial gives 12 free seats per workspace",
+    "url": "https://developers.plane.so/self-hosting/editions-and-versions",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Commercial Docker Compose guide: 2 cores, 4GB RAM, 8GB recommended for production",
+    "url": "https://developers.plane.so/self-hosting/methods/docker-compose",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "A Pro, Business or Enterprise Grid license key unlocks paid features",
+    "url": "https://developers.plane.so/self-hosting/methods/docker-compose",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Instance admins configure settings with God mode",
+    "url": "https://github.com/makeplane/plane",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted workout, nutrition and body-weight tracker with a REST API and mobile apps.",
+  "description": "wger is a workout and fitness manager written with Django. You build workout routines with progression rules, log training, track body weight and custom measurements, and plan a nutrition diary using a food database from Open Food Facts. It also has an exercise wiki, a progress photo gallery and a REST API. Several people can share one server, and it includes basic tools for running a gym. Mobile apps for Android and iOS connect to a server, and the README says they are also available on F-Droid and Flathub. The production Docker Compose file starts gunicorn, PostgreSQL, Redis and an Nginx reverse proxy, and keeps the database, static files and uploads in volumes. After the first start you run one command to prepare the mobile sync storage, then log in with a default admin account and change its password. You should also set your own secret key and JWT keys. The application code is AGPL-3.0-or-later, while exercise and ingredient data carry Creative Commons licences. It replaces workout loggers and calorie trackers such as Strong or Hevy and the diet part of MyFitnessPal.",
+  "strengths": [
+    "Combines workout routines, body measurements and a nutrition diary in one app",
+    "Offers a REST API for scripts and third-party integrations",
+    "Official mobile apps exist for Android and iOS, including F-Droid",
+    "The production Docker Compose file bundles PostgreSQL, Redis and Nginx with persistent volumes",
+    "Has multi-user accounts with basic gym management features"
+  ],
+  "limits": [
+    "The Compose stack runs gunicorn, PostgreSQL, Redis and Nginx, which is heavier than a single container",
+    "The default admin password is adminadmin, and you must change it and set JWT keys before exposing the server",
+    "Mobile sync needs a one-time PowerSync storage setup command after the first start",
+    "Food data comes from Open Food Facts, so coverage of branded products depends on that open database"
+  ],
+  "bestFor": "A lifter or small gym with a home server who wants to log training and meals in one self-hosted app instead of paying for Strong or MyFitnessPal."
+}

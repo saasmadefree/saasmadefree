@@ -1,0 +1,40 @@
+{
+  "slug": "docuseal",
+  "name": "DocuSeal",
+  "homepage": "https://www.docuseal.com",
+  "repo": "docusealco/docuseal",
+  "license": "AGPL-3.0",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/docusealco/docuseal/blob/HEAD/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://www.docuseal.com/on-premises",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 0,
+    "currency": "USD",
+    "source": "https://www.docuseal.com/pricing",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "ruby"
+  ],
+  "categories": [
+    "documents"
+  ],
+  "stats": {
+    "stars": 18747,
+    "lastCommit": "2026-10-12",
+    "createdAt": "2023-07-03",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

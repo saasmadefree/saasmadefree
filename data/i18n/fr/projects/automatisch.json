@@ -1,0 +1,18 @@
+{
+  "tagline": "Outil d’automatisation visuel auto-hébergé qui relie des applis web, alternative open source à Zapier.",
+  "description": "Automatisch te permet de relier des services web en flux automatisés sans écrire de code. Tu choisis une appli de départ, tu ajoutes des actions, et le serveur exécute le flux. Comme il tourne sur ta propre machine, tes identifiants et tes données restent chez toi, ce que le projet présente comme sa raison d’être. L’installation est documentée pour Docker Compose et Docker simple : tu clones le dépôt et tu lances docker compose up. La première connexion utilise un compte d’exemple par défaut, à changer dans les réglages. Deux variables d’environnement comptent beaucoup. ENCRYPTION_KEY protège les identifiants tiers stockés et WEBHOOK_SECRET_KEY vérifie les appels de webhooks ; changer l’une ou l’autre casse les connexions et les flux existants. Le cœur est sous licence AGPL-3.0, tandis que les fichiers dont le nom contient .ee. relèvent d’une licence entreprise commerciale. La liste des intégrations se consulte dans la documentation et tu peux en demander de nouvelles via les issues GitHub. Il convient bien aux automatisations simples déclencheur-action, mais c’est un projet plus petit que Zapier ou n8n : vérifie que tes applis sont prises en charge avant de migrer. Les autres modes d’installation que Docker ne sont pas encore documentés.",
+  "strengths": [
+    "Démarre avec une seule commande docker compose up depuis le dépôt cloné",
+    "Garde les identifiants de connexion sur ton serveur, chiffrés avec une clé que tu contrôles",
+    "Documente chaque appli prise en charge avec ses déclencheurs et ses actions",
+    "Les nouvelles intégrations se demandent via les issues GitHub, et la documentation inclut un guide pour en créer une",
+    "Partage des licences explicite : cœur AGPL-3.0, fichiers entreprise repérés par .ee. dans le nom"
+  ],
+  "limits": [
+    "Seules les installations Docker et Docker Compose sont documentées",
+    "Changer ENCRYPTION_KEY ou WEBHOOK_SECRET_KEY plus tard casse les connexions et les flux existants",
+    "Livré avec un compte d’exemple par défaut, à changer après le premier démarrage",
+    "Certains fichiers relèvent d’une licence entreprise commerciale : tout le dépôt n’est donc pas en AGPL"
+  ],
+  "bestFor": "Un non-développeur ou un petit patron avec un VPS, qui fait tourner quelques automatisations simples entre applis et veut garder ses données chez lui."
+}

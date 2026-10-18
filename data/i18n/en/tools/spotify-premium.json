@@ -28,6 +28,22 @@
     {
       "q": "What is the one thing that does not survive the rebuild?",
       "a": "Discover Weekly. It works because tens of millions of people listened to something next, and no amount of local analysis reproduces a recommendation drawn from a crowd."
+    },
+    {
+      "q": "What's the best free Spotify Premium alternative?",
+      "a": "Navidrome is the best free Spotify alternative if you own your music. It plays your files with playlists and history. It has no catalogue and no recommendations, so it replaces the player and not the library."
+    },
+    {
+      "q": "Where do I get music for a self-hosted server?",
+      "a": "From files you own, such as ripped CDs or purchased downloads. None of these projects provides a licensed catalogue. If you have no collection yet, a self-hosted server will start empty."
     }
-  ]
+  ],
+  "alternativesIntro": "The best free Spotify alternative is Navidrome: a music-only server with playlists and play history for files you already own. No self-hosted project replaces the licensed catalogue, Discover Weekly or the shared playlists friends can open. These servers play your own music, and their suggestions are only as good as your taste. Jellyfin suits you if you want video from the same server. If you listen mostly to new releases and algorithmic playlists, keep paying $12.99 a month. Building your own player is easy, but the catalogue is the product.",
+  "alternativeNotes": {
+    "navidrome": "Streams and organises your own music files, with playlists and play history. It has no licensed catalogue and no recommendations.",
+    "jellyfin": "Streams your own music alongside video from one server. It has no licensed catalogue, and its music features are lighter than a music-only server.",
+    "koel": "A web player for your own files, with playlists and a queue. It has no licensed catalogue.",
+    "ampache": "Streams your own library to web and API clients, with playlists and ratings. It has no licensed catalogue.",
+    "gonic": "Serves your own library to Subsonic apps, with playlists. It has no catalogue and no recommendations."
+  }
 }

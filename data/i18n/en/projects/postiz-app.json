@@ -1,0 +1,17 @@
+{
+  "tagline": "Self-hosted social media scheduler with analytics, team features, a public API and AI tools.",
+  "description": "Postiz schedules and publishes posts to many social networks from one calendar. Teams can comment on drafts, invite members and keep analytics alongside the posts. A public API, a Node SDK, an n8n node and a Make.com integration cover automation, and an MCP endpoint lets AI agents drive it. It is written with Next.js and NestJS, uses Prisma with PostgreSQL by default, and relies on Temporal for workflows. Install is through a Docker Compose repository, Docker standalone or Helm. The Compose setup serves the frontend on port 4007 and a Temporal dashboard on port 8080. The code is AGPL-3.0, and the README says the open-source and cloud editions carry the same core features. It can replace Buffer or Hootsuite on cost, with no limits on channels, posts or members. The trade-off is setup work. On your own server you register a developer app with every social platform and wait for approval, which for Meta, YouTube and TikTok can take weeks. The hosted Postiz Cloud has those apps already approved.",
+  "strengths": [
+    "Calendar scheduling and cross-posting to many networks",
+    "Unlimited channels, posts and team members when self-hosted",
+    "Public API, Node SDK, n8n and Make.com integrations, MCP support",
+    "Install by Docker Compose, Docker standalone or Helm"
+  ],
+  "limits": [
+    "You create and get approval for your own developer app on each social platform, which can take weeks",
+    "Analytics need your own app credentials with analytics scopes",
+    "AI features need your own provider keys, such as OpenAI",
+    "Scheduling relies on a Temporal service, which adds a component to run beside the app and the database"
+  ],
+  "bestFor": "A small agency or creator who wants to cross-post on a calendar without per-channel fees and can handle a Docker stack."
+}

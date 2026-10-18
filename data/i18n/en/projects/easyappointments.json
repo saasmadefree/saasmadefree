@@ -1,0 +1,19 @@
+{
+  "tagline": "Self-hosted PHP appointment booking system with services, providers and Google Calendar sync.",
+  "description": "Easy!Appointments is a long-running PHP application for letting customers book time with service providers on your own website. You manage customers, services and providers, define working plans and booking rules, and send email notifications. It can sync with Google Calendar and the interface is available in multiple languages. Production installs need Apache or Nginx, PHP 8.2 or newer and a MySQL database. You upload the folder, make the storage directory writable, copy the sample config file to config.php, fill in the database values, and finish with a browser setup wizard. A Docker Compose file exists, but the README presents it as the development environment rather than a production route. The code is GPL-3.0 and the project is free for commercial use. The maintainer also sells premium add-ons and services. Compared with Calendly it suits a business with several staff members and services that wants the booking form inside its own site, rather than a personal scheduling link.",
+  "strengths": [
+    "Runs on ordinary PHP and MySQL hosting, with a browser-based setup wizard",
+    "Models several providers and services, each with its own working plan",
+    "Syncs with Google Calendar",
+    "Interface available in several languages",
+    "Can be embedded in an existing website and database setup"
+  ],
+  "limits": [
+    "The README mentions Google Calendar only; there is no stated Outlook or Microsoft 365 sync",
+    "No video-meeting link creation is described in the README",
+    "Advanced capabilities are sold as premium features and services by the maintainer",
+    "Docker Compose is documented for development; production setup is manual file upload and configuration",
+    "Needs PHP 8.2 or newer, which some older shared hosts do not offer"
+  ],
+  "bestFor": "A salon, clinic or small service business with its own website and PHP hosting that wants customers to book with specific staff."
+}

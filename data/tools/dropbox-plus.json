@@ -26,7 +26,27 @@
   ],
   "alternatives": [
     {
+      "project": "nextcloud",
+      "fit": "full"
+    },
+    {
+      "project": "seafile",
+      "fit": "full"
+    },
+    {
+      "project": "opencloud",
+      "fit": "full"
+    },
+    {
+      "project": "owncloud-ocis",
+      "fit": "full"
+    },
+    {
       "project": "syncthing",
+      "fit": "partial"
+    },
+    {
+      "project": "pydio-cells",
       "fit": "partial"
     }
   ],

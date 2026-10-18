@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   isDisplayableProject, statsAreFresh, alternativesFor, replacedTools,
   indexable, toolTitleVars, toolDateModified, inactiveAlternativesFor, STATS_MAX_AGE_DAYS, PROJECT_MAX_IDLE_DAYS,
-  popularAlternatives,
+  popularAlternatives, countsAsOpenSource,
 } from '../scripts/lib/site-alternatives.mjs';
 
 const today = '2026-10-17';
@@ -232,17 +232,57 @@ describe('toolTitleVars', () => {
       { project: 'a', fit: 'full' }, { project: 'b', fit: 'full' }, { project: 'c', fit: 'full' },
     ] });
     const alts = alternativesFor(t, projects, today);
-    expect(toolTitleVars(t, alts, '2026-10-17')).toEqual({ n: 2, name: 'Notion', year: '2026', fallback: true, none: false });
+    expect(toolTitleVars(t, alts, '2026-10-17')).toEqual({ n: 2, nOpen: 2, name: 'Notion', year: '2026', fallback: true, none: false, notOpen: false });
   });
 
   it('3 alternatives affichables → titre normal, année tirée de buildDate', () => {
     const t = tool('notion', { name: 'Notion' });
-    expect(toolTitleVars(t, [{}, {}, {}], '2027-01-02')).toEqual({ n: 3, name: 'Notion', year: '2027', fallback: false, none: false });
+    expect(toolTitleVars(t, [{}, {}, {}], '2027-01-02')).toEqual({ n: 3, nOpen: 3, name: 'Notion', year: '2027', fallback: false, none: false, notOpen: false });
   });
 
   it('aucune alternative affichable → `none`, le titre sans rien à auto-héberger (finding 11)', () => {
     const t = tool('notion', { name: 'Notion' });
-    expect(toolTitleVars(t, [], '2026-10-17')).toEqual({ n: 0, name: 'Notion', year: '2026', fallback: true, none: true });
+    expect(toolTitleVars(t, [], '2026-10-17')).toEqual({ n: 0, nOpen: 0, name: 'Notion', year: '2026', fallback: true, none: true, notOpen: false });
+  });
+
+  // Ruling 44 : « Open Source » ne compte que les licences libres.
+  describe('nOpen et notOpen (nature de la licence)', () => {
+    const t = tool('zapier', { name: 'Zapier' });
+    const alt = (licenseKind) => ({ project: licenseKind ? { licenseKind } : {} });
+
+    it('sans licenseKind, open-source et open-core : comptés comme open source', () => {
+      const vars = toolTitleVars(t, [alt(), alt('open-source'), alt('open-core')], '2026-10-17');
+      expect(vars).toMatchObject({ n: 3, nOpen: 3, notOpen: false });
+    });
+
+    it('source-available et fair-code : hors nOpen, mais dans n', () => {
+      const vars = toolTitleVars(t, [alt(), alt(), alt(), alt('source-available'), alt('fair-code')], '2026-10-17');
+      expect(vars).toMatchObject({ n: 5, nOpen: 3, notOpen: false, fallback: false });
+    });
+
+    it('n ≥ 3 mais nOpen < 3 → notOpen', () => {
+      const vars = toolTitleVars(t, [alt(), alt('open-core'), alt('fair-code'), alt('source-available')], '2026-10-17');
+      expect(vars).toMatchObject({ n: 4, nOpen: 2, notOpen: true, fallback: false });
+    });
+
+    it('que du source-available → notOpen, nOpen = 0', () => {
+      const vars = toolTitleVars(t, [alt('source-available'), alt('source-available'), alt('fair-code')], '2026-10-17');
+      expect(vars).toMatchObject({ n: 3, nOpen: 0, notOpen: true });
+    });
+
+    it('n < 3 : le repli habituel, jamais notOpen', () => {
+      const vars = toolTitleVars(t, [alt('source-available'), alt('fair-code')], '2026-10-17');
+      expect(vars).toMatchObject({ n: 2, nOpen: 0, fallback: true, notOpen: false });
+    });
+  });
+
+  it('countsAsOpenSource : seule une nature source-available ou fair-code l’exclut', () => {
+    expect(countsAsOpenSource({})).toBe(true);
+    expect(countsAsOpenSource(undefined)).toBe(true);
+    expect(countsAsOpenSource({ licenseKind: 'open-source' })).toBe(true);
+    expect(countsAsOpenSource({ licenseKind: 'open-core' })).toBe(true);
+    expect(countsAsOpenSource({ licenseKind: 'source-available' })).toBe(false);
+    expect(countsAsOpenSource({ licenseKind: 'fair-code' })).toBe(false);
   });
 });
 

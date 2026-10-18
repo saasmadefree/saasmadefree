@@ -1,0 +1,19 @@
+{
+  "tagline": "Suivi de positions Google auto-hébergé, avec alertes email, API et données Search Console, sur Next.js.",
+  "description": "SerpBear suit la place de tes domaines dans les résultats Google pour les mots-clés que tu choisis, et t’envoie un email quand les positions changent, chaque jour, chaque semaine ou chaque mois. Tu peux ajouter autant de domaines et de mots-clés que tu veux. Il ne scrape pas Google lui-même. Il appelle un service de scraping tiers comme SerpApi, SearchApi ou HasData, ou il passe par des adresses proxy que tu fournis : tu paies donc les requêtes en plus de l’hébergement. Il a une API intégrée pour tes rapports, une fonction de recherche d’idées de mots-clés qui demande un compte de test Google Ads, et un lien vers Google Search Console qui affiche les vraies impressions et visites par mot-clé. L’appli est un projet Next.js avec une base SQLite, elle est livrée en image Docker et fonctionne comme une PWA sur mobile. Pour l’installer, tu la déploies, tu te connectes, tu ajoutes un domaine, tu choisis un fournisseur de scraping et, si tu veux des alertes, tu renseignes ton SMTP. La licence est MIT. Il remplace le suivi de positions d’Ahrefs, Mangools ou AccuRanker, mais pas leurs outils de backlinks ni d’audit de site.",
+  "strengths": [
+    "Aucune limite de domaines ni de mots-clés dans l’appli elle-même",
+    "Alertes par email sur les changements de position, chaque jour, semaine ou mois",
+    "API intégrée pour alimenter tes propres rapports",
+    "L’intégration de Search Console affiche impressions et visites pour chaque mot-clé suivi",
+    "Le stockage SQLite limite l’installation à une appli et un fichier"
+  ],
+  "limits": [
+    "Il dépend d’une API de scraping payante ou de tes propres proxys, car il n’interroge pas Google directement",
+    "Le README signale que plusieurs fournisseurs listés ne marchent plus, dont ScrapingAnt et ScrapingRobot",
+    "La recherche de mots-clés demande de relier un compte de test Google Ads",
+    "Suivi de positions uniquement : pas de données de backlinks, pas d’audit de site",
+    "Les commits sont rares : regarde la date du dernier commit dans le tableau avant de t’y fier"
+  ],
+  "bestFor": "Un SEO freelance ou une petite agence qui suit quelques dizaines de sites et accepte de payer chaque requête à un fournisseur de scraping plutôt qu’une formule mensuelle de suivi."
+}

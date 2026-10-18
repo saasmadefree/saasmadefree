@@ -1,25 +1,44 @@
 {
   "slug": "onyx",
-  "name": "Danswer/Onyx",
-  "homepage": "https://github.com/onyx-dot-app/onyx",
+  "name": "Onyx",
+  "homepage": "https://onyx.app",
   "repo": "onyx-dot-app/onyx",
+  "license": "MIT",
+  "licenseKind": "open-core",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/onyx-dot-app/onyx/blob/HEAD/LICENSE",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.onyx.app/deployment/overview",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 20,
+    "currency": "USD",
+    "source": "https://www.onyx.app/pricing",
+    "checkedOn": "2026-10-18"
   },
-  "deploy": [],
-  "stack": [],
+  "deploy": [
+    "docker",
+    "kubernetes",
+    "helm"
+  ],
+  "stack": [
+    "python",
+    "next.js",
+    "postgresql"
+  ],
   "categories": [
-    "seo-marketing"
+    "ai-assistant"
   ],
   "stats": {
-    "stars": 32543,
-    "lastCommit": "2026-10-16",
+    "stars": 32551,
+    "lastCommit": "2026-10-17",
     "createdAt": "2023-04-27",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
-    "en"
+    "en",
+    "fr"
   ]
 }

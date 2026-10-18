@@ -1,0 +1,38 @@
+{
+  "slug": "jan",
+  "name": "Jan",
+  "homepage": "https://jan.ai",
+  "repo": "janhq/jan",
+  "license": "Apache-2.0",
+  "licenseKind": "open-source",
+  "licenseCheckedOn": "2026-10-18",
+  "licenseSource": "https://github.com/janhq/jan/blob/HEAD/LICENSE",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.jan.ai/desktop",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "desktop"
+  ],
+  "stack": [
+    "rust",
+    "tauri",
+    "typescript"
+  ],
+  "categories": [
+    "ai-assistant"
+  ],
+  "stats": {
+    "stars": 44986,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2023-08-17",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en",
+    "fr"
+  ]
+}

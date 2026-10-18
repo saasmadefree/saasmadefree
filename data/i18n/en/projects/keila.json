@@ -1,0 +1,18 @@
+{
+  "tagline": "Open-source newsletter tool with visual editor, forms and segments; Mailchimp alternative on PostgreSQL.",
+  "description": "Keila is a newsletter tool for sending campaigns and building sign-up forms. It positions itself as an open-source alternative to Mailchimp or Sendinblue and is licensed under AGPL-3.0. You write campaigns in a visual editor, in Markdown or in plain text, and MJML is supported for custom designs. Contacts can be targeted with segments, using a visual segment editor or a segment language. Emails can be personalized with custom data fields and Liquid templates. The form builder adds checkboxes, text fields and dropdowns, with captcha and double opt-in to keep bots out. A documented API manages contacts and campaigns. Tracking can be switched off entirely. For sending, small lists can use your own mailbox over SMTP, while bigger ones can use AWS SES, SendGrid, Mailgun or Postmark. To self-host you run the pentacent/keila Docker image, or the sample Docker Compose file in the repository, and give it a PostgreSQL database. Behind a reverse proxy, WebSockets must be forwarded. The team also sells a hosted version in the EU, starting at 8 EUR per month for 2,000 emails, so you can compare self-hosting with a managed plan. Keila covers campaigns and lists but not multi-step marketing automation.",
+  "strengths": [
+    "Visual, Markdown and plain-text campaign editing, with MJML support.",
+    "Segments built in a visual editor or a segment language, plus Liquid personalization.",
+    "Form builder with custom fields, captcha and double opt-in.",
+    "Sends through your own SMTP mailbox, AWS SES, SendGrid, Mailgun or Postmark.",
+    "Tracking can be turned off completely."
+  ],
+  "limits": [
+    "No automation or drip-sequence builder: email automations exist only as a feature request in the issue tracker (#132).",
+    "Needs PostgreSQL and WebSocket forwarding if you put a reverse proxy in front.",
+    "You bring your own sending infrastructure and manage deliverability yourself when self-hosting.",
+    "The hosted plans cap monthly emails (2,000 on XS), so large lists cost more on the managed offer."
+  ],
+  "bestFor": "A solo creator or small organisation in the EU with a VPS who sends newsletters and wants to leave Mailchimp."
+}

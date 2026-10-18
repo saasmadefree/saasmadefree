@@ -1,0 +1,18 @@
+{
+  "tagline": "Open-source work management tool built around company goals, project check-ins and team spaces.",
+  "description": "Operately is a self-hostable tool for running goals, projects and teams, written with Elixir and React and licensed under Apache 2.0. Instead of a blank workspace, it ships fixed routines: goal reviews, project check-ins and regular progress updates. Features include OKR-style goals linked to projects, task boards and milestones, team spaces, message boards, documents and files, and permissions. A command-line tool and an API let scripts and AI assistants work with goals, projects and check-ins. Installation uses a single-host archive: you download it, unpack it, run the install script and start it with Docker Compose. The README compares it with Monday.com, Asana and Notion, and says it suits teams of 5 to 100. Compared with Asana, expect less flexibility and fewer integrations, in exchange for a prescribed way of working.",
+  "strengths": [
+    "Goals, projects and check-ins are linked in one built-in workflow",
+    "Apache 2.0 licence",
+    "CLI and API let scripts or AI agents post updates",
+    "Single-host Docker Compose install from a release archive",
+    "Team spaces with message boards and documents"
+  ],
+  "limits": [
+    "Opinionated structure; the README itself contrasts it with tools you can bend into anything",
+    "Aimed at teams of 5 to 100; larger organisations are not its stated target",
+    "Docker is the only documented deploy method",
+    "Fewer ready-made integrations are described than in established tools such as Asana"
+  ],
+  "bestFor": "A startup of 10 to 50 people that wants OKRs and regular check-ins with a tool it can host itself."
+}
