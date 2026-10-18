@@ -168,6 +168,7 @@ function validateProjects(data, validators, errors) {
     if (typeof entry.description === 'string') {
       checkWordRange(entry.description, 'description', MIN_PROJECT_WORDS, MAX_PROJECT_WORDS, path, errors);
     }
+    checkProjectNoOpenSourceClaim(entry, lang, projects.get(slug), path, errors);
     findPlaceholders(entry, path, errors);
     findBannedPhrases(entry, path, banned[lang], errors);
   }
@@ -347,8 +348,32 @@ const OPEN_SOURCE_CLAIM = {
   fr: /open[- ]source|(?<![\p{L}\p{N}])libres?(?![\p{L}\p{N}])/iu,
 };
 
+// Négation explicite, détection volontairement simple : une occurrence est
+// acceptée si, dans les 30 caractères qui la précèdent, un mot de négation
+// apparaît sans ponctuation (. ! ? ; , :) entre lui et l'occurrence.
+//   en : not, isn't, never, no — « It is not open source », « source-available,
+//        not open source » ;
+//   fr : pas, non, jamais, ni — « Ce n'est pas de l'open source », « pas libre ».
+// « Not free, but open source » reste une affirmation : la virgule coupe.
+const NEGATION_BEFORE = {
+  en: /(?<![\p{L}\p{N}])(?:not|isn['’]t|never|no)(?![\p{L}\p{N}])[^.!?;,:]*$/iu,
+  fr: /(?<![\p{L}\p{N}])(?:pas|non|jamais|ni)(?![\p{L}\p{N}])[^.!?;,:]*$/iu,
+};
+const NEGATION_WINDOW = 30;
+
+/** Le texte affirme-t-il « open source » (ou « libre » en fr) ? Une
+ *  occurrence niée explicitement (NEGATION_BEFORE) ne compte pas. */
+export function claimsOpenSource(text, lang) {
+  const base = OPEN_SOURCE_CLAIM[lang] ?? OPEN_SOURCE_CLAIM.en;
+  const negation = NEGATION_BEFORE[lang] ?? NEGATION_BEFORE.en;
+  for (const match of text.matchAll(new RegExp(base.source, `${base.flags}g`))) {
+    const before = text.slice(Math.max(0, match.index - NEGATION_WINDOW), match.index);
+    if (!negation.test(before)) return true;
+  }
+  return false;
+}
+
 function checkNoOpenSourceClaim(entry, lang, tool, projects, today, path, errors) {
-  const claim = OPEN_SOURCE_CLAIM[lang] ?? OPEN_SOURCE_CLAIM.en;
   const shown = (tool?.alternatives ?? [])
     .map((alt) => projects.get(alt.project))
     .filter((project) => project && isDisplayableProject(project, today));
@@ -364,10 +389,33 @@ function checkNoOpenSourceClaim(entry, lang, tool, projects, today, path, errors
     if (typeof item?.a === 'string') fields.push([`faq[${i}].a`, item.a]);
   }
   for (const [field, text] of fields) {
-    if (claim.test(text)) {
+    if (claimsOpenSource(text, lang)) {
       errors.push(
         `${path} : ${field} dit « open source », mais toutes les alternatives affichables sont ` +
         'source-available ou fair-code (licenseKind) — Ruling 44, ne pas affirmer une licence libre'
+      );
+    }
+  }
+}
+
+/** Même règle pour le texte d'un projet dont la licence n'est pas libre :
+ *  tagline, description, strengths[], limits[], bestFor. */
+function checkProjectNoOpenSourceClaim(entry, lang, project, path, errors) {
+  if (!NOT_OPEN_KINDS.has(project?.licenseKind)) return;
+  const fields = [];
+  for (const key of ['tagline', 'description', 'bestFor']) {
+    if (typeof entry[key] === 'string') fields.push([key, entry[key]]);
+  }
+  for (const key of ['strengths', 'limits']) {
+    for (const [i, item] of (Array.isArray(entry[key]) ? entry[key] : []).entries()) {
+      if (typeof item === 'string') fields.push([`${key}[${i}]`, item]);
+    }
+  }
+  for (const [field, text] of fields) {
+    if (claimsOpenSource(text, lang)) {
+      errors.push(
+        `${path} : ${field} dit « open source », mais data/projects/${project.slug}.json a ` +
+        `licenseKind "${project.licenseKind}" — Ruling 44, ne pas affirmer une licence libre (une négation explicite passe)`
       );
     }
   }

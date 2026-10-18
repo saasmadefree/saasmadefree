@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { compileValidators, loadData } from '../scripts/lib/load-data.mjs';
-import { validateAll, collectKeyPaths, compareKey } from '../scripts/lib/validate-rules.mjs';
+import { validateAll, collectKeyPaths, compareKey, claimsOpenSource } from '../scripts/lib/validate-rules.mjs';
 
 const validators = compileValidators('schema');
 const TODAY = '2026-07-30';
@@ -816,5 +816,69 @@ describe('données réelles — garde-fou « open source » (Ruling 44)', () => 
     const data = await loadData(process.cwd());
     const out = validateAll(data, validators, new Date().toISOString().slice(0, 10)).filter((e) => e.includes('Ruling 44'));
     expect(out).toEqual([]);
+  });
+});
+
+// Follow-up 2 : le texte d'un projet source-available ou fair-code ne le dit
+// pas « open source » ; une négation explicite passe.
+describe('claimsOpenSource : affirmation ou négation explicite', () => {
+  it('en : affirmations refusées', () => {
+    for (const text of ['An open source wiki.', 'Open-source automation.', 'Not free, but open source.', 'Fast. Open source too.']) {
+      expect(claimsOpenSource(text, 'en'), text).toBe(true);
+    }
+  });
+  it('en : négations acceptées', () => {
+    for (const text of ['It is not open source.', 'Source-available, not open source.', "It isn't open-source.", 'No open source license here.']) {
+      expect(claimsOpenSource(text, 'en'), text).toBe(false);
+    }
+  });
+  it('en : une occurrence niée ne couvre pas une seconde affirmée', () => {
+    expect(claimsOpenSource('The core is not open source. The SDK is open source.', 'en')).toBe(true);
+  });
+  it('fr : « open source » et « libre », négations acceptées', () => {
+    expect(claimsOpenSource('Un wiki open source.', 'fr')).toBe(true);
+    expect(claimsOpenSource('Un logiciel libre.', 'fr')).toBe(true);
+    expect(claimsOpenSource('Ce n’est pas de l’open source.', 'fr')).toBe(false);
+    expect(claimsOpenSource('Source disponible, pas open source.', 'fr')).toBe(false);
+    expect(claimsOpenSource('Ce n’est pas libre.', 'fr')).toBe(false);
+    expect(claimsOpenSource('Utilisable librement.', 'fr')).toBe(false);
+  });
+});
+
+describe('texte d’un projet non libre : pas de « open source » (Ruling 44)', () => {
+  const kind = (k) => ({ license: 'Sustainable Use License', licenseKind: k, licenseCheckedOn: TODAY, licenseSource: 'https://example.com/LICENSE' });
+  function dataWith(k, i18nOver, lang = 'en') {
+    const data = makeAltData();
+    data.projects.set('outline', makeProject('outline', { ...(k ? kind(k) : {}), markets: [lang] }));
+    data.projectI18n.delete('en/outline');
+    data.projectI18n.set(`${lang}/outline`, makeProjectI18n(i18nOver));
+    return data;
+  }
+  const errorsOf = (data) => validateAll(data, validators, TODAY).filter((e) => e.includes('Ruling 44'));
+
+  it('source-available : refuse tagline, description, strengths[], limits[] et bestFor qui l’affirment', () => {
+    const out = errorsOf(dataWith('source-available', {
+      tagline: 'An open source wiki.', description: `${words(140)} open-source`,
+      strengths: ['s1', 'Open source core', 's3'], limits: ['l1', 'Open source, but slow'], bestFor: 'Open source fans.',
+    }));
+    expect(out).toHaveLength(5);
+    expect(out[0]).toContain('data/i18n/en/projects/outline.json : tagline');
+    expect(out.join('\n')).toMatch(/description[\s\S]*bestFor[\s\S]*strengths\[1\][\s\S]*limits\[1\]/);
+    expect(out[0]).toContain('licenseKind "source-available"');
+  });
+
+  it('fair-code : une négation explicite passe', () => {
+    expect(errorsOf(dataWith('fair-code', { tagline: 'Workflow automation. It is not open source.', bestFor: 'Teams fine with source-available, not open source.' }))).toEqual([]);
+  });
+
+  it('fr : « libre » refusé, « pas de l’open source » accepté', () => {
+    expect(errorsOf(dataWith('fair-code', { tagline: 'Un outil libre.' }, 'fr'))).toHaveLength(1);
+    expect(errorsOf(dataWith('fair-code', { tagline: 'Gratuit, mais ce n’est pas de l’open source.' }, 'fr'))).toEqual([]);
+  });
+
+  it('sans licenseKind, open-source ou open-core : rien à signaler', () => {
+    for (const k of [null, 'open-source', 'open-core']) {
+      expect(errorsOf(dataWith(k, { tagline: 'An open source wiki.' }))).toEqual([]);
+    }
   });
 });
