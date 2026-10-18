@@ -191,6 +191,48 @@ describe('site.js — grille de l’accueil', () => {
   });
 });
 
+describe('site.js — accessibilité de la grille (revue finale, findings 7 et 9)', () => {
+  const status = (page) => page.doc.getElementById('grid-status');
+
+  it('dévoile les pastilles de verdict, rendues hidden sans JavaScript', () => {
+    expect(mount().doc.querySelector('.filters').hidden).toBe(false);
+  });
+
+  it('« Voir plus » donne le focus au lien de la première carte dévoilée, jamais au body', () => {
+    const page = mount();
+    page.more().focus();
+    page.more().click();
+    const firstNew = page.cards().filter((c) => !c.hidden)[24];
+    expect(page.doc.activeElement).toBe(firstNew.querySelector('.card-name a'));
+    expect(page.doc.activeElement).not.toBe(page.doc.body);
+    expect(page.more().hidden).toBe(true);
+  });
+
+  it('« Voir plus » au milieu de la liste : le focus va aussi à la 25e carte', () => {
+    const page = mount();
+    page.chip('all').click();
+    page.more().click();
+    expect(page.doc.activeElement.getAttribute('href')).toBe(page.cards().filter((c) => !c.hidden)[24].querySelector('a').getAttribute('href'));
+  });
+
+  it('la région live est muette au chargement, puis annonce le nombre de résultats après un filtre', () => {
+    const page = mount();
+    expect(status(page).textContent).toBe('');
+    page.chip('yes').click();
+    expect(status(page).textContent).toBe('10 tools match');
+    page.choose('cat-filter', 'design');
+    // verdict yes (i % 3 = 0) et catégorie design (i % 3 = 1) : aucune fiche.
+    expect(status(page).textContent).toBe('0 tools match');
+    page.chip('all').click();
+    expect(status(page).textContent).toBe('10 tools match');
+  });
+
+  it('la région live annonce aussi le résultat d’une recherche ?q=, au singulier si besoin', () => {
+    expect(status(mount({ search: '?q=accroche%202' })).textContent).toBe('11 tools match');
+    expect(status(mount({ search: '?q=survey%20builder' })).textContent).toBe('1 tool matches');
+  });
+});
+
 describe('site.js — page de catégorie', () => {
   it('sans « Voir plus » sur la page, toutes les cartes restent visibles', () => {
     const page = mount({ html: categoryHtml() });

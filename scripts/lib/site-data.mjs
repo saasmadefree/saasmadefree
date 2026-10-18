@@ -194,6 +194,8 @@ export function catalogueFigures(tools, langs, promptCount) {
     toolsPublished: tools.size,
     categories: categories.size,
     languages: langs.length,
+    // Les langues dont les prompts sont comptés : le libellé les nomme.
+    promptLanguages: [...langs],
     totalMonthlyUsd,
     replaceableMonthlyUsd,
     prompts: promptCount,

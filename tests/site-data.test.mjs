@@ -266,6 +266,8 @@ describe('catalogueFigures', () => {
     expect(figures.categories).toBe(3);
     expect(figures.languages).toBe(2);
     expect(figures.prompts).toBe(42);
+    // Un prompt par fiche et par langue : le libellé de l'accueil nomme les langues comptées.
+    expect(figures.promptLanguages).toEqual(['en', 'fr']);
   });
 
   it('ne somme que les fiches en USD à base mensuelle pour le prix total', () => {

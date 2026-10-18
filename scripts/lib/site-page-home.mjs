@@ -22,7 +22,10 @@ function renderFigures(figures, mrrTotal, lang, h) {
     [h.figureToolsPublished, n(figures.toolsPublished)],
     [h.figureCategories, n(figures.categories)],
     [h.figureLanguages, n(figures.languages)],
-    [h.figurePrompts, n(figures.prompts)],
+    // Un prompt par fiche ET par langue (chaque langue a le sien, écrit dans
+    // la langue) : le libellé dit lesquelles, pour qu'on ne le lise pas à
+    // côté du nombre d'outils comme « un prompt par outil ».
+    [interpolate(h.figurePrompts, { langs: (figures.promptLanguages ?? []).join(' + ') }), n(figures.prompts)],
     [h.figureTotalPrice, usd(figures.totalMonthlyUsd)],
     [h.replaceableSpendLabel, usd(figures.replaceableMonthlyUsd)],
   ].map(([label, value]) => `        <li><span>${escapeHtml(label)}</span> <strong>${escapeHtml(value)}</strong></li>`);
@@ -41,14 +44,21 @@ ${items.join('\n')}
 
 /** Filtres au-dessus de la grille : les pastilles de verdict (forme + mot +
  *  décompte, définition en `title` et en `aria-describedby` vers la légende),
- *  puis le filtre de catégorie et le tri. Ces deux listes ne servent qu'avec
- *  JavaScript : elles sont rendues `hidden`, et site.js les dévoile — un
- *  contrôle mort est pire qu'un contrôle absent. */
+ *  puis le filtre de catégorie et le tri. Tous ne servent qu'avec
+ *  JavaScript : ils sont rendus `hidden`, et site.js les dévoile — un
+ *  contrôle mort est pire qu'un contrôle absent. La légende, elle, reste
+ *  visible sans script : chaque verdict, son nombre de fiches et sa part du
+ *  catalogue (D14), calculés sur la grille. */
 function renderControls(toolViews, categories, lang, s, h) {
   const n = new Intl.NumberFormat(lang);
+  const pct = new Intl.NumberFormat(lang, { style: 'percent' });
   const marks = { yes: '●', kinda: '◐', no: '○' };
+  const countOf = (v) => toolViews.filter((t) => t.verdict === v).length;
+  const share = (v) => interpolate(h.legendShareTemplate, {
+    count: n.format(countOf(v)), share: pct.format(toolViews.length ? countOf(v) / toolViews.length : 0),
+  });
   const chips = ['yes', 'kinda', 'no'].map((v) => {
-    const count = toolViews.filter((t) => t.verdict === v).length;
+    const count = countOf(v);
     const { label, desc } = s.verdicts[v];
     return `          <button type="button" class="verdict-chip" data-verdict="${v}" aria-pressed="false" title="${escapeHtml(desc)}" aria-describedby="legend-${v}">`
       + `<span class="mark" aria-hidden="true">${marks[v]}</span>${escapeHtml(label)} <span class="c">${escapeHtml(n.format(count))}</span></button>`;
@@ -64,7 +74,7 @@ function renderControls(toolViews, categories, lang, s, h) {
     .join('\n');
 
   return `      <div class="controls">
-        <div class="filters" role="group" aria-label="${escapeHtml(h.verdictFilterAriaLabel)}">
+        <div class="filters" role="group" hidden aria-label="${escapeHtml(h.verdictFilterAriaLabel)}">
           <button type="button" class="verdict-chip is-active" data-verdict="all" aria-pressed="true">${escapeHtml(h.allChip)} <span class="c">${escapeHtml(n.format(toolViews.length))}</span></button>
 ${chips.join('\n')}
         </div>
@@ -83,7 +93,7 @@ ${options}
         </div>
       </div>
       <ul class="legend" aria-label="${escapeHtml(h.verdictsHeading)}">
-${['yes', 'kinda', 'no'].map((v) => `        <li id="legend-${v}"><strong><span class="mark" aria-hidden="true">${marks[v]}</span>${escapeHtml(s.verdicts[v].label)}</strong> ${escapeHtml(s.verdicts[v].desc)}</li>`).join('\n')}
+${['yes', 'kinda', 'no'].map((v) => `        <li id="legend-${v}"><strong><span class="mark" aria-hidden="true">${marks[v]}</span>${escapeHtml(s.verdicts[v].label)}</strong> ${escapeHtml(share(v))} ${escapeHtml(s.verdicts[v].desc)}</li>`).join('\n')}
       </ul>`;
 }
 
@@ -192,6 +202,7 @@ ${renderFigures(figures, mrrTotal, lang, h)}
 ${renderControls(toolViews, categories, lang, s, h)}
 ${grid}
       <p id="no-results" hidden>${escapeHtml(h.noResults)}</p>
+      <p id="grid-status" class="visually-hidden" role="status" aria-live="polite" data-one="${escapeHtml(h.resultCountOne)}" data-other="${escapeHtml(h.resultCountOther)}"></p>
       <button type="button" id="show-more" class="show-more" hidden data-page-size="${PAGE_SIZE}" data-template="${escapeHtml(h.showMoreTemplate)}">${escapeHtml(interpolate(h.showMoreTemplate, { count: new Intl.NumberFormat(lang).format(Math.max(0, toolViews.length - PAGE_SIZE)) }))}</button>
     </section>
 ${renderStart({ toolViews, topCategorySlugs, categories, path, lang, ui, figures })}`;

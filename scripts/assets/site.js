@@ -223,6 +223,10 @@
     var catSelect = document.getElementById('cat-filter');
     var orderSelect = document.getElementById('order');
     var selects = document.querySelector('.selects');
+    var filters = document.querySelector('.filters');
+    // Région live polie : elle annonce le nombre de résultats après un
+    // filtre ou une recherche ?q=, jamais au simple chargement de la page.
+    var gridStatus = document.getElementById('grid-status');
     var verdictChips = Array.prototype.slice.call(document.querySelectorAll('.verdict-chip'));
     var lang = holder.dataset.lang;
 
@@ -235,6 +239,7 @@
     if (initialQ) state.initialQuery = initialQ.trim().toLowerCase();
 
     if (selects) selects.hidden = false;
+    if (filters) filters.hidden = false;
 
     function applyFilter() {
       var matched = 0;
@@ -249,6 +254,7 @@
         card.hidden = !matches || matched > limit;
       }
       if (noResults) noResults.hidden = matched !== 0;
+      state.matched = matched;
       if (moreBtn) {
         var left = matched - limit;
         moreBtn.hidden = !(left > 0);
@@ -261,6 +267,11 @@
 
     function resetLimit() {
       state.limit = pageSize;
+    }
+
+    function announce() {
+      if (!gridStatus) return;
+      gridStatus.textContent = pluralize(state.matched, lang, gridStatus.dataset.one, gridStatus.dataset.other);
     }
 
     // Ordre de la grille : les cartes sont déplacées, jamais reconstruites.
@@ -291,6 +302,7 @@
         state.verdict = chip.dataset.verdict;
         resetLimit();
         applyFilter();
+        announce();
       });
     });
 
@@ -299,6 +311,7 @@
         state.category = catSelect.value;
         resetLimit();
         applyFilter();
+        announce();
       });
     }
 
@@ -310,13 +323,28 @@
     }
 
     if (moreBtn) {
+      // Le dernier clic cache le bouton qui a le focus : sans relais, le
+      // focus tomberait sur <body>. Il va au lien de la première carte
+      // dévoilée, là où la lecture reprend (revue finale, finding 7).
       moreBtn.addEventListener('click', function () {
+        var shown = state.limit;
         state.limit += pageSize;
         applyFilter();
+        var seen = 0;
+        for (var i = 0; i < cards.length; i++) {
+          if (cards[i].hidden) continue;
+          if (seen === shown) {
+            var link = cards[i].querySelector('.card-name a');
+            if (link) link.focus();
+            break;
+          }
+          seen++;
+        }
       });
     }
 
     applyFilter();
+    if (state.initialQuery) announce();
 
     fetchVotes().then(function (counts) {
       if (!counts) return;

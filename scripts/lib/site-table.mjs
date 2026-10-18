@@ -29,8 +29,11 @@ import { PLACEHOLDER_PATH } from './site-favicons.mjs';
  * @param {object} opts
  * @param {number} [opts.headingLevel=3] - niveau du titre de carte : 3 sous le
  *   h2 de l'annuaire (accueil), 2 directement sous le h1 (page de catégorie)
+ * @param {string} [opts.label] - nom accessible de la liste ; par défaut le
+ *   titre de l'annuaire. Jamais la note de classement : l'ordre change dès
+ *   qu'on trie par prix ou par nom (revue finale, finding 10).
  */
-export function renderToolGrid(tools, { lang, ui, categories, voteCounts, favicons = {}, headingLevel = 3 }) {
+export function renderToolGrid(tools, { lang, ui, categories, voteCounts, favicons = {}, headingLevel = 3, label }) {
   const t = ui.site.tool;
   const h = ui.site.home;
   const singularTpl = t.voteCountOne;
@@ -80,7 +83,7 @@ export function renderToolGrid(tools, { lang, ui, categories, voteCounts, favico
     .join('\n');
 
   return `      <div id="tool-table" data-lang="${lang}" data-singular="${escapeHtml(singularTpl)}" data-plural="${escapeHtml(pluralTpl)}">
-        <ul class="tool-grid" id="tool-rows" aria-label="${escapeHtml(h.rankNote)}">
+        <ul class="tool-grid" id="tool-rows" aria-label="${escapeHtml(label ?? h.listHeading)}">
 ${cards}
         </ul>
       </div>`;

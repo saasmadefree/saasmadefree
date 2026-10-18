@@ -16,7 +16,7 @@ const ui = {
       no: { label: 'Not yet' },
     },
     home: {
-      rankNote: 'Ranked by votes recorded so far.',
+      listHeading: 'The directory',
       cardDiyTemplate: 'DIY: {time}',
       cardAltsLabel: 'Free alternatives:',
     },
@@ -130,7 +130,12 @@ describe('renderToolGrid — grille de cartes', () => {
     expect(render({ headingLevel: 2 })).toContain('<h2 class="card-name">');
   });
 
-  it('nomme la liste par son ordre de classement', () => {
-    expect(html).toContain('<ul class="tool-grid" id="tool-rows" aria-label="Ranked by votes recorded so far.">');
+  // Revue finale, finding 10 : la note de classement mentait dès qu'on
+  // retriait la grille. La liste porte le titre de l'annuaire, ou celui que
+  // la page lui donne.
+  it('nomme la liste par le titre de l’annuaire, ou par le libellé fourni', () => {
+    expect(html).toContain('<ul class="tool-grid" id="tool-rows" aria-label="The directory">');
+    expect(render({ label: 'Analytics & <BI>' })).toContain('aria-label="Analytics &amp; &lt;BI&gt;"');
+    expect(html).not.toContain('Ranked by');
   });
 });

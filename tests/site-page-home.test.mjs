@@ -44,7 +44,7 @@ const toolViews = Array.from({ length: 30 }, (_, i) => ({
 
 const FIGURES = {
   toolsPublished: 530, categories: 51, languages: 2, totalMonthlyUsd: 11760.18,
-  replaceableMonthlyUsd: 8123.5, prompts: 529,
+  replaceableMonthlyUsd: 8123.5, prompts: 529, promptLanguages: ['en', 'fr'],
 };
 
 const LIVE = (slot, name) => ({
@@ -100,7 +100,7 @@ describe('accueil — liste D14', () => {
     // Les six chiffres du catalogue, chacun avec son libellé.
     for (const [label, value] of [
       [h.figureToolsPublished, n(530)], [h.figureCategories, n(51)], [h.figureLanguages, n(2)],
-      [h.figurePrompts, n(529)], [h.figureTotalPrice, usd(11760.18)], [h.replaceableSpendLabel, usd(8123.5)],
+      [h.figurePrompts.replace('{langs}', 'en + fr'), n(529)], [h.figureTotalPrice, usd(11760.18)], [h.replaceableSpendLabel, usd(8123.5)],
     ]) {
       expect(figures, label).toContain(`<span>${escapeHtml(label)}</span> <strong>${value}</strong>`);
     }
@@ -201,6 +201,10 @@ describe('accueil — liste D14', () => {
     expect(cards.filter((c) => c.hidden)).toEqual([]);
     expect(win.document.getElementById('show-more').hidden).toBe(true);
     expect(win.document.querySelector('.selects').hidden).toBe(true);
+    // Les pastilles de verdict ne font rien sans JavaScript : cachées aussi
+    // (finding 9). La légende, elle, reste lisible avec ses parts.
+    expect(win.document.querySelector('.filters').hidden).toBe(true);
+    expect(win.document.querySelector('.legend').hidden).toBe(false);
     win.close();
   });
 
@@ -269,5 +273,50 @@ describe('accueil — liste D14', () => {
   it('les blocs « accueil » de en et fr portent exactement les mêmes clés', () => {
     expect(Object.keys(UI.fr.site.home).sort()).toEqual(Object.keys(UI.en.site.home).sort());
     expect(Object.keys(UI.fr.site.footer).sort()).toEqual(Object.keys(UI.en.site.footer).sort());
+  });
+});
+
+describe('accueil — revue finale (findings 5, 6, 7, 10)', () => {
+  // D14 : les parts des verdicts (13 % / 54 % / 33 % sur le vrai catalogue)
+  // reviennent dans la légende, calculées depuis la grille, jamais recopiées.
+  it('la légende donne, par verdict, le nombre de fiches et sa part du catalogue', () => {
+    const pct = new Intl.NumberFormat('en', { style: 'percent' });
+    const legend = between('class="legend"', '</ul>');
+    for (const v of VERDICTS) {
+      const share = UI.en.site.home.legendShareTemplate.replace('{count}', '10').replace('{share}', pct.format(1 / 3));
+      expect(legend).toMatch(new RegExp(`<li id="legend-${v}">.*${share.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`));
+    }
+    // Une autre grille, d'autres parts : rien n'est écrit en dur.
+    const skewed = renderHome('en', { toolViews: [toolViews[1], toolViews[2], ...toolViews.filter((t) => t.verdict === 'yes')] });
+    const legendSkewed = between('class="legend"', '</ul>', skewed);
+    expect(legendSkewed).toContain(UI.en.site.home.legendShareTemplate.replace('{count}', '10').replace('{share}', '83%'));
+    expect(legendSkewed).toContain(UI.en.site.home.legendShareTemplate.replace('{count}', '1').replace('{share}', '8%'));
+    // En français, le pourcentage à la française.
+    expect(between('class="legend"', '</ul>', renderHome('fr'))).toContain('10 (33\u00a0%)');
+  });
+
+  it('le chiffre des prompts dit qu’il additionne les langues (en + fr)', () => {
+    expect(html).toContain('<span>Prompts written (en + fr)</span> <strong>529</strong>');
+    expect(renderHome('fr')).toContain('<span>Prompts écrits (en + fr)</span>');
+  });
+
+  it('la grille est nommée par le titre de l’annuaire, pas par la note de classement', () => {
+    expect(html).toContain(`<ul class="tool-grid" id="tool-rows" aria-label="${escapeHtml(UI.en.site.home.listHeading)}">`);
+  });
+
+  it('une région live polie annonce le nombre de résultats, vide au chargement', () => {
+    const status = between('id="grid-status"', '</p>');
+    expect(status).toContain('role="status"');
+    expect(status).toContain('aria-live="polite"');
+    expect(status).toContain(`data-one="${escapeHtml(UI.en.site.home.resultCountOne)}"`);
+    expect(status).toContain(`data-other="${escapeHtml(UI.en.site.home.resultCountOther)}"`);
+    expect(status).toMatch(/>$/);
+  });
+});
+
+describe('accueil — pastilles sans saut de mise en page (finding 9)', () => {
+  it('avec la classe js, la place des pastilles est réservée avant que site.js les dévoile', async () => {
+    const { SITE_CSS } = await import('../scripts/lib/site-styles.mjs');
+    expect(SITE_CSS).toContain('.js .filters[hidden]{display:flex!important;visibility:hidden}');
   });
 });

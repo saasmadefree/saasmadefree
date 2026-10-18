@@ -134,3 +134,51 @@ describe('renderStatsPage — grille allégée', () => {
     expect(payload.viewsLabel).toBe(t.viewsLabel);
   });
 });
+
+// scripts/assets/stats.js exécuté pour de vrai contre la page rendue, avec une
+// réponse d'API sous contrôle (sans Chart.js : le graphe est sauté). Revue
+// finale, finding 4 : les noms collés à leur éditeur (« AmazonbotAmazon »),
+// pour l'œil comme pour le lecteur d'écran.
+describe('stats.js — lignes lisibles', async () => {
+  const { Window } = await import('happy-dom');
+  const STATS_JS = readFileSync('scripts/assets/stats.js', 'utf8');
+  const payload = {
+    today: { views: 3 }, peak: { views: 62, day: '2026-08-14' }, visitors7d: 9,
+    copies7d: { total: 0, byAgent: [], topPrompts: [] }, views14d: [],
+    aiReferrals: { d7: [{ ai: 'ChatGPT', n: 1 }], d30: [{ ai: 'ChatGPT', n: 2 }] },
+    crawlers7d: [{ label: 'Amazonbot', vendor: 'Amazon', edge: 0, cf: 392, lastSeen: '2026-10-16' }],
+    topPages7d: [], langs7d: [], votes: { total: 0, top: [] },
+    countries7d: [{ country: 'US', views: 9 }],
+  };
+
+  async function mount() {
+    const win = new Window({ url: 'https://saasmadefree.com/en/stats/', settings: { disableJavaScriptEvaluation: true, disableJavaScriptFileLoading: true, disableCSSFileLoading: true } });
+    win.document.write(render());
+    const run = new Function('window', 'document', 'fetch', 'Intl', 'MutationObserver', 'getComputedStyle', STATS_JS);
+    run(win, win.document, () => Promise.resolve({ ok: true, json: () => Promise.resolve(payload) }), Intl,
+      win.MutationObserver, win.getComputedStyle.bind(win));
+    for (let i = 0; i < 6; i += 1) await new Promise((r) => setTimeout(r, 0));
+    return win.document;
+  }
+
+  it('un robot et son éditeur sont séparés dans le DOM, pas seulement à l’écran', async () => {
+    const doc = await mount();
+    const row = doc.querySelector('#ai-crawlers .crawler-row');
+    expect(row.textContent).not.toContain('AmazonbotAmazon');
+    expect(row.textContent.replace(/\s+/g, ' ')).toMatch(/^Amazonbot Amazon edge 0 · cf 392 \S/);
+  });
+
+  it('une pastille de pays sépare le code du chiffre (« US 9 », jamais « US9 »)', async () => {
+    const doc = await mount();
+    const chip = doc.querySelector('#by-country .stat-chip');
+    expect(chip.textContent).toContain('US 9');
+  });
+});
+
+describe('page /stats — espacement des blocs (finding 4)', () => {
+  it('les blocs de .stats-page ne se touchent plus : espacés par les jetons, bandeaux et sections plus loin', async () => {
+    const { SITE_CSS } = await import('../scripts/lib/site-styles.mjs');
+    expect(SITE_CSS).toMatch(/\.stats-page>\*\+\*\{margin-top:var\(--s5\)\}/);
+    expect(SITE_CSS).toMatch(/\.stats-page>\.stats-band,\.stats-page>section:not\(\.stats-sheet\)\{margin-top:var\(--s7\)\}/);
+  });
+});
