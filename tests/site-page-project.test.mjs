@@ -575,3 +575,31 @@ describe('Ruling 34 — liens de collection du pied de page', () => {
     expect(on).toContain('/collections/build-tonight');
   });
 });
+
+describe('titleLabel : titre de repli de la fiche projet', () => {
+  const withTitle = {
+    ...categories,
+    newsletter: { ...categories.newsletter, titleLabel: { en: 'Newsletter' } },
+  };
+
+  it('« {name}: Free Open Source {category} Tool » prend titleLabel[lang]', () => {
+    const en = dom(render('listmonk', 'en', { replaced: [], categories: withTitle }));
+    expect(en.querySelector('title').textContent).toBe('Listmonk: Free Open Source Newsletter Tool (2026)');
+  });
+
+  it('la description et le fil d’Ariane gardent label', () => {
+    const en = dom(render('listmonk', 'en', { replaced: [], categories: withTitle }));
+    expect(en.querySelector('meta[name="description"]').getAttribute('content')).toContain('(Newsletters & publishing)');
+    expect(text(en.querySelector('nav.crumbs'))).toContain('Newsletters & publishing');
+  });
+
+  it('sans titleLabel dans la langue, retombe sur label[lang]', () => {
+    const fr = dom(render('listmonk', 'fr', { replaced: [], categories: withTitle }));
+    expect(fr.querySelector('title').textContent).toBe('Listmonk : outil open source gratuit (Newsletters et publication, 2026)');
+  });
+
+  it('le titre principal (outils remplacés) ne change pas', () => {
+    const en = dom(render('listmonk', 'en', { categories: withTitle }));
+    expect(en.querySelector('title').textContent).toBe('Listmonk: Free Open Source Alternative to Mailchimp, Beehiiv, and Kit (2026)');
+  });
+});

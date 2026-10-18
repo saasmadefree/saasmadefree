@@ -146,6 +146,16 @@ export function categoryLabel(categories, slug, lang) {
   return slug.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
 }
 
+/**
+ * Libellé de catégorie pour un titre de page : `titleLabel[lang]`, groupe
+ * nominal court (« Newsletter » plutôt que « Newsletters & publishing »),
+ * sinon le libellé ordinaire de la même langue. Jamais le titleLabel d'une
+ * autre langue : un titre français ne prend pas un mot anglais.
+ */
+export function categoryTitleLabel(categories, slug, lang) {
+  return categories[slug]?.titleLabel?.[lang] ?? categoryLabel(categories, slug, lang);
+}
+
 export function categoryEmoji(categories, slug) {
   return categories[slug]?.emoji ?? null;
 }

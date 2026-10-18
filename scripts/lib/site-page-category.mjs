@@ -1,5 +1,5 @@
 import { escapeHtml, renderLayout, renderBreadcrumb } from './site-html.mjs';
-import { categoryLabel, SITE_ORIGIN } from './site-data.mjs';
+import { categoryLabel, categoryTitleLabel, SITE_ORIGIN } from './site-data.mjs';
 import { interpolate, pluralize, formatDate } from './site-format.mjs';
 import { renderToolGrid } from './site-table.mjs';
 import { organizationJsonLd, itemListJsonLd, breadcrumbJsonLd, softwareItemListJsonLd } from './site-seo.mjs';
@@ -151,7 +151,11 @@ export function renderCategoryPage({
   const n = ranked.length;
   const fallback = !indexable.list(ranked);
   const vars = { n, category: label, year: buildDate.slice(0, 4) };
-  const title = interpolate(fallback ? c.titleFallbackTemplate : c.titleTemplate, vars);
+  // Le titre (et le H1, qui le reprend) prend le libellé court : « 4 Best Free
+  // & Open Source Newsletter Tools » se lit, « … Newsletters & publishing
+  // Tools » non. Description, fil d'Ariane et intertitres gardent le libellé.
+  const titleVars = { ...vars, category: categoryTitleLabel(categories, categorySlug, lang) };
+  const title = interpolate(fallback ? c.titleFallbackTemplate : c.titleTemplate, titleVars);
   const description = interpolate(fallback ? c.metaDescriptionFallbackTemplate : c.metaDescriptionTemplate, vars);
   const tally = [
     pluralize(toolViews.length, lang, ci.toolCountOne, ci.toolCountOther),

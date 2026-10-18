@@ -396,3 +396,33 @@ describe('Ruling 34 — liens de collection du pied de page', () => {
     expect(on).toContain('/collections/build-tonight');
   });
 });
+
+describe('titleLabel : libellé court pour le titre', () => {
+  const withTitle = {
+    ...categories,
+    newsletter: { ...categories.newsletter, titleLabel: { en: 'Newsletter' } },
+  };
+
+  it('le titre et le H1 « best » prennent titleLabel[lang]', () => {
+    const d = dom(render({ categories: withTitle }));
+    expect(d.querySelector('title').textContent).toBe('4 Best Free & Open Source Newsletter Tools (2026)');
+    expect(text(d.querySelector('h1'))).toBe('4 Best Free & Open Source Newsletter Tools (2026)');
+  });
+
+  it('le titre de repli (moins de 3 projets) le prend aussi', () => {
+    const d = dom(render({ categories: withTitle, toolViews: [VIEWS[0], VIEWS[2]] }));
+    expect(d.querySelector('title').textContent).toBe('Free & Open Source Newsletter Tools (2026)');
+  });
+
+  it('le reste de la page garde label : fil d’Ariane, description, intertitres', () => {
+    const d = dom(render({ categories: withTitle }));
+    expect(text(d.querySelector('nav.crumbs'))).toBe('Directory / Newsletters & publishing');
+    expect(d.querySelector('meta[name="description"]').getAttribute('content')).toContain('Newsletters & publishing');
+    expect(text(d.querySelector('#projects-heading'))).toContain('Newsletters & publishing');
+  });
+
+  it('sans titleLabel dans la langue, le titre retombe sur label[lang]', () => {
+    const fr = dom(render({ lang: 'fr', categories: withTitle }));
+    expect(fr.querySelector('title').textContent).toBe('Newsletters et publication : les 4 meilleurs outils gratuits et open source (2026)');
+  });
+});

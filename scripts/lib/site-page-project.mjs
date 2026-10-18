@@ -1,5 +1,5 @@
 import { escapeHtml, renderLayout, renderBreadcrumb, verdictBadge } from './site-html.mjs';
-import { categoryLabel, SITE_ORIGIN } from './site-data.mjs';
+import { categoryLabel, categoryTitleLabel, SITE_ORIGIN } from './site-data.mjs';
 import { formatMonthlyPrice, formatDate, interpolate } from './site-format.mjs';
 import {
   organizationJsonLd, breadcrumbJsonLd, softwareItemListJsonLd, webPageJsonLd, languageVersions,
@@ -273,7 +273,10 @@ export function renderProjectPage({
   // Aucun outil remplacé (page alors noindex) : titre de repli par la
   // catégorie plutôt qu'un « alternative to  » vide (Ruling 21).
   const fallback = replaced.length === 0;
-  const title = interpolate(fallback ? p.titleFallbackTemplate : p.titleTemplate, vars);
+  // Titre de repli « {name}: Free Open Source {category} Tool » : libellé
+  // court de la catégorie (titleLabel), la description garde le libellé.
+  const titleVars = { ...vars, category: categoryTitleLabel(categories, project.categories[0], lang) };
+  const title = interpolate(fallback ? p.titleFallbackTemplate : p.titleTemplate, titleVars);
   const description = interpolate(fallback ? p.metaDescriptionFallbackTemplate : p.metaDescriptionTemplate, vars);
   const dateModified = projectDateModified(project);
 
