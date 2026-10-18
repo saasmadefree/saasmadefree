@@ -81,7 +81,7 @@ An open-source project is described once, in `data/projects/<slug>.json` (schema
 | `name` | display name |
 | `homepage` | the project's site, `http(s)://` only |
 | `repo` | `owner/name` on GitHub, or `null` for another forge (the project is then shown without GitHub figures, never with made-up ones) |
-| `license` | SPDX identifier, optional |
+| `license` | optional. The SPDX identifier whenever one exists (`BUSL-1.1`, `AGPL-3.0-only`, `Elastic-2.0`). Otherwise the exact name from the LICENSE file (`Sustainable Use License`), with `licenseCheckedOn` and `licenseSource` |
 | `licenseKind` | `open-source`, `open-core`, `source-available` or `fair-code`, optional. Needs `license` and `licenseSource`. Anything but `open-source` is shown next to the license, and only `open-source`/`open-core` (or no `licenseKind`) count in the "N Free & Open Source" title |
 | `licenseCheckedOn`, `licenseSource` | the date you checked the license by hand, and the LICENSE file or licensing page you read. A license you write yourself (or that is not an SPDX identifier) needs `licenseSource`; one filled by the GitHub API does not |
 | `selfHostable` | boolean: can you run it yourself? |

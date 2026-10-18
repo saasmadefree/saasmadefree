@@ -571,3 +571,17 @@ describe('renderComparePage — nature de la licence (Ruling 44)', () => {
     expect(rowOf(o, t.colLicense).map(text)).toEqual([t.licenseProprietary, 'AGPL-3.0']);
   });
 });
+
+describe('renderComparePage — ligne « Type » (Ruling 44)', () => {
+  it('projet source-available ou fair-code : jamais « Open source »', () => {
+    const page = planFor('en', 'mailchimp-vs-listmonk');
+    for (const kind of ['source-available', 'fair-code']) {
+      const right = { ...page.right, entity: { ...page.right.entity, licenseKind: kind, licenseSource: 'https://listmonk.app/LICENSE' } };
+      const d = dom(render('mailchimp-vs-listmonk', 'en', { right: sideOf(right, 'en') }));
+      expect(text(rowOf(d, c.rowKind)[1])).toBe(c.kindProjectNotOpen);
+    }
+    const core = { ...page.right, entity: { ...page.right.entity, licenseKind: 'open-core', licenseSource: 'https://listmonk.app/LICENSE' } };
+    expect(text(rowOf(dom(render('mailchimp-vs-listmonk', 'en', { right: sideOf(core, 'en') })), c.rowKind)[1])).toBe(c.kindProject);
+    expect(text(rowOf(dom(render()), c.rowKind)[1])).toBe(c.kindProject);
+  });
+});

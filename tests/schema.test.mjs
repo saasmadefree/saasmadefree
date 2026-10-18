@@ -234,6 +234,18 @@ describe('project.schema.json', () => {
       expect(validators.project({ ...sul, licenseSource: source })).toBe(true);
     });
 
+    // Ruling 45 : l'identifiant SPDX s'il existe, sinon le nom exact lu dans le
+    // fichier LICENSE, toujours avec date et source.
+    it('Ruling 45 : identifiants SPDX et noms exacts (espaces, capitales) acceptés avec date et source', () => {
+      const checked = { licenseCheckedOn: '2026-10-18', licenseSource: source };
+      for (const license of ['BUSL-1.1', 'AGPL-3.0-only', 'Elastic-2.0', 'Sustainable Use License', 'Open WebUI License', 'LobeHub Community License']) {
+        expect(validators.project({ ...validProject, license, licenseKind: 'source-available', ...checked })).toBe(true);
+      }
+      for (const license of ['Open WebUI License', 'LobeHub Community License']) {
+        expect(validators.project({ ...validProject, license })).toBe(false);
+      }
+    });
+
     it('refuse une source qui n’est pas en http(s)', () => {
       for (const bad of ['javascript:alert(1)', 'ftp://n8n.io/LICENSE', 'LICENSE.md']) {
         expect(validators.project({ ...validProject, licenseKind: 'fair-code', licenseSource: bad })).toBe(false);

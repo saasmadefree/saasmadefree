@@ -452,3 +452,53 @@ describe('page de catégorie — nature de la licence (Ruling 44)', () => {
     expect(tags.map((el) => el.getAttribute('title'))).toContain(UI.fr.site.tool.licenseKindNotes['fair-code']);
   });
 });
+
+// Ruling 44, suite : le titre « best » ne compte dans « Open Source » que les
+// projets sans licenseKind, open-source ou open-core — même règle que la fiche.
+describe('page de catégorie — « Open Source » du titre (Ruling 44)', () => {
+  const kinds = (map) => new Map([...PROJECTS].map(([slug, p]) => [slug, map[slug]
+    ? { ...p, licenseKind: map[slug], licenseSource: `https://${slug}.example/LICENSE` } : p]));
+  const titleOf = (d) => d.querySelector('title').textContent;
+  const descOf = (d) => d.querySelector('meta[name="description"]').getAttribute('content');
+  const c = UI.en.site.category;
+
+  it('une fair-code sur 4 : {n} = 3 open source, titre inchangé', () => {
+    const d = dom(render({ projects: kinds({ keila: 'fair-code' }) }));
+    expect(titleOf(d)).toBe('3 Best Free & Open Source Newsletters & publishing Tools (2026)');
+    expect(text(d.querySelector('h1'))).toBe(titleOf(d));
+  });
+
+  it('open-core compte comme open source', () => {
+    const d = dom(render({ projects: kinds({ listmonk: 'open-core', keila: 'open-core' }) }));
+    expect(titleOf(d)).toBe('4 Best Free & Open Source Newsletters & publishing Tools (2026)');
+    expect(descOf(d)).toBe(c.metaDescriptionTemplate.replace('{n}', '4').replaceAll('{category}', 'Newsletters & publishing'));
+  });
+
+  it('total ≥ 3 mais moins de 3 open source : titre chiffré sur n, sans « Open Source » (en)', () => {
+    const d = dom(render({ projects: kinds({ keila: 'source-available', postal: 'fair-code' }) }));
+    expect(titleOf(d)).toBe('4 Best Free Newsletters & publishing Tools (2026)');
+    expect(titleOf(d)).not.toMatch(/open source/i);
+    expect(text(d.querySelector('h1'))).toBe(titleOf(d));
+    expect(descOf(d)).not.toMatch(/free and open source/i);
+    expect(descOf(d)).toContain('Not all are open source');
+  });
+
+  it('idem en français', () => {
+    const d = dom(render({ lang: 'fr', projects: kinds({ listmonk: 'source-available', keila: 'source-available', mautic: 'fair-code', postal: 'fair-code' }) }));
+    const cf = UI.fr.site.category;
+    expect(titleOf(d)).toBe(cf.titleNotOpenTemplate.replace('{n}', '4').replace('{category}', 'Newsletters et publication').replace('{year}', '2026'));
+    expect(titleOf(d)).not.toMatch(/open source/i);
+    expect(descOf(d)).not.toMatch(/gratuits et open source/i);
+  });
+
+  it('moins de 3 projets : repli « Open Source » seulement si tous le sont', () => {
+    const few = { toolViews: [VIEWS[0], VIEWS[2]] }; // listmonk + mautic
+    expect(titleOf(dom(render({ ...few, projects: kinds({ listmonk: 'open-core' }) }))))
+      .toBe('Free & Open Source Newsletters & publishing Tools (2026)');
+    const mixed = dom(render({ ...few, projects: kinds({ mautic: 'source-available' }) }));
+    expect(titleOf(mixed)).toBe('Free Newsletters & publishing Tools (2026)');
+    expect(descOf(mixed)).toBe(c.metaDescriptionNotOpenFallbackTemplate.replaceAll('{category}', 'Newsletters & publishing'));
+    const fr = dom(render({ ...few, lang: 'fr', projects: kinds({ mautic: 'fair-code' }) }));
+    expect(titleOf(fr)).toBe('Newsletters et publication : outils gratuits (2026)');
+  });
+});

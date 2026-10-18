@@ -3,7 +3,9 @@ import { categoryLabel, categoryTitleLabel, SITE_ORIGIN } from './site-data.mjs'
 import { interpolate, pluralize, formatDate } from './site-format.mjs';
 import { renderToolGrid } from './site-table.mjs';
 import { organizationJsonLd, itemListJsonLd, breadcrumbJsonLd, softwareItemListJsonLd } from './site-seo.mjs';
-import { alternativesFor, inactiveAlternativesFor, indexable, statsAreFresh } from './site-alternatives.mjs';
+import {
+  alternativesFor, inactiveAlternativesFor, indexable, statsAreFresh, countsAsOpenSource, MIN_LIST_ITEMS,
+} from './site-alternatives.mjs';
 import {
   projectLink, projectTagline, projectStatCells, fitTag, renderInactive, selfHostCell, licenseCell,
 } from './site-page-tool.mjs';
@@ -154,8 +156,15 @@ export function renderCategoryPage({
   // & Open Source Newsletter Tools » se lit, « … Newsletters & publishing
   // Tools » non. Description, fil d'Ariane et intertitres gardent le libellé.
   const titleVars = { ...vars, category: categoryTitleLabel(categories, categorySlug, lang) };
-  const title = interpolate(fallback ? c.titleFallbackTemplate : c.titleTemplate, titleVars);
-  const description = interpolate(fallback ? c.metaDescriptionFallbackTemplate : c.metaDescriptionTemplate, vars);
+  // « Open Source » ne compte que les licences libres, comme sur la fiche
+  // outil (Ruling 44) : titre chiffré si au moins 3 le sont (et {n} = ce
+  // compte) ; sinon le titre chiffré sur n, sans « Open Source ». Titre de
+  // repli (n < 3) : « Open Source » seulement si tous les projets le sont.
+  const nOpen = ranked.filter(({ project }) => countsAsOpenSource(project)).length;
+  const open = fallback ? nOpen === n : nOpen >= MIN_LIST_ITEMS;
+  const key = (base) => `${base}${open ? '' : 'NotOpen'}${fallback ? 'Fallback' : ''}Template`;
+  const title = interpolate(c[key('title')], open && !fallback ? { ...titleVars, n: nOpen } : titleVars);
+  const description = interpolate(c[key('metaDescription')], vars);
   const tally = [
     pluralize(toolViews.length, lang, ci.toolCountOne, ci.toolCountOther),
     n > 0 ? pluralize(n, lang, c.projectCountOne, c.projectCountOther) : null,

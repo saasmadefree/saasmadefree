@@ -4,7 +4,7 @@ import { formatMoney, formatMonthlyPrice, formatDate, interpolate, MONTHLY_BASES
 import {
   organizationJsonLd, breadcrumbJsonLd, faqPageJsonLd, softwareItemListJsonLd, webPageJsonLd, languageVersions,
 } from './site-seo.mjs';
-import { indexable as gates, isDisplayableProject, statsAreFresh } from './site-alternatives.mjs';
+import { indexable as gates, isDisplayableProject, statsAreFresh, countsAsOpenSource } from './site-alternatives.mjs';
 import { compareKey } from './data-utils.mjs';
 import {
   projectLink, templateWithHtml, projectStatCells, sourceHost, monthYear, externalLink as ext, hostedCell, selfHostCell,
@@ -177,7 +177,8 @@ function sideFacts(side, { lang, ui, s, t, p, today }) {
   const { stars, commit } = projectStatCells(e, lang, t, today);
   const hosted = hostedCell(e, lang, t);
   return {
-    kind: escapeHtml(s.compare.kindProject),
+    // Source-available ou fair-code : la ligne « Type » ne dit pas « Open source » (Ruling 44).
+    kind: escapeHtml(countsAsOpenSource(e) ? s.compare.kindProject : s.compare.kindProjectNotOpen),
     verdict: null,
     price: null,
     yearly: null,
