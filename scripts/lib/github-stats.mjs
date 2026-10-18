@@ -12,7 +12,7 @@ const API = 'https://api.github.com';
 // Ordre des clés dans data/projects/*.json : celui du schéma. Une clé inconnue
 // (que le schéma refuserait de toute façon) part à la fin, sans être perdue.
 const PROJECT_KEYS = [
-  'slug', 'name', 'homepage', 'repo', 'license', 'selfHostable', 'selfHostableCheckedOn', 'selfHostableSource',
+  'slug', 'name', 'homepage', 'repo', 'license', 'licenseKind', 'licenseCheckedOn', 'licenseSource', 'selfHostable', 'selfHostableCheckedOn', 'selfHostableSource',
   'hosted', 'deploy', 'stack', 'categories', 'stats', 'markets',
 ];
 const STATS_KEYS = ['stars', 'lastCommit', 'createdAt', 'archived', 'checkedOn'];
@@ -198,7 +198,13 @@ export function mergeDuplicate({ projects, tools }, keep, drop) {
   kept.markets = union(kept.markets, dropped.markets);
   kept.deploy = union(kept.deploy, dropped.deploy);
   kept.stack = union(kept.stack, dropped.stack);
-  if (!kept.license && dropped.license) kept.license = dropped.license;
+  // La licence reprise vient avec sa nature, sa date et sa source : séparées,
+  // elles ne prouvent plus rien.
+  if (!kept.license && dropped.license) {
+    for (const key of ['license', 'licenseKind', 'licenseCheckedOn', 'licenseSource']) {
+      if (dropped[key] !== undefined) kept[key] = dropped[key];
+    }
+  }
 
   const outProjects = new Map();
   for (const [slug, project] of projects) {

@@ -82,6 +82,8 @@ An open-source project is described once, in `data/projects/<slug>.json` (schema
 | `homepage` | the project's site, `http(s)://` only |
 | `repo` | `owner/name` on GitHub, or `null` for another forge (the project is then shown without GitHub figures, never with made-up ones) |
 | `license` | SPDX identifier, optional |
+| `licenseKind` | `open-source`, `open-core`, `source-available` or `fair-code`, optional. Needs `license` and `licenseSource`. Anything but `open-source` is shown next to the license, and only `open-source`/`open-core` (or no `licenseKind`) count in the "N Free & Open Source" title |
+| `licenseCheckedOn`, `licenseSource` | the date you checked the license by hand, and the LICENSE file or licensing page you read. A license you write yourself (or that is not an SPDX identifier) needs `licenseSource`; one filled by the GitHub API does not |
 | `selfHostable` | boolean: can you run it yourself? |
 | `selfHostableCheckedOn`, `selfHostableSource` | the date (`YYYY-MM-DD`) you checked `selfHostable`, and the page you read (install docs, README). Both or neither |
 | `hosted` | `{ "exists": true, "priceFrom", "currency", "source", "checkedOn" }` for a paid hosted version, or `{ "exists": false }`, plus `checkedOn` and `source` once you have checked that there is none |

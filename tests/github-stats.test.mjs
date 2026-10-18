@@ -343,6 +343,14 @@ describe('mergeDuplicate', () => {
     expect(out.projects.get('whisper-cpp').license).toBe('MIT');
   });
 
+  it('la licence reprise garde sa nature et sa source, jamais l’une sans l’autre', () => {
+    const fair = { license: 'SUL-1.0', licenseKind: 'fair-code', licenseSource: 'https://n8n.example/LICENSE.md' };
+    const withKind = new Map([...projects, ['ggml-org-whisper-cpp', { ...projects.get('ggml-org-whisper-cpp'), ...fair }]]);
+    const kept = mergeDuplicate({ projects: withKind, tools }, 'whisper-cpp', 'ggml-org-whisper-cpp').projects.get('whisper-cpp');
+    expect({ license: kept.license, licenseKind: kept.licenseKind, licenseSource: kept.licenseSource }).toEqual(fair);
+    expect(kept).not.toHaveProperty('licenseCheckedOn');
+  });
+
   it('réécrit les alternatives qui pointaient sur le slug abandonné', () => {
     expect(out.tools.get('wispr-flow').alternatives).toEqual([
       { project: 'dictee', fit: 'partial' },
@@ -382,12 +390,15 @@ describe('serializeProject', () => {
     // Les champs vérifiés à la main (finding 2) gardent leur place, à côté de selfHostable.
     p.selfHostableSource = 'https://x.dev/docs';
     p.selfHostableCheckedOn = TODAY;
+    // Nature de la licence (Ruling 44) : juste après la licence.
+    p.licenseSource = 'https://x.dev/LICENSE';
+    p.licenseKind = 'open-core';
     const text = serializeProject(p);
     expect(text.endsWith('}\n')).toBe(true);
     expect(text).toContain('\n  "slug": "x"');
     const parsed = JSON.parse(text);
     expect(Object.keys(parsed)).toEqual([
-      'slug', 'name', 'homepage', 'repo', 'license', 'selfHostable', 'selfHostableCheckedOn', 'selfHostableSource',
+      'slug', 'name', 'homepage', 'repo', 'license', 'licenseKind', 'licenseSource', 'selfHostable', 'selfHostableCheckedOn', 'selfHostableSource',
       'hosted', 'deploy', 'stack', 'categories', 'stats', 'markets',
     ]);
     expect(Object.keys(parsed.stats)).toEqual(['stars', 'lastCommit', 'createdAt', 'archived', 'checkedOn']);
