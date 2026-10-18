@@ -5,7 +5,7 @@ import { renderToolGrid } from './site-table.mjs';
 import { organizationJsonLd, itemListJsonLd, breadcrumbJsonLd, softwareItemListJsonLd } from './site-seo.mjs';
 import { alternativesFor, inactiveAlternativesFor, indexable, statsAreFresh } from './site-alternatives.mjs';
 import {
-  projectLink, projectTagline, projectStatCells, fitTag, renderInactive, selfHostCell,
+  projectLink, projectTagline, projectStatCells, fitTag, renderInactive, selfHostCell, licenseCell,
 } from './site-page-tool.mjs';
 
 // Page de catégorie « best » (spec D6, D7, D14). URL inchangée :
@@ -16,7 +16,6 @@ import {
 // tests/site-page-category.test.mjs en tient l'inventaire.
 
 const FIT_RANK = { full: 0, partial: 1, niche: 2 };
-const DASH = '—';
 
 /**
  * Projets affichables cités par les fiches de la catégorie (déjà filtrées
@@ -92,7 +91,7 @@ ${heading}
     return `            <tr>
               <th scope="row"><a href="${escapeHtml(link.href)}"${link.rel}>${escapeHtml(project.name)}</a>${tagline ? `<span class="sub">${tagline}</span>` : ''}</th>
               <td>${fitTag(fit, t)}</td>
-              <td>${project.license ? escapeHtml(project.license) : DASH}</td>
+              <td>${licenseCell(project, t)}</td>
               <td class="num">${stars}</td>
               <td class="num">${commit}</td>
               <td>${selfHostCell(project, t)}</td>

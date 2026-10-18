@@ -603,3 +603,64 @@ describe('titleLabel : titre de repli de la fiche projet', () => {
     expect(en.querySelector('title').textContent).toBe('Listmonk: Free Open Source Alternative to Mailchimp, Beehiiv, and Kit (2026)');
   });
 });
+
+// Ruling 44 : une licence qui n'est pas open source se dit, sur la page du
+// projet comme ailleurs, et le titre ne promet plus « Open Source ».
+describe('renderProjectPage — nature de la licence (Ruling 44)', () => {
+  const SOURCE = 'https://github.com/n8n-io/n8n/blob/master/LICENSE.md';
+  const fair = { ...PROJECTS.get('listmonk'), license: 'SUL-1.0', licenseKind: 'fair-code', licenseSource: SOURCE };
+  const t = UI.en.site.tool;
+  const p = UI.en.site.project;
+
+  it('faits et eyebrow : la licence et sa nature, avec son explication en title', () => {
+    const d = dom(render('listmonk', 'en', { project: fair }));
+    const fact = factOf(d, t.colLicense);
+    expect(text(fact)).toBe('SUL-1.0 Fair-code');
+    expect(fact.querySelector('.license-kind').getAttribute('title')).toBe(t.licenseKindNotes['fair-code']);
+    expect(d.querySelector('.eyebrow .license-kind')).not.toBeNull();
+  });
+
+  it('open-source déclaré : le nom seul', () => {
+    const d = dom(render('listmonk', 'en', { project: { ...fair, licenseKind: 'open-source', license: 'AGPL-3.0' } }));
+    expect(text(factOf(d, t.colLicense))).toBe('AGPL-3.0');
+    expect(d.querySelector('.license-kind')).toBeNull();
+  });
+
+  it('projets liés : la nature suit la licence', () => {
+    const related = relatedProjects(PROJECTS.get('listmonk'), PROJECTS, TODAY)
+      .map((other, i) => (i === 0 ? { ...other, licenseKind: 'source-available', licenseSource: SOURCE } : other));
+    const d = dom(render('listmonk', 'en', { related }));
+    const tags = [...section(d, 'related-heading').querySelectorAll('.license-kind')];
+    expect(tags.map(text)).toEqual([t.licenseKindLabels['source-available']]);
+  });
+
+  it('titre et description sans « open source » (en et fr), repli compris', () => {
+    for (const lang of ['en', 'fr']) {
+      for (const over of [{}, { replaced: [] }]) {
+        const d = dom(render('listmonk', lang, { project: fair, ...over }));
+        expect(text(d.querySelector('title'))).not.toMatch(/open.?source/i);
+        // La description dit « not open source » : elle ne doit plus affirmer le contraire.
+        expect(d.querySelector('meta[name="description"]').getAttribute('content'))
+          .not.toMatch(/free, open-source|gratuit et open source|gratuite et open source/i);
+      }
+    }
+    const en = dom(render('listmonk', 'en', { project: fair }));
+    expect(text(en.querySelector('title'))).toBe('Listmonk: Free Alternative to Mailchimp, Beehiiv, and Kit (2026)');
+    expect(en.querySelector('meta[name="description"]').getAttribute('content')).toContain('its license is not open source');
+    const frNone = dom(render('listmonk', 'fr', { project: fair, replaced: [] }));
+    expect(text(frNone.querySelector('title'))).toBe(UI.fr.site.project.titleNotOpenFallbackTemplate
+      .replace('{name}', 'Listmonk').replace('{category}', 'Newsletters et publication').replace('{year}', '2026'));
+    expect(p.titleNotOpenTemplate).not.toMatch(/open source/i);
+  });
+
+  it('open-core : garde le titre « Open Source »', () => {
+    const d = dom(render('listmonk', 'en', { project: { ...fair, licenseKind: 'open-core', license: 'AGPL-3.0' } }));
+    expect(text(d.querySelector('title'))).toMatch(/Free Open Source Alternative/);
+  });
+
+  it('JSON-LD : license = la source lue, et rien n’y dit « open source »', () => {
+    const app = jsonLd(dom(render('listmonk', 'en', { project: fair }))).find((x) => x['@type'] === 'SoftwareApplication');
+    expect(app.license).toBe(SOURCE);
+    expect(JSON.stringify(app)).not.toMatch(/open.?source/i);
+  });
+});

@@ -556,3 +556,18 @@ describe('Ruling 34 — liens de collection du pied de page', () => {
     expect(on).toContain('/collections/build-tonight');
   });
 });
+
+// Ruling 44 : la nature d'une licence non libre suit son nom dans les faits.
+describe('renderComparePage — nature de la licence (Ruling 44)', () => {
+  it('côté projet : licence puis nature, avec son explication en title ; open-source : le nom seul', () => {
+    const page = planFor('en', 'mailchimp-vs-listmonk');
+    const right = { ...page.right, entity: { ...page.right.entity, licenseKind: 'source-available', licenseSource: 'https://listmonk.app/LICENSE' } };
+    const d = dom(render('mailchimp-vs-listmonk', 'en', { right: sideOf(right, 'en') }));
+    const [, cell] = rowOf(d, t.colLicense);
+    expect(text(cell)).toBe('AGPL-3.0 Source-available');
+    expect(cell.querySelector('.license-kind').getAttribute('title')).toBe(t.licenseKindNotes['source-available']);
+    const open = { ...page.right, entity: { ...right.entity, licenseKind: 'open-source' } };
+    const o = dom(render('mailchimp-vs-listmonk', 'en', { right: sideOf(open, 'en') }));
+    expect(rowOf(o, t.colLicense).map(text)).toEqual([t.licenseProprietary, 'AGPL-3.0']);
+  });
+});

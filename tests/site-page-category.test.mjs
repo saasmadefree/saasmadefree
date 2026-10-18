@@ -426,3 +426,29 @@ describe('titleLabel : libellé court pour le titre', () => {
     expect(fr.querySelector('title').textContent).toBe('Newsletters et publication : les 4 meilleurs outils gratuits et open source (2026)');
   });
 });
+
+// Ruling 44 : la nature d'une licence non libre suit son nom dans le tableau.
+describe('page de catégorie — nature de la licence (Ruling 44)', () => {
+  const t = UI.en.site.tool;
+  const projects = new Map([...PROJECTS, ['listmonk', {
+    ...PROJECTS.get('listmonk'), licenseKind: 'open-core', licenseSource: 'https://listmonk.app/LICENSE',
+  }]]);
+  const rowOf = (d, name) => [...d.querySelectorAll('section[aria-labelledby="projects-heading"] tbody tr')]
+    .find((tr) => text(tr.querySelector('th a')) === name);
+
+  it('licence puis nature, avec son explication en title ; sans nature : le nom seul', () => {
+    const d = dom(render({ projects }));
+    const cell = rowOf(d, 'Listmonk').querySelectorAll('td')[1];
+    expect(text(cell)).toBe('AGPL-3.0 Open-core');
+    expect(cell.querySelector('.license-kind').getAttribute('title')).toBe(t.licenseKindNotes['open-core']);
+    expect(text(rowOf(d, 'Keila').querySelectorAll('td')[1])).toBe('MIT');
+    expect(rowOf(d, 'Keila').querySelector('.license-kind')).toBeNull();
+  });
+
+  it('en français', () => {
+    const d = dom(render({ lang: 'fr', projects: new Map([...projects, ['keila', { ...PROJECTS.get('keila'), licenseKind: 'fair-code', licenseSource: 'https://keila.example/LICENSE' }]]) }));
+    const tags = [...d.querySelectorAll('section[aria-labelledby="projects-heading"] .license-kind')];
+    expect(tags.map(text).sort()).toEqual(['Fair-code', 'Open-core']);
+    expect(tags.map((el) => el.getAttribute('title'))).toContain(UI.fr.site.tool.licenseKindNotes['fair-code']);
+  });
+});

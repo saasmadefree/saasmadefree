@@ -8,6 +8,7 @@ import { indexable as gates, isDisplayableProject, statsAreFresh } from './site-
 import { compareKey } from './data-utils.mjs';
 import {
   projectLink, templateWithHtml, projectStatCells, sourceHost, monthYear, externalLink as ext, hostedCell, selfHostCell,
+  licenseCell,
 } from './site-page-tool.mjs';
 import { projectDateModified } from './site-page-project.mjs';
 
@@ -181,7 +182,7 @@ function sideFacts(side, { lang, ui, s, t, p, today }) {
     price: null,
     yearly: null,
     build: null,
-    license: e.license ? escapeHtml(e.license) : DASH,
+    license: licenseCell(e, t),
     stars,
     commit,
     // La date de création ne bouge pas : vraie même quand les chiffres

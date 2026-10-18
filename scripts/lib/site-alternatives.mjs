@@ -195,6 +195,26 @@ export function checkedDates(project) {
   return [project.stats?.checkedOn, project.hosted?.checkedOn, project.selfHostableCheckedOn].filter(Boolean);
 }
 
+// ---- nature de la licence (Ruling 44) --------------------------------------
+//
+// Une licence approuvée OSI n'est pas la seule que l'on liste : n8n (licence
+// « Sustainable Use »), PLANKA (fair-code) ou Notifuse (BSL 1.1) se lisent et
+// s'auto-hébergent, mais ne sont pas open source. `licenseKind`, posé avec sa
+// source, le dit. Sans `licenseKind`, la licence vient de l'API GitHub, qui
+// ne remonte que des identifiants SPDX : on la tient pour open source.
+
+/** Natures de licence comptées comme « open source » dans un titre : le cœur
+ *  d'un projet open-core est sous une licence libre. */
+const OPEN_LICENSE_KINDS = new Set(['open-source', 'open-core']);
+
+/** Le projet peut-il être compté dans « N Free & Open Source … » ? Oui sans
+ *  `licenseKind` (licence lue sur GitHub), oui pour open-source et
+ *  open-core ; non pour source-available et fair-code. */
+export function countsAsOpenSource(project) {
+  const kind = project?.licenseKind;
+  return kind === undefined || OPEN_LICENSE_KINDS.has(kind);
+}
+
 /**
  * Variables du titre d'une fiche. `alts` est la sortie d'alternativesFor
  * (déjà filtrée sur les projets affichables). L'année vient de la date de
@@ -202,14 +222,23 @@ export function checkedDates(project) {
  * d'alternatives pour un titre chiffré : c'est son seul effet, la fiche
  * reste indexable. `none` (n = 0) : aucune alternative à auto-héberger, le
  * titre ne promet donc que le « construis le tien » (finding 11).
+ * `nOpen` : les seules alternatives comptées dans « N Free & Open Source »
+ * (countsAsOpenSource). `notOpen` : assez d'alternatives pour un titre chiffré
+ * (n ≥ 3), mais trop peu d'open source (nOpen < 3) pour écrire « Open
+ * Source » : la fiche prend alors un titre chiffré sans ces mots (Ruling 44).
  * @param {{ name: string }} tool
- * @param {Array} alts
+ * @param {Array<{ project?: object }>} alts
  * @param {string} buildDate  'YYYY-MM-DD'
- * @returns {{ n: number, name: string, year: string, fallback: boolean, none: boolean }}
+ * @returns {{ n: number, nOpen: number, name: string, year: string, fallback: boolean, none: boolean, notOpen: boolean }}
  */
 export function toolTitleVars(tool, alts, buildDate) {
   const n = alts.length;
-  return { n, name: tool.name, year: buildDate.slice(0, 4), fallback: n < MIN_TITLE_ALTERNATIVES, none: n === 0 };
+  const nOpen = alts.filter((alt) => countsAsOpenSource(alt?.project)).length;
+  const fallback = n < MIN_TITLE_ALTERNATIVES;
+  return {
+    n, nOpen, name: tool.name, year: buildDate.slice(0, 4),
+    fallback, none: n === 0, notOpen: !fallback && nOpen < MIN_TITLE_ALTERNATIVES,
+  };
 }
 
 /** Nombre de fiches du bloc « People also look for alternatives to… ». */

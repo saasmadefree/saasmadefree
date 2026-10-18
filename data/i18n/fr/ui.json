@@ -192,6 +192,7 @@
       "titleFallbackTemplate": "Alternatives gratuites à {name} ({year}) : auto-héberge ou code la tienne",
       "metaDescriptionFallbackTemplate": "Alternatives gratuites à {name} : code la tienne avec un prompt prêt ({build}), vois ce que tu perds, et pourquoi certains paient encore {price}.",
       "titleNoAltTemplate": "Alternative gratuite à {name} ({year}) : code la tienne avec un seul prompt",
+      "titleNotOpenTemplate": "{n} alternatives gratuites à {name} ({year}) : auto-héberge-en une ou code la tienne",
       "metaDescriptionNoAltTemplate": "Pas encore d’alternative libre vérifiée à {name}. Code la tienne avec un prompt prêt ({build}), vois ce que tu perds, et pourquoi certains paient encore {price}.",
       "h1FallbackTemplate": "Alternatives gratuites à {name}",
       "lastUpdatedLabel": "Mis à jour le",
@@ -239,6 +240,16 @@
       "checkedOnTemplate": "vérifié le {date}",
       "licenseYours": "La tienne",
       "licenseProprietary": "Propriétaire",
+      "licenseKindLabels": {
+        "open-core": "Open-core",
+        "source-available": "Source disponible",
+        "fair-code": "Fair-code"
+      },
+      "licenseKindNotes": {
+        "open-core": "Le cœur est open source. Certaines fonctions sont sous une licence à part.",
+        "source-available": "Tu peux lire le code, mais la licence limite ce que tu en fais. Ce n’est pas de l’open source.",
+        "fair-code": "Gratuit à auto-héberger, avec des limites sur l’usage commercial. Ce n’est pas de l’open source."
+      },
       "starsTemplate": "{count} étoiles",
       "seeProjectLink": "Voir {name}",
       "requirementsLabel": "Il te faut",
@@ -260,6 +271,10 @@
       "metaDescriptionTemplate": "{name} est une alternative gratuite et open source à {list}. {tagline} Sa licence, son activité sur GitHub et ce qu’il ne fera pas pour toi.",
       "titleFallbackTemplate": "{name} : outil open source gratuit ({category}, {year})",
       "metaDescriptionFallbackTemplate": "{name} est un outil gratuit et open source ({category}). {tagline} Sa licence, son activité sur GitHub et ce qu’il ne fera pas pour toi.",
+      "titleNotOpenTemplate": "{name} : alternative gratuite à {list} ({year})",
+      "metaDescriptionNotOpenTemplate": "{name} est une alternative gratuite à {list}. Son code est public, mais sa licence n’est pas open source. {tagline} Sa licence, son activité sur GitHub et ce qu’il ne fera pas pour toi.",
+      "titleNotOpenFallbackTemplate": "{name} : outil gratuit ({category}, {year})",
+      "metaDescriptionNotOpenFallbackTemplate": "{name} est un outil gratuit ({category}). Son code est public, mais sa licence n’est pas open source. {tagline} Sa licence, son activité sur GitHub et ce qu’il ne fera pas pour toi.",
       "h1Template": "{name}",
       "factsHeading": "Les faits",
       "startedLabel": "Lancé en",
