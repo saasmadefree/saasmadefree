@@ -1,12 +1,12 @@
 {
   "tagline": "Self-hosted workflow orchestrator where flows are YAML files, built for data and infrastructure teams.",
-  "description": "Kestra runs scheduled and event-driven workflows that you describe in YAML. You can edit a flow in the code editor, a no-code form editor or an AI Copilot sidebar, and all three change the same file. Flows can be synced to Git. Tasks come from plugins, which cover SQL queries, HTTP calls, cloud storage and scripts in Python, Node.js, R, Go or shell. The project is licensed Apache-2.0. For a first test, one Docker command starts a local server. For a persistent setup, the docs offer a Docker Compose file with PostgreSQL, and a Helm chart for Kubernetes with PostgreSQL and object storage. Since version 2.0, workers talk to the control plane over gRPC, so they can run in another network. It can stand in for Zapier when the person automating is comfortable with code and the jobs are pipelines, batch runs or infrastructure tasks. It is a poor match for a marketer who wants to click together a connection between two SaaS apps. There is no hosted offer in our data, so you operate the server, its database and its upgrades yourself.",
+  "description": "Kestra runs scheduled and event-driven workflows that you describe in YAML. You can edit a flow in the code editor, a no-code form editor or an AI Copilot sidebar, and all three change the same file. Flows can be synced to Git. Tasks come from plugins, which cover SQL queries, HTTP calls, cloud storage and scripts in Python, Node.js, R, Go or shell. The project is licensed Apache-2.0. For a first test, one Docker command starts a local server. For a persistent setup, the docs offer a Docker Compose file with PostgreSQL, and a Helm chart for Kubernetes with PostgreSQL and object storage. From version 2.0, workers connect to the server over gRPC and can sit in a separate network. It can stand in for Zapier when the person automating is comfortable with code and the jobs are pipelines, batch runs or infrastructure tasks. It is a poor match for a marketer who wants to click together a connection between two SaaS apps. You operate the server, its database and its upgrades yourself.",
   "strengths": [
     "Flows are plain YAML that can be pushed to a Git branch, so reviews and CI/CD work like they do for code.",
     "Triggers cover both schedules and events, declared in the flow itself.",
     "Plugins run scripts in Python, Node.js, R, Go or shell, and query databases, without custom glue code.",
     "Official Docker Compose (PostgreSQL) and Helm chart (PostgreSQL, object storage) paths exist.",
-    "Draft revisions let you edit a flow while triggers keep running the last published version."
+    "Flow edits are saved as drafts, and scheduled triggers keep using the last published revision until you publish."
   ],
   "limits": [
     "Aimed at data, AI and infrastructure teams; there is no catalogue of one-click app-to-app recipes like Zapier's.",

@@ -5,8 +5,7 @@
     "No subscription: you pay DataForSEO per request",
     "Covers keyword research, rank tracking, competitor insights, backlinks, site audits and AI visibility",
     "MCP server and agent skills for Claude Code and similar agents",
-    "Cloudflare deployment provisions the database, storage and an Access login in one command",
-    "MIT licence"
+    "Cloudflare deployment provisions the database, storage and an Access login in one command"
   ],
   "limits": [
     "Needs a DataForSEO account; the minimum top-up is $50",

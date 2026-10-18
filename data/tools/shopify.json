@@ -25,15 +25,15 @@
   ],
   "alternatives": [
     {
+      "project": "woocommerce",
+      "fit": "full"
+    },
+    {
       "project": "bagisto",
       "fit": "full"
     },
     {
       "project": "spree-commerce",
-      "fit": "full"
-    },
-    {
-      "project": "woocommerce",
       "fit": "full"
     },
     {

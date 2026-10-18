@@ -12,7 +12,7 @@
     "Core is a ticket queue: no built-in live chat or social channels are listed",
     "Requires a PHP web server and MySQL; no Docker image is documented in the README",
     "Updates are done by pulling the repository and re-running the deploy command",
-    "The last commit in our data is from June 2026, a slower pace than most projects here"
+    "Support runs through forums and documentation, so there is no guaranteed response time unless you buy paid help"
   ],
   "bestFor": "An IT or office team with a PHP host that needs a shared email-to-ticket inbox without per-agent fees."
 }

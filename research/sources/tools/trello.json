@@ -58,5 +58,11 @@
     "url": "data/i18n/en/projects",
     "retrievedOn": "2026-10-18",
     "field": "faq[5]"
+  },
+  {
+    "claim": "OpenProject minimum hardware and Enterprise-only features as written in the openproject page",
+    "url": "https://www.openproject.org/pricing/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.openproject"
   }
 ]

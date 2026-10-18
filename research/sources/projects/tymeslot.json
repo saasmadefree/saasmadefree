@@ -76,5 +76,11 @@
     "url": "https://github.com/Tymeslot/tymeslot#and-theres-more-under-the-hood",
     "retrievedOn": "2026-10-18",
     "field": "limits"
+  },
+  {
+    "claim": "Pro plan price 9 EUR per month and a free plan (README pricing section)",
+    "url": "https://github.com/Tymeslot/tymeslot",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
   }
 ]

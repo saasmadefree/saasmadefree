@@ -34,5 +34,11 @@
     "url": "https://github.com/KDE/kdenlive",
     "retrievedOn": "2026-10-18",
     "field": "description"
+  },
+  {
+    "claim": "Kdenlive can create subtitles with automatic transcription",
+    "url": "https://kdenlive.org/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
   }
 ]

@@ -31,16 +31,16 @@
     },
     {
       "q": "What's the best free Ahrefs alternative?",
-      "a": "OpenSEO is the best free Ahrefs alternative for keyword research and tracking on your own sites. It relies on a paid data API for its figures. None of the four projects offers backlink data, so competitor link research stays with Ahrefs."
+      "a": "OpenSEO is the best free Ahrefs alternative. It covers keyword research, rank tracking, competitor insights and backlinks, but the data comes from DataForSEO's paid API, so you pay per request. SerpBear, Seonaut and SEOmacroscope cover rank tracking and site audits only."
     },
     {
       "q": "Can a free tool show me my competitors' backlinks?",
-      "a": "Not with these four projects. None of them has a backlink index or a competitor database. Seonaut and SEOmacroscope crawl your own site, and SerpBear tracks your own rankings. Competitor link data needs a large crawl that a personal project cannot run."
+      "a": "Yes, with OpenSEO, at DataForSEO's per-request price. The other three cannot: SerpBear tracks your own rankings, and Seonaut and SEOmacroscope crawl your own site. Expect DataForSEO's coverage and history, not Ahrefs' own index."
     }
   ],
-  "alternativesIntro": "The best free Ahrefs alternative is OpenSEO: it handles keyword research and tracking for your own sites. No self-hosted project replaces Ahrefs' backlink index, its keyword volume data or its history of other sites. OpenSEO pulls its numbers from a paid data API (DataForSEO), so it is not free to run at volume. SerpBear is the pick if you only need daily rank tracking for your domain. For a small site you own, these tools are enough. For link research on competitors, keep paying Ahrefs.",
+  "alternativesIntro": "The best free Ahrefs alternative is OpenSEO: it covers keyword research, rank tracking, competitor insights and backlink lookups. It has no index of its own. Every figure comes from DataForSEO's paid API, billed per request, so coverage and history are DataForSEO's, not Ahrefs'. SerpBear is the pick if you only need daily rank tracking for your domain. Seonaut and SEOmacroscope audit your own site. Keep paying Ahrefs if you need the depth of its own backlink index and its long history, or if you research every day and per-request costs add up.",
   "alternativeNotes": {
-    "open-seo": "Covers keyword research and tracking, driven by a paid data API. It has no web index of its own and no backlink crawl.",
+    "open-seo": "Covers keyword research, rank tracking, competitor insights and backlinks, driven by DataForSEO's paid API. It has no index of its own, so coverage and freshness are DataForSEO's.",
     "serpbear": "Tracks keyword rankings daily for your own domain. It has no crawl, no backlink data and no competitor database.",
     "seonaut": "Crawls a site and lists issues with page reports. It has no rank tracking and no backlink data.",
     "seomacroscope": "Runs a technical crawl of a site you control. It has no rank tracking and no backlink or keyword database."

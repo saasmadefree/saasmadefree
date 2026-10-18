@@ -34,5 +34,17 @@
     "url": "https://www.openproject.org/download-and-installation/",
     "retrievedOn": "2026-10-18",
     "field": "description"
+  },
+  {
+    "claim": "Full baseline comparison, LDAP group synchronisation and OpenID Connect SSO are Enterprise features",
+    "url": "https://www.openproject.org/pricing/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Minimum hardware: quad core CPU (>= 2 GHz), 4096 MB memory, 20 GB disk, for up to 200 total users",
+    "url": "https://www.openproject.org/docs/installation-and-operations/system-requirements/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
   }
 ]

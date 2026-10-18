@@ -38,15 +38,15 @@
       "a": "Mautic is the closest, with visual automations, forms and segments. It is heavier to run than Listmonk. Dittofeed builds triggered journeys too, but it targets product events rather than newsletters."
     }
   ],
-  "alternativesIntro": "The best free Mailchimp alternative is Listmonk: it covers lists, segments and campaign sending on your own server. It has no drag-and-drop editor, no visual automations and no e-commerce sync. You also lose Mailchimp's sending reputation, so you must set up SMTP and keep your lists clean. Mautic is the pick if you need automations and forms, though it is heavier to run. For a newsletter to a small list, Listmonk wins. If deliverability or automation is your business, keep paying $20 a month.",
+  "alternativesIntro": "The best free Mailchimp alternative is Listmonk: it covers lists, segments and campaign sending on your own server. It has a drag-and-drop email builder, but no visual automations and no e-commerce sync. You also lose Mailchimp's sending reputation, so you must set up SMTP and keep your lists clean. Mautic is the pick if you need automations and forms, though it is heavier to run. For a newsletter to a small list, Listmonk wins. If deliverability or automation is your business, keep paying: the entry plan costs $20 a month for a small list.",
   "alternativeNotes": {
-    "listmonk": "Covers lists, segments, campaign sending, templates and unsubscribe handling. It has no visual automations.",
+    "listmonk": "Covers lists, segments, campaign sending, a drag-and-drop email builder, templates and unsubscribe handling. It has no visual automations.",
     "mautic": "Covers email campaigns, segments, forms and visual automations. It is heavier to run than a newsletter tool.",
-    "keila": "Covers campaigns, contact forms, segments and unsubscribe handling. It has fewer automations than Mailchimp.",
-    "plunk": "Covers campaigns, contacts and event-driven emails through SES. It is newer and lighter than Mailchimp.",
+    "keila": "Covers campaigns, contact forms, segments and unsubscribe handling. It has no automation builder.",
+    "plunk": "Covers campaigns, contacts and event-driven emails through SES. It has no template gallery and no form builder.",
     "dittofeed": "Covers triggered journeys and broadcasts through your own email provider. It is aimed at product events rather than newsletters.",
-    "notifuse": "Covers contact lists, campaigns and templates through your own provider. It is a newer project.",
-    "sendportal": "Covers subscribers, segments and campaigns through your own mail provider. It has limited automations.",
-    "phplist": "Covers lists, campaigns and bounce handling. It has a dated interface and few automations."
+    "notifuse": "Covers contact lists, campaigns, templates and a visual automation canvas through your own provider. Version 40 and later use the Business Source License 1.1, which is not an OSI open-source licence.",
+    "sendportal": "Covers subscribers, segments and campaigns through your own mail provider. It has no automation builder.",
+    "phplist": "Covers lists, campaigns and bounce handling. It has no visual automation builder."
   }
 }

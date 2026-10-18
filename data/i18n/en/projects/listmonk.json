@@ -4,6 +4,7 @@
   "strengths": [
     "Single binary with PostgreSQL as its only store, installable by Docker Compose or by hand.",
     "Segments are SQL queries, so very precise targeting is possible.",
+    "Emails can be built in a drag-and-drop editor, a rich-text editor, Markdown, HTML or plain text.",
     "Multiple SMTP queues with rate limiting give control over sending speed.",
     "Built-in analytics for bounces, top links and campaign performance.",
     "Go templates allow logic and dynamic content in emails."

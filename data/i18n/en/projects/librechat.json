@@ -11,7 +11,7 @@
   "limits": [
     "No model of its own: you need provider API keys and pay per use, so the bill is not flat like a ChatGPT subscription.",
     "The default Docker Compose stack runs MongoDB, which crashes on Apple Silicon Macs without an override file.",
-    "The code interpreter relies on a separate ClickHouse project that you must also host.",
+    "The code interpreter relies on a separate ClickHouse project that you host yourself, or on LibreChat's Code Interpreter API with an API key.",
     "Attached code workspaces are labelled highly experimental and the agent management API is beta."
   ],
   "bestFor": "A small company or community that wants one shared chat interface over several AI providers and its own login system."

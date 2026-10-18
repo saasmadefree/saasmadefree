@@ -18,15 +18,15 @@
     "field": "limits"
   },
   {
-    "claim": "Repository created in September 2024 (data/projects/wraft.json createdAt)",
-    "url": "https://github.com/wraft/wraft",
+    "claim": "Site advertises built-in e-signature and approval workflows; README and developer overview do not describe them",
+    "url": "https://wraft.app",
     "retrievedOn": "2026-10-18",
     "field": "limits"
   },
   {
-    "claim": "README and docs overview list no e-signature feature",
-    "url": "https://docs.wraft.app/developers",
+    "claim": "Site advertises built-in e-signature and approval workflows",
+    "url": "https://wraft.app",
     "retrievedOn": "2026-10-18",
-    "field": "limits"
+    "field": "description"
   }
 ]

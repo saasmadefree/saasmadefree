@@ -1,11 +1,11 @@
 {
   "tagline": "Document signing app for Nextcloud, with signing workflows, signer tracking and certificate checks.",
-  "description": "LibreSign is an app that runs inside Nextcloud and lets an organization set up how documents get signed. You can define the signing order, roles and rules per document flow, and include both internal and external signers in one request. It sends notifications and reminders, keeps a traceable record of requests, actions and validations, and can validate signed documents and certificate status. It works directly with Nextcloud files, users and sharing, and exposes APIs so other systems can start a signing request. The licence is AGPL-3.0. The README gives no install steps, so you follow the separate documentation site, and the project asks organizations that depend on it to sponsor it. The practical consequence is that you need a working Nextcloud server first. Compared with DocuSign, it covers the core loop of sending a document, collecting signatures and keeping an audit trail. It is not a standalone product.",
+  "description": "LibreSign is an app that runs inside Nextcloud and lets an organization set up how documents get signed. Each document flow can set who signs first, which role each person has and which rules apply, and one request can mix people inside and outside your organization. Signers get notifications and reminders. Every request and action is logged, which gives you an audit trail, and the app can check signed files and the status of their certificates. It works directly with Nextcloud files, users and sharing, and exposes APIs so other systems can start a signing request. The licence is AGPL-3.0. The README gives no install steps, so you follow the separate documentation site, and the project asks organizations that depend on it to sponsor it. The practical consequence is that you need a working Nextcloud server first. Compared with DocuSign, it covers the core loop of sending a document, collecting signatures and keeping an audit trail. It is not a standalone product.",
   "strengths": [
-    "Signing order, roles and rules can be set per document flow.",
+    "Each flow sets who signs first, in what role and under which rules.",
     "Internal and external signers can sign the same request.",
     "Reminders and notifications go out to signers.",
-    "Keeps a traceable record of requests, actions and validations for audits.",
+    "Logs each request and action, giving an audit trail for later checks.",
     "APIs let other systems create and follow signing requests."
   ],
   "limits": [

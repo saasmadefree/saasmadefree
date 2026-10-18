@@ -10,8 +10,7 @@
   ],
   "limits": [
     "Heavy to run: needs PHP, a database server, cron jobs and a max_execution_time of at least 240 seconds.",
-    "Source outside a tagged release is labelled alpha and may cause data loss; installs from GitHub need Composer and command-line skills.",
-    "Mautic requires a complex password from version 5.1."
+    "Source outside a tagged release is labelled alpha and may cause data loss; installs from GitHub need Composer and command-line skills."
   ],
   "bestFor": "A marketing team with a sysadmin that needs contact tracking and automation beyond newsletters, on its own server."
 }

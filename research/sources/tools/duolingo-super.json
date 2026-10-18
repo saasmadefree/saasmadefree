@@ -6,7 +6,7 @@
     "field": "alternativesIntro"
   },
   {
-    "claim": "No maintained alternative: all candidates were archived or inactive; see research/alternatives/duolingo-super.json",
+    "claim": "No maintained open-source project replaces the course experience: the two course-style projects are archived (LibreLingo) or inactive (LinguaCafe); maintained tools such as Anki and Yomitan were rejected because they do not replace a course. Unsourced figures (language pair count, person-years) were removed from the intro.",
     "url": "research/alternatives/duolingo-super.json",
     "retrievedOn": "2026-10-18",
     "field": "alternativesIntro"
@@ -16,5 +16,11 @@
     "url": "data/i18n/en/projects",
     "retrievedOn": "2026-10-18",
     "field": "faq[5]"
+  },
+  {
+    "claim": "Anki is an actively maintained flashcard application (flashcard review, not a course)",
+    "url": "https://github.com/ankitects/anki",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
   }
 ]

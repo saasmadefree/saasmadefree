@@ -1,6 +1,6 @@
 {
   "tagline": "Open-source social media manager: scheduling, analytics and team tasks, on Node.js services and PHP.",
-  "description": "Socioboard Core is the open-source edition of a social media management tool that also exists as a commercial service at socioboard.com. It lets you connect several social accounts, schedule posts, read analytics, pull in RSS feeds, send automatic email reports and assign tasks to team members. The README says it supports nine networks. The 5.0 release has a central API written in Node.js with Express, Mongoose and Sequelize, and a PHP front end. Installation needs Node.js, npm, PM2, a MySQL database and a MongoDB database, plus at least five free ports, and the guide starts four microservices. The repository does not state a licence in its README, so check the licence file before using it. Socioboard is aimed at people replacing Hootsuite or Buffer-style tools on their own server. Expect to create your own developer apps for each social network and to keep up with changes to those networks' APIs.",
+  "description": "Socioboard Core is the open-source edition of a social media management tool that also exists as a commercial service at socioboard.com. It lets you connect several social accounts, schedule posts, read analytics, pull in RSS feeds, send automatic email reports and assign tasks to team members. The README says it supports nine networks. The 5.0 release has a central API written in Node.js with Express, Mongoose and Sequelize, and a PHP front end. Installation needs Node.js, npm, PM2, a MySQL database and a MongoDB database, plus at least five free ports, and the guide starts four microservices. The repository's LICENSE file is GPL-3.0, although the README itself does not mention it. Socioboard is aimed at people replacing Hootsuite or Buffer-style tools on their own server. Expect to create your own developer apps for each social network and to keep up with changes to those networks' APIs.",
   "strengths": [
     "Covers scheduling, analytics, RSS feeds, email reports and team tasks in one app",
     "Supports nine social networks, according to the README",
@@ -11,7 +11,7 @@
     "Needs two databases, MongoDB and MySQL, plus Node.js, PM2 and five free ports",
     "The README says the 5.0 configuration links will be added soon, and install steps live in a separate file",
     "Network API access is your job: each platform's developer rules and approvals apply",
-    "The README is largely marketing copy and lacks a clear licence statement"
+    "The README is largely marketing copy and never mentions the GPL-3.0 licence found in the LICENSE file"
   ],
   "bestFor": "A small agency with a Node.js developer that wants to run its own multi-account scheduler instead of paying per seat for Hootsuite."
 }

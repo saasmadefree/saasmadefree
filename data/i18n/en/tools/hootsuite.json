@@ -11,19 +11,37 @@
   "whyPeopleStillPay": "One connector is a weekend; staying authorized and working across a dozen networks as each one quietly changes its API terms, while also giving a team approval flows and a shared inbox, is the actual maintenance burden being paid for.",
   "prompt": "Build a scheduler for exactly one social network's official API — not a multi-network dashboard. Pick one platform with a stable, documented posting API, such as Bluesky's AT Protocol API or Mastodon's REST API, both genuinely accessible without the business-verification process many other platforms require. Use Next.js/TypeScript with Postgres, and that network's OAuth flow for authorization. Build a draft editor with a live character count and media-limit validation matching the target network's actual constraints, a weekly calendar view of scheduled posts, and reusable snippet templates. Publish scheduled posts through a background job — a cron-triggered queue worker — with retries and clear failure surfacing; a failed post should be visibly flagged, not silently dropped. Store the platform's returned post ID after publishing and periodically refresh basic engagement stats (likes, reposts) through the same API, without scraping. Add local media storage for images attached to scheduled posts, and CSV export of your post history. Do not build multi-network support, a unified inbox, or social listening — those are out of scope; if you need to post to a second network, expect to write a second, separate integration, not a shared abstraction over both. Needs an OAuth app registration with your chosen network, typically free and fast to get approved for personal use.",
   "faq": [
-    { "q": "Can I schedule to Instagram, X, and LinkedIn all from this build?", "a": "No — this build deliberately targets one network with an accessible API. Each additional network is a separate integration effort, which is exactly the maintenance burden Hootsuite's subscription is paying other people to absorb." },
-    { "q": "Why build for Bluesky or Mastodon instead of the biggest networks?", "a": "Because their APIs are open and don't require a lengthy business-verification process — a meaningfully more honest starting point for a personal weekend build than networks that gatekeep API access." },
-    { "q": "What happens if a scheduled post fails to publish?", "a": "It's flagged clearly rather than silently disappearing — the background job retries automatically, and a persistent failure stays visible until you address it." },
-    { "q": "Does it show engagement analytics?", "a": "Basic counts, like likes and reposts, pulled from the same API and refreshed periodically — nothing like Hootsuite's deeper analytics or social-listening layer." },
-    { "q": "What's the best free Hootsuite alternative?", "a": "Postiz is the best fit: calendar scheduling and cross-posting to many networks, with unlimited channels, posts and team members when self-hosted. It does not include Hootsuite's unified inbox. Mixpost is the alternative for a few networks, with a free Lite edition limited to Facebook Pages, Mastodon and X." },
-    { "q": "Why can't I just log in to my social accounts like in Hootsuite?", "a": "Hootsuite maintains its own approved apps on every network. When you self-host, you create and get approval for your own developer app on each platform, and that can take weeks. Analytics need extra scopes on those apps. This is the main cost of leaving." }
+    {
+      "q": "Can I schedule to Instagram, X, and LinkedIn all from this build?",
+      "a": "No — this build deliberately targets one network with an accessible API. Each additional network is a separate integration effort, which is exactly the maintenance burden Hootsuite's subscription is paying other people to absorb."
+    },
+    {
+      "q": "Why build for Bluesky or Mastodon instead of the biggest networks?",
+      "a": "Because their APIs are open and don't require a lengthy business-verification process — a meaningfully more honest starting point for a personal weekend build than networks that gatekeep API access."
+    },
+    {
+      "q": "What happens if a scheduled post fails to publish?",
+      "a": "It's flagged clearly rather than silently disappearing — the background job retries automatically, and a persistent failure stays visible until you address it."
+    },
+    {
+      "q": "Does it show engagement analytics?",
+      "a": "Basic counts, like likes and reposts, pulled from the same API and refreshed periodically — nothing like Hootsuite's deeper analytics or social-listening layer."
+    },
+    {
+      "q": "What's the best free Hootsuite alternative?",
+      "a": "Postiz is the best fit: calendar scheduling and cross-posting to many networks, with unlimited channels, posts and team members when self-hosted. It does not include Hootsuite's unified inbox. Mixpost is the alternative for a few networks, with a free Lite edition limited to Facebook Pages, Mastodon and X."
+    },
+    {
+      "q": "Why can't I just log in to my social accounts like in Hootsuite?",
+      "a": "Hootsuite maintains its own approved apps on every network. When you self-host, you create and get approval for your own developer app on each platform, and that can take weeks. Analytics need extra scopes on those apps. This is the main cost of leaving."
+    }
   ],
   "alternativesIntro": "The best free Hootsuite alternative is Postiz: it schedules and cross-posts to many networks from a calendar, with unlimited channels, posts and team members when you host it yourself, plus a public API. The catch is that you create and get approval for your own developer app on each network, which can take weeks. You lose Hootsuite's unified inbox, comment moderation and deep analytics. Mixpost is the MIT-licensed choice for a few networks: its free Lite edition posts only to Facebook Pages, Mastodon and X. Building your own does not recreate the connectors or the inbox, so the real choice is Postiz or paying.",
   "alternativeNotes": {
     "postiz-app": "Covers calendar scheduling, cross-posting, a public API and team features. Posting and analytics both need your own developer apps, and AI features need your own provider keys.",
     "mixpost": "Covers a calendar, media library and post versions on Laravel. Lite posts only to Facebook Pages, Mastodon and X, and other networks, approvals and the API need Pro at a one-time $299.",
-    "trypost": "Covers 13 networks through official APIs, approvals and agency workspaces. It is a young project created in 2026, and you set up each network's API access yourself.",
+    "trypost": "Covers 13 networks through official APIs, approvals and agency workspaces. It is a young project, and you set up each network's API access yourself.",
     "socioboard": "Covers scheduling, analytics, RSS and team tasks for nine networks. It needs MongoDB and MySQL, and its install steps live in a separate file.",
-    "threaduler": "Covers posting threads to X and Bluesky from a Notion database. It is labelled 0.1 alpha and supports no other networks yet."
+    "threaduler": "Covers posting threads to X from a Notion database, with Bluesky support claimed but unconfirmed. It is labelled 0.1 alpha and supports no other networks yet."
   }
 }

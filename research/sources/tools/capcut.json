@@ -52,5 +52,11 @@
     "url": "data/i18n/en/projects",
     "retrievedOn": "2026-10-18",
     "field": "faq[5]"
+  },
+  {
+    "claim": "Kdenlive: create subtitles with automatic transcription",
+    "url": "https://kdenlive.org/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
   }
 ]

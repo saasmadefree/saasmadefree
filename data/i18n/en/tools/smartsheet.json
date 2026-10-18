@@ -34,7 +34,7 @@
     },
     {
       "q": "Can I give outside people limited access like Smartsheet's free contributors?",
-      "a": "Partly. Smartsheet's Pro plan includes unlimited free contributors. Redmine sets roles per project, so a person can be a viewer on one project and a manager on another, and Leantime has per-project permissions. Neither offers Smartsheet's free-contributor pricing model, because you pay in server upkeep instead."
+      "a": "Partly. Smartsheet's Pro plan includes unlimited free contributors. OpenProject, the best fit here, has per-project roles. Redmine sets roles per project too, so a person can be a viewer on one project and a manager on another, and Leantime has per-project permissions. None offers Smartsheet's free-contributor pricing model, because you pay in server upkeep instead."
     }
   ],
   "alternativesIntro": "The best free Smartsheet alternative is OpenProject: it covers Gantt scheduling, Kanban, Scrum, time tracking and cost reporting, and it is GPL-3.0 software you host yourself. You lose Smartsheet's spreadsheet feel, its connectors into Jira and Salesforce, and its proofing and approval controls. Some OpenProject features are Enterprise add-ons, so check the list before you commit. Leantime is the lighter pick for a small team that wants goals and timesheets for free. Building your own is a week of work, not a weekend, so it pays off only if you need one narrow project view. Keep paying if finance staff expect a sheet.",

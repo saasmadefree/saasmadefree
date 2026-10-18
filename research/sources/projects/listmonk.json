@@ -64,5 +64,11 @@
     "url": "https://listmonk.app/",
     "retrievedOn": "2026-10-18",
     "field": "limits"
+  },
+  {
+    "claim": "Visual drag-and-drop builder, WYSIWYG editor, Markdown, raw HTML or plain text for writing emails",
+    "url": "https://listmonk.app/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
   }
 ]

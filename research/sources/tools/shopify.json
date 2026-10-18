@@ -52,5 +52,59 @@
     "url": "https://solidus.io",
     "retrievedOn": "2026-10-18",
     "field": "alternativeNotes.solidus"
+  },
+  {
+    "claim": "WooCommerce leads the list: largest extension and theme marketplace of the listed projects, named payment gateways, runs on ordinary WordPress hosting, and our WooCommerce page names a small shop owner on WordPress as its reader. Bagisto needs PHP 8.4 and Laravel 13 and usually a PHP developer for themes and extensions (our Bagisto page), so it stays second as the pick for Laravel developers. All eight fits are 'full' or 'partial', so the full-fit block is kept and only WooCommerce moves to first.",
+    "url": "https://woocommerce.com/products/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternatives order"
+  },
+  {
+    "claim": "WooCommerce: catalogue, cart, checkout in WordPress; payment gateways; extension marketplace; WordPress site, hosting and security are the owner's job",
+    "url": "https://github.com/woocommerce/woocommerce",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "WooCommerce: free plugin adding catalogue, cart and checkout to a WordPress site; subscriptions and bookings are separate extensions",
+    "url": "https://wordpress.org/plugins/woocommerce/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.woocommerce"
+  },
+  {
+    "claim": "Bagisto: PHP 8.4 and Laravel 13 per composer.json; theming and extension work usually calls for a PHP developer; B2B and marketplace features are separate packages",
+    "url": "https://github.com/bagisto/bagisto",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.bagisto"
+  },
+  {
+    "claim": "Spree: developer platform, storefront changes mean writing code; multi-tenant needs Enterprise Edition",
+    "url": "https://github.com/spree/spree",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.spree-commerce"
+  },
+  {
+    "claim": "PrestaShop README warns that upgrading to a new version is not trivial",
+    "url": "https://github.com/PrestaShop/PrestaShop",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.prestashop"
+  },
+  {
+    "claim": "Shopware: PHP skills needed for installation, upgrades and plugins; some features are commercial plans for on-premise shops",
+    "url": "https://github.com/shopware/shopware",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.shopware"
+  },
+  {
+    "claim": "Which stores need a developer: Spree, Medusa, Saleor, Solidus are developer platforms; Bagisto and Shopware need a PHP developer (see research/sources/projects)",
+    "url": "https://github.com/medusajs/medusa",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[5].a"
+  },
+  {
+    "claim": "WooCommerce suits a small shop owner on WordPress or with a WordPress host; PrestaShop is a standalone PHP store",
+    "url": "https://wordpress.org/plugins/woocommerce/",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[4].a"
   }
 ]

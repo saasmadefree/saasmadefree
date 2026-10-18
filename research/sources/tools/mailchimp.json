@@ -52,5 +52,53 @@
     "url": "https://www.phplist.org",
     "retrievedOn": "2026-10-18",
     "field": "alternativeNotes.phplist"
+  },
+  {
+    "claim": "Listmonk offers a visual drag-and-drop builder, WYSIWYG, Markdown, HTML and plain text editors",
+    "url": "https://listmonk.app/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "Listmonk site: write HTML emails with a visual drag-and-drop builder",
+    "url": "https://listmonk.app/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.listmonk"
+  },
+  {
+    "claim": "Mailchimp Standard $20 a month is a usage-based entry price (data/tools/mailchimp.json)",
+    "url": "https://mailchimp.com/pricing/marketing/",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "Keila: automations appear only as a feature request (issue 132); no automation builder documented",
+    "url": "https://github.com/pentacent/keila/issues/132",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.keila"
+  },
+  {
+    "claim": "SendPortal README feature list: subscribers, campaigns, tracking, reports, no automation builder",
+    "url": "https://github.com/mettle/sendportal",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.sendportal"
+  },
+  {
+    "claim": "phpList README feature list shows no visual automation builder (bounce handling, RSS, scheduling)",
+    "url": "https://github.com/phpList/phplist3",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.phplist"
+  },
+  {
+    "claim": "Plunk README lists only three features: no template gallery or form builder",
+    "url": "https://github.com/useplunk/plunk",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.plunk"
+  },
+  {
+    "claim": "Notifuse: automation canvas with delays, branches, filters and webhooks; BSL 1.1 from version 40, not OSI open source",
+    "url": "https://github.com/Notifuse/notifuse",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativeNotes.notifuse"
   }
 ]

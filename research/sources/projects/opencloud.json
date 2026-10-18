@@ -36,8 +36,8 @@
     "field": "limits"
   },
   {
-    "claim": "Repository created 2025-01-10",
-    "url": "https://github.com/opencloud-eu/opencloud",
+    "claim": "Default data root is under $HOME/.opencloud, no database",
+    "url": "https://github.com/opencloud-eu/opencloud#readme",
     "retrievedOn": "2026-10-18",
     "field": "limits"
   }

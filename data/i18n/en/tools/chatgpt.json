@@ -31,22 +31,22 @@
     },
     {
       "q": "What's the best free ChatGPT alternative?",
-      "a": "Ollama is the best free ChatGPT alternative if you want to run models on your own hardware. Add Open WebUI for a ChatGPT-style browser interface. Expect weaker answers than the paid models, and no voice mode or image generation."
+      "a": "Jan is the best free ChatGPT alternative for one person. It is a desktop app that runs open models on your computer and can also call OpenAI or Anthropic with your own key. Expect weaker answers from local models, and no voice mode or image generation. For a team, run LibreChat on a server."
     },
     {
       "q": "Can I keep using OpenAI models in a self-hosted chat app?",
-      "a": "Yes. Open WebUI and LibreChat connect to OpenAI-compatible APIs, so you can plug in an API key and pay per use instead of a flat fee. You keep the chat history on your own server. The model is still OpenAI's, so you give up nothing on quality."
+      "a": "Yes. Open WebUI and LibreChat connect to OpenAI-compatible APIs, so you can plug in an API key and pay per use instead of a flat fee. You keep the chat history on your own server. The answers come from the same models; app features such as memory and built-in tools do not come with it."
     }
   ],
-  "alternativesIntro": "The best free ChatGPT alternative is Ollama: it runs open-weight models on your own machine, with no monthly fee. No self-hosted project replaces the frontier model itself, image generation, voice mode or the mobile apps. Local models are weaker than the paid ones. Pair Ollama with Open WebUI if you want a browser chat with history and document upload. For plain text chat, a self-hosted interface on a model API is cheaper than ChatGPT Plus at $20 a month. If you rely on voice, images or the newest model, keep paying.",
+  "alternativesIntro": "The best free ChatGPT alternative is Jan: a desktop chat app that downloads open models and runs them offline with no account. It can also use your own OpenAI or Anthropic key, which is usually cheaper than ChatGPT Plus at $20 a month for light use; heavy use can cost more. Local models are weaker than the paid ones, and no project matches the official mobile apps, image generation or voice mode. For a team on a shared server, pick LibreChat. Developers who want a local model API should look at Ollama. If you rely on voice, images or the newest model, keep paying.",
   "alternativeNotes": {
-    "ollama": "Runs open-weight models locally and exposes them to other apps. Model quality is below the frontier models, and the chat features are basic without a separate interface.",
+    "ollama": "Runs open-weight models locally and serves them to other apps through an API. Chat happens in the terminal unless you add an interface, and model quality is below the frontier models.",
     "open-webui": "Gives you a browser chat with history, model switching and document chat on your own server. It has no model of its own, so quality depends on what you plug in.",
     "lobe-chat": "A multi-provider chat interface with agents and plugins. It has no frontier model of its own.",
     "anything-llm": "Chat with your documents in workspaces, over a local or cloud model. It has no frontier model of its own.",
     "cherry-studio": "A multi-provider desktop chat client with knowledge bases. It has no server mode and no model of its own.",
     "librechat": "A multi-provider chat interface with history, presets and agents. It has no frontier model of its own.",
-    "jan": "Chats with downloaded models on your computer, with optional API connections. It is a desktop app only, with no multi-user server.",
+    "jan": "A desktop chat app that runs downloaded open models offline, with optional OpenAI and Anthropic keys and a local API server. It is desktop only, with no multi-user server.",
     "onyx": "Chat over your own documents with any model, centred on search across connected apps. It has no frontier model of its own."
   }
 }

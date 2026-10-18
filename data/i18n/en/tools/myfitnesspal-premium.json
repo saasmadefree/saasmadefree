@@ -37,9 +37,9 @@
       "a": "Yes. OpenNutriTracker has a barcode scanner on the phone, and Waistline looks barcodes up against open food data on Android. Both depend on open food data, so coverage is thinner than MyFitnessPal's for chain and restaurant items."
     }
   ],
-  "alternativesIntro": "The best free MyFitnessPal alternative is SparkyFitness: a self-hostable app for food logging with calories and macros, exercise and body metrics. Its food database is smaller than MyFitnessPal's, especially for North American products and restaurant menus. Check that it finds the foods you eat before you switch. Its licence is source-available and non-commercial, which is fine for personal use. If you want barcode scanning on your phone with no server, OpenNutriTracker is the lighter option. If you rely on the huge database and the integrations, keep paying $19.99.",
+  "alternativesIntro": "The best free MyFitnessPal alternative is SparkyFitness: a self-hostable app for food logging with calories and macros, exercise and body metrics. Its food coverage depends on the sources you connect and may be thinner than MyFitnessPal's. Check that it finds the foods you eat before you switch. Its licence is source-available and non-commercial, which is fine for personal use. If you want barcode scanning on your phone with no server, OpenNutriTracker is the lighter option. Building your own is only worth it for a tiny logger of a few foods. If you rely on the huge database and the integrations, keep paying $19.99.",
   "alternativeNotes": {
-    "sparkyfitness": "Logs food with calories and macros, plus exercise and body metrics, on your own server. Its food database is smaller than MyFitnessPal's.",
+    "sparkyfitness": "Logs food with calories and macros, plus exercise and body metrics, on your own server. Food coverage depends on the sources you connect.",
     "wger": "Combines workout logging with a nutrition diary and calorie plans. Food database coverage is smaller.",
     "opennutritracker": "Logs meals with a barcode scanner and daily macro rings on a phone. It has no server and no sync to other devices.",
     "waistline": "Logs calories and weight with barcode lookups against open food data. It is Android only and has no server.",

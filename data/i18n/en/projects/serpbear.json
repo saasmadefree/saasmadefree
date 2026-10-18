@@ -1,6 +1,6 @@
 {
   "tagline": "Self-hosted Google rank tracker with email alerts, an API and Search Console data, on Next.js.",
-  "description": "SerpBear tracks where your domains appear in Google results for the keywords you choose, and emails you when positions change, daily, weekly or monthly. You can add as many domains and keywords as you like. It does not scrape Google itself. Instead it calls a third-party scraping service such as ScrapingRobot, SerpApi, SearchApi or HasData, or it routes requests through proxy addresses you supply, so you pay for lookups on top of hosting. It has a built-in API for your reports, a keyword research and idea feature that needs a Google Ads test account, and a Google Search Console link that shows real impressions and visits per keyword. The app is a Next.js project with a SQLite database, ships as a Docker image and works as a mobile PWA. Setup means deploying it, logging in, adding a domain, choosing a scraping provider and optionally entering SMTP details for alerts. The licence is MIT. It replaces the rank tracking in Ahrefs, Mangools or AccuRanker, but not their backlink or site audit tools.",
+  "description": "SerpBear tracks where your domains appear in Google results for the keywords you choose, and emails you when positions change, daily, weekly or monthly. You can add as many domains and keywords as you like. It does not scrape Google itself. Instead it calls a third-party scraping service such as SerpApi, SearchApi or HasData, or it routes requests through proxy addresses you supply, so you pay for lookups on top of hosting. It has a built-in API for your reports, a keyword research and idea feature that needs a Google Ads test account, and a Google Search Console link that shows real impressions and visits per keyword. The app is a Next.js project with a SQLite database, ships as a Docker image and works as a mobile PWA. Setup means deploying it, logging in, adding a domain, choosing a scraping provider and optionally entering SMTP details for alerts. The licence is MIT. It replaces the rank tracking in Ahrefs, Mangools or AccuRanker, but not their backlink or site audit tools.",
   "strengths": [
     "No cap on domains or keywords in the app itself",
     "Email alerts on position changes, daily, weekly or monthly",
@@ -13,7 +13,7 @@
     "The README marks several listed providers as no longer working, including ScrapingAnt and ScrapingRobot",
     "Keyword research needs a Google Ads test account to be linked",
     "Rank tracking only: no backlink data, no site audit",
-    "Last commit was in May 2026, so development is slow"
+    "Commits are infrequent; check the last-commit date in the table before relying on it"
   ],
   "bestFor": "An SEO freelancer or small agency tracking a few dozen sites who accepts paying per lookup to a scraping provider instead of a monthly rank-tracker plan."
 }

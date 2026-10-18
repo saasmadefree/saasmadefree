@@ -1,6 +1,6 @@
 {
-  "tagline": "Free Windows desktop crawler for broken links and basic technical SEO checks. No commits since March 2024.",
-  "description": "SEO Macroscope is a desktop program for Microsoft Windows that crawls a website from a start URL and reports what it finds. It lists broken and redirected links, collects metadata for each URL and builds an HrefLang matrix for multilingual sites. The SEO checks cover title and description length by words, characters and pixels, headings, keywords and PDF metadata. You can add custom filters to spot missing or present content, and data extractors to scrape arbitrary page content. Results export to Excel files. There is nothing to host: you download the installer from the GitHub releases page and run it on your own machine, so no server, database or account is involved. The licence is GPL-3.0. The project is inactive: the last commit dates from 31 March 2024, and the author's own README warns of bugs and unfinished features. As a stand-in for Screaming Frog, Semrush or Ahrefs site audits, it covers the crawl-and-report basics on a single Windows PC. It does not cover rankings, backlinks or traffic data.",
+  "tagline": "Free Windows desktop crawler for broken links and basic technical SEO checks. Inactive project.",
+  "description": "SEO Macroscope is a desktop program for Microsoft Windows that crawls a website from a start URL and reports what it finds. It lists broken and redirected links, collects metadata for each URL and builds an HrefLang matrix for multilingual sites. The SEO checks cover title and description length by words, characters and pixels, headings, keywords and PDF metadata. You can add custom filters to spot missing or present content, and data extractors to scrape arbitrary page content. Results export to Excel files. There is nothing to host: you download the installer from the GitHub releases page and run it on your own machine, so no server, database or account is involved. The licence is GPL-3.0. The project is inactive, and the author's own README warns of bugs and unfinished features. As a stand-in for Screaming Frog, Semrush or Ahrefs site audits, it covers the crawl-and-report basics on a single Windows PC. It does not cover rankings, backlinks or traffic data.",
   "strengths": [
     "Reports broken links, redirects and metadata for every URL found",
     "Builds an HrefLang matrix for multilingual sites",
@@ -9,7 +9,7 @@
     "Exports reports to Excel"
   ],
   "limits": [
-    "Inactive: no commit since 31 March 2024, so expect no fixes or support",
+    "Inactive project, so expect no fixes or support; the table shows the last commit",
     "Windows only, and a desktop app, so no shared dashboard, scheduling or team access",
     "The README itself says to expect bugs and unimplemented features",
     "No rankings, backlink or traffic data: it is a crawler only"

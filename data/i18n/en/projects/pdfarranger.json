@@ -11,7 +11,7 @@
     "Page arrangement only: no text editing, form filling or signing is described",
     "Desktop application with no web interface or multi-user mode",
     "Source install needs pikepdf 6 or newer and GTK libraries",
-    "No macOS package is listed in the README downloads section"
+    "macOS has no packaged build; you follow the macOS.md source instructions"
   ],
   "bestFor": "Someone who often reorders or merges PDF pages on a Linux or Windows computer and does not need full Acrobat."
 }

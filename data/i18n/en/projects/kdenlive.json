@@ -1,12 +1,13 @@
 {
   "tagline": "Free multi-platform video editor from KDE, built on MLT, for non-linear editing on the desktop.",
-  "description": "Kdenlive is a non-linear video editor developed by the KDE community. Its name stands for KDE Non-Linear Video Editor. It runs on Linux, Windows, macOS and BSD, and the project publishes stable releases and experimental daily builds on kdenlive.org. The license is GPL-3.0. It is a C++ application on the Qt and KDE Frameworks 6 toolkits, and it relies on the MLT framework for the editing engine, frei0r for video effects and LADSPA for audio effects. The project says it offers hundreds of audio and video effects, keyframes for animating them, transitions between clips and compositions that combine layers. Primary development happens on KDE Invent, with a GitHub mirror. Because it is desktop software, there is nothing to deploy and no server component. You install it, edit local files and render to disk. It can replace paid editors like CapCut or Adobe Premiere for cuts, titles, effects and audio mixing. It does not include a stock library, cloud projects or browser editing, and it keeps no accounts. Templates and one-click social presets from mobile-first apps are not the focus.",
+  "description": "Kdenlive is a non-linear video editor developed by the KDE community. Its name stands for KDE Non-Linear Video Editor. It runs on Linux, Windows, macOS and BSD, and the project publishes stable releases and experimental daily builds on kdenlive.org. The license is GPL-3.0. It is a C++ application on the Qt and KDE Frameworks 6 toolkits, and it relies on the MLT framework for the editing engine, frei0r for video effects and LADSPA for audio effects. The project says it offers hundreds of audio and video effects, keyframes for animating them, transitions between clips and compositions that combine layers. For captions, it can create subtitles with automatic transcription. Primary development happens on KDE Invent, with a GitHub mirror. Because it is desktop software, there is nothing to deploy and no server component. You install it, edit local files and render to disk. It can replace paid editors like CapCut or Adobe Premiere for cuts, titles, effects and audio mixing. It does not include a stock library, cloud projects or browser editing, and it keeps no accounts. Templates and one-click social presets from mobile-first apps are not the focus.",
   "strengths": [
     "Runs on Linux, Windows, macOS and BSD.",
     "Hundreds of audio and video effects, with keyframes to animate them.",
     "Built on the MLT engine, with frei0r video effects and LADSPA audio effects.",
     "Transitions and compositions for combining layers.",
-    "Stable releases and experimental daily builds are both offered."
+    "Stable releases and experimental daily builds are both offered.",
+    "Automatic transcription to create subtitles, the feature most short-video editors are used for"
   ],
   "limits": [
     "Desktop only: no browser editor, cloud project sync or shared workspace.",

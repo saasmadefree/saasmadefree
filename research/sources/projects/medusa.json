@@ -40,5 +40,11 @@
     "url": "https://docs.medusajs.com/resources/commerce-modules",
     "retrievedOn": "2026-10-18",
     "field": "strengths"
+  },
+  {
+    "claim": "README describes an open-core model: MIT core, Enterprise Edition parts under a separate licence",
+    "url": "https://github.com/medusajs/medusa#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "tagline"
   }
 ]

@@ -10,8 +10,7 @@
   "limits": [
     "Sending depends on an AWS SES account; no other delivery backend is documented",
     "Needs several subdomains for dashboard, API, docs and landing page",
-    "The README lists only three features, so no template gallery or form builder is described",
-    "The self-hosting link in the README currently returns a 404 page"
+    "The README lists only three features, so no template gallery or form builder is described"
   ],
   "bestFor": "A developer who sends app emails and the occasional newsletter and already has an AWS account."
 }

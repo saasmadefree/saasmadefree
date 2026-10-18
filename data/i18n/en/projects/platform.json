@@ -1,6 +1,6 @@
 {
   "tagline": "Self-hostable all-in-one workspace from Huly: issue tracking, chat, CRM, HR and recruiting in one app.",
-  "description": "The Huly platform repository holds a set of business apps: chat, project management, CRM, HRM and applicant tracking. The README calls the platform a framework for building business applications, and Huly is the product built on it. For issue tracking it can stand in for Linear or Asana. The README sends people who only want to host Huly to a separate repository, huly-selfhost, which runs the stack with Docker Compose and offers a sample Kubernetes configuration. That guide says Huly is resource-heavy: the minimum is 2 vCPUs and 8 GB of RAM, and 4 vCPUs with 16 GB is recommended. Production releases carry v tags, and each upgrade should be checked against a MIGRATION.md file; going from 0.6.x to 0.7.x needs dedicated steps. A typed API client lets you script it. The code is under EPL-2.0. The hosted Huly service is being shut down, according to a notice in the README, which says self-hosted installs are not affected. Development for building the code needs Node.js 22, Docker and Docker Compose.",
+  "description": "The Huly platform repository holds a set of business apps: chat, project management, CRM, HRM and applicant tracking. The README calls the platform a framework for building business applications, and Huly is the product built on it. For issue tracking it can stand in for Linear or Asana. The README sends people who only want to host Huly to a separate repository, huly-selfhost, which runs the stack with Docker Compose and offers a sample Kubernetes configuration. That guide says Huly is resource-heavy: the minimum is 2 vCPUs and 8 GB of RAM, and 4 vCPUs with 16 GB is recommended. Production releases carry v tags, and each upgrade should be checked against a MIGRATION.md file; going from 0.6.x to 0.7.x needs dedicated steps. A typed API client lets you script it. The code is under EPL-2.0. The original company has stopped the hosted Huly service, so self-hosting is now the main route. This repository is frozen, and development continues in a young, small community fork, Platform-Collective/platform. Development for building the code needs Node.js 22, Docker and Docker Compose.",
   "strengths": [
     "Chat, project management, CRM, HR and recruiting apps in one codebase",
     "Docker Compose self-hosting through the separate huly-selfhost repository, plus a sample Kubernetes config",
@@ -9,7 +9,8 @@
   ],
   "limits": [
     "Resource-heavy: 2 vCPUs and 8 GB RAM minimum, 4 vCPUs and 16 GB recommended",
-    "The hosted Huly service is being discontinued, so self-hosting is the main route",
+    "The original company stopped the hosted Huly service, so self-hosting is the main route",
+    "The upstream repository is frozen; future development depends on a community fork",
     "Upgrades from 0.6.x to 0.7.x cannot be done in place and need the dedicated migration steps",
     "Building from source needs Node.js 22, Docker and Docker Compose"
   ],

@@ -42,7 +42,7 @@
     "field": "limits"
   },
   {
-    "claim": "Last commit on 31 March 2024 (from project data, checked 2026-10-18)",
+    "claim": "Inactivity is shown by the live last-commit date in the table; the text gives no date",
     "url": "https://github.com/nazuke/SEOMacroscope/commits",
     "retrievedOn": "2026-10-18",
     "field": "limits"

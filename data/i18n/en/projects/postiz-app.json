@@ -11,7 +11,7 @@
     "You create and get approval for your own developer app on each social platform, which can take weeks",
     "Analytics need your own app credentials with analytics scopes",
     "AI features need your own provider keys, such as OpenAI",
-    "You run updates, migrations, backups and security patches yourself"
+    "Scheduling relies on a Temporal service, which adds a component to run beside the app and the database"
   ],
   "bestFor": "A small agency or creator who wants to cross-post on a calendar without per-channel fees and can handle a Docker stack."
 }

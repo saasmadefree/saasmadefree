@@ -5,8 +5,7 @@
     "Indexes 50+ connected apps with their permissions, so answers respect who can see what",
     "Works with local models (Ollama, vLLM, LiteLLM) and with hosted ones (Anthropic, OpenAI, Gemini)",
     "Web search through Serper, Google PSE, Brave or SearXNG, with its own crawler",
-    "Slack and Discord bots, an MCP server, a Chrome extension and an embeddable widget",
-    "Community edition under the MIT licence"
+    "Slack and Discord bots, an MCP server, a Chrome extension and an embeddable widget"
   ],
   "limits": [
     "Standard mode needs at least 4 vCPU, 10 GB RAM and 32 GB disk plus about 2.5 times the indexed data",

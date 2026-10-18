@@ -46,5 +46,11 @@
     "url": "https://github.com/maikroservice/threaduler",
     "retrievedOn": "2026-10-18",
     "field": "limits"
+  },
+  {
+    "claim": "README says it works for X and Bluesky, but its roadmap checklist still has 'add bsky integration' unchecked",
+    "url": "https://github.com/maikroservice/threaduler#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description, limits"
   }
 ]

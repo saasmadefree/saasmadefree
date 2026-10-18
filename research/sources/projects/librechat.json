@@ -58,5 +58,11 @@
     "url": "https://github.com/LibreChat-AI/LibreChat#readme",
     "retrievedOn": "2026-10-18",
     "field": "limits"
+  },
+  {
+    "claim": "Code Interpreter API: powered by the self-hostable ClickHouse/code-interpreter; docs describe API key setup and a self-hosted base URL",
+    "url": "https://www.librechat.ai/docs/features/code_interpreter",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
   }
 ]

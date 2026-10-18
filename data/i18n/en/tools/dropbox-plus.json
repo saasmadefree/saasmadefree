@@ -34,16 +34,16 @@
     },
     {
       "q": "Can I sync between my computers without running a server?",
-      "a": "Yes, with Syncthing. It syncs folders directly between your machines and flags conflicting versions. It has no web interface, no sharing links and no cloud copy, so a switched-off laptop means no backup."
+      "a": "Yes, with Syncthing. It syncs folders directly between your machines and flags conflicting versions. It has a web admin interface, but no web file browser, no sharing links and no cloud copy, so a switched-off laptop means no backup."
     }
   ],
-  "alternativesIntro": "The best free Dropbox alternative is Nextcloud: file sync, sharing links, versioning and apps on your own server. You run the server and its backups, and you pay for the storage. You lose Dropbox's hardened sync engine, on-demand file placeholders and the polished mobile apps. Seafile is the pick if you want faster sync for large libraries. Syncthing suits you if you only need folders mirrored between your own machines. If nobody will look after a server, keep paying $9.99 a month.",
+  "alternativesIntro": "The best free Dropbox alternative is Nextcloud: file sync, sharing links, versioning and apps on your own server. You run the server and its backups, and you pay for the storage. You lose Dropbox's hardened sync engine and the polished mobile apps, and get less mature on-demand file placeholders. Seafile is the pick if you want faster sync for large libraries. Syncthing suits you if you only need folders mirrored between your own machines. If nobody will look after a server, keep paying €9.99 a month.",
   "alternativeNotes": {
     "nextcloud": "Covers file sync, sharing links, versioning and apps on your own server. You run the server and its backups.",
     "seafile": "Covers fast file sync, libraries with history and sharing links. Some features need the paid Pro edition.",
     "opencloud": "Covers file sync, sharing and spaces, with desktop and mobile clients on your own server.",
     "owncloud-ocis": "Covers file sync, sharing and spaces, with clients, on your own server.",
-    "syncthing": "Keeps folders in sync between machines and flags conflicting versions. It has no web interface, no sharing links and no cloud storage.",
-    "pydio-cells": "Covers file sharing and sync with workflows on your own server. It is aimed at organisations rather than individuals."
+    "syncthing": "Keeps folders in sync between machines and flags conflicting versions. It has a web admin interface but no web file browser, no sharing links and no cloud storage.",
+    "pydio-cells": "Covers file sharing with workflows on your own server. Its README describes no desktop or mobile sync clients, so check that before relying on it for sync. It is aimed at organisations rather than individuals."
   }
 }

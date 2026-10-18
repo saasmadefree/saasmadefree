@@ -34,5 +34,17 @@
     "url": "https://wraft.app",
     "retrievedOn": "2026-10-18",
     "field": "alternativeNotes.wraft"
+  },
+  {
+    "claim": "DocuSeal sells SMS 2FA, ID verification and an EU qualified signature as paid extras; free edition has none",
+    "url": "https://www.docuseal.com/pricing",
+    "retrievedOn": "2026-10-18",
+    "field": "faq[4].a"
+  },
+  {
+    "claim": "DocuSign Personal $11 a month, annual plan (data/tools/docusign.json basis annual-effective-monthly)",
+    "url": "https://ecom.docusign.com/plans-and-pricing/esignature",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
   }
 ]

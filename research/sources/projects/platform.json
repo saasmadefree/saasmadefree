@@ -30,10 +30,10 @@
     "field": "strengths"
   },
   {
-    "claim": "Hosted Huly service is being discontinued; self-hosted deployments not affected",
+    "claim": "Hosted Huly has shut down because hosting is no longer funded; repository frozen, development continues in Platform-Collective/platform",
     "url": "https://github.com/hcengineering/platform",
     "retrievedOn": "2026-10-18",
-    "field": "limits"
+    "field": "description, limits"
   },
   {
     "claim": "Development prerequisites: Node.js v22, Docker, Docker Compose",
@@ -46,5 +46,11 @@
     "url": "https://github.com/hcengineering/platform",
     "retrievedOn": "2026-10-18",
     "field": "description"
+  },
+  {
+    "claim": "Platform-Collective/platform is a fork of Huly Platform developed independently",
+    "url": "https://github.com/Platform-Collective/platform",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
   }
 ]

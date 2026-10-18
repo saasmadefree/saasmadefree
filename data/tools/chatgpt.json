@@ -28,6 +28,10 @@
   ],
   "alternatives": [
     {
+      "project": "jan",
+      "fit": "partial"
+    },
+    {
       "project": "ollama",
       "fit": "partial"
     },
@@ -49,10 +53,6 @@
     },
     {
       "project": "librechat",
-      "fit": "partial"
-    },
-    {
-      "project": "jan",
       "fit": "partial"
     },
     {

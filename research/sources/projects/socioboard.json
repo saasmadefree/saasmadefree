@@ -46,5 +46,11 @@
     "url": "https://github.com/Socioboard-developers/Socioboard-5.0",
     "retrievedOn": "2026-10-18",
     "field": "limits"
+  },
+  {
+    "claim": "LICENSE file in the repository is GNU GPL version 3",
+    "url": "https://github.com/Socioboard-developers/Socioboard-5.0/blob/master/LICENSE",
+    "retrievedOn": "2026-10-18",
+    "field": "description, limits"
   }
 ]

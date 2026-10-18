@@ -1,6 +1,6 @@
 {
   "tagline": "Self-hosted meeting scheduler with booking pages, two-way calendar sync, video links and email reminders.",
-  "description": "Tymeslot is a scheduling app written in Elixir with Phoenix LiveView and PostgreSQL. Visitors pick a duration and a time on your booking page. Availability comes from named schedules with breaks, buffers, notice periods and date overrides, and every connected calendar is checked at booking time to avoid double booking. It reads and writes Google Calendar, Outlook, iCloud, CalDAV and others, and creates rooms on Google Meet, Teams, Zoom, Jitsi and more. Emails carry an .ics file, reminders and cancel or reschedule links. Webhooks, Slack and Telegram alerts, custom questions and optional Stripe payments are included. The quick start is one docker run command with PostgreSQL bundled, and the first account becomes admin. The docs list 500 MB of RAM as the minimum. Cloudron and Railway installs exist too. You must set up SMTP or another mail service, because without it emails are silently discarded. The code is AGPL-3.0, and a managed cloud with a free plan is also offered, starting from 9 EUR per month in our data. It aims at Calendly users who want to host their own booking pages. Group events and round-robin routing are not described in the README.",
+  "description": "Tymeslot is a scheduling app written in Elixir with Phoenix LiveView and PostgreSQL. Visitors pick a duration and a time on your booking page. Availability comes from named schedules with breaks, buffers, notice periods and date overrides, and every connected calendar is checked at booking time to avoid double booking. It reads and writes Google Calendar, Outlook, iCloud, CalDAV and others, and creates rooms on Google Meet, Teams, Zoom, Jitsi and more. Emails carry an .ics file, reminders and cancel or reschedule links. Webhooks, Slack and Telegram alerts, custom questions and optional Stripe payments are included. The quick start is one docker run command with PostgreSQL bundled, and the first account becomes admin. The docs list 500 MB of RAM as the minimum. Cloudron and Railway installs exist too. You must set up SMTP or another mail service, because without it emails are silently discarded. The code is AGPL-3.0, and a managed cloud with a free plan is also offered, with a paid Pro plan from 9 EUR per month. It aims at Calendly users who want to host their own booking pages. Group events and round-robin routing are not described in the README.",
   "strengths": [
     "Single docker run command with PostgreSQL bundled, then the first registered user becomes admin",
     "Two-way sync with Google, Outlook, iCloud, CalDAV and others, with conflict checks across all connected calendars",
@@ -12,8 +12,7 @@
     "Emails are silently dropped until you configure SMTP or another mail provider",
     "Needs at least 500 MB of RAM, with 1 GB recommended",
     "AGPL-3.0 licence: changes to a modified version run as a service must be shared",
-    "The README does not describe group events, round-robin team routing or CRM integrations",
-    "A young project, created in August 2025, so expect fast changes between releases"
+    "The README does not describe group events, round-robin team routing or CRM integrations"
   ],
   "bestFor": "A freelancer or small studio with a VPS that wants Calendly-style booking pages with its own calendars and mail server."
 }

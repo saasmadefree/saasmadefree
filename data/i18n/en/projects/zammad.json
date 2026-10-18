@@ -12,7 +12,7 @@
     "Needs about 2 CPU cores and 6 GB of RAM at minimum, plus 4 GB more for a local Elasticsearch",
     "Requires PostgreSQL 15 or newer and Redis 7 or newer",
     "Without Elasticsearch, search is very limited, so a full setup has one more service to run",
-    "Hosting, backups and updates are on you, and the maintainers steer users to their paid cloud"
+    "The documented example for 40 agents uses 6 CPU cores, so a growing team has to plan server capacity"
   ],
   "bestFor": "A support team of roughly 5 to 40 agents with a sysadmin who wants a Zendesk-style multichannel helpdesk on its own servers."
 }

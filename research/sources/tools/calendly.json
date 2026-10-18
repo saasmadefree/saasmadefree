@@ -58,5 +58,17 @@
     "url": "data/i18n/en/projects",
     "retrievedOn": "2026-10-18",
     "field": "faq[5]"
+  },
+  {
+    "claim": "Tymeslot README: Slack and Telegram notifications plus meeting_created, meeting_cancelled and meeting_rescheduled webhooks (so Slack is notifications only; no native CRM integrations listed)",
+    "url": "https://raw.githubusercontent.com/Tymeslot/tymeslot/main/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
+  },
+  {
+    "claim": "Calnode documents fixed, round-robin, collective and priority routing",
+    "url": "https://github.com/Calnode/calnode",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
   }
 ]

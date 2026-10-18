@@ -1,6 +1,6 @@
 {
   "tagline": "Self-hosted support inbox for live chat, email and social channels; an Intercom and Zendesk alternative.",
-  "description": "Chatwoot gathers customer conversations in one shared inbox. Channels include website live chat, email, Facebook, Instagram, Twitter, WhatsApp, Telegram, Line and SMS. Agents get private notes, @mentions, labels, canned responses, automatic assignment, business hours and reports such as CSAT. A help center portal publishes articles, and there are integrations with Slack, Shopify, Linear and Dialogflow. An AI agent called Captain is described in the README for handling routine questions. To self-host, the repository includes a production Docker Compose file with a Rails web service, a Sidekiq background worker, PostgreSQL (with pgvector) and Redis, and the README also lists Heroku and DigitalOcean Kubernetes one-click options, plus a Helm chart on Artifact Hub. The code is MIT licensed, apart from anything under the enterprise directory, which has its own licence. It can replace Zendesk or Intercom for small support teams, though the exact set of features you get on a self-hosted install versus the paid cloud plans should be checked on the pricing page. Plan to set up outgoing and incoming email.",
+  "description": "Chatwoot gathers customer conversations in one shared inbox. Channels include website live chat, email, Facebook, Instagram, Twitter, WhatsApp, Telegram, Line and SMS. Agents get private notes, @mentions, labels, canned responses, automatic assignment, business hours and reports such as CSAT. A help center portal publishes articles, and there are integrations with Slack, Shopify, Linear and Dialogflow. An AI agent called Captain is described in the README for handling routine questions. To self-host, the repository includes a production Docker Compose file. It runs a Rails web service, a Sidekiq background worker, PostgreSQL (with pgvector) and Redis. The README also lists Heroku and DigitalOcean Kubernetes one-click options, plus a Helm chart on Artifact Hub. The code is MIT licensed. The enterprise directory has its own licence. It can replace Zendesk or Intercom for small support teams, though the exact set of features you get on a self-hosted install versus the paid cloud plans should be checked on the pricing page. Plan to set up outgoing and incoming email.",
   "strengths": [
     "One inbox for live chat, email, WhatsApp, Telegram, Instagram, Facebook, Twitter, Line and SMS",
     "Agent tools include private notes, @mentions, canned responses, auto-assignment, business hours and CSAT reports",
@@ -12,7 +12,7 @@
     "The production Compose file runs four services (Rails, Sidekiq, PostgreSQL, Redis), so the footprint is larger than a single container",
     "Content under the enterprise directory uses a separate licence, not MIT",
     "The Captain AI agent is promoted in the README, but whether it is included in a self-hosted install is not stated there",
-    "Self-hosting means you manage upgrades, email delivery and backups yourself"
+    "The README does not spell out which features a self-hosted install gets compared with the paid cloud plans"
   ],
   "bestFor": "A small support team or startup on Zendesk or Intercom that has a Linux server and wants website chat and email in one shared inbox."
 }

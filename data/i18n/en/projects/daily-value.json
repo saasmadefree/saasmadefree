@@ -1,6 +1,6 @@
 {
   "tagline": "Static-web nutrition tracker styled like a Nutrition Facts label, with a food database and barcode scanning.",
-  "description": "Daily Value is a nutrition diary built as plain JavaScript files with no build step and no server code. You can open the author's GitHub Pages site and install it on a phone, or serve the files from any static host. Outside claude.ai the diary is saved in the browser, so data stays on the device unless you back it up by hand with the copy and restore buttons. It bundles roughly 13,000 everyday foods from USDA and about 374,000 brand-name products from USDA Branded Foods and Open Food Facts. Barcodes can be read with the phone camera. You log meals, exercise, water and weight, set targets based on the Dietary Reference Intakes, and view trend charts. Optional email accounts sync a diary between devices through a free Supabase project that you create yourself, using a provided SQL schema. The code is MIT, while the food data keeps its own licences (CC0 for USDA, ODbL for Open Food Facts). It is a very young repository with no stars, so treat it as a personal-use tool. It stands in for the logging side of MyFitnessPal or Cronometer, not for coaching or meal plans.",
+  "description": "Daily Value is a nutrition diary built as plain JavaScript files with no build step and no server code. You can open the author's GitHub Pages site and install it on a phone, or serve the files from any static host. As a normal web page it keeps the diary in the browser's local storage, so data stays on the device unless you back it up by hand with the copy and restore buttons. It bundles roughly 13,000 everyday foods from USDA and about 374,000 brand-name products from USDA Branded Foods and Open Food Facts. Barcodes can be read with the phone camera. You log meals, exercise, water and weight, set targets based on the Dietary Reference Intakes, and view trend charts. Optional email accounts sync a diary between devices through a free Supabase project that you create yourself, using a provided SQL schema. The code is MIT, while the food data keeps its own licences (CC0 for USDA, ODbL for Open Food Facts). It is a new project with no track record yet, so treat it as a personal-use tool. It stands in for the logging side of MyFitnessPal or Cronometer, not for coaching or meal plans.",
   "strengths": [
     "Needs only static hosting: plain JavaScript files with no server and no build step",
     "Includes a bundled food database, so searches work without a paid food API",
@@ -9,7 +9,7 @@
     "Cloud sync is optional and uses a free Supabase project you control"
   ],
   "limits": [
-    "Very new project, created in late September 2026 with no stars, so there is no track record of maintenance or support",
+    "New project with no track record of maintenance or support yet",
     "Without the Supabase setup, the diary is stored only in the browser on one device and moves between devices by manual backup",
     "Food data was built from fixed USDA and Open Food Facts downloads, so new products only appear if you rebuild the data yourself",
     "The AI meal-logging features only work when the page runs as a claude.ai artifact",

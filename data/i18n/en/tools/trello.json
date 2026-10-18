@@ -43,7 +43,7 @@
     "planka": "Covers real-time boards, comments, custom fields and a REST API under a fair-code licence. Calendar and timeline views and OIDC sign-in are Pro-only.",
     "kan": "Covers boards, lists, cards and labels, and imports Trello boards directly. Integrations are still listed as coming soon.",
     "plane": "Covers work items, cycles, modules and analytics, so it is issue tracking more than a card board. The Community Edition matches only the Cloud Free tier.",
-    "openproject": "Covers Gantt, Kanban, Scrum and time tracking. It is a full Rails application with a heavier admin load, and some features are Enterprise add-ons.",
+    "openproject": "Covers Gantt, Kanban, Scrum and time tracking. The documented minimum is 4 CPU cores and 4 GB of RAM, and full baseline comparison, LDAP group sync and OpenID Connect sign-in are Enterprise add-ons.",
     "leantime": "Covers kanban, gantt, table, list and calendar views, plus goals and timesheets, all in the free version. It needs MySQL or MariaDB and does not list PostgreSQL.",
     "vikunja": "Covers list, kanban, Gantt and table views in one Go binary. The admin panel and time tracking are in the paid Pro tier, and the mobile app is basic."
   }

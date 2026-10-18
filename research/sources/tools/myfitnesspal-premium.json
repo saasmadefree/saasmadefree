@@ -34,5 +34,11 @@
     "url": "https://github.com/jjnesk1-ship-it/daily-value",
     "retrievedOn": "2026-10-18",
     "field": "alternativeNotes.daily-value"
+  },
+  {
+    "claim": "SparkyFitness food sources include OpenFoodFacts, USDA, Fatsecret and Nutritionix, so coverage depends on what you connect",
+    "url": "https://github.com/CodeWithCJ/SparkyFitness#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "alternativesIntro"
   }
 ]

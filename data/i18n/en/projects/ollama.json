@@ -5,8 +5,7 @@
     "One command pulls a model and starts a chat: ollama run followed by a model name",
     "Local REST API on port 11434, plus official Python and JavaScript libraries",
     "Installers for macOS, Windows and Linux, and an official Docker image",
-    "Can launch coding tools such as Claude Code, Codex and OpenCode against local models",
-    "MIT licence"
+    "Can launch coding tools such as Claude Code, Codex and OpenCode against local models"
   ],
   "limits": [
     "Speed depends on your hardware: Nvidia GPUs need compute capability 5.0+ and driver 550 or newer, otherwise inference runs on the CPU",
