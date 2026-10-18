@@ -269,7 +269,7 @@ describe('catégorie « best » — projets puis registre SaaS', () => {
   it('no project at all: a plain note, no table, no project ItemList', () => {
     const d = dom(render({ toolViews: [VIEWS[2]] }));
     expect(d.querySelector('section[aria-labelledby="projects-heading"] table')).toBeNull();
-    expect(text(d.querySelector('section[aria-labelledby="projects-heading"]'))).toContain('No open source');
+    expect(text(d.querySelector('section[aria-labelledby="projects-heading"]'))).toContain(UI.en.site.category.noProjects.replace('{category}', 'Newsletters & publishing'));
     expect(jsonLd(d).filter((x) => x['@type'] === 'ItemList')).toHaveLength(1);
   });
 
@@ -339,10 +339,10 @@ describe('D14 — répertoire des catégories', () => {
     expect(text(links[1])).toContain('1 tool');
   });
 
-  it('le nombre de projets open source quand il y en a, rien sinon', () => {
+  it('le nombre de projets quand il y en a, rien sinon', () => {
     const links = [...idx.querySelectorAll('main ul a')];
-    expect(text(links[0])).toContain('4 open source projects');
-    expect(text(links[1])).not.toContain('open source');
+    expect(text(links[0])).toContain('4 free projects');
+    expect(text(links[1])).not.toContain('project');
   });
 
   it('Organization en JSON-LD, hreflang', () => {
@@ -359,7 +359,7 @@ describe('D14 — répertoire des catégories', () => {
 
   it('en français', () => {
     const fr = dom(renderIndex({ lang: 'fr' }));
-    expect(text(fr.querySelector('main ul a'))).toContain('4 projets open source');
+    expect(text(fr.querySelector('main ul a'))).toContain('4 projets gratuits');
   });
 });
 
@@ -466,6 +466,8 @@ describe('page de catégorie — « Open Source » du titre (Ruling 44)', () => 
     const d = dom(render({ projects: kinds({ keila: 'fair-code' }) }));
     expect(titleOf(d)).toBe('3 Best Free & Open Source Newsletters & publishing Tools (2026)');
     expect(text(d.querySelector('h1'))).toBe(titleOf(d));
+    // La description compte comme le titre : 3, pas 4.
+    expect(descOf(d)).toBe(c.metaDescriptionTemplate.replace('{n}', '3').replaceAll('{category}', 'Newsletters & publishing'));
   });
 
   it('open-core compte comme open source', () => {
@@ -480,7 +482,8 @@ describe('page de catégorie — « Open Source » du titre (Ruling 44)', () => 
     expect(titleOf(d)).not.toMatch(/open source/i);
     expect(text(d.querySelector('h1'))).toBe(titleOf(d));
     expect(descOf(d)).not.toMatch(/free and open source/i);
-    expect(descOf(d)).toContain('Not all are open source');
+    expect(descOf(d)).toBe(c.metaDescriptionNotOpenTemplate.replace('{n}', '4').replaceAll('{category}', 'Newsletters & publishing'));
+    expect(descOf(d)).toContain('not every tool here is open source');
   });
 
   it('idem en français', () => {
@@ -498,7 +501,27 @@ describe('page de catégorie — « Open Source » du titre (Ruling 44)', () => 
     const mixed = dom(render({ ...few, projects: kinds({ mautic: 'source-available' }) }));
     expect(titleOf(mixed)).toBe('Free Newsletters & publishing Tools (2026)');
     expect(descOf(mixed)).toBe(c.metaDescriptionNotOpenFallbackTemplate.replaceAll('{category}', 'Newsletters & publishing'));
+    expect(descOf(mixed)).not.toMatch(/free and open source/i);
     const fr = dom(render({ ...few, lang: 'fr', projects: kinds({ mautic: 'fair-code' }) }));
     expect(titleOf(fr)).toBe('Newsletters et publication : outils gratuits (2026)');
   });
+});
+
+// Fix round 1 : les libellés de l'interface ne disent plus « open source »
+// d'office. Catégorie dont tous les projets sont source-available.
+describe('page de catégorie — libellés neutres (Ruling 44)', () => {
+  const all = new Map([...PROJECTS].map(([slug, p]) => [slug, { ...p, licenseKind: 'source-available', licenseSource: `https://${slug}.example/LICENSE` }]));
+  for (const lang of ['en', 'fr']) {
+    it(`tout source-available (${lang}) : titre, description, intertitre, légende et compteur sans « open source »`, () => {
+      const d = dom(render({ lang, projects: all }));
+      const claims = lang === 'fr' ? /open[- ]source|\blibres?\b/i : /open[- ]source/i;
+      expect(d.querySelector('title').textContent).not.toMatch(claims);
+      expect(text(d.querySelector('#projects-heading'))).not.toMatch(claims);
+      expect(text(d.querySelector('#projects-caption'))).not.toMatch(claims);
+      expect(text(d.querySelector('.list-head .intro'))).not.toMatch(claims);
+      // La description dit seulement que tous ne le sont pas.
+      expect(d.querySelector('meta[name="description"]').getAttribute('content'))
+        .not.toMatch(/free and open source|gratuits et open source/i);
+    });
+  }
 });

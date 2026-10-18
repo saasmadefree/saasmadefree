@@ -825,3 +825,21 @@ describe('Ruling 44 — nature de la licence', () => {
     expect(JSON.stringify(list)).not.toMatch(/open.?source/i);
   });
 });
+
+// Fix round 1 : fiche dont toutes les alternatives sont source-available ou
+// fair-code — ni le titre ni les libellés de l'interface ne disent « open source ».
+describe('fiche — libellés neutres (Ruling 44)', () => {
+  const all = new Map([...PROJECTS].map(([slug, p]) => [slug, { ...p, license: p.license ?? 'Custom', licenseKind: 'source-available', licenseSource: 'https://example.org/LICENSE' }]));
+  for (const lang of ['en', 'fr']) {
+    it(`tout source-available (${lang}) : titre, menu « ways » et note sans alternative`, () => {
+      const claims = lang === 'fr' ? /open[- ]source|\blibres?\b/i : /open[- ]source/i;
+      const d = dom(render({ lang, projects: all }));
+      expect(text(d.querySelector('title'))).not.toMatch(claims);
+      expect(text(d.querySelector('nav.ways'))).not.toMatch(claims);
+      expect(text(d.querySelector('#alternatives-heading'))).not.toMatch(claims);
+      expect(text(d.querySelector('#alternatives-caption'))).not.toMatch(claims);
+      const none = dom(render({ lang, tool: { ...tool, alternatives: [] } }));
+      expect(text(section(none, 'alternatives-heading').querySelector('.intro'))).not.toMatch(claims);
+    });
+  }
+});

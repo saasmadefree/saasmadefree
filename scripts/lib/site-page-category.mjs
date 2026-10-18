@@ -164,7 +164,9 @@ export function renderCategoryPage({
   const open = fallback ? nOpen === n : nOpen >= MIN_LIST_ITEMS;
   const key = (base) => `${base}${open ? '' : 'NotOpen'}${fallback ? 'Fallback' : ''}Template`;
   const title = interpolate(c[key('title')], open && !fallback ? { ...titleVars, n: nOpen } : titleVars);
-  const description = interpolate(c[key('metaDescription')], vars);
+  // Même compte dans la description que dans le titre : sinon « 3 … Open
+  // Source » au titre et « 4 free and open source » dessous.
+  const description = interpolate(c[key('metaDescription')], open && !fallback ? { ...vars, n: nOpen } : vars);
   const tally = [
     pluralize(toolViews.length, lang, ci.toolCountOne, ci.toolCountOther),
     n > 0 ? pluralize(n, lang, c.projectCountOne, c.projectCountOther) : null,

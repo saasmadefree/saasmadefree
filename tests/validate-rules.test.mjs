@@ -752,3 +752,69 @@ describe('data/categories.json', () => {
     expect(validators.categories(data.categories), JSON.stringify(validators.categories.errors)).toBe(true);
   });
 });
+
+// Ruling 44 : une fiche dont toutes les alternatives affichables sont
+// source-available ou fair-code ne les dit pas « open source ».
+describe('texte rédigé : pas de « open source » si aucune alternative ne l’est', () => {
+  const kind = (k) => ({ license: 'SUL-1.0', licenseKind: k, licenseSource: 'https://example.com/LICENSE' });
+  function makeData(kinds, entryOver = {}, lang = 'en') {
+    const data = makeAltData();
+    data.projects.set('outline', makeProject('outline', kind(kinds[0])));
+    data.projects.set('wikijs', makeProject('wikijs', kinds[1] ? kind(kinds[1]) : {}));
+    const entry = { ...data.i18n.get('en/a'), faq: sixFaq, alternativesIntro: introNaming('outline'), ...entryOver };
+    if (lang === 'fr') {
+      data.tools.get('a').markets = ['en', 'fr'];
+      data.i18n.set('fr/a', entry);
+      data.ui.set('fr', data.ui.get('en'));
+    } else {
+      data.i18n.set('en/a', entry);
+    }
+    return data;
+  }
+  const errorsOf = (data) => validateAll(data, validators, TODAY).filter((e) => e.includes('Ruling 44'));
+  const openFaq = sixFaq.map((f, i) => (i === 5 ? { q: 'Is it open source?', a: 'Yes.' } : f));
+
+  it('toutes source-available ou fair-code : refuse intro, note et FAQ 5-6 qui disent « open source »', () => {
+    const intro = `outline is the best open-source pick. ${words(70)}`;
+    const data = makeData(['source-available', 'fair-code'], {
+      alternativesIntro: intro, alternativeNotes: { wikijs: 'An open source wiki.' }, faq: openFaq,
+    });
+    const out = errorsOf(data);
+    expect(out).toHaveLength(3);
+    expect(out[0]).toContain('data/i18n/en/tools/a.json');
+    expect(out.join('\n')).toMatch(/alternativesIntro[\s\S]*alternativeNotes\.wikijs[\s\S]*faq\[5\]\.q/);
+  });
+
+  it('les quatre premières FAQ ne sont pas contrôlées', () => {
+    const faq = sixFaq.map((f, i) => (i === 0 ? { q: 'Open source?', a: 'No.' } : f));
+    expect(errorsOf(makeData(['source-available', 'fair-code'], { faq }))).toEqual([]);
+  });
+
+  it('une seule alternative open source (ou sans licenseKind) suffit : rien à signaler', () => {
+    expect(errorsOf(makeData(['source-available', 'open-core'], { faq: openFaq }))).toEqual([]);
+    expect(errorsOf(makeData(['source-available', null], { faq: openFaq }))).toEqual([]);
+  });
+
+  it('une alternative archivée ne compte pas : seules les affichables décident', () => {
+    const data = makeData(['source-available', null], { faq: openFaq });
+    data.projects.get('wikijs').stats = { stars: 1, lastCommit: '2026-07-01', createdAt: '2020-01-01', archived: true, checkedOn: TODAY };
+    expect(errorsOf(data)).toHaveLength(1);
+  });
+
+  it('fr : « open source » et « libre » refusés, « librement » accepté', () => {
+    const intro = `outline est le choix ${words(70)}`;
+    const libre = makeData(['fair-code', 'fair-code'], { alternativesIntro: `${intro} logiciel libre` }, 'fr');
+    expect(errorsOf(libre).join('\n')).toContain('data/i18n/fr/tools/a.json : alternativesIntro');
+    const os = makeData(['fair-code', 'fair-code'], { alternativeNotes: { outline: 'Un wiki open source.' } }, 'fr');
+    expect(errorsOf(os).join('\n')).toContain('alternativeNotes.outline');
+    expect(errorsOf(makeData(['fair-code', 'fair-code'], { alternativesIntro: `${intro} utilisable librement` }, 'fr'))).toEqual([]);
+  });
+});
+
+describe('données réelles — garde-fou « open source » (Ruling 44)', () => {
+  it('aucune erreur sur les données du jour', async () => {
+    const data = await loadData(process.cwd());
+    const out = validateAll(data, validators, new Date().toISOString().slice(0, 10)).filter((e) => e.includes('Ruling 44'));
+    expect(out).toEqual([]);
+  });
+});

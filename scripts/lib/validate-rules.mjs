@@ -336,6 +336,43 @@ function checkIntroNamesWinner(intro, tool, projects, today, path, errors) {
   }
 }
 
+// Ruling 44 : une fiche dont TOUTES les alternatives affichables sont
+// source-available ou fair-code ne peut pas les dire « open source » dans son
+// texte rédigé. Garde-fou : aucune fiche n'est dans ce cas aujourd'hui.
+const NOT_OPEN_KINDS = new Set(['source-available', 'fair-code']);
+// fr : « open source » (glossaire research/glossary/fr.json) et « libre(s) »,
+// mot entier — « librement » ou « délibéré » ne sont pas des affirmations.
+const OPEN_SOURCE_CLAIM = {
+  en: /open[- ]source/i,
+  fr: /open[- ]source|(?<![\p{L}\p{N}])libres?(?![\p{L}\p{N}])/iu,
+};
+
+function checkNoOpenSourceClaim(entry, lang, tool, projects, today, path, errors) {
+  const claim = OPEN_SOURCE_CLAIM[lang] ?? OPEN_SOURCE_CLAIM.en;
+  const shown = (tool?.alternatives ?? [])
+    .map((alt) => projects.get(alt.project))
+    .filter((project) => project && isDisplayableProject(project, today));
+  if (shown.length === 0 || !shown.every((project) => NOT_OPEN_KINDS.has(project.licenseKind))) return;
+  const fields = [];
+  if (typeof entry.alternativesIntro === 'string') fields.push(['alternativesIntro', entry.alternativesIntro]);
+  for (const [slug, note] of Object.entries(entry.alternativeNotes ?? {})) {
+    if (typeof note === 'string') fields.push([`alternativeNotes.${slug}`, note]);
+  }
+  for (const i of [4, 5]) {
+    const item = entry.faq?.[i];
+    if (typeof item?.q === 'string') fields.push([`faq[${i}].q`, item.q]);
+    if (typeof item?.a === 'string') fields.push([`faq[${i}].a`, item.a]);
+  }
+  for (const [field, text] of fields) {
+    if (claim.test(text)) {
+      errors.push(
+        `${path} : ${field} dit « open source », mais toutes les alternatives affichables sont ` +
+        'source-available ou fair-code (licenseKind) — Ruling 44, ne pas affirmer une licence libre'
+      );
+    }
+  }
+}
+
 function validateCategories(categories, validators, errors) {
   // Absent (jeux de test partiels) : rien à valider. loadData() le lit
   // toujours, et un fichier manquant y lève déjà une erreur.
@@ -476,6 +513,7 @@ export function validateAll(data, validators, today) {
         }
       }
     }
+    checkNoOpenSourceClaim(entry, entryLang, tools.get(entrySlug), projects, today, path, errors);
     findPlaceholders(entry, path, errors);
     findBannedPhrases(entry, path, banned[entryLang], errors);
   }
