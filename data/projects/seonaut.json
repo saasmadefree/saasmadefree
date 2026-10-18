@@ -5,6 +5,8 @@
   "repo": "StJudeWasHere/seonaut",
   "license": "MIT",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/StJudeWasHere/seonaut",
   "hosted": {
     "exists": false
   },
@@ -14,11 +16,11 @@
     "seo-marketing"
   ],
   "stats": {
-    "stars": 808,
+    "stars": 809,
     "lastCommit": "2026-10-08",
     "createdAt": "2022-03-02",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

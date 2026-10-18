@@ -5,6 +5,8 @@
   "repo": "makeplane/plane",
   "license": "AGPL-3.0",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://developers.plane.so/self-hosting/overview",
   "hosted": {
     "exists": false
   },
@@ -15,11 +17,11 @@
     "project-management"
   ],
   "stats": {
-    "stars": 60999,
+    "stars": 61032,
     "lastCommit": "2026-10-17",
     "createdAt": "2022-11-19",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

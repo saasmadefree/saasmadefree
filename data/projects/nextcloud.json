@@ -1,7 +1,7 @@
 {
-  "slug": "server",
+  "slug": "nextcloud",
   "name": "Nextcloud",
-  "homepage": "https://github.com/nextcloud/server",
+  "homepage": "https://nextcloud.com",
   "repo": "nextcloud/server",
   "license": "AGPL-3.0",
   "selfHostable": true,
@@ -9,16 +9,18 @@
     "exists": false
   },
   "deploy": [],
-  "stack": [],
+  "stack": [
+    "php"
+  ],
   "categories": [
     "cloud-storage"
   ],
   "stats": {
-    "stars": 37160,
-    "lastCommit": "2026-10-17",
+    "stars": 37163,
+    "lastCommit": "2026-10-18",
     "createdAt": "2016-06-02",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

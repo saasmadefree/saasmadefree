@@ -1,0 +1,29 @@
+{
+  "slug": "woocommerce",
+  "name": "WooCommerce",
+  "homepage": "https://woocommerce.com",
+  "repo": "woocommerce/woocommerce",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [
+    "php"
+  ],
+  "categories": [
+    "creator-commerce"
+  ],
+  "stats": {
+    "stars": 10556,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2011-08-09",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

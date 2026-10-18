@@ -26,6 +26,34 @@
   "alternatives": [
     {
       "project": "n8n",
+      "fit": "full"
+    },
+    {
+      "project": "activepieces",
+      "fit": "full"
+    },
+    {
+      "project": "windmill",
+      "fit": "full"
+    },
+    {
+      "project": "automatisch",
+      "fit": "full"
+    },
+    {
+      "project": "bytechef",
+      "fit": "full"
+    },
+    {
+      "project": "huginn",
+      "fit": "partial"
+    },
+    {
+      "project": "kestra",
+      "fit": "partial"
+    },
+    {
+      "project": "node-red",
       "fit": "partial"
     }
   ],

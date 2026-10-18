@@ -1,0 +1,153 @@
+[
+  {
+    "slug": "penpot",
+    "existing": true,
+    "name": "Penpot",
+    "repo": "penpot/penpot",
+    "homepage": "https://penpot.app",
+    "why": "Open-source design and prototyping tool that runs in the browser and can be self-hosted.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Vector design, components and collaboration with export. Built for interface design; no template library or stock assets like Canva.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/penpot/penpot",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "clojure"
+    ],
+    "categories": [
+      "design"
+    ],
+    "evidenceUrls": [
+      "https://github.com/penpot/penpot",
+      "https://openalternative.co/alternatives/canva",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "graphite",
+    "existing": false,
+    "name": "Graphite",
+    "repo": "GraphiteEditor/Graphite",
+    "homepage": "https://graphite.art",
+    "why": "Open-source vector and raster graphics editor with node-based procedural tools, in the browser and as an app.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Layer-based editing and PNG export. No templates, stock library or team brand kit.",
+    "deploy": [],
+    "stack": [
+      "rust"
+    ],
+    "categories": [
+      "design"
+    ],
+    "evidenceUrls": [
+      "https://github.com/GraphiteEditor/Graphite",
+      "https://openalternative.co/alternatives/canva"
+    ]
+  },
+  {
+    "slug": "excalidraw",
+    "existing": true,
+    "name": "Excalidraw",
+    "repo": "excalidraw/excalidraw",
+    "homepage": "https://excalidraw.com",
+    "why": "Browser whiteboard for hand-drawn style diagrams that exports PNG and SVG.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Quick diagrams and sketches with image export. Not a layout or template tool.",
+    "deploy": [],
+    "stack": [
+      "typescript"
+    ],
+    "categories": [
+      "design"
+    ],
+    "evidenceUrls": [
+      "https://github.com/excalidraw/excalidraw"
+    ]
+  },
+  {
+    "slug": "tldraw",
+    "existing": true,
+    "name": "tldraw",
+    "repo": "tldraw/tldraw",
+    "homepage": "https://tldraw.dev",
+    "why": "Infinite canvas SDK and whiteboard app for drawing and diagramming.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Freeform canvas with shapes and export. A developer SDK, not a template design tool.",
+    "deploy": [],
+    "stack": [
+      "typescript"
+    ],
+    "categories": [
+      "design"
+    ],
+    "evidenceUrls": [
+      "https://github.com/tldraw/tldraw"
+    ]
+  },
+  {
+    "slug": "inkscape",
+    "existing": false,
+    "name": "Inkscape",
+    "repo": null,
+    "homepage": "https://gitlab.com/inkscape/inkscape",
+    "why": "Open-source desktop vector graphics editor that exports PNG and PDF.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Vector layout with text, layers and PNG/PDF export. Desktop app, no templates, no collaboration, no stock library.",
+    "deploy": [],
+    "stack": [
+      "c++"
+    ],
+    "categories": [
+      "design"
+    ],
+    "evidenceUrls": [
+      "https://gitlab.com/inkscape/inkscape"
+    ]
+  },
+  {
+    "slug": "krita",
+    "existing": false,
+    "name": "Krita",
+    "repo": "KDE/krita",
+    "homepage": "https://krita.org",
+    "why": "Open-source desktop painting and image editing application.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Raster painting and image layers with export. Desktop app aimed at illustration, no templates or collaboration.",
+    "deploy": [],
+    "stack": [
+      "c++"
+    ],
+    "categories": [
+      "design"
+    ],
+    "evidenceUrls": [
+      "https://krita.org",
+      "https://github.com/KDE/krita"
+    ]
+  },
+  {
+    "slug": "gimp",
+    "existing": false,
+    "name": "GIMP",
+    "repo": null,
+    "homepage": "https://www.gimp.org",
+    "why": "Open-source desktop image editor for photo retouching and compositing.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Photo editing, text and layers with PNG/PDF export. Desktop app, no templates or collaboration.",
+    "deploy": [],
+    "stack": [
+      "c"
+    ],
+    "categories": [
+      "design"
+    ],
+    "evidenceUrls": [
+      "https://www.gimp.org"
+    ]
+  }
+]

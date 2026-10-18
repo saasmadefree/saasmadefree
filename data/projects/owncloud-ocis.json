@@ -1,0 +1,32 @@
+{
+  "slug": "owncloud-ocis",
+  "name": "ownCloud Infinite Scale",
+  "homepage": "https://doc.owncloud.com/ocis/",
+  "repo": "owncloud/ocis",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/owncloud/ocis",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "go"
+  ],
+  "categories": [
+    "cloud-storage"
+  ],
+  "stats": {
+    "stars": 2154,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2019-08-15",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

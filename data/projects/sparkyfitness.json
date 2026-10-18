@@ -1,0 +1,31 @@
+{
+  "slug": "sparkyfitness",
+  "name": "SparkyFitness",
+  "homepage": "https://codewithcj.github.io/SparkyFitness/",
+  "repo": "CodeWithCJ/SparkyFitness",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/CodeWithCJ/SparkyFitness",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "typescript"
+  ],
+  "categories": [
+    "health-fitness"
+  ],
+  "stats": {
+    "stars": 6396,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2025-06-21",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

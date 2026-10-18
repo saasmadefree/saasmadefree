@@ -1,0 +1,31 @@
+{
+  "slug": "pdfsam",
+  "name": "PDFsam Basic",
+  "homepage": "https://pdfsam.org",
+  "repo": "torakiki/pdfsam",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "binary"
+  ],
+  "stack": [
+    "java",
+    "javafx"
+  ],
+  "categories": [
+    "documents"
+  ],
+  "stats": {
+    "stars": 4629,
+    "lastCommit": "2026-10-02",
+    "createdAt": "2013-09-24",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

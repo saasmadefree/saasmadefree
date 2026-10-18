@@ -1,0 +1,128 @@
+{
+  "tool": "mailchimp",
+  "checkedOn": "2026-10-18",
+  "question": "Paid SaaS: \"Mailchimp\". What people pay it for: A contact list with tags and segments, a Markdown campaign composer, and sends through a transactional email API with compliant unsubscribe handling built in. Question: is the candidate below an open-source or self-hostable application (web, desktop or server) that a person could actually use INSTEAD of Mailchimp for that job, or for a clear, substantial part of it? Partial replacements count as yes (for example a desktop video editor for a video app, a self-hosted rank tracker for an SEO suite). Answer no for: a code library or SDK only, a command-line utility with no end-user workflow, a closed paid service, a tutorial, or a tool for an unrelated job.",
+  "jevModel": "jev-1.13.0",
+  "results": [
+    {
+      "slug": "listmonk",
+      "name": "Listmonk",
+      "fitGuess": "full",
+      "jev": {
+        "p": 1,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "keila",
+      "name": "Keila",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.99,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "mautic",
+      "name": "Mautic",
+      "fitGuess": "full",
+      "jev": {
+        "p": 1,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.95,
+      "kept": true
+    },
+    {
+      "slug": "sendportal",
+      "name": "SendPortal",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.99,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.95,
+      "kept": true
+    },
+    {
+      "slug": "dittofeed",
+      "name": "Dittofeed",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.7,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.83,
+      "kept": true
+    },
+    {
+      "slug": "plunk",
+      "name": "Plunk",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.96,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "notifuse",
+      "name": "Notifuse",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.95,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.95,
+      "kept": true
+    },
+    {
+      "slug": "phplist",
+      "name": "phpList",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.99,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "postal",
+      "name": "Postal",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.47,
+        "review": true,
+        "classId": "other"
+      },
+      "decision": 0.47,
+      "kept": false
+    },
+    {
+      "slug": "billionmail",
+      "name": "BillionMail",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.89,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.93,
+      "kept": true
+    }
+  ]
+}

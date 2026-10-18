@@ -1,0 +1,32 @@
+{
+  "slug": "spree-commerce",
+  "name": "Spree Commerce",
+  "homepage": "https://spreecommerce.org",
+  "repo": "spree/spree",
+  "license": "BSD-3-Clause",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/spree/spree",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "ruby"
+  ],
+  "categories": [
+    "creator-commerce"
+  ],
+  "stats": {
+    "stars": 15761,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2008-03-10",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

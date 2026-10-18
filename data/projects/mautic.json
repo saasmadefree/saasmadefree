@@ -4,6 +4,8 @@
   "homepage": "https://github.com/mautic/mautic",
   "repo": "mautic/mautic",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/mautic/mautic",
   "hosted": {
     "exists": false
   },
@@ -14,11 +16,11 @@
     "newsletter"
   ],
   "stats": {
-    "stars": 10787,
+    "stars": 10789,
     "lastCommit": "2026-10-15",
     "createdAt": "2013-08-19",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

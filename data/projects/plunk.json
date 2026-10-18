@@ -1,0 +1,32 @@
+{
+  "slug": "plunk",
+  "name": "Plunk",
+  "homepage": "https://www.useplunk.com",
+  "repo": "useplunk/plunk",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/useplunk/plunk",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "typescript"
+  ],
+  "categories": [
+    "newsletter"
+  ],
+  "stats": {
+    "stars": 5524,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2024-07-12",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

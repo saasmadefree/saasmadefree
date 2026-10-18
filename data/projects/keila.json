@@ -5,8 +5,14 @@
   "repo": "pentacent/keila",
   "license": "AGPL-3.0",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/pentacent/keila",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 8,
+    "currency": "EUR",
+    "source": "https://www.keila.io/pricing",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [],
   "stack": [],
@@ -18,7 +24,7 @@
     "lastCommit": "2026-10-02",
     "createdAt": "2021-01-01",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

@@ -1,0 +1,179 @@
+{
+  "chatgpt": {
+    "added": [
+      "anything-llm",
+      "lobe-chat",
+      "ollama",
+      "jan",
+      "cherry-studio",
+      "khoj"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "spotify-premium": {
+    "added": [
+      "koel",
+      "gonic",
+      "airsonic-advanced",
+      "ampache"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "ahrefs": {
+    "added": [
+      "open-seo"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "myfitnesspal-premium": {
+    "added": [
+      "sparkyfitness",
+      "opennutritracker",
+      "waistline",
+      "daily-value"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "semrush": {
+    "added": [],
+    "checkedOn": "2026-10-18"
+  },
+  "dropbox-plus": {
+    "added": [
+      "nextcloud",
+      "opencloud",
+      "seafile",
+      "owncloud-ocis",
+      "pydio-cells"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "shopify": {
+    "added": [
+      "saleor",
+      "woocommerce",
+      "bagisto",
+      "spree-commerce",
+      "solidus",
+      "vendure",
+      "shopware",
+      "prestashop",
+      "sylius"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "canva": {
+    "added": [
+      "graphite",
+      "inkscape",
+      "krita",
+      "gimp"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "docusign": {
+    "added": [
+      "docuseal",
+      "opensign",
+      "libresign",
+      "wraft"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "mailchimp": {
+    "added": [
+      "sendportal",
+      "dittofeed",
+      "plunk",
+      "notifuse",
+      "phplist",
+      "billionmail"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "trello": {
+    "added": [
+      "wekan",
+      "planka",
+      "kan",
+      "openproject",
+      "leantime"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "capcut": {
+    "added": [
+      "opencut",
+      "openshot",
+      "flowblade"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "duolingo-super": {
+    "added": [
+      "librelingo",
+      "linguacafe"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "calendly": {
+    "added": [
+      "tymeslot",
+      "calnode",
+      "thunderbird-appointment",
+      "cloudmeet"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "zapier": {
+    "added": [
+      "automatisch",
+      "windmill",
+      "node-red",
+      "bytechef",
+      "kestra"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "smartsheet": {
+    "added": [
+      "redmine"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "zendesk": {
+    "added": [
+      "zammad",
+      "frappe-helpdesk",
+      "osticket",
+      "uvdesk",
+      "peppermint"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "hootsuite": {
+    "added": [
+      "trypost",
+      "socioboard",
+      "threaduler"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "asana": {
+    "added": [
+      "operately",
+      "taiga",
+      "worklenz"
+    ],
+    "checkedOn": "2026-10-18"
+  },
+  "adobe-acrobat-pro": {
+    "added": [
+      "pdfsam",
+      "bentopdf",
+      "pdfarranger",
+      "pdfding"
+    ],
+    "checkedOn": "2026-10-18"
+  }
+}

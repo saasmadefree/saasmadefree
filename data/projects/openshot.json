@@ -1,0 +1,32 @@
+{
+  "slug": "openshot",
+  "name": "OpenShot",
+  "homepage": "https://www.openshot.org",
+  "repo": "OpenShot/openshot-qt",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "binary"
+  ],
+  "stack": [
+    "python",
+    "qt",
+    "c++",
+    "ffmpeg"
+  ],
+  "categories": [
+    "audio-video"
+  ],
+  "stats": {
+    "stars": 6647,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2015-06-01",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

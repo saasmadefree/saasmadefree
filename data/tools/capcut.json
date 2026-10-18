@@ -24,7 +24,23 @@
   ],
   "alternatives": [
     {
+      "project": "opencut",
+      "fit": "partial"
+    },
+    {
       "project": "shotcut",
+      "fit": "partial"
+    },
+    {
+      "project": "openshot",
+      "fit": "partial"
+    },
+    {
+      "project": "kdenlive",
+      "fit": "partial"
+    },
+    {
+      "project": "flowblade",
       "fit": "partial"
     }
   ],

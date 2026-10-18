@@ -1,0 +1,34 @@
+{
+  "slug": "planka",
+  "name": "PLANKA",
+  "homepage": "https://planka.app",
+  "repo": "plankanban/planka",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.planka.cloud/docs/installation/docker/production-version/",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker",
+    "helm"
+  ],
+  "stack": [
+    "javascript",
+    "node.js"
+  ],
+  "categories": [
+    "project-management",
+    "tasks"
+  ],
+  "stats": {
+    "stars": 12621,
+    "lastCommit": "2026-09-17",
+    "createdAt": "2019-08-30",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

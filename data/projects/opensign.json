@@ -1,0 +1,31 @@
+{
+  "slug": "opensign",
+  "name": "OpenSign",
+  "homepage": "https://www.opensignlabs.com",
+  "repo": "OpenSignLabs/OpenSign",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/OpenSignLabs/OpenSign",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "javascript"
+  ],
+  "categories": [
+    "documents"
+  ],
+  "stats": {
+    "stars": 7109,
+    "lastCommit": "2026-08-21",
+    "createdAt": "2023-10-02",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

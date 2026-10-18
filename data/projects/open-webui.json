@@ -4,6 +4,8 @@
   "homepage": "https://github.com/open-webui/open-webui",
   "repo": "open-webui/open-webui",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/open-webui/open-webui",
   "hosted": {
     "exists": false
   },
@@ -14,11 +16,11 @@
     "ai-writing"
   ],
   "stats": {
-    "stars": 155972,
+    "stars": 156013,
     "lastCommit": "2026-10-16",
     "createdAt": "2023-10-06",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

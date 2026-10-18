@@ -1,0 +1,35 @@
+{
+  "slug": "cloudmeet",
+  "name": "CloudMeet",
+  "homepage": "https://github.com/dennisklappe/CloudMeet",
+  "repo": "dennisklappe/CloudMeet",
+  "license": "MIT",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/dennisklappe/CloudMeet",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "cloudflare"
+  ],
+  "stack": [
+    "svelte",
+    "typescript",
+    "cloudflare-workers",
+    "d1"
+  ],
+  "categories": [
+    "scheduling"
+  ],
+  "stats": {
+    "stars": 549,
+    "lastCommit": "2026-07-02",
+    "createdAt": "2025-12-02",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

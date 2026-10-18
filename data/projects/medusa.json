@@ -4,6 +4,8 @@
   "homepage": "https://github.com/medusajs/medusa",
   "repo": "medusajs/medusa",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/awesome-selfhosted/awesome-selfhosted",
   "hosted": {
     "exists": false
   },
@@ -13,11 +15,11 @@
     "creator-commerce"
   ],
   "stats": {
-    "stars": 36779,
+    "stars": 36785,
     "lastCommit": "2026-10-16",
     "createdAt": "2020-01-18",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

@@ -1,0 +1,33 @@
+{
+  "slug": "operately",
+  "name": "Operately",
+  "homepage": "https://operately.com",
+  "repo": "operately/operately",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://operately.com/install",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "elixir",
+    "react",
+    "typescript"
+  ],
+  "categories": [
+    "project-management"
+  ],
+  "stats": {
+    "stars": 586,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2023-02-28",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

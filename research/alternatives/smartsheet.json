@@ -1,0 +1,253 @@
+[
+  {
+    "slug": "baserow",
+    "existing": true,
+    "name": "Baserow",
+    "repo": "baserow/baserow",
+    "homepage": "https://baserow.io",
+    "why": "Open-core no-code database with grid, kanban, gallery and form views.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Spreadsheet-style grid with linked rows; no predecessor logic or critical path confirmed.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://baserow.io/docs/index",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://baserow.io",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "helm"
+    ],
+    "stack": [
+      "python",
+      "django",
+      "vue",
+      "postgresql"
+    ],
+    "categories": [
+      "databases"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/smartsheet",
+      "https://github.com/baserow/baserow"
+    ]
+  },
+  {
+    "slug": "nocodb",
+    "existing": true,
+    "name": "NocoDB",
+    "repo": "nocodb/nocodb",
+    "homepage": "https://nocodb.com",
+    "why": "Self-hostable spreadsheet-style interface over databases with grid, gallery, kanban and calendar views.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Grid with several views; no dependency-driven date recalculation confirmed.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://nocodb.com/docs/self-hosting",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript",
+      "postgresql",
+      "sqlite"
+    ],
+    "categories": [
+      "databases",
+      "no-code-apps"
+    ],
+    "evidenceUrls": [
+      "https://github.com/nocodb/nocodb"
+    ]
+  },
+  {
+    "slug": "teable",
+    "existing": false,
+    "name": "Teable",
+    "repo": "teableio/teable",
+    "homepage": "https://teable.ai",
+    "why": "Spreadsheet-like no-code database on PostgreSQL with AI workflows.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Grid views over PostgreSQL; project scheduling features are not confirmed.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://help.teable.ai/en/deploy/choose",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://github.com/teableio/teable",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript",
+      "postgresql"
+    ],
+    "categories": [
+      "databases"
+    ],
+    "evidenceUrls": [
+      "https://github.com/teableio/teable"
+    ]
+  },
+  {
+    "slug": "openproject",
+    "existing": false,
+    "name": "OpenProject",
+    "repo": "opf/openproject",
+    "homepage": "https://www.openproject.org",
+    "why": "Project management suite with Gantt charts, work package dependencies and time tracking.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Work packages with parent-child nesting, predecessor relations and Gantt scheduling.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://www.openproject.org/download-and-installation/",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://start.openproject.com/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "packages"
+    ],
+    "stack": [
+      "ruby",
+      "rails",
+      "angular"
+    ],
+    "categories": [
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/smartsheet",
+      "https://github.com/opf/openproject"
+    ]
+  },
+  {
+    "slug": "leantime",
+    "existing": false,
+    "name": "Leantime",
+    "repo": "Leantime/leantime",
+    "homepage": "https://leantime.io",
+    "why": "Goal-oriented project management with table, timeline and calendar views.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Tasks, milestones and timeline view; automatic downstream date shifting is not confirmed.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.leantime.io",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://leantime.io/pricing/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "zip"
+    ],
+    "stack": [
+      "php",
+      "mysql"
+    ],
+    "categories": [
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/smartsheet",
+      "https://github.com/Leantime/leantime"
+    ]
+  },
+  {
+    "slug": "redmine",
+    "existing": false,
+    "name": "Redmine",
+    "repo": "redmine/redmine",
+    "homepage": "https://www.redmine.org",
+    "why": "Ruby on Rails project management app with issue tracking, Gantt chart and issue relations.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Nested issues, precedes/follows relations and Gantt view.",
+    "deploy": [],
+    "stack": [
+      "ruby",
+      "rails"
+    ],
+    "categories": [
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/smartsheet",
+      "https://github.com/redmine/redmine"
+    ]
+  },
+  {
+    "slug": "plane",
+    "existing": true,
+    "name": "Plane",
+    "repo": "makeplane/plane",
+    "homepage": "https://github.com/makeplane/plane",
+    "why": "Open-source project management with issues, cycles, modules and views.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Work items with sub-items and timeline views; not a spreadsheet grid.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://developers.plane.so/self-hosting/overview",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://github.com/makeplane/plane",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "kubernetes"
+    ],
+    "stack": [
+      "python",
+      "django",
+      "typescript",
+      "react",
+      "postgresql",
+      "redis"
+    ],
+    "categories": [
+      "dev-tools",
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/smartsheet",
+      "https://github.com/makeplane/plane"
+    ]
+  },
+  {
+    "slug": "seatable",
+    "existing": true,
+    "name": "SeaTable",
+    "repo": "seatable/seatable",
+    "homepage": "https://seatable.com",
+    "why": "Spreadsheet-database hybrid positioned as an Airtable alternative, with some proprietary components.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Collaborative grid with interlinked bases and automations; project scheduling is not confirmed.",
+    "deploy": [],
+    "stack": [],
+    "categories": [
+      "databases"
+    ],
+    "evidenceUrls": [
+      "https://github.com/seatable/seatable"
+    ]
+  }
+]

@@ -4,6 +4,8 @@
   "homepage": "https://github.com/n8n-io/n8n",
   "repo": "n8n-io/n8n",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.n8n.io/hosting/installation/docker/",
   "hosted": {
     "exists": false
   },
@@ -13,11 +15,11 @@
     "automation"
   ],
   "stats": {
-    "stars": 207798,
+    "stars": 207844,
     "lastCommit": "2026-10-17",
     "createdAt": "2019-06-22",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

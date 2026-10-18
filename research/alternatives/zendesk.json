@@ -1,0 +1,230 @@
+[
+  {
+    "slug": "freescout",
+    "existing": true,
+    "name": "FreeScout",
+    "repo": "freescout-help-desk/freescout",
+    "homepage": "https://freescout.net",
+    "why": "Lightweight self-hosted helpdesk and shared inbox, positioned as a Zendesk and Help Scout alternative.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Email-based tickets and shared inbox; public help centre and customer portal come via modules.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/freescout-help-desk/freescout/wiki/Installation-Guide",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "manual"
+    ],
+    "stack": [
+      "php",
+      "laravel",
+      "mysql",
+      "postgresql"
+    ],
+    "categories": [
+      "customer-support"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/zendesk",
+      "https://github.com/freescout-help-desk/freescout"
+    ]
+  },
+  {
+    "slug": "zammad",
+    "existing": false,
+    "name": "Zammad",
+    "repo": "zammad/zammad",
+    "homepage": "https://zammad.com",
+    "why": "Web-based helpdesk and ticketing system covering email, chat, phone and social channels.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Multichannel tickets, knowledge base and customer portal.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.zammad.org",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://zammad.com/en/pricing",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "helm",
+      "deb",
+      "rpm"
+    ],
+    "stack": [
+      "ruby",
+      "rails",
+      "vue",
+      "typescript"
+    ],
+    "categories": [
+      "customer-support"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/zendesk",
+      "https://github.com/zammad/zammad"
+    ]
+  },
+  {
+    "slug": "frappe-helpdesk",
+    "existing": false,
+    "name": "Frappe Helpdesk",
+    "repo": "frappe/helpdesk",
+    "homepage": "https://frappe.io/helpdesk",
+    "why": "Open-source ticketing tool with customer portal, SLAs, assignment rules and knowledge base.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Tickets, agent and customer portals, SLAs and a knowledge base.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.frappe.io/helpdesk",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://frappecloud.com/helpdesk/signup",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "python",
+      "frappe",
+      "vue",
+      "typescript"
+    ],
+    "categories": [
+      "customer-support"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/zendesk",
+      "https://github.com/frappe/helpdesk"
+    ]
+  },
+  {
+    "slug": "chatwoot",
+    "existing": true,
+    "name": "Chatwoot",
+    "repo": "chatwoot/chatwoot",
+    "homepage": "https://www.chatwoot.com",
+    "why": "Open-source omnichannel support inbox covering live chat, email and social channels.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Shared inbox with conversations and a help centre; chat-first rather than ticket-first.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://www.chatwoot.com/docs/environment-variables",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "helm",
+      "heroku"
+    ],
+    "stack": [
+      "ruby",
+      "rails",
+      "vue",
+      "postgresql"
+    ],
+    "categories": [
+      "customer-support"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/zendesk",
+      "https://github.com/chatwoot/chatwoot"
+    ]
+  },
+  {
+    "slug": "osticket",
+    "existing": false,
+    "name": "osTicket",
+    "repo": "osTicket/osTicket",
+    "homepage": "https://osticket.com",
+    "why": "Widely used open-source support ticket system collecting email, phone and web-form requests.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Ticket queues, agent interface and customer-facing ticket view.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.osticket.com/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "manual"
+    ],
+    "stack": [
+      "php",
+      "mysql"
+    ],
+    "categories": [
+      "customer-support"
+    ],
+    "evidenceUrls": [
+      "https://github.com/osTicket/osTicket"
+    ]
+  },
+  {
+    "slug": "uvdesk",
+    "existing": false,
+    "name": "UVdesk",
+    "repo": "uvdesk/community-skeleton",
+    "homepage": "https://www.uvdesk.com",
+    "why": "Open-source helpdesk and ticketing system with a support-centre portal.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Tickets, mailboxes, automation and a customer support centre.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.uvdesk.com/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "composer"
+    ],
+    "stack": [
+      "php",
+      "symfony",
+      "mysql"
+    ],
+    "categories": [
+      "customer-support"
+    ],
+    "evidenceUrls": [
+      "https://github.com/uvdesk/community-skeleton"
+    ]
+  },
+  {
+    "slug": "peppermint",
+    "existing": false,
+    "name": "Peppermint",
+    "repo": "Peppermint-Lab/peppermint",
+    "homepage": "https://peppermint.sh",
+    "why": "Self-hosted ticketing and help desk tool; repository archived in July 2026.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Ticket creation and client history; repository is read-only.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.peppermint.sh",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "next.js",
+      "node.js",
+      "prisma",
+      "postgresql"
+    ],
+    "categories": [
+      "customer-support"
+    ],
+    "evidenceUrls": [
+      "https://github.com/Peppermint-Lab/peppermint"
+    ]
+  }
+]

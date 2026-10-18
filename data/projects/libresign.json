@@ -1,0 +1,28 @@
+{
+  "slug": "libresign",
+  "name": "LibreSign",
+  "homepage": "https://libresign.coop",
+  "repo": "LibreSign/libresign",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [
+    "php"
+  ],
+  "categories": [
+    "documents"
+  ],
+  "stats": {
+    "stars": 833,
+    "lastCommit": "2026-10-18",
+    "createdAt": "2020-08-25",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

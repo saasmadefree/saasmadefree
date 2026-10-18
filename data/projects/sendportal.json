@@ -1,0 +1,30 @@
+{
+  "slug": "sendportal",
+  "name": "SendPortal",
+  "homepage": "https://sendportal.io",
+  "repo": "mettle/sendportal",
+  "license": "MIT",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/mettle/sendportal",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [
+    "php"
+  ],
+  "categories": [
+    "newsletter"
+  ],
+  "stats": {
+    "stars": 2174,
+    "lastCommit": "2026-10-12",
+    "createdAt": "2020-06-04",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

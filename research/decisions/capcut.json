@@ -1,0 +1,104 @@
+{
+  "tool": "capcut",
+  "checkedOn": "2026-10-18",
+  "question": "Paid SaaS: \"CapCut\". What people pay it for: A command-line tool that transcribes a video locally, burns in styled captions, trims clips, and exports for common social aspect ratios. Question: is the candidate below an open-source or self-hostable application (web, desktop or server) that a person could actually use INSTEAD of CapCut for that job, or for a clear, substantial part of it? Partial replacements count as yes (for example a desktop video editor for a video app, a self-hosted rank tracker for an SEO suite). Answer no for: a code library or SDK only, a command-line utility with no end-user workflow, a closed paid service, a tutorial, or a tool for an unrelated job.",
+  "jevModel": "jev-1.13.0",
+  "results": [
+    {
+      "slug": "shotcut",
+      "name": "Shotcut",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.78,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.85,
+      "kept": true
+    },
+    {
+      "slug": "kdenlive",
+      "name": "Kdenlive",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.76,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.77,
+      "kept": true
+    },
+    {
+      "slug": "opencut",
+      "name": "OpenCut",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.46,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.77,
+      "kept": true
+    },
+    {
+      "slug": "openshot",
+      "name": "OpenShot",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.85,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.86,
+      "kept": true
+    },
+    {
+      "slug": "losslesscut",
+      "name": "LosslessCut",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.68,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.25,
+      "kept": false
+    },
+    {
+      "slug": "auto-editor",
+      "name": "auto-editor",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.42,
+        "review": true,
+        "classId": "other"
+      },
+      "decision": 0.37,
+      "kept": false
+    },
+    {
+      "slug": "flowblade",
+      "name": "Flowblade",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.69,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.89,
+      "kept": true
+    },
+    {
+      "slug": "ffmpeg",
+      "name": "FFmpeg",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.38,
+        "review": true,
+        "classId": "other"
+      },
+      "decision": 0.07,
+      "kept": false
+    }
+  ]
+}

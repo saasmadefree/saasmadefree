@@ -1,0 +1,41 @@
+{
+  "slug": "tymeslot",
+  "name": "Tymeslot",
+  "homepage": "https://tymeslot.app",
+  "repo": "Tymeslot/tymeslot",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/Tymeslot/tymeslot",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 9,
+    "currency": "EUR",
+    "source": "https://github.com/Tymeslot/tymeslot",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker",
+    "cloudron",
+    "railway"
+  ],
+  "stack": [
+    "elixir",
+    "phoenix",
+    "liveview",
+    "postgresql"
+  ],
+  "categories": [
+    "scheduling"
+  ],
+  "stats": {
+    "stars": 231,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2025-08-07",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

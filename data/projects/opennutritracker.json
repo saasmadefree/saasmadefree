@@ -1,0 +1,30 @@
+{
+  "slug": "opennutritracker",
+  "name": "OpenNutriTracker",
+  "homepage": "https://github.com/simonoppowa/OpenNutriTracker",
+  "repo": "simonoppowa/OpenNutriTracker",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/simonoppowa/OpenNutriTracker",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [
+    "dart"
+  ],
+  "categories": [
+    "health-fitness"
+  ],
+  "stats": {
+    "stars": 2704,
+    "lastCommit": "2026-09-26",
+    "createdAt": "2022-09-21",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "slug": "node-red",
+  "name": "Node-RED",
+  "homepage": "https://nodered.org",
+  "repo": "node-red/node-red",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://nodered.org/docs/getting-started/",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "npm",
+    "docker"
+  ],
+  "stack": [
+    "javascript",
+    "node.js"
+  ],
+  "categories": [
+    "automation"
+  ],
+  "stats": {
+    "stars": 23754,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2013-09-05",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

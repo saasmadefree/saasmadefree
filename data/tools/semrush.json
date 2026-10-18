@@ -25,6 +25,18 @@
   ],
   "alternatives": [
     {
+      "project": "open-seo",
+      "fit": "partial"
+    },
+    {
+      "project": "serpbear",
+      "fit": "partial"
+    },
+    {
+      "project": "seonaut",
+      "fit": "partial"
+    },
+    {
       "project": "seomacroscope",
       "fit": "partial"
     }

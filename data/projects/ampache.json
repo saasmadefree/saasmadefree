@@ -1,0 +1,32 @@
+{
+  "slug": "ampache",
+  "name": "Ampache",
+  "homepage": "http://ampache.org",
+  "repo": "ampache/ampache",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/ampache/ampache",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "php"
+  ],
+  "categories": [
+    "media-streaming"
+  ],
+  "stats": {
+    "stars": 3836,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2013-03-21",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

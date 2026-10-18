@@ -1,0 +1,231 @@
+[
+  {
+    "slug": "stirling-pdf",
+    "existing": true,
+    "name": "Stirling PDF",
+    "repo": "Stirling-Tools/Stirling-PDF",
+    "homepage": "https://stirling.com",
+    "why": "Open-core PDF platform to edit, sign, redact, convert and OCR PDFs, in the browser, on desktop or self-hosted.",
+    "fitGuess": "full",
+    "coreLoopCovered": "50+ PDF operations including OCR, redaction and signing; PDF/A output not confirmed on the repo page.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.stirlingpdf.com",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "kubernetes",
+      "desktop"
+    ],
+    "stack": [
+      "java",
+      "gradle"
+    ],
+    "categories": [
+      "documents"
+    ],
+    "evidenceUrls": [
+      "https://github.com/Stirling-Tools/Stirling-PDF"
+    ]
+  },
+  {
+    "slug": "ocrmypdf",
+    "existing": false,
+    "name": "OCRmyPDF",
+    "repo": "ocrmypdf/OCRmyPDF",
+    "homepage": "https://ocrmypdf.readthedocs.io",
+    "why": "Command-line tool that adds a searchable OCR text layer to scanned PDFs and can output PDF/A.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "OCR and PDF/A output only; no editing or signing.",
+    "deploy": [
+      "apt",
+      "brew",
+      "docker"
+    ],
+    "stack": [
+      "python",
+      "tesseract",
+      "ghostscript"
+    ],
+    "categories": [
+      "documents"
+    ],
+    "evidenceUrls": [
+      "https://github.com/ocrmypdf/OCRmyPDF"
+    ]
+  },
+  {
+    "slug": "pdfsam",
+    "existing": false,
+    "name": "PDFsam Basic",
+    "repo": "torakiki/pdfsam",
+    "homepage": "https://pdfsam.org",
+    "why": "Desktop application to split, merge, mix and rotate PDF files and extract pages.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Page-level split, merge and rotate; no text editing or OCR.",
+    "deploy": [
+      "binary"
+    ],
+    "stack": [
+      "java",
+      "javafx"
+    ],
+    "categories": [
+      "documents"
+    ],
+    "evidenceUrls": [
+      "https://github.com/torakiki/pdfsam"
+    ]
+  },
+  {
+    "slug": "bentopdf",
+    "existing": false,
+    "name": "BentoPDF",
+    "repo": "alam00000/bentopdf",
+    "homepage": "https://bentopdf.com",
+    "why": "Client-side PDF toolkit with 50+ tools including merge, edit, convert, OCR and sign, self-hostable.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Browser-based merge/split, editing, OCR, compression and signing; files stay on the device.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://bentopdf.com/docs/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "podman",
+      "static"
+    ],
+    "stack": [
+      "typescript",
+      "vite",
+      "tailwindcss",
+      "webassembly"
+    ],
+    "categories": [
+      "documents"
+    ],
+    "evidenceUrls": [
+      "https://github.com/alam00000/bentopdf"
+    ]
+  },
+  {
+    "slug": "pdfarranger",
+    "existing": false,
+    "name": "PDF Arranger",
+    "repo": "pdfarranger/pdfarranger",
+    "homepage": "https://github.com/pdfarranger/pdfarranger",
+    "why": "Small GTK application to merge, split, rotate, crop and rearrange PDF pages.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Page arrangement only.",
+    "deploy": [
+      "flatpak",
+      "snap",
+      "binary"
+    ],
+    "stack": [
+      "python",
+      "gtk",
+      "pikepdf"
+    ],
+    "categories": [
+      "documents"
+    ],
+    "evidenceUrls": [
+      "https://github.com/pdfarranger/pdfarranger"
+    ]
+  },
+  {
+    "slug": "documenso",
+    "existing": true,
+    "name": "Documenso",
+    "repo": "documenso/documenso",
+    "homepage": "https://documenso.com",
+    "why": "Open-source electronic document signing tool, described as a DocuSign alternative.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "E-signature workflows only; no general PDF editing or OCR.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.documenso.com/docs/self-hosting",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://documenso.com",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "kubernetes"
+    ],
+    "stack": [
+      "typescript",
+      "react-router",
+      "hono",
+      "prisma",
+      "postgresql"
+    ],
+    "categories": [
+      "documents"
+    ],
+    "evidenceUrls": [
+      "https://github.com/documenso/documenso"
+    ]
+  },
+  {
+    "slug": "paperless-ngx",
+    "existing": false,
+    "name": "Paperless-ngx",
+    "repo": "paperless-ngx/paperless-ngx",
+    "homepage": "https://docs.paperless-ngx.com",
+    "why": "Self-hosted document management system that OCRs and indexes scanned documents.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "OCR and searchable archive; no PDF editing.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.paperless-ngx.com/setup/#installation",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "python",
+      "django",
+      "angular"
+    ],
+    "categories": [
+      "documents"
+    ],
+    "evidenceUrls": [
+      "https://github.com/paperless-ngx/paperless-ngx"
+    ]
+  },
+  {
+    "slug": "pdfding",
+    "existing": false,
+    "name": "PdfDing",
+    "repo": "mrmn2/PdfDing",
+    "homepage": "https://docs.pdfding.com",
+    "why": "Self-hosted PDF manager and viewer with annotations, signatures and sharing; GitHub repo archived, moved to Codeberg.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Viewing, highlights, drawings and signatures; no OCR or conversion.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.pdfding.com/getting_started/docker/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "helm"
+    ],
+    "stack": [],
+    "categories": [
+      "documents"
+    ],
+    "evidenceUrls": [
+      "https://github.com/mrmn2/PdfDing"
+    ]
+  }
+]

@@ -5,6 +5,8 @@
   "repo": "wger-project/wger",
   "license": "AGPL-3.0",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/wger-project/wger",
   "hosted": {
     "exists": false
   },
@@ -18,7 +20,7 @@
     "lastCommit": "2026-10-15",
     "createdAt": "2013-01-19",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

@@ -28,7 +28,35 @@
   ],
   "alternatives": [
     {
+      "project": "ollama",
+      "fit": "partial"
+    },
+    {
       "project": "open-webui",
+      "fit": "partial"
+    },
+    {
+      "project": "lobe-chat",
+      "fit": "partial"
+    },
+    {
+      "project": "anything-llm",
+      "fit": "partial"
+    },
+    {
+      "project": "cherry-studio",
+      "fit": "partial"
+    },
+    {
+      "project": "librechat",
+      "fit": "partial"
+    },
+    {
+      "project": "jan",
+      "fit": "partial"
+    },
+    {
+      "project": "onyx",
       "fit": "partial"
     }
   ],

@@ -1,0 +1,30 @@
+{
+  "slug": "pydio-cells",
+  "name": "Pydio Cells",
+  "homepage": "https://pydio.com",
+  "repo": "pydio/cells",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [
+    "go"
+  ],
+  "categories": [
+    "cloud-storage"
+  ],
+  "stats": {
+    "stars": 2256,
+    "lastCommit": "2026-10-08",
+    "createdAt": "2018-03-24",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "tool": "chatgpt",
+  "checkedOn": "2026-10-18",
+  "question": "Paid SaaS: \"ChatGPT\". What people pay it for: A chat interface that calls a model API directly, stores conversation history, and shows the running per-conversation cost. Question: is the candidate below an open-source or self-hostable application (web, desktop or server) that a person could actually use INSTEAD of ChatGPT for that job, or for a clear, substantial part of it? Partial replacements count as yes (for example a desktop video editor for a video app, a self-hosted rank tracker for an SEO suite). Answer no for: a code library or SDK only, a command-line utility with no end-user workflow, a closed paid service, a tutorial, or a tool for an unrelated job.",
+  "jevModel": "jev-1.13.0",
+  "results": [
+    {
+      "slug": "open-webui",
+      "name": "Open WebUI",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.97,
+      "kept": true
+    },
+    {
+      "slug": "librechat",
+      "name": "LibreChat",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 1,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "onyx",
+      "name": "Onyx",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.61,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.91,
+      "kept": true
+    },
+    {
+      "slug": "anything-llm",
+      "name": "AnythingLLM",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.9,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.83,
+      "kept": true
+    },
+    {
+      "slug": "lobe-chat",
+      "name": "LobeHub",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.96,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.95,
+      "kept": true
+    },
+    {
+      "slug": "ollama",
+      "name": "Ollama",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.13,
+        "review": false,
+        "classId": "other"
+      },
+      "decision": 0.67,
+      "kept": true
+    },
+    {
+      "slug": "jan",
+      "name": "Jan",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.91,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.91,
+      "kept": true
+    },
+    {
+      "slug": "cherry-studio",
+      "name": "Cherry Studio",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.97,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.95,
+      "kept": true
+    },
+    {
+      "slug": "khoj",
+      "name": "Khoj",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.3,
+        "review": true,
+        "classId": "other"
+      },
+      "decision": 0.87,
+      "kept": true
+    },
+    {
+      "slug": "perplexica",
+      "name": "Vane",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.16,
+        "review": true,
+        "classId": "other"
+      },
+      "decision": 0.58,
+      "kept": true
+    }
+  ]
+}

@@ -4,6 +4,8 @@
   "homepage": "https://github.com/chatwoot/chatwoot",
   "repo": "chatwoot/chatwoot",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://www.chatwoot.com/docs/environment-variables",
   "hosted": {
     "exists": false
   },
@@ -13,11 +15,11 @@
     "customer-support"
   ],
   "stats": {
-    "stars": 37891,
-    "lastCommit": "2026-10-16",
+    "stars": 37911,
+    "lastCommit": "2026-10-18",
     "createdAt": "2019-08-14",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

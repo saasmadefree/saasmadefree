@@ -1,0 +1,300 @@
+[
+  {
+    "slug": "listmonk",
+    "existing": true,
+    "name": "Listmonk",
+    "repo": "knadh/listmonk",
+    "homepage": "https://listmonk.app",
+    "why": "Self-hosted newsletter and mailing list manager with lists, campaigns, templates and SMTP sending.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Lists, segments, campaign sending, templates and unsubscribe handling. No visual automations.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/knadh/listmonk",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "go"
+    ],
+    "categories": [
+      "newsletter"
+    ],
+    "evidenceUrls": [
+      "https://github.com/knadh/listmonk",
+      "https://openalternative.co/alternatives/mailchimp",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "keila",
+    "existing": true,
+    "name": "Keila",
+    "repo": "pentacent/keila",
+    "homepage": "https://www.keila.io",
+    "why": "Open-source newsletter tool with a visual editor, forms and campaign sending.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Campaigns, contact forms, segments and unsubscribe handling. Fewer automations than Mailchimp.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/pentacent/keila",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "priceFrom": 8,
+      "currency": "EUR",
+      "source": "https://www.keila.io/pricing",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "elixir"
+    ],
+    "categories": [
+      "newsletter"
+    ],
+    "evidenceUrls": [
+      "https://github.com/pentacent/keila",
+      "https://openalternative.co/alternatives/mailchimp",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "mautic",
+    "existing": true,
+    "name": "Mautic",
+    "repo": "mautic/mautic",
+    "homepage": "https://www.mautic.org",
+    "why": "Open-source marketing automation platform with contacts, segments, campaigns and email.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Email campaigns, segments, forms and visual automations. Heavier to run than a newsletter tool.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/mautic/mautic",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "php"
+    ],
+    "categories": [
+      "newsletter"
+    ],
+    "evidenceUrls": [
+      "https://github.com/mautic/mautic",
+      "https://openalternative.co/alternatives/mailchimp",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "sendportal",
+    "existing": false,
+    "name": "SendPortal",
+    "repo": "mettle/sendportal",
+    "homepage": "https://sendportal.io",
+    "why": "Self-hosted Laravel application for managing subscribers and sending campaigns through providers such as SES.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Subscribers, segments and campaigns through your own mail provider. Limited automations.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/mettle/sendportal",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "php"
+    ],
+    "categories": [
+      "newsletter"
+    ],
+    "evidenceUrls": [
+      "https://github.com/mettle/sendportal",
+      "https://openalternative.co/alternatives/mailchimp"
+    ]
+  },
+  {
+    "slug": "dittofeed",
+    "existing": false,
+    "name": "Dittofeed",
+    "repo": "dittofeed/dittofeed",
+    "homepage": "https://dittofeed.com/",
+    "why": "Open-source customer engagement platform for lifecycle email and messaging journeys.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Triggered journeys and broadcasts sent through your own email provider. Aimed at product events rather than newsletters.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/dittofeed/dittofeed",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "priceFrom": 75,
+      "currency": "USD",
+      "source": "https://dittofeed.com/pricing",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript"
+    ],
+    "categories": [
+      "newsletter"
+    ],
+    "evidenceUrls": [
+      "https://github.com/dittofeed/dittofeed",
+      "https://openalternative.co/alternatives/mailchimp",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "plunk",
+    "existing": false,
+    "name": "Plunk",
+    "repo": "useplunk/plunk",
+    "homepage": "https://www.useplunk.com",
+    "why": "Open-source email platform for transactional emails, campaigns and automations on top of AWS SES.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Campaigns, contacts and event-driven emails through SES. Newer and lighter than Mailchimp.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/useplunk/plunk",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript"
+    ],
+    "categories": [
+      "newsletter"
+    ],
+    "evidenceUrls": [
+      "https://github.com/useplunk/plunk",
+      "https://openalternative.co/alternatives/mailchimp"
+    ]
+  },
+  {
+    "slug": "notifuse",
+    "existing": false,
+    "name": "Notifuse",
+    "repo": "Notifuse/notifuse",
+    "homepage": "https://www.notifuse.com",
+    "why": "Open-source emailing platform with contacts, campaigns and transactional sending.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Contact lists, campaigns and templates through your own provider. Newer project.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/Notifuse/notifuse",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "priceFrom": 16,
+      "currency": "USD",
+      "source": "https://www.notifuse.com",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "go"
+    ],
+    "categories": [
+      "newsletter"
+    ],
+    "evidenceUrls": [
+      "https://github.com/Notifuse/notifuse",
+      "https://openalternative.co/alternatives/mailchimp"
+    ]
+  },
+  {
+    "slug": "phplist",
+    "existing": false,
+    "name": "phpList",
+    "repo": "phpList/phplist3",
+    "homepage": "https://www.phplist.org",
+    "why": "Long-running self-hosted newsletter manager written in PHP.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Lists, campaigns and bounce handling. Dated interface and few automations.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/phpList/phplist3",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "php"
+    ],
+    "categories": [
+      "newsletter"
+    ],
+    "evidenceUrls": [
+      "https://github.com/phpList/phplist3",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "postal",
+    "existing": false,
+    "name": "Postal",
+    "repo": "postalserver/postal",
+    "homepage": "https://postalserver.io",
+    "why": "Self-hosted mail delivery platform for sending and tracking email at scale.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "The sending server only: delivery, tracking and bounces. No list management or campaign editor.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "ruby"
+    ],
+    "categories": [
+      "newsletter"
+    ],
+    "evidenceUrls": [
+      "https://github.com/postalserver/postal",
+      "https://openalternative.co/alternatives/mailchimp",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "billionmail",
+    "existing": false,
+    "name": "BillionMail",
+    "repo": "Billionmail/BillionMail",
+    "homepage": "http://www.billionmail.com/",
+    "why": "Self-hosted mail server with a marketing campaign module.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Mail server plus bulk campaigns and templates. You run deliverability yourself.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/Billionmail/BillionMail",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "go"
+    ],
+    "categories": [
+      "newsletter"
+    ],
+    "evidenceUrls": [
+      "https://github.com/Billionmail/BillionMail",
+      "https://openalternative.co/alternatives/mailchimp"
+    ]
+  }
+]

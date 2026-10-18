@@ -5,6 +5,8 @@
   "repo": "gitroomhq/postiz-app",
   "license": "AGPL-3.0",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.postiz.com/quickstart",
   "hosted": {
     "exists": false
   },
@@ -14,11 +16,11 @@
     "social-media"
   ],
   "stats": {
-    "stars": 37321,
+    "stars": 37340,
     "lastCommit": "2026-10-16",
     "createdAt": "2023-07-08",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

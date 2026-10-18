@@ -1,0 +1,28 @@
+{
+  "slug": "redmine",
+  "name": "Redmine",
+  "homepage": "https://www.redmine.org",
+  "repo": "redmine/redmine",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [
+    "ruby",
+    "rails"
+  ],
+  "categories": [
+    "project-management"
+  ],
+  "stats": {
+    "stars": 6049,
+    "lastCommit": "2026-10-18",
+    "createdAt": "2012-11-19",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

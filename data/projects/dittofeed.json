@@ -1,0 +1,36 @@
+{
+  "slug": "dittofeed",
+  "name": "Dittofeed",
+  "homepage": "https://dittofeed.com/",
+  "repo": "dittofeed/dittofeed",
+  "license": "MIT",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/dittofeed/dittofeed",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 75,
+    "currency": "USD",
+    "source": "https://dittofeed.com/pricing",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "typescript"
+  ],
+  "categories": [
+    "newsletter"
+  ],
+  "stats": {
+    "stars": 3009,
+    "lastCommit": "2026-10-12",
+    "createdAt": "2022-10-01",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

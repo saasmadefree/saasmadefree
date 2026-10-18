@@ -1,0 +1,33 @@
+{
+  "slug": "taiga",
+  "name": "Taiga",
+  "homepage": "https://taiga.io",
+  "repo": "taigaio/taiga-back",
+  "license": "MPL-2.0",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.taiga.io/",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "python",
+    "django"
+  ],
+  "categories": [
+    "project-management"
+  ],
+  "stats": {
+    "stars": 858,
+    "lastCommit": "2026-09-28",
+    "createdAt": "2021-04-14",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

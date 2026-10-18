@@ -5,8 +5,14 @@
   "repo": "documenso/documenso",
   "license": "AGPL-3.0",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/documenso/documenso",
   "hosted": {
-    "exists": false
+    "exists": true,
+    "priceFrom": 25,
+    "currency": "USD",
+    "source": "https://documenso.com/pricing",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [],
   "stack": [],
@@ -14,11 +20,11 @@
     "documents"
   ],
   "stats": {
-    "stars": 15445,
+    "stars": 15451,
     "lastCommit": "2026-10-16",
     "createdAt": "2023-03-12",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

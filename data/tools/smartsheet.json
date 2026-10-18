@@ -26,7 +26,15 @@
   ],
   "alternatives": [
     {
-      "project": "plane",
+      "project": "openproject",
+      "fit": "full"
+    },
+    {
+      "project": "leantime",
+      "fit": "partial"
+    },
+    {
+      "project": "redmine",
       "fit": "partial"
     }
   ],

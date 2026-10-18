@@ -1,0 +1,282 @@
+[
+  {
+    "slug": "medusa",
+    "existing": true,
+    "name": "Medusa",
+    "repo": "medusajs/medusa",
+    "homepage": "https://medusajs.com",
+    "why": "Open-source commerce framework with products, carts, orders and payment provider modules.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Catalog, cart, orders and payment integrations you build a storefront on. No hosted payments network, app store or turnkey themes.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "typescript"
+    ],
+    "categories": [
+      "creator-commerce"
+    ],
+    "evidenceUrls": [
+      "https://github.com/medusajs/medusa",
+      "https://openalternative.co/alternatives/shopify",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "saleor",
+    "existing": false,
+    "name": "Saleor",
+    "repo": "saleor/saleor",
+    "homepage": "https://saleor.io",
+    "why": "Headless GraphQL commerce platform with products, checkout and multi-channel selling.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Catalog, checkout and orders through an API. You build the storefront and run the payments setup.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/saleor/saleor",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "python"
+    ],
+    "categories": [
+      "creator-commerce"
+    ],
+    "evidenceUrls": [
+      "https://github.com/saleor/saleor",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "woocommerce",
+    "existing": false,
+    "name": "WooCommerce",
+    "repo": "woocommerce/woocommerce",
+    "homepage": "https://woocommerce.com",
+    "why": "WordPress plugin that adds a product catalog, cart and checkout to a site.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Catalog, cart, checkout and payment gateways inside WordPress. You handle hosting, security updates and compliance.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "php"
+    ],
+    "categories": [
+      "creator-commerce"
+    ],
+    "evidenceUrls": [
+      "https://github.com/woocommerce/woocommerce",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "bagisto",
+    "existing": false,
+    "name": "Bagisto",
+    "repo": "bagisto/bagisto",
+    "homepage": "https://bagisto.com",
+    "why": "Laravel-based open-source e-commerce platform with multi-channel and multi-currency support.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Catalog, cart, checkout and an admin panel on your own server. You handle payments setup and hosting.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/bagisto/bagisto",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "php"
+    ],
+    "categories": [
+      "creator-commerce"
+    ],
+    "evidenceUrls": [
+      "https://github.com/bagisto/bagisto",
+      "https://openalternative.co/alternatives/shopify",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "spree-commerce",
+    "existing": false,
+    "name": "Spree Commerce",
+    "repo": "spree/spree",
+    "homepage": "https://spreecommerce.org",
+    "why": "Ruby on Rails open-source e-commerce platform with an admin panel and API.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Catalog, cart, checkout and admin on your own server. You handle payments setup and hosting.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/spree/spree",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "ruby"
+    ],
+    "categories": [
+      "creator-commerce"
+    ],
+    "evidenceUrls": [
+      "https://github.com/spree/spree",
+      "https://openalternative.co/alternatives/shopify",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "solidus",
+    "existing": false,
+    "name": "Solidus",
+    "repo": "solidusio/solidus",
+    "homepage": "https://solidus.io",
+    "why": "Ruby on Rails e-commerce framework forked from Spree.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Catalog, cart and checkout as a Rails engine you extend. Needs a developer.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/solidusio/solidus",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "ruby"
+    ],
+    "categories": [
+      "creator-commerce"
+    ],
+    "evidenceUrls": [
+      "https://github.com/solidusio/solidus",
+      "https://openalternative.co/alternatives/shopify",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "vendure",
+    "existing": false,
+    "name": "Vendure",
+    "repo": "vendurehq/vendure",
+    "homepage": "https://www.vendure.io",
+    "why": "Headless TypeScript commerce framework with a GraphQL API and admin UI.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Catalog, orders and admin through an API. You build the storefront and payments setup.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/vendurehq/vendure",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript"
+    ],
+    "categories": [
+      "creator-commerce"
+    ],
+    "evidenceUrls": [
+      "https://github.com/vendurehq/vendure",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "shopware",
+    "existing": false,
+    "name": "Shopware",
+    "repo": "shopware/shopware",
+    "homepage": "https://shopware.com",
+    "why": "Open-source e-commerce platform with storefront, admin and APIs.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Catalog, checkout, storefront themes and admin on your own server. You handle hosting and payments setup.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/shopware/shopware",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "php"
+    ],
+    "categories": [
+      "creator-commerce"
+    ],
+    "evidenceUrls": [
+      "https://github.com/shopware/shopware",
+      "https://openalternative.co/alternatives/shopify"
+    ]
+  },
+  {
+    "slug": "prestashop",
+    "existing": false,
+    "name": "PrestaShop",
+    "repo": "PrestaShop/PrestaShop",
+    "homepage": "https://www.prestashop-project.org/",
+    "why": "Open-source e-commerce platform with a storefront, admin and module marketplace.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Catalog, cart, checkout and admin with modules on your own server. You handle hosting and compliance.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/PrestaShop/PrestaShop",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "php"
+    ],
+    "categories": [
+      "creator-commerce"
+    ],
+    "evidenceUrls": [
+      "https://github.com/PrestaShop/PrestaShop",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "sylius",
+    "existing": false,
+    "name": "Sylius",
+    "repo": "Sylius/Sylius",
+    "homepage": "https://sylius.com",
+    "why": "Headless-ready Symfony e-commerce framework for custom stores.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Catalog, cart and checkout as a Symfony base you extend. Needs a developer.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/Sylius/Sylius",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "php"
+    ],
+    "categories": [
+      "creator-commerce"
+    ],
+    "evidenceUrls": [
+      "https://github.com/Sylius/Sylius",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  }
+]

@@ -1,0 +1,177 @@
+[
+  {
+    "slug": "documenso",
+    "existing": true,
+    "name": "Documenso",
+    "repo": "documenso/documenso",
+    "homepage": "https://documenso.com",
+    "why": "Open-source document signing platform that sends documents for signature and keeps a signing record.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Send, sign and track documents with signing links and a certificate. No identity verification by default and no legal evidence guarantee.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/documenso/documenso",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "priceFrom": 25,
+      "currency": "USD",
+      "source": "https://documenso.com/pricing",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript"
+    ],
+    "categories": [
+      "documents"
+    ],
+    "evidenceUrls": [
+      "https://github.com/documenso/documenso",
+      "https://openalternative.co/alternatives/docusign",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "docuseal",
+    "existing": false,
+    "name": "DocuSeal",
+    "repo": "docusealco/docuseal",
+    "homepage": "https://www.docuseal.com",
+    "why": "Open-source document filling and e-signing platform with a form builder and API.",
+    "fitGuess": "full",
+    "coreLoopCovered": "PDF form fields, signing links, signed PDF output and an audit trail. Some features need the paid edition.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/docusealco/docuseal",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "priceFrom": 20,
+      "currency": "USD",
+      "source": "https://www.docuseal.com/pricing",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "ruby"
+    ],
+    "categories": [
+      "documents"
+    ],
+    "evidenceUrls": [
+      "https://github.com/docusealco/docuseal",
+      "https://openalternative.co/alternatives/docusign",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "opensign",
+    "existing": false,
+    "name": "OpenSign",
+    "repo": "OpenSignLabs/OpenSign",
+    "homepage": "https://www.opensignlabs.com",
+    "why": "Open-source e-signature platform with templates, bulk send and a signing trail.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Signature requests, templates and completed PDFs with a trail. Legal strength depends on your jurisdiction.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/OpenSignLabs/OpenSign",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "javascript"
+    ],
+    "categories": [
+      "documents"
+    ],
+    "evidenceUrls": [
+      "https://github.com/OpenSignLabs/OpenSign",
+      "https://openalternative.co/alternatives/docusign",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "libresign",
+    "existing": false,
+    "name": "LibreSign",
+    "repo": "LibreSign/libresign",
+    "homepage": "https://libresign.coop",
+    "why": "Nextcloud app for signing PDF documents with digital certificates.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "PDF signing with certificates inside Nextcloud. Requires a Nextcloud server.",
+    "deploy": [],
+    "stack": [
+      "php"
+    ],
+    "categories": [
+      "documents"
+    ],
+    "evidenceUrls": [
+      "https://github.com/LibreSign/libresign"
+    ]
+  },
+  {
+    "slug": "wraft",
+    "existing": false,
+    "name": "Wraft",
+    "repo": "wraft/wraft",
+    "homepage": "https://wraft.app",
+    "why": "Open-source document workflow platform with templates, approvals and e-signatures.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Document generation with templates and signing steps. Broader workflow tool than a signing service.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/wraft/wraft",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "elixir"
+    ],
+    "categories": [
+      "documents"
+    ],
+    "evidenceUrls": [
+      "https://github.com/wraft/wraft",
+      "https://openalternative.co/alternatives/docusign"
+    ]
+  },
+  {
+    "slug": "stirling-pdf",
+    "existing": true,
+    "name": "Stirling PDF",
+    "repo": "Stirling-Tools/Stirling-PDF",
+    "homepage": "https://www.stirlingpdf.com",
+    "why": "Self-hosted PDF toolbox that can add signatures and edit PDFs.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Places a signature on a PDF you already hold. No signing requests, recipient tracking or certificate page.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/Stirling-Tools/Stirling-PDF",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "java"
+    ],
+    "categories": [
+      "documents"
+    ],
+    "evidenceUrls": [
+      "https://github.com/Stirling-Tools/Stirling-PDF",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  }
+]

@@ -1,0 +1,212 @@
+[
+  {
+    "slug": "shotcut",
+    "existing": true,
+    "name": "Shotcut",
+    "repo": "mltframework/shotcut",
+    "homepage": "https://www.shotcut.org",
+    "why": "Cross-platform desktop video editor built on MLT and FFmpeg.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Trimming, multitrack editing, filters and export; no built-in auto-captions or social templates confirmed.",
+    "deploy": [
+      "binary"
+    ],
+    "stack": [
+      "c++",
+      "qt",
+      "qml",
+      "mlt",
+      "ffmpeg"
+    ],
+    "categories": [
+      "audio-video"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/capcut",
+      "https://github.com/mltframework/shotcut"
+    ]
+  },
+  {
+    "slug": "kdenlive",
+    "existing": true,
+    "name": "Kdenlive",
+    "repo": "KDE/kdenlive",
+    "homepage": "https://kdenlive.org",
+    "why": "Multitrack non-linear video editor from KDE built on MLT.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Timeline editing, effects, titles and export; speech-to-text subtitles are not confirmed on the repo page.",
+    "deploy": [
+      "flatpak",
+      "snap",
+      "binary"
+    ],
+    "stack": [
+      "c++",
+      "qt",
+      "mlt"
+    ],
+    "categories": [
+      "audio-video"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/capcut",
+      "https://github.com/KDE/kdenlive"
+    ]
+  },
+  {
+    "slug": "opencut",
+    "existing": false,
+    "name": "OpenCut",
+    "repo": "OpenCut-app/OpenCut",
+    "homepage": "https://opencut.app",
+    "why": "Open-source video editor for web, desktop and mobile, described as a CapCut alternative; being rewritten.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Timeline editing in the browser with no install; rewrite in progress so feature coverage is unclear.",
+    "hosted": {
+      "exists": true,
+      "source": "https://github.com/OpenCut-app/OpenCut",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "rust",
+      "typescript",
+      "bun"
+    ],
+    "categories": [
+      "audio-video"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/capcut",
+      "https://github.com/OpenCut-app/OpenCut"
+    ]
+  },
+  {
+    "slug": "openshot",
+    "existing": false,
+    "name": "OpenShot",
+    "repo": "OpenShot/openshot-qt",
+    "homepage": "https://www.openshot.org",
+    "why": "Desktop video editor with timeline, keyframe animation, titles and transitions.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Clip trimming, titles, transitions and export; no auto-captions confirmed.",
+    "deploy": [
+      "binary"
+    ],
+    "stack": [
+      "python",
+      "qt",
+      "c++",
+      "ffmpeg"
+    ],
+    "categories": [
+      "audio-video"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/capcut",
+      "https://github.com/OpenShot/openshot-qt"
+    ]
+  },
+  {
+    "slug": "losslesscut",
+    "existing": false,
+    "name": "LosslessCut",
+    "repo": "mifi/lossless-cut",
+    "homepage": "https://losslesscut.app",
+    "why": "FFmpeg-based desktop app for lossless trimming, cutting and remuxing of video and audio.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Trimming and cutting without re-encoding; no captions or aspect-ratio reframing confirmed.",
+    "deploy": [
+      "binary",
+      "snap",
+      "flatpak"
+    ],
+    "stack": [
+      "typescript",
+      "electron",
+      "ffmpeg"
+    ],
+    "categories": [
+      "audio-video"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/capcut",
+      "https://github.com/mifi/lossless-cut"
+    ]
+  },
+  {
+    "slug": "auto-editor",
+    "existing": false,
+    "name": "auto-editor",
+    "repo": "WyattBlue/auto-editor",
+    "homepage": "https://auto-editor.com",
+    "why": "Command-line tool that cuts silence and dead space out of video and audio automatically.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Automatic trimming of silent sections; no captions or social-format export confirmed.",
+    "hosted": {
+      "exists": true,
+      "source": "https://github.com/WyattBlue/auto-editor",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "nim",
+      "ffmpeg"
+    ],
+    "categories": [
+      "audio-video"
+    ],
+    "evidenceUrls": [
+      "https://github.com/WyattBlue/auto-editor"
+    ]
+  },
+  {
+    "slug": "flowblade",
+    "existing": false,
+    "name": "Flowblade",
+    "repo": "jliljebl/flowblade",
+    "homepage": "https://jliljebl.github.io/flowblade/",
+    "why": "Multitrack non-linear video editor for Linux built on MLT and FFmpeg.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Multitrack editing, compositing, filters and batch encoding; Linux only.",
+    "deploy": [
+      "binary"
+    ],
+    "stack": [
+      "python",
+      "mlt",
+      "ffmpeg"
+    ],
+    "categories": [
+      "audio-video"
+    ],
+    "evidenceUrls": [
+      "https://github.com/jliljebl/flowblade"
+    ]
+  },
+  {
+    "slug": "ffmpeg",
+    "existing": true,
+    "name": "FFmpeg",
+    "repo": "FFmpeg/FFmpeg",
+    "homepage": "https://ffmpeg.org",
+    "why": "Command-line libraries and tools for decoding, filtering and encoding audio and video.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Trimming, burning in subtitles and reframing through scripts; no editor interface or transcription.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/FFmpeg/FFmpeg/blob/master/INSTALL.md",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "c"
+    ],
+    "categories": [
+      "audio-video"
+    ],
+    "evidenceUrls": [
+      "https://github.com/FFmpeg/FFmpeg"
+    ]
+  }
+]

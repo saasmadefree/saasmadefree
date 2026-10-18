@@ -1,0 +1,37 @@
+{
+  "slug": "windmill",
+  "name": "Windmill",
+  "homepage": "https://www.windmill.dev",
+  "repo": "windmill-labs/windmill",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://www.windmill.dev/docs/advanced/self_host",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker",
+    "kubernetes"
+  ],
+  "stack": [
+    "rust",
+    "svelte",
+    "postgresql",
+    "typescript",
+    "python"
+  ],
+  "categories": [
+    "automation",
+    "dev-tools"
+  ],
+  "stats": {
+    "stars": 18217,
+    "lastCommit": "2026-10-18",
+    "createdAt": "2022-05-05",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

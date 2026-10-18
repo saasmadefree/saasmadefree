@@ -26,7 +26,23 @@
   ],
   "alternatives": [
     {
+      "project": "jellyfin",
+      "fit": "partial"
+    },
+    {
       "project": "navidrome",
+      "fit": "partial"
+    },
+    {
+      "project": "koel",
+      "fit": "partial"
+    },
+    {
+      "project": "ampache",
+      "fit": "partial"
+    },
+    {
+      "project": "gonic",
       "fit": "partial"
     }
   ],

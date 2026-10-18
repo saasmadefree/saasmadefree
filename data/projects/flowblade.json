@@ -1,0 +1,32 @@
+{
+  "slug": "flowblade",
+  "name": "Flowblade",
+  "homepage": "https://jliljebl.github.io/flowblade/",
+  "repo": "jliljebl/flowblade",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "binary"
+  ],
+  "stack": [
+    "python",
+    "mlt",
+    "ffmpeg"
+  ],
+  "categories": [
+    "audio-video"
+  ],
+  "stats": {
+    "stars": 3096,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2015-04-01",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

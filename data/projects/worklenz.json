@@ -1,0 +1,36 @@
+{
+  "slug": "worklenz",
+  "name": "Worklenz",
+  "homepage": "https://worklenz.com",
+  "repo": "Worklenz/worklenz",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/Worklenz/worklenz/blob/main/DOCKER_SETUP.md",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "react",
+    "typescript",
+    "express",
+    "postgresql",
+    "redis"
+  ],
+  "categories": [
+    "project-management"
+  ],
+  "stats": {
+    "stars": 3248,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2024-05-16",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

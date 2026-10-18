@@ -1,0 +1,34 @@
+{
+  "slug": "socioboard",
+  "name": "Socioboard",
+  "homepage": "https://socioboard.org",
+  "repo": "Socioboard-developers/Socioboard-5.0",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/Socioboard/Socioboard-5.0",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker",
+    "ansible"
+  ],
+  "stack": [
+    "node.js",
+    "express",
+    "php"
+  ],
+  "categories": [
+    "social-media"
+  ],
+  "stats": {
+    "stars": 1518,
+    "lastCommit": "2026-08-17",
+    "createdAt": "2016-06-03",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

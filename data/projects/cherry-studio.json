@@ -1,0 +1,28 @@
+{
+  "slug": "cherry-studio",
+  "name": "Cherry Studio",
+  "homepage": "https://cherryai.com",
+  "repo": "CherryHQ/cherry-studio",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [
+    "typescript"
+  ],
+  "categories": [
+    "ai-assistant"
+  ],
+  "stats": {
+    "stars": 52721,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2024-05-24",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -5,20 +5,25 @@
   "repo": "hcengineering/platform",
   "license": "EPL-2.0",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/hcengineering/huly-selfhost",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://github.com/hcengineering/platform",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [],
   "stack": [],
   "categories": [
-    "dev-tools"
+    "dev-tools",
+    "project-management"
   ],
   "stats": {
-    "stars": 27932,
+    "stars": 27935,
     "lastCommit": "2026-10-14",
     "createdAt": "2021-08-02",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

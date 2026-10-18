@@ -1,0 +1,30 @@
+{
+  "slug": "wraft",
+  "name": "Wraft",
+  "homepage": "https://wraft.app",
+  "repo": "wraft/wraft",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/wraft/wraft",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [
+    "elixir"
+  ],
+  "categories": [
+    "documents"
+  ],
+  "stats": {
+    "stars": 168,
+    "lastCommit": "2026-10-03",
+    "createdAt": "2024-09-12",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

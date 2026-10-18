@@ -1,0 +1,34 @@
+{
+  "slug": "bytechef",
+  "name": "ByteChef",
+  "homepage": "https://www.bytechef.io",
+  "repo": "bytechefhq/bytechef",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.bytechef.io",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker",
+    "helm"
+  ],
+  "stack": [
+    "java",
+    "typescript",
+    "postgresql"
+  ],
+  "categories": [
+    "automation"
+  ],
+  "stats": {
+    "stars": 1023,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2021-09-30",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "slug": "gimp",
+  "name": "GIMP",
+  "homepage": "https://www.gimp.org",
+  "repo": null,
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [
+    "c"
+  ],
+  "categories": [
+    "design"
+  ],
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "slug": "opencloud",
+  "name": "OpenCloud",
+  "homepage": "https://opencloud.eu",
+  "repo": "opencloud-eu/opencloud",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [
+    "go"
+  ],
+  "categories": [
+    "cloud-storage"
+  ],
+  "stats": {
+    "stars": 6185,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2025-01-10",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

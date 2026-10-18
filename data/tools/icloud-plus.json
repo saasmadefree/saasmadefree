@@ -27,7 +27,7 @@
   ],
   "alternatives": [
     {
-      "project": "server",
+      "project": "nextcloud",
       "fit": "partial"
     }
   ],

@@ -1,0 +1,32 @@
+{
+  "slug": "saleor",
+  "name": "Saleor",
+  "homepage": "https://saleor.io",
+  "repo": "saleor/saleor",
+  "license": "BSD-3-Clause",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/saleor/saleor",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "python"
+  ],
+  "categories": [
+    "creator-commerce"
+  ],
+  "stats": {
+    "stars": 23449,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2013-02-12",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

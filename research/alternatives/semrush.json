@@ -1,0 +1,144 @@
+[
+  {
+    "slug": "seomacroscope",
+    "existing": true,
+    "name": "SEO Macroscope",
+    "repo": "nazuke/SEOMacroscope",
+    "homepage": "https://github.com/nazuke/SEOMacroscope",
+    "why": "Desktop crawler that audits a site's pages, links and metadata.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Technical crawl of a site you control. No rank tracking and no backlink or keyword database.",
+    "deploy": [],
+    "stack": [
+      "java"
+    ],
+    "categories": [
+      "seo-marketing"
+    ],
+    "evidenceUrls": [
+      "https://github.com/nazuke/SEOMacroscope"
+    ]
+  },
+  {
+    "slug": "seonaut",
+    "existing": true,
+    "name": "SEOnaut",
+    "repo": "StJudeWasHere/seonaut",
+    "homepage": "https://github.com/StJudeWasHere/seonaut",
+    "why": "Self-hosted SEO auditing tool that crawls a site and reports issues.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Site crawl with an issue list and page reports. No rank tracking and no backlink data.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/StJudeWasHere/seonaut",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "go"
+    ],
+    "categories": [
+      "seo-marketing"
+    ],
+    "evidenceUrls": [
+      "https://github.com/StJudeWasHere/seonaut"
+    ]
+  },
+  {
+    "slug": "serpbear",
+    "existing": true,
+    "name": "SerpBear",
+    "repo": "towfiqi/serpbear",
+    "homepage": "https://github.com/towfiqi/serpbear",
+    "why": "Self-hosted keyword position tracker that reads results through a scraping or SERP API and Search Console.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Daily keyword rank tracking for your own domain. No crawl, no backlink data, no competitor database.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/towfiqi/serpbear",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript"
+    ],
+    "categories": [
+      "seo-marketing"
+    ],
+    "evidenceUrls": [
+      "https://github.com/towfiqi/serpbear"
+    ]
+  },
+  {
+    "slug": "open-seo",
+    "existing": false,
+    "name": "OpenSEO",
+    "repo": "every-app/open-seo",
+    "homepage": "https://openseo.so",
+    "why": "Open-source SEO tool for keyword research and rank tracking that can be self-hosted.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Keyword research and tracking driven by a paid data API. No own web index or backlink crawl.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/every-app/open-seo",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript"
+    ],
+    "categories": [
+      "seo-marketing"
+    ],
+    "evidenceUrls": [
+      "https://github.com/every-app/open-seo",
+      "https://openalternative.co/alternatives/semrush"
+    ]
+  },
+  {
+    "slug": "unlighthouse",
+    "existing": false,
+    "name": "Unlighthouse",
+    "repo": "harlan-zw/unlighthouse",
+    "homepage": "https://unlighthouse.dev",
+    "why": "Tool that runs Lighthouse across every page of a site and reports performance and SEO scores.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Site-wide Lighthouse audits for your own site. No rank tracking, no backlinks, no keyword data.",
+    "deploy": [],
+    "stack": [
+      "javascript"
+    ],
+    "categories": [
+      "seo-marketing"
+    ],
+    "evidenceUrls": [
+      "https://github.com/harlan-zw/unlighthouse"
+    ]
+  },
+  {
+    "slug": "advertools",
+    "existing": false,
+    "name": "advertools",
+    "repo": "eliasdabbas/advertools",
+    "homepage": "https://advertools.readthedocs.io",
+    "why": "Python library for crawling sites, parsing sitemaps and logs, and analysing search ads and keywords.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Scriptable crawling, sitemap and log analysis for your own site. A library, not a dashboard; no backlink data.",
+    "deploy": [],
+    "stack": [
+      "python"
+    ],
+    "categories": [
+      "seo-marketing"
+    ],
+    "evidenceUrls": [
+      "https://github.com/eliasdabbas/advertools"
+    ]
+  }
+]

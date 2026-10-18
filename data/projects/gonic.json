@@ -1,0 +1,32 @@
+{
+  "slug": "gonic",
+  "name": "gonic",
+  "homepage": "https://github.com/sentriz/gonic",
+  "repo": "sentriz/gonic",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/sentriz/gonic",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "go"
+  ],
+  "categories": [
+    "media-streaming"
+  ],
+  "stats": {
+    "stars": 2614,
+    "lastCommit": "2026-10-14",
+    "createdAt": "2019-03-29",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

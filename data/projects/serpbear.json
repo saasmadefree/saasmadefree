@@ -5,6 +5,8 @@
   "repo": "towfiqi/serpbear",
   "license": "MIT",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/towfiqi/serpbear",
   "hosted": {
     "exists": false
   },
@@ -18,7 +20,7 @@
     "lastCommit": "2026-05-14",
     "createdAt": "2022-11-24",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

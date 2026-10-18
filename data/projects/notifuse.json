@@ -1,0 +1,33 @@
+{
+  "slug": "notifuse",
+  "name": "Notifuse",
+  "homepage": "https://www.notifuse.com",
+  "repo": "Notifuse/notifuse",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/Notifuse/notifuse",
+  "hosted": {
+    "exists": true,
+    "priceFrom": 16,
+    "currency": "USD",
+    "source": "https://www.notifuse.com",
+    "checkedOn": "2026-10-18"
+  },
+  "deploy": [],
+  "stack": [
+    "go"
+  ],
+  "categories": [
+    "newsletter"
+  ],
+  "stats": {
+    "stars": 2248,
+    "lastCommit": "2026-09-17",
+    "createdAt": "2025-03-15",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

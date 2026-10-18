@@ -1,0 +1,20 @@
+{
+  "slug": "inkscape",
+  "name": "Inkscape",
+  "homepage": "https://gitlab.com/inkscape/inkscape",
+  "repo": null,
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [
+    "c++"
+  ],
+  "categories": [
+    "design"
+  ],
+  "markets": [
+    "en"
+  ]
+}

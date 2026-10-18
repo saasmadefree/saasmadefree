@@ -26,7 +26,19 @@
   "alternatives": [
     {
       "project": "stirling-pdf",
+      "fit": "full"
+    },
+    {
+      "project": "bentopdf",
+      "fit": "full"
+    },
+    {
+      "project": "pdfsam",
       "fit": "partial"
+    },
+    {
+      "project": "pdfarranger",
+      "fit": "niche"
     }
   ],
   "relatedSlugs": [

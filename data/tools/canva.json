@@ -26,6 +26,22 @@
     {
       "project": "penpot",
       "fit": "partial"
+    },
+    {
+      "project": "graphite",
+      "fit": "partial"
+    },
+    {
+      "project": "krita",
+      "fit": "partial"
+    },
+    {
+      "project": "inkscape",
+      "fit": "partial"
+    },
+    {
+      "project": "gimp",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

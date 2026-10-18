@@ -1,23 +1,26 @@
 {
   "slug": "onyx",
-  "name": "Danswer/Onyx",
+  "name": "Onyx",
   "homepage": "https://github.com/onyx-dot-app/onyx",
   "repo": "onyx-dot-app/onyx",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/onyx-dot-app/onyx",
   "hosted": {
     "exists": false
   },
   "deploy": [],
   "stack": [],
   "categories": [
-    "seo-marketing"
+    "seo-marketing",
+    "ai-assistant"
   ],
   "stats": {
-    "stars": 32543,
-    "lastCommit": "2026-10-16",
+    "stars": 32551,
+    "lastCommit": "2026-10-17",
     "createdAt": "2023-04-27",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

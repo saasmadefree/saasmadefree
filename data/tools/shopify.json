@@ -25,7 +25,35 @@
   ],
   "alternatives": [
     {
+      "project": "bagisto",
+      "fit": "full"
+    },
+    {
+      "project": "spree-commerce",
+      "fit": "full"
+    },
+    {
+      "project": "woocommerce",
+      "fit": "full"
+    },
+    {
+      "project": "prestashop",
+      "fit": "full"
+    },
+    {
+      "project": "shopware",
+      "fit": "full"
+    },
+    {
       "project": "medusa",
+      "fit": "partial"
+    },
+    {
+      "project": "saleor",
+      "fit": "partial"
+    },
+    {
+      "project": "solidus",
       "fit": "partial"
     }
   ],

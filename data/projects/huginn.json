@@ -5,6 +5,8 @@
   "repo": "huginn/huginn",
   "license": "MIT",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/huginn/huginn/blob/master/doc/docker/install.md",
   "hosted": {
     "exists": false
   },
@@ -14,11 +16,11 @@
     "automation"
   ],
   "stats": {
-    "stars": 50069,
-    "lastCommit": "2026-10-15",
+    "stars": 50070,
+    "lastCommit": "2026-10-18",
     "createdAt": "2013-03-10",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

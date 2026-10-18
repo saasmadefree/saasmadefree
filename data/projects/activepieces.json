@@ -4,6 +4,8 @@
   "homepage": "https://github.com/activepieces/activepieces",
   "repo": "activepieces/activepieces",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://www.activepieces.com/docs/install/overview",
   "hosted": {
     "exists": false
   },
@@ -13,11 +15,11 @@
     "automation"
   ],
   "stats": {
-    "stars": 25083,
+    "stars": 25088,
     "lastCommit": "2026-10-16",
     "createdAt": "2022-12-03",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

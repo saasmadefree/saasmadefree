@@ -1,0 +1,219 @@
+[
+  {
+    "slug": "syncthing",
+    "existing": true,
+    "name": "Syncthing",
+    "repo": "syncthing/syncthing",
+    "homepage": "https://syncthing.net",
+    "why": "Peer-to-peer file synchronisation between your own devices with no central server.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Keeps folders in sync between machines and flags conflicting versions. No web interface, sharing links or storage in the cloud.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/syncthing/syncthing",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "go"
+    ],
+    "categories": [
+      "cloud-storage"
+    ],
+    "evidenceUrls": [
+      "https://github.com/syncthing/syncthing",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "nextcloud",
+    "existing": false,
+    "name": "Nextcloud",
+    "repo": "nextcloud/server",
+    "homepage": "https://nextcloud.com",
+    "why": "Self-hosted file sync and share platform with desktop and mobile clients and web apps.",
+    "fitGuess": "full",
+    "coreLoopCovered": "File sync, sharing links, versioning and apps on your own server. You run the server and its backups.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "php"
+    ],
+    "categories": [
+      "cloud-storage"
+    ],
+    "evidenceUrls": [
+      "https://github.com/nextcloud/server",
+      "https://openalternative.co/alternatives/dropbox",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "opencloud",
+    "existing": false,
+    "name": "OpenCloud",
+    "repo": "opencloud-eu/opencloud",
+    "homepage": "https://opencloud.eu",
+    "why": "Self-hosted file sync and share platform written in Go as a fork of ownCloud Infinite Scale.",
+    "fitGuess": "full",
+    "coreLoopCovered": "File sync, sharing and spaces with desktop and mobile clients on your own server.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "go"
+    ],
+    "categories": [
+      "cloud-storage"
+    ],
+    "evidenceUrls": [
+      "https://github.com/opencloud-eu/opencloud",
+      "https://openalternative.co/alternatives/dropbox",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "seafile",
+    "existing": false,
+    "name": "Seafile",
+    "repo": "haiwen/seafile",
+    "homepage": "http://seafile.com/",
+    "why": "Self-hosted file sync and share server with library-based versioning and desktop clients.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Fast file sync, libraries with history and sharing links. Some features need the paid Pro edition.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "c"
+    ],
+    "categories": [
+      "cloud-storage"
+    ],
+    "evidenceUrls": [
+      "https://github.com/haiwen/seafile",
+      "https://openalternative.co/alternatives/dropbox",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "owncloud-ocis",
+    "existing": false,
+    "name": "ownCloud Infinite Scale",
+    "repo": "owncloud/ocis",
+    "homepage": "https://doc.owncloud.com/ocis/",
+    "why": "Self-hosted file sync and share platform built in Go as the successor to ownCloud 10.",
+    "fitGuess": "full",
+    "coreLoopCovered": "File sync, sharing and spaces with clients on your own server.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/owncloud/ocis",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "go"
+    ],
+    "categories": [
+      "cloud-storage"
+    ],
+    "evidenceUrls": [
+      "https://github.com/owncloud/ocis",
+      "https://openalternative.co/alternatives/dropbox"
+    ]
+  },
+  {
+    "slug": "filestash",
+    "existing": false,
+    "name": "Filestash",
+    "repo": "mickael-kerjean/filestash",
+    "homepage": "https://www.filestash.app/",
+    "why": "Web file manager that sits on top of storage backends such as SFTP, S3 and WebDAV.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Browser access and sharing for files stored elsewhere. No desktop sync client.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "priceFrom": 50,
+      "currency": "USD",
+      "source": "https://www.filestash.app/pricing",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "go"
+    ],
+    "categories": [
+      "cloud-storage"
+    ],
+    "evidenceUrls": [
+      "https://github.com/mickael-kerjean/filestash",
+      "https://openalternative.co/alternatives/dropbox",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "pydio-cells",
+    "existing": false,
+    "name": "Pydio Cells",
+    "repo": "pydio/cells",
+    "homepage": "https://pydio.com",
+    "why": "Self-hosted file sharing and sync platform for teams.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "File sharing and sync with workflows on your own server. Aimed at organisations rather than individuals.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [],
+    "stack": [
+      "go"
+    ],
+    "categories": [
+      "cloud-storage"
+    ],
+    "evidenceUrls": [
+      "https://github.com/pydio/cells",
+      "https://github.com/awesome-selfhosted/awesome-selfhosted"
+    ]
+  },
+  {
+    "slug": "cryptomator",
+    "existing": true,
+    "name": "Cryptomator",
+    "repo": "cryptomator/cryptomator",
+    "homepage": "https://cryptomator.org",
+    "why": "Client-side encryption for files stored in any cloud sync folder.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Encrypts a folder before a sync service uploads it. It does not sync or share on its own.",
+    "deploy": [],
+    "stack": [
+      "java"
+    ],
+    "categories": [
+      "cloud-storage"
+    ],
+    "evidenceUrls": [
+      "https://github.com/cryptomator/cryptomator"
+    ]
+  }
+]

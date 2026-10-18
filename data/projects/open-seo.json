@@ -1,0 +1,32 @@
+{
+  "slug": "open-seo",
+  "name": "OpenSEO",
+  "homepage": "https://openseo.so",
+  "repo": "every-app/open-seo",
+  "license": "MIT",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/every-app/open-seo",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "typescript"
+  ],
+  "categories": [
+    "seo-marketing"
+  ],
+  "stats": {
+    "stars": 23953,
+    "lastCommit": "2026-10-14",
+    "createdAt": "2026-02-27",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "tool": "duolingo-super",
+  "checkedOn": "2026-10-18",
+  "question": "Paid SaaS: \"Duolingo Super\". What people pay it for: Run a short daily drill over your own sentence bank, with a streak you can see and no mechanic that stops you practising. Question: is the candidate below an open-source or self-hostable application (web, desktop or server) that a person could actually use INSTEAD of Duolingo Super for that job, or for a clear, substantial part of it? Partial replacements count as yes (for example a desktop video editor for a video app, a self-hosted rank tracker for an SEO suite). Answer no for: a code library or SDK only, a command-line utility with no end-user workflow, a closed paid service, a tutorial, or a tool for an unrelated job.",
+  "jevModel": "jev-1.13.0",
+  "results": [
+    {
+      "slug": "anki",
+      "name": "Anki",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.96,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.06,
+      "kept": false
+    },
+    {
+      "slug": "zoonk",
+      "name": "Zoonk",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.82,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.06,
+      "kept": false
+    },
+    {
+      "slug": "librelingo",
+      "name": "LibreLingo",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.58,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.54,
+      "kept": true
+    },
+    {
+      "slug": "lute-v3",
+      "name": "Lute v3",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.06,
+        "review": false,
+        "classId": "other"
+      },
+      "decision": 0.24,
+      "kept": false
+    },
+    {
+      "slug": "linguacafe",
+      "name": "LinguaCafe",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.58,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.72,
+      "kept": true
+    },
+    {
+      "slug": "mnemosyne",
+      "name": "Mnemosyne",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.88,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.49,
+      "kept": false
+    },
+    {
+      "slug": "yomitan",
+      "name": "Yomitan",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.02,
+        "review": false,
+        "classId": "other"
+      },
+      "decision": 0.05,
+      "kept": false
+    }
+  ]
+}

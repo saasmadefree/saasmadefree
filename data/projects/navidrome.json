@@ -5,6 +5,8 @@
   "repo": "navidrome/navidrome",
   "license": "GPL-3.0",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/navidrome/navidrome",
   "hosted": {
     "exists": false
   },
@@ -14,11 +16,11 @@
     "media-streaming"
   ],
   "stats": {
-    "stars": 24205,
+    "stars": 24212,
     "lastCommit": "2026-10-16",
     "createdAt": "2016-02-24",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

@@ -1,0 +1,27 @@
+{
+  "slug": "jan",
+  "name": "Jan",
+  "homepage": "https://jan.ai",
+  "repo": "janhq/jan",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [
+    "rust"
+  ],
+  "categories": [
+    "ai-assistant"
+  ],
+  "stats": {
+    "stars": 44986,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2023-08-17",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -5,8 +5,12 @@
   "repo": "calcom/cal.diy",
   "license": "MIT",
   "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://cal.diy",
   "hosted": {
-    "exists": false
+    "exists": false,
+    "source": "https://github.com/calcom/cal.diy",
+    "checkedOn": "2026-10-18"
   },
   "deploy": [],
   "stack": [],
@@ -15,11 +19,11 @@
     "tasks"
   ],
   "stats": {
-    "stars": 49107,
+    "stars": 49123,
     "lastCommit": "2026-09-20",
     "createdAt": "2021-03-22",
     "archived": false,
-    "checkedOn": "2026-10-17"
+    "checkedOn": "2026-10-18"
   },
   "markets": [
     "en"

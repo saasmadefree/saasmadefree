@@ -1,0 +1,116 @@
+{
+  "tool": "trello",
+  "checkedOn": "2026-10-18",
+  "question": "Paid SaaS: \"Trello\". What people pay it for: Boards, lists and cards you can drag, plus the same cards rendered as a calendar and a table across boards, and a small rule engine that fires when a card moves. Question: is the candidate below an open-source or self-hostable application (web, desktop or server) that a person could actually use INSTEAD of Trello for that job, or for a clear, substantial part of it? Partial replacements count as yes (for example a desktop video editor for a video app, a self-hosted rank tracker for an SEO suite). Answer no for: a code library or SDK only, a command-line utility with no end-user workflow, a closed paid service, a tutorial, or a tool for an unrelated job.",
+  "jevModel": "jev-1.13.0",
+  "results": [
+    {
+      "slug": "wekan",
+      "name": "WeKan",
+      "fitGuess": "full",
+      "jev": {
+        "p": 1,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.99,
+      "kept": true
+    },
+    {
+      "slug": "planka",
+      "name": "PLANKA",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.92,
+      "kept": true
+    },
+    {
+      "slug": "kan",
+      "name": "Kan",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.96,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.92,
+      "kept": true
+    },
+    {
+      "slug": "plane",
+      "name": "Plane",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.94,
+      "kept": true
+    },
+    {
+      "slug": "vikunja",
+      "name": "Vikunja",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.94,
+      "kept": true
+    },
+    {
+      "slug": "taiga",
+      "name": "Taiga",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.92,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.14,
+      "kept": false
+    },
+    {
+      "slug": "openproject",
+      "name": "OpenProject",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.97,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.93,
+      "kept": true
+    },
+    {
+      "slug": "leantime",
+      "name": "Leantime",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.97,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.9,
+      "kept": true
+    },
+    {
+      "slug": "super-productivity",
+      "name": "Super Productivity",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.46,
+        "review": true,
+        "classId": "other"
+      },
+      "decision": 0.07,
+      "kept": false
+    }
+  ]
+}

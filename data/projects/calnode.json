@@ -1,0 +1,34 @@
+{
+  "slug": "calnode",
+  "name": "Calnode",
+  "homepage": "https://calnode.com",
+  "repo": "Calnode/calnode",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/Calnode/calnode/blob/main/DEPLOY.md",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "go",
+    "sqlite",
+    "svelte"
+  ],
+  "categories": [
+    "scheduling"
+  ],
+  "stats": {
+    "stars": 118,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2026-06-23",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

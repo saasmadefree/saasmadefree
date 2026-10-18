@@ -1,0 +1,29 @@
+{
+  "slug": "seafile",
+  "name": "Seafile",
+  "homepage": "http://seafile.com/",
+  "repo": "haiwen/seafile",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [
+    "c"
+  ],
+  "categories": [
+    "cloud-storage"
+  ],
+  "stats": {
+    "stars": 15344,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2012-07-12",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

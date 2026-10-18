@@ -1,0 +1,30 @@
+{
+  "slug": "koel",
+  "name": "Koel",
+  "homepage": "https://koel.dev",
+  "repo": "koel/koel",
+  "license": "MIT",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [
+    "php"
+  ],
+  "categories": [
+    "media-streaming"
+  ],
+  "stats": {
+    "stars": 17279,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2015-12-06",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

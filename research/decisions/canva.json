@@ -1,0 +1,92 @@
+{
+  "tool": "canva",
+  "checkedOn": "2026-10-18",
+  "question": "Paid SaaS: \"Canva\". What people pay it for: A canvas editor with size presets, text and image layers, a small brand-color panel, and PNG/PDF export. Question: is the candidate below an open-source or self-hostable application (web, desktop or server) that a person could actually use INSTEAD of Canva for that job, or for a clear, substantial part of it? Partial replacements count as yes (for example a desktop video editor for a video app, a self-hosted rank tracker for an SEO suite). Answer no for: a code library or SDK only, a command-line utility with no end-user workflow, a closed paid service, a tutorial, or a tool for an unrelated job.",
+  "jevModel": "jev-1.13.0",
+  "results": [
+    {
+      "slug": "penpot",
+      "name": "Penpot",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.8,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "graphite",
+      "name": "Graphite",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.92,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.94,
+      "kept": true
+    },
+    {
+      "slug": "excalidraw",
+      "name": "Excalidraw",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.13,
+        "review": false,
+        "classId": "other"
+      },
+      "decision": 0.11,
+      "kept": false
+    },
+    {
+      "slug": "tldraw",
+      "name": "tldraw",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.1,
+        "review": false,
+        "classId": "other"
+      },
+      "decision": 0.05,
+      "kept": false
+    },
+    {
+      "slug": "inkscape",
+      "name": "Inkscape",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.96,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.97,
+      "kept": true
+    },
+    {
+      "slug": "krita",
+      "name": "Krita",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.2,
+        "review": true,
+        "classId": "other"
+      },
+      "decision": 0.83,
+      "kept": true
+    },
+    {
+      "slug": "gimp",
+      "name": "GIMP",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.71,
+        "review": true,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    }
+  ]
+}

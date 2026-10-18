@@ -1,0 +1,28 @@
+{
+  "slug": "krita",
+  "name": "Krita",
+  "homepage": "https://krita.org",
+  "repo": "KDE/krita",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [
+    "c++"
+  ],
+  "categories": [
+    "design"
+  ],
+  "stats": {
+    "stars": 10574,
+    "lastCommit": "2026-10-18",
+    "createdAt": "2015-10-09",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

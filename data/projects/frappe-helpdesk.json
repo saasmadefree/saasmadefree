@@ -1,0 +1,35 @@
+{
+  "slug": "frappe-helpdesk",
+  "name": "Frappe Helpdesk",
+  "homepage": "https://frappe.io/helpdesk",
+  "repo": "frappe/helpdesk",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://docs.frappe.io/helpdesk",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "python",
+    "frappe",
+    "vue",
+    "typescript"
+  ],
+  "categories": [
+    "customer-support"
+  ],
+  "stats": {
+    "stars": 3432,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2021-10-21",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

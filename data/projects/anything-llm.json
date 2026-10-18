@@ -1,0 +1,32 @@
+{
+  "slug": "anything-llm",
+  "name": "AnythingLLM",
+  "homepage": "https://anythingllm.com",
+  "repo": "Mintplex-Labs/anything-llm",
+  "license": "MIT",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/Mintplex-Labs/anything-llm",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "javascript"
+  ],
+  "categories": [
+    "ai-assistant"
+  ],
+  "stats": {
+    "stars": 67262,
+    "lastCommit": "2026-10-15",
+    "createdAt": "2023-06-04",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

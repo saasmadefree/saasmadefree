@@ -1,0 +1,104 @@
+{
+  "tool": "zapier",
+  "checkedOn": "2026-10-18",
+  "question": "Paid SaaS: \"Zapier\". What people pay it for: A small automation runner: each pipeline is a scheduled job or a webhook handler that calls a couple of APIs directly, with every run logged and retried on failure. Question: is the candidate below an open-source or self-hostable application (web, desktop or server) that a person could actually use INSTEAD of Zapier for that job, or for a clear, substantial part of it? Partial replacements count as yes (for example a desktop video editor for a video app, a self-hosted rank tracker for an SEO suite). Answer no for: a code library or SDK only, a command-line utility with no end-user workflow, a closed paid service, a tutorial, or a tool for an unrelated job.",
+  "jevModel": "jev-1.13.0",
+  "results": [
+    {
+      "slug": "n8n",
+      "name": "n8n",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.99,
+      "kept": true
+    },
+    {
+      "slug": "activepieces",
+      "name": "Activepieces",
+      "fitGuess": "full",
+      "jev": {
+        "p": 1,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 1,
+      "kept": true
+    },
+    {
+      "slug": "automatisch",
+      "name": "Automatisch",
+      "fitGuess": "full",
+      "jev": {
+        "p": 1,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 1,
+      "kept": true
+    },
+    {
+      "slug": "windmill",
+      "name": "Windmill",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.97,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.97,
+      "kept": true
+    },
+    {
+      "slug": "huginn",
+      "name": "Huginn",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 1,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "node-red",
+      "name": "Node-RED",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.99,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.67,
+      "kept": true
+    },
+    {
+      "slug": "bytechef",
+      "name": "ByteChef",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.96,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 1,
+      "kept": true
+    },
+    {
+      "slug": "kestra",
+      "name": "Kestra",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.96,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.89,
+      "kept": true
+    }
+  ]
+}

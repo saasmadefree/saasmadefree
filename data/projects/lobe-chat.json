@@ -1,0 +1,31 @@
+{
+  "slug": "lobe-chat",
+  "name": "LobeHub",
+  "homepage": "https://lobehub.com",
+  "repo": "lobehub/lobehub",
+  "selfHostable": true,
+  "selfHostableCheckedOn": "2026-10-18",
+  "selfHostableSource": "https://github.com/lobehub/lobehub",
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [
+    "docker"
+  ],
+  "stack": [
+    "typescript"
+  ],
+  "categories": [
+    "ai-assistant"
+  ],
+  "stats": {
+    "stars": 83298,
+    "lastCommit": "2026-10-18",
+    "createdAt": "2023-05-21",
+    "archived": false,
+    "checkedOn": "2026-10-18"
+  },
+  "markets": [
+    "en"
+  ]
+}

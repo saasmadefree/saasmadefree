@@ -1,0 +1,320 @@
+[
+  {
+    "slug": "wekan",
+    "existing": false,
+    "name": "WeKan",
+    "repo": "wekan/wekan",
+    "homepage": "https://wekan.fi",
+    "why": "Self-hosted kanban board with swimlanes, list, table, calendar and Gantt views and import from other tools.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Boards, lists and cards with drag and drop plus calendar and table views; rules are not confirmed.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://wekan.fi/install/",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://wekan.fi/saas/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "snap",
+      "appimage",
+      "kubernetes"
+    ],
+    "stack": [
+      "javascript",
+      "meteor",
+      "node.js",
+      "mongodb",
+      "postgresql"
+    ],
+    "categories": [
+      "project-management",
+      "tasks"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/trello",
+      "https://github.com/wekan/wekan"
+    ]
+  },
+  {
+    "slug": "planka",
+    "existing": false,
+    "name": "PLANKA",
+    "repo": "plankanban/planka",
+    "homepage": "https://planka.app",
+    "why": "Self-hosted real-time kanban project tracker with a paid Pro edition.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Boards, lists, cards and real-time sync; no built-in calendar view or rule engine confirmed.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.planka.cloud/docs/installation/docker/production-version/",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://planka.app/pricing",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "helm"
+    ],
+    "stack": [
+      "javascript",
+      "node.js"
+    ],
+    "categories": [
+      "project-management",
+      "tasks"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/trello",
+      "https://github.com/plankanban/planka"
+    ]
+  },
+  {
+    "slug": "kan",
+    "existing": false,
+    "name": "Kan",
+    "repo": "kanbn/kan",
+    "homepage": "https://kan.bn",
+    "why": "Kanban app presented as an open-source Trello alternative, with Trello board import.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Unlimited boards, lists and cards with Trello import; calendar and automation rules not confirmed.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/kanbn/kan",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "railway"
+    ],
+    "stack": [
+      "typescript",
+      "next.js",
+      "postgresql",
+      "trpc"
+    ],
+    "categories": [
+      "project-management",
+      "tasks"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/trello",
+      "https://github.com/kanbn/kan"
+    ]
+  },
+  {
+    "slug": "plane",
+    "existing": true,
+    "name": "Plane",
+    "repo": "makeplane/plane",
+    "homepage": "https://github.com/makeplane/plane",
+    "why": "Open-source project management with issues, cycles, modules, views and pages, positioned against Jira and Linear.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Work items with kanban, list and calendar-style views; aimed at software teams rather than simple boards.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://developers.plane.so/self-hosting/overview",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://github.com/makeplane/plane",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "kubernetes"
+    ],
+    "stack": [
+      "python",
+      "django",
+      "typescript",
+      "react",
+      "postgresql",
+      "redis"
+    ],
+    "categories": [
+      "dev-tools",
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/trello",
+      "https://github.com/makeplane/plane"
+    ]
+  },
+  {
+    "slug": "vikunja",
+    "existing": true,
+    "name": "Vikunja",
+    "repo": "go-vikunja/vikunja",
+    "homepage": "https://vikunja.io",
+    "why": "Self-hosted task manager with list, kanban, Gantt and table views.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Kanban buckets plus list and Gantt views; no cross-board calendar or rule engine confirmed.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://vikunja.io/docs/installing",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://vikunja.cloud/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "binary",
+      "systemd"
+    ],
+    "stack": [
+      "go",
+      "vue"
+    ],
+    "categories": [
+      "tasks",
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/trello",
+      "https://github.com/go-vikunja/vikunja"
+    ]
+  },
+  {
+    "slug": "taiga",
+    "existing": false,
+    "name": "Taiga",
+    "repo": "taigaio/taiga-back",
+    "homepage": "https://taiga.io",
+    "why": "Agile project management platform with kanban and scrum boards, sprint planning and a wiki.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Kanban and scrum boards with cards; split across several repositories (taiga-back, taiga-front).",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.taiga.io/",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://github.com/taigaio/taiga-back",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "python",
+      "django"
+    ],
+    "categories": [
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/trello",
+      "https://github.com/taigaio/taiga-back"
+    ]
+  },
+  {
+    "slug": "openproject",
+    "existing": false,
+    "name": "OpenProject",
+    "repo": "opf/openproject",
+    "homepage": "https://www.openproject.org",
+    "why": "Project management suite with agile boards, Gantt charts, roadmaps and time tracking.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Agile boards with cards and work packages; heavier than a simple kanban board.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://www.openproject.org/download-and-installation/",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://start.openproject.com/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "packages"
+    ],
+    "stack": [
+      "ruby",
+      "rails",
+      "angular"
+    ],
+    "categories": [
+      "project-management"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/trello",
+      "https://openalternative.co/alternatives/smartsheet",
+      "https://openalternative.co/alternatives/asana",
+      "https://github.com/opf/openproject"
+    ]
+  },
+  {
+    "slug": "leantime",
+    "existing": false,
+    "name": "Leantime",
+    "repo": "Leantime/leantime",
+    "homepage": "https://leantime.io",
+    "why": "Goal-oriented project management with kanban, table, calendar and timeline views.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Task boards with several views and goals; no Trello-style rule engine confirmed.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://docs.leantime.io",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://leantime.io/pricing/",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "zip"
+    ],
+    "stack": [
+      "php",
+      "mysql",
+      "mariadb",
+      "tailwindcss"
+    ],
+    "categories": [
+      "project-management",
+      "tasks"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/trello",
+      "https://openalternative.co/alternatives/smartsheet",
+      "https://openalternative.co/alternatives/asana",
+      "https://github.com/Leantime/leantime"
+    ]
+  },
+  {
+    "slug": "super-productivity",
+    "existing": true,
+    "name": "Super Productivity",
+    "repo": "super-productivity/super-productivity",
+    "homepage": "https://github.com/super-productivity/super-productivity",
+    "why": "Local-first personal task manager with kanban, timers and issue-tracker sync.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Personal boards and time tracking only; no shared multi-user boards.",
+    "deploy": [],
+    "stack": [],
+    "categories": [
+      "tasks"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/trello",
+      "https://github.com/super-productivity/super-productivity"
+    ]
+  }
+]

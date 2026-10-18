@@ -1,0 +1,80 @@
+{
+  "tool": "myfitnesspal-premium",
+  "checkedOn": "2026-10-18",
+  "question": "Paid SaaS: \"MyFitnessPal Premium\". What people pay it for: Log meals against an open barcode-indexed food database, set macro targets, and see the daily and weekly totals. Question: is the candidate below an open-source or self-hostable application (web, desktop or server) that a person could actually use INSTEAD of MyFitnessPal Premium for that job, or for a clear, substantial part of it? Partial replacements count as yes (for example a desktop video editor for a video app, a self-hosted rank tracker for an SEO suite). Answer no for: a code library or SDK only, a command-line utility with no end-user workflow, a closed paid service, a tutorial, or a tool for an unrelated job.",
+  "jevModel": "jev-1.13.0",
+  "results": [
+    {
+      "slug": "sparkyfitness",
+      "name": "SparkyFitness",
+      "fitGuess": "full",
+      "jev": {
+        "p": 0.98,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "opennutritracker",
+      "name": "OpenNutriTracker",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.95,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.96,
+      "kept": true
+    },
+    {
+      "slug": "waistline",
+      "name": "Waistline",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.96,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.97,
+      "kept": true
+    },
+    {
+      "slug": "openfoodfacts-server",
+      "name": "Open Food Facts",
+      "fitGuess": "niche",
+      "jev": {
+        "p": 0.04,
+        "review": false,
+        "classId": "other"
+      },
+      "decision": 0.06,
+      "kept": false
+    },
+    {
+      "slug": "wger",
+      "name": "wger",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.94,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.95,
+      "kept": true
+    },
+    {
+      "slug": "daily-value",
+      "name": "Daily Value",
+      "fitGuess": "partial",
+      "jev": {
+        "p": 0.96,
+        "review": false,
+        "classId": "alternative"
+      },
+      "decision": 0.95,
+      "kept": true
+    }
+  ]
+}

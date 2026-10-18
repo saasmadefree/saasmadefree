@@ -1,0 +1,247 @@
+[
+  {
+    "slug": "cal-com",
+    "existing": true,
+    "name": "Cal.diy",
+    "repo": "calcom/cal.diy",
+    "homepage": "https://cal.diy",
+    "why": "MIT-licensed community edition of Cal.com with booking pages, calendar sync and video links, for non-production use.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Public booking pages, availability rules, calendar sync and event creation; teams, workflows and SSO removed.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://cal.diy",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": false,
+      "source": "https://github.com/calcom/cal.diy",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "railway",
+      "render",
+      "vercel"
+    ],
+    "stack": [
+      "typescript",
+      "next.js",
+      "trpc",
+      "prisma",
+      "postgresql"
+    ],
+    "categories": [
+      "scheduling"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/calendly",
+      "https://github.com/calcom/cal.diy"
+    ]
+  },
+  {
+    "slug": "easyappointments",
+    "existing": true,
+    "name": "Easy!Appointments",
+    "repo": "alextselegidis/easyappointments",
+    "homepage": "https://easyappointments.org",
+    "why": "Self-hosted appointment scheduler with public booking page, working plans and Google Calendar sync.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Services, providers, availability, booking page, Google Calendar sync and email notifications.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/alextselegidis/easyappointments",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "manual"
+    ],
+    "stack": [
+      "php",
+      "codeigniter",
+      "mysql"
+    ],
+    "categories": [
+      "scheduling"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/calendly",
+      "https://github.com/alextselegidis/easyappointments"
+    ]
+  },
+  {
+    "slug": "tymeslot",
+    "existing": false,
+    "name": "Tymeslot",
+    "repo": "Tymeslot/tymeslot",
+    "homepage": "https://tymeslot.app",
+    "why": "Open-source meeting scheduler with booking pages, calendar sync, video rooms and automated emails.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Booking pages, calendar sync, video rooms and email reminders.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/Tymeslot/tymeslot",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "priceFrom": 9,
+      "currency": "EUR",
+      "source": "https://github.com/Tymeslot/tymeslot",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker",
+      "cloudron",
+      "railway"
+    ],
+    "stack": [
+      "elixir",
+      "phoenix",
+      "liveview",
+      "postgresql"
+    ],
+    "categories": [
+      "scheduling"
+    ],
+    "evidenceUrls": [
+      "https://pinggy.io/blog/self_hosted_calendly_alternatives/",
+      "https://github.com/Tymeslot/tymeslot"
+    ]
+  },
+  {
+    "slug": "calnode",
+    "existing": false,
+    "name": "Calnode",
+    "repo": "Calnode/calnode",
+    "homepage": "https://calnode.com",
+    "why": "Single-binary scheduling tool that calls itself a Calendly and Cal.com alternative, with REST API and webhooks.",
+    "fitGuess": "full",
+    "coreLoopCovered": "Booking pages with Google and Microsoft calendar OAuth, webhooks and optional video.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/Calnode/calnode/blob/main/DEPLOY.md",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "go",
+      "sqlite",
+      "svelte"
+    ],
+    "categories": [
+      "scheduling"
+    ],
+    "evidenceUrls": [
+      "https://pinggy.io/blog/self_hosted_calendly_alternatives/",
+      "https://github.com/Calnode/calnode"
+    ]
+  },
+  {
+    "slug": "thunderbird-appointment",
+    "existing": false,
+    "name": "Thunderbird Appointment",
+    "repo": "thunderbird/appointment",
+    "homepage": "https://appointment.tb.pro",
+    "why": "Tool that lets others book times on your calendar, built by the Thunderbird project.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Booking links on connected calendars; self-hosting docs are still work in progress.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/thunderbird/appointment",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://github.com/thunderbird/appointment",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "python",
+      "vue",
+      "postgresql",
+      "redis"
+    ],
+    "categories": [
+      "scheduling"
+    ],
+    "evidenceUrls": [
+      "https://pinggy.io/blog/self_hosted_calendly_alternatives/",
+      "https://github.com/thunderbird/appointment"
+    ]
+  },
+  {
+    "slug": "rallly",
+    "existing": false,
+    "name": "Rallly",
+    "repo": "lukevella/rallly",
+    "homepage": "https://rallly.co",
+    "why": "Group meeting poll tool where participants vote on dates without an account.",
+    "fitGuess": "niche",
+    "coreLoopCovered": "Finding a common time by poll; no individual booking page tied to a calendar.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://support.rallly.co/self-hosting",
+      "checkedOn": "2026-10-18"
+    },
+    "hosted": {
+      "exists": true,
+      "source": "https://github.com/lukevella/rallly",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "docker"
+    ],
+    "stack": [
+      "typescript",
+      "next.js",
+      "prisma",
+      "trpc",
+      "postgresql"
+    ],
+    "categories": [
+      "scheduling"
+    ],
+    "evidenceUrls": [
+      "https://openalternative.co/alternatives/calendly",
+      "https://github.com/lukevella/rallly"
+    ]
+  },
+  {
+    "slug": "cloudmeet",
+    "existing": false,
+    "name": "CloudMeet",
+    "repo": "dennisklappe/CloudMeet",
+    "homepage": "https://github.com/dennisklappe/CloudMeet",
+    "why": "Calendly alternative with Google and Outlook calendar sync that deploys to your own Cloudflare account.",
+    "fitGuess": "partial",
+    "coreLoopCovered": "Booking page with Google/Outlook sync and email reminders on Cloudflare Workers and D1.",
+    "selfHostable": {
+      "value": true,
+      "source": "https://github.com/dennisklappe/CloudMeet",
+      "checkedOn": "2026-10-18"
+    },
+    "deploy": [
+      "cloudflare"
+    ],
+    "stack": [
+      "svelte",
+      "typescript",
+      "cloudflare-workers",
+      "d1"
+    ],
+    "categories": [
+      "scheduling"
+    ],
+    "evidenceUrls": [
+      "https://pinggy.io/blog/self_hosted_calendly_alternatives/",
+      "https://github.com/dennisklappe/CloudMeet"
+    ]
+  }
+]
