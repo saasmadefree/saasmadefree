@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Socioboard Core is an open source social media management, analytics and reporting platform supporting nine networks",
+    "url": "https://github.com/Socioboard-developers/Socioboard-5.0",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Features: schedule content, task assignment, RSS feeds, auto email reports, analytics, team collaboration",
+    "url": "https://github.com/Socioboard-developers/Socioboard-5.0",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "5.0 is a centralized API in Node.js, Express, Mongoose and Sequelize, with a PHP front end",
+    "url": "https://github.com/Socioboard-developers/Socioboard-5.0",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Requirements: Node, npm, PM2, nodemon, MongoDB, MySQL and minimum 5 free ports; four microservices",
+    "url": "https://github.com/Socioboard-developers/Socioboard-5.0/blob/master/INSTALLATION.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Configuration links for 5.0 'will be added soon'",
+    "url": "https://github.com/Socioboard-developers/Socioboard-5.0",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Commercial SaaS version at socioboard.com and open source version at socioboard.org",
+    "url": "https://github.com/Socioboard-developers/Socioboard-5.0",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Customizable and extensible in the form of plugins",
+    "url": "https://github.com/Socioboard-developers/Socioboard-5.0",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "README contains no licence statement",
+    "url": "https://github.com/Socioboard-developers/Socioboard-5.0",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

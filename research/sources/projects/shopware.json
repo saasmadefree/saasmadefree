@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Shopware 6 is an open headless commerce platform built on Symfony 7 and Vue.js 3",
+    "url": "https://github.com/shopware/shopware",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "API-first, extensible through plugins (Symfony bundles) and apps, headless if needed",
+    "url": "https://github.com/shopware/shopware",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "More than 3,100 extensions in the community store",
+    "url": "https://github.com/shopware/shopware",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Recommended on-premise install is the flex template; web installer and Docker development setup exist",
+    "url": "https://github.com/shopware/shopware",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Commercial plans and the Shopware cloud are sold by the vendor; hosting partners offer pre-installed shops",
+    "url": "https://github.com/shopware/shopware",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Contributors sign a CLA giving Shopware AG the right to use their code",
+    "url": "https://github.com/shopware/shopware",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Released under the MIT License",
+    "url": "https://github.com/shopware/shopware",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "A ready-to-use shopping cart system",
+    "url": "https://github.com/shopware/shopware",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

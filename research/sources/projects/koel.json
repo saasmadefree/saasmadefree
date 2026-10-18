@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "MIT licence",
+    "url": "https://github.com/koel/koel",
+    "retrievedOn": "2026-10-18",
+    "field": "license"
+  },
+  {
+    "claim": "Free open-source streaming solution that turns a personal collection into a web listening experience",
+    "url": "https://github.com/koel/koel#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Playlists, smart playlists, scrobbling, podcasts, radio, Last.fm/Spotify/MusicBrainz integrations",
+    "url": "https://github.com/koel/koel#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Koel Plus adds multi-user libraries, collaboration, SSO, cloud storage drivers, custom themes, white-labeling",
+    "url": "https://github.com/koel/koel#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Koel Player is the official iOS and Android app, in a separate repository",
+    "url": "https://github.com/koel/koel#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Requires PHP >= 8.2; tested with MySQL, MariaDB, PostgreSQL and SQLite",
+    "url": "https://docs.koel.dev/guide/getting-started",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Five install methods; standalone FrankenPHP archive uses SQLite by default and needs no Composer, Node or system PHP",
+    "url": "https://docs.koel.dev/guide/getting-started",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Building from source needs Composer, Git, Node.js >= 20 with pnpm",
+    "url": "https://docs.koel.dev/guide/getting-started",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Koel scans a personal music library; no licensed catalogue is described",
+    "url": "https://github.com/koel/koel#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

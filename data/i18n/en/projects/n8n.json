@@ -1,0 +1,18 @@
+{
+  "tagline": "Workflow automation with a visual canvas and code nodes, source-available under the Sustainable Use License.",
+  "description": "n8n lets you build automations on a node canvas and add JavaScript or Python where a node does not exist. The README lists more than 1,500 integrations and a large template library. You can run it with Docker, Docker Compose or npm, and the quick start is a single docker run command that serves the editor on port 5678. The docs state that self-hosting needs real server knowledge and recommend n8n Cloud for people who lack it. New minor versions ship roughly weekly. The code is not open source in the OSI sense. It uses the Sustainable Use License, which allows internal business use and free non-commercial sharing, and keeps files marked .ee under a separate enterprise licence. For someone paying for Zapier, n8n covers the core job of connecting apps with triggers and actions. It also adds AI agent nodes that call models from several providers. The free Community edition leaves out several team features, listed below.",
+  "strengths": [
+    "Visual canvas plus JavaScript, Python and npm packages inside workflows",
+    "README lists 1,500+ integrations and 9,000+ workflow templates",
+    "One docker run command starts the editor on port 5678",
+    "AI agent workflows can call OpenAI, Anthropic, Google or open-source models",
+    "Free registration of the Community edition unlocks folders, in-editor debugging and custom execution data"
+  ],
+  "limits": [
+    "Sustainable Use License is not an OSI open-source licence: you may not resell it or host it commercially for others",
+    "Community edition has no SSO (SAML, LDAP), Git version control, environments, projects or external secrets",
+    "Workflows and credentials cannot be shared between users on Community; only the owner and the creator can open them",
+    "The docs warn that self-hosting is for experienced users and that mistakes can cause data loss or downtime"
+  ],
+  "bestFor": "A technical founder or small team replacing Zapier for internal automations on a server they already manage."
+}

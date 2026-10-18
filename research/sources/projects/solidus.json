@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Solidus is a complete open source e-commerce solution built with Ruby on Rails and is a fork of Spree",
+    "url": "https://github.com/solidusio/solidus#summary",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Main gem installs solidus_api, solidus_backend, solidus_core and solidus_sample; core gem can be used alone with a custom frontend, admin and API",
+    "url": "https://github.com/solidusio/solidus#summary",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "ImageMagick must be installed",
+    "url": "https://github.com/solidusio/solidus#getting-started",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Install generator runs migrations and adds seed and sample data by default",
+    "url": "https://github.com/solidusio/solidus#installation-options",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "DB can be SQLite, PostgreSQL or MySQL/MariaDB; Docker Compose setup for development",
+    "url": "https://github.com/solidusio/solidus#developing-solidus",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Master branch is not guaranteed to work and is too risky for production",
+    "url": "https://github.com/solidusio/solidus#installation-options",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Default admin email admin@example.com and password test123",
+    "url": "https://github.com/solidusio/solidus#default-usernamepassword",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "README documents Docker Compose only in the Developing Solidus section; no production deployment guide in README",
+    "url": "https://github.com/solidusio/solidus#developing-solidus",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "BSD-3-Clause licence (project data)",
+    "url": "https://github.com/solidusio/solidus",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

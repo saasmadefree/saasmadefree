@@ -1,0 +1,18 @@
+{
+  "tagline": "Open-source calorie, macro and micronutrient tracker for Android and iOS that keeps your diary on the phone.",
+  "description": "OpenNutriTracker is a mobile app for logging food and drink. It works out a calorie and macro target from your height, weight, age and activity level, then compares each day against it. The diary stays on your phone, with no account to create. It is written in Dart and released under GPL-3.0. You install it from the App Store or Google Play rather than deploying a server. Food lookups use Open Food Facts, USDA FoodData Central and the German BLS database, with barcode scanning and a quick-add mode. A micronutrient panel covers ten nutrients, and there is a water tracker, an optional fasting timer, recipes and weight history. You can export the diary as JSON or CSV and import JSON back. The food backend is a separate repository that can be self-hosted, which is the only server piece. As an alternative to MyFitnessPal Premium it covers daily logging and nutrient views without ads or a paid tier. Expect a single-device app, not a multi-user platform.",
+  "strengths": [
+    "No account needed; the diary is stored encrypted on the device",
+    "Micronutrient panel for ten nutrients with no paid tier",
+    "Barcode scanning backed by Open Food Facts, USDA and German BLS data",
+    "Export to JSON or CSV, and re-import from JSON",
+    "Food backend can be self-hosted from its own repository"
+  ],
+  "limits": [
+    "Mobile app only for Android and iOS; there is no web or desktop version",
+    "Self-hosting applies to the optional food database backend, not the app itself",
+    "Diary lives on one phone, with export and QR sharing as the only ways to move data",
+    "No multi-user or coach features are described"
+  ],
+  "bestFor": "An individual who tracks calories on a phone and wants to stop paying for a nutrition app or sharing eating data."
+}

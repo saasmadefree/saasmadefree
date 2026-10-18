@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted PHP email campaign and newsletter manager with bounce handling and queue throttling.",
+  "description": "phpList sends email campaigns and newsletters from a server you run. It is a PHP application that needs MySQL or MariaDB and Apache, and the system requirements page asks for PHP 8.1 or later with a list of extensions. You upload the release files to your web root, create a database, edit the config file and finish in a browser installer. A Docker image is also published. The feature list covers subscriber import from CSV and Excel with attributes, personalised messages, scheduling and requeueing, bounce processing, domain-based throttling and built-in support for Amazon SES. It can also read RSS feeds and send their content on a schedule, or send a web page as the message body. It is licensed under the AGPL. The project also runs a hosted service at phplist.com, free to start, with data migration between the two. As a Mailchimp replacement it covers lists, campaigns, analytics and bounces. The feature list does not describe a visual automation builder, and upgrades are done by hand with a database backup and file copy.",
+  "strengths": [
+    "Imports and exports subscribers as CSV or Excel, including attributes",
+    "Bounce processing with policy and regex-based rules",
+    "Queue management with domain-based throttling for large sends",
+    "Built-in Amazon SES support and an RSS-to-email feed",
+    "Plugin architecture and multiple APIs"
+  ],
+  "limits": [
+    "Upgrades are manual: back up the database, copy files, run the upgrade page",
+    "Needs Apache and a PHP extension list; no single-binary install",
+    "The feature list shows no visual automation builder or drag-and-drop email designer",
+    "The old Dressprow theme is not currently maintained"
+  ],
+  "bestFor": "A small organisation with a PHP host and a mailing list that wants control over bounces and sending speed."
+}

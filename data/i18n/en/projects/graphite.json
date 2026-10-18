@@ -1,0 +1,17 @@
+{
+  "tagline": "Open-source 2D graphics editor combining vector and raster layers with a node-based procedural core.",
+  "description": "Graphite is a free graphics editor for vector and raster work. The project describes it as a nondestructive tool that mixes layer-based compositing with a node graph, so every edit is a step you can reopen later. It started as a vector editor and is being extended toward photo editing, motion graphics, digital painting, desktop publishing and compositing. Treat that list as a roadmap: the project itself labels the editor as alpha. You can run it in the browser at editor.graphite.art without installing anything, so there is no server to deploy and no database. The source is written in Rust and is dual-licensed under MIT and Apache 2.0, at your choice. The repository gives no deployment recipe because it is a client application. Contributors build it from source following the volunteer guide. In practice it is a candidate to replace parts of Adobe Illustrator, Affinity or Canva for illustration and generative design, especially if you like building patterns procedurally. The node graph lets you drive shapes and fills from parameters, which regular layer-only editors do not offer. Funding comes from donations and volunteer work, with no paid tier listed in the README. Expect missing features and changing file formats while it remains in alpha.",
+  "strengths": [
+    "Node graph core makes edits nondestructive and lets you generate patterns and shapes procedurally.",
+    "Runs in the browser at editor.graphite.art, with nothing to install.",
+    "Dual-licensed under MIT and Apache 2.0, your choice.",
+    "Combines vector and raster work in one layer-based document."
+  ],
+  "limits": [
+    "Labelled alpha by the project, so features are incomplete and behaviour can change between releases.",
+    "Photo editing, motion graphics, desktop publishing and compositing are stated goals, not finished features.",
+    "No templates, brand kit or team collaboration are described in the README, so it does not replace Canva's workflow.",
+    "Funded by donations and volunteers only, with no commercial support option listed."
+  ],
+  "bestFor": "A hobbyist illustrator or developer who likes node-based tools and is happy to try an alpha vector editor in the browser."
+}

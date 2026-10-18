@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted music streaming server for your own audio files, compatible with Subsonic apps.",
+  "description": "Navidrome serves a music library you already own to any browser or phone. It reads your files and their tags, watches the folder for changes, and streams in any format, with on-the-fly transcoding that can be set per user or player. It speaks the Subsonic API, so many third-party mobile and desktop clients work with it. It is written in Go and ships as ready-made binaries for macOS, Linux and Windows, plus Docker images for amd64 and arm. The Docker setup needs a data folder it can write to and a music folder it only reads. The docs say it runs on a Raspberry Pi Zero. Each user gets separate play counts, playlists and favourites, and you can scrobble to Last.fm and ListenBrainz. It is the closest self-hosted match to Spotify's player, but it has no catalogue: you bring the files. Managed hosting is offered through partner providers. The licence is GPL-3.0.",
+  "strengths": [
+    "Streams any audio format and transcodes on the fly, with settings per user or player",
+    "Works with Subsonic, Madsonic and Airsonic clients, so phone apps already exist",
+    "Multi-user, with separate play counts, playlists and favourites for each person",
+    "Smart playlists, .m3u import, public share links and scrobbling to Last.fm and ListenBrainz",
+    "Official binaries and Docker images for amd64, arm/v6, arm/v7 and arm64"
+  ],
+  "limits": [
+    "No music catalogue: you must own and organise the audio files yourself",
+    "Folder browsing is simulated from tags as /AlbumArtist/Album/Song, so a messy tag set gives a messy library",
+    "The master branch can be unstable; the README tells you to install from releases",
+    "Playback quality in mobile apps depends on third-party Subsonic clients, not on the project's own apps"
+  ],
+  "bestFor": "A listener with a large local music collection and a small server or Raspberry Pi who wants to drop Spotify."
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Python-GTK app to merge or split PDFs and rotate, crop and rearrange pages with a graphical interface; front end for pikepdf",
+    "url": "https://github.com/pdfarranger/pdfarranger#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Fork of PDF-Shuffler to make the project more active",
+    "url": "https://github.com/pdfarranger/pdfarranger#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Downloads: Windows releases, Flathub, Snap Store, Linux and BSD packages",
+    "url": "https://github.com/pdfarranger/pdfarranger#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Source install requires pikepdf >= 6 and GTK, Poppler packages",
+    "url": "https://github.com/pdfarranger/pdfarranger#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "User manual on the project wiki",
+    "url": "https://github.com/pdfarranger/pdfarranger/wiki/User-Manual",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "GPL-3.0 licence per project data (data/projects/pdfarranger.json)",
+    "url": "https://github.com/pdfarranger/pdfarranger",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

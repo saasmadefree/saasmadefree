@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Windows tool for broken link checking and scanning with some technical SEO functionality",
+    "url": "https://github.com/nazuke/SEOMacroscope",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Scans links, reports broken and redirected URLs and metadata, HrefLang matrix",
+    "url": "https://github.com/nazuke/SEOMacroscope",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Title length in words, characters and pixels; descriptions; headings; keywords; PDF metadata",
+    "url": "https://github.com/nazuke/SEOMacroscope",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Custom filters and data extractors",
+    "url": "https://github.com/nazuke/SEOMacroscope",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Reports export to Excel",
+    "url": "https://github.com/nazuke/SEOMacroscope",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Installer is published under GitHub releases",
+    "url": "https://github.com/nazuke/SEOMacroscope/releases",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "README warns of continuous development with bugs and unimplemented features",
+    "url": "https://github.com/nazuke/SEOMacroscope",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Last commit on 31 March 2024 (from project data, checked 2026-10-18)",
+    "url": "https://github.com/nazuke/SEOMacroscope/commits",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Licence is GPL-3.0",
+    "url": "https://github.com/nazuke/SEOMacroscope/blob/master/LICENSE",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

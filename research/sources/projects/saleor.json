@@ -1,0 +1,74 @@
+[
+  {
+    "claim": "Saleor is a GraphQL-native, API-only commerce platform",
+    "url": "https://github.com/saleor/saleor",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Per-channel control of pricing, currencies and stock",
+    "url": "https://github.com/saleor/saleor",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Extensions through webhooks, metadata, apps and dashboard iframes, technology-agnostic",
+    "url": "https://github.com/saleor/saleor",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Orders support split payments, multi-warehouse and returns",
+    "url": "https://github.com/saleor/saleor",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Promotion engine: sales, vouchers, cart rules, gift cards",
+    "url": "https://github.com/saleor/saleor",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Docker Compose installation instructions",
+    "url": "https://docs.saleor.io/setup/docker-compose",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "saleor-platform runs API, storefront and dashboard together locally",
+    "url": "https://github.com/saleor/saleor-platform",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Dashboard is a separate repository, and an example storefront is built with Next.js",
+    "url": "https://github.com/saleor/saleor",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Saleor Cloud is a managed offer from the project",
+    "url": "https://cloud.saleor.io",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "main branch is the development version and may be unstable; use release tags; use the same 3.x version for all three components",
+    "url": "https://github.com/saleor/saleor",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "README states the service-oriented approach may feel more complex for a small low-traffic business",
+    "url": "https://github.com/saleor/saleor",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Licence is BSD-3-Clause",
+    "url": "https://github.com/saleor/saleor/blob/main/LICENSE",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

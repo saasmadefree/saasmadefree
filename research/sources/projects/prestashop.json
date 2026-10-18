@@ -1,0 +1,44 @@
+[
+  {
+    "claim": "Open-source e-commerce application written in PHP, supporting major payment services, localised for many countries",
+    "url": "https://github.com/PrestaShop/PrestaShop",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Repository intended for development and preview only; stable version 9.0 downloaded from releases",
+    "url": "https://github.com/PrestaShop/PrestaShop",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "PrestaShop 9.0 needs PHP 8.1+ and MySQL 5.6+; Apache or Nginx recommended",
+    "url": "https://github.com/PrestaShop/PrestaShop",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Core licensed under OSL-3.0, modules under AFL-3.0",
+    "url": "https://raw.githubusercontent.com/PrestaShop/PrestaShop/develop/LICENSE.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker environment is for development with default admin credentials",
+    "url": "https://github.com/PrestaShop/PrestaShop",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Updating guide note: switching to the newest version is not trivial",
+    "url": "https://github.com/PrestaShop/PrestaShop",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Extensible through modules and themes; developers can override components",
+    "url": "https://github.com/PrestaShop/PrestaShop",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Desktop app to extract pages, split, merge, mix and rotate PDF files",
+    "url": "https://github.com/torakiki/pdfsam",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Open source under the AGPL since version 3; earlier versions are GPLv2",
+    "url": "https://github.com/torakiki/pdfsam",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Version 4 and later ships self-contained with a bundled jlinked JDK; version 3 required Java Runtime Environment 8 with JavaFX",
+    "url": "https://github.com/torakiki/pdfsam",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Documentation, FAQ and a wiki page listing properties and arguments exist",
+    "url": "https://pdfsam.org/documentation/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "README lists only extract, split, merge, mix and rotate; no text editing, OCR or signing is described",
+    "url": "https://github.com/torakiki/pdfsam",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Multi-platform desktop software written in JavaFX",
+    "url": "https://github.com/torakiki/pdfsam",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "File sync and share platform; delivered as a single binary or container from Raspberry Pi to Kubernetes",
+    "url": "https://github.com/owncloud/ocis#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Apache 2.0 licensed; no CLA",
+    "url": "https://github.com/owncloud/ocis#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker quickstart on port 9200",
+    "url": "https://github.com/owncloud/ocis#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Clients: Web, Android, iOS, Desktop; WebDAV and CS3 APIs; web client developed in this repository",
+    "url": "https://github.com/owncloud/ocis#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "OpenID Connect with Keycloak or embedded LibreGraph Connect",
+    "url": "https://github.com/owncloud/ocis#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Office apps: Collabora Online, OnlyOffice Docs, Microsoft Office Online Server via WOPI gateway",
+    "url": "https://github.com/owncloud/ocis#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Some builds of stable releases from ownCloud GmbH are subject to an EULA",
+    "url": "https://github.com/owncloud/ocis#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Quickstart uses init --insecure yes and OCIS_INSECURE=true",
+    "url": "https://github.com/owncloud/ocis#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

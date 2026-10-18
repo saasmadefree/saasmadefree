@@ -1,0 +1,62 @@
+[
+  {
+    "claim": "AGPL-3.0 licence",
+    "url": "https://github.com/LibreSign/libresign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "license"
+  },
+  {
+    "claim": "Organizations use it with Nextcloud to run signing workflows",
+    "url": "https://github.com/LibreSign/libresign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Define signing order, roles and rules per document flow",
+    "url": "https://github.com/LibreSign/libresign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Internal and external signers in the same request",
+    "url": "https://github.com/LibreSign/libresign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Notifications and reminders to signers",
+    "url": "https://github.com/LibreSign/libresign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Traceable record of requests, actions and validations; validates signed documents and certificate status",
+    "url": "https://github.com/LibreSign/libresign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Works with Nextcloud files, users and sharing; APIs for integration",
+    "url": "https://github.com/LibreSign/libresign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Official documentation lives at docs.libresign.coop",
+    "url": "https://github.com/LibreSign/libresign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "README asks organizations that depend on LibreSign to sponsor it",
+    "url": "https://github.com/LibreSign/libresign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "README does not mention legal signature levels or a hosted offer",
+    "url": "https://github.com/LibreSign/libresign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

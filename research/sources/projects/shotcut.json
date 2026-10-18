@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Shotcut is a free, open source, cross-platform video editor",
+    "url": "https://github.com/mltframework/shotcut",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Binaries are available at shotcut.org/download",
+    "url": "https://www.shotcut.org/download/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Direct dependencies: MLT, Qt 6 (6.4 minimum), FFTW, FFmpeg, Frei0r, SDL",
+    "url": "https://github.com/mltframework/shotcut",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Licence is GPLv3",
+    "url": "https://github.com/mltframework/shotcut",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Building is reserved for beta testers or contributors; CMake build",
+    "url": "https://github.com/mltframework/shotcut",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Translations through Transifex",
+    "url": "https://github.com/mltframework/shotcut",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Dan Dennedy listed as main author, with one other contributor",
+    "url": "https://github.com/mltframework/shotcut",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Features and roadmap pages",
+    "url": "https://www.shotcut.org/features/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

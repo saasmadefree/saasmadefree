@@ -1,0 +1,74 @@
+[
+  {
+    "claim": "Apache-2.0 licence",
+    "url": "https://github.com/kestra-io/kestra",
+    "retrievedOn": "2026-10-18",
+    "field": "license"
+  },
+  {
+    "claim": "Flows are declarative YAML; the YAML editor, no-code editor and AI Copilot edit the same flow",
+    "url": "https://github.com/kestra-io/kestra#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Git version control integration for flows",
+    "url": "https://github.com/kestra-io/kestra#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Plugins run scripts in Python, Node.js, R, Go, Shell and run SQL against databases",
+    "url": "https://github.com/kestra-io/kestra#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker quick start with a single docker run command",
+    "url": "https://github.com/kestra-io/kestra#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker Compose with a PostgreSQL backend; Kubernetes via official Helm chart with PostgreSQL and object storage",
+    "url": "https://kestra.io/docs/installation",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Workers communicate with the control plane over gRPC since 2.0",
+    "url": "https://github.com/kestra-io/kestra#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Draft revisions stage changes while triggers run the last published revision",
+    "url": "https://github.com/kestra-io/kestra#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "RBAC, Policies and Cases are Enterprise Edition features",
+    "url": "https://github.com/kestra-io/kestra#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Quick start mounts /var/run/docker.sock and uses --user=root",
+    "url": "https://github.com/kestra-io/kestra#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Slim image fetches plugins from Maven Central on first use (KESTRA_PLUGINS_AUTO_INSTALL_ENABLED=true)",
+    "url": "https://github.com/kestra-io/kestra#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "README describes the platform for data, AI and infrastructure workflows",
+    "url": "https://github.com/kestra-io/kestra#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

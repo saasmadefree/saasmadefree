@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Open source DocuSign alternative for e-signing PDF documents",
+    "url": "https://github.com/OpenSignLabs/OpenSign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Signature types: hand drawn, uploaded, typed, saved",
+    "url": "https://github.com/OpenSignLabs/OpenSign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Multi-signer with sequence enforcement; guest OTP by email; expiry and rejection with reason",
+    "url": "https://github.com/OpenSignLabs/OpenSign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Templates, OpenSign Drive, email template customisation, completion certificate with audit trail",
+    "url": "https://github.com/OpenSignLabs/OpenSign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "API support and Zapier integration",
+    "url": "https://github.com/OpenSignLabs/OpenSign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker route with docker-compose.yml, Caddyfile and .env; needs Docker and git",
+    "url": "https://github.com/OpenSignLabs/OpenSign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Default MongoDB is not persistent; supply your own MongoDB URL",
+    "url": "https://github.com/OpenSignLabs/OpenSign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Licensed under AGPL-3",
+    "url": "https://github.com/OpenSignLabs/OpenSign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Cloud hosted free version exists",
+    "url": "https://github.com/OpenSignLabs/OpenSign#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

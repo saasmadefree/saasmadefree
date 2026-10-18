@@ -1,0 +1,17 @@
+{
+  "tagline": "Self-hosted social media scheduler built on Laravel, with a free Lite edition and a paid Pro edition.",
+  "description": "Mixpost is a social media scheduling tool written in PHP on the Laravel framework. The free Lite edition in this repository gives you a calendar, a media library, post versions and labels, and basic analytics. You install it yourself, with Docker, a manual PHP setup, or inside an existing Laravel app. The docs advise running it on a public domain or subdomain, because the app has to talk to the social networks' servers. Lite requires PHP 8.2 or newer. The project also sells Mixpost Pro as a one-time purchase and runs a hosted Cloud service. Pro adds the features a team usually needs, such as an approval flow, an API and publishing to every supported network. As a replacement for Hootsuite or Loomly, Lite covers solo scheduling on three networks. Teams that need approvals, wider network coverage or an inbox have to buy Pro, which is a commercial product with its own licence. The code in this repository is MIT licensed.",
+  "strengths": [
+    "Runs in Docker, as a manual PHP install, or inside an existing Laravel application",
+    "Lite includes a calendar, a media library, post versions and post labels at no cost",
+    "Pro is a one-time $299 payment for one domain, with no per-seat monthly fee",
+    "Documented MCP server and API on the Pro edition for automation"
+  ],
+  "limits": [
+    "Lite publishes only to Facebook Pages, Mastodon profiles and X profiles; all other networks need Pro",
+    "Approval flow, first comment, hashtag manager, post templates and the API are listed under Pro, not Lite",
+    "The maintainers ask that Lite contributions stay distinct from Pro features, so Pro-only features will not land in Lite",
+    "Needs a public domain or subdomain, so a purely local install is not practical"
+  ],
+  "bestFor": "A solo creator or small brand with a VPS that schedules posts to Facebook Pages, Mastodon and X and does not need approvals."
+}

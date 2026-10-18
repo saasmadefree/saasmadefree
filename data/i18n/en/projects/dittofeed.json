@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hostable customer messaging platform for email, SMS, push and more, with segments and journeys.",
+  "description": "Dittofeed is a customer engagement platform in TypeScript for sending broadcasts and automated, event-driven journeys. You feed it user data through Segment, reverse ETL or its own API, build segments, design templates in MJML or a low-code editor, and send through providers such as SendGrid or Amazon SES. Channels listed by the project include email, mobile push, SMS, WhatsApp and Slack. The dashboard shows message performance. You run it yourself with Docker Compose, following the documentation, or deploy to Render. The core is MIT licensed, and the maintainers also sell a hosted cloud service, which our data prices from 75 USD. The README notes that multi-tenancy, embedding and white-labelling sit in a separate closed-source codebase. Developers can keep templates in git and test campaigns in CI. It is a fit for replacing the automation and lifecycle parts of Mailchimp when your product already emits events. It is not a drop-in for the list-building side: you do not get Mailchimp's form builders or landing pages.",
+  "strengths": [
+    "Event-driven journeys with a visual builder, triggered by data you send through its API or Segment",
+    "Segments built from user traits and behaviour, with several operators",
+    "Templates written in MJML or in a low-code editor, and storable in git",
+    "Works with several sending providers, including SendGrid and Amazon SES",
+    "Self-hosting with Docker Compose avoids volume-based pricing"
+  ],
+  "limits": [
+    "Aimed at developers: data arrives through an API, Segment or reverse ETL, not through hosted signup forms or landing pages",
+    "Multi-tenancy, embedding and white-labelling are in a closed-source licensed codebase, not the MIT repository",
+    "You still need a sending provider such as SendGrid or Amazon SES, plus the deliverability work that goes with it",
+    "Some roadmap items, such as identity resolution and a fuller analytics dashboard, were still marked in development in the README"
+  ],
+  "bestFor": "A product team with a developer that already tracks user events and wants lifecycle email and push without paying per contact."
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "System for building agents that read the web, watch events and act; hackable IFTTT/Zapier on your own server",
+    "url": "https://github.com/huginn/huginn",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Sources and actions: scrape, RSS, IMAP, webhooks, MQTT, Slack, Telegram, Twilio, OpenAI-compatible APIs",
+    "url": "https://github.com/huginn/huginn",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Custom logic in JavaScript, Liquid or jq; publish feeds and JSON endpoints",
+    "url": "https://github.com/huginn/huginn",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Docker image ghcr.io/huginn/huginn runs all processes in one container; Compose recommended for production",
+    "url": "https://github.com/huginn/huginn",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Web process plus background worker, backed by MySQL or PostgreSQL",
+    "url": "https://github.com/huginn/huginn",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Single-process image runs each process in its own container",
+    "url": "https://github.com/huginn/huginn/blob/master/doc/docker/install.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Managed Huginn hosting is offered by sponsors listed in doc/sponsors.md",
+    "url": "https://github.com/huginn/huginn",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Community packages for YunoHost and Unraid may lag behind releases",
+    "url": "https://github.com/huginn/huginn",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "MIT licence (data/projects/huginn.json); Rails stack (Rake and bundle commands in README)",
+    "url": "https://github.com/huginn/huginn",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

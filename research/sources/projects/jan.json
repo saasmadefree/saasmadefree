@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Open-source ChatGPT replacement; download and run LLMs with full control and privacy",
+    "url": "https://github.com/janhq/jan",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Downloads: Windows exe, macOS dmg, Linux deb and AppImage; Linux Arm64 gives a how-to link; Microsoft Store and Flathub badges",
+    "url": "https://github.com/janhq/jan",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Features: local models (Llama, Gemma, Qwen, GPT-oss) from HuggingFace, cloud integration (OpenAI, Anthropic, Mistral, Groq, MiniMax), custom assistants, OpenAI-compatible API at localhost:1337, MCP",
+    "url": "https://github.com/janhq/jan",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Build from source needs Node.js >= 20, Yarn >= 4.5.3, Make >= 3.81, Rust (Tauri)",
+    "url": "https://github.com/janhq/jan",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Apache 2.0 licensed; desktop apps with full offline support; no account needed; Jan Web; Cowork (Preview)",
+    "url": "https://jan.ai/docs/desktop",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "README gives no minimum RAM or GPU figures (absence claim)",
+    "url": "https://github.com/janhq/jan",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

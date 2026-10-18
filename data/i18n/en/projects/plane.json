@@ -1,0 +1,16 @@
+{
+  "tagline": "Open-source project management for issues, cycles and modules, with Docker and Kubernetes installs.",
+  "description": "Plane tracks work items in projects. It groups them into cycles for time-boxed work and modules for larger pieces, with saved views, pages for notes and analytics across the data. It is built with React Router, Django and Node. It targets the same ground as Jira, Linear, ClickUp and Asana for software teams. You can use Plane Cloud or host it yourself, with guides for Docker Compose, Docker AIO, Swarm, Kubernetes, Podman and managed platforms like Coolify. There are three self-hosted editions. The Community Edition is AGPL-3.0 and matches the Cloud Free tier. The Commercial Edition adds paid plans and gives each workspace 12 free seats. For the Commercial Docker Compose guide the documented minimum is 2 CPU cores and 4 GB of RAM, with 8 GB recommended for production. Instance admins configure authentication, SMTP and storage in a settings area called God mode. Paid features sit behind a licence key, and moving from Community to Commercial is a separate step.",
+  "strengths": [
+    "Work items, cycles, modules, saved views, pages and analytics in one app",
+    "Docker Compose, Kubernetes, Podman and Coolify install guides",
+    "Community Edition is AGPL-3.0 with no code dependency on the Commercial Edition",
+    "Instance settings are handled in a built-in admin area called God mode"
+  ],
+  "limits": [
+    "Community Edition matches only the Cloud Free tier; paid plans need the Commercial Edition",
+    "Commercial Edition requires a licence key for paid features",
+    "Documented minimum for the Commercial Docker guide is 2 cores and 4 GB of RAM, more than a single-binary tool"
+  ],
+  "bestFor": "A software team that wants a Jira or Linear-style tracker on its own server and is fine running containers."
+}

@@ -1,0 +1,19 @@
+{
+  "tagline": "Ruby on Rails e-commerce framework with admin, API and storefront, for teams with a developer.",
+  "description": "Solidus is an e-commerce platform built as a set of Ruby gems on Rails. Installing the main gem pulls in the core models, an admin area, a REST API and sample data. You can also use only the core gem and write your own storefront and admin. It began as a fork of Spree. The project documents a Rails-style setup rather than a packaged app: you add the gem to a Rails application, run an install generator that migrates the database and loads seed and sample data, then start the Rails server. A storefront has its own install instructions. Development can run through Docker Compose, with SQLite, PostgreSQL or MySQL, and the README says ImageMagick must be installed. The BSD-3-Clause licence allows commercial use without sharing changes, and there is no hosted offer. Solidus can stand in for Shopify when you need to own the code and model unusual catalogs, checkout rules or integrations. In exchange, you take on hosting, upgrades, payment setup and theme work yourself. Expect to need someone who knows Ruby on Rails. A merchant who wants to open a store this week without a developer will find Shopify far quicker to start with.",
+  "strengths": [
+    "Ships as separate gems for core models, admin, REST API and sample data, so you can keep only the parts you want",
+    "Can be used as a headless core with your own storefront and admin interface",
+    "BSD-3-Clause licence, so modifications can stay private and be used commercially",
+    "Install generator runs migrations and loads seed and sample data in one step",
+    "Runs on SQLite, PostgreSQL or MySQL, and the repository provides a Docker Compose setup for development"
+  ],
+  "limits": [
+    "It is a Rails framework, not a ready store: a developer is needed to install, customize and upgrade it",
+    "The README documents no production deployment recipe, only Docker Compose for development",
+    "No hosted offer, so hosting, backups, security patches and payment gateway setup are yours",
+    "The README warns that the main branch is not safe for production use, so pin a released version",
+    "Default admin credentials are admin@example.com and test123 and must be changed"
+  ],
+  "bestFor": "A small agency or in-house Rails team that wants to own its store code instead of renting Shopify."
+}

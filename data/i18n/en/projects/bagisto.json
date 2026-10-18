@@ -1,0 +1,18 @@
+{
+  "tagline": "Laravel and Vue.js e-commerce platform for single stores, B2B shops and multi-vendor marketplaces.",
+  "description": "Bagisto is an online store platform built on Laravel and Vue.js. It covers a standard shop with catalogue, orders and an admin panel, and the project also offers B2B and multi-vendor marketplace variants. You can install it with Composer following the installation guide, or run the published Docker image with one command: migrations, seed data and search indexes are already inside the image. Images exist for Nginx, Apache and OpenLiteSpeed, each with MySQL 8.0, MariaDB 10.11 or PostgreSQL 16, and setting DB_HOST points the container at an external database. The current Composer file asks for PHP 8.4 and Laravel 13. The code is MIT licensed. The maintainers also sell managed Bagisto Cloud Hosting and an AWS Marketplace image, so a hosted option exists even though you can host yourself. Compared with Shopify, you gain full control of the code and no platform fee, but you also take on hosting, updates, payment and shipping setup. The marketplace and B2B packages are presented as separate products, so confirm their price and licence before planning around them. Expect a developer to be involved in theming and extensions.",
+  "strengths": [
+    "One-command Docker install with migrations, seed data and search indexes already included",
+    "Images for Nginx, Apache or OpenLiteSpeed with MySQL, MariaDB or PostgreSQL, or an external database via DB_HOST",
+    "Built on Laravel and Vue.js, so PHP developers can extend it with familiar tools",
+    "Same codebase family covers single-vendor, B2B and multi-vendor marketplace setups",
+    "MIT licence on the core project"
+  ],
+  "limits": [
+    "Requires PHP 8.4 and Laravel 13 per the current composer.json, so older PHP hosting will not run it",
+    "B2B and multi-vendor marketplace features are described as separate packages, not part of the plain install",
+    "Self-hosting means you handle updates, backups, payments and shipping configuration, which Shopify does for you",
+    "Theming and extension work usually calls for a PHP developer"
+  ],
+  "bestFor": "A small agency or in-house PHP developer building a custom online shop or marketplace and wanting to avoid per-sale platform fees."
+}

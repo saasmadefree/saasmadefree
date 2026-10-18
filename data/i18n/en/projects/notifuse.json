@@ -1,0 +1,19 @@
+{
+  "tagline": "Self-hosted email platform in Go for newsletters, automations and transactional email on PostgreSQL.",
+  "description": "Notifuse is an email platform written in Go with a React console. It handles newsletters, automations and transactional messages through a REST API. It does not send mail itself. You connect a provider such as Amazon SES, Mailgun, Postmark, Mailjet, SparkPost, SendGrid or plain SMTP. The editor is drag and drop and based on MJML, templates use Liquid, and campaigns can be A/B tested. Automations are built on a canvas with delays, branches, filters and webhook steps. It also includes a cookieless web analytics script. You run it with Docker and a setup wizard, and it needs PostgreSQL 17 or newer. A hosted Notifuse Cloud starts at $16 per month. It positions itself against Mailchimp and similar tools. Licensing is mixed: versions up to 39 are AGPL-3.0, while version 40 and later use the Business Source License 1.1, with a licence key for a short list of features.",
+  "strengths": [
+    "Visual automation canvas with delay, branch, filter, A/B test and webhook nodes",
+    "Connects to Amazon SES, Mailgun, Postmark, Mailjet, SparkPost, SendGrid or SMTP",
+    "Drag-and-drop MJML email builder and Liquid templating",
+    "Built-in cookieless web analytics served from your own instance",
+    "No per-email pricing; unlimited contacts, emails and team members need no licence key"
+  ],
+  "limits": [
+    "It sends through an external provider you must set up and pay, so deliverability depends on that account",
+    "Needs PostgreSQL 17 or newer, and a major Postgres upgrade requires pg_upgrade",
+    "Version 40 and later use the Business Source License 1.1, which is not an OSI open-source licence",
+    "A licence key is required for more than three workspaces, granular permissions, SES tenants, SSO, multilingual templates and audit logs",
+    "The maintainers do not accept pull requests; only issues"
+  ],
+  "bestFor": "A small SaaS or newsletter owner who already has an SES or Postmark account and wants Mailchimp-style automations on their own server."
+}

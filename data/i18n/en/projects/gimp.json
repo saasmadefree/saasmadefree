@@ -1,0 +1,17 @@
+{
+  "tagline": "Desktop raster image editor for photo retouching and compositing on Linux, macOS and Windows.",
+  "description": "GIMP, short for GNU Image Manipulation Program, is a desktop application for photo retouching, image composition and image authoring. It is developed by a volunteer community under the GNU General Public License. Nothing is deployed on a server: you install it on your own machine. The downloads page offers AppImage builds for x86_64 and ARM64, Flatpak and Snap packages, and installers for macOS and Windows. The current stable branch is 3.2. Its main addition was non-destructive layers: text layers already worked that way, and 3.2 adds link layers and vector layers that stay editable until you rasterize them. Filters have been non-destructive since 3.0, so a committed effect can be adjusted later without undoing your work. GIMP also runs natively on Wayland since 3.0. It can export PSD files with clipping paths, CMYK profiles and metadata, and it can soft-proof against an attached CMYK profile. It fits as a replacement for the raster half of Adobe Photoshop, or for the photo-editing part of a Canva or Pixlr subscription. It does not replace the template and brand-kit side of Canva. There is no account, no sync and no cloud storage; files stay wherever you save them.",
+  "strengths": [
+    "Non-destructive filters since 3.0: a committed effect stays editable instead of being merged into the layer.",
+    "Link layers and vector layers in 3.2 stay editable until you choose to rasterize them.",
+    "Native Wayland support since 3.0, with tablet button mapping on Wayland.",
+    "Exports PSD with clipping paths, CMYK profiles and metadata, and offers soft-proofing against an attached CMYK profile.",
+    "Official builds for Linux (AppImage, Flatpak, Snap), macOS and Windows."
+  ],
+  "limits": [
+    "Desktop only: the downloads page lists installers and packages, with no hosted web version and no shared workspace.",
+    "No built-in design templates or brand kit, so it does not cover the template-driven side of Canva.",
+    "The AppImage requires Debian 13 or a newer distribution, per the downloads page."
+  ],
+  "bestFor": "A freelance photographer or designer who retouches images on a personal computer and wants to stop paying for a Photoshop subscription."
+}

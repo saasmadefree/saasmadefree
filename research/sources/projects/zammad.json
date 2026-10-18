@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Helpdesk for email, chat, telephone, social media; AGPLv3; Zammad Foundation ownership; cloud service by Zammad GmbH",
+    "url": "https://github.com/zammad/zammad#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Install via Docker Compose, Helm chart, DEB and RPM; docs for source install",
+    "url": "https://github.com/zammad/zammad#status",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "PostgreSQL 15+, Redis 7+, Elasticsearch optional but strongly recommended",
+    "url": "https://docs.zammad.org/en/latest/prerequisites/software.html",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Minimum 2 CPU cores and 6 GB RAM, +4 GB for Elasticsearch; example setup for up to 40 agents with 6 cores",
+    "url": "https://docs.zammad.org/en/latest/prerequisites/hardware.html",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "REST API endpoints for tickets, users, groups, SLA, knowledge base",
+    "url": "https://docs.zammad.org/en/latest/api/intro.html",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Without Elasticsearch search is very limited",
+    "url": "https://docs.zammad.org/en/latest/prerequisites/software.html",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

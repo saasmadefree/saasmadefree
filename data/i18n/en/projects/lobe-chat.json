@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted AI chat workspace with agents, scheduling and memory, deployable with Docker or Vercel.",
+  "description": "LobeHub, the project formerly known as LobeChat, is an AI chat workspace where agents are the unit of work. It offers an agent builder, agent groups that work in parallel, scheduled runs, shared pages, projects, a workspace for teams and an editable personal memory. It lists a library of over 10,000 skills and MCP-compatible plugins. For self-hosting, the README offers a Docker Compose setup created by a setup script, plus one-click deploys to Vercel, Zeabur, Sealos and Alibaba Cloud. The self-hosting docs describe a Next.js app, PostgreSQL for conversations, agents and files, S3-compatible storage for uploads, and optional Redis. The Docker path is the one the docs recommend for full features, with no timeout limits. The licence is the LobeHub Community License, based on Apache 2.0 with extra conditions, so it is source-available rather than plain Apache. It can replace the ChatGPT interface for a team, but it brings no model of its own and you supply provider keys.",
+  "strengths": [
+    "Agents can run on a schedule, work in groups, and keep an editable memory.",
+    "Docker Compose setup is created by a single setup script.",
+    "One-click deploy templates exist for Vercel, Zeabur, Sealos and Alibaba Cloud.",
+    "Works with MCP-compatible plugins, with a stated library of over 10,000 skills.",
+    "Uses PostgreSQL for data and S3-compatible storage for files."
+  ],
+  "limits": [
+    "The licence adds conditions to Apache 2.0: distributing a derivative work needs a commercial licence from the producer.",
+    "The full Docker stack needs PostgreSQL and S3-compatible storage, so it is heavier than a single container.",
+    "Serverless hosts such as Vercel are described as having timeout limits that the Docker stack avoids.",
+    "No model included: you must provide an OpenAI or other provider API key."
+  ],
+  "bestFor": "A team that wants an agent-centred chat workspace on its own server and can run Postgres and object storage."
+}

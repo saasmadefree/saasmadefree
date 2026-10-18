@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "SEOnaut is an open-source SEO auditing tool that scans websites and reports issues by severity",
+    "url": "https://github.com/StJudeWasHere/seonaut",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Three severity levels: critical, high and low",
+    "url": "https://github.com/StJudeWasHere/seonaut",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Detects broken links, redirect issues (temporary, permanent, loops), missing or duplicate meta tags, heading order",
+    "url": "https://github.com/StJudeWasHere/seonaut",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Built with Go and MySQL; Apache ECharts dashboard; custom CSS and minimal vanilla JavaScript",
+    "url": "https://github.com/StJudeWasHere/seonaut",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker compose file uses mysql:8.4 and the ghcr.io image; default port 9000",
+    "url": "https://github.com/StJudeWasHere/seonaut",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Runs on unencrypted HTTP by default; reverse proxy recommended for HTTPS",
+    "url": "https://github.com/StJudeWasHere/seonaut",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Config overrides through SEONAUT_* environment variables",
+    "url": "https://github.com/StJudeWasHere/seonaut",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "A hosted version is available at seonaut.org",
+    "url": "https://seonaut.org",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Licence is MIT",
+    "url": "https://github.com/StJudeWasHere/seonaut",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

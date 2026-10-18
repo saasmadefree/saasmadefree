@@ -1,0 +1,62 @@
+[
+  {
+    "claim": "Self-hosted AI platform; supports Ollama and OpenAI-compatible APIs; entirely offline capable",
+    "url": "https://raw.githubusercontent.com/open-webui/open-webui/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Install via pip, uv, Docker, Kubernetes; :ollama and :cuda tagged images; port 3000 to 8080 mapping",
+    "url": "https://raw.githubusercontent.com/open-webui/open-webui/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "RBAC, user groups; LDAP, OAuth, trusted headers, SCIM 2.0",
+    "url": "https://raw.githubusercontent.com/open-webui/open-webui/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Local RAG with 9 vector databases, hybrid search with reranking",
+    "url": "https://raw.githubusercontent.com/open-webui/open-webui/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Web search through SearXNG, Google PSE, Brave and others",
+    "url": "https://raw.githubusercontent.com/open-webui/open-webui/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "SQLite or PostgreSQL; Redis-backed sessions for multi-node",
+    "url": "https://raw.githubusercontent.com/open-webui/open-webui/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Image generation, voice and video calls, notes, channels, plugins",
+    "url": "https://raw.githubusercontent.com/open-webui/open-webui/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Licence requires preserving Open WebUI branding; see LICENSE_HISTORY",
+    "url": "https://raw.githubusercontent.com/open-webui/open-webui/HEAD/LICENSE",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Terminals (Enterprise) for per-user isolated environments; Enterprise Plan",
+    "url": "https://raw.githubusercontent.com/open-webui/open-webui/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Connection issues from Docker to Ollama on host; use --network=host, port changes to 8080",
+    "url": "https://raw.githubusercontent.com/open-webui/open-webui/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

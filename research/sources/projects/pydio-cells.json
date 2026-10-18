@@ -1,0 +1,44 @@
+[
+  {
+    "claim": "Next-gen file sharing platform for organizations; full rewrite in Go with micro-service architecture",
+    "url": "https://github.com/pydio/cells",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Prerequisites: Go 1.21 or higher to build, MySQL 5.6 or higher or MariaDB equivalent",
+    "url": "https://github.com/pydio/cells",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Run ./cells configure then ./cells start; default site at https://localhost:8080/",
+    "url": "https://github.com/pydio/cells",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Binaries for Linux, macOS and Windows distributions",
+    "url": "https://github.com/pydio/cells",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Tested on macOS, Ubuntu, Debian and CentOS; Windows might have unknown glitches and is not yet supported",
+    "url": "https://github.com/pydio/cells",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "AGPLv3 licence",
+    "url": "https://github.com/pydio/cells",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "README does not mention desktop or mobile sync clients",
+    "url": "https://github.com/pydio/cells",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

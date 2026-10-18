@@ -1,0 +1,18 @@
+{
+  "tagline": "Free vector graphics editor built on SVG, for logos, illustrations and diagrams on the desktop.",
+  "description": "Inkscape is a free vector graphics editor for artistic and technical illustration, such as logos, clip art, typography, diagrams and flowcharts. Its native format is SVG, which browsers and many other applications can open. Because shapes are stored as paths rather than pixels, output stays sharp at any print or screen size. The README lists basic shapes, paths, text, markers, clones, gradients, alpha blending, transforms and grouping, plus node editing, layers, complex path operations, text on path and SVG XML editing. It imports EPS, PostScript, JPEG, PNG, BMP and TIFF, and exports PNG along with several vector formats. Most of the source code is released under the GNU General Public License, version 2 or later. Inkscape is a desktop program written in C++, so there is nothing to host: you download it from inkscape.org for your operating system. Features beyond the core are delivered as extensions. It replaces the vector side of Adobe Illustrator and the logo and icon work people do in Canva. It does not manage brand templates or team libraries, and it is not a photo editor. For image retouching, pair it with a raster tool such as GIMP.",
+  "strengths": [
+    "Uses standard SVG as its main format, so output opens in browsers and other tools.",
+    "Edits SVG XML directly alongside node editing and complex path operations.",
+    "Imports EPS, PostScript, JPEG, PNG, BMP and TIFF.",
+    "Text on path, clones, markers and gradients are part of the documented feature set.",
+    "Extensions carry features beyond a deliberately lightweight core."
+  ],
+  "limits": [
+    "Vector only: raster formats are imported, and the README lists PNG as the only raster export.",
+    "Not a photo editor; retouching needs a separate raster tool.",
+    "No template library, brand kit or real-time team editing, so it does not cover Canva's collaboration side.",
+    "Desktop application with no hosted or web edition listed by the project."
+  ],
+  "bestFor": "A designer, teacher or technical writer who draws logos, icons and diagrams and wants an Illustrator replacement that saves plain SVG."
+}

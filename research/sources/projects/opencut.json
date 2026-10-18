@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Free and open source video editor for web, desktop and mobile",
+    "url": "https://github.com/OpenCut-app/OpenCut#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "MIT licence",
+    "url": "https://github.com/OpenCut-app/OpenCut#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Being rewritten from the ground up with Rust core; planned editor API, plugins, MCP server, headless mode, scripting tab",
+    "url": "https://github.com/OpenCut-app/OpenCut#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Previous version at opencut-classic is the one to reach for today; opencut.app still runs classic",
+    "url": "https://github.com/OpenCut-app/OpenCut#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Development uses proto and moon run web:dev, api:dev, desktop:dev",
+    "url": "https://github.com/OpenCut-app/OpenCut#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Not set up to take outside contributions yet",
+    "url": "https://github.com/OpenCut-app/OpenCut#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

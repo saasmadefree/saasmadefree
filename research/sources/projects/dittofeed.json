@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Omni-channel engagement platform: broadcasts and journeys over email, push, SMS, WhatsApp, Slack",
+    "url": "https://github.com/dittofeed/dittofeed",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Data via Segment, Reverse ETL or API; MJML or low-code templates; SendGrid and Amazon SES",
+    "url": "https://github.com/dittofeed/dittofeed",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker Compose and Render deployment",
+    "url": "https://github.com/dittofeed/dittofeed",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "MIT licensed",
+    "url": "https://github.com/dittofeed/dittofeed",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Multi-tenancy, embedding and white-labeling are in a licensed closed-source codebase",
+    "url": "https://github.com/dittofeed/dittofeed",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Hosted plan from 75 USD",
+    "url": "https://dittofeed.com/pricing",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Templates in git, testing SDK for CI, self-hosting avoids volume pricing",
+    "url": "https://github.com/dittofeed/dittofeed",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Identity resolution and expanded analytics marked in development",
+    "url": "https://github.com/dittofeed/dittofeed",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Docker Compose self-hosting guide",
+    "url": "https://docs.dittofeed.com/deployment/self-hosted/docker-compose",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

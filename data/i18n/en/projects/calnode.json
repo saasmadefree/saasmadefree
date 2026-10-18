@@ -1,0 +1,20 @@
+{
+  "tagline": "Calendly-style booking app in a single Go binary with SQLite, an API-first design and built-in MCP server.",
+  "description": "Calnode is a self-hosted scheduling app that ships as one static Go binary with an embedded SQLite database. There is no Redis, no PostgreSQL and no separate API server. Try it with one docker run command that mounts a data folder; for real use you add HTTPS, a persistent encryption key and backups, and Litestream handles point-in-time backup of the SQLite file. It offers booking pages, an embeddable widget, team routing modes (fixed, round-robin, collective, priority), Google Calendar and Microsoft 365 conflict checks, and Stripe Checkout for paid bookings. A REST API with HMAC-signed webhooks is the main control surface, and an MCP server is built into the binary so AI agents can list slots and book. Optional video rooms with recording and AI notes use LiveKit, which you host or rent. Nothing is paywalled for self-hosting, and the licence is Apache-2.0. It replaces Calendly for the core booking job. The repository was created in June 2026, so the project is young and has a small user base. Several features depend on outside services, such as Deepgram for transcripts.",
+  "strengths": [
+    "Single static binary with embedded SQLite, so a small VPS and one docker run are enough",
+    "REST API with 88 endpoints and HMAC-signed webhooks configured through the API",
+    "MCP server compiled into the binary, with stdio and Streamable HTTP transports",
+    "Team routing modes: fixed, round-robin, collective and priority",
+    "Paid bookings through Stripe Checkout, with automatic refund on cancel",
+    "Apache-2.0 licence and the README says nothing is paywalled for self-hosting"
+  ],
+  "limits": [
+    "Video rooms, recording and AI notes need a LiveKit server, and transcripts use Deepgram",
+    "The admin interface and built-in video room are English-only, and other translations are machine drafts",
+    "OpenAPI spec, metrics endpoint and multi-domain support are still on the roadmap",
+    "One deployment is one workspace (instance-per-tenant), so there is no shared multi-tenant mode",
+    "Young project: the repository dates from June 2026 and has about a hundred stars"
+  ],
+  "bestFor": "A developer or small agency that wants a lean Calendly replacement on a cheap VPS and plans to let AI agents or scripts handle bookings."
+}

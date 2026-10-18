@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Works for twitter/X, bluesky and soon LinkedIn; open-source social media scheduler; 0.1 alpha",
+    "url": "https://github.com/maikroservice/threaduler#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Notion is the driver and stores content and meta information",
+    "url": "https://github.com/maikroservice/threaduler#about-the-project",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Alpha, it works but hiccups will most likely happen",
+    "url": "https://github.com/maikroservice/threaduler#about-the-project",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Prerequisites: Poetry, Notion integration, Notion API key, Twitter/X API key, clone, poetry install, keys in .env",
+    "url": "https://github.com/maikroservice/threaduler#getting-started",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Template tweets show threads and quote tweets",
+    "url": "https://github.com/maikroservice/threaduler#usage",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "MIT licence",
+    "url": "https://github.com/maikroservice/threaduler#license",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Roadmap lists LinkedIn support, Bluesky integration, sqlite cache, changelog as open",
+    "url": "https://github.com/maikroservice/threaduler#roadmap",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Last commit 2025-12-01 (project data)",
+    "url": "https://github.com/maikroservice/threaduler",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

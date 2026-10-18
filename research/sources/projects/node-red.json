@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Low-code programming for event-driven applications",
+    "url": "https://raw.githubusercontent.com/node-red/node-red/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "tagline"
+  },
+  {
+    "claim": "Project of the OpenJS Foundation under Apache 2.0",
+    "url": "https://raw.githubusercontent.com/node-red/node-red/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Install via sudo npm install -g node-red, docker run -p 1880:1880, snap, Pi and RPM scripts, Windows",
+    "url": "https://nodered.org/docs/getting-started/local",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Requires a supported version of Node.js",
+    "url": "https://nodered.org/docs/getting-started/local",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Snap package lacks access to gcc, git (Projects feature) and main storage",
+    "url": "https://nodered.org/docs/getting-started/local",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Node-RED Library holds custom nodes, shared flows and collections",
+    "url": "https://raw.githubusercontent.com/node-red/node-red/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "By default the editor is not secured; anyone with the address can deploy changes",
+    "url": "https://nodered.org/docs/user-guide/runtime/securing-node-red",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Guide covers HTTPS, securing editor and admin API, securing HTTP nodes",
+    "url": "https://nodered.org/docs/user-guide/runtime/securing-node-red",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

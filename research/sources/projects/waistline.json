@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Libre calorie counter and weight tracker for Android built with Cordova and Framework7",
+    "url": "https://github.com/davidhealey/waistline#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Diary, food list, barcode scan, Open Food Facts and USDA lookups, import and export, no ads or in-app purchases, Android 5.0+",
+    "url": "https://github.com/davidhealey/waistline#app-features",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "GPLv3 licence",
+    "url": "https://github.com/davidhealey/waistline#license",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Only barcode or search terms are sent online; no personal data collected; camera and storage permissions",
+    "url": "https://github.com/davidhealey/waistline#privacy-policy",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Available on F-Droid and Google Play",
+    "url": "https://f-droid.org/packages/com.waist.line/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "French ANSES-CIQUAL food database community resource",
+    "url": "https://github.com/LaurentPortefaix/waistline-ciqual",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

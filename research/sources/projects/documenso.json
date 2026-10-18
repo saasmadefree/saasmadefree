@@ -1,0 +1,68 @@
+[
+  {
+    "claim": "Open source DocuSign alternative",
+    "url": "https://github.com/documenso/documenso",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Stack: TypeScript, React Router v7, Hono, Prisma",
+    "url": "https://github.com/documenso/documenso",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Deployment: Docker, Docker Compose, Railway, Kubernetes, manual",
+    "url": "https://docs.documenso.com/docs/self-hosting",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Official images on Docker Hub and GitHub Container Registry",
+    "url": "https://github.com/documenso/documenso",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Requires Postgres; SMTP and S3-compatible storage are configuration options",
+    "url": "https://docs.documenso.com/docs/self-hosting",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "You must generate a signing certificate; signing fails without one",
+    "url": "https://docs.documenso.com/docs/self-hosting",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Outbound request checks are best-effort and fail open",
+    "url": "https://docs.documenso.com/docs/self-hosting",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Hosted plan from 25 USD",
+    "url": "https://documenso.com/pricing",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Enterprise edition has features beyond the AGPL core",
+    "url": "https://docs.documenso.com/docs/self-hosting",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "No longer accepts external pull requests",
+    "url": "https://github.com/documenso/documenso",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "AGPL-3.0",
+    "url": "https://github.com/documenso/documenso",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "claim": "Free, open source vector and raster graphics engine, available in alpha at editor.graphite.art",
+    "url": "https://github.com/GraphiteEditor/Graphite",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Nondestructive workflow combining layer-based compositing with node-based generative design",
+    "url": "https://github.com/GraphiteEditor/Graphite",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Began as vector editor; photo editing, motion graphics, painting, desktop publishing, VFX compositing are additional goals",
+    "url": "https://github.com/GraphiteEditor/Graphite",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Source dual-licensed MIT or Apache 2.0 at your option",
+    "url": "https://github.com/GraphiteEditor/Graphite",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "100% community built and funded; donations",
+    "url": "https://github.com/GraphiteEditor/Graphite",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Contributors build from source following the volunteer guide",
+    "url": "https://graphite.art/volunteer/guide/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Editor opens in the browser",
+    "url": "https://editor.graphite.art",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

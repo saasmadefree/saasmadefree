@@ -1,0 +1,19 @@
+{
+  "tagline": "Open-source ticketing system on the Frappe framework, with SLAs, assignment rules and a knowledge base.",
+  "description": "Frappe Helpdesk is a ticket management tool from the team behind ERPNext. Customers can submit issues through a portal, and agents work from a separate agent view. It adds customisable SLAs, rules that assign tickets by priority, issue type or workload, saved replies, and a knowledge base whose articles are suggested to customers when they search. The back end is the Frappe framework in Python and the interface uses Vue with Frappe UI. For production, the README offers an easy-install script that deploys a Docker-based instance for your domain, and the authors say it takes about five minutes. A Docker Compose route and a bench-based local setup are documented for development. The compatibility table pairs the main branch with Frappe versions 15 and 16. The code is AGPL-3.0. The Frappe project also runs Frappe Cloud for managed hosting of its apps, although our data lists no separate hosted offer. It targets teams replacing Zendesk who want SLAs and a portal, and who are happy running the Frappe stack. It gives you fewer integrations than Zendesk's marketplace.",
+  "strengths": [
+    "Includes SLAs, auto-assignment rules, saved replies and a knowledge base out of the box",
+    "Separate agent and customer portal views",
+    "One easy-install script deploys a Docker-based production instance",
+    "Built on Frappe, so it can be customised and connected to ERPNext data",
+    "AGPL-3.0 code with a public compatibility table for Frappe versions"
+  ],
+  "limits": [
+    "Requires the Frappe framework and bench tooling, which is a heavier stack to learn than a standalone PHP or Go app",
+    "Only Frappe versions 15 and 16 are listed as compatible",
+    "Managed hosting is through Frappe Cloud, which is a general Frappe platform rather than a Helpdesk-only plan",
+    "The README lists no multi-channel inbox features such as WhatsApp or live chat",
+    "The development Docker image ships with a default administrator password, which must never be used in production"
+  ],
+  "bestFor": "A company already using ERPNext or Frappe apps that wants a ticket system with SLAs on the same stack."
+}

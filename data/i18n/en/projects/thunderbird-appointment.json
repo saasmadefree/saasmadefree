@@ -1,0 +1,19 @@
+{
+  "tagline": "Booking-link tool from the Thunderbird project that lets others pick times on your calendar.",
+  "description": "Thunderbird Appointment lets you share a page where other people choose a free slot in your calendar. The architecture notes describe a Vue 3 frontend, a FastAPI backend, a PostgreSQL database and calendar connections through Google and CalDAV. The backend can use an OIDC provider for sign-in. The README names Docker as the recommended and, for now, the only supported way to build and run it, and says the technical documentation is still work in progress. You copy the example .env files, allow first-time registration, add your email to an admin list, and run docker-compose. That starts five containers: backend, frontend, PostgreSQL, Redis and Mailpit. A simple password login is included and the README says it is meant for development and testing but can be used for self-hosting. The licence is MPL-2.0, and our data lists no hosted offer. It aims to replace Calendly for a person or small team that wants booking links on their own calendars. Expect a development-oriented install, and check that the calendars and notifications you need work before relying on it.",
+  "strengths": [
+    "Booking page where attendees choose from your availability",
+    "Calendar connections through Google and CalDAV, per the architecture notes",
+    "Docker Compose brings up the whole stack, including PostgreSQL, Redis and a test mail catcher",
+    "Maintained by the Thunderbird project, with a recent commit in our data",
+    "OpenAPI docs are served by the backend, and the interface is localized with Fluent files"
+  ],
+  "limits": [
+    "Docker is the only supported way to build and run it",
+    "The README calls the technical documentation work in progress, and the architecture chart is flagged as outdated",
+    "The built-in password login is described as meant for development and testing",
+    "The default setup uses a published database password and a mail catcher meant for development, so harden it before exposing it",
+    "No payments, video rooms or workflow automation are described in the README"
+  ],
+  "bestFor": "A Thunderbird user or small team with a Docker host who wants Calendly-style booking links on Google or CalDAV calendars."
+}

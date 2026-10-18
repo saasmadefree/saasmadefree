@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Open source document filling and signing platform",
+    "url": "https://github.com/docusealco/docuseal",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Features: WYSIWYG PDF builder, 12 field types, multiple submitters, signature verification, API and webhooks",
+    "url": "https://github.com/docusealco/docuseal",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Docker run uses SQLite by default; DATABASE_URL for PostgreSQL or MySQL",
+    "url": "https://github.com/docusealco/docuseal",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker Compose with Caddy for HTTPS; Heroku, Railway, DigitalOcean, Render deploys",
+    "url": "https://github.com/docusealco/docuseal",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Storage on disk, AWS S3, Google Storage, Azure",
+    "url": "https://github.com/docusealco/docuseal",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Pro features: reminders, SMS verification, conditional fields, bulk send, SSO, white-label, roles, embedding",
+    "url": "https://github.com/docusealco/docuseal",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "AGPLv3 with Section 7(b) Additional Terms",
+    "url": "https://github.com/docusealco/docuseal",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "7 UI languages, signing in 14 languages",
+    "url": "https://github.com/docusealco/docuseal",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Hosted plan from 20 USD",
+    "url": "https://www.docuseal.com/pricing",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

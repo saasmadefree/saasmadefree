@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted issue tracker and project manager with Gantt charts, time tracking and wikis, on Rails.",
+  "description": "Redmine is a web application for tracking issues across many projects from one installation. Each project gets its own roles, issue types, workflow transitions, wiki, forums and file area, and modules can be switched on or off per project. It also offers a Gantt chart, a calendar, time entry at project or ticket level, and custom fields on issues, projects, users and time entries. You install it yourself: create a database, run the documented Rails setup steps and start the application. Supported databases are PostgreSQL, MySQL and SQLite, though the install guide says SQLite is not meant for multi-user production. The licence is GPL v2, and the project ships a new release about every six months. It has no hosted offer from the project itself. In practice it replaces the issue and task side of tools like Asana or Smartsheet for teams that think in tickets, trackers and due dates. It fits software, support and internal operations work better than marketing calendars. Plugins and themes extend it, so the base install stays plain and you add what you need.",
+  "strengths": [
+    "Per-project roles and permissions: a person can be a manager on one project and a viewer on another",
+    "Issue workflows are configurable per issue type and role from the admin interface",
+    "Built-in time tracking with reports by user, issue type, category or activity",
+    "Gantt chart and calendar generated from issue start and due dates",
+    "Custom fields on issues, time entries, projects and users, usable as list filters"
+  ],
+  "limits": [
+    "Installation is manual: the official guide lists eleven steps and does not offer a one-command Docker setup",
+    "The official feature list has no Kanban board, so boards depend on third-party plugins",
+    "SQLite is not suitable for multi-user production, and MySQL needs its transaction isolation set to READ COMMITTED",
+    "No JRuby support: you must run it on the standard Ruby interpreter at a version the release supports"
+  ],
+  "bestFor": "A small software or support team that wants tickets, Gantt planning and time reports on its own server, and can maintain a Rails app."
+}

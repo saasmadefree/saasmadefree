@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Platform framework for business apps: Chat, Project Management, CRM, HRM and ATS; Huly is built on it",
+    "url": "https://github.com/hcengineering/platform",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Self-hosting through huly-selfhost with docker compose; Kubernetes sample under kube",
+    "url": "https://github.com/hcengineering/huly-selfhost",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Minimum 2 vCPUs and 8 GB RAM; recommended 4 vCPUs and 16 GB",
+    "url": "https://github.com/hcengineering/huly-selfhost",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Review MIGRATION.md before updating; 0.6.x to 0.7.x needs dedicated migration steps",
+    "url": "https://github.com/hcengineering/huly-selfhost",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Production versions use v tags; typed API client available",
+    "url": "https://github.com/hcengineering/platform",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Hosted Huly service is being discontinued; self-hosted deployments not affected",
+    "url": "https://github.com/hcengineering/platform",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Development prerequisites: Node.js v22, Docker, Docker Compose",
+    "url": "https://github.com/hcengineering/platform",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Licence EPL-2.0 as recorded in project data; GitHub API lists EPL-2.0",
+    "url": "https://github.com/hcengineering/platform",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

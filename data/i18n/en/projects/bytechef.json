@@ -1,0 +1,19 @@
+{
+  "tagline": "Self-hosted platform combining AI agents and workflow automation, usable standalone or embedded in a SaaS.",
+  "description": "ByteChef is a workflow automation platform written mainly in Java with a TypeScript front end. It treats AI agents as one step inside a workflow, so a run that fails or waits for a person can resume from that step. A drag-and-drop editor builds the flows, and a Copilot can draft workflows from a sentence. The README also pitches embedding ByteChef inside your own product. For self-hosting, the recommended path is Docker Compose with PostgreSQL. A single docker run command with an embedded H2 file exists, but the README says it is for evaluation only, and there is no migration path from H2 to PostgreSQL. The AI knowledge base and Copilot need PostgreSQL with pgvector. A Helm chart is also listed in our data for Kubernetes. Code is Apache 2.0 licensed, except files under the server/ee and client ee directories, which carry the ByteChef Enterprise License. It positions itself against Zapier and Make for teams that want agents and integrations in one place. The repository has about a thousand stars, so expect fewer third-party guides than larger tools.",
+  "strengths": [
+    "Runs AI agents as steps inside durable workflows that can resume after a failure or a human pause",
+    "One-command Docker start for evaluation and a Docker Compose setup with PostgreSQL for real use",
+    "Workflow Copilot can generate flows from a text description",
+    "Designed to be embedded in another SaaS product as well as used standalone",
+    "Open-source core under Apache 2.0"
+  ],
+  "limits": [
+    "The quick-start H2 database is for evaluation only and cannot be migrated to PostgreSQL later",
+    "The AI knowledge base and Copilot need PostgreSQL with pgvector",
+    "Code under the ee directories uses a separate enterprise licence",
+    "Agent Skills and Evaluations are marked in development in the README",
+    "Young community: about a thousand stars on the repository, so fewer third-party guides"
+  ],
+  "bestFor": "A Java-friendly engineering team that wants AI agents and integrations in one self-hosted platform, or a SaaS founder who wants to embed automation."
+}

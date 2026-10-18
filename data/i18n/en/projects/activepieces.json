@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted no-code workflow builder with TypeScript integrations, positioned as a Zapier replacement.",
+  "description": "Activepieces is a visual automation tool. You chain a trigger and steps into a flow, with branches, loops, retries, HTTP calls and a code step that can use npm packages. Flows are versioned. Integrations are called pieces: npm packages written in TypeScript, and the project says community members wrote about 60 percent of them. You can build your own piece when a connector is missing. The pieces also work as MCP servers, so an LLM client such as Claude Desktop can call them. For self-hosting, the repository ships a Docker Compose file that starts the app, PostgreSQL (with the pgvector extension) and Redis. The docs list further install options. The Community Edition is MIT licensed, while enterprise features sit under a separate commercial licence, so check the pricing page before relying on a specific feature. It targets people who pay for Zapier or Make and want the same trigger-and-action model on their own server. Human approval steps and form or chat triggers are included. Expect a similar mental model to Zapier, so confirm that your key apps have a piece before migrating.",
+  "strengths": [
+    "Flows support branches, loops, automatic retries, HTTP requests and a code step that can import npm packages",
+    "Every integration is an open-source TypeScript npm package, so a missing connector can be written and plugged in locally",
+    "Pieces double as MCP servers for LLM clients such as Claude Desktop, Cursor or Windsurf",
+    "Includes human-in-the-loop steps: delayed execution, approval requests, and form or chat interface triggers",
+    "Flows are fully versioned and the interface has translations"
+  ],
+  "limits": [
+    "The default Compose setup runs PostgreSQL and Redis alongside the app, so it is heavier than a single-container tool",
+    "Enterprise features are under a separate commercial licence, not the MIT Community Edition",
+    "The README counts 200+ pieces, so a niche app may have no connector and need a custom piece",
+    "Writing a missing integration means TypeScript development, not a settings screen"
+  ],
+  "bestFor": "A small team or agency that pays for Zapier, has a VPS, and wants its main app connections running on its own server."
+}

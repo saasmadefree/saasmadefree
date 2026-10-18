@@ -1,0 +1,74 @@
+[
+  {
+    "claim": "Static web page: plain JavaScript, no build step, no server code",
+    "url": "https://github.com/jjnesk1-ship-it/daily-value",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Diary saved in browser localStorage outside claude.ai; backup via copy and paste",
+    "url": "https://github.com/jjnesk1-ship-it/daily-value",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "13,224 everyday foods and 374,125 brand-name products",
+    "url": "https://github.com/jjnesk1-ship-it/daily-value",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Barcodes scanned by camera, read from a photo, or typed",
+    "url": "https://github.com/jjnesk1-ship-it/daily-value",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Targets from Dietary Reference Intakes",
+    "url": "https://github.com/jjnesk1-ship-it/daily-value",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Email accounts use a free Supabase project and supabase/schema.sql",
+    "url": "https://github.com/jjnesk1-ship-it/daily-value",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Code MIT; USDA data CC0; Open Food Facts ODbL",
+    "url": "https://github.com/jjnesk1-ship-it/daily-value",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Claude features only when running as a claude.ai artifact",
+    "url": "https://github.com/jjnesk1-ship-it/daily-value",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Supabase free project pauses after about a week without use; own email provider needed for others",
+    "url": "https://github.com/jjnesk1-ship-it/daily-value",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Works offline after first visit; installable on phone",
+    "url": "https://github.com/jjnesk1-ship-it/daily-value",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Repository created 2026-09-28 with 0 stars",
+    "url": "https://github.com/jjnesk1-ship-it/daily-value",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Brand-name data built by scripts from USDA and Open Food Facts downloads",
+    "url": "https://github.com/jjnesk1-ship-it/daily-value",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

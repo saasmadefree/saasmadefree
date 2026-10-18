@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Features: board visibility, workspace members, Trello imports, labels and filters, comments, activity log, templates, integrations coming soon",
+    "url": "https://github.com/kanbn/kan",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Made with Next.js, tRPC, Better Auth, Tailwind CSS, Drizzle ORM, React Email",
+    "url": "https://github.com/kanbn/kan",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Self-hosting: Railway template, Docker Compose with migrate service, web on port 3000, postgres:15",
+    "url": "https://github.com/kanbn/kan",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Environment variables for SMTP, OIDC and S3 storage",
+    "url": "https://github.com/kanbn/kan",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "AGPL-3.0 licence badge in README",
+    "url": "https://github.com/kanbn/kan",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Open issues: Microsoft SSO account_not_linked error (#516), OIDC immediate login request (#163), could not create initial user on self-hosted (#551)",
+    "url": "https://github.com/kanbn/kan/issues/516",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

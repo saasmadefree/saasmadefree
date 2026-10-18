@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Open-source email marketing manager with analytics, segmentation, personalisation, bounce processing and plugins",
+    "url": "https://github.com/phpList/phplist3",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Features: CSV and Excel import, scheduling, domain throttling, Amazon SES support, RSS feeds, send a webpage",
+    "url": "https://github.com/phpList/phplist3",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Requires MySQL or MariaDB, Apache and PHP 8.1 or later with listed extensions",
+    "url": "https://resources.phplist.com/system/start",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Installation steps: download, unzip, upload, create database, edit config.php",
+    "url": "https://www.phplist.org/manual/books/phplist-manual/page/installing-phplist-manually",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "A Docker image phplist/phplist is published on Docker Hub",
+    "url": "https://hub.docker.com/r/phplist/phplist/tags",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Licensed under AGPLv3; hosted account available at phplist.com with data migration",
+    "url": "https://github.com/phpList/phplist3",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Upgrade procedure is manual: backup database, copy files, click the upgrade link",
+    "url": "https://github.com/phpList/phplist3",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Dressprow theme is not currently maintained",
+    "url": "https://github.com/phpList/phplist3",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

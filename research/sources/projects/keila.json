@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Open Source alternative to newsletter tools like Mailchimp or Sendinblue; campaigns and sign-up forms; own inbox, AWS SES, Sendgrid, Mailgun, Postmark and SMTP",
+    "url": "https://github.com/pentacent/keila",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Self-host with Docker image pentacent/keila or sample Docker Compose; AGPL license",
+    "url": "https://github.com/pentacent/keila",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Requirements: container engine and a PostgreSQL database; reverse proxy must forward WebSockets",
+    "url": "https://www.keila.io/docs/installation",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Visual editor, Markdown, plain text; MJML; segments; Liquid; form builder with captcha and double opt-in; API; tracking can be disabled",
+    "url": "https://www.keila.io/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Hosted plans: XS 8 EUR per month, 2,000 emails per month; S 16 EUR, 5,000 emails",
+    "url": "https://www.keila.io/pricing",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Feature request: Add Email Automations (issue 132)",
+    "url": "https://github.com/pentacent/keila/issues/132",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

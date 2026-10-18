@@ -1,0 +1,80 @@
+[
+  {
+    "claim": "Elixir/OTP; booking pages, calendar sync, video rooms, automated emails",
+    "url": "https://github.com/Tymeslot/tymeslot#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Quick start: docker run with Postgres bundled; first account becomes admin",
+    "url": "https://github.com/Tymeslot/tymeslot#quick-start",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "500MB RAM minimum, 1GB recommended",
+    "url": "https://github.com/Tymeslot/tymeslot/blob/main/README-Docker.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Email defaults to silent discard without configuration",
+    "url": "https://github.com/Tymeslot/tymeslot/blob/main/README-Docker.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Named availability schedules with breaks, date overrides, buffers, booking window, minimum notice",
+    "url": "https://github.com/Tymeslot/tymeslot#availability-that-mirrors-reality",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Every connected calendar is checked on booking; calendars supported: Google, Outlook, iCloud, CalDAV, Nextcloud, Radicale and others",
+    "url": "https://github.com/Tymeslot/tymeslot#works-with-your-stack",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Video: Google Meet, Teams, Zoom, MiroTalk, Jitsi, kMeet, Nextcloud Talk",
+    "url": "https://github.com/Tymeslot/tymeslot#works-with-your-stack",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Emails with .ics, reminders, signed cancel and reschedule links",
+    "url": "https://github.com/Tymeslot/tymeslot#and-theres-more-under-the-hood",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "OAuth/OIDC SSO; webhooks; Slack and Telegram; Stripe Connect payments fee-free for self-hosters",
+    "url": "https://github.com/Tymeslot/tymeslot#and-theres-more-under-the-hood",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Deploy: Docker, Cloudron, Railway, managed cloud with free plan",
+    "url": "https://github.com/Tymeslot/tymeslot#deploy-your-way",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "AGPLv3 licence",
+    "url": "https://github.com/Tymeslot/tymeslot#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Hosted from 9 EUR (project data); repository created 2025-08-07 (project data)",
+    "url": "https://github.com/Tymeslot/tymeslot",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Group events and round-robin not in README feature list (absence)",
+    "url": "https://github.com/Tymeslot/tymeslot#and-theres-more-under-the-hood",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

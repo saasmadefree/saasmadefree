@@ -1,0 +1,19 @@
+{
+  "tagline": "Self-hosted file sync, sharing, calendar and contacts platform written in PHP, extendable with apps.",
+  "description": "Nextcloud Server stores your files, contacts and calendars on a machine you choose and keeps them in sync across devices. Sharing links and collaboration tools sit on top. Extra features such as Calendar, Contacts, Mail and Talk are separate apps installed from its app store. It is a PHP application. The admin manual lists Apache or nginx with PHP-FPM, PHP 8.3 to 8.5, and a database: MariaDB, MySQL or PostgreSQL, with SQLite reserved for tests and tiny instances. The manual sets a minimum of 128 MB of RAM per process and recommends 512 MB. You can install it on Linux by hand, with the command line installer, or with an appliance. Providers also host it for you, and Nextcloud GmbH sells an enterprise edition with support. It can stand in for Dropbox, Google One or iCloud storage, and goes further with groupware. The licence is AGPL-3.0.",
+  "strengths": [
+    "Files, contacts and calendars sync across devices from one server you control",
+    "Hundreds of apps in the official app store, including Calendar, Contacts, Mail and Talk",
+    "Works with MariaDB, MySQL or PostgreSQL behind Apache or nginx",
+    "Hosting providers and ready-made appliances exist if you do not want to install it",
+    "Two-factor authentication and a public bug bounty programme are named in the README"
+  ],
+  "limits": [
+    "You run PHP, a web server and a database yourself, and you apply updates and security patches",
+    "Memory needs vary widely: the manual sets 128 MB per process as a minimum and 512 MB as the recommendation",
+    "SQLite is only recommended for testing and minimal instances, and Oracle Database support is for enterprise subscribers only",
+    "The manual recommends paid enterprise support for professional scaling and consulting",
+    "Calendar, Mail and Talk live in separate repositories, so each app has its own release rhythm"
+  ],
+  "bestFor": "A household or small team with a Linux server that wants to leave Dropbox or Google One and keep files, calendar and contacts in one place."
+}

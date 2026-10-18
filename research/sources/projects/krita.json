@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "GPL-3.0 licence for Krita as a whole; individual files may have different compatible licences",
+    "url": "https://github.com/KDE/krita#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "license"
+  },
+  {
+    "claim": "Free and open source digital painting application for artists",
+    "url": "https://github.com/KDE/krita#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Used by comic book artists, illustrators, concept artists, matte and texture painters and in digital VFX",
+    "url": "https://github.com/KDE/krita#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "GitHub repository is a mirror; real code repository is on invent.kde.org",
+    "url": "https://github.com/KDE/krita#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Nightly builds listed as Unstable and Stable on cdn.kde.org",
+    "url": "https://github.com/KDE/krita#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "User manual online, version 5.3.0",
+    "url": "https://docs.krita.org/en/user_manual.html",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Bugs tracked on bugs.kde.org",
+    "url": "https://github.com/KDE/krita#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Krita describes itself as a painting program",
+    "url": "https://krita.org/en/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

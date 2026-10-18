@@ -1,0 +1,17 @@
+{
+  "tagline": "Open-source design and prototyping platform for product teams, usable in the cloud or self-hosted.",
+  "description": "Penpot is a browser-based design tool for interface work. Teams draw vector layouts, build components and variants, and prototype flows together in real time. It uses native design tokens, and layouts can use CSS Grid and Flex, so designs map closely to front-end code. Developers get an inspect tab that shows SVG, CSS and HTML for each element. An API with access tokens, webhooks, plugins and an MCP server connect it to other tools. You can use the hosted service at design.penpot.app or run your own instance. The documentation covers Docker, Kubernetes with an official Helm chart, Elestio and TrueNAS, and the community maintains further options. The source is licensed under MPL-2.0. A paid Enterprise plan adds an Admin Console for access and team management. It is not described as a template or stock-asset library in the way Canva is, so it fits interface design better than quick marketing graphics. Self-hosted images are published shortly after each hosted update, so your instance can trail the cloud version.",
+  "strengths": [
+    "Real-time collaboration on vector layouts, components and variants",
+    "Native design tokens plus CSS Grid and Flex layouts",
+    "Inspect tab shows SVG, CSS and HTML for each element",
+    "API with access tokens, webhooks, plugins and an MCP server",
+    "Official self-hosting paths: Docker, Helm chart, Elestio and TrueNAS"
+  ],
+  "limits": [
+    "Self-hosted images follow the hosted release, so a new feature can reach your instance later",
+    "Admin Console and centralised team governance belong to the paid Enterprise plan",
+    "Aimed at product and interface design; the README lists no template or stock-asset library like Canva's"
+  ],
+  "bestFor": "A product team that designs interfaces with developers and wants to keep design files on its own servers."
+}

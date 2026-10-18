@@ -1,0 +1,19 @@
+{
+  "tagline": "MIT-licensed community fork of Cal.com for self-hosted scheduling, with enterprise features removed.",
+  "description": "Cal.diy is the community edition of the Cal.com scheduling platform. It is a fork with all enterprise and commercial code taken out, licensed MIT, and meant for individuals who host their own booking pages. It is built with Next.js, tRPC, React, Tailwind CSS and Prisma, and it uses PostgreSQL 13 or newer. You can run it from source with Yarn, using a Docker-based development shortcut that starts a local Postgres, or deploy the published Docker image with Docker Compose. Before starting you must generate your own values for NEXTAUTH_SECRET and CALENDSO_ENCRYPTION_KEY. Calendar and video integrations need their own credentials. The setup wizard has a step that asks you to connect a calendar, which can be skipped. There is no hosted version of Cal.diy. The README tells readers to use it at their own risk and recommends it for personal, non-production use only, and it points commercial users to Cal.com instead. This makes it a close match for Calendly's core job of booking links and calendar sync, but without team features, so it is a poor fit for sales teams.",
+  "strengths": [
+    "MIT licensed with no licence key, enterprise edition code or Cal.com account needed",
+    "Docker image and Docker Compose deployment are documented, with ARM images available",
+    "Uses PostgreSQL, a standard database most hosts already provide",
+    "Calendar and video integrations are optional and use your own credentials",
+    "Descends from the Cal.com codebase, so the booking and calendar-sync feature set is mature"
+  ],
+  "limits": [
+    "Teams, Organizations, Insights, Workflows and SSO/SAML are removed",
+    "The maintainers advise personal, non-production use only and say to use at your own risk",
+    "No hosted version exists, so all updates, backups and email setup are your job",
+    "You must generate your own secrets (NEXTAUTH_SECRET, CALENDSO_ENCRYPTION_KEY) before running in production",
+    "Needs Node.js and PostgreSQL, a heavier stack than single-binary schedulers"
+  ],
+  "bestFor": "A freelancer or consultant who wants personal booking links on their own server and does not need team scheduling or routing."
+}

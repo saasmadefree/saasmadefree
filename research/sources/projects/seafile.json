@@ -1,0 +1,62 @@
+[
+  {
+    "claim": "Libraries sync separately and can be encrypted with a user-chosen password; groups and sharing",
+    "url": "https://github.com/haiwen/seafile",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Selective sync, history-based conflict handling, delta transfer, resumable transfers",
+    "url": "https://github.com/haiwen/seafile",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Download links with password, upload links, version control",
+    "url": "https://github.com/haiwen/seafile",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Client-side encryption when using desktop syncing",
+    "url": "https://github.com/haiwen/seafile",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Metadata views: table, Kanban, gallery, map, statistics",
+    "url": "https://github.com/haiwen/seafile",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "OnlyOffice and Collabora integration, SeaDoc, wiki, Excalidraw",
+    "url": "https://github.com/haiwen/seafile",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Components live in separate repositories: client daemon, GUI, server core, seahub, iOS, Android, WebDAV",
+    "url": "https://github.com/haiwen/seafile",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Pro customers contact the project by email; bugs go to GitHub issues; usage questions to the forum",
+    "url": "https://github.com/haiwen/seafile",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Docs cover Community edition and Professional edition setup, with Docker deployment",
+    "url": "https://manual.seafile.com/latest/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docs include a Professional Edition license page",
+    "url": "https://manual.seafile.com/latest/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

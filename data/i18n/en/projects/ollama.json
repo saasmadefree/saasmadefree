@@ -1,0 +1,18 @@
+{
+  "tagline": "Runs open language models on your own machine through a command line and a local REST API.",
+  "description": "Ollama downloads and runs open language models locally and exposes them through a command line and a REST API on port 11434. Typing ollama run followed by a model name pulls the model and opens a chat. Installers exist for macOS, Windows and Linux, and an official Docker image is published. Python and JavaScript client libraries wrap the API. A launch command connects it to coding agents such as Claude Code, Codex and OpenCode. The project is written in Go under the MIT licence. Nvidia cards need compute capability 5.0 or higher and a recent driver, and you can force CPU use. Ollama also sells cloud access to larger models, from a free tier to paid plans starting at $20 per month. As a ChatGPT replacement it gives you the model runtime and API, not a polished chat product with accounts. Pair it with a front end such as Open WebUI if several people need a chat interface.",
+  "strengths": [
+    "One command pulls a model and starts a chat: ollama run followed by a model name",
+    "Local REST API on port 11434, plus official Python and JavaScript libraries",
+    "Installers for macOS, Windows and Linux, and an official Docker image",
+    "Can launch coding tools such as Claude Code, Codex and OpenCode against local models",
+    "MIT licence"
+  ],
+  "limits": [
+    "Speed depends on your hardware: Nvidia GPUs need compute capability 5.0+ and driver 550 or newer, otherwise inference runs on the CPU",
+    "Open models from its library are not the same models as ChatGPT, so quality on your tasks must be tested",
+    "Cloud models are billed with usage credits, and the Pro plan costs $20 a month, so they are not free local inference",
+    "The repository describes a command line and API, not a multi-user chat site with accounts and history"
+  ],
+  "bestFor": "A developer with a decent GPU or Apple Silicon laptop who wants a private local API for open models instead of paying per token."
+}

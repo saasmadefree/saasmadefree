@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Desktop client for Windows, Mac and Linux supporting multiple LLM providers",
+    "url": "https://github.com/CherryHQ/cherry-studio",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Supports OpenAI, Gemini, Anthropic and local Ollama and LM Studio",
+    "url": "https://github.com/CherryHQ/cherry-studio",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Mobile app for iOS and Android is a separate repository",
+    "url": "https://github.com/CherryHQ/cherry-studio",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Lists 300+ pre-configured assistants and multi-model simultaneous conversations",
+    "url": "https://github.com/CherryHQ/cherry-studio",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Supports text, images, Office and PDF files, and WebDAV backup",
+    "url": "https://github.com/CherryHQ/cherry-studio",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "MCP server support",
+    "url": "https://github.com/CherryHQ/cherry-studio",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Deep research, plugin system and ASR are listed as roadmap items",
+    "url": "https://github.com/CherryHQ/cherry-studio",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Enterprise Edition is a separate privately-deployable product",
+    "url": "https://github.com/CherryHQ/cherry-studio",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "LICENSE file in the repository is the AGPL-3.0 text",
+    "url": "https://github.com/CherryHQ/cherry-studio/blob/main/LICENSE",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

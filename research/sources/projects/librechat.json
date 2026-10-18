@@ -1,0 +1,62 @@
+[
+  {
+    "claim": "MIT licence",
+    "url": "https://github.com/LibreChat-AI/LibreChat#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "license"
+  },
+  {
+    "claim": "Providers: Anthropic, AWS Bedrock, OpenAI, Azure OpenAI, Google, Vertex AI; custom OpenAI-compatible endpoints; Ollama and others",
+    "url": "https://github.com/LibreChat-AI/LibreChat#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Agents with MCP, file search, code execution; code artifacts; image generation; web search; presets",
+    "url": "https://github.com/LibreChat-AI/LibreChat#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Switch between AI endpoints and presets mid-chat; conversation branching",
+    "url": "https://github.com/LibreChat-AI/LibreChat#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Multi-user authentication with OAuth2, LDAP and email login",
+    "url": "https://github.com/LibreChat-AI/LibreChat#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Share agents and prompts with specific users and groups",
+    "url": "https://github.com/LibreChat-AI/LibreChat#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Docker Compose stacks for one-command setup",
+    "url": "https://github.com/LibreChat-AI/LibreChat#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Default Docker Compose setup uses a MongoDB image that crashes on Apple Silicon without an override",
+    "url": "https://www.librechat.ai/docs/local/docker",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Code interpreter is powered by ClickHouse/code-interpreter",
+    "url": "https://github.com/LibreChat-AI/LibreChat#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Attached workspaces are highly experimental; Agent Management API is beta (v0.8.8)",
+    "url": "https://github.com/LibreChat-AI/LibreChat#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

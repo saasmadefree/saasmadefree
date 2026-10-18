@@ -1,0 +1,18 @@
+{
+  "tagline": "Desktop app that runs open LLMs locally and connects to cloud models through one chat interface.",
+  "description": "Jan is an open-source chat assistant that runs on your own computer. It is a desktop application for macOS, Windows and Linux, with downloads for exe, dmg, deb and AppImage, and a Flathub and Microsoft Store listing. You can download open models such as Llama, Gemma and Qwen from Hugging Face and run them locally. The project docs say the code is Apache 2.0 licensed and the desktop apps work offline with no account. You can also plug in API keys for OpenAI, Anthropic, Mistral, Groq and other providers, so local and cloud models sit in one place. Jan starts an OpenAI-compatible API server on localhost port 1337 for other apps, and it supports the Model Context Protocol for agent-style tools. You can create custom assistants for repeated tasks. The docs also mention Jan Web, a browser version, and a Cowork preview where Jan works on tasks with your files. The repository is built with Tauri, so building from source needs Node.js, Yarn, Make and Rust. Jan replaces the chat window of ChatGPT or Claude when privacy matters. How well it works depends on your hardware: local models need enough memory and a capable GPU, and small models answer less well than frontier ones.",
+  "strengths": [
+    "Runs open models such as Llama, Gemma and Qwen locally, downloaded from Hugging Face.",
+    "Offers an OpenAI-compatible local server on localhost:1337 for other applications.",
+    "Connects to cloud providers (OpenAI, Anthropic, Mistral, Groq and others) in the same interface.",
+    "Supports Model Context Protocol integrations and custom assistants.",
+    "Installers for Windows, macOS and Linux, plus Flathub and Microsoft Store listings."
+  ],
+  "limits": [
+    "Desktop app, not a multi-user server: no team accounts, shared history or admin console are described in the README.",
+    "Local model quality and speed depend on your RAM and GPU; the README gives no minimum figures.",
+    "Linux Arm64 has only a how-to link in the README instead of an official download.",
+    "Cowork and Jan Web are labelled as separate offerings or previews in the docs, so check what is stable before relying on them."
+  ],
+  "bestFor": "A privacy-minded professional with a recent laptop or desktop who wants a ChatGPT-style assistant that can work offline."
+}

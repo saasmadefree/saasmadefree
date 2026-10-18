@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted PHP helpdesk with email ticketing and a customer support portal.",
+  "description": "UVdesk Community is a helpdesk built on the Symfony PHP framework with a Backbone.js front end. A mailbox component turns incoming email into tickets, and agents work them with saved replies, notes, tags, ticket types and prepared responses. An automation bundle adds workflows, and a support centre bundle gives customers a portal with a knowledge base and FAQ. The README lists unlimited agents, groups, customers, tickets and mailbox integrations, so there is no per-seat cost. You install it with Composer or from a zip archive, then finish setup in a web installer or with a console command. A Docker route and a Vagrant route are documented in the project wiki. The README asks for PHP 8.1, MySQL 5.7.23 or newer, Apache or Nginx, the PHP IMAP and Mailparse extensions and 4 GB of RAM. The code is under the OSL-3.0 licence. The project says an Amazon machine image exists for AWS, but no hosted service is listed in our data. It covers the core Zendesk loop of email tickets, agent tools and a help centre. Optional extras such as marketing modules and Microsoft app integration are sold or distributed through a separate store.",
+  "strengths": [
+    "Turns mailbox email into tickets, with no stated limit on the number of mailbox integrations",
+    "Unlimited agents, groups, customers and tickets, so cost does not grow with team size",
+    "Includes a knowledge base and FAQ organised by articles, categories and folders",
+    "Ships a REST API bundle and an automation bundle for workflows and prepared responses",
+    "Installs with Composer or a zip file and finishes in a browser-based installer"
+  ],
+  "limits": [
+    "Requires PHP IMAP and Mailparse extensions plus a MySQL database, so it does not run on a minimal container with no extra setup",
+    "The README lists 4 GB of RAM as a requirement, which is heavy for a small VPS",
+    "Several extras, such as marketing modules, are add-ons from a separate store rather than part of the core install",
+    "The README only documents PHP 8.1, so check current PHP compatibility before choosing a newer runtime"
+  ],
+  "bestFor": "A small support team with a PHP-capable server that wants email tickets and a help centre without per-agent fees."
+}

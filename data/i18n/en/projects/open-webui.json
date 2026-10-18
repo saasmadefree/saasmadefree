@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted web chat interface for Ollama and OpenAI-compatible models, with users, RAG and plugins.",
+  "description": "Open WebUI is a browser chat interface that you host yourself. It does not ship a model. It connects to Ollama or to any OpenAI-compatible API, so you can mix local and cloud models in one place. You install it with pip, uv, Docker or Kubernetes, and the README's Docker command maps port 3000 to the container. Tagged images bundle Ollama or CUDA support. It adds user accounts with roles and groups, retrieval over your documents with nine supported vector databases, web search through many providers, image generation, voice calls, notes, channels and a plugin system. Storage can be SQLite or PostgreSQL. The project uses its own licence that requires you to keep the Open WebUI branding, with details in a license history file. An Enterprise plan exists for larger deployments. It stands in for the ChatGPT front end, while model quality depends on the models you plug in.",
+  "strengths": [
+    "Connects Ollama and any OpenAI-compatible API side by side",
+    "Roles, groups and permissions, plus LDAP, OAuth, trusted-header SSO and SCIM provisioning",
+    "Document retrieval with hybrid search and a choice of nine vector databases",
+    "Web search through many providers such as SearXNG, Brave and Google PSE",
+    "SQLite or PostgreSQL storage, with Redis for multi-node deployments"
+  ],
+  "limits": [
+    "It contains no model: you need Ollama or an API key from a provider",
+    "The licence is custom and forbids removing or replacing the Open WebUI branding, so white-labelling is not allowed",
+    "Per-user isolated terminal environments (Terminals) are an Enterprise product",
+    "In Docker, reaching an Ollama server on the host can fail and may need the --network=host flag, which changes the port to 8080"
+  ],
+  "bestFor": "A small team or lab that already runs Ollama or an API gateway and wants a shared ChatGPT-like site with logins."
+}

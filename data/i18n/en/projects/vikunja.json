@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted task and project manager shipped as one Go binary, with list, kanban, Gantt and table views.",
+  "description": "Vikunja is a task manager you run yourself. The server and the web front end are bundled into one deployable binary or one Docker container, so there is a single thing to install. It supports MySQL, MariaDB, PostgreSQL and SQLite, and SQLite comes bundled with the official binaries and the Docker image, which means a small install needs no separate database server. Other install routes include Debian, RPM, Arch, Alpine, FreeBSD, Kubernetes and Ansible packages. You organise work into projects with tasks, and the project's own description lists list, kanban, Gantt and table views. Plugins, OpenID, LDAP, webhooks and an API are documented. It is a replacement for personal and small-team task apps such as Todoist or Trello, and the docs include a migration page for third-party services. The code is under AGPL-3.0-or-later. The maintainers also run a paid hosted service called Vikunja Cloud and sell a Vikunja Pro tier, so some features sit outside the free source. The README notes that the maintainers use LLM-assisted coding tools in parts of the codebase.",
+  "strengths": [
+    "Runs as a single binary or container with the front end included",
+    "Works with SQLite out of the box, or with MySQL, MariaDB or PostgreSQL for larger setups",
+    "Offers several install paths, including Debian, RPM, Alpine, Kubernetes and Ansible",
+    "Documents OpenID, LDAP authentication, webhooks, an API and a migration path from other task apps",
+    "Official binaries are signed with a published GPG key"
+  ],
+  "limits": [
+    "Admin panel, audit logs and time tracking are in the paid Vikunja Pro tier, not the free source",
+    "The mobile app supports only the basic features, according to the install docs",
+    "MySQL 5.7 is not supported, and MySQL or MariaDB need a UTF-8 compatible setup for non-Latin text",
+    "The default configuration enables CORS, so you must set a public URL or turn CORS off"
+  ],
+  "bestFor": "A person or small team with a spare server that wants Todoist-style lists and kanban boards under its own control."
+}

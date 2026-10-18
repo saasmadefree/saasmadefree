@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted AI chat and search over your company's apps, with agents and 50+ connectors.",
+  "description": "Onyx connects to more than 50 work applications, indexes their content with permissions, and lets an LLM answer questions from it. Beyond search it offers custom agents, deep research, web search, a code sandbox, MCP actions and voice mode. It works with self-hosted models such as Ollama and vLLM and with Anthropic, OpenAI or Gemini. Deployment goes through Docker, Kubernetes, Helm or Terraform, and a single install script exists for a quick start. There are two modes. Standard builds the index and needs at least 4 vCPU and 10 GB of RAM. Lite is a chat interface with agents that cannot index documents and runs on 2 GB. The community edition is MIT licensed, while files under ee directories fall under an enterprise licence. It stands in for team use of ChatGPT, with an advantage when the answers must come from internal documents. Onyx Cloud is available for those who prefer not to host.",
+  "strengths": [
+    "Indexes 50+ connected apps with their permissions, so answers respect who can see what",
+    "Works with local models (Ollama, vLLM, LiteLLM) and with hosted ones (Anthropic, OpenAI, Gemini)",
+    "Web search through Serper, Google PSE, Brave or SearXNG, with its own crawler",
+    "Slack and Discord bots, an MCP server, a Chrome extension and an embeddable widget",
+    "Community edition under the MIT licence"
+  ],
+  "limits": [
+    "Standard mode needs at least 4 vCPU, 10 GB RAM and 32 GB disk plus about 2.5 times the indexed data",
+    "Lite mode runs on far less but cannot index documents",
+    "SSO, SCIM, role-based access control, analytics, query history and whitelabeling are Enterprise features",
+    "Code under ee directories uses a separate Enterprise licence, so the repository is not purely MIT"
+  ],
+  "bestFor": "A team of 10 to 500 people with a server or cloud account that wants ChatGPT-style answers drawn from Slack, Drive and wiki content."
+}

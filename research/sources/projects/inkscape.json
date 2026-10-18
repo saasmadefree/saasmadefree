@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Free and open source vector graphics editor for illustrations such as logos, clip art, typography, diagrams, flowcharts",
+    "url": "https://gitlab.com/inkscape/inkscape/-/blob/master/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Uses SVG as main format; feature list: shapes, paths, text, markers, clones, gradients, node editing, layers, text-on-path, SVG XML editing",
+    "url": "https://gitlab.com/inkscape/inkscape/-/blob/master/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Imports EPS, Postscript, JPEG, PNG, BMP, TIFF; exports PNG and multiple vector formats",
+    "url": "https://gitlab.com/inkscape/inkscape/-/blob/master/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Lightweight core with features added as extensions",
+    "url": "https://gitlab.com/inkscape/inkscape/-/blob/master/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Most source code under GNU GPL version 2 or later",
+    "url": "https://gitlab.com/inkscape/inkscape/-/blob/master/COPYING",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Download from inkscape.org; stack C++ (data/projects/inkscape.json)",
+    "url": "https://gitlab.com/inkscape/inkscape/-/blob/master/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "claim": "REST API, three typed SDKs (Store, Admin, Seller), OpenAPI 3.0 spec",
+    "url": "https://github.com/spree/spree#features",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "React admin dashboard and optional Next.js storefront",
+    "url": "https://github.com/spree/spree#features",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Marketplace: seller onboarding, per-seller order splitting, commission engine, payout ledger with Stripe Connect, all in open-source core",
+    "url": "https://github.com/spree/spree#use-cases",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "B2B: price lists with volume tiers, customer groups, companies with tax exemptions, catalogs",
+    "url": "https://github.com/spree/spree#features",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Payments ship with Stripe, Adyen and PayPal; Payment Provider SDK",
+    "url": "https://github.com/spree/spree#features",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Promotions, gift cards, multi-location inventory, returns, taxes via Avalara and Stripe Tax",
+    "url": "https://github.com/spree/spree#features",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Markets bundle currency, language, payment methods and shipping per region; CSV imports and exports",
+    "url": "https://github.com/spree/spree#use-cases",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Setup via npx create-spree-app; needs Node.js 24+ and Docker",
+    "url": "https://github.com/spree/spree#getting-started",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Multi-tenant SaaS requires the Enterprise Edition",
+    "url": "https://github.com/spree/spree#use-cases",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "BSD 3-Clause licence",
+    "url": "https://github.com/spree/spree#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

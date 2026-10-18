@@ -1,0 +1,68 @@
+[
+  {
+    "claim": "Navidrome is an open source web-based music collection server and streamer",
+    "url": "https://raw.githubusercontent.com/navidrome/navidrome/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Streams virtually any audio format; transcoding per user/player; Opus supported; multi-user; Subsonic-compatible",
+    "url": "https://www.navidrome.org/docs/overview/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Runs well on Raspberry Pi Zero and old hardware",
+    "url": "https://www.navidrome.org/docs/overview/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Smart playlists, m3u import, public share links, scrobbling to Last.fm and ListenBrainz",
+    "url": "https://www.navidrome.org/docs/overview/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Docker images for linux/amd64, arm/v6, arm/v7, arm64; /data writable, /music read-only",
+    "url": "https://www.navidrome.org/docs/installation/docker/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Binaries for macOS, Linux, Windows",
+    "url": "https://raw.githubusercontent.com/navidrome/navidrome/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Does not support browsing by folders, simulates it from tags",
+    "url": "https://www.navidrome.org/docs/overview/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "master branch may be unstable; use releases",
+    "url": "https://raw.githubusercontent.com/navidrome/navidrome/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Managed hosting through partner providers",
+    "url": "https://raw.githubusercontent.com/navidrome/navidrome/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Written in Go, licence GPL-3.0",
+    "url": "https://api.github.com/repos/navidrome/navidrome",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Compatible with Subsonic clients; mobile apps are third-party clients",
+    "url": "https://www.navidrome.org/docs/overview/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

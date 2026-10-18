@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Tracks nutrition, exercise, hydration, sleep, fasting, mood and body measurements; goals, check-ins, charts, reports, multiple profiles, OIDC, TOTP, Passkey",
+    "url": "https://github.com/CodeWithCJ/SparkyFitness#core-features",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Made of backend server, web frontend and native iOS and Android apps",
+    "url": "https://github.com/CodeWithCJ/SparkyFitness#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Sync list: Apple Health, Google Health Connect, Fitbit, Garmin Connect, Withings, Polar Flow, Oura, Hevy; food sources OpenFoodFacts, USDA",
+    "url": "https://github.com/CodeWithCJ/SparkyFitness#health--device-integrations",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Optional AI features in beta: log food, exercise, body stats via chat and food photos",
+    "url": "https://github.com/CodeWithCJ/SparkyFitness#optional-ai-features-beta",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Docker Compose install with .env containing DB password, API encryption key, auth secret and frontend URL; app at port 3004",
+    "url": "https://github.com/CodeWithCJ/SparkyFitness#installation",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Source-available, not open source; non-commercial licence requires permission for commercial use",
+    "url": "https://github.com/CodeWithCJ/SparkyFitness#how-sparkyfitness-compares",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Breaking changes may occur between releases; auto-updating containers not recommended",
+    "url": "https://github.com/CodeWithCJ/SparkyFitness#️-known-issues--beta-features-️",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Sleep stages, HRV and blood glucose are imported and charted, not measured by the app",
+    "url": "https://github.com/CodeWithCJ/SparkyFitness#how-sparkyfitness-compares",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Family sharing with granular permissions (7 permissions)",
+    "url": "https://github.com/CodeWithCJ/SparkyFitness#how-sparkyfitness-compares",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

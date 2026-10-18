@@ -1,0 +1,62 @@
+[
+  {
+    "claim": "Logs food and drink against a calorie and macro target computed from height, weight, age and activity; record kept on the phone",
+    "url": "https://github.com/simonoppowa/OpenNutriTracker#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Open-source for Android and iOS; installed from App Store and Google Play",
+    "url": "https://github.com/simonoppowa/OpenNutriTracker#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "GPLv3 licence badge; written in Dart (pubspec)",
+    "url": "https://github.com/simonoppowa/OpenNutriTracker#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Food sources: Open Food Facts, USDA FoodData Central, German BLS; barcode scanner; quick add",
+    "url": "https://github.com/simonoppowa/OpenNutriTracker#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Micronutrient panel for ten nutrients: fibre, sodium, saturated fat, sugar, calcium, iron, potassium, vitamin D, B12, magnesium",
+    "url": "https://github.com/simonoppowa/OpenNutriTracker#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Water chip, optional fasting timer, recipes, weight history",
+    "url": "https://github.com/simonoppowa/OpenNutriTracker#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "No account; AES-256 encrypted storage, key in Android Keystore or iOS Keychain",
+    "url": "https://github.com/simonoppowa/OpenNutriTracker#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "JSON and CSV export, JSON import, QR sharing",
+    "url": "https://github.com/simonoppowa/OpenNutriTracker#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Backend is its own open repository you can self-host",
+    "url": "https://github.com/simonoppowa/OpenNutriTracker#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Platform badge lists Android and iOS only",
+    "url": "https://github.com/simonoppowa/OpenNutriTracker#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "claim": "Single static Go binary with embedded SQLite; no Redis, no Postgres, no separate API server",
+    "url": "https://github.com/Calnode/calnode#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "docker run command with ./data volume; ephemeral key if none is set",
+    "url": "https://github.com/Calnode/calnode#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "REST API (88 endpoints), HMAC-signed webhooks configured via API",
+    "url": "https://github.com/Calnode/calnode#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Native MCP server with stdio and Streamable HTTP",
+    "url": "https://github.com/Calnode/calnode#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Team routing fixed, round-robin, collective, priority; Google and Microsoft 365 calendars; Stripe Checkout",
+    "url": "https://github.com/Calnode/calnode#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Video needs a LiveKit server; recording; AI notetaker with Deepgram transcript",
+    "url": "https://github.com/Calnode/calnode#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Admin UI and video room English-only; other translations machine drafts",
+    "url": "https://github.com/Calnode/calnode#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Roadmap: OpenAPI spec, /metrics, multi-domain",
+    "url": "https://github.com/Calnode/calnode#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Instance-per-tenant design",
+    "url": "https://github.com/Calnode/calnode#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Apache-2.0, nothing paywalled for self-host",
+    "url": "https://github.com/Calnode/calnode#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Repository created 2026-06-23, about 118 stars",
+    "url": "data/projects/calnode.json",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted project management suite with Gantt charts, agile boards, time tracking and meeting minutes.",
+  "description": "OpenProject is a web-based project management application written with Ruby on Rails and Angular, licensed under GPL-3.0. It covers project and portfolio planning, Gantt charts, Kanban and Scrum boards, task tracking, bug tracking, time and cost reporting, wikis, forums and meeting agendas. Integrations include Nextcloud, GitHub and GitLab. You can run the Community edition yourself with Docker or with distribution packages, following the installation guides on the project site. A 14-day cloud trial and a paid Enterprise edition, in cloud or on-premises form, also exist, with extra add-ons and support. The company behind it positions the tool against Jira, MS Project, Monday, Asana and YouTrack. For a team leaving Asana, Trello or Smartsheet, it is the heavier choice: more planning and reporting depth, but also a bigger system to install, update and administer. Hardware needs are in the installation documentation and depend on team size.",
+  "strengths": [
+    "Gantt scheduling, Kanban, Scrum and bug tracking in one application",
+    "Time tracking, cost reporting and budgeting built in",
+    "Integrations with Nextcloud, GitHub and GitLab",
+    "Docker and package installs documented for the Community edition",
+    "Meeting agendas and minutes alongside tasks"
+  ],
+  "limits": [
+    "Some features are Enterprise add-ons and not in the free Community edition",
+    "A full Rails application with a heavier admin load than lightweight board tools like Trello",
+    "Hosted use means the paid cloud or Enterprise offer; the free trial lasts 14 days",
+    "Built around planning and reporting, which is more process than small teams may want"
+  ],
+  "bestFor": "A team of a few dozen that needs Gantt planning and time tracking and has someone able to run a Rails app."
+}

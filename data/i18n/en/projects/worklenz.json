@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hostable project management with tasks, time tracking, resource planning and a client portal.",
+  "description": "Worklenz is a project management platform with list, board and Gantt task views. It also includes time tracking, project templates, team capacity and utilisation planning, a project finance view with budgets and costs, a planner and a client portal. Tasks can be imported from CSV, and whole projects can be exported to CSV. The stack is React with Ant Design on the front end and TypeScript with Express on the back end. It stores data in PostgreSQL, uses Redis for caching, and keeps files in SeaweedFS, AWS S3 or Azure Blob. The recommended install is Docker Compose, with a setup script that writes the environment file with generated secrets and can set up SSL certificates. The compose file starts PostgreSQL, Redis and SeaweedFS together. Manual installation needs Node.js 20 or newer and PostgreSQL 15 or newer. Email invitations go through an SMTP relay you configure. The README says the self-hosted build includes Planner, Finance and Client Portal for every organisation. The code is under AGPL-3.0. It can stand in for tools such as Asana for teams that need time and budget tracking.",
+  "strengths": [
+    "Includes time tracking, project finance and a client portal in the self-hosted build",
+    "Offers list, board and Gantt views plus project templates",
+    "Docker setup script generates secrets and can configure SSL certificates",
+    "Resource planning shows team capacity and utilisation across projects",
+    "Imports tasks from CSV and exports projects to CSV"
+  ],
+  "limits": [
+    "Needs PostgreSQL, Redis and S3-compatible storage, so the stack has several moving parts",
+    "Invitations need an SMTP relay that you configure yourself",
+    "Import and export cover CSV only, according to the README",
+    "The README does not document single sign-on, so check it before relying on it in a company"
+  ],
+  "bestFor": "A small agency or services team that wants task boards, time tracking and budgets in one tool on its own server."
+}

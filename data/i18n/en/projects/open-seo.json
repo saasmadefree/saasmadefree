@@ -1,0 +1,19 @@
+{
+  "tagline": "Self-hosted SEO tool for keyword research, rank tracking and audits, powered by your own DataForSEO key.",
+  "description": "OpenSEO is an SEO workbench covering keyword research, rank tracking, competitor insights, backlinks, site audits and AI visibility tracking. It does not own a data index. Every number comes from DataForSEO, a pay-as-you-go service for which you supply an API key and pay directly. New DataForSEO accounts get $1 of credit, and the minimum top-up is $50. You can self-host in two ways. The Docker route is meant for personal use on one machine and starts with app authentication turned off. The Cloudflare route deploys with a single command to your account, works on the free plan, and puts a Cloudflare Access login in front. OpenSEO also exposes an MCP server and agent skills so tools like Claude Code can query your SEO data. The licence is MIT. A hosted version costs $10 per month. It replaces Semrush or Ahrefs for lighter jobs, with metered costs instead of a subscription.",
+  "strengths": [
+    "No subscription: you pay DataForSEO per request",
+    "Covers keyword research, rank tracking, competitor insights, backlinks, site audits and AI visibility",
+    "MCP server and agent skills for Claude Code and similar agents",
+    "Cloudflare deployment provisions the database, storage and an Access login in one command",
+    "MIT licence"
+  ],
+  "limits": [
+    "Needs a DataForSEO account; the minimum top-up is $50",
+    "The Docker setup runs with authentication disabled, so it must sit behind your own proxy login or a private network",
+    "The Cloudflare route requires R2, which needs a payment method on file even in the free tier",
+    "The app sends anonymised usage telemetry, such as aggregate counts, tied to a random install ID",
+    "Its data comes from one third-party API, so coverage and freshness are those of DataForSEO"
+  ],
+  "bestFor": "A freelance SEO or small agency with occasional research needs that finds Semrush and Ahrefs subscriptions too heavy."
+}

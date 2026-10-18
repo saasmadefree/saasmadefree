@@ -1,0 +1,38 @@
+[
+  {
+    "claim": "Free and open-source video editor for Linux, Mac and Windows; Python/Qt project",
+    "url": "https://github.com/OpenShot/openshot-qt#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Features list: unlimited tracks, keyframes, transitions, titles, 3D titles, time mapping, chroma key, EDL/XML, FFmpeg render",
+    "url": "https://github.com/OpenShot/openshot-qt#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Experimental hardware encoding and decoding (VA-API, NVDEC, D3D9, D3D11, VTB)",
+    "url": "https://github.com/OpenShot/openshot-qt#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Pre-built installers and Daily Builds (latest, experimental) from the download page",
+    "url": "https://github.com/OpenShot/openshot-qt#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "GNU GPL version 3 or later",
+    "url": "https://github.com/OpenShot/openshot-qt#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "User guide and video tutorial",
+    "url": "https://www.openshot.org/user-guide/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  }
+]

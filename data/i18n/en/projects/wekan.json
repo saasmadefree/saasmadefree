@@ -1,0 +1,18 @@
+{
+  "tagline": "Open-source kanban board you host yourself, with swimlanes, Gantt, Scrum views and imports from many tools.",
+  "description": "WeKan is a collaborative kanban application released under the MIT licence. Boards hold lists, swimlanes and cards, with drag-and-drop ordering and real-time updates. Beyond the board view, the README lists table, calendar, timeline, Gantt and Scrum views with sprints and burndown charts. Rules work like IFTTT triggers on cards, and a board can be exported to many formats including PDF, Excel and CSV. Importers read boards from Trello, Jira, Asana, Todoist, Notion, Vikunja and many other tools, which makes it a direct candidate to replace Trello. For hosting, the README lists Docker, Kubernetes, a Snap package, an AppImage and bundles for Windows, macOS and Linux. The default database is FerretDB with SQLite, so no database server is required, while MongoDB and PostgreSQL are also supported. Login options include LDAP, SAML and OAuth2, and attachments can be stored on a filesystem, S3-compatible storage, Azure Blob or Google Cloud. A paid SaaS and commercial support exist next to the free code. Expect a very large feature list with a dense interface.",
+  "strengths": [
+    "Imports boards from Trello, Jira, Asana, Todoist and many other tools",
+    "Default install uses FerretDB with SQLite, so no separate database server is needed",
+    "Offers table, calendar, Gantt and Scrum views with sprint reports and burndown charts",
+    "Supports LDAP, SAML and OAuth2 login and S3, Azure or Google Cloud attachment storage",
+    "Can be installed as Docker, Kubernetes, Snap, AppImage or a plain bundle"
+  ],
+  "limits": [
+    "The feature list is very long, so the interface and settings are denser than a plain Trello clone",
+    "The README says WeKan meets 9 of 16 Standard for Public Code criteria out of the box",
+    "MySQL, MariaDB and SAP HANA backends through FerretDB are marked experimental",
+    "The README links a SaaS with a paid admin panel, so some admin features may be tied to that service"
+  ],
+  "bestFor": "A team or organisation with its own server that wants a free Trello-style board with LDAP or SAML sign-in."
+}

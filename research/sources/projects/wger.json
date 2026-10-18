@@ -1,0 +1,32 @@
+[
+  {
+    "claim": "Workout routines, tracking, nutrition with Open Food Facts, gallery, exercise wiki, REST API, multi-user, mobile apps incl F-Droid and Flathub",
+    "url": "https://github.com/wger-project/wger#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "AGPL-3.0-or-later code; exercise and ingredient data under Creative Commons",
+    "url": "https://github.com/wger-project/wger#license",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Prod compose starts gunicorn, postgres, redis, nginx; volumes persist data",
+    "url": "https://wger.readthedocs.io/en/latest/installation/docker.html",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "PowerSync storage setup command is a required one-time step",
+    "url": "https://wger.readthedocs.io/en/latest/installation/docker.html",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Default login admin/adminadmin; change password and set SECRET_KEY and JWT keys",
+    "url": "https://wger.readthedocs.io/en/latest/installation/docker.html",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

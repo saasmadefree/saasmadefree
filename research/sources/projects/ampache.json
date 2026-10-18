@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Web-based audio/video streaming and file manager; relies on embedded tags or file names; not a media organiser",
+    "url": "https://github.com/ampache/ampache#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Web servers: Apache (most testing), lighttpd, nginx, IIS",
+    "url": "https://github.com/ampache/ampache#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Requires MySQL 5/8 or MariaDB 10, PHP modules, and Node.js for front-end build",
+    "url": "https://github.com/ampache/ampache#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Ampache 8 requires PHP 8.5+; release7 branch is recommended as most stable",
+    "url": "https://github.com/ampache/ampache#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Opt-in Jellyfin-compatible API for clients like Finamp, Symfonium",
+    "url": "https://github.com/ampache/ampache#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "AGPL-3.0 licence",
+    "url": "https://github.com/ampache/ampache#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Optional LDAP authentication and UPnP modules",
+    "url": "https://github.com/ampache/ampache#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "API documented with examples",
+    "url": "https://ampache.org/api/",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Docker image published on Docker Hub",
+    "url": "https://github.com/ampache/ampache#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

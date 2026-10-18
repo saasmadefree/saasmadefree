@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Multitrack non-linear video editor for Linux, GPL 3",
+    "url": "https://github.com/jliljebl/flowblade",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Features: 21 tracks, 6 tools, 19 blends, 50+ image filters, 30+ audio filters, G'MIC, text tool, batch encoding",
+    "url": "https://github.com/jliljebl/flowblade",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "VAAPI and NVENC encoders and custom FFmpeg args",
+    "url": "https://github.com/jliljebl/flowblade",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Recommended RAM: 4 GB SD, 8 GB HD, 16 GB 4K; 4 cores for 4K; MLT 7.30",
+    "url": "https://github.com/jliljebl/flowblade/blob/master/flowblade-trunk/docs/SYSTEM_REQUIREMENTS.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Install via Flathub, OS repository or development repository; distribution versions may be older",
+    "url": "https://github.com/jliljebl/flowblade/blob/master/flowblade-trunk/docs/INSTALLING.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Known issue: changing render profile breaks compositor scaling and positioning, no fix planned",
+    "url": "https://github.com/jliljebl/flowblade/blob/master/flowblade-trunk/docs/KNOWN_ISSUES.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Known issue: MKV files from OBS may break the app, no fix planned",
+    "url": "https://github.com/jliljebl/flowblade/blob/master/flowblade-trunk/docs/KNOWN_ISSUES.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Built on Python, MLT and FFmpeg",
+    "url": "https://github.com/jliljebl/flowblade",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

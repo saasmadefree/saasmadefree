@@ -1,0 +1,18 @@
+{
+  "tagline": "Self-hosted real-time kanban board app with a free Community edition and a paid Pro edition.",
+  "description": "PLANKA is a kanban tool in the Trello mould. It has projects, boards, lists and cards, live updates between users, Markdown descriptions, attachments, comments and custom fields. Cards carry due dates and a stopwatch. Notifications go out through more than 100 providers, and there is a documented REST API plus webhooks. Two-factor authentication is part of the free edition. You install it with Docker Compose: download the compose file, set a secret key and base URL, create the admin user with a one-off command, then start the services. A Kubernetes route is documented too, and the stack is Node.js with PostgreSQL. The licence is not OSI open source. The README calls it fair-code, under a Fair Use community licence, with a separate commercial licence for Pro. Community is free to self-host. Pro adds phone and tablet layouts, calendar, timeline and map views, recurring cards, templates, guest roles, OIDC single sign-on and PDF export. Pro upgrades an existing install in place, but the README says the step is one-way, so back up first.",
+  "strengths": [
+    "Real-time boards with Markdown, attachments, comments and custom fields",
+    "Stopwatch and due dates on cards",
+    "Notifications through 100+ providers, webhooks and a documented REST API",
+    "Two-factor authentication in the free edition",
+    "Short Docker Compose install with a one-off admin-creation command"
+  ],
+  "limits": [
+    "Fair-code licence, not an OSI-approved open-source licence",
+    "No calendar, timeline or map views, recurring cards or templates in Community; these are Pro",
+    "OIDC single sign-on and guest roles are Pro-only",
+    "Upgrade from Community to Pro cannot be reversed, and accepts only certain Community releases"
+  ],
+  "bestFor": "A small team that wants a private Trello-style board on its own server and does not need single sign-on."
+}

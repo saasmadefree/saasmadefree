@@ -1,0 +1,19 @@
+{
+  "tagline": "Multitrack non-linear video editor for Linux, built on MLT and FFmpeg.",
+  "description": "Flowblade is a desktop video editor for Linux, written in Python on top of the MLT framework and FFmpeg codecs. It is not a service you host: you install it from Flathub, from your distribution's package repository, or from the development repository. You edit on a timeline with up to 21 combined video and audio tracks, use six editing tools, and apply compositing with 19 blend modes and keyframed animation. It includes more than 50 image filters and more than 30 audio filters, a text tool, a G'MIC tool, batch encoding, proxy editing and media relinking. Rendering supports GPU encoders (VAAPI and NVENC) and custom FFmpeg arguments. The project recommends 8 GB of RAM for HD work and 16 GB for 4K, plus MLT 7.30. The licence is GPL-3.0. It replaces the cut, trim, effects and export parts of CapCut on a Linux desktop, and it works without an account or watermark. It does not offer the template library, auto captions, cloud storage or mobile apps that make CapCut popular, and it has no macOS or Windows build.",
+  "strengths": [
+    "Free Linux editor with no account, subscription or export fee",
+    "Timeline with up to 21 tracks, six editing tools and keyframed compositing",
+    "More than 50 image filters and 30 audio filters, plus text and G'MIC tools",
+    "Hardware encoding through VAAPI and NVENC, or your own FFmpeg arguments",
+    "Batch encoding and proxy editing for heavier projects"
+  ],
+  "limits": [
+    "Linux only: the project documents Flatpak and distribution packages, with no Windows or macOS installers",
+    "No template library, built-in stock media or automatic captions are described in the README",
+    "Known issues the maintainer does not plan to fix include broken compositor positioning when you change the render profile, and problems with some MKV files made by OBS",
+    "Recommended 16 GB of RAM for 4K projects, and 4 cores",
+    "Distribution packages can lag behind the latest release, which is always on Flathub"
+  ],
+  "bestFor": "A Linux user who edits YouTube or short videos on a desktop and wants a free timeline editor with no watermark."
+}

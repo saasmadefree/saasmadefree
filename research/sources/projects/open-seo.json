@@ -1,0 +1,56 @@
+[
+  {
+    "claim": "Main workflows: keyword research, rank tracking, competitor insights, backlinks, site audits, AI visibility",
+    "url": "https://raw.githubusercontent.com/every-app/open-seo/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Requires DataForSEO API key, paid directly when self-hosting",
+    "url": "https://raw.githubusercontent.com/every-app/open-seo/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "New DataForSEO accounts include $1 free credit; minimum top-up is $50",
+    "url": "https://raw.githubusercontent.com/every-app/open-seo/HEAD/docs/DATAFORSEO_API_KEY.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Docker mode uses AUTH_MODE=local_noauth, no auth checks",
+    "url": "https://raw.githubusercontent.com/every-app/open-seo/HEAD/docs/SELF_HOSTING_DOCKER.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Telemetry: anonymised heartbeats with aggregate counts tied to a random install ID",
+    "url": "https://raw.githubusercontent.com/every-app/open-seo/HEAD/docs/SELF_HOSTING_DOCKER.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Cloudflare deploy provisions D1, KV, R2, Workers and Cloudflare Access; works on free plan",
+    "url": "https://raw.githubusercontent.com/every-app/open-seo/HEAD/docs/SELF_HOSTING_CLOUDFLARE.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "R2 requires a payment method on file even within free tier",
+    "url": "https://raw.githubusercontent.com/every-app/open-seo/HEAD/docs/SELF_HOSTING_CLOUDFLARE.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "MCP server and agent skills; hosted subscription $10/month",
+    "url": "https://raw.githubusercontent.com/every-app/open-seo/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "MIT licence",
+    "url": "https://api.github.com/repos/every-app/open-seo",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "claim": "AGPL-3.0 licence",
+    "url": "https://github.com/Leantime/leantime#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "license"
+  },
+  {
+    "claim": "Open source project management system for non-project managers",
+    "url": "https://github.com/Leantime/leantime#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Kanban, gantt, table, list and calendar views; sprints; milestones; timesheets; goals; canvases; wikis; idea boards",
+    "url": "https://github.com/Leantime/leantime#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "All listed features are included in the OSS version",
+    "url": "https://github.com/Leantime/leantime#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "PHP 8.2+, MySQL 8.0+ or MariaDB 10.6+, Apache or Nginx (IIS with modifications)",
+    "url": "https://github.com/Leantime/leantime#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Required PHP extensions include LDAP, PCNTL, bcmath, GD",
+    "url": "https://github.com/Leantime/leantime#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Install via release zip or official Docker image",
+    "url": "https://github.com/Leantime/leantime#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "LDAP and OIDC integration, two-factor authentication, per-project permissions",
+    "url": "https://github.com/Leantime/leantime#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "File storage via S3 or local filesystem",
+    "url": "https://github.com/Leantime/leantime#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Leantime Pro is sold at $10 per user per month, billed monthly",
+    "url": "https://leantime.io/pricing/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Reverse proxy setups need extra environment variables in Docker",
+    "url": "https://github.com/Leantime/leantime#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

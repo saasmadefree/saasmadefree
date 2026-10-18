@@ -1,0 +1,17 @@
+{
+  "tagline": "Free desktop app to split, merge, mix, rotate and extract pages from PDF files, built with JavaFX.",
+  "description": "PDFsam Basic is a desktop program, not a server. You install it on Windows, macOS or Linux and work on PDF files stored on your own machine, so documents never pass through a third-party service. Its README lists five operations: extracting pages, splitting, merging, mixing and rotating. Since version 4 the app ships as a self-contained package with its own bundled Java runtime, so you do not install Java separately. Version 3 needed a Java 8 runtime with JavaFX. The code is under the AGPL, with older releases under GPLv2. It has no hosted offer and needs no database or web server. As a replacement for Adobe Acrobat Pro it covers only page-level handling: organising, cutting and joining documents. Anything that edits the content of a page is outside what the README describes. Documentation and an FAQ live on the project site, and a wiki page lists startup properties and arguments that change its behaviour. Teams that want several people to use the same install would need to roll it out to each workstation, since there is no shared instance.",
+  "strengths": [
+    "Works on local files, so no PDF is uploaded anywhere",
+    "Splits, merges, mixes, rotates and extracts pages, the five operations the README lists",
+    "Version 4 and later bundles its own Java runtime, so there is nothing else to install",
+    "AGPL licence for the current line; no account, database or server to run",
+    "Startup properties and arguments are documented on the project wiki"
+  ],
+  "limits": [
+    "Page-level tool only: the README describes no text editing, form filling or signing",
+    "Desktop application with no web interface, so it cannot be shared as one team instance",
+    "No OCR is described in the README"
+  ],
+  "bestFor": "A freelancer or office worker who needs to cut, join and reorder PDFs on a laptop without uploading client documents."
+}

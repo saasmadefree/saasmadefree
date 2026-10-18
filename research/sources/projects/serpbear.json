@@ -1,0 +1,68 @@
+[
+  {
+    "claim": "Open source search engine position tracking and keyword research app for Google",
+    "url": "https://github.com/towfiqi/serpbear",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Unlimited domains and keywords; email notifications daily, weekly or monthly; built-in API",
+    "url": "https://github.com/towfiqi/serpbear",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Uses third-party scrapers such as ScrapingAnt, ScrapingRobot, SearchApi, SerpApi, HasData, or your own proxy IPs",
+    "url": "https://github.com/towfiqi/serpbear",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Keyword research needs integrating a Google Ads test account",
+    "url": "https://github.com/towfiqi/serpbear",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Search Console integration shows visits, impressions and more per keyword",
+    "url": "https://github.com/towfiqi/serpbear",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "PWA mobile app; Next.js for frontend and backend; SQLite database",
+    "url": "https://github.com/towfiqi/serpbear",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "README table marks scrapingant.com, scrapingrobot.com and spaceserp.com as no longer working",
+    "url": "https://github.com/towfiqi/serpbear",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Docker image exists on Docker Hub",
+    "url": "https://hub.docker.com/r/towfiqi/serpbear",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Setup steps: deploy, log in, add domain, set scraping API or proxy, add keywords, optional SMTP",
+    "url": "https://github.com/towfiqi/serpbear",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Last commit 14 May 2026 (from project data, checked 2026-10-18)",
+    "url": "https://github.com/towfiqi/serpbear/commits",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Licence is MIT",
+    "url": "https://github.com/towfiqi/serpbear",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

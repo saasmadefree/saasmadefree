@@ -1,0 +1,17 @@
+{
+  "tagline": "Small desktop app to merge, split, rotate, crop and reorder PDF pages through a visual interface.",
+  "description": "PDF Arranger is a small desktop application for rearranging PDF files. You can merge or split documents, rotate and crop pages, and drag pages into a new order in a visual interface. It is written in Python with GTK and acts as a front end for the pikepdf library. The project began as a fork of PDF-Shuffler, an older tool, to keep development active. The licence is GPL-3.0. It is not a server: you install it on your own computer. Windows builds come from the releases page, and Linux users can use Flathub, the Snap Store or their distribution packages. Installing from source requires pikepdf 6 or newer plus GTK, Poppler and related packages. A user manual lives on the project wiki. As a replacement for Adobe Acrobat Pro it covers page organisation only. It does not edit text, fill forms or sign documents, and the README describes no such features.",
+  "strengths": [
+    "Merge, split, rotate, crop and reorder pages visually",
+    "Packaged on Flathub, the Snap Store and many Linux distributions",
+    "Windows builds available from the releases page",
+    "Built on pikepdf, which handles the PDF structure"
+  ],
+  "limits": [
+    "Page arrangement only: no text editing, form filling or signing is described",
+    "Desktop application with no web interface or multi-user mode",
+    "Source install needs pikepdf 6 or newer and GTK libraries",
+    "No macOS package is listed in the README downloads section"
+  ],
+  "bestFor": "Someone who often reorders or merges PDF pages on a Linux or Windows computer and does not need full Acrobat."
+}

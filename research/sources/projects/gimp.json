@@ -1,0 +1,44 @@
+[
+  {
+    "claim": "GIMP stands for GNU Image Manipulation Program; used for photo retouching, image composition and image authoring",
+    "url": "https://www.gimp.org/about/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Developed by community under the GNU General Public License",
+    "url": "https://www.gimp.org/about/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Downloads: AppImage for x86_64 and ARM64, Flatpak, Snap, macOS and Windows installers; current stable is 3.2.6",
+    "url": "https://www.gimp.org/downloads/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "AppImage supported OS: Debian 13 or newer distro",
+    "url": "https://www.gimp.org/downloads/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "3.2 focus on non-destructive layers; link layers and vector layers added; text layers already non-destructive",
+    "url": "https://www.gimp.org/release-notes/gimp-3.2.html",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "3.0: non-destructive filters, native Wayland, tablet button mapping on Wayland, soft-proofing with CMYK profile, PSD export with clipping paths, CMYK profiles and metadata",
+    "url": "https://www.gimp.org/release-notes/gimp-3.0.html",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "No hosted web version or templates listed on the official about and downloads pages (absence claim)",
+    "url": "https://www.gimp.org/downloads/",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

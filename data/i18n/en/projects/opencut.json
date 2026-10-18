@@ -1,0 +1,17 @@
+{
+  "tagline": "Free MIT-licensed video editor for web, desktop and mobile, currently being rewritten around a Rust core.",
+  "description": "OpenCut is an open source video editor aimed at the browser, the desktop and mobile. Its code is under the MIT licence. The main repository is in the middle of a ground-up rewrite built around a Rust core, with a stated plan for an editor API, plugins, an MCP server for AI agents, a headless mode for batch rendering and a scripting tab. The previous version lives in a separate repository called opencut-classic, and the README says that is the one to use today. The public site opencut.app still serves the classic version, while the rewrite is previewed on a separate address until it is ready. Developers set it up with the proto tool and run web, API and desktop apps through moon commands. There is no packaged self-hosting route in our data, and the README does not describe one. As a CapCut alternative it targets the timeline editing loop, but the current rewrite should be treated as work in progress. The project does not accept outside code contributions for now, while the architecture is being designed.",
+  "strengths": [
+    "MIT licence",
+    "Planned headless mode for automation and batch rendering",
+    "Planned plugin system and editor API for third-party extensions",
+    "Classic version remains available as a separate repository"
+  ],
+  "limits": [
+    "The main repository is a rewrite in progress; the README points users to the classic version for today",
+    "No self-hosting guide or deploy method is documented",
+    "Outside contributions are not accepted while the architecture is designed",
+    "Planned features such as the MCP server and scripting tab are announced, not shipped"
+  ],
+  "bestFor": "A developer or creator who wants to follow a web-based video editor and is fine using the classic version meanwhile."
+}

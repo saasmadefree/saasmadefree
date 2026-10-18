@@ -1,0 +1,62 @@
+[
+  {
+    "claim": "Connects to 50+ applications; agentic RAG, deep research, custom agents, web search, sandbox, MCP, voice mode",
+    "url": "https://raw.githubusercontent.com/onyx-dot-app/onyx/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Supports Ollama, LiteLLM, vLLM, Anthropic, OpenAI, Gemini",
+    "url": "https://raw.githubusercontent.com/onyx-dot-app/onyx/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Docker, Kubernetes, Helm/Terraform; install script; Standard and Lite modes",
+    "url": "https://raw.githubusercontent.com/onyx-dot-app/onyx/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Web search supports Serper, Google PSE, Brave, SearXNG; in-house crawler",
+    "url": "https://raw.githubusercontent.com/onyx-dot-app/onyx/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Slack and Discord bot, MCP server, Chrome extension, embeddable widget",
+    "url": "https://raw.githubusercontent.com/onyx-dot-app/onyx/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Lite mode is not capable of indexing documents; under 1GB memory",
+    "url": "https://raw.githubusercontent.com/onyx-dot-app/onyx/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Standard minimum 4 vCPU, 10 GB RAM, 32 GB disk + ~2.5x indexed data; Lite minimum 2 vCPU, 2 GB RAM",
+    "url": "https://docs.onyx.app/deployment/getting_started/resourcing",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Enterprise features: SSO, SCIM, RBAC, analytics, query history, whitelabeling",
+    "url": "https://raw.githubusercontent.com/onyx-dot-app/onyx/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Community Edition MIT; ee directories under Onyx Enterprise License",
+    "url": "https://raw.githubusercontent.com/onyx-dot-app/onyx/HEAD/LICENSE",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Onyx Cloud available",
+    "url": "https://raw.githubusercontent.com/onyx-dot-app/onyx/HEAD/README.md",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

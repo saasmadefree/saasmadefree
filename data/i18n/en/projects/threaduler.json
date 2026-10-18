@@ -1,0 +1,18 @@
+{
+  "tagline": "Alpha-stage Notion-driven scheduler for posting threads to X and Bluesky, run from your own machine.",
+  "description": "Threaduler is a small Python project that publishes social posts from a Notion database. You write posts and their metadata in Notion, using a template database the author shares, and the tool reads that content and sends it to the networks. The README describes it as a 0.1 alpha that works but may have hiccups, and says it supports X and Bluesky, with LinkedIn marked as coming. The template includes examples of threads and quote posts. To run it, you install Poetry, create a Notion integration, get Notion and X API keys, clone the repository, install dependencies and put the keys in a .env file. There is no Docker image or web interface in the README, so you run it yourself and keep it scheduled yourself. The licence is MIT. It could replace a paid scheduler like Hootsuite only for a solo writer who lives in Notion and posts to those two networks. It has none of the team features of Hootsuite, such as approvals, analytics or inbox. The repository has few stars and its last commit in our data is from December 2025, so treat it as a starting point, not a supported product.",
+  "strengths": [
+    "Uses Notion as the editor and content store, so drafts stay in a tool you may already use",
+    "Handles threads and quote posts, with example posts in the template database",
+    "MIT licence and a small Python codebase you can read and change",
+    "Targets X and Bluesky from one source of posts"
+  ],
+  "limits": [
+    "Labelled 0.1 alpha by its author, with unspecified rough edges expected",
+    "Only X and Bluesky are supported, and LinkedIn is marked as coming",
+    "Needs your own Notion and X API keys, and an installed Poetry environment",
+    "The README gives no Docker setup, web interface, approvals, analytics or team features",
+    "Tiny community, and the last commit in our data is from December 2025"
+  ],
+  "bestFor": "A solo writer who already plans posts in Notion, is comfortable with Python, and posts only to X and Bluesky."
+}

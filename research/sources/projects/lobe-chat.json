@@ -1,0 +1,44 @@
+[
+  {
+    "claim": "LobeHub Community License is based on Apache License 2.0 with additional conditions; a derivative work needs a commercial licence",
+    "url": "https://github.com/lobehub/lobehub/blob/HEAD/LICENSE",
+    "retrievedOn": "2026-10-18",
+    "field": "license"
+  },
+  {
+    "claim": "Agents as the unit of work; Agent Builder, Agent Groups, Schedule, Pages, Project, Workspace, Personal Memory",
+    "url": "https://github.com/lobehub/lobehub#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Library of over 10,000 skills and MCP-compatible plugins",
+    "url": "https://github.com/lobehub/lobehub#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Self-hosting with Vercel, Zeabur, Sealos, Alibaba Cloud, and Docker via setup script and docker compose",
+    "url": "https://github.com/lobehub/lobehub#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Architecture: Next.js app, PostgreSQL, optional Redis, S3-compatible storage, optional SearXNG",
+    "url": "https://lobehub.com/docs/self-hosting/start",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Docker offers full feature support with no timeout limits and includes PostgreSQL, Redis, RustFS, Searxng",
+    "url": "https://lobehub.com/docs/self-hosting/start",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "OPENAI_API_KEY required for the Vercel deployment",
+    "url": "https://github.com/lobehub/lobehub#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Open-source ticket management tool; agent and customer portals, SLAs, assignment rules, knowledge base, saved replies",
+    "url": "https://github.com/frappe/helpdesk",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Built on Frappe Framework (Python and JavaScript) and Frappe UI (Vue)",
+    "url": "https://github.com/frappe/helpdesk",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Easy-install script deploys a production instance in about 5 minutes",
+    "url": "https://github.com/frappe/helpdesk",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Compatibility: main branch with Frappe version-15 and version-16",
+    "url": "https://github.com/frappe/helpdesk",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Frappe Cloud is the managed hosting platform for Frappe apps",
+    "url": "https://github.com/frappe/helpdesk",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Docker development setup uses default Administrator / admin credentials",
+    "url": "https://github.com/frappe/helpdesk",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Motivation: replaced the ERPNext support module",
+    "url": "https://github.com/frappe/helpdesk",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Self-hosting documentation",
+    "url": "https://docs.frappe.io/helpdesk",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

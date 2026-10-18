@@ -1,0 +1,50 @@
+[
+  {
+    "claim": "Visual flow builder with loops, branches, auto retries, HTTP, code with NPM, versioned flows",
+    "url": "https://github.com/activepieces/activepieces#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Pieces are TypeScript npm packages and about 60% are community contributed",
+    "url": "https://github.com/activepieces/activepieces#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Pieces are available as MCP servers for Claude Desktop, Cursor or Windsurf",
+    "url": "https://github.com/activepieces/activepieces#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Human-in-the-loop delays and approval; chat and form interface triggers",
+    "url": "https://github.com/activepieces/activepieces#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Docker Compose starts the app with PostgreSQL (pgvector image) and Redis",
+    "url": "https://raw.githubusercontent.com/activepieces/activepieces/main/docker-compose.yml",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Community Edition MIT; enterprise features under a commercial licence",
+    "url": "https://github.com/activepieces/activepieces#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "200+ pieces listed in the README",
+    "url": "https://github.com/activepieces/activepieces#readme",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Install options are documented in the docs",
+    "url": "https://www.activepieces.com/docs/install/overview",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]

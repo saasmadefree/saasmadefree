@@ -1,0 +1,86 @@
+[
+  {
+    "claim": "Manage many projects from one Redmine instance, with per-project roles and per-project modules",
+    "url": "https://www.redmine.org/projects/redmine/wiki/Features",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Issue statuses, types and workflow transitions per issue type and role are configurable in the admin interface",
+    "url": "https://www.redmine.org/projects/redmine/wiki/Features",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Gantt chart and calendar are generated from issue start and due dates",
+    "url": "https://www.redmine.org/projects/redmine/wiki/Features",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Time can be entered at project or ticket level, with reports by user, issue type, category or activity",
+    "url": "https://www.redmine.org/projects/redmine/wiki/Features",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Custom fields exist for issues, time entries, projects and users and can be used as filters",
+    "url": "https://www.redmine.org/projects/redmine/wiki/Features",
+    "retrievedOn": "2026-10-18",
+    "field": "strengths"
+  },
+  {
+    "claim": "Per-project wiki and forums",
+    "url": "https://www.redmine.org/projects/redmine/wiki/Features",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Released under the GNU General Public License v2",
+    "url": "https://www.redmine.org/",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "Supported databases include PostgreSQL, MySQL and SQLite; SQLite is not for multi-user production use",
+    "url": "https://www.redmine.org/projects/redmine/wiki/RedmineInstall",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "MySQL requires transaction_isolation set to READ COMMITTED",
+    "url": "https://www.redmine.org/projects/redmine/wiki/RedmineInstall",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Redmine does not support JRuby",
+    "url": "https://www.redmine.org/projects/redmine/wiki/RedmineInstall",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "The install procedure is laid out in eleven steps (application, database, dependencies, secrets, assets, schema, default data, permissions, test, login)",
+    "url": "https://www.redmine.org/projects/redmine/wiki/RedmineInstall",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "A new release comes about every six months",
+    "url": "https://www.redmine.org/projects/redmine/wiki/RedmineInstall",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  },
+  {
+    "claim": "The feature list names no Kanban or agile board",
+    "url": "https://www.redmine.org/projects/redmine/wiki/Features",
+    "retrievedOn": "2026-10-18",
+    "field": "limits"
+  },
+  {
+    "claim": "Plugins and themes are listed as resources",
+    "url": "https://www.redmine.org/projects/redmine/wiki/Features",
+    "retrievedOn": "2026-10-18",
+    "field": "description"
+  }
+]
