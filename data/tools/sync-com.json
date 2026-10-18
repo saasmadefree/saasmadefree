@@ -25,10 +25,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Nextcloud",
-      "url": "https://github.com/nextcloud/server"
+      "project": "server",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

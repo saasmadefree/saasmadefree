@@ -23,16 +23,14 @@
   "requirements": [
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Anki",
-      "url": "https://github.com/ankitects/anki",
-      "license": "AGPL-3.0"
+      "project": "anki",
+      "fit": "partial"
     },
     {
-      "name": "Yomitan",
-      "url": "https://github.com/yomidevs/yomitan",
-      "license": "GPL-3.0"
+      "project": "yomitan",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

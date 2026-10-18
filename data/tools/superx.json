@@ -23,10 +23,10 @@
     "anthropic-api-key",
     "hosting"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "postiz-app",
-      "url": "https://github.com/gitroomhq/postiz-app"
+      "project": "postiz-app",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

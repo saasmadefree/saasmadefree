@@ -23,10 +23,10 @@
     "anthropic-api-key",
     "hosting"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "reveal.js",
-      "url": "https://github.com/hakimel/reveal.js"
+      "project": "reveal-js",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

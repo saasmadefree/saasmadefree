@@ -12,4 +12,4 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-console.log(`${data.tools.size} fiche(s), ${data.i18n.size} traduction(s), ${data.agents.length} agent(s) — tout est valide.`);
+console.log(`${data.tools.size} fiche(s), ${data.i18n.size} traduction(s), ${data.projects.size} projet(s), ${data.agents.length} agent(s) — tout est valide.`);

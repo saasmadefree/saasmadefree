@@ -100,7 +100,8 @@
       txt.textContent = code;
       var n = document.createElement('b');
       n.textContent = fmt.format(rows[i].value);
-      chip.appendChild(txt); chip.appendChild(n);
+      // Même raison que crawlerRow : « US 9 », jamais « US9 » une fois lu.
+      chip.appendChild(txt); chip.appendChild(document.createTextNode(' ')); chip.appendChild(n);
       container.appendChild(chip);
     }
   }
@@ -262,6 +263,9 @@
     chart.update();
   }
 
+  // Les morceaux d'une ligne sont séparés par de vraies espaces dans le DOM :
+  // la grille flex les écarte à l'œil, mais le texte lu (lecteur d'écran,
+  // copier-coller) les collait (« AmazonbotAmazon », revue finale).
   function crawlerRow(name, vendor, counts, seen) {
     var row = document.createElement('div');
     row.className = 'crawler-row';
@@ -272,6 +276,7 @@
       var v = document.createElement('span');
       v.className = 'crawler-vendor';
       v.textContent = vendor;
+      n.appendChild(document.createTextNode(' '));
       n.appendChild(v);
     }
     var c = document.createElement('span');
@@ -280,7 +285,13 @@
     var s = document.createElement('span');
     s.className = 'crawler-seen';
     s.textContent = seen;
-    row.appendChild(n); row.appendChild(c); row.appendChild(s);
+    row.appendChild(n);
+    row.appendChild(document.createTextNode(' '));
+    row.appendChild(c);
+    if (seen) {
+      row.appendChild(document.createTextNode(' '));
+      row.appendChild(s);
+    }
     return row;
   }
 

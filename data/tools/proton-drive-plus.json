@@ -24,10 +24,10 @@
     "hosting",
     "domain"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Cryptomator",
-      "url": "https://github.com/cryptomator/cryptomator"
+      "project": "cryptomator",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

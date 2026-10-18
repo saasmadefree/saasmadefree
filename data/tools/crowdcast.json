@@ -26,10 +26,10 @@
     "database",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Owncast",
-      "url": "https://github.com/owncast/owncast"
+      "project": "owncast",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

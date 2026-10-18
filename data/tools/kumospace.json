@@ -24,10 +24,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "mediasoup",
-      "url": "https://github.com/versatica/mediasoup"
+      "project": "mediasoup",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

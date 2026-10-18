@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Excalidraw",
-      "url": "https://github.com/excalidraw/excalidraw"
+      "project": "excalidraw",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

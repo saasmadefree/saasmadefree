@@ -279,6 +279,7 @@ function inventoryList(slots, sponsors, s, price, ladder, lang) {
  * traduction pour une seule notion, dans les sept locales.
  */
 export function renderSponsorPage({
+  collectionLinks = [],
   lang, path, ui, alternates, xDefaultPath, homePath, sponsors, sponsorSlots, figures, stats = null,
 }) {
   const site = ui.site;
@@ -410,6 +411,7 @@ ${steps}
     main,
     ui,
     homeHref: homePath,
+    collectionLinks,
     sponsorSlots,
   });
 }

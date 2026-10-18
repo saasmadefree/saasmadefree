@@ -1,0 +1,26 @@
+{
+  "slug": "process-compose",
+  "name": "process-compose",
+  "homepage": "https://github.com/F1bonacc1/process-compose",
+  "repo": "F1bonacc1/process-compose",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "dev-tools"
+  ],
+  "stats": {
+    "stars": 2854,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2022-04-05",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "slug": "espocrm",
+  "name": "EspoCRM",
+  "homepage": "https://github.com/espocrm/espocrm",
+  "repo": "espocrm/espocrm",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "crm-sales"
+  ],
+  "stats": {
+    "stars": 3494,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2014-09-25",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

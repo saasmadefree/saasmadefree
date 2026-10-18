@@ -1,0 +1,26 @@
+{
+  "slug": "jellyfin",
+  "name": "Jellyfin",
+  "homepage": "https://github.com/jellyfin/jellyfin",
+  "repo": "jellyfin/jellyfin",
+  "license": "GPL-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "cloud-storage"
+  ],
+  "stats": {
+    "stars": 58161,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2018-12-09",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

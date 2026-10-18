@@ -1,0 +1,26 @@
+{
+  "slug": "kavita",
+  "name": "Kavita",
+  "homepage": "https://github.com/Kareadita/Kavita",
+  "repo": "Kareadita/Kavita",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "media-streaming"
+  ],
+  "stats": {
+    "stars": 11876,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2020-12-12",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

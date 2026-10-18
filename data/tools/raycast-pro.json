@@ -22,10 +22,10 @@
   "requirements": [
     "anthropic-api-key"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Ulauncher",
-      "url": "https://github.com/Ulauncher/Ulauncher"
+      "project": "ulauncher",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

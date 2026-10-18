@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Kdenlive",
-      "url": "https://github.com/KDE/kdenlive"
+      "project": "kdenlive",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

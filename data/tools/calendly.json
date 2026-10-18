@@ -24,11 +24,10 @@
     "oauth-app",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Cal.diy",
-      "url": "https://cal.diy",
-      "license": "MIT"
+      "project": "cal-diy",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -1,0 +1,568 @@
+<!doctype html>
+<!--
+  MOCKUP — Mailchimp tool page ("Mailchimp alternatives")
+  Direction 3 "The Kitchen Table", airy refinement (17 Oct 2026). Design-system spec, source of truth for both mockups.
+
+  Intent: the searcher who typed "mailchimp alternatives" because the bill went up. First screen: the mustard verdict
+  sign (Kinda, $20/mo, checked 30 Jul 2026) and three quiet ways out. Everything else is plain typography on cream:
+  hairline rules instead of boxes, a 65ch prose column, one tinted panel (build it yourself).
+
+  COLOUR TOKENS (light / dark). Every text pair checked >= 4.5:1, UI borders and focus >= 3:1 (WCAG 2.2 AA),
+  by scratchpad/gen/airy-system.mjs at generation time.
+    --bg        #fbf3e4  /  #1b1611
+    --panel     #f4e7cf  /  #261e16
+    --card      #fffaf0  /  #221b14
+    --ink       #2b2117  /  #f6ead6
+    --ink2      #5d4f3f  /  #cbbca5
+    --rule      #e3d3b5  /  #3b3128
+    --field     #8a7556  /  #8f7d66
+    --tomato    #a8361b  /  #ff9a7c
+    --btn       #a8361b  /  #f08a69
+    --btnInk    #fffaf0  /  #1b1611
+    --mustard   #f2cd68  /  #e3b951
+    --signInk   #2b2117  /  #1b1611
+    --signInk2  #4f3f22  /  #43341a
+    --focus     #1f5fbf  /  #8ab8ff
+    Roles: bg = cream ground; panel = the ONE tinted surface below the fold (build-it panel); card = prompt
+    sheet, inputs; ink / ink2 = text; rule = decorative hairlines only (never the sole boundary of a control);
+    field = input and control borders; tomato = links; btn = the single primary button (Copy prompt);
+    mustard + signInk = the verdict sign on tool pages, THE one bold element (the home page uses none); focus = focus ring.
+    No other tints. Verdicts and fit always carry a shape + a word: ● Yes / Full, ◐ Almost / Partial, ○ Not yet / Niche.
+
+  SPACING SCALE (rem): s1 .25 · s2 .5 · s3 .75 · s4 1 · s5 1.5 · s6 2 · s7 3 · s8 4.5 · s9 7
+    Section rhythm: clamp(s8, 9cqi, s9) between sections. Inside a section: heading → intro s3, intro → content s6.
+    Between project entries: s8 with a hairline. Table cells: 1.15rem block × 1rem inline.
+    Page gutter: 16px (s4) up to 700px, 40px above. Max width 1080px. Prose measure: 65ch.
+
+  TYPE: Bricolage Grotesque (display: headings 650, verdict word 750, tight tracking) + Atkinson Hyperlegible Next (text,
+    400/700), both OFL, to self-host as woff2; system fallbacks for now. Base 17px / 1.65.
+    h1 clamp(1.85rem, 4.2cqi, 2.9rem), max-width 12-16em · h2 clamp(1.35rem, 2.8cqi, 1.75rem) · h3 1.25rem · verdict word clamp(2.4rem, 7cqi, 3.1rem) 750 · small label .8125rem 700.
+
+  SHAPE: radius 14px (controls, prompt sheet), 28px (panel, sign), 999px (chips, buttons). Hairlines 1px.
+  Layout is driven by container queries on .cq, so the 320px preview frame renders the real mobile layout.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>5 Free &amp; Open Source Mailchimp Alternatives (2026) — or Build Your Own · SaaS Made Free</title>
+<meta name="description" content="Listmonk, Mautic, Keila, Sendportal and Postal compared with Mailchimp ($20/mo Standard, checked 30 Jul 2026). Verdict: kinda. Plus a prompt to build your own.">
+<script>try{var s=localStorage.getItem("theme");if(s==="dark"||s==="light")document.documentElement.dataset.theme=s;}catch(e){}</script>
+<style>
+:root{--bg:#fbf3e4;--panel:#f4e7cf;--card:#fffaf0;--ink:#2b2117;--ink2:#5d4f3f;--rule:#e3d3b5;--field:#8a7556;--tomato:#a8361b;--btn:#a8361b;--btnInk:#fffaf0;--mustard:#f2cd68;--signInk:#2b2117;--signInk2:#4f3f22;--focus:#1f5fbf;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1b1611;--panel:#261e16;--card:#221b14;--ink:#f6ead6;--ink2:#cbbca5;--rule:#3b3128;--field:#8f7d66;--tomato:#ff9a7c;--btn:#f08a69;--btnInk:#1b1611;--mustard:#e3b951;--signInk:#1b1611;--signInk2:#43341a;--focus:#8ab8ff;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1b1611;--panel:#261e16;--card:#221b14;--ink:#f6ead6;--ink2:#cbbca5;--rule:#3b3128;--field:#8f7d66;--tomato:#ff9a7c;--btn:#f08a69;--btnInk:#1b1611;--mustard:#e3b951;--signInk:#1b1611;--signInk2:#43341a;--focus:#8ab8ff;color-scheme:dark}
+/* Fonts to self-host (OFL, woff2): Bricolage Grotesque, Atkinson Hyperlegible Next. Fallbacks below. */
+:root{--display:"Bricolage Grotesque","Avenir Next","Gill Sans Nova","Gill Sans","Trebuchet MS",sans-serif;--text:"Atkinson Hyperlegible Next","Avenir Next","Segoe UI",Verdana,sans-serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+--s1:.25rem;--s2:.5rem;--s3:.75rem;--s4:1rem;--s5:1.5rem;--s6:2rem;--s7:3rem;--s8:4.5rem;--s9:7rem;--measure:65ch;--r:14px;--r-lg:28px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--text)}
+a{color:var(--tomato);text-underline-offset:.2em;text-decoration-thickness:1.5px}
+a:hover{text-decoration-thickness:2.5px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+.visually-hidden{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:8px;background:var(--card);padding:.5rem 1rem;z-index:9;border-radius:8px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+@media (min-width:700px){.wrap{padding:0 40px}}
+.cq{container:page / inline-size}
+/* top bar: quiet, one line on desktop */
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) var(--s4);padding:var(--s5) 0}
+@media (min-width:700px){.top{column-gap:var(--s5)}}
+.brand{display:flex;align-items:center;gap:.55rem;font:800 1.125rem/1 var(--display);color:var(--ink);text-decoration:none;letter-spacing:-.01em;margin-right:auto}
+.brand i{width:1.85rem;height:1.85rem;border-radius:50%;background:var(--tomato);display:inline-grid;place-items:center;color:var(--bg);font:800 .9rem/1 var(--display);font-style:normal}
+.top nav{display:flex;flex-wrap:wrap;gap:0 var(--s4);font:400 .9375rem/1 var(--text)}
+.top nav a{color:var(--ink);text-decoration:none;padding:.6rem 0}
+.top nav a:hover,.top nav a[aria-current]{text-decoration:underline;text-decoration-color:var(--tomato)}
+.toggle{font:400 .875rem/1 var(--text);background:transparent;color:var(--ink);border:1px solid var(--field);border-radius:999px;padding:.5rem .8rem;cursor:pointer}
+@media (max-width:520px){.top{column-gap:var(--s3)}.brand{font-size:1.03rem}.toggle{font-size:.8125rem;padding:.45rem .7rem}.top nav{order:3;width:100%}}
+.toggle:hover{border-color:var(--ink)}
+/* rhythm */
+.sec{padding-top:clamp(var(--s8),9cqi,var(--s9))}
+h2{margin:0;font:650 clamp(1.35rem,2.8cqi,1.75rem)/1.2 var(--display);letter-spacing:-.015em;text-wrap:balance}
+h3{margin:0;font:650 1.25rem/1.25 var(--display);letter-spacing:-.01em}
+.intro{margin:var(--s3) 0 0;color:var(--ink2);max-width:var(--measure)}
+.prose{max-width:var(--measure)}
+.label{display:block;font:700 .8125rem/1.3 var(--text);letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
+.mark{display:inline-block;width:1.1em;margin-right:.2em;text-align:center}
+/* footer */
+.foot{margin-top:clamp(var(--s8),9cqi,var(--s9));padding:var(--s6) 0 var(--s7);border-top:1px solid var(--rule);font-size:.9375rem;color:var(--ink2);display:grid;gap:var(--s3)}
+.foot p{margin:0;max-width:var(--measure)}
+.foot a{color:var(--ink2)}
+.foot-links{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5)}
+/* 320 preview */
+.preview{margin-top:var(--s8);border-top:1px solid var(--rule);padding-top:var(--s5)}
+.preview summary{cursor:pointer;font:700 1rem/1.4 var(--display);padding:.3rem 0;color:var(--ink2)}
+.frame{width:340px;max-width:100%;margin:var(--s6) auto;border:10px solid var(--ink);border-radius:32px;padding:0 16px 16px;background:var(--bg);overflow:hidden}
+.frame .cq{container:page / inline-size}
+@media (prefers-reduced-motion:no-preference){a,.toggle,button{transition:border-color .15s,background-color .15s,color .15s}}
+
+.newsletter{max-width:30rem}
+.nl-row{display:flex;align-items:center;gap:var(--s1);background:var(--card);border:1.5px solid var(--field);border-radius:999px;padding:.3rem}
+.nl-row:focus-within{border-color:var(--ink);outline:3px solid var(--focus);outline-offset:2px}
+.nl-row input{flex:1;min-width:0;font:400 1rem/1.2 var(--text);color:var(--ink);background:transparent;border:0;padding:.65rem .5rem .65rem .9rem;-webkit-appearance:none;appearance:none}
+.nl-row input::placeholder{color:var(--ink2);opacity:1}
+.nl-row input:focus-visible{outline:none}
+.nl-row button{flex:none;font:700 .9375rem/1 var(--display);background:var(--btn);color:var(--btnInk);border:0;border-radius:999px;padding:.75rem 1.1rem;cursor:pointer}
+.nl-row button:hover{filter:brightness(1.08)}
+.nl-note{margin:var(--s3) 0 0 var(--s4);font-size:.8125rem;line-height:1.45;color:var(--ink2)}
+.newsletter-status{margin:var(--s2) 0 0 var(--s4);font:700 .875rem/1.4 var(--text)}
+.newsletter-status:empty{display:none}
+
+/* head */
+.head{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s6);padding:var(--s5) 0 0}
+.eyebrow{margin:0 0 var(--s3);font:400 .9375rem/1.4 var(--text);color:var(--ink2)}
+.h1{margin:0;max-width:16em;font:650 clamp(1.85rem,4.2cqi,2.9rem)/1.1 var(--display);letter-spacing:-.025em;text-wrap:balance}
+.h1-tail{color:var(--ink2)}
+.lede{margin:0;font-size:clamp(1.0625rem,2cqi,1.1875rem);line-height:1.65;max-width:var(--measure)}
+.sign{background:var(--mustard);color:var(--signInk);border-radius:var(--r-lg) var(--r-lg) var(--r-lg) 6px;padding:var(--s5) var(--s5) var(--s5);align-self:start}
+.sign p{margin:0}
+.sign-q{font:700 .9375rem/1.4 var(--text)}
+.sign-v{font:750 clamp(2.4rem,7cqi,3.1rem)/1 var(--display);letter-spacing:-.03em;margin:var(--s3) 0 var(--s2)!important}
+.sign-v span{font-size:.6em;vertical-align:.12em}
+.sign-why{font:400 1.0625rem/1.45 var(--text)}
+.sign-price{margin-top:var(--s5)!important;padding-top:var(--s4);border-top:1px solid color-mix(in srgb,var(--signInk) 30%,transparent);font-size:.9375rem;line-height:1.55}
+.sign-price strong{font:800 1.125rem var(--display)}
+.sign-price span{display:block;color:var(--signInk2);font-size:.875rem;margin-top:var(--s1)}
+.sign a{color:var(--signInk)}
+.sign :focus-visible{outline-color:var(--signInk)}
+.ways{max-width:var(--measure)}
+.ways ol{list-style:none;margin:var(--s3) 0 0;padding:0}
+.ways li{border-top:1px solid var(--rule)}
+.ways li:last-child{border-bottom:1px solid var(--rule)}
+.ways a{display:flex;gap:var(--s4);align-items:baseline;padding:var(--s4) 0;color:var(--ink);text-decoration:none}
+.ways a:hover strong{text-decoration:underline;text-decoration-color:var(--tomato)}
+.ways .n{font:700 1rem/1 var(--display);color:var(--ink2);min-width:1ch}
+.ways strong{font-weight:700}
+@container page (min-width:780px){
+  .head{grid-template-columns:minmax(0,1fr) 19rem;column-gap:var(--s8);row-gap:var(--s6);padding-top:var(--s7)}
+  .head-text{grid-column:1;grid-row:1}.lede{grid-column:1;grid-row:2}.ways{grid-column:1;grid-row:3}
+  .sign{grid-column:2;grid-row:1 / span 3;transform:rotate(1deg);margin-top:var(--s2)}
+}
+@media (prefers-reduced-motion:reduce){.sign{transform:none!important}}
+/* fit marker: shape + word, no fill */
+.fit{white-space:nowrap;font-weight:700}
+/* table: hairlines, roomy rows, no box */
+.tablewrap{margin-top:var(--s6);overflow-x:auto;overscroll-behavior-x:contain}
+table{border-collapse:collapse;width:100%;min-width:860px;font-size:.9375rem;line-height:1.4;font-variant-numeric:tabular-nums}
+th,td{text-align:left;vertical-align:top;padding:1.15rem 1rem;border-bottom:1px solid var(--rule)}
+th:first-child,td:first-child{padding-left:0}
+thead th{font:700 .8125rem/1.3 var(--text);color:var(--ink2);padding-top:0;padding-bottom:var(--s3);border-bottom:1px solid var(--ink2)}
+tbody th{font:700 1.0625rem/1.25 var(--display);position:sticky;left:0;background:var(--bg);min-width:9rem;padding-right:var(--s5)}
+thead th:first-child{position:sticky;left:0;background:var(--bg);z-index:1}
+tbody th a{color:var(--ink);text-decoration-color:var(--tomato)}
+.num{text-align:right;white-space:nowrap}
+.sub{display:block;font:400 .8125rem/1.4 var(--text);color:var(--ink2);margin-top:var(--s1)}
+tr.other.first th,tr.other.first td{border-top:1px solid var(--ink2);padding-top:var(--s5)}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+.hint{margin:var(--s5) 0 0;font-size:.875rem;color:var(--ink2);max-width:var(--measure)}
+.hint .fit{color:var(--ink);font-weight:700}
+@container page (min-width:900px){.swipe{display:none}}
+/* project entries: plain typography */
+.apps{margin-top:var(--s6)}
+.app{max-width:var(--measure);padding:var(--s7) 0;border-top:1px solid var(--rule)}
+.app:last-child{padding-bottom:0}
+.app-meta{margin:var(--s2) 0 0;font-size:.9375rem;color:var(--ink2)}
+.app-meta .fit{color:var(--ink)}
+.app-meta a{color:var(--ink2)}
+.app-what{margin:var(--s4) 0 0;font-size:1.125rem;line-height:1.6}
+.app-notes{display:grid;gap:var(--s5);margin-top:var(--s5)}
+.app-notes p,.app-notes ul{margin:var(--s2) 0 0}
+.app-notes ul{padding-left:1.1rem}
+.app-notes li+li{margin-top:var(--s2)}
+@container page (min-width:780px){.app-notes{grid-template-columns:1fr 1fr;column-gap:var(--s6)}}
+/* build: the one tinted panel */
+.build{background:var(--panel);border-radius:var(--r-lg);padding:clamp(var(--s5),5cqi,var(--s8));display:grid;gap:var(--s5)}
+.build > *{max-width:var(--measure)}
+.build p{margin:0}
+.facts{color:var(--ink2);font-size:.9375rem}
+.prompt{max-width:none!important;background:var(--card);border-radius:var(--r);padding:var(--s5)}
+.prompt-bar{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s4);align-items:center;justify-content:space-between;margin-bottom:var(--s4)}
+.prompt-bar span{font:700 .9375rem/1.3 var(--text)}
+.copy{font:700 1rem/1 var(--display);background:var(--btn);color:var(--btnInk);border:0;border-radius:999px;padding:.8rem 1.3rem;cursor:pointer}
+.copy:hover{filter:brightness(1.08)}
+.prompt pre{margin:0;white-space:pre-wrap;word-wrap:break-word;font:400 .875rem/1.7 var(--mono);max-height:20rem;overflow:auto}
+.prompt-bar .status{flex-basis:100%;font:700 .875rem var(--text);text-align:right}.prompt-bar .status:empty{display:none}
+/* lose */
+.lose{list-style:none;margin:var(--s6) 0 0;padding:0;max-width:var(--measure)}
+.lose li{display:flex;gap:var(--s4);align-items:baseline;padding:var(--s3) 0}
+.lose li::before{content:"✕";color:var(--ink2);font-size:.875rem;flex:none;width:1ch}
+/* why: a quiet pull quote */
+.quote{margin:var(--s6) 0 0;padding:0;max-width:34em}
+.quote p{margin:0;font:700 clamp(1.25rem,2.8cqi,1.6rem)/1.4 var(--display);letter-spacing:-.01em}
+.quote-note{margin:var(--s5) 0 0;color:var(--ink2);max-width:var(--measure)}
+/* faq */
+.faq{margin-top:var(--s6);max-width:var(--measure);border-bottom:1px solid var(--rule)}
+.faq details{border-top:1px solid var(--rule)}
+.faq summary{cursor:pointer;list-style:none;padding:var(--s5) 0;font:700 1.125rem/1.35 var(--display);display:flex;justify-content:space-between;gap:var(--s5)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:400 1.4rem/1 var(--display);color:var(--ink2)}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:0;padding:0 0 var(--s5)}
+/* newsletter block */
+.nl-h{font:700 1.1875rem/1.4 var(--display);letter-spacing:-.01em;max-width:32em;margin-bottom:var(--s4)}
+/* also */
+.also{list-style:none;margin:var(--s5) 0 0;padding:0;display:flex;flex-wrap:wrap;gap:var(--s3) var(--s5);max-width:var(--measure)}
+.also a{color:var(--ink);text-decoration-color:var(--rule)}
+.also a:hover{text-decoration-color:var(--tomato)}
+/* wide screens: use the full width instead of one 65ch column (owner feedback, 17 Oct) */
+@container page (min-width:860px){
+  .apps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--s8)}
+  .app{max-width:none}
+  .app:last-child{padding-bottom:var(--s7)}
+  .app-notes{grid-template-columns:1fr}
+  .lose{max-width:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--s8)}
+  .faq{max-width:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--s8);border-bottom:0}
+  .faq details{border-bottom:1px solid var(--rule);border-top:0}
+  .faq details:nth-child(-n+2){border-top:1px solid var(--rule)}
+  .also{max-width:none}
+  #keep-paying{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);column-gap:var(--s8);align-items:end}
+  #keep-paying h2{grid-column:1 / -1}
+  .quote{max-width:none}
+  .quote-note{margin-top:var(--s6);padding-left:var(--s5);border-left:1px solid var(--rule)}
+  .build{grid-template-columns:minmax(0,2fr) minmax(0,3fr);column-gap:var(--s7);align-items:start}
+  .build > h2,.build > p{grid-column:1}
+  .build > .prompt{grid-column:2;grid-row:1 / span 3}
+  .intro{max-width:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <div class="top">
+    <a class="brand" href="/en/"><i aria-hidden="true">S</i>SaaS Made Free</a>
+    <nav aria-label="Main"><a href="/en/">All tools</a><a href="/en/categories/">Categories</a><a href="/en/stats/">Stats</a></nav>
+    <button type="button" id="theme-toggle" class="toggle" hidden aria-pressed="false" data-label-dark="Dark mode" data-label-light="Light mode"><span data-label>Dark mode</span></button>
+  </div>
+  <main id="main" class="cq">
+    
+<header class="head">
+  <div class="head-text">
+    <p class="eyebrow">Newsletters &amp; email · updated <time datetime="2026-10-17">17 Oct 2026</time></p>
+    <h1 class="h1">5 Free &amp; Open Source Mailchimp Alternatives (2026) <span class="h1-tail">— or Build Your Own</span></h1>
+  </div>
+  <div class="sign" role="group" aria-label="Verdict">
+    <p class="sign-q">Can AI rebuild Mailchimp from one prompt?</p>
+    <p class="sign-v"><span aria-hidden="true">◐</span> Kinda</p>
+    <p class="sign-why">The app, yes. The inbox reputation, no.</p>
+    <p class="sign-price">Mailchimp Standard costs <strong>$20 a month</strong>, more as your list grows.<span>Checked <time datetime="2026-07-30">30 Jul 2026</time> on <a href="https://mailchimp.com/pricing/marketing/">mailchimp.com</a>.</span></p>
+  </div>
+  <p class="lede">The best open-source Mailchimp alternative for most newsletters is Listmonk: one small server, plus a sending service such as Amazon SES. Mautic is the only one here with visual automation journeys. Or skip the install and build the core loop yourself from the prompt below.</p>
+  <nav class="ways" aria-labelledby="ways-h">
+    <p class="label" id="ways-h">Three ways to stop paying</p>
+    <ol>
+      <li><a href="#alternatives"><span class="n" aria-hidden="true">1</span><span><strong>Host a free app.</strong> Five open-source projects, compared.</span></a></li>
+      <li><a href="#build"><span class="n" aria-hidden="true">2</span><span><strong>Build your own.</strong> Copy our prompt into a coding agent.</span></a></li>
+      <li><a href="#keep-paying"><span class="n" aria-hidden="true">3</span><span><strong>Keep paying.</strong> Sometimes it’s the right call. Here’s when.</span></a></li>
+    </ol>
+  </nav>
+</header>
+    
+<section class="sec" id="alternatives" aria-labelledby="t">
+  <h2 id="t">All the options, side by side</h2>
+  <p class="intro">Five free apps, plus building it yourself, plus staying put.</p>
+  <div class="tablewrap" role="region" aria-labelledby="t" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Option</th><th scope="col">Replaces Mailchimp</th><th scope="col">License</th><th scope="col" class="num">GitHub stars</th><th scope="col" class="num">Last update</th><th scope="col">Run it yourself</th><th scope="col">Hosted price</th></tr></thead>
+      <tbody>
+        <tr>
+          <th scope="row"><a href="#p-listmonk">Listmonk</a></th>
+          <td><span class="fit"><span class="mark" aria-hidden="true">●</span>Full</span><span class="sub">campaigns & lists</span></td>
+          <td>AGPL-3.0</td>
+          <td class="num">~17k</td>
+          <td class="num">Oct 2026</td>
+          <td>Yes<span class="sub">one Go binary + Postgres</span></td>
+          <td>None official<span class="sub">third-party one-click hosts exist</span></td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="#p-mautic">Mautic</a></th>
+          <td><span class="fit"><span class="mark" aria-hidden="true">●</span>Full</span><span class="sub">incl. automations</span></td>
+          <td>GPL-3.0</td>
+          <td class="num">~8k</td>
+          <td class="num">Oct 2026</td>
+          <td>Yes<span class="sub">PHP, MySQL, cron jobs</span></td>
+          <td>Via partners<span class="sub">priced on quote</span></td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="#p-keila">Keila</a></th>
+          <td><span class="fit"><span class="mark" aria-hidden="true">◐</span>Partial</span><span class="sub">newsletters only</span></td>
+          <td>AGPL-3.0</td>
+          <td class="num">~1.6k</td>
+          <td class="num">Sep 2026</td>
+          <td>Yes<span class="sub">Docker image</span></td>
+          <td>Keila Cloud<span class="sub">paid, by contact count</span></td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="#p-sendportal">Sendportal</a></th>
+          <td><span class="fit"><span class="mark" aria-hidden="true">◐</span>Partial</span><span class="sub">campaigns via your ESP</span></td>
+          <td>MIT</td>
+          <td class="num">~2k</td>
+          <td class="num">2024</td>
+          <td>Yes<span class="sub">Laravel app</span></td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <th scope="row"><a href="#p-postal">Postal</a></th>
+          <td><span class="fit"><span class="mark" aria-hidden="true">○</span>Niche</span><span class="sub">sending server only</span></td>
+          <td>MIT</td>
+          <td class="num">~15k</td>
+          <td class="num">Sep 2026</td>
+          <td>Yes<span class="sub">Docker, needs your own IPs</span></td>
+          <td>None</td>
+        </tr>
+        <tr class="other first">
+          <th scope="row">Build your own<span class="sub">this page’s prompt</span></th>
+          <td><span class="fit"><span class="mark" aria-hidden="true">◐</span>Partial</span><span class="sub">core loop</span></td>
+          <td>Yours</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td>Yes<span class="sub">you own the code</span></td>
+          <td>A few $/mo<span class="sub">+ per-email API cost</span></td>
+        </tr>
+        <tr class="other">
+          <th scope="row">Keep paying Mailchimp<span class="sub">the baseline</span></th>
+          <td><span class="fit"><span class="mark" aria-hidden="true">●</span>Full</span><span class="sub">the original</span></td>
+          <td>Proprietary</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td>No</td>
+          <td>$20/mo<span class="sub">Standard, usage-based, checked 30 Jul 2026</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hint"><span class="fit"><span class="mark" aria-hidden="true">●</span>Full</span> does the whole job · <span class="fit"><span class="mark" aria-hidden="true">◐</span>Partial</span> most of it · <span class="fit"><span class="mark" aria-hidden="true">○</span>Niche</span> one piece. <span class="swipe">On a phone, swipe the table sideways.</span></p>
+</section>
+
+    <section class="sec" aria-labelledby="h-apps">
+      <h2 id="h-apps">The five free apps, up close</h2>
+      <p class="intro">What each one is good at, and what it will not do for you.</p>
+      <div class="apps">
+    <article class="app" id="p-listmonk" aria-labelledby="h-listmonk">
+      <h3 id="h-listmonk">Listmonk</h3>
+      <p class="app-meta"><span class="fit"><span class="mark" aria-hidden="true">●</span>Full fit</span> <span aria-hidden="true">·</span> AGPL-3.0 <span aria-hidden="true">·</span> ~17k stars <span aria-hidden="true">·</span> <a href="https://github.com/knadh/listmonk">GitHub: knadh/listmonk</a></p>
+      <p class="app-what">A newsletter and mailing-list manager shipped as a single Go binary. Postgres is its only dependency.</p>
+      <div class="app-notes">
+        <div><span class="label">Good for</span><p>Newsletters and one-off campaigns to large lists, on a server that costs a few dollars a month.</p></div>
+        <div><span class="label">Watch out</span><ul><li>No multi-step visual automation journeys.</li><li>It does not deliver mail itself: you plug in SMTP or SES, and deliverability becomes your job.</li></ul></div>
+      </div>
+    </article>
+    <article class="app" id="p-mautic" aria-labelledby="h-mautic">
+      <h3 id="h-mautic">Mautic</h3>
+      <p class="app-meta"><span class="fit"><span class="mark" aria-hidden="true">●</span>Full fit</span> <span aria-hidden="true">·</span> GPL-3.0 <span aria-hidden="true">·</span> ~8k stars <span aria-hidden="true">·</span> <a href="https://github.com/mautic/mautic">GitHub: mautic/mautic</a></p>
+      <p class="app-what">A full marketing-automation suite: campaign builder, forms, landing pages, lead scoring.</p>
+      <div class="app-notes">
+        <div><span class="label">Good for</span><p>Teams that rely on Mailchimp’s automation journeys and want them without a subscription.</p></div>
+        <div><span class="label">Watch out</span><ul><li>Heavy to run and to upgrade: PHP, a queue, several cron jobs.</li><li>A steep learning curve if all you send is a monthly newsletter.</li></ul></div>
+      </div>
+    </article>
+    <article class="app" id="p-keila" aria-labelledby="h-keila">
+      <h3 id="h-keila">Keila</h3>
+      <p class="app-meta"><span class="fit"><span class="mark" aria-hidden="true">◐</span>Partial fit</span> <span aria-hidden="true">·</span> AGPL-3.0 <span aria-hidden="true">·</span> ~1.6k stars <span aria-hidden="true">·</span> <a href="https://github.com/pentacent/keila">GitHub: pentacent/keila</a></p>
+      <p class="app-what">A simple newsletter tool with a block and Markdown editor, made by a small European team.</p>
+      <div class="app-notes">
+        <div><span class="label">Good for</span><p>Small senders who want a clean editor and the option of a hosted plan later.</p></div>
+        <div><span class="label">Watch out</span><ul><li>Small community, so fewer answers when something breaks.</li><li>No automation journeys and few integrations.</li></ul></div>
+      </div>
+    </article>
+    <article class="app" id="p-sendportal" aria-labelledby="h-sendportal">
+      <h3 id="h-sendportal">Sendportal</h3>
+      <p class="app-meta"><span class="fit"><span class="mark" aria-hidden="true">◐</span>Partial fit</span> <span aria-hidden="true">·</span> MIT <span aria-hidden="true">·</span> ~2k stars <span aria-hidden="true">·</span> <a href="https://github.com/mettle/sendportal">GitHub: mettle/sendportal</a></p>
+      <p class="app-what">A Laravel campaign manager that sends through SES, Postmark, Mailgun, SendGrid or Postal.</p>
+      <div class="app-notes">
+        <div><span class="label">Good for</span><p>PHP shops that already run Laravel and want campaigns inside their own stack.</p></div>
+        <div><span class="label">Watch out</span><ul><li>Development has slowed: check recent commits before you commit to it.</li><li>No automations, basic reporting.</li></ul></div>
+      </div>
+    </article>
+    <article class="app" id="p-postal" aria-labelledby="h-postal">
+      <h3 id="h-postal">Postal</h3>
+      <p class="app-meta"><span class="fit"><span class="mark" aria-hidden="true">○</span>Niche fit</span> <span aria-hidden="true">·</span> MIT <span aria-hidden="true">·</span> ~15k stars <span aria-hidden="true">·</span> <a href="https://github.com/postalserver/postal">GitHub: postalserver/postal</a></p>
+      <p class="app-what">A mail delivery platform: your own SES or Mailgun, not a newsletter app.</p>
+      <div class="app-notes">
+        <div><span class="label">Good for</span><p>Pairing with Listmonk or Sendportal when you want to own the sending side too.</p></div>
+        <div><span class="label">Watch out</span><ul><li>No lists, no campaign editor: it replaces the pipe, not Mailchimp.</li><li>You start with zero IP reputation, the hardest part of email.</li></ul></div>
+      </div>
+    </article></div>
+    </section>
+
+    <section class="sec" id="build" aria-labelledby="h-build">
+      <div class="build">
+        <h2 id="h-build">Or build it yourself</h2>
+        <p>A contact list with tags and segments, a Markdown campaign composer, and sends through a transactional email API with compliant unsubscribe handling built in.</p>
+        <p class="facts"><span aria-hidden="true">◐</span> Kinda · takes about a week · needs hosting, a domain, a database, an email-sending API · not yet tested in one run</p>
+        <div class="prompt">
+          <div class="prompt-bar"><span>Paste this into Claude Code, Cursor or Codex</span><button type="button" class="copy" id="copy-prompt" hidden>Copy the prompt</button><span class="status" id="copy-status" role="status" aria-live="polite"></span></div>
+          <pre id="prompt-text" tabindex="0" aria-label="Prompt">Build a small-list email campaign tool: contacts with tags and custom fields, CSV import and export, and segments defined as saved filters (has a given tag, joined after a date, opened the last campaign). Write campaigns in Markdown, rendered into one clean single-column HTML email with an automatically generated plain-text alternative. Send through a real transactional email API (Amazon SES or similar) with throttling and a per-recipient status; wire up bounce and complaint webhooks to automatically suppress those addresses going forward. Bake compliance in rather than bolting it on: an unsubscribe link and your postal address in every footer, a List-Unsubscribe header, and double opt-in on the public signup form. Make open tracking a per-campaign toggle, off by default. Show a campaign report with sent, bounced, and unsubscribed counts.
+
+Do not build a drag-and-drop template editor, visual automation journeys, or e-commerce integrations — those are real, separate products. Be blunt in the README: inbox placement is earned through sending behavior over time, not configured. Document SPF, DKIM, and DMARC setup, and warm up sending volume gradually on a new domain.</pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" aria-labelledby="h-lose">
+      <h2 id="h-lose">What you lose if you leave</h2>
+      <ul class="lose"><li>Deliverability backed by an established sending reputation</li><li>The drag-and-drop template editor</li><li>Visual automation journeys</li><li>E-commerce integrations</li><li>Dedicated support</li></ul>
+    </section>
+
+    <section class="sec" id="keep-paying" aria-labelledby="h-why">
+      <h2 id="h-why">Why people still pay for Mailchimp</h2>
+      <blockquote class="quote"><p>Email is business-critical, and deliverability problems are expensive to diagnose and fix — people pay so inbox placement is someone else's ongoing responsibility.</p></blockquote>
+      <p class="quote-note">A classic hidden-moat example: the sending UI is easy to rebuild; inbox placement cannot be hand-waved.</p>
+    </section>
+
+    <section class="sec" aria-labelledby="h-faq">
+      <h2 id="h-faq">Questions people ask</h2>
+      <div class="faq"><details open><summary>What’s the best free Mailchimp alternative?</summary><p>For most newsletters, Listmonk. It is free, AGPL-licensed and light enough for a small server. It does not deliver mail on its own, so pair it with a sending service such as Amazon SES. If you need visual automation journeys, Mautic is the open-source option that has them, at the price of a much heavier install.</p></details><details><summary>Can I move from Mailchimp to Listmonk without losing subscribers?</summary><p>Yes. Export your audience from Mailchimp as CSV and import it into Listmonk, keeping unsubscribed and cleaned contacts flagged so you never mail them again. Automations and templates do not transfer. Warm up the new sending domain slowly: send to your most engaged readers first.</p></details><details><summary>Can I import my existing Mailchimp audience?</summary><p>Yes — Mailchimp exports your contacts, tags, and custom fields to CSV, which imports directly here. Automation journeys and templates don't transfer; that logic has to be rebuilt from scratch.</p></details><details><summary>Will it work on my phone?</summary><p>The admin view is a plain web page, usable on a phone for a quick check, but the composer isn't optimized for a small screen and there's no dedicated app.</p></details><details><summary>What does it cost to run?</summary><p>Hosting, a domain, and a database, typically a few dollars a month, plus per-email sending costs on the transactional API — often well under Mailchimp's tiered pricing at small list sizes.</p></details><details><summary>What's the one thing that doesn't survive the rebuild?</summary><p>Sending reputation. Mailchimp's shared and dedicated IPs carry years of established trust with inbox providers; a brand-new sending domain starts at zero and has to earn that trust the same slow way, regardless of how good the code is.</p></details></div>
+    </section>
+
+    <section class="sec" aria-labelledby="h-also">
+      <h2 id="h-also">People also look for alternatives to</h2>
+      <ul class="also"><li><a href="/en/tools/kit">Kit</a></li><li><a href="/en/tools/mailerlite">MailerLite</a></li><li><a href="/en/tools/beehiiv">Beehiiv</a></li><li><a href="/en/tools/brevo">Brevo</a></li><li><a href="/en/tools/activecampaign">ActiveCampaign</a></li><li><a href="/en/tools/constant-contact">Constant Contact</a></li><li><a href="/en/tools/campaign-monitor">Campaign Monitor</a></li><li><a href="/en/tools/buttondown">Buttondown</a></li><li><a href="/en/tools/drip">Drip</a></li><li><a href="/en/tools/ghost-pro">Ghost(Pro)</a></li></ul>
+    </section>
+
+    <section class="sec nl-block" aria-labelledby="h-nl">
+      <h2 id="h-nl" class="nl-h">One paid app a week: the free alternatives, and the prompt to build it.</h2>
+      <form class="newsletter" data-newsletter action="#" method="post" novalidate>
+        <label for="nl-email" class="visually-hidden">Your email address</label>
+        <div class="nl-row">
+          <input type="email" id="nl-email" name="email" required autocomplete="email" placeholder="you@example.com">
+          <button type="submit">Subscribe</button>
+        </div>
+        <p class="nl-note">Double opt-in. We send nothing until you confirm. Unsubscribe in one click.</p>
+        <p class="newsletter-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <details class="preview" open>
+      <summary>See the top of this page on a phone (320 px)</summary>
+      <div class="frame" role="group" aria-label="Mobile preview, 320 pixels wide"><div class="cq">
+<header class="head">
+  <div class="head-text">
+    <p class="eyebrow">Newsletters &amp; email · updated <time datetime="2026-10-17">17 Oct 2026</time></p>
+    <p class="h1">5 Free &amp; Open Source Mailchimp Alternatives (2026) <span class="h1-tail">— or Build Your Own</span></p>
+  </div>
+  <div class="sign" role="group" aria-label="Verdict">
+    <p class="sign-q">Can AI rebuild Mailchimp from one prompt?</p>
+    <p class="sign-v"><span aria-hidden="true">◐</span> Kinda</p>
+    <p class="sign-why">The app, yes. The inbox reputation, no.</p>
+    <p class="sign-price">Mailchimp Standard costs <strong>$20 a month</strong>, more as your list grows.<span>Checked <time datetime="2026-07-30">30 Jul 2026</time> on <a href="https://mailchimp.com/pricing/marketing/" tabindex="-1">mailchimp.com</a>.</span></p>
+  </div>
+  <p class="lede">The best open-source Mailchimp alternative for most newsletters is Listmonk: one small server, plus a sending service such as Amazon SES. Mautic is the only one here with visual automation journeys. Or skip the install and build the core loop yourself from the prompt below.</p>
+  
+</header>
+<section class="sec" aria-labelledby="pv-t">
+  <h2 id="pv-t">All the options, side by side</h2>
+  <p class="intro">Five free apps, plus building it yourself, plus staying put.</p>
+  <div class="tablewrap" role="region" aria-labelledby="pv-t" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Option</th><th scope="col">Replaces Mailchimp</th><th scope="col">License</th><th scope="col" class="num">GitHub stars</th><th scope="col" class="num">Last update</th><th scope="col">Run it yourself</th><th scope="col">Hosted price</th></tr></thead>
+      <tbody>
+        <tr>
+          <th scope="row">Listmonk</th>
+          <td><span class="fit"><span class="mark" aria-hidden="true">●</span>Full</span><span class="sub">campaigns & lists</span></td>
+          <td>AGPL-3.0</td>
+          <td class="num">~17k</td>
+          <td class="num">Oct 2026</td>
+          <td>Yes<span class="sub">one Go binary + Postgres</span></td>
+          <td>None official<span class="sub">third-party one-click hosts exist</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Mautic</th>
+          <td><span class="fit"><span class="mark" aria-hidden="true">●</span>Full</span><span class="sub">incl. automations</span></td>
+          <td>GPL-3.0</td>
+          <td class="num">~8k</td>
+          <td class="num">Oct 2026</td>
+          <td>Yes<span class="sub">PHP, MySQL, cron jobs</span></td>
+          <td>Via partners<span class="sub">priced on quote</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Keila</th>
+          <td><span class="fit"><span class="mark" aria-hidden="true">◐</span>Partial</span><span class="sub">newsletters only</span></td>
+          <td>AGPL-3.0</td>
+          <td class="num">~1.6k</td>
+          <td class="num">Sep 2026</td>
+          <td>Yes<span class="sub">Docker image</span></td>
+          <td>Keila Cloud<span class="sub">paid, by contact count</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Sendportal</th>
+          <td><span class="fit"><span class="mark" aria-hidden="true">◐</span>Partial</span><span class="sub">campaigns via your ESP</span></td>
+          <td>MIT</td>
+          <td class="num">~2k</td>
+          <td class="num">2024</td>
+          <td>Yes<span class="sub">Laravel app</span></td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <th scope="row">Postal</th>
+          <td><span class="fit"><span class="mark" aria-hidden="true">○</span>Niche</span><span class="sub">sending server only</span></td>
+          <td>MIT</td>
+          <td class="num">~15k</td>
+          <td class="num">Sep 2026</td>
+          <td>Yes<span class="sub">Docker, needs your own IPs</span></td>
+          <td>None</td>
+        </tr>
+        <tr class="other first">
+          <th scope="row">Build your own<span class="sub">this page’s prompt</span></th>
+          <td><span class="fit"><span class="mark" aria-hidden="true">◐</span>Partial</span><span class="sub">core loop</span></td>
+          <td>Yours</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td>Yes<span class="sub">you own the code</span></td>
+          <td>A few $/mo<span class="sub">+ per-email API cost</span></td>
+        </tr>
+        <tr class="other">
+          <th scope="row">Keep paying Mailchimp<span class="sub">the baseline</span></th>
+          <td><span class="fit"><span class="mark" aria-hidden="true">●</span>Full</span><span class="sub">the original</span></td>
+          <td>Proprietary</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td>No</td>
+          <td>$20/mo<span class="sub">Standard, usage-based, checked 30 Jul 2026</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hint"><span class="fit"><span class="mark" aria-hidden="true">●</span>Full</span> does the whole job · <span class="fit"><span class="mark" aria-hidden="true">◐</span>Partial</span> most of it · <span class="fit"><span class="mark" aria-hidden="true">○</span>Niche</span> one piece. <span class="swipe">On a phone, swipe the table sideways.</span></p>
+</section></div></div>
+    </details>
+  </main>
+  <footer class="foot">
+    <p>SaaS Made Free is an open-source guide to the subscriptions you could stop paying for. We don’t take affiliate money, we don’t rank sponsors, and this page loads nothing from anyone else.</p>
+    <p class="foot-links"><a href="https://github.com/saasmadefree/saasmadefree">Our code and data on GitHub</a><a href="https://github.com/saasmadefree/saasmadefree/blob/main/data/tools/mailchimp.json">Fix something on this page</a><a href="/fr/tools/mailchimp" hreflang="fr" lang="fr">En français</a><span>Updated <time datetime="2026-10-17">17 Oct 2026</time></span></p>
+  </footer>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('theme-toggle');
+  if(b){
+    b.hidden=false;
+    var cur=function(){var d=document.documentElement.dataset.theme;if(d)return d;return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';};
+    var sync=function(){var dark=cur()==='dark';b.setAttribute('aria-pressed',dark?'true':'false');var l=b.querySelector('[data-label]');if(l)l.textContent=dark?b.dataset.labelLight:b.dataset.labelDark;};
+    sync();
+    b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';document.documentElement.dataset.theme=n;try{localStorage.setItem('theme',n);}catch(e){}sync();});
+  }
+  var c=document.getElementById('copy-prompt'),p=document.getElementById('prompt-text'),st=document.getElementById('copy-status');
+  if(c&&p){
+    c.hidden=false;
+    c.addEventListener('click',function(){
+      var done=function(){if(st){st.textContent='Copied to clipboard.';setTimeout(function(){st.textContent='';},2500);}};
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(p.textContent).then(done,function(){sel();});}else sel();
+      function sel(){var r=document.createRange();r.selectNodeContents(p);var s=getSelection();s.removeAllRanges();s.addRange(r);if(st)st.textContent='Selected: press Ctrl+C or Cmd+C.';}
+    });
+  }
+})();
+</script>
+<script>
+document.querySelectorAll('form[data-newsletter]').forEach(function(f){
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var i=f.querySelector('input[name=email]'),s=f.querySelector('.newsletter-status');
+    if(!i.checkValidity()){s.textContent='Enter a valid email address.';i.focus();return;}
+    s.textContent='Check your inbox to confirm.';
+  });
+});
+</script>
+</body>
+</html>

@@ -23,10 +23,10 @@
     "hosting",
     "domain"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Audacity",
-      "url": "https://github.com/audacity/audacity"
+      "project": "audacity",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

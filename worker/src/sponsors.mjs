@@ -47,8 +47,9 @@ export const DEFAULT_LANG = 'en';
 /**
  * URLs de retour de la session Stripe.
  *
- * Le site est entièrement préfixé par langue (`dist/<lang>/sponsor/`) et n'a
- * aucune page `/sponsor` à la racine : y renvoyer l'acheteur après paiement lui
+ * Le site est entièrement préfixé par langue : la page est `/<lang>/sponsor`,
+ * écrite en `dist/<lang>/sponsor.html` (pageFile, scripts/lib/site-seo.mjs).
+ * Il n'y a aucune page `/sponsor` à la racine : y renvoyer l'acheteur après paiement lui
  * servirait une 404, ce qui se lit comme un paiement échoué. Une langue
  * inconnue — ou hostile — retombe sur l'anglais plutôt que de fabriquer une
  * URL morte ou de laisser un tiers choisir la destination.

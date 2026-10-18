@@ -24,10 +24,10 @@
     "oauth-app",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Roundcube",
-      "url": "https://github.com/roundcube/roundcubemail"
+      "project": "roundcubemail",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

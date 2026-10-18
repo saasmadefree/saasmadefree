@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "linkding",
-      "url": "https://github.com/sissbruecker/linkding"
+      "project": "linkding",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

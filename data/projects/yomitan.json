@@ -1,0 +1,26 @@
+{
+  "slug": "yomitan",
+  "name": "Yomitan",
+  "homepage": "https://github.com/yomidevs/yomitan",
+  "repo": "yomidevs/yomitan",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "learning"
+  ],
+  "stats": {
+    "stars": 2895,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2023-03-04",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

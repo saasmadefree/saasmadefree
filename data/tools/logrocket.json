@@ -25,10 +25,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "rrweb",
-      "url": "https://github.com/rrweb-io/rrweb"
+      "project": "rrweb",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

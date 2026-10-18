@@ -1,0 +1,26 @@
+{
+  "slug": "freshrss",
+  "name": "FreshRSS",
+  "homepage": "https://github.com/FreshRSS/FreshRSS",
+  "repo": "FreshRSS/FreshRSS",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "read-it-later"
+  ],
+  "stats": {
+    "stars": 16308,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2012-10-21",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "slug": "netnewswire",
+  "name": "NetNewsWire",
+  "homepage": "https://github.com/Ranchero-Software/NetNewsWire",
+  "repo": "Ranchero-Software/NetNewsWire",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "read-it-later"
+  ],
+  "stats": {
+    "stars": 10470,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2017-05-21",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

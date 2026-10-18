@@ -1,0 +1,25 @@
+{
+  "slug": "odoo",
+  "name": "Odoo",
+  "homepage": "https://github.com/odoo/odoo",
+  "repo": "odoo/odoo",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "finance-accounting"
+  ],
+  "stats": {
+    "stars": 55109,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2014-05-13",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

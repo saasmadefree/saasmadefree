@@ -1,0 +1,26 @@
+{
+  "slug": "platform",
+  "name": "Huly",
+  "homepage": "https://github.com/hcengineering/platform",
+  "repo": "hcengineering/platform",
+  "license": "EPL-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "dev-tools"
+  ],
+  "stats": {
+    "stars": 27932,
+    "lastCommit": "2026-10-14",
+    "createdAt": "2021-08-02",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

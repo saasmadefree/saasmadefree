@@ -25,10 +25,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Owncast",
-      "url": "https://github.com/owncast/owncast"
+      "project": "owncast",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "rembg",
-      "url": "https://github.com/danielgatis/rembg"
+      "project": "rembg",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

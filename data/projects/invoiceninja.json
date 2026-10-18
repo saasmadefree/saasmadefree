@@ -1,0 +1,25 @@
+{
+  "slug": "invoiceninja",
+  "name": "Invoice Ninja",
+  "homepage": "https://github.com/invoiceninja/invoiceninja",
+  "repo": "invoiceninja/invoiceninja",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "finance-accounting"
+  ],
+  "stats": {
+    "stars": 10290,
+    "lastCommit": "2026-09-18",
+    "createdAt": "2013-11-26",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

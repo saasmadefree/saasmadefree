@@ -25,10 +25,10 @@
     "database",
     "oauth-app"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Postiz",
-      "url": "https://github.com/gitroomhq/postiz-app"
+      "project": "postiz-app",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

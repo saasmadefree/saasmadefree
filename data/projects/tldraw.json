@@ -1,0 +1,25 @@
+{
+  "slug": "tldraw",
+  "name": "tldraw",
+  "homepage": "https://github.com/tldraw/tldraw",
+  "repo": "tldraw/tldraw",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "whiteboard"
+  ],
+  "stats": {
+    "stars": 50962,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2021-05-09",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -25,10 +25,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "GlitchTip",
-      "url": "https://gitlab.com/glitchtip/glitchtip-backend"
+      "project": "glitchtip",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

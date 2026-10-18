@@ -25,10 +25,10 @@
     "database",
     "oauth-app"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Huginn",
-      "url": "https://github.com/huginn/huginn"
+      "project": "huginn",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

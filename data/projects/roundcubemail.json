@@ -1,0 +1,26 @@
+{
+  "slug": "roundcubemail",
+  "name": "Roundcube",
+  "homepage": "https://github.com/roundcube/roundcubemail",
+  "repo": "roundcube/roundcubemail",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "email"
+  ],
+  "stats": {
+    "stars": 7220,
+    "lastCommit": "2026-10-13",
+    "createdAt": "2012-05-04",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

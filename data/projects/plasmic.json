@@ -1,0 +1,26 @@
+{
+  "slug": "plasmic",
+  "name": "Plasmic",
+  "homepage": "https://github.com/plasmicapp/plasmic",
+  "repo": "plasmicapp/plasmic",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "no-code-apps"
+  ],
+  "stats": {
+    "stars": 7110,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2021-02-02",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "slug": "continue",
+  "name": "Continue",
+  "homepage": "https://github.com/continuedev/continue",
+  "repo": "continuedev/continue",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "dev-tools"
+  ],
+  "stats": {
+    "stars": 36233,
+    "lastCommit": "2026-07-21",
+    "createdAt": "2023-05-24",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

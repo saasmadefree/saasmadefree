@@ -25,18 +25,18 @@
     "database",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Mautic",
-      "url": "https://github.com/mautic/mautic"
+      "project": "mautic",
+      "fit": "partial"
     },
     {
-      "name": "Listmonk",
-      "url": "https://github.com/knadh/listmonk"
+      "project": "listmonk",
+      "fit": "partial"
     },
     {
-      "name": "Keila",
-      "url": "https://github.com/pentacent/keila"
+      "project": "keila",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

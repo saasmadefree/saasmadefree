@@ -1,0 +1,26 @@
+{
+  "slug": "easyappointments",
+  "name": "Easy!Appointments",
+  "homepage": "https://github.com/alextselegidis/easyappointments",
+  "repo": "alextselegidis/easyappointments",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "scheduling"
+  ],
+  "stats": {
+    "stars": 4443,
+    "lastCommit": "2026-10-06",
+    "createdAt": "2014-11-26",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

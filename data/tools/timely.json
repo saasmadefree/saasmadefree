@@ -24,10 +24,10 @@
     "anthropic-api-key",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "ActivityWatch",
-      "url": "https://github.com/ActivityWatch/activitywatch"
+      "project": "activitywatch",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

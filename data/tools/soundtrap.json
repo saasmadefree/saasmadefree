@@ -23,16 +23,14 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Ardour",
-      "url": "https://github.com/Ardour/ardour",
-      "license": "GPL-2.0"
+      "project": "ardour",
+      "fit": "partial"
     },
     {
-      "name": "LMMS",
-      "url": "https://github.com/LMMS/lmms",
-      "license": "GPL-2.0"
+      "project": "lmms",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

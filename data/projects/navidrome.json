@@ -1,0 +1,26 @@
+{
+  "slug": "navidrome",
+  "name": "Navidrome",
+  "homepage": "https://github.com/navidrome/navidrome",
+  "repo": "navidrome/navidrome",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "media-streaming"
+  ],
+  "stats": {
+    "stars": 24205,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2016-02-24",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -22,10 +22,10 @@
   "requirements": [
     "hosting"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Coolify",
-      "url": "https://github.com/coollabsio/coolify"
+      "project": "coolify",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -29,6 +29,10 @@ export function compileValidators(schemaDir) {
     toolI18n: ajv.compile(load('tool-i18n.schema.json')),
     agent: ajv.compile(load('agent.schema.json')),
     sponsors: ajv.compile(load('sponsors.schema.json')),
+    project: ajv.compile(load('project.schema.json')),
+    projectI18n: ajv.compile(load('project-i18n.schema.json')),
+    compare: ajv.compile(load('compare.schema.json')),
+    compareI18n: ajv.compile(load('compare-i18n.schema.json')),
   };
 }
 
@@ -41,13 +45,28 @@ export async function loadData(rootDir) {
     tools.set(file.replace(/\.json$/, ''), tool);
   }
 
+  const projects = new Map();
+  for (const file of await listJson(join(dataDir, 'projects'))) {
+    projects.set(file.replace(/\.json$/, ''), await readJson(join(dataDir, 'projects', file)));
+  }
+
   const i18n = new Map();
+  const projectI18n = new Map();
+  const compareI18n = new Map();
   const ui = new Map();
   for (const lang of LANGS) {
     const langDir = join(dataDir, 'i18n', lang);
     for (const file of await listJson(join(langDir, 'tools'))) {
       const slug = file.replace(/\.json$/, '');
       i18n.set(`${lang}/${slug}`, await readJson(join(langDir, 'tools', file)));
+    }
+    for (const file of await listJson(join(langDir, 'projects'))) {
+      const slug = file.replace(/\.json$/, '');
+      projectI18n.set(`${lang}/${slug}`, await readJson(join(langDir, 'projects', file)));
+    }
+    for (const file of await listJson(join(langDir, 'compare'))) {
+      const key = file.replace(/\.json$/, '');
+      compareI18n.set(`${lang}/${key}`, await readJson(join(langDir, 'compare', file)));
     }
     try {
       ui.set(lang, await readJson(join(langDir, 'ui.json')));
@@ -88,5 +107,22 @@ export async function loadData(rootDir) {
     );
   }
 
-  return { tools, i18n, ui, agents, categories, sponsors };
+  // Optionnel comme sponsors.json : tant qu'aucun comparatif n'est publié, le
+  // fichier peut ne pas exister. Présent, il est validé tel quel (schéma
+  // compare.schema.json), y compris une racine qui ne serait pas un tableau.
+  let compare = [];
+  try {
+    compare = await readJson(join(dataDir, 'compare.json'));
+  } catch (err) {
+    if (err.code !== 'ENOENT') throw err;
+  }
+
+  // Obligatoire, lui : un fichier absent désactiverait en silence le contrôle
+  // des tournures interdites (spec §7), et rien ne le signalerait.
+  const bannedPhrases = await readJson(join(dataDir, 'style', 'banned-phrases.json'));
+
+  return {
+    tools, i18n, ui, agents, categories, sponsors,
+    projects, projectI18n, compare, compareI18n, bannedPhrases,
+  };
 }

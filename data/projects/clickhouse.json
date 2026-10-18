@@ -1,0 +1,26 @@
+{
+  "slug": "clickhouse",
+  "name": "ClickHouse",
+  "homepage": "https://github.com/ClickHouse/ClickHouse",
+  "repo": "ClickHouse/ClickHouse",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "monitoring"
+  ],
+  "stats": {
+    "stars": 50458,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2016-06-02",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "slug": "rendercv",
+  "name": "RenderCV",
+  "homepage": "https://github.com/rendercv/rendercv",
+  "repo": "rendercv/rendercv",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "job-search"
+  ],
+  "stats": {
+    "stars": 17772,
+    "lastCommit": "2026-03-25",
+    "createdAt": "2023-06-11",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

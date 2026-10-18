@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "FFmpeg",
-      "url": "https://github.com/FFmpeg/FFmpeg"
+      "project": "ffmpeg",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

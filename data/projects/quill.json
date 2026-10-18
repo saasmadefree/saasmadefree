@@ -1,0 +1,26 @@
+{
+  "slug": "quill",
+  "name": "quill",
+  "homepage": "https://github.com/humanitas-labs/quill",
+  "repo": "humanitas-labs/quill",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "meeting-notes"
+  ],
+  "stats": {
+    "stars": 3937,
+    "lastCommit": "2026-09-27",
+    "createdAt": "2026-07-24",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

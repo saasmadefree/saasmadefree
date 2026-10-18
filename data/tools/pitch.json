@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "reveal.js",
-      "url": "https://github.com/hakimel/reveal.js"
+      "project": "reveal-js",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -1,0 +1,25 @@
+{
+  "slug": "affine",
+  "name": "AFFiNE",
+  "homepage": "https://github.com/toeverything/AFFiNE",
+  "repo": "toeverything/AFFiNE",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "notes-knowledge"
+  ],
+  "stats": {
+    "stars": 73594,
+    "lastCommit": "2026-10-11",
+    "createdAt": "2022-07-31",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "slug": "coolify",
+  "name": "Coolify",
+  "homepage": "https://github.com/coollabsio/coolify",
+  "repo": "coollabsio/coolify",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "hosting"
+  ],
+  "stats": {
+    "stars": 63084,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2021-01-25",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

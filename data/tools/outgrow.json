@@ -24,10 +24,10 @@
     "database",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "LimeSurvey",
-      "url": "https://github.com/LimeSurvey/LimeSurvey"
+      "project": "limesurvey",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

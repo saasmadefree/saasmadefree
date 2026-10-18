@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Postiz (open source)",
-      "url": "https://github.com/gitroomhq/postiz-app"
+      "project": "postiz-app",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

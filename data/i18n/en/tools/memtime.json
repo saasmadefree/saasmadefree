@@ -18,7 +18,7 @@
     },
     {
       "q": "What actually breaks in cross-platform capture?",
-      "a": "Permissions. macOS requires accessibility and screen-recording grants that reset on some updates; Wayland exposes far less than X11; Windows behaves differently for elevated processes. That maintenance is what the licence fee covers."
+      "a": "Permissions. macOS requires accessibility and screen-recording grants that reset on some updates; Wayland exposes far less than X11; Windows behaves differently for processes running as administrator. That maintenance is what the licence fee covers."
     },
     {
       "q": "Is a coverage bar not trivial?",

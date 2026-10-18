@@ -34,7 +34,14 @@ jobs:
       # une copie fraîche du dépôt, les lancer d'abord fait échouer ces deux
       # fichiers entiers ("Cannot find module") ; en local ça passe seulement
       # parce qu'un build précédent a laissé le fichier derrière lui.
+      # Newsletter SmartLetter (spec D13, Ruling 32) : la clé `signups` est
+      # publique par conception (elle finit dans le HTML), mais elle reste en
+      # `secrets` : une `vars` s'imprime en clair dans les journaux d'Actions.
+      # Absentes, le build ne rend aucun formulaire.
       - name: Construire le feed
+        env:
+          SMARTLETTER_SIGNUPS_KEY: ${{ secrets.SMARTLETTER_SIGNUPS_KEY }}
+          SMARTLETTER_SEGMENT_ID: ${{ secrets.SMARTLETTER_SEGMENT_ID }}
         run: npm run build
       # Reste immédiatement après le build : c'est le build qu'on vérifie
       # reproductible, pas l'état de l'arbre après les tests.
@@ -190,8 +197,20 @@ jobs:
       - uses: actions/setup-node@v7
         with: { node-version: '22', cache: npm }
       - run: npm ci
+      # Mêmes variables que le build de `data-and-code` : le site publié porte
+      # le formulaire newsletter si et seulement si la clé est définie.
       - name: Construire le site
+        env:
+          SMARTLETTER_SIGNUPS_KEY: ${{ secrets.SMARTLETTER_SIGNUPS_KEY }}
+          SMARTLETTER_SEGMENT_ID: ${{ secrets.SMARTLETTER_SEGMENT_ID }}
         run: npm run build
+      # La nuit, `data-and-code` est sauté : sans ce step, le site partirait
+      # sans aucun garde-fou sur dist/. Nombre de fichiers (spec D12, limite
+      # Cloudflare), poids de l'accueil, sitemaps, canonical, hreflang, liens
+      # internes : ces tests ne lisent que dist/, aucun appel réseau. Un
+      # échec arrête la publication.
+      - name: Garde-fous dist/
+        run: npx vitest run tests/dist-budget.test.mjs tests/site-indexing.test.mjs
       - name: Publier sur Cloudflare Pages
         # Un secret absent, un build raté ou un téléversement refusé font virer
         # le job au rouge : une expiration qui n'atteint jamais le site est pire

@@ -1,0 +1,26 @@
+{
+  "slug": "osmand",
+  "name": "OsmAnd",
+  "homepage": "https://github.com/osmandapp/OsmAnd",
+  "repo": "osmandapp/OsmAnd",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "travel"
+  ],
+  "stats": {
+    "stars": 6089,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2011-01-15",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

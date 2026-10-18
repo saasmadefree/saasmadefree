@@ -1,0 +1,26 @@
+{
+  "slug": "v2",
+  "name": "Miniflux",
+  "homepage": "https://github.com/miniflux/v2",
+  "repo": "miniflux/v2",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "read-it-later"
+  ],
+  "stats": {
+    "stars": 9804,
+    "lastCommit": "2026-10-12",
+    "createdAt": "2017-11-20",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

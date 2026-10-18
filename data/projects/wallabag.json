@@ -1,0 +1,26 @@
+{
+  "slug": "wallabag",
+  "name": "wallabag",
+  "homepage": "https://github.com/wallabag/wallabag",
+  "repo": "wallabag/wallabag",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "read-it-later"
+  ],
+  "stats": {
+    "stars": 13016,
+    "lastCommit": "2026-10-13",
+    "createdAt": "2013-04-03",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

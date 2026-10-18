@@ -1,0 +1,26 @@
+{
+  "slug": "prometheus",
+  "name": "Prometheus",
+  "homepage": "https://github.com/prometheus/prometheus",
+  "repo": "prometheus/prometheus",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "monitoring"
+  ],
+  "stats": {
+    "stars": 66605,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2012-11-24",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

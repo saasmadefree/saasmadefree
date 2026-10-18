@@ -22,10 +22,10 @@
   "requirements": [
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "bibisco",
-      "url": "https://github.com/andreafeccomandi/bibisco"
+      "project": "bibisco",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

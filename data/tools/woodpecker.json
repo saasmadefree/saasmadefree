@@ -25,10 +25,10 @@
     "database",
     "oauth-app"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Mautic",
-      "url": "https://github.com/mautic/mautic"
+      "project": "mautic",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

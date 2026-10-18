@@ -1,0 +1,26 @@
+{
+  "slug": "postiz-app",
+  "name": "Postiz",
+  "homepage": "https://github.com/gitroomhq/postiz-app",
+  "repo": "gitroomhq/postiz-app",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "social-media"
+  ],
+  "stats": {
+    "stars": 37321,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2023-07-08",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

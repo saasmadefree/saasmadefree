@@ -1,0 +1,25 @@
+{
+  "slug": "keepassxc",
+  "name": "KeePassXC",
+  "homepage": "https://github.com/KeePassXreboot/keepassxc",
+  "repo": "keepassxreboot/keepassxc",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "security"
+  ],
+  "stats": {
+    "stars": 29273,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2016-02-28",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

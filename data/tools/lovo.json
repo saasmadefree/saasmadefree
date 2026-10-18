@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Coqui TTS",
-      "url": "https://github.com/coqui-ai/TTS"
+      "project": "tts",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

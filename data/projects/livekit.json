@@ -1,0 +1,26 @@
+{
+  "slug": "livekit",
+  "name": "LiveKit",
+  "homepage": "https://github.com/livekit/livekit",
+  "repo": "livekit/livekit",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "video-meetings"
+  ],
+  "stats": {
+    "stars": 21513,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2020-09-30",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

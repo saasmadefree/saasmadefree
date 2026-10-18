@@ -24,10 +24,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Logseq",
-      "url": "https://github.com/logseq/logseq"
+      "project": "logseq",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

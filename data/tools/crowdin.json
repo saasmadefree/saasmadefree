@@ -24,16 +24,14 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Weblate",
-      "url": "https://github.com/WeblateOrg/weblate",
-      "license": "GPL-3.0"
+      "project": "weblate",
+      "fit": "partial"
     },
     {
-      "name": "Tolgee",
-      "url": "https://github.com/tolgee/tolgee-platform",
-      "license": "Apache-2.0"
+      "project": "tolgee-platform",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

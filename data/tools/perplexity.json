@@ -25,10 +25,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Perplexica",
-      "url": "https://github.com/ItzCrazyKns/Perplexica"
+      "project": "perplexica",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

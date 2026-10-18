@@ -32,9 +32,11 @@ SOFTWARE.
 --- Fonts ---
 
 The site self-hosts two typefaces, both under the SIL Open Font License 1.1:
-Archivo (Omnibus-Type) and DM Mono (Colophon Foundry). The woff2 files live in
-public/fonts/ and are served from our own origin — no font CDN is contacted.
-See public/fonts/LICENSE.txt for the per-family notices.
+Bricolage Grotesque (The Bricolage Grotesque Project Authors) and Atkinson
+Hyperlegible Next (The Atkinson Hyperlegible Next Project Authors). The woff2
+files live in public/fonts/ and are served from our own origin — no font CDN is
+contacted. See public/fonts/LICENSE.txt for the per-family notices and the full
+licence texts next to them.
 
 The public stats page (/stats) draws its chart with Chart.js (MIT License,
 Copyright (c) 2014-2024 Chart.js Contributors, https://www.chartjs.org), served

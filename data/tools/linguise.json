@@ -25,11 +25,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "LibreTranslate",
-      "url": "https://github.com/LibreTranslate/LibreTranslate",
-      "license": "AGPL-3.0"
+      "project": "libretranslate",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -24,11 +24,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Mealie",
-      "url": "https://github.com/mealie-recipes/mealie",
-      "license": "AGPL-3.0"
+      "project": "mealie",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

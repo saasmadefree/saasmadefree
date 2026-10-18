@@ -1,0 +1,26 @@
+{
+  "slug": "upscayl",
+  "name": "Upscayl",
+  "homepage": "https://github.com/upscayl/upscayl",
+  "repo": "upscayl/upscayl",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-image"
+  ],
+  "stats": {
+    "stars": 50682,
+    "lastCommit": "2026-03-27",
+    "createdAt": "2022-07-30",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

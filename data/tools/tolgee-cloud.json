@@ -25,11 +25,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Tolgee",
-      "url": "https://github.com/tolgee/tolgee-platform",
-      "license": "Apache-2.0"
+      "project": "tolgee-platform",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

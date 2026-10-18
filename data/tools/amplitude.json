@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Umami",
-      "url": "https://github.com/umami-software/umami"
+      "project": "umami",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

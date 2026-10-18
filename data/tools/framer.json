@@ -24,10 +24,10 @@
     "hosting",
     "domain"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "GrapesJS",
-      "url": "https://github.com/GrapesJS/grapesjs"
+      "project": "grapesjs",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

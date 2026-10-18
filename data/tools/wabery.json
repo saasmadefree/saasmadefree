@@ -24,12 +24,7 @@
     "domain",
     "database"
   ],
-  "priorArt": [
-    {
-      "name": "Meta WhatsApp Cloud API",
-      "url": "https://developers.facebook.com/docs/whatsapp/cloud-api"
-    }
-  ],
+  "alternatives": [],
   "relatedSlugs": [
     "cursor",
     "github-copilot",

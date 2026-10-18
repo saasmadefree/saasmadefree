@@ -1,0 +1,26 @@
+{
+  "slug": "mealie",
+  "name": "Mealie",
+  "homepage": "https://github.com/mealie-recipes/mealie",
+  "repo": "mealie-recipes/mealie",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "home-family"
+  ],
+  "stats": {
+    "stars": 13590,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2020-12-07",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

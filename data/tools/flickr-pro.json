@@ -25,10 +25,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "PhotoPrism",
-      "url": "https://github.com/photoprism/photoprism"
+      "project": "photoprism",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

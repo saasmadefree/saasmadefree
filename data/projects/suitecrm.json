@@ -1,0 +1,26 @@
+{
+  "slug": "suitecrm",
+  "name": "SuiteCRM",
+  "homepage": "https://github.com/SuiteCRM/SuiteCRM",
+  "repo": "SuiteCRM/SuiteCRM",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "crm-sales"
+  ],
+  "stats": {
+    "stars": 5795,
+    "lastCommit": "2026-10-15",
+    "createdAt": "2013-09-23",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

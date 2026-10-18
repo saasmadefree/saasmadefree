@@ -23,11 +23,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Matchering",
-      "url": "https://github.com/sergree/matchering",
-      "license": "GPL-3.0"
+      "project": "matchering",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

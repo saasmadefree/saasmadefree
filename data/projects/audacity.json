@@ -1,0 +1,25 @@
+{
+  "slug": "audacity",
+  "name": "Audacity",
+  "homepage": "https://github.com/audacity/audacity",
+  "repo": "audacity/audacity",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "audio-video"
+  ],
+  "stats": {
+    "stars": 18767,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2015-03-26",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

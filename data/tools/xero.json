@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Odoo",
-      "url": "https://github.com/odoo/odoo"
+      "project": "odoo",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

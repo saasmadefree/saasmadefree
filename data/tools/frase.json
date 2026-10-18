@@ -22,10 +22,10 @@
   "requirements": [
     "anthropic-api-key"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Danswer/Onyx",
-      "url": "https://github.com/onyx-dot-app/onyx"
+      "project": "onyx",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

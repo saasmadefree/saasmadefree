@@ -1,0 +1,26 @@
+{
+  "slug": "webstudio",
+  "name": "Webstudio",
+  "homepage": "https://github.com/webstudio-is/webstudio",
+  "repo": "webstudio-is/webstudio",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "website-builder"
+  ],
+  "stats": {
+    "stars": 9081,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2022-03-13",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Penpot",
-      "url": "https://github.com/penpot/penpot"
+      "project": "penpot",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

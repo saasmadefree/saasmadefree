@@ -23,16 +23,14 @@
   "requirements": [
     "anthropic-api-key"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "JSON Resume",
-      "url": "https://github.com/jsonresume/resume-cli",
-      "license": "MIT"
+      "project": "resume-cli",
+      "fit": "partial"
     },
     {
-      "name": "Reactive Resume",
-      "url": "https://github.com/AmruthPillai/Reactive-Resume",
-      "license": "MIT"
+      "project": "reactive-resume",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -1,0 +1,26 @@
+{
+  "slug": "serpbear",
+  "name": "SerpBear",
+  "homepage": "https://github.com/towfiqi/serpbear",
+  "repo": "towfiqi/serpbear",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "seo-marketing"
+  ],
+  "stats": {
+    "stars": 2114,
+    "lastCommit": "2026-05-14",
+    "createdAt": "2022-11-24",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -31,7 +31,7 @@ function classesInHtml(html) {
 /** Les classes que la feuille déclare comme cible d'au moins une règle.
  *
  *  On ne lit QUE le texte des sélecteurs — la portion avant chaque `{`. Lire
- *  la feuille entière ferait passer `url(/fonts/archivo-latin.woff2)` pour une
+ *  la feuille entière ferait passer `url(/fonts/bricolage-grotesque-latin.woff2)` pour une
  *  classe `woff2`, et le `.5rem` d'une déclaration pour une classe `5rem`.
  *
  *  Les @keyframes sont retirés d'abord : `from`, `to` et les pourcentages ne

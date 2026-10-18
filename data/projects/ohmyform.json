@@ -1,0 +1,26 @@
+{
+  "slug": "ohmyform",
+  "name": "OhMyForm",
+  "homepage": "https://github.com/ohmyform/ohmyform",
+  "repo": "ohmyform/ohmyform",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "forms"
+  ],
+  "stats": {
+    "stars": 2889,
+    "lastCommit": "2024-10-31",
+    "createdAt": "2019-07-11",
+    "archived": true,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

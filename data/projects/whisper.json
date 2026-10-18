@@ -1,0 +1,26 @@
+{
+  "slug": "whisper",
+  "name": "Whisper",
+  "homepage": "https://github.com/openai/whisper",
+  "repo": "openai/whisper",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "learning"
+  ],
+  "stats": {
+    "stars": 110754,
+    "lastCommit": "2026-08-31",
+    "createdAt": "2022-09-16",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

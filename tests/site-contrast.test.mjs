@@ -1,6 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import { TOKENS } from '../scripts/lib/site-styles.mjs';
 
+// Système de design « La table de cuisine, aérée » (docs/superpowers/specs/
+// 2026-10-17-design-system.md, §1). Chaque paire encre/fond réellement posée
+// par la feuille est vérifiée ici, dans les deux thèmes : WCAG 2.2 AA, 4,5:1
+// pour le texte (1.4.3), 3:1 pour les bordures de contrôle et l'anneau de
+// focus (1.4.11). `rule` n'est jamais vérifié : il ne sert qu'aux filets
+// décoratifs, jamais à la seule limite d'un contrôle.
+
 function luminance(hex) {
   const c = hex.replace('#', '');
   const [r, g, b] = [0, 2, 4].map((i) => {
@@ -14,46 +21,54 @@ function ratio(fg, bg) {
   return (a + 0.05) / (b + 0.05);
 }
 
-// Paires du spec §7 : chaque encre porteuse d'information sur chaque papier où
-// elle se pose. La trame et les tons de pile sont décoratifs, pas listés.
-const INKS = ['ink', 'ink2', 'ink3', 'pen', 'stampYes', 'stampKinda', 'stampNo', 'stampDate'];
-const PAPERS = ['paperDesk', 'paperFolder', 'paperSheet', 'paperBright', 'paperCartouche', 'hl'];
+// Texte : les trois encres sur les trois surfaces où elles se posent.
+const TEXT_INKS = ['ink', 'ink2', 'tomato'];
+const SURFACES = ['bg', 'panel', 'card'];
+// Paires dédiées : un fond qui n'accueille qu'une encre précise.
+const TEXT_PAIRS = [
+  ['btnInk', 'btn'], // le bouton principal (Copier le prompt)
+  ['bg', 'ink'], // la pastille de filtre active, inversée
+  ['signInk', 'mustard'], // le panneau de verdict
+  ['signInk2', 'mustard'], // sa ligne secondaire (date, source)
+];
+// Composants d'interface (1.4.11) : bordures de champ, de pastille, focus.
+const UI_PAIRS = [
+  ['field', 'bg'], ['field', 'card'], ['field', 'panel'],
+  ['ink2', 'bg'], ['ink2', 'card'],
+  ['focus', 'bg'], ['focus', 'panel'], ['focus', 'card'],
+  ['signInk', 'mustard'], // l'anneau de focus dans le panneau prend signInk
+];
 
 for (const theme of ['light', 'dark']) {
   describe(`contraste AA — thème ${theme}`, () => {
-    for (const ink of INKS) {
-      for (const paper of PAPERS) {
-        it(`${ink} sur ${paper} ≥ 4.5`, () => {
-          const t = TOKENS[theme];
-          expect(ratio(t[ink], t[paper])).toBeGreaterThanOrEqual(4.5);
+    const t = TOKENS[theme];
+
+    for (const ink of TEXT_INKS) {
+      for (const surface of SURFACES) {
+        it(`${ink} sur ${surface} ≥ 4.5`, () => {
+          expect(ratio(t[ink], t[surface])).toBeGreaterThanOrEqual(4.5);
         });
       }
     }
-    // Garde-fou d'effondrement de palette : les trois encres ne doivent pas
-    // converger vers des couleurs voisines quand on ajuste le thème sombre.
-    // Distance RGB euclidienne, PAS un ratio de luminance — vert et rouge
-    // peuvent être distincts à luminance identique (la paire la plus serrée
-    // du clair normatif, ambre/rouge, est à ≈63). La discrimination pour les
-    // lecteurs daltoniens n'est pas portée par ce test : elle est garantie
-    // par les libellés (le verdict n'est jamais la couleur seule, spec §7).
-    // Direction « Le Verdict » : les trois encres servent AUSSI de fond
-    // d'aplat (bande de l'accueil, chemise de la fiche). `onStamp` est la
-    // seule encre qu'on ait le droit d'y poser — ce test est ce qui rend cette
-    // inversion sûre, dans les deux thèmes.
-    for (const stampInk of ['stampYes', 'stampKinda', 'stampNo']) {
-      it(`onStamp sur ${stampInk} ≥ 4.5`, () => {
-        const t = TOKENS[theme];
-        expect(ratio(t.onStamp, t[stampInk])).toBeGreaterThanOrEqual(4.5);
+
+    for (const [fg, bg] of TEXT_PAIRS) {
+      it(`${fg} sur ${bg} ≥ 4.5`, () => {
+        expect(ratio(t[fg], t[bg])).toBeGreaterThanOrEqual(4.5);
       });
     }
 
-    it('les trois encres de verdict ne s’effondrent pas l’une sur l’autre (ΔRGB ≥ 50)', () => {
-      const t = TOKENS[theme];
-      const rgb = (hex) => [0, 2, 4].map((i) => parseInt(hex.slice(1).slice(i, i + 2), 16));
-      const dist = (a, b) => Math.hypot(...rgb(t[a]).map((v, i) => v - rgb(t[b])[i]));
-      for (const [a, b] of [['stampYes', 'stampKinda'], ['stampYes', 'stampNo'], ['stampKinda', 'stampNo']]) {
-        expect(dist(a, b)).toBeGreaterThanOrEqual(50);
-      }
+    for (const [fg, bg] of UI_PAIRS) {
+      it(`${fg} sur ${bg} ≥ 3 (composant d'interface)`, () => {
+        expect(ratio(t[fg], t[bg])).toBeGreaterThanOrEqual(3);
+      });
+    }
+
+    it('chaque token est une couleur hexadécimale à six chiffres', () => {
+      for (const [key, hex] of Object.entries(t)) expect(hex, key).toMatch(/^#[0-9a-f]{6}$/);
     });
   });
 }
+
+it('les deux thèmes déclarent exactement les mêmes tokens', () => {
+  expect(Object.keys(TOKENS.dark).sort()).toEqual(Object.keys(TOKENS.light).sort());
+});

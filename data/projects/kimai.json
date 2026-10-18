@@ -1,0 +1,26 @@
+{
+  "slug": "kimai",
+  "name": "Kimai",
+  "homepage": "https://github.com/kimai/kimai",
+  "repo": "kimai/kimai",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "time-tracking"
+  ],
+  "stats": {
+    "stars": 5077,
+    "lastCommit": "2026-10-13",
+    "createdAt": "2016-10-20",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

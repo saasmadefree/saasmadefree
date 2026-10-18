@@ -1,0 +1,26 @@
+{
+  "slug": "appflowy",
+  "name": "AppFlowy",
+  "homepage": "https://github.com/AppFlowy-IO/AppFlowy",
+  "repo": "AppFlowy-IO/AppFlowy",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "notes-knowledge"
+  ],
+  "stats": {
+    "stars": 77511,
+    "lastCommit": "2026-06-26",
+    "createdAt": "2021-06-16",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

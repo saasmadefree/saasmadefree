@@ -22,10 +22,10 @@
   "requirements": [
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Manuskript",
-      "url": "https://github.com/olivierkes/manuskript"
+      "project": "manuskript",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

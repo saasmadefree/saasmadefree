@@ -1,0 +1,26 @@
+{
+  "slug": "rembg",
+  "name": "rembg",
+  "homepage": "https://github.com/danielgatis/rembg",
+  "repo": "danielgatis/rembg",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-image"
+  ],
+  "stats": {
+    "stars": 25104,
+    "lastCommit": "2026-10-10",
+    "createdAt": "2020-08-10",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

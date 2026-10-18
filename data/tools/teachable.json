@@ -22,10 +22,10 @@
   "requirements": [
     "hosting"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Moodle",
-      "url": "https://github.com/moodle/moodle"
+      "project": "moodle",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

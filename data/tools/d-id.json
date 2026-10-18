@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "SadTalker",
-      "url": "https://github.com/OpenTalker/SadTalker"
+      "project": "sadtalker",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

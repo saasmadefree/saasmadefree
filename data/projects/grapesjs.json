@@ -1,0 +1,26 @@
+{
+  "slug": "grapesjs",
+  "name": "GrapesJS",
+  "homepage": "https://github.com/GrapesJS/grapesjs",
+  "repo": "GrapesJS/grapesjs",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "design",
+    "website-builder"
+  ],
+  "stats": {
+    "stars": 26309,
+    "lastCommit": "2026-10-15",
+    "createdAt": "2016-01-22",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

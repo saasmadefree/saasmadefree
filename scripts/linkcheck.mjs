@@ -32,9 +32,17 @@ const cite = (url, where) => {
 
 for (const [slug, tool] of data.tools) {
   cite(tool.pricing?.source, `data/tools/${slug}.json pricing.source`);
-  for (const [i, art] of (tool.priorArt ?? []).entries()) {
-    cite(art?.url, `data/tools/${slug}.json priorArt[${i}] (${art?.name ?? '?'})`);
-  }
+}
+// Les alternatives d'une fiche pointent sur data/projects/ : c'est là que
+// vivent les URL (l'ancien priorArt les recopiait dans chaque fiche). On les
+// teste une fois par projet, avec les fiches qui le citent pour le rapport.
+for (const [slug, project] of data.projects) {
+  const citing = [...data.tools.values()]
+    .filter((tool) => (tool.alternatives ?? []).some((alt) => alt.project === slug))
+    .map((tool) => tool.slug);
+  const by = citing.length ? ` (alternative de ${citing.join(', ')})` : '';
+  cite(project.homepage, `data/projects/${slug}.json homepage${by}`);
+  if (project.hosted?.source) cite(project.hosted.source, `data/projects/${slug}.json hosted.source`);
 }
 for (const agent of data.agents) {
   cite(agent.homepage, `data/agents.json[${agent.id}] homepage`);

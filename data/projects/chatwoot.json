@@ -1,0 +1,25 @@
+{
+  "slug": "chatwoot",
+  "name": "Chatwoot",
+  "homepage": "https://github.com/chatwoot/chatwoot",
+  "repo": "chatwoot/chatwoot",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "customer-support"
+  ],
+  "stats": {
+    "stars": 37891,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2019-08-14",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "linkwarden",
-      "url": "https://github.com/linkwarden/linkwarden"
+      "project": "linkwarden",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -23,11 +23,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "RenderCV",
-      "url": "https://github.com/rendercv/rendercv",
-      "license": "MIT"
+      "project": "rendercv",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

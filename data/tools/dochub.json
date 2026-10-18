@@ -24,16 +24,14 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Stirling PDF",
-      "url": "https://github.com/Stirling-Tools/Stirling-PDF",
-      "license": "MIT"
+      "project": "stirling-pdf",
+      "fit": "partial"
     },
     {
-      "name": "Documenso",
-      "url": "https://github.com/documenso/documenso",
-      "license": "AGPL-3.0"
+      "project": "documenso",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

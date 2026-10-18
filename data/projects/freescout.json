@@ -1,0 +1,26 @@
+{
+  "slug": "freescout",
+  "name": "FreeScout",
+  "homepage": "https://github.com/freescout-help-desk/freescout",
+  "repo": "freescout-help-desk/freescout",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "customer-support"
+  ],
+  "stats": {
+    "stars": 4604,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2018-06-22",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

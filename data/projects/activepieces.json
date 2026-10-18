@@ -1,0 +1,25 @@
+{
+  "slug": "activepieces",
+  "name": "Activepieces",
+  "homepage": "https://github.com/activepieces/activepieces",
+  "repo": "activepieces/activepieces",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "automation"
+  ],
+  "stats": {
+    "stars": 25083,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2022-12-03",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

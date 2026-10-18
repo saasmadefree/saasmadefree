@@ -1,5 +1,6 @@
 import { SITE_ORIGIN } from './site-data.mjs';
 import { assetUrl } from './site-assets.mjs';
+import { hreflangFor } from './site-seo.mjs';
 
 export const GITHUB_REPO_URL = 'https://github.com/saasmadefree/saasmadefree';
 // Le cachet GitHub de l'en-tête : l'octicon « mark-github » inline, à
@@ -21,9 +22,11 @@ export function escapeHtml(value) {
 
 /** Un bloc <script type="application/ld+json"> ne doit jamais laisser passer une
  *  séquence "</script" en clair : elle romprait le bloc hors de tout contrôle du
- *  parseur JSON. On échappe "<" en <, ce que JSON.parse lit comme "<" normalement. */
+ *  parseur JSON. On échappe "<" en <, ce que JSON.parse lit comme "<" normalement.
+ *  JSON compact, sans indentation : l'ItemList de l'accueil (530 fiches)
+ *  pesait 80 Ko de blancs (Task A8). */
 export function jsonLdScript(data) {
-  const json = JSON.stringify(data, null, 2).replace(/</g, '\\u003c');
+  const json = JSON.stringify(data).replace(/</g, '\\u003c');
   return `<script type="application/ld+json">\n${json}\n</script>`;
 }
 
@@ -35,45 +38,14 @@ export function languageName(lang) {
   return LANG_NAMES[lang] ?? lang;
 }
 
-/** Badge de verdict, partagé par la table de l'accueil, la ligne de titre
- *  d'une fiche et les cartes "outils proches" — une seule source de vérité
- *  pour le balisage, un modificateur optionnel (ex. "badge-lg") pour la
- *  variante agrandie de la fiche outil. */
+/** Badge de verdict, partagé par la grille de cartes (accueil, catégories),
+ *  la fiche et les cartes "outils proches" — une seule source de vérité pour
+ *  le balisage, un modificateur optionnel (une classe de plus) pour une variante
+ *  de mise en page. La forme (● ◐ ○) est posée par la feuille sur la
+ *  classe du verdict : le badge porte toujours une forme ET un mot. */
 export function verdictBadge(verdict, label, extraClass = '') {
   const cls = ['badge', verdict, extraClass].filter(Boolean).join(' ');
   return `<span class="${cls}">${escapeHtml(label)}</span>`;
-}
-
-/** Le tampon administratif (dates, statut vérifié) : une première ligne, et
- *  d'éventuelles lignes secondaires en `.stamp-sub` — un tampon de contrôleur
- *  a toujours une ligne d'objet puis des précisions plus petites en dessous. */
-export function stamp(kind, lines) {
-  const [first, ...rest] = lines.map((l) => escapeHtml(l));
-  const subs = rest.map((l) => `<span class="stamp-sub">${l}</span>`).join('');
-  return `<span class="stamp stamp-${kind}">${first}${subs}</span>`;
-}
-
-/** Le cachet rond à date, mais lisible : le texte est réel (pas aria-hidden),
- *  contrairement au tampon carré qui peut être décoratif à côté d'un texte
- *  équivalent ailleurs. L'espace avant <strong> n'est pas cosmétique : sans
- *  lui le texte accessible concatène "Verified on" et la date sans séparateur
- *  ("Verified on30.07.2026"). .date-ring est un flex column qui empile déjà
- *  visuellement le libellé et la date sur deux lignes, donc cet espace ne
- *  change rien au rendu — seul le nom accessible en profite. */
-export function dateRing(label, dateText) {
-  return `<span class="date-ring">${escapeHtml(label)} <strong>${escapeHtml(dateText)}</strong></span>`;
-}
-
-/** Les trois cases du verdict (greffe E3) : l'échelle complète est montrée, la
- *  retenue porte la croix (CSS ::after en --ink) et une mention lecteur d'écran.
- *  Jamais la couleur seule (spec §7). */
-export function verdictChecks(verdict, verdictsTable, checkedNote) {
-  const items = ['yes', 'kinda', 'no'].map((v) => {
-    const on = v === verdict;
-    const note = on ? `<span class="visually-hidden"> (${escapeHtml(checkedNote)})</span>` : '';
-    return `<span class="check-item${on ? ' is-checked' : ''}"><span class="check-box" aria-hidden="true"></span>${escapeHtml(verdictsTable[v].label)}${note}</span>`;
-  });
-  return `<span class="verdict-checks">${items.join('')}</span>`;
 }
 
 export function renderBreadcrumb(items) {
@@ -81,9 +53,11 @@ export function renderBreadcrumb(items) {
     if (i === items.length - 1) {
       return `<span aria-current="page">${escapeHtml(item.label)}</span>`;
     }
+    // Étape sans page (catégorie absente dans la langue) : nommée, pas liée.
+    if (!item.href) return `<span>${escapeHtml(item.label)}</span>`;
     return `<a href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a>`;
   });
-  return `<nav class="breadcrumb" aria-label="Breadcrumb">${parts.join(' <span aria-hidden="true">/</span> ')}</nav>`;
+  return `<nav class="crumbs" aria-label="Breadcrumb">${parts.join(' <span aria-hidden="true">/</span> ')}</nav>`;
 }
 
 function renderLangSwitcher(alternates, currentLang, ui) {
@@ -117,27 +91,39 @@ function renderLangSwitcher(alternates, currentLang, ui) {
  * @param {string} opts.path - chemin absolu de la page (ex. "/en/tools/notion")
  * @param {string} opts.title
  * @param {string} opts.description
- * @param {Array<{lang:string,path:string}>} [opts.alternates] - variantes de langue existantes
- * @param {string|null} [opts.xDefaultPath]
+ * @param {Array<{lang:string,path:string,indexable?:boolean}>} [opts.alternates] - versions de langue
+ *   générées (languageVersions) : toutes au sélecteur, les seules indexables au hreflang
+ * @param {string|null} [opts.xDefaultPath] - gardé seulement s'il vise une version indexable (hreflangFor)
  * @param {Array<object>} [opts.jsonLd] - objets JSON-LD, un <script> par entrée
  * @param {string} opts.main - HTML interne de <main>, doit contenir le seul <h1> de la page
  * @param {object} opts.ui - table de traduction (doit contenir ui.site)
  * @param {string} opts.homeHref - lien de la marque dans l'en-tête
  * @param {string} [opts.extraHead] - balises additionnelles insérées dans <head>
  * @param {{tapeBottom:string,railLeft:string,railRight:string,fallback:string}|null} [opts.sponsorSlots] - balisage sponsor déjà rendu par renderSponsorSlots(), ou null pour aucun
- * @param {Array<[string,string]>} [opts.refCells] - paires label/valeur affichées dans la
- *   cartouche de références (`.ref-strip`) sous le filet de tête ; aucune cartouche si vide
+ * @param {string[]} [opts.collectionLinks] - collections liées au pied de page : celles dont
+ *   la page est générée et indexable dans la langue (collectionPlan, Ruling 34). Vide par
+ *   défaut : sans décision, aucun lien plutôt qu'un lien vers une page noindex
+ * @param {string|null} [opts.robots] - contenu de <meta name="robots"> (ex. "noindex,follow"),
+ *   aucune balise si absent : une page indexable n'a pas besoin de le dire
+ * @param {boolean} [opts.hasNewsletter] - la page porte le formulaire SmartLetter (spec D13) :
+ *   la promesse du pied de page dit alors qu'une requête part vers SmartLetter à l'inscription
  */
 export function renderLayout({
   lang, path, title, description, alternates = [], xDefaultPath = null,
-  jsonLd = [], main, ui, homeHref, extraHead = '', sponsorSlots = null, refCells = [],
+  jsonLd = [], main, ui, homeHref, extraHead = '', sponsorSlots = null, robots = null, collectionLinks = [],
+  hasNewsletter = false,
 }) {
+  // Canonical = l'URL de la page elle-même, jamais une autre langue.
   const canonical = `${SITE_ORIGIN}${path}`;
-  const hreflangLinks = alternates
+  // hreflang : la règle unique de site-seo.mjs (Ruling 29), seulement entre
+  // versions indexables. Le sélecteur de langue, lui, garde toutes les
+  // versions générées : une page noindex reste une page à lire.
+  const hreflang = hreflangFor({ alternates, xDefaultPath, robots });
+  const hreflangLinks = hreflang.links
     .map(({ lang: l, path: p }) => `<link rel="alternate" hreflang="${l}" href="${SITE_ORIGIN}${p}">`)
     .join('\n');
-  const xDefaultLink = xDefaultPath
-    ? `<link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}${xDefaultPath}">`
+  const xDefaultLink = hreflang.xDefault
+    ? `<link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}${hreflang.xDefault}">`
     : '';
   const jsonLdBlocks = jsonLd.map(jsonLdScript).join('\n');
   const langSwitcher = renderLangSwitcher(alternates, lang, ui);
@@ -147,6 +133,7 @@ export function renderLayout({
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
     `<title>${escapeHtml(title)}</title>`,
     `<meta name="description" content="${escapeHtml(description)}">`,
+    robots ? `<meta name="robots" content="${escapeHtml(robots)}">` : '',
     `<link rel="canonical" href="${canonical}">`,
     hreflangLinks,
     xDefaultLink,
@@ -155,7 +142,11 @@ export function renderLayout({
     // Ce script est volontairement inline et synchrone, avant la feuille de
     // style : un thème appliqué après le premier rendu ferait clignoter la page
     // en clair avant de passer en sombre. C'est le seul script bloquant du site.
-    '<script>try{var t=localStorage.getItem("theme");'
+    // Il pose aussi la classe `js` sur <html> avant le premier rendu : la
+    // newsletter (spec D13, Ruling 31) s'en sert pour réserver la place de son
+    // bloc, rendu `hidden` au build, jusqu'à ce que site.js (différé) le
+    // dévoile. Sans JavaScript, la classe n'existe pas et le bloc reste masqué.
+    '<script>document.documentElement.classList.add("js");try{var t=localStorage.getItem("theme");'
       + 'if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;}catch(e){}</script>',
     `<meta property="og:title" content="${escapeHtml(title)}">`,
     `<meta property="og:description" content="${escapeHtml(description)}">`,
@@ -196,22 +187,42 @@ export function renderLayout({
   // Les rails sont écrits APRÈS .col-main dans le DOM et replacés par
   // grid-column : un lecteur d'écran et la tabulation atteignent ainsi le
   // contenu avant les sponsors. Les bandeaux sont frères de .shell — placés à
-  // l'intérieur, leur pleine largeur passerait sous les rails.
+  // l'intérieur, leur pleine largeur passerait sous les rails. Le repli des
+  // petits écrans se range sous le contenu, avant le pied de page.
   const sp = sponsorSlots ?? { tapeBottom: '', railLeft: '', railRight: '', fallback: '' };
 
-  // Le bandeau de service (« Service de l'instruction des abonnements ») est
-  // retiré le 20.08.2026 : c'était l'en-tête administratif du dossier, et il
-  // ne portait aucun fait — juste un titre de service inventé. La clé
-  // ui.site.dossier.serviceName reste dans les données, plus personne ne la
-  // lit côté site.
-
-  // La cartouche de références (dates, numéro de registre…) : une paire
-  // label/valeur par cellule, silencieuse si l'appelant n'en fournit aucune.
-  const refStrip = refCells.length
-    ? `<dl class="ref-strip">${refCells
-        .map(([label, value]) => `<div class="ref-cell"><dt class="ref-lbl">${escapeHtml(label)}</dt><dd class="ref-val">${escapeHtml(value)}</dd></div>`)
-        .join('')}</dl>`
+  // Les rails n'existent que si la page en porte : l'accueil range les siens
+  // dans la rangée sous le héros (spec D14) et rend la coquille sans eux. La
+  // classe .has-rails est ce qui ouvre les trois pistes de grille au-delà de
+  // 84rem — sans rails, la colonne de contenu garde toute la largeur.
+  const hasRails = Boolean(sp.railLeft || sp.railRight);
+  // « Cette page ne charge rien depuis un autre site » reste strictement vrai
+  // partout. Sur une page qui porte le formulaire newsletter, la phrase dit en
+  // plus la seule exception : une requête vers SmartLetter, à l'inscription
+  // et jamais autrement (spec D13).
+  const promiseText = [
+    ui.site.footer?.promise,
+    hasNewsletter ? ui.site.footer?.promiseNewsletter : null,
+  ].filter(Boolean).join(' ');
+  const promise = ui.site.footer?.promise
+    ? `\n        <p>${escapeHtml(promiseText)}</p>`
     : '';
+
+  // Maillage A7 : le hub A–Z (toujours indexable) et les collections, sur
+  // toutes les pages. Une collection n'est liée que si sa page est générée et
+  // indexable dans la langue (`collectionLinks`, la même décision que son
+  // noindex et le sitemap, Ruling 34). Seulement si la locale porte le
+  // libellé (les langues non publiées ont un bloc `site` réduit) : jamais un
+  // lien sans texte.
+  const footer = ui.site.footer ?? {};
+  const meshLinks = [
+    [`/${lang}/alternatives/`, footer.hub],
+    collectionLinks.includes('self-hosted') ? [`/${lang}/collections/self-hosted`, footer.selfHosted] : [],
+    collectionLinks.includes('build-tonight') ? [`/${lang}/collections/build-tonight`, footer.buildTonight] : [],
+  ]
+    .filter(([, label]) => label)
+    .map(([href, label]) => `\n          <a href="${href}">${escapeHtml(label)}</a>`)
+    .join('');
 
   return `<!doctype html>
 <html lang="${lang}">
@@ -220,43 +231,35 @@ ${headLines}
 </head>
 <body>
 <a class="skip-link" href="#main">${escapeHtml(ui.site.skipToContent)}</a>
-<div class="shell">
+<div class="shell${hasRails ? ' has-rails' : ''}">
   <div class="col-main">
     <div class="page">
-      <header class="site-header site-masthead">
-        <div class="header-left">
-          <span class="brand-lockup">
-            <span class="brand-mark" aria-hidden="true">SMF</span>
-            <a class="brand" href="${escapeHtml(homeHref)}">${escapeHtml(ui.site.brand)}</a>
-          </span>
-          <ul class="nav-links">${navLinks}</ul>
-        </div>
-        <div class="header-groups">
-          <div class="header-controls">${langSwitcher}
-            <button type="button" id="theme-toggle" class="theme-toggle" hidden
-                    aria-label="${themeToggleLabel}"
-                    data-label-dark="${escapeHtml(ui.site.themeToDark ?? 'Dark mode')}"
-                    data-label-light="${escapeHtml(ui.site.themeToLight ?? 'Light mode')}">
-              <span aria-hidden="true" class="theme-icon"></span>
-            </button>
-            <a class="github-btn" href="${GITHUB_REPO_URL}" aria-label="${escapeHtml(nav.github ?? 'GitHub')}">${GITHUB_MARK_SVG}</a>
-          </div>
+      <header class="site-header">
+        <a class="brand" href="${escapeHtml(homeHref)}"><span class="brand-mark" aria-hidden="true">S</span>${escapeHtml(ui.site.brand)}</a>
+        <ul class="nav-links">${navLinks}</ul>
+        <div class="header-controls">${langSwitcher}
+          <button type="button" id="theme-toggle" class="theme-toggle" hidden
+                  aria-label="${themeToggleLabel}"
+                  data-label-dark="${escapeHtml(ui.site.themeToDark ?? 'Dark mode')}"
+                  data-label-light="${escapeHtml(ui.site.themeToLight ?? 'Light mode')}">
+            <span aria-hidden="true" class="theme-icon"></span>
+          </button>
+          <a class="github-btn" href="${GITHUB_REPO_URL}" aria-label="${escapeHtml(nav.github ?? 'GitHub')}">${GITHUB_MARK_SVG}</a>
         </div>
       </header>
-      <div class="head-rule" aria-hidden="true"></div>
-      ${refStrip}
       <main id="main">
 ${main}
       </main>
-      <footer class="site-footer">
-        <a href="${GITHUB_REPO_URL}">${escapeHtml(ui.site.footer.source)}</a>
-        <a href="/${lang}/stats/">${escapeHtml(ui.site.footer.stats)}</a>
-        <a href="/privacy">${escapeHtml(ui.site.footer.privacy)}</a>
-        <a href="mailto:privacy@saasmadefree.com">privacy@saasmadefree.com</a>
-        <a class="credit" href="https://github.com/canivibecodeit/canivibecodeit" rel="noopener">${escapeHtml(ui.site.footer.credit ?? "")}</a>
-        <span class="paraphe" aria-hidden="true">SMF</span>
-      </footer>
       ${sp.fallback}
+      <footer class="site-footer">${promise}
+        <p class="foot-links">
+          <a href="${GITHUB_REPO_URL}">${escapeHtml(ui.site.footer.source)}</a>
+          <a href="/${lang}/stats/">${escapeHtml(ui.site.footer.stats)}</a>${meshLinks}
+          <a href="/privacy">${escapeHtml(ui.site.footer.privacy)}</a>
+          <a href="mailto:privacy@saasmadefree.com">privacy@saasmadefree.com</a>
+          <a class="credit" href="https://github.com/canivibecodeit/canivibecodeit" rel="noopener">${escapeHtml(ui.site.footer.credit ?? "")}</a>
+        </p>
+      </footer>
     </div>
   </div>
   ${sp.railLeft}

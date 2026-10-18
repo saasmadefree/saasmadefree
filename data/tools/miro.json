@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "tldraw",
-      "url": "https://github.com/tldraw/tldraw"
+      "project": "tldraw",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

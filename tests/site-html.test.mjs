@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
+import { readFileSync } from 'node:fs';
 import {
   escapeHtml, jsonLdScript, languageName, renderBreadcrumb, verdictBadge,
-  renderLayout, stamp, dateRing, verdictChecks,
+  renderLayout,
 } from '../scripts/lib/site-html.mjs';
 
 describe('escapeHtml', () => {
@@ -25,6 +26,12 @@ describe('jsonLdScript', () => {
     const inner = html.replace('<script type="application/ld+json">\n', '').replace('\n</script>', '');
     expect(JSON.parse(inner)).toEqual(data);
   });
+
+  // L'ItemList de l'accueil liste 530 fiches : indentée, elle pesait 80 Ko
+  // de blancs (Task A8). Les moteurs lisent le JSON compact tout aussi bien.
+  it('écrit un JSON compact, sans indentation', () => {
+    expect(jsonLdScript({ a: 1, b: ['x'] })).toBe('<script type="application/ld+json">\n{"a":1,"b":["x"]}\n</script>');
+  });
 });
 
 describe('languageName', () => {
@@ -47,6 +54,10 @@ describe('renderBreadcrumb', () => {
     expect(html).toContain('<a href="/en/">Directory</a>');
     expect(html).toContain('<span aria-current="page">Notion</span>');
     expect(html).not.toContain('<a href="/en/tools/notion">Notion</a>');
+  });
+
+  it('porte la classe .crumbs du système de design', () => {
+    expect(renderBreadcrumb([{ label: 'Directory', href: '/en/' }])).toContain('<nav class="crumbs" aria-label="Breadcrumb">');
   });
 });
 
@@ -82,7 +93,6 @@ describe('renderLayout — chrome du dossier', () => {
   const html = renderLayout({
     lang: 'en', path: '/en/', title: 't', description: 'd',
     main: '<h1>x</h1>', ui: dossierUi, homeHref: '/en/',
-    refCells: [['Registry', '529'], ['Statement drawn up on', '04.08.2026']],
   });
 
   it('n’ouvre plus sur un bandeau de service', () => {
@@ -93,9 +103,8 @@ describe('renderLayout — chrome du dossier', () => {
     expect(html).not.toContain('Subscription Review Service');
   });
 
-  it('rend la cartouche de références quand refCells est fourni', () => {
-    expect(html).toContain('class="ref-strip"');
-    expect(html).toContain('04.08.2026');
+  it('n’a plus de cartouche de références (retirée avec le dossier, revue finale 12)', () => {
+    expect(html).not.toContain('ref-strip');
   });
 
   it('garde les crochets JS : theme-toggle, lang-switch, script de thème inline', () => {
@@ -115,6 +124,28 @@ describe('renderLayout — chrome du dossier', () => {
     expect(nav).toContain('>Stats<');
   });
 
+  it('la marque est un seul lien, pastille comprise', () => {
+    expect(html).toMatch(/<a class="brand" href="\/en\/"><span class="brand-mark" aria-hidden="true">S<\/span>SaaS Made Free<\/a>/);
+  });
+
+  it('pose la promesse du pied de page quand la locale la porte', () => {
+    const withPromise = renderLayout({
+      lang: 'en', path: '/en/', title: 't', description: 'd', main: '<h1>x</h1>', homeHref: '/en/',
+      ui: { site: { ...dossierUi.site, footer: { ...dossierUi.site.footer, promise: 'This page loads nothing from anyone else.' } } },
+    });
+    expect(withPromise).toMatch(/<footer class="site-footer">\s*<p>This page loads nothing from anyone else\.<\/p>/);
+    expect(html).not.toContain('<footer class="site-footer">\n        <p>');
+  });
+
+  it('émet <meta name="robots"> seulement quand robots est fourni', () => {
+    expect(html).not.toContain('name="robots"');
+    const noindex = renderLayout({
+      lang: 'en', path: '/en/', title: 't', description: 'd', main: '<h1>x</h1>', ui: dossierUi,
+      homeHref: '/en/', robots: 'noindex,follow',
+    });
+    expect(noindex).toContain('<meta name="robots" content="noindex,follow">');
+  });
+
   it('réduit le bouton GitHub à son icône, le nom restant porté par aria-label', () => {
     const btn = html.match(/<a class="github-btn"[^>]*>.*?<\/a>/s)[0];
     expect(btn).toContain('aria-label="GitHub"');
@@ -122,6 +153,39 @@ describe('renderLayout — chrome du dossier', () => {
     expect(btn).toContain('aria-hidden="true"');
     // Ni le libellé ni la flèche ↗ en texte visible.
     expect(btn.replace(/<[^>]+>/g, '').trim()).toBe('');
+  });
+});
+
+// Ruling 29 : fixture où la version fr est noindex. Le sélecteur de langue
+// garde toutes les versions générées (spec D14) ; seul le hreflang se
+// restreint aux versions indexables.
+describe('renderLayout — hreflang quand une version est noindex', () => {
+  const alternates = [
+    { lang: 'en', path: '/en/collections/self-hosted', indexable: true },
+    { lang: 'fr', path: '/fr/collections/self-hosted', indexable: false },
+  ];
+  const base = { title: 't', description: 'd', main: '<h1>x</h1>', ui: dossierUi, alternates };
+  const en = renderLayout({ ...base, lang: 'en', path: '/en/collections/self-hosted', homeHref: '/en/' });
+  const fr = renderLayout({
+    ...base, lang: 'fr', path: '/fr/collections/self-hosted', homeHref: '/fr/', robots: 'noindex,follow',
+  });
+  const hreflangs = (html) => [...html.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">/g)]
+    .map((m) => [m[1], m[2]]);
+
+  it('la version indexable ne cite que les versions indexables', () => {
+    expect(hreflangs(en)).toEqual([
+      ['en', 'https://saasmadefree.com/en/collections/self-hosted'],
+      ['x-default', 'https://saasmadefree.com/en/collections/self-hosted'],
+    ]);
+  });
+
+  it('la version noindex ne porte aucun hreflang', () => {
+    expect(hreflangs(fr)).toEqual([]);
+  });
+
+  it('le sélecteur de langue garde les deux versions générées', () => {
+    expect(en).toContain('<a href="/fr/collections/self-hosted" hreflang="fr"');
+    expect(fr).toContain('<a href="/en/collections/self-hosted" hreflang="en"');
   });
 });
 
@@ -153,24 +217,61 @@ describe('renderLayout — locale réduite (site sans dossier)', () => {
   });
 });
 
-describe('composants tampon', () => {
-  it('stamp rend un tampon à lignes', () => {
-    expect(stamp('verif', ['Verified on', '30.07.2026']))
-      .toBe('<span class="stamp stamp-verif">Verified on<span class="stamp-sub">30.07.2026</span></span>');
+describe('composants du dossier retirés (revue finale, finding 12)', () => {
+  it('stamp, dateRing et verdictChecks ne sont plus exportés', async () => {
+    const mod = await import('../scripts/lib/site-html.mjs');
+    for (const gone of ['stamp', 'dateRing', 'verdictChecks']) expect(mod[gone], gone).toBeUndefined();
   });
 
-  it('dateRing est lisible (texte réel, pas aria-hidden)', () => {
-    const html = dateRing('Verified on', '30.07.2026');
-    expect(html).toContain('class="date-ring"');
-    expect(html).toContain('30.07.2026');
-    expect(html).not.toContain('aria-hidden');
+  it('les clés ui.json sans lecteur ne reviennent pas (dossier, ancien héros, tuiles retirées)', () => {
+    for (const lang of ['en', 'fr', 'de', 'es', 'it', 'nl', 'pt']) {
+      const site = JSON.parse(readFileSync(`data/i18n/${lang}/ui.json`, 'utf8')).site;
+      for (const key of ['citedByAi', 'noneYet', 'topVoted']) expect(site.stats[key], `${lang} stats.${key}`).toBeUndefined();
+      if (!site.home) continue;
+      expect(site.dossier, lang).toBeUndefined();
+      expect(site.tool.priceHeading, lang).toBeUndefined();
+      expect(site.tool.categoryMetaLabel, lang).toBeUndefined();
+      expect(site.sponsor.tapeTopHeading, lang).toBeUndefined();
+      for (const key of ['heroStatic', 'heroSuffix', 'lede', 'tallyOne', 'tallyOther', 'rankNote']) {
+        expect(site.home[key], `${lang} home.${key}`).toBeUndefined();
+      }
+    }
   });
+});
 
-  it('verdictChecks montre les trois cases, coche la bonne, et le dit aux lecteurs d’écran', () => {
-    const verdicts = { yes: { label: 'Yes' }, kinda: { label: 'Partly' }, no: { label: 'No' } };
-    const html = verdictChecks('kinda', verdicts, 'selected');
-    expect(html.match(/class="check-item/g)).toHaveLength(3);
-    expect(html).toContain('check-item is-checked');
-    expect(html).toContain('<span class="visually-hidden"> (selected)</span>');
+// Task A7 : le pied de page lie le hub A–Z et les deux collections, sur
+// toutes les pages, en en et fr — sans retirer aucun lien existant (D14).
+describe('renderLayout — pied de page, maillage A7', () => {
+  const realUi = (lang) => JSON.parse(readFileSync(`data/i18n/${lang}/ui.json`, 'utf8'));
+  const footerOf = (lang) => {
+    const html = renderLayout({
+      lang, path: `/${lang}/`, title: 't', description: 'd', main: '<h1>x</h1>', ui: realUi(lang), homeHref: `/${lang}/`,
+      collectionLinks: ['self-hosted', 'build-tonight'],
+    });
+    return html.slice(html.indexOf('<footer'), html.indexOf('</footer>'));
+  };
+
+  for (const lang of ['en', 'fr']) {
+    it(`${lang} : liens vers le hub et les deux collections`, () => {
+      const f = realUi(lang).site.footer;
+      const footer = footerOf(lang);
+      expect(footer).toContain(`<a href="/${lang}/alternatives/">${escapeHtml(f.hub)}</a>`);
+      expect(footer).toContain(`<a href="/${lang}/collections/self-hosted">${escapeHtml(f.selfHosted)}</a>`);
+      expect(footer).toContain(`<a href="/${lang}/collections/build-tonight">${escapeHtml(f.buildTonight)}</a>`);
+    });
+
+    it(`${lang} : garde chaque lien existant`, () => {
+      const footer = footerOf(lang);
+      for (const href of ['https://github.com/saasmadefree/saasmadefree', `/${lang}/stats/`, '/privacy',
+        'mailto:privacy@saasmadefree.com', 'https://github.com/canivibecodeit/canivibecodeit']) {
+        expect(footer, href).toContain(`href="${href}"`);
+      }
+    });
+  }
+
+  it('une locale sans ces clés ne rend ni lien vide ni "undefined"', () => {
+    const html = renderLayout({ lang: 'en', path: '/en/', title: 't', description: 'd', main: '<h1>x</h1>', ui: dossierUi, homeHref: '/en/' });
+    expect(html).not.toContain('/en/alternatives/');
+    expect(html).not.toContain('undefined');
   });
 });

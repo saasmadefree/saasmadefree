@@ -1,14 +1,14 @@
 // Améliore progressivement les pages générées par scripts/build-site.mjs.
 // Sans ce fichier (JS désactivé), chaque page reste complète et lisible :
-// la liste d'outils est déjà triée et entièrement présente dans le HTML, les
-// chips de catégorie sont déjà des liens qui fonctionnent, le champ de
+// la grille d'outils est déjà triée et toutes ses cartes sont visibles dans
+// le HTML, les catégories sont déjà des liens qui fonctionnent, le champ de
 // recherche est déjà un champ de recherche classique (voir applyFilter), le
 // prompt est déjà sélectionnable dans son <pre>, les boutons "Open in
 // <agent>" sont déjà des liens <a> qui naviguent correctement, et les
 // questions/réponses sont déjà ouvrables au clavier via <details>. Ce script
-// n'ajoute que : le volet de suggestions de recherche, le filtre par verdict,
-// la copie en un clic, la copie automatique avant d'ouvrir un agent, le
-// vote en direct, et sur /sponsor seulement le rafraîchissement de
+// n'ajoute que : le volet de suggestions de recherche, le filtre par verdict
+// et par catégorie, le tri, « Voir plus », la copie en un clic, la copie
+// automatique avant d'ouvrir un agent, le vote en direct, et sur /sponsor seulement le rafraîchissement de
 // l'inventaire (statut + prix, voir enhanceSponsorInventory) et le bouton
 // d'achat (voir enhanceSponsorCheckout). Sur /sponsor sans JavaScript, il
 // reste l'inventaire complet, les prix, le barème, l'adresse de contact et
@@ -16,8 +16,11 @@
 //
 // Seules requêtes réseau faites par ce fichier : le Worker de ce même projet
 // (votes.saasmadefree.com, décrit dans README.md — vote, disponibilité des
-// emplacements sponsors, ouverture d'une session de paiement). Rien d'autre,
-// aucune tierce partie.
+// emplacements sponsors, ouverture d’une session de paiement), et une seule
+// exception, jamais au chargement : quand le visiteur envoie le formulaire
+// newsletter, une requête vers SmartLetter (api.smartletter.ai, le service
+// d’emailing du propriétaire, voir enhanceNewsletter et public/privacy.html).
+// Rien d’autre.
 //
 // Rien dans ce fichier ne construit de HTML : tout texte venant du réseau
 // passe par textContent ou par un attribut rendu et échappé au build. Un
@@ -167,39 +170,125 @@
     return (singular ? singularTpl : pluralTpl).replace('{count}', String(count));
   }
 
-  // La table (accueil et pages de catégorie) : le filtre par verdict (chips,
-  // accueil seulement) et le rafraîchissement des compteurs de votes. La
-  // frappe dans #q n'agit plus sur cette table — voir enhanceSearchCombo,
-  // qui affiche un volet de suggestions séparé à la place. #q ne filtre la
-  // table qu'une seule fois, au chargement, via ?q= dans l'URL : c'est ce que
-  // promet la SearchAction du JSON-LD de l'accueil, et ça doit rester vrai
-  // même si le lecteur n'interagit plus jamais avec le champ.
+  // Ce que le tri et la recherche savent d'une carte, lu sur la carte
+  // elle-même : le nom (.card-name a), la catégorie (.cat), l'accroche
+  // (.tagline) et l'icône (img.fav) sont déjà dans le HTML visible. Seule la
+  // sous-catégorie, non affichée, voyage en data-sub. Le texte cherché est
+  // le même qu'avant (nom, catégorie, sous-catégorie, accroche), calculé une
+  // fois par carte puis gardé.
+  var cardCache = typeof WeakMap === 'function' ? new WeakMap() : null;
+  function cardIndex(card) {
+    var cached = cardCache && cardCache.get(card);
+    if (cached) return cached;
+    var text = function (selector) {
+      var el = card.querySelector(selector);
+      return el ? el.textContent.trim() : '';
+    };
+    var name = text('.card-name a').toLowerCase();
+    var cat = text('.cat').toLowerCase();
+    var icon = card.querySelector('img.fav');
+    var entry = {
+      name: name,
+      cat: cat,
+      search: [name, cat, card.dataset.sub || '', text('.tagline')].join(' ').toLowerCase(),
+      favicon: icon ? icon.getAttribute('src') || '' : '',
+    };
+    if (cardCache) cardCache.set(card, entry);
+    return entry;
+  }
+
+  // La grille de cartes (accueil et pages de catégorie). Sur l'accueil : le
+  // filtre par verdict (pastilles), le filtre de catégorie, le tri, et
+  // « Voir plus » qui montre les cartes par paquets de data-page-size. Partout :
+  // le rafraîchissement des compteurs de votes.
+  //
+  // Sans ce script, toutes les cartes sont visibles et le tri est celui du
+  // build : rien n'est caché au lecteur (spec D14). Le filtre de catégorie et
+  // le tri sont rendus `hidden` et dévoilés ici — un contrôle mort est pire
+  // qu'un contrôle absent.
+  //
+  // La frappe dans #q n'agit pas sur la grille — voir enhanceSearchCombo, qui
+  // affiche un volet de suggestions séparé. #q ne filtre la grille qu'une
+  // seule fois, au chargement, via ?q= dans l'URL : c'est ce que promet la
+  // SearchAction du JSON-LD de l'accueil. Une recherche montre alors toutes
+  // ses correspondances, sans pagination.
   function enhanceHome() {
-    var table = document.getElementById('tool-table');
-    var tbody = document.getElementById('tool-rows');
-    if (!table || !tbody) return;
+    var holder = document.getElementById('tool-table');
+    var grid = document.getElementById('tool-rows');
+    if (!holder || !grid) return;
 
-    var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('[data-slug]'));
     var noResults = document.getElementById('no-results');
+    var moreBtn = document.getElementById('show-more');
+    var catSelect = document.getElementById('cat-filter');
+    var orderSelect = document.getElementById('order');
+    var selects = document.querySelector('.selects');
+    var filters = document.querySelector('.filters');
+    // Région live polie : elle annonce le nombre de résultats après un
+    // filtre ou une recherche ?q=, jamais au simple chargement de la page.
+    var gridStatus = document.getElementById('grid-status');
     var verdictChips = Array.prototype.slice.call(document.querySelectorAll('.verdict-chip'));
+    var lang = holder.dataset.lang;
 
-    var state = { verdict: 'all', initialQuery: '' };
+    // Sans bouton « Voir plus » (page de catégorie), aucune pagination.
+    var pageSize = moreBtn ? Number(moreBtn.dataset.pageSize) || 24 : Infinity;
+    var state = { verdict: 'all', category: 'all', initialQuery: '', limit: pageSize };
 
     var params = new URLSearchParams(location.search);
     var initialQ = params.get('q');
     if (initialQ) state.initialQuery = initialQ.trim().toLowerCase();
 
+    if (selects) selects.hidden = false;
+    if (filters) filters.hidden = false;
+
     function applyFilter() {
-      var visible = 0;
-      for (var i = 0; i < rows.length; i++) {
-        var row = rows[i];
-        var matchesVerdict = state.verdict === 'all' || row.dataset.verdict === state.verdict;
-        var matchesQuery = !state.initialQuery || row.dataset.search.indexOf(state.initialQuery) !== -1;
-        var show = matchesVerdict && matchesQuery;
-        row.hidden = !show;
-        if (show) visible++;
+      var matched = 0;
+      // Une recherche venue de ?q= montre tout ce qu'elle trouve.
+      var limit = state.initialQuery ? Infinity : state.limit;
+      for (var i = 0; i < cards.length; i++) {
+        var card = cards[i];
+        var matches = (state.verdict === 'all' || card.dataset.verdict === state.verdict)
+          && (state.category === 'all' || card.dataset.category === state.category)
+          && (!state.initialQuery || cardIndex(card).search.indexOf(state.initialQuery) !== -1);
+        if (matches) matched++;
+        card.hidden = !matches || matched > limit;
       }
-      if (noResults) noResults.hidden = visible !== 0;
+      if (noResults) noResults.hidden = matched !== 0;
+      state.matched = matched;
+      if (moreBtn) {
+        var left = matched - limit;
+        moreBtn.hidden = !(left > 0);
+        if (left > 0) {
+          moreBtn.textContent = (moreBtn.dataset.template || '{count}')
+            .replace('{count}', new Intl.NumberFormat(lang).format(left));
+        }
+      }
+    }
+
+    function resetLimit() {
+      state.limit = pageSize;
+    }
+
+    function announce() {
+      if (!gridStatus) return;
+      gridStatus.textContent = pluralize(state.matched, lang, gridStatus.dataset.one, gridStatus.dataset.other);
+    }
+
+    // Ordre de la grille : les cartes sont déplacées, jamais reconstruites.
+    // `votes` reprend l'ordre du build (votes, puis degré de préparation de la
+    // fiche) ; `price` ne classe que les mensualités, les paiements uniques
+    // (sans data-price) passent en dernier ; `name` suit l'alphabet.
+    function sortCards() {
+      var key = orderSelect ? orderSelect.value : 'votes';
+      var num = function (card, attr) {
+        return card.dataset[attr] != null && card.dataset[attr] !== '' ? Number(card.dataset[attr]) : -1;
+      };
+      cards.sort(function (a, b) {
+        if (key === 'name') return cardIndex(a).name.localeCompare(cardIndex(b).name, lang);
+        if (key === 'price') return num(b, 'price') - num(a, 'price') || num(b, 'priority') - num(a, 'priority');
+        return num(b, 'votes') - num(a, 'votes') || num(b, 'priority') - num(a, 'priority');
+      });
+      for (var i = 0; i < cards.length; i++) grid.appendChild(cards[i]);
     }
 
     verdictChips.forEach(function (chip) {
@@ -211,67 +300,96 @@
         chip.setAttribute('aria-pressed', 'true');
         chip.classList.add('is-active');
         state.verdict = chip.dataset.verdict;
+        resetLimit();
         applyFilter();
+        announce();
       });
     });
 
+    if (catSelect) {
+      catSelect.addEventListener('change', function () {
+        state.category = catSelect.value;
+        resetLimit();
+        applyFilter();
+        announce();
+      });
+    }
+
+    if (orderSelect) {
+      orderSelect.addEventListener('change', function () {
+        sortCards();
+        applyFilter();
+      });
+    }
+
+    if (moreBtn) {
+      // Le dernier clic cache le bouton qui a le focus : sans relais, le
+      // focus tomberait sur <body>. Il va au lien de la première carte
+      // dévoilée, là où la lecture reprend (revue finale, finding 7).
+      moreBtn.addEventListener('click', function () {
+        var shown = state.limit;
+        state.limit += pageSize;
+        applyFilter();
+        var seen = 0;
+        for (var i = 0; i < cards.length; i++) {
+          if (cards[i].hidden) continue;
+          if (seen === shown) {
+            var link = cards[i].querySelector('.card-name a');
+            if (link) link.focus();
+            break;
+          }
+          seen++;
+        }
+      });
+    }
+
     applyFilter();
+    if (state.initialQuery) announce();
 
     fetchVotes().then(function (counts) {
       if (!counts) return;
-      var lang = table.dataset.lang;
-      var singularTpl = table.dataset.singular;
-      var pluralTpl = table.dataset.plural;
-      for (var i = 0; i < rows.length; i++) {
-        var row = rows[i];
-        var cell = row.querySelector('[data-vote-cell]');
+      var singularTpl = holder.dataset.singular;
+      var pluralTpl = holder.dataset.plural;
+      for (var i = 0; i < cards.length; i++) {
+        var card = cards[i];
+        var cell = card.querySelector('[data-vote-cell]');
         if (!cell) continue;
-        var count = Object.prototype.hasOwnProperty.call(counts, row.dataset.slug)
-          ? counts[row.dataset.slug]
+        var count = Object.prototype.hasOwnProperty.call(counts, card.dataset.slug)
+          ? counts[card.dataset.slug]
           : 0;
-        row.dataset.votes = String(count);
-        // Même rendu du zéro qu'au build (voir renderToolTable) : un tiret
-        // discret à l'œil, le décompte exact au lecteur d'écran. Sans ce
-        // branchement, le rafraîchissement en direct réécrivait « 0 vote » sur
-        // les cinq cents lignes que le build venait justement de calmer.
+        card.dataset.votes = String(count);
+        // Même rendu du zéro qu'au build (voir renderToolGrid) : rien à
+        // l'œil, le décompte exact au lecteur d'écran.
         if (count === 0) {
           cell.textContent = '';
-          var dash = document.createElement('span');
-          dash.className = 'votes-none';
-          dash.setAttribute('aria-hidden', 'true');
-          dash.textContent = '–';
           var sr = document.createElement('span');
           sr.className = 'visually-hidden';
           sr.textContent = pluralize(0, lang, singularTpl, pluralTpl);
-          cell.appendChild(dash);
           cell.appendChild(sr);
         } else {
           cell.textContent = pluralize(count, lang, singularTpl, pluralTpl);
         }
       }
-      var sorted = rows.slice().sort(function (a, b) {
-        var diff = Number(b.dataset.votes != null ? b.dataset.votes : -1) -
-                   Number(a.dataset.votes != null ? a.dataset.votes : -1);
-        if (diff !== 0) return diff;
-        return Number(b.dataset.priority) - Number(a.dataset.priority);
-      });
-      for (var j = 0; j < sorted.length; j++) tbody.appendChild(sorted[j]);
+      if (!orderSelect || orderSelect.value === 'votes') {
+        sortCards();
+        applyFilter();
+      }
     });
   }
 
   // Le volet de suggestions au-dessus du champ de recherche de l'accueil :
   // un combobox ARIA classique (voir le rôle listbox/option), construit à
-  // partir des mêmes lignes <tr> que la table plus bas — jamais une deuxième
+  // partir des mêmes cartes que la grille plus bas — jamais une deuxième
   // copie du catalogue. Le champ reste un champ de recherche ordinaire sans
   // JavaScript ; ce volet est une pure amélioration posée par-dessus.
   function enhanceSearchCombo() {
     var input = document.getElementById('q');
     var panel = document.getElementById('search-panel');
     var clearBtn = document.getElementById('search-clear');
-    var tbody = document.getElementById('tool-rows');
-    if (!input || !panel || !tbody) return;
+    var grid = document.getElementById('tool-rows');
+    if (!input || !panel || !grid) return;
 
-    var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+    var rows = Array.prototype.slice.call(grid.querySelectorAll('[data-slug]'));
     var viewAllTemplate = panel.dataset.viewAllTemplate || '{count}';
     var noResultsText = panel.dataset.noResults || '';
     var homePath = panel.dataset.homePath || '/';
@@ -289,7 +407,7 @@
     }
 
     function buildOptionRow(row) {
-      var link = row.querySelector('th a');
+      var link = row.querySelector('.card-name a');
       var badge = row.querySelector('.badge');
       var cat = row.querySelector('.cat');
       var price = row.querySelector('.price');
@@ -302,7 +420,7 @@
 
       var img = document.createElement('img');
       img.className = 'search-option-icon';
-      img.src = row.dataset.favicon || '';
+      img.src = cardIndex(row).favicon;
       img.alt = '';
       img.width = 20;
       img.height = 20;
@@ -381,8 +499,8 @@
       // classement, "gra" remontait Canva et GitHub Copilot — qui matchent dans
       // leur description — au-dessus de Grammarly et Granola.
       function relevance(row) {
-        var name = row.dataset.name || '';
-        var cat = row.dataset.cat || '';
+        var name = cardIndex(row).name;
+        var cat = cardIndex(row).cat;
         if (name.indexOf(q) === 0) return 0;                       // le nom commence par la saisie
         if ((' ' + name).indexOf(' ' + q) !== -1) return 1;        // un mot du nom commence par la saisie
         if (name.indexOf(q) !== -1) return 2;                      // le nom la contient
@@ -390,7 +508,7 @@
         return 4;                                                  // ailleurs (sous-titre, description)
       }
       var matches = rows
-        .filter(function (row) { return row.dataset.search.indexOf(q) !== -1; })
+        .filter(function (row) { return cardIndex(row).search.indexOf(q) !== -1; })
         .map(function (row, i) { return { row: row, score: relevance(row), order: i }; })
         .sort(function (a, b) { return a.score - b.score || a.order - b.order; })
         .map(function (entry) { return entry.row; });
@@ -615,6 +733,118 @@
         .finally(function () {
           button.disabled = false;
         });
+    });
+  }
+
+  // Newsletter SmartLetter (spec D13) : le formulaire n’existe que si le build
+  // avait une clé (scripts/lib/site-newsletter.mjs). Aucune requête au
+  // chargement ; une requête par envoi, directement vers l’API SmartLetter
+  // (pas de proxy : la limite de 5 inscriptions par IP et par 10 minutes
+  // resterait sinon globale). La clé Bearer lue dans data-key est publique par
+  // conception (type `signups`) ; elle n’est jamais écrite dans la console.
+  //
+  // Le navigateur valide l’adresse d’abord (required, type=email). Envoyés :
+  // l’adresse, la langue de la page et l’URL de la page sans query ni ancre
+  // (les paramètres de campagne ou de partage n’ont rien à faire chez un
+  // tiers), plus le segment s’il est configuré. Une Idempotency-Key neuve par
+  // envoi. Le bouton est désactivé le temps de la requête.
+  function newsletterKey() {
+    if (typeof crypto !== 'undefined' && crypto && typeof crypto.randomUUID === 'function') {
+      return crypto.randomUUID();
+    }
+    var out = '';
+    for (var i = 0; i < 32; i += 1) out += Math.floor(Math.random() * 16).toString(16);
+    return out.slice(0, 8) + '-' + out.slice(8, 12) + '-' + out.slice(12, 16) + '-' + out.slice(16, 20) + '-' + out.slice(20);
+  }
+
+  // retry-after en secondes (ou en date HTTP), arrondi à la minute supérieure.
+  // null si l’en-tête manque ou ne se lit pas : le texte dit alors « quelques
+  // minutes ».
+  function retryMinutes(res) {
+    var raw = res.headers && typeof res.headers.get === 'function' ? res.headers.get('retry-after') : null;
+    if (raw === null || raw === undefined || String(raw).trim() === '') return null;
+    var seconds = Number(raw);
+    if (!isFinite(seconds)) {
+      var at = Date.parse(raw);
+      if (isNaN(at)) return null;
+      seconds = (at - Date.now()) / 1000;
+    }
+    return Math.max(1, Math.ceil(seconds / 60));
+  }
+
+  function newsletterMessage(form, res) {
+    var d = form.dataset;
+    if (res.status === 202) return d.msgConfirm;
+    if (res.status === 429) {
+      var minutes = retryMinutes(res);
+      var wait = minutes === null
+        ? d.waitUnknown
+        : pluralize(minutes, d.lang, d.waitOne, d.waitOther);
+      return d.msgRate.replace('{wait}', wait);
+    }
+    if (res.status === 422) return d.msgInvalid;
+    return d.msgRetry;
+  }
+
+  function enhanceNewsletter() {
+    var forms = document.querySelectorAll('form[data-newsletter]');
+    var ready = 0;
+    Array.prototype.forEach.call(forms, function (form) {
+      var input = form.querySelector('input[name="email"]');
+      var button = form.querySelector('button[type="submit"]');
+      var status = form.querySelector('.newsletter-status');
+      if (!input || !button || !status) return;
+      ready += 1;
+      var pending = false;
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (pending) return;
+        if (typeof form.checkValidity === 'function' && !form.checkValidity()) {
+          if (typeof form.reportValidity === 'function') form.reportValidity();
+          return;
+        }
+        var body = {
+          email: input.value.trim(),
+          language: form.dataset.lang,
+          source_url: String(location.href).split('#')[0].split('?')[0],
+        };
+        if (form.dataset.segment) body.segment_id = form.dataset.segment;
+
+        pending = true;
+        button.disabled = true;
+        form.setAttribute('aria-busy', 'true');
+        status.textContent = '';
+        fetch(form.dataset.endpoint, {
+          method: 'POST',
+          credentials: 'omit',
+          headers: {
+            'authorization': 'Bearer ' + form.dataset.key,
+            'content-type': 'application/json',
+            'idempotency-key': newsletterKey(),
+          },
+          body: JSON.stringify(body),
+        })
+          .then(function (res) {
+            status.textContent = newsletterMessage(form, res);
+            if (res.status === 202) input.value = '';
+          })
+          .catch(function () {
+            status.textContent = form.dataset.msgRetry;
+          })
+          .finally(function () {
+            pending = false;
+            button.disabled = false;
+            form.removeAttribute('aria-busy');
+          });
+      });
+    });
+
+    // Le bloc est rendu masqué au build (sans JavaScript, il ne servirait à
+    // rien) : on ne le dévoile qu’une fois les écouteurs posés.
+    if (ready === 0) return;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-nl-block]'), function (block) {
+      block.hidden = false;
     });
   }
 
@@ -1110,6 +1340,7 @@
   enhanceCopyButton();
   enhanceAgentButtons();
   enhanceVote();
+  enhanceNewsletter();
   // L'ordre compte un peu : le checkout dévoile ses boutons tout de suite,
   // sans attendre la réponse de /slots (une API lente ou en panne ne doit pas
   // laisser la page sans bouton d'achat). Le rafraîchissement, lui, arrive
@@ -1117,56 +1348,5 @@
   enhanceSponsorInventory();
   enhanceSponsorCheckout();
   enhanceSponsorPaidNote();
-
-  // ---- badges d'économie qui s'envolent -----------------------------------
-  // Le titre montre un nom de SaaS à la fois ; à chaque rotation, le prix de
-  // ce SaaS s'envole sous lui, barré, puis s'efface. Les badges se cumulent :
-  // plusieurs vivent à l'écran en même temps, ce qui donne l'impression d'une
-  // addition qui monte — c'est le propos du site rendu visible.
-  //
-  // Semé en JS parce que le cumul est impossible en CSS seul : il faut créer
-  // un élément par apparition, pas animer un élément unique.
-  (function heroSavings() {
-    var host = document.querySelector('.hero-savings');
-    if (!host) return;
-
-    // prefers-reduced-motion : rien ne s'envole. Le prix n'est pas une
-    // information portée uniquement ici — chaque fiche affiche le sien — donc
-    // ne rien semer ne fait perdre aucune donnée.
-    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (still && still.matches) return;
-
-    var prices;
-    try { prices = JSON.parse(host.dataset.savings || '[]'); } catch (e) { return; }
-    if (!prices.length) return;
-
-    // Le pas doit suivre celui du rotateur, sinon badge et nom se désynchronisent.
-    // On le lit sur la variable CSS qui le définit, au lieu de le dupliquer ici.
-    var step = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--rot-step-ms'));
-    if (!isFinite(step) || step <= 0) step = 1900;
-
-    var LIFE = 3000; // durée de vol, alignée sur l'animation CSS
-    var i = 0;
-
-    function spawn() {
-      // Onglet en arrière-plan : on ne sème pas. Sinon on revient à une pile
-      // de badges figés, tous apparus pendant qu'on regardait ailleurs.
-      if (document.hidden) return;
-      var badge = document.createElement('span');
-      badge.className = 'hero-savings-badge';
-      badge.textContent = prices[i % prices.length];
-      // Une dérive horizontale par badge, pour qu'ils ne se superposent pas
-      // exactement quand deux se chevauchent.
-      badge.style.setProperty('--drift', (((i % 5) - 2) * 2.2) + 'rem');
-      host.appendChild(badge);
-      i += 1;
-      setTimeout(function () {
-        if (badge.parentNode) badge.parentNode.removeChild(badge);
-      }, LIFE + 100);
-    }
-
-    spawn();
-    setInterval(spawn, step);
-  }());
 
 })();

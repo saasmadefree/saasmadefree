@@ -22,10 +22,10 @@
   "requirements": [
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Actual Budget",
-      "url": "https://github.com/actualbudget/actual"
+      "project": "actual",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

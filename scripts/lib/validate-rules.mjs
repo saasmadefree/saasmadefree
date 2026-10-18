@@ -39,13 +39,12 @@ export function extractVars(template) {
 const PLACEHOLDER_UPPER = /\b(TODO|TBD|FIXME|XXX|PLACEHOLDER)\b/;
 const PLACEHOLDER_ANY_CASE = /lorem ipsum|à compléter|a completer/i;
 
-function findPlaceholders(entry, path, errors) {
+/** Parcourt chaque chaîne d'une entrée i18n et appelle visit(texte, chemin).
+ *  Les champs de premier niveau listés dans `skip` sont ignorés. */
+function walkStrings(entry, visit, skip = []) {
   const walk = (value, field) => {
     if (typeof value === 'string') {
-      const hit = PLACEHOLDER_UPPER.exec(value) ?? PLACEHOLDER_ANY_CASE.exec(value);
-      if (hit) {
-        errors.push(`${path} : ${field} contient un marqueur de gabarit "${hit[0]}"`);
-      }
+      visit(value, field);
       return;
     }
     if (Array.isArray(value)) {
@@ -56,10 +55,169 @@ function findPlaceholders(entry, path, errors) {
       for (const [key, item] of Object.entries(value)) walk(item, `${field}.${key}`);
     }
   };
-  for (const [field, value] of Object.entries(entry)) walk(value, field);
+  for (const [field, value] of Object.entries(entry)) {
+    if (!skip.includes(field)) walk(value, field);
+  }
 }
 
-function daysBetween(fromIso, toIso) {
+function findPlaceholders(entry, path, errors) {
+  walkStrings(entry, (value, field) => {
+    const hit = PLACEHOLDER_UPPER.exec(value) ?? PLACEHOLDER_ANY_CASE.exec(value);
+    if (hit) {
+      errors.push(`${path} : ${field} contient un marqueur de gabarit "${hit[0]}"`);
+    }
+  });
+}
+
+// Tournures interdites (spec §7), une liste par langue dans
+// data/style/banned-phrases.json. Ce sont des racines, comparées sans tenir
+// compte de la casse : "revolutioniz" attrape revolutionize, revolutionizing,
+// Revolutionized. L'apostrophe typographique est ramenée à l'apostrophe droite
+// pour qu'une seule forme suffise dans la liste.
+//
+// Le prompt n'est jamais contrôlé : c'est une consigne adressée à un agent de
+// code, pas de la prose publiée, et "robust error handling" y est légitime.
+const normalizeForPhrases = (text) => text.toLowerCase().replace(/[\u2018\u2019]/g, "'");
+
+function findBannedPhrases(entry, path, stems, errors) {
+  if (!stems?.length) return;
+  const needles = stems.map((stem) => [stem, normalizeForPhrases(stem)]);
+  walkStrings(entry, (value, field) => {
+    const text = normalizeForPhrases(value);
+    for (const [stem, needle] of needles) {
+      if (text.includes(needle)) {
+        errors.push(`${path} : ${field} contient une tournure interdite "${stem}" (data/style/banned-phrases.json)`);
+      }
+    }
+  }, ['prompt']);
+}
+
+/** Clé d'un comparatif, et nom de son fichier de texte : "a-vs-b". */
+export function compareKey(a, b) {
+  return `${a}-vs-${b}`;
+}
+
+const MIN_PROJECT_WORDS = 120;
+const MAX_PROJECT_WORDS = 320;
+
+function validateProjects(data, validators, errors) {
+  const projects = data.projects ?? new Map();
+  const projectI18n = data.projectI18n ?? new Map();
+  const banned = data.bannedPhrases ?? {};
+
+  for (const [slug, project] of projects) {
+    const path = `data/projects/${slug}.json`;
+    if (!validators.project(project)) {
+      for (const e of validators.project.errors) {
+        errors.push(`${path} ${e.instancePath || '/'} ${e.message}`);
+      }
+      continue;
+    }
+    if (project.slug !== slug) {
+      errors.push(`${path} : le champ slug vaut "${project.slug}"`);
+    }
+    // Un projet sans aucun texte est un brouillon (typiquement créé par la
+    // migration priorArt → projects) : il n'est pas publiable, les portes
+    // d'indexation s'en chargent, mais il est légal. Dès qu'il est rédigé dans
+    // une langue, chaque langue de ses markets doit l'être aussi : sinon la
+    // version manquante s'afficherait vide ou dans une autre langue sans que
+    // personne l'ait décidé.
+    const written = project.markets.filter((lang) => projectI18n.has(`${lang}/${slug}`));
+    if (written.length > 0) {
+      for (const lang of project.markets) {
+        if (!projectI18n.has(`${lang}/${slug}`)) {
+          errors.push(`data/i18n/${lang}/projects/${slug}.json manquant (déclaré dans markets)`);
+        }
+      }
+    }
+  }
+
+  for (const [key, entry] of projectI18n) {
+    const [lang, slug] = key.split('/');
+    const path = `data/i18n/${lang}/projects/${slug}.json`;
+    if (!validators.projectI18n(entry)) {
+      for (const e of validators.projectI18n.errors) {
+        errors.push(`${path} ${e.instancePath || '/'} ${e.message}`);
+      }
+    }
+    if (!projects.has(slug)) {
+      errors.push(`${path} : aucun projet data/projects/${slug}.json`);
+    }
+    if (typeof entry.description === 'string') {
+      const count = entry.description.trim().split(/\s+/).filter(Boolean).length;
+      if (count < MIN_PROJECT_WORDS || count > MAX_PROJECT_WORDS) {
+        errors.push(
+          `${path} : description compte ${count} mots, attendu entre ${MIN_PROJECT_WORDS} et ${MAX_PROJECT_WORDS}`
+        );
+      }
+    }
+    findPlaceholders(entry, path, errors);
+    findBannedPhrases(entry, path, banned[lang], errors);
+  }
+}
+
+function validateCompare(data, validators, errors) {
+  const pairs = data.compare ?? [];
+  const compareI18n = data.compareI18n ?? new Map();
+  const banned = data.bannedPhrases ?? {};
+  const projects = data.projects ?? new Map();
+  const sideExists = { tool: (slug) => data.tools.has(slug), project: (slug) => projects.has(slug) };
+  const sideDir = { tool: 'data/tools', project: 'data/projects' };
+
+  if (!validators.compare(pairs)) {
+    for (const e of validators.compare.errors) {
+      errors.push(`data/compare.json ${e.instancePath || '/'} ${e.message}`);
+    }
+    return;
+  }
+
+  // a-vs-b et b-vs-a sont la même page pour un lecteur et pour Google : on ne
+  // garde qu'une orientation, celle déclarée en premier.
+  const declared = new Set();
+  const seenUnordered = new Map();
+  pairs.forEach((pair, i) => {
+    const key = compareKey(pair.a, pair.b);
+    const at = `data/compare.json[${i}] (${key})`;
+    for (const [side, kind] of [[pair.a, pair.kindA], [pair.b, pair.kindB]]) {
+      if (!sideExists[kind](side)) {
+        errors.push(`${at} : côté inconnu "${side}" (aucun ${sideDir[kind]}/${side}.json)`);
+      }
+    }
+    if (pair.a === pair.b) {
+      errors.push(`${at} : les deux côtés sont identiques`);
+    }
+    const unordered = [pair.a, pair.b].sort().join('\u0000');
+    if (seenUnordered.has(unordered)) {
+      errors.push(`${at} : paire en double, déjà déclarée comme "${seenUnordered.get(unordered)}"`);
+    } else {
+      seenUnordered.set(unordered, key);
+    }
+    declared.add(key);
+  });
+
+  for (const [entryKey, entry] of compareI18n) {
+    const [lang, key] = entryKey.split('/');
+    const path = `data/i18n/${lang}/compare/${key}.json`;
+    if (!validators.compareI18n(entry)) {
+      for (const e of validators.compareI18n.errors) {
+        errors.push(`${path} ${e.instancePath || '/'} ${e.message}`);
+      }
+    }
+    if (!declared.has(key)) {
+      errors.push(`${path} : aucune paire "${key}" dans data/compare.json`);
+    }
+    findPlaceholders(entry, path, errors);
+    findBannedPhrases(entry, path, banned[lang], errors);
+  }
+}
+
+/**
+ * Écart en jours entre deux dates 'YYYY-MM-DD', calculé en UTC : en heure
+ * locale, un passage à l'heure d'été retirerait une heure à l'intervalle et
+ * l'arrondi pourrait faire perdre un jour à un seuil. Partagé avec
+ * site-alternatives.mjs (fraîcheur des stats, activité des projets).
+ */
+export function daysBetween(fromIso, toIso) {
   const from = Date.parse(`${fromIso}T00:00:00Z`);
   const to = Date.parse(`${toIso}T00:00:00Z`);
   return Math.round((to - from) / 86400000);
@@ -153,6 +311,8 @@ export function collectKeyPaths(obj, prefix) {
 export function validateAll(data, validators, today) {
   const errors = [];
   const { tools, i18n, ui, agents } = data;
+  const projects = data.projects ?? new Map();
+  const banned = data.bannedPhrases ?? {};
 
   for (const [slug, tool] of tools) {
     if (!validators.tool(tool)) {
@@ -163,6 +323,19 @@ export function validateAll(data, validators, today) {
     }
     if (tool.slug !== slug) {
       errors.push(`data/tools/${slug}.json : le champ slug vaut "${tool.slug}"`);
+    }
+    const seenAlternatives = new Set();
+    for (const [i, alt] of (tool.alternatives ?? []).entries()) {
+      if (!projects.has(alt.project)) {
+        errors.push(
+          `data/tools/${slug}.json : alternatives[${i}] pointe sur un projet inconnu "${alt.project}" ` +
+          `(aucun data/projects/${alt.project}.json)`
+        );
+      }
+      if (seenAlternatives.has(alt.project)) {
+        errors.push(`data/tools/${slug}.json : alternatives cite deux fois le projet "${alt.project}"`);
+      }
+      seenAlternatives.add(alt.project);
     }
     for (const related of tool.relatedSlugs) {
       if (!tools.has(related)) {
@@ -224,8 +397,32 @@ export function validateAll(data, validators, today) {
     if (!tools.has(entrySlug)) {
       errors.push(`${path} : aucune fiche data/tools/${entrySlug}.json`);
     }
+    // FAQ : 4 entrées sur une fiche d'avant la refonte « alternatives », 6 sur
+    // une fiche enrichie. Le marqueur d'enrichissement est alternativesIntro,
+    // pas le nombre d'alternatives : une fiche migrée peut citer 3 ou 4
+    // projets sans qu'on ait encore rien à écrire dans deux FAQ de plus.
+    if (Array.isArray(entry.faq)) {
+      const count = entry.faq.length;
+      if (entry.alternativesIntro !== undefined && count !== 6) {
+        errors.push(`${path} : faq compte ${count} entrées, 6 obligatoires dès que alternativesIntro est rédigé`);
+      } else if (count === 5) {
+        errors.push(`${path} : faq compte 5 entrées, attendu 4 (fiche pas encore enrichie) ou 6`);
+      }
+    }
+    if (entry.alternativeNotes && typeof entry.alternativeNotes === 'object') {
+      const listed = new Set((tools.get(entrySlug)?.alternatives ?? []).map((alt) => alt.project));
+      for (const project of Object.keys(entry.alternativeNotes)) {
+        if (!listed.has(project)) {
+          errors.push(`${path} : alternativeNotes.${project} ne correspond à aucun projet de alternatives`);
+        }
+      }
+    }
     findPlaceholders(entry, path, errors);
+    findBannedPhrases(entry, path, banned[entryLang], errors);
   }
+
+  validateProjects(data, validators, errors);
+  validateCompare(data, validators, errors);
 
   const seenAgentIds = new Set();
   for (const agent of agents) {

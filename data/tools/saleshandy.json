@@ -25,10 +25,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "checkdmarc",
-      "url": "https://github.com/domainaware/checkdmarc"
+      "project": "checkdmarc",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

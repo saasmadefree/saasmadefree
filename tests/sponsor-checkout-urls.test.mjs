@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { loadData } from '../scripts/lib/load-data.mjs';
 import { siteLanguages } from '../scripts/lib/site-data.mjs';
+import { pageFile } from '../scripts/lib/site-seo.mjs';
 import { checkoutUrls, SITE_LANGS, DEFAULT_LANG } from '../worker/src/sponsors.mjs';
 
 // Après paiement, Stripe renvoie l'acheteur sur `success_url`. Si cette URL ne
@@ -12,7 +13,8 @@ import { checkoutUrls, SITE_LANGS, DEFAULT_LANG } from '../worker/src/sponsors.m
 // rien d'autre que ce test ne les oblige à s'accorder sur la forme de l'URL.
 //
 // Le site est entièrement préfixé par langue : `build-site.mjs` écrit
-// `dist/<lang>/sponsor/index.html` et publie le chemin canonique
+// `dist/<lang>/sponsor.html` (pageFile : servi en 200 à `/<lang>/sponsor`,
+// sans redirection) et publie le chemin canonique
 // `/<lang>/sponsor`. Il n'existe aucune page `/sponsor` à la racine.
 const ORIGIN = 'https://saasmadefree.com';
 
@@ -62,7 +64,7 @@ describe('URLs de retour du checkout sponsor', () => {
   it.skipIf(!existsSync('dist'))('chaque URL de retour correspond à une page présente dans dist/', () => {
     for (const lang of published) {
       const { pathname } = new URL(checkoutUrls(ORIGIN, lang).successUrl);
-      const file = join('dist', ...pathname.split('/').filter(Boolean), 'index.html');
+      const file = join('dist', ...pageFile(pathname).split('/'));
       expect(existsSync(file), `page manquante pour ${pathname} : ${file}`).toBe(true);
     }
   });

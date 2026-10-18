@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "AFFiNE",
-      "url": "https://github.com/toeverything/AFFiNE"
+      "project": "affine",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

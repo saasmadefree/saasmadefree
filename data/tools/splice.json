@@ -23,11 +23,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Freesound",
-      "url": "https://github.com/MTG/freesound",
-      "license": "AGPL-3.0"
+      "project": "freesound",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -1,0 +1,25 @@
+{
+  "slug": "voiceink",
+  "name": "VoiceInk",
+  "homepage": "https://github.com/Beingpax/VoiceInk",
+  "repo": "Beingpax/VoiceInk",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "voice-dictation"
+  ],
+  "stats": {
+    "stars": 6844,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2024-10-20",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

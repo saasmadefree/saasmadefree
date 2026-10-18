@@ -6,16 +6,28 @@ import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { loadData } from './lib/load-data.mjs';
 import {
+  alternativesFor, replacedTools, toolDateModified, popularAlternatives, indexable, POPULAR_LIMIT,
+} from './lib/site-alternatives.mjs';
+import {
   SITE_ORIGIN, fetchVoteCounts, fetchStats, fetchSponsorSlots, siteLanguages, toolsForLang, sortTools,
   categoriesForLang, topCategoriesByCount, langsForCategory, catalogueFigures, mrrDestroyed,
 } from './lib/site-data.mjs';
 import { fetchFavicons } from './lib/site-favicons.mjs';
-import { buildSitemap } from './lib/site-seo.mjs';
+import { buildSitemaps, listSitemapEntries, languageVersions, pageFile } from './lib/site-seo.mjs';
 import { renderHomePage } from './lib/site-page-home.mjs';
-import { renderCategoryPage } from './lib/site-page-category.mjs';
+import { renderCategoryPage, categoryProjects, categoryIndexable } from './lib/site-page-category.mjs';
 import { renderCategoriesIndexPage } from './lib/site-page-categories-index.mjs';
+import {
+  renderCollectionPage, collectionPath, collectionPlan, COLLECTION_KINDS,
+} from './lib/site-page-collection.mjs';
+import { renderAlternativesHub, hubPath } from './lib/site-page-alternatives-hub.mjs';
 import { renderSponsorPage } from './lib/site-page-sponsor.mjs';
 import { renderToolPage } from './lib/site-page-tool.mjs';
+import { newsletterConfig, renderNewsletterForm } from './lib/site-newsletter.mjs';
+import { renderProjectPage, projectPages, relatedProjects, projectDateModified } from './lib/site-page-project.mjs';
+import {
+  renderComparePage, buildComparePages, compareLinksFor, compareDateModified, compareCategory,
+} from './lib/site-page-compare.mjs';
 import { renderStatsPage } from './lib/site-page-stats.mjs';
 import { renderRootPage } from './lib/site-page-root.mjs';
 import { render404Page } from './lib/site-page-404.mjs';
@@ -40,8 +52,10 @@ async function writeText(path, text) {
   await writeFile(path, text, 'utf8');
 }
 
-function homeAlternates(langs) {
-  return langs.map((lang) => ({ lang, path: `/${lang}/` }));
+/** Écrit une page à l'endroit d'où Cloudflare Pages sert son URL en 200
+ *  (pageFile) : `/en/tools/x` → en/tools/x.html, `/en/` → en/index.html. */
+async function writePage(path, html) {
+  await writeText(join(OUT, ...pageFile(path).split('/')), html);
 }
 
 function xDefaultOf(alternates) {
@@ -49,11 +63,26 @@ function xDefaultOf(alternates) {
   return (alternates.find((a) => a.lang === 'en') ?? alternates[0]).path;
 }
 
-function buildToolViews(tools, i18n, lang, voteCounts) {
+/** La plus récente de dates 'YYYY-MM-DD' (comparaison binaire), null sans date. */
+function latestOf(dates) {
+  const known = dates.filter(Boolean);
+  return known.length ? known.reduce((max, d) => (d > max ? d : max)) : null;
+}
+
+/** Entrée de sitemap, lastmod seulement quand elle est connue. */
+function sitemapEntry(kind, path, lastmod = null) {
+  return lastmod ? { kind, path, lastmod } : { kind, path };
+}
+
+function buildToolViews(tools, i18n, lang, voteCounts, projects, today) {
   const list = toolsForLang(tools, lang).map((tool) => ({
     ...tool,
     tagline: i18n.get(`${lang}/${tool.slug}`).tagline,
     path: `/${lang}/tools/${tool.slug}`,
+    // Noms des alternatives libres affichables (ni archivées ni inactives),
+    // dans l'ordre éditorial : la ligne « Alternatives gratuites » des cartes
+    // et la liste « Alternatives populaires » de l'accueil.
+    alternativeNames: alternativesFor(tool, projects, today).map(({ project }) => project.name),
   }));
   return sortTools(list, voteCounts);
 }
@@ -65,7 +94,7 @@ function voteCountFor(voteCounts, slug) {
 
 async function main() {
   const data = await loadData(process.cwd());
-  const { tools, i18n, ui, categories, agents } = data;
+  const { tools, i18n, ui, categories, agents, projects, projectI18n, compare, compareI18n } = data;
 
   // Date du build : c'est elle qui décide qu'un placement sponsor est actif
   // (un placement échu disparaît au prochain build, sans aucune action —
@@ -74,6 +103,14 @@ async function main() {
   // fois ici, jamais dans un gabarit : toutes les pages d'un même build
   // portent la même date.
   const today = new Date().toISOString().slice(0, 10);
+
+  // Newsletter SmartLetter (spec D13) : sans SMARTLETTER_SIGNUPS_KEY, aucun
+  // formulaire n'est rendu. La clé n'est jamais journalisée : on dit
+  // seulement si elle est là.
+  const newsletter = newsletterConfig(process.env);
+  console.log(newsletter
+    ? `Newsletter SmartLetter : formulaire rendu${newsletter.segmentId ? ', avec segment' : ''}.`
+    : 'Newsletter SmartLetter : SMARTLETTER_SIGNUPS_KEY absente, aucun formulaire rendu.');
 
 
   const voteCounts = await fetchVoteCounts();
@@ -143,33 +180,77 @@ async function main() {
   const figures = catalogueFigures(tools, langs, i18n.size);
   const mrrTotal = mrrDestroyed(tools, voteCounts);
 
-  const sitemapPages = [{ path: '/' }, { path: '/privacy' }];
+  // Entrées de sitemap, par type (buildSitemaps). La racine n'y est pas :
+  // c'est une redirection (meta refresh) vers /en/, pas une page à indexer.
+  const sitemapPages = [sitemapEntry('pages', '/privacy')];
 
-  // ---- page racine ------------------------------------------------------
-  const enPath = langs.includes('en') ? '/en/' : `/${langs[0]}/`;
-  const rootUi = ui.get('en') ?? ui.get(langs[0]);
-  await writeText(
-    join(OUT, 'index.html'),
-    renderRootPage({ ui: rootUi, enPath, otherLangs: langs.filter((l) => `/${l}/` !== enPath) })
-  );
-
-  // ---- 404 ---------------------------------------------------------------
-  // Cloudflare Pages sert ce fichier, avec un vrai statut 404, pour toute URL
-  // sans fichier correspondant. Sans lui, Pages renvoyait la page racine en
-  // 200 pour n'importe quel chemin — voir scripts/lib/site-page-404.mjs.
-  await writeText(join(OUT, '404.html'), render404Page({ ui: rootUi, enPath, langs }));
 
   // ---- par langue : accueil, fiches, catégories --------------------------
-  const homeAlt = homeAlternates(langs);
+  const homeAlt = languageVersions(langs, (l) => `/${l}/`);
   const homeXDefault = xDefaultOf(homeAlt);
   let toolPageCount = 0;
   let categoryPageCount = 0;
+  let projectPageCount = 0;
+  let comparePageCount = 0;
+  // Pages de liste (catégories, collections, hub) écrites en noindex,follow
+  // faute d'atteindre 3 éléments (spec D7) : comptées pour le journal du build.
+  let noindexListCount = 0;
+  let collectionPageCount = 0;
+
+  // Pages projet /{lang}/oss/{slug} : une par langue publiée où le texte
+  // existe (Ruling 20). Calculées une fois, AVANT les fiches : le lien d'une
+  // fiche vers une page projet se décide sur ce même ensemble, donc une fiche
+  // ne lie jamais une page absente ou gardée hors index.
+  const projectPlan = projectPages({ projects, projectI18n, tools, langs, today });
+  const indexableProjectPaths = new Set(projectPlan.filter((page) => page.indexable).map((page) => page.path));
+  const projectIndexableIn = (lang) => (project) => indexableProjectPaths.has(`/${lang}/oss/${project.slug}`);
+
+  // Comparatifs /{lang}/compare/{a}-vs-{b} : un seul plan, d'où dérivent les
+  // pages, le sitemap et les liens « Comparisons » des fiches et des pages
+  // projet — un lien ne vise donc jamais un comparatif absent. Seulement les
+  // paires de data/compare.json (spec D4) ; un côté inconnu casse le build.
+  const comparePlan = buildComparePages({ compare, compareI18n, tools, projects, langs, today });
+  const comparisonsOf = (lang, kind, slug) => compareLinksFor(comparePlan, { lang, kind, slug, ui: ui.get(lang) });
 
   // Répartition des verdicts sur tout le catalogue — voir site-page-stats.mjs,
   // bloc « catalogue en chiffres » : un seul calcul, partagé par toutes les
   // langues, jamais recopié à la main.
   const verdictCounts = { yes: 0, kinda: 0, no: 0 };
   for (const tool of tools.values()) verdictCounts[tool.verdict] += 1;
+
+  // Vues des fiches de chaque langue, calculées AVANT la boucle : la porte D7
+  // d'une page de liste dans une langue décide de son hreflang dans TOUTES
+  // les autres (Ruling 29). Une version noindex n'est citée par aucune.
+  const toolViewsByLang = new Map(langs.map((l) => [l, buildToolViews(tools, i18n, l, voteCounts, projects, today)]));
+  const viewsIn = (l, category) => toolViewsByLang.get(l).filter((t) => t.category === category);
+  const categoryGate = (category) => (l) => categoryIndexable(viewsIn(l, category), categoryProjects(viewsIn(l, category), projects, today));
+  // Collections : une seule décision par langue (Ruling 34), d'où dérivent la
+  // page (noindex), le sitemap, le hreflang ET les liens du pied de page de
+  // toutes les pages. Un lien ne vise donc jamais une collection noindex.
+  const collections = collectionPlan(langs, (l) => toolViewsByLang.get(l), { projects, today });
+  const collectionGate = (kind) => (l) => collections.get(l).indexable.includes(kind);
+  const hubGate = (l) => indexable.list(toolViewsByLang.get(l));
+
+  // ---- page racine ------------------------------------------------------
+  const enPath = langs.includes('en') ? '/en/' : `/${langs[0]}/`;
+  const rootUi = ui.get('en') ?? ui.get(langs[0]);
+  // Racine et 404 portent le pied de page de leur langue (en, à défaut la
+  // première) : mêmes liens de collection que ses pages (Ruling 34).
+  const rootCollectionLinks = collections.get(langs.includes('en') ? 'en' : langs[0]).indexable;
+  await writePage(
+    '/',
+    renderRootPage({ ui: rootUi, enPath, otherLangs: langs.filter((l) => `/${l}/` !== enPath), collectionLinks: rootCollectionLinks })
+  );
+
+  // ---- 404 ---------------------------------------------------------------
+  // Cloudflare Pages sert ce fichier, avec un vrai statut 404, pour toute URL
+  // sans fichier correspondant. Sans lui, Pages renvoyait la page racine en
+  // 200 pour n'importe quel chemin — voir scripts/lib/site-page-404.mjs.
+  await writeText(join(OUT, '404.html'), render404Page({ ui: rootUi, enPath, langs, collectionLinks: rootCollectionLinks }));
+  // Date réelle de chaque fiche (prix ou chiffres GitHub), une fois : la
+  // lastmod d'une page de liste est la plus récente de ses fiches.
+  const toolLastmod = new Map([...tools.values()].map((tool) => [tool.slug, toolDateModified(tool, alternativesFor(tool, projects, today))]));
+  const lastmodOf = (views) => latestOf(views.map((t) => toolLastmod.get(t.slug)));
 
   for (const lang of langs) {
     const langUi = ui.get(lang);
@@ -184,6 +265,12 @@ async function main() {
       throw new Error(
         `data/i18n/${lang}/ui.json ne porte pas les chaînes du site — impossible de générer les pages en ${lang}. ` +
         'Ajouter le bloc "site" complet (voir data/i18n/en/ui.json) avant de déclarer cette langue dans markets.'
+      );
+    }
+    if (newsletter && !langUi.site.newsletter) {
+      throw new Error(
+        `data/i18n/${lang}/ui.json ne porte pas site.newsletter alors que SMARTLETTER_SIGNUPS_KEY est définie. ` +
+        'Ajouter le bloc (voir data/i18n/en/ui.json) : sans lui, la langue n’aurait pas de formulaire.'
       );
     }
 
@@ -207,87 +294,147 @@ async function main() {
     });
     const sponsorSlots = renderSponsorSlots(sponsorCtx);
 
-    const toolViews = buildToolViews(tools, i18n, lang, voteCounts);
+    const toolViews = toolViewsByLang.get(lang);
+    // Collections liées au pied de page de chaque page de la langue (Ruling 34).
+    const collectionLinks = collections.get(lang).indexable;
     const categorySlugs = categoriesForLang(tools, lang);
     const topCategorySlugs = topCategoriesByCount(tools, lang, HOME_TOP_CATEGORIES);
     const homePath = `/${lang}/`;
 
     // Accueil — seulement les catégories les plus peuplées (topCategorySlugs) ;
     // categorySlugs (toutes) sert à la page /categories/ juste après.
-    await writeText(
-      join(OUT, lang, 'index.html'),
+    await writePage(
+      homePath,
       renderHomePage({
         lang, path: homePath, toolViews, topCategorySlugs, categories, voteCounts, favicons, figures, mrrTotal,
-        ui: langUi, alternates: homeAlt, xDefaultPath: homeXDefault, sponsorSlots, buildDate: today,
+        ui: langUi, collectionLinks, alternates: homeAlt, xDefaultPath: homeXDefault, sponsorSlots, buildDate: today,
+        newsletter: renderNewsletterForm({ lang, ui: langUi, config: newsletter, variant: 'hero' }),
       })
     );
-    sitemapPages.push({ path: homePath });
+    sitemapPages.push(sitemapEntry('pages', homePath, lastmodOf(toolViews)));
 
     // Page "toutes les catégories" — cible du dernier chip de l'accueil.
     const allCategoriesPath = `${homePath}categories/`;
-    const allCategoriesAlt = langs.map((l) => ({ lang: l, path: `/${l}/categories/` }));
+    const allCategoriesAlt = languageVersions(langs, (l) => `/${l}/categories/`);
     const countsBySlug = Object.fromEntries(
       categorySlugs.map((slug) => [slug, toolViews.filter((t) => t.category === slug).length])
     );
-    await writeText(
-      join(OUT, lang, 'categories', 'index.html'),
+    // Projets classés par chaque page de catégorie : calculés une fois, pour
+    // le répertoire (nombre de projets), la page elle-même et sa porte D7.
+    const rankedByCategory = new Map(categorySlugs.map((slug) => [
+      slug, categoryProjects(toolViews.filter((t) => t.category === slug), projects, today),
+    ]));
+    const projectCountsBySlug = Object.fromEntries(
+      categorySlugs.map((slug) => [slug, rankedByCategory.get(slug).length])
+    );
+    await writePage(
+      allCategoriesPath,
       renderCategoriesIndexPage({
-        lang, path: allCategoriesPath, categorySlugs, categories, countsBySlug,
-        ui: langUi, alternates: allCategoriesAlt, xDefaultPath: xDefaultOf(allCategoriesAlt), homePath, sponsorSlots,
+        lang, path: allCategoriesPath, categorySlugs, categories, countsBySlug, projectCountsBySlug,
+        ui: langUi, collectionLinks, alternates: allCategoriesAlt, xDefaultPath: xDefaultOf(allCategoriesAlt), homePath, sponsorSlots,
       })
     );
-    sitemapPages.push({ path: allCategoriesPath });
+    sitemapPages.push(sitemapEntry('lists', allCategoriesPath, lastmodOf(toolViews)));
 
     // Page /sponsor — la page qui vend les emplacements. Elle porte elle
     // aussi ses rails et ses bandeaux (sponsorSlots) : ce n'est pas une
     // exception au reste du site. sponsorCtx (le contexte, pas le balisage
     // déjà rendu) lui sert en plus à savoir quel slot de l'inventaire est pris.
     const sponsorPath = `/${lang}/sponsor`;
-    const sponsorAlt = langs.map((l) => ({ lang: l, path: `/${l}/sponsor` }));
-    await writeText(
-      join(OUT, lang, 'sponsor', 'index.html'),
+    const sponsorAlt = languageVersions(langs, (l) => `/${l}/sponsor`);
+    await writePage(
+      sponsorPath,
       renderSponsorPage({
-        lang, path: sponsorPath, ui: langUi, alternates: sponsorAlt,
+        lang, path: sponsorPath, ui: langUi, collectionLinks, alternates: sponsorAlt,
         xDefaultPath: xDefaultOf(sponsorAlt), homePath,
         sponsors: sponsorCtx, sponsorSlots, figures, stats,
       })
     );
-    sitemapPages.push({ path: sponsorPath });
+    sitemapPages.push(sitemapEntry('pages', sponsorPath));
 
     // Page stats — coquille build-time, chiffres vivants côté client.
     const statsPath = `${homePath}stats/`;
-    const statsAlt = langs.map((l) => ({ lang: l, path: `/${l}/stats/` }));
-    await writeText(
-      join(OUT, lang, 'stats', 'index.html'),
+    const statsAlt = languageVersions(langs, (l) => `/${l}/stats/`);
+    await writePage(
+      statsPath,
       renderStatsPage({
-        lang, path: statsPath, ui: langUi, alternates: statsAlt,
+        lang, path: statsPath, ui: langUi, collectionLinks, alternates: statsAlt,
         xDefaultPath: xDefaultOf(statsAlt), homePath,
         toolCount: tools.size, verdictCounts,
       })
     );
-    sitemapPages.push({ path: statsPath });
+    sitemapPages.push(sitemapEntry('pages', statsPath));
+
+    // Pages de liste (catégories, collections, hub) et leur porte D7.
+    const listPages = [];
 
     // Catégories
     for (const categorySlug of categorySlugs) {
       const catLangs = langsForCategory(tools, categorySlug);
-      const catAlt = catLangs.map((l) => ({ lang: l, path: `/${l}/categories/${categorySlug}` }));
+      const catAlt = languageVersions(
+        catLangs.filter((l) => langs.includes(l)), (l) => `/${l}/categories/${categorySlug}`, categoryGate(categorySlug),
+      );
       const catPath = `/${lang}/categories/${categorySlug}`;
       const catToolViews = toolViews.filter((t) => t.category === categorySlug);
-      await writeText(
-        join(OUT, lang, 'categories', categorySlug, 'index.html'),
+      await writePage(
+        catPath,
         renderCategoryPage({
           lang, path: catPath, categorySlug, categories, toolViews: catToolViews, voteCounts, favicons,
-          ui: langUi, alternates: catAlt, xDefaultPath: xDefaultOf(catAlt), homePath, sponsorSlots,
+          ui: langUi, collectionLinks, alternates: catAlt, xDefaultPath: xDefaultOf(catAlt), homePath, sponsorSlots,
+          projects, projectI18n, buildDate: today, today, projectIndexable: projectIndexableIn(lang),
         })
       );
-      sitemapPages.push({ path: catPath });
+      // Moins de 3 éléments (SaaS et projets confondus) : noindex,follow,
+      // hors sitemap (spec D7). L'URL, elle, ne change pas.
+      listPages.push({
+        path: catPath, indexable: categoryIndexable(catToolViews, rankedByCategory.get(categorySlug)), lastmod: lastmodOf(catToolViews),
+      });
       categoryPageCount += 1;
     }
 
-    // Fiches outil
+    // Collections /{lang}/collections/{kind} (spec D5) : toutes les langues
+    // publiées, noindex sous 3 éléments.
+    for (const kind of COLLECTION_KINDS) {
+      const items = collections.get(lang).items[kind];
+      const open = collectionLinks.includes(kind);
+      const colPath = collectionPath(lang, kind);
+      const colAlt = languageVersions(langs, (l) => collectionPath(l, kind), collectionGate(kind));
+      await writePage(
+        colPath,
+        renderCollectionPage({
+          kind, lang, path: colPath, items, categories, voteCounts, favicons,
+          ui: langUi, collectionLinks, alternates: colAlt, xDefaultPath: xDefaultOf(colAlt), homePath, sponsorSlots, buildDate: today,
+          isIndexable: open,
+        })
+      );
+      listPages.push({ path: colPath, indexable: open, lastmod: lastmodOf(items) });
+      collectionPageCount += 1;
+    }
+
+    // Hub A–Z /{lang}/alternatives/ : chaque fiche de la langue avec son
+    // nombre d'alternatives affichables (le même que celui des cartes).
+    const hubAlt = languageVersions(langs, hubPath, hubGate);
+    await writePage(
+      hubPath(lang),
+      renderAlternativesHub({
+        lang, path: hubPath(lang), tools: toolViews,
+        counts: Object.fromEntries(toolViews.map((t) => [t.slug, t.alternativeNames.length])),
+        ui: langUi, collectionLinks, alternates: hubAlt, xDefaultPath: xDefaultOf(hubAlt), homePath, sponsorSlots, buildDate: today,
+      })
+    );
+    listPages.push({ path: hubPath(lang), indexable: indexable.list(toolViews), lastmod: lastmodOf(toolViews) });
+
+    // Pages de liste de la langue → sitemap, par la seule porte D7 testée
+    // (listSitemapEntries) : une page noindex n'y entre jamais.
+    sitemapPages.push(...listSitemapEntries(listPages).map(({ path, lastmod }) => sitemapEntry('lists', path, lastmod)));
+    noindexListCount += listPages.filter((page) => !page.indexable).length;
+
+    // Fiches outil. Le bloc newsletter du bas de fiche est le même sur toutes
+    // les fiches d'une langue : rendu une fois.
+    const toolNewsletter = renderNewsletterForm({ lang, ui: langUi, config: newsletter, variant: 'footer' });
     for (const tool of toolsForLang(tools, lang)) {
       const i18nEntry = i18n.get(`${lang}/${tool.slug}`);
-      const toolAlt = tool.markets.map((l) => ({ lang: l, path: `/${l}/tools/${tool.slug}` }));
+      const toolAlt = languageVersions(tool.markets.filter((l) => langs.includes(l)), (l) => `/${l}/tools/${tool.slug}`);
       const toolPath = `/${lang}/tools/${tool.slug}`;
       const relatedTools = tool.relatedSlugs
         .map((slug) => tools.get(slug))
@@ -298,21 +445,76 @@ async function main() {
           path: `/${lang}/tools/${related.slug}`,
         }));
 
-      await writeText(
-        join(OUT, lang, 'tools', tool.slug, 'index.html'),
+      await writePage(
+        toolPath,
         renderToolPage({
           lang, path: toolPath, tool, i18nEntry, categories,
-          ui: langUi, alternates: toolAlt, xDefaultPath: xDefaultOf(toolAlt), homePath,
+          ui: langUi, collectionLinks, alternates: toolAlt, xDefaultPath: xDefaultOf(toolAlt), homePath,
           categoryPath: `/${lang}/categories/${tool.category}`,
           relatedTools, voteCount: voteCountFor(voteCounts, tool.slug), favicons, agents, sponsorSlots,
-          // Déjà câblée pour la fiche en pièce d'instruction (tampon verdict
-          // daté du build) : renderToolPage l'ignore tant que son gabarit ne
-          // la lit pas — même date unique que l'accueil, calculée dans main().
+          // Date du verdict (build) et date de fraîcheur des chiffres GitHub :
+          // la même date unique que l'accueil, calculée dans main().
           buildDate: today,
+          projects, projectI18n, today,
+          // Lien vers /{lang}/oss/{slug} seulement si cette page est indexable
+          // (spec D7) ; sinon la fiche renvoie au site du projet.
+          projectIndexable: projectIndexableIn(lang),
+          comparisons: comparisonsOf(lang, 'tool', tool.slug),
+          // « People also look for alternatives to… » : calculé par fiche,
+          // même catégorie d'abord, puis le classement global (Ruling 26).
+          popularTools: popularAlternatives(toolViews, lang, POPULAR_LIMIT, { current: tool }),
+          newsletter: toolNewsletter,
         })
       );
-      sitemapPages.push({ path: toolPath, lastmod: tool.pricing.checkedOn });
+      // Une fiche est toujours dans le sitemap (Ruling 2), datée de son
+      // relevé le plus récent (prix ou chiffres GitHub affichés), comme
+      // WebPage.dateModified dans la page.
+      sitemapPages.push(sitemapEntry('tools', toolPath, toolLastmod.get(tool.slug)));
       toolPageCount += 1;
+    }
+
+    // Pages projet de la langue. Une page non indexable (projet inactif, ou
+    // cité par aucune fiche) est écrite en noindex,follow et reste hors
+    // sitemap (spec D7).
+    for (const page of projectPlan.filter((entry) => entry.lang === lang)) {
+      const { project } = page;
+      const category = project.categories[0];
+      const html = renderProjectPage({
+        lang, path: page.path, project, i18nEntry: page.i18nEntry,
+        replaced: replacedTools(project.slug, tools),
+        related: relatedProjects(project, projects, today),
+        ui: langUi, collectionLinks, alternates: page.alternates, xDefaultPath: page.xDefaultPath, homePath,
+        categories, categoryPath: categorySlugs.includes(category) ? `/${lang}/categories/${category}` : null,
+        buildDate: today, today, indexable: page.indexable,
+        projectIndexable: projectIndexableIn(lang), projectI18n, sponsorSlots,
+        comparisons: comparisonsOf(lang, 'project', project.slug),
+      });
+      await writePage(page.path, html);
+      if (page.indexable) {
+        sitemapPages.push(sitemapEntry('projects', page.path, projectDateModified(project)));
+      }
+      projectPageCount += 1;
+    }
+
+    // Comparatifs de la langue. Un côté projet inactif (archivé, ou sans
+    // commit depuis un an) : page écrite en noindex,follow, hors sitemap.
+    for (const page of comparePlan.filter((entry) => entry.lang === lang)) {
+      const withText = (side) => ({
+        ...side, i18n: (side.kind === 'tool' ? i18n : projectI18n).get(`${lang}/${side.entity.slug}`),
+      });
+      const category = compareCategory(page.left);
+      const html = renderComparePage({
+        lang, path: page.path, left: withText(page.left), right: withText(page.right), i18nEntry: page.i18nEntry,
+        ui: langUi, collectionLinks, alternates: page.alternates, xDefaultPath: page.xDefaultPath, homePath,
+        categories, categoryPath: categorySlugs.includes(category) ? `/${lang}/categories/${category}` : null,
+        buildDate: today, today, indexable: page.indexable,
+        projectIndexable: projectIndexableIn(lang), sponsorSlots,
+      });
+      await writePage(page.path, html);
+      if (page.indexable) {
+        sitemapPages.push(sitemapEntry('compare', page.path, compareDateModified(page.left, page.right)));
+      }
+      comparePageCount += 1;
     }
   }
 
@@ -326,10 +528,19 @@ async function main() {
   // réécrit pour qu'il charge la feuille versionnée, comme toutes les pages.
   const privacy = await readFile(join('public', 'privacy.html'), 'utf8');
   await writeText(join(OUT, 'privacy.html'), privacy.replace('href="/assets/site.css"', `href="${assetUrl('site.css')}"`));
-  await writeText(join(OUT, 'sitemap.xml'), buildSitemap(sitemapPages));
+  // Un sitemap par type et leur index (robots.txt pointe sur l'index).
+  // /sitemap.xml reste servi, avec le même index : c'est l'adresse déjà
+  // déclarée à la Search Console, elle ne doit pas tomber en 404.
+  const sitemaps = buildSitemaps(sitemapPages);
+  for (const file of sitemaps.files) await writeText(join(OUT, file.name), file.xml);
+  await writeText(join(OUT, 'sitemap-index.xml'), sitemaps.index);
+  await writeText(join(OUT, 'sitemap.xml'), sitemaps.index);
   console.log(
     `Site écrit dans ${OUT}/ — ${langs.length} langue(s), ${toolPageCount} fiche(s), ` +
-    `${categoryPageCount} page(s) de catégorie, ${sitemapPages.length} URL(s) dans le sitemap (${SITE_ORIGIN}).`
+    `${categoryPageCount} page(s) de catégorie, ${projectPageCount} page(s) projet, ` +
+    `${comparePageCount} comparatif(s), ${collectionPageCount} collection(s), ${langs.length} hub(s) A–Z, ` +
+    `${noindexListCount} page(s) de liste en noindex, ` +
+    `${sitemapPages.length} URL(s) dans les sitemaps (${sitemaps.files.map((f) => `${f.name} ${f.count}`).join(', ')}, ${SITE_ORIGIN}).`
   );
 }
 

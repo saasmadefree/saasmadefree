@@ -23,10 +23,10 @@
   "requirements": [
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Shiori",
-      "url": "https://github.com/go-shiori/shiori"
+      "project": "shiori",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

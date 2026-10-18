@@ -1,0 +1,26 @@
+{
+  "slug": "ente",
+  "name": "Ente",
+  "homepage": "https://github.com/ente/ente",
+  "repo": "ente/ente",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "photography"
+  ],
+  "stats": {
+    "stars": 29436,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2022-11-01",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

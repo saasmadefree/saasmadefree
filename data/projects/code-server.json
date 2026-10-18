@@ -1,0 +1,26 @@
+{
+  "slug": "code-server",
+  "name": "code-server",
+  "homepage": "https://github.com/coder/code-server",
+  "repo": "coder/code-server",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "dev-tools"
+  ],
+  "stats": {
+    "stars": 79639,
+    "lastCommit": "2026-10-14",
+    "createdAt": "2019-02-27",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

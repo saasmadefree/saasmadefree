@@ -1,0 +1,26 @@
+{
+  "slug": "anki",
+  "name": "Anki",
+  "homepage": "https://github.com/ankitects/anki",
+  "repo": "ankitects/anki",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "learning"
+  ],
+  "stats": {
+    "stars": 32074,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2012-12-21",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

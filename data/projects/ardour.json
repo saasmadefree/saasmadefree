@@ -1,0 +1,26 @@
+{
+  "slug": "ardour",
+  "name": "Ardour",
+  "homepage": "https://github.com/Ardour/ardour",
+  "repo": "Ardour/ardour",
+  "license": "GPL-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "audio-video"
+  ],
+  "stats": {
+    "stars": 5352,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2013-03-13",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

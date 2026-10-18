@@ -27,10 +27,10 @@
     "oauth-app",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Chatwoot",
-      "url": "https://github.com/chatwoot/chatwoot"
+      "project": "chatwoot",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

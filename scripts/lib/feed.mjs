@@ -1,4 +1,5 @@
 import { normalizeDomain } from './validate-rules.mjs';
+import { derivePriorArt } from './prior-art.mjs';
 
 export const FEED_VERSION = 'v1';
 
@@ -19,7 +20,13 @@ export function buildIndex(tools) {
   return index;
 }
 
-export function buildToolRecord(tool, i18nEntry, lang) {
+/**
+ * Enregistrement v1 d'une fiche. `priorArt` n'existe plus dans les données
+ * sources : il est dérivé de `alternatives` et des projets, au format que lit
+ * l'extension ({ name, url, license? }). C'est un contrat public : ne pas
+ * changer sa forme sans passer à un feed v2.
+ */
+export function buildToolRecord(tool, i18nEntry, lang, projects) {
   return {
     slug: tool.slug,
     name: tool.name,
@@ -31,7 +38,7 @@ export function buildToolRecord(tool, i18nEntry, lang) {
     moatType: tool.moatType,
     diyTimeEstimate: tool.diyTimeEstimate,
     requirements: tool.requirements,
-    priorArt: tool.priorArt ?? [],
+    priorArt: derivePriorArt(tool, projects),
     relatedSlugs: tool.relatedSlugs,
     verifiedOneShot: tool.verifiedOneShot,
     lang,

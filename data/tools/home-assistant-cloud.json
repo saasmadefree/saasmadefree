@@ -24,16 +24,14 @@
     "hosting",
     "domain"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Home Assistant",
-      "url": "https://github.com/home-assistant/core",
-      "license": "Apache-2.0"
+      "project": "core",
+      "fit": "partial"
     },
     {
-      "name": "Tailscale",
-      "url": "https://github.com/tailscale/tailscale",
-      "license": "BSD-3-Clause"
+      "project": "tailscale",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -53,9 +53,18 @@ npm run build
 ```
 
 - **`npm ci`** — installs the dependencies from `package-lock.json` (Node ≥ 22, no other runtime requirement). No network access is needed beyond npm itself; there are no secrets to configure to run any of the commands below.
-- **`npm run validate`** — runs `scripts/validate.mjs`. It loads every file under `data/`, checks it against the JSON Schemas in `schema/`, and enforces the rules a schema alone can't express: domains unique across tools, `relatedSlugs` pointing at real, distinct tools, exactly four FAQ entries, every declared market having its translation file, prices no older than 180 days, and every `requirements[]` code and agent `runHint` translated in all seven `data/i18n/<lang>/ui.json` files. This is the same check CI runs on every pull request.
+- **`npm run validate`** — runs `scripts/validate.mjs`. It loads every file under `data/`, checks it against the JSON Schemas in `schema/`, and enforces the rules a schema alone can't express: domains unique across tools, `relatedSlugs` pointing at real, distinct tools, four FAQ entries (six on an entry with `alternativesIntro`), every declared market having its translation file, prices no older than 180 days, and every `requirements[]` code and agent `runHint` translated in all seven `data/i18n/<lang>/ui.json` files. This is the same check CI runs on every pull request.
 - **`npx vitest run`** — runs the root test suite (domain matching, template rendering, the feed builder, the validation rules themselves). Always `run`, not the bare `vitest`, so it exits instead of watching.
 - **`npm run build`** — runs `scripts/build-feed.mjs`. It validates the data again, then writes the versioned public feed to `dist/feed/v1/`, the extension's offline snapshot to `extension/data/index.json`, the worker's slug allow-list to `worker/src/slugs.generated.mjs`, and copies `public/` (including the privacy policy) into `dist/`.
+
+Two environment variables are optional, and only change the site build:
+
+| Variable | Effect |
+|---|---|
+| `SMARTLETTER_SIGNUPS_KEY` | A SmartLetter key of type `signups`. When set, the build renders the newsletter form on the home page (under the subtitle) and at the bottom of each tool page. When unset or empty, no form is rendered at all. The key ends up in the public HTML: that is by design, a `signups` key can only start a double opt-in sign-up. |
+| `SMARTLETTER_SEGMENT_ID` | Optional SmartLetter segment UUID, sent with every sign-up. A value that is not a UUID fails the build. |
+
+In CI both are GitHub Actions **secrets** (`secrets.*`). The key is public by design, since it ends up in the HTML, but it is kept as a secret so it stays out of the CI logs, where `vars.*` values print unmasked. The form posts from the visitor's browser straight to `https://api.smartletter.ai/signups`, only when they press Subscribe: nothing is requested from SmartLetter when a page loads (see `public/privacy.html`).
 
 The Cloudflare Worker that backs the vote counter lives in its own package. `worker/src/index.mjs` imports `worker/src/slugs.generated.mjs`, written by the root `npm run build` above and gitignored — on a fresh clone that file doesn't exist yet, and skipping this step doesn't fail loudly: the worker's test suite silently loads only the tests that don't touch that import. Run the root build first, then the worker's own tests:
 

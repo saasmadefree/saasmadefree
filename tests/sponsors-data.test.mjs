@@ -169,14 +169,16 @@ describe('règles sponsors', () => {
   });
 });
 
-// Dépôt minimal : loadData() lit aussi agents.json et categories.json, qui
-// n'ont pas de repli ENOENT. Les dossiers tools/ et i18n/ absents donnent déjà
+// Dépôt minimal : loadData() lit aussi agents.json, categories.json et
+// style/banned-phrases.json, qui n'ont pas de repli ENOENT. Les dossiers tools/ et i18n/ absents donnent déjà
 // des listes vides.
 async function fixture(sponsorsJson) {
   const root = await mkdtemp(join(tmpdir(), 'smf-loaddata-'));
   await mkdir(join(root, 'data'), { recursive: true });
   await writeFile(join(root, 'data', 'agents.json'), '[]', 'utf8');
   await writeFile(join(root, 'data', 'categories.json'), '[]', 'utf8');
+  await mkdir(join(root, 'data', 'style'), { recursive: true });
+  await writeFile(join(root, 'data', 'style', 'banned-phrases.json'), '{}', 'utf8');
   if (sponsorsJson !== undefined) {
     await writeFile(join(root, 'data', 'sponsors.json'), sponsorsJson, 'utf8');
   }

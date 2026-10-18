@@ -1,0 +1,26 @@
+{
+  "slug": "restic",
+  "name": "restic",
+  "homepage": "https://github.com/restic/restic",
+  "repo": "restic/restic",
+  "license": "BSD-2-Clause",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "cloud-storage"
+  ],
+  "stats": {
+    "stars": 36625,
+    "lastCommit": "2026-10-11",
+    "createdAt": "2014-04-27",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

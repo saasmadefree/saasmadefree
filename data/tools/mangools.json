@@ -24,10 +24,10 @@
     "database",
     "oauth-app"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "SerpBear",
-      "url": "https://github.com/towfiqi/serpbear"
+      "project": "serpbear",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

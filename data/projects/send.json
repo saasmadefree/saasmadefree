@@ -1,0 +1,26 @@
+{
+  "slug": "send",
+  "name": "Send",
+  "homepage": "https://github.com/timvisee/send",
+  "repo": "timvisee/send",
+  "license": "MPL-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "cloud-storage"
+  ],
+  "stats": {
+    "stars": 5928,
+    "lastCommit": "2025-07-01",
+    "createdAt": "2020-10-01",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

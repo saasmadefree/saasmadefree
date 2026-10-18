@@ -1,0 +1,26 @@
+{
+  "slug": "medito-app",
+  "name": "Medito",
+  "homepage": "https://github.com/meditohq/medito-app",
+  "repo": "meditohq/medito-app",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "health-fitness"
+  ],
+  "stats": {
+    "stars": 1327,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2021-02-28",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

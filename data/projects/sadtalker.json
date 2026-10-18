@@ -1,0 +1,25 @@
+{
+  "slug": "sadtalker",
+  "name": "SadTalker",
+  "homepage": "https://github.com/OpenTalker/SadTalker",
+  "repo": "OpenTalker/SadTalker",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-audio"
+  ],
+  "stats": {
+    "stars": 14140,
+    "lastCommit": "2023-10-10",
+    "createdAt": "2022-11-23",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

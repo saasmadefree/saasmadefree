@@ -1,0 +1,26 @@
+{
+  "slug": "espeak-ng",
+  "name": "espeak-ng",
+  "homepage": "https://github.com/espeak-ng/espeak-ng",
+  "repo": "espeak-ng/espeak-ng",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-audio"
+  ],
+  "stats": {
+    "stars": 6957,
+    "lastCommit": "2026-09-22",
+    "createdAt": "2015-12-08",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

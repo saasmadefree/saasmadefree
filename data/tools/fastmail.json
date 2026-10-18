@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "mailcow",
-      "url": "https://github.com/mailcow/mailcow-dockerized"
+      "project": "mailcow-dockerized",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

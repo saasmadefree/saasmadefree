@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "FreshRSS",
-      "url": "https://github.com/FreshRSS/FreshRSS"
+      "project": "freshrss",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Firefly III",
-      "url": "https://github.com/firefly-iii/firefly-iii"
+      "project": "firefly-iii",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

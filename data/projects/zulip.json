@@ -1,0 +1,27 @@
+{
+  "slug": "zulip",
+  "name": "Zulip",
+  "homepage": "https://github.com/zulip/zulip",
+  "repo": "zulip/zulip",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "community",
+    "video-meetings"
+  ],
+  "stats": {
+    "stars": 26059,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2015-09-25",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

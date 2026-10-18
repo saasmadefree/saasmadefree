@@ -1,0 +1,26 @@
+{
+  "slug": "firefly-iii",
+  "name": "Firefly III",
+  "homepage": "https://github.com/firefly-iii/firefly-iii",
+  "repo": "firefly-iii/firefly-iii",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "personal-finance"
+  ],
+  "stats": {
+    "stars": 24917,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2014-06-28",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

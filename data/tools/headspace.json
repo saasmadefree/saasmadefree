@@ -23,11 +23,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Medito",
-      "url": "https://github.com/meditohq/medito-app",
-      "license": "GPL-3.0"
+      "project": "medito-app",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

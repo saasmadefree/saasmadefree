@@ -1,0 +1,25 @@
+{
+  "slug": "limesurvey",
+  "name": "LimeSurvey",
+  "homepage": "https://github.com/LimeSurvey/LimeSurvey",
+  "repo": "LimeSurvey/LimeSurvey",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "forms"
+  ],
+  "stats": {
+    "stars": 3767,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2012-01-30",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

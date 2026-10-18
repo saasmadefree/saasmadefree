@@ -1,0 +1,26 @@
+{
+  "slug": "vaultwarden",
+  "name": "Vaultwarden",
+  "homepage": "https://github.com/dani-garcia/vaultwarden",
+  "repo": "dani-garcia/vaultwarden",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "security"
+  ],
+  "stats": {
+    "stars": 69200,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2018-02-17",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

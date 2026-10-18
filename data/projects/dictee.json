@@ -1,0 +1,26 @@
+{
+  "slug": "dictee",
+  "name": "Dictée",
+  "homepage": "https://github.com/MattiooFR/dictee",
+  "repo": "MattiooFR/dictee",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "voice-dictation"
+  ],
+  "stats": {
+    "stars": 1,
+    "lastCommit": "2026-09-10",
+    "createdAt": "2026-08-17",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

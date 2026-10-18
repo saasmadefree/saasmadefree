@@ -22,22 +22,18 @@
   "requirements": [
     "anthropic-api-key"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Handy",
-      "url": "https://github.com/cjpais/Handy"
+      "project": "handy",
+      "fit": "partial"
     },
     {
-      "name": "VoiceInk",
-      "url": "https://github.com/Beingpax/VoiceInk"
+      "project": "voiceink",
+      "fit": "partial"
     },
     {
-      "name": "FreeFlow",
-      "url": "https://github.com/zachlatta/freeflow"
-    },
-    {
-      "name": "Twilio Media Streams",
-      "url": "https://www.twilio.com/docs/voice/media-streams"
+      "project": "freeflow",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -1,0 +1,27 @@
+{
+  "slug": "syncthing",
+  "name": "Syncthing",
+  "homepage": "https://github.com/syncthing/syncthing",
+  "repo": "syncthing/syncthing",
+  "license": "MPL-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "cloud-storage",
+    "notes-knowledge"
+  ],
+  "stats": {
+    "stars": 89473,
+    "lastCommit": "2026-10-12",
+    "createdAt": "2013-11-26",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

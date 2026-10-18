@@ -13,7 +13,8 @@
     "audit:css": "node scripts/audit-css.mjs",
     "linkcheck": "node scripts/linkcheck.mjs",
     "build": "node scripts/build-feed.mjs && node scripts/build-site.mjs",
-    "build:extension": "node scripts/pack-extension.mjs"
+    "build:extension": "node scripts/pack-extension.mjs",
+    "refresh:projects": "node scripts/refresh-projects.mjs"
   },
   "keywords": [],
   "author": "",

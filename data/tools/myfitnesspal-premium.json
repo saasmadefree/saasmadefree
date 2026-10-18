@@ -24,11 +24,10 @@
     "database",
     "hosting"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Open Food Facts",
-      "url": "https://github.com/openfoodfacts/openfoodfacts-server",
-      "license": "AGPL-3.0"
+      "project": "openfoodfacts-server",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

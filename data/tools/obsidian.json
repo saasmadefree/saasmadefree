@@ -22,16 +22,14 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Syncthing",
-      "url": "https://syncthing.net",
-      "license": "MPL-2.0"
+      "project": "syncthing",
+      "fit": "partial"
     },
     {
-      "name": "Self-hosted LiveSync",
-      "url": "https://github.com/vrtmrz/obsidian-livesync",
-      "license": "MIT"
+      "project": "obsidian-livesync",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

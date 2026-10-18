@@ -5,6 +5,15 @@
 //
 //   data/tools/<slug>.json              — facts, language-neutral
 //   data/i18n/en/tools/<slug>.json      — an editorial DRAFT, English only
+//   data/projects/<slug>.json           — one per open-source project the
+//                                         upstream entry cites as priorArt
+//
+// Upstream still ships `priorArt` ({name, url, license?}); our tools carry
+// `alternatives: [{project, fit}]` instead, pointing at data/projects/. The
+// conversion is the one scripts/migrate-prior-art.mjs ran on the catalogue
+// (scripts/lib/prior-art.mjs): a project already on disk with the same repo
+// is reused (its categories gain the new tool's), otherwise a new one is
+// written, with no i18n text — it stays unpublishable until someone writes it.
 //
 // The upstream schema differs from ours field by field; see CONTRIBUTING.md
 // and docs/import-report.md for the mapping tables this script implements.
@@ -30,6 +39,7 @@ import { readFile, writeFile, readdir, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { normalizeDomain } from './lib/validate-rules.mjs';
+import { migratePriorArt } from './lib/prior-art.mjs';
 
 // ---------------------------------------------------------------------------
 // pricing.basis — the 21 upstream free-text values collapse to our 5 codes.
@@ -474,7 +484,18 @@ async function loadExisting(dataDir) {
     tools.set(tool.slug, tool);
     for (const d of tool.domains ?? []) domains.add(normalizeDomain(d));
   }
-  return { tools, domains };
+  const projects = new Map();
+  let projectFiles = [];
+  try {
+    projectFiles = (await readdir(join(dataDir, 'projects'))).filter((f) => f.endsWith('.json'));
+  } catch (err) {
+    if (err.code !== 'ENOENT') throw err;
+  }
+  for (const f of projectFiles) {
+    const project = JSON.parse(await readFile(join(dataDir, 'projects', f), 'utf8'));
+    projects.set(project.slug, project);
+  }
+  return { tools, domains, projects };
 }
 
 function eligibility(entry, existing) {
@@ -623,6 +644,8 @@ function buildToolFact(entry, pool) {
   fact.moatType = entry.moatType;
   fact.diyTimeEstimate = mapDiyTime(entry.diyTimeEstimate, entry.slug);
   fact.requirements = mapRequirements(entry.requirements);
+  // Temporary: main() converts this into `alternatives` + data/projects/
+  // (migratePriorArt) before anything is written. Never written as is.
   if (entry.priorArt?.length) {
     fact.priorArt = entry.priorArt.map((p) => {
       const item = { name: p.name, url: p.url };
@@ -751,6 +774,7 @@ async function main() {
     pool.set(e.slug, { ...e, category });
   }
   const domainsSeen = new Set(existing.domains);
+  const projectsPool = new Map(existing.projects);
 
   let wroteFacts = 0;
   let wroteDrafts = 0;
@@ -778,13 +802,21 @@ async function main() {
         console.log(`! ${entry.slug} : ignoré (${check.reason}).`);
         skippedFacts += 1;
       } else {
-        const fact = buildToolFact(entry, pool);
-        const collided = fact.domains.filter((d) => domainsSeen.has(normalizeDomain(d)));
+        const draftFact = buildToolFact(entry, pool);
+        const collided = draftFact.domains.filter((d) => domainsSeen.has(normalizeDomain(d)));
         if (collided.length) {
           console.log(`! ${entry.slug} : ignoré (domaine(s) déjà revendiqué(s) dans ce lot : ${collided.join(', ')}).`);
           skippedFacts += 1;
         } else {
-          for (const d of fact.domains) domainsSeen.add(normalizeDomain(d));
+          for (const d of draftFact.domains) domainsSeen.add(normalizeDomain(d));
+          const converted = migratePriorArt(new Map([[draftFact.slug, draftFact]]), projectsPool);
+          const fact = converted.tools.get(draftFact.slug) ?? draftFact;
+          for (const [projectSlug, project] of converted.projects) {
+            const verb = projectsPool.has(projectSlug) ? 'catégories mises à jour' : 'nouveau projet, sans texte';
+            await writeJson(join(dataDir, 'projects', `${projectSlug}.json`), project, args.dryRun);
+            projectsPool.set(projectSlug, project);
+            console.log(`+ ${entry.slug} → data/projects/${projectSlug}.json (${verb})`);
+          }
           await writeJson(factPath, fact, args.dryRun);
           console.log(`+ ${entry.slug} : data/tools/${entry.slug}.json (relatedSlugs: ${fact.relatedSlugs.join(', ')})`);
           wroteFacts += 1;

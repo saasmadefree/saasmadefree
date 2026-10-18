@@ -1,0 +1,25 @@
+{
+  "slug": "joplin",
+  "name": "Joplin",
+  "homepage": "https://github.com/laurent22/joplin",
+  "repo": "laurent22/joplin",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "notes-knowledge"
+  ],
+  "stats": {
+    "stars": 56777,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2017-01-16",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

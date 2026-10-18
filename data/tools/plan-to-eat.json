@@ -25,16 +25,14 @@
     "database",
     "domain"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Mealie",
-      "url": "https://github.com/mealie-recipes/mealie",
-      "license": "AGPL-3.0"
+      "project": "mealie",
+      "fit": "partial"
     },
     {
-      "name": "Grocy",
-      "url": "https://github.com/grocy/grocy",
-      "license": "MIT"
+      "project": "grocy",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -1,0 +1,26 @@
+{
+  "slug": "cryptomator",
+  "name": "Cryptomator",
+  "homepage": "https://github.com/cryptomator/cryptomator",
+  "repo": "cryptomator/cryptomator",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "cloud-storage"
+  ],
+  "stats": {
+    "stars": 16319,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2014-02-02",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

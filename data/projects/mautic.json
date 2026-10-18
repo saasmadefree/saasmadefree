@@ -1,0 +1,26 @@
+{
+  "slug": "mautic",
+  "name": "Mautic",
+  "homepage": "https://github.com/mautic/mautic",
+  "repo": "mautic/mautic",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "crm-sales",
+    "newsletter"
+  ],
+  "stats": {
+    "stars": 10787,
+    "lastCommit": "2026-10-15",
+    "createdAt": "2013-08-19",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

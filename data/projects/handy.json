@@ -1,0 +1,26 @@
+{
+  "slug": "handy",
+  "name": "Handy",
+  "homepage": "https://github.com/cjpais/Handy",
+  "repo": "cjpais/Handy",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "voice-dictation"
+  ],
+  "stats": {
+    "stars": 34024,
+    "lastCommit": "2026-10-15",
+    "createdAt": "2025-02-13",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

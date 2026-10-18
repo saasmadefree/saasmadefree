@@ -1,0 +1,26 @@
+{
+  "slug": "penpot",
+  "name": "Penpot",
+  "homepage": "https://github.com/penpot/penpot",
+  "repo": "penpot/penpot",
+  "license": "MPL-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "design"
+  ],
+  "stats": {
+    "stars": 61278,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2015-12-29",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

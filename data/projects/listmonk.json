@@ -1,0 +1,26 @@
+{
+  "slug": "listmonk",
+  "name": "Listmonk",
+  "homepage": "https://github.com/knadh/listmonk",
+  "repo": "knadh/listmonk",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "newsletter"
+  ],
+  "stats": {
+    "stars": 23817,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2019-06-26",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

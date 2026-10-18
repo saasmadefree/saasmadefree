@@ -9,11 +9,11 @@
     "name": { "type": "string", "minLength": 1 },
     "kind": { "enum": ["url", "deeplink", "clipboard"] },
     "template": { "type": ["string", "null"] },
-    "homepage": { "type": "string", "format": "uri" },
+    "homepage": { "type": "string", "format": "uri", "pattern": "^https?://" },
     "maxLength": { "type": ["integer", "null"], "minimum": 1 },
     "status": { "enum": ["verified", "untested", "not-yet"] },
     "verifiedOn": { "type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
     "runHint": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-    "docs": { "type": ["string", "null"], "format": "uri" }
+    "docs": { "type": ["string", "null"], "format": "uri", "pattern": "^https?://" }
   }
 }

@@ -1,0 +1,26 @@
+{
+  "slug": "umami",
+  "name": "Umami",
+  "homepage": "https://github.com/umami-software/umami",
+  "repo": "umami-software/umami",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "analytics"
+  ],
+  "stats": {
+    "stars": 39437,
+    "lastCommit": "2026-09-17",
+    "createdAt": "2020-07-17",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

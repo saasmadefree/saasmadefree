@@ -23,11 +23,10 @@
   "requirements": [
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "wger",
-      "url": "https://github.com/wger-project/wger",
-      "license": "AGPL-3.0"
+      "project": "wger",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

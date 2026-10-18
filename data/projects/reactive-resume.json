@@ -1,0 +1,26 @@
+{
+  "slug": "reactive-resume",
+  "name": "Reactive Resume",
+  "homepage": "https://github.com/reactive-resume/reactive-resume",
+  "repo": "reactive-resume/reactive-resume",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "job-search"
+  ],
+  "stats": {
+    "stars": 44434,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2020-03-25",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

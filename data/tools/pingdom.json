@@ -25,10 +25,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Uptime Kuma",
-      "url": "https://github.com/louislam/uptime-kuma"
+      "project": "uptime-kuma",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

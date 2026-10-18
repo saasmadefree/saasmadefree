@@ -1,0 +1,26 @@
+{
+  "slug": "tailscale",
+  "name": "Tailscale",
+  "homepage": "https://github.com/tailscale/tailscale",
+  "repo": "tailscale/tailscale",
+  "license": "BSD-3-Clause",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "home-family"
+  ],
+  "stats": {
+    "stars": 37684,
+    "lastCommit": "2026-10-17",
+    "createdAt": "2020-01-31",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

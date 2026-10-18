@@ -1,6 +1,6 @@
 {
   "tagline": "Calendrier et planificateur de tâches IA qui planifie automatiquement ta journée de travail.",
-  "verdictSummary": "Un auto-planificateur glouton pour tes propres tâches — lire les disponibilités du calendrier, caser les tâches dans les créneaux libres par échéance et priorité, réécrire le plan comme des événements calendrier — c’est un vrai projet de week-end. Ce qui ne vient pas avec, c’est une gestion robuste des conflits sur plusieurs calendriers, la planification d’équipe, et des années de finition sur les cas particuliers derrière un « replanifie simplement quand quelque chose change ».",
+  "verdictSummary": "Un auto-planificateur glouton pour tes propres tâches — lire les disponibilités du calendrier, caser les tâches dans les créneaux libres par échéance et priorité, réécrire le plan comme des événements calendrier — c’est un vrai projet de week-end. Ce qui ne vient pas avec, c’est une gestion fiable des conflits sur plusieurs calendriers, la planification d’équipe, et des années de finition sur les cas particuliers derrière un « replanifie simplement quand quelque chose change ».",
   "coreLoopDIY": "Un planificateur qui lit le temps libre/occupé de ton calendrier, case tes tâches dans les créneaux disponibles par échéance et priorité pendant les heures de travail, et réécrit le résultat comme des événements calendrier clairement étiquetés.",
   "whatYouLose": [
     "la synchro multi-calendriers",

@@ -24,10 +24,10 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Webstudio",
-      "url": "https://github.com/webstudio-is/webstudio"
+      "project": "webstudio",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

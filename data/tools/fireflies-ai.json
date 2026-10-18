@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "whisper.cpp",
-      "url": "https://github.com/ggml-org/whisper.cpp"
+      "project": "whisper-cpp",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

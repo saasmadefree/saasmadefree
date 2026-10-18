@@ -25,16 +25,14 @@
     "database",
     "domain"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "LibreTranslate",
-      "url": "https://github.com/LibreTranslate/LibreTranslate",
-      "license": "AGPL-3.0"
+      "project": "libretranslate",
+      "fit": "partial"
     },
     {
-      "name": "Weblate",
-      "url": "https://github.com/WeblateOrg/weblate",
-      "license": "GPL-3.0"
+      "project": "weblate",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

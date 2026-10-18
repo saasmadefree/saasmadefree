@@ -1,0 +1,26 @@
+{
+  "slug": "wger",
+  "name": "wger",
+  "homepage": "https://github.com/wger-project/wger",
+  "repo": "wger-project/wger",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "health-fitness"
+  ],
+  "stats": {
+    "stars": 7140,
+    "lastCommit": "2026-10-15",
+    "createdAt": "2013-01-19",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

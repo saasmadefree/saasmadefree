@@ -41,6 +41,7 @@ function block(title, id, kind = 'bar-list') {
 }
 
 export function renderStatsPage({
+  collectionLinks = [],
   lang, path, ui, alternates, xDefaultPath, homePath, toolCount, verdictCounts,
 }) {
   const t = ui.site.stats;
@@ -141,6 +142,6 @@ export function renderStatsPage({
     title: `${t.title} — ${ui.site.brand}`,
     description: t.metaDescription,
     alternates, xDefaultPath,
-    main, ui, homeHref: homePath,
+    main, ui, homeHref: homePath, collectionLinks,
   });
 }

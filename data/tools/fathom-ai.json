@@ -23,10 +23,10 @@
     "anthropic-api-key",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "whisperX",
-      "url": "https://github.com/m-bain/whisperX"
+      "project": "whisperx",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

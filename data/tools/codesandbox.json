@@ -22,10 +22,10 @@
   "requirements": [
     "hosting"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "code-server",
-      "url": "https://github.com/coder/code-server"
+      "project": "code-server",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -3,7 +3,7 @@
   "verdictSummary": "A configurable local crawler that respects robots.txt, follows links, and surfaces technical SEO issues — broken links, missing metadata, duplicate titles — is a genuine one-sitting build, and it's explicitly for sites you own or have permission to crawl. What doesn't survive: years of crawl edge-case handling across the messy real web, JavaScript-rendering accuracy at scale, and desktop performance tuned for crawling hundreds of thousands of URLs.",
   "coreLoopDIY": "Crawl a site the user owns or has explicit permission to check, respecting robots.txt and rate limits, extract on-page SEO signals from each page, and export a prioritized list of issues with the affected URLs.",
   "whatYouLose": [
-    "years of crawl edge-case robustness",
+    "years of hardening against crawl edge cases",
     "JavaScript-rendering accuracy at real scale",
     "continuous scheduled monitoring",
     "agency-grade client reporting"

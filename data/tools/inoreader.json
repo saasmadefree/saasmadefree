@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Miniflux",
-      "url": "https://github.com/miniflux/v2"
+      "project": "v2",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

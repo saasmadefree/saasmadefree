@@ -24,14 +24,14 @@
     "domain",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "plausible/analytics",
-      "url": "https://github.com/plausible/analytics"
+      "project": "analytics",
+      "fit": "partial"
     },
     {
-      "name": "umami",
-      "url": "https://github.com/umami-software/umami"
+      "project": "umami",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

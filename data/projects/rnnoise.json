@@ -1,0 +1,26 @@
+{
+  "slug": "rnnoise",
+  "name": "RNNoise",
+  "homepage": "https://github.com/xiph/rnnoise",
+  "repo": "xiph/rnnoise",
+  "license": "BSD-3-Clause",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "audio-video"
+  ],
+  "stats": {
+    "stars": 5898,
+    "lastCommit": "2025-02-22",
+    "createdAt": "2017-08-03",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

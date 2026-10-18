@@ -24,17 +24,18 @@ const ui = {
 };
 
 describe('render404Page — SANS OBJET', () => {
-  it('tamponne la page et renvoie vers les registres', () => {
+  it('pose le constat en eyebrow, sans badge de verdict, et renvoie vers les registres', () => {
     const html = render404Page({ ui, enPath: '/en/', langs: ['en', 'fr'] });
-    expect(html).toContain('class="badge no badge-lg"');   // le tampon réutilise le composant verdict "no"
-    expect(html).toContain('SANS OBJET');                  // (valeur de la locale testée)
+    expect(html).toContain('<p class="eyebrow">SANS OBJET</p>'); // (valeur de la locale testée)
+    expect(html).not.toContain('class="badge');                  // un verdict d'outil n'a rien à faire ici
+    expect(html.indexOf('class="eyebrow"')).toBeLessThan(html.indexOf('<h1>'));
     expect(html).toContain('<meta name="robots" content="noindex">');
   });
 
   it('ne tamponne rien si notFound.stamp est absent (défense en profondeur)', () => {
     const uiNoStamp = { site: { ...ui.site, notFound: { ...ui.site.notFound, stamp: undefined } } };
     const html = render404Page({ ui: uiNoStamp, enPath: '/en/', langs: ['en', 'fr'] });
-    expect(html).not.toContain('class="badge no badge-lg"');
+    expect(html).not.toContain('class="eyebrow"');
     expect(html).not.toContain('undefined');
   });
 });

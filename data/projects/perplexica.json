@@ -1,0 +1,26 @@
+{
+  "slug": "perplexica",
+  "name": "Perplexica",
+  "homepage": "https://github.com/ItzCrazyKns/Vane",
+  "repo": "ItzCrazyKns/Vane",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-assistant"
+  ],
+  "stats": {
+    "stars": 37366,
+    "lastCommit": "2026-09-01",
+    "createdAt": "2024-04-09",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

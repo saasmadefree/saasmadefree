@@ -1,0 +1,26 @@
+{
+  "slug": "linkwarden",
+  "name": "linkwarden",
+  "homepage": "https://github.com/linkwarden/linkwarden",
+  "repo": "linkwarden/linkwarden",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "read-it-later"
+  ],
+  "stats": {
+    "stars": 20128,
+    "lastCommit": "2026-09-10",
+    "createdAt": "2022-04-09",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

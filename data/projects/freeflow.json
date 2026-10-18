@@ -1,0 +1,26 @@
+{
+  "slug": "freeflow",
+  "name": "FreeFlow",
+  "homepage": "https://github.com/zachlatta/freeflow",
+  "repo": "zachlatta/freeflow",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "voice-dictation"
+  ],
+  "stats": {
+    "stars": 2926,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2026-02-15",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

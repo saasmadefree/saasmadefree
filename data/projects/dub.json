@@ -1,0 +1,25 @@
+{
+  "slug": "dub",
+  "name": "Dub",
+  "homepage": "https://github.com/dubinc/dub",
+  "repo": "dubinc/dub",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "analytics"
+  ],
+  "stats": {
+    "stars": 24904,
+    "lastCommit": "2026-10-16",
+    "createdAt": "2022-08-27",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

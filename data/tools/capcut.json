@@ -22,10 +22,10 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Shotcut",
-      "url": "https://github.com/mltframework/shotcut"
+      "project": "shotcut",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

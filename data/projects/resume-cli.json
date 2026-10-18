@@ -1,0 +1,26 @@
+{
+  "slug": "resume-cli",
+  "name": "JSON Resume",
+  "homepage": "https://github.com/jsonresume/resume-cli",
+  "repo": "jsonresume/resume-cli",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "job-search"
+  ],
+  "stats": {
+    "stars": 4711,
+    "lastCommit": "2026-06-12",
+    "createdAt": "2014-06-15",
+    "archived": true,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

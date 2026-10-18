@@ -23,10 +23,10 @@
     "domain",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Cap",
-      "url": "https://github.com/CapSoftware/Cap"
+      "project": "cap",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

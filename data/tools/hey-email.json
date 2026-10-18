@@ -25,10 +25,10 @@
     "domain",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Mail-in-a-Box",
-      "url": "https://github.com/mail-in-a-box/mailinabox"
+      "project": "mailinabox",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

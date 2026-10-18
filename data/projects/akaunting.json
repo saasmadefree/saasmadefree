@@ -1,0 +1,25 @@
+{
+  "slug": "akaunting",
+  "name": "Akaunting",
+  "homepage": "https://github.com/akaunting/akaunting",
+  "repo": "akaunting/akaunting",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "finance-accounting"
+  ],
+  "stats": {
+    "stars": 10187,
+    "lastCommit": "2026-10-08",
+    "createdAt": "2017-06-21",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

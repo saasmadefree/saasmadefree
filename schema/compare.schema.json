@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "compare.schema.json",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["a", "b", "kindA", "kindB", "volume", "checkedOn"],
+    "properties": {
+      "a": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,63}$" },
+      "b": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,63}$" },
+      "kindA": { "enum": ["tool", "project"] },
+      "kindB": { "enum": ["tool", "project"] },
+      "volume": {
+        "type": "object",
+        "minProperties": 1,
+        "propertyNames": { "pattern": "^[a-z]{2}$" },
+        "additionalProperties": { "type": "integer", "minimum": 0 }
+      },
+      "checkedOn": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+    }
+  }
+}

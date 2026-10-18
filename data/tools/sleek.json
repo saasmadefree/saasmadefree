@@ -22,18 +22,18 @@
   "requirements": [
     "anthropic-api-key"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "dom-to-figma",
-      "url": "https://github.com/figitdesign/web-to-figma"
+      "project": "web-to-figma",
+      "fit": "partial"
     },
     {
-      "name": "Penpot",
-      "url": "https://github.com/penpot/penpot"
+      "project": "penpot",
+      "fit": "partial"
     },
     {
-      "name": "Onlook",
-      "url": "https://github.com/onlook-dev/onlook"
+      "project": "onlook",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

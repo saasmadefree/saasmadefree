@@ -26,10 +26,10 @@
     "database",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "FreeScout",
-      "url": "https://github.com/freescout-help-desk/freescout"
+      "project": "freescout",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -23,10 +23,10 @@
   "requirements": [
     "hosting"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "restic",
-      "url": "https://github.com/restic/restic"
+      "project": "restic",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

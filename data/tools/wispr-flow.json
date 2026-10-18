@@ -23,21 +23,18 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Dictée",
-      "url": "https://github.com/MattiooFR/dictee",
-      "license": "MIT"
+      "project": "dictee",
+      "fit": "partial"
     },
     {
-      "name": "mlx-whisper",
-      "url": "https://github.com/ml-explore/mlx-examples/tree/main/whisper",
-      "license": "MIT"
+      "project": "mlx-examples",
+      "fit": "partial"
     },
     {
-      "name": "whisper.cpp",
-      "url": "https://github.com/ggml-org/whisper.cpp",
-      "license": "MIT"
+      "project": "whisper-cpp",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

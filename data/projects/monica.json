@@ -1,0 +1,26 @@
+{
+  "slug": "monica",
+  "name": "Monica",
+  "homepage": "https://github.com/monicahq/monica",
+  "repo": "monicahq/monica",
+  "license": "AGPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "crm-sales"
+  ],
+  "stats": {
+    "stars": 25495,
+    "lastCommit": "2026-09-24",
+    "createdAt": "2017-02-17",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

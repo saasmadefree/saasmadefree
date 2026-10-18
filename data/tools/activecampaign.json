@@ -23,10 +23,10 @@
     "domain",
     "email-provider"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Listmonk",
-      "url": "https://github.com/knadh/listmonk"
+      "project": "listmonk",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

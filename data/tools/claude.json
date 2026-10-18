@@ -24,10 +24,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "LibreChat",
-      "url": "https://github.com/danny-avila/LibreChat"
+      "project": "librechat",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -22,14 +22,14 @@
   "requirements": [
     "none"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Penpot",
-      "url": "https://github.com/penpot/penpot"
+      "project": "penpot",
+      "fit": "partial"
     },
     {
-      "name": "Excalidraw",
-      "url": "https://github.com/excalidraw/excalidraw"
+      "project": "excalidraw",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

@@ -23,10 +23,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Formbricks",
-      "url": "https://github.com/formbricks/formbricks"
+      "project": "formbricks",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [

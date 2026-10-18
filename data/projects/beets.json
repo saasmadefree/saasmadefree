@@ -1,0 +1,26 @@
+{
+  "slug": "beets",
+  "name": "beets",
+  "homepage": "https://github.com/beetbox/beets",
+  "repo": "beetbox/beets",
+  "license": "MIT",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "media-streaming"
+  ],
+  "stats": {
+    "stars": 15805,
+    "lastCommit": "2026-10-09",
+    "createdAt": "2010-08-09",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

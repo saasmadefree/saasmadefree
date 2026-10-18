@@ -1,0 +1,26 @@
+{
+  "slug": "iopaint",
+  "name": "IOPaint",
+  "homepage": "https://github.com/Sanster/IOPaint",
+  "repo": "Sanster/IOPaint",
+  "license": "Apache-2.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "ai-image"
+  ],
+  "stats": {
+    "stars": 23305,
+    "lastCommit": "2025-04-29",
+    "createdAt": "2021-11-15",
+    "archived": true,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

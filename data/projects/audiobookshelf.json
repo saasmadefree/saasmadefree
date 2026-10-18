@@ -1,0 +1,26 @@
+{
+  "slug": "audiobookshelf",
+  "name": "Audiobookshelf",
+  "homepage": "https://github.com/advplyr/audiobookshelf",
+  "repo": "advplyr/audiobookshelf",
+  "license": "GPL-3.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "media-streaming"
+  ],
+  "stats": {
+    "stars": 14686,
+    "lastCommit": "2026-10-05",
+    "createdAt": "2021-08-17",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "slug": "mailinabox",
+  "name": "Mail-in-a-Box",
+  "homepage": "https://github.com/mail-in-a-box/mailinabox",
+  "repo": "mail-in-a-box/mailinabox",
+  "license": "CC0-1.0",
+  "selfHostable": true,
+  "hosted": {
+    "exists": false
+  },
+  "deploy": [],
+  "stack": [],
+  "categories": [
+    "email"
+  ],
+  "stats": {
+    "stars": 15439,
+    "lastCommit": "2026-09-26",
+    "createdAt": "2013-08-21",
+    "archived": false,
+    "checkedOn": "2026-10-17"
+  },
+  "markets": [
+    "en"
+  ]
+}

@@ -24,10 +24,10 @@
     "hosting",
     "database"
   ],
-  "priorArt": [
+  "alternatives": [
     {
-      "name": "Prometheus",
-      "url": "https://github.com/prometheus/prometheus"
+      "project": "prometheus",
+      "fit": "partial"
     }
   ],
   "relatedSlugs": [
