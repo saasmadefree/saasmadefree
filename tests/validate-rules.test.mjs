@@ -616,7 +616,42 @@ describe('alternativesIntro : longueur et gagnant nommé', () => {
     expect(validateAll(data, validators, '2025-08-01').join(' ')).toContain('"outline"');
   });
 
+  // Correspondance par mot entier (frontière Unicode lettre/chiffre), pas par
+  // sous-chaîne : « Send » ne doit pas se trouver dans « sending ».
+  function namedWinner(name, intro) {
+    const data = withIntro(intro);
+    data.projects.get('outline').name = name;
+    return validateAll(data, validators, TODAY);
+  }
+
+  it('refuse « Send » trouvé seulement dans « sending »', () => {
+    const out = namedWinner('Send', `We recommend sending files with wikijs. ${words(70)}`);
+    expect(out.join(' ')).toContain('"Send"');
+  });
+
+  it('accepte un nom avec un point, « Cal.diy »', () => {
+    expect(namedWinner('Cal.diy', `The best pick is Cal.diy for bookings. ${words(70)}`)).toEqual([]);
+  });
+
+  it('le point de « Cal.diy » est littéral : « Calxdiy » ne compte pas', () => {
+    expect(namedWinner('Cal.diy', `The best pick is Calxdiy for bookings. ${words(70)}`).join(' ')).toContain('"Cal.diy"');
+  });
+
+  it('accepte « n8n. » en fin de phrase', () => {
+    expect(namedWinner('n8n', `The best free alternative is n8n. ${words(70)}`)).toEqual([]);
+  });
+
+  it('accepte le possessif « Outline\'s »', () => {
+    expect(namedWinner('Outline', `Outline's editor covers most needs. ${words(70)}`)).toEqual([]);
+  });
+
+  it('accepte un nom accentué, sans tenir compte de la casse', () => {
+    expect(namedWinner('Écrivain', `La meilleure option est écrivain, hébergé chez toi. ${words(70)}`)).toEqual([]);
+    expect(namedWinner('Écrivain', `La meilleure option est écrivains. ${words(70)}`).join(' ')).toContain('"Écrivain"');
+  });
+
   it("ne demande aucun nom quand la fiche n'a aucune alternative affichable", () => {
+
     const data = withIntro(`Aucun projet ne couvre ce besoin. ${words(70)}`);
     data.tools.get('a').alternatives = [];
     expect(validateAll(data, validators, TODAY)).toEqual([]);

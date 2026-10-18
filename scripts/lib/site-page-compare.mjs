@@ -5,7 +5,7 @@ import {
   organizationJsonLd, breadcrumbJsonLd, faqPageJsonLd, softwareItemListJsonLd, webPageJsonLd, languageVersions,
 } from './site-seo.mjs';
 import { indexable as gates, isDisplayableProject, statsAreFresh } from './site-alternatives.mjs';
-import { compareKey } from './validate-rules.mjs';
+import { compareKey } from './data-utils.mjs';
 import {
   projectLink, templateWithHtml, projectStatCells, sourceHost, monthYear, externalLink as ext, hostedCell, selfHostCell,
 } from './site-page-tool.mjs';

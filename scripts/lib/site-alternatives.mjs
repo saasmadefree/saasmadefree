@@ -1,4 +1,4 @@
-import { compareKey, daysBetween } from './validate-rules.mjs';
+import { compareKey, daysBetween } from './data-utils.mjs';
 
 // Données de rendu des pages « alternatives » (fiche, projet, comparatif,
 // listes) et portes d'indexation du spec D7. Fonctions pures : aucune lecture

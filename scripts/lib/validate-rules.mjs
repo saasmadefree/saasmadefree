@@ -1,9 +1,11 @@
 import { LANGS } from './load-data.mjs';
 import { siteLanguages } from './site-data.mjs';
-// Import circulaire assumé (site-alternatives importe daysBetween et
-// compareKey d'ici) : les deux modules n'utilisent l'autre que dans des
-// fonctions, jamais au chargement, donc l'ordre d'évaluation est sans effet.
 import { isDisplayableProject } from './site-alternatives.mjs';
+import { compareKey, daysBetween, escapeRegExp } from './data-utils.mjs';
+
+// Réexportés : compareKey et daysBetween vivaient ici avant data-utils.mjs,
+// et des appelants (tests compris) les importent encore depuis ce module.
+export { compareKey, daysBetween };
 
 export const ALLOWED_VARS = new Set(['prompt', 'prompt_url', 'lang', 'slug']);
 const MAX_PRICE_AGE_DAYS = 180;
@@ -94,11 +96,6 @@ function findBannedPhrases(entry, path, stems, errors) {
       }
     }
   }, ['prompt']);
-}
-
-/** Clé d'un comparatif, et nom de son fichier de texte : "a-vs-b". */
-export function compareKey(a, b) {
-  return `${a}-vs-${b}`;
 }
 
 const MIN_PROJECT_WORDS = 120;
@@ -236,18 +233,6 @@ function validateCompare(data, validators, errors) {
 }
 
 /**
- * Écart en jours entre deux dates 'YYYY-MM-DD', calculé en UTC : en heure
- * locale, un passage à l'heure d'été retirerait une heure à l'intervalle et
- * l'arrondi pourrait faire perdre un jour à un seuil. Partagé avec
- * site-alternatives.mjs (fraîcheur des stats, activité des projets).
- */
-export function daysBetween(fromIso, toIso) {
-  const from = Date.parse(`${fromIso}T00:00:00Z`);
-  const to = Date.parse(`${toIso}T00:00:00Z`);
-  return Math.round((to - from) / 86400000);
-}
-
-/**
  * Deux placements peuvent partager un slot tant que leurs périodes ne se
  * croisent pas : l'historique des sponsors passés reste dans le fichier, et
  * c'est ce qui permet de vérifier après coup ce qui a été affiché et quand.
@@ -323,14 +308,26 @@ function validateSponsors(sponsors, validators, publishedLangs, today, errors) {
  * sans commit depuis plus d'un an), donc on compare au premier projet
  * affichable, jugé à la même date `today` que le reste du validateur. Sans
  * projet affichable, il n'y a personne à nommer : rien à vérifier.
- * Comparaison sur le `name` du projet, sans tenir compte de la casse.
+ * Comparaison sur le `name` du projet, sans tenir compte de la casse, en mot
+ * entier (voir namesProject).
  */
+/**
+ * Le texte nomme-t-il le projet ? Mot entier, insensible à la casse : ni
+ * lettre ni chiffre (Unicode) juste avant ou juste après le nom. « Send » ne
+ * se trouve pas dans « sending », mais « n8n. », « Outline's » et « Cal.diy »
+ * sont reconnus (le point du nom est littéral).
+ */
+function namesProject(text, name) {
+  const pattern = new RegExp(`(?<![\\p{L}\\p{N}])${escapeRegExp(name)}(?![\\p{L}\\p{N}])`, 'iu');
+  return pattern.test(text);
+}
+
 function checkIntroNamesWinner(intro, tool, projects, today, path, errors) {
   const first = (tool?.alternatives ?? [])
     .map((alt) => projects.get(alt.project))
     .find((project) => project && isDisplayableProject(project, today));
   if (!first) return;
-  if (!intro.toLowerCase().includes(String(first.name).toLowerCase())) {
+  if (!namesProject(intro, first.name)) {
     errors.push(
       `${path} : alternativesIntro doit nommer "${first.name}", première alternative affichable ` +
       `(data/projects/${first.slug}.json) — règle « le gagnant d'abord » : le projet désigné comme ` +
