@@ -24,6 +24,10 @@ database_id = "04c15852-ddc2-4a16-86d4-8c9e5a11b138"
 [triggers]
 # 02:10 UTC : la journée UTC précédente est close, l'API GraphQL l'a indexée.
 crons = ["10 2 * * *"]
+# Heartbeat healthchecks.io : le cron pingue HEALTHCHECKS_PING_URL à la fin
+# (succès) ou <url>/fail si un des deux jobs a levé. C'est un secret
+# (npx wrangler secret put HEALTHCHECKS_PING_URL), pas une var : le dépôt est
+# public et l'URL suffit pour envoyer de faux pings.
 
 [vars]
 ALLOWED_ORIGIN = "*"

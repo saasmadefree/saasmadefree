@@ -453,10 +453,25 @@ export default {
     // panne D1 pendant l'expiration des slots sponsors empêcherait le travail
     // crawlers de tourner (et réciproquement), alors que les deux jobs
     // n'ont rien à voir l'un avec l'autre.
-    try { await expireSlots(env, dayKey(now)); } catch { /* rien */ }
-    try { await runScheduled(env, now); } catch { /* rien */ }
+    let failed = false;
+    try { await expireSlots(env, dayKey(now)); } catch { failed = true; }
+    try { await runScheduled(env, now); } catch { failed = true; }
+    // Heartbeat healthchecks.io : succès si les deux jobs ont fini, /fail si
+    // l'un a levé. C'est ce qui rend visible l'échec qu'on avale ci-dessus.
+    await pingHealthcheck(env.HEALTHCHECKS_PING_URL, failed ? '/fail' : '');
   },
 };
+
+/**
+ * Ping healthchecks.io (contrôle quotidien 10 2 * * * UTC, grâce 1 h). Ne lève
+ * jamais et abandonne après 10 s : une panne du monitoring ne doit pas casser
+ * le cron. HEALTHCHECKS_PING_URL est un secret wrangler (dépôt public : l'URL
+ * permettrait à n'importe qui de pinguer à notre place) ; absent = pas de ping.
+ */
+async function pingHealthcheck(url, suffix = '') {
+  if (!url) return;
+  await fetch(url + suffix, { signal: AbortSignal.timeout(10_000) }).catch(() => {});
+}
 
 /** Étiquette posée sur chaque session de paiement de ce projet. */
 const STRIPE_PROJECT = 'saasmadefree';
