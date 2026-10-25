@@ -1,0 +1,41 @@
+{
+  "slug": "pixmind",
+  "name": "PixMind",
+  "domains": [
+    "pixmind.io"
+  ],
+  "category": "ai-image",
+  "subcategory": "AI image and video generation",
+  "pricing": {
+    "amount": 9.9,
+    "currency": "USD",
+    "plan": "Basic",
+    "basis": "flat-monthly",
+    "source": "https://www.pixmind.io/pricing",
+    "checkedOn": "2026-09-03",
+    "confidence": "high"
+  },
+  "verdict": "no",
+  "verdictConfidence": "high",
+  "moatType": "model access and compute",
+  "diyTimeEstimate": "one-sitting",
+  "requirements": [
+    "database"
+  ],
+  "priorArt": [
+    {
+      "name": "ComfyUI",
+      "url": "https://github.com/comfyanonymous/ComfyUI"
+    }
+  ],
+  "relatedSlugs": [
+    "playground-ai",
+    "krea",
+    "midjourney"
+  ],
+  "markets": [
+    "en"
+  ],
+  "pagePriority": 3,
+  "verifiedOneShot": false
+}

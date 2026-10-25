@@ -1,0 +1,33 @@
+{
+  "tagline": "Image and video generation across hosted models in one browser workspace.",
+  "verdictSummary": "The workbench around PixMind — prompts, reference uploads, model and output controls, generation history, and natural-language refinements — can be reproduced as a useful personal interface on top of a local ComfyUI server in one sitting. What cannot be reproduced that way is the product's hosted access to many proprietary image and video models, the GPU capacity behind them, and the maintained integrations that make one set of controls work across providers.",
+  "coreLoopDIY": "Send prompt or reference-image jobs to a local ComfyUI instance, choose an installed workflow and output settings, save each result with its parameters, and reopen a past job for a controlled refinement.",
+  "whatYouLose": [
+    "hosted access to proprietary image and video models that cannot run in a local ComfyUI setup",
+    "shared credits and one account across multiple model providers",
+    "hosted GPU capacity and managed generation queues",
+    "provider-specific parameter mappings maintained as model APIs change",
+    "the ready-made vertical apps bundled into the same workspace"
+  ],
+  "whyPeopleStillPay": "The subscription buys consolidated model access and compute, not merely the surrounding interface. A local workbench can be a good replacement when an open-weight model is enough, but it does not replace the convenience of choosing among hosted proprietary image and video systems without maintaining separate accounts and integrations.",
+  "notes": "The honest DIY scope is one reproducible local workflow manager. It should not pretend to recreate PixMind's multi-provider model catalogue.",
+  "prompt": "Build a personal image-and-video generation workbench for a single user, backed by a ComfyUI instance that the user already runs locally or on a rented GPU. Stack: a small React interface, a FastAPI service, SQLite for job history, and the ComfyUI HTTP and WebSocket APIs. Do not call PixMind or any proprietary model provider.\n\nThe main screen has two job types: text-to-image and image-to-image. A job form includes prompt, negative prompt, seed, aspect ratio, output resolution, batch size, and an installed ComfyUI workflow selector. Image-to-image adds a reference upload, denoise strength, and an optional mask drawn directly over the reference. The server converts those controls into the selected workflow JSON, submits it to ComfyUI, streams queue and progress events, and stores every output with the exact workflow, model filename, seed, dimensions, and timestamps.\n\nAdd a history grid with prompt search and filters for workflow, model, job type, aspect ratio, and date. Opening a result shows its full parameters and offers a 'refine' action that copies the job into the form. Record the parent job id so successive refinements form a visible lineage, and provide a side-by-side comparison that highlights the parameter differences between any two related results.\n\nFor video, support only workflows already installed in the user's ComfyUI instance. Treat a video job as the same queue object with duration, frame rate, and source-image fields when the workflow declares them. Fail clearly when a referenced checkpoint or custom node is missing; do not download models or execute arbitrary workflow code automatically.\n\nStore images and videos on disk in a dated directory and keep SQLite as an index, not the only copy. Write a rebuild command that scans sidecar JSON files and reconstructs the history database. Add export for a selected result and its sidecar, plus a ZIP export for a collection.\n\nDocument the hardware requirement and make the limits explicit: this build offers installed open-weight models only, has no shared cloud credits, no proprietary hosted models, no multi-user collaboration, and no promise that one local workflow will match every provider's output. The goal is a reproducible personal generation loop, not a clone of PixMind's hosted catalogue.",
+  "faq": [
+    {
+      "q": "Can the DIY build use the same models available in PixMind?",
+      "a": "Only when an equivalent model is legally available as a local ComfyUI checkpoint or workflow. Proprietary hosted image and video models remain unavailable, so the local model menu is smaller and produces different results."
+    },
+    {
+      "q": "Can I move my existing PixMind projects and history into it?",
+      "a": "Downloaded outputs can be imported as files, but their full prompts, seeds, provider parameters, and refinement lineage are not automatically reconstructed. The reproducible history starts with jobs created in the local workbench."
+    },
+    {
+      "q": "What hardware does local image and video generation need?",
+      "a": "Image workflows generally need a capable GPU and enough VRAM for the selected checkpoint; video workflows are considerably heavier and slower. Pointing the same ComfyUI setup at a rented GPU is possible, but then compute is still a separate usage cost."
+    },
+    {
+      "q": "What is the biggest difference from paying for PixMind?",
+      "a": "PixMind combines hosted compute and many provider integrations behind one account. The DIY version replaces the personal workflow and history layer, but you maintain the GPU, models, custom nodes, and workflow compatibility yourself."
+    }
+  ]
+}
